@@ -6,8 +6,9 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1PaymentMethodDomainsMethods {
-    /// Lists registered payment method domains and their payment-method statuses. Use `domain_name` or `enabled` to filter the results, and use `starting_after` or `ending_before` to navigate between pages.
+public extension V1PaymentMethodDomainsMethods {
+    /// Lists registered payment method domains and their payment-method statuses. Use `domain_name` or `enabled` to
+    /// filter the results, and use `starting_after` or `ending_before` to navigate between pages.
     ///
     /// Lists the details of existing payment method domains.
     ///
@@ -30,20 +31,28 @@ extension V1PaymentMethodDomainsMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    public static func getPaymentMethodDomains(config: ClientConfig, domainName: String?, enabled: Bool?, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetPaymentMethodDomainsResponse {
-        if let domainName = domainName {
+    static func getPaymentMethodDomains(
+        config: ClientConfig,
+        domainName: String?,
+        enabled: Bool?,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        startingAfter: String?
+    ) async throws -> GetPaymentMethodDomainsResponse {
+        if let domainName {
             try validateLength("domain_name", domainName, max: 5000)
         }
 
-        if let endingBefore = endingBefore {
+        if let endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let startingAfter = startingAfter {
+        if let startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try (await sdkRequest("GET", "/v1/payment_method_domains", config: config, query: [
+        return try await (sdkRequest("GET", "/v1/payment_method_domains", config: config, query: [
             SdkQueryParameter("domain_name", value: domainName),
             SdkQueryParameter("enabled", value: enabled),
             SdkQueryParameter("ending_before", value: endingBefore),

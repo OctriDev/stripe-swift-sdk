@@ -6,18 +6,31 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1ApplicationFeesMethods {
-    /// Retrieves the details of an application fee collected by your account. Use `id` to identify the fee and `expand` to include additional response fields when needed.
+public extension V1ApplicationFeesMethods {
+    /// Retrieves the details of an application fee collected by your account. Use `id` to identify the fee and `expand`
+    /// to include additional response fields when needed.
     ///
-    /// Retrieves the details of an application fee that your account has collected. The same information is returned when refunding the application fee.
+    /// Retrieves the details of an application fee that your account has collected. The same information is returned
+    /// when refunding the application fee.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func getApplicationFeesId(config: ClientConfig, id: String, expand: [String]?) async throws -> ApplicationFee {
+    static func getApplicationFeesId(
+        config: ClientConfig,
+        id: String,
+        expand: [String]?
+    ) async throws -> ApplicationFee {
         try validateLength("id", id, max: 5000)
 
-        return try (await sdkRequest("GET", ["/v1/application_fees/", sdkEncodePathSegment(sdkWireString(id))].joined(), config: config, query: [
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-        ], decoder: .json, operationId: "GetApplicationFeesId")).data
+        return try await (sdkRequest(
+            "GET",
+            ["/v1/application_fees/", sdkEncodePathSegment(sdkWireString(id))].joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+            ],
+            decoder: .json,
+            operationId: "GetApplicationFeesId"
+        )).data
     }
 }

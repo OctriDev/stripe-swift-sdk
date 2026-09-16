@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1IssuingPersonalizationDesignsMethods {
-    public struct PostIssuingPersonalizationDesignsPersonalizationDesignOptions: Codable {
+public extension V1IssuingPersonalizationDesignsMethods {
+    struct PostIssuingPersonalizationDesignsPersonalizationDesignOptions: Codable {
         public var personalizationDesign: String
         public var cardLogo: String?
         public var carrierText: PostIssuingPersonalizationDesignsPersonalizationDesignRequestX4d7bd04606?
@@ -24,7 +24,10 @@ extension V1IssuingPersonalizationDesignsMethods {
         }
     }
 
-    /// Updates an existing personalization design with the fields you provide, leaving omitted fields unchanged. Use empty strings to clear supported values such as `card_logo`, `lookup_key`, or `name`, and use `transfer_lookup_key` to move a lookup key atomically. Supply `preferences.is_default` when updating the preferences object.
+    /// Updates an existing personalization design with the fields you provide, leaving omitted fields unchanged. Use
+    /// empty strings to clear supported values such as `card_logo`, `lookup_key`, or `name`, and use
+    /// `transfer_lookup_key` to move a lookup key atomically. Supply `preferences.is_default` when updating the
+    /// preferences object.
     ///
     /// Updates a card personalization object.
     ///
@@ -50,7 +53,10 @@ extension V1IssuingPersonalizationDesignsMethods {
     /// - transferLookupKey: If set to true, will atomically remove the lookup key
     ///   from the existing personalization design, and assign it to this
     ///   personalization design.
-    public static func postIssuingPersonalizationDesignsPersonalizationDesign(config: ClientConfig, options: PostIssuingPersonalizationDesignsPersonalizationDesignOptions) async throws -> IssuingPersonalizationDesign {
+    static func postIssuingPersonalizationDesignsPersonalizationDesign(
+        config: ClientConfig,
+        options: PostIssuingPersonalizationDesignsPersonalizationDesignOptions
+    ) async throws -> IssuingPersonalizationDesign {
         try validateLength("personalization_design", options.personalizationDesign, max: 5000)
 
         if let physicalBundle = options.physicalBundle {
@@ -59,6 +65,15 @@ extension V1IssuingPersonalizationDesignsMethods {
 
         let requestBody = PostIssuingPersonalizationDesignsPersonalizationDesignRequestBody(options: options)
 
-        return try (await sdkRequest("POST", ["/v1/issuing/personalization_designs/", sdkEncodePathSegment(sdkWireString(options.personalizationDesign))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostIssuingPersonalizationDesignsPersonalizationDesign")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/issuing/personalization_designs/", sdkEncodePathSegment(sdkWireString(options.personalizationDesign))]
+                .joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostIssuingPersonalizationDesignsPersonalizationDesign"
+        )).data
     }
 }

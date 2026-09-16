@@ -7,7 +7,9 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1InvoicesRemoveLinesMethods {
-    /// Removes multiple line items from a draft invoice. Supply `lines` with each line item's identifier and the removal `behavior`, choosing whether to delete or unassign the item. The operation only applies while the invoice remains in draft status.
+    /// Removes multiple line items from a draft invoice. Supply `lines` with each line item's identifier and the
+    /// removal `behavior`, choosing whether to delete or unassign the item. The operation only applies while the
+    /// invoice remains in draft status.
     ///
     /// Removes multiple line items from an invoice. This is only possible when an invoice is still a draft.
     ///
@@ -20,11 +22,29 @@ public enum V1InvoicesRemoveLinesMethods {
     ///   object in a structured format. Individual keys can be unset by posting an
     ///   empty value to them. All keys can be unset by posting an empty value to
     ///   `metadata`.
-    public static func postInvoicesInvoiceRemoveLines(config: ClientConfig, invoice: String, lines: [PostInvoicesInvoiceRemoveLinesRequestBodyLinesItem], expand: [String]?, invoiceMetadata: PostInvoicesInvoiceRemoveLinesRequestBodyInvoiceMetadata?) async throws -> Invoice {
+    public static func postInvoicesInvoiceRemoveLines(
+        config: ClientConfig,
+        invoice: String,
+        lines: [PostInvoicesInvoiceRemoveLinesRequestBodyLinesItem],
+        expand: [String]?,
+        invoiceMetadata: PostInvoicesInvoiceRemoveLinesRequestBodyInvoiceMetadata?
+    ) async throws -> Invoice {
         try validateLength("invoice", invoice, max: 5000)
 
-        let requestBody = PostInvoicesInvoiceRemoveLinesRequestBody(lines: lines, expand: expand, invoiceMetadata: invoiceMetadata)
+        let requestBody = PostInvoicesInvoiceRemoveLinesRequestBody(
+            lines: lines,
+            expand: expand,
+            invoiceMetadata: invoiceMetadata
+        )
 
-        return try (await sdkRequest("POST", ["/v1/invoices/", sdkEncodePathSegment(sdkWireString(invoice)), "/remove_lines"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostInvoicesInvoiceRemoveLines")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/invoices/", sdkEncodePathSegment(sdkWireString(invoice)), "/remove_lines"].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostInvoicesInvoiceRemoveLines"
+        )).data
     }
 }

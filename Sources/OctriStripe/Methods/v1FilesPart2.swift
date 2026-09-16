@@ -6,10 +6,13 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1FilesMethods {
-    /// Lists files that the authenticated user can access, ordered from most recently created to oldest. Use `purpose` to filter the results, `created` to constrain the creation interval, and cursor parameters to navigate between pages. Set `limit` to control the page size.
+public extension V1FilesMethods {
+    /// Lists files that the authenticated user can access, ordered from most recently created to oldest. Use `purpose`
+    /// to filter the results, `created` to constrain the creation interval, and cursor parameters to navigate between
+    /// pages. Set `limit` to control the page size.
     ///
-    /// Returns a list of the files that your account has access to. Stripe sorts and returns the files by their creation dates, placing the most recently created files at the top.
+    /// Returns a list of the files that your account has access to. Stripe sorts and returns the files by their
+    /// creation dates, placing the most recently created files at the top.
     ///
     /// - Parameters:
     /// - created: Only return files that were created during the given date
@@ -29,20 +32,28 @@ extension V1FilesMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    public static func getFiles(config: ClientConfig, created: GetFilesParameter?, endingBefore: String?, expand: [String]?, limit: Int?, purpose: GetFilesParameterX972a335d?, startingAfter: String?) async throws -> GetFilesResponse {
-        if let endingBefore = endingBefore {
+    static func getFiles(
+        config: ClientConfig,
+        created: GetFilesParameter?,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        purpose: GetFilesParameterX972a335d?,
+        startingAfter: String?
+    ) async throws -> GetFilesResponse {
+        if let endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let purpose = purpose {
+        if let purpose {
             try validateLength("purpose", purpose.rawValue, max: 5000)
         }
 
-        if let startingAfter = startingAfter {
+        if let startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try (await sdkRequest("GET", "/v1/files", config: config, query: [
+        return try await (sdkRequest("GET", "/v1/files", config: config, query: [
             SdkQueryParameter("created", value: created),
             SdkQueryParameter("ending_before", value: endingBefore),
             SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),

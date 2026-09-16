@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1TestHelpersTreasuryOutboundTransfersReturn operation model declarations
+/// Canonical v1TestHelpersTreasuryOutboundTransfersReturn operation model declarations
 /// Details about a returned OutboundTransfer.
 public struct PostTestHelpersTreasuryOutboundTransfersOutboundTransferReturXbc4f70dfa3: Codable {
     public var code: PostTestHelpersTreasuryOutboundTransfersOutboundTransferReturX9fdf278b20?
@@ -17,19 +17,19 @@ public struct PostTestHelpersTreasuryOutboundTransfersOutboundTransferReturXbc4f
     }
 
     init() {
-        self.code = nil
+        code = nil
     }
 }
 
 public extension PostTestHelpersTreasuryOutboundTransfersOutboundTransferReturXbc4f70dfa3 {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.code = try container.sdkDecodeIfPresent(.code)
+        code = try container.sdkDecodeIfPresent(.code)
     }
 }
 
 public extension PostTestHelpersTreasuryOutboundTransfersOutboundTransferReturXbc4f70dfa3 {
-    public init(code: PostTestHelpersTreasuryOutboundTransfersOutboundTransferReturX9fdf278b20? = nil) {
+    init(code: PostTestHelpersTreasuryOutboundTransfersOutboundTransferReturX9fdf278b20? = nil) {
         self.init()
         self.code = code
     }

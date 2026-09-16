@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1PaymentFlows domain models
+/// V1PaymentFlows domain models
 /// Typed representation of the `PaymentFlowsPrivatePaymentMethodsPaycoPaymentMethodOptions` API schema.
 public struct PaymentFlowsPrivatePaymentMethodsPaycoPaymentMethodOptions: Codable {
     /// Controls when the funds will be captured from the customer's account.
@@ -21,20 +21,23 @@ public struct PaymentFlowsPrivatePaymentMethodsPaycoPaymentMethodOptions: Codabl
     }
 
     init() {
-        (self.captureMethod, self.setupFutureUsage) = (nil, nil)
+        (captureMethod, setupFutureUsage) = (nil, nil)
     }
 }
 
 public extension PaymentFlowsPrivatePaymentMethodsPaycoPaymentMethodOptions {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.captureMethod = try container.sdkDecodeIfPresent(.captureMethod)
-        self.setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
+        captureMethod = try container.sdkDecodeIfPresent(.captureMethod)
+        setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
     }
 }
 
 public extension PaymentFlowsPrivatePaymentMethodsPaycoPaymentMethodOptions {
-    public init(captureMethod: PaymentFlowsPrivatePaymentMethodsPaycoPaymentMethodOptionsCaptureMethod? = nil, setupFutureUsage: PaymentFlowsPrivatePaymentMethodsPaycoPaymentMethodOptionsSetX6bf6c169e8? = nil) {
+    init(
+        captureMethod: PaymentFlowsPrivatePaymentMethodsPaycoPaymentMethodOptionsCaptureMethod? = nil,
+        setupFutureUsage: PaymentFlowsPrivatePaymentMethodsPaycoPaymentMethodOptionsSetX6bf6c169e8? = nil
+    ) {
         self.init()
         (self.captureMethod, self.setupFutureUsage) = (captureMethod, setupFutureUsage)
     }
@@ -58,27 +61,31 @@ public struct PaymentFlowsPrivatePaymentMethodsPaypalAmountDetailsLineItemPX52b4
     }
 
     init() {
-        (self.category, self.description, self.soldBy) = (nil, nil, nil)
+        (category, description, soldBy) = (nil, nil, nil)
     }
 }
 
 public extension PaymentFlowsPrivatePaymentMethodsPaypalAmountDetailsLineItemPX52b4174653 {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.category = try container.sdkDecodeIfPresent(.category)
-        self.description = try container.sdkDecodeIfPresent(.description)
-        self.soldBy = try container.sdkDecodeIfPresent(.soldBy)
-        if let value = self.description {
+        category = try container.sdkDecodeIfPresent(.category)
+        description = try container.sdkDecodeIfPresent(.description)
+        soldBy = try container.sdkDecodeIfPresent(.soldBy)
+        if let value = description {
             try validateLength("description", value, min: nil, max: 5000)
         }
-        if let value = self.soldBy {
+        if let value = soldBy {
             try validateLength("sold_by", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension PaymentFlowsPrivatePaymentMethodsPaypalAmountDetailsLineItemPX52b4174653 {
-    public init(category: PaymentFlowsPrivatePaymentMethodsPaypalAmountDetailsLineItemPX3bf24a9d01? = nil, description: String? = nil, soldBy: String? = nil) throws {
+    init(
+        category: PaymentFlowsPrivatePaymentMethodsPaypalAmountDetailsLineItemPX3bf24a9d01? = nil,
+        description: String? = nil,
+        soldBy: String? = nil
+    ) throws {
         self.init()
         (self.category, self.description) = (category, description)
         self.soldBy = soldBy
@@ -108,20 +115,23 @@ public struct PaymentFlowsPrivatePaymentMethodsSamsungPayPaymentMethodOptions: C
     }
 
     init() {
-        (self.captureMethod, self.setupFutureUsage) = (nil, nil)
+        (captureMethod, setupFutureUsage) = (nil, nil)
     }
 }
 
 public extension PaymentFlowsPrivatePaymentMethodsSamsungPayPaymentMethodOptions {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.captureMethod = try container.sdkDecodeIfPresent(.captureMethod)
-        self.setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
+        captureMethod = try container.sdkDecodeIfPresent(.captureMethod)
+        setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
     }
 }
 
 public extension PaymentFlowsPrivatePaymentMethodsSamsungPayPaymentMethodOptions {
-    public init(captureMethod: PaymentFlowsPrivatePaymentMethodsSamsungPayPaymentMethodOptioXa5a6636092? = nil, setupFutureUsage: PaymentFlowsPrivatePaymentMethodsSamsungPayPaymentMethodOptioX7ed9f4e474? = nil) {
+    init(
+        captureMethod: PaymentFlowsPrivatePaymentMethodsSamsungPayPaymentMethodOptioXa5a6636092? = nil,
+        setupFutureUsage: PaymentFlowsPrivatePaymentMethodsSamsungPayPaymentMethodOptioX7ed9f4e474? = nil
+    ) {
         self.init()
         (self.captureMethod, self.setupFutureUsage) = (captureMethod, setupFutureUsage)
     }
@@ -129,29 +139,33 @@ public extension PaymentFlowsPrivatePaymentMethodsSamsungPayPaymentMethodOptions
 
 /// Typed representation of the `PaymentFlowsPrivatePaymentMethodsSatispaySetupAttemptDetails` API schema.
 public struct PaymentFlowsPrivatePaymentMethodsSatispaySetupAttemptDetails: Codable {
-
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension PaymentFlowsPrivatePaymentMethodsSatispaySetupAttemptDetails {
-    public init() {
-    }
+    init() {}
 }
 
 /// Controls whether this SetupIntent will accept redirect-based payment methods. Redirect-based payment methods
 /// may require your customer to be redirected to a payment method's app or site for authentication or
 /// additional steps. To confirm this SetupIntent, you may be required to provide a `return_url` to redirect
 /// customers back to your site after they authenticate or complete the setup.
-public struct PaymentFlowsAutomaticPaymentMethodsSetupIntentAllowRedirects: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentFlowsAutomaticPaymentMethodsSetupIntentAllowRedirects: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let always = PaymentFlowsAutomaticPaymentMethodsSetupIntentAllowRedirects(rawValue: "always")
     public static let never = PaymentFlowsAutomaticPaymentMethodsSetupIntentAllowRedirects(rawValue: "never")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -161,17 +175,24 @@ public struct PaymentFlowsAutomaticPaymentMethodsSetupIntentAllowRedirects: RawR
 }
 
 /// Type of the line item.
-public struct PaymentFlowsPrivatePaymentMethodsPaypalAmountDetailsLineItemPX3bf24a9d01: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentFlowsPrivatePaymentMethodsPaypalAmountDetailsLineItemPX3bf24a9d01: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let digitalGoods = PaymentFlowsPrivatePaymentMethodsPaypalAmountDetailsLineItemPX3bf24a9d01(rawValue: "digital_goods")
-    public static let donation = PaymentFlowsPrivatePaymentMethodsPaypalAmountDetailsLineItemPX3bf24a9d01(rawValue: "donation")
-    public static let physicalGoods = PaymentFlowsPrivatePaymentMethodsPaypalAmountDetailsLineItemPX3bf24a9d01(rawValue: "physical_goods")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let digitalGoods =
+        PaymentFlowsPrivatePaymentMethodsPaypalAmountDetailsLineItemPX3bf24a9d01(rawValue: "digital_goods")
+    public static let donation =
+        PaymentFlowsPrivatePaymentMethodsPaypalAmountDetailsLineItemPX3bf24a9d01(rawValue: "donation")
+    public static let physicalGoods =
+        PaymentFlowsPrivatePaymentMethodsPaypalAmountDetailsLineItemPX3bf24a9d01(rawValue: "physical_goods")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -181,16 +202,22 @@ public struct PaymentFlowsPrivatePaymentMethodsPaypalAmountDetailsLineItemPX3bf2
 }
 
 /// Indicates whether or not the incremental authorization feature is supported.
-public struct PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceEnterpX053d114e20: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceEnterpX053d114e20: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let available = PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceEnterpX053d114e20(rawValue: "available")
-    public static let unavailable = PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceEnterpX053d114e20(rawValue: "unavailable")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let available =
+        PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceEnterpX053d114e20(rawValue: "available")
+    public static let unavailable =
+        PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceEnterpX053d114e20(rawValue: "unavailable")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -200,15 +227,20 @@ public struct PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceEnterpX053d
 }
 
 /// Controls when the funds will be captured from the customer's account.
-public struct PaymentFlowsPrivatePaymentMethodsNaverPayPaymentMethodOptionsX126208408f: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentFlowsPrivatePaymentMethodsNaverPayPaymentMethodOptionsX126208408f: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let manual = PaymentFlowsPrivatePaymentMethodsNaverPayPaymentMethodOptionsX126208408f(rawValue: "manual")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let manual =
+        PaymentFlowsPrivatePaymentMethodsNaverPayPaymentMethodOptionsX126208408f(rawValue: "manual")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -222,15 +254,19 @@ public struct PaymentFlowsPrivatePaymentMethodsNaverPayPaymentMethodOptionsX1262
 /// after the PaymentIntent is confirmed and the customer completes any required actions. If you don't provide a
 /// Customer, you can still attach the payment method to a Customer after the transaction completes. If the
 /// payment method is `card_present` and isn't a digital…
-public struct PaymentFlowsPrivatePaymentMethodsSamsungPayPaymentMethodOptioX7ed9f4e474: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentFlowsPrivatePaymentMethodsSamsungPayPaymentMethodOptioX7ed9f4e474: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let none = PaymentFlowsPrivatePaymentMethodsSamsungPayPaymentMethodOptioX7ed9f4e474(rawValue: "none")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -240,15 +276,20 @@ public struct PaymentFlowsPrivatePaymentMethodsSamsungPayPaymentMethodOptioX7ed9
 }
 
 /// Controls when the funds will be captured from the customer's account.
-public struct PaymentFlowsPrivatePaymentMethodsPaycoPaymentMethodOptionsCaptureMethod: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentFlowsPrivatePaymentMethodsPaycoPaymentMethodOptionsCaptureMethod: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let manual = PaymentFlowsPrivatePaymentMethodsPaycoPaymentMethodOptionsCaptureMethod(rawValue: "manual")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let manual =
+        PaymentFlowsPrivatePaymentMethodsPaycoPaymentMethodOptionsCaptureMethod(rawValue: "manual")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -258,16 +299,22 @@ public struct PaymentFlowsPrivatePaymentMethodsPaycoPaymentMethodOptionsCaptureM
 }
 
 /// Required enumerated value serialized in the `account_subcategories[]` wire field.
-public struct PaymentFlowsPrivatePaymentMethodsFinancialConnectionsCommonLiXf2da5c0e61: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentFlowsPrivatePaymentMethodsFinancialConnectionsCommonLiXf2da5c0e61: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let checking = PaymentFlowsPrivatePaymentMethodsFinancialConnectionsCommonLiXf2da5c0e61(rawValue: "checking")
-    public static let savings = PaymentFlowsPrivatePaymentMethodsFinancialConnectionsCommonLiXf2da5c0e61(rawValue: "savings")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let checking =
+        PaymentFlowsPrivatePaymentMethodsFinancialConnectionsCommonLiXf2da5c0e61(rawValue: "checking")
+    public static let savings =
+        PaymentFlowsPrivatePaymentMethodsFinancialConnectionsCommonLiXf2da5c0e61(rawValue: "savings")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -277,18 +324,24 @@ public struct PaymentFlowsPrivatePaymentMethodsFinancialConnectionsCommonLiXf2da
 }
 
 /// The name of the convenience store chain where the payment was completed.
-public struct PaymentFlowsPrivatePaymentMethodsKonbiniDetailsResourceStoreChain: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentFlowsPrivatePaymentMethodsKonbiniDetailsResourceStoreChain: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let familymart = PaymentFlowsPrivatePaymentMethodsKonbiniDetailsResourceStoreChain(rawValue: "familymart")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let familymart =
+        PaymentFlowsPrivatePaymentMethodsKonbiniDetailsResourceStoreChain(rawValue: "familymart")
     public static let lawson = PaymentFlowsPrivatePaymentMethodsKonbiniDetailsResourceStoreChain(rawValue: "lawson")
     public static let ministop = PaymentFlowsPrivatePaymentMethodsKonbiniDetailsResourceStoreChain(rawValue: "ministop")
-    public static let seicomart = PaymentFlowsPrivatePaymentMethodsKonbiniDetailsResourceStoreChain(rawValue: "seicomart")
+    public static let seicomart =
+        PaymentFlowsPrivatePaymentMethodsKonbiniDetailsResourceStoreChain(rawValue: "seicomart")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -298,16 +351,22 @@ public struct PaymentFlowsPrivatePaymentMethodsKonbiniDetailsResourceStoreChain:
 }
 
 /// Indicates whether or not the capture window is extended beyond the standard authorization.
-public struct PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceEnterpXd47fc88667: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceEnterpXd47fc88667: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let disabled = PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceEnterpXd47fc88667(rawValue: "disabled")
-    public static let enabled = PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceEnterpXd47fc88667(rawValue: "enabled")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let disabled =
+        PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceEnterpXd47fc88667(rawValue: "disabled")
+    public static let enabled =
+        PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceEnterpXd47fc88667(rawValue: "enabled")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -317,16 +376,22 @@ public struct PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceEnterpXd47f
 }
 
 /// The code of the error that occurred when validating the current amount details.
-public struct PaymentFlowsAmountDetailsResourceErrorCode: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentFlowsAmountDetailsResourceErrorCode: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let amountDetailsAmountMismatch = PaymentFlowsAmountDetailsResourceErrorCode(rawValue: "amount_details_amount_mismatch")
-    public static let amountDetailsTaxShippingDiscountGreaterThanAmount = PaymentFlowsAmountDetailsResourceErrorCode(rawValue: "amount_details_tax_shipping_discount_greater_than_amount")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let amountDetailsAmountMismatch =
+        PaymentFlowsAmountDetailsResourceErrorCode(rawValue: "amount_details_amount_mismatch")
+    public static let amountDetailsTaxShippingDiscountGreaterThanAmount =
+        PaymentFlowsAmountDetailsResourceErrorCode(rawValue: "amount_details_tax_shipping_discount_greater_than_amount")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -336,16 +401,22 @@ public struct PaymentFlowsAmountDetailsResourceErrorCode: RawRepresentable, Hash
 }
 
 /// Indicates whether or not the authorized amount can be over-captured.
-public struct PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceEnterpX1218ffb63a: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceEnterpX1218ffb63a: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let available = PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceEnterpX1218ffb63a(rawValue: "available")
-    public static let unavailable = PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceEnterpX1218ffb63a(rawValue: "unavailable")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let available =
+        PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceEnterpX1218ffb63a(rawValue: "available")
+    public static let unavailable =
+        PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceEnterpX1218ffb63a(rawValue: "unavailable")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -359,15 +430,19 @@ public struct PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceEnterpX1218
 /// after the PaymentIntent is confirmed and the customer completes any required actions. If you don't provide a
 /// Customer, you can still attach the payment method to a Customer after the transaction completes. If the
 /// payment method is `card_present` and isn't a digital…
-public struct PaymentFlowsPrivatePaymentMethodsPaycoPaymentMethodOptionsSetX6bf6c169e8: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentFlowsPrivatePaymentMethodsPaycoPaymentMethodOptionsSetX6bf6c169e8: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let none = PaymentFlowsPrivatePaymentMethodsPaycoPaymentMethodOptionsSetX6bf6c169e8(rawValue: "none")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -377,16 +452,22 @@ public struct PaymentFlowsPrivatePaymentMethodsPaycoPaymentMethodOptionsSetX6bf6
 }
 
 /// Indicates whether or not multiple captures are supported.
-public struct PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceMulticX03a63769d7: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceMulticX03a63769d7: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let available = PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceMulticX03a63769d7(rawValue: "available")
-    public static let unavailable = PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceMulticX03a63769d7(rawValue: "unavailable")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let available =
+        PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceMulticX03a63769d7(rawValue: "available")
+    public static let unavailable =
+        PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceMulticX03a63769d7(rawValue: "unavailable")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -397,15 +478,19 @@ public struct PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceMulticX03a6
 
 /// String representing the object's type. Objects of the same type share the same value. Always has the value
 /// `list`.
-public struct PaymentFlowsAmountDetailsLineItemsObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentFlowsAmountDetailsLineItemsObject: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let list = PaymentFlowsAmountDetailsLineItemsObject(rawValue: "list")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -419,16 +504,21 @@ public struct PaymentFlowsAmountDetailsLineItemsObject: RawRepresentable, Hashab
 /// after the PaymentIntent is confirmed and the customer completes any required actions. If you don't provide a
 /// Customer, you can still attach the payment method to a Customer after the transaction completes. If the
 /// payment method is `card_present` and isn't a digital…
-public struct PaymentFlowsPrivatePaymentMethodsNaverPayPaymentMethodOptionsXfd6dd5d1c1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentFlowsPrivatePaymentMethodsNaverPayPaymentMethodOptionsXfd6dd5d1c1: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let none = PaymentFlowsPrivatePaymentMethodsNaverPayPaymentMethodOptionsXfd6dd5d1c1(rawValue: "none")
-    public static let offSession = PaymentFlowsPrivatePaymentMethodsNaverPayPaymentMethodOptionsXfd6dd5d1c1(rawValue: "off_session")
+    public static let offSession =
+        PaymentFlowsPrivatePaymentMethodsNaverPayPaymentMethodOptionsXfd6dd5d1c1(rawValue: "off_session")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -438,15 +528,20 @@ public struct PaymentFlowsPrivatePaymentMethodsNaverPayPaymentMethodOptionsXfd6d
 }
 
 /// Controls when the funds will be captured from the customer's account.
-public struct PaymentFlowsPrivatePaymentMethodsKakaoPayPaymentMethodOptionsX0ff570c2db: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentFlowsPrivatePaymentMethodsKakaoPayPaymentMethodOptionsX0ff570c2db: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let manual = PaymentFlowsPrivatePaymentMethodsKakaoPayPaymentMethodOptionsX0ff570c2db(rawValue: "manual")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let manual =
+        PaymentFlowsPrivatePaymentMethodsKakaoPayPaymentMethodOptionsX0ff570c2db(rawValue: "manual")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

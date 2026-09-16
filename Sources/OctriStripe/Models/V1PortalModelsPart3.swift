@@ -3,24 +3,36 @@
 
 import Foundation
 
-// V1Portal domain models
+/// V1Portal domain models
 public extension PortalSubscriptionCancellationReason {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.enabled) else {
-            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
+            throw SdkValidationError(
+                field: "enabled",
+                code: "required",
+                message: "Validation failed for 'enabled': value is required"
+            )
         }
         guard container.contains(.options) else {
-            throw SdkValidationError(field: "options", code: "required", message: "Validation failed for 'options': value is required")
+            throw SdkValidationError(
+                field: "options",
+                code: "required",
+                message: "Validation failed for 'options': value is required"
+            )
         }
-        self.enabled = try container.sdkDecodeRequired(.enabled)
-        self.options = try container.sdkDecodeRequired(.options)
-        self.feedbackOptions = try container.sdkDecodeIfPresent(.feedbackOptions)
+        enabled = try container.sdkDecodeRequired(.enabled)
+        options = try container.sdkDecodeRequired(.options)
+        feedbackOptions = try container.sdkDecodeIfPresent(.feedbackOptions)
     }
 }
 
 public extension PortalSubscriptionCancellationReason {
-    public init(enabled: Bool, options: [PortalSubscriptionCancellationReasonOptionsItem], feedbackOptions: [PortalSubscriptionCancellationReasonFeedbackOptionsItem]? = nil) {
+    init(
+        enabled: Bool,
+        options: [PortalSubscriptionCancellationReasonOptionsItem],
+        feedbackOptions: [PortalSubscriptionCancellationReasonFeedbackOptionsItem]? = nil
+    ) {
         (self.enabled, self.options) = (enabled, options)
         self.feedbackOptions = feedbackOptions
     }
@@ -32,21 +44,31 @@ public enum PortalSubscriptionCancellationReasonFeedbackOptionsItem {
 }
 
 extension PortalSubscriptionCancellationReasonFeedbackOptionsItem: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PortalSubscriptionCancellationReasonFeedbackOptionsItem")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PortalSubscriptionCancellationReasonFeedbackOptionsItem"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(BillingFeedbackOption.self) { return .billingFeedbackOption(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(BillingFeedbackOption.self) {
+            return .billingFeedbackOption(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -56,7 +78,6 @@ extension PortalSubscriptionCancellationReasonFeedbackOptionsItem: Codable {
         case let .billingFeedbackOption(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Typed representation of the `PortalSubscriptionUpdate` API schema.
@@ -93,39 +114,69 @@ public struct PortalSubscriptionUpdate: Codable {
         case products
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PortalSubscriptionUpdate {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.defaultAllowedUpdates) else {
-            throw SdkValidationError(field: "default_allowed_updates", code: "required", message: "Validation failed for 'default_allowed_updates': value is required")
-        }
-        guard container.contains(.enabled) else {
-            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
-        }
-        guard container.contains(.prorationBehavior) else {
-            throw SdkValidationError(field: "proration_behavior", code: "required", message: "Validation failed for 'proration_behavior': value is required")
-        }
-        guard container.contains(.scheduleAtPeriodEnd) else {
-            throw SdkValidationError(field: "schedule_at_period_end", code: "required", message: "Validation failed for 'schedule_at_period_end': value is required")
-        }
-        guard container.contains(.trialUpdateBehavior) else {
-            throw SdkValidationError(field: "trial_update_behavior", code: "required", message: "Validation failed for 'trial_update_behavior': value is required")
-        }
-        self.defaultAllowedUpdates = try container.sdkDecodeRequired(.defaultAllowedUpdates)
-        self.enabled = try container.sdkDecodeRequired(.enabled)
-        self.prorationBehavior = try container.sdkDecodeRequired(.prorationBehavior)
-        self.scheduleAtPeriodEnd = try container.sdkDecodeRequired(.scheduleAtPeriodEnd)
-        self.trialUpdateBehavior = try container.sdkDecodeRequired(.trialUpdateBehavior)
-        self.billingCycleAnchor = try container.sdkDecodeIfPresent(.billingCycleAnchor)
-        self.products = try container.sdkDecodeIfPresent(.products)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PortalSubscriptionUpdate {
-    public init(defaultAllowedUpdates: [PortalSubscriptionUpdateDefaultAllowedUpdatesItem], enabled: Bool, prorationBehavior: PortalSubscriptionUpdateProrationBehavior, scheduleAtPeriodEnd: PortalResourceScheduleUpdateAtPeriodEnd, trialUpdateBehavior: PortalSubscriptionUpdateTrialUpdateBehavior, billingCycleAnchor: PortalSubscriptionUpdateBillingCycleAnchor? = nil, products: [PortalSubscriptionUpdateProduct]? = nil) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.defaultAllowedUpdates) else {
+            throw SdkValidationError(
+                field: "default_allowed_updates",
+                code: "required",
+                message: "Validation failed for 'default_allowed_updates': value is required"
+            )
+        }
+        guard container.contains(.enabled) else {
+            throw SdkValidationError(
+                field: "enabled",
+                code: "required",
+                message: "Validation failed for 'enabled': value is required"
+            )
+        }
+        guard container.contains(.prorationBehavior) else {
+            throw SdkValidationError(
+                field: "proration_behavior",
+                code: "required",
+                message: "Validation failed for 'proration_behavior': value is required"
+            )
+        }
+        guard container.contains(.scheduleAtPeriodEnd) else {
+            throw SdkValidationError(
+                field: "schedule_at_period_end",
+                code: "required",
+                message: "Validation failed for 'schedule_at_period_end': value is required"
+            )
+        }
+        guard container.contains(.trialUpdateBehavior) else {
+            throw SdkValidationError(
+                field: "trial_update_behavior",
+                code: "required",
+                message: "Validation failed for 'trial_update_behavior': value is required"
+            )
+        }
+        defaultAllowedUpdates = try container.sdkDecodeRequired(.defaultAllowedUpdates)
+        enabled = try container.sdkDecodeRequired(.enabled)
+        prorationBehavior = try container.sdkDecodeRequired(.prorationBehavior)
+        scheduleAtPeriodEnd = try container.sdkDecodeRequired(.scheduleAtPeriodEnd)
+        trialUpdateBehavior = try container.sdkDecodeRequired(.trialUpdateBehavior)
+        billingCycleAnchor = try container.sdkDecodeIfPresent(.billingCycleAnchor)
+        products = try container.sdkDecodeIfPresent(.products)
+    }
+}
+
+public extension PortalSubscriptionUpdate {
+    init(
+        defaultAllowedUpdates: [PortalSubscriptionUpdateDefaultAllowedUpdatesItem],
+        enabled: Bool,
+        prorationBehavior: PortalSubscriptionUpdateProrationBehavior,
+        scheduleAtPeriodEnd: PortalResourceScheduleUpdateAtPeriodEnd,
+        trialUpdateBehavior: PortalSubscriptionUpdateTrialUpdateBehavior,
+        billingCycleAnchor: PortalSubscriptionUpdateBillingCycleAnchor? = nil,
+        products: [PortalSubscriptionUpdateProduct]? = nil
+    ) {
         (self.defaultAllowedUpdates, self.enabled) = (defaultAllowedUpdates, enabled)
         (self.prorationBehavior, self.scheduleAtPeriodEnd) = (prorationBehavior, scheduleAtPeriodEnd)
         (self.trialUpdateBehavior, self.billingCycleAnchor) = (trialUpdateBehavior, billingCycleAnchor)
@@ -148,33 +199,51 @@ public struct PortalSubscriptionUpdateProduct: Codable {
         case product
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PortalSubscriptionUpdateProduct {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.adjustableQuantity) else {
-            throw SdkValidationError(field: "adjustable_quantity", code: "required", message: "Validation failed for 'adjustable_quantity': value is required")
-        }
-        guard container.contains(.prices) else {
-            throw SdkValidationError(field: "prices", code: "required", message: "Validation failed for 'prices': value is required")
-        }
-        guard container.contains(.product) else {
-            throw SdkValidationError(field: "product", code: "required", message: "Validation failed for 'product': value is required")
-        }
-        self.adjustableQuantity = try container.sdkDecodeRequired(.adjustableQuantity)
-        self.prices = try container.sdkDecodeRequired(.prices)
-        self.product = try container.sdkDecodeRequired(.product)
-            try validateLength("product", self.product, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PortalSubscriptionUpdateProduct {
-    public init(adjustableQuantity: PortalSubscriptionUpdateProductAdjustableQuantity, prices: [String], product: String) throws {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.adjustableQuantity) else {
+            throw SdkValidationError(
+                field: "adjustable_quantity",
+                code: "required",
+                message: "Validation failed for 'adjustable_quantity': value is required"
+            )
+        }
+        guard container.contains(.prices) else {
+            throw SdkValidationError(
+                field: "prices",
+                code: "required",
+                message: "Validation failed for 'prices': value is required"
+            )
+        }
+        guard container.contains(.product) else {
+            throw SdkValidationError(
+                field: "product",
+                code: "required",
+                message: "Validation failed for 'product': value is required"
+            )
+        }
+        adjustableQuantity = try container.sdkDecodeRequired(.adjustableQuantity)
+        prices = try container.sdkDecodeRequired(.prices)
+        product = try container.sdkDecodeRequired(.product)
+        try validateLength("product", product, min: nil, max: 5000)
+    }
+}
+
+public extension PortalSubscriptionUpdateProduct {
+    init(
+        adjustableQuantity: PortalSubscriptionUpdateProductAdjustableQuantity,
+        prices: [String],
+        product: String
+    ) throws {
         (self.adjustableQuantity, self.prices) = (adjustableQuantity, prices)
         self.product = product
-            try validateLength("product", self.product, min: nil, max: 5000)
+        try validateLength("product", self.product, min: nil, max: 5000)
     }
 }
 
@@ -193,26 +262,36 @@ public struct PortalSubscriptionUpdateProductAdjustableQuantity: Codable {
         case maximum
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PortalSubscriptionUpdateProductAdjustableQuantity {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.enabled) else {
-            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
-        }
-        guard container.contains(.minimum) else {
-            throw SdkValidationError(field: "minimum", code: "required", message: "Validation failed for 'minimum': value is required")
-        }
-        self.enabled = try container.sdkDecodeRequired(.enabled)
-        self.minimum = try container.sdkDecodeRequired(.minimum)
-        self.maximum = try container.sdkDecodeIfPresent(.maximum)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PortalSubscriptionUpdateProductAdjustableQuantity {
-    public init(enabled: Bool, minimum: Int, maximum: Int? = nil) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.enabled) else {
+            throw SdkValidationError(
+                field: "enabled",
+                code: "required",
+                message: "Validation failed for 'enabled': value is required"
+            )
+        }
+        guard container.contains(.minimum) else {
+            throw SdkValidationError(
+                field: "minimum",
+                code: "required",
+                message: "Validation failed for 'minimum': value is required"
+            )
+        }
+        enabled = try container.sdkDecodeRequired(.enabled)
+        minimum = try container.sdkDecodeRequired(.minimum)
+        maximum = try container.sdkDecodeIfPresent(.maximum)
+    }
+}
+
+public extension PortalSubscriptionUpdateProductAdjustableQuantity {
+    init(enabled: Bool, minimum: Int, maximum: Int? = nil) {
         (self.enabled, self.minimum) = (enabled, minimum)
         self.maximum = maximum
     }
@@ -220,17 +299,21 @@ public extension PortalSubscriptionUpdateProductAdjustableQuantity {
 
 /// Whether to create prorations when canceling subscriptions. Possible values are `none` and
 /// `create_prorations`.
-public struct PortalSubscriptionCancelProrationBehavior: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PortalSubscriptionCancelProrationBehavior: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let alwaysInvoice = PortalSubscriptionCancelProrationBehavior(rawValue: "always_invoice")
     public static let createProrations = PortalSubscriptionCancelProrationBehavior(rawValue: "create_prorations")
     public static let none = PortalSubscriptionCancelProrationBehavior(rawValue: "none")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -243,14 +326,17 @@ public struct PortalSubscriptionCancelProrationBehavior: RawRepresentable, Hasha
 public struct PortalFlowsFlowAfterCompletionType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let hostedConfirmation = PortalFlowsFlowAfterCompletionType(rawValue: "hosted_confirmation")
     public static let portalHomepage = PortalFlowsFlowAfterCompletionType(rawValue: "portal_homepage")
     public static let redirect = PortalFlowsFlowAfterCompletionType(rawValue: "redirect")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -260,10 +346,14 @@ public struct PortalFlowsFlowAfterCompletionType: RawRepresentable, Hashable, Co
 }
 
 /// Required enumerated value serialized in the `options[]` wire field.
-public struct PortalSubscriptionCancellationReasonOptionsItem: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PortalSubscriptionCancellationReasonOptionsItem: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let customerService = PortalSubscriptionCancellationReasonOptionsItem(rawValue: "customer_service")
     public static let lowQuality = PortalSubscriptionCancellationReasonOptionsItem(rawValue: "low_quality")
     public static let missingFeatures = PortalSubscriptionCancellationReasonOptionsItem(rawValue: "missing_features")
@@ -275,7 +365,7 @@ public struct PortalSubscriptionCancellationReasonOptionsItem: RawRepresentable,
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -287,17 +377,21 @@ public struct PortalSubscriptionCancellationReasonOptionsItem: RawRepresentable,
 /// Determines how to handle prorations resulting from subscription updates. Valid values are `none`,
 /// `create_prorations`, and `always_invoice`. Defaults to a value of `none` if you don't set it during
 /// creation.
-public struct PortalSubscriptionUpdateProrationBehavior: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PortalSubscriptionUpdateProrationBehavior: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let alwaysInvoice = PortalSubscriptionUpdateProrationBehavior(rawValue: "always_invoice")
     public static let createProrations = PortalSubscriptionUpdateProrationBehavior(rawValue: "create_prorations")
     public static let none = PortalSubscriptionUpdateProrationBehavior(rawValue: "none")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -310,16 +404,20 @@ public struct PortalSubscriptionUpdateProrationBehavior: RawRepresentable, Hasha
 /// `unchanged`, and the default value is `unchanged`. Setting the value to `now` resets the subscription's
 /// billing cycle anchor to the current time (in UTC). For more information, see the billing cycle
 /// documentation.
-public struct PortalSubscriptionUpdateBillingCycleAnchor: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PortalSubscriptionUpdateBillingCycleAnchor: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let now = PortalSubscriptionUpdateBillingCycleAnchor(rawValue: "now")
     public static let unchanged = PortalSubscriptionUpdateBillingCycleAnchor(rawValue: "unchanged")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -332,12 +430,15 @@ public struct PortalSubscriptionUpdateBillingCycleAnchor: RawRepresentable, Hash
 public struct PortalFlowsRetentionType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let couponOffer = PortalFlowsRetentionType(rawValue: "coupon_offer")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -348,16 +449,20 @@ public struct PortalFlowsRetentionType: RawRepresentable, Hashable, Codable, Sen
 
 /// Determines how handle updates to trialing subscriptions. Valid values are `end_trial` and `continue_trial`.
 /// Defaults to a value of `end_trial` if you don't set it during creation.
-public struct PortalSubscriptionUpdateTrialUpdateBehavior: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PortalSubscriptionUpdateTrialUpdateBehavior: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let continueTrial = PortalSubscriptionUpdateTrialUpdateBehavior(rawValue: "continue_trial")
     public static let endTrial = PortalSubscriptionUpdateTrialUpdateBehavior(rawValue: "end_trial")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -367,16 +472,22 @@ public struct PortalSubscriptionUpdateTrialUpdateBehavior: RawRepresentable, Has
 }
 
 /// The type of condition.
-public struct PortalResourceScheduleUpdateAtPeriodEndConditionType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PortalResourceScheduleUpdateAtPeriodEndConditionType: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let decreasingItemAmount = PortalResourceScheduleUpdateAtPeriodEndConditionType(rawValue: "decreasing_item_amount")
-    public static let shorteningInterval = PortalResourceScheduleUpdateAtPeriodEndConditionType(rawValue: "shortening_interval")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let decreasingItemAmount =
+        PortalResourceScheduleUpdateAtPeriodEndConditionType(rawValue: "decreasing_item_amount")
+    public static let shorteningInterval =
+        PortalResourceScheduleUpdateAtPeriodEndConditionType(rawValue: "shortening_interval")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -389,7 +500,10 @@ public struct PortalResourceScheduleUpdateAtPeriodEndConditionType: RawRepresent
 public struct PortalFlowsFlowType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let customerUpdate = PortalFlowsFlowType(rawValue: "customer_update")
     public static let paymentMethodUpdate = PortalFlowsFlowType(rawValue: "payment_method_update")
     public static let subscriptionCancel = PortalFlowsFlowType(rawValue: "subscription_cancel")
@@ -398,7 +512,7 @@ public struct PortalFlowsFlowType: RawRepresentable, Hashable, Codable, Sendable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -408,10 +522,14 @@ public struct PortalFlowsFlowType: RawRepresentable, Hashable, Codable, Sendable
 }
 
 /// Required enumerated value serialized in the `allowed_updates[]` wire field.
-public struct PortalCustomerUpdateAllowedUpdatesItem: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PortalCustomerUpdateAllowedUpdatesItem: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let address = PortalCustomerUpdateAllowedUpdatesItem(rawValue: "address")
     public static let email = PortalCustomerUpdateAllowedUpdatesItem(rawValue: "email")
     public static let name = PortalCustomerUpdateAllowedUpdatesItem(rawValue: "name")
@@ -421,7 +539,7 @@ public struct PortalCustomerUpdateAllowedUpdatesItem: RawRepresentable, Hashable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -434,13 +552,16 @@ public struct PortalCustomerUpdateAllowedUpdatesItem: RawRepresentable, Hashable
 public struct PortalSubscriptionCancelMode: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let atPeriodEnd = PortalSubscriptionCancelMode(rawValue: "at_period_end")
     public static let immediately = PortalSubscriptionCancelMode(rawValue: "immediately")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -450,17 +571,21 @@ public struct PortalSubscriptionCancelMode: RawRepresentable, Hashable, Codable,
 }
 
 /// Required enumerated value serialized in the `default_allowed_updates[]` wire field.
-public struct PortalSubscriptionUpdateDefaultAllowedUpdatesItem: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PortalSubscriptionUpdateDefaultAllowedUpdatesItem: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let price = PortalSubscriptionUpdateDefaultAllowedUpdatesItem(rawValue: "price")
     public static let promotionCode = PortalSubscriptionUpdateDefaultAllowedUpdatesItem(rawValue: "promotion_code")
     public static let quantity = PortalSubscriptionUpdateDefaultAllowedUpdatesItem(rawValue: "quantity")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

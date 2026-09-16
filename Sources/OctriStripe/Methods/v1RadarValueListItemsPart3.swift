@@ -6,7 +6,7 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1RadarValueListItemsMethods {
+public extension V1RadarValueListItemsMethods {
     /// Creates a new ValueListItem object, which is added to the specified parent value list.
     ///
     /// - Parameters:
@@ -15,36 +15,71 @@ extension V1RadarValueListItemsMethods {
     /// - valueList: The identifier of the value list which the created item will be
     ///   added to.
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postRadarValueListItems(config: ClientConfig, value: String, valueList: String, expand: [String]?) async throws -> RadarValueListItem {
+    static func postRadarValueListItems(
+        config: ClientConfig,
+        value: String,
+        valueList: String,
+        expand: [String]?
+    ) async throws -> RadarValueListItem {
         try validateLength("value", value, max: 800)
 
         try validateLength("value_list", valueList, max: 5000)
 
         let requestBody = PostRadarValueListItemsRequestBody(value: value, valueList: valueList, expand: expand)
 
-        return try (await sdkRequest("POST", "/v1/radar/value_list_items", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostRadarValueListItems")).data
+        return try await (sdkRequest(
+            "POST",
+            "/v1/radar/value_list_items",
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostRadarValueListItems"
+        )).data
     }
 
-    /// Deletes a value list item and removes it from its parent Radar value list. Supply the item identifier to permanently remove that item from the list.
+    /// Deletes a value list item and removes it from its parent Radar value list. Supply the item identifier to
+    /// permanently remove that item from the list.
     ///
     /// Deletes a ValueListItem object, removing it from its parent value list.
-    public static func deleteRadarValueListItemsItem(config: ClientConfig, item: String) async throws -> DeletedRadarValueListItem {
+    static func deleteRadarValueListItemsItem(
+        config: ClientConfig,
+        item: String
+    ) async throws -> DeletedRadarValueListItem {
         try validateLength("item", item, max: 5000)
 
-        return try (await sdkRequest("DELETE", ["/v1/radar/value_list_items/", sdkEncodePathSegment(sdkWireString(item))].joined(), config: config, decoder: .json, operationId: "DeleteRadarValueListItemsItem")).data
+        return try await (sdkRequest(
+            "DELETE",
+            ["/v1/radar/value_list_items/", sdkEncodePathSegment(sdkWireString(item))].joined(),
+            config: config,
+            decoder: .json,
+            operationId: "DeleteRadarValueListItemsItem"
+        )).data
     }
 
-    /// Retrieves a value list item from its parent Radar value list. Use the item identifier to obtain its value, creator, creation time, parent list, and livemode information.
+    /// Retrieves a value list item from its parent Radar value list. Use the item identifier to obtain its value,
+    /// creator, creation time, parent list, and livemode information.
     ///
     /// Retrieves a ValueListItem object.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func getRadarValueListItemsItem(config: ClientConfig, item: String, expand: [String]?) async throws -> RadarValueListItem {
+    static func getRadarValueListItemsItem(
+        config: ClientConfig,
+        item: String,
+        expand: [String]?
+    ) async throws -> RadarValueListItem {
         try validateLength("item", item, max: 5000)
 
-        return try (await sdkRequest("GET", ["/v1/radar/value_list_items/", sdkEncodePathSegment(sdkWireString(item))].joined(), config: config, query: [
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-        ], decoder: .json, operationId: "GetRadarValueListItemsItem")).data
+        return try await (sdkRequest(
+            "GET",
+            ["/v1/radar/value_list_items/", sdkEncodePathSegment(sdkWireString(item))].joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+            ],
+            decoder: .json,
+            operationId: "GetRadarValueListItemsItem"
+        )).data
     }
 }

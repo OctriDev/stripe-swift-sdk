@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1RadarPaymentEvaluations operation model declarations
+/// Canonical v1RadarPaymentEvaluations operation model declarations
 public struct PostRadarPaymentEvaluationsRequestBodyPaymentDetailsShippingDX529169394f: Codable {
     public var city: String?
     public var country: String?
@@ -26,43 +26,50 @@ public struct PostRadarPaymentEvaluationsRequestBodyPaymentDetailsShippingDX5291
     }
 
     init() {
-        (self.city, self.country, self.line1, self.line2, self.postalCode) = (nil, nil, nil, nil, nil)
-        self.state = nil
+        (city, country, line1, line2, postalCode) = (nil, nil, nil, nil, nil)
+        state = nil
     }
 }
 
 public extension PostRadarPaymentEvaluationsRequestBodyPaymentDetailsShippingDX529169394f {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.city = try container.sdkDecodeIfPresent(.city)
-        self.country = try container.sdkDecodeIfPresent(.country)
-        self.line1 = try container.sdkDecodeIfPresent(.line1)
-        self.line2 = try container.sdkDecodeIfPresent(.line2)
-        self.postalCode = try container.sdkDecodeIfPresent(.postalCode)
-        self.state = try container.sdkDecodeIfPresent(.state)
-        if let value = self.city {
+        city = try container.sdkDecodeIfPresent(.city)
+        country = try container.sdkDecodeIfPresent(.country)
+        line1 = try container.sdkDecodeIfPresent(.line1)
+        line2 = try container.sdkDecodeIfPresent(.line2)
+        postalCode = try container.sdkDecodeIfPresent(.postalCode)
+        state = try container.sdkDecodeIfPresent(.state)
+        if let value = city {
             try validateLength("city", value, min: nil, max: 5000)
         }
-        if let value = self.country {
+        if let value = country {
             try validateLength("country", value, min: nil, max: 5000)
         }
-        if let value = self.line1 {
+        if let value = line1 {
             try validateLength("line1", value, min: nil, max: 5000)
         }
-        if let value = self.line2 {
+        if let value = line2 {
             try validateLength("line2", value, min: nil, max: 5000)
         }
-        if let value = self.postalCode {
+        if let value = postalCode {
             try validateLength("postal_code", value, min: nil, max: 5000)
         }
-        if let value = self.state {
+        if let value = state {
             try validateLength("state", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension PostRadarPaymentEvaluationsRequestBodyPaymentDetailsShippingDX529169394f {
-    public init(city: String? = nil, country: String? = nil, line1: String? = nil, line2: String? = nil, postalCode: String? = nil, state: String? = nil) throws {
+    init(
+        city: String? = nil,
+        country: String? = nil,
+        line1: String? = nil,
+        line2: String? = nil,
+        postalCode: String? = nil,
+        state: String? = nil
+    ) throws {
         self.init()
         (self.city, self.country) = (city, country)
         (self.line1, self.line2) = (line1, line2)
@@ -111,39 +118,61 @@ public struct PostRadarPaymentEvaluationsRequestBodyPaymentDetails: Codable {
         case statementDescriptor = "statement_descriptor"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension PostRadarPaymentEvaluationsRequestBodyPaymentDetails {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.amount) else {
-            throw SdkValidationError(field: "amount", code: "required", message: "Validation failed for 'amount': value is required")
+            throw SdkValidationError(
+                field: "amount",
+                code: "required",
+                message: "Validation failed for 'amount': value is required"
+            )
         }
         guard container.contains(.currency) else {
-            throw SdkValidationError(field: "currency", code: "required", message: "Validation failed for 'currency': value is required")
+            throw SdkValidationError(
+                field: "currency",
+                code: "required",
+                message: "Validation failed for 'currency': value is required"
+            )
         }
         guard container.contains(.paymentMethodDetails) else {
-            throw SdkValidationError(field: "payment_method_details", code: "required", message: "Validation failed for 'payment_method_details': value is required")
+            throw SdkValidationError(
+                field: "payment_method_details",
+                code: "required",
+                message: "Validation failed for 'payment_method_details': value is required"
+            )
         }
-        self.amount = try container.sdkDecodeRequired(.amount)
-        self.currency = try container.sdkDecodeRequired(.currency)
-        self.paymentMethodDetails = try container.sdkDecodeRequired(.paymentMethodDetails)
-        self.description = try container.sdkDecodeIfPresent(.description)
-        self.moneyMovementDetails = try container.sdkDecodeIfPresent(.moneyMovementDetails)
-        self.shippingDetails = try container.sdkDecodeIfPresent(.shippingDetails)
-        self.statementDescriptor = try container.sdkDecodeIfPresent(.statementDescriptor)
-        if let value = self.description {
+        amount = try container.sdkDecodeRequired(.amount)
+        currency = try container.sdkDecodeRequired(.currency)
+        paymentMethodDetails = try container.sdkDecodeRequired(.paymentMethodDetails)
+        description = try container.sdkDecodeIfPresent(.description)
+        moneyMovementDetails = try container.sdkDecodeIfPresent(.moneyMovementDetails)
+        shippingDetails = try container.sdkDecodeIfPresent(.shippingDetails)
+        statementDescriptor = try container.sdkDecodeIfPresent(.statementDescriptor)
+        if let value = description {
             try validateLength("description", value, min: nil, max: 5000)
         }
-        if let value = self.statementDescriptor {
+        if let value = statementDescriptor {
             try validateLength("statement_descriptor", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension PostRadarPaymentEvaluationsRequestBodyPaymentDetails {
-    public init(amount: Int, currency: String, paymentMethodDetails: PostRadarPaymentEvaluationsRequestBodyPaymentDetailsPaymentMethodDetails, description: String? = nil, moneyMovementDetails: PostRadarPaymentEvaluationsRequestBodyPaymentDetailsMoneyMovementDetails? = nil, shippingDetails: PostRadarPaymentEvaluationsRequestBodyPaymentDetailsShippingDetails? = nil, statementDescriptor: String? = nil) throws {
+    init(
+        amount: Int,
+        currency: String,
+        paymentMethodDetails: PostRadarPaymentEvaluationsRequestBodyPaymentDetailsPaymentMethodDetails,
+        description: String? = nil,
+        moneyMovementDetails: PostRadarPaymentEvaluationsRequestBodyPaymentDetailsMoneyMovementDetails? = nil,
+        shippingDetails: PostRadarPaymentEvaluationsRequestBodyPaymentDetailsShippingDetails? = nil,
+        statementDescriptor: String? = nil
+    ) throws {
         (self.amount, self.currency) = (amount, currency)
         (self.paymentMethodDetails, self.description) = (paymentMethodDetails, description)
         (self.moneyMovementDetails, self.shippingDetails) = (moneyMovementDetails, shippingDetails)
@@ -167,31 +196,36 @@ public struct PostRadarPaymentEvaluationsRequestBodyPaymentDetailsPaymentMethodD
         case billingDetails = "billing_details"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension PostRadarPaymentEvaluationsRequestBodyPaymentDetailsPaymentMethodDetails {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.paymentMethod) else {
-            throw SdkValidationError(field: "payment_method", code: "required", message: "Validation failed for 'payment_method': value is required")
+            throw SdkValidationError(
+                field: "payment_method",
+                code: "required",
+                message: "Validation failed for 'payment_method': value is required"
+            )
         }
-        self.paymentMethod = try container.sdkDecodeRequired(.paymentMethod)
-        self.billingDetails = try container.sdkDecodeIfPresent(.billingDetails)
-            try validateLength("payment_method", self.paymentMethod, min: nil, max: 5000)
+        paymentMethod = try container.sdkDecodeRequired(.paymentMethod)
+        billingDetails = try container.sdkDecodeIfPresent(.billingDetails)
+        try validateLength("payment_method", paymentMethod, min: nil, max: 5000)
     }
 }
 
 public extension PostRadarPaymentEvaluationsRequestBodyPaymentDetailsPaymentMethodDetails {
-    public init(paymentMethod: String, billingDetails: PostRadarPaymentEvaluationsRequestBodyPaymentDetailsPaymentMeXf5c004722a? = nil) throws {
+    init(
+        paymentMethod: String,
+        billingDetails: PostRadarPaymentEvaluationsRequestBodyPaymentDetailsPaymentMeXf5c004722a? = nil
+    ) throws {
         (self.paymentMethod, self.billingDetails) = (paymentMethod, billingDetails)
-            try validateLength("payment_method", self.paymentMethod, min: nil, max: 5000)
+        try validateLength("payment_method", self.paymentMethod, min: nil, max: 5000)
     }
 }
-
-
-
-
 
 public struct PostRadarPaymentEvaluationsRequestBodyPaymentDetailsMoneyMoveXe573ad4f36: Codable {
     public var customerPresence: PostRadarPaymentEvaluationsRequestBodyPaymentDetailsMoneyMoveX878767090b?
@@ -203,20 +237,23 @@ public struct PostRadarPaymentEvaluationsRequestBodyPaymentDetailsMoneyMoveXe573
     }
 
     init() {
-        (self.customerPresence, self.paymentType) = (nil, nil)
+        (customerPresence, paymentType) = (nil, nil)
     }
 }
 
 public extension PostRadarPaymentEvaluationsRequestBodyPaymentDetailsMoneyMoveXe573ad4f36 {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.customerPresence = try container.sdkDecodeIfPresent(.customerPresence)
-        self.paymentType = try container.sdkDecodeIfPresent(.paymentType)
+        customerPresence = try container.sdkDecodeIfPresent(.customerPresence)
+        paymentType = try container.sdkDecodeIfPresent(.paymentType)
     }
 }
 
 public extension PostRadarPaymentEvaluationsRequestBodyPaymentDetailsMoneyMoveXe573ad4f36 {
-    public init(customerPresence: PostRadarPaymentEvaluationsRequestBodyPaymentDetailsMoneyMoveX878767090b? = nil, paymentType: PostRadarPaymentEvaluationsRequestBodyPaymentDetailsMoneyMoveXdbf4371e43? = nil) {
+    init(
+        customerPresence: PostRadarPaymentEvaluationsRequestBodyPaymentDetailsMoneyMoveX878767090b? = nil,
+        paymentType: PostRadarPaymentEvaluationsRequestBodyPaymentDetailsMoneyMoveXdbf4371e43? = nil
+    ) {
         self.init()
         (self.customerPresence, self.paymentType) = (customerPresence, paymentType)
     }
@@ -239,32 +276,38 @@ public struct PostRadarPaymentEvaluationsRequestBodyCustomerDetails: Codable {
     }
 
     init() {
-        (self.customer, self.customerAccount, self.email, self.name, self.phone) = (nil, nil, nil, nil, nil)
+        (customer, customerAccount, email, name, phone) = (nil, nil, nil, nil, nil)
     }
 }
 
 public extension PostRadarPaymentEvaluationsRequestBodyCustomerDetails {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.customer = try container.sdkDecodeIfPresent(.customer)
-        self.customerAccount = try container.sdkDecodeIfPresent(.customerAccount)
-        self.email = try container.sdkDecodeIfPresent(.email)
-        self.name = try container.sdkDecodeIfPresent(.name)
-        self.phone = try container.sdkDecodeIfPresent(.phone)
-        if let value = self.customer {
+        customer = try container.sdkDecodeIfPresent(.customer)
+        customerAccount = try container.sdkDecodeIfPresent(.customerAccount)
+        email = try container.sdkDecodeIfPresent(.email)
+        name = try container.sdkDecodeIfPresent(.name)
+        phone = try container.sdkDecodeIfPresent(.phone)
+        if let value = customer {
             try validateLength("customer", value, min: nil, max: 5000)
         }
-        if let value = self.customerAccount {
+        if let value = customerAccount {
             try validateLength("customer_account", value, min: nil, max: 5000)
         }
-        if let value = self.name {
+        if let value = name {
             try validateLength("name", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension PostRadarPaymentEvaluationsRequestBodyCustomerDetails {
-    public init(customer: String? = nil, customerAccount: String? = nil, email: String? = nil, name: String? = nil, phone: String? = nil) throws {
+    init(
+        customer: String? = nil,
+        customerAccount: String? = nil,
+        email: String? = nil,
+        name: String? = nil,
+        phone: String? = nil
+    ) throws {
         self.init()
         (self.customer, self.customerAccount) = (customer, customerAccount)
         (self.email, self.name) = (email, name)
@@ -289,24 +332,30 @@ public struct PostRadarPaymentEvaluationsRequestBodyClientDeviceMetadataDetails:
         case radarSession = "radar_session"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostRadarPaymentEvaluationsRequestBodyClientDeviceMetadataDetails {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.radarSession) else {
-            throw SdkValidationError(field: "radar_session", code: "required", message: "Validation failed for 'radar_session': value is required")
-        }
-        self.radarSession = try container.sdkDecodeRequired(.radarSession)
-            try validateLength("radar_session", self.radarSession, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostRadarPaymentEvaluationsRequestBodyClientDeviceMetadataDetails {
-    public init(radarSession: String) throws {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.radarSession) else {
+            throw SdkValidationError(
+                field: "radar_session",
+                code: "required",
+                message: "Validation failed for 'radar_session': value is required"
+            )
+        }
+        radarSession = try container.sdkDecodeRequired(.radarSession)
+        try validateLength("radar_session", radarSession, min: nil, max: 5000)
+    }
+}
+
+public extension PostRadarPaymentEvaluationsRequestBodyClientDeviceMetadataDetails {
+    init(radarSession: String) throws {
         self.radarSession = radarSession
-            try validateLength("radar_session", self.radarSession, min: nil, max: 5000)
+        try validateLength("radar_session", self.radarSession, min: nil, max: 5000)
     }
 }
 
@@ -323,24 +372,28 @@ public struct PostRadarPaymentEvaluationsRequestBodyPaymentDetailsShippingDetail
     }
 
     init() {
-        (self.address, self.name, self.phone) = (nil, nil, nil)
+        (address, name, phone) = (nil, nil, nil)
     }
 }
 
 public extension PostRadarPaymentEvaluationsRequestBodyPaymentDetailsShippingDetails {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.address = try container.sdkDecodeIfPresent(.address)
-        self.name = try container.sdkDecodeIfPresent(.name)
-        self.phone = try container.sdkDecodeIfPresent(.phone)
-        if let value = self.name {
+        address = try container.sdkDecodeIfPresent(.address)
+        name = try container.sdkDecodeIfPresent(.name)
+        phone = try container.sdkDecodeIfPresent(.phone)
+        if let value = name {
             try validateLength("name", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension PostRadarPaymentEvaluationsRequestBodyPaymentDetailsShippingDetails {
-    public init(address: PostRadarPaymentEvaluationsRequestBodyPaymentDetailsShippingDX529169394f? = nil, name: String? = nil, phone: String? = nil) throws {
+    init(
+        address: PostRadarPaymentEvaluationsRequestBodyPaymentDetailsShippingDX529169394f? = nil,
+        name: String? = nil,
+        phone: String? = nil
+    ) throws {
         self.init()
         (self.address, self.name) = (address, name)
         self.phone = phone
@@ -365,25 +418,30 @@ public struct PostRadarPaymentEvaluationsRequestBodyPaymentDetailsPaymentMeXf5c0
     }
 
     init() {
-        (self.address, self.email, self.name, self.phone) = (nil, nil, nil, nil)
+        (address, email, name, phone) = (nil, nil, nil, nil)
     }
 }
 
 public extension PostRadarPaymentEvaluationsRequestBodyPaymentDetailsPaymentMeXf5c004722a {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.address = try container.sdkDecodeIfPresent(.address)
-        self.email = try container.sdkDecodeIfPresent(.email)
-        self.name = try container.sdkDecodeIfPresent(.name)
-        self.phone = try container.sdkDecodeIfPresent(.phone)
-        if let value = self.name {
+        address = try container.sdkDecodeIfPresent(.address)
+        email = try container.sdkDecodeIfPresent(.email)
+        name = try container.sdkDecodeIfPresent(.name)
+        phone = try container.sdkDecodeIfPresent(.phone)
+        if let value = name {
             try validateLength("name", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension PostRadarPaymentEvaluationsRequestBodyPaymentDetailsPaymentMeXf5c004722a {
-    public init(address: PostRadarPaymentEvaluationsRequestBodyPaymentDetailsPaymentMeX87da9533a8? = nil, email: String? = nil, name: String? = nil, phone: String? = nil) throws {
+    init(
+        address: PostRadarPaymentEvaluationsRequestBodyPaymentDetailsPaymentMeX87da9533a8? = nil,
+        email: String? = nil,
+        name: String? = nil,
+        phone: String? = nil
+    ) throws {
         self.init()
         (self.address, self.email) = (address, email)
         (self.name, self.phone) = (name, phone)
@@ -403,22 +461,31 @@ public struct PostRadarPaymentEvaluationsRequestBodyPaymentDetailsMoneyMovementD
         case card
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostRadarPaymentEvaluationsRequestBodyPaymentDetailsMoneyMovementDetails {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.moneyMovementType) else {
-            throw SdkValidationError(field: "money_movement_type", code: "required", message: "Validation failed for 'money_movement_type': value is required")
-        }
-        self.moneyMovementType = try container.sdkDecodeRequired(.moneyMovementType)
-        self.card = try container.sdkDecodeIfPresent(.card)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostRadarPaymentEvaluationsRequestBodyPaymentDetailsMoneyMovementDetails {
-    public init(moneyMovementType: PostRadarPaymentEvaluationsRequestBodyPaymentDetailsMoneyMoveX8b83361132, card: PostRadarPaymentEvaluationsRequestBodyPaymentDetailsMoneyMoveXe573ad4f36? = nil) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.moneyMovementType) else {
+            throw SdkValidationError(
+                field: "money_movement_type",
+                code: "required",
+                message: "Validation failed for 'money_movement_type': value is required"
+            )
+        }
+        moneyMovementType = try container.sdkDecodeRequired(.moneyMovementType)
+        card = try container.sdkDecodeIfPresent(.card)
+    }
+}
+
+public extension PostRadarPaymentEvaluationsRequestBodyPaymentDetailsMoneyMovementDetails {
+    init(
+        moneyMovementType: PostRadarPaymentEvaluationsRequestBodyPaymentDetailsMoneyMoveX8b83361132,
+        card: PostRadarPaymentEvaluationsRequestBodyPaymentDetailsMoneyMoveXe573ad4f36? = nil
+    ) {
         (self.moneyMovementType, self.card) = (moneyMovementType, card)
     }
 }
@@ -441,43 +508,50 @@ public struct PostRadarPaymentEvaluationsRequestBodyPaymentDetailsPaymentMeX87da
     }
 
     init() {
-        (self.city, self.country, self.line1, self.line2, self.postalCode) = (nil, nil, nil, nil, nil)
-        self.state = nil
+        (city, country, line1, line2, postalCode) = (nil, nil, nil, nil, nil)
+        state = nil
     }
 }
 
 public extension PostRadarPaymentEvaluationsRequestBodyPaymentDetailsPaymentMeX87da9533a8 {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.city = try container.sdkDecodeIfPresent(.city)
-        self.country = try container.sdkDecodeIfPresent(.country)
-        self.line1 = try container.sdkDecodeIfPresent(.line1)
-        self.line2 = try container.sdkDecodeIfPresent(.line2)
-        self.postalCode = try container.sdkDecodeIfPresent(.postalCode)
-        self.state = try container.sdkDecodeIfPresent(.state)
-        if let value = self.city {
+        city = try container.sdkDecodeIfPresent(.city)
+        country = try container.sdkDecodeIfPresent(.country)
+        line1 = try container.sdkDecodeIfPresent(.line1)
+        line2 = try container.sdkDecodeIfPresent(.line2)
+        postalCode = try container.sdkDecodeIfPresent(.postalCode)
+        state = try container.sdkDecodeIfPresent(.state)
+        if let value = city {
             try validateLength("city", value, min: nil, max: 5000)
         }
-        if let value = self.country {
+        if let value = country {
             try validateLength("country", value, min: nil, max: 5000)
         }
-        if let value = self.line1 {
+        if let value = line1 {
             try validateLength("line1", value, min: nil, max: 5000)
         }
-        if let value = self.line2 {
+        if let value = line2 {
             try validateLength("line2", value, min: nil, max: 5000)
         }
-        if let value = self.postalCode {
+        if let value = postalCode {
             try validateLength("postal_code", value, min: nil, max: 5000)
         }
-        if let value = self.state {
+        if let value = state {
             try validateLength("state", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension PostRadarPaymentEvaluationsRequestBodyPaymentDetailsPaymentMeX87da9533a8 {
-    public init(city: String? = nil, country: String? = nil, line1: String? = nil, line2: String? = nil, postalCode: String? = nil, state: String? = nil) throws {
+    init(
+        city: String? = nil,
+        country: String? = nil,
+        line1: String? = nil,
+        line2: String? = nil,
+        postalCode: String? = nil,
+        state: String? = nil
+    ) throws {
         self.init()
         (self.city, self.country) = (city, country)
         (self.line1, self.line2) = (line1, line2)

@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1CheckoutSession domain models
+/// V1CheckoutSession domain models
 /// A Checkout Session represents your customer's session as they pay for one-time purchases or subscriptions
 /// through Checkout or Payment Links. We recommend creating a new Session each time your customer attempts to pay.
 /// Once payment is successful, the Checkout Session will contain a reference to the Customer, and either the
@@ -252,86 +252,157 @@ public struct CheckoutSession: Codable {
         case walletOptions = "wallet_options"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension CheckoutSession {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.automaticTax = try container.sdkDecodeRequired(.automaticTax)
-        self.created = try container.sdkDecodeRequired(.created)
-        self.customFields = try container.sdkDecodeRequired(.customFields)
-        self.customText = try container.sdkDecodeRequired(.customText)
-        self.expiresAt = try container.sdkDecodeRequired(.expiresAt)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.livemode = try container.sdkDecodeRequired(.livemode)
-        self.mode = try container.sdkDecodeRequired(.mode)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.paymentMethodTypes = try container.sdkDecodeRequired(.paymentMethodTypes)
-        self.paymentStatus = try container.sdkDecodeRequired(.paymentStatus)
-        self.shippingOptions = try container.sdkDecodeRequired(.shippingOptions)
-        self.adaptivePricing = try container.sdkDecodeIfPresent(.adaptivePricing)
-        self.afterExpiration = try container.sdkDecodeIfPresent(.afterExpiration)
-        self.allowPromotionCodes = try container.sdkDecodeIfPresent(.allowPromotionCodes)
-        self.amountSubtotal = try container.sdkDecodeIfPresent(.amountSubtotal)
-        self.amountTotal = try container.sdkDecodeIfPresent(.amountTotal)
-        self.billingAddressCollection = try container.sdkDecodeIfPresent(.billingAddressCollection)
-        self.brandingSettings = try container.sdkDecodeIfPresent(.brandingSettings)
-        self.cancelUrl = try container.sdkDecodeIfPresent(.cancelUrl)
-        self.clientReferenceId = try container.sdkDecodeIfPresent(.clientReferenceId)
-        self.clientSecret = try container.sdkDecodeIfPresent(.clientSecret)
-        self.collectedInformation = try container.sdkDecodeIfPresent(.collectedInformation)
-        self.consent = try container.sdkDecodeIfPresent(.consent)
-        self.consentCollection = try container.sdkDecodeIfPresent(.consentCollection)
-        self.currency = try container.sdkDecodeIfPresent(.currency)
-        self.currencyConversion = try container.sdkDecodeIfPresent(.currencyConversion)
-        self.customer = try container.sdkDecodeIfPresent(.customer)
-        self.customerAccount = try container.sdkDecodeIfPresent(.customerAccount)
-        self.customerCreation = try container.sdkDecodeIfPresent(.customerCreation)
-        self.customerDetails = try container.sdkDecodeIfPresent(.customerDetails)
-        self.customerEmail = try container.sdkDecodeIfPresent(.customerEmail)
-        self.discounts = try container.sdkDecodeIfPresent(.discounts)
-        self.excludedPaymentMethodTypes = try container.sdkDecodeIfPresent(.excludedPaymentMethodTypes)
-        self.integrationIdentifier = try container.sdkDecodeIfPresent(.integrationIdentifier)
-        self.invoice = try container.sdkDecodeIfPresent(.invoice)
-        self.invoiceCreation = try container.sdkDecodeIfPresent(.invoiceCreation)
-        self.lineItems = try container.sdkDecodeIfPresent(.lineItems)
-        self.locale = try container.sdkDecodeIfPresent(.locale)
-        self.managedPayments = try container.sdkDecodeIfPresent(.managedPayments)
-        self.metadata = try container.sdkDecodeIfPresent(.metadata)
-        self.nameCollection = try container.sdkDecodeIfPresent(.nameCollection)
-        self.optionalItems = try container.sdkDecodeIfPresent(.optionalItems)
-        self.originContext = try container.sdkDecodeIfPresent(.originContext)
-        self.paymentIntent = try container.sdkDecodeIfPresent(.paymentIntent)
-        self.paymentLink = try container.sdkDecodeIfPresent(.paymentLink)
-        self.paymentMethodCollection = try container.sdkDecodeIfPresent(.paymentMethodCollection)
-        self.paymentMethodConfigurationDetails = try container.sdkDecodeIfPresent(.paymentMethodConfigurationDetails)
-        self.paymentMethodOptions = try container.sdkDecodeIfPresent(.paymentMethodOptions)
-        self.permissions = try container.sdkDecodeIfPresent(.permissions)
-        self.phoneNumberCollection = try container.sdkDecodeIfPresent(.phoneNumberCollection)
-        self.presentmentDetails = try container.sdkDecodeIfPresent(.presentmentDetails)
-        self.recoveredFrom = try container.sdkDecodeIfPresent(.recoveredFrom)
-        self.redirectOnCompletion = try container.sdkDecodeIfPresent(.redirectOnCompletion)
-        self.returnUrl = try container.sdkDecodeIfPresent(.returnUrl)
-        self.savedPaymentMethodOptions = try container.sdkDecodeIfPresent(.savedPaymentMethodOptions)
-        self.setupIntent = try container.sdkDecodeIfPresent(.setupIntent)
-        self.shippingAddressCollection = try container.sdkDecodeIfPresent(.shippingAddressCollection)
-        self.shippingCost = try container.sdkDecodeIfPresent(.shippingCost)
-        self.status = try container.sdkDecodeIfPresent(.status)
-        self.submitType = try container.sdkDecodeIfPresent(.submitType)
-        self.subscription = try container.sdkDecodeIfPresent(.subscription)
-        self.successUrl = try container.sdkDecodeIfPresent(.successUrl)
-        self.taxIdCollection = try container.sdkDecodeIfPresent(.taxIdCollection)
-        self.totalDetails = try container.sdkDecodeIfPresent(.totalDetails)
-        self.uiMode = try container.sdkDecodeIfPresent(.uiMode)
-        self.url = try container.sdkDecodeIfPresent(.url)
-        self.walletOptions = try container.sdkDecodeIfPresent(.walletOptions)
+        automaticTax = try container.sdkDecodeRequired(.automaticTax)
+        created = try container.sdkDecodeRequired(.created)
+        customFields = try container.sdkDecodeRequired(.customFields)
+        customText = try container.sdkDecodeRequired(.customText)
+        expiresAt = try container.sdkDecodeRequired(.expiresAt)
+        id = try container.sdkDecodeRequired(.id)
+        livemode = try container.sdkDecodeRequired(.livemode)
+        mode = try container.sdkDecodeRequired(.mode)
+        object = try container.sdkDecodeRequired(.object)
+        paymentMethodTypes = try container.sdkDecodeRequired(.paymentMethodTypes)
+        paymentStatus = try container.sdkDecodeRequired(.paymentStatus)
+        shippingOptions = try container.sdkDecodeRequired(.shippingOptions)
+        adaptivePricing = try container.sdkDecodeIfPresent(.adaptivePricing)
+        afterExpiration = try container.sdkDecodeIfPresent(.afterExpiration)
+        allowPromotionCodes = try container.sdkDecodeIfPresent(.allowPromotionCodes)
+        amountSubtotal = try container.sdkDecodeIfPresent(.amountSubtotal)
+        amountTotal = try container.sdkDecodeIfPresent(.amountTotal)
+        billingAddressCollection = try container.sdkDecodeIfPresent(.billingAddressCollection)
+        brandingSettings = try container.sdkDecodeIfPresent(.brandingSettings)
+        cancelUrl = try container.sdkDecodeIfPresent(.cancelUrl)
+        clientReferenceId = try container.sdkDecodeIfPresent(.clientReferenceId)
+        clientSecret = try container.sdkDecodeIfPresent(.clientSecret)
+        collectedInformation = try container.sdkDecodeIfPresent(.collectedInformation)
+        consent = try container.sdkDecodeIfPresent(.consent)
+        consentCollection = try container.sdkDecodeIfPresent(.consentCollection)
+        currency = try container.sdkDecodeIfPresent(.currency)
+        currencyConversion = try container.sdkDecodeIfPresent(.currencyConversion)
+        customer = try container.sdkDecodeIfPresent(.customer)
+        customerAccount = try container.sdkDecodeIfPresent(.customerAccount)
+        customerCreation = try container.sdkDecodeIfPresent(.customerCreation)
+        customerDetails = try container.sdkDecodeIfPresent(.customerDetails)
+        customerEmail = try container.sdkDecodeIfPresent(.customerEmail)
+        discounts = try container.sdkDecodeIfPresent(.discounts)
+        excludedPaymentMethodTypes = try container.sdkDecodeIfPresent(.excludedPaymentMethodTypes)
+        integrationIdentifier = try container.sdkDecodeIfPresent(.integrationIdentifier)
+        invoice = try container.sdkDecodeIfPresent(.invoice)
+        invoiceCreation = try container.sdkDecodeIfPresent(.invoiceCreation)
+        lineItems = try container.sdkDecodeIfPresent(.lineItems)
+        locale = try container.sdkDecodeIfPresent(.locale)
+        managedPayments = try container.sdkDecodeIfPresent(.managedPayments)
+        metadata = try container.sdkDecodeIfPresent(.metadata)
+        nameCollection = try container.sdkDecodeIfPresent(.nameCollection)
+        optionalItems = try container.sdkDecodeIfPresent(.optionalItems)
+        originContext = try container.sdkDecodeIfPresent(.originContext)
+        paymentIntent = try container.sdkDecodeIfPresent(.paymentIntent)
+        paymentLink = try container.sdkDecodeIfPresent(.paymentLink)
+        paymentMethodCollection = try container.sdkDecodeIfPresent(.paymentMethodCollection)
+        paymentMethodConfigurationDetails = try container.sdkDecodeIfPresent(.paymentMethodConfigurationDetails)
+        paymentMethodOptions = try container.sdkDecodeIfPresent(.paymentMethodOptions)
+        permissions = try container.sdkDecodeIfPresent(.permissions)
+        phoneNumberCollection = try container.sdkDecodeIfPresent(.phoneNumberCollection)
+        presentmentDetails = try container.sdkDecodeIfPresent(.presentmentDetails)
+        recoveredFrom = try container.sdkDecodeIfPresent(.recoveredFrom)
+        redirectOnCompletion = try container.sdkDecodeIfPresent(.redirectOnCompletion)
+        returnUrl = try container.sdkDecodeIfPresent(.returnUrl)
+        savedPaymentMethodOptions = try container.sdkDecodeIfPresent(.savedPaymentMethodOptions)
+        setupIntent = try container.sdkDecodeIfPresent(.setupIntent)
+        shippingAddressCollection = try container.sdkDecodeIfPresent(.shippingAddressCollection)
+        shippingCost = try container.sdkDecodeIfPresent(.shippingCost)
+        status = try container.sdkDecodeIfPresent(.status)
+        submitType = try container.sdkDecodeIfPresent(.submitType)
+        subscription = try container.sdkDecodeIfPresent(.subscription)
+        successUrl = try container.sdkDecodeIfPresent(.successUrl)
+        taxIdCollection = try container.sdkDecodeIfPresent(.taxIdCollection)
+        totalDetails = try container.sdkDecodeIfPresent(.totalDetails)
+        uiMode = try container.sdkDecodeIfPresent(.uiMode)
+        url = try container.sdkDecodeIfPresent(.url)
+        walletOptions = try container.sdkDecodeIfPresent(.walletOptions)
         try sdkValidateConstraints()
     }
 }
 
 public extension CheckoutSession {
-    public init(automaticTax: PaymentPagesCheckoutSessionAutomaticTax, created: Int, customFields: [PaymentPagesCheckoutSessionCustomFields], customText: PaymentPagesCheckoutSessionCustomText, expiresAt: Int, id: String, livemode: Bool, mode: CheckoutSessionMode, object: CheckoutSessionObject, paymentMethodTypes: [String], paymentStatus: CheckoutSessionPaymentStatus, shippingOptions: [PaymentPagesCheckoutSessionShippingOption], adaptivePricing: CheckoutSessionAdaptivePricing? = nil, afterExpiration: CheckoutSessionAfterExpiration? = nil, allowPromotionCodes: Bool? = nil, amountSubtotal: Int? = nil, amountTotal: Int? = nil, billingAddressCollection: CheckoutSessionBillingAddressCollection? = nil, brandingSettings: PaymentPagesCheckoutSessionBrandingSettings? = nil, cancelUrl: String? = nil, clientReferenceId: String? = nil, clientSecret: String? = nil, collectedInformation: CheckoutSessionCollectedInformation? = nil, consent: CheckoutSessionConsent? = nil, consentCollection: CheckoutSessionConsentCollection? = nil, currency: String? = nil, currencyConversion: CheckoutSessionCurrencyConversion? = nil, customer: CheckoutSessionCustomer? = nil, customerAccount: String? = nil, customerCreation: CheckoutSessionCustomerCreation? = nil, customerDetails: CheckoutSessionCustomerDetails? = nil, customerEmail: String? = nil, discounts: [PaymentPagesCheckoutSessionDiscount]? = nil, excludedPaymentMethodTypes: [String]? = nil, integrationIdentifier: String? = nil, invoice: CheckoutSessionInvoice? = nil, invoiceCreation: CheckoutSessionInvoiceCreation? = nil, lineItems: CheckoutSessionLineItems? = nil, locale: CheckoutSessionLocale? = nil, managedPayments: CheckoutSessionManagedPayments? = nil, metadata: [String: String]? = nil, nameCollection: PaymentPagesCheckoutSessionNameCollection? = nil, optionalItems: [PaymentPagesCheckoutSessionOptionalItem]? = nil, originContext: CheckoutSessionOriginContext? = nil, paymentIntent: CheckoutSessionPaymentIntent? = nil, paymentLink: CheckoutSessionPaymentLink? = nil, paymentMethodCollection: CheckoutSessionPaymentMethodCollection? = nil, paymentMethodConfigurationDetails: CheckoutSessionPaymentMethodConfigurationDetails? = nil, paymentMethodOptions: CheckoutSessionPaymentMethodOptionsXb68e51da? = nil, permissions: CheckoutSessionPermissions? = nil, phoneNumberCollection: PaymentPagesCheckoutSessionPhoneNumberCollection? = nil, presentmentDetails: PaymentFlowsPaymentIntentPresentmentDetails? = nil, recoveredFrom: String? = nil, redirectOnCompletion: CheckoutSessionRedirectOnCompletion? = nil, returnUrl: String? = nil, savedPaymentMethodOptions: CheckoutSessionSavedPaymentMethodOptions? = nil, setupIntent: CheckoutSessionSetupIntent? = nil, shippingAddressCollection: CheckoutSessionShippingAddressCollection? = nil, shippingCost: CheckoutSessionShippingCost? = nil, status: CheckoutSessionStatus? = nil, submitType: CheckoutSessionSubmitType? = nil, subscription: CheckoutSessionSubscription? = nil, successUrl: String? = nil, taxIdCollection: PaymentPagesCheckoutSessionTaxIdCollection? = nil, totalDetails: CheckoutSessionTotalDetails? = nil, uiMode: CheckoutSessionUiMode? = nil, url: String? = nil, walletOptions: CheckoutSessionWalletOptionsXd35ef903? = nil) throws {
+    init(
+        automaticTax: PaymentPagesCheckoutSessionAutomaticTax,
+        created: Int,
+        customFields: [PaymentPagesCheckoutSessionCustomFields],
+        customText: PaymentPagesCheckoutSessionCustomText,
+        expiresAt: Int,
+        id: String,
+        livemode: Bool,
+        mode: CheckoutSessionMode,
+        object: CheckoutSessionObject,
+        paymentMethodTypes: [String],
+        paymentStatus: CheckoutSessionPaymentStatus,
+        shippingOptions: [PaymentPagesCheckoutSessionShippingOption],
+        adaptivePricing: CheckoutSessionAdaptivePricing? = nil,
+        afterExpiration: CheckoutSessionAfterExpiration? = nil,
+        allowPromotionCodes: Bool? = nil,
+        amountSubtotal: Int? = nil,
+        amountTotal: Int? = nil,
+        billingAddressCollection: CheckoutSessionBillingAddressCollection? = nil,
+        brandingSettings: PaymentPagesCheckoutSessionBrandingSettings? = nil,
+        cancelUrl: String? = nil,
+        clientReferenceId: String? = nil,
+        clientSecret: String? = nil,
+        collectedInformation: CheckoutSessionCollectedInformation? = nil,
+        consent: CheckoutSessionConsent? = nil,
+        consentCollection: CheckoutSessionConsentCollection? = nil,
+        currency: String? = nil,
+        currencyConversion: CheckoutSessionCurrencyConversion? = nil,
+        customer: CheckoutSessionCustomer? = nil,
+        customerAccount: String? = nil,
+        customerCreation: CheckoutSessionCustomerCreation? = nil,
+        customerDetails: CheckoutSessionCustomerDetails? = nil,
+        customerEmail: String? = nil,
+        discounts: [PaymentPagesCheckoutSessionDiscount]? = nil,
+        excludedPaymentMethodTypes: [String]? = nil,
+        integrationIdentifier: String? = nil,
+        invoice: CheckoutSessionInvoice? = nil,
+        invoiceCreation: CheckoutSessionInvoiceCreation? = nil,
+        lineItems: CheckoutSessionLineItems? = nil,
+        locale: CheckoutSessionLocale? = nil,
+        managedPayments: CheckoutSessionManagedPayments? = nil,
+        metadata: [String: String]? = nil,
+        nameCollection: PaymentPagesCheckoutSessionNameCollection? = nil,
+        optionalItems: [PaymentPagesCheckoutSessionOptionalItem]? = nil,
+        originContext: CheckoutSessionOriginContext? = nil,
+        paymentIntent: CheckoutSessionPaymentIntent? = nil,
+        paymentLink: CheckoutSessionPaymentLink? = nil,
+        paymentMethodCollection: CheckoutSessionPaymentMethodCollection? = nil,
+        paymentMethodConfigurationDetails: CheckoutSessionPaymentMethodConfigurationDetails? = nil,
+        paymentMethodOptions: CheckoutSessionPaymentMethodOptionsXb68e51da? = nil,
+        permissions: CheckoutSessionPermissions? = nil,
+        phoneNumberCollection: PaymentPagesCheckoutSessionPhoneNumberCollection? = nil,
+        presentmentDetails: PaymentFlowsPaymentIntentPresentmentDetails? = nil,
+        recoveredFrom: String? = nil,
+        redirectOnCompletion: CheckoutSessionRedirectOnCompletion? = nil,
+        returnUrl: String? = nil,
+        savedPaymentMethodOptions: CheckoutSessionSavedPaymentMethodOptions? = nil,
+        setupIntent: CheckoutSessionSetupIntent? = nil,
+        shippingAddressCollection: CheckoutSessionShippingAddressCollection? = nil,
+        shippingCost: CheckoutSessionShippingCost? = nil,
+        status: CheckoutSessionStatus? = nil,
+        submitType: CheckoutSessionSubmitType? = nil,
+        subscription: CheckoutSessionSubscription? = nil,
+        successUrl: String? = nil,
+        taxIdCollection: PaymentPagesCheckoutSessionTaxIdCollection? = nil,
+        totalDetails: CheckoutSessionTotalDetails? = nil,
+        uiMode: CheckoutSessionUiMode? = nil,
+        url: String? = nil,
+        walletOptions: CheckoutSessionWalletOptionsXd35ef903? = nil
+    ) throws {
         (self.automaticTax, self.created) = (automaticTax, created)
         (self.customFields, self.customText) = (customFields, customText)
         (self.expiresAt, self.id) = (expiresAt, id)
@@ -373,35 +444,35 @@ public extension CheckoutSession {
 
 extension CheckoutSession {
     func sdkValidateConstraints() throws {
-            try validateLength("id", self.id, min: nil, max: 5000)
-        if let value = self.cancelUrl {
+        try validateLength("id", id, min: nil, max: 5000)
+        if let value = cancelUrl {
             try validateLength("cancel_url", value, min: nil, max: 5000)
         }
-        if let value = self.clientReferenceId {
+        if let value = clientReferenceId {
             try validateLength("client_reference_id", value, min: nil, max: 5000)
         }
-        if let value = self.clientSecret {
+        if let value = clientSecret {
             try validateLength("client_secret", value, min: nil, max: 5000)
         }
-        if let value = self.customerAccount {
+        if let value = customerAccount {
             try validateLength("customer_account", value, min: nil, max: 5000)
         }
-        if let value = self.customerEmail {
+        if let value = customerEmail {
             try validateLength("customer_email", value, min: nil, max: 5000)
         }
-        if let value = self.integrationIdentifier {
+        if let value = integrationIdentifier {
             try validateLength("integration_identifier", value, min: nil, max: 5000)
         }
-        if let value = self.recoveredFrom {
+        if let value = recoveredFrom {
             try validateLength("recovered_from", value, min: nil, max: 5000)
         }
-        if let value = self.returnUrl {
+        if let value = returnUrl {
             try validateLength("return_url", value, min: nil, max: 5000)
         }
-        if let value = self.successUrl {
+        if let value = successUrl {
             try validateLength("success_url", value, min: nil, max: 5000)
         }
-        if let value = self.url {
+        if let value = url {
             try validateLength("url", value, min: nil, max: 5000)
         }
     }
@@ -412,24 +483,30 @@ public enum CheckoutSessionAdaptivePricing {
 }
 
 extension CheckoutSessionAdaptivePricing: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for CheckoutSessionAdaptivePricing")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for CheckoutSessionAdaptivePricing"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PaymentPagesCheckoutSessionAdaptivePricing.self
         ) {
-            return             .paymentPagesCheckoutSessionAdaptivePricing(value)
+            return .paymentPagesCheckoutSessionAdaptivePricing(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -438,7 +515,6 @@ extension CheckoutSessionAdaptivePricing: Codable {
         case let .paymentPagesCheckoutSessionAdaptivePricing(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum CheckoutSessionAfterExpiration {
@@ -446,24 +522,30 @@ public enum CheckoutSessionAfterExpiration {
 }
 
 extension CheckoutSessionAfterExpiration: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for CheckoutSessionAfterExpiration")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for CheckoutSessionAfterExpiration"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PaymentPagesCheckoutSessionAfterExpiration.self
         ) {
-            return             .paymentPagesCheckoutSessionAfterExpiration(value)
+            return .paymentPagesCheckoutSessionAfterExpiration(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -472,7 +554,6 @@ extension CheckoutSessionAfterExpiration: Codable {
         case let .paymentPagesCheckoutSessionAfterExpiration(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum CheckoutSessionCollectedInformation {
@@ -480,24 +561,30 @@ public enum CheckoutSessionCollectedInformation {
 }
 
 extension CheckoutSessionCollectedInformation: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for CheckoutSessionCollectedInformation")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for CheckoutSessionCollectedInformation"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PaymentPagesCheckoutSessionCollectedInformation.self
         ) {
-            return             .paymentPagesCheckoutSessionCollectedInformation(value)
+            return .paymentPagesCheckoutSessionCollectedInformation(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -506,7 +593,6 @@ extension CheckoutSessionCollectedInformation: Codable {
         case let .paymentPagesCheckoutSessionCollectedInformation(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum CheckoutSessionConsent {
@@ -514,20 +600,29 @@ public enum CheckoutSessionConsent {
 }
 
 extension CheckoutSessionConsent: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for CheckoutSessionConsent")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for CheckoutSessionConsent"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(PaymentPagesCheckoutSessionConsent.self) { return .paymentPagesCheckoutSessionConsent(value) }
+        if let value = try? container
+            .decode(PaymentPagesCheckoutSessionConsent.self) {
+            return .paymentPagesCheckoutSessionConsent(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -536,5 +631,4 @@ extension CheckoutSessionConsent: Codable {
         case let .paymentPagesCheckoutSessionConsent(value): try container.encode(value); return true
         }
     }
-
 }

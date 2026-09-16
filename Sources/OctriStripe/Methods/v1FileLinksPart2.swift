@@ -6,8 +6,9 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1FileLinksMethods {
-    /// Lists file links that provide unauthenticated access to File object contents. Use `file`, `expired`, and `created` to filter links, and use cursor parameters to paginate through the results.
+public extension V1FileLinksMethods {
+    /// Lists file links that provide unauthenticated access to File object contents. Use `file`, `expired`, and
+    /// `created` to filter links, and use cursor parameters to paginate through the results.
     ///
     /// Returns a list of file links.
     ///
@@ -30,12 +31,21 @@ extension V1FileLinksMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    public static func getFileLinks(config: ClientConfig, created: GetFileLinksParameter?, endingBefore: String?, expand: [String]?, expired: Bool?, file: String?, limit: Int?, startingAfter: String?) async throws -> GetFileLinksResponse {
-        if let file = file {
+    static func getFileLinks(
+        config: ClientConfig,
+        created: GetFileLinksParameter?,
+        endingBefore: String?,
+        expand: [String]?,
+        expired: Bool?,
+        file: String?,
+        limit: Int?,
+        startingAfter: String?
+    ) async throws -> GetFileLinksResponse {
+        if let file {
             try validateLength("file", file, max: 5000)
         }
 
-        return try (await sdkRequest("GET", "/v1/file_links", config: config, query: [
+        return try await (sdkRequest("GET", "/v1/file_links", config: config, query: [
             SdkQueryParameter("created", value: created),
             SdkQueryParameter("ending_before", value: endingBefore),
             SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),

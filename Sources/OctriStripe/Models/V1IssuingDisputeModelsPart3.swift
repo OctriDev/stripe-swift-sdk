@@ -3,18 +3,24 @@
 
 import Foundation
 
-// V1IssuingDispute domain models
+/// V1IssuingDispute domain models
 /// Result of cardholder's attempt to return the product.
-public struct IssuingDisputeMerchandiseNotAsDescribedEvidenceReturnStatus: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct IssuingDisputeMerchandiseNotAsDescribedEvidenceReturnStatus: RawRepresentable, Hashable, Codable,
+    Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let merchantRejected = IssuingDisputeMerchandiseNotAsDescribedEvidenceReturnStatus(rawValue: "merchant_rejected")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let merchantRejected =
+        IssuingDisputeMerchandiseNotAsDescribedEvidenceReturnStatus(rawValue: "merchant_rejected")
     public static let successful = IssuingDisputeMerchandiseNotAsDescribedEvidenceReturnStatus(rawValue: "successful")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

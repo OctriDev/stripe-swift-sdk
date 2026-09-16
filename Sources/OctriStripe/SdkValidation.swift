@@ -4,433 +4,361 @@
 import Foundation
 
 let sdkPatterncf55563f875d = [
-
     "^/v1/accounts",
 
 ].joined()
 
 let sdkPatterneeafe0fcb834 = [
-
     "^/v1/apple_pay/domains",
 
 ].joined()
 
 let sdkPatternf00a9f214a0b = [
-
     "^/v1/application_fees",
 
 ].joined()
 
 let sdkPattern510996bce39f = [
-
     "^/v1/apps/secrets",
 
 ].joined()
 
 let sdkPatternaaf81d5476d4 = [
-
     "^/v1/balance_transactions",
 
 ].joined()
 
 let sdkPattern9227cba1329a = [
-
     "^/v1/billing_portal/configurations",
 
 ].joined()
 
 let sdkPatterna35b6a912e7d = [
-
     "^/v1/billing/alerts",
 
 ].joined()
 
 let sdkPattern9d8b2859b750 = [
-
     "^/v1/billing/credit_grants",
 
 ].joined()
 
 let sdkPatterna5aab75f5191 = [
-
     "^/v1/billing/meters",
 
 ].joined()
 
 let sdkPatterne0b0ac34f91d = [
-
     "^/v1/billing/meters/[^/]+/event_summaries",
 
 ].joined()
 
 let sdkPatternc5cc926f0f8f = [
-
     "^/v1/charges",
 
 ].joined()
 
 let sdkPattern3d6b574c32c8 = [
-
     "^/v1/climate/orders",
 
 ].joined()
 
 let sdkPattern1d83648e9968 = [
-
     "^/v1/climate/products",
 
 ].joined()
 
 let sdkPattern4765f244b5be = [
-
     "^/v1/climate/suppliers",
 
 ].joined()
 
 let sdkPatternee6563d5db9e = [
-
     "^/v1/country_specs",
 
 ].joined()
 
 let sdkPattern5967faebea53 = [
-
     "^/v1/coupons",
 
 ].joined()
 
 let sdkPattern17baeebd2d08 = [
-
     "^/v1/customers",
 
 ].joined()
 
 let sdkPattern46713ad3ae2c = [
-
     "^/v1/disputes",
 
 ].joined()
 
 let sdkPattern8f6a753a6444 = [
-
     "^/v1/entitlements/features",
 
 ].joined()
 
 let sdkPattern66b29ab6ffc2 = [
-
     "^/v1/events",
 
 ].joined()
 
 let sdkPatternd602248240a9 = [
-
     "^/v1/exchange_rates",
 
 ].joined()
 
 let sdkPatternd94044a7ad4b = [
-
     "^/v1/file_links",
 
 ].joined()
 
 let sdkPatternea717220299c = [
-
     "^/v1/files",
 
 ].joined()
 
 let sdkPattern28b1a5de7ccc = [
-
     "^/v1/financial_connections/accounts",
 
 ].joined()
 
 let sdkPattern285b9eb62652 = [
-
     "^/v1/financial_connections/transactions",
 
 ].joined()
 
 let sdkPattern290dd270bbfc = [
-
     "^/v1/identity/verification_reports",
 
 ].joined()
 
 let sdkPatternbbdd4cff3db3 = [
-
     "^/v1/identity/verification_sessions",
 
 ].joined()
 
 let sdkPatternc6097e700c7b = [
-
     "^/v1/invoiceitems",
 
 ].joined()
 
 let sdkPattern4bb311204a05 = [
-
     "^/v1/invoices",
 
 ].joined()
 
 let sdkPatterned9a781e8488 = [
-
     "^/v1/issuing/authorizations",
 
 ].joined()
 
 let sdkPattern7d2ec18e10f6 = [
-
     "^/v1/issuing/cardholders",
 
 ].joined()
 
 let sdkPatterne1e22472f11c = [
-
     "^/v1/issuing/cards",
 
 ].joined()
 
 let sdkPattern8add6e59dd6b = [
-
     "^/v1/issuing/disputes",
 
 ].joined()
 
 let sdkPattern51eddde197f8 = [
-
     "^/v1/issuing/personalization_designs",
 
 ].joined()
 
 let sdkPattern48fd7b2da94d = [
-
     "^/v1/issuing/physical_bundles",
 
 ].joined()
 
 let sdkPatternc35d672c6636 = [
-
     "^/v1/issuing/transactions",
 
 ].joined()
 
 let sdkPatterna6cf7263e50f = [
-
     "^/v1/payment_intents",
 
 ].joined()
 
 let sdkPatternc3346c198bb4 = [
-
     "^/v1/payment_links",
 
 ].joined()
 
 let sdkPatterne1a5e10ec00c = [
-
     "^/v1/payment_method_configurations",
 
 ].joined()
 
 let sdkPattern094f241063e0 = [
-
     "^/v1/payment_method_domains",
 
 ].joined()
 
 let sdkPattern39a55a1fe08f = [
-
     "^/v1/payment_methods",
 
 ].joined()
 
 let sdkPatternb589924e6319 = [
-
     "^/v1/payouts",
 
 ].joined()
 
 let sdkPattern35c045eb242a = [
-
     "^/v1/plans",
 
 ].joined()
 
 let sdkPatterndc8da64135b7 = [
-
     "^/v1/prices",
 
 ].joined()
 
 let sdkPattern14f87432aff4 = [
-
     "^/v1/products",
 
 ].joined()
 
 let sdkPatternca9f5a568615 = [
-
     "^/v1/promotion_codes",
 
 ].joined()
 
 let sdkPattern0dbabe12d108 = [
-
     "^/v1/quotes",
 
 ].joined()
 
 let sdkPatternb6be28f77a33 = [
-
     "^/v1/radar/early_fraud_warnings",
 
 ].joined()
 
 let sdkPattern7a5c43bd7aa1 = [
-
     "^/v1/radar/value_list_items",
 
 ].joined()
 
 let sdkPattern082e2af220a2 = [
-
     "^/v1/radar/value_lists",
 
 ].joined()
 
 let sdkPatterned962be15524 = [
-
     "^/v1/refunds",
 
 ].joined()
 
 let sdkPattern2427f3d5e22e = [
-
     "^/v1/reporting/report_runs",
 
 ].joined()
 
 let sdkPattern95989920f999 = [
-
     "^/v1/setup_attempts",
 
 ].joined()
 
 let sdkPattern075d94c2d1a5 = [
-
     "^/v1/setup_intents",
 
 ].joined()
 
 let sdkPattern9ba198a34dbe = [
-
     "^/v1/shipping_rates",
 
 ].joined()
 
 let sdkPatternd13c0eb3060d = [
-
     "^/v1/sigma/scheduled_query_runs",
 
 ].joined()
 
 let sdkPattern4654a4b49f28 = [
-
     "^/v1/subscription_items",
 
 ].joined()
 
 let sdkPatterne7c9696bede9 = [
-
     "^/v1/subscription_schedules",
 
 ].joined()
 
 let sdkPattern4c4e35711b53 = [
-
     "^/v1/subscriptions",
 
 ].joined()
 
 let sdkPattern947f67634e98 = [
-
     "^/v1/tax_rates",
 
 ].joined()
 
 let sdkPattern535546dc7d8e = [
-
     "^/v1/tax/calculations/[^/]+/line_items",
 
 ].joined()
 
 let sdkPatternc9200aab2a1f = [
-
     "^/v1/tax/registrations",
 
 ].joined()
 
 let sdkPattern1e6c3e11a87f = [
-
     "^/v1/tax/transactions/[^/]+/line_items",
 
 ].joined()
 
 let sdkPattern2c2e9ca9bad5 = [
-
     "^/v1/terminal/configurations",
 
 ].joined()
 
 let sdkPatternfd8bf09ce563 = [
-
     "^/v1/terminal/locations",
 
 ].joined()
 
 let sdkPatternf9979689bb99 = [
-
     "^/v1/test_helpers/test_clocks",
 
 ].joined()
 
 let sdkPattern0fee753805fa = [
-
     "^/v1/topups",
 
 ].joined()
 
 let sdkPattern6a25916df286 = [
-
     "^/v1/transfers",
 
 ].joined()
 
 let sdkPatterne97b7634b9b6 = [
-
     "^/v1/treasury/financial_accounts",
 
 ].joined()
 
 let sdkPattern8649fc822372 = [
-
     "^/v1/treasury/outbound_payments",
 
 ].joined()
 
 let sdkPattern8dd585c1f256 = [
-
     "^/v1/treasury/transaction_entries",
 
 ].joined()
 
 let sdkPatternc7996065d73f = [
-
     "^/v1/webhook_endpoints",
 
 ].joined()
@@ -450,15 +378,23 @@ private func sdkCompileRegex(_ field: String, _ pattern: String) throws -> NSReg
 /// Validates string length bounds.
 public func validateLength(_ field: String, _ value: String, min: Int? = nil, max: Int? = nil) throws {
     if let min, value.count < min {
-        throw SdkValidationError(field: field, code: "length", message: "Validation failed for '\(field)': length must be >= \(min)")
+        throw SdkValidationError(
+            field: field,
+            code: "length",
+            message: "Validation failed for '\(field)': length must be >= \(min)"
+        )
     }
     if let max, value.count > max {
-        throw SdkValidationError(field: field, code: "length", message: "Validation failed for '\(field)': length must be <= \(max)")
+        throw SdkValidationError(
+            field: field,
+            code: "length",
+            message: "Validation failed for '\(field)': length must be <= \(max)"
+        )
     }
 }
 
 /// Validates that a value is one of the allowed values.
-public func sdkValidateEnum<V>(_ field: String, _ value: V, _ allowed: [String]) throws {
+public func sdkValidateEnum(_ field: String, _ value: some Any, _ allowed: [String]) throws {
     let s = "\(value)"
     if !allowed.contains(s) {
         throw SdkValidationError(
@@ -470,7 +406,8 @@ public func sdkValidateEnum<V>(_ field: String, _ value: V, _ allowed: [String])
 }
 
 /// Validates the wire value of a string-backed model enum.
-public func sdkValidateRawEnum<V: RawRepresentable>(_ field: String, _ value: V, _ allowed: [String]) throws where V.RawValue == String {
+public func sdkValidateRawEnum<V: RawRepresentable>(_ field: String, _ value: V, _ allowed: [String]) throws
+    where V.RawValue == String {
     try sdkValidateEnum(field, value.rawValue, allowed)
 }
 
@@ -478,6 +415,10 @@ public func sdkValidateRawEnum<V: RawRepresentable>(_ field: String, _ value: V,
 public func sdkValidatePattern(_ field: String, _ value: String, _ pattern: String) throws {
     let re = try sdkCompileRegex(field, pattern)
     if re.firstMatch(in: value, range: NSRange(value.startIndex..., in: value)) == nil {
-        throw SdkValidationError(field: field, code: "pattern", message: "Validation failed for '\(field)': pattern must match \(pattern)")
+        throw SdkValidationError(
+            field: field,
+            code: "pattern",
+            message: "Validation failed for '\(field)': pattern must match \(pattern)"
+        )
     }
 }

@@ -3,21 +3,28 @@
 
 import Foundation
 
-// V1PaymentMethodDetails domain models
+/// V1PaymentMethodDetails domain models
 /// How card details were read in this transaction.
-public struct PaymentMethodDetailsCardPresentReadMethod: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentMethodDetailsCardPresentReadMethod: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let contactEmv = PaymentMethodDetailsCardPresentReadMethod(rawValue: "contact_emv")
     public static let contactlessEmv = PaymentMethodDetailsCardPresentReadMethod(rawValue: "contactless_emv")
-    public static let contactlessMagstripeMode = PaymentMethodDetailsCardPresentReadMethod(rawValue: "contactless_magstripe_mode")
-    public static let magneticStripeFallback = PaymentMethodDetailsCardPresentReadMethod(rawValue: "magnetic_stripe_fallback")
-    public static let magneticStripeTrack2 = PaymentMethodDetailsCardPresentReadMethod(rawValue: "magnetic_stripe_track2")
+    public static let contactlessMagstripeMode =
+        PaymentMethodDetailsCardPresentReadMethod(rawValue: "contactless_magstripe_mode")
+    public static let magneticStripeFallback =
+        PaymentMethodDetailsCardPresentReadMethod(rawValue: "magnetic_stripe_fallback")
+    public static let magneticStripeTrack2 =
+        PaymentMethodDetailsCardPresentReadMethod(rawValue: "magnetic_stripe_track2")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -31,33 +38,48 @@ public struct PaymentMethodDetailsCardPresentReadMethod: RawRepresentable, Hasha
 /// `brull_kallmus_bank_ag`, `btv_vier_lander_bank`, `capital_bank_grawe_gruppe_ag`, `deutsche_bank_ag`,
 /// `dolomitenbank`, `easybank_ag`, `erste_bank_und_sparkassen`, `hypo_alpeadriabank_international_ag`,
 /// `hypo_noe_lb_fur_niederosterreich_u_wien`,…
-public struct PaymentMethodDetailsPaymentRecordEpsBank: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentMethodDetailsPaymentRecordEpsBank: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let arzteUndApothekerBank = PaymentMethodDetailsPaymentRecordEpsBank(rawValue: "arzte_und_apotheker_bank")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let arzteUndApothekerBank =
+        PaymentMethodDetailsPaymentRecordEpsBank(rawValue: "arzte_und_apotheker_bank")
     public static let austrianAnadiBankAg = PaymentMethodDetailsPaymentRecordEpsBank(rawValue: "austrian_anadi_bank_ag")
     public static let bankAustria = PaymentMethodDetailsPaymentRecordEpsBank(rawValue: "bank_austria")
-    public static let bankhausCarlSpangler = PaymentMethodDetailsPaymentRecordEpsBank(rawValue: "bankhaus_carl_spangler")
-    public static let bankhausSchelhammerUndSchatteraAg = PaymentMethodDetailsPaymentRecordEpsBank(rawValue: "bankhaus_schelhammer_und_schattera_ag")
+    public static let bankhausCarlSpangler =
+        PaymentMethodDetailsPaymentRecordEpsBank(rawValue: "bankhaus_carl_spangler")
+    public static let bankhausSchelhammerUndSchatteraAg =
+        PaymentMethodDetailsPaymentRecordEpsBank(rawValue: "bankhaus_schelhammer_und_schattera_ag")
     public static let bawagPskAg = PaymentMethodDetailsPaymentRecordEpsBank(rawValue: "bawag_psk_ag")
     public static let bksBankAg = PaymentMethodDetailsPaymentRecordEpsBank(rawValue: "bks_bank_ag")
     public static let brullKallmusBankAg = PaymentMethodDetailsPaymentRecordEpsBank(rawValue: "brull_kallmus_bank_ag")
     public static let btvVierLanderBank = PaymentMethodDetailsPaymentRecordEpsBank(rawValue: "btv_vier_lander_bank")
-    public static let capitalBankGraweGruppeAg = PaymentMethodDetailsPaymentRecordEpsBank(rawValue: "capital_bank_grawe_gruppe_ag")
+    public static let capitalBankGraweGruppeAg =
+        PaymentMethodDetailsPaymentRecordEpsBank(rawValue: "capital_bank_grawe_gruppe_ag")
     public static let deutscheBankAg = PaymentMethodDetailsPaymentRecordEpsBank(rawValue: "deutsche_bank_ag")
     public static let dolomitenbank = PaymentMethodDetailsPaymentRecordEpsBank(rawValue: "dolomitenbank")
     public static let easybankAg = PaymentMethodDetailsPaymentRecordEpsBank(rawValue: "easybank_ag")
-    public static let ersteBankUndSparkassen = PaymentMethodDetailsPaymentRecordEpsBank(rawValue: "erste_bank_und_sparkassen")
-    public static let hypoAlpeadriabankInternationalAg = PaymentMethodDetailsPaymentRecordEpsBank(rawValue: "hypo_alpeadriabank_international_ag")
-    public static let hypoBankBurgenlandAktiengesellschaft = PaymentMethodDetailsPaymentRecordEpsBank(rawValue: "hypo_bank_burgenland_aktiengesellschaft")
-    public static let hypoNoeLbFurNiederosterreichUWien = PaymentMethodDetailsPaymentRecordEpsBank(rawValue: "hypo_noe_lb_fur_niederosterreich_u_wien")
-    public static let hypoOberosterreichSalzburgSteiermark = PaymentMethodDetailsPaymentRecordEpsBank(rawValue: "hypo_oberosterreich_salzburg_steiermark")
+    public static let ersteBankUndSparkassen =
+        PaymentMethodDetailsPaymentRecordEpsBank(rawValue: "erste_bank_und_sparkassen")
+    public static let hypoAlpeadriabankInternationalAg =
+        PaymentMethodDetailsPaymentRecordEpsBank(rawValue: "hypo_alpeadriabank_international_ag")
+    public static let hypoBankBurgenlandAktiengesellschaft =
+        PaymentMethodDetailsPaymentRecordEpsBank(rawValue: "hypo_bank_burgenland_aktiengesellschaft")
+    public static let hypoNoeLbFurNiederosterreichUWien =
+        PaymentMethodDetailsPaymentRecordEpsBank(rawValue: "hypo_noe_lb_fur_niederosterreich_u_wien")
+    public static let hypoOberosterreichSalzburgSteiermark =
+        PaymentMethodDetailsPaymentRecordEpsBank(rawValue: "hypo_oberosterreich_salzburg_steiermark")
     public static let hypoTirolBankAg = PaymentMethodDetailsPaymentRecordEpsBank(rawValue: "hypo_tirol_bank_ag")
-    public static let hypoVorarlbergBankAg = PaymentMethodDetailsPaymentRecordEpsBank(rawValue: "hypo_vorarlberg_bank_ag")
+    public static let hypoVorarlbergBankAg =
+        PaymentMethodDetailsPaymentRecordEpsBank(rawValue: "hypo_vorarlberg_bank_ag")
     public static let marchfelderBank = PaymentMethodDetailsPaymentRecordEpsBank(rawValue: "marchfelder_bank")
     public static let oberbankAg = PaymentMethodDetailsPaymentRecordEpsBank(rawValue: "oberbank_ag")
-    public static let raiffeisenBankengruppeOsterreich = PaymentMethodDetailsPaymentRecordEpsBank(rawValue: "raiffeisen_bankengruppe_osterreich")
+    public static let raiffeisenBankengruppeOsterreich =
+        PaymentMethodDetailsPaymentRecordEpsBank(rawValue: "raiffeisen_bankengruppe_osterreich")
     public static let schoellerbankAg = PaymentMethodDetailsPaymentRecordEpsBank(rawValue: "schoellerbank_ag")
     public static let spardaBankWien = PaymentMethodDetailsPaymentRecordEpsBank(rawValue: "sparda_bank_wien")
     public static let volksbankGruppe = PaymentMethodDetailsPaymentRecordEpsBank(rawValue: "volksbank_gruppe")
@@ -66,7 +88,7 @@ public struct PaymentMethodDetailsPaymentRecordEpsBank: RawRepresentable, Hashab
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -82,7 +104,10 @@ public struct PaymentMethodDetailsPaymentRecordEpsBank: RawRepresentable, Hashab
 public struct PaymentMethodDetailsFpxBank: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let affinBank = PaymentMethodDetailsFpxBank(rawValue: "affin_bank")
     public static let agrobank = PaymentMethodDetailsFpxBank(rawValue: "agrobank")
     public static let allianceBank = PaymentMethodDetailsFpxBank(rawValue: "alliance_bank")
@@ -111,7 +136,7 @@ public struct PaymentMethodDetailsFpxBank: RawRepresentable, Hashable, Codable, 
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -122,15 +147,19 @@ public struct PaymentMethodDetailsFpxBank: RawRepresentable, Hashable, Codable, 
 
 /// For `fixed_count` installment plans, this is the interval between installment payments your customer will
 /// make to their credit card. One of `month`.
-public struct PaymentMethodDetailsCardInstallmentsPlanInterval: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentMethodDetailsCardInstallmentsPlanInterval: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let month = PaymentMethodDetailsCardInstallmentsPlanInterval(rawValue: "month")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -140,17 +169,21 @@ public struct PaymentMethodDetailsCardInstallmentsPlanInterval: RawRepresentable
 }
 
 /// The type of account being debited or credited
-public struct PaymentMethodDetailsInteracPresentReceiptAccountType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentMethodDetailsInteracPresentReceiptAccountType: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let checking = PaymentMethodDetailsInteracPresentReceiptAccountType(rawValue: "checking")
     public static let savings = PaymentMethodDetailsInteracPresentReceiptAccountType(rawValue: "savings")
     public static let unknown = PaymentMethodDetailsInteracPresentReceiptAccountType(rawValue: "unknown")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -164,10 +197,14 @@ public struct PaymentMethodDetailsInteracPresentReceiptAccountType: RawRepresent
 /// `noble_pay`, `ideabank`, `envelobank`, `santander_przelew24`, `nest_przelew`, `mbank_mtransfer`, `inteligo`,
 /// `pbac_z_ipko`, `bnp_paribas`, `credit_agricole`, `toyota_bank`, `bank_pekao_sa`, `volkswagen_bank`,
 /// `bank_millennium`, `alior_bank`, or `boz`.
-public struct PaymentMethodDetailsPaymentRecordP24Bank: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentMethodDetailsPaymentRecordP24Bank: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let aliorBank = PaymentMethodDetailsPaymentRecordP24Bank(rawValue: "alior_bank")
     public static let bankMillennium = PaymentMethodDetailsPaymentRecordP24Bank(rawValue: "bank_millennium")
     public static let bankNowyBfgSa = PaymentMethodDetailsPaymentRecordP24Bank(rawValue: "bank_nowy_bfg_sa")
@@ -190,14 +227,15 @@ public struct PaymentMethodDetailsPaymentRecordP24Bank: RawRepresentable, Hashab
     public static let pbacZIpko = PaymentMethodDetailsPaymentRecordP24Bank(rawValue: "pbac_z_ipko")
     public static let plusBank = PaymentMethodDetailsPaymentRecordP24Bank(rawValue: "plus_bank")
     public static let santanderPrzelew24 = PaymentMethodDetailsPaymentRecordP24Bank(rawValue: "santander_przelew24")
-    public static let tmobileUsbugiBankowe = PaymentMethodDetailsPaymentRecordP24Bank(rawValue: "tmobile_usbugi_bankowe")
+    public static let tmobileUsbugiBankowe =
+        PaymentMethodDetailsPaymentRecordP24Bank(rawValue: "tmobile_usbugi_bankowe")
     public static let toyotaBank = PaymentMethodDetailsPaymentRecordP24Bank(rawValue: "toyota_bank")
     public static let velobank = PaymentMethodDetailsPaymentRecordP24Bank(rawValue: "velobank")
     public static let volkswagenBank = PaymentMethodDetailsPaymentRecordP24Bank(rawValue: "volkswagen_bank")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -212,7 +250,10 @@ public struct PaymentMethodDetailsPaymentRecordP24Bank: RawRepresentable, Hashab
 public struct PaymentMethodDetailsCardWalletType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let amexExpressCheckout = PaymentMethodDetailsCardWalletType(rawValue: "amex_express_checkout")
     public static let applePay = PaymentMethodDetailsCardWalletType(rawValue: "apple_pay")
     public static let googlePay = PaymentMethodDetailsCardWalletType(rawValue: "google_pay")
@@ -223,7 +264,7 @@ public struct PaymentMethodDetailsCardWalletType: RawRepresentable, Hashable, Co
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -233,19 +274,26 @@ public struct PaymentMethodDetailsCardWalletType: RawRepresentable, Hashable, Co
 }
 
 /// How card details were read in this transaction.
-public struct PaymentMethodDetailsInteracPresentReadMethod: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentMethodDetailsInteracPresentReadMethod: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let contactEmv = PaymentMethodDetailsInteracPresentReadMethod(rawValue: "contact_emv")
     public static let contactlessEmv = PaymentMethodDetailsInteracPresentReadMethod(rawValue: "contactless_emv")
-    public static let contactlessMagstripeMode = PaymentMethodDetailsInteracPresentReadMethod(rawValue: "contactless_magstripe_mode")
-    public static let magneticStripeFallback = PaymentMethodDetailsInteracPresentReadMethod(rawValue: "magnetic_stripe_fallback")
-    public static let magneticStripeTrack2 = PaymentMethodDetailsInteracPresentReadMethod(rawValue: "magnetic_stripe_track2")
+    public static let contactlessMagstripeMode =
+        PaymentMethodDetailsInteracPresentReadMethod(rawValue: "contactless_magstripe_mode")
+    public static let magneticStripeFallback =
+        PaymentMethodDetailsInteracPresentReadMethod(rawValue: "magnetic_stripe_fallback")
+    public static let magneticStripeTrack2 =
+        PaymentMethodDetailsInteracPresentReadMethod(rawValue: "magnetic_stripe_track2")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

@@ -7,9 +7,12 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1QuotesComputedUpfrontLineItemsMethods {
-    /// Lists the complete set of upfront line items for a quote. Use cursor parameters to retrieve pages beyond the initial result set and `expand` to include additional fields. Use `page` and `per_page` to paginate the results.
+    /// Lists the complete set of upfront line items for a quote. Use cursor parameters to retrieve pages beyond the
+    /// initial result set and `expand` to include additional fields. Use `page` and `per_page` to paginate the results.
     ///
-    /// When retrieving a quote, there is an includable computed.upfront.line_items property containing the first handful of those items. There is also a URL where you can retrieve the full (paginated) list of upfront line items.
+    /// When retrieving a quote, there is an includable computed.upfront.line_items property containing the first
+    /// handful of those items. There is also a URL where you can retrieve the full (paginated) list of upfront line
+    /// items.
     ///
     /// - Parameters:
     /// - endingBefore: A cursor for use in pagination. `ending_before` is an object
@@ -25,22 +28,36 @@ public enum V1QuotesComputedUpfrontLineItemsMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    public static func getQuotesQuoteComputedUpfrontLineItems(config: ClientConfig, quote: String, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetQuotesQuoteComputedUpfrontLineItemsResponse {
+    public static func getQuotesQuoteComputedUpfrontLineItems(
+        config: ClientConfig,
+        quote: String,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        startingAfter: String?
+    ) async throws -> GetQuotesQuoteComputedUpfrontLineItemsResponse {
         try validateLength("quote", quote, max: 5000)
 
-        if let endingBefore = endingBefore {
+        if let endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let startingAfter = startingAfter {
+        if let startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try (await sdkRequest("GET", ["/v1/quotes/", sdkEncodePathSegment(sdkWireString(quote)), "/computed_upfront_line_items"].joined(), config: config, query: [
-            SdkQueryParameter("ending_before", value: endingBefore),
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            SdkQueryParameter("limit", value: limit),
-            SdkQueryParameter("starting_after", value: startingAfter),
-        ], decoder: .json, operationId: "GetQuotesQuoteComputedUpfrontLineItems")).data
+        return try await (sdkRequest(
+            "GET",
+            ["/v1/quotes/", sdkEncodePathSegment(sdkWireString(quote)), "/computed_upfront_line_items"].joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("ending_before", value: endingBefore),
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+                SdkQueryParameter("limit", value: limit),
+                SdkQueryParameter("starting_after", value: startingAfter),
+            ],
+            decoder: .json,
+            operationId: "GetQuotesQuoteComputedUpfrontLineItems"
+        )).data
     }
 }

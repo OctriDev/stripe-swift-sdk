@@ -7,19 +7,23 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1TaxRegistrations operation model declarations
+/// Canonical v1TaxRegistrations operation model declarations
 public extension PostTaxRegistrationsRequestBodyCountryOptionsCyStandard {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.placeOfSupplyScheme) else {
-            throw SdkValidationError(field: "place_of_supply_scheme", code: "required", message: "Validation failed for 'place_of_supply_scheme': value is required")
+            throw SdkValidationError(
+                field: "place_of_supply_scheme",
+                code: "required",
+                message: "Validation failed for 'place_of_supply_scheme': value is required"
+            )
         }
-        self.placeOfSupplyScheme = try container.sdkDecodeRequired(.placeOfSupplyScheme)
+        placeOfSupplyScheme = try container.sdkDecodeRequired(.placeOfSupplyScheme)
     }
 }
 
 public extension PostTaxRegistrationsRequestBodyCountryOptionsCyStandard {
-    public init(placeOfSupplyScheme: PostTaxRegistrationsRequestBodyCountryOptionsCyStandardPlaceOXfff62a2ab0) {
+    init(placeOfSupplyScheme: PostTaxRegistrationsRequestBodyCountryOptionsCyStandardPlaceOXfff62a2ab0) {
         self.placeOfSupplyScheme = placeOfSupplyScheme
     }
 }
@@ -31,21 +35,27 @@ public struct PostTaxRegistrationsRequestBodyCountryOptionsDeStandard: Codable {
         case placeOfSupplyScheme = "place_of_supply_scheme"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostTaxRegistrationsRequestBodyCountryOptionsDeStandard {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.placeOfSupplyScheme) else {
-            throw SdkValidationError(field: "place_of_supply_scheme", code: "required", message: "Validation failed for 'place_of_supply_scheme': value is required")
-        }
-        self.placeOfSupplyScheme = try container.sdkDecodeRequired(.placeOfSupplyScheme)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostTaxRegistrationsRequestBodyCountryOptionsDeStandard {
-    public init(placeOfSupplyScheme: PostTaxRegistrationsRequestBodyCountryOptionsDeStandardPlaceOX5979f97bd5) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.placeOfSupplyScheme) else {
+            throw SdkValidationError(
+                field: "place_of_supply_scheme",
+                code: "required",
+                message: "Validation failed for 'place_of_supply_scheme': value is required"
+            )
+        }
+        placeOfSupplyScheme = try container.sdkDecodeRequired(.placeOfSupplyScheme)
+    }
+}
+
+public extension PostTaxRegistrationsRequestBodyCountryOptionsDeStandard {
+    init(placeOfSupplyScheme: PostTaxRegistrationsRequestBodyCountryOptionsDeStandardPlaceOX5979f97bd5) {
         self.placeOfSupplyScheme = placeOfSupplyScheme
     }
 }
@@ -60,22 +70,31 @@ public struct PostTaxRegistrationsRequestBodyCountryOptionsBb: Codable {
         case standard
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostTaxRegistrationsRequestBodyCountryOptionsBb {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
-        }
-        self.type = try container.sdkDecodeRequired(.type)
-        self.standard = try container.sdkDecodeIfPresent(.standard)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostTaxRegistrationsRequestBodyCountryOptionsBb {
-    public init(type: PostTaxRegistrationsRequestBodyCountryOptionsBbType, standard: PostTaxRegistrationsRequestBodyCountryOptionsBbStandard? = nil) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.type) else {
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
+        }
+        type = try container.sdkDecodeRequired(.type)
+        standard = try container.sdkDecodeIfPresent(.standard)
+    }
+}
+
+public extension PostTaxRegistrationsRequestBodyCountryOptionsBb {
+    init(
+        type: PostTaxRegistrationsRequestBodyCountryOptionsBbType,
+        standard: PostTaxRegistrationsRequestBodyCountryOptionsBbStandard? = nil
+    ) {
         (self.type, self.standard) = (type, standard)
     }
 }
@@ -88,19 +107,19 @@ public struct PostTaxRegistrationsRequestBodyCountryOptionsAuStandard: Codable {
     }
 
     init() {
-        self.placeOfSupplyScheme = nil
+        placeOfSupplyScheme = nil
     }
 }
 
 public extension PostTaxRegistrationsRequestBodyCountryOptionsAuStandard {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.placeOfSupplyScheme = try container.sdkDecodeIfPresent(.placeOfSupplyScheme)
+        placeOfSupplyScheme = try container.sdkDecodeIfPresent(.placeOfSupplyScheme)
     }
 }
 
 public extension PostTaxRegistrationsRequestBodyCountryOptionsAuStandard {
-    public init(placeOfSupplyScheme: PostTaxRegistrationsRequestBodyCountryOptionsAuStandardPlaceOX50bfdad004? = nil) {
+    init(placeOfSupplyScheme: PostTaxRegistrationsRequestBodyCountryOptionsAuStandardPlaceOX50bfdad004? = nil) {
         self.init()
         self.placeOfSupplyScheme = placeOfSupplyScheme
     }
@@ -119,23 +138,33 @@ public struct PostTaxRegistrationsRequestBodyCountryOptionsEe: Codable {
         case standard
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostTaxRegistrationsRequestBodyCountryOptionsEe {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
-        }
-        self.type = try container.sdkDecodeRequired(.type)
-        self.igic = try container.sdkDecodeIfPresent(.igic)
-        self.standard = try container.sdkDecodeIfPresent(.standard)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostTaxRegistrationsRequestBodyCountryOptionsEe {
-    public init(type: PostTaxRegistrationsRequestBodyCountryOptionsEeType, igic: PostTaxRegistrationsRequestBodyCountryOptionsEeIgic? = nil, standard: PostTaxRegistrationsRequestBodyCountryOptionsEeStandard? = nil) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.type) else {
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
+        }
+        type = try container.sdkDecodeRequired(.type)
+        igic = try container.sdkDecodeIfPresent(.igic)
+        standard = try container.sdkDecodeIfPresent(.standard)
+    }
+}
+
+public extension PostTaxRegistrationsRequestBodyCountryOptionsEe {
+    init(
+        type: PostTaxRegistrationsRequestBodyCountryOptionsEeType,
+        igic: PostTaxRegistrationsRequestBodyCountryOptionsEeIgic? = nil,
+        standard: PostTaxRegistrationsRequestBodyCountryOptionsEeStandard? = nil
+    ) {
         (self.type, self.igic) = (type, igic)
         self.standard = standard
     }
@@ -148,21 +177,27 @@ public struct PostTaxRegistrationsRequestBodyCountryOptionsSiStandard: Codable {
         case placeOfSupplyScheme = "place_of_supply_scheme"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostTaxRegistrationsRequestBodyCountryOptionsSiStandard {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.placeOfSupplyScheme) else {
-            throw SdkValidationError(field: "place_of_supply_scheme", code: "required", message: "Validation failed for 'place_of_supply_scheme': value is required")
-        }
-        self.placeOfSupplyScheme = try container.sdkDecodeRequired(.placeOfSupplyScheme)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostTaxRegistrationsRequestBodyCountryOptionsSiStandard {
-    public init(placeOfSupplyScheme: PostTaxRegistrationsRequestBodyCountryOptionsSiStandardPlaceOX392b234db8) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.placeOfSupplyScheme) else {
+            throw SdkValidationError(
+                field: "place_of_supply_scheme",
+                code: "required",
+                message: "Validation failed for 'place_of_supply_scheme': value is required"
+            )
+        }
+        placeOfSupplyScheme = try container.sdkDecodeRequired(.placeOfSupplyScheme)
+    }
+}
+
+public extension PostTaxRegistrationsRequestBodyCountryOptionsSiStandard {
+    init(placeOfSupplyScheme: PostTaxRegistrationsRequestBodyCountryOptionsSiStandardPlaceOX392b234db8) {
         self.placeOfSupplyScheme = placeOfSupplyScheme
     }
 }
@@ -174,21 +209,27 @@ public struct PostTaxRegistrationsRequestBodyCountryOptionsAtStandard: Codable {
         case placeOfSupplyScheme = "place_of_supply_scheme"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostTaxRegistrationsRequestBodyCountryOptionsAtStandard {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.placeOfSupplyScheme) else {
-            throw SdkValidationError(field: "place_of_supply_scheme", code: "required", message: "Validation failed for 'place_of_supply_scheme': value is required")
-        }
-        self.placeOfSupplyScheme = try container.sdkDecodeRequired(.placeOfSupplyScheme)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostTaxRegistrationsRequestBodyCountryOptionsAtStandard {
-    public init(placeOfSupplyScheme: PostTaxRegistrationsRequestBodyCountryOptionsAtStandardPlaceOX734cce039b) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.placeOfSupplyScheme) else {
+            throw SdkValidationError(
+                field: "place_of_supply_scheme",
+                code: "required",
+                message: "Validation failed for 'place_of_supply_scheme': value is required"
+            )
+        }
+        placeOfSupplyScheme = try container.sdkDecodeRequired(.placeOfSupplyScheme)
+    }
+}
+
+public extension PostTaxRegistrationsRequestBodyCountryOptionsAtStandard {
+    init(placeOfSupplyScheme: PostTaxRegistrationsRequestBodyCountryOptionsAtStandardPlaceOX734cce039b) {
         self.placeOfSupplyScheme = placeOfSupplyScheme
     }
 }
@@ -200,21 +241,27 @@ public struct PostTaxRegistrationsRequestBodyCountryOptionsCzStandard: Codable {
         case placeOfSupplyScheme = "place_of_supply_scheme"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostTaxRegistrationsRequestBodyCountryOptionsCzStandard {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.placeOfSupplyScheme) else {
-            throw SdkValidationError(field: "place_of_supply_scheme", code: "required", message: "Validation failed for 'place_of_supply_scheme': value is required")
-        }
-        self.placeOfSupplyScheme = try container.sdkDecodeRequired(.placeOfSupplyScheme)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostTaxRegistrationsRequestBodyCountryOptionsCzStandard {
-    public init(placeOfSupplyScheme: PostTaxRegistrationsRequestBodyCountryOptionsCzStandardPlaceOXffc8d714aa) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.placeOfSupplyScheme) else {
+            throw SdkValidationError(
+                field: "place_of_supply_scheme",
+                code: "required",
+                message: "Validation failed for 'place_of_supply_scheme': value is required"
+            )
+        }
+        placeOfSupplyScheme = try container.sdkDecodeRequired(.placeOfSupplyScheme)
+    }
+}
+
+public extension PostTaxRegistrationsRequestBodyCountryOptionsCzStandard {
+    init(placeOfSupplyScheme: PostTaxRegistrationsRequestBodyCountryOptionsCzStandardPlaceOXffc8d714aa) {
         self.placeOfSupplyScheme = placeOfSupplyScheme
     }
 }
@@ -227,19 +274,19 @@ public struct PostTaxRegistrationsRequestBodyCountryOptionsEtStandard: Codable {
     }
 
     init() {
-        self.placeOfSupplyScheme = nil
+        placeOfSupplyScheme = nil
     }
 }
 
 public extension PostTaxRegistrationsRequestBodyCountryOptionsEtStandard {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.placeOfSupplyScheme = try container.sdkDecodeIfPresent(.placeOfSupplyScheme)
+        placeOfSupplyScheme = try container.sdkDecodeIfPresent(.placeOfSupplyScheme)
     }
 }
 
 public extension PostTaxRegistrationsRequestBodyCountryOptionsEtStandard {
-    public init(placeOfSupplyScheme: PostTaxRegistrationsRequestBodyCountryOptionsEtStandardPlaceOXb8b4ceafd8? = nil) {
+    init(placeOfSupplyScheme: PostTaxRegistrationsRequestBodyCountryOptionsEtStandardPlaceOXb8b4ceafd8? = nil) {
         self.init()
         self.placeOfSupplyScheme = placeOfSupplyScheme
     }
@@ -258,23 +305,33 @@ public struct PostTaxRegistrationsRequestBodyCountryOptionsBg: Codable {
         case standard
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostTaxRegistrationsRequestBodyCountryOptionsBg {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
-        }
-        self.type = try container.sdkDecodeRequired(.type)
-        self.igic = try container.sdkDecodeIfPresent(.igic)
-        self.standard = try container.sdkDecodeIfPresent(.standard)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostTaxRegistrationsRequestBodyCountryOptionsBg {
-    public init(type: PostTaxRegistrationsRequestBodyCountryOptionsBgType, igic: PostTaxRegistrationsRequestBodyCountryOptionsBgIgic? = nil, standard: PostTaxRegistrationsRequestBodyCountryOptionsBgStandard? = nil) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.type) else {
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
+        }
+        type = try container.sdkDecodeRequired(.type)
+        igic = try container.sdkDecodeIfPresent(.igic)
+        standard = try container.sdkDecodeIfPresent(.standard)
+    }
+}
+
+public extension PostTaxRegistrationsRequestBodyCountryOptionsBg {
+    init(
+        type: PostTaxRegistrationsRequestBodyCountryOptionsBgType,
+        igic: PostTaxRegistrationsRequestBodyCountryOptionsBgIgic? = nil,
+        standard: PostTaxRegistrationsRequestBodyCountryOptionsBgStandard? = nil
+    ) {
         (self.type, self.igic) = (type, igic)
         self.standard = standard
     }
@@ -287,21 +344,27 @@ public struct PostTaxRegistrationsRequestBodyCountryOptionsTw: Codable {
         case type
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostTaxRegistrationsRequestBodyCountryOptionsTw {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
-        }
-        self.type = try container.sdkDecodeRequired(.type)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostTaxRegistrationsRequestBodyCountryOptionsTw {
-    public init(type: PostTaxRegistrationsRequestBodyCountryOptionsTwType) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.type) else {
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
+        }
+        type = try container.sdkDecodeRequired(.type)
+    }
+}
+
+public extension PostTaxRegistrationsRequestBodyCountryOptionsTw {
+    init(type: PostTaxRegistrationsRequestBodyCountryOptionsTwType) {
         self.type = type
     }
 }
@@ -313,21 +376,27 @@ public struct PostTaxRegistrationsRequestBodyCountryOptionsGrIgic: Codable {
         case placeOfSupplyScheme = "place_of_supply_scheme"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostTaxRegistrationsRequestBodyCountryOptionsGrIgic {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.placeOfSupplyScheme) else {
-            throw SdkValidationError(field: "place_of_supply_scheme", code: "required", message: "Validation failed for 'place_of_supply_scheme': value is required")
-        }
-        self.placeOfSupplyScheme = try container.sdkDecodeRequired(.placeOfSupplyScheme)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostTaxRegistrationsRequestBodyCountryOptionsGrIgic {
-    public init(placeOfSupplyScheme: PostTaxRegistrationsRequestBodyCountryOptionsGrIgicPlaceOfSupplyScheme) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.placeOfSupplyScheme) else {
+            throw SdkValidationError(
+                field: "place_of_supply_scheme",
+                code: "required",
+                message: "Validation failed for 'place_of_supply_scheme': value is required"
+            )
+        }
+        placeOfSupplyScheme = try container.sdkDecodeRequired(.placeOfSupplyScheme)
+    }
+}
+
+public extension PostTaxRegistrationsRequestBodyCountryOptionsGrIgic {
+    init(placeOfSupplyScheme: PostTaxRegistrationsRequestBodyCountryOptionsGrIgicPlaceOfSupplyScheme) {
         self.placeOfSupplyScheme = placeOfSupplyScheme
     }
 }
@@ -339,21 +408,27 @@ public struct PostTaxRegistrationsRequestBodyCountryOptionsCo: Codable {
         case type
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostTaxRegistrationsRequestBodyCountryOptionsCo {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
-        }
-        self.type = try container.sdkDecodeRequired(.type)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostTaxRegistrationsRequestBodyCountryOptionsCo {
-    public init(type: PostTaxRegistrationsRequestBodyCountryOptionsCoType) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.type) else {
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
+        }
+        type = try container.sdkDecodeRequired(.type)
+    }
+}
+
+public extension PostTaxRegistrationsRequestBodyCountryOptionsCo {
+    init(type: PostTaxRegistrationsRequestBodyCountryOptionsCoType) {
         self.type = type
     }
 }
@@ -365,21 +440,27 @@ public struct PostTaxRegistrationsRequestBodyCountryOptionsLk: Codable {
         case type
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostTaxRegistrationsRequestBodyCountryOptionsLk {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
-        }
-        self.type = try container.sdkDecodeRequired(.type)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostTaxRegistrationsRequestBodyCountryOptionsLk {
-    public init(type: PostTaxRegistrationsRequestBodyCountryOptionsLkType) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.type) else {
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
+        }
+        type = try container.sdkDecodeRequired(.type)
+    }
+}
+
+public extension PostTaxRegistrationsRequestBodyCountryOptionsLk {
+    init(type: PostTaxRegistrationsRequestBodyCountryOptionsLkType) {
         self.type = type
     }
 }
@@ -391,21 +472,27 @@ public struct PostTaxRegistrationsRequestBodyCountryOptionsKe: Codable {
         case type
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostTaxRegistrationsRequestBodyCountryOptionsKe {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
-        }
-        self.type = try container.sdkDecodeRequired(.type)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostTaxRegistrationsRequestBodyCountryOptionsKe {
-    public init(type: PostTaxRegistrationsRequestBodyCountryOptionsKeType) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.type) else {
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
+        }
+        type = try container.sdkDecodeRequired(.type)
+    }
+}
+
+public extension PostTaxRegistrationsRequestBodyCountryOptionsKe {
+    init(type: PostTaxRegistrationsRequestBodyCountryOptionsKeType) {
         self.type = type
     }
 }
@@ -417,21 +504,27 @@ public struct PostTaxRegistrationsRequestBodyCountryOptionsEg: Codable {
         case type
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostTaxRegistrationsRequestBodyCountryOptionsEg {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
-        }
-        self.type = try container.sdkDecodeRequired(.type)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostTaxRegistrationsRequestBodyCountryOptionsEg {
-    public init(type: PostTaxRegistrationsRequestBodyCountryOptionsEgType) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.type) else {
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
+        }
+        type = try container.sdkDecodeRequired(.type)
+    }
+}
+
+public extension PostTaxRegistrationsRequestBodyCountryOptionsEg {
+    init(type: PostTaxRegistrationsRequestBodyCountryOptionsEgType) {
         self.type = type
     }
 }
@@ -443,21 +536,27 @@ public struct PostTaxRegistrationsRequestBodyCountryOptionsAtIgic: Codable {
         case placeOfSupplyScheme = "place_of_supply_scheme"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostTaxRegistrationsRequestBodyCountryOptionsAtIgic {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.placeOfSupplyScheme) else {
-            throw SdkValidationError(field: "place_of_supply_scheme", code: "required", message: "Validation failed for 'place_of_supply_scheme': value is required")
-        }
-        self.placeOfSupplyScheme = try container.sdkDecodeRequired(.placeOfSupplyScheme)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostTaxRegistrationsRequestBodyCountryOptionsAtIgic {
-    public init(placeOfSupplyScheme: PostTaxRegistrationsRequestBodyCountryOptionsAtIgicPlaceOfSupplyScheme) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.placeOfSupplyScheme) else {
+            throw SdkValidationError(
+                field: "place_of_supply_scheme",
+                code: "required",
+                message: "Validation failed for 'place_of_supply_scheme': value is required"
+            )
+        }
+        placeOfSupplyScheme = try container.sdkDecodeRequired(.placeOfSupplyScheme)
+    }
+}
+
+public extension PostTaxRegistrationsRequestBodyCountryOptionsAtIgic {
+    init(placeOfSupplyScheme: PostTaxRegistrationsRequestBodyCountryOptionsAtIgicPlaceOfSupplyScheme) {
         self.placeOfSupplyScheme = placeOfSupplyScheme
     }
 }
@@ -469,21 +568,27 @@ public struct PostTaxRegistrationsRequestBodyCountryOptionsVn: Codable {
         case type
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostTaxRegistrationsRequestBodyCountryOptionsVn {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
-        }
-        self.type = try container.sdkDecodeRequired(.type)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostTaxRegistrationsRequestBodyCountryOptionsVn {
-    public init(type: PostTaxRegistrationsRequestBodyCountryOptionsVnType) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.type) else {
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
+        }
+        type = try container.sdkDecodeRequired(.type)
+    }
+}
+
+public extension PostTaxRegistrationsRequestBodyCountryOptionsVn {
+    init(type: PostTaxRegistrationsRequestBodyCountryOptionsVnType) {
         self.type = type
     }
 }
@@ -501,23 +606,33 @@ public struct PostTaxRegistrationsRequestBodyCountryOptionsDk: Codable {
         case standard
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostTaxRegistrationsRequestBodyCountryOptionsDk {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
-        }
-        self.type = try container.sdkDecodeRequired(.type)
-        self.igic = try container.sdkDecodeIfPresent(.igic)
-        self.standard = try container.sdkDecodeIfPresent(.standard)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostTaxRegistrationsRequestBodyCountryOptionsDk {
-    public init(type: PostTaxRegistrationsRequestBodyCountryOptionsDkType, igic: PostTaxRegistrationsRequestBodyCountryOptionsDkIgic? = nil, standard: PostTaxRegistrationsRequestBodyCountryOptionsDkStandard? = nil) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.type) else {
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
+        }
+        type = try container.sdkDecodeRequired(.type)
+        igic = try container.sdkDecodeIfPresent(.igic)
+        standard = try container.sdkDecodeIfPresent(.standard)
+    }
+}
+
+public extension PostTaxRegistrationsRequestBodyCountryOptionsDk {
+    init(
+        type: PostTaxRegistrationsRequestBodyCountryOptionsDkType,
+        igic: PostTaxRegistrationsRequestBodyCountryOptionsDkIgic? = nil,
+        standard: PostTaxRegistrationsRequestBodyCountryOptionsDkStandard? = nil
+    ) {
         (self.type, self.igic) = (type, igic)
         self.standard = standard
     }
@@ -530,5 +645,7 @@ public struct PostTaxRegistrationsRequestBodyCountryOptionsMx: Codable {
         case type
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }

@@ -7,17 +7,33 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1CheckoutSessionsExpireMethods {
-    /// Expires an open Checkout Session so the customer can no longer complete it. Use `session` to identify the session, and optionally use `expand` to include related fields in the response. Expiring the session causes customers who load it afterward to see that it has expired.
+    /// Expires an open Checkout Session so the customer can no longer complete it. Use `session` to identify the
+    /// session, and optionally use `expand` to include related fields in the response. Expiring the session causes
+    /// customers who load it afterward to see that it has expired.
     ///
-    /// A Checkout Session can be expired when it is in one of these statuses: open After it expires, a customer can’t complete a Checkout Session and customers loading the Checkout Session see a message saying the Checkout Session is expired.
+    /// A Checkout Session can be expired when it is in one of these statuses: open After it expires, a customer can’t
+    /// complete a Checkout Session and customers loading the Checkout Session see a message saying the Checkout Session
+    /// is expired.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postCheckoutSessionsSessionExpire(config: ClientConfig, session: String, expand: [String]?) async throws -> CheckoutSession {
+    public static func postCheckoutSessionsSessionExpire(
+        config: ClientConfig,
+        session: String,
+        expand: [String]?
+    ) async throws -> CheckoutSession {
         try validateLength("session", session, max: 5000)
 
         let requestBody = PostCheckoutSessionsSessionExpireRequestBody(expand: expand)
 
-        return try (await sdkRequest("POST", ["/v1/checkout/sessions/", sdkEncodePathSegment(sdkWireString(session)), "/expire"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostCheckoutSessionsSessionExpire")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/checkout/sessions/", sdkEncodePathSegment(sdkWireString(session)), "/expire"].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostCheckoutSessionsSessionExpire"
+        )).data
     }
 }

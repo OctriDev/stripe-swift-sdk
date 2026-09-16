@@ -3,22 +3,30 @@
 
 import Foundation
 
-// V1Gelato domain models
+/// V1Gelato domain models
 extension GelatoEmailReportErrorX62a877fc: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for GelatoEmailReportErrorX62a877fc")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for GelatoEmailReportErrorX62a877fc"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(GelatoEmailReportError.self) { return .gelatoEmailReportError(value) }
+        if let value = try? container.decode(GelatoEmailReportError.self) {
+            return .gelatoEmailReportError(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -27,7 +35,6 @@ extension GelatoEmailReportErrorX62a877fc: Codable {
         case let .gelatoEmailReportError(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Typed representation of the `GelatoEmailReportError` API schema.
@@ -43,23 +50,23 @@ public struct GelatoEmailReportError: Codable {
     }
 
     init() {
-        (self.code, self.reason) = (nil, nil)
+        (code, reason) = (nil, nil)
     }
 }
 
 public extension GelatoEmailReportError {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.code = try container.sdkDecodeIfPresent(.code)
-        self.reason = try container.sdkDecodeIfPresent(.reason)
-        if let value = self.reason {
+        code = try container.sdkDecodeIfPresent(.code)
+        reason = try container.sdkDecodeIfPresent(.reason)
+        if let value = reason {
             try validateLength("reason", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension GelatoEmailReportError {
-    public init(code: GelatoEmailReportErrorCode? = nil, reason: String? = nil) throws {
+    init(code: GelatoEmailReportErrorCode? = nil, reason: String? = nil) throws {
         self.init()
         (self.code, self.reason) = (code, reason)
         if let value = self.reason {
@@ -95,36 +102,50 @@ public struct GelatoIdNumberReport: Codable {
         case lastName = "last_name"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension GelatoIdNumberReport {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.status) else {
-            throw SdkValidationError(field: "status", code: "required", message: "Validation failed for 'status': value is required")
+            throw SdkValidationError(
+                field: "status",
+                code: "required",
+                message: "Validation failed for 'status': value is required"
+            )
         }
-        self.status = try container.sdkDecodeRequired(.status)
-        self.dob = try container.sdkDecodeIfPresent(.dob)
-        self.error = try container.sdkDecodeIfPresent(.error)
-        self.firstName = try container.sdkDecodeIfPresent(.firstName)
-        self.idNumber = try container.sdkDecodeIfPresent(.idNumber)
-        self.idNumberType = try container.sdkDecodeIfPresent(.idNumberType)
-        self.lastName = try container.sdkDecodeIfPresent(.lastName)
-        if let value = self.firstName {
+        status = try container.sdkDecodeRequired(.status)
+        dob = try container.sdkDecodeIfPresent(.dob)
+        error = try container.sdkDecodeIfPresent(.error)
+        firstName = try container.sdkDecodeIfPresent(.firstName)
+        idNumber = try container.sdkDecodeIfPresent(.idNumber)
+        idNumberType = try container.sdkDecodeIfPresent(.idNumberType)
+        lastName = try container.sdkDecodeIfPresent(.lastName)
+        if let value = firstName {
             try validateLength("first_name", value, min: nil, max: 5000)
         }
-        if let value = self.idNumber {
+        if let value = idNumber {
             try validateLength("id_number", value, min: nil, max: 5000)
         }
-        if let value = self.lastName {
+        if let value = lastName {
             try validateLength("last_name", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension GelatoIdNumberReport {
-    public init(status: GelatoIdNumberReportStatus, dob: GelatoIdNumberReportDob? = nil, error: GelatoIdNumberReportErrorX7e80410a? = nil, firstName: String? = nil, idNumber: String? = nil, idNumberType: GelatoIdNumberReportIdNumberType? = nil, lastName: String? = nil) throws {
+    init(
+        status: GelatoIdNumberReportStatus,
+        dob: GelatoIdNumberReportDob? = nil,
+        error: GelatoIdNumberReportErrorX7e80410a? = nil,
+        firstName: String? = nil,
+        idNumber: String? = nil,
+        idNumberType: GelatoIdNumberReportIdNumberType? = nil,
+        lastName: String? = nil
+    ) throws {
         (self.status, self.dob) = (status, dob)
         (self.error, self.firstName) = (error, firstName)
         (self.idNumber, self.idNumberType) = (idNumber, idNumberType)
@@ -146,20 +167,29 @@ public enum GelatoIdNumberReportDob {
 }
 
 extension GelatoIdNumberReportDob: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for GelatoIdNumberReportDob")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for GelatoIdNumberReportDob"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(GelatoDataIdNumberReportDate.self) { return .gelatoDataIdNumberReportDate(value) }
+        if let value = try? container
+            .decode(GelatoDataIdNumberReportDate.self) {
+            return .gelatoDataIdNumberReportDate(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -168,7 +198,6 @@ extension GelatoIdNumberReportDob: Codable {
         case let .gelatoDataIdNumberReportDate(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum GelatoIdNumberReportErrorX7e80410a {
@@ -176,20 +205,29 @@ public enum GelatoIdNumberReportErrorX7e80410a {
 }
 
 extension GelatoIdNumberReportErrorX7e80410a: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for GelatoIdNumberReportErrorX7e80410a")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for GelatoIdNumberReportErrorX7e80410a"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(GelatoIdNumberReportError.self) { return .gelatoIdNumberReportError(value) }
+        if let value = try? container
+            .decode(GelatoIdNumberReportError.self) {
+            return .gelatoIdNumberReportError(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -198,7 +236,6 @@ extension GelatoIdNumberReportErrorX7e80410a: Codable {
         case let .gelatoIdNumberReportError(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Typed representation of the `GelatoIdNumberReportError` API schema.
@@ -214,23 +251,23 @@ public struct GelatoIdNumberReportError: Codable {
     }
 
     init() {
-        (self.code, self.reason) = (nil, nil)
+        (code, reason) = (nil, nil)
     }
 }
 
 public extension GelatoIdNumberReportError {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.code = try container.sdkDecodeIfPresent(.code)
-        self.reason = try container.sdkDecodeIfPresent(.reason)
-        if let value = self.reason {
+        code = try container.sdkDecodeIfPresent(.code)
+        reason = try container.sdkDecodeIfPresent(.reason)
+        if let value = reason {
             try validateLength("reason", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension GelatoIdNumberReportError {
-    public init(code: GelatoIdNumberReportErrorCode? = nil, reason: String? = nil) throws {
+    init(code: GelatoIdNumberReportErrorCode? = nil, reason: String? = nil) throws {
         self.init()
         (self.code, self.reason) = (code, reason)
         if let value = self.reason {
@@ -254,26 +291,32 @@ public struct GelatoPhoneReport: Codable {
         case phone
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension GelatoPhoneReport {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.status) else {
-            throw SdkValidationError(field: "status", code: "required", message: "Validation failed for 'status': value is required")
+            throw SdkValidationError(
+                field: "status",
+                code: "required",
+                message: "Validation failed for 'status': value is required"
+            )
         }
-        self.status = try container.sdkDecodeRequired(.status)
-        self.error = try container.sdkDecodeIfPresent(.error)
-        self.phone = try container.sdkDecodeIfPresent(.phone)
-        if let value = self.phone {
+        status = try container.sdkDecodeRequired(.status)
+        error = try container.sdkDecodeIfPresent(.error)
+        phone = try container.sdkDecodeIfPresent(.phone)
+        if let value = phone {
             try validateLength("phone", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension GelatoPhoneReport {
-    public init(status: GelatoPhoneReportStatus, error: GelatoPhoneReportErrorXa32c42ed? = nil, phone: String? = nil) throws {
+    init(status: GelatoPhoneReportStatus, error: GelatoPhoneReportErrorXa32c42ed? = nil, phone: String? = nil) throws {
         (self.status, self.error) = (status, error)
         self.phone = phone
         if let value = self.phone {
@@ -287,20 +330,28 @@ public enum GelatoPhoneReportErrorXa32c42ed {
 }
 
 extension GelatoPhoneReportErrorXa32c42ed: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for GelatoPhoneReportErrorXa32c42ed")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for GelatoPhoneReportErrorXa32c42ed"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(GelatoPhoneReportError.self) { return .gelatoPhoneReportError(value) }
+        if let value = try? container.decode(GelatoPhoneReportError.self) {
+            return .gelatoPhoneReportError(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -309,7 +360,6 @@ extension GelatoPhoneReportErrorXa32c42ed: Codable {
         case let .gelatoPhoneReportError(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Typed representation of the `GelatoPhoneReportError` API schema.
@@ -325,23 +375,23 @@ public struct GelatoPhoneReportError: Codable {
     }
 
     init() {
-        (self.code, self.reason) = (nil, nil)
+        (code, reason) = (nil, nil)
     }
 }
 
 public extension GelatoPhoneReportError {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.code = try container.sdkDecodeIfPresent(.code)
-        self.reason = try container.sdkDecodeIfPresent(.reason)
-        if let value = self.reason {
+        code = try container.sdkDecodeIfPresent(.code)
+        reason = try container.sdkDecodeIfPresent(.reason)
+        if let value = reason {
             try validateLength("reason", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension GelatoPhoneReportError {
-    public init(code: GelatoPhoneReportErrorCode? = nil, reason: String? = nil) throws {
+    init(code: GelatoPhoneReportErrorCode? = nil, reason: String? = nil) throws {
         self.init()
         (self.code, self.reason) = (code, reason)
         if let value = self.reason {
@@ -363,26 +413,26 @@ public struct GelatoProvidedDetails: Codable {
     }
 
     init() {
-        (self.email, self.phone) = (nil, nil)
+        (email, phone) = (nil, nil)
     }
 }
 
 public extension GelatoProvidedDetails {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.email = try container.sdkDecodeIfPresent(.email)
-        self.phone = try container.sdkDecodeIfPresent(.phone)
-        if let value = self.email {
+        email = try container.sdkDecodeIfPresent(.email)
+        phone = try container.sdkDecodeIfPresent(.phone)
+        if let value = email {
             try validateLength("email", value, min: nil, max: 5000)
         }
-        if let value = self.phone {
+        if let value = phone {
             try validateLength("phone", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension GelatoProvidedDetails {
-    public init(email: String? = nil, phone: String? = nil) throws {
+    init(email: String? = nil, phone: String? = nil) throws {
         self.init()
         (self.email, self.phone) = (email, phone)
         if let value = self.email {
@@ -406,30 +456,40 @@ public struct GelatoRelatedPerson: Codable {
         case person
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension GelatoRelatedPerson {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.account) else {
-            throw SdkValidationError(field: "account", code: "required", message: "Validation failed for 'account': value is required")
-        }
-        guard container.contains(.person) else {
-            throw SdkValidationError(field: "person", code: "required", message: "Validation failed for 'person': value is required")
-        }
-        self.account = try container.sdkDecodeRequired(.account)
-        self.person = try container.sdkDecodeRequired(.person)
-            try validateLength("account", self.account, min: nil, max: 5000)
-            try validateLength("person", self.person, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension GelatoRelatedPerson {
-    public init(account: String, person: String) throws {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.account) else {
+            throw SdkValidationError(
+                field: "account",
+                code: "required",
+                message: "Validation failed for 'account': value is required"
+            )
+        }
+        guard container.contains(.person) else {
+            throw SdkValidationError(
+                field: "person",
+                code: "required",
+                message: "Validation failed for 'person': value is required"
+            )
+        }
+        account = try container.sdkDecodeRequired(.account)
+        person = try container.sdkDecodeRequired(.person)
+        try validateLength("account", account, min: nil, max: 5000)
+        try validateLength("person", person, min: nil, max: 5000)
+    }
+}
+
+public extension GelatoRelatedPerson {
+    init(account: String, person: String) throws {
         (self.account, self.person) = (account, person)
-            try validateLength("account", self.account, min: nil, max: 5000)
-            try validateLength("person", self.person, min: nil, max: 5000)
+        try validateLength("account", self.account, min: nil, max: 5000)
+        try validateLength("person", self.person, min: nil, max: 5000)
     }
 }
 
@@ -454,22 +514,27 @@ public struct GelatoReportDocumentOptions: Codable {
     }
 
     init() {
-        (self.allowedTypes, self.requireIdNumber, self.requireLiveCapture, self.requireMatchingSelfie) = (nil, nil, nil, nil)
+        (allowedTypes, requireIdNumber, requireLiveCapture, requireMatchingSelfie) = (nil, nil, nil, nil)
     }
 }
 
 public extension GelatoReportDocumentOptions {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.allowedTypes = try container.sdkDecodeIfPresent(.allowedTypes)
-        self.requireIdNumber = try container.sdkDecodeIfPresent(.requireIdNumber)
-        self.requireLiveCapture = try container.sdkDecodeIfPresent(.requireLiveCapture)
-        self.requireMatchingSelfie = try container.sdkDecodeIfPresent(.requireMatchingSelfie)
+        allowedTypes = try container.sdkDecodeIfPresent(.allowedTypes)
+        requireIdNumber = try container.sdkDecodeIfPresent(.requireIdNumber)
+        requireLiveCapture = try container.sdkDecodeIfPresent(.requireLiveCapture)
+        requireMatchingSelfie = try container.sdkDecodeIfPresent(.requireMatchingSelfie)
     }
 }
 
 public extension GelatoReportDocumentOptions {
-    public init(allowedTypes: [GelatoReportDocumentOptionsAllowedTypesItem]? = nil, requireIdNumber: Bool? = nil, requireLiveCapture: Bool? = nil, requireMatchingSelfie: Bool? = nil) {
+    init(
+        allowedTypes: [GelatoReportDocumentOptionsAllowedTypesItem]? = nil,
+        requireIdNumber: Bool? = nil,
+        requireLiveCapture: Bool? = nil,
+        requireMatchingSelfie: Bool? = nil
+    ) {
         self.init()
         (self.allowedTypes, self.requireIdNumber) = (allowedTypes, requireIdNumber)
         (self.requireLiveCapture, self.requireMatchingSelfie) = (requireLiveCapture, requireMatchingSelfie)
@@ -478,13 +543,13 @@ public extension GelatoReportDocumentOptions {
 
 /// Typed representation of the `GelatoReportIdNumberOptions` API schema.
 public struct GelatoReportIdNumberOptions: Codable {
-
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension GelatoReportIdNumberOptions {
-    public init() {
-    }
+    init() {}
 }
 
 /// Result from a selfie check
@@ -505,30 +570,41 @@ public struct GelatoSelfieReport: Codable {
         case selfie
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension GelatoSelfieReport {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.status) else {
-            throw SdkValidationError(field: "status", code: "required", message: "Validation failed for 'status': value is required")
+            throw SdkValidationError(
+                field: "status",
+                code: "required",
+                message: "Validation failed for 'status': value is required"
+            )
         }
-        self.status = try container.sdkDecodeRequired(.status)
-        self.document = try container.sdkDecodeIfPresent(.document)
-        self.error = try container.sdkDecodeIfPresent(.error)
-        self.selfie = try container.sdkDecodeIfPresent(.selfie)
-        if let value = self.document {
+        status = try container.sdkDecodeRequired(.status)
+        document = try container.sdkDecodeIfPresent(.document)
+        error = try container.sdkDecodeIfPresent(.error)
+        selfie = try container.sdkDecodeIfPresent(.selfie)
+        if let value = document {
             try validateLength("document", value, min: nil, max: 5000)
         }
-        if let value = self.selfie {
+        if let value = selfie {
             try validateLength("selfie", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension GelatoSelfieReport {
-    public init(status: GelatoSelfieReportStatus, document: String? = nil, error: GelatoSelfieReportErrorX93efd3b5? = nil, selfie: String? = nil) throws {
+    init(
+        status: GelatoSelfieReportStatus,
+        document: String? = nil,
+        error: GelatoSelfieReportErrorX93efd3b5? = nil,
+        selfie: String? = nil
+    ) throws {
         (self.status, self.document) = (status, document)
         (self.error, self.selfie) = (error, selfie)
         if let value = self.document {

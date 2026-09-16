@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1TerminalReader domain models
+/// V1TerminalReader domain models
 /// Represents a reader action to process a setup intent
 public struct TerminalReaderReaderResourceProcessSetupIntentAction: Codable {
     /// Most recent SetupIntent processed by the reader.
@@ -20,26 +20,36 @@ public struct TerminalReaderReaderResourceProcessSetupIntentAction: Codable {
         case processConfig = "process_config"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension TerminalReaderReaderResourceProcessSetupIntentAction {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.setupIntent) else {
-            throw SdkValidationError(field: "setup_intent", code: "required", message: "Validation failed for 'setup_intent': value is required")
+            throw SdkValidationError(
+                field: "setup_intent",
+                code: "required",
+                message: "Validation failed for 'setup_intent': value is required"
+            )
         }
-        self.setupIntent = try container.sdkDecodeRequired(.setupIntent)
-        self.generatedCard = try container.sdkDecodeIfPresent(.generatedCard)
-        self.processConfig = try container.sdkDecodeIfPresent(.processConfig)
-        if let value = self.generatedCard {
+        setupIntent = try container.sdkDecodeRequired(.setupIntent)
+        generatedCard = try container.sdkDecodeIfPresent(.generatedCard)
+        processConfig = try container.sdkDecodeIfPresent(.processConfig)
+        if let value = generatedCard {
             try validateLength("generated_card", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension TerminalReaderReaderResourceProcessSetupIntentAction {
-    public init(setupIntent: TerminalReaderReaderResourceProcessSetupIntentActionSetupIntent, generatedCard: String? = nil, processConfig: TerminalReaderReaderResourceProcessSetupConfig? = nil) throws {
+    init(
+        setupIntent: TerminalReaderReaderResourceProcessSetupIntentActionSetupIntent,
+        generatedCard: String? = nil,
+        processConfig: TerminalReaderReaderResourceProcessSetupConfig? = nil
+    ) throws {
         (self.setupIntent, self.generatedCard) = (setupIntent, generatedCard)
         self.processConfig = processConfig
         if let value = self.generatedCard {
@@ -54,21 +64,31 @@ public enum TerminalReaderReaderResourceProcessSetupIntentActionSetupIntent {
 }
 
 extension TerminalReaderReaderResourceProcessSetupIntentActionSetupIntent: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for TerminalReaderReaderResourceProcessSetupIntentActionSetupIntent")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for TerminalReaderReaderResourceProcessSetupIntentActionSetupIntent"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(SetupIntent.self) { return .setupIntent(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(SetupIntent.self) {
+            return .setupIntent(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -78,7 +98,6 @@ extension TerminalReaderReaderResourceProcessSetupIntentActionSetupIntent: Codab
         case let .setupIntent(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Represents an action performed by the reader
@@ -129,42 +148,66 @@ public struct TerminalReaderReaderResourceReaderAction: Codable {
         case setReaderDisplay = "set_reader_display"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension TerminalReaderReaderResourceReaderAction {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.status) else {
-            throw SdkValidationError(field: "status", code: "required", message: "Validation failed for 'status': value is required")
+            throw SdkValidationError(
+                field: "status",
+                code: "required",
+                message: "Validation failed for 'status': value is required"
+            )
         }
         guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
         }
-        self.status = try container.sdkDecodeRequired(.status)
-        self.type = try container.sdkDecodeRequired(.type)
-        self.apiError = try container.sdkDecodeIfPresent(.apiError)
-        self.collectInputs = try container.sdkDecodeIfPresent(.collectInputs)
-        self.collectPaymentMethod = try container.sdkDecodeIfPresent(.collectPaymentMethod)
-        self.confirmPaymentIntent = try container.sdkDecodeIfPresent(.confirmPaymentIntent)
-        self.failureCode = try container.sdkDecodeIfPresent(.failureCode)
-        self.failureMessage = try container.sdkDecodeIfPresent(.failureMessage)
-        self.printContent = try container.sdkDecodeIfPresent(.printContent)
-        self.processPaymentIntent = try container.sdkDecodeIfPresent(.processPaymentIntent)
-        self.processSetupIntent = try container.sdkDecodeIfPresent(.processSetupIntent)
-        self.refundPayment = try container.sdkDecodeIfPresent(.refundPayment)
-        self.setReaderDisplay = try container.sdkDecodeIfPresent(.setReaderDisplay)
-        if let value = self.failureCode {
+        status = try container.sdkDecodeRequired(.status)
+        type = try container.sdkDecodeRequired(.type)
+        apiError = try container.sdkDecodeIfPresent(.apiError)
+        collectInputs = try container.sdkDecodeIfPresent(.collectInputs)
+        collectPaymentMethod = try container.sdkDecodeIfPresent(.collectPaymentMethod)
+        confirmPaymentIntent = try container.sdkDecodeIfPresent(.confirmPaymentIntent)
+        failureCode = try container.sdkDecodeIfPresent(.failureCode)
+        failureMessage = try container.sdkDecodeIfPresent(.failureMessage)
+        printContent = try container.sdkDecodeIfPresent(.printContent)
+        processPaymentIntent = try container.sdkDecodeIfPresent(.processPaymentIntent)
+        processSetupIntent = try container.sdkDecodeIfPresent(.processSetupIntent)
+        refundPayment = try container.sdkDecodeIfPresent(.refundPayment)
+        setReaderDisplay = try container.sdkDecodeIfPresent(.setReaderDisplay)
+        if let value = failureCode {
             try validateLength("failure_code", value, min: nil, max: 5000)
         }
-        if let value = self.failureMessage {
+        if let value = failureMessage {
             try validateLength("failure_message", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension TerminalReaderReaderResourceReaderAction {
-    public init(status: TerminalReaderReaderResourceReaderActionStatus, type: TerminalReaderReaderResourceReaderActionType, apiError: TerminalReaderReaderResourceReaderActionApiError? = nil, collectInputs: TerminalReaderReaderResourceCollectInputsAction? = nil, collectPaymentMethod: TerminalReaderReaderResourceCollectPaymentMethodAction? = nil, confirmPaymentIntent: TerminalReaderReaderResourceConfirmPaymentIntentAction? = nil, failureCode: String? = nil, failureMessage: String? = nil, printContent: TerminalReaderReaderResourcePrintContent? = nil, processPaymentIntent: TerminalReaderReaderResourceProcessPaymentIntentAction? = nil, processSetupIntent: TerminalReaderReaderResourceProcessSetupIntentAction? = nil, refundPayment: TerminalReaderReaderResourceRefundPaymentAction? = nil, setReaderDisplay: TerminalReaderReaderResourceSetReaderDisplayAction? = nil) throws {
+    init(
+        status: TerminalReaderReaderResourceReaderActionStatus,
+        type: TerminalReaderReaderResourceReaderActionType,
+        apiError: TerminalReaderReaderResourceReaderActionApiError? = nil,
+        collectInputs: TerminalReaderReaderResourceCollectInputsAction? = nil,
+        collectPaymentMethod: TerminalReaderReaderResourceCollectPaymentMethodAction? = nil,
+        confirmPaymentIntent: TerminalReaderReaderResourceConfirmPaymentIntentAction? = nil,
+        failureCode: String? = nil,
+        failureMessage: String? = nil,
+        printContent: TerminalReaderReaderResourcePrintContent? = nil,
+        processPaymentIntent: TerminalReaderReaderResourceProcessPaymentIntentAction? = nil,
+        processSetupIntent: TerminalReaderReaderResourceProcessSetupIntentAction? = nil,
+        refundPayment: TerminalReaderReaderResourceRefundPaymentAction? = nil,
+        setReaderDisplay: TerminalReaderReaderResourceSetReaderDisplayAction? = nil
+    ) throws {
         (self.status, self.type) = (status, type)
         (self.apiError, self.collectInputs) = (apiError, collectInputs)
         self.collectPaymentMethod = collectPaymentMethod
@@ -186,20 +229,28 @@ public enum TerminalReaderReaderResourceReaderActionApiError {
 }
 
 extension TerminalReaderReaderResourceReaderActionApiError: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for TerminalReaderReaderResourceReaderActionApiError")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for TerminalReaderReaderResourceReaderActionApiError"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(ApiErrors.self) { return .apiErrors(value) }
+        if let value = try? container.decode(ApiErrors.self) {
+            return .apiErrors(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -208,7 +259,6 @@ extension TerminalReaderReaderResourceReaderActionApiError: Codable {
         case let .apiErrors(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Represents a reader action to refund a payment
@@ -251,28 +301,38 @@ public struct TerminalReaderReaderResourceRefundPaymentAction: Codable {
     }
 
     init() {
-        (self.amount, self.charge, self.metadata, self.paymentIntent, self.reason) = (nil, nil, nil, nil, nil)
-        (self.refund, self.refundApplicationFee, self.refundPaymentConfig, self.reverseTransfer) = (nil, nil, nil, nil)
+        (amount, charge, metadata, paymentIntent, reason) = (nil, nil, nil, nil, nil)
+        (refund, refundApplicationFee, refundPaymentConfig, reverseTransfer) = (nil, nil, nil, nil)
     }
 }
 
 public extension TerminalReaderReaderResourceRefundPaymentAction {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.amount = try container.sdkDecodeIfPresent(.amount)
-        self.charge = try container.sdkDecodeIfPresent(.charge)
-        self.metadata = try container.sdkDecodeIfPresent(.metadata)
-        self.paymentIntent = try container.sdkDecodeIfPresent(.paymentIntent)
-        self.reason = try container.sdkDecodeIfPresent(.reason)
-        self.refund = try container.sdkDecodeIfPresent(.refund)
-        self.refundApplicationFee = try container.sdkDecodeIfPresent(.refundApplicationFee)
-        self.refundPaymentConfig = try container.sdkDecodeIfPresent(.refundPaymentConfig)
-        self.reverseTransfer = try container.sdkDecodeIfPresent(.reverseTransfer)
+        amount = try container.sdkDecodeIfPresent(.amount)
+        charge = try container.sdkDecodeIfPresent(.charge)
+        metadata = try container.sdkDecodeIfPresent(.metadata)
+        paymentIntent = try container.sdkDecodeIfPresent(.paymentIntent)
+        reason = try container.sdkDecodeIfPresent(.reason)
+        refund = try container.sdkDecodeIfPresent(.refund)
+        refundApplicationFee = try container.sdkDecodeIfPresent(.refundApplicationFee)
+        refundPaymentConfig = try container.sdkDecodeIfPresent(.refundPaymentConfig)
+        reverseTransfer = try container.sdkDecodeIfPresent(.reverseTransfer)
     }
 }
 
 public extension TerminalReaderReaderResourceRefundPaymentAction {
-    public init(amount: Int? = nil, charge: TerminalReaderReaderResourceRefundPaymentActionCharge? = nil, metadata: [String: String]? = nil, paymentIntent: TerminalReaderReaderResourceRefundPaymentActionPaymentIntent? = nil, reason: TerminalReaderReaderResourceRefundPaymentActionReason? = nil, refund: TerminalReaderReaderResourceRefundPaymentActionRefund? = nil, refundApplicationFee: Bool? = nil, refundPaymentConfig: TerminalReaderReaderResourceRefundPaymentConfig? = nil, reverseTransfer: Bool? = nil) {
+    init(
+        amount: Int? = nil,
+        charge: TerminalReaderReaderResourceRefundPaymentActionCharge? = nil,
+        metadata: [String: String]? = nil,
+        paymentIntent: TerminalReaderReaderResourceRefundPaymentActionPaymentIntent? = nil,
+        reason: TerminalReaderReaderResourceRefundPaymentActionReason? = nil,
+        refund: TerminalReaderReaderResourceRefundPaymentActionRefund? = nil,
+        refundApplicationFee: Bool? = nil,
+        refundPaymentConfig: TerminalReaderReaderResourceRefundPaymentConfig? = nil,
+        reverseTransfer: Bool? = nil
+    ) {
         self.init()
         (self.amount, self.charge) = (amount, charge)
         (self.metadata, self.paymentIntent) = (metadata, paymentIntent)
@@ -288,21 +348,31 @@ public enum TerminalReaderReaderResourceRefundPaymentActionCharge {
 }
 
 extension TerminalReaderReaderResourceRefundPaymentActionCharge: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for TerminalReaderReaderResourceRefundPaymentActionCharge")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for TerminalReaderReaderResourceRefundPaymentActionCharge"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(Charge.self) { return .charge(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(Charge.self) {
+            return .charge(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -312,7 +382,6 @@ extension TerminalReaderReaderResourceRefundPaymentActionCharge: Codable {
         case let .charge(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum TerminalReaderReaderResourceRefundPaymentActionPaymentIntent {
@@ -321,21 +390,31 @@ public enum TerminalReaderReaderResourceRefundPaymentActionPaymentIntent {
 }
 
 extension TerminalReaderReaderResourceRefundPaymentActionPaymentIntent: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for TerminalReaderReaderResourceRefundPaymentActionPaymentIntent")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for TerminalReaderReaderResourceRefundPaymentActionPaymentIntent"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(PaymentIntent.self) { return .paymentIntent(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(PaymentIntent.self) {
+            return .paymentIntent(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -345,7 +424,6 @@ extension TerminalReaderReaderResourceRefundPaymentActionPaymentIntent: Codable 
         case let .paymentIntent(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum TerminalReaderReaderResourceRefundPaymentActionRefund {
@@ -354,21 +432,31 @@ public enum TerminalReaderReaderResourceRefundPaymentActionRefund {
 }
 
 extension TerminalReaderReaderResourceRefundPaymentActionRefund: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for TerminalReaderReaderResourceRefundPaymentActionRefund")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for TerminalReaderReaderResourceRefundPaymentActionRefund"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(Refund.self) { return .refund(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(Refund.self) {
+            return .refund(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -378,7 +466,6 @@ extension TerminalReaderReaderResourceRefundPaymentActionRefund: Codable {
         case let .refund(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Represents a per-transaction override of a reader configuration
@@ -391,19 +478,19 @@ public struct TerminalReaderReaderResourceRefundPaymentConfig: Codable {
     }
 
     init() {
-        self.enableCustomerCancellation = nil
+        enableCustomerCancellation = nil
     }
 }
 
 public extension TerminalReaderReaderResourceRefundPaymentConfig {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.enableCustomerCancellation = try container.sdkDecodeIfPresent(.enableCustomerCancellation)
+        enableCustomerCancellation = try container.sdkDecodeIfPresent(.enableCustomerCancellation)
     }
 }
 
 public extension TerminalReaderReaderResourceRefundPaymentConfig {
-    public init(enableCustomerCancellation: Bool? = nil) {
+    init(enableCustomerCancellation: Bool? = nil) {
         self.init()
         self.enableCustomerCancellation = enableCustomerCancellation
     }
@@ -424,29 +511,35 @@ public struct TerminalReaderReaderResourceSelection: Codable {
         case text
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension TerminalReaderReaderResourceSelection {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.choices) else {
-            throw SdkValidationError(field: "choices", code: "required", message: "Validation failed for 'choices': value is required")
+            throw SdkValidationError(
+                field: "choices",
+                code: "required",
+                message: "Validation failed for 'choices': value is required"
+            )
         }
-        self.choices = try container.sdkDecodeRequired(.choices)
-        self.id = try container.sdkDecodeIfPresent(.id)
-        self.text = try container.sdkDecodeIfPresent(.text)
-        if let value = self.id {
+        choices = try container.sdkDecodeRequired(.choices)
+        id = try container.sdkDecodeIfPresent(.id)
+        text = try container.sdkDecodeIfPresent(.text)
+        if let value = id {
             try validateLength("id", value, min: nil, max: 5000)
         }
-        if let value = self.text {
+        if let value = text {
             try validateLength("text", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension TerminalReaderReaderResourceSelection {
-    public init(choices: [TerminalReaderReaderResourceChoice], id: String? = nil, text: String? = nil) throws {
+    init(choices: [TerminalReaderReaderResourceChoice], id: String? = nil, text: String? = nil) throws {
         (self.choices, self.id) = (choices, id)
         self.text = text
         if let value = self.id {
@@ -470,22 +563,31 @@ public struct TerminalReaderReaderResourceSetReaderDisplayAction: Codable {
         case cart
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension TerminalReaderReaderResourceSetReaderDisplayAction {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
-        }
-        self.type = try container.sdkDecodeRequired(.type)
-        self.cart = try container.sdkDecodeIfPresent(.cart)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension TerminalReaderReaderResourceSetReaderDisplayAction {
-    public init(type: TerminalReaderReaderResourceSetReaderDisplayActionType, cart: TerminalReaderReaderResourceSetReaderDisplayActionCart? = nil) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.type) else {
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
+        }
+        type = try container.sdkDecodeRequired(.type)
+        cart = try container.sdkDecodeIfPresent(.cart)
+    }
+}
+
+public extension TerminalReaderReaderResourceSetReaderDisplayAction {
+    init(
+        type: TerminalReaderReaderResourceSetReaderDisplayActionType,
+        cart: TerminalReaderReaderResourceSetReaderDisplayActionCart? = nil
+    ) {
         (self.type, self.cart) = (type, cart)
     }
 }
@@ -495,20 +597,29 @@ public enum TerminalReaderReaderResourceSetReaderDisplayActionCart {
 }
 
 extension TerminalReaderReaderResourceSetReaderDisplayActionCart: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for TerminalReaderReaderResourceSetReaderDisplayActionCart")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for TerminalReaderReaderResourceSetReaderDisplayActionCart"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(TerminalReaderReaderResourceCart.self) { return .terminalReaderReaderResourceCart(value) }
+        if let value = try? container
+            .decode(TerminalReaderReaderResourceCart.self) {
+            return .terminalReaderReaderResourceCart(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -517,7 +628,6 @@ extension TerminalReaderReaderResourceSetReaderDisplayActionCart: Codable {
         case let .terminalReaderReaderResourceCart(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Information about a signature being collected using a reader
@@ -530,15 +640,15 @@ public struct TerminalReaderReaderResourceSignature: Codable {
     }
 
     init() {
-        self.value = nil
+        value = nil
     }
 }
 
 public extension TerminalReaderReaderResourceSignature {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.value = try container.sdkDecodeIfPresent(.value)
-        if let value = self.value {
+        value = try container.sdkDecodeIfPresent(.value)
+        if let value {
             try validateLength("value", value, min: nil, max: 5000)
         }
     }

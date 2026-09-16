@@ -6,27 +6,44 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1InvoicesMethods {
-    /// Deletes a draft one-off invoice permanently. Use this operation only for invoices that are still in draft state; finalized or subscription invoices must be voided instead, and deletion cannot be undone.
+public extension V1InvoicesMethods {
+    /// Deletes a draft one-off invoice permanently. Use this operation only for invoices that are still in draft state;
+    /// finalized or subscription invoices must be voided instead, and deletion cannot be undone.
     ///
-    /// Permanently deletes a one-off invoice draft. This cannot be undone. Attempts to delete invoices that are no longer in a draft state will fail; once an invoice has been finalized or if an invoice is for a subscription, it must be voided.
-    public static func deleteInvoicesInvoice(config: ClientConfig, invoice: String) async throws -> DeletedInvoice {
+    /// Permanently deletes a one-off invoice draft. This cannot be undone. Attempts to delete invoices that are no
+    /// longer in a draft state will fail; once an invoice has been finalized or if an invoice is for a subscription, it
+    /// must be voided.
+    static func deleteInvoicesInvoice(config: ClientConfig, invoice: String) async throws -> DeletedInvoice {
         try validateLength("invoice", invoice, max: 5000)
 
-        return try (await sdkRequest("DELETE", ["/v1/invoices/", sdkEncodePathSegment(sdkWireString(invoice))].joined(), config: config, decoder: .json, operationId: "DeleteInvoicesInvoice")).data
+        return try await (sdkRequest(
+            "DELETE",
+            ["/v1/invoices/", sdkEncodePathSegment(sdkWireString(invoice))].joined(),
+            config: config,
+            decoder: .json,
+            operationId: "DeleteInvoicesInvoice"
+        )).data
     }
 
-    /// Retrieves a specific invoice by its identifier. Use `invoice` to select the invoice, and use `expand` when you need additional response fields included inline.
+    /// Retrieves a specific invoice by its identifier. Use `invoice` to select the invoice, and use `expand` when you
+    /// need additional response fields included inline.
     ///
     /// Retrieves the invoice with the given ID.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func getInvoicesInvoice(config: ClientConfig, invoice: String, expand: [String]?) async throws -> Invoice {
+    static func getInvoicesInvoice(config: ClientConfig, invoice: String, expand: [String]?) async throws -> Invoice {
         try validateLength("invoice", invoice, max: 5000)
 
-        return try (await sdkRequest("GET", ["/v1/invoices/", sdkEncodePathSegment(sdkWireString(invoice))].joined(), config: config, query: [
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-        ], decoder: .json, operationId: "GetInvoicesInvoice")).data
+        return try await (sdkRequest(
+            "GET",
+            ["/v1/invoices/", sdkEncodePathSegment(sdkWireString(invoice))].joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+            ],
+            decoder: .json,
+            operationId: "GetInvoicesInvoice"
+        )).data
     }
 }

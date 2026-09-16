@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1Radar domain models
+/// V1Radar domain models
 /// An early fraud warning indicates that the card issuer has notified us that a charge may be fraudulent. Related
 /// guide: Early fraud warnings
 public struct RadarEarlyFraudWarning: Codable {
@@ -39,54 +39,93 @@ public struct RadarEarlyFraudWarning: Codable {
         case paymentIntent = "payment_intent"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension RadarEarlyFraudWarning {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.actionable) else {
-            throw SdkValidationError(field: "actionable", code: "required", message: "Validation failed for 'actionable': value is required")
-        }
-        guard container.contains(.charge) else {
-            throw SdkValidationError(field: "charge", code: "required", message: "Validation failed for 'charge': value is required")
-        }
-        guard container.contains(.created) else {
-            throw SdkValidationError(field: "created", code: "required", message: "Validation failed for 'created': value is required")
-        }
-        guard container.contains(.fraudType) else {
-            throw SdkValidationError(field: "fraud_type", code: "required", message: "Validation failed for 'fraud_type': value is required")
-        }
-        guard container.contains(.id) else {
-            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
-        }
-        guard container.contains(.livemode) else {
-            throw SdkValidationError(field: "livemode", code: "required", message: "Validation failed for 'livemode': value is required")
-        }
-        guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
-        }
-        self.actionable = try container.sdkDecodeRequired(.actionable)
-        self.charge = try container.sdkDecodeRequired(.charge)
-        self.created = try container.sdkDecodeRequired(.created)
-        self.fraudType = try container.sdkDecodeRequired(.fraudType)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.livemode = try container.sdkDecodeRequired(.livemode)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.paymentIntent = try container.sdkDecodeIfPresent(.paymentIntent)
-            try validateLength("fraud_type", self.fraudType, min: nil, max: 5000)
-            try validateLength("id", self.id, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension RadarEarlyFraudWarning {
-    public init(actionable: Bool, charge: RadarEarlyFraudWarningCharge, created: Int, fraudType: String, id: String, livemode: Bool, object: RadarEarlyFraudWarningObject, paymentIntent: RadarEarlyFraudWarningPaymentIntent? = nil) throws {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.actionable) else {
+            throw SdkValidationError(
+                field: "actionable",
+                code: "required",
+                message: "Validation failed for 'actionable': value is required"
+            )
+        }
+        guard container.contains(.charge) else {
+            throw SdkValidationError(
+                field: "charge",
+                code: "required",
+                message: "Validation failed for 'charge': value is required"
+            )
+        }
+        guard container.contains(.created) else {
+            throw SdkValidationError(
+                field: "created",
+                code: "required",
+                message: "Validation failed for 'created': value is required"
+            )
+        }
+        guard container.contains(.fraudType) else {
+            throw SdkValidationError(
+                field: "fraud_type",
+                code: "required",
+                message: "Validation failed for 'fraud_type': value is required"
+            )
+        }
+        guard container.contains(.id) else {
+            throw SdkValidationError(
+                field: "id",
+                code: "required",
+                message: "Validation failed for 'id': value is required"
+            )
+        }
+        guard container.contains(.livemode) else {
+            throw SdkValidationError(
+                field: "livemode",
+                code: "required",
+                message: "Validation failed for 'livemode': value is required"
+            )
+        }
+        guard container.contains(.object) else {
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
+        }
+        actionable = try container.sdkDecodeRequired(.actionable)
+        charge = try container.sdkDecodeRequired(.charge)
+        created = try container.sdkDecodeRequired(.created)
+        fraudType = try container.sdkDecodeRequired(.fraudType)
+        id = try container.sdkDecodeRequired(.id)
+        livemode = try container.sdkDecodeRequired(.livemode)
+        object = try container.sdkDecodeRequired(.object)
+        paymentIntent = try container.sdkDecodeIfPresent(.paymentIntent)
+        try validateLength("fraud_type", fraudType, min: nil, max: 5000)
+        try validateLength("id", id, min: nil, max: 5000)
+    }
+}
+
+public extension RadarEarlyFraudWarning {
+    init(
+        actionable: Bool,
+        charge: RadarEarlyFraudWarningCharge,
+        created: Int,
+        fraudType: String,
+        id: String,
+        livemode: Bool,
+        object: RadarEarlyFraudWarningObject,
+        paymentIntent: RadarEarlyFraudWarningPaymentIntent? = nil
+    ) throws {
         (self.actionable, self.charge) = (actionable, charge)
         (self.created, self.fraudType) = (created, fraudType)
         (self.id, self.livemode) = (id, livemode)
         (self.object, self.paymentIntent) = (object, paymentIntent)
-            try validateLength("fraud_type", self.fraudType, min: nil, max: 5000)
-            try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("fraud_type", self.fraudType, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
     }
 }
 
@@ -96,21 +135,31 @@ public enum RadarEarlyFraudWarningCharge {
 }
 
 extension RadarEarlyFraudWarningCharge: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for RadarEarlyFraudWarningCharge")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for RadarEarlyFraudWarningCharge"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(Charge.self) { return .charge(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(Charge.self) {
+            return .charge(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -120,7 +169,6 @@ extension RadarEarlyFraudWarningCharge: Codable {
         case let .charge(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum RadarEarlyFraudWarningPaymentIntent {
@@ -129,21 +177,31 @@ public enum RadarEarlyFraudWarningPaymentIntent {
 }
 
 extension RadarEarlyFraudWarningPaymentIntent: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for RadarEarlyFraudWarningPaymentIntent")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for RadarEarlyFraudWarningPaymentIntent"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(PaymentIntent.self) { return .paymentIntent(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(PaymentIntent.self) {
+            return .paymentIntent(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -153,7 +211,6 @@ extension RadarEarlyFraudWarningPaymentIntent: Codable {
         case let .paymentIntent(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Payment Evaluations represent the risk lifecycle of an externally processed payment. It includes the Radar risk
@@ -204,58 +261,101 @@ public struct RadarPaymentEvaluation: Codable {
         case paymentDetails = "payment_details"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension RadarPaymentEvaluation {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.createdAt) else {
-            throw SdkValidationError(field: "created_at", code: "required", message: "Validation failed for 'created_at': value is required")
-        }
-        guard container.contains(.events) else {
-            throw SdkValidationError(field: "events", code: "required", message: "Validation failed for 'events': value is required")
-        }
-        guard container.contains(.id) else {
-            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
-        }
-        guard container.contains(.livemode) else {
-            throw SdkValidationError(field: "livemode", code: "required", message: "Validation failed for 'livemode': value is required")
-        }
-        guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
-        }
-        guard container.contains(.recommendedAction) else {
-            throw SdkValidationError(field: "recommended_action", code: "required", message: "Validation failed for 'recommended_action': value is required")
-        }
-        guard container.contains(.signals) else {
-            throw SdkValidationError(field: "signals", code: "required", message: "Validation failed for 'signals': value is required")
-        }
-        self.createdAt = try container.sdkDecodeRequired(.createdAt)
-        self.events = try container.sdkDecodeRequired(.events)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.livemode = try container.sdkDecodeRequired(.livemode)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.recommendedAction = try container.sdkDecodeRequired(.recommendedAction)
-        self.signals = try container.sdkDecodeRequired(.signals)
-        self.clientDeviceMetadataDetails = try container.sdkDecodeIfPresent(.clientDeviceMetadataDetails)
-        self.customerDetails = try container.sdkDecodeIfPresent(.customerDetails)
-        self.metadata = try container.sdkDecodeIfPresent(.metadata)
-        self.outcome = try container.sdkDecodeIfPresent(.outcome)
-        self.paymentDetails = try container.sdkDecodeIfPresent(.paymentDetails)
-            try validateLength("id", self.id, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension RadarPaymentEvaluation {
-    public init(createdAt: Int, events: [InsightsResourcesPaymentEvaluationEvent], id: String, livemode: Bool, object: RadarPaymentEvaluationObject, recommendedAction: RadarPaymentEvaluationRecommendedAction, signals: InsightsResourcesPaymentEvaluationSignals, clientDeviceMetadataDetails: InsightsResourcesPaymentEvaluationClientDeviceMetadata? = nil, customerDetails: InsightsResourcesPaymentEvaluationCustomerDetails? = nil, metadata: [String: String]? = nil, outcome: RadarPaymentEvaluationOutcome? = nil, paymentDetails: InsightsResourcesPaymentEvaluationPaymentDetails? = nil) throws {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.createdAt) else {
+            throw SdkValidationError(
+                field: "created_at",
+                code: "required",
+                message: "Validation failed for 'created_at': value is required"
+            )
+        }
+        guard container.contains(.events) else {
+            throw SdkValidationError(
+                field: "events",
+                code: "required",
+                message: "Validation failed for 'events': value is required"
+            )
+        }
+        guard container.contains(.id) else {
+            throw SdkValidationError(
+                field: "id",
+                code: "required",
+                message: "Validation failed for 'id': value is required"
+            )
+        }
+        guard container.contains(.livemode) else {
+            throw SdkValidationError(
+                field: "livemode",
+                code: "required",
+                message: "Validation failed for 'livemode': value is required"
+            )
+        }
+        guard container.contains(.object) else {
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
+        }
+        guard container.contains(.recommendedAction) else {
+            throw SdkValidationError(
+                field: "recommended_action",
+                code: "required",
+                message: "Validation failed for 'recommended_action': value is required"
+            )
+        }
+        guard container.contains(.signals) else {
+            throw SdkValidationError(
+                field: "signals",
+                code: "required",
+                message: "Validation failed for 'signals': value is required"
+            )
+        }
+        createdAt = try container.sdkDecodeRequired(.createdAt)
+        events = try container.sdkDecodeRequired(.events)
+        id = try container.sdkDecodeRequired(.id)
+        livemode = try container.sdkDecodeRequired(.livemode)
+        object = try container.sdkDecodeRequired(.object)
+        recommendedAction = try container.sdkDecodeRequired(.recommendedAction)
+        signals = try container.sdkDecodeRequired(.signals)
+        clientDeviceMetadataDetails = try container.sdkDecodeIfPresent(.clientDeviceMetadataDetails)
+        customerDetails = try container.sdkDecodeIfPresent(.customerDetails)
+        metadata = try container.sdkDecodeIfPresent(.metadata)
+        outcome = try container.sdkDecodeIfPresent(.outcome)
+        paymentDetails = try container.sdkDecodeIfPresent(.paymentDetails)
+        try validateLength("id", id, min: nil, max: 5000)
+    }
+}
+
+public extension RadarPaymentEvaluation {
+    init(
+        createdAt: Int,
+        events: [InsightsResourcesPaymentEvaluationEvent],
+        id: String,
+        livemode: Bool,
+        object: RadarPaymentEvaluationObject,
+        recommendedAction: RadarPaymentEvaluationRecommendedAction,
+        signals: InsightsResourcesPaymentEvaluationSignals,
+        clientDeviceMetadataDetails: InsightsResourcesPaymentEvaluationClientDeviceMetadata? = nil,
+        customerDetails: InsightsResourcesPaymentEvaluationCustomerDetails? = nil,
+        metadata: [String: String]? = nil,
+        outcome: RadarPaymentEvaluationOutcome? = nil,
+        paymentDetails: InsightsResourcesPaymentEvaluationPaymentDetails? = nil
+    ) throws {
         (self.createdAt, self.events) = (createdAt, events)
         (self.id, self.livemode) = (id, livemode)
         (self.object, self.recommendedAction) = (object, recommendedAction)
         (self.signals, self.clientDeviceMetadataDetails) = (signals, clientDeviceMetadataDetails)
         (self.customerDetails, self.metadata) = (customerDetails, metadata)
         (self.outcome, self.paymentDetails) = (outcome, paymentDetails)
-            try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
     }
 }
 
@@ -264,24 +364,30 @@ public enum RadarPaymentEvaluationOutcome {
 }
 
 extension RadarPaymentEvaluationOutcome: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for RadarPaymentEvaluationOutcome")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for RadarPaymentEvaluationOutcome"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             InsightsResourcesPaymentEvaluationOutcome.self
         ) {
-            return             .insightsResourcesPaymentEvaluationOutcome(value)
+            return .insightsResourcesPaymentEvaluationOutcome(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -290,7 +396,6 @@ extension RadarPaymentEvaluationOutcome: Codable {
         case let .insightsResourcesPaymentEvaluationOutcome(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Options to configure Radar. See Radar Session for more information.
@@ -304,22 +409,22 @@ public struct RadarRadarOptions: Codable {
     }
 
     init() {
-        self.session = nil
+        session = nil
     }
 }
 
 public extension RadarRadarOptions {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.session = try container.sdkDecodeIfPresent(.session)
-        if let value = self.session {
+        session = try container.sdkDecodeIfPresent(.session)
+        if let value = session {
             try validateLength("session", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension RadarRadarOptions {
-    public init(session: String? = nil) throws {
+    init(session: String? = nil) throws {
         self.init()
         self.session = session
         if let value = self.session {
@@ -350,32 +455,38 @@ public struct RadarReviewResourceLocation: Codable {
     }
 
     init() {
-        (self.city, self.country, self.latitude, self.longitude, self.region) = (nil, nil, nil, nil, nil)
+        (city, country, latitude, longitude, region) = (nil, nil, nil, nil, nil)
     }
 }
 
 public extension RadarReviewResourceLocation {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.city = try container.sdkDecodeIfPresent(.city)
-        self.country = try container.sdkDecodeIfPresent(.country)
-        self.latitude = try container.sdkDecodeIfPresent(.latitude)
-        self.longitude = try container.sdkDecodeIfPresent(.longitude)
-        self.region = try container.sdkDecodeIfPresent(.region)
-        if let value = self.city {
+        city = try container.sdkDecodeIfPresent(.city)
+        country = try container.sdkDecodeIfPresent(.country)
+        latitude = try container.sdkDecodeIfPresent(.latitude)
+        longitude = try container.sdkDecodeIfPresent(.longitude)
+        region = try container.sdkDecodeIfPresent(.region)
+        if let value = city {
             try validateLength("city", value, min: nil, max: 5000)
         }
-        if let value = self.country {
+        if let value = country {
             try validateLength("country", value, min: nil, max: 5000)
         }
-        if let value = self.region {
+        if let value = region {
             try validateLength("region", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension RadarReviewResourceLocation {
-    public init(city: String? = nil, country: String? = nil, latitude: Double? = nil, longitude: Double? = nil, region: String? = nil) throws {
+    init(
+        city: String? = nil,
+        country: String? = nil,
+        latitude: Double? = nil,
+        longitude: Double? = nil,
+        region: String? = nil
+    ) throws {
         self.init()
         (self.city, self.country) = (city, country)
         (self.latitude, self.longitude) = (latitude, longitude)
@@ -411,34 +522,34 @@ public struct RadarReviewResourceSession: Codable {
     }
 
     init() {
-        (self.browser, self.device, self.platform, self.version) = (nil, nil, nil, nil)
+        (browser, device, platform, version) = (nil, nil, nil, nil)
     }
 }
 
 public extension RadarReviewResourceSession {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.browser = try container.sdkDecodeIfPresent(.browser)
-        self.device = try container.sdkDecodeIfPresent(.device)
-        self.platform = try container.sdkDecodeIfPresent(.platform)
-        self.version = try container.sdkDecodeIfPresent(.version)
-        if let value = self.browser {
+        browser = try container.sdkDecodeIfPresent(.browser)
+        device = try container.sdkDecodeIfPresent(.device)
+        platform = try container.sdkDecodeIfPresent(.platform)
+        version = try container.sdkDecodeIfPresent(.version)
+        if let value = browser {
             try validateLength("browser", value, min: nil, max: 5000)
         }
-        if let value = self.device {
+        if let value = device {
             try validateLength("device", value, min: nil, max: 5000)
         }
-        if let value = self.platform {
+        if let value = platform {
             try validateLength("platform", value, min: nil, max: 5000)
         }
-        if let value = self.version {
+        if let value = version {
             try validateLength("version", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension RadarReviewResourceSession {
-    public init(browser: String? = nil, device: String? = nil, platform: String? = nil, version: String? = nil) throws {
+    init(browser: String? = nil, device: String? = nil, platform: String? = nil, version: String? = nil) throws {
         self.init()
         (self.browser, self.device) = (browser, device)
         (self.platform, self.version) = (platform, version)
@@ -498,25 +609,27 @@ public struct RadarValueList: Codable {
         case object
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension RadarValueList {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.alias = try container.sdkDecodeRequired(.alias)
-        self.created = try container.sdkDecodeRequired(.created)
-        self.createdBy = try container.sdkDecodeRequired(.createdBy)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.itemType = try container.sdkDecodeRequired(.itemType)
-        self.listItems = try container.sdkDecodeRequired(.listItems)
-        self.livemode = try container.sdkDecodeRequired(.livemode)
-        self.metadata = try container.sdkDecodeRequired(.metadata)
-        self.name = try container.sdkDecodeRequired(.name)
-        self.object = try container.sdkDecodeRequired(.object)
-            try validateLength("alias", self.alias, min: nil, max: 5000)
-            try validateLength("created_by", self.createdBy, min: nil, max: 5000)
-            try validateLength("id", self.id, min: nil, max: 5000)
-            try validateLength("name", self.name, min: nil, max: 5000)
+        alias = try container.sdkDecodeRequired(.alias)
+        created = try container.sdkDecodeRequired(.created)
+        createdBy = try container.sdkDecodeRequired(.createdBy)
+        id = try container.sdkDecodeRequired(.id)
+        itemType = try container.sdkDecodeRequired(.itemType)
+        listItems = try container.sdkDecodeRequired(.listItems)
+        livemode = try container.sdkDecodeRequired(.livemode)
+        metadata = try container.sdkDecodeRequired(.metadata)
+        name = try container.sdkDecodeRequired(.name)
+        object = try container.sdkDecodeRequired(.object)
+        try validateLength("alias", alias, min: nil, max: 5000)
+        try validateLength("created_by", createdBy, min: nil, max: 5000)
+        try validateLength("id", id, min: nil, max: 5000)
+        try validateLength("name", name, min: nil, max: 5000)
     }
 }

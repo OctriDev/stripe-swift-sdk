@@ -7,17 +7,30 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1BillingAlertsArchiveMethods {
-    /// Triggers archival of a billing alert and removes it from list views and APIs. Archiving is non-reversible, so use `id` to select the alert and confirm that it should no longer be available before submitting the request.
+    /// Triggers archival of a billing alert and removes it from list views and APIs. Archiving is non-reversible, so
+    /// use `id` to select the alert and confirm that it should no longer be available before submitting the request.
     ///
     /// Archives this alert, removing it from the list view and APIs. This is non-reversible.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postBillingAlertsIdArchive(config: ClientConfig, id: String, expand: [String]?) async throws -> BillingAlert {
+    public static func postBillingAlertsIdArchive(
+        config: ClientConfig,
+        id: String,
+        expand: [String]?
+    ) async throws -> BillingAlert {
         try validateLength("id", id, max: 5000)
 
         let requestBody = PostBillingAlertsIdArchiveRequestBody(expand: expand)
 
-        return try (await sdkRequest("POST", ["/v1/billing/alerts/", sdkEncodePathSegment(sdkWireString(id)), "/archive"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostBillingAlertsIdArchive")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/billing/alerts/", sdkEncodePathSegment(sdkWireString(id)), "/archive"].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostBillingAlertsIdArchive"
+        )).data
     }
 }

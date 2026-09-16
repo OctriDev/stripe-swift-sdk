@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1TokensMethods {
-    public struct PostTokensOptions: Codable {
+public extension V1TokensMethods {
+    struct PostTokensOptions: Codable {
         public var account: PostTokensRequestBodyAccount?
         public var bankAccount: PostTokensRequestBodyBankAccount?
         public var card: PostTokensRequestBodyCard?
@@ -20,7 +20,9 @@ extension V1TokensMethods {
         public init() {}
     }
 
-    /// Creates a single-use token that represents a bank account’s details. You can use this token with any v1 API method in place of a bank account dictionary. You can only use this token once. To do so, attach it to a connected account where controller.requirement_collection is application , which includes Custom accounts.
+    /// Creates a single-use token that represents a bank account’s details. You can use this token with any v1 API
+    /// method in place of a bank account dictionary. You can only use this token once. To do so, attach it to a
+    /// connected account where controller.requirement_collection is application , which includes Custom accounts.
     ///
     /// - Parameters:
     /// - account: Information for the account this token represents.
@@ -39,13 +41,21 @@ extension V1TokensMethods {
     /// - expand: Specifies which fields in the response should be expanded.
     /// - person: Information for the person this token represents.
     /// - pii: The PII this token represents.
-    public static func postTokens(config: ClientConfig, options: PostTokensOptions) async throws -> Token {
+    static func postTokens(config: ClientConfig, options: PostTokensOptions) async throws -> Token {
         if let customer = options.customer {
             try validateLength("customer", customer, max: 5000)
         }
 
         let requestBody = PostTokensRequestBody(options: options)
 
-        return try (await sdkRequest("POST", "/v1/tokens", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTokens")).data
+        return try await (sdkRequest(
+            "POST",
+            "/v1/tokens",
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostTokens"
+        )).data
     }
 }

@@ -7,17 +7,34 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1TestHelpersTerminalReadersTimeoutInputCollectionMethods {
-    /// Triggers a timeout result for an input collection on a simulated Terminal reader. Use this test helper to complete the collection with a timeout error and optionally expand fields in the returned Reader object.
+    /// Triggers a timeout result for an input collection on a simulated Terminal reader. Use this test helper to
+    /// complete the collection with a timeout error and optionally expand fields in the returned Reader object.
     ///
     /// Use this endpoint to complete an input collection with a timeout error on a simulated reader.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postTestHelpersTerminalReadersReaderTimeoutInputCollection(config: ClientConfig, reader: String, expand: [String]?) async throws -> TerminalReader {
+    public static func postTestHelpersTerminalReadersReaderTimeoutInputCollection(
+        config: ClientConfig,
+        reader: String,
+        expand: [String]?
+    ) async throws -> TerminalReader {
         try validateLength("reader", reader, max: 5000)
 
         let requestBody = PostTestHelpersTerminalReadersReaderTimeoutInputCollectionRequestBody(expand: expand)
 
-        return try (await sdkRequest("POST", ["/v1/test_helpers/terminal/readers/", sdkEncodePathSegment(sdkWireString(reader)), "/timeout_input_collection"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTestHelpersTerminalReadersReaderTimeoutInputCollection")).data
+        return try await (sdkRequest(
+            "POST",
+            [
+                "/v1/test_helpers/terminal/readers/",
+                sdkEncodePathSegment(sdkWireString(reader)),
+                "/timeout_input_collection",
+            ].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostTestHelpersTerminalReadersReaderTimeoutInputCollection"
+        )).data
     }
 }

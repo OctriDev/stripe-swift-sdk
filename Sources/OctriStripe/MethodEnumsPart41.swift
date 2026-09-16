@@ -6,19 +6,25 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public struct PostCheckoutSessionsRequestBodyShippingOptionsItemShippingRatXd20ba8f957: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostCheckoutSessionsRequestBodyShippingOptionsItemShippingRatXd20ba8f957: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let businessDay = PostCheckoutSessionsRequestBodyShippingOptionsItemShippingRatXd20ba8f957(rawValue: "business_day")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let businessDay =
+        PostCheckoutSessionsRequestBodyShippingOptionsItemShippingRatXd20ba8f957(rawValue: "business_day")
     public static let day = PostCheckoutSessionsRequestBodyShippingOptionsItemShippingRatXd20ba8f957(rawValue: "day")
     public static let hour = PostCheckoutSessionsRequestBodyShippingOptionsItemShippingRatXd20ba8f957(rawValue: "hour")
-    public static let month = PostCheckoutSessionsRequestBodyShippingOptionsItemShippingRatXd20ba8f957(rawValue: "month")
+    public static let month =
+        PostCheckoutSessionsRequestBodyShippingOptionsItemShippingRatXd20ba8f957(rawValue: "month")
     public static let week = PostCheckoutSessionsRequestBodyShippingOptionsItemShippingRatXd20ba8f957(rawValue: "week")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -27,17 +33,24 @@ public struct PostCheckoutSessionsRequestBodyShippingOptionsItemShippingRatXd20b
     }
 }
 
-public struct PostCheckoutSessionsRequestBodyShippingOptionsItemShippingRatX03a206b0ec: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostCheckoutSessionsRequestBodyShippingOptionsItemShippingRatX03a206b0ec: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let exclusive = PostCheckoutSessionsRequestBodyShippingOptionsItemShippingRatX03a206b0ec(rawValue: "exclusive")
-    public static let inclusive = PostCheckoutSessionsRequestBodyShippingOptionsItemShippingRatX03a206b0ec(rawValue: "inclusive")
-    public static let unspecified = PostCheckoutSessionsRequestBodyShippingOptionsItemShippingRatX03a206b0ec(rawValue: "unspecified")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let exclusive =
+        PostCheckoutSessionsRequestBodyShippingOptionsItemShippingRatX03a206b0ec(rawValue: "exclusive")
+    public static let inclusive =
+        PostCheckoutSessionsRequestBodyShippingOptionsItemShippingRatX03a206b0ec(rawValue: "inclusive")
+    public static let unspecified =
+        PostCheckoutSessionsRequestBodyShippingOptionsItemShippingRatX03a206b0ec(rawValue: "unspecified")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -46,17 +59,24 @@ public struct PostCheckoutSessionsRequestBodyShippingOptionsItemShippingRatX03a2
     }
 }
 
-public struct PostCheckoutSessionsRequestBodyShippingOptionsItemShippingRatX1c79bc6ac5: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostCheckoutSessionsRequestBodyShippingOptionsItemShippingRatX1c79bc6ac5: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let exclusive = PostCheckoutSessionsRequestBodyShippingOptionsItemShippingRatX1c79bc6ac5(rawValue: "exclusive")
-    public static let inclusive = PostCheckoutSessionsRequestBodyShippingOptionsItemShippingRatX1c79bc6ac5(rawValue: "inclusive")
-    public static let unspecified = PostCheckoutSessionsRequestBodyShippingOptionsItemShippingRatX1c79bc6ac5(rawValue: "unspecified")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let exclusive =
+        PostCheckoutSessionsRequestBodyShippingOptionsItemShippingRatX1c79bc6ac5(rawValue: "exclusive")
+    public static let inclusive =
+        PostCheckoutSessionsRequestBodyShippingOptionsItemShippingRatX1c79bc6ac5(rawValue: "inclusive")
+    public static let unspecified =
+        PostCheckoutSessionsRequestBodyShippingOptionsItemShippingRatX1c79bc6ac5(rawValue: "unspecified")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -65,15 +85,20 @@ public struct PostCheckoutSessionsRequestBodyShippingOptionsItemShippingRatX1c79
     }
 }
 
-public struct PostCheckoutSessionsRequestBodyShippingOptionsItemShippingRateDataType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostCheckoutSessionsRequestBodyShippingOptionsItemShippingRateDataType: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let fixedAmount = PostCheckoutSessionsRequestBodyShippingOptionsItemShippingRateDataType(rawValue: "fixed_amount")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let fixedAmount =
+        PostCheckoutSessionsRequestBodyShippingOptionsItemShippingRateDataType(rawValue: "fixed_amount")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -86,10 +111,14 @@ public struct PostCheckoutSessionsRequestBodyShippingOptionsItemShippingRateData
 /// page, such as the submit button. `submit_type` can only be specified on Checkout Sessions in `payment` or
 /// `subscription` mode. If blank or `auto`, `pay` is used. You can't set this parameter if `ui_mode` is
 /// `elements`.
-public struct PostCheckoutSessionsRequestBodySubmitType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostCheckoutSessionsRequestBodySubmitType: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let auto = PostCheckoutSessionsRequestBodySubmitType(rawValue: "auto")
     public static let book = PostCheckoutSessionsRequestBodySubmitType(rawValue: "book")
     public static let donate = PostCheckoutSessionsRequestBodySubmitType(rawValue: "donate")
@@ -98,7 +127,7 @@ public struct PostCheckoutSessionsRequestBodySubmitType: RawRepresentable, Hasha
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -107,16 +136,22 @@ public struct PostCheckoutSessionsRequestBodySubmitType: RawRepresentable, Hasha
     }
 }
 
-public struct PostCheckoutSessionsRequestBodySubscriptionDataBillingModeFleX5cfbdb7ec0: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostCheckoutSessionsRequestBodySubscriptionDataBillingModeFleX5cfbdb7ec0: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let included = PostCheckoutSessionsRequestBodySubscriptionDataBillingModeFleX5cfbdb7ec0(rawValue: "included")
-    public static let itemized = PostCheckoutSessionsRequestBodySubscriptionDataBillingModeFleX5cfbdb7ec0(rawValue: "itemized")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let included =
+        PostCheckoutSessionsRequestBodySubscriptionDataBillingModeFleX5cfbdb7ec0(rawValue: "included")
+    public static let itemized =
+        PostCheckoutSessionsRequestBodySubscriptionDataBillingModeFleX5cfbdb7ec0(rawValue: "itemized")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -125,16 +160,20 @@ public struct PostCheckoutSessionsRequestBodySubscriptionDataBillingModeFleX5cfb
     }
 }
 
-public struct PostCheckoutSessionsRequestBodySubscriptionDataBillingModeType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostCheckoutSessionsRequestBodySubscriptionDataBillingModeType: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let classic = PostCheckoutSessionsRequestBodySubscriptionDataBillingModeType(rawValue: "classic")
     public static let flexible = PostCheckoutSessionsRequestBodySubscriptionDataBillingModeType(rawValue: "flexible")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -143,16 +182,22 @@ public struct PostCheckoutSessionsRequestBodySubscriptionDataBillingModeType: Ra
     }
 }
 
-public struct PostCheckoutSessionsRequestBodySubscriptionDataInvoiceSettingsIssuerType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostCheckoutSessionsRequestBodySubscriptionDataInvoiceSettingsIssuerType: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let account = PostCheckoutSessionsRequestBodySubscriptionDataInvoiceSettingsIssuerType(rawValue: "account")
-    public static let `self` = PostCheckoutSessionsRequestBodySubscriptionDataInvoiceSettingsIssuerType(rawValue: "self")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let account =
+        PostCheckoutSessionsRequestBodySubscriptionDataInvoiceSettingsIssuerType(rawValue: "account")
+    public static let `self` =
+        PostCheckoutSessionsRequestBodySubscriptionDataInvoiceSettingsIssuerType(rawValue: "self")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -161,18 +206,23 @@ public struct PostCheckoutSessionsRequestBodySubscriptionDataInvoiceSettingsIssu
     }
 }
 
-public struct PostCheckoutSessionsRequestBodySubscriptionDataPendingInvoiceX6985b61356: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostCheckoutSessionsRequestBodySubscriptionDataPendingInvoiceX6985b61356: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let day = PostCheckoutSessionsRequestBodySubscriptionDataPendingInvoiceX6985b61356(rawValue: "day")
-    public static let month = PostCheckoutSessionsRequestBodySubscriptionDataPendingInvoiceX6985b61356(rawValue: "month")
+    public static let month =
+        PostCheckoutSessionsRequestBodySubscriptionDataPendingInvoiceX6985b61356(rawValue: "month")
     public static let week = PostCheckoutSessionsRequestBodySubscriptionDataPendingInvoiceX6985b61356(rawValue: "week")
     public static let year = PostCheckoutSessionsRequestBodySubscriptionDataPendingInvoiceX6985b61356(rawValue: "year")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -181,16 +231,21 @@ public struct PostCheckoutSessionsRequestBodySubscriptionDataPendingInvoiceX6985
     }
 }
 
-public struct PostCheckoutSessionsRequestBodySubscriptionDataProrationBehavior: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostCheckoutSessionsRequestBodySubscriptionDataProrationBehavior: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let createProrations = PostCheckoutSessionsRequestBodySubscriptionDataProrationBehavior(rawValue: "create_prorations")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let createProrations =
+        PostCheckoutSessionsRequestBodySubscriptionDataProrationBehavior(rawValue: "create_prorations")
     public static let none = PostCheckoutSessionsRequestBodySubscriptionDataProrationBehavior(rawValue: "none")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

@@ -6,8 +6,9 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1TreasuryInboundTransfersMethods {
-    /// Lists InboundTransfers associated with a specified FinancialAccount. Use `status` to filter transfer state and use `starting_after`, `ending_before`, and `limit` to paginate the results.
+public extension V1TreasuryInboundTransfersMethods {
+    /// Lists InboundTransfers associated with a specified FinancialAccount. Use `status` to filter transfer state and
+    /// use `starting_after`, `ending_before`, and `limit` to paginate the results.
     ///
     /// Returns a list of InboundTransfers sent from the specified FinancialAccount.
     ///
@@ -28,16 +29,24 @@ extension V1TreasuryInboundTransfersMethods {
     ///   the list.
     /// - status: Only return InboundTransfers that have the given status:
     ///   `processing`, `succeeded`, `failed` or `canceled`.
-    public static func getTreasuryInboundTransfers(config: ClientConfig, financialAccount: String, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?, status: GetTreasuryInboundTransfersParameter?) async throws -> GetTreasuryInboundTransfersResponse {
-        if let endingBefore = endingBefore {
+    static func getTreasuryInboundTransfers(
+        config: ClientConfig,
+        financialAccount: String,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        startingAfter: String?,
+        status: GetTreasuryInboundTransfersParameter?
+    ) async throws -> GetTreasuryInboundTransfersResponse {
+        if let endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let startingAfter = startingAfter {
+        if let startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try (await sdkRequest("GET", "/v1/treasury/inbound_transfers", config: config, query: [
+        return try await (sdkRequest("GET", "/v1/treasury/inbound_transfers", config: config, query: [
             SdkQueryParameter("financial_account", value: financialAccount),
             SdkQueryParameter("ending_before", value: endingBefore),
             SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),

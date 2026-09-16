@@ -6,18 +6,27 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1TaxRatesMethods {
-    /// Retrieves a tax rate by its unique identifier. Use `tax_rate` to select the rate and `expand` when you need expanded response fields. The response includes the rate's configuration, jurisdiction details, percentage, and active status.
+public extension V1TaxRatesMethods {
+    /// Retrieves a tax rate by its unique identifier. Use `tax_rate` to select the rate and `expand` when you need
+    /// expanded response fields. The response includes the rate's configuration, jurisdiction details, percentage, and
+    /// active status.
     ///
     /// Retrieves a tax rate with the given ID
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func getTaxRatesTaxRate(config: ClientConfig, taxRate: String, expand: [String]?) async throws -> TaxRate {
+    static func getTaxRatesTaxRate(config: ClientConfig, taxRate: String, expand: [String]?) async throws -> TaxRate {
         try validateLength("tax_rate", taxRate, max: 5000)
 
-        return try (await sdkRequest("GET", ["/v1/tax_rates/", sdkEncodePathSegment(sdkWireString(taxRate))].joined(), config: config, query: [
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-        ], decoder: .json, operationId: "GetTaxRatesTaxRate")).data
+        return try await (sdkRequest(
+            "GET",
+            ["/v1/tax_rates/", sdkEncodePathSegment(sdkWireString(taxRate))].joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+            ],
+            decoder: .json,
+            operationId: "GetTaxRatesTaxRate"
+        )).data
     }
 }

@@ -3,9 +3,27 @@
 
 import Foundation
 
-// V1Source domain models
+/// V1Source domain models
 public extension SourceTypeThreeDSecure {
-    public init(addressLine1Check: String? = nil, addressZipCheck: String? = nil, authenticated: Bool? = nil, brand: String? = nil, card: String? = nil, country: String? = nil, customer: String? = nil, cvcCheck: String? = nil, dynamicLast4: String? = nil, expMonth: Int? = nil, expYear: Int? = nil, fingerprint: String? = nil, funding: String? = nil, last4: String? = nil, name: String? = nil, threeDSecure: String? = nil, tokenizationMethod: String? = nil) {
+    init(
+        addressLine1Check: String? = nil,
+        addressZipCheck: String? = nil,
+        authenticated: Bool? = nil,
+        brand: String? = nil,
+        card: String? = nil,
+        country: String? = nil,
+        customer: String? = nil,
+        cvcCheck: String? = nil,
+        dynamicLast4: String? = nil,
+        expMonth: Int? = nil,
+        expYear: Int? = nil,
+        fingerprint: String? = nil,
+        funding: String? = nil,
+        last4: String? = nil,
+        name: String? = nil,
+        threeDSecure: String? = nil,
+        tokenizationMethod: String? = nil
+    ) {
         self.init()
         (self.addressLine1Check, self.addressZipCheck) = (addressLine1Check, addressZipCheck)
         (self.authenticated, self.brand) = (authenticated, brand)
@@ -35,21 +53,21 @@ public struct SourceTypeWechat: Codable {
     }
 
     init() {
-        (self.prepayId, self.qrCodeUrl, self.statementDescriptor) = (nil, nil, nil)
+        (prepayId, qrCodeUrl, statementDescriptor) = (nil, nil, nil)
     }
 }
 
 public extension SourceTypeWechat {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.prepayId = try container.sdkDecodeIfPresent(.prepayId)
-        self.qrCodeUrl = try container.sdkDecodeIfPresent(.qrCodeUrl)
-        self.statementDescriptor = try container.sdkDecodeIfPresent(.statementDescriptor)
+        prepayId = try container.sdkDecodeIfPresent(.prepayId)
+        qrCodeUrl = try container.sdkDecodeIfPresent(.qrCodeUrl)
+        statementDescriptor = try container.sdkDecodeIfPresent(.statementDescriptor)
     }
 }
 
 public extension SourceTypeWechat {
-    public init(prepayId: String? = nil, qrCodeUrl: String? = nil, statementDescriptor: String? = nil) {
+    init(prepayId: String? = nil, qrCodeUrl: String? = nil, statementDescriptor: String? = nil) {
         self.init()
         (self.prepayId, self.qrCodeUrl) = (prepayId, qrCodeUrl)
         self.statementDescriptor = statementDescriptor
@@ -60,7 +78,10 @@ public extension SourceTypeWechat {
 public struct SourceTransactionType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let achCreditTransfer = SourceTransactionType(rawValue: "ach_credit_transfer")
     public static let achDebit = SourceTransactionType(rawValue: "ach_debit")
     public static let alipay = SourceTransactionType(rawValue: "alipay")
@@ -80,7 +101,7 @@ public struct SourceTransactionType: RawRepresentable, Hashable, Codable, Sendab
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -93,12 +114,16 @@ public struct SourceTransactionType: RawRepresentable, Hashable, Codable, Sendab
 public struct SourceMandateNotificationObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let sourceMandateNotification = SourceMandateNotificationObject(rawValue: "source_mandate_notification")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let sourceMandateNotification =
+        SourceMandateNotificationObject(rawValue: "source_mandate_notification")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -111,12 +136,15 @@ public struct SourceMandateNotificationObject: RawRepresentable, Hashable, Codab
 public struct SourceObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let source = SourceObject(rawValue: "source")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -132,7 +160,10 @@ public struct SourceObject: RawRepresentable, Hashable, Codable, Sendable, SdkWi
 public struct SourceType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let achCreditTransfer = SourceType(rawValue: "ach_credit_transfer")
     public static let achDebit = SourceType(rawValue: "ach_debit")
     public static let acssDebit = SourceType(rawValue: "acss_debit")
@@ -154,7 +185,7 @@ public struct SourceType: RawRepresentable, Hashable, Codable, Sendable, SdkWire
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -169,14 +200,17 @@ public struct SourceType: RawRepresentable, Hashable, Codable, Sendable, SdkWire
 public struct SourceAllowRedisplay: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let always = SourceAllowRedisplay(rawValue: "always")
     public static let limited = SourceAllowRedisplay(rawValue: "limited")
     public static let unspecified = SourceAllowRedisplay(rawValue: "unspecified")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -189,12 +223,15 @@ public struct SourceAllowRedisplay: RawRepresentable, Hashable, Codable, Sendabl
 public struct SourceTransactionObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let sourceTransaction = SourceTransactionObject(rawValue: "source_transaction")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

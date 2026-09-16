@@ -7,7 +7,8 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1TerminalConnectionTokensMethods {
-    /// To connect to a reader the Stripe Terminal SDK needs to retrieve a short-lived connection token from Stripe, proxied through your server. On your backend, add an endpoint that creates and returns a connection token.
+    /// To connect to a reader the Stripe Terminal SDK needs to retrieve a short-lived connection token from Stripe,
+    /// proxied through your server. On your backend, add an endpoint that creates and returns a connection token.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
@@ -18,13 +19,25 @@ public enum V1TerminalConnectionTokensMethods {
     ///   readers. For more details, see [the docs on scoping connection
     ///   tokens](https://docs.stripe.com/terminal/fleet/locations-and-zones?dashboard
     ///   -or-api=api#connection-tokens).
-    public static func postTerminalConnectionTokens(config: ClientConfig, expand: [String]?, location: String?) async throws -> TerminalConnectionToken {
-        if let location = location {
+    public static func postTerminalConnectionTokens(
+        config: ClientConfig,
+        expand: [String]?,
+        location: String?
+    ) async throws -> TerminalConnectionToken {
+        if let location {
             try validateLength("location", location, max: 5000)
         }
 
         let requestBody = PostTerminalConnectionTokensRequestBody(expand: expand, location: location)
 
-        return try (await sdkRequest("POST", "/v1/terminal/connection_tokens", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTerminalConnectionTokens")).data
+        return try await (sdkRequest(
+            "POST",
+            "/v1/terminal/connection_tokens",
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostTerminalConnectionTokens"
+        )).data
     }
 }

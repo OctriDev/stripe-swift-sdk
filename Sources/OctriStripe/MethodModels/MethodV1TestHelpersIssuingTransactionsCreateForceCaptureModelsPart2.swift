@@ -7,9 +7,9 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1TestHelpersIssuingTransactionsCreateForceCapture operation model declarations
+/// Canonical v1TestHelpersIssuingTransactionsCreateForceCapture operation model declarations
 public extension PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXe5e9e1d18c {
-    public init(checkInAt: Int? = nil, nights: Int? = nil) {
+    init(checkInAt: Int? = nil, nights: Int? = nil) {
         self.init()
         (self.checkInAt, self.nights) = (checkInAt, nights)
     }
@@ -31,32 +31,38 @@ public struct PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXf4cc
     }
 
     init() {
-        (self.industryProductCode, self.quantityDecimal, self.type, self.unit, self.unitCostDecimal) = (nil, nil, nil, nil, nil)
+        (industryProductCode, quantityDecimal, type, unit, unitCostDecimal) = (nil, nil, nil, nil, nil)
     }
 }
 
 public extension PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXf4cc2bd277 {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.industryProductCode = try container.sdkDecodeIfPresent(.industryProductCode)
-        self.quantityDecimal = try container.sdkDecodeIfPresent(.quantityDecimal)
-        self.type = try container.sdkDecodeIfPresent(.type)
-        self.unit = try container.sdkDecodeIfPresent(.unit)
-        self.unitCostDecimal = try container.sdkDecodeIfPresent(.unitCostDecimal)
-        if let value = self.industryProductCode {
+        industryProductCode = try container.sdkDecodeIfPresent(.industryProductCode)
+        quantityDecimal = try container.sdkDecodeIfPresent(.quantityDecimal)
+        type = try container.sdkDecodeIfPresent(.type)
+        unit = try container.sdkDecodeIfPresent(.unit)
+        unitCostDecimal = try container.sdkDecodeIfPresent(.unitCostDecimal)
+        if let value = industryProductCode {
             try validateLength("industry_product_code", value, min: nil, max: 5000)
         }
-        if let value = self.type {
+        if let value = type {
             try validateLength("type", sdkWireString(value), min: nil, max: 5000)
         }
-        if let value = self.unit {
+        if let value = unit {
             try validateLength("unit", sdkWireString(value), min: nil, max: 5000)
         }
     }
 }
 
 public extension PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXf4cc2bd277 {
-    public init(industryProductCode: String? = nil, quantityDecimal: String? = nil, type: PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoX73134ab0a2? = nil, unit: PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXa60876f6f1? = nil, unitCostDecimal: String? = nil) throws {
+    init(
+        industryProductCode: String? = nil,
+        quantityDecimal: String? = nil,
+        type: PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoX73134ab0a2? = nil,
+        unit: PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXa60876f6f1? = nil,
+        unitCostDecimal: String? = nil
+    ) throws {
         self.init()
         (self.industryProductCode, self.quantityDecimal) = (industryProductCode, quantityDecimal)
         (self.type, self.unit) = (type, unit)
@@ -81,19 +87,19 @@ public struct PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoX21dc
     }
 
     init() {
-        self.grossAmountDecimal = nil
+        grossAmountDecimal = nil
     }
 }
 
 public extension PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoX21dc64a5c8 {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.grossAmountDecimal = try container.sdkDecodeIfPresent(.grossAmountDecimal)
+        grossAmountDecimal = try container.sdkDecodeIfPresent(.grossAmountDecimal)
     }
 }
 
 public extension PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoX21dc64a5c8 {
-    public init(grossAmountDecimal: String? = nil) {
+    init(grossAmountDecimal: String? = nil) {
         self.init()
         self.grossAmountDecimal = grossAmountDecimal
     }

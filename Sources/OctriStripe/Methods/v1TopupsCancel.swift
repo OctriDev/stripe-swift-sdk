@@ -7,17 +7,30 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1TopupsCancelMethods {
-    /// Cancels an existing top-up before it completes. Only top-ups with a pending status can be canceled, and `expand` controls which response fields are expanded.
+    /// Cancels an existing top-up before it completes. Only top-ups with a pending status can be canceled, and `expand`
+    /// controls which response fields are expanded.
     ///
     /// Cancels a top-up. Only pending top-ups can be canceled.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postTopupsTopupCancel(config: ClientConfig, topup: String, expand: [String]?) async throws -> Topup {
+    public static func postTopupsTopupCancel(
+        config: ClientConfig,
+        topup: String,
+        expand: [String]?
+    ) async throws -> Topup {
         try validateLength("topup", topup, max: 5000)
 
         let requestBody = PostTopupsTopupCancelRequestBody(expand: expand)
 
-        return try (await sdkRequest("POST", ["/v1/topups/", sdkEncodePathSegment(sdkWireString(topup)), "/cancel"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTopupsTopupCancel")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/topups/", sdkEncodePathSegment(sdkWireString(topup)), "/cancel"].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostTopupsTopupCancel"
+        )).data
     }
 }

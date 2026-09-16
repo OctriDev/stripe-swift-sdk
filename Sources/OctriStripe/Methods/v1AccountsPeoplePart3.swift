@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1AccountsPeopleMethods {
-    public struct PostAccountsAccountPeopleOptions: Codable {
+public extension V1AccountsPeopleMethods {
+    struct PostAccountsAccountPeopleOptions: Codable {
         public var account: String
         public var additionalTosAcceptances: PostAccountsAccountPeopleRequestBodyAdditionalTosAcceptances?
         public var address: PostAccountsAccountPeopleRequestBodyAddress?
@@ -44,7 +44,9 @@ extension V1AccountsPeopleMethods {
         }
     }
 
-    /// Creates a new person associated with an account's legal entity. Supply the person's identifying, address, relationship, date-of-birth, and verification information as needed, and use `expand` to expand response fields. Nested address, date-of-birth, document, and acceptance data must use the structures defined for those fields.
+    /// Creates a new person associated with an account's legal entity. Supply the person's identifying, address,
+    /// relationship, date-of-birth, and verification information as needed, and use `expand` to expand response fields.
+    /// Nested address, date-of-birth, document, and acceptance data must use the structures defined for those fields.
     ///
     /// Creates a new person.
     ///
@@ -110,7 +112,10 @@ extension V1AccountsPeopleMethods {
     ///   that the account re-accept the terms of service.
     /// - usCfpbData: Demographic data related to the person.
     /// - verification: The person's verification status.
-    public static func postAccountsAccountPeople(config: ClientConfig, options: PostAccountsAccountPeopleOptions) async throws -> Person {
+    static func postAccountsAccountPeople(
+        config: ClientConfig,
+        options: PostAccountsAccountPeopleOptions
+    ) async throws -> Person {
         try validateLength("account", options.account, max: 5000)
 
         if let firstName = options.firstName {
@@ -159,6 +164,14 @@ extension V1AccountsPeopleMethods {
 
         let requestBody = PostAccountsAccountPeopleRequestBody(options: options)
 
-        return try (await sdkRequest("POST", ["/v1/accounts/", sdkEncodePathSegment(sdkWireString(options.account)), "/people"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostAccountsAccountPeople")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/accounts/", sdkEncodePathSegment(sdkWireString(options.account)), "/people"].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostAccountsAccountPeople"
+        )).data
     }
 }

@@ -6,8 +6,10 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1PaymentMethodDomainsMethods {
-    /// Updates the enabled state of an existing payment method domain. Supply `enabled` to control whether payment methods that require a registered domain appear in Elements or Embedded Checkout, and use `expand` to request additional response fields.
+public extension V1PaymentMethodDomainsMethods {
+    /// Updates the enabled state of an existing payment method domain. Supply `enabled` to control whether payment
+    /// methods that require a registered domain appear in Elements or Embedded Checkout, and use `expand` to request
+    /// additional response fields.
     ///
     /// Updates an existing payment method domain.
     ///
@@ -16,11 +18,24 @@ extension V1PaymentMethodDomainsMethods {
     ///   not enabled, payment methods that require a payment method domain will not
     ///   appear in Elements or Embedded Checkout.
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postPaymentMethodDomainsPaymentMethodDomain(config: ClientConfig, paymentMethodDomain: String, enabled: Bool?, expand: [String]?) async throws -> PaymentMethodDomain {
+    static func postPaymentMethodDomainsPaymentMethodDomain(
+        config: ClientConfig,
+        paymentMethodDomain: String,
+        enabled: Bool?,
+        expand: [String]?
+    ) async throws -> PaymentMethodDomain {
         try validateLength("payment_method_domain", paymentMethodDomain, max: 5000)
 
         let requestBody = PostPaymentMethodDomainsPaymentMethodDomainRequestBody(enabled: enabled, expand: expand)
 
-        return try (await sdkRequest("POST", ["/v1/payment_method_domains/", sdkEncodePathSegment(sdkWireString(paymentMethodDomain))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostPaymentMethodDomainsPaymentMethodDomain")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/payment_method_domains/", sdkEncodePathSegment(sdkWireString(paymentMethodDomain))].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostPaymentMethodDomainsPaymentMethodDomain"
+        )).data
     }
 }

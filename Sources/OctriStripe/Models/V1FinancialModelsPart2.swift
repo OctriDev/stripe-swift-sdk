@@ -3,35 +3,56 @@
 
 import Foundation
 
-// V1Financial domain models
+/// V1Financial domain models
 public extension FinancialConnectionsAccountOwnershipOwners {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.data) else {
-            throw SdkValidationError(field: "data", code: "required", message: "Validation failed for 'data': value is required")
+            throw SdkValidationError(
+                field: "data",
+                code: "required",
+                message: "Validation failed for 'data': value is required"
+            )
         }
         guard container.contains(.hasMore) else {
-            throw SdkValidationError(field: "has_more", code: "required", message: "Validation failed for 'has_more': value is required")
+            throw SdkValidationError(
+                field: "has_more",
+                code: "required",
+                message: "Validation failed for 'has_more': value is required"
+            )
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
         }
         guard container.contains(.url) else {
-            throw SdkValidationError(field: "url", code: "required", message: "Validation failed for 'url': value is required")
+            throw SdkValidationError(
+                field: "url",
+                code: "required",
+                message: "Validation failed for 'url': value is required"
+            )
         }
-        self.data = try container.sdkDecodeRequired(.data)
-        self.hasMore = try container.sdkDecodeRequired(.hasMore)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.url = try container.sdkDecodeRequired(.url)
-            try validateLength("url", self.url, min: nil, max: 5000)
+        data = try container.sdkDecodeRequired(.data)
+        hasMore = try container.sdkDecodeRequired(.hasMore)
+        object = try container.sdkDecodeRequired(.object)
+        url = try container.sdkDecodeRequired(.url)
+        try validateLength("url", url, min: nil, max: 5000)
     }
 }
 
 public extension FinancialConnectionsAccountOwnershipOwners {
-    public init(data: [FinancialConnectionsAccountOwner], hasMore: Bool, object: FinancialConnectionsAccountOwnershipOwnersObject, url: String) throws {
+    init(
+        data: [FinancialConnectionsAccountOwner],
+        hasMore: Bool,
+        object: FinancialConnectionsAccountOwnershipOwnersObject,
+        url: String
+    ) throws {
         (self.data, self.hasMore) = (data, hasMore)
         (self.object, self.url) = (object, url)
-            try validateLength("url", self.url, min: nil, max: 5000)
+        try validateLength("url", self.url, min: nil, max: 5000)
     }
 }
 
@@ -87,52 +108,88 @@ public struct FinancialConnectionsSession: Codable {
         case returnUrl = "return_url"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension FinancialConnectionsSession {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.accounts) else {
-            throw SdkValidationError(field: "accounts", code: "required", message: "Validation failed for 'accounts': value is required")
+            throw SdkValidationError(
+                field: "accounts",
+                code: "required",
+                message: "Validation failed for 'accounts': value is required"
+            )
         }
         guard container.contains(.id) else {
-            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
+            throw SdkValidationError(
+                field: "id",
+                code: "required",
+                message: "Validation failed for 'id': value is required"
+            )
         }
         guard container.contains(.livemode) else {
-            throw SdkValidationError(field: "livemode", code: "required", message: "Validation failed for 'livemode': value is required")
+            throw SdkValidationError(
+                field: "livemode",
+                code: "required",
+                message: "Validation failed for 'livemode': value is required"
+            )
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
         }
         guard container.contains(.permissions) else {
-            throw SdkValidationError(field: "permissions", code: "required", message: "Validation failed for 'permissions': value is required")
+            throw SdkValidationError(
+                field: "permissions",
+                code: "required",
+                message: "Validation failed for 'permissions': value is required"
+            )
         }
-        self.accounts = try container.sdkDecodeRequired(.accounts)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.livemode = try container.sdkDecodeRequired(.livemode)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.permissions = try container.sdkDecodeRequired(.permissions)
-        self.accountHolder = try container.sdkDecodeIfPresent(.accountHolder)
-        self.bankAccountToken = try container.sdkDecodeIfPresent(.bankAccountToken)
-        self.clientSecret = try container.sdkDecodeIfPresent(.clientSecret)
-        self.filters = try container.sdkDecodeIfPresent(.filters)
-        self.limits = try container.sdkDecodeIfPresent(.limits)
-        self.manualEntry = try container.sdkDecodeIfPresent(.manualEntry)
-        self.prefetch = try container.sdkDecodeIfPresent(.prefetch)
-        self.returnUrl = try container.sdkDecodeIfPresent(.returnUrl)
-            try validateLength("id", self.id, min: nil, max: 5000)
-        if let value = self.clientSecret {
+        accounts = try container.sdkDecodeRequired(.accounts)
+        id = try container.sdkDecodeRequired(.id)
+        livemode = try container.sdkDecodeRequired(.livemode)
+        object = try container.sdkDecodeRequired(.object)
+        permissions = try container.sdkDecodeRequired(.permissions)
+        accountHolder = try container.sdkDecodeIfPresent(.accountHolder)
+        bankAccountToken = try container.sdkDecodeIfPresent(.bankAccountToken)
+        clientSecret = try container.sdkDecodeIfPresent(.clientSecret)
+        filters = try container.sdkDecodeIfPresent(.filters)
+        limits = try container.sdkDecodeIfPresent(.limits)
+        manualEntry = try container.sdkDecodeIfPresent(.manualEntry)
+        prefetch = try container.sdkDecodeIfPresent(.prefetch)
+        returnUrl = try container.sdkDecodeIfPresent(.returnUrl)
+        try validateLength("id", id, min: nil, max: 5000)
+        if let value = clientSecret {
             try validateLength("client_secret", value, min: nil, max: 5000)
         }
-        if let value = self.returnUrl {
+        if let value = returnUrl {
             try validateLength("return_url", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension FinancialConnectionsSession {
-    public init(accounts: FinancialConnectionsSessionAccounts, id: String, livemode: Bool, object: FinancialConnectionsSessionObject, permissions: [FinancialConnectionsSessionPermissionsItem], accountHolder: FinancialConnectionsSessionAccountHolder? = nil, bankAccountToken: Token? = nil, clientSecret: String? = nil, filters: BankConnectionsResourceLinkAccountSessionFilters? = nil, limits: BankConnectionsResourceLinkAccountSessionLimits? = nil, manualEntry: BankConnectionsResourceLinkAccountSessionManualEntry? = nil, prefetch: [FinancialConnectionsSessionPrefetchItem]? = nil, returnUrl: String? = nil) throws {
+    init(
+        accounts: FinancialConnectionsSessionAccounts,
+        id: String,
+        livemode: Bool,
+        object: FinancialConnectionsSessionObject,
+        permissions: [FinancialConnectionsSessionPermissionsItem],
+        accountHolder: FinancialConnectionsSessionAccountHolder? = nil,
+        bankAccountToken: Token? = nil,
+        clientSecret: String? = nil,
+        filters: BankConnectionsResourceLinkAccountSessionFilters? = nil,
+        limits: BankConnectionsResourceLinkAccountSessionLimits? = nil,
+        manualEntry: BankConnectionsResourceLinkAccountSessionManualEntry? = nil,
+        prefetch: [FinancialConnectionsSessionPrefetchItem]? = nil,
+        returnUrl: String? = nil
+    ) throws {
         (self.accounts, self.id) = (accounts, id)
         (self.livemode, self.object) = (livemode, object)
         (self.permissions, self.accountHolder) = (permissions, accountHolder)
@@ -140,7 +197,7 @@ public extension FinancialConnectionsSession {
         (self.filters, self.limits) = (filters, limits)
         (self.manualEntry, self.prefetch) = (manualEntry, prefetch)
         self.returnUrl = returnUrl
-            try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
         if let value = self.clientSecret {
             try validateLength("client_secret", value, min: nil, max: 5000)
         }
@@ -155,24 +212,30 @@ public enum FinancialConnectionsSessionAccountHolder {
 }
 
 extension FinancialConnectionsSessionAccountHolder: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for FinancialConnectionsSessionAccountHolder")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for FinancialConnectionsSessionAccountHolder"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             BankConnectionsResourceAccountholder.self
         ) {
-            return             .bankConnectionsResourceAccountholder(value)
+            return .bankConnectionsResourceAccountholder(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -181,7 +244,6 @@ extension FinancialConnectionsSessionAccountHolder: Codable {
         case let .bankConnectionsResourceAccountholder(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// The accounts that were collected as part of this Session.
@@ -203,39 +265,62 @@ public struct FinancialConnectionsSessionAccounts: Codable {
         case url
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension FinancialConnectionsSessionAccounts {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.data) else {
-            throw SdkValidationError(field: "data", code: "required", message: "Validation failed for 'data': value is required")
-        }
-        guard container.contains(.hasMore) else {
-            throw SdkValidationError(field: "has_more", code: "required", message: "Validation failed for 'has_more': value is required")
-        }
-        guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
-        }
-        guard container.contains(.url) else {
-            throw SdkValidationError(field: "url", code: "required", message: "Validation failed for 'url': value is required")
-        }
-        self.data = try container.sdkDecodeRequired(.data)
-        self.hasMore = try container.sdkDecodeRequired(.hasMore)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.url = try container.sdkDecodeRequired(.url)
-            try validateLength("url", self.url, min: nil, max: 5000)
-            try sdkValidatePattern("url", self.url, sdkPattern28b1a5de7ccc)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension FinancialConnectionsSessionAccounts {
-    public init(data: [FinancialConnectionsAccount], hasMore: Bool, object: FinancialConnectionsSessionAccountsObject, url: String) throws {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.data) else {
+            throw SdkValidationError(
+                field: "data",
+                code: "required",
+                message: "Validation failed for 'data': value is required"
+            )
+        }
+        guard container.contains(.hasMore) else {
+            throw SdkValidationError(
+                field: "has_more",
+                code: "required",
+                message: "Validation failed for 'has_more': value is required"
+            )
+        }
+        guard container.contains(.object) else {
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
+        }
+        guard container.contains(.url) else {
+            throw SdkValidationError(
+                field: "url",
+                code: "required",
+                message: "Validation failed for 'url': value is required"
+            )
+        }
+        data = try container.sdkDecodeRequired(.data)
+        hasMore = try container.sdkDecodeRequired(.hasMore)
+        object = try container.sdkDecodeRequired(.object)
+        url = try container.sdkDecodeRequired(.url)
+        try validateLength("url", url, min: nil, max: 5000)
+        try sdkValidatePattern("url", url, sdkPattern28b1a5de7ccc)
+    }
+}
+
+public extension FinancialConnectionsSessionAccounts {
+    init(
+        data: [FinancialConnectionsAccount],
+        hasMore: Bool,
+        object: FinancialConnectionsSessionAccountsObject,
+        url: String
+    ) throws {
         (self.data, self.hasMore) = (data, hasMore)
         (self.object, self.url) = (object, url)
-            try validateLength("url", self.url, min: nil, max: 5000)
-            try sdkValidatePattern("url", self.url, sdkPattern28b1a5de7ccc)
+        try validateLength("url", self.url, min: nil, max: 5000)
+        try sdkValidatePattern("url", self.url, sdkPattern28b1a5de7ccc)
     }
 }
 
@@ -282,45 +367,60 @@ public struct FinancialConnectionsTransaction: Codable {
         case updated
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension FinancialConnectionsTransaction {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.account = try container.sdkDecodeRequired(.account)
-        self.amount = try container.sdkDecodeRequired(.amount)
-        self.currency = try container.sdkDecodeRequired(.currency)
-        self.description = try container.sdkDecodeRequired(.description)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.livemode = try container.sdkDecodeRequired(.livemode)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.status = try container.sdkDecodeRequired(.status)
-        self.statusTransitions = try container.sdkDecodeRequired(.statusTransitions)
-        self.transactedAt = try container.sdkDecodeRequired(.transactedAt)
-        self.transactionRefresh = try container.sdkDecodeRequired(.transactionRefresh)
-        self.updated = try container.sdkDecodeRequired(.updated)
-            try validateLength("account", self.account, min: nil, max: 5000)
-            try validateLength("currency", self.currency, min: nil, max: 5000)
-            try validateLength("description", self.description, min: nil, max: 5000)
-            try validateLength("id", self.id, min: nil, max: 5000)
-            try validateLength("transaction_refresh", self.transactionRefresh, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension FinancialConnectionsTransaction {
-    public init(account: String, amount: Int, currency: String, description: String, id: String, livemode: Bool, object: FinancialConnectionsTransactionObject, status: FinancialConnectionsTransactionStatus, statusTransitions: BankConnectionsResourceTransactionResourceStatusTransitions, transactedAt: Int, transactionRefresh: String, updated: Int) throws {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        account = try container.sdkDecodeRequired(.account)
+        amount = try container.sdkDecodeRequired(.amount)
+        currency = try container.sdkDecodeRequired(.currency)
+        description = try container.sdkDecodeRequired(.description)
+        id = try container.sdkDecodeRequired(.id)
+        livemode = try container.sdkDecodeRequired(.livemode)
+        object = try container.sdkDecodeRequired(.object)
+        status = try container.sdkDecodeRequired(.status)
+        statusTransitions = try container.sdkDecodeRequired(.statusTransitions)
+        transactedAt = try container.sdkDecodeRequired(.transactedAt)
+        transactionRefresh = try container.sdkDecodeRequired(.transactionRefresh)
+        updated = try container.sdkDecodeRequired(.updated)
+        try validateLength("account", account, min: nil, max: 5000)
+        try validateLength("currency", currency, min: nil, max: 5000)
+        try validateLength("description", description, min: nil, max: 5000)
+        try validateLength("id", id, min: nil, max: 5000)
+        try validateLength("transaction_refresh", transactionRefresh, min: nil, max: 5000)
+    }
+}
+
+public extension FinancialConnectionsTransaction {
+    init(
+        account: String,
+        amount: Int,
+        currency: String,
+        description: String,
+        id: String,
+        livemode: Bool,
+        object: FinancialConnectionsTransactionObject,
+        status: FinancialConnectionsTransactionStatus,
+        statusTransitions: BankConnectionsResourceTransactionResourceStatusTransitions,
+        transactedAt: Int,
+        transactionRefresh: String,
+        updated: Int
+    ) throws {
         (self.account, self.amount) = (account, amount)
         (self.currency, self.description) = (currency, description)
         (self.id, self.livemode) = (id, livemode)
         (self.object, self.status) = (object, status)
         (self.statusTransitions, self.transactedAt) = (statusTransitions, transactedAt)
         (self.transactionRefresh, self.updated) = (transactionRefresh, updated)
-            try validateLength("account", self.account, min: nil, max: 5000)
-            try validateLength("currency", self.currency, min: nil, max: 5000)
-            try validateLength("description", self.description, min: nil, max: 5000)
-            try validateLength("id", self.id, min: nil, max: 5000)
-            try validateLength("transaction_refresh", self.transactionRefresh, min: nil, max: 5000)
+        try validateLength("account", self.account, min: nil, max: 5000)
+        try validateLength("currency", self.currency, min: nil, max: 5000)
+        try validateLength("description", self.description, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("transaction_refresh", self.transactionRefresh, min: nil, max: 5000)
     }
 }
 
@@ -358,39 +458,48 @@ public struct FinancialReportingFinanceReportRunRunParameters: Codable {
     }
 
     init() {
-        (self.columns, self.connectedAccount, self.currency, self.intervalEnd, self.intervalStart) = (nil, nil, nil, nil, nil)
-        (self.payout, self.reportingCategory, self.timezone) = (nil, nil, nil)
+        (columns, connectedAccount, currency, intervalEnd, intervalStart) = (nil, nil, nil, nil, nil)
+        (payout, reportingCategory, timezone) = (nil, nil, nil)
     }
 }
 
 public extension FinancialReportingFinanceReportRunRunParameters {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.columns = try container.sdkDecodeIfPresent(.columns)
-        self.connectedAccount = try container.sdkDecodeIfPresent(.connectedAccount)
-        self.currency = try container.sdkDecodeIfPresent(.currency)
-        self.intervalEnd = try container.sdkDecodeIfPresent(.intervalEnd)
-        self.intervalStart = try container.sdkDecodeIfPresent(.intervalStart)
-        self.payout = try container.sdkDecodeIfPresent(.payout)
-        self.reportingCategory = try container.sdkDecodeIfPresent(.reportingCategory)
-        self.timezone = try container.sdkDecodeIfPresent(.timezone)
-        if let value = self.connectedAccount {
+        columns = try container.sdkDecodeIfPresent(.columns)
+        connectedAccount = try container.sdkDecodeIfPresent(.connectedAccount)
+        currency = try container.sdkDecodeIfPresent(.currency)
+        intervalEnd = try container.sdkDecodeIfPresent(.intervalEnd)
+        intervalStart = try container.sdkDecodeIfPresent(.intervalStart)
+        payout = try container.sdkDecodeIfPresent(.payout)
+        reportingCategory = try container.sdkDecodeIfPresent(.reportingCategory)
+        timezone = try container.sdkDecodeIfPresent(.timezone)
+        if let value = connectedAccount {
             try validateLength("connected_account", value, min: nil, max: 5000)
         }
-        if let value = self.payout {
+        if let value = payout {
             try validateLength("payout", value, min: nil, max: 5000)
         }
-        if let value = self.reportingCategory {
+        if let value = reportingCategory {
             try validateLength("reporting_category", value, min: nil, max: 5000)
         }
-        if let value = self.timezone {
+        if let value = timezone {
             try validateLength("timezone", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension FinancialReportingFinanceReportRunRunParameters {
-    public init(columns: [String]? = nil, connectedAccount: String? = nil, currency: String? = nil, intervalEnd: Int? = nil, intervalStart: Int? = nil, payout: String? = nil, reportingCategory: String? = nil, timezone: String? = nil) throws {
+    init(
+        columns: [String]? = nil,
+        connectedAccount: String? = nil,
+        currency: String? = nil,
+        intervalEnd: Int? = nil,
+        intervalStart: Int? = nil,
+        payout: String? = nil,
+        reportingCategory: String? = nil,
+        timezone: String? = nil
+    ) throws {
         self.init()
         (self.columns, self.connectedAccount) = (columns, connectedAccount)
         (self.currency, self.intervalEnd) = (currency, intervalEnd)
@@ -412,15 +521,20 @@ public extension FinancialReportingFinanceReportRunRunParameters {
 }
 
 /// String representing the object's type. Objects of the same type share the same value.
-public struct FinancialConnectionsAccountOwnershipObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct FinancialConnectionsAccountOwnershipObject: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let financialConnectionsAccountOwnership = FinancialConnectionsAccountOwnershipObject(rawValue: "financial_connections.account_ownership")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let financialConnectionsAccountOwnership =
+        FinancialConnectionsAccountOwnershipObject(rawValue: "financial_connections.account_ownership")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -433,12 +547,16 @@ public struct FinancialConnectionsAccountOwnershipObject: RawRepresentable, Hash
 public struct FinancialConnectionsTransactionObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let financialConnectionsTransaction = FinancialConnectionsTransactionObject(rawValue: "financial_connections.transaction")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let financialConnectionsTransaction =
+        FinancialConnectionsTransactionObject(rawValue: "financial_connections.transaction")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -448,17 +566,21 @@ public struct FinancialConnectionsTransactionObject: RawRepresentable, Hashable,
 }
 
 /// Required enumerated value serialized in the `prefetch[]` wire field.
-public struct FinancialConnectionsSessionPrefetchItem: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct FinancialConnectionsSessionPrefetchItem: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let balances = FinancialConnectionsSessionPrefetchItem(rawValue: "balances")
     public static let ownership = FinancialConnectionsSessionPrefetchItem(rawValue: "ownership")
     public static let transactions = FinancialConnectionsSessionPrefetchItem(rawValue: "transactions")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -468,15 +590,19 @@ public struct FinancialConnectionsSessionPrefetchItem: RawRepresentable, Hashabl
 }
 
 /// Required enumerated value serialized in the `subscriptions[]` wire field.
-public struct FinancialConnectionsAccountSubscriptionsItem: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct FinancialConnectionsAccountSubscriptionsItem: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let transactions = FinancialConnectionsAccountSubscriptionsItem(rawValue: "transactions")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

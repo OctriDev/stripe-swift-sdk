@@ -7,9 +7,11 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1TestHelpersIssuingAuthorizationsFinalizeAmountMethods {
-    /// Finalizes the amount of a test-mode Issuing authorization before capture. Supply `final_amount` when the initial authorization used an estimated amount, and include `fleet` or `fuel` details when applicable.
+    /// Finalizes the amount of a test-mode Issuing authorization before capture. Supply `final_amount` when the initial
+    /// authorization used an estimated amount, and include `fleet` or `fuel` details when applicable.
     ///
-    /// Finalize the amount on an Authorization prior to capture, when the initial authorization was for an estimated amount.
+    /// Finalize the amount on an Authorization prior to capture, when the initial authorization was for an estimated
+    /// amount.
     ///
     /// - Parameters:
     /// - finalAmount: The final authorization amount that will be captured by the
@@ -18,12 +20,36 @@ public enum V1TestHelpersIssuingAuthorizationsFinalizeAmountMethods {
     /// - expand: Specifies which fields in the response should be expanded.
     /// - fleet: Fleet-specific information for authorizations using Fleet cards.
     /// - fuel: Information about fuel that was purchased with this transaction.
-    public static func postTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmount(config: ClientConfig, authorization: String, finalAmount: Int, expand: [String]?, fleet: PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX41b490a2e9?, fuel: PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX27f1047fe4?) async throws -> IssuingAuthorization {
+    public static func postTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmount(
+        config: ClientConfig,
+        authorization: String,
+        finalAmount: Int,
+        expand: [String]?,
+        fleet: PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX41b490a2e9?,
+        fuel: PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX27f1047fe4?
+    ) async throws -> IssuingAuthorization {
         try validateLength("authorization", authorization, max: 5000)
 
-        let requestBody = PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX1afa5bd751(finalAmount: finalAmount, expand: expand, fleet: fleet, fuel: fuel)
+        let requestBody = PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX1afa5bd751(
+            finalAmount: finalAmount,
+            expand: expand,
+            fleet: fleet,
+            fuel: fuel
+        )
 
-        return try (await sdkRequest("POST", ["/v1/test_helpers/issuing/authorizations/", sdkEncodePathSegment(sdkWireString(authorization)), "/finalize_amount"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmount")).data
+        return try await (sdkRequest(
+            "POST",
+            [
+                "/v1/test_helpers/issuing/authorizations/",
+                sdkEncodePathSegment(sdkWireString(authorization)),
+                "/finalize_amount",
+            ].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmount"
+        )).data
     }
 
     private struct PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX1afa5bd751: Encodable {
@@ -34,10 +60,10 @@ public enum V1TestHelpersIssuingAuthorizationsFinalizeAmountMethods {
 
         func encode(to encoder: Encoder) throws {
             var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-            try keyedContainer.encode(self.finalAmount, forKey: SdkCodingKey("final_amount"))
-            try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
-            try keyedContainer.encodeIfPresent(self.fleet, forKey: SdkCodingKey("fleet"))
-            try keyedContainer.encodeIfPresent(self.fuel, forKey: SdkCodingKey("fuel"))
+            try keyedContainer.encode(finalAmount, forKey: SdkCodingKey("final_amount"))
+            try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
+            try keyedContainer.encodeIfPresent(fleet, forKey: SdkCodingKey("fleet"))
+            try keyedContainer.encodeIfPresent(fuel, forKey: SdkCodingKey("fuel"))
         }
     }
 }

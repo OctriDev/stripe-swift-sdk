@@ -6,10 +6,12 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1InvoicesLinesMethods {
-    /// Lists the line items belonging to a specific invoice. Use `starting_after` and `ending_before` with `limit` to paginate the results, and use `expand` to include additional fields inline.
+public extension V1InvoicesLinesMethods {
+    /// Lists the line items belonging to a specific invoice. Use `starting_after` and `ending_before` with `limit` to
+    /// paginate the results, and use `expand` to include additional fields inline.
     ///
-    /// When retrieving an invoice, you’ll get a lines property containing the total count of line items and the first handful of those items. There is also a URL where you can retrieve the full (paginated) list of line items.
+    /// When retrieving an invoice, you’ll get a lines property containing the total count of line items and the first
+    /// handful of those items. There is also a URL where you can retrieve the full (paginated) list of line items.
     ///
     /// - Parameters:
     /// - endingBefore: A cursor for use in pagination. `ending_before` is an object
@@ -25,22 +27,36 @@ extension V1InvoicesLinesMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    public static func getInvoicesInvoiceLines(config: ClientConfig, invoice: String, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetInvoicesInvoiceLinesResponse {
+    static func getInvoicesInvoiceLines(
+        config: ClientConfig,
+        invoice: String,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        startingAfter: String?
+    ) async throws -> GetInvoicesInvoiceLinesResponse {
         try validateLength("invoice", invoice, max: 5000)
 
-        if let endingBefore = endingBefore {
+        if let endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let startingAfter = startingAfter {
+        if let startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try (await sdkRequest("GET", ["/v1/invoices/", sdkEncodePathSegment(sdkWireString(invoice)), "/lines"].joined(), config: config, query: [
-            SdkQueryParameter("ending_before", value: endingBefore),
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            SdkQueryParameter("limit", value: limit),
-            SdkQueryParameter("starting_after", value: startingAfter),
-        ], decoder: .json, operationId: "GetInvoicesInvoiceLines")).data
+        return try await (sdkRequest(
+            "GET",
+            ["/v1/invoices/", sdkEncodePathSegment(sdkWireString(invoice)), "/lines"].joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("ending_before", value: endingBefore),
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+                SdkQueryParameter("limit", value: limit),
+                SdkQueryParameter("starting_after", value: startingAfter),
+            ],
+            decoder: .json,
+            operationId: "GetInvoicesInvoiceLines"
+        )).data
     }
 }

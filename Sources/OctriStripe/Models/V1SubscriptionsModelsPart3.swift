@@ -3,19 +3,23 @@
 
 import Foundation
 
-// V1Subscriptions domain models
+/// V1Subscriptions domain models
 /// The payment collection behavior for this subscription while paused.
-public struct SubscriptionsResourcePauseCollectionBehavior: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct SubscriptionsResourcePauseCollectionBehavior: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let keepAsDraft = SubscriptionsResourcePauseCollectionBehavior(rawValue: "keep_as_draft")
     public static let markUncollectible = SubscriptionsResourcePauseCollectionBehavior(rawValue: "mark_uncollectible")
     public static let void = SubscriptionsResourcePauseCollectionBehavior(rawValue: "void")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -25,16 +29,20 @@ public struct SubscriptionsResourcePauseCollectionBehavior: RawRepresentable, Ha
 }
 
 /// Describes how the billing schedule will determine the end date. Either `duration` or `timestamp`.
-public struct SubscriptionsResourceBillingSchedulesBillUntilType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct SubscriptionsResourceBillingSchedulesBillUntilType: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let duration = SubscriptionsResourceBillingSchedulesBillUntilType(rawValue: "duration")
     public static let timestamp = SubscriptionsResourceBillingSchedulesBillUntilType(rawValue: "timestamp")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -45,16 +53,21 @@ public struct SubscriptionsResourceBillingSchedulesBillUntilType: RawRepresentab
 
 /// Configure whether Stripe updates `subscription.default_payment_method` when payment succeeds. Defaults to
 /// `off`.
-public struct SubscriptionsResourcePaymentSettingsSaveDefaultPaymentMethod: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct SubscriptionsResourcePaymentSettingsSaveDefaultPaymentMethod: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let off = SubscriptionsResourcePaymentSettingsSaveDefaultPaymentMethod(rawValue: "off")
-    public static let onSubscription = SubscriptionsResourcePaymentSettingsSaveDefaultPaymentMethod(rawValue: "on_subscription")
+    public static let onSubscription =
+        SubscriptionsResourcePaymentSettingsSaveDefaultPaymentMethod(rawValue: "on_subscription")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -65,17 +78,22 @@ public struct SubscriptionsResourcePaymentSettingsSaveDefaultPaymentMethod: RawR
 
 /// Indicates how the subscription should change when the trial ends if the user did not provide a payment
 /// method.
-public struct SubscriptionsResourceTrialSettingsEndBehaviorMissingPaymentMethod: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct SubscriptionsResourceTrialSettingsEndBehaviorMissingPaymentMethod: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let cancel = SubscriptionsResourceTrialSettingsEndBehaviorMissingPaymentMethod(rawValue: "cancel")
-    public static let createInvoice = SubscriptionsResourceTrialSettingsEndBehaviorMissingPaymentMethod(rawValue: "create_invoice")
+    public static let createInvoice =
+        SubscriptionsResourceTrialSettingsEndBehaviorMissingPaymentMethod(rawValue: "create_invoice")
     public static let pause = SubscriptionsResourceTrialSettingsEndBehaviorMissingPaymentMethod(rawValue: "pause")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -88,13 +106,16 @@ public struct SubscriptionsResourceTrialSettingsEndBehaviorMissingPaymentMethod:
 public struct SubscriptionsResourceBillingModeType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let classic = SubscriptionsResourceBillingModeType(rawValue: "classic")
     public static let flexible = SubscriptionsResourceBillingModeType(rawValue: "flexible")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -104,15 +125,19 @@ public struct SubscriptionsResourceBillingModeType: RawRepresentable, Hashable, 
 }
 
 /// Controls which subscription items the billing schedule applies to.
-public struct SubscriptionsResourceBillingSchedulesAppliesToType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct SubscriptionsResourceBillingSchedulesAppliesToType: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let price = SubscriptionsResourceBillingSchedulesAppliesToType(rawValue: "price")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -123,17 +148,22 @@ public struct SubscriptionsResourceBillingSchedulesAppliesToType: RawRepresentab
 
 /// Indicates how the subscription should change when the trial ends if the user did not provide a payment
 /// method.
-public struct SubscriptionsTrialsResourceEndBehaviorMissingPaymentMethod: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct SubscriptionsTrialsResourceEndBehaviorMissingPaymentMethod: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let cancel = SubscriptionsTrialsResourceEndBehaviorMissingPaymentMethod(rawValue: "cancel")
-    public static let createInvoice = SubscriptionsTrialsResourceEndBehaviorMissingPaymentMethod(rawValue: "create_invoice")
+    public static let createInvoice =
+        SubscriptionsTrialsResourceEndBehaviorMissingPaymentMethod(rawValue: "create_invoice")
     public static let pause = SubscriptionsTrialsResourceEndBehaviorMissingPaymentMethod(rawValue: "pause")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -143,16 +173,20 @@ public struct SubscriptionsTrialsResourceEndBehaviorMissingPaymentMethod: RawRep
 }
 
 /// Controls how invoices and invoice items display proration amounts and discount amounts.
-public struct SubscriptionsResourceBillingModeFlexibleProrationDiscounts: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct SubscriptionsResourceBillingModeFlexibleProrationDiscounts: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let included = SubscriptionsResourceBillingModeFlexibleProrationDiscounts(rawValue: "included")
     public static let itemized = SubscriptionsResourceBillingModeFlexibleProrationDiscounts(rawValue: "itemized")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -162,10 +196,14 @@ public struct SubscriptionsResourceBillingModeFlexibleProrationDiscounts: RawRep
 }
 
 /// Specifies billing duration. Either `day`, `week`, `month` or `year`.
-public struct SubscriptionsResourceBillingSchedulesBillUntilDurationInterval: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct SubscriptionsResourceBillingSchedulesBillUntilDurationInterval: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let day = SubscriptionsResourceBillingSchedulesBillUntilDurationInterval(rawValue: "day")
     public static let month = SubscriptionsResourceBillingSchedulesBillUntilDurationInterval(rawValue: "month")
     public static let week = SubscriptionsResourceBillingSchedulesBillUntilDurationInterval(rawValue: "week")
@@ -173,7 +211,7 @@ public struct SubscriptionsResourceBillingSchedulesBillUntilDurationInterval: Ra
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -183,17 +221,23 @@ public struct SubscriptionsResourceBillingSchedulesBillUntilDurationInterval: Ra
 }
 
 /// Required enumerated value serialized in the `payment_method_types[]` wire field.
-public struct SubscriptionsResourcePaymentSettingsPaymentMethodTypesItem: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct SubscriptionsResourcePaymentSettingsPaymentMethodTypesItem: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let achCreditTransfer = SubscriptionsResourcePaymentSettingsPaymentMethodTypesItem(rawValue: "ach_credit_transfer")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let achCreditTransfer =
+        SubscriptionsResourcePaymentSettingsPaymentMethodTypesItem(rawValue: "ach_credit_transfer")
     public static let achDebit = SubscriptionsResourcePaymentSettingsPaymentMethodTypesItem(rawValue: "ach_debit")
     public static let acssDebit = SubscriptionsResourcePaymentSettingsPaymentMethodTypesItem(rawValue: "acss_debit")
     public static let affirm = SubscriptionsResourcePaymentSettingsPaymentMethodTypesItem(rawValue: "affirm")
     public static let alipay = SubscriptionsResourcePaymentSettingsPaymentMethodTypesItem(rawValue: "alipay")
     public static let amazonPay = SubscriptionsResourcePaymentSettingsPaymentMethodTypesItem(rawValue: "amazon_pay")
-    public static let auBecsDebit = SubscriptionsResourcePaymentSettingsPaymentMethodTypesItem(rawValue: "au_becs_debit")
+    public static let auBecsDebit =
+        SubscriptionsResourcePaymentSettingsPaymentMethodTypesItem(rawValue: "au_becs_debit")
     public static let bacsDebit = SubscriptionsResourcePaymentSettingsPaymentMethodTypesItem(rawValue: "bacs_debit")
     public static let bancontact = SubscriptionsResourcePaymentSettingsPaymentMethodTypesItem(rawValue: "bancontact")
     public static let billie = SubscriptionsResourcePaymentSettingsPaymentMethodTypesItem(rawValue: "billie")
@@ -202,13 +246,15 @@ public struct SubscriptionsResourcePaymentSettingsPaymentMethodTypesItem: RawRep
     public static let cashapp = SubscriptionsResourcePaymentSettingsPaymentMethodTypesItem(rawValue: "cashapp")
     public static let crypto = SubscriptionsResourcePaymentSettingsPaymentMethodTypesItem(rawValue: "crypto")
     public static let custom = SubscriptionsResourcePaymentSettingsPaymentMethodTypesItem(rawValue: "custom")
-    public static let customerBalance = SubscriptionsResourcePaymentSettingsPaymentMethodTypesItem(rawValue: "customer_balance")
+    public static let customerBalance =
+        SubscriptionsResourcePaymentSettingsPaymentMethodTypesItem(rawValue: "customer_balance")
     public static let eps = SubscriptionsResourcePaymentSettingsPaymentMethodTypesItem(rawValue: "eps")
     public static let fpx = SubscriptionsResourcePaymentSettingsPaymentMethodTypesItem(rawValue: "fpx")
     public static let giropay = SubscriptionsResourcePaymentSettingsPaymentMethodTypesItem(rawValue: "giropay")
     public static let grabpay = SubscriptionsResourcePaymentSettingsPaymentMethodTypesItem(rawValue: "grabpay")
     public static let ideal = SubscriptionsResourcePaymentSettingsPaymentMethodTypesItem(rawValue: "ideal")
-    public static let jpCreditTransfer = SubscriptionsResourcePaymentSettingsPaymentMethodTypesItem(rawValue: "jp_credit_transfer")
+    public static let jpCreditTransfer =
+        SubscriptionsResourcePaymentSettingsPaymentMethodTypesItem(rawValue: "jp_credit_transfer")
     public static let kakaoPay = SubscriptionsResourcePaymentSettingsPaymentMethodTypesItem(rawValue: "kakao_pay")
     public static let klarna = SubscriptionsResourcePaymentSettingsPaymentMethodTypesItem(rawValue: "klarna")
     public static let konbini = SubscriptionsResourcePaymentSettingsPaymentMethodTypesItem(rawValue: "konbini")
@@ -217,7 +263,8 @@ public struct SubscriptionsResourcePaymentSettingsPaymentMethodTypesItem: RawRep
     public static let mbWay = SubscriptionsResourcePaymentSettingsPaymentMethodTypesItem(rawValue: "mb_way")
     public static let multibanco = SubscriptionsResourcePaymentSettingsPaymentMethodTypesItem(rawValue: "multibanco")
     public static let naverPay = SubscriptionsResourcePaymentSettingsPaymentMethodTypesItem(rawValue: "naver_pay")
-    public static let nzBankAccount = SubscriptionsResourcePaymentSettingsPaymentMethodTypesItem(rawValue: "nz_bank_account")
+    public static let nzBankAccount =
+        SubscriptionsResourcePaymentSettingsPaymentMethodTypesItem(rawValue: "nz_bank_account")
     public static let p24 = SubscriptionsResourcePaymentSettingsPaymentMethodTypesItem(rawValue: "p24")
     public static let payByBank = SubscriptionsResourcePaymentSettingsPaymentMethodTypesItem(rawValue: "pay_by_bank")
     public static let payco = SubscriptionsResourcePaymentSettingsPaymentMethodTypesItem(rawValue: "payco")
@@ -228,18 +275,20 @@ public struct SubscriptionsResourcePaymentSettingsPaymentMethodTypesItem: RawRep
     public static let promptpay = SubscriptionsResourcePaymentSettingsPaymentMethodTypesItem(rawValue: "promptpay")
     public static let revolutPay = SubscriptionsResourcePaymentSettingsPaymentMethodTypesItem(rawValue: "revolut_pay")
     public static let satispay = SubscriptionsResourcePaymentSettingsPaymentMethodTypesItem(rawValue: "satispay")
-    public static let sepaCreditTransfer = SubscriptionsResourcePaymentSettingsPaymentMethodTypesItem(rawValue: "sepa_credit_transfer")
+    public static let sepaCreditTransfer =
+        SubscriptionsResourcePaymentSettingsPaymentMethodTypesItem(rawValue: "sepa_credit_transfer")
     public static let sepaDebit = SubscriptionsResourcePaymentSettingsPaymentMethodTypesItem(rawValue: "sepa_debit")
     public static let sofort = SubscriptionsResourcePaymentSettingsPaymentMethodTypesItem(rawValue: "sofort")
     public static let swish = SubscriptionsResourcePaymentSettingsPaymentMethodTypesItem(rawValue: "swish")
     public static let twint = SubscriptionsResourcePaymentSettingsPaymentMethodTypesItem(rawValue: "twint")
     public static let upi = SubscriptionsResourcePaymentSettingsPaymentMethodTypesItem(rawValue: "upi")
-    public static let usBankAccount = SubscriptionsResourcePaymentSettingsPaymentMethodTypesItem(rawValue: "us_bank_account")
+    public static let usBankAccount =
+        SubscriptionsResourcePaymentSettingsPaymentMethodTypesItem(rawValue: "us_bank_account")
     public static let wechatPay = SubscriptionsResourcePaymentSettingsPaymentMethodTypesItem(rawValue: "wechat_pay")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1ProductsMethods {
-    public struct PostProductsIdOptions: Codable {
+public extension V1ProductsMethods {
+    struct PostProductsIdOptions: Codable {
         public var id: String
         public var active: Bool?
         public var defaultPrice: String?
@@ -29,9 +29,12 @@ extension V1ProductsMethods {
         }
     }
 
-    /// Updates a product by changing only the fields you provide. Use the form fields to modify availability, pricing, customer-facing content, shipping details, tax information, or product metadata; omitted fields remain unchanged.
+    /// Updates a product by changing only the fields you provide. Use the form fields to modify availability, pricing,
+    /// customer-facing content, shipping details, tax information, or product metadata; omitted fields remain
+    /// unchanged.
     ///
-    /// Updates the specific product by setting the values of the parameters passed. Any parameters not provided will be left unchanged.
+    /// Updates the specific product by setting the values of the parameters passed. Any parameters not provided will be
+    /// left unchanged.
     ///
     /// - Parameters:
     /// - active: Whether the product is available for purchase.
@@ -67,7 +70,7 @@ extension V1ProductsMethods {
     ///   will be included in customers' receipts, invoices, Checkout, and the
     ///   customer portal. May only be set if `type=service`.
     /// - url: A URL of a publicly-accessible webpage for this product.
-    public static func postProductsId(config: ClientConfig, options: PostProductsIdOptions) async throws -> Product {
+    static func postProductsId(config: ClientConfig, options: PostProductsIdOptions) async throws -> Product {
         try validateLength("id", options.id, max: 5000)
 
         if let defaultPrice = options.defaultPrice {
@@ -84,6 +87,14 @@ extension V1ProductsMethods {
 
         let requestBody = PostProductsIdRequestBody(options: options)
 
-        return try (await sdkRequest("POST", ["/v1/products/", sdkEncodePathSegment(sdkWireString(options.id))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostProductsId")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/products/", sdkEncodePathSegment(sdkWireString(options.id))].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostProductsId"
+        )).data
     }
 }

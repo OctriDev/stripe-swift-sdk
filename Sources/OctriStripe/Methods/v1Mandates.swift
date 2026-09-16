@@ -7,15 +7,27 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1MandatesMethods {
-    /// Retrieves a Mandate by its identifier. Use `mandate` to select the payment permission record and `expand` to request expanded fields such as payment method details or customer acceptance information.
+    /// Retrieves a Mandate by its identifier. Use `mandate` to select the payment permission record and `expand` to
+    /// request expanded fields such as payment method details or customer acceptance information.
     ///
     /// Retrieves a Mandate object.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func getMandatesMandate(config: ClientConfig, mandate: String, expand: [String]?) async throws -> Mandate {
-        return try (await sdkRequest("GET", ["/v1/mandates/", sdkEncodePathSegment(sdkWireString(mandate))].joined(), config: config, query: [
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-        ], decoder: .json, operationId: "GetMandatesMandate")).data
+    public static func getMandatesMandate(
+        config: ClientConfig,
+        mandate: String,
+        expand: [String]?
+    ) async throws -> Mandate {
+        try await (sdkRequest(
+            "GET",
+            ["/v1/mandates/", sdkEncodePathSegment(sdkWireString(mandate))].joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+            ],
+            decoder: .json,
+            operationId: "GetMandatesMandate"
+        )).data
     }
 }

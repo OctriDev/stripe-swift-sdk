@@ -6,10 +6,13 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1TaxRatesMethods {
-    /// Lists tax rates, sorted by creation date with the most recently created rates first. Use `active`, `inclusive`, and `created` to filter the collection, and use `starting_after` or `ending_before` to paginate the results. Set `limit` to control the page size and use `expand` when you need expanded response fields.
+public extension V1TaxRatesMethods {
+    /// Lists tax rates, sorted by creation date with the most recently created rates first. Use `active`, `inclusive`,
+    /// and `created` to filter the collection, and use `starting_after` or `ending_before` to paginate the results. Set
+    /// `limit` to control the page size and use `expand` when you need expanded response fields.
     ///
-    /// Returns a list of your tax rates. Tax rates are returned sorted by creation date, with the most recently created tax rates appearing first.
+    /// Returns a list of your tax rates. Tax rates are returned sorted by creation date, with the most recently created
+    /// tax rates appearing first.
     ///
     /// - Parameters:
     /// - active: Optional flag to filter by tax rates that are either active or
@@ -30,16 +33,25 @@ extension V1TaxRatesMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    public static func getTaxRates(config: ClientConfig, active: Bool?, created: GetTaxRatesParameter?, endingBefore: String?, expand: [String]?, inclusive: Bool?, limit: Int?, startingAfter: String?) async throws -> GetTaxRatesResponse {
-        if let endingBefore = endingBefore {
+    static func getTaxRates(
+        config: ClientConfig,
+        active: Bool?,
+        created: GetTaxRatesParameter?,
+        endingBefore: String?,
+        expand: [String]?,
+        inclusive: Bool?,
+        limit: Int?,
+        startingAfter: String?
+    ) async throws -> GetTaxRatesResponse {
+        if let endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let startingAfter = startingAfter {
+        if let startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try (await sdkRequest("GET", "/v1/tax_rates", config: config, query: [
+        return try await (sdkRequest("GET", "/v1/tax_rates", config: config, query: [
             SdkQueryParameter("active", value: active),
             SdkQueryParameter("created", value: created),
             SdkQueryParameter("ending_before", value: endingBefore),

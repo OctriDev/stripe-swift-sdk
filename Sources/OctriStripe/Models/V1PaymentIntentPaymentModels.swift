@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1PaymentIntentPayment domain models
+/// V1PaymentIntentPayment domain models
 /// Typed representation of the `PaymentIntentPaymentMethodOptions` API schema.
 public struct PaymentIntentPaymentMethodOptions: Codable {
     /// Optional API value serialized in the `acss_debit` wire field.
@@ -184,7 +184,7 @@ extension PaymentIntentPaymentMethodOptions {
 }
 
 public extension PaymentIntentPaymentMethodOptions {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.init(sdkDefaults: ())
         try sdkDecodeFieldsPart1(container)
@@ -196,7 +196,64 @@ public extension PaymentIntentPaymentMethodOptions {
 }
 
 public extension PaymentIntentPaymentMethodOptions {
-    public init(acssDebit: PaymentIntentPaymentMethodOptionsAcssDebitXe099ad1b? = nil, affirm: PaymentIntentPaymentMethodOptionsAffirm? = nil, afterpayClearpay: PaymentIntentPaymentMethodOptionsAfterpayClearpay? = nil, alipay: PaymentIntentPaymentMethodOptionsAlipay? = nil, alma: PaymentIntentPaymentMethodOptionsAlma? = nil, amazonPay: PaymentIntentPaymentMethodOptionsAmazonPay? = nil, auBecsDebit: PaymentIntentPaymentMethodOptionsAuBecsDebitXfcde1bb0? = nil, bacsDebit: PaymentIntentPaymentMethodOptionsBacsDebitX1f41a7a1? = nil, bancontact: PaymentIntentPaymentMethodOptionsBancontact? = nil, billie: PaymentIntentPaymentMethodOptionsBillie? = nil, bizum: PaymentIntentPaymentMethodOptionsBizum? = nil, blik: PaymentIntentPaymentMethodOptionsBlikX72e71378? = nil, boleto: PaymentIntentPaymentMethodOptionsBoleto? = nil, card: PaymentIntentPaymentMethodOptionsCardX9eb68f24? = nil, cardPresent: PaymentIntentPaymentMethodOptionsCardPresent? = nil, cashapp: PaymentIntentPaymentMethodOptionsCashapp? = nil, crypto: PaymentIntentPaymentMethodOptionsCrypto? = nil, customerBalance: PaymentIntentPaymentMethodOptionsCustomerBalance? = nil, eps: PaymentIntentPaymentMethodOptionsEpsXad029081? = nil, fpx: PaymentIntentPaymentMethodOptionsFpx? = nil, giropay: PaymentIntentPaymentMethodOptionsGiropay? = nil, grabpay: PaymentIntentPaymentMethodOptionsGrabpay? = nil, ideal: PaymentIntentPaymentMethodOptionsIdeal? = nil, interacPresent: PaymentIntentPaymentMethodOptionsInteracPresent? = nil, kakaoPay: PaymentIntentPaymentMethodOptionsKakaoPay? = nil, klarna: PaymentIntentPaymentMethodOptionsKlarna? = nil, konbini: PaymentIntentPaymentMethodOptionsKonbini? = nil, krCard: PaymentIntentPaymentMethodOptionsKrCard? = nil, link: PaymentIntentPaymentMethodOptionsLinkX25a4d0f6? = nil, mbWay: PaymentIntentPaymentMethodOptionsMbWay? = nil, mobilepay: PaymentIntentPaymentMethodOptionsMobilepayXb5c760c4? = nil, multibanco: PaymentIntentPaymentMethodOptionsMultibanco? = nil, naverPay: PaymentIntentPaymentMethodOptionsNaverPay? = nil, nzBankAccount: PaymentIntentPaymentMethodOptionsNzBankAccountX47c42f46? = nil, oxxo: PaymentIntentPaymentMethodOptionsOxxo? = nil, p24: PaymentIntentPaymentMethodOptionsP24? = nil, payByBank: PaymentIntentPaymentMethodOptionsPayByBank? = nil, payco: PaymentIntentPaymentMethodOptionsPayco? = nil, paynow: PaymentIntentPaymentMethodOptionsPaynow? = nil, paypal: PaymentIntentPaymentMethodOptionsPaypal? = nil, payto: PaymentIntentPaymentMethodOptionsPaytoXccde1200? = nil, pix: PaymentIntentPaymentMethodOptionsPix? = nil, promptpay: PaymentIntentPaymentMethodOptionsPromptpay? = nil, revolutPay: PaymentIntentPaymentMethodOptionsRevolutPay? = nil, samsungPay: PaymentIntentPaymentMethodOptionsSamsungPay? = nil, satispay: PaymentIntentPaymentMethodOptionsSatispay? = nil, scalapay: PaymentIntentPaymentMethodOptionsScalapay? = nil, sepaDebit: PaymentIntentPaymentMethodOptionsSepaDebitXb6346733? = nil, sofort: PaymentIntentPaymentMethodOptionsSofort? = nil, sunbit: PaymentIntentPaymentMethodOptionsSunbit? = nil, swish: PaymentIntentPaymentMethodOptionsSwishXb25a4853? = nil, twint: PaymentIntentPaymentMethodOptionsTwint? = nil, upi: PaymentIntentPaymentMethodOptionsUpi? = nil, usBankAccount: PaymentIntentPaymentMethodOptionsUsBankAccountXc37d444d? = nil, wechatPay: PaymentIntentPaymentMethodOptionsWechatPay? = nil, zip: PaymentIntentPaymentMethodOptionsZip? = nil) {
+    init(
+        acssDebit: PaymentIntentPaymentMethodOptionsAcssDebitXe099ad1b? = nil,
+        affirm: PaymentIntentPaymentMethodOptionsAffirm? = nil,
+        afterpayClearpay: PaymentIntentPaymentMethodOptionsAfterpayClearpay? = nil,
+        alipay: PaymentIntentPaymentMethodOptionsAlipay? = nil,
+        alma: PaymentIntentPaymentMethodOptionsAlma? = nil,
+        amazonPay: PaymentIntentPaymentMethodOptionsAmazonPay? = nil,
+        auBecsDebit: PaymentIntentPaymentMethodOptionsAuBecsDebitXfcde1bb0? = nil,
+        bacsDebit: PaymentIntentPaymentMethodOptionsBacsDebitX1f41a7a1? = nil,
+        bancontact: PaymentIntentPaymentMethodOptionsBancontact? = nil,
+        billie: PaymentIntentPaymentMethodOptionsBillie? = nil,
+        bizum: PaymentIntentPaymentMethodOptionsBizum? = nil,
+        blik: PaymentIntentPaymentMethodOptionsBlikX72e71378? = nil,
+        boleto: PaymentIntentPaymentMethodOptionsBoleto? = nil,
+        card: PaymentIntentPaymentMethodOptionsCardX9eb68f24? = nil,
+        cardPresent: PaymentIntentPaymentMethodOptionsCardPresent? = nil,
+        cashapp: PaymentIntentPaymentMethodOptionsCashapp? = nil,
+        crypto: PaymentIntentPaymentMethodOptionsCrypto? = nil,
+        customerBalance: PaymentIntentPaymentMethodOptionsCustomerBalance? = nil,
+        eps: PaymentIntentPaymentMethodOptionsEpsXad029081? = nil,
+        fpx: PaymentIntentPaymentMethodOptionsFpx? = nil,
+        giropay: PaymentIntentPaymentMethodOptionsGiropay? = nil,
+        grabpay: PaymentIntentPaymentMethodOptionsGrabpay? = nil,
+        ideal: PaymentIntentPaymentMethodOptionsIdeal? = nil,
+        interacPresent: PaymentIntentPaymentMethodOptionsInteracPresent? = nil,
+        kakaoPay: PaymentIntentPaymentMethodOptionsKakaoPay? = nil,
+        klarna: PaymentIntentPaymentMethodOptionsKlarna? = nil,
+        konbini: PaymentIntentPaymentMethodOptionsKonbini? = nil,
+        krCard: PaymentIntentPaymentMethodOptionsKrCard? = nil,
+        link: PaymentIntentPaymentMethodOptionsLinkX25a4d0f6? = nil,
+        mbWay: PaymentIntentPaymentMethodOptionsMbWay? = nil,
+        mobilepay: PaymentIntentPaymentMethodOptionsMobilepayXb5c760c4? = nil,
+        multibanco: PaymentIntentPaymentMethodOptionsMultibanco? = nil,
+        naverPay: PaymentIntentPaymentMethodOptionsNaverPay? = nil,
+        nzBankAccount: PaymentIntentPaymentMethodOptionsNzBankAccountX47c42f46? = nil,
+        oxxo: PaymentIntentPaymentMethodOptionsOxxo? = nil,
+        p24: PaymentIntentPaymentMethodOptionsP24? = nil,
+        payByBank: PaymentIntentPaymentMethodOptionsPayByBank? = nil,
+        payco: PaymentIntentPaymentMethodOptionsPayco? = nil,
+        paynow: PaymentIntentPaymentMethodOptionsPaynow? = nil,
+        paypal: PaymentIntentPaymentMethodOptionsPaypal? = nil,
+        payto: PaymentIntentPaymentMethodOptionsPaytoXccde1200? = nil,
+        pix: PaymentIntentPaymentMethodOptionsPix? = nil,
+        promptpay: PaymentIntentPaymentMethodOptionsPromptpay? = nil,
+        revolutPay: PaymentIntentPaymentMethodOptionsRevolutPay? = nil,
+        samsungPay: PaymentIntentPaymentMethodOptionsSamsungPay? = nil,
+        satispay: PaymentIntentPaymentMethodOptionsSatispay? = nil,
+        scalapay: PaymentIntentPaymentMethodOptionsScalapay? = nil,
+        sepaDebit: PaymentIntentPaymentMethodOptionsSepaDebitXb6346733? = nil,
+        sofort: PaymentIntentPaymentMethodOptionsSofort? = nil,
+        sunbit: PaymentIntentPaymentMethodOptionsSunbit? = nil,
+        swish: PaymentIntentPaymentMethodOptionsSwishXb25a4853? = nil,
+        twint: PaymentIntentPaymentMethodOptionsTwint? = nil,
+        upi: PaymentIntentPaymentMethodOptionsUpi? = nil,
+        usBankAccount: PaymentIntentPaymentMethodOptionsUsBankAccountXc37d444d? = nil,
+        wechatPay: PaymentIntentPaymentMethodOptionsWechatPay? = nil,
+        zip: PaymentIntentPaymentMethodOptionsZip? = nil
+    ) {
         self.init(sdkDefaults: ())
         sdkSet1(acssDebit, affirm, afterpayClearpay, alipay, alma)
         sdkSet2(amazonPay, auBecsDebit, bacsDebit, bancontact, billie)
@@ -214,7 +271,13 @@ public extension PaymentIntentPaymentMethodOptions {
 }
 
 extension PaymentIntentPaymentMethodOptions {
-    mutating func sdkSet1(_ acssDebit: PaymentIntentPaymentMethodOptionsAcssDebitXe099ad1b?, _ affirm: PaymentIntentPaymentMethodOptionsAffirm?, _ afterpayClearpay: PaymentIntentPaymentMethodOptionsAfterpayClearpay?, _ alipay: PaymentIntentPaymentMethodOptionsAlipay?, _ alma: PaymentIntentPaymentMethodOptionsAlma?) {
+    mutating func sdkSet1(
+        _ acssDebit: PaymentIntentPaymentMethodOptionsAcssDebitXe099ad1b?,
+        _ affirm: PaymentIntentPaymentMethodOptionsAffirm?,
+        _ afterpayClearpay: PaymentIntentPaymentMethodOptionsAfterpayClearpay?,
+        _ alipay: PaymentIntentPaymentMethodOptionsAlipay?,
+        _ alma: PaymentIntentPaymentMethodOptionsAlma?
+    ) {
         self.acssDebit = acssDebit
         self.affirm = affirm
         self.afterpayClearpay = afterpayClearpay
@@ -224,7 +287,13 @@ extension PaymentIntentPaymentMethodOptions {
 }
 
 extension PaymentIntentPaymentMethodOptions {
-    mutating func sdkSet2(_ amazonPay: PaymentIntentPaymentMethodOptionsAmazonPay?, _ auBecsDebit: PaymentIntentPaymentMethodOptionsAuBecsDebitXfcde1bb0?, _ bacsDebit: PaymentIntentPaymentMethodOptionsBacsDebitX1f41a7a1?, _ bancontact: PaymentIntentPaymentMethodOptionsBancontact?, _ billie: PaymentIntentPaymentMethodOptionsBillie?) {
+    mutating func sdkSet2(
+        _ amazonPay: PaymentIntentPaymentMethodOptionsAmazonPay?,
+        _ auBecsDebit: PaymentIntentPaymentMethodOptionsAuBecsDebitXfcde1bb0?,
+        _ bacsDebit: PaymentIntentPaymentMethodOptionsBacsDebitX1f41a7a1?,
+        _ bancontact: PaymentIntentPaymentMethodOptionsBancontact?,
+        _ billie: PaymentIntentPaymentMethodOptionsBillie?
+    ) {
         self.amazonPay = amazonPay
         self.auBecsDebit = auBecsDebit
         self.bacsDebit = bacsDebit
@@ -234,7 +303,13 @@ extension PaymentIntentPaymentMethodOptions {
 }
 
 extension PaymentIntentPaymentMethodOptions {
-    mutating func sdkSet3(_ bizum: PaymentIntentPaymentMethodOptionsBizum?, _ blik: PaymentIntentPaymentMethodOptionsBlikX72e71378?, _ boleto: PaymentIntentPaymentMethodOptionsBoleto?, _ card: PaymentIntentPaymentMethodOptionsCardX9eb68f24?, _ cardPresent: PaymentIntentPaymentMethodOptionsCardPresent?) {
+    mutating func sdkSet3(
+        _ bizum: PaymentIntentPaymentMethodOptionsBizum?,
+        _ blik: PaymentIntentPaymentMethodOptionsBlikX72e71378?,
+        _ boleto: PaymentIntentPaymentMethodOptionsBoleto?,
+        _ card: PaymentIntentPaymentMethodOptionsCardX9eb68f24?,
+        _ cardPresent: PaymentIntentPaymentMethodOptionsCardPresent?
+    ) {
         self.bizum = bizum
         self.blik = blik
         self.boleto = boleto
@@ -244,7 +319,13 @@ extension PaymentIntentPaymentMethodOptions {
 }
 
 extension PaymentIntentPaymentMethodOptions {
-    mutating func sdkSet4(_ cashapp: PaymentIntentPaymentMethodOptionsCashapp?, _ crypto: PaymentIntentPaymentMethodOptionsCrypto?, _ customerBalance: PaymentIntentPaymentMethodOptionsCustomerBalance?, _ eps: PaymentIntentPaymentMethodOptionsEpsXad029081?, _ fpx: PaymentIntentPaymentMethodOptionsFpx?) {
+    mutating func sdkSet4(
+        _ cashapp: PaymentIntentPaymentMethodOptionsCashapp?,
+        _ crypto: PaymentIntentPaymentMethodOptionsCrypto?,
+        _ customerBalance: PaymentIntentPaymentMethodOptionsCustomerBalance?,
+        _ eps: PaymentIntentPaymentMethodOptionsEpsXad029081?,
+        _ fpx: PaymentIntentPaymentMethodOptionsFpx?
+    ) {
         self.cashapp = cashapp
         self.crypto = crypto
         self.customerBalance = customerBalance
@@ -254,7 +335,13 @@ extension PaymentIntentPaymentMethodOptions {
 }
 
 extension PaymentIntentPaymentMethodOptions {
-    mutating func sdkSet5(_ giropay: PaymentIntentPaymentMethodOptionsGiropay?, _ grabpay: PaymentIntentPaymentMethodOptionsGrabpay?, _ ideal: PaymentIntentPaymentMethodOptionsIdeal?, _ interacPresent: PaymentIntentPaymentMethodOptionsInteracPresent?, _ kakaoPay: PaymentIntentPaymentMethodOptionsKakaoPay?) {
+    mutating func sdkSet5(
+        _ giropay: PaymentIntentPaymentMethodOptionsGiropay?,
+        _ grabpay: PaymentIntentPaymentMethodOptionsGrabpay?,
+        _ ideal: PaymentIntentPaymentMethodOptionsIdeal?,
+        _ interacPresent: PaymentIntentPaymentMethodOptionsInteracPresent?,
+        _ kakaoPay: PaymentIntentPaymentMethodOptionsKakaoPay?
+    ) {
         self.giropay = giropay
         self.grabpay = grabpay
         self.ideal = ideal
@@ -264,7 +351,13 @@ extension PaymentIntentPaymentMethodOptions {
 }
 
 extension PaymentIntentPaymentMethodOptions {
-    mutating func sdkSet6(_ klarna: PaymentIntentPaymentMethodOptionsKlarna?, _ konbini: PaymentIntentPaymentMethodOptionsKonbini?, _ krCard: PaymentIntentPaymentMethodOptionsKrCard?, _ link: PaymentIntentPaymentMethodOptionsLinkX25a4d0f6?, _ mbWay: PaymentIntentPaymentMethodOptionsMbWay?) {
+    mutating func sdkSet6(
+        _ klarna: PaymentIntentPaymentMethodOptionsKlarna?,
+        _ konbini: PaymentIntentPaymentMethodOptionsKonbini?,
+        _ krCard: PaymentIntentPaymentMethodOptionsKrCard?,
+        _ link: PaymentIntentPaymentMethodOptionsLinkX25a4d0f6?,
+        _ mbWay: PaymentIntentPaymentMethodOptionsMbWay?
+    ) {
         self.klarna = klarna
         self.konbini = konbini
         self.krCard = krCard
@@ -274,7 +367,13 @@ extension PaymentIntentPaymentMethodOptions {
 }
 
 extension PaymentIntentPaymentMethodOptions {
-    mutating func sdkSet7(_ mobilepay: PaymentIntentPaymentMethodOptionsMobilepayXb5c760c4?, _ multibanco: PaymentIntentPaymentMethodOptionsMultibanco?, _ naverPay: PaymentIntentPaymentMethodOptionsNaverPay?, _ nzBankAccount: PaymentIntentPaymentMethodOptionsNzBankAccountX47c42f46?, _ oxxo: PaymentIntentPaymentMethodOptionsOxxo?) {
+    mutating func sdkSet7(
+        _ mobilepay: PaymentIntentPaymentMethodOptionsMobilepayXb5c760c4?,
+        _ multibanco: PaymentIntentPaymentMethodOptionsMultibanco?,
+        _ naverPay: PaymentIntentPaymentMethodOptionsNaverPay?,
+        _ nzBankAccount: PaymentIntentPaymentMethodOptionsNzBankAccountX47c42f46?,
+        _ oxxo: PaymentIntentPaymentMethodOptionsOxxo?
+    ) {
         self.mobilepay = mobilepay
         self.multibanco = multibanco
         self.naverPay = naverPay
@@ -284,7 +383,13 @@ extension PaymentIntentPaymentMethodOptions {
 }
 
 extension PaymentIntentPaymentMethodOptions {
-    mutating func sdkSet8(_ p24: PaymentIntentPaymentMethodOptionsP24?, _ payByBank: PaymentIntentPaymentMethodOptionsPayByBank?, _ payco: PaymentIntentPaymentMethodOptionsPayco?, _ paynow: PaymentIntentPaymentMethodOptionsPaynow?, _ paypal: PaymentIntentPaymentMethodOptionsPaypal?) {
+    mutating func sdkSet8(
+        _ p24: PaymentIntentPaymentMethodOptionsP24?,
+        _ payByBank: PaymentIntentPaymentMethodOptionsPayByBank?,
+        _ payco: PaymentIntentPaymentMethodOptionsPayco?,
+        _ paynow: PaymentIntentPaymentMethodOptionsPaynow?,
+        _ paypal: PaymentIntentPaymentMethodOptionsPaypal?
+    ) {
         self.p24 = p24
         self.payByBank = payByBank
         self.payco = payco
@@ -294,7 +399,13 @@ extension PaymentIntentPaymentMethodOptions {
 }
 
 extension PaymentIntentPaymentMethodOptions {
-    mutating func sdkSet9(_ payto: PaymentIntentPaymentMethodOptionsPaytoXccde1200?, _ pix: PaymentIntentPaymentMethodOptionsPix?, _ promptpay: PaymentIntentPaymentMethodOptionsPromptpay?, _ revolutPay: PaymentIntentPaymentMethodOptionsRevolutPay?, _ samsungPay: PaymentIntentPaymentMethodOptionsSamsungPay?) {
+    mutating func sdkSet9(
+        _ payto: PaymentIntentPaymentMethodOptionsPaytoXccde1200?,
+        _ pix: PaymentIntentPaymentMethodOptionsPix?,
+        _ promptpay: PaymentIntentPaymentMethodOptionsPromptpay?,
+        _ revolutPay: PaymentIntentPaymentMethodOptionsRevolutPay?,
+        _ samsungPay: PaymentIntentPaymentMethodOptionsSamsungPay?
+    ) {
         self.payto = payto
         self.pix = pix
         self.promptpay = promptpay
@@ -304,7 +415,13 @@ extension PaymentIntentPaymentMethodOptions {
 }
 
 extension PaymentIntentPaymentMethodOptions {
-    mutating func sdkSet10(_ satispay: PaymentIntentPaymentMethodOptionsSatispay?, _ scalapay: PaymentIntentPaymentMethodOptionsScalapay?, _ sepaDebit: PaymentIntentPaymentMethodOptionsSepaDebitXb6346733?, _ sofort: PaymentIntentPaymentMethodOptionsSofort?, _ sunbit: PaymentIntentPaymentMethodOptionsSunbit?) {
+    mutating func sdkSet10(
+        _ satispay: PaymentIntentPaymentMethodOptionsSatispay?,
+        _ scalapay: PaymentIntentPaymentMethodOptionsScalapay?,
+        _ sepaDebit: PaymentIntentPaymentMethodOptionsSepaDebitXb6346733?,
+        _ sofort: PaymentIntentPaymentMethodOptionsSofort?,
+        _ sunbit: PaymentIntentPaymentMethodOptionsSunbit?
+    ) {
         self.satispay = satispay
         self.scalapay = scalapay
         self.sepaDebit = sepaDebit
@@ -314,7 +431,13 @@ extension PaymentIntentPaymentMethodOptions {
 }
 
 extension PaymentIntentPaymentMethodOptions {
-    mutating func sdkSet11(_ swish: PaymentIntentPaymentMethodOptionsSwishXb25a4853?, _ twint: PaymentIntentPaymentMethodOptionsTwint?, _ upi: PaymentIntentPaymentMethodOptionsUpi?, _ usBankAccount: PaymentIntentPaymentMethodOptionsUsBankAccountXc37d444d?, _ wechatPay: PaymentIntentPaymentMethodOptionsWechatPay?) {
+    mutating func sdkSet11(
+        _ swish: PaymentIntentPaymentMethodOptionsSwishXb25a4853?,
+        _ twint: PaymentIntentPaymentMethodOptionsTwint?,
+        _ upi: PaymentIntentPaymentMethodOptionsUpi?,
+        _ usBankAccount: PaymentIntentPaymentMethodOptionsUsBankAccountXc37d444d?,
+        _ wechatPay: PaymentIntentPaymentMethodOptionsWechatPay?
+    ) {
         self.swish = swish
         self.twint = twint
         self.upi = upi
@@ -331,81 +454,81 @@ extension PaymentIntentPaymentMethodOptions {
 
 extension PaymentIntentPaymentMethodOptions {
     mutating func sdkDecodeFieldsPart1(_ container: KeyedDecodingContainer<CodingKeys>) throws {
-        self.acssDebit = try container.sdkDecodeIfPresent(.acssDebit)
-        self.affirm = try container.sdkDecodeIfPresent(.affirm)
-        self.afterpayClearpay = try container.sdkDecodeIfPresent(.afterpayClearpay)
-        self.alipay = try container.sdkDecodeIfPresent(.alipay)
-        self.alma = try container.sdkDecodeIfPresent(.alma)
-        self.amazonPay = try container.sdkDecodeIfPresent(.amazonPay)
-        self.auBecsDebit = try container.sdkDecodeIfPresent(.auBecsDebit)
-        self.bacsDebit = try container.sdkDecodeIfPresent(.bacsDebit)
-        self.bancontact = try container.sdkDecodeIfPresent(.bancontact)
-        self.billie = try container.sdkDecodeIfPresent(.billie)
-        self.bizum = try container.sdkDecodeIfPresent(.bizum)
-        self.blik = try container.sdkDecodeIfPresent(.blik)
+        acssDebit = try container.sdkDecodeIfPresent(.acssDebit)
+        affirm = try container.sdkDecodeIfPresent(.affirm)
+        afterpayClearpay = try container.sdkDecodeIfPresent(.afterpayClearpay)
+        alipay = try container.sdkDecodeIfPresent(.alipay)
+        alma = try container.sdkDecodeIfPresent(.alma)
+        amazonPay = try container.sdkDecodeIfPresent(.amazonPay)
+        auBecsDebit = try container.sdkDecodeIfPresent(.auBecsDebit)
+        bacsDebit = try container.sdkDecodeIfPresent(.bacsDebit)
+        bancontact = try container.sdkDecodeIfPresent(.bancontact)
+        billie = try container.sdkDecodeIfPresent(.billie)
+        bizum = try container.sdkDecodeIfPresent(.bizum)
+        blik = try container.sdkDecodeIfPresent(.blik)
     }
 }
 
 extension PaymentIntentPaymentMethodOptions {
     mutating func sdkDecodeFieldsPart2(_ container: KeyedDecodingContainer<CodingKeys>) throws {
-        self.boleto = try container.sdkDecodeIfPresent(.boleto)
-        self.card = try container.sdkDecodeIfPresent(.card)
-        self.cardPresent = try container.sdkDecodeIfPresent(.cardPresent)
-        self.cashapp = try container.sdkDecodeIfPresent(.cashapp)
-        self.crypto = try container.sdkDecodeIfPresent(.crypto)
-        self.customerBalance = try container.sdkDecodeIfPresent(.customerBalance)
-        self.eps = try container.sdkDecodeIfPresent(.eps)
-        self.fpx = try container.sdkDecodeIfPresent(.fpx)
-        self.giropay = try container.sdkDecodeIfPresent(.giropay)
-        self.grabpay = try container.sdkDecodeIfPresent(.grabpay)
-        self.ideal = try container.sdkDecodeIfPresent(.ideal)
-        self.interacPresent = try container.sdkDecodeIfPresent(.interacPresent)
+        boleto = try container.sdkDecodeIfPresent(.boleto)
+        card = try container.sdkDecodeIfPresent(.card)
+        cardPresent = try container.sdkDecodeIfPresent(.cardPresent)
+        cashapp = try container.sdkDecodeIfPresent(.cashapp)
+        crypto = try container.sdkDecodeIfPresent(.crypto)
+        customerBalance = try container.sdkDecodeIfPresent(.customerBalance)
+        eps = try container.sdkDecodeIfPresent(.eps)
+        fpx = try container.sdkDecodeIfPresent(.fpx)
+        giropay = try container.sdkDecodeIfPresent(.giropay)
+        grabpay = try container.sdkDecodeIfPresent(.grabpay)
+        ideal = try container.sdkDecodeIfPresent(.ideal)
+        interacPresent = try container.sdkDecodeIfPresent(.interacPresent)
     }
 }
 
 extension PaymentIntentPaymentMethodOptions {
     mutating func sdkDecodeFieldsPart3(_ container: KeyedDecodingContainer<CodingKeys>) throws {
-        self.kakaoPay = try container.sdkDecodeIfPresent(.kakaoPay)
-        self.klarna = try container.sdkDecodeIfPresent(.klarna)
-        self.konbini = try container.sdkDecodeIfPresent(.konbini)
-        self.krCard = try container.sdkDecodeIfPresent(.krCard)
-        self.link = try container.sdkDecodeIfPresent(.link)
-        self.mbWay = try container.sdkDecodeIfPresent(.mbWay)
-        self.mobilepay = try container.sdkDecodeIfPresent(.mobilepay)
-        self.multibanco = try container.sdkDecodeIfPresent(.multibanco)
-        self.naverPay = try container.sdkDecodeIfPresent(.naverPay)
-        self.nzBankAccount = try container.sdkDecodeIfPresent(.nzBankAccount)
-        self.oxxo = try container.sdkDecodeIfPresent(.oxxo)
-        self.p24 = try container.sdkDecodeIfPresent(.p24)
+        kakaoPay = try container.sdkDecodeIfPresent(.kakaoPay)
+        klarna = try container.sdkDecodeIfPresent(.klarna)
+        konbini = try container.sdkDecodeIfPresent(.konbini)
+        krCard = try container.sdkDecodeIfPresent(.krCard)
+        link = try container.sdkDecodeIfPresent(.link)
+        mbWay = try container.sdkDecodeIfPresent(.mbWay)
+        mobilepay = try container.sdkDecodeIfPresent(.mobilepay)
+        multibanco = try container.sdkDecodeIfPresent(.multibanco)
+        naverPay = try container.sdkDecodeIfPresent(.naverPay)
+        nzBankAccount = try container.sdkDecodeIfPresent(.nzBankAccount)
+        oxxo = try container.sdkDecodeIfPresent(.oxxo)
+        p24 = try container.sdkDecodeIfPresent(.p24)
     }
 }
 
 extension PaymentIntentPaymentMethodOptions {
     mutating func sdkDecodeFieldsPart4(_ container: KeyedDecodingContainer<CodingKeys>) throws {
-        self.payByBank = try container.sdkDecodeIfPresent(.payByBank)
-        self.payco = try container.sdkDecodeIfPresent(.payco)
-        self.paynow = try container.sdkDecodeIfPresent(.paynow)
-        self.paypal = try container.sdkDecodeIfPresent(.paypal)
-        self.payto = try container.sdkDecodeIfPresent(.payto)
-        self.pix = try container.sdkDecodeIfPresent(.pix)
-        self.promptpay = try container.sdkDecodeIfPresent(.promptpay)
-        self.revolutPay = try container.sdkDecodeIfPresent(.revolutPay)
-        self.samsungPay = try container.sdkDecodeIfPresent(.samsungPay)
-        self.satispay = try container.sdkDecodeIfPresent(.satispay)
-        self.scalapay = try container.sdkDecodeIfPresent(.scalapay)
-        self.sepaDebit = try container.sdkDecodeIfPresent(.sepaDebit)
+        payByBank = try container.sdkDecodeIfPresent(.payByBank)
+        payco = try container.sdkDecodeIfPresent(.payco)
+        paynow = try container.sdkDecodeIfPresent(.paynow)
+        paypal = try container.sdkDecodeIfPresent(.paypal)
+        payto = try container.sdkDecodeIfPresent(.payto)
+        pix = try container.sdkDecodeIfPresent(.pix)
+        promptpay = try container.sdkDecodeIfPresent(.promptpay)
+        revolutPay = try container.sdkDecodeIfPresent(.revolutPay)
+        samsungPay = try container.sdkDecodeIfPresent(.samsungPay)
+        satispay = try container.sdkDecodeIfPresent(.satispay)
+        scalapay = try container.sdkDecodeIfPresent(.scalapay)
+        sepaDebit = try container.sdkDecodeIfPresent(.sepaDebit)
     }
 }
 
 extension PaymentIntentPaymentMethodOptions {
     mutating func sdkDecodeFieldsPart5(_ container: KeyedDecodingContainer<CodingKeys>) throws {
-        self.sofort = try container.sdkDecodeIfPresent(.sofort)
-        self.sunbit = try container.sdkDecodeIfPresent(.sunbit)
-        self.swish = try container.sdkDecodeIfPresent(.swish)
-        self.twint = try container.sdkDecodeIfPresent(.twint)
-        self.upi = try container.sdkDecodeIfPresent(.upi)
-        self.usBankAccount = try container.sdkDecodeIfPresent(.usBankAccount)
-        self.wechatPay = try container.sdkDecodeIfPresent(.wechatPay)
+        sofort = try container.sdkDecodeIfPresent(.sofort)
+        sunbit = try container.sdkDecodeIfPresent(.sunbit)
+        swish = try container.sdkDecodeIfPresent(.swish)
+        twint = try container.sdkDecodeIfPresent(.twint)
+        upi = try container.sdkDecodeIfPresent(.upi)
+        usBankAccount = try container.sdkDecodeIfPresent(.usBankAccount)
+        wechatPay = try container.sdkDecodeIfPresent(.wechatPay)
         self.zip = try container.sdkDecodeIfPresent(.zip)
     }
 }
@@ -416,29 +539,35 @@ public enum PaymentIntentPaymentMethodOptionsAcssDebitXe099ad1b {
 }
 
 extension PaymentIntentPaymentMethodOptionsAcssDebitXe099ad1b: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentIntentPaymentMethodOptionsAcssDebitXe099ad1b")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PaymentIntentPaymentMethodOptionsAcssDebitXe099ad1b"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PaymentIntentPaymentMethodOptionsAcssDebit.self
         ) {
-            return             .paymentIntentPaymentMethodOptionsAcssDebit(value)
+            return .paymentIntentPaymentMethodOptionsAcssDebit(value)
         }
         if let value = try? container.decode(
             PaymentIntentTypeSpecificPaymentMethodOptionsClient.self
         ) {
-            return             .paymentIntentTypeSpecificPaymentMethodOptionsClient(value)
+            return .paymentIntentTypeSpecificPaymentMethodOptionsClient(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -448,7 +577,6 @@ extension PaymentIntentPaymentMethodOptionsAcssDebitXe099ad1b: Codable {
         case let .paymentIntentTypeSpecificPaymentMethodOptionsClient(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum PaymentIntentPaymentMethodOptionsAffirm {
@@ -457,25 +585,34 @@ public enum PaymentIntentPaymentMethodOptionsAffirm {
 }
 
 extension PaymentIntentPaymentMethodOptionsAffirm: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentIntentPaymentMethodOptionsAffirm")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PaymentIntentPaymentMethodOptionsAffirm"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(PaymentMethodOptionsAffirm.self) { return .paymentMethodOptionsAffirm(value) }
+        if let value = try? container
+            .decode(PaymentMethodOptionsAffirm.self) {
+            return .paymentMethodOptionsAffirm(value)
+        }
         if let value = try? container.decode(
             PaymentIntentTypeSpecificPaymentMethodOptionsClient.self
         ) {
-            return             .paymentIntentTypeSpecificPaymentMethodOptionsClient(value)
+            return .paymentIntentTypeSpecificPaymentMethodOptionsClient(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -485,7 +622,6 @@ extension PaymentIntentPaymentMethodOptionsAffirm: Codable {
         case let .paymentIntentTypeSpecificPaymentMethodOptionsClient(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum PaymentIntentPaymentMethodOptionsAfterpayClearpay {

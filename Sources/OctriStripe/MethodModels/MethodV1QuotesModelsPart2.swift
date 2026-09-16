@@ -7,9 +7,9 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1Quotes operation model declarations
+/// Canonical v1Quotes operation model declarations
 public extension PostQuotesQuoteRequestBodyAutomaticTaxLiability {
-    public init(type: PostQuotesQuoteRequestBodyAutomaticTaxLiabilityType, account: String? = nil) {
+    init(type: PostQuotesQuoteRequestBodyAutomaticTaxLiabilityType, account: String? = nil) {
         (self.type, self.account) = (type, account)
     }
 }
@@ -22,19 +22,19 @@ public struct PostQuotesRequestBodySubscriptionDataBillingModeFlexible: Codable 
     }
 
     init() {
-        self.prorationDiscounts = nil
+        prorationDiscounts = nil
     }
 }
 
 public extension PostQuotesRequestBodySubscriptionDataBillingModeFlexible {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.prorationDiscounts = try container.sdkDecodeIfPresent(.prorationDiscounts)
+        prorationDiscounts = try container.sdkDecodeIfPresent(.prorationDiscounts)
     }
 }
 
 public extension PostQuotesRequestBodySubscriptionDataBillingModeFlexible {
-    public init(prorationDiscounts: PostQuotesRequestBodySubscriptionDataBillingModeFlexibleProraX84aca58f99? = nil) {
+    init(prorationDiscounts: PostQuotesRequestBodySubscriptionDataBillingModeFlexibleProraX84aca58f99? = nil) {
         self.init()
         self.prorationDiscounts = prorationDiscounts
     }
@@ -61,26 +61,32 @@ public struct PostQuotesRequestBodySubscriptionData: Codable {
     }
 
     init() {
-        (self.billingMode, self.description, self.effectiveDate, self.metadata, self.trialPeriodDays) = (nil, nil, nil, nil, nil)
+        (billingMode, description, effectiveDate, metadata, trialPeriodDays) = (nil, nil, nil, nil, nil)
     }
 }
 
 public extension PostQuotesRequestBodySubscriptionData {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.billingMode = try container.sdkDecodeIfPresent(.billingMode)
-        self.description = try container.sdkDecodeIfPresent(.description)
-        self.effectiveDate = try container.sdkDecodeIfPresent(.effectiveDate)
-        self.metadata = try container.sdkDecodeIfPresent(.metadata)
-        self.trialPeriodDays = try container.sdkDecodeIfPresent(.trialPeriodDays)
-        if let value = self.description {
+        billingMode = try container.sdkDecodeIfPresent(.billingMode)
+        description = try container.sdkDecodeIfPresent(.description)
+        effectiveDate = try container.sdkDecodeIfPresent(.effectiveDate)
+        metadata = try container.sdkDecodeIfPresent(.metadata)
+        trialPeriodDays = try container.sdkDecodeIfPresent(.trialPeriodDays)
+        if let value = description {
             try validateLength("description", value, min: nil, max: 500)
         }
     }
 }
 
 public extension PostQuotesRequestBodySubscriptionData {
-    public init(billingMode: PostQuotesRequestBodySubscriptionDataBillingMode? = nil, description: String? = nil, effectiveDate: PostQuotesRequestBodySubscriptionDataEffectiveDate? = nil, metadata: [String: String]? = nil, trialPeriodDays: PostQuotesRequestBodySubscriptionDataTrialPeriodDays? = nil) throws {
+    init(
+        billingMode: PostQuotesRequestBodySubscriptionDataBillingMode? = nil,
+        description: String? = nil,
+        effectiveDate: PostQuotesRequestBodySubscriptionDataEffectiveDate? = nil,
+        metadata: [String: String]? = nil,
+        trialPeriodDays: PostQuotesRequestBodySubscriptionDataTrialPeriodDays? = nil
+    ) throws {
         self.init()
         (self.billingMode, self.description) = (billingMode, description)
         (self.effectiveDate, self.metadata) = (effectiveDate, metadata)
@@ -98,22 +104,34 @@ public enum PostQuotesQuoteRequestBodySubscriptionDataEffectiveDate {
 }
 
 extension PostQuotesQuoteRequestBodySubscriptionDataEffectiveDate: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostQuotesQuoteRequestBodySubscriptionDataEffectiveDate")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PostQuotesQuoteRequestBodySubscriptionDataEffectiveDate"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(Int.self) { return .intValue(value) }
-        if let value = try? container.decode(String.self) { return .stringValue1(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(Int.self) {
+            return .intValue(value)
+        }
+        if let value = try? container.decode(String.self) {
+            return .stringValue1(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -124,7 +142,6 @@ extension PostQuotesQuoteRequestBodySubscriptionDataEffectiveDate: Codable {
         case let .stringValue1(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum PostQuotesRequestBodySubscriptionDataEffectiveDate {
@@ -134,22 +151,34 @@ public enum PostQuotesRequestBodySubscriptionDataEffectiveDate {
 }
 
 extension PostQuotesRequestBodySubscriptionDataEffectiveDate: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostQuotesRequestBodySubscriptionDataEffectiveDate")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PostQuotesRequestBodySubscriptionDataEffectiveDate"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(Int.self) { return .intValue(value) }
-        if let value = try? container.decode(String.self) { return .stringValue1(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(Int.self) {
+            return .intValue(value)
+        }
+        if let value = try? container.decode(String.self) {
+            return .stringValue1(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -160,7 +189,6 @@ extension PostQuotesRequestBodySubscriptionDataEffectiveDate: Codable {
         case let .stringValue1(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum PostQuotesRequestBodyInvoiceSettingsDescription {
@@ -169,21 +197,31 @@ public enum PostQuotesRequestBodyInvoiceSettingsDescription {
 }
 
 extension PostQuotesRequestBodyInvoiceSettingsDescription: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostQuotesRequestBodyInvoiceSettingsDescription")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PostQuotesRequestBodyInvoiceSettingsDescription"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(String.self) { return .stringValue1(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(String.self) {
+            return .stringValue1(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -193,7 +231,6 @@ extension PostQuotesRequestBodyInvoiceSettingsDescription: Codable {
         case let .stringValue1(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum PostQuotesQuoteRequestBodyDescription {
@@ -202,21 +239,31 @@ public enum PostQuotesQuoteRequestBodyDescription {
 }
 
 extension PostQuotesQuoteRequestBodyDescription: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostQuotesQuoteRequestBodyDescription")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PostQuotesQuoteRequestBodyDescription"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(String.self) { return .stringValue1(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(String.self) {
+            return .stringValue1(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -226,7 +273,6 @@ extension PostQuotesQuoteRequestBodyDescription: Codable {
         case let .stringValue1(value): try container.encode(value); return true
         }
     }
-
 }
 
 public struct PostQuotesRequestBodyLineItemsItemDiscountsVariant0Item: Codable {
@@ -241,30 +287,30 @@ public struct PostQuotesRequestBodyLineItemsItemDiscountsVariant0Item: Codable {
     }
 
     init() {
-        (self.coupon, self.discount, self.promotionCode) = (nil, nil, nil)
+        (coupon, discount, promotionCode) = (nil, nil, nil)
     }
 }
 
 public extension PostQuotesRequestBodyLineItemsItemDiscountsVariant0Item {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.coupon = try container.sdkDecodeIfPresent(.coupon)
-        self.discount = try container.sdkDecodeIfPresent(.discount)
-        self.promotionCode = try container.sdkDecodeIfPresent(.promotionCode)
-        if let value = self.coupon {
+        coupon = try container.sdkDecodeIfPresent(.coupon)
+        discount = try container.sdkDecodeIfPresent(.discount)
+        promotionCode = try container.sdkDecodeIfPresent(.promotionCode)
+        if let value = coupon {
             try validateLength("coupon", value, min: nil, max: 5000)
         }
-        if let value = self.discount {
+        if let value = discount {
             try validateLength("discount", value, min: nil, max: 5000)
         }
-        if let value = self.promotionCode {
+        if let value = promotionCode {
             try validateLength("promotion_code", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension PostQuotesRequestBodyLineItemsItemDiscountsVariant0Item {
-    public init(coupon: String? = nil, discount: String? = nil, promotionCode: String? = nil) throws {
+    init(coupon: String? = nil, discount: String? = nil, promotionCode: String? = nil) throws {
         self.init()
         (self.coupon, self.discount) = (coupon, discount)
         self.promotionCode = promotionCode
@@ -286,25 +332,33 @@ public enum PostQuotesQuoteRequestBodyDiscounts {
 }
 
 extension PostQuotesQuoteRequestBodyDiscounts: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostQuotesQuoteRequestBodyDiscounts")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PostQuotesQuoteRequestBodyDiscounts"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             [PostQuotesQuoteRequestBodyDiscountsVariant0Item].self
         ) {
-            return             .postQuotesQuoteRequestBodyDiscountsVariant0ItemList(value)
+            return .postQuotesQuoteRequestBodyDiscountsVariant0ItemList(value)
         }
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -314,7 +368,6 @@ extension PostQuotesQuoteRequestBodyDiscounts: Codable {
         case let .stringValue(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum PostQuotesQuoteRequestBodyLineItemsItemTaxRates {
@@ -323,21 +376,31 @@ public enum PostQuotesQuoteRequestBodyLineItemsItemTaxRates {
 }
 
 extension PostQuotesQuoteRequestBodyLineItemsItemTaxRates: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostQuotesQuoteRequestBodyLineItemsItemTaxRates")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PostQuotesQuoteRequestBodyLineItemsItemTaxRates"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode([String].self) { return .stringList(value) }
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode([String].self) {
+            return .stringList(value)
+        }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -347,7 +410,6 @@ extension PostQuotesQuoteRequestBodyLineItemsItemTaxRates: Codable {
         case let .stringValue(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// All invoices will be billed using the specified settings.
@@ -368,23 +430,29 @@ public struct PostQuotesQuoteRequestBodyInvoiceSettings: Codable {
     }
 
     init() {
-        (self.customFields, self.daysUntilDue, self.description, self.footer, self.issuer) = (nil, nil, nil, nil, nil)
+        (customFields, daysUntilDue, description, footer, issuer) = (nil, nil, nil, nil, nil)
     }
 }
 
 public extension PostQuotesQuoteRequestBodyInvoiceSettings {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.customFields = try container.sdkDecodeIfPresent(.customFields)
-        self.daysUntilDue = try container.sdkDecodeIfPresent(.daysUntilDue)
-        self.description = try container.sdkDecodeIfPresent(.description)
-        self.footer = try container.sdkDecodeIfPresent(.footer)
-        self.issuer = try container.sdkDecodeIfPresent(.issuer)
+        customFields = try container.sdkDecodeIfPresent(.customFields)
+        daysUntilDue = try container.sdkDecodeIfPresent(.daysUntilDue)
+        description = try container.sdkDecodeIfPresent(.description)
+        footer = try container.sdkDecodeIfPresent(.footer)
+        issuer = try container.sdkDecodeIfPresent(.issuer)
     }
 }
 
 public extension PostQuotesQuoteRequestBodyInvoiceSettings {
-    public init(customFields: PostQuotesQuoteRequestBodyInvoiceSettingsCustomFields? = nil, daysUntilDue: Int? = nil, description: PostQuotesQuoteRequestBodyInvoiceSettingsDescription? = nil, footer: PostQuotesQuoteRequestBodyInvoiceSettingsFooter? = nil, issuer: PostQuotesQuoteRequestBodyInvoiceSettingsIssuer? = nil) {
+    init(
+        customFields: PostQuotesQuoteRequestBodyInvoiceSettingsCustomFields? = nil,
+        daysUntilDue: Int? = nil,
+        description: PostQuotesQuoteRequestBodyInvoiceSettingsDescription? = nil,
+        footer: PostQuotesQuoteRequestBodyInvoiceSettingsFooter? = nil,
+        issuer: PostQuotesQuoteRequestBodyInvoiceSettingsIssuer? = nil
+    ) {
         self.init()
         (self.customFields, self.daysUntilDue) = (customFields, daysUntilDue)
         (self.description, self.footer) = (description, footer)
@@ -410,34 +478,51 @@ public struct PostQuotesRequestBodyLineItemsItemPriceData: Codable {
         case unitAmountDecimal = "unit_amount_decimal"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostQuotesRequestBodyLineItemsItemPriceData {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.currency) else {
-            throw SdkValidationError(field: "currency", code: "required", message: "Validation failed for 'currency': value is required")
-        }
-        guard container.contains(.product) else {
-            throw SdkValidationError(field: "product", code: "required", message: "Validation failed for 'product': value is required")
-        }
-        self.currency = try container.sdkDecodeRequired(.currency)
-        self.product = try container.sdkDecodeRequired(.product)
-        self.recurring = try container.sdkDecodeIfPresent(.recurring)
-        self.taxBehavior = try container.sdkDecodeIfPresent(.taxBehavior)
-        self.unitAmount = try container.sdkDecodeIfPresent(.unitAmount)
-        self.unitAmountDecimal = try container.sdkDecodeIfPresent(.unitAmountDecimal)
-            try validateLength("product", self.product, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostQuotesRequestBodyLineItemsItemPriceData {
-    public init(currency: String, product: String, recurring: PostQuotesRequestBodyLineItemsItemPriceDataRecurring? = nil, taxBehavior: PostQuotesRequestBodyLineItemsItemPriceDataTaxBehavior? = nil, unitAmount: Int? = nil, unitAmountDecimal: String? = nil) throws {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.currency) else {
+            throw SdkValidationError(
+                field: "currency",
+                code: "required",
+                message: "Validation failed for 'currency': value is required"
+            )
+        }
+        guard container.contains(.product) else {
+            throw SdkValidationError(
+                field: "product",
+                code: "required",
+                message: "Validation failed for 'product': value is required"
+            )
+        }
+        currency = try container.sdkDecodeRequired(.currency)
+        product = try container.sdkDecodeRequired(.product)
+        recurring = try container.sdkDecodeIfPresent(.recurring)
+        taxBehavior = try container.sdkDecodeIfPresent(.taxBehavior)
+        unitAmount = try container.sdkDecodeIfPresent(.unitAmount)
+        unitAmountDecimal = try container.sdkDecodeIfPresent(.unitAmountDecimal)
+        try validateLength("product", product, min: nil, max: 5000)
+    }
+}
+
+public extension PostQuotesRequestBodyLineItemsItemPriceData {
+    init(
+        currency: String,
+        product: String,
+        recurring: PostQuotesRequestBodyLineItemsItemPriceDataRecurring? = nil,
+        taxBehavior: PostQuotesRequestBodyLineItemsItemPriceDataTaxBehavior? = nil,
+        unitAmount: Int? = nil,
+        unitAmountDecimal: String? = nil
+    ) throws {
         (self.currency, self.product) = (currency, product)
         (self.recurring, self.taxBehavior) = (recurring, taxBehavior)
         (self.unitAmount, self.unitAmountDecimal) = (unitAmount, unitAmountDecimal)
-            try validateLength("product", self.product, min: nil, max: 5000)
+        try validateLength("product", self.product, min: nil, max: 5000)
     }
 }
 
@@ -447,21 +532,31 @@ public enum PostQuotesRequestBodyDefaultTaxRates {
 }
 
 extension PostQuotesRequestBodyDefaultTaxRates: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostQuotesRequestBodyDefaultTaxRates")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PostQuotesRequestBodyDefaultTaxRates"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode([String].self) { return .stringList(value) }
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode([String].self) {
+            return .stringList(value)
+        }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -471,44 +566,53 @@ extension PostQuotesRequestBodyDefaultTaxRates: Codable {
         case let .stringValue(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum PostQuotesQuoteRequestBodyLineItemsItemDiscounts {
-    case postQuotesQuoteRequestBodyLineItemsItemDiscountsVariant0ItemList([PostQuotesQuoteRequestBodyLineItemsItemDiscountsVariant0Item])
+    case postQuotesQuoteRequestBodyLineItemsItemDiscountsVariant0ItemList(
+        [PostQuotesQuoteRequestBodyLineItemsItemDiscountsVariant0Item]
+    )
     case stringValue(String)
 }
 
 extension PostQuotesQuoteRequestBodyLineItemsItemDiscounts: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostQuotesQuoteRequestBodyLineItemsItemDiscounts")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PostQuotesQuoteRequestBodyLineItemsItemDiscounts"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             [PostQuotesQuoteRequestBodyLineItemsItemDiscountsVariant0Item].self
         ) {
-            return             .postQuotesQuoteRequestBodyLineItemsItemDiscountsVariant0ItemList(value)
+            return .postQuotesQuoteRequestBodyLineItemsItemDiscountsVariant0ItemList(value)
         }
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .postQuotesQuoteRequestBodyLineItemsItemDiscountsVariant0ItemList(value): try container.encode(value); return true
+        case let .postQuotesQuoteRequestBodyLineItemsItemDiscountsVariant0ItemList(value): try container
+            .encode(value); return true
         case let .stringValue(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum PostQuotesQuoteRequestBodyTransferData {
@@ -517,25 +621,33 @@ public enum PostQuotesQuoteRequestBodyTransferData {
 }
 
 extension PostQuotesQuoteRequestBodyTransferData: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostQuotesQuoteRequestBodyTransferData")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PostQuotesQuoteRequestBodyTransferData"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PostQuotesQuoteRequestBodyTransferDataVariant0.self
         ) {
-            return             .postQuotesQuoteRequestBodyTransferDataVariant0(value)
+            return .postQuotesQuoteRequestBodyTransferDataVariant0(value)
         }
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -545,7 +657,6 @@ extension PostQuotesQuoteRequestBodyTransferData: Codable {
         case let .stringValue(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum PostQuotesRequestBodyFooter {

@@ -7,23 +7,33 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1AccountsPersons operation model declarations
+/// Canonical v1AccountsPersons operation model declarations
 extension PostAccountsAccountPersonsRequestBodyDocumentsPassportFilesItem: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostAccountsAccountPersonsRequestBodyDocumentsPassportFilesItem")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PostAccountsAccountPersonsRequestBodyDocumentsPassportFilesItem"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(String.self) { return .stringValue1(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(String.self) {
+            return .stringValue1(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -33,7 +43,6 @@ extension PostAccountsAccountPersonsRequestBodyDocumentsPassportFilesItem: Codab
         case let .stringValue1(value): try container.encode(value); return true
         }
     }
-
 }
 
 public struct PostAccountsAccountPersonsPersonRequestBodyAdditionalTosAccepX96ce0f59c0: Codable {
@@ -48,21 +57,25 @@ public struct PostAccountsAccountPersonsPersonRequestBodyAdditionalTosAccepX96ce
     }
 
     init() {
-        (self.date, self.ip, self.userAgent) = (nil, nil, nil)
+        (date, ip, userAgent) = (nil, nil, nil)
     }
 }
 
 public extension PostAccountsAccountPersonsPersonRequestBodyAdditionalTosAccepX96ce0f59c0 {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.date = try container.sdkDecodeIfPresent(.date)
-        self.ip = try container.sdkDecodeIfPresent(.ip)
-        self.userAgent = try container.sdkDecodeIfPresent(.userAgent)
+        date = try container.sdkDecodeIfPresent(.date)
+        ip = try container.sdkDecodeIfPresent(.ip)
+        userAgent = try container.sdkDecodeIfPresent(.userAgent)
     }
 }
 
 public extension PostAccountsAccountPersonsPersonRequestBodyAdditionalTosAccepX96ce0f59c0 {
-    public init(date: Int? = nil, ip: String? = nil, userAgent: PostAccountsAccountPersonsPersonRequestBodyAdditionalTosAccepXdb443b5232? = nil) {
+    init(
+        date: Int? = nil,
+        ip: String? = nil,
+        userAgent: PostAccountsAccountPersonsPersonRequestBodyAdditionalTosAccepXdb443b5232? = nil
+    ) {
         self.init()
         (self.date, self.ip) = (date, ip)
         self.userAgent = userAgent

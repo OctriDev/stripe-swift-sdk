@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1SetupIntentsConfirmMethods {
-    public struct PostSetupIntentsIntentConfirmOptions: Codable {
+public extension V1SetupIntentsConfirmMethods {
+    struct PostSetupIntentsIntentConfirmOptions: Codable {
         public var intent: String
         public var allowedPaymentMethodTypes: [PostSetupIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem]?
         public var clientSecret: String?
@@ -25,9 +25,16 @@ extension V1SetupIntentsConfirmMethods {
         }
     }
 
-    /// Confirms that a customer intends to set up a payment method on a SetupIntent. Provide a payment method, confirmation token, or payment method data as appropriate for the setup flow. The SetupIntent can succeed immediately, require additional customer action, or transition to a failed or canceled status.
+    /// Confirms that a customer intends to set up a payment method on a SetupIntent. Provide a payment method,
+    /// confirmation token, or payment method data as appropriate for the setup flow. The SetupIntent can succeed
+    /// immediately, require additional customer action, or transition to a failed or canceled status.
     ///
-    /// Confirm that your customer intends to set up the current or provided payment method. For example, you would confirm a SetupIntent when a customer hits the “Save” button on a payment method management page on your website. If the selected payment method does not require any additional steps from the customer, the SetupIntent will transition to the succeeded status. Otherwise, it will transition to the requires_action status and suggest additional actions via next_action . If setup fails, the SetupIntent will transition to the requires_payment_method status or the canceled status if the confirmation limit is reached.
+    /// Confirm that your customer intends to set up the current or provided payment method. For example, you would
+    /// confirm a SetupIntent when a customer hits the “Save” button on a payment method management page on your
+    /// website. If the selected payment method does not require any additional steps from the customer, the SetupIntent
+    /// will transition to the succeeded status. Otherwise, it will transition to the requires_action status and suggest
+    /// additional actions via next_action . If setup fails, the SetupIntent will transition to the
+    /// requires_payment_method status or the canceled status if the confirmation limit is reached.
     ///
     /// - Parameters:
     /// - allowedPaymentMethodTypes: The list of payment method types to allow for
@@ -57,7 +64,10 @@ extension V1SetupIntentsConfirmMethods {
     ///   redirect-based payment methods.
     /// - useStripeSdk: Set to `true` when confirming server-side and using
     ///   Stripe.js, iOS, or Android client-side SDKs to handle the next actions.
-    public static func postSetupIntentsIntentConfirm(config: ClientConfig, options: PostSetupIntentsIntentConfirmOptions) async throws -> SetupIntent {
+    static func postSetupIntentsIntentConfirm(
+        config: ClientConfig,
+        options: PostSetupIntentsIntentConfirmOptions
+    ) async throws -> SetupIntent {
         try validateLength("intent", options.intent, max: 5000)
 
         if let clientSecret = options.clientSecret {
@@ -74,6 +84,14 @@ extension V1SetupIntentsConfirmMethods {
 
         let requestBody = PostSetupIntentsIntentConfirmRequestBody(options: options)
 
-        return try (await sdkRequest("POST", ["/v1/setup_intents/", sdkEncodePathSegment(sdkWireString(options.intent)), "/confirm"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostSetupIntentsIntentConfirm")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/setup_intents/", sdkEncodePathSegment(sdkWireString(options.intent)), "/confirm"].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostSetupIntentsIntentConfirm"
+        )).data
     }
 }

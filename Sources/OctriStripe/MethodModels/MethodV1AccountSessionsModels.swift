@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1AccountSessions operation model declarations
+/// Canonical v1AccountSessions operation model declarations
 public struct PostAccountSessionsRequestBodyComponentsTaxSettings: Codable {
     public var enabled: Bool
     /// base_features_param
@@ -18,22 +18,28 @@ public struct PostAccountSessionsRequestBodyComponentsTaxSettings: Codable {
         case features
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostAccountSessionsRequestBodyComponentsTaxSettings {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.enabled) else {
-            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
-        }
-        self.enabled = try container.sdkDecodeRequired(.enabled)
-        self.features = try container.sdkDecodeIfPresent(.features)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostAccountSessionsRequestBodyComponentsTaxSettings {
-    public init(enabled: Bool, features: PostAccountSessionsRequestBodyComponentsTaxSettingsFeatures? = nil) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.enabled) else {
+            throw SdkValidationError(
+                field: "enabled",
+                code: "required",
+                message: "Validation failed for 'enabled': value is required"
+            )
+        }
+        enabled = try container.sdkDecodeRequired(.enabled)
+        features = try container.sdkDecodeIfPresent(.features)
+    }
+}
+
+public extension PostAccountSessionsRequestBodyComponentsTaxSettings {
+    init(enabled: Bool, features: PostAccountSessionsRequestBodyComponentsTaxSettingsFeatures? = nil) {
         (self.enabled, self.features) = (enabled, features)
     }
 }
@@ -52,22 +58,32 @@ public struct PostAccountSessionsRequestBodyComponentsPaymentDisputesFeatures: C
     }
 
     init() {
-        (self.destinationOnBehalfOfChargeManagement, self.disputeManagement, self.refundManagement, self.smartDisputesManagement) = (nil, nil, nil, nil)
+        (destinationOnBehalfOfChargeManagement, disputeManagement, refundManagement, smartDisputesManagement) = (
+            nil,
+            nil,
+            nil,
+            nil
+        )
     }
 }
 
 public extension PostAccountSessionsRequestBodyComponentsPaymentDisputesFeatures {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.destinationOnBehalfOfChargeManagement = try container.sdkDecodeIfPresent(.destinationOnBehalfOfChargeManagement)
-        self.disputeManagement = try container.sdkDecodeIfPresent(.disputeManagement)
-        self.refundManagement = try container.sdkDecodeIfPresent(.refundManagement)
-        self.smartDisputesManagement = try container.sdkDecodeIfPresent(.smartDisputesManagement)
+        destinationOnBehalfOfChargeManagement = try container.sdkDecodeIfPresent(.destinationOnBehalfOfChargeManagement)
+        disputeManagement = try container.sdkDecodeIfPresent(.disputeManagement)
+        refundManagement = try container.sdkDecodeIfPresent(.refundManagement)
+        smartDisputesManagement = try container.sdkDecodeIfPresent(.smartDisputesManagement)
     }
 }
 
 public extension PostAccountSessionsRequestBodyComponentsPaymentDisputesFeatures {
-    public init(destinationOnBehalfOfChargeManagement: Bool? = nil, disputeManagement: Bool? = nil, refundManagement: Bool? = nil, smartDisputesManagement: Bool? = nil) {
+    init(
+        destinationOnBehalfOfChargeManagement: Bool? = nil,
+        disputeManagement: Bool? = nil,
+        refundManagement: Bool? = nil,
+        smartDisputesManagement: Bool? = nil
+    ) {
         self.init()
         self.destinationOnBehalfOfChargeManagement = destinationOnBehalfOfChargeManagement
         (self.disputeManagement, self.refundManagement) = (disputeManagement, refundManagement)
@@ -85,22 +101,28 @@ public struct PostAccountSessionsRequestBodyComponentsFinancialAccountTransactio
         case features
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostAccountSessionsRequestBodyComponentsFinancialAccountTransactions {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.enabled) else {
-            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
-        }
-        self.enabled = try container.sdkDecodeRequired(.enabled)
-        self.features = try container.sdkDecodeIfPresent(.features)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostAccountSessionsRequestBodyComponentsFinancialAccountTransactions {
-    public init(enabled: Bool, features: PostAccountSessionsRequestBodyComponentsFinancialAccountTransX60ff7dca85? = nil) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.enabled) else {
+            throw SdkValidationError(
+                field: "enabled",
+                code: "required",
+                message: "Validation failed for 'enabled': value is required"
+            )
+        }
+        enabled = try container.sdkDecodeRequired(.enabled)
+        features = try container.sdkDecodeIfPresent(.features)
+    }
+}
+
+public extension PostAccountSessionsRequestBodyComponentsFinancialAccountTransactions {
+    init(enabled: Bool, features: PostAccountSessionsRequestBodyComponentsFinancialAccountTransX60ff7dca85? = nil) {
         (self.enabled, self.features) = (enabled, features)
     }
 }
@@ -115,34 +137,40 @@ public struct PostAccountSessionsRequestBodyComponentsIssuingCard: Codable {
         case features
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostAccountSessionsRequestBodyComponentsIssuingCard {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.enabled) else {
-            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
-        }
-        self.enabled = try container.sdkDecodeRequired(.enabled)
-        self.features = try container.sdkDecodeIfPresent(.features)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostAccountSessionsRequestBodyComponentsIssuingCard {
-    public init(enabled: Bool, features: PostAccountSessionsRequestBodyComponentsIssuingCardFeatures? = nil) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.enabled) else {
+            throw SdkValidationError(
+                field: "enabled",
+                code: "required",
+                message: "Validation failed for 'enabled': value is required"
+            )
+        }
+        enabled = try container.sdkDecodeRequired(.enabled)
+        features = try container.sdkDecodeIfPresent(.features)
+    }
+}
+
+public extension PostAccountSessionsRequestBodyComponentsIssuingCard {
+    init(enabled: Bool, features: PostAccountSessionsRequestBodyComponentsIssuingCardFeatures? = nil) {
         (self.enabled, self.features) = (enabled, features)
     }
 }
 
 public struct PostAccountSessionsRequestBodyComponentsTaxSettingsFeatures: Codable {
-
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension PostAccountSessionsRequestBodyComponentsTaxSettingsFeatures {
-    public init() {
-    }
+    init() {}
 }
 
 public struct PostAccountSessionsRequestBodyComponentsFinancialAccountTransX60ff7dca85: Codable {
@@ -153,19 +181,19 @@ public struct PostAccountSessionsRequestBodyComponentsFinancialAccountTransX60ff
     }
 
     init() {
-        self.cardSpendDisputeManagement = nil
+        cardSpendDisputeManagement = nil
     }
 }
 
 public extension PostAccountSessionsRequestBodyComponentsFinancialAccountTransX60ff7dca85 {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.cardSpendDisputeManagement = try container.sdkDecodeIfPresent(.cardSpendDisputeManagement)
+        cardSpendDisputeManagement = try container.sdkDecodeIfPresent(.cardSpendDisputeManagement)
     }
 }
 
 public extension PostAccountSessionsRequestBodyComponentsFinancialAccountTransX60ff7dca85 {
-    public init(cardSpendDisputeManagement: Bool? = nil) {
+    init(cardSpendDisputeManagement: Bool? = nil) {
         self.init()
         self.cardSpendDisputeManagement = cardSpendDisputeManagement
     }
@@ -181,22 +209,28 @@ public struct PostAccountSessionsRequestBodyComponentsBalances: Codable {
         case features
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostAccountSessionsRequestBodyComponentsBalances {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.enabled) else {
-            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
-        }
-        self.enabled = try container.sdkDecodeRequired(.enabled)
-        self.features = try container.sdkDecodeIfPresent(.features)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostAccountSessionsRequestBodyComponentsBalances {
-    public init(enabled: Bool, features: PostAccountSessionsRequestBodyComponentsBalancesFeatures? = nil) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.enabled) else {
+            throw SdkValidationError(
+                field: "enabled",
+                code: "required",
+                message: "Validation failed for 'enabled': value is required"
+            )
+        }
+        enabled = try container.sdkDecodeRequired(.enabled)
+        features = try container.sdkDecodeIfPresent(.features)
+    }
+}
+
+public extension PostAccountSessionsRequestBodyComponentsBalances {
+    init(enabled: Bool, features: PostAccountSessionsRequestBodyComponentsBalancesFeatures? = nil) {
         (self.enabled, self.features) = (enabled, features)
     }
 }
@@ -217,23 +251,35 @@ public struct PostAccountSessionsRequestBodyComponentsPaymentDetailsFeatures: Co
     }
 
     init() {
-        (self.capturePayments, self.destinationOnBehalfOfChargeManagement, self.disputeManagement, self.refundManagement, self.smartDisputesManagement) = (nil, nil, nil, nil, nil)
+        (
+            capturePayments,
+            destinationOnBehalfOfChargeManagement,
+            disputeManagement,
+            refundManagement,
+            smartDisputesManagement
+        ) = (nil, nil, nil, nil, nil)
     }
 }
 
 public extension PostAccountSessionsRequestBodyComponentsPaymentDetailsFeatures {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.capturePayments = try container.sdkDecodeIfPresent(.capturePayments)
-        self.destinationOnBehalfOfChargeManagement = try container.sdkDecodeIfPresent(.destinationOnBehalfOfChargeManagement)
-        self.disputeManagement = try container.sdkDecodeIfPresent(.disputeManagement)
-        self.refundManagement = try container.sdkDecodeIfPresent(.refundManagement)
-        self.smartDisputesManagement = try container.sdkDecodeIfPresent(.smartDisputesManagement)
+        capturePayments = try container.sdkDecodeIfPresent(.capturePayments)
+        destinationOnBehalfOfChargeManagement = try container.sdkDecodeIfPresent(.destinationOnBehalfOfChargeManagement)
+        disputeManagement = try container.sdkDecodeIfPresent(.disputeManagement)
+        refundManagement = try container.sdkDecodeIfPresent(.refundManagement)
+        smartDisputesManagement = try container.sdkDecodeIfPresent(.smartDisputesManagement)
     }
 }
 
 public extension PostAccountSessionsRequestBodyComponentsPaymentDetailsFeatures {
-    public init(capturePayments: Bool? = nil, destinationOnBehalfOfChargeManagement: Bool? = nil, disputeManagement: Bool? = nil, refundManagement: Bool? = nil, smartDisputesManagement: Bool? = nil) {
+    init(
+        capturePayments: Bool? = nil,
+        destinationOnBehalfOfChargeManagement: Bool? = nil,
+        disputeManagement: Bool? = nil,
+        refundManagement: Bool? = nil,
+        smartDisputesManagement: Bool? = nil
+    ) {
         self.init()
         self.capturePayments = capturePayments
         self.destinationOnBehalfOfChargeManagement = destinationOnBehalfOfChargeManagement
@@ -243,23 +289,23 @@ public extension PostAccountSessionsRequestBodyComponentsPaymentDetailsFeatures 
 }
 
 public struct PostAccountSessionsRequestBodyComponentsBalanceReportFeatures: Codable {
-
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension PostAccountSessionsRequestBodyComponentsBalanceReportFeatures {
-    public init() {
-    }
+    init() {}
 }
 
 public struct PostAccountSessionsRequestBodyComponentsDocumentsFeatures: Codable {
-
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension PostAccountSessionsRequestBodyComponentsDocumentsFeatures {
-    public init() {
-    }
+    init() {}
 }
 
 public struct PostAccountSessionsRequestBodyComponentsPaymentDisputes: Codable {
@@ -272,22 +318,28 @@ public struct PostAccountSessionsRequestBodyComponentsPaymentDisputes: Codable {
         case features
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostAccountSessionsRequestBodyComponentsPaymentDisputes {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.enabled) else {
-            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
-        }
-        self.enabled = try container.sdkDecodeRequired(.enabled)
-        self.features = try container.sdkDecodeIfPresent(.features)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostAccountSessionsRequestBodyComponentsPaymentDisputes {
-    public init(enabled: Bool, features: PostAccountSessionsRequestBodyComponentsPaymentDisputesFeatures? = nil) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.enabled) else {
+            throw SdkValidationError(
+                field: "enabled",
+                code: "required",
+                message: "Validation failed for 'enabled': value is required"
+            )
+        }
+        enabled = try container.sdkDecodeRequired(.enabled)
+        features = try container.sdkDecodeIfPresent(.features)
+    }
+}
+
+public extension PostAccountSessionsRequestBodyComponentsPaymentDisputes {
+    init(enabled: Bool, features: PostAccountSessionsRequestBodyComponentsPaymentDisputesFeatures? = nil) {
         (self.enabled, self.features) = (enabled, features)
     }
 }
@@ -302,22 +354,28 @@ public struct PostAccountSessionsRequestBodyComponentsIssuingCardsList: Codable 
         case features
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostAccountSessionsRequestBodyComponentsIssuingCardsList {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.enabled) else {
-            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
-        }
-        self.enabled = try container.sdkDecodeRequired(.enabled)
-        self.features = try container.sdkDecodeIfPresent(.features)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostAccountSessionsRequestBodyComponentsIssuingCardsList {
-    public init(enabled: Bool, features: PostAccountSessionsRequestBodyComponentsIssuingCardsListFeatures? = nil) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.enabled) else {
+            throw SdkValidationError(
+                field: "enabled",
+                code: "required",
+                message: "Validation failed for 'enabled': value is required"
+            )
+        }
+        enabled = try container.sdkDecodeRequired(.enabled)
+        features = try container.sdkDecodeIfPresent(.features)
+    }
+}
+
+public extension PostAccountSessionsRequestBodyComponentsIssuingCardsList {
+    init(enabled: Bool, features: PostAccountSessionsRequestBodyComponentsIssuingCardsListFeatures? = nil) {
         (self.enabled, self.features) = (enabled, features)
     }
 }
@@ -332,22 +390,28 @@ public struct PostAccountSessionsRequestBodyComponentsNotificationBanner: Codabl
         case features
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostAccountSessionsRequestBodyComponentsNotificationBanner {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.enabled) else {
-            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
-        }
-        self.enabled = try container.sdkDecodeRequired(.enabled)
-        self.features = try container.sdkDecodeIfPresent(.features)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostAccountSessionsRequestBodyComponentsNotificationBanner {
-    public init(enabled: Bool, features: PostAccountSessionsRequestBodyComponentsNotificationBannerFeatures? = nil) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.enabled) else {
+            throw SdkValidationError(
+                field: "enabled",
+                code: "required",
+                message: "Validation failed for 'enabled': value is required"
+            )
+        }
+        enabled = try container.sdkDecodeRequired(.enabled)
+        features = try container.sdkDecodeIfPresent(.features)
+    }
+}
+
+public extension PostAccountSessionsRequestBodyComponentsNotificationBanner {
+    init(enabled: Bool, features: PostAccountSessionsRequestBodyComponentsNotificationBannerFeatures? = nil) {
         (self.enabled, self.features) = (enabled, features)
     }
 }
@@ -368,23 +432,35 @@ public struct PostAccountSessionsRequestBodyComponentsDisputesListFeatures: Coda
     }
 
     init() {
-        (self.capturePayments, self.destinationOnBehalfOfChargeManagement, self.disputeManagement, self.refundManagement, self.smartDisputesManagement) = (nil, nil, nil, nil, nil)
+        (
+            capturePayments,
+            destinationOnBehalfOfChargeManagement,
+            disputeManagement,
+            refundManagement,
+            smartDisputesManagement
+        ) = (nil, nil, nil, nil, nil)
     }
 }
 
 public extension PostAccountSessionsRequestBodyComponentsDisputesListFeatures {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.capturePayments = try container.sdkDecodeIfPresent(.capturePayments)
-        self.destinationOnBehalfOfChargeManagement = try container.sdkDecodeIfPresent(.destinationOnBehalfOfChargeManagement)
-        self.disputeManagement = try container.sdkDecodeIfPresent(.disputeManagement)
-        self.refundManagement = try container.sdkDecodeIfPresent(.refundManagement)
-        self.smartDisputesManagement = try container.sdkDecodeIfPresent(.smartDisputesManagement)
+        capturePayments = try container.sdkDecodeIfPresent(.capturePayments)
+        destinationOnBehalfOfChargeManagement = try container.sdkDecodeIfPresent(.destinationOnBehalfOfChargeManagement)
+        disputeManagement = try container.sdkDecodeIfPresent(.disputeManagement)
+        refundManagement = try container.sdkDecodeIfPresent(.refundManagement)
+        smartDisputesManagement = try container.sdkDecodeIfPresent(.smartDisputesManagement)
     }
 }
 
 public extension PostAccountSessionsRequestBodyComponentsDisputesListFeatures {
-    public init(capturePayments: Bool? = nil, destinationOnBehalfOfChargeManagement: Bool? = nil, disputeManagement: Bool? = nil, refundManagement: Bool? = nil, smartDisputesManagement: Bool? = nil) {
+    init(
+        capturePayments: Bool? = nil,
+        destinationOnBehalfOfChargeManagement: Bool? = nil,
+        disputeManagement: Bool? = nil,
+        refundManagement: Bool? = nil,
+        smartDisputesManagement: Bool? = nil
+    ) {
         self.init()
         self.capturePayments = capturePayments
         self.destinationOnBehalfOfChargeManagement = destinationOnBehalfOfChargeManagement
@@ -403,22 +479,28 @@ public struct PostAccountSessionsRequestBodyComponentsAccountOnboarding: Codable
         case features
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostAccountSessionsRequestBodyComponentsAccountOnboarding {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.enabled) else {
-            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
-        }
-        self.enabled = try container.sdkDecodeRequired(.enabled)
-        self.features = try container.sdkDecodeIfPresent(.features)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostAccountSessionsRequestBodyComponentsAccountOnboarding {
-    public init(enabled: Bool, features: PostAccountSessionsRequestBodyComponentsAccountOnboardingFeatures? = nil) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.enabled) else {
+            throw SdkValidationError(
+                field: "enabled",
+                code: "required",
+                message: "Validation failed for 'enabled': value is required"
+            )
+        }
+        enabled = try container.sdkDecodeRequired(.enabled)
+        features = try container.sdkDecodeIfPresent(.features)
+    }
+}
+
+public extension PostAccountSessionsRequestBodyComponentsAccountOnboarding {
+    init(enabled: Bool, features: PostAccountSessionsRequestBodyComponentsAccountOnboardingFeatures? = nil) {
         (self.enabled, self.features) = (enabled, features)
     }
 }
@@ -433,34 +515,40 @@ public struct PostAccountSessionsRequestBodyComponentsBalanceReport: Codable {
         case features
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostAccountSessionsRequestBodyComponentsBalanceReport {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.enabled) else {
-            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
-        }
-        self.enabled = try container.sdkDecodeRequired(.enabled)
-        self.features = try container.sdkDecodeIfPresent(.features)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostAccountSessionsRequestBodyComponentsBalanceReport {
-    public init(enabled: Bool, features: PostAccountSessionsRequestBodyComponentsBalanceReportFeatures? = nil) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.enabled) else {
+            throw SdkValidationError(
+                field: "enabled",
+                code: "required",
+                message: "Validation failed for 'enabled': value is required"
+            )
+        }
+        enabled = try container.sdkDecodeRequired(.enabled)
+        features = try container.sdkDecodeIfPresent(.features)
+    }
+}
+
+public extension PostAccountSessionsRequestBodyComponentsBalanceReport {
+    init(enabled: Bool, features: PostAccountSessionsRequestBodyComponentsBalanceReportFeatures? = nil) {
         (self.enabled, self.features) = (enabled, features)
     }
 }
 
 public struct PostAccountSessionsRequestBodyComponentsPayoutReconciliationRX9226d27b5f: Codable {
-
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension PostAccountSessionsRequestBodyComponentsPayoutReconciliationRX9226d27b5f {
-    public init() {
-    }
+    init() {}
 }
 
 public struct PostAccountSessionsRequestBodyComponentsNotificationBannerFeatures: Codable {
@@ -473,20 +561,20 @@ public struct PostAccountSessionsRequestBodyComponentsNotificationBannerFeatures
     }
 
     init() {
-        (self.disableStripeUserAuthentication, self.externalAccountCollection) = (nil, nil)
+        (disableStripeUserAuthentication, externalAccountCollection) = (nil, nil)
     }
 }
 
 public extension PostAccountSessionsRequestBodyComponentsNotificationBannerFeatures {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.disableStripeUserAuthentication = try container.sdkDecodeIfPresent(.disableStripeUserAuthentication)
-        self.externalAccountCollection = try container.sdkDecodeIfPresent(.externalAccountCollection)
+        disableStripeUserAuthentication = try container.sdkDecodeIfPresent(.disableStripeUserAuthentication)
+        externalAccountCollection = try container.sdkDecodeIfPresent(.externalAccountCollection)
     }
 }
 
 public extension PostAccountSessionsRequestBodyComponentsNotificationBannerFeatures {
-    public init(disableStripeUserAuthentication: Bool? = nil, externalAccountCollection: Bool? = nil) {
+    init(disableStripeUserAuthentication: Bool? = nil, externalAccountCollection: Bool? = nil) {
         self.init()
         self.disableStripeUserAuthentication = disableStripeUserAuthentication
         self.externalAccountCollection = externalAccountCollection
@@ -503,22 +591,28 @@ public struct PostAccountSessionsRequestBodyComponentsFinancialAccount: Codable 
         case features
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostAccountSessionsRequestBodyComponentsFinancialAccount {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.enabled) else {
-            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
-        }
-        self.enabled = try container.sdkDecodeRequired(.enabled)
-        self.features = try container.sdkDecodeIfPresent(.features)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostAccountSessionsRequestBodyComponentsFinancialAccount {
-    public init(enabled: Bool, features: PostAccountSessionsRequestBodyComponentsFinancialAccountFeatures? = nil) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.enabled) else {
+            throw SdkValidationError(
+                field: "enabled",
+                code: "required",
+                message: "Validation failed for 'enabled': value is required"
+            )
+        }
+        enabled = try container.sdkDecodeRequired(.enabled)
+        features = try container.sdkDecodeIfPresent(.features)
+    }
+}
+
+public extension PostAccountSessionsRequestBodyComponentsFinancialAccount {
+    init(enabled: Bool, features: PostAccountSessionsRequestBodyComponentsFinancialAccountFeatures? = nil) {
         (self.enabled, self.features) = (enabled, features)
     }
 }

@@ -6,8 +6,9 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1TreasuryReceivedDebitsMethods {
-    /// Lists received debits associated with a financial account. Use `financial_account` to scope the results, `status` to filter their outcome, and cursor parameters to paginate the list.
+public extension V1TreasuryReceivedDebitsMethods {
+    /// Lists received debits associated with a financial account. Use `financial_account` to scope the results,
+    /// `status` to filter their outcome, and cursor parameters to paginate the list.
     ///
     /// Returns a list of ReceivedDebits.
     ///
@@ -28,16 +29,24 @@ extension V1TreasuryReceivedDebitsMethods {
     ///   the list.
     /// - status: Only return ReceivedDebits that have the given status: `succeeded`
     ///   or `failed`.
-    public static func getTreasuryReceivedDebits(config: ClientConfig, financialAccount: String, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?, status: GetTreasuryReceivedDebitsParameter?) async throws -> GetTreasuryReceivedDebitsResponse {
-        if let endingBefore = endingBefore {
+    static func getTreasuryReceivedDebits(
+        config: ClientConfig,
+        financialAccount: String,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        startingAfter: String?,
+        status: GetTreasuryReceivedDebitsParameter?
+    ) async throws -> GetTreasuryReceivedDebitsResponse {
+        if let endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let startingAfter = startingAfter {
+        if let startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try (await sdkRequest("GET", "/v1/treasury/received_debits", config: config, query: [
+        return try await (sdkRequest("GET", "/v1/treasury/received_debits", config: config, query: [
             SdkQueryParameter("financial_account", value: financialAccount),
             SdkQueryParameter("ending_before", value: endingBefore),
             SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),

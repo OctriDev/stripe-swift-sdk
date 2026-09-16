@@ -3,18 +3,24 @@
 
 import Foundation
 
-// V1Dispute domain models
+/// V1Dispute domain models
 /// Categorization of disputed payment.
-public struct DisputeVisaCompellingEvidence3DisputedTransactionMerchandiseOrServices: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct DisputeVisaCompellingEvidence3DisputedTransactionMerchandiseOrServices: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let merchandise = DisputeVisaCompellingEvidence3DisputedTransactionMerchandiseOrServices(rawValue: "merchandise")
-    public static let services = DisputeVisaCompellingEvidence3DisputedTransactionMerchandiseOrServices(rawValue: "services")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let merchandise =
+        DisputeVisaCompellingEvidence3DisputedTransactionMerchandiseOrServices(rawValue: "merchandise")
+    public static let services =
+        DisputeVisaCompellingEvidence3DisputedTransactionMerchandiseOrServices(rawValue: "services")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -24,10 +30,14 @@ public struct DisputeVisaCompellingEvidence3DisputedTransactionMerchandiseOrServ
 }
 
 /// The type of dispute opened. Different case types may have varying fees and financial impact.
-public struct DisputePaymentMethodDetailsCardCaseType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct DisputePaymentMethodDetailsCardCaseType: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let block = DisputePaymentMethodDetailsCardCaseType(rawValue: "block")
     public static let chargeback = DisputePaymentMethodDetailsCardCaseType(rawValue: "chargeback")
     public static let compliance = DisputePaymentMethodDetailsCardCaseType(rawValue: "compliance")
@@ -36,7 +46,7 @@ public struct DisputePaymentMethodDetailsCardCaseType: RawRepresentable, Hashabl
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

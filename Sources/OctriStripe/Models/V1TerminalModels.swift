@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1Terminal domain models
+/// V1Terminal domain models
 /// A Connection Token is used by the Stripe Terminal SDK to connect to a reader. Related guide: Fleet management
 public struct TerminalConnectionToken: Codable {
     /// String representing the object's type. Objects of the same type share the same value.
@@ -20,33 +20,43 @@ public struct TerminalConnectionToken: Codable {
         case location
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension TerminalConnectionToken {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
         }
         guard container.contains(.secret) else {
-            throw SdkValidationError(field: "secret", code: "required", message: "Validation failed for 'secret': value is required")
+            throw SdkValidationError(
+                field: "secret",
+                code: "required",
+                message: "Validation failed for 'secret': value is required"
+            )
         }
-        self.object = try container.sdkDecodeRequired(.object)
-        self.secret = try container.sdkDecodeRequired(.secret)
-        self.location = try container.sdkDecodeIfPresent(.location)
-            try validateLength("secret", self.secret, min: nil, max: 5000)
-        if let value = self.location {
+        object = try container.sdkDecodeRequired(.object)
+        secret = try container.sdkDecodeRequired(.secret)
+        location = try container.sdkDecodeIfPresent(.location)
+        try validateLength("secret", secret, min: nil, max: 5000)
+        if let value = location {
             try validateLength("location", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension TerminalConnectionToken {
-    public init(object: TerminalConnectionTokenObject, secret: String, location: String? = nil) throws {
+    init(object: TerminalConnectionTokenObject, secret: String, location: String? = nil) throws {
         (self.object, self.secret) = (object, secret)
         self.location = location
-            try validateLength("secret", self.secret, min: nil, max: 5000)
+        try validateLength("secret", self.secret, min: nil, max: 5000)
         if let value = self.location {
             try validateLength("location", value, min: nil, max: 5000)
         }
@@ -97,69 +107,108 @@ public struct TerminalLocation: Codable {
         case phone
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension TerminalLocation {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.address) else {
-            throw SdkValidationError(field: "address", code: "required", message: "Validation failed for 'address': value is required")
+            throw SdkValidationError(
+                field: "address",
+                code: "required",
+                message: "Validation failed for 'address': value is required"
+            )
         }
         guard container.contains(.displayName) else {
-            throw SdkValidationError(field: "display_name", code: "required", message: "Validation failed for 'display_name': value is required")
+            throw SdkValidationError(
+                field: "display_name",
+                code: "required",
+                message: "Validation failed for 'display_name': value is required"
+            )
         }
         guard container.contains(.id) else {
-            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
+            throw SdkValidationError(
+                field: "id",
+                code: "required",
+                message: "Validation failed for 'id': value is required"
+            )
         }
         guard container.contains(.livemode) else {
-            throw SdkValidationError(field: "livemode", code: "required", message: "Validation failed for 'livemode': value is required")
+            throw SdkValidationError(
+                field: "livemode",
+                code: "required",
+                message: "Validation failed for 'livemode': value is required"
+            )
         }
         guard container.contains(.metadata) else {
-            throw SdkValidationError(field: "metadata", code: "required", message: "Validation failed for 'metadata': value is required")
+            throw SdkValidationError(
+                field: "metadata",
+                code: "required",
+                message: "Validation failed for 'metadata': value is required"
+            )
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
         }
-        self.address = try container.sdkDecodeRequired(.address)
-        self.displayName = try container.sdkDecodeRequired(.displayName)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.livemode = try container.sdkDecodeRequired(.livemode)
-        self.metadata = try container.sdkDecodeRequired(.metadata)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.addressKana = try container.sdkDecodeIfPresent(.addressKana)
-        self.addressKanji = try container.sdkDecodeIfPresent(.addressKanji)
-        self.configurationOverrides = try container.sdkDecodeIfPresent(.configurationOverrides)
-        self.displayNameKana = try container.sdkDecodeIfPresent(.displayNameKana)
-        self.displayNameKanji = try container.sdkDecodeIfPresent(.displayNameKanji)
-        self.phone = try container.sdkDecodeIfPresent(.phone)
-            try validateLength("display_name", self.displayName, min: nil, max: 5000)
-            try validateLength("id", self.id, min: nil, max: 5000)
-        if let value = self.configurationOverrides {
+        address = try container.sdkDecodeRequired(.address)
+        displayName = try container.sdkDecodeRequired(.displayName)
+        id = try container.sdkDecodeRequired(.id)
+        livemode = try container.sdkDecodeRequired(.livemode)
+        metadata = try container.sdkDecodeRequired(.metadata)
+        object = try container.sdkDecodeRequired(.object)
+        addressKana = try container.sdkDecodeIfPresent(.addressKana)
+        addressKanji = try container.sdkDecodeIfPresent(.addressKanji)
+        configurationOverrides = try container.sdkDecodeIfPresent(.configurationOverrides)
+        displayNameKana = try container.sdkDecodeIfPresent(.displayNameKana)
+        displayNameKanji = try container.sdkDecodeIfPresent(.displayNameKanji)
+        phone = try container.sdkDecodeIfPresent(.phone)
+        try validateLength("display_name", displayName, min: nil, max: 5000)
+        try validateLength("id", id, min: nil, max: 5000)
+        if let value = configurationOverrides {
             try validateLength("configuration_overrides", value, min: nil, max: 5000)
         }
-        if let value = self.displayNameKana {
+        if let value = displayNameKana {
             try validateLength("display_name_kana", value, min: nil, max: 5000)
         }
-        if let value = self.displayNameKanji {
+        if let value = displayNameKanji {
             try validateLength("display_name_kanji", value, min: nil, max: 5000)
         }
-        if let value = self.phone {
+        if let value = phone {
             try validateLength("phone", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension TerminalLocation {
-    public init(address: AddressApiResourceTerminal, displayName: String, id: String, livemode: Bool, metadata: [String: String], object: TerminalLocationObject, addressKana: LegalEntityJapanAddress? = nil, addressKanji: LegalEntityJapanAddress? = nil, configurationOverrides: String? = nil, displayNameKana: String? = nil, displayNameKanji: String? = nil, phone: String? = nil) throws {
+    init(
+        address: AddressApiResourceTerminal,
+        displayName: String,
+        id: String,
+        livemode: Bool,
+        metadata: [String: String],
+        object: TerminalLocationObject,
+        addressKana: LegalEntityJapanAddress? = nil,
+        addressKanji: LegalEntityJapanAddress? = nil,
+        configurationOverrides: String? = nil,
+        displayNameKana: String? = nil,
+        displayNameKanji: String? = nil,
+        phone: String? = nil
+    ) throws {
         (self.address, self.displayName) = (address, displayName)
         (self.id, self.livemode) = (id, livemode)
         (self.metadata, self.object) = (metadata, object)
         (self.addressKana, self.addressKanji) = (addressKana, addressKanji)
         (self.configurationOverrides, self.displayNameKana) = (configurationOverrides, displayNameKana)
         (self.displayNameKanji, self.phone) = (displayNameKanji, phone)
-            try validateLength("display_name", self.displayName, min: nil, max: 5000)
-            try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("display_name", self.displayName, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
         if let value = self.configurationOverrides {
             try validateLength("configuration_overrides", value, min: nil, max: 5000)
         }
@@ -177,25 +226,28 @@ public extension TerminalLocation {
 
 /// A Refund object returned by the Terminal refunds API.
 public struct TerminalRefund: Codable {
-
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension TerminalRefund {
-    public init() {
-    }
+    init() {}
 }
 
 /// String representing the object's type. Objects of the same type share the same value.
 public struct TerminalConnectionTokenObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let terminalConnectionToken = TerminalConnectionTokenObject(rawValue: "terminal.connection_token")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -208,12 +260,15 @@ public struct TerminalConnectionTokenObject: RawRepresentable, Hashable, Codable
 public struct TerminalLocationObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let terminalLocation = TerminalLocationObject(rawValue: "terminal.location")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

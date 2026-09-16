@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1BillingCreditGrantsMethods {
-    public struct PostBillingCreditGrantsOptions: Codable {
+public extension V1BillingCreditGrantsMethods {
+    struct PostBillingCreditGrantsOptions: Codable {
         public var amount: PostBillingCreditGrantsRequestBodyAmount
         public var applicabilityConfig: PostBillingCreditGrantsRequestBodyApplicabilityConfig
         public var category: PostBillingCreditGrantsRequestBodyCategory?
@@ -20,13 +20,18 @@ extension V1BillingCreditGrantsMethods {
         public var name: String?
         public var priority: Int?
 
-        public init(amount: PostBillingCreditGrantsRequestBodyAmount, applicabilityConfig: PostBillingCreditGrantsRequestBodyApplicabilityConfig) {
+        public init(
+            amount: PostBillingCreditGrantsRequestBodyAmount,
+            applicabilityConfig: PostBillingCreditGrantsRequestBodyApplicabilityConfig
+        ) {
             self.amount = amount
             self.applicabilityConfig = applicabilityConfig
         }
     }
 
-    /// Creates a credit grant that allocates billing credits to a customer or customer account. Supply `amount` and `applicability_config`, and optionally set the category, effective and expiration times, metadata, name, or application priority. The created grant records how and when its credits can be applied.
+    /// Creates a credit grant that allocates billing credits to a customer or customer account. Supply `amount` and
+    /// `applicability_config`, and optionally set the category, effective and expiration times, metadata, name, or
+    /// application priority. The created grant records how and when its credits can be applied.
     ///
     /// Creates a credit grant.
     ///
@@ -53,7 +58,10 @@ extension V1BillingCreditGrantsMethods {
     /// - priority: The desired priority for applying this credit grant. If not
     ///   specified, it will be set to the default value of 50. The highest priority
     ///   is 0 and the lowest is 100.
-    public static func postBillingCreditGrants(config: ClientConfig, options: PostBillingCreditGrantsOptions) async throws -> BillingCreditGrant {
+    static func postBillingCreditGrants(
+        config: ClientConfig,
+        options: PostBillingCreditGrantsOptions
+    ) async throws -> BillingCreditGrant {
         if let customer = options.customer {
             try validateLength("customer", customer, max: 5000)
         }
@@ -68,6 +76,14 @@ extension V1BillingCreditGrantsMethods {
 
         let requestBody = PostBillingCreditGrantsRequestBody(options: options)
 
-        return try (await sdkRequest("POST", "/v1/billing/credit_grants", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostBillingCreditGrants")).data
+        return try await (sdkRequest(
+            "POST",
+            "/v1/billing/credit_grants",
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostBillingCreditGrants"
+        )).data
     }
 }

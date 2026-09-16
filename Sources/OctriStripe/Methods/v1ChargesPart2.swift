@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1ChargesMethods {
-    public struct GetChargesOptions: Codable {
+public extension V1ChargesMethods {
+    struct GetChargesOptions: Codable {
         public var created: GetChargesParameter?
         public var customer: String?
         public var endingBefore: String?
@@ -20,9 +20,12 @@ extension V1ChargesMethods {
         public init() {}
     }
 
-    /// Lists charges previously created for the account, ordered with the most recent charges first. Filter by `customer`, `payment_intent`, `transfer_group`, or `created`, and use `starting_after` or `ending_before` with `limit` to paginate the results.
+    /// Lists charges previously created for the account, ordered with the most recent charges first. Filter by
+    /// `customer`, `payment_intent`, `transfer_group`, or `created`, and use `starting_after` or `ending_before` with
+    /// `limit` to paginate the results.
     ///
-    /// Returns a list of charges you’ve previously created. The charges are returned in sorted order, with the most recent charges appearing first.
+    /// Returns a list of charges you’ve previously created. The charges are returned in sorted order, with the most
+    /// recent charges appearing first.
     ///
     /// - Parameters:
     /// - created: Only return charges that were created during the given date
@@ -46,7 +49,7 @@ extension V1ChargesMethods {
     ///   the list.
     /// - transferGroup: Only return charges for this transfer group, limited to
     ///   100.
-    public static func getCharges(config: ClientConfig, options: GetChargesOptions) async throws -> GetChargesResponse {
+    static func getCharges(config: ClientConfig, options: GetChargesOptions) async throws -> GetChargesResponse {
         if let customer = options.customer {
             try validateLength("customer", customer, max: 5000)
         }
@@ -59,7 +62,7 @@ extension V1ChargesMethods {
             try validateLength("transfer_group", transferGroup, max: 5000)
         }
 
-        return try (await sdkRequest("GET", "/v1/charges", config: config, query: [
+        return try await (sdkRequest("GET", "/v1/charges", config: config, query: [
             SdkQueryParameter("created", value: options.created),
             SdkQueryParameter("customer", value: options.customer),
             SdkQueryParameter("ending_before", value: options.endingBefore),

@@ -7,32 +7,40 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1Topups operation model declarations
+/// Canonical v1Topups operation model declarations
 public enum GetTopupsParameterX32c7f8fc {
     case getTopupsParameterVariant0Xaf3c4137(GetTopupsParameterVariant0Xaf3c4137)
     case intValue(Int)
 }
 
 extension GetTopupsParameterX32c7f8fc: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for GetTopupsParameterX32c7f8fc")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for GetTopupsParameterX32c7f8fc"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             GetTopupsParameterVariant0Xaf3c4137.self
         ) {
-            return             .getTopupsParameterVariant0Xaf3c4137(value)
+            return .getTopupsParameterVariant0Xaf3c4137(value)
         }
-        if let value = try? container.decode(Int.self) { return .intValue(value) }
+        if let value = try? container.decode(Int.self) {
+            return .intValue(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -42,7 +50,6 @@ extension GetTopupsParameterX32c7f8fc: Codable {
         case let .intValue(value): try container.encode(value); return true
         }
     }
-
 }
 
 public struct GetTopupsParameterVariant0Xaf3c4137: Codable {
@@ -59,22 +66,22 @@ public struct GetTopupsParameterVariant0Xaf3c4137: Codable {
     }
 
     init() {
-        (self.gt, self.gte, self.lt, self.lte) = (nil, nil, nil, nil)
+        (gt, gte, lt, lte) = (nil, nil, nil, nil)
     }
 }
 
 public extension GetTopupsParameterVariant0Xaf3c4137 {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.gt = try container.sdkDecodeIfPresent(.gt)
-        self.gte = try container.sdkDecodeIfPresent(.gte)
-        self.lt = try container.sdkDecodeIfPresent(.lt)
-        self.lte = try container.sdkDecodeIfPresent(.lte)
+        gt = try container.sdkDecodeIfPresent(.gt)
+        gte = try container.sdkDecodeIfPresent(.gte)
+        lt = try container.sdkDecodeIfPresent(.lt)
+        lte = try container.sdkDecodeIfPresent(.lte)
     }
 }
 
 public extension GetTopupsParameterVariant0Xaf3c4137 {
-    public init(gt: Int? = nil, gte: Int? = nil, lt: Int? = nil, lte: Int? = nil) {
+    init(gt: Int? = nil, gte: Int? = nil, lt: Int? = nil, lte: Int? = nil) {
         self.init()
         (self.gt, self.gte) = (gt, gte)
         (self.lt, self.lte) = (lt, lte)
@@ -87,21 +94,31 @@ public enum PostTopupsRequestBodyMetadata {
 }
 
 extension PostTopupsRequestBodyMetadata: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostTopupsRequestBodyMetadata")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PostTopupsRequestBodyMetadata"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode([String: String].self) { return .dictionary(value) }
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode([String: String].self) {
+            return .dictionary(value)
+        }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -111,7 +128,6 @@ extension PostTopupsRequestBodyMetadata: Codable {
         case let .stringValue(value): try container.encode(value); return true
         }
     }
-
 }
 
 public struct GetTopupsResponse: Codable {
@@ -131,39 +147,57 @@ public struct GetTopupsResponse: Codable {
         case url
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension GetTopupsResponse {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.data) else {
-            throw SdkValidationError(field: "data", code: "required", message: "Validation failed for 'data': value is required")
-        }
-        guard container.contains(.hasMore) else {
-            throw SdkValidationError(field: "has_more", code: "required", message: "Validation failed for 'has_more': value is required")
-        }
-        guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
-        }
-        guard container.contains(.url) else {
-            throw SdkValidationError(field: "url", code: "required", message: "Validation failed for 'url': value is required")
-        }
-        self.data = try container.sdkDecodeRequired(.data)
-        self.hasMore = try container.sdkDecodeRequired(.hasMore)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.url = try container.sdkDecodeRequired(.url)
-            try validateLength("url", self.url, min: nil, max: 5000)
-            try sdkValidatePattern("url", self.url, sdkPattern0fee753805fa)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension GetTopupsResponse {
-    public init(data: [Topup], hasMore: Bool, object: GetTopupsResponseObject, url: String) throws {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.data) else {
+            throw SdkValidationError(
+                field: "data",
+                code: "required",
+                message: "Validation failed for 'data': value is required"
+            )
+        }
+        guard container.contains(.hasMore) else {
+            throw SdkValidationError(
+                field: "has_more",
+                code: "required",
+                message: "Validation failed for 'has_more': value is required"
+            )
+        }
+        guard container.contains(.object) else {
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
+        }
+        guard container.contains(.url) else {
+            throw SdkValidationError(
+                field: "url",
+                code: "required",
+                message: "Validation failed for 'url': value is required"
+            )
+        }
+        data = try container.sdkDecodeRequired(.data)
+        hasMore = try container.sdkDecodeRequired(.hasMore)
+        object = try container.sdkDecodeRequired(.object)
+        url = try container.sdkDecodeRequired(.url)
+        try validateLength("url", url, min: nil, max: 5000)
+        try sdkValidatePattern("url", url, sdkPattern0fee753805fa)
+    }
+}
+
+public extension GetTopupsResponse {
+    init(data: [Topup], hasMore: Bool, object: GetTopupsResponseObject, url: String) throws {
         (self.data, self.hasMore) = (data, hasMore)
         (self.object, self.url) = (object, url)
-            try validateLength("url", self.url, min: nil, max: 5000)
-            try sdkValidatePattern("url", self.url, sdkPattern0fee753805fa)
+        try validateLength("url", self.url, min: nil, max: 5000)
+        try sdkValidatePattern("url", self.url, sdkPattern0fee753805fa)
     }
 }
 
@@ -177,19 +211,19 @@ public struct PostTopupsRequestBodyPaymentMethodOptions: Codable {
     }
 
     init() {
-        self.usBankAccount = nil
+        usBankAccount = nil
     }
 }
 
 public extension PostTopupsRequestBodyPaymentMethodOptions {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.usBankAccount = try container.sdkDecodeIfPresent(.usBankAccount)
+        usBankAccount = try container.sdkDecodeIfPresent(.usBankAccount)
     }
 }
 
 public extension PostTopupsRequestBodyPaymentMethodOptions {
-    public init(usBankAccount: PostTopupsRequestBodyPaymentMethodOptionsUsBankAccount? = nil) {
+    init(usBankAccount: PostTopupsRequestBodyPaymentMethodOptionsUsBankAccount? = nil) {
         self.init()
         self.usBankAccount = usBankAccount
     }
@@ -201,21 +235,31 @@ public enum PostTopupsTopupRequestBodyMetadata {
 }
 
 extension PostTopupsTopupRequestBodyMetadata: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostTopupsTopupRequestBodyMetadata")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PostTopupsTopupRequestBodyMetadata"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode([String: String].self) { return .dictionary(value) }
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode([String: String].self) {
+            return .dictionary(value)
+        }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -225,7 +269,6 @@ extension PostTopupsTopupRequestBodyMetadata: Codable {
         case let .stringValue(value): try container.encode(value); return true
         }
     }
-
 }
 
 public struct PostTopupsRequestBodyPaymentMethodOptionsUsBankAccount: Codable {
@@ -235,21 +278,27 @@ public struct PostTopupsRequestBodyPaymentMethodOptionsUsBankAccount: Codable {
         case network
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostTopupsRequestBodyPaymentMethodOptionsUsBankAccount {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.network) else {
-            throw SdkValidationError(field: "network", code: "required", message: "Validation failed for 'network': value is required")
-        }
-        self.network = try container.sdkDecodeRequired(.network)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostTopupsRequestBodyPaymentMethodOptionsUsBankAccount {
-    public init(network: PostTopupsRequestBodyPaymentMethodOptionsUsBankAccountNetwork) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.network) else {
+            throw SdkValidationError(
+                field: "network",
+                code: "required",
+                message: "Validation failed for 'network': value is required"
+            )
+        }
+        network = try container.sdkDecodeRequired(.network)
+    }
+}
+
+public extension PostTopupsRequestBodyPaymentMethodOptionsUsBankAccount {
+    init(network: PostTopupsRequestBodyPaymentMethodOptionsUsBankAccountNetwork) {
         self.network = network
     }
 }
@@ -260,21 +309,32 @@ public enum GetTopupsParameter {
 }
 
 extension GetTopupsParameter: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for GetTopupsParameter")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for GetTopupsParameter"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(GetTopupsParameterVariant0.self) { return .getTopupsParameterVariant0(value) }
-        if let value = try? container.decode(Int.self) { return .intValue(value) }
+        if let value = try? container
+            .decode(GetTopupsParameterVariant0.self) {
+            return .getTopupsParameterVariant0(value)
+        }
+        if let value = try? container.decode(Int.self) {
+            return .intValue(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -284,7 +344,6 @@ extension GetTopupsParameter: Codable {
         case let .intValue(value): try container.encode(value); return true
         }
     }
-
 }
 
 public struct GetTopupsParameterVariant0: Codable {
@@ -301,22 +360,22 @@ public struct GetTopupsParameterVariant0: Codable {
     }
 
     init() {
-        (self.gt, self.gte, self.lt, self.lte) = (nil, nil, nil, nil)
+        (gt, gte, lt, lte) = (nil, nil, nil, nil)
     }
 }
 
 public extension GetTopupsParameterVariant0 {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.gt = try container.sdkDecodeIfPresent(.gt)
-        self.gte = try container.sdkDecodeIfPresent(.gte)
-        self.lt = try container.sdkDecodeIfPresent(.lt)
-        self.lte = try container.sdkDecodeIfPresent(.lte)
+        gt = try container.sdkDecodeIfPresent(.gt)
+        gte = try container.sdkDecodeIfPresent(.gte)
+        lt = try container.sdkDecodeIfPresent(.lt)
+        lte = try container.sdkDecodeIfPresent(.lte)
     }
 }
 
 public extension GetTopupsParameterVariant0 {
-    public init(gt: Int? = nil, gte: Int? = nil, lt: Int? = nil, lte: Int? = nil) {
+    init(gt: Int? = nil, gte: Int? = nil, lt: Int? = nil, lte: Int? = nil) {
         self.init()
         (self.gt, self.gte) = (gt, gte)
         (self.lt, self.lte) = (lt, lte)

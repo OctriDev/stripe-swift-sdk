@@ -7,9 +7,9 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1TreasuryFinancialAccounts operation model declarations
+/// Canonical v1TreasuryFinancialAccounts operation model declarations
 public extension PostTreasuryFinancialAccountsRequestBodyFeaturesFinancialAddresses {
-    public init(aba: PostTreasuryFinancialAccountsRequestBodyFeaturesFinancialAddressesAba? = nil) {
+    init(aba: PostTreasuryFinancialAccountsRequestBodyFeaturesFinancialAddressesAba? = nil) {
         self.init()
         self.aba = aba
     }
@@ -27,20 +27,23 @@ public struct PostTreasuryFinancialAccountsRequestBodyFeaturesOutboundTransfers:
     }
 
     init() {
-        (self.ach, self.usDomesticWire) = (nil, nil)
+        (ach, usDomesticWire) = (nil, nil)
     }
 }
 
 public extension PostTreasuryFinancialAccountsRequestBodyFeaturesOutboundTransfers {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.ach = try container.sdkDecodeIfPresent(.ach)
-        self.usDomesticWire = try container.sdkDecodeIfPresent(.usDomesticWire)
+        ach = try container.sdkDecodeIfPresent(.ach)
+        usDomesticWire = try container.sdkDecodeIfPresent(.usDomesticWire)
     }
 }
 
 public extension PostTreasuryFinancialAccountsRequestBodyFeaturesOutboundTransfers {
-    public init(ach: PostTreasuryFinancialAccountsRequestBodyFeaturesOutboundTransfersAch? = nil, usDomesticWire: PostTreasuryFinancialAccountsRequestBodyFeaturesOutboundTransX5fdc07f82f? = nil) {
+    init(
+        ach: PostTreasuryFinancialAccountsRequestBodyFeaturesOutboundTransfersAch? = nil,
+        usDomesticWire: PostTreasuryFinancialAccountsRequestBodyFeaturesOutboundTransX5fdc07f82f? = nil
+    ) {
         self.init()
         (self.ach, self.usDomesticWire) = (ach, usDomesticWire)
     }

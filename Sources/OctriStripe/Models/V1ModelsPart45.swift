@@ -3,9 +3,17 @@
 
 import Foundation
 
-// V1 domain models
+/// V1 domain models
 public extension SubscriptionScheduleAddInvoiceItem {
-    public init(discounts: [DiscountsResourceStackableDiscountWithDiscountEnd], period: SubscriptionScheduleAddInvoiceItemPeriod, price: SubscriptionScheduleAddInvoiceItemPrice, discountable: Bool? = nil, metadata: [String: String]? = nil, quantity: Int? = nil, taxRates: [TaxRate]? = nil) {
+    init(
+        discounts: [DiscountsResourceStackableDiscountWithDiscountEnd],
+        period: SubscriptionScheduleAddInvoiceItemPeriod,
+        price: SubscriptionScheduleAddInvoiceItemPrice,
+        discountable: Bool? = nil,
+        metadata: [String: String]? = nil,
+        quantity: Int? = nil,
+        taxRates: [TaxRate]? = nil
+    ) {
         (self.discounts, self.period) = (discounts, period)
         (self.price, self.discountable) = (price, discountable)
         (self.metadata, self.quantity) = (metadata, quantity)
@@ -20,22 +28,34 @@ public enum SubscriptionScheduleAddInvoiceItemPrice {
 }
 
 extension SubscriptionScheduleAddInvoiceItemPrice: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for SubscriptionScheduleAddInvoiceItemPrice")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for SubscriptionScheduleAddInvoiceItemPrice"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(Price.self) { return .price(value) }
-        if let value = try? container.decode(DeletedPrice.self) { return .deletedPrice(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(Price.self) {
+            return .price(value)
+        }
+        if let value = try? container.decode(DeletedPrice.self) {
+            return .deletedPrice(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -46,7 +66,6 @@ extension SubscriptionScheduleAddInvoiceItemPrice: Codable {
         case let .deletedPrice(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// A phase item describes the price and quantity of a phase.
@@ -77,29 +96,46 @@ public struct SubscriptionScheduleConfigurationItem: Codable {
         case taxRates = "tax_rates"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension SubscriptionScheduleConfigurationItem {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.discounts) else {
-            throw SdkValidationError(field: "discounts", code: "required", message: "Validation failed for 'discounts': value is required")
-        }
-        guard container.contains(.price) else {
-            throw SdkValidationError(field: "price", code: "required", message: "Validation failed for 'price': value is required")
-        }
-        self.discounts = try container.sdkDecodeRequired(.discounts)
-        self.price = try container.sdkDecodeRequired(.price)
-        self.billingThresholds = try container.sdkDecodeIfPresent(.billingThresholds)
-        self.metadata = try container.sdkDecodeIfPresent(.metadata)
-        self.quantity = try container.sdkDecodeIfPresent(.quantity)
-        self.taxRates = try container.sdkDecodeIfPresent(.taxRates)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension SubscriptionScheduleConfigurationItem {
-    public init(discounts: [StackableDiscountWithDiscountSettings], price: SubscriptionScheduleConfigurationItemPrice, billingThresholds: SubscriptionScheduleConfigurationItemBillingThresholds? = nil, metadata: [String: String]? = nil, quantity: Int? = nil, taxRates: [TaxRate]? = nil) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.discounts) else {
+            throw SdkValidationError(
+                field: "discounts",
+                code: "required",
+                message: "Validation failed for 'discounts': value is required"
+            )
+        }
+        guard container.contains(.price) else {
+            throw SdkValidationError(
+                field: "price",
+                code: "required",
+                message: "Validation failed for 'price': value is required"
+            )
+        }
+        discounts = try container.sdkDecodeRequired(.discounts)
+        price = try container.sdkDecodeRequired(.price)
+        billingThresholds = try container.sdkDecodeIfPresent(.billingThresholds)
+        metadata = try container.sdkDecodeIfPresent(.metadata)
+        quantity = try container.sdkDecodeIfPresent(.quantity)
+        taxRates = try container.sdkDecodeIfPresent(.taxRates)
+    }
+}
+
+public extension SubscriptionScheduleConfigurationItem {
+    init(
+        discounts: [StackableDiscountWithDiscountSettings],
+        price: SubscriptionScheduleConfigurationItemPrice,
+        billingThresholds: SubscriptionScheduleConfigurationItemBillingThresholds? = nil,
+        metadata: [String: String]? = nil,
+        quantity: Int? = nil,
+        taxRates: [TaxRate]? = nil
+    ) {
         (self.discounts, self.price) = (discounts, price)
         (self.billingThresholds, self.metadata) = (billingThresholds, metadata)
         (self.quantity, self.taxRates) = (quantity, taxRates)
@@ -111,20 +147,29 @@ public enum SubscriptionScheduleConfigurationItemBillingThresholds {
 }
 
 extension SubscriptionScheduleConfigurationItemBillingThresholds: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for SubscriptionScheduleConfigurationItemBillingThresholds")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for SubscriptionScheduleConfigurationItemBillingThresholds"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(SubscriptionItemBillingThresholds.self) { return .subscriptionItemBillingThresholds(value) }
+        if let value = try? container
+            .decode(SubscriptionItemBillingThresholds.self) {
+            return .subscriptionItemBillingThresholds(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -133,7 +178,6 @@ extension SubscriptionScheduleConfigurationItemBillingThresholds: Codable {
         case let .subscriptionItemBillingThresholds(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum SubscriptionScheduleConfigurationItemPrice {
@@ -143,22 +187,34 @@ public enum SubscriptionScheduleConfigurationItemPrice {
 }
 
 extension SubscriptionScheduleConfigurationItemPrice: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for SubscriptionScheduleConfigurationItemPrice")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for SubscriptionScheduleConfigurationItemPrice"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(Price.self) { return .price(value) }
-        if let value = try? container.decode(DeletedPrice.self) { return .deletedPrice(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(Price.self) {
+            return .price(value)
+        }
+        if let value = try? container.decode(DeletedPrice.self) {
+            return .deletedPrice(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -169,7 +225,6 @@ extension SubscriptionScheduleConfigurationItemPrice: Codable {
         case let .deletedPrice(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// A phase describes the plans, coupon, and trialing status of a subscription for a predefined time period.
@@ -259,62 +314,114 @@ public struct SubscriptionSchedulePhaseConfiguration: Codable {
         case trialEnd = "trial_end"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension SubscriptionSchedulePhaseConfiguration {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.addInvoiceItems) else {
-            throw SdkValidationError(field: "add_invoice_items", code: "required", message: "Validation failed for 'add_invoice_items': value is required")
+            throw SdkValidationError(
+                field: "add_invoice_items",
+                code: "required",
+                message: "Validation failed for 'add_invoice_items': value is required"
+            )
         }
         guard container.contains(.currency) else {
-            throw SdkValidationError(field: "currency", code: "required", message: "Validation failed for 'currency': value is required")
+            throw SdkValidationError(
+                field: "currency",
+                code: "required",
+                message: "Validation failed for 'currency': value is required"
+            )
         }
         guard container.contains(.discounts) else {
-            throw SdkValidationError(field: "discounts", code: "required", message: "Validation failed for 'discounts': value is required")
+            throw SdkValidationError(
+                field: "discounts",
+                code: "required",
+                message: "Validation failed for 'discounts': value is required"
+            )
         }
         guard container.contains(.endDate) else {
-            throw SdkValidationError(field: "end_date", code: "required", message: "Validation failed for 'end_date': value is required")
+            throw SdkValidationError(
+                field: "end_date",
+                code: "required",
+                message: "Validation failed for 'end_date': value is required"
+            )
         }
         guard container.contains(.items) else {
-            throw SdkValidationError(field: "items", code: "required", message: "Validation failed for 'items': value is required")
+            throw SdkValidationError(
+                field: "items",
+                code: "required",
+                message: "Validation failed for 'items': value is required"
+            )
         }
         guard container.contains(.prorationBehavior) else {
-            throw SdkValidationError(field: "proration_behavior", code: "required", message: "Validation failed for 'proration_behavior': value is required")
+            throw SdkValidationError(
+                field: "proration_behavior",
+                code: "required",
+                message: "Validation failed for 'proration_behavior': value is required"
+            )
         }
         guard container.contains(.startDate) else {
-            throw SdkValidationError(field: "start_date", code: "required", message: "Validation failed for 'start_date': value is required")
+            throw SdkValidationError(
+                field: "start_date",
+                code: "required",
+                message: "Validation failed for 'start_date': value is required"
+            )
         }
-        self.addInvoiceItems = try container.sdkDecodeRequired(.addInvoiceItems)
-        self.currency = try container.sdkDecodeRequired(.currency)
-        self.discounts = try container.sdkDecodeRequired(.discounts)
-        self.endDate = try container.sdkDecodeRequired(.endDate)
-        self.items = try container.sdkDecodeRequired(.items)
-        self.prorationBehavior = try container.sdkDecodeRequired(.prorationBehavior)
-        self.startDate = try container.sdkDecodeRequired(.startDate)
-        self.applicationFeePercent = try container.sdkDecodeIfPresent(.applicationFeePercent)
-        self.automaticTax = try container.sdkDecodeIfPresent(.automaticTax)
-        self.billingCycleAnchor = try container.sdkDecodeIfPresent(.billingCycleAnchor)
-        self.billingThresholds = try container.sdkDecodeIfPresent(.billingThresholds)
-        self.collectionMethod = try container.sdkDecodeIfPresent(.collectionMethod)
-        self.defaultPaymentMethod = try container.sdkDecodeIfPresent(.defaultPaymentMethod)
-        self.defaultTaxRates = try container.sdkDecodeIfPresent(.defaultTaxRates)
-        self.description = try container.sdkDecodeIfPresent(.description)
-        self.invoiceSettings = try container.sdkDecodeIfPresent(.invoiceSettings)
-        self.metadata = try container.sdkDecodeIfPresent(.metadata)
-        self.onBehalfOf = try container.sdkDecodeIfPresent(.onBehalfOf)
-        self.transferData = try container.sdkDecodeIfPresent(.transferData)
-        self.trial = try container.sdkDecodeIfPresent(.trial)
-        self.trialEnd = try container.sdkDecodeIfPresent(.trialEnd)
-        if let value = self.description {
+        addInvoiceItems = try container.sdkDecodeRequired(.addInvoiceItems)
+        currency = try container.sdkDecodeRequired(.currency)
+        discounts = try container.sdkDecodeRequired(.discounts)
+        endDate = try container.sdkDecodeRequired(.endDate)
+        items = try container.sdkDecodeRequired(.items)
+        prorationBehavior = try container.sdkDecodeRequired(.prorationBehavior)
+        startDate = try container.sdkDecodeRequired(.startDate)
+        applicationFeePercent = try container.sdkDecodeIfPresent(.applicationFeePercent)
+        automaticTax = try container.sdkDecodeIfPresent(.automaticTax)
+        billingCycleAnchor = try container.sdkDecodeIfPresent(.billingCycleAnchor)
+        billingThresholds = try container.sdkDecodeIfPresent(.billingThresholds)
+        collectionMethod = try container.sdkDecodeIfPresent(.collectionMethod)
+        defaultPaymentMethod = try container.sdkDecodeIfPresent(.defaultPaymentMethod)
+        defaultTaxRates = try container.sdkDecodeIfPresent(.defaultTaxRates)
+        description = try container.sdkDecodeIfPresent(.description)
+        invoiceSettings = try container.sdkDecodeIfPresent(.invoiceSettings)
+        metadata = try container.sdkDecodeIfPresent(.metadata)
+        onBehalfOf = try container.sdkDecodeIfPresent(.onBehalfOf)
+        transferData = try container.sdkDecodeIfPresent(.transferData)
+        trial = try container.sdkDecodeIfPresent(.trial)
+        trialEnd = try container.sdkDecodeIfPresent(.trialEnd)
+        if let value = description {
             try validateLength("description", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension SubscriptionSchedulePhaseConfiguration {
-    public init(addInvoiceItems: [SubscriptionScheduleAddInvoiceItem], currency: String, discounts: [StackableDiscountWithDiscountSettingsAndDiscountEnd], endDate: Int, items: [SubscriptionScheduleConfigurationItem], prorationBehavior: SubscriptionSchedulePhaseConfigurationProrationBehavior, startDate: Int, applicationFeePercent: Double? = nil, automaticTax: SchedulesPhaseAutomaticTax? = nil, billingCycleAnchor: SubscriptionSchedulePhaseConfigurationBillingCycleAnchor? = nil, billingThresholds: SubscriptionSchedulePhaseConfigurationBillingThresholds? = nil, collectionMethod: SubscriptionSchedulePhaseConfigurationCollectionMethod? = nil, defaultPaymentMethod: SubscriptionSchedulePhaseConfigurationDefaultPaymentMethod? = nil, defaultTaxRates: [TaxRate]? = nil, description: String? = nil, invoiceSettings: SubscriptionSchedulePhaseConfigurationInvoiceSettings? = nil, metadata: [String: String]? = nil, onBehalfOf: SubscriptionSchedulePhaseConfigurationOnBehalfOf? = nil, transferData: SubscriptionSchedulePhaseConfigurationTransferData? = nil, trial: Bool? = nil, trialEnd: Int? = nil) throws {
+    init(
+        addInvoiceItems: [SubscriptionScheduleAddInvoiceItem],
+        currency: String,
+        discounts: [StackableDiscountWithDiscountSettingsAndDiscountEnd],
+        endDate: Int,
+        items: [SubscriptionScheduleConfigurationItem],
+        prorationBehavior: SubscriptionSchedulePhaseConfigurationProrationBehavior,
+        startDate: Int,
+        applicationFeePercent: Double? = nil,
+        automaticTax: SchedulesPhaseAutomaticTax? = nil,
+        billingCycleAnchor: SubscriptionSchedulePhaseConfigurationBillingCycleAnchor? = nil,
+        billingThresholds: SubscriptionSchedulePhaseConfigurationBillingThresholds? = nil,
+        collectionMethod: SubscriptionSchedulePhaseConfigurationCollectionMethod? = nil,
+        defaultPaymentMethod: SubscriptionSchedulePhaseConfigurationDefaultPaymentMethod? = nil,
+        defaultTaxRates: [TaxRate]? = nil,
+        description: String? = nil,
+        invoiceSettings: SubscriptionSchedulePhaseConfigurationInvoiceSettings? = nil,
+        metadata: [String: String]? = nil,
+        onBehalfOf: SubscriptionSchedulePhaseConfigurationOnBehalfOf? = nil,
+        transferData: SubscriptionSchedulePhaseConfigurationTransferData? = nil,
+        trial: Bool? = nil,
+        trialEnd: Int? = nil
+    ) throws {
         (self.addInvoiceItems, self.currency) = (addInvoiceItems, currency)
         (self.discounts, self.endDate) = (discounts, endDate)
         (self.items, self.prorationBehavior) = (items, prorationBehavior)
@@ -337,20 +444,29 @@ public enum SubscriptionSchedulePhaseConfigurationBillingThresholds {
 }
 
 extension SubscriptionSchedulePhaseConfigurationBillingThresholds: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for SubscriptionSchedulePhaseConfigurationBillingThresholds")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for SubscriptionSchedulePhaseConfigurationBillingThresholds"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(SubscriptionBillingThresholds.self) { return .subscriptionBillingThresholds(value) }
+        if let value = try? container
+            .decode(SubscriptionBillingThresholds.self) {
+            return .subscriptionBillingThresholds(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -359,7 +475,6 @@ extension SubscriptionSchedulePhaseConfigurationBillingThresholds: Codable {
         case let .subscriptionBillingThresholds(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum SubscriptionSchedulePhaseConfigurationDefaultPaymentMethod {
@@ -368,21 +483,31 @@ public enum SubscriptionSchedulePhaseConfigurationDefaultPaymentMethod {
 }
 
 extension SubscriptionSchedulePhaseConfigurationDefaultPaymentMethod: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for SubscriptionSchedulePhaseConfigurationDefaultPaymentMethod")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for SubscriptionSchedulePhaseConfigurationDefaultPaymentMethod"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(PaymentMethod.self) { return .paymentMethod(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(PaymentMethod.self) {
+            return .paymentMethod(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -392,7 +517,6 @@ extension SubscriptionSchedulePhaseConfigurationDefaultPaymentMethod: Codable {
         case let .paymentMethod(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum SubscriptionSchedulePhaseConfigurationInvoiceSettings {
@@ -400,24 +524,30 @@ public enum SubscriptionSchedulePhaseConfigurationInvoiceSettings {
 }
 
 extension SubscriptionSchedulePhaseConfigurationInvoiceSettings: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for SubscriptionSchedulePhaseConfigurationInvoiceSettings")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for SubscriptionSchedulePhaseConfigurationInvoiceSettings"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             InvoiceSettingSubscriptionSchedulePhaseSetting.self
         ) {
-            return             .invoiceSettingSubscriptionSchedulePhaseSetting(value)
+            return .invoiceSettingSubscriptionSchedulePhaseSetting(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -426,7 +556,6 @@ extension SubscriptionSchedulePhaseConfigurationInvoiceSettings: Codable {
         case let .invoiceSettingSubscriptionSchedulePhaseSetting(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum SubscriptionSchedulePhaseConfigurationOnBehalfOf {
@@ -435,21 +564,31 @@ public enum SubscriptionSchedulePhaseConfigurationOnBehalfOf {
 }
 
 extension SubscriptionSchedulePhaseConfigurationOnBehalfOf: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for SubscriptionSchedulePhaseConfigurationOnBehalfOf")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for SubscriptionSchedulePhaseConfigurationOnBehalfOf"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(Account.self) { return .account(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(Account.self) {
+            return .account(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -459,7 +598,6 @@ extension SubscriptionSchedulePhaseConfigurationOnBehalfOf: Codable {
         case let .account(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum SubscriptionSchedulePhaseConfigurationTransferData {
@@ -467,20 +605,28 @@ public enum SubscriptionSchedulePhaseConfigurationTransferData {
 }
 
 extension SubscriptionSchedulePhaseConfigurationTransferData: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for SubscriptionSchedulePhaseConfigurationTransferData")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for SubscriptionSchedulePhaseConfigurationTransferData"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(SubscriptionTransferData.self) { return .subscriptionTransferData(value) }
+        if let value = try? container.decode(SubscriptionTransferData.self) {
+            return .subscriptionTransferData(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -489,5 +635,4 @@ extension SubscriptionSchedulePhaseConfigurationTransferData: Codable {
         case let .subscriptionTransferData(value): try container.encode(value); return true
         }
     }
-
 }

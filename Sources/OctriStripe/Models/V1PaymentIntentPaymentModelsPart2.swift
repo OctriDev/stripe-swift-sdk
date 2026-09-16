@@ -3,31 +3,37 @@
 
 import Foundation
 
-// V1PaymentIntentPayment domain models
+/// V1PaymentIntentPayment domain models
 extension PaymentIntentPaymentMethodOptionsAfterpayClearpay: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentIntentPaymentMethodOptionsAfterpayClearpay")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PaymentIntentPaymentMethodOptionsAfterpayClearpay"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PaymentMethodOptionsAfterpayClearpay.self
         ) {
-            return             .paymentMethodOptionsAfterpayClearpay(value)
+            return .paymentMethodOptionsAfterpayClearpay(value)
         }
         if let value = try? container.decode(
             PaymentIntentTypeSpecificPaymentMethodOptionsClient.self
         ) {
-            return             .paymentIntentTypeSpecificPaymentMethodOptionsClient(value)
+            return .paymentIntentTypeSpecificPaymentMethodOptionsClient(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -37,7 +43,6 @@ extension PaymentIntentPaymentMethodOptionsAfterpayClearpay: Codable {
         case let .paymentIntentTypeSpecificPaymentMethodOptionsClient(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum PaymentIntentPaymentMethodOptionsAlipay {
@@ -46,25 +51,34 @@ public enum PaymentIntentPaymentMethodOptionsAlipay {
 }
 
 extension PaymentIntentPaymentMethodOptionsAlipay: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentIntentPaymentMethodOptionsAlipay")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PaymentIntentPaymentMethodOptionsAlipay"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(PaymentMethodOptionsAlipay.self) { return .paymentMethodOptionsAlipay(value) }
+        if let value = try? container
+            .decode(PaymentMethodOptionsAlipay.self) {
+            return .paymentMethodOptionsAlipay(value)
+        }
         if let value = try? container.decode(
             PaymentIntentTypeSpecificPaymentMethodOptionsClient.self
         ) {
-            return             .paymentIntentTypeSpecificPaymentMethodOptionsClient(value)
+            return .paymentIntentTypeSpecificPaymentMethodOptionsClient(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -74,7 +88,6 @@ extension PaymentIntentPaymentMethodOptionsAlipay: Codable {
         case let .paymentIntentTypeSpecificPaymentMethodOptionsClient(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum PaymentIntentPaymentMethodOptionsAlma {
@@ -83,25 +96,33 @@ public enum PaymentIntentPaymentMethodOptionsAlma {
 }
 
 extension PaymentIntentPaymentMethodOptionsAlma: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentIntentPaymentMethodOptionsAlma")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PaymentIntentPaymentMethodOptionsAlma"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(PaymentMethodOptionsAlma.self) { return .paymentMethodOptionsAlma(value) }
+        if let value = try? container.decode(PaymentMethodOptionsAlma.self) {
+            return .paymentMethodOptionsAlma(value)
+        }
         if let value = try? container.decode(
             PaymentIntentTypeSpecificPaymentMethodOptionsClient.self
         ) {
-            return             .paymentIntentTypeSpecificPaymentMethodOptionsClient(value)
+            return .paymentIntentTypeSpecificPaymentMethodOptionsClient(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -111,7 +132,6 @@ extension PaymentIntentPaymentMethodOptionsAlma: Codable {
         case let .paymentIntentTypeSpecificPaymentMethodOptionsClient(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum PaymentIntentPaymentMethodOptionsAmazonPay {
@@ -120,25 +140,34 @@ public enum PaymentIntentPaymentMethodOptionsAmazonPay {
 }
 
 extension PaymentIntentPaymentMethodOptionsAmazonPay: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentIntentPaymentMethodOptionsAmazonPay")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PaymentIntentPaymentMethodOptionsAmazonPay"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(PaymentMethodOptionsAmazonPay.self) { return .paymentMethodOptionsAmazonPay(value) }
+        if let value = try? container
+            .decode(PaymentMethodOptionsAmazonPay.self) {
+            return .paymentMethodOptionsAmazonPay(value)
+        }
         if let value = try? container.decode(
             PaymentIntentTypeSpecificPaymentMethodOptionsClient.self
         ) {
-            return             .paymentIntentTypeSpecificPaymentMethodOptionsClient(value)
+            return .paymentIntentTypeSpecificPaymentMethodOptionsClient(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -148,7 +177,6 @@ extension PaymentIntentPaymentMethodOptionsAmazonPay: Codable {
         case let .paymentIntentTypeSpecificPaymentMethodOptionsClient(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum PaymentIntentPaymentMethodOptionsAuBecsDebitXfcde1bb0 {
@@ -157,29 +185,35 @@ public enum PaymentIntentPaymentMethodOptionsAuBecsDebitXfcde1bb0 {
 }
 
 extension PaymentIntentPaymentMethodOptionsAuBecsDebitXfcde1bb0: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentIntentPaymentMethodOptionsAuBecsDebitXfcde1bb0")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PaymentIntentPaymentMethodOptionsAuBecsDebitXfcde1bb0"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PaymentIntentPaymentMethodOptionsAuBecsDebit.self
         ) {
-            return             .paymentIntentPaymentMethodOptionsAuBecsDebit(value)
+            return .paymentIntentPaymentMethodOptionsAuBecsDebit(value)
         }
         if let value = try? container.decode(
             PaymentIntentTypeSpecificPaymentMethodOptionsClient.self
         ) {
-            return             .paymentIntentTypeSpecificPaymentMethodOptionsClient(value)
+            return .paymentIntentTypeSpecificPaymentMethodOptionsClient(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -189,7 +223,6 @@ extension PaymentIntentPaymentMethodOptionsAuBecsDebitXfcde1bb0: Codable {
         case let .paymentIntentTypeSpecificPaymentMethodOptionsClient(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum PaymentIntentPaymentMethodOptionsBacsDebitX1f41a7a1 {
@@ -198,29 +231,35 @@ public enum PaymentIntentPaymentMethodOptionsBacsDebitX1f41a7a1 {
 }
 
 extension PaymentIntentPaymentMethodOptionsBacsDebitX1f41a7a1: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentIntentPaymentMethodOptionsBacsDebitX1f41a7a1")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PaymentIntentPaymentMethodOptionsBacsDebitX1f41a7a1"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PaymentIntentPaymentMethodOptionsBacsDebit.self
         ) {
-            return             .paymentIntentPaymentMethodOptionsBacsDebit(value)
+            return .paymentIntentPaymentMethodOptionsBacsDebit(value)
         }
         if let value = try? container.decode(
             PaymentIntentTypeSpecificPaymentMethodOptionsClient.self
         ) {
-            return             .paymentIntentTypeSpecificPaymentMethodOptionsClient(value)
+            return .paymentIntentTypeSpecificPaymentMethodOptionsClient(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -230,7 +269,6 @@ extension PaymentIntentPaymentMethodOptionsBacsDebitX1f41a7a1: Codable {
         case let .paymentIntentTypeSpecificPaymentMethodOptionsClient(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum PaymentIntentPaymentMethodOptionsBancontact {
@@ -239,25 +277,34 @@ public enum PaymentIntentPaymentMethodOptionsBancontact {
 }
 
 extension PaymentIntentPaymentMethodOptionsBancontact: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentIntentPaymentMethodOptionsBancontact")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PaymentIntentPaymentMethodOptionsBancontact"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(PaymentMethodOptionsBancontact.self) { return .paymentMethodOptionsBancontact(value) }
+        if let value = try? container
+            .decode(PaymentMethodOptionsBancontact.self) {
+            return .paymentMethodOptionsBancontact(value)
+        }
         if let value = try? container.decode(
             PaymentIntentTypeSpecificPaymentMethodOptionsClient.self
         ) {
-            return             .paymentIntentTypeSpecificPaymentMethodOptionsClient(value)
+            return .paymentIntentTypeSpecificPaymentMethodOptionsClient(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -267,7 +314,6 @@ extension PaymentIntentPaymentMethodOptionsBancontact: Codable {
         case let .paymentIntentTypeSpecificPaymentMethodOptionsClient(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum PaymentIntentPaymentMethodOptionsBillie {
@@ -276,25 +322,34 @@ public enum PaymentIntentPaymentMethodOptionsBillie {
 }
 
 extension PaymentIntentPaymentMethodOptionsBillie: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentIntentPaymentMethodOptionsBillie")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PaymentIntentPaymentMethodOptionsBillie"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(PaymentMethodOptionsBillie.self) { return .paymentMethodOptionsBillie(value) }
+        if let value = try? container
+            .decode(PaymentMethodOptionsBillie.self) {
+            return .paymentMethodOptionsBillie(value)
+        }
         if let value = try? container.decode(
             PaymentIntentTypeSpecificPaymentMethodOptionsClient.self
         ) {
-            return             .paymentIntentTypeSpecificPaymentMethodOptionsClient(value)
+            return .paymentIntentTypeSpecificPaymentMethodOptionsClient(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -304,7 +359,6 @@ extension PaymentIntentPaymentMethodOptionsBillie: Codable {
         case let .paymentIntentTypeSpecificPaymentMethodOptionsClient(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum PaymentIntentPaymentMethodOptionsBizum {
@@ -313,25 +367,34 @@ public enum PaymentIntentPaymentMethodOptionsBizum {
 }
 
 extension PaymentIntentPaymentMethodOptionsBizum: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentIntentPaymentMethodOptionsBizum")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PaymentIntentPaymentMethodOptionsBizum"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(PaymentMethodOptionsBizum.self) { return .paymentMethodOptionsBizum(value) }
+        if let value = try? container
+            .decode(PaymentMethodOptionsBizum.self) {
+            return .paymentMethodOptionsBizum(value)
+        }
         if let value = try? container.decode(
             PaymentIntentTypeSpecificPaymentMethodOptionsClient.self
         ) {
-            return             .paymentIntentTypeSpecificPaymentMethodOptionsClient(value)
+            return .paymentIntentTypeSpecificPaymentMethodOptionsClient(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -341,7 +404,6 @@ extension PaymentIntentPaymentMethodOptionsBizum: Codable {
         case let .paymentIntentTypeSpecificPaymentMethodOptionsClient(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum PaymentIntentPaymentMethodOptionsBlikX72e71378 {
@@ -350,29 +412,35 @@ public enum PaymentIntentPaymentMethodOptionsBlikX72e71378 {
 }
 
 extension PaymentIntentPaymentMethodOptionsBlikX72e71378: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentIntentPaymentMethodOptionsBlikX72e71378")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PaymentIntentPaymentMethodOptionsBlikX72e71378"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PaymentIntentPaymentMethodOptionsBlik.self
         ) {
-            return             .paymentIntentPaymentMethodOptionsBlik(value)
+            return .paymentIntentPaymentMethodOptionsBlik(value)
         }
         if let value = try? container.decode(
             PaymentIntentTypeSpecificPaymentMethodOptionsClient.self
         ) {
-            return             .paymentIntentTypeSpecificPaymentMethodOptionsClient(value)
+            return .paymentIntentTypeSpecificPaymentMethodOptionsClient(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -382,7 +450,6 @@ extension PaymentIntentPaymentMethodOptionsBlikX72e71378: Codable {
         case let .paymentIntentTypeSpecificPaymentMethodOptionsClient(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum PaymentIntentPaymentMethodOptionsBoleto {
@@ -391,25 +458,34 @@ public enum PaymentIntentPaymentMethodOptionsBoleto {
 }
 
 extension PaymentIntentPaymentMethodOptionsBoleto: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentIntentPaymentMethodOptionsBoleto")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PaymentIntentPaymentMethodOptionsBoleto"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(PaymentMethodOptionsBoleto.self) { return .paymentMethodOptionsBoleto(value) }
+        if let value = try? container
+            .decode(PaymentMethodOptionsBoleto.self) {
+            return .paymentMethodOptionsBoleto(value)
+        }
         if let value = try? container.decode(
             PaymentIntentTypeSpecificPaymentMethodOptionsClient.self
         ) {
-            return             .paymentIntentTypeSpecificPaymentMethodOptionsClient(value)
+            return .paymentIntentTypeSpecificPaymentMethodOptionsClient(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -419,7 +495,6 @@ extension PaymentIntentPaymentMethodOptionsBoleto: Codable {
         case let .paymentIntentTypeSpecificPaymentMethodOptionsClient(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum PaymentIntentPaymentMethodOptionsCardX9eb68f24 {
@@ -428,29 +503,35 @@ public enum PaymentIntentPaymentMethodOptionsCardX9eb68f24 {
 }
 
 extension PaymentIntentPaymentMethodOptionsCardX9eb68f24: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentIntentPaymentMethodOptionsCardX9eb68f24")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PaymentIntentPaymentMethodOptionsCardX9eb68f24"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PaymentIntentPaymentMethodOptionsCard.self
         ) {
-            return             .paymentIntentPaymentMethodOptionsCard(value)
+            return .paymentIntentPaymentMethodOptionsCard(value)
         }
         if let value = try? container.decode(
             PaymentIntentTypeSpecificPaymentMethodOptionsClient.self
         ) {
-            return             .paymentIntentTypeSpecificPaymentMethodOptionsClient(value)
+            return .paymentIntentTypeSpecificPaymentMethodOptionsClient(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -460,7 +541,6 @@ extension PaymentIntentPaymentMethodOptionsCardX9eb68f24: Codable {
         case let .paymentIntentTypeSpecificPaymentMethodOptionsClient(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum PaymentIntentPaymentMethodOptionsCardPresent {
@@ -469,25 +549,34 @@ public enum PaymentIntentPaymentMethodOptionsCardPresent {
 }
 
 extension PaymentIntentPaymentMethodOptionsCardPresent: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentIntentPaymentMethodOptionsCardPresent")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PaymentIntentPaymentMethodOptionsCardPresent"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(PaymentMethodOptionsCardPresent.self) { return .paymentMethodOptionsCardPresent(value) }
+        if let value = try? container
+            .decode(PaymentMethodOptionsCardPresent.self) {
+            return .paymentMethodOptionsCardPresent(value)
+        }
         if let value = try? container.decode(
             PaymentIntentTypeSpecificPaymentMethodOptionsClient.self
         ) {
-            return             .paymentIntentTypeSpecificPaymentMethodOptionsClient(value)
+            return .paymentIntentTypeSpecificPaymentMethodOptionsClient(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -497,7 +586,6 @@ extension PaymentIntentPaymentMethodOptionsCardPresent: Codable {
         case let .paymentIntentTypeSpecificPaymentMethodOptionsClient(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum PaymentIntentPaymentMethodOptionsCashapp {
@@ -506,25 +594,34 @@ public enum PaymentIntentPaymentMethodOptionsCashapp {
 }
 
 extension PaymentIntentPaymentMethodOptionsCashapp: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentIntentPaymentMethodOptionsCashapp")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PaymentIntentPaymentMethodOptionsCashapp"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(PaymentMethodOptionsCashapp.self) { return .paymentMethodOptionsCashapp(value) }
+        if let value = try? container
+            .decode(PaymentMethodOptionsCashapp.self) {
+            return .paymentMethodOptionsCashapp(value)
+        }
         if let value = try? container.decode(
             PaymentIntentTypeSpecificPaymentMethodOptionsClient.self
         ) {
-            return             .paymentIntentTypeSpecificPaymentMethodOptionsClient(value)
+            return .paymentIntentTypeSpecificPaymentMethodOptionsClient(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -534,7 +631,6 @@ extension PaymentIntentPaymentMethodOptionsCashapp: Codable {
         case let .paymentIntentTypeSpecificPaymentMethodOptionsClient(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum PaymentIntentPaymentMethodOptionsCrypto {

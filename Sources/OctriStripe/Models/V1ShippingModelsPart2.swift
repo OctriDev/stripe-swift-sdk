@@ -3,20 +3,23 @@
 
 import Foundation
 
-// V1Shipping domain models
+/// V1Shipping domain models
 /// Specifies whether the rate is considered inclusive of taxes or exclusive of taxes. One of `inclusive`,
 /// `exclusive`, or `unspecified`.
 public struct ShippingRateCurrencyOptionTaxBehavior: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let exclusive = ShippingRateCurrencyOptionTaxBehavior(rawValue: "exclusive")
     public static let inclusive = ShippingRateCurrencyOptionTaxBehavior(rawValue: "inclusive")
     public static let unspecified = ShippingRateCurrencyOptionTaxBehavior(rawValue: "unspecified")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

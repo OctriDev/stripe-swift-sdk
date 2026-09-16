@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1IssuingCardholder domain models
+/// V1IssuingCardholder domain models
 extension IssuingCardholderSpendingLimitCategoriesItem {
     static let allCasesPart1: [IssuingCardholderSpendingLimitCategoriesItem] = [
         .acRefrigerationRepair,
@@ -322,9 +322,9 @@ extension IssuingCardholderSpendingLimitCategoriesItem {
 extension IssuingCardholderSpendingLimitCategoriesItem: CaseIterable {
     public static var allCases: [IssuingCardholderSpendingLimitCategoriesItem] {
         allCasesPart1
-        +         allCasesPart2
-        +         allCasesPart3
-        +         allCasesPart4
+            + allCasesPart2
+            + allCasesPart3
+            + allCasesPart4
     }
 }
 
@@ -332,14 +332,17 @@ extension IssuingCardholderSpendingLimitCategoriesItem: CaseIterable {
 public struct IssuingCardholderStatus: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let active = IssuingCardholderStatus(rawValue: "active")
     public static let blocked = IssuingCardholderStatus(rawValue: "blocked")
     public static let inactive = IssuingCardholderStatus(rawValue: "inactive")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -352,12 +355,15 @@ public struct IssuingCardholderStatus: RawRepresentable, Hashable, Codable, Send
 public struct IssuingCardholderObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let issuingCardholder = IssuingCardholderObject(rawValue: "issuing.cardholder")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -367,16 +373,21 @@ public struct IssuingCardholderObject: RawRepresentable, Hashable, Codable, Send
 }
 
 /// Required enumerated value serialized in the `blocked_card_presences[]` wire field.
-public struct IssuingCardholderAuthorizationControlsBlockedCardPresencesItem: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct IssuingCardholderAuthorizationControlsBlockedCardPresencesItem: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let notPresent = IssuingCardholderAuthorizationControlsBlockedCardPresencesItem(rawValue: "not_present")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let notPresent =
+        IssuingCardholderAuthorizationControlsBlockedCardPresencesItem(rawValue: "not_present")
     public static let present = IssuingCardholderAuthorizationControlsBlockedCardPresencesItem(rawValue: "present")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -387,18 +398,23 @@ public struct IssuingCardholderAuthorizationControlsBlockedCardPresencesItem: Ra
 
 /// If `disabled_reason` is present, all cards will decline authorizations with
 /// `cardholder_verification_required` reason.
-public struct IssuingCardholderRequirementsDisabledReason: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct IssuingCardholderRequirementsDisabledReason: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let listed = IssuingCardholderRequirementsDisabledReason(rawValue: "listed")
     public static let rejectedListed = IssuingCardholderRequirementsDisabledReason(rawValue: "rejected.listed")
-    public static let requirementsPastDue = IssuingCardholderRequirementsDisabledReason(rawValue: "requirements.past_due")
+    public static let requirementsPastDue =
+        IssuingCardholderRequirementsDisabledReason(rawValue: "requirements.past_due")
     public static let underReview = IssuingCardholderRequirementsDisabledReason(rawValue: "under_review")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -408,23 +424,30 @@ public struct IssuingCardholderRequirementsDisabledReason: RawRepresentable, Has
 }
 
 /// Required enumerated value serialized in the `past_due[]` wire field.
-public struct IssuingCardholderRequirementsPastDueItem: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct IssuingCardholderRequirementsPastDueItem: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let companyTaxId = IssuingCardholderRequirementsPastDueItem(rawValue: "company.tax_id")
-    public static let individualCardIssuingUserTermsAcceptanceDate = IssuingCardholderRequirementsPastDueItem(rawValue: "individual.card_issuing.user_terms_acceptance.date")
-    public static let individualCardIssuingUserTermsAcceptanceIp = IssuingCardholderRequirementsPastDueItem(rawValue: "individual.card_issuing.user_terms_acceptance.ip")
+    public static let individualCardIssuingUserTermsAcceptanceDate =
+        IssuingCardholderRequirementsPastDueItem(rawValue: "individual.card_issuing.user_terms_acceptance.date")
+    public static let individualCardIssuingUserTermsAcceptanceIp =
+        IssuingCardholderRequirementsPastDueItem(rawValue: "individual.card_issuing.user_terms_acceptance.ip")
     public static let individualDobDay = IssuingCardholderRequirementsPastDueItem(rawValue: "individual.dob.day")
     public static let individualDobMonth = IssuingCardholderRequirementsPastDueItem(rawValue: "individual.dob.month")
     public static let individualDobYear = IssuingCardholderRequirementsPastDueItem(rawValue: "individual.dob.year")
     public static let individualFirstName = IssuingCardholderRequirementsPastDueItem(rawValue: "individual.first_name")
     public static let individualLastName = IssuingCardholderRequirementsPastDueItem(rawValue: "individual.last_name")
-    public static let individualVerificationDocument = IssuingCardholderRequirementsPastDueItem(rawValue: "individual.verification.document")
+    public static let individualVerificationDocument =
+        IssuingCardholderRequirementsPastDueItem(rawValue: "individual.verification.document")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -437,13 +460,16 @@ public struct IssuingCardholderRequirementsPastDueItem: RawRepresentable, Hashab
 public struct IssuingCardholderType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let company = IssuingCardholderType(rawValue: "company")
     public static let individual = IssuingCardholderType(rawValue: "individual")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -453,14 +479,18 @@ public struct IssuingCardholderType: RawRepresentable, Hashable, Codable, Sendab
 }
 
 /// Required enumerated value serialized in the `allowed_categories[]` wire field.
-public struct IssuingCardholderAuthorizationControlsAllowedCategoriesItem: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct IssuingCardholderAuthorizationControlsAllowedCategoriesItem: RawRepresentable, Hashable, Codable,
+    Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

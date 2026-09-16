@@ -74,136 +74,136 @@ struct PostPaymentMethodsRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(self.acssDebit, forKey: SdkCodingKey("acss_debit"))
-        try keyedContainer.encodeIfPresent(self.affirm, forKey: SdkCodingKey("affirm"))
-        try keyedContainer.encodeIfPresent(self.afterpayClearpay, forKey: SdkCodingKey("afterpay_clearpay"))
-        try keyedContainer.encodeIfPresent(self.alipay, forKey: SdkCodingKey("alipay"))
-        try keyedContainer.encodeIfPresent(self.allowRedisplay, forKey: SdkCodingKey("allow_redisplay"))
-        try keyedContainer.encodeIfPresent(self.alma, forKey: SdkCodingKey("alma"))
-        try keyedContainer.encodeIfPresent(self.amazonPay, forKey: SdkCodingKey("amazon_pay"))
-        try keyedContainer.encodeIfPresent(self.auBecsDebit, forKey: SdkCodingKey("au_becs_debit"))
-        try keyedContainer.encodeIfPresent(self.bacsDebit, forKey: SdkCodingKey("bacs_debit"))
-        try keyedContainer.encodeIfPresent(self.bancontact, forKey: SdkCodingKey("bancontact"))
-        try keyedContainer.encodeIfPresent(self.billie, forKey: SdkCodingKey("billie"))
-        try keyedContainer.encodeIfPresent(self.billingDetails, forKey: SdkCodingKey("billing_details"))
-        try keyedContainer.encodeIfPresent(self.bizum, forKey: SdkCodingKey("bizum"))
-        try keyedContainer.encodeIfPresent(self.blik, forKey: SdkCodingKey("blik"))
-        try keyedContainer.encodeIfPresent(self.boleto, forKey: SdkCodingKey("boleto"))
-        try keyedContainer.encodeIfPresent(self.card, forKey: SdkCodingKey("card"))
-        try keyedContainer.encodeIfPresent(self.cashapp, forKey: SdkCodingKey("cashapp"))
-        try keyedContainer.encodeIfPresent(self.crypto, forKey: SdkCodingKey("crypto"))
-        try keyedContainer.encodeIfPresent(self.custom, forKey: SdkCodingKey("custom"))
-        try keyedContainer.encodeIfPresent(self.customer, forKey: SdkCodingKey("customer"))
-        try keyedContainer.encodeIfPresent(self.customerBalance, forKey: SdkCodingKey("customer_balance"))
-        try keyedContainer.encodeIfPresent(self.eps, forKey: SdkCodingKey("eps"))
-        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(self.fpx, forKey: SdkCodingKey("fpx"))
-        try keyedContainer.encodeIfPresent(self.giropay, forKey: SdkCodingKey("giropay"))
-        try keyedContainer.encodeIfPresent(self.grabpay, forKey: SdkCodingKey("grabpay"))
-        try keyedContainer.encodeIfPresent(self.ideal, forKey: SdkCodingKey("ideal"))
-        try keyedContainer.encodeIfPresent(self.interacPresent, forKey: SdkCodingKey("interac_present"))
-        try keyedContainer.encodeIfPresent(self.kakaoPay, forKey: SdkCodingKey("kakao_pay"))
-        try keyedContainer.encodeIfPresent(self.klarna, forKey: SdkCodingKey("klarna"))
-        try keyedContainer.encodeIfPresent(self.konbini, forKey: SdkCodingKey("konbini"))
-        try keyedContainer.encodeIfPresent(self.krCard, forKey: SdkCodingKey("kr_card"))
-        try keyedContainer.encodeIfPresent(self.link, forKey: SdkCodingKey("link"))
-        try keyedContainer.encodeIfPresent(self.mbWay, forKey: SdkCodingKey("mb_way"))
-        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
-        try keyedContainer.encodeIfPresent(self.mobilepay, forKey: SdkCodingKey("mobilepay"))
-        try keyedContainer.encodeIfPresent(self.multibanco, forKey: SdkCodingKey("multibanco"))
-        try keyedContainer.encodeIfPresent(self.naverPay, forKey: SdkCodingKey("naver_pay"))
-        try keyedContainer.encodeIfPresent(self.nzBankAccount, forKey: SdkCodingKey("nz_bank_account"))
-        try keyedContainer.encodeIfPresent(self.oxxo, forKey: SdkCodingKey("oxxo"))
-        try keyedContainer.encodeIfPresent(self.p24, forKey: SdkCodingKey("p24"))
-        try keyedContainer.encodeIfPresent(self.payByBank, forKey: SdkCodingKey("pay_by_bank"))
-        try keyedContainer.encodeIfPresent(self.payco, forKey: SdkCodingKey("payco"))
-        try keyedContainer.encodeIfPresent(self.paymentMethod, forKey: SdkCodingKey("payment_method"))
-        try keyedContainer.encodeIfPresent(self.paynow, forKey: SdkCodingKey("paynow"))
-        try keyedContainer.encodeIfPresent(self.paypal, forKey: SdkCodingKey("paypal"))
-        try keyedContainer.encodeIfPresent(self.payto, forKey: SdkCodingKey("payto"))
-        try keyedContainer.encodeIfPresent(self.pix, forKey: SdkCodingKey("pix"))
-        try keyedContainer.encodeIfPresent(self.promptpay, forKey: SdkCodingKey("promptpay"))
-        try keyedContainer.encodeIfPresent(self.radarOptions, forKey: SdkCodingKey("radar_options"))
-        try keyedContainer.encodeIfPresent(self.revolutPay, forKey: SdkCodingKey("revolut_pay"))
-        try keyedContainer.encodeIfPresent(self.samsungPay, forKey: SdkCodingKey("samsung_pay"))
-        try keyedContainer.encodeIfPresent(self.satispay, forKey: SdkCodingKey("satispay"))
-        try keyedContainer.encodeIfPresent(self.scalapay, forKey: SdkCodingKey("scalapay"))
-        try keyedContainer.encodeIfPresent(self.sepaDebit, forKey: SdkCodingKey("sepa_debit"))
-        try keyedContainer.encodeIfPresent(self.sofort, forKey: SdkCodingKey("sofort"))
-        try keyedContainer.encodeIfPresent(self.sunbit, forKey: SdkCodingKey("sunbit"))
-        try keyedContainer.encodeIfPresent(self.swish, forKey: SdkCodingKey("swish"))
-        try keyedContainer.encodeIfPresent(self.twint, forKey: SdkCodingKey("twint"))
-        try keyedContainer.encodeIfPresent(self.type, forKey: SdkCodingKey("type"))
-        try keyedContainer.encodeIfPresent(self.upi, forKey: SdkCodingKey("upi"))
-        try keyedContainer.encodeIfPresent(self.usBankAccount, forKey: SdkCodingKey("us_bank_account"))
-        try keyedContainer.encodeIfPresent(self.wechatPay, forKey: SdkCodingKey("wechat_pay"))
+        try keyedContainer.encodeIfPresent(acssDebit, forKey: SdkCodingKey("acss_debit"))
+        try keyedContainer.encodeIfPresent(affirm, forKey: SdkCodingKey("affirm"))
+        try keyedContainer.encodeIfPresent(afterpayClearpay, forKey: SdkCodingKey("afterpay_clearpay"))
+        try keyedContainer.encodeIfPresent(alipay, forKey: SdkCodingKey("alipay"))
+        try keyedContainer.encodeIfPresent(allowRedisplay, forKey: SdkCodingKey("allow_redisplay"))
+        try keyedContainer.encodeIfPresent(alma, forKey: SdkCodingKey("alma"))
+        try keyedContainer.encodeIfPresent(amazonPay, forKey: SdkCodingKey("amazon_pay"))
+        try keyedContainer.encodeIfPresent(auBecsDebit, forKey: SdkCodingKey("au_becs_debit"))
+        try keyedContainer.encodeIfPresent(bacsDebit, forKey: SdkCodingKey("bacs_debit"))
+        try keyedContainer.encodeIfPresent(bancontact, forKey: SdkCodingKey("bancontact"))
+        try keyedContainer.encodeIfPresent(billie, forKey: SdkCodingKey("billie"))
+        try keyedContainer.encodeIfPresent(billingDetails, forKey: SdkCodingKey("billing_details"))
+        try keyedContainer.encodeIfPresent(bizum, forKey: SdkCodingKey("bizum"))
+        try keyedContainer.encodeIfPresent(blik, forKey: SdkCodingKey("blik"))
+        try keyedContainer.encodeIfPresent(boleto, forKey: SdkCodingKey("boleto"))
+        try keyedContainer.encodeIfPresent(card, forKey: SdkCodingKey("card"))
+        try keyedContainer.encodeIfPresent(cashapp, forKey: SdkCodingKey("cashapp"))
+        try keyedContainer.encodeIfPresent(crypto, forKey: SdkCodingKey("crypto"))
+        try keyedContainer.encodeIfPresent(custom, forKey: SdkCodingKey("custom"))
+        try keyedContainer.encodeIfPresent(customer, forKey: SdkCodingKey("customer"))
+        try keyedContainer.encodeIfPresent(customerBalance, forKey: SdkCodingKey("customer_balance"))
+        try keyedContainer.encodeIfPresent(eps, forKey: SdkCodingKey("eps"))
+        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(fpx, forKey: SdkCodingKey("fpx"))
+        try keyedContainer.encodeIfPresent(giropay, forKey: SdkCodingKey("giropay"))
+        try keyedContainer.encodeIfPresent(grabpay, forKey: SdkCodingKey("grabpay"))
+        try keyedContainer.encodeIfPresent(ideal, forKey: SdkCodingKey("ideal"))
+        try keyedContainer.encodeIfPresent(interacPresent, forKey: SdkCodingKey("interac_present"))
+        try keyedContainer.encodeIfPresent(kakaoPay, forKey: SdkCodingKey("kakao_pay"))
+        try keyedContainer.encodeIfPresent(klarna, forKey: SdkCodingKey("klarna"))
+        try keyedContainer.encodeIfPresent(konbini, forKey: SdkCodingKey("konbini"))
+        try keyedContainer.encodeIfPresent(krCard, forKey: SdkCodingKey("kr_card"))
+        try keyedContainer.encodeIfPresent(link, forKey: SdkCodingKey("link"))
+        try keyedContainer.encodeIfPresent(mbWay, forKey: SdkCodingKey("mb_way"))
+        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encodeIfPresent(mobilepay, forKey: SdkCodingKey("mobilepay"))
+        try keyedContainer.encodeIfPresent(multibanco, forKey: SdkCodingKey("multibanco"))
+        try keyedContainer.encodeIfPresent(naverPay, forKey: SdkCodingKey("naver_pay"))
+        try keyedContainer.encodeIfPresent(nzBankAccount, forKey: SdkCodingKey("nz_bank_account"))
+        try keyedContainer.encodeIfPresent(oxxo, forKey: SdkCodingKey("oxxo"))
+        try keyedContainer.encodeIfPresent(p24, forKey: SdkCodingKey("p24"))
+        try keyedContainer.encodeIfPresent(payByBank, forKey: SdkCodingKey("pay_by_bank"))
+        try keyedContainer.encodeIfPresent(payco, forKey: SdkCodingKey("payco"))
+        try keyedContainer.encodeIfPresent(paymentMethod, forKey: SdkCodingKey("payment_method"))
+        try keyedContainer.encodeIfPresent(paynow, forKey: SdkCodingKey("paynow"))
+        try keyedContainer.encodeIfPresent(paypal, forKey: SdkCodingKey("paypal"))
+        try keyedContainer.encodeIfPresent(payto, forKey: SdkCodingKey("payto"))
+        try keyedContainer.encodeIfPresent(pix, forKey: SdkCodingKey("pix"))
+        try keyedContainer.encodeIfPresent(promptpay, forKey: SdkCodingKey("promptpay"))
+        try keyedContainer.encodeIfPresent(radarOptions, forKey: SdkCodingKey("radar_options"))
+        try keyedContainer.encodeIfPresent(revolutPay, forKey: SdkCodingKey("revolut_pay"))
+        try keyedContainer.encodeIfPresent(samsungPay, forKey: SdkCodingKey("samsung_pay"))
+        try keyedContainer.encodeIfPresent(satispay, forKey: SdkCodingKey("satispay"))
+        try keyedContainer.encodeIfPresent(scalapay, forKey: SdkCodingKey("scalapay"))
+        try keyedContainer.encodeIfPresent(sepaDebit, forKey: SdkCodingKey("sepa_debit"))
+        try keyedContainer.encodeIfPresent(sofort, forKey: SdkCodingKey("sofort"))
+        try keyedContainer.encodeIfPresent(sunbit, forKey: SdkCodingKey("sunbit"))
+        try keyedContainer.encodeIfPresent(swish, forKey: SdkCodingKey("swish"))
+        try keyedContainer.encodeIfPresent(twint, forKey: SdkCodingKey("twint"))
+        try keyedContainer.encodeIfPresent(type, forKey: SdkCodingKey("type"))
+        try keyedContainer.encodeIfPresent(upi, forKey: SdkCodingKey("upi"))
+        try keyedContainer.encodeIfPresent(usBankAccount, forKey: SdkCodingKey("us_bank_account"))
+        try keyedContainer.encodeIfPresent(wechatPay, forKey: SdkCodingKey("wechat_pay"))
         try keyedContainer.encodeIfPresent(self.zip, forKey: SdkCodingKey("zip"))
     }
 
     init(options: V1PaymentMethodsMethods.PostPaymentMethodsOptions) {
-        self.acssDebit = options.acssDebit
-        self.affirm = options.affirm
-        self.afterpayClearpay = options.afterpayClearpay
-        self.alipay = options.alipay
-        self.allowRedisplay = options.allowRedisplay
-        self.alma = options.alma
-        self.amazonPay = options.amazonPay
-        self.auBecsDebit = options.auBecsDebit
-        self.bacsDebit = options.bacsDebit
-        self.bancontact = options.bancontact
-        self.billie = options.billie
-        self.billingDetails = options.billingDetails
-        self.bizum = options.bizum
-        self.blik = options.blik
-        self.boleto = options.boleto
-        self.card = options.card
-        self.cashapp = options.cashapp
-        self.crypto = options.crypto
-        self.custom = options.custom
-        self.customer = options.customer
-        self.customerBalance = options.customerBalance
-        self.eps = options.eps
-        self.expand = options.expand
-        self.fpx = options.fpx
-        self.giropay = options.giropay
-        self.grabpay = options.grabpay
-        self.ideal = options.ideal
-        self.interacPresent = options.interacPresent
-        self.kakaoPay = options.kakaoPay
-        self.klarna = options.klarna
-        self.konbini = options.konbini
-        self.krCard = options.krCard
-        self.link = options.link
-        self.mbWay = options.mbWay
-        self.metadata = options.metadata
-        self.mobilepay = options.mobilepay
-        self.multibanco = options.multibanco
-        self.naverPay = options.naverPay
-        self.nzBankAccount = options.nzBankAccount
-        self.oxxo = options.oxxo
-        self.p24 = options.p24
-        self.payByBank = options.payByBank
-        self.payco = options.payco
-        self.paymentMethod = options.paymentMethod
-        self.paynow = options.paynow
-        self.paypal = options.paypal
-        self.payto = options.payto
-        self.pix = options.pix
-        self.promptpay = options.promptpay
-        self.radarOptions = options.radarOptions
-        self.revolutPay = options.revolutPay
-        self.samsungPay = options.samsungPay
-        self.satispay = options.satispay
-        self.scalapay = options.scalapay
-        self.sepaDebit = options.sepaDebit
-        self.sofort = options.sofort
-        self.sunbit = options.sunbit
-        self.swish = options.swish
-        self.twint = options.twint
-        self.type = options.type
-        self.upi = options.upi
-        self.usBankAccount = options.usBankAccount
-        self.wechatPay = options.wechatPay
+        acssDebit = options.acssDebit
+        affirm = options.affirm
+        afterpayClearpay = options.afterpayClearpay
+        alipay = options.alipay
+        allowRedisplay = options.allowRedisplay
+        alma = options.alma
+        amazonPay = options.amazonPay
+        auBecsDebit = options.auBecsDebit
+        bacsDebit = options.bacsDebit
+        bancontact = options.bancontact
+        billie = options.billie
+        billingDetails = options.billingDetails
+        bizum = options.bizum
+        blik = options.blik
+        boleto = options.boleto
+        card = options.card
+        cashapp = options.cashapp
+        crypto = options.crypto
+        custom = options.custom
+        customer = options.customer
+        customerBalance = options.customerBalance
+        eps = options.eps
+        expand = options.expand
+        fpx = options.fpx
+        giropay = options.giropay
+        grabpay = options.grabpay
+        ideal = options.ideal
+        interacPresent = options.interacPresent
+        kakaoPay = options.kakaoPay
+        klarna = options.klarna
+        konbini = options.konbini
+        krCard = options.krCard
+        link = options.link
+        mbWay = options.mbWay
+        metadata = options.metadata
+        mobilepay = options.mobilepay
+        multibanco = options.multibanco
+        naverPay = options.naverPay
+        nzBankAccount = options.nzBankAccount
+        oxxo = options.oxxo
+        p24 = options.p24
+        payByBank = options.payByBank
+        payco = options.payco
+        paymentMethod = options.paymentMethod
+        paynow = options.paynow
+        paypal = options.paypal
+        payto = options.payto
+        pix = options.pix
+        promptpay = options.promptpay
+        radarOptions = options.radarOptions
+        revolutPay = options.revolutPay
+        samsungPay = options.samsungPay
+        satispay = options.satispay
+        scalapay = options.scalapay
+        sepaDebit = options.sepaDebit
+        sofort = options.sofort
+        sunbit = options.sunbit
+        swish = options.swish
+        twint = options.twint
+        type = options.type
+        upi = options.upi
+        usBankAccount = options.usBankAccount
+        wechatPay = options.wechatPay
         self.zip = options.zip
     }
 }

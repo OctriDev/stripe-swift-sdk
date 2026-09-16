@@ -6,18 +6,31 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1TreasuryOutboundPaymentsMethods {
-    /// Retrieves the details of an existing OutboundPayment by its unique identifier. Pass `id` from an OutboundPayment creation response or list, and use `expand` to request additional response fields inline.
+public extension V1TreasuryOutboundPaymentsMethods {
+    /// Retrieves the details of an existing OutboundPayment by its unique identifier. Pass `id` from an OutboundPayment
+    /// creation response or list, and use `expand` to request additional response fields inline.
     ///
-    /// Retrieves the details of an existing OutboundPayment by passing the unique OutboundPayment ID from either the OutboundPayment creation request or OutboundPayment list.
+    /// Retrieves the details of an existing OutboundPayment by passing the unique OutboundPayment ID from either the
+    /// OutboundPayment creation request or OutboundPayment list.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func getTreasuryOutboundPaymentsId(config: ClientConfig, id: String, expand: [String]?) async throws -> TreasuryOutboundPayment {
+    static func getTreasuryOutboundPaymentsId(
+        config: ClientConfig,
+        id: String,
+        expand: [String]?
+    ) async throws -> TreasuryOutboundPayment {
         try validateLength("id", id, max: 5000)
 
-        return try (await sdkRequest("GET", ["/v1/treasury/outbound_payments/", sdkEncodePathSegment(sdkWireString(id))].joined(), config: config, query: [
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-        ], decoder: .json, operationId: "GetTreasuryOutboundPaymentsId")).data
+        return try await (sdkRequest(
+            "GET",
+            ["/v1/treasury/outbound_payments/", sdkEncodePathSegment(sdkWireString(id))].joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+            ],
+            decoder: .json,
+            operationId: "GetTreasuryOutboundPaymentsId"
+        )).data
     }
 }

@@ -7,22 +7,37 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1IssuingSettlementsMethods {
-    /// Retrieves an Issuing settlement object by its identifier. Use `settlement` to select the settlement and `expand` to request expanded response fields when needed.
+    /// Retrieves an Issuing settlement object by its identifier. Use `settlement` to select the settlement and `expand`
+    /// to request expanded response fields when needed.
     ///
     /// Retrieves an Issuing Settlement object.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func getIssuingSettlementsSettlement(config: ClientConfig, settlement: String, expand: [String]?) async throws -> IssuingSettlement {
+    public static func getIssuingSettlementsSettlement(
+        config: ClientConfig,
+        settlement: String,
+        expand: [String]?
+    ) async throws -> IssuingSettlement {
         try validateLength("settlement", settlement, max: 5000)
 
-        return try (await sdkRequest("GET", ["/v1/issuing/settlements/", sdkEncodePathSegment(sdkWireString(settlement))].joined(), config: config, query: [
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-        ], decoder: .json, operationId: "GetIssuingSettlementsSettlement")).data
+        return try await (sdkRequest(
+            "GET",
+            ["/v1/issuing/settlements/", sdkEncodePathSegment(sdkWireString(settlement))].joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+            ],
+            decoder: .json,
+            operationId: "GetIssuingSettlementsSettlement"
+        )).data
     }
-    /// Updates an Issuing settlement with the values supplied in the request. Omitted fields remain unchanged, while `metadata` lets you attach or remove string key-value pairs and `expand` controls expanded response fields.
+
+    /// Updates an Issuing settlement with the values supplied in the request. Omitted fields remain unchanged, while
+    /// `metadata` lets you attach or remove string key-value pairs and `expand` controls expanded response fields.
     ///
-    /// Updates the specified Issuing Settlement object by setting the values of the parameters passed. Any parameters not provided will be left unchanged.
+    /// Updates the specified Issuing Settlement object by setting the values of the parameters passed. Any parameters
+    /// not provided will be left unchanged.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
@@ -31,11 +46,24 @@ public enum V1IssuingSettlementsMethods {
     ///   information about the object in a structured format. Individual keys can be
     ///   unset by posting an empty value to them. All keys can be unset by posting an
     ///   empty value to `metadata`.
-    public static func postIssuingSettlementsSettlement(config: ClientConfig, settlement: String, expand: [String]?, metadata: [String: String]?) async throws -> IssuingSettlement {
+    public static func postIssuingSettlementsSettlement(
+        config: ClientConfig,
+        settlement: String,
+        expand: [String]?,
+        metadata: [String: String]?
+    ) async throws -> IssuingSettlement {
         try validateLength("settlement", settlement, max: 5000)
 
         let requestBody = PostIssuingSettlementsSettlementRequestBody(expand: expand, metadata: metadata)
 
-        return try (await sdkRequest("POST", ["/v1/issuing/settlements/", sdkEncodePathSegment(sdkWireString(settlement))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostIssuingSettlementsSettlement")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/issuing/settlements/", sdkEncodePathSegment(sdkWireString(settlement))].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostIssuingSettlementsSettlement"
+        )).data
     }
 }

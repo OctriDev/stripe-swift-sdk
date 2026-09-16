@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1TestHelpersTreasuryReceivedCredits operation model declarations
+/// Canonical v1TestHelpersTreasuryReceivedCredits operation model declarations
 public struct PostTestHelpersTreasuryReceivedCreditsRequestBodyInitiatingPaX0322fc1d60: Codable {
     public var accountHolderName: String?
     public var accountNumber: String?
@@ -20,30 +20,30 @@ public struct PostTestHelpersTreasuryReceivedCreditsRequestBodyInitiatingPaX0322
     }
 
     init() {
-        (self.accountHolderName, self.accountNumber, self.routingNumber) = (nil, nil, nil)
+        (accountHolderName, accountNumber, routingNumber) = (nil, nil, nil)
     }
 }
 
 public extension PostTestHelpersTreasuryReceivedCreditsRequestBodyInitiatingPaX0322fc1d60 {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.accountHolderName = try container.sdkDecodeIfPresent(.accountHolderName)
-        self.accountNumber = try container.sdkDecodeIfPresent(.accountNumber)
-        self.routingNumber = try container.sdkDecodeIfPresent(.routingNumber)
-        if let value = self.accountHolderName {
+        accountHolderName = try container.sdkDecodeIfPresent(.accountHolderName)
+        accountNumber = try container.sdkDecodeIfPresent(.accountNumber)
+        routingNumber = try container.sdkDecodeIfPresent(.routingNumber)
+        if let value = accountHolderName {
             try validateLength("account_holder_name", value, min: nil, max: 5000)
         }
-        if let value = self.accountNumber {
+        if let value = accountNumber {
             try validateLength("account_number", value, min: nil, max: 5000)
         }
-        if let value = self.routingNumber {
+        if let value = routingNumber {
             try validateLength("routing_number", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension PostTestHelpersTreasuryReceivedCreditsRequestBodyInitiatingPaX0322fc1d60 {
-    public init(accountHolderName: String? = nil, accountNumber: String? = nil, routingNumber: String? = nil) throws {
+    init(accountHolderName: String? = nil, accountNumber: String? = nil, routingNumber: String? = nil) throws {
         self.init()
         (self.accountHolderName, self.accountNumber) = (accountHolderName, accountNumber)
         self.routingNumber = routingNumber
@@ -70,22 +70,31 @@ public struct PostTestHelpersTreasuryReceivedCreditsRequestBodyInitiatingPaXdf8f
         case usBankAccount = "us_bank_account"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostTestHelpersTreasuryReceivedCreditsRequestBodyInitiatingPaXdf8fbf265c {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
-        }
-        self.type = try container.sdkDecodeRequired(.type)
-        self.usBankAccount = try container.sdkDecodeIfPresent(.usBankAccount)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostTestHelpersTreasuryReceivedCreditsRequestBodyInitiatingPaXdf8fbf265c {
-    public init(type: PostTestHelpersTreasuryReceivedCreditsRequestBodyInitiatingPaX1d11d9db5d, usBankAccount: PostTestHelpersTreasuryReceivedCreditsRequestBodyInitiatingPaX0322fc1d60? = nil) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.type) else {
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
+        }
+        type = try container.sdkDecodeRequired(.type)
+        usBankAccount = try container.sdkDecodeIfPresent(.usBankAccount)
+    }
+}
+
+public extension PostTestHelpersTreasuryReceivedCreditsRequestBodyInitiatingPaXdf8fbf265c {
+    init(
+        type: PostTestHelpersTreasuryReceivedCreditsRequestBodyInitiatingPaX1d11d9db5d,
+        usBankAccount: PostTestHelpersTreasuryReceivedCreditsRequestBodyInitiatingPaX0322fc1d60? = nil
+    ) {
         (self.type, self.usBankAccount) = (type, usBankAccount)
     }
 }

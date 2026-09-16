@@ -6,18 +6,31 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1FinancialConnectionsSessionsMethods {
-    /// Retrieves a Financial Connections session by its identifier. Use `expand` to request expanded fields in the returned session object. The session includes collected accounts, requested permissions, and the client secret used to launch the client-side authentication flow.
+public extension V1FinancialConnectionsSessionsMethods {
+    /// Retrieves a Financial Connections session by its identifier. Use `expand` to request expanded fields in the
+    /// returned session object. The session includes collected accounts, requested permissions, and the client secret
+    /// used to launch the client-side authentication flow.
     ///
     /// Retrieves the details of a Financial Connections Session
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func getFinancialConnectionsSessionsSession(config: ClientConfig, session: String, expand: [String]?) async throws -> FinancialConnectionsSession {
+    static func getFinancialConnectionsSessionsSession(
+        config: ClientConfig,
+        session: String,
+        expand: [String]?
+    ) async throws -> FinancialConnectionsSession {
         try validateLength("session", session, max: 5000)
 
-        return try (await sdkRequest("GET", ["/v1/financial_connections/sessions/", sdkEncodePathSegment(sdkWireString(session))].joined(), config: config, query: [
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-        ], decoder: .json, operationId: "GetFinancialConnectionsSessionsSession")).data
+        return try await (sdkRequest(
+            "GET",
+            ["/v1/financial_connections/sessions/", sdkEncodePathSegment(sdkWireString(session))].joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+            ],
+            decoder: .json,
+            operationId: "GetFinancialConnectionsSessionsSession"
+        )).data
     }
 }

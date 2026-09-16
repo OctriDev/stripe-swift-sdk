@@ -7,7 +7,8 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1InvoicesAddLinesMethods {
-    /// Adds multiple line items to an invoice in one request. Use `lines` to provide the items and `invoice_metadata` to update invoice metadata; the invoice must still be in draft state when you add them.
+    /// Adds multiple line items to an invoice in one request. Use `lines` to provide the items and `invoice_metadata`
+    /// to update invoice metadata; the invoice must still be in draft state when you add them.
     ///
     /// Adds multiple line items to an invoice. This is only possible when an invoice is still a draft.
     ///
@@ -20,11 +21,29 @@ public enum V1InvoicesAddLinesMethods {
     ///   object in a structured format. Individual keys can be unset by posting an
     ///   empty value to them. All keys can be unset by posting an empty value to
     ///   `metadata`.
-    public static func postInvoicesInvoiceAddLines(config: ClientConfig, invoice: String, lines: [PostInvoicesInvoiceAddLinesRequestBodyLinesItem], expand: [String]?, invoiceMetadata: PostInvoicesInvoiceAddLinesRequestBodyInvoiceMetadata?) async throws -> Invoice {
+    public static func postInvoicesInvoiceAddLines(
+        config: ClientConfig,
+        invoice: String,
+        lines: [PostInvoicesInvoiceAddLinesRequestBodyLinesItem],
+        expand: [String]?,
+        invoiceMetadata: PostInvoicesInvoiceAddLinesRequestBodyInvoiceMetadata?
+    ) async throws -> Invoice {
         try validateLength("invoice", invoice, max: 5000)
 
-        let requestBody = PostInvoicesInvoiceAddLinesRequestBody(lines: lines, expand: expand, invoiceMetadata: invoiceMetadata)
+        let requestBody = PostInvoicesInvoiceAddLinesRequestBody(
+            lines: lines,
+            expand: expand,
+            invoiceMetadata: invoiceMetadata
+        )
 
-        return try (await sdkRequest("POST", ["/v1/invoices/", sdkEncodePathSegment(sdkWireString(invoice)), "/add_lines"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostInvoicesInvoiceAddLines")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/invoices/", sdkEncodePathSegment(sdkWireString(invoice)), "/add_lines"].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostInvoicesInvoiceAddLines"
+        )).data
     }
 }

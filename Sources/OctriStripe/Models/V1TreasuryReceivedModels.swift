@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1TreasuryReceived domain models
+/// V1TreasuryReceived domain models
 /// Typed representation of the `TreasuryReceivedCreditsResourceReversalDetails` API schema.
 public struct TreasuryReceivedCreditsResourceReversalDetails: Codable {
     /// Time before which a ReceivedCredit can be reversed.
@@ -17,20 +17,23 @@ public struct TreasuryReceivedCreditsResourceReversalDetails: Codable {
     }
 
     init() {
-        (self.deadline, self.restrictedReason) = (nil, nil)
+        (deadline, restrictedReason) = (nil, nil)
     }
 }
 
 public extension TreasuryReceivedCreditsResourceReversalDetails {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.deadline = try container.sdkDecodeIfPresent(.deadline)
-        self.restrictedReason = try container.sdkDecodeIfPresent(.restrictedReason)
+        deadline = try container.sdkDecodeIfPresent(.deadline)
+        restrictedReason = try container.sdkDecodeIfPresent(.restrictedReason)
     }
 }
 
 public extension TreasuryReceivedCreditsResourceReversalDetails {
-    public init(deadline: Int? = nil, restrictedReason: TreasuryReceivedCreditsResourceReversalDetailsRestrictedReason? = nil) {
+    init(
+        deadline: Int? = nil,
+        restrictedReason: TreasuryReceivedCreditsResourceReversalDetailsRestrictedReason? = nil
+    ) {
         self.init()
         (self.deadline, self.restrictedReason) = (deadline, restrictedReason)
     }
@@ -46,19 +49,19 @@ public struct TreasuryReceivedCreditsResourceStatusTransitions: Codable {
     }
 
     init() {
-        self.postedAt = nil
+        postedAt = nil
     }
 }
 
 public extension TreasuryReceivedCreditsResourceStatusTransitions {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.postedAt = try container.sdkDecodeIfPresent(.postedAt)
+        postedAt = try container.sdkDecodeIfPresent(.postedAt)
     }
 }
 
 public extension TreasuryReceivedCreditsResourceStatusTransitions {
-    public init(postedAt: Int? = nil) {
+    init(postedAt: Int? = nil) {
         self.init()
         self.postedAt = postedAt
     }
@@ -74,22 +77,22 @@ public struct TreasuryReceivedDebitsResourceDebitReversalLinkedFlows: Codable {
     }
 
     init() {
-        self.issuingDispute = nil
+        issuingDispute = nil
     }
 }
 
 public extension TreasuryReceivedDebitsResourceDebitReversalLinkedFlows {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.issuingDispute = try container.sdkDecodeIfPresent(.issuingDispute)
-        if let value = self.issuingDispute {
+        issuingDispute = try container.sdkDecodeIfPresent(.issuingDispute)
+        if let value = issuingDispute {
             try validateLength("issuing_dispute", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension TreasuryReceivedDebitsResourceDebitReversalLinkedFlows {
-    public init(issuingDispute: String? = nil) throws {
+    init(issuingDispute: String? = nil) throws {
         self.init()
         self.issuingDispute = issuingDispute
         if let value = self.issuingDispute {
@@ -123,43 +126,50 @@ public struct TreasuryReceivedDebitsResourceLinkedFlows: Codable {
     }
 
     init() {
-        (self.debitReversal, self.inboundTransfer, self.issuingAuthorization, self.issuingTransaction, self.payout) = (nil, nil, nil, nil, nil)
-        self.topup = nil
+        (debitReversal, inboundTransfer, issuingAuthorization, issuingTransaction, payout) = (nil, nil, nil, nil, nil)
+        topup = nil
     }
 }
 
 public extension TreasuryReceivedDebitsResourceLinkedFlows {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.debitReversal = try container.sdkDecodeIfPresent(.debitReversal)
-        self.inboundTransfer = try container.sdkDecodeIfPresent(.inboundTransfer)
-        self.issuingAuthorization = try container.sdkDecodeIfPresent(.issuingAuthorization)
-        self.issuingTransaction = try container.sdkDecodeIfPresent(.issuingTransaction)
-        self.payout = try container.sdkDecodeIfPresent(.payout)
-        self.topup = try container.sdkDecodeIfPresent(.topup)
-        if let value = self.debitReversal {
+        debitReversal = try container.sdkDecodeIfPresent(.debitReversal)
+        inboundTransfer = try container.sdkDecodeIfPresent(.inboundTransfer)
+        issuingAuthorization = try container.sdkDecodeIfPresent(.issuingAuthorization)
+        issuingTransaction = try container.sdkDecodeIfPresent(.issuingTransaction)
+        payout = try container.sdkDecodeIfPresent(.payout)
+        topup = try container.sdkDecodeIfPresent(.topup)
+        if let value = debitReversal {
             try validateLength("debit_reversal", value, min: nil, max: 5000)
         }
-        if let value = self.inboundTransfer {
+        if let value = inboundTransfer {
             try validateLength("inbound_transfer", value, min: nil, max: 5000)
         }
-        if let value = self.issuingAuthorization {
+        if let value = issuingAuthorization {
             try validateLength("issuing_authorization", value, min: nil, max: 5000)
         }
-        if let value = self.issuingTransaction {
+        if let value = issuingTransaction {
             try validateLength("issuing_transaction", value, min: nil, max: 5000)
         }
-        if let value = self.payout {
+        if let value = payout {
             try validateLength("payout", value, min: nil, max: 5000)
         }
-        if let value = self.topup {
+        if let value = topup {
             try validateLength("topup", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension TreasuryReceivedDebitsResourceLinkedFlows {
-    public init(debitReversal: String? = nil, inboundTransfer: String? = nil, issuingAuthorization: String? = nil, issuingTransaction: String? = nil, payout: String? = nil, topup: String? = nil) throws {
+    init(
+        debitReversal: String? = nil,
+        inboundTransfer: String? = nil,
+        issuingAuthorization: String? = nil,
+        issuingTransaction: String? = nil,
+        payout: String? = nil,
+        topup: String? = nil
+    ) throws {
         self.init()
         (self.debitReversal, self.inboundTransfer) = (debitReversal, inboundTransfer)
         (self.issuingAuthorization, self.issuingTransaction) = (issuingAuthorization, issuingTransaction)
@@ -198,20 +208,20 @@ public struct TreasuryReceivedDebitsResourceReversalDetails: Codable {
     }
 
     init() {
-        (self.deadline, self.restrictedReason) = (nil, nil)
+        (deadline, restrictedReason) = (nil, nil)
     }
 }
 
 public extension TreasuryReceivedDebitsResourceReversalDetails {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.deadline = try container.sdkDecodeIfPresent(.deadline)
-        self.restrictedReason = try container.sdkDecodeIfPresent(.restrictedReason)
+        deadline = try container.sdkDecodeIfPresent(.deadline)
+        restrictedReason = try container.sdkDecodeIfPresent(.restrictedReason)
     }
 }
 
 public extension TreasuryReceivedDebitsResourceReversalDetails {
-    public init(deadline: Int? = nil, restrictedReason: TreasuryReceivedDebitsResourceReversalDetailsRestrictedReason? = nil) {
+    init(deadline: Int? = nil, restrictedReason: TreasuryReceivedDebitsResourceReversalDetailsRestrictedReason? = nil) {
         self.init()
         (self.deadline, self.restrictedReason) = (deadline, restrictedReason)
     }
@@ -227,38 +237,46 @@ public struct TreasuryReceivedDebitsResourceStatusTransitions: Codable {
     }
 
     init() {
-        self.completedAt = nil
+        completedAt = nil
     }
 }
 
 public extension TreasuryReceivedDebitsResourceStatusTransitions {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.completedAt = try container.sdkDecodeIfPresent(.completedAt)
+        completedAt = try container.sdkDecodeIfPresent(.completedAt)
     }
 }
 
 public extension TreasuryReceivedDebitsResourceStatusTransitions {
-    public init(completedAt: Int? = nil) {
+    init(completedAt: Int? = nil) {
         self.init()
         self.completedAt = completedAt
     }
 }
 
 /// Set if a ReceivedDebit can't be reversed.
-public struct TreasuryReceivedDebitsResourceReversalDetailsRestrictedReason: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct TreasuryReceivedDebitsResourceReversalDetailsRestrictedReason: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let alreadyReversed = TreasuryReceivedDebitsResourceReversalDetailsRestrictedReason(rawValue: "already_reversed")
-    public static let deadlinePassed = TreasuryReceivedDebitsResourceReversalDetailsRestrictedReason(rawValue: "deadline_passed")
-    public static let networkRestricted = TreasuryReceivedDebitsResourceReversalDetailsRestrictedReason(rawValue: "network_restricted")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let alreadyReversed =
+        TreasuryReceivedDebitsResourceReversalDetailsRestrictedReason(rawValue: "already_reversed")
+    public static let deadlinePassed =
+        TreasuryReceivedDebitsResourceReversalDetailsRestrictedReason(rawValue: "deadline_passed")
+    public static let networkRestricted =
+        TreasuryReceivedDebitsResourceReversalDetailsRestrictedReason(rawValue: "network_restricted")
     public static let other = TreasuryReceivedDebitsResourceReversalDetailsRestrictedReason(rawValue: "other")
-    public static let sourceFlowRestricted = TreasuryReceivedDebitsResourceReversalDetailsRestrictedReason(rawValue: "source_flow_restricted")
+    public static let sourceFlowRestricted =
+        TreasuryReceivedDebitsResourceReversalDetailsRestrictedReason(rawValue: "source_flow_restricted")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -268,19 +286,27 @@ public struct TreasuryReceivedDebitsResourceReversalDetailsRestrictedReason: Raw
 }
 
 /// Set if a ReceivedCredit cannot be reversed.
-public struct TreasuryReceivedCreditsResourceReversalDetailsRestrictedReason: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct TreasuryReceivedCreditsResourceReversalDetailsRestrictedReason: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let alreadyReversed = TreasuryReceivedCreditsResourceReversalDetailsRestrictedReason(rawValue: "already_reversed")
-    public static let deadlinePassed = TreasuryReceivedCreditsResourceReversalDetailsRestrictedReason(rawValue: "deadline_passed")
-    public static let networkRestricted = TreasuryReceivedCreditsResourceReversalDetailsRestrictedReason(rawValue: "network_restricted")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let alreadyReversed =
+        TreasuryReceivedCreditsResourceReversalDetailsRestrictedReason(rawValue: "already_reversed")
+    public static let deadlinePassed =
+        TreasuryReceivedCreditsResourceReversalDetailsRestrictedReason(rawValue: "deadline_passed")
+    public static let networkRestricted =
+        TreasuryReceivedCreditsResourceReversalDetailsRestrictedReason(rawValue: "network_restricted")
     public static let other = TreasuryReceivedCreditsResourceReversalDetailsRestrictedReason(rawValue: "other")
-    public static let sourceFlowRestricted = TreasuryReceivedCreditsResourceReversalDetailsRestrictedReason(rawValue: "source_flow_restricted")
+    public static let sourceFlowRestricted =
+        TreasuryReceivedCreditsResourceReversalDetailsRestrictedReason(rawValue: "source_flow_restricted")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

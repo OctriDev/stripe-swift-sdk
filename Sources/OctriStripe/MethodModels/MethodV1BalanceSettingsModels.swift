@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1BalanceSettings operation model declarations
+/// Canonical v1BalanceSettings operation model declarations
 public struct PostBalanceSettingsRequestBodyPaymentsSettlementTiming: Codable {
     public var delayDaysOverride: PostBalanceSettingsRequestBodyPaymentsSettlementTimingDelayDaysOverride?
     public var startOfDay: PostBalanceSettingsRequestBodyPaymentsSettlementTimingStartOfDay?
@@ -18,20 +18,23 @@ public struct PostBalanceSettingsRequestBodyPaymentsSettlementTiming: Codable {
     }
 
     init() {
-        (self.delayDaysOverride, self.startOfDay) = (nil, nil)
+        (delayDaysOverride, startOfDay) = (nil, nil)
     }
 }
 
 public extension PostBalanceSettingsRequestBodyPaymentsSettlementTiming {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.delayDaysOverride = try container.sdkDecodeIfPresent(.delayDaysOverride)
-        self.startOfDay = try container.sdkDecodeIfPresent(.startOfDay)
+        delayDaysOverride = try container.sdkDecodeIfPresent(.delayDaysOverride)
+        startOfDay = try container.sdkDecodeIfPresent(.startOfDay)
     }
 }
 
 public extension PostBalanceSettingsRequestBodyPaymentsSettlementTiming {
-    public init(delayDaysOverride: PostBalanceSettingsRequestBodyPaymentsSettlementTimingDelayDaysOverride? = nil, startOfDay: PostBalanceSettingsRequestBodyPaymentsSettlementTimingStartOfDay? = nil) {
+    init(
+        delayDaysOverride: PostBalanceSettingsRequestBodyPaymentsSettlementTimingDelayDaysOverride? = nil,
+        startOfDay: PostBalanceSettingsRequestBodyPaymentsSettlementTimingStartOfDay? = nil
+    ) {
         self.init()
         (self.delayDaysOverride, self.startOfDay) = (delayDaysOverride, startOfDay)
     }
@@ -45,42 +48,47 @@ public enum PostBalanceSettingsRequestBodyPaymentsSettlementTimingStartOfDay {
 }
 
 extension PostBalanceSettingsRequestBodyPaymentsSettlementTimingStartOfDay: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostBalanceSettingsRequestBodyPaymentsSettlementTimingStartOfDay")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PostBalanceSettingsRequestBodyPaymentsSettlementTimingStartOfDay"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PostBalanceSettingsRequestBodyPaymentsSettlementTimingStartOfDayVariant0.self
         ) {
-            return             .postBalanceSettingsRequestBodyPaymentsSettlementTimingStartOfDayVariant0(value)
+            return .postBalanceSettingsRequestBodyPaymentsSettlementTimingStartOfDayVariant0(value)
         }
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .postBalanceSettingsRequestBodyPaymentsSettlementTimingStartOfDayVariant0(value): try container.encode(value); return true
+        case let .postBalanceSettingsRequestBodyPaymentsSettlementTimingStartOfDayVariant0(value): try container
+            .encode(value); return true
         case let .stringValue(value): try container.encode(value); return true
         }
     }
-
 }
 
-
-
-
-
-public typealias PostBalanceSettingsRequestBodyPaymentsPayoutsScheduleWeeklyPaX0a4e16c8f0 = [PostBalanceSettingsRequestBodyPaymentsPayoutsScheduleWeeklyPaXd5304255b8]
+public typealias PostBalanceSettingsRequestBodyPaymentsPayoutsScheduleWeeklyPaX0a4e16c8f0 =
+    [PostBalanceSettingsRequestBodyPaymentsPayoutsScheduleWeeklyPaXd5304255b8]
 
 public struct PostBalanceSettingsRequestBodyPaymentsPayoutsSchedule: Codable {
     public var interval: PostBalanceSettingsRequestBodyPaymentsPayoutsScheduleInterval?
@@ -94,21 +102,25 @@ public struct PostBalanceSettingsRequestBodyPaymentsPayoutsSchedule: Codable {
     }
 
     init() {
-        (self.interval, self.monthlyPayoutDays, self.weeklyPayoutDays) = (nil, nil, nil)
+        (interval, monthlyPayoutDays, weeklyPayoutDays) = (nil, nil, nil)
     }
 }
 
 public extension PostBalanceSettingsRequestBodyPaymentsPayoutsSchedule {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.interval = try container.sdkDecodeIfPresent(.interval)
-        self.monthlyPayoutDays = try container.sdkDecodeIfPresent(.monthlyPayoutDays)
-        self.weeklyPayoutDays = try container.sdkDecodeIfPresent(.weeklyPayoutDays)
+        interval = try container.sdkDecodeIfPresent(.interval)
+        monthlyPayoutDays = try container.sdkDecodeIfPresent(.monthlyPayoutDays)
+        weeklyPayoutDays = try container.sdkDecodeIfPresent(.weeklyPayoutDays)
     }
 }
 
 public extension PostBalanceSettingsRequestBodyPaymentsPayoutsSchedule {
-    public init(interval: PostBalanceSettingsRequestBodyPaymentsPayoutsScheduleInterval? = nil, monthlyPayoutDays: [Int]? = nil, weeklyPayoutDays: PostBalanceSettingsRequestBodyPaymentsPayoutsScheduleWeeklyPaX0a4e16c8f0? = nil) {
+    init(
+        interval: PostBalanceSettingsRequestBodyPaymentsPayoutsScheduleInterval? = nil,
+        monthlyPayoutDays: [Int]? = nil,
+        weeklyPayoutDays: PostBalanceSettingsRequestBodyPaymentsPayoutsScheduleWeeklyPaX0a4e16c8f0? = nil
+    ) {
         self.init()
         (self.interval, self.monthlyPayoutDays) = (interval, monthlyPayoutDays)
         self.weeklyPayoutDays = weeklyPayoutDays
@@ -121,25 +133,33 @@ public enum PostBalanceSettingsRequestBodyPaymentsPayoutsAutomaticTransfeXe9aea9
 }
 
 extension PostBalanceSettingsRequestBodyPaymentsPayoutsAutomaticTransfeXe9aea94920: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostBalanceSettingsRequestBodyPaymentsPayoutsAutomaticTransfeXe9aea94920")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PostBalanceSettingsRequestBodyPaymentsPayoutsAutomaticTransfeXe9aea94920"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             [String: PostBalanceSettingsRequestBodyPaymentsPayoutsAutomaticTransfeX66b1bc6cae].self
         ) {
-            return             .dictionary(value)
+            return .dictionary(value)
         }
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -149,7 +169,6 @@ extension PostBalanceSettingsRequestBodyPaymentsPayoutsAutomaticTransfeXe9aea949
         case let .stringValue(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum PostBalanceSettingsRequestBodyPaymentsPayoutsMinimumBalanceByXad7513d21a {
@@ -158,21 +177,31 @@ public enum PostBalanceSettingsRequestBodyPaymentsPayoutsMinimumBalanceByXad7513
 }
 
 extension PostBalanceSettingsRequestBodyPaymentsPayoutsMinimumBalanceByXad7513d21a: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostBalanceSettingsRequestBodyPaymentsPayoutsMinimumBalanceByXad7513d21a")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PostBalanceSettingsRequestBodyPaymentsPayoutsMinimumBalanceByXad7513d21a"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(Int.self) { return .intValue(value) }
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(Int.self) {
+            return .intValue(value)
+        }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -182,7 +211,6 @@ extension PostBalanceSettingsRequestBodyPaymentsPayoutsMinimumBalanceByXad7513d2
         case let .stringValue(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum PostBalanceSettingsRequestBodyPaymentsSettlementTimingDelayDaysOverride {
@@ -191,21 +219,31 @@ public enum PostBalanceSettingsRequestBodyPaymentsSettlementTimingDelayDaysOverr
 }
 
 extension PostBalanceSettingsRequestBodyPaymentsSettlementTimingDelayDaysOverride: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostBalanceSettingsRequestBodyPaymentsSettlementTimingDelayDaysOverride")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PostBalanceSettingsRequestBodyPaymentsSettlementTimingDelayDaysOverride"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(Int.self) { return .intValue(value) }
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(Int.self) {
+            return .intValue(value)
+        }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -215,7 +253,6 @@ extension PostBalanceSettingsRequestBodyPaymentsSettlementTimingDelayDaysOverrid
         case let .stringValue(value): try container.encode(value); return true
         }
     }
-
 }
 
 public struct PostBalanceSettingsRequestBodyPaymentsPayouts: Codable {
@@ -234,25 +271,36 @@ public struct PostBalanceSettingsRequestBodyPaymentsPayouts: Codable {
     }
 
     init() {
-        (self.automaticTransferRulesByCurrency, self.minimumBalanceByCurrency, self.schedule, self.statementDescriptor) = (nil, nil, nil, nil)
+        (automaticTransferRulesByCurrency, minimumBalanceByCurrency, schedule, statementDescriptor) = (
+            nil,
+            nil,
+            nil,
+            nil
+        )
     }
 }
 
 public extension PostBalanceSettingsRequestBodyPaymentsPayouts {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.automaticTransferRulesByCurrency = try container.sdkDecodeIfPresent(.automaticTransferRulesByCurrency)
-        self.minimumBalanceByCurrency = try container.sdkDecodeIfPresent(.minimumBalanceByCurrency)
-        self.schedule = try container.sdkDecodeIfPresent(.schedule)
-        self.statementDescriptor = try container.sdkDecodeIfPresent(.statementDescriptor)
-        if let value = self.statementDescriptor {
+        automaticTransferRulesByCurrency = try container.sdkDecodeIfPresent(.automaticTransferRulesByCurrency)
+        minimumBalanceByCurrency = try container.sdkDecodeIfPresent(.minimumBalanceByCurrency)
+        schedule = try container.sdkDecodeIfPresent(.schedule)
+        statementDescriptor = try container.sdkDecodeIfPresent(.statementDescriptor)
+        if let value = statementDescriptor {
             try validateLength("statement_descriptor", value, min: nil, max: 22)
         }
     }
 }
 
 public extension PostBalanceSettingsRequestBodyPaymentsPayouts {
-    public init(automaticTransferRulesByCurrency: PostBalanceSettingsRequestBodyPaymentsPayoutsAutomaticTransfeXe9aea94920? = nil, minimumBalanceByCurrency: PostBalanceSettingsRequestBodyPaymentsPayoutsMinimumBalanceByCurrency? = nil, schedule: PostBalanceSettingsRequestBodyPaymentsPayoutsSchedule? = nil, statementDescriptor: String? = nil) throws {
+    init(
+        automaticTransferRulesByCurrency: PostBalanceSettingsRequestBodyPaymentsPayoutsAutomaticTransfeXe9aea94920? =
+            nil,
+        minimumBalanceByCurrency: PostBalanceSettingsRequestBodyPaymentsPayoutsMinimumBalanceByCurrency? = nil,
+        schedule: PostBalanceSettingsRequestBodyPaymentsPayoutsSchedule? = nil,
+        statementDescriptor: String? = nil
+    ) throws {
         self.init()
         self.automaticTransferRulesByCurrency = automaticTransferRulesByCurrency
         (self.minimumBalanceByCurrency, self.schedule) = (minimumBalanceByCurrency, schedule)
@@ -274,26 +322,40 @@ public struct PostBalanceSettingsRequestBodyPaymentsPayoutsAutomaticTransfeXa812
         case transferUpToAmount = "transfer_up_to_amount"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostBalanceSettingsRequestBodyPaymentsPayoutsAutomaticTransfeXa81204eff0 {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.payoutMethod) else {
-            throw SdkValidationError(field: "payout_method", code: "required", message: "Validation failed for 'payout_method': value is required")
-        }
-        guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
-        }
-        self.payoutMethod = try container.sdkDecodeRequired(.payoutMethod)
-        self.type = try container.sdkDecodeRequired(.type)
-        self.transferUpToAmount = try container.sdkDecodeIfPresent(.transferUpToAmount)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostBalanceSettingsRequestBodyPaymentsPayoutsAutomaticTransfeXa81204eff0 {
-    public init(payoutMethod: String, type: PostBalanceSettingsRequestBodyPaymentsPayoutsAutomaticTransfeX72233dbd45, transferUpToAmount: Int? = nil) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.payoutMethod) else {
+            throw SdkValidationError(
+                field: "payout_method",
+                code: "required",
+                message: "Validation failed for 'payout_method': value is required"
+            )
+        }
+        guard container.contains(.type) else {
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
+        }
+        payoutMethod = try container.sdkDecodeRequired(.payoutMethod)
+        type = try container.sdkDecodeRequired(.type)
+        transferUpToAmount = try container.sdkDecodeIfPresent(.transferUpToAmount)
+    }
+}
+
+public extension PostBalanceSettingsRequestBodyPaymentsPayoutsAutomaticTransfeXa81204eff0 {
+    init(
+        payoutMethod: String,
+        type: PostBalanceSettingsRequestBodyPaymentsPayoutsAutomaticTransfeX72233dbd45,
+        transferUpToAmount: Int? = nil
+    ) {
         (self.payoutMethod, self.type) = (payoutMethod, type)
         self.transferUpToAmount = transferUpToAmount
     }
@@ -305,25 +367,33 @@ public enum PostBalanceSettingsRequestBodyPaymentsPayoutsMinimumBalanceByCurrenc
 }
 
 extension PostBalanceSettingsRequestBodyPaymentsPayoutsMinimumBalanceByCurrency: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostBalanceSettingsRequestBodyPaymentsPayoutsMinimumBalanceByCurrency")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PostBalanceSettingsRequestBodyPaymentsPayoutsMinimumBalanceByCurrency"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             [String: PostBalanceSettingsRequestBodyPaymentsPayoutsMinimumBalanceByXad7513d21a].self
         ) {
-            return             .dictionary(value)
+            return .dictionary(value)
         }
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -333,7 +403,6 @@ extension PostBalanceSettingsRequestBodyPaymentsPayoutsMinimumBalanceByCurrency:
         case let .stringValue(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum PostBalanceSettingsRequestBodyPaymentsPayoutsAutomaticTransfeX66b1bc6cae {
@@ -344,35 +413,43 @@ public enum PostBalanceSettingsRequestBodyPaymentsPayoutsAutomaticTransfeX66b1bc
 }
 
 extension PostBalanceSettingsRequestBodyPaymentsPayoutsAutomaticTransfeX66b1bc6cae: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostBalanceSettingsRequestBodyPaymentsPayoutsAutomaticTransfeX66b1bc6cae")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PostBalanceSettingsRequestBodyPaymentsPayoutsAutomaticTransfeX66b1bc6cae"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             [PostBalanceSettingsRequestBodyPaymentsPayoutsAutomaticTransfeXa81204eff0].self
         ) {
-            return             .postBalanceSettingsRequestBodyPaymentsPayoutsAutomaticTransfeX51ecc47714(value)
+            return .postBalanceSettingsRequestBodyPaymentsPayoutsAutomaticTransfeX51ecc47714(value)
         }
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .postBalanceSettingsRequestBodyPaymentsPayoutsAutomaticTransfeX51ecc47714(value): try container.encode(value); return true
+        case let .postBalanceSettingsRequestBodyPaymentsPayoutsAutomaticTransfeX51ecc47714(value): try container
+            .encode(value); return true
         case let .stringValue(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Settings that apply to the Payments Balance.
@@ -390,21 +467,25 @@ public struct PostBalanceSettingsRequestBodyPayments: Codable {
     }
 
     init() {
-        (self.debitNegativeBalances, self.payouts, self.settlementTiming) = (nil, nil, nil)
+        (debitNegativeBalances, payouts, settlementTiming) = (nil, nil, nil)
     }
 }
 
 public extension PostBalanceSettingsRequestBodyPayments {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.debitNegativeBalances = try container.sdkDecodeIfPresent(.debitNegativeBalances)
-        self.payouts = try container.sdkDecodeIfPresent(.payouts)
-        self.settlementTiming = try container.sdkDecodeIfPresent(.settlementTiming)
+        debitNegativeBalances = try container.sdkDecodeIfPresent(.debitNegativeBalances)
+        payouts = try container.sdkDecodeIfPresent(.payouts)
+        settlementTiming = try container.sdkDecodeIfPresent(.settlementTiming)
     }
 }
 
 public extension PostBalanceSettingsRequestBodyPayments {
-    public init(debitNegativeBalances: Bool? = nil, payouts: PostBalanceSettingsRequestBodyPaymentsPayouts? = nil, settlementTiming: PostBalanceSettingsRequestBodyPaymentsSettlementTiming? = nil) {
+    init(
+        debitNegativeBalances: Bool? = nil,
+        payouts: PostBalanceSettingsRequestBodyPaymentsPayouts? = nil,
+        settlementTiming: PostBalanceSettingsRequestBodyPaymentsSettlementTiming? = nil
+    ) {
         self.init()
         (self.debitNegativeBalances, self.payouts) = (debitNegativeBalances, payouts)
         self.settlementTiming = settlementTiming
@@ -423,24 +504,24 @@ public struct PostBalanceSettingsRequestBodyPaymentsSettlementTimingStartOfDayVa
     }
 
     init() {
-        (self.hour, self.minutes, self.timezone) = (nil, nil, nil)
+        (hour, minutes, timezone) = (nil, nil, nil)
     }
 }
 
 public extension PostBalanceSettingsRequestBodyPaymentsSettlementTimingStartOfDayVariant0 {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.hour = try container.sdkDecodeIfPresent(.hour)
-        self.minutes = try container.sdkDecodeIfPresent(.minutes)
-        self.timezone = try container.sdkDecodeIfPresent(.timezone)
-        if let value = self.timezone {
+        hour = try container.sdkDecodeIfPresent(.hour)
+        minutes = try container.sdkDecodeIfPresent(.minutes)
+        timezone = try container.sdkDecodeIfPresent(.timezone)
+        if let value = timezone {
             try validateLength("timezone", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension PostBalanceSettingsRequestBodyPaymentsSettlementTimingStartOfDayVariant0 {
-    public init(hour: Int? = nil, minutes: Int? = nil, timezone: String? = nil) throws {
+    init(hour: Int? = nil, minutes: Int? = nil, timezone: String? = nil) throws {
         self.init()
         (self.hour, self.minutes) = (hour, minutes)
         self.timezone = timezone

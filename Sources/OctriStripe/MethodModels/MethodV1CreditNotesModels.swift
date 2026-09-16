@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1CreditNotes operation model declarations
+/// Canonical v1CreditNotes operation model declarations
 public struct PostCreditNotesRequestBodyRefundsItem: Codable {
     public var amountRefunded: Int?
     /// payment_record_refund_params
@@ -23,22 +23,27 @@ public struct PostCreditNotesRequestBodyRefundsItem: Codable {
     }
 
     init() {
-        (self.amountRefunded, self.paymentRecordRefund, self.refund, self.type) = (nil, nil, nil, nil)
+        (amountRefunded, paymentRecordRefund, refund, type) = (nil, nil, nil, nil)
     }
 }
 
 public extension PostCreditNotesRequestBodyRefundsItem {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.amountRefunded = try container.sdkDecodeIfPresent(.amountRefunded)
-        self.paymentRecordRefund = try container.sdkDecodeIfPresent(.paymentRecordRefund)
-        self.refund = try container.sdkDecodeIfPresent(.refund)
-        self.type = try container.sdkDecodeIfPresent(.type)
+        amountRefunded = try container.sdkDecodeIfPresent(.amountRefunded)
+        paymentRecordRefund = try container.sdkDecodeIfPresent(.paymentRecordRefund)
+        refund = try container.sdkDecodeIfPresent(.refund)
+        type = try container.sdkDecodeIfPresent(.type)
     }
 }
 
 public extension PostCreditNotesRequestBodyRefundsItem {
-    public init(amountRefunded: Int? = nil, paymentRecordRefund: PostCreditNotesRequestBodyRefundsItemPaymentRecordRefund? = nil, refund: String? = nil, type: PostCreditNotesRequestBodyRefundsItemType? = nil) {
+    init(
+        amountRefunded: Int? = nil,
+        paymentRecordRefund: PostCreditNotesRequestBodyRefundsItemPaymentRecordRefund? = nil,
+        refund: String? = nil,
+        type: PostCreditNotesRequestBodyRefundsItemType? = nil
+    ) {
         self.init()
         (self.amountRefunded, self.paymentRecordRefund) = (amountRefunded, paymentRecordRefund)
         (self.refund, self.type) = (refund, type)
@@ -51,21 +56,32 @@ public enum GetCreditNotesParameter {
 }
 
 extension GetCreditNotesParameter: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for GetCreditNotesParameter")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for GetCreditNotesParameter"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(GetCreditNotesParameterVariant0.self) { return .getCreditNotesParameterVariant0(value) }
-        if let value = try? container.decode(Int.self) { return .intValue(value) }
+        if let value = try? container
+            .decode(GetCreditNotesParameterVariant0.self) {
+            return .getCreditNotesParameterVariant0(value)
+        }
+        if let value = try? container.decode(Int.self) {
+            return .intValue(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -75,7 +91,6 @@ extension GetCreditNotesParameter: Codable {
         case let .intValue(value): try container.encode(value); return true
         }
     }
-
 }
 
 public struct PostCreditNotesRequestBodyLinesItem: Codable {
@@ -103,36 +118,53 @@ public struct PostCreditNotesRequestBodyLinesItem: Codable {
         case unitAmountDecimal = "unit_amount_decimal"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension PostCreditNotesRequestBodyLinesItem {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
         }
-        self.type = try container.sdkDecodeRequired(.type)
-        self.amount = try container.sdkDecodeIfPresent(.amount)
-        self.description = try container.sdkDecodeIfPresent(.description)
-        self.invoiceLineItem = try container.sdkDecodeIfPresent(.invoiceLineItem)
-        self.metadata = try container.sdkDecodeIfPresent(.metadata)
-        self.quantity = try container.sdkDecodeIfPresent(.quantity)
-        self.taxAmounts = try container.sdkDecodeIfPresent(.taxAmounts)
-        self.taxRates = try container.sdkDecodeIfPresent(.taxRates)
-        self.unitAmount = try container.sdkDecodeIfPresent(.unitAmount)
-        self.unitAmountDecimal = try container.sdkDecodeIfPresent(.unitAmountDecimal)
-        if let value = self.description {
+        type = try container.sdkDecodeRequired(.type)
+        amount = try container.sdkDecodeIfPresent(.amount)
+        description = try container.sdkDecodeIfPresent(.description)
+        invoiceLineItem = try container.sdkDecodeIfPresent(.invoiceLineItem)
+        metadata = try container.sdkDecodeIfPresent(.metadata)
+        quantity = try container.sdkDecodeIfPresent(.quantity)
+        taxAmounts = try container.sdkDecodeIfPresent(.taxAmounts)
+        taxRates = try container.sdkDecodeIfPresent(.taxRates)
+        unitAmount = try container.sdkDecodeIfPresent(.unitAmount)
+        unitAmountDecimal = try container.sdkDecodeIfPresent(.unitAmountDecimal)
+        if let value = description {
             try validateLength("description", value, min: nil, max: 5000)
         }
-        if let value = self.invoiceLineItem {
+        if let value = invoiceLineItem {
             try validateLength("invoice_line_item", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension PostCreditNotesRequestBodyLinesItem {
-    public init(type: PostCreditNotesRequestBodyLinesItemType, amount: Int? = nil, description: String? = nil, invoiceLineItem: String? = nil, metadata: [String: String]? = nil, quantity: Int? = nil, taxAmounts: PostCreditNotesRequestBodyLinesItemTaxAmounts? = nil, taxRates: PostCreditNotesRequestBodyLinesItemTaxRates? = nil, unitAmount: Int? = nil, unitAmountDecimal: String? = nil) throws {
+    init(
+        type: PostCreditNotesRequestBodyLinesItemType,
+        amount: Int? = nil,
+        description: String? = nil,
+        invoiceLineItem: String? = nil,
+        metadata: [String: String]? = nil,
+        quantity: Int? = nil,
+        taxAmounts: PostCreditNotesRequestBodyLinesItemTaxAmounts? = nil,
+        taxRates: PostCreditNotesRequestBodyLinesItemTaxRates? = nil,
+        unitAmount: Int? = nil,
+        unitAmountDecimal: String? = nil
+    ) throws {
         (self.type, self.amount) = (type, amount)
         (self.description, self.invoiceLineItem) = (description, invoiceLineItem)
         (self.metadata, self.quantity) = (metadata, quantity)
@@ -161,22 +193,22 @@ public struct GetCreditNotesParameterVariant0: Codable {
     }
 
     init() {
-        (self.gt, self.gte, self.lt, self.lte) = (nil, nil, nil, nil)
+        (gt, gte, lt, lte) = (nil, nil, nil, nil)
     }
 }
 
 public extension GetCreditNotesParameterVariant0 {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.gt = try container.sdkDecodeIfPresent(.gt)
-        self.gte = try container.sdkDecodeIfPresent(.gte)
-        self.lt = try container.sdkDecodeIfPresent(.lt)
-        self.lte = try container.sdkDecodeIfPresent(.lte)
+        gt = try container.sdkDecodeIfPresent(.gt)
+        gte = try container.sdkDecodeIfPresent(.gte)
+        lt = try container.sdkDecodeIfPresent(.lt)
+        lte = try container.sdkDecodeIfPresent(.lte)
     }
 }
 
 public extension GetCreditNotesParameterVariant0 {
-    public init(gt: Int? = nil, gte: Int? = nil, lt: Int? = nil, lte: Int? = nil) {
+    init(gt: Int? = nil, gte: Int? = nil, lt: Int? = nil, lte: Int? = nil) {
         self.init()
         (self.gt, self.gte) = (gt, gte)
         (self.lt, self.lte) = (lt, lte)
@@ -193,22 +225,22 @@ public struct PostCreditNotesRequestBodyShippingCost: Codable {
     }
 
     init() {
-        self.shippingRate = nil
+        shippingRate = nil
     }
 }
 
 public extension PostCreditNotesRequestBodyShippingCost {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.shippingRate = try container.sdkDecodeIfPresent(.shippingRate)
-        if let value = self.shippingRate {
+        shippingRate = try container.sdkDecodeIfPresent(.shippingRate)
+        if let value = shippingRate {
             try validateLength("shipping_rate", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension PostCreditNotesRequestBodyShippingCost {
-    public init(shippingRate: String? = nil) throws {
+    init(shippingRate: String? = nil) throws {
         self.init()
         self.shippingRate = shippingRate
         if let value = self.shippingRate {
@@ -228,33 +260,47 @@ public struct PostCreditNotesRequestBodyLinesItemTaxAmountsVariant0Item: Codable
         case taxableAmount = "taxable_amount"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostCreditNotesRequestBodyLinesItemTaxAmountsVariant0Item {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.amount) else {
-            throw SdkValidationError(field: "amount", code: "required", message: "Validation failed for 'amount': value is required")
-        }
-        guard container.contains(.taxRate) else {
-            throw SdkValidationError(field: "tax_rate", code: "required", message: "Validation failed for 'tax_rate': value is required")
-        }
-        guard container.contains(.taxableAmount) else {
-            throw SdkValidationError(field: "taxable_amount", code: "required", message: "Validation failed for 'taxable_amount': value is required")
-        }
-        self.amount = try container.sdkDecodeRequired(.amount)
-        self.taxRate = try container.sdkDecodeRequired(.taxRate)
-        self.taxableAmount = try container.sdkDecodeRequired(.taxableAmount)
-            try validateLength("tax_rate", self.taxRate, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostCreditNotesRequestBodyLinesItemTaxAmountsVariant0Item {
-    public init(amount: Int, taxRate: String, taxableAmount: Int) throws {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.amount) else {
+            throw SdkValidationError(
+                field: "amount",
+                code: "required",
+                message: "Validation failed for 'amount': value is required"
+            )
+        }
+        guard container.contains(.taxRate) else {
+            throw SdkValidationError(
+                field: "tax_rate",
+                code: "required",
+                message: "Validation failed for 'tax_rate': value is required"
+            )
+        }
+        guard container.contains(.taxableAmount) else {
+            throw SdkValidationError(
+                field: "taxable_amount",
+                code: "required",
+                message: "Validation failed for 'taxable_amount': value is required"
+            )
+        }
+        amount = try container.sdkDecodeRequired(.amount)
+        taxRate = try container.sdkDecodeRequired(.taxRate)
+        taxableAmount = try container.sdkDecodeRequired(.taxableAmount)
+        try validateLength("tax_rate", taxRate, min: nil, max: 5000)
+    }
+}
+
+public extension PostCreditNotesRequestBodyLinesItemTaxAmountsVariant0Item {
+    init(amount: Int, taxRate: String, taxableAmount: Int) throws {
         (self.amount, self.taxRate) = (amount, taxRate)
         self.taxableAmount = taxableAmount
-            try validateLength("tax_rate", self.taxRate, min: nil, max: 5000)
+        try validateLength("tax_rate", self.taxRate, min: nil, max: 5000)
     }
 }
 
@@ -264,21 +310,31 @@ public enum PostCreditNotesRequestBodyLinesItemTaxRates {
 }
 
 extension PostCreditNotesRequestBodyLinesItemTaxRates: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostCreditNotesRequestBodyLinesItemTaxRates")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PostCreditNotesRequestBodyLinesItemTaxRates"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode([String].self) { return .stringList(value) }
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode([String].self) {
+            return .stringList(value)
+        }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -288,7 +344,6 @@ extension PostCreditNotesRequestBodyLinesItemTaxRates: Codable {
         case let .stringValue(value): try container.encode(value); return true
         }
     }
-
 }
 
 public struct GetCreditNotesResponse: Codable {
@@ -308,75 +363,103 @@ public struct GetCreditNotesResponse: Codable {
         case url
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension GetCreditNotesResponse {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.data) else {
-            throw SdkValidationError(field: "data", code: "required", message: "Validation failed for 'data': value is required")
-        }
-        guard container.contains(.hasMore) else {
-            throw SdkValidationError(field: "has_more", code: "required", message: "Validation failed for 'has_more': value is required")
-        }
-        guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
-        }
-        guard container.contains(.url) else {
-            throw SdkValidationError(field: "url", code: "required", message: "Validation failed for 'url': value is required")
-        }
-        self.data = try container.sdkDecodeRequired(.data)
-        self.hasMore = try container.sdkDecodeRequired(.hasMore)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.url = try container.sdkDecodeRequired(.url)
-            try validateLength("url", self.url, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension GetCreditNotesResponse {
-    public init(data: [CreditNote], hasMore: Bool, object: GetCreditNotesResponseObject, url: String) throws {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.data) else {
+            throw SdkValidationError(
+                field: "data",
+                code: "required",
+                message: "Validation failed for 'data': value is required"
+            )
+        }
+        guard container.contains(.hasMore) else {
+            throw SdkValidationError(
+                field: "has_more",
+                code: "required",
+                message: "Validation failed for 'has_more': value is required"
+            )
+        }
+        guard container.contains(.object) else {
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
+        }
+        guard container.contains(.url) else {
+            throw SdkValidationError(
+                field: "url",
+                code: "required",
+                message: "Validation failed for 'url': value is required"
+            )
+        }
+        data = try container.sdkDecodeRequired(.data)
+        hasMore = try container.sdkDecodeRequired(.hasMore)
+        object = try container.sdkDecodeRequired(.object)
+        url = try container.sdkDecodeRequired(.url)
+        try validateLength("url", url, min: nil, max: 5000)
+    }
+}
+
+public extension GetCreditNotesResponse {
+    init(data: [CreditNote], hasMore: Bool, object: GetCreditNotesResponseObject, url: String) throws {
         (self.data, self.hasMore) = (data, hasMore)
         (self.object, self.url) = (object, url)
-            try validateLength("url", self.url, min: nil, max: 5000)
+        try validateLength("url", self.url, min: nil, max: 5000)
     }
 }
 
 public enum PostCreditNotesRequestBodyLinesItemTaxAmounts {
-    case postCreditNotesRequestBodyLinesItemTaxAmountsVariant0ItemList([PostCreditNotesRequestBodyLinesItemTaxAmountsVariant0Item])
+    case postCreditNotesRequestBodyLinesItemTaxAmountsVariant0ItemList(
+        [PostCreditNotesRequestBodyLinesItemTaxAmountsVariant0Item]
+    )
     case stringValue(String)
 }
 
 extension PostCreditNotesRequestBodyLinesItemTaxAmounts: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostCreditNotesRequestBodyLinesItemTaxAmounts")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PostCreditNotesRequestBodyLinesItemTaxAmounts"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             [PostCreditNotesRequestBodyLinesItemTaxAmountsVariant0Item].self
         ) {
-            return             .postCreditNotesRequestBodyLinesItemTaxAmountsVariant0ItemList(value)
+            return .postCreditNotesRequestBodyLinesItemTaxAmountsVariant0ItemList(value)
         }
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .postCreditNotesRequestBodyLinesItemTaxAmountsVariant0ItemList(value): try container.encode(value); return true
+        case let .postCreditNotesRequestBodyLinesItemTaxAmountsVariant0ItemList(value): try container
+            .encode(value); return true
         case let .stringValue(value): try container.encode(value); return true
         }
     }
-
 }
 
 public struct PostCreditNotesRequestBodyRefundsItemPaymentRecordRefund: Codable {
@@ -388,29 +471,39 @@ public struct PostCreditNotesRequestBodyRefundsItemPaymentRecordRefund: Codable 
         case refundGroup = "refund_group"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostCreditNotesRequestBodyRefundsItemPaymentRecordRefund {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.paymentRecord) else {
-            throw SdkValidationError(field: "payment_record", code: "required", message: "Validation failed for 'payment_record': value is required")
-        }
-        guard container.contains(.refundGroup) else {
-            throw SdkValidationError(field: "refund_group", code: "required", message: "Validation failed for 'refund_group': value is required")
-        }
-        self.paymentRecord = try container.sdkDecodeRequired(.paymentRecord)
-        self.refundGroup = try container.sdkDecodeRequired(.refundGroup)
-            try validateLength("payment_record", self.paymentRecord, min: nil, max: 5000)
-            try validateLength("refund_group", self.refundGroup, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostCreditNotesRequestBodyRefundsItemPaymentRecordRefund {
-    public init(paymentRecord: String, refundGroup: String) throws {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.paymentRecord) else {
+            throw SdkValidationError(
+                field: "payment_record",
+                code: "required",
+                message: "Validation failed for 'payment_record': value is required"
+            )
+        }
+        guard container.contains(.refundGroup) else {
+            throw SdkValidationError(
+                field: "refund_group",
+                code: "required",
+                message: "Validation failed for 'refund_group': value is required"
+            )
+        }
+        paymentRecord = try container.sdkDecodeRequired(.paymentRecord)
+        refundGroup = try container.sdkDecodeRequired(.refundGroup)
+        try validateLength("payment_record", paymentRecord, min: nil, max: 5000)
+        try validateLength("refund_group", refundGroup, min: nil, max: 5000)
+    }
+}
+
+public extension PostCreditNotesRequestBodyRefundsItemPaymentRecordRefund {
+    init(paymentRecord: String, refundGroup: String) throws {
         (self.paymentRecord, self.refundGroup) = (paymentRecord, refundGroup)
-            try validateLength("payment_record", self.paymentRecord, min: nil, max: 5000)
-            try validateLength("refund_group", self.refundGroup, min: nil, max: 5000)
+        try validateLength("payment_record", self.paymentRecord, min: nil, max: 5000)
+        try validateLength("refund_group", self.refundGroup, min: nil, max: 5000)
     }
 }

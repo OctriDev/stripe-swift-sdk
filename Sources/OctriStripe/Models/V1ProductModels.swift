@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1Product domain models
+/// V1Product domain models
 /// A product_feature represents an attachment between a feature and a product. When a product is purchased that has
 /// a feature attached, Stripe will create an entitlement to the feature for the purchasing customer.
 public struct ProductFeature: Codable {
@@ -26,37 +26,55 @@ public struct ProductFeature: Codable {
         case object
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension ProductFeature {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.entitlementFeature) else {
-            throw SdkValidationError(field: "entitlement_feature", code: "required", message: "Validation failed for 'entitlement_feature': value is required")
-        }
-        guard container.contains(.id) else {
-            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
-        }
-        guard container.contains(.livemode) else {
-            throw SdkValidationError(field: "livemode", code: "required", message: "Validation failed for 'livemode': value is required")
-        }
-        guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
-        }
-        self.entitlementFeature = try container.sdkDecodeRequired(.entitlementFeature)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.livemode = try container.sdkDecodeRequired(.livemode)
-        self.object = try container.sdkDecodeRequired(.object)
-            try validateLength("id", self.id, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension ProductFeature {
-    public init(entitlementFeature: EntitlementsFeature, id: String, livemode: Bool, object: ProductFeatureObject) throws {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.entitlementFeature) else {
+            throw SdkValidationError(
+                field: "entitlement_feature",
+                code: "required",
+                message: "Validation failed for 'entitlement_feature': value is required"
+            )
+        }
+        guard container.contains(.id) else {
+            throw SdkValidationError(
+                field: "id",
+                code: "required",
+                message: "Validation failed for 'id': value is required"
+            )
+        }
+        guard container.contains(.livemode) else {
+            throw SdkValidationError(
+                field: "livemode",
+                code: "required",
+                message: "Validation failed for 'livemode': value is required"
+            )
+        }
+        guard container.contains(.object) else {
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
+        }
+        entitlementFeature = try container.sdkDecodeRequired(.entitlementFeature)
+        id = try container.sdkDecodeRequired(.id)
+        livemode = try container.sdkDecodeRequired(.livemode)
+        object = try container.sdkDecodeRequired(.object)
+        try validateLength("id", id, min: nil, max: 5000)
+    }
+}
+
+public extension ProductFeature {
+    init(entitlementFeature: EntitlementsFeature, id: String, livemode: Bool, object: ProductFeatureObject) throws {
         (self.entitlementFeature, self.id) = (entitlementFeature, id)
         (self.livemode, self.object) = (livemode, object)
-            try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
     }
 }
 
@@ -70,22 +88,22 @@ public struct ProductMarketingFeature: Codable {
     }
 
     init() {
-        self.name = nil
+        name = nil
     }
 }
 
 public extension ProductMarketingFeature {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.name = try container.sdkDecodeIfPresent(.name)
-        if let value = self.name {
+        name = try container.sdkDecodeIfPresent(.name)
+        if let value = name {
             try validateLength("name", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension ProductMarketingFeature {
-    public init(name: String? = nil) throws {
+    init(name: String? = nil) throws {
         self.init()
         self.name = name
         if let value = self.name {
@@ -98,12 +116,15 @@ public extension ProductMarketingFeature {
 public struct ProductFeatureObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let productFeature = ProductFeatureObject(rawValue: "product_feature")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1TestHelpersTreasuryOutboundPaymentsReturn operation model declarations
+/// Canonical v1TestHelpersTreasuryOutboundPaymentsReturn operation model declarations
 /// Optional hash to set the return code.
 public struct PostTestHelpersTreasuryOutboundPaymentsIdReturnRequestBodyRetX14e5924c34: Codable {
     public var code: PostTestHelpersTreasuryOutboundPaymentsIdReturnRequestBodyRetXb03a57b1fc?
@@ -17,19 +17,19 @@ public struct PostTestHelpersTreasuryOutboundPaymentsIdReturnRequestBodyRetX14e5
     }
 
     init() {
-        self.code = nil
+        code = nil
     }
 }
 
 public extension PostTestHelpersTreasuryOutboundPaymentsIdReturnRequestBodyRetX14e5924c34 {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.code = try container.sdkDecodeIfPresent(.code)
+        code = try container.sdkDecodeIfPresent(.code)
     }
 }
 
 public extension PostTestHelpersTreasuryOutboundPaymentsIdReturnRequestBodyRetX14e5924c34 {
-    public init(code: PostTestHelpersTreasuryOutboundPaymentsIdReturnRequestBodyRetXb03a57b1fc? = nil) {
+    init(code: PostTestHelpersTreasuryOutboundPaymentsIdReturnRequestBodyRetXb03a57b1fc? = nil) {
         self.init()
         self.code = code
     }

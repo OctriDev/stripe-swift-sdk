@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1SubscriptionSchedulesMethods {
-    public struct GetSubscriptionSchedulesOptions: Codable {
+public extension V1SubscriptionSchedulesMethods {
+    struct GetSubscriptionSchedulesOptions: Codable {
         public var canceledAt: GetSubscriptionSchedulesParameter?
         public var completedAt: GetSubscriptionSchedulesParameterX59211e93?
         public var created: GetSubscriptionSchedulesParameterX43a7efae?
@@ -23,7 +23,10 @@ extension V1SubscriptionSchedulesMethods {
         public init() {}
     }
 
-    /// Lists subscription schedules that match the supplied lifecycle, customer, account, and creation-time filters. Use `starting_after` and `ending_before` to navigate the cursor-paginated results, and use `limit` to control the page size. By default, the results include schedules regardless of lifecycle state unless filters narrow the selection.
+    /// Lists subscription schedules that match the supplied lifecycle, customer, account, and creation-time filters.
+    /// Use `starting_after` and `ending_before` to navigate the cursor-paginated results, and use `limit` to control
+    /// the page size. By default, the results include schedules regardless of lifecycle state unless filters narrow the
+    /// selection.
     ///
     /// Retrieves the list of your subscription schedules.
     ///
@@ -54,7 +57,10 @@ extension V1SubscriptionSchedulesMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    public static func getSubscriptionSchedules(config: ClientConfig, options: GetSubscriptionSchedulesOptions) async throws -> GetSubscriptionSchedulesResponse {
+    static func getSubscriptionSchedules(
+        config: ClientConfig,
+        options: GetSubscriptionSchedulesOptions
+    ) async throws -> GetSubscriptionSchedulesResponse {
         if let customer = options.customer {
             try validateLength("customer", customer, max: 5000)
         }
@@ -71,7 +77,7 @@ extension V1SubscriptionSchedulesMethods {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try (await sdkRequest("GET", "/v1/subscription_schedules", config: config, query: [
+        return try await (sdkRequest("GET", "/v1/subscription_schedules", config: config, query: [
             SdkQueryParameter("canceled_at", value: options.canceledAt),
             SdkQueryParameter("completed_at", value: options.completedAt),
             SdkQueryParameter("created", value: options.created),

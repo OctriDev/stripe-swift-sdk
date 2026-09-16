@@ -3,33 +3,56 @@
 
 import Foundation
 
-// V1Customer domain models
+/// V1Customer domain models
 public extension CustomerSessionResourceComponentsResourcePaymentElementResourceFeatures {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.paymentMethodAllowRedisplayFilters) else {
-            throw SdkValidationError(field: "payment_method_allow_redisplay_filters", code: "required", message: "Validation failed for 'payment_method_allow_redisplay_filters': value is required")
+            throw SdkValidationError(
+                field: "payment_method_allow_redisplay_filters",
+                code: "required",
+                message: "Validation failed for 'payment_method_allow_redisplay_filters': value is required"
+            )
         }
         guard container.contains(.paymentMethodRedisplay) else {
-            throw SdkValidationError(field: "payment_method_redisplay", code: "required", message: "Validation failed for 'payment_method_redisplay': value is required")
+            throw SdkValidationError(
+                field: "payment_method_redisplay",
+                code: "required",
+                message: "Validation failed for 'payment_method_redisplay': value is required"
+            )
         }
         guard container.contains(.paymentMethodRemove) else {
-            throw SdkValidationError(field: "payment_method_remove", code: "required", message: "Validation failed for 'payment_method_remove': value is required")
+            throw SdkValidationError(
+                field: "payment_method_remove",
+                code: "required",
+                message: "Validation failed for 'payment_method_remove': value is required"
+            )
         }
         guard container.contains(.paymentMethodSave) else {
-            throw SdkValidationError(field: "payment_method_save", code: "required", message: "Validation failed for 'payment_method_save': value is required")
+            throw SdkValidationError(
+                field: "payment_method_save",
+                code: "required",
+                message: "Validation failed for 'payment_method_save': value is required"
+            )
         }
-        self.paymentMethodAllowRedisplayFilters = try container.sdkDecodeRequired(.paymentMethodAllowRedisplayFilters)
-        self.paymentMethodRedisplay = try container.sdkDecodeRequired(.paymentMethodRedisplay)
-        self.paymentMethodRemove = try container.sdkDecodeRequired(.paymentMethodRemove)
-        self.paymentMethodSave = try container.sdkDecodeRequired(.paymentMethodSave)
-        self.paymentMethodRedisplayLimit = try container.sdkDecodeIfPresent(.paymentMethodRedisplayLimit)
-        self.paymentMethodSaveUsage = try container.sdkDecodeIfPresent(.paymentMethodSaveUsage)
+        paymentMethodAllowRedisplayFilters = try container.sdkDecodeRequired(.paymentMethodAllowRedisplayFilters)
+        paymentMethodRedisplay = try container.sdkDecodeRequired(.paymentMethodRedisplay)
+        paymentMethodRemove = try container.sdkDecodeRequired(.paymentMethodRemove)
+        paymentMethodSave = try container.sdkDecodeRequired(.paymentMethodSave)
+        paymentMethodRedisplayLimit = try container.sdkDecodeIfPresent(.paymentMethodRedisplayLimit)
+        paymentMethodSaveUsage = try container.sdkDecodeIfPresent(.paymentMethodSaveUsage)
     }
 }
 
 public extension CustomerSessionResourceComponentsResourcePaymentElementResourceFeatures {
-    public init(paymentMethodAllowRedisplayFilters: CustomerSessionResourceComponentsResourcePaymentElementResourXacdce82b74, paymentMethodRedisplay: CustomerSessionResourceComponentsResourcePaymentElementResourX3719e93d25, paymentMethodRemove: CustomerSessionResourceComponentsResourcePaymentElementResourX56ef6ca146, paymentMethodSave: CustomerSessionResourceComponentsResourcePaymentElementResourX7965ae18ff, paymentMethodRedisplayLimit: Int? = nil, paymentMethodSaveUsage: CustomerSessionResourceComponentsResourcePaymentElementResourXd4a62b0bf9? = nil) {
+    init(
+        paymentMethodAllowRedisplayFilters: CustomerSessionResourceComponentsResourcePaymentElementResourXacdce82b74,
+        paymentMethodRedisplay: CustomerSessionResourceComponentsResourcePaymentElementResourX3719e93d25,
+        paymentMethodRemove: CustomerSessionResourceComponentsResourcePaymentElementResourX56ef6ca146,
+        paymentMethodSave: CustomerSessionResourceComponentsResourcePaymentElementResourX7965ae18ff,
+        paymentMethodRedisplayLimit: Int? = nil,
+        paymentMethodSaveUsage: CustomerSessionResourceComponentsResourcePaymentElementResourXd4a62b0bf9? = nil
+    ) {
         self.paymentMethodAllowRedisplayFilters = paymentMethodAllowRedisplayFilters
         self.paymentMethodRedisplay = paymentMethodRedisplay
         (self.paymentMethodRemove, self.paymentMethodSave) = (paymentMethodRemove, paymentMethodSave)
@@ -47,21 +70,27 @@ public struct CustomerSessionResourceComponentsResourcePricingTable: Codable {
         case enabled
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension CustomerSessionResourceComponentsResourcePricingTable {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.enabled) else {
-            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
-        }
-        self.enabled = try container.sdkDecodeRequired(.enabled)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension CustomerSessionResourceComponentsResourcePricingTable {
-    public init(enabled: Bool) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.enabled) else {
+            throw SdkValidationError(
+                field: "enabled",
+                code: "required",
+                message: "Validation failed for 'enabled': value is required"
+            )
+        }
+        enabled = try container.sdkDecodeRequired(.enabled)
+    }
+}
+
+public extension CustomerSessionResourceComponentsResourcePricingTable {
+    init(enabled: Bool) {
         self.enabled = enabled
     }
 }
@@ -85,30 +114,45 @@ public struct CustomerTax: Codable {
         case location
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension CustomerTax {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.automaticTax) else {
-            throw SdkValidationError(field: "automatic_tax", code: "required", message: "Validation failed for 'automatic_tax': value is required")
+            throw SdkValidationError(
+                field: "automatic_tax",
+                code: "required",
+                message: "Validation failed for 'automatic_tax': value is required"
+            )
         }
         guard container.contains(.provider) else {
-            throw SdkValidationError(field: "provider", code: "required", message: "Validation failed for 'provider': value is required")
+            throw SdkValidationError(
+                field: "provider",
+                code: "required",
+                message: "Validation failed for 'provider': value is required"
+            )
         }
-        self.automaticTax = try container.sdkDecodeRequired(.automaticTax)
-        self.provider = try container.sdkDecodeRequired(.provider)
-        self.ipAddress = try container.sdkDecodeIfPresent(.ipAddress)
-        self.location = try container.sdkDecodeIfPresent(.location)
-        if let value = self.ipAddress {
+        automaticTax = try container.sdkDecodeRequired(.automaticTax)
+        provider = try container.sdkDecodeRequired(.provider)
+        ipAddress = try container.sdkDecodeIfPresent(.ipAddress)
+        location = try container.sdkDecodeIfPresent(.location)
+        if let value = ipAddress {
             try validateLength("ip_address", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension CustomerTax {
-    public init(automaticTax: CustomerTaxAutomaticTax, provider: CustomerTaxProvider, ipAddress: String? = nil, location: CustomerTaxLocationX7f8571dd? = nil) throws {
+    init(
+        automaticTax: CustomerTaxAutomaticTax,
+        provider: CustomerTaxProvider,
+        ipAddress: String? = nil,
+        location: CustomerTaxLocationX7f8571dd? = nil
+    ) throws {
         (self.automaticTax, self.provider) = (automaticTax, provider)
         (self.ipAddress, self.location) = (ipAddress, location)
         if let value = self.ipAddress {
@@ -122,20 +166,28 @@ public enum CustomerTaxLocationX7f8571dd {
 }
 
 extension CustomerTaxLocationX7f8571dd: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for CustomerTaxLocationX7f8571dd")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for CustomerTaxLocationX7f8571dd"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(CustomerTaxLocation.self) { return .customerTaxLocation(value) }
+        if let value = try? container.decode(CustomerTaxLocation.self) {
+            return .customerTaxLocation(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -144,7 +196,6 @@ extension CustomerTaxLocationX7f8571dd: Codable {
         case let .customerTaxLocation(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Typed representation of the `CustomerTaxLocation` API schema.
@@ -162,33 +213,43 @@ public struct CustomerTaxLocation: Codable {
         case state
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension CustomerTaxLocation {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.country) else {
-            throw SdkValidationError(field: "country", code: "required", message: "Validation failed for 'country': value is required")
+            throw SdkValidationError(
+                field: "country",
+                code: "required",
+                message: "Validation failed for 'country': value is required"
+            )
         }
         guard container.contains(.source) else {
-            throw SdkValidationError(field: "source", code: "required", message: "Validation failed for 'source': value is required")
+            throw SdkValidationError(
+                field: "source",
+                code: "required",
+                message: "Validation failed for 'source': value is required"
+            )
         }
-        self.country = try container.sdkDecodeRequired(.country)
-        self.source = try container.sdkDecodeRequired(.source)
-        self.state = try container.sdkDecodeIfPresent(.state)
-            try validateLength("country", self.country, min: nil, max: 5000)
-        if let value = self.state {
+        country = try container.sdkDecodeRequired(.country)
+        source = try container.sdkDecodeRequired(.source)
+        state = try container.sdkDecodeIfPresent(.state)
+        try validateLength("country", country, min: nil, max: 5000)
+        if let value = state {
             try validateLength("state", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension CustomerTaxLocation {
-    public init(country: String, source: CustomerTaxLocationSource, state: String? = nil) throws {
+    init(country: String, source: CustomerTaxLocationSource, state: String? = nil) throws {
         (self.country, self.source) = (country, source)
         self.state = state
-            try validateLength("country", self.country, min: nil, max: 5000)
+        try validateLength("country", self.country, min: nil, max: 5000)
         if let value = self.state {
             try validateLength("state", value, min: nil, max: 5000)
         }
@@ -196,16 +257,22 @@ public extension CustomerTaxLocation {
 }
 
 /// Controls whether or not the mobile payment element shows saved payment methods.
-public struct CustomerSessionResourceComponentsResourceMobilePaymentElementX0b0a098aaa: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct CustomerSessionResourceComponentsResourceMobilePaymentElementX0b0a098aaa: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let disabled = CustomerSessionResourceComponentsResourceMobilePaymentElementX0b0a098aaa(rawValue: "disabled")
-    public static let enabled = CustomerSessionResourceComponentsResourceMobilePaymentElementX0b0a098aaa(rawValue: "enabled")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let disabled =
+        CustomerSessionResourceComponentsResourceMobilePaymentElementX0b0a098aaa(rawValue: "disabled")
+    public static let enabled =
+        CustomerSessionResourceComponentsResourceMobilePaymentElementX0b0a098aaa(rawValue: "enabled")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -218,16 +285,22 @@ public struct CustomerSessionResourceComponentsResourceMobilePaymentElementX0b0a
 /// customer checks the box, the `allow_redisplay` value on the PaymentMethod is set to `'always'` at
 /// confirmation time. For PaymentIntents, the `setup_future_usage` value is also set to the value defined in
 /// `payment_method_save_usage`.
-public struct CustomerSessionResourceComponentsResourceMobilePaymentElementXc6ad2b1eb6: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct CustomerSessionResourceComponentsResourceMobilePaymentElementXc6ad2b1eb6: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let disabled = CustomerSessionResourceComponentsResourceMobilePaymentElementXc6ad2b1eb6(rawValue: "disabled")
-    public static let enabled = CustomerSessionResourceComponentsResourceMobilePaymentElementXc6ad2b1eb6(rawValue: "enabled")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let disabled =
+        CustomerSessionResourceComponentsResourceMobilePaymentElementXc6ad2b1eb6(rawValue: "disabled")
+    public static let enabled =
+        CustomerSessionResourceComponentsResourceMobilePaymentElementXc6ad2b1eb6(rawValue: "enabled")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -239,16 +312,22 @@ public struct CustomerSessionResourceComponentsResourceMobilePaymentElementXc6ad
 /// Controls whether the mobile payment element displays the option to remove a saved payment method." Allowing
 /// buyers to remove their saved payment methods impacts subscriptions that depend on that payment method.
 /// Removing the payment method detaches the `customer` object from that PaymentMethod.
-public struct CustomerSessionResourceComponentsResourceMobilePaymentElementX9ff2037268: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct CustomerSessionResourceComponentsResourceMobilePaymentElementX9ff2037268: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let disabled = CustomerSessionResourceComponentsResourceMobilePaymentElementX9ff2037268(rawValue: "disabled")
-    public static let enabled = CustomerSessionResourceComponentsResourceMobilePaymentElementX9ff2037268(rawValue: "enabled")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let disabled =
+        CustomerSessionResourceComponentsResourceMobilePaymentElementX9ff2037268(rawValue: "disabled")
+    public static let enabled =
+        CustomerSessionResourceComponentsResourceMobilePaymentElementX9ff2037268(rawValue: "enabled")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -261,16 +340,22 @@ public struct CustomerSessionResourceComponentsResourceMobilePaymentElementX9ff2
 /// defaults to `disabled`. Allowing buyers to remove their saved payment methods impacts subscriptions that
 /// depend on that payment method. Removing the payment method detaches the `customer` object from that
 /// PaymentMethod.
-public struct CustomerSessionResourceComponentsResourcePaymentElementResourX56ef6ca146: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct CustomerSessionResourceComponentsResourcePaymentElementResourX56ef6ca146: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let disabled = CustomerSessionResourceComponentsResourcePaymentElementResourX56ef6ca146(rawValue: "disabled")
-    public static let enabled = CustomerSessionResourceComponentsResourcePaymentElementResourX56ef6ca146(rawValue: "enabled")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let disabled =
+        CustomerSessionResourceComponentsResourcePaymentElementResourX56ef6ca146(rawValue: "disabled")
+    public static let enabled =
+        CustomerSessionResourceComponentsResourcePaymentElementResourX56ef6ca146(rawValue: "enabled")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -282,16 +367,22 @@ public struct CustomerSessionResourceComponentsResourcePaymentElementResourX56ef
 /// When using PaymentIntents and the customer checks the save checkbox, this field determines the
 /// `setup_future_usage` value used to confirm the PaymentIntent. When using SetupIntents, directly configure
 /// the `usage` value on SetupIntent creation.
-public struct CustomerSessionResourceComponentsResourcePaymentElementResourXd4a62b0bf9: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct CustomerSessionResourceComponentsResourcePaymentElementResourXd4a62b0bf9: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let offSession = CustomerSessionResourceComponentsResourcePaymentElementResourXd4a62b0bf9(rawValue: "off_session")
-    public static let onSession = CustomerSessionResourceComponentsResourcePaymentElementResourXd4a62b0bf9(rawValue: "on_session")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let offSession =
+        CustomerSessionResourceComponentsResourcePaymentElementResourXd4a62b0bf9(rawValue: "off_session")
+    public static let onSession =
+        CustomerSessionResourceComponentsResourcePaymentElementResourXd4a62b0bf9(rawValue: "on_session")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -301,17 +392,24 @@ public struct CustomerSessionResourceComponentsResourcePaymentElementResourXd4a6
 }
 
 /// Required enumerated value serialized in the `payment_method_allow_redisplay_filters[]` wire field.
-public struct CustomerSessionResourceComponentsResourceMobilePaymentElementXf5c1824c07: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct CustomerSessionResourceComponentsResourceMobilePaymentElementXf5c1824c07: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let always = CustomerSessionResourceComponentsResourceMobilePaymentElementXf5c1824c07(rawValue: "always")
-    public static let limited = CustomerSessionResourceComponentsResourceMobilePaymentElementXf5c1824c07(rawValue: "limited")
-    public static let unspecified = CustomerSessionResourceComponentsResourceMobilePaymentElementXf5c1824c07(rawValue: "unspecified")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let always =
+        CustomerSessionResourceComponentsResourceMobilePaymentElementXf5c1824c07(rawValue: "always")
+    public static let limited =
+        CustomerSessionResourceComponentsResourceMobilePaymentElementXf5c1824c07(rawValue: "limited")
+    public static let unspecified =
+        CustomerSessionResourceComponentsResourceMobilePaymentElementXf5c1824c07(rawValue: "unspecified")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -324,13 +422,16 @@ public struct CustomerSessionResourceComponentsResourceMobilePaymentElementXf5c1
 public struct CustomerAcceptanceType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let offline = CustomerAcceptanceType(rawValue: "offline")
     public static let online = CustomerAcceptanceType(rawValue: "online")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -342,17 +443,24 @@ public struct CustomerAcceptanceType: RawRepresentable, Hashable, Codable, Senda
 /// Allows overriding the value of allow_override when saving a new payment method when payment_method_save is
 /// set to disabled. Use values: "always", "limited", or "unspecified". If not specified, defaults to `nil` (no
 /// override value).
-public struct CustomerSessionResourceComponentsResourceMobilePaymentElementX0131f1b8d4: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct CustomerSessionResourceComponentsResourceMobilePaymentElementX0131f1b8d4: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let always = CustomerSessionResourceComponentsResourceMobilePaymentElementX0131f1b8d4(rawValue: "always")
-    public static let limited = CustomerSessionResourceComponentsResourceMobilePaymentElementX0131f1b8d4(rawValue: "limited")
-    public static let unspecified = CustomerSessionResourceComponentsResourceMobilePaymentElementX0131f1b8d4(rawValue: "unspecified")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let always =
+        CustomerSessionResourceComponentsResourceMobilePaymentElementX0131f1b8d4(rawValue: "always")
+    public static let limited =
+        CustomerSessionResourceComponentsResourceMobilePaymentElementX0131f1b8d4(rawValue: "limited")
+    public static let unspecified =
+        CustomerSessionResourceComponentsResourceMobilePaymentElementX0131f1b8d4(rawValue: "unspecified")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -362,17 +470,23 @@ public struct CustomerSessionResourceComponentsResourceMobilePaymentElementX0131
 }
 
 /// The banking network used for this funding.
-public struct CustomerBalanceResourceCashBalanceTransactionResourceFundedTrX53643cdf8c: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct CustomerBalanceResourceCashBalanceTransactionResourceFundedTrX53643cdf8c: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let ach = CustomerBalanceResourceCashBalanceTransactionResourceFundedTrX53643cdf8c(rawValue: "ach")
-    public static let domesticWireUs = CustomerBalanceResourceCashBalanceTransactionResourceFundedTrX53643cdf8c(rawValue: "domestic_wire_us")
-    public static let swift = CustomerBalanceResourceCashBalanceTransactionResourceFundedTrX53643cdf8c(rawValue: "swift")
+    public static let domesticWireUs =
+        CustomerBalanceResourceCashBalanceTransactionResourceFundedTrX53643cdf8c(rawValue: "domestic_wire_us")
+    public static let swift =
+        CustomerBalanceResourceCashBalanceTransactionResourceFundedTrX53643cdf8c(rawValue: "swift")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -382,17 +496,24 @@ public struct CustomerBalanceResourceCashBalanceTransactionResourceFundedTrX5364
 }
 
 /// Required enumerated value serialized in the `payment_method_allow_redisplay_filters[]` wire field.
-public struct CustomerSessionResourceComponentsResourcePaymentElementResourX755ad738ee: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct CustomerSessionResourceComponentsResourcePaymentElementResourX755ad738ee: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let always = CustomerSessionResourceComponentsResourcePaymentElementResourX755ad738ee(rawValue: "always")
-    public static let limited = CustomerSessionResourceComponentsResourcePaymentElementResourX755ad738ee(rawValue: "limited")
-    public static let unspecified = CustomerSessionResourceComponentsResourcePaymentElementResourX755ad738ee(rawValue: "unspecified")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let always =
+        CustomerSessionResourceComponentsResourcePaymentElementResourX755ad738ee(rawValue: "always")
+    public static let limited =
+        CustomerSessionResourceComponentsResourcePaymentElementResourX755ad738ee(rawValue: "limited")
+    public static let unspecified =
+        CustomerSessionResourceComponentsResourcePaymentElementResourX755ad738ee(rawValue: "unspecified")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -402,16 +523,20 @@ public struct CustomerSessionResourceComponentsResourcePaymentElementResourX755a
 }
 
 /// The configuration for how funds that land in the customer cash balance are reconciled.
-public struct CustomerBalanceCustomerBalanceSettingsReconciliationMode: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct CustomerBalanceCustomerBalanceSettingsReconciliationMode: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let automatic = CustomerBalanceCustomerBalanceSettingsReconciliationMode(rawValue: "automatic")
     public static let manual = CustomerBalanceCustomerBalanceSettingsReconciliationMode(rawValue: "manual")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

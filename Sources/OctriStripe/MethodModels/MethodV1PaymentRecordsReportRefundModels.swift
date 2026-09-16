@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1PaymentRecordsReportRefund operation model declarations
+/// Canonical v1PaymentRecordsReportRefund operation model declarations
 /// A positive integer in the smallest currency unit representing how much of this payment to refund. Can refund
 /// only up to the remaining, unrefunded amount of the payment.
 public struct PostPaymentRecordsIdReportRefundRequestBodyAmount: Codable {
@@ -19,25 +19,35 @@ public struct PostPaymentRecordsIdReportRefundRequestBodyAmount: Codable {
         case value
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostPaymentRecordsIdReportRefundRequestBodyAmount {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.currency) else {
-            throw SdkValidationError(field: "currency", code: "required", message: "Validation failed for 'currency': value is required")
-        }
-        guard container.contains(.value) else {
-            throw SdkValidationError(field: "value", code: "required", message: "Validation failed for 'value': value is required")
-        }
-        self.currency = try container.sdkDecodeRequired(.currency)
-        self.value = try container.sdkDecodeRequired(.value)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostPaymentRecordsIdReportRefundRequestBodyAmount {
-    public init(currency: String, value: Int) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.currency) else {
+            throw SdkValidationError(
+                field: "currency",
+                code: "required",
+                message: "Validation failed for 'currency': value is required"
+            )
+        }
+        guard container.contains(.value) else {
+            throw SdkValidationError(
+                field: "value",
+                code: "required",
+                message: "Validation failed for 'value': value is required"
+            )
+        }
+        currency = try container.sdkDecodeRequired(.currency)
+        value = try container.sdkDecodeRequired(.value)
+    }
+}
+
+public extension PostPaymentRecordsIdReportRefundRequestBodyAmount {
+    init(currency: String, value: Int) {
         (self.currency, self.value) = (currency, value)
     }
 }
@@ -53,22 +63,31 @@ public struct PostPaymentRecordsIdReportRefundRequestBodyProcessorDetails: Codab
         case custom
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostPaymentRecordsIdReportRefundRequestBodyProcessorDetails {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
-        }
-        self.type = try container.sdkDecodeRequired(.type)
-        self.custom = try container.sdkDecodeIfPresent(.custom)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostPaymentRecordsIdReportRefundRequestBodyProcessorDetails {
-    public init(type: PostPaymentRecordsIdReportRefundRequestBodyProcessorDetailsType, custom: PostPaymentRecordsIdReportRefundRequestBodyProcessorDetailsCustom? = nil) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.type) else {
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
+        }
+        type = try container.sdkDecodeRequired(.type)
+        custom = try container.sdkDecodeIfPresent(.custom)
+    }
+}
+
+public extension PostPaymentRecordsIdReportRefundRequestBodyProcessorDetails {
+    init(
+        type: PostPaymentRecordsIdReportRefundRequestBodyProcessorDetailsType,
+        custom: PostPaymentRecordsIdReportRefundRequestBodyProcessorDetailsCustom? = nil
+    ) {
         (self.type, self.custom) = (type, custom)
     }
 }
@@ -81,21 +100,27 @@ public struct PostPaymentRecordsIdReportRefundRequestBodyRefunded: Codable {
         case refundedAt = "refunded_at"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostPaymentRecordsIdReportRefundRequestBodyRefunded {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.refundedAt) else {
-            throw SdkValidationError(field: "refunded_at", code: "required", message: "Validation failed for 'refunded_at': value is required")
-        }
-        self.refundedAt = try container.sdkDecodeRequired(.refundedAt)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostPaymentRecordsIdReportRefundRequestBodyRefunded {
-    public init(refundedAt: Int) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.refundedAt) else {
+            throw SdkValidationError(
+                field: "refunded_at",
+                code: "required",
+                message: "Validation failed for 'refunded_at': value is required"
+            )
+        }
+        refundedAt = try container.sdkDecodeRequired(.refundedAt)
+    }
+}
+
+public extension PostPaymentRecordsIdReportRefundRequestBodyRefunded {
+    init(refundedAt: Int) {
         self.refundedAt = refundedAt
     }
 }
@@ -106,21 +131,31 @@ public enum PostPaymentRecordsIdReportRefundRequestBodyMetadata {
 }
 
 extension PostPaymentRecordsIdReportRefundRequestBodyMetadata: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostPaymentRecordsIdReportRefundRequestBodyMetadata")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PostPaymentRecordsIdReportRefundRequestBodyMetadata"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode([String: String].self) { return .dictionary(value) }
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode([String: String].self) {
+            return .dictionary(value)
+        }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -130,7 +165,6 @@ extension PostPaymentRecordsIdReportRefundRequestBodyMetadata: Codable {
         case let .stringValue(value): try container.encode(value); return true
         }
     }
-
 }
 
 public struct PostPaymentRecordsIdReportRefundRequestBodyProcessorDetailsCustom: Codable {
@@ -140,23 +174,29 @@ public struct PostPaymentRecordsIdReportRefundRequestBodyProcessorDetailsCustom:
         case refundReference = "refund_reference"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostPaymentRecordsIdReportRefundRequestBodyProcessorDetailsCustom {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.refundReference) else {
-            throw SdkValidationError(field: "refund_reference", code: "required", message: "Validation failed for 'refund_reference': value is required")
-        }
-        self.refundReference = try container.sdkDecodeRequired(.refundReference)
-            try validateLength("refund_reference", self.refundReference, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostPaymentRecordsIdReportRefundRequestBodyProcessorDetailsCustom {
-    public init(refundReference: String) throws {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.refundReference) else {
+            throw SdkValidationError(
+                field: "refund_reference",
+                code: "required",
+                message: "Validation failed for 'refund_reference': value is required"
+            )
+        }
+        refundReference = try container.sdkDecodeRequired(.refundReference)
+        try validateLength("refund_reference", refundReference, min: nil, max: 5000)
+    }
+}
+
+public extension PostPaymentRecordsIdReportRefundRequestBodyProcessorDetailsCustom {
+    init(refundReference: String) throws {
         self.refundReference = refundReference
-            try validateLength("refund_reference", self.refundReference, min: nil, max: 5000)
+        try validateLength("refund_reference", self.refundReference, min: nil, max: 5000)
     }
 }

@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1Balance domain models
+/// V1Balance domain models
 /// This is an object representing your Stripe balance. You can retrieve it to see the balance currently on your
 /// Stripe account. The top-level `available` and `pending` comprise your "payments balance." Related guide:
 /// Balances and settlement time, Understanding Connect account balances
@@ -42,37 +42,64 @@ public struct Balance: Codable {
         case refundAndDisputePrefunding = "refund_and_dispute_prefunding"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension Balance {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.available) else {
-            throw SdkValidationError(field: "available", code: "required", message: "Validation failed for 'available': value is required")
-        }
-        guard container.contains(.livemode) else {
-            throw SdkValidationError(field: "livemode", code: "required", message: "Validation failed for 'livemode': value is required")
-        }
-        guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
-        }
-        guard container.contains(.pending) else {
-            throw SdkValidationError(field: "pending", code: "required", message: "Validation failed for 'pending': value is required")
-        }
-        self.available = try container.sdkDecodeRequired(.available)
-        self.livemode = try container.sdkDecodeRequired(.livemode)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.pending = try container.sdkDecodeRequired(.pending)
-        self.connectReserved = try container.sdkDecodeIfPresent(.connectReserved)
-        self.instantAvailable = try container.sdkDecodeIfPresent(.instantAvailable)
-        self.issuing = try container.sdkDecodeIfPresent(.issuing)
-        self.refundAndDisputePrefunding = try container.sdkDecodeIfPresent(.refundAndDisputePrefunding)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension Balance {
-    public init(available: [BalanceAmount], livemode: Bool, object: BalanceObject, pending: [BalanceAmount], connectReserved: [BalanceAmount]? = nil, instantAvailable: [BalanceAmountNet]? = nil, issuing: BalanceDetail? = nil, refundAndDisputePrefunding: BalanceDetailUngated? = nil) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.available) else {
+            throw SdkValidationError(
+                field: "available",
+                code: "required",
+                message: "Validation failed for 'available': value is required"
+            )
+        }
+        guard container.contains(.livemode) else {
+            throw SdkValidationError(
+                field: "livemode",
+                code: "required",
+                message: "Validation failed for 'livemode': value is required"
+            )
+        }
+        guard container.contains(.object) else {
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
+        }
+        guard container.contains(.pending) else {
+            throw SdkValidationError(
+                field: "pending",
+                code: "required",
+                message: "Validation failed for 'pending': value is required"
+            )
+        }
+        available = try container.sdkDecodeRequired(.available)
+        livemode = try container.sdkDecodeRequired(.livemode)
+        object = try container.sdkDecodeRequired(.object)
+        pending = try container.sdkDecodeRequired(.pending)
+        connectReserved = try container.sdkDecodeIfPresent(.connectReserved)
+        instantAvailable = try container.sdkDecodeIfPresent(.instantAvailable)
+        issuing = try container.sdkDecodeIfPresent(.issuing)
+        refundAndDisputePrefunding = try container.sdkDecodeIfPresent(.refundAndDisputePrefunding)
+    }
+}
+
+public extension Balance {
+    init(
+        available: [BalanceAmount],
+        livemode: Bool,
+        object: BalanceObject,
+        pending: [BalanceAmount],
+        connectReserved: [BalanceAmount]? = nil,
+        instantAvailable: [BalanceAmountNet]? = nil,
+        issuing: BalanceDetail? = nil,
+        refundAndDisputePrefunding: BalanceDetailUngated? = nil
+    ) {
         (self.available, self.livemode) = (available, livemode)
         (self.object, self.pending) = (object, pending)
         (self.connectReserved, self.instantAvailable) = (connectReserved, instantAvailable)
@@ -95,26 +122,36 @@ public struct BalanceAmount: Codable {
         case sourceTypes = "source_types"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension BalanceAmount {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.amount) else {
-            throw SdkValidationError(field: "amount", code: "required", message: "Validation failed for 'amount': value is required")
-        }
-        guard container.contains(.currency) else {
-            throw SdkValidationError(field: "currency", code: "required", message: "Validation failed for 'currency': value is required")
-        }
-        self.amount = try container.sdkDecodeRequired(.amount)
-        self.currency = try container.sdkDecodeRequired(.currency)
-        self.sourceTypes = try container.sdkDecodeIfPresent(.sourceTypes)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension BalanceAmount {
-    public init(amount: Int, currency: String, sourceTypes: BalanceAmountBySourceType? = nil) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.amount) else {
+            throw SdkValidationError(
+                field: "amount",
+                code: "required",
+                message: "Validation failed for 'amount': value is required"
+            )
+        }
+        guard container.contains(.currency) else {
+            throw SdkValidationError(
+                field: "currency",
+                code: "required",
+                message: "Validation failed for 'currency': value is required"
+            )
+        }
+        amount = try container.sdkDecodeRequired(.amount)
+        currency = try container.sdkDecodeRequired(.currency)
+        sourceTypes = try container.sdkDecodeIfPresent(.sourceTypes)
+    }
+}
+
+public extension BalanceAmount {
+    init(amount: Int, currency: String, sourceTypes: BalanceAmountBySourceType? = nil) {
         (self.amount, self.currency) = (amount, currency)
         self.sourceTypes = sourceTypes
     }
@@ -136,21 +173,21 @@ public struct BalanceAmountBySourceType: Codable {
     }
 
     init() {
-        (self.bankAccount, self.card, self.fpx) = (nil, nil, nil)
+        (bankAccount, card, fpx) = (nil, nil, nil)
     }
 }
 
 public extension BalanceAmountBySourceType {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.bankAccount = try container.sdkDecodeIfPresent(.bankAccount)
-        self.card = try container.sdkDecodeIfPresent(.card)
-        self.fpx = try container.sdkDecodeIfPresent(.fpx)
+        bankAccount = try container.sdkDecodeIfPresent(.bankAccount)
+        card = try container.sdkDecodeIfPresent(.card)
+        fpx = try container.sdkDecodeIfPresent(.fpx)
     }
 }
 
 public extension BalanceAmountBySourceType {
-    public init(bankAccount: Int? = nil, card: Int? = nil, fpx: Int? = nil) {
+    init(bankAccount: Int? = nil, card: Int? = nil, fpx: Int? = nil) {
         self.init()
         (self.bankAccount, self.card) = (bankAccount, card)
         self.fpx = fpx
@@ -175,27 +212,42 @@ public struct BalanceAmountNet: Codable {
         case sourceTypes = "source_types"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension BalanceAmountNet {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.amount) else {
-            throw SdkValidationError(field: "amount", code: "required", message: "Validation failed for 'amount': value is required")
-        }
-        guard container.contains(.currency) else {
-            throw SdkValidationError(field: "currency", code: "required", message: "Validation failed for 'currency': value is required")
-        }
-        self.amount = try container.sdkDecodeRequired(.amount)
-        self.currency = try container.sdkDecodeRequired(.currency)
-        self.netAvailable = try container.sdkDecodeIfPresent(.netAvailable)
-        self.sourceTypes = try container.sdkDecodeIfPresent(.sourceTypes)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension BalanceAmountNet {
-    public init(amount: Int, currency: String, netAvailable: [BalanceNetAvailable]? = nil, sourceTypes: BalanceAmountBySourceType? = nil) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.amount) else {
+            throw SdkValidationError(
+                field: "amount",
+                code: "required",
+                message: "Validation failed for 'amount': value is required"
+            )
+        }
+        guard container.contains(.currency) else {
+            throw SdkValidationError(
+                field: "currency",
+                code: "required",
+                message: "Validation failed for 'currency': value is required"
+            )
+        }
+        amount = try container.sdkDecodeRequired(.amount)
+        currency = try container.sdkDecodeRequired(.currency)
+        netAvailable = try container.sdkDecodeIfPresent(.netAvailable)
+        sourceTypes = try container.sdkDecodeIfPresent(.sourceTypes)
+    }
+}
+
+public extension BalanceAmountNet {
+    init(
+        amount: Int,
+        currency: String,
+        netAvailable: [BalanceNetAvailable]? = nil,
+        sourceTypes: BalanceAmountBySourceType? = nil
+    ) {
         (self.amount, self.currency) = (amount, currency)
         (self.netAvailable, self.sourceTypes) = (netAvailable, sourceTypes)
     }
@@ -210,21 +262,27 @@ public struct BalanceDetail: Codable {
         case available
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension BalanceDetail {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.available) else {
-            throw SdkValidationError(field: "available", code: "required", message: "Validation failed for 'available': value is required")
-        }
-        self.available = try container.sdkDecodeRequired(.available)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension BalanceDetail {
-    public init(available: [BalanceAmount]) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.available) else {
+            throw SdkValidationError(
+                field: "available",
+                code: "required",
+                message: "Validation failed for 'available': value is required"
+            )
+        }
+        available = try container.sdkDecodeRequired(.available)
+    }
+}
+
+public extension BalanceDetail {
+    init(available: [BalanceAmount]) {
         self.available = available
     }
 }
@@ -241,25 +299,35 @@ public struct BalanceDetailUngated: Codable {
         case pending
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension BalanceDetailUngated {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.available) else {
-            throw SdkValidationError(field: "available", code: "required", message: "Validation failed for 'available': value is required")
-        }
-        guard container.contains(.pending) else {
-            throw SdkValidationError(field: "pending", code: "required", message: "Validation failed for 'pending': value is required")
-        }
-        self.available = try container.sdkDecodeRequired(.available)
-        self.pending = try container.sdkDecodeRequired(.pending)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension BalanceDetailUngated {
-    public init(available: [BalanceAmount], pending: [BalanceAmount]) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.available) else {
+            throw SdkValidationError(
+                field: "available",
+                code: "required",
+                message: "Validation failed for 'available': value is required"
+            )
+        }
+        guard container.contains(.pending) else {
+            throw SdkValidationError(
+                field: "pending",
+                code: "required",
+                message: "Validation failed for 'pending': value is required"
+            )
+        }
+        available = try container.sdkDecodeRequired(.available)
+        pending = try container.sdkDecodeRequired(.pending)
+    }
+}
+
+public extension BalanceDetailUngated {
+    init(available: [BalanceAmount], pending: [BalanceAmount]) {
         (self.available, self.pending) = (available, pending)
     }
 }
@@ -279,30 +347,40 @@ public struct BalanceNetAvailable: Codable {
         case sourceTypes = "source_types"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension BalanceNetAvailable {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.amount) else {
-            throw SdkValidationError(field: "amount", code: "required", message: "Validation failed for 'amount': value is required")
-        }
-        guard container.contains(.destination) else {
-            throw SdkValidationError(field: "destination", code: "required", message: "Validation failed for 'destination': value is required")
-        }
-        self.amount = try container.sdkDecodeRequired(.amount)
-        self.destination = try container.sdkDecodeRequired(.destination)
-        self.sourceTypes = try container.sdkDecodeIfPresent(.sourceTypes)
-            try validateLength("destination", self.destination, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension BalanceNetAvailable {
-    public init(amount: Int, destination: String, sourceTypes: BalanceAmountBySourceType? = nil) throws {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.amount) else {
+            throw SdkValidationError(
+                field: "amount",
+                code: "required",
+                message: "Validation failed for 'amount': value is required"
+            )
+        }
+        guard container.contains(.destination) else {
+            throw SdkValidationError(
+                field: "destination",
+                code: "required",
+                message: "Validation failed for 'destination': value is required"
+            )
+        }
+        amount = try container.sdkDecodeRequired(.amount)
+        destination = try container.sdkDecodeRequired(.destination)
+        sourceTypes = try container.sdkDecodeIfPresent(.sourceTypes)
+        try validateLength("destination", destination, min: nil, max: 5000)
+    }
+}
+
+public extension BalanceNetAvailable {
+    init(amount: Int, destination: String, sourceTypes: BalanceAmountBySourceType? = nil) throws {
         (self.amount, self.destination) = (amount, destination)
         self.sourceTypes = sourceTypes
-            try validateLength("destination", self.destination, min: nil, max: 5000)
+        try validateLength("destination", self.destination, min: nil, max: 5000)
     }
 }
 
@@ -318,25 +396,35 @@ public struct BalanceSettings: Codable {
         case payments
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension BalanceSettings {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
-        }
-        guard container.contains(.payments) else {
-            throw SdkValidationError(field: "payments", code: "required", message: "Validation failed for 'payments': value is required")
-        }
-        self.object = try container.sdkDecodeRequired(.object)
-        self.payments = try container.sdkDecodeRequired(.payments)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension BalanceSettings {
-    public init(object: BalanceSettingsObject, payments: BalanceSettingsResourcePayments) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.object) else {
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
+        }
+        guard container.contains(.payments) else {
+            throw SdkValidationError(
+                field: "payments",
+                code: "required",
+                message: "Validation failed for 'payments': value is required"
+            )
+        }
+        object = try container.sdkDecodeRequired(.object)
+        payments = try container.sdkDecodeRequired(.payments)
+    }
+}
+
+public extension BalanceSettings {
+    init(object: BalanceSettingsObject, payments: BalanceSettingsResourcePayments) {
         (self.object, self.payments) = (object, payments)
     }
 }
@@ -357,30 +445,44 @@ public struct BalanceSettingsResourceAutomaticTransferRule: Codable {
         case transferUpToAmount = "transfer_up_to_amount"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension BalanceSettingsResourceAutomaticTransferRule {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.payoutMethod) else {
-            throw SdkValidationError(field: "payout_method", code: "required", message: "Validation failed for 'payout_method': value is required")
-        }
-        guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
-        }
-        self.payoutMethod = try container.sdkDecodeRequired(.payoutMethod)
-        self.type = try container.sdkDecodeRequired(.type)
-        self.transferUpToAmount = try container.sdkDecodeIfPresent(.transferUpToAmount)
-            try validateLength("payout_method", self.payoutMethod, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension BalanceSettingsResourceAutomaticTransferRule {
-    public init(payoutMethod: String, type: BalanceSettingsResourceAutomaticTransferRuleType, transferUpToAmount: Int? = nil) throws {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.payoutMethod) else {
+            throw SdkValidationError(
+                field: "payout_method",
+                code: "required",
+                message: "Validation failed for 'payout_method': value is required"
+            )
+        }
+        guard container.contains(.type) else {
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
+        }
+        payoutMethod = try container.sdkDecodeRequired(.payoutMethod)
+        type = try container.sdkDecodeRequired(.type)
+        transferUpToAmount = try container.sdkDecodeIfPresent(.transferUpToAmount)
+        try validateLength("payout_method", payoutMethod, min: nil, max: 5000)
+    }
+}
+
+public extension BalanceSettingsResourceAutomaticTransferRule {
+    init(
+        payoutMethod: String,
+        type: BalanceSettingsResourceAutomaticTransferRuleType,
+        transferUpToAmount: Int? = nil
+    ) throws {
         (self.payoutMethod, self.type) = (payoutMethod, type)
         self.transferUpToAmount = transferUpToAmount
-            try validateLength("payout_method", self.payoutMethod, min: nil, max: 5000)
+        try validateLength("payout_method", self.payoutMethod, min: nil, max: 5000)
     }
 }
 
@@ -401,23 +503,33 @@ public struct BalanceSettingsResourcePayments: Codable {
         case payouts
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension BalanceSettingsResourcePayments {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.settlementTiming) else {
-            throw SdkValidationError(field: "settlement_timing", code: "required", message: "Validation failed for 'settlement_timing': value is required")
-        }
-        self.settlementTiming = try container.sdkDecodeRequired(.settlementTiming)
-        self.debitNegativeBalances = try container.sdkDecodeIfPresent(.debitNegativeBalances)
-        self.payouts = try container.sdkDecodeIfPresent(.payouts)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension BalanceSettingsResourcePayments {
-    public init(settlementTiming: BalanceSettingsResourceSettlementTiming, debitNegativeBalances: Bool? = nil, payouts: BalanceSettingsResourcePaymentsPayouts? = nil) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.settlementTiming) else {
+            throw SdkValidationError(
+                field: "settlement_timing",
+                code: "required",
+                message: "Validation failed for 'settlement_timing': value is required"
+            )
+        }
+        settlementTiming = try container.sdkDecodeRequired(.settlementTiming)
+        debitNegativeBalances = try container.sdkDecodeIfPresent(.debitNegativeBalances)
+        payouts = try container.sdkDecodeIfPresent(.payouts)
+    }
+}
+
+public extension BalanceSettingsResourcePayments {
+    init(
+        settlementTiming: BalanceSettingsResourceSettlementTiming,
+        debitNegativeBalances: Bool? = nil,
+        payouts: BalanceSettingsResourcePaymentsPayouts? = nil
+    ) {
         (self.settlementTiming, self.debitNegativeBalances) = (settlementTiming, debitNegativeBalances)
         self.payouts = payouts
     }
@@ -428,20 +540,29 @@ public enum BalanceSettingsResourcePaymentsPayouts {
 }
 
 extension BalanceSettingsResourcePaymentsPayouts: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for BalanceSettingsResourcePaymentsPayouts")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for BalanceSettingsResourcePaymentsPayouts"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(BalanceSettingsResourcePayouts.self) { return .balanceSettingsResourcePayouts(value) }
+        if let value = try? container
+            .decode(BalanceSettingsResourcePayouts.self) {
+            return .balanceSettingsResourcePayouts(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -450,7 +571,6 @@ extension BalanceSettingsResourcePaymentsPayouts: Codable {
         case let .balanceSettingsResourcePayouts(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Typed representation of the `BalanceSettingsResourcePayoutSchedule` API schema.
@@ -472,21 +592,25 @@ public struct BalanceSettingsResourcePayoutSchedule: Codable {
     }
 
     init() {
-        (self.interval, self.monthlyPayoutDays, self.weeklyPayoutDays) = (nil, nil, nil)
+        (interval, monthlyPayoutDays, weeklyPayoutDays) = (nil, nil, nil)
     }
 }
 
 public extension BalanceSettingsResourcePayoutSchedule {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.interval = try container.sdkDecodeIfPresent(.interval)
-        self.monthlyPayoutDays = try container.sdkDecodeIfPresent(.monthlyPayoutDays)
-        self.weeklyPayoutDays = try container.sdkDecodeIfPresent(.weeklyPayoutDays)
+        interval = try container.sdkDecodeIfPresent(.interval)
+        monthlyPayoutDays = try container.sdkDecodeIfPresent(.monthlyPayoutDays)
+        weeklyPayoutDays = try container.sdkDecodeIfPresent(.weeklyPayoutDays)
     }
 }
 
 public extension BalanceSettingsResourcePayoutSchedule {
-    public init(interval: BalanceSettingsResourcePayoutScheduleInterval? = nil, monthlyPayoutDays: [Int]? = nil, weeklyPayoutDays: [BalanceSettingsResourcePayoutScheduleWeeklyPayoutDaysItem]? = nil) {
+    init(
+        interval: BalanceSettingsResourcePayoutScheduleInterval? = nil,
+        monthlyPayoutDays: [Int]? = nil,
+        weeklyPayoutDays: [BalanceSettingsResourcePayoutScheduleWeeklyPayoutDaysItem]? = nil
+    ) {
         self.init()
         (self.interval, self.monthlyPayoutDays) = (interval, monthlyPayoutDays)
         self.weeklyPayoutDays = weeklyPayoutDays
@@ -518,5 +642,7 @@ public struct BalanceSettingsResourcePayouts: Codable {
         case statementDescriptor = "statement_descriptor"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }

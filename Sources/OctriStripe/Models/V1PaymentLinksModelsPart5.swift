@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1PaymentLinks domain models
+/// V1PaymentLinks domain models
 extension PaymentLinksResourceShippingAddressCollectionAllowedCountriesItem {
     static let allCasesPart1: [PaymentLinksResourceShippingAddressCollectionAllowedCountriesItem] = [
         .ac,
@@ -63,7 +63,7 @@ extension PaymentLinksResourceShippingAddressCollectionAllowedCountriesItem {
         .dj,
         .dk,
         .dm,
-        .`do`,
+        .do,
         .dz,
         .ec,
         .ee,
@@ -110,10 +110,10 @@ extension PaymentLinksResourceShippingAddressCollectionAllowedCountriesItem {
         .ie,
         .il,
         .im,
-        .`in`,
+        .in,
         .io,
         .iq,
-        .`is`,
+        .is,
         .it,
         .je,
         .jm,
@@ -260,23 +260,27 @@ extension PaymentLinksResourceShippingAddressCollectionAllowedCountriesItem {
 extension PaymentLinksResourceShippingAddressCollectionAllowedCountriesItem: CaseIterable {
     public static var allCases: [PaymentLinksResourceShippingAddressCollectionAllowedCountriesItem] {
         allCasesPart1
-        +         allCasesPart2
-        +         allCasesPart3
+            + allCasesPart2
+            + allCasesPart3
     }
 }
 
 /// Indicates when the funds will be captured from the customer's account.
-public struct PaymentLinksResourcePaymentIntentDataCaptureMethod: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentLinksResourcePaymentIntentDataCaptureMethod: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let automatic = PaymentLinksResourcePaymentIntentDataCaptureMethod(rawValue: "automatic")
     public static let automaticAsync = PaymentLinksResourcePaymentIntentDataCaptureMethod(rawValue: "automatic_async")
     public static let manual = PaymentLinksResourcePaymentIntentDataCaptureMethod(rawValue: "manual")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -286,15 +290,19 @@ public struct PaymentLinksResourcePaymentIntentDataCaptureMethod: RawRepresentab
 }
 
 /// The type of the label.
-public struct PaymentLinksResourceCustomFieldsLabelType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentLinksResourceCustomFieldsLabelType: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let custom = PaymentLinksResourceCustomFieldsLabelType(rawValue: "custom")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -304,16 +312,20 @@ public struct PaymentLinksResourceCustomFieldsLabelType: RawRepresentable, Hasha
 }
 
 /// The specified behavior after the purchase is complete.
-public struct PaymentLinksResourceAfterCompletionType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentLinksResourceAfterCompletionType: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let hostedConfirmation = PaymentLinksResourceAfterCompletionType(rawValue: "hosted_confirmation")
     public static let redirect = PaymentLinksResourceAfterCompletionType(rawValue: "redirect")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -324,16 +336,20 @@ public struct PaymentLinksResourceAfterCompletionType: RawRepresentable, Hashabl
 
 /// If set to `required`, it requires cutomers to accept the terms of service before being able to pay. If set
 /// to `none`, customers won't be shown a checkbox to accept the terms of service.
-public struct PaymentLinksResourceConsentCollectionTermsOfService: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentLinksResourceConsentCollectionTermsOfService: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let none = PaymentLinksResourceConsentCollectionTermsOfService(rawValue: "none")
     public static let required = PaymentLinksResourceConsentCollectionTermsOfService(rawValue: "required")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -343,16 +359,20 @@ public struct PaymentLinksResourceConsentCollectionTermsOfService: RawRepresenta
 }
 
 /// Indicates that you intend to make future payments with the payment method collected during checkout.
-public struct PaymentLinksResourcePaymentIntentDataSetupFutureUsage: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentLinksResourcePaymentIntentDataSetupFutureUsage: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let offSession = PaymentLinksResourcePaymentIntentDataSetupFutureUsage(rawValue: "off_session")
     public static let onSession = PaymentLinksResourcePaymentIntentDataSetupFutureUsage(rawValue: "on_session")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -362,16 +382,20 @@ public struct PaymentLinksResourcePaymentIntentDataSetupFutureUsage: RawRepresen
 }
 
 /// If set to `auto`, enables the collection of customer consent for promotional communications.
-public struct PaymentLinksResourceConsentCollectionPromotions: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentLinksResourceConsentCollectionPromotions: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let auto = PaymentLinksResourceConsentCollectionPromotions(rawValue: "auto")
     public static let none = PaymentLinksResourceConsentCollectionPromotions(rawValue: "none")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -381,16 +405,20 @@ public struct PaymentLinksResourceConsentCollectionPromotions: RawRepresentable,
 }
 
 /// Required enumerated value serialized in the `required` wire field.
-public struct PaymentLinksResourceTaxIdCollectionRequired: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentLinksResourceTaxIdCollectionRequired: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let ifSupported = PaymentLinksResourceTaxIdCollectionRequired(rawValue: "if_supported")
     public static let never = PaymentLinksResourceTaxIdCollectionRequired(rawValue: "never")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1PaymentMethodCard domain models
+/// V1PaymentMethodCard domain models
 /// Typed representation of the `PaymentMethodCardWalletVisaCheckout` API schema.
 public struct PaymentMethodCardWalletVisaCheckout: Codable {
     /// Owner's verified billing address. Values are verified or provided by the wallet directly (if supported) at
@@ -27,28 +27,33 @@ public struct PaymentMethodCardWalletVisaCheckout: Codable {
     }
 
     init() {
-        (self.billingAddress, self.email, self.name, self.shippingAddress) = (nil, nil, nil, nil)
+        (billingAddress, email, name, shippingAddress) = (nil, nil, nil, nil)
     }
 }
 
 public extension PaymentMethodCardWalletVisaCheckout {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.billingAddress = try container.sdkDecodeIfPresent(.billingAddress)
-        self.email = try container.sdkDecodeIfPresent(.email)
-        self.name = try container.sdkDecodeIfPresent(.name)
-        self.shippingAddress = try container.sdkDecodeIfPresent(.shippingAddress)
-        if let value = self.email {
+        billingAddress = try container.sdkDecodeIfPresent(.billingAddress)
+        email = try container.sdkDecodeIfPresent(.email)
+        name = try container.sdkDecodeIfPresent(.name)
+        shippingAddress = try container.sdkDecodeIfPresent(.shippingAddress)
+        if let value = email {
             try validateLength("email", value, min: nil, max: 5000)
         }
-        if let value = self.name {
+        if let value = name {
             try validateLength("name", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension PaymentMethodCardWalletVisaCheckout {
-    public init(billingAddress: PaymentMethodCardWalletVisaCheckoutBillingAddress? = nil, email: String? = nil, name: String? = nil, shippingAddress: PaymentMethodCardWalletVisaCheckoutShippingAddress? = nil) throws {
+    init(
+        billingAddress: PaymentMethodCardWalletVisaCheckoutBillingAddress? = nil,
+        email: String? = nil,
+        name: String? = nil,
+        shippingAddress: PaymentMethodCardWalletVisaCheckoutShippingAddress? = nil
+    ) throws {
         self.init()
         (self.billingAddress, self.email) = (billingAddress, email)
         (self.name, self.shippingAddress) = (name, shippingAddress)
@@ -66,20 +71,28 @@ public enum PaymentMethodCardWalletVisaCheckoutBillingAddress {
 }
 
 extension PaymentMethodCardWalletVisaCheckoutBillingAddress: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentMethodCardWalletVisaCheckoutBillingAddress")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PaymentMethodCardWalletVisaCheckoutBillingAddress"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(Address.self) { return .address(value) }
+        if let value = try? container.decode(Address.self) {
+            return .address(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -88,7 +101,6 @@ extension PaymentMethodCardWalletVisaCheckoutBillingAddress: Codable {
         case let .address(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum PaymentMethodCardWalletVisaCheckoutShippingAddress {
@@ -96,20 +108,28 @@ public enum PaymentMethodCardWalletVisaCheckoutShippingAddress {
 }
 
 extension PaymentMethodCardWalletVisaCheckoutShippingAddress: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentMethodCardWalletVisaCheckoutShippingAddress")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PaymentMethodCardWalletVisaCheckoutShippingAddress"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(Address.self) { return .address(value) }
+        if let value = try? container.decode(Address.self) {
+            return .address(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -118,23 +138,26 @@ extension PaymentMethodCardWalletVisaCheckoutShippingAddress: Codable {
         case let .address(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// How card details were read in this transaction.
 public struct PaymentMethodCardPresentReadMethod: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let contactEmv = PaymentMethodCardPresentReadMethod(rawValue: "contact_emv")
     public static let contactlessEmv = PaymentMethodCardPresentReadMethod(rawValue: "contactless_emv")
-    public static let contactlessMagstripeMode = PaymentMethodCardPresentReadMethod(rawValue: "contactless_magstripe_mode")
+    public static let contactlessMagstripeMode =
+        PaymentMethodCardPresentReadMethod(rawValue: "contactless_magstripe_mode")
     public static let magneticStripeFallback = PaymentMethodCardPresentReadMethod(rawValue: "magnetic_stripe_fallback")
     public static let magneticStripeTrack2 = PaymentMethodCardPresentReadMethod(rawValue: "magnetic_stripe_track2")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -149,7 +172,10 @@ public struct PaymentMethodCardPresentReadMethod: RawRepresentable, Hashable, Co
 public struct PaymentMethodCardWalletType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let amexExpressCheckout = PaymentMethodCardWalletType(rawValue: "amex_express_checkout")
     public static let applePay = PaymentMethodCardWalletType(rawValue: "apple_pay")
     public static let googlePay = PaymentMethodCardWalletType(rawValue: "google_pay")
@@ -160,7 +186,7 @@ public struct PaymentMethodCardWalletType: RawRepresentable, Hashable, Codable, 
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

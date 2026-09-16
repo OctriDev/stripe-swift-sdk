@@ -3,9 +3,28 @@
 
 import Foundation
 
-// V1 domain models
+/// V1 domain models
 public extension Product {
-    public init(active: Bool, created: Int, id: String, images: [String], livemode: Bool, marketingFeatures: [ProductMarketingFeature], metadata: [String: String], name: String, object: ProductObject, updated: Int, defaultPrice: ProductDefaultPrice? = nil, description: String? = nil, packageDimensions: ProductPackageDimensions? = nil, shippable: Bool? = nil, statementDescriptor: String? = nil, taxCode: ProductTaxCode? = nil, unitLabel: String? = nil, url: String? = nil) throws {
+    init(
+        active: Bool,
+        created: Int,
+        id: String,
+        images: [String],
+        livemode: Bool,
+        marketingFeatures: [ProductMarketingFeature],
+        metadata: [String: String],
+        name: String,
+        object: ProductObject,
+        updated: Int,
+        defaultPrice: ProductDefaultPrice? = nil,
+        description: String? = nil,
+        packageDimensions: ProductPackageDimensions? = nil,
+        shippable: Bool? = nil,
+        statementDescriptor: String? = nil,
+        taxCode: ProductTaxCode? = nil,
+        unitLabel: String? = nil,
+        url: String? = nil
+    ) throws {
         (self.active, self.created) = (active, created)
         (self.id, self.images) = (id, images)
         (self.livemode, self.marketingFeatures) = (livemode, marketingFeatures)
@@ -15,8 +34,8 @@ public extension Product {
         (self.packageDimensions, self.shippable) = (packageDimensions, shippable)
         (self.statementDescriptor, self.taxCode) = (statementDescriptor, taxCode)
         (self.unitLabel, self.url) = (unitLabel, url)
-            try validateLength("id", self.id, min: nil, max: 5000)
-            try validateLength("name", self.name, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("name", self.name, min: nil, max: 5000)
         if let value = self.description {
             try validateLength("description", value, min: nil, max: 5000)
         }
@@ -38,21 +57,31 @@ public enum ProductDefaultPrice {
 }
 
 extension ProductDefaultPrice: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for ProductDefaultPrice")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for ProductDefaultPrice"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(Price.self) { return .price(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(Price.self) {
+            return .price(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -62,7 +91,6 @@ extension ProductDefaultPrice: Codable {
         case let .price(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum ProductPackageDimensions {
@@ -70,20 +98,28 @@ public enum ProductPackageDimensions {
 }
 
 extension ProductPackageDimensions: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for ProductPackageDimensions")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for ProductPackageDimensions"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(PackageDimensions.self) { return .packageDimensions(value) }
+        if let value = try? container.decode(PackageDimensions.self) {
+            return .packageDimensions(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -92,7 +128,6 @@ extension ProductPackageDimensions: Codable {
         case let .packageDimensions(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum ProductTaxCode {
@@ -101,21 +136,28 @@ public enum ProductTaxCode {
 }
 
 extension ProductTaxCode: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
         throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for ProductTaxCode")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(TaxCode.self) { return .taxCode(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(TaxCode.self) {
+            return .taxCode(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -125,7 +167,6 @@ extension ProductTaxCode: Codable {
         case let .taxCode(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// A Promotion Code represents a customer-redeemable code for an underlying promotion. You can create multiple
@@ -183,36 +224,53 @@ public struct PromotionCode: Codable {
         case metadata
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension PromotionCode {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.active = try container.sdkDecodeRequired(.active)
-        self.code = try container.sdkDecodeRequired(.code)
-        self.created = try container.sdkDecodeRequired(.created)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.livemode = try container.sdkDecodeRequired(.livemode)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.promotion = try container.sdkDecodeRequired(.promotion)
-        self.restrictions = try container.sdkDecodeRequired(.restrictions)
-        self.timesRedeemed = try container.sdkDecodeRequired(.timesRedeemed)
-        self.customer = try container.sdkDecodeIfPresent(.customer)
-        self.customerAccount = try container.sdkDecodeIfPresent(.customerAccount)
-        self.expiresAt = try container.sdkDecodeIfPresent(.expiresAt)
-        self.maxRedemptions = try container.sdkDecodeIfPresent(.maxRedemptions)
-        self.metadata = try container.sdkDecodeIfPresent(.metadata)
-            try validateLength("code", self.code, min: nil, max: 5000)
-            try validateLength("id", self.id, min: nil, max: 5000)
-        if let value = self.customerAccount {
+        active = try container.sdkDecodeRequired(.active)
+        code = try container.sdkDecodeRequired(.code)
+        created = try container.sdkDecodeRequired(.created)
+        id = try container.sdkDecodeRequired(.id)
+        livemode = try container.sdkDecodeRequired(.livemode)
+        object = try container.sdkDecodeRequired(.object)
+        promotion = try container.sdkDecodeRequired(.promotion)
+        restrictions = try container.sdkDecodeRequired(.restrictions)
+        timesRedeemed = try container.sdkDecodeRequired(.timesRedeemed)
+        customer = try container.sdkDecodeIfPresent(.customer)
+        customerAccount = try container.sdkDecodeIfPresent(.customerAccount)
+        expiresAt = try container.sdkDecodeIfPresent(.expiresAt)
+        maxRedemptions = try container.sdkDecodeIfPresent(.maxRedemptions)
+        metadata = try container.sdkDecodeIfPresent(.metadata)
+        try validateLength("code", code, min: nil, max: 5000)
+        try validateLength("id", id, min: nil, max: 5000)
+        if let value = customerAccount {
             try validateLength("customer_account", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension PromotionCode {
-    public init(active: Bool, code: String, created: Int, id: String, livemode: Bool, object: PromotionCodeObject, promotion: PromotionCodesResourcePromotion, restrictions: PromotionCodesResourceRestrictions, timesRedeemed: Int, customer: PromotionCodeCustomer? = nil, customerAccount: String? = nil, expiresAt: Int? = nil, maxRedemptions: Int? = nil, metadata: [String: String]? = nil) throws {
+    init(
+        active: Bool,
+        code: String,
+        created: Int,
+        id: String,
+        livemode: Bool,
+        object: PromotionCodeObject,
+        promotion: PromotionCodesResourcePromotion,
+        restrictions: PromotionCodesResourceRestrictions,
+        timesRedeemed: Int,
+        customer: PromotionCodeCustomer? = nil,
+        customerAccount: String? = nil,
+        expiresAt: Int? = nil,
+        maxRedemptions: Int? = nil,
+        metadata: [String: String]? = nil
+    ) throws {
         (self.active, self.code) = (active, code)
         (self.created, self.id) = (created, id)
         (self.livemode, self.object) = (livemode, object)
@@ -220,8 +278,8 @@ public extension PromotionCode {
         (self.timesRedeemed, self.customer) = (timesRedeemed, customer)
         (self.customerAccount, self.expiresAt) = (customerAccount, expiresAt)
         (self.maxRedemptions, self.metadata) = (maxRedemptions, metadata)
-            try validateLength("code", self.code, min: nil, max: 5000)
-            try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("code", self.code, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
         if let value = self.customerAccount {
             try validateLength("customer_account", value, min: nil, max: 5000)
         }
@@ -235,22 +293,34 @@ public enum PromotionCodeCustomer {
 }
 
 extension PromotionCodeCustomer: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PromotionCodeCustomer")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PromotionCodeCustomer"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(Customer.self) { return .customer(value) }
-        if let value = try? container.decode(DeletedCustomer.self) { return .deletedCustomer(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(Customer.self) {
+            return .customer(value)
+        }
+        if let value = try? container.decode(DeletedCustomer.self) {
+            return .deletedCustomer(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -261,7 +331,6 @@ extension PromotionCodeCustomer: Codable {
         case let .deletedCustomer(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Typed representation of the `ProrationDetails` API schema.
@@ -276,22 +345,28 @@ public struct ProrationDetails: Codable {
         case creditedItems = "credited_items"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension ProrationDetails {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.discountAmounts) else {
-            throw SdkValidationError(field: "discount_amounts", code: "required", message: "Validation failed for 'discount_amounts': value is required")
-        }
-        self.discountAmounts = try container.sdkDecodeRequired(.discountAmounts)
-        self.creditedItems = try container.sdkDecodeIfPresent(.creditedItems)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension ProrationDetails {
-    public init(discountAmounts: [DiscountsResourceDiscountAmount], creditedItems: ProrationDetailsCreditedItems? = nil) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.discountAmounts) else {
+            throw SdkValidationError(
+                field: "discount_amounts",
+                code: "required",
+                message: "Validation failed for 'discount_amounts': value is required"
+            )
+        }
+        discountAmounts = try container.sdkDecodeRequired(.discountAmounts)
+        creditedItems = try container.sdkDecodeIfPresent(.creditedItems)
+    }
+}
+
+public extension ProrationDetails {
+    init(discountAmounts: [DiscountsResourceDiscountAmount], creditedItems: ProrationDetailsCreditedItems? = nil) {
         (self.discountAmounts, self.creditedItems) = (discountAmounts, creditedItems)
     }
 }
@@ -301,20 +376,29 @@ public enum ProrationDetailsCreditedItems {
 }
 
 extension ProrationDetailsCreditedItems: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for ProrationDetailsCreditedItems")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for ProrationDetailsCreditedItems"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(InvoiceItemProrationCreditedItems.self) { return .invoiceItemProrationCreditedItems(value) }
+        if let value = try? container
+            .decode(InvoiceItemProrationCreditedItems.self) {
+            return .invoiceItemProrationCreditedItems(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -323,7 +407,6 @@ extension ProrationDetailsCreditedItems: Codable {
         case let .invoiceItemProrationCreditedItems(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// A Quote is a way to model prices that you'd like to provide to a customer. Once accepted, it will automatically
@@ -454,54 +537,93 @@ public struct Quote: Codable {
         case transferData = "transfer_data"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension Quote {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.amountSubtotal = try container.sdkDecodeRequired(.amountSubtotal)
-        self.amountTotal = try container.sdkDecodeRequired(.amountTotal)
-        self.automaticTax = try container.sdkDecodeRequired(.automaticTax)
-        self.collectionMethod = try container.sdkDecodeRequired(.collectionMethod)
-        self.computed = try container.sdkDecodeRequired(.computed)
-        self.created = try container.sdkDecodeRequired(.created)
-        self.discounts = try container.sdkDecodeRequired(.discounts)
-        self.expiresAt = try container.sdkDecodeRequired(.expiresAt)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.invoiceSettings = try container.sdkDecodeRequired(.invoiceSettings)
-        self.livemode = try container.sdkDecodeRequired(.livemode)
-        self.metadata = try container.sdkDecodeRequired(.metadata)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.status = try container.sdkDecodeRequired(.status)
-        self.statusTransitions = try container.sdkDecodeRequired(.statusTransitions)
-        self.subscriptionData = try container.sdkDecodeRequired(.subscriptionData)
-        self.totalDetails = try container.sdkDecodeRequired(.totalDetails)
-        self.application = try container.sdkDecodeIfPresent(.application)
-        self.applicationFeeAmount = try container.sdkDecodeIfPresent(.applicationFeeAmount)
-        self.applicationFeePercent = try container.sdkDecodeIfPresent(.applicationFeePercent)
-        self.currency = try container.sdkDecodeIfPresent(.currency)
-        self.customer = try container.sdkDecodeIfPresent(.customer)
-        self.customerAccount = try container.sdkDecodeIfPresent(.customerAccount)
-        self.defaultTaxRates = try container.sdkDecodeIfPresent(.defaultTaxRates)
-        self.description = try container.sdkDecodeIfPresent(.description)
-        self.footer = try container.sdkDecodeIfPresent(.footer)
-        self.fromQuote = try container.sdkDecodeIfPresent(.fromQuote)
-        self.header = try container.sdkDecodeIfPresent(.header)
-        self.invoice = try container.sdkDecodeIfPresent(.invoice)
-        self.lineItems = try container.sdkDecodeIfPresent(.lineItems)
-        self.number = try container.sdkDecodeIfPresent(.number)
-        self.onBehalfOf = try container.sdkDecodeIfPresent(.onBehalfOf)
-        self.subscription = try container.sdkDecodeIfPresent(.subscription)
-        self.subscriptionSchedule = try container.sdkDecodeIfPresent(.subscriptionSchedule)
-        self.testClock = try container.sdkDecodeIfPresent(.testClock)
-        self.transferData = try container.sdkDecodeIfPresent(.transferData)
+        amountSubtotal = try container.sdkDecodeRequired(.amountSubtotal)
+        amountTotal = try container.sdkDecodeRequired(.amountTotal)
+        automaticTax = try container.sdkDecodeRequired(.automaticTax)
+        collectionMethod = try container.sdkDecodeRequired(.collectionMethod)
+        computed = try container.sdkDecodeRequired(.computed)
+        created = try container.sdkDecodeRequired(.created)
+        discounts = try container.sdkDecodeRequired(.discounts)
+        expiresAt = try container.sdkDecodeRequired(.expiresAt)
+        id = try container.sdkDecodeRequired(.id)
+        invoiceSettings = try container.sdkDecodeRequired(.invoiceSettings)
+        livemode = try container.sdkDecodeRequired(.livemode)
+        metadata = try container.sdkDecodeRequired(.metadata)
+        object = try container.sdkDecodeRequired(.object)
+        status = try container.sdkDecodeRequired(.status)
+        statusTransitions = try container.sdkDecodeRequired(.statusTransitions)
+        subscriptionData = try container.sdkDecodeRequired(.subscriptionData)
+        totalDetails = try container.sdkDecodeRequired(.totalDetails)
+        application = try container.sdkDecodeIfPresent(.application)
+        applicationFeeAmount = try container.sdkDecodeIfPresent(.applicationFeeAmount)
+        applicationFeePercent = try container.sdkDecodeIfPresent(.applicationFeePercent)
+        currency = try container.sdkDecodeIfPresent(.currency)
+        customer = try container.sdkDecodeIfPresent(.customer)
+        customerAccount = try container.sdkDecodeIfPresent(.customerAccount)
+        defaultTaxRates = try container.sdkDecodeIfPresent(.defaultTaxRates)
+        description = try container.sdkDecodeIfPresent(.description)
+        footer = try container.sdkDecodeIfPresent(.footer)
+        fromQuote = try container.sdkDecodeIfPresent(.fromQuote)
+        header = try container.sdkDecodeIfPresent(.header)
+        invoice = try container.sdkDecodeIfPresent(.invoice)
+        lineItems = try container.sdkDecodeIfPresent(.lineItems)
+        number = try container.sdkDecodeIfPresent(.number)
+        onBehalfOf = try container.sdkDecodeIfPresent(.onBehalfOf)
+        subscription = try container.sdkDecodeIfPresent(.subscription)
+        subscriptionSchedule = try container.sdkDecodeIfPresent(.subscriptionSchedule)
+        testClock = try container.sdkDecodeIfPresent(.testClock)
+        transferData = try container.sdkDecodeIfPresent(.transferData)
         try sdkValidateConstraints()
     }
 }
 
 public extension Quote {
-    public init(amountSubtotal: Int, amountTotal: Int, automaticTax: QuotesResourceAutomaticTax, collectionMethod: QuoteCollectionMethod, computed: QuotesResourceComputed, created: Int, discounts: [QuoteDiscountsItem], expiresAt: Int, id: String, invoiceSettings: InvoiceSettingQuoteSetting, livemode: Bool, metadata: [String: String], object: QuoteObject, status: QuoteStatus, statusTransitions: QuotesResourceStatusTransitions, subscriptionData: QuotesResourceSubscriptionDataSubscriptionData, totalDetails: QuotesResourceTotalDetails, application: QuoteApplication? = nil, applicationFeeAmount: Int? = nil, applicationFeePercent: Double? = nil, currency: String? = nil, customer: QuoteCustomer? = nil, customerAccount: String? = nil, defaultTaxRates: [QuoteDefaultTaxRatesItem]? = nil, description: String? = nil, footer: String? = nil, fromQuote: QuoteFromQuote? = nil, header: String? = nil, invoice: QuoteInvoice? = nil, lineItems: QuoteLineItems? = nil, number: String? = nil, onBehalfOf: QuoteOnBehalfOf? = nil, subscription: QuoteSubscription? = nil, subscriptionSchedule: QuoteSubscriptionSchedule? = nil, testClock: QuoteTestClock? = nil, transferData: QuoteTransferData? = nil) throws {
+    init(
+        amountSubtotal: Int,
+        amountTotal: Int,
+        automaticTax: QuotesResourceAutomaticTax,
+        collectionMethod: QuoteCollectionMethod,
+        computed: QuotesResourceComputed,
+        created: Int,
+        discounts: [QuoteDiscountsItem],
+        expiresAt: Int,
+        id: String,
+        invoiceSettings: InvoiceSettingQuoteSetting,
+        livemode: Bool,
+        metadata: [String: String],
+        object: QuoteObject,
+        status: QuoteStatus,
+        statusTransitions: QuotesResourceStatusTransitions,
+        subscriptionData: QuotesResourceSubscriptionDataSubscriptionData,
+        totalDetails: QuotesResourceTotalDetails,
+        application: QuoteApplication? = nil,
+        applicationFeeAmount: Int? = nil,
+        applicationFeePercent: Double? = nil,
+        currency: String? = nil,
+        customer: QuoteCustomer? = nil,
+        customerAccount: String? = nil,
+        defaultTaxRates: [QuoteDefaultTaxRatesItem]? = nil,
+        description: String? = nil,
+        footer: String? = nil,
+        fromQuote: QuoteFromQuote? = nil,
+        header: String? = nil,
+        invoice: QuoteInvoice? = nil,
+        lineItems: QuoteLineItems? = nil,
+        number: String? = nil,
+        onBehalfOf: QuoteOnBehalfOf? = nil,
+        subscription: QuoteSubscription? = nil,
+        subscriptionSchedule: QuoteSubscriptionSchedule? = nil,
+        testClock: QuoteTestClock? = nil,
+        transferData: QuoteTransferData? = nil
+    ) throws {
         (self.amountSubtotal, self.amountTotal) = (amountSubtotal, amountTotal)
         (self.automaticTax, self.collectionMethod) = (automaticTax, collectionMethod)
         (self.computed, self.created) = (computed, created)

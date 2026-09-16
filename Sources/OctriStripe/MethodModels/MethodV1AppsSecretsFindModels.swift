@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1AppsSecretsFind operation model declarations
+/// Canonical v1AppsSecretsFind operation model declarations
 public struct GetAppsSecretsFindParameter: Codable {
     public var type: GetAppsSecretsFindParameterType
     public var user: String?
@@ -17,25 +17,31 @@ public struct GetAppsSecretsFindParameter: Codable {
         case user
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension GetAppsSecretsFindParameter {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
         }
-        self.type = try container.sdkDecodeRequired(.type)
-        self.user = try container.sdkDecodeIfPresent(.user)
-        if let value = self.user {
+        type = try container.sdkDecodeRequired(.type)
+        user = try container.sdkDecodeIfPresent(.user)
+        if let value = user {
             try validateLength("user", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension GetAppsSecretsFindParameter {
-    public init(type: GetAppsSecretsFindParameterType, user: String? = nil) throws {
+    init(type: GetAppsSecretsFindParameterType, user: String? = nil) throws {
         (self.type, self.user) = (type, user)
         if let value = self.user {
             try validateLength("user", value, min: nil, max: 5000)

@@ -6,24 +6,39 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1IssuingTransactionsMethods {
-    /// Retrieves an Issuing transaction by its identifier. Use `transaction` to select the transaction and `expand` to request expanded response fields when needed.
+public extension V1IssuingTransactionsMethods {
+    /// Retrieves an Issuing transaction by its identifier. Use `transaction` to select the transaction and `expand` to
+    /// request expanded response fields when needed.
     ///
     /// Retrieves an Issuing Transaction object.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func getIssuingTransactionsTransaction(config: ClientConfig, transaction: String, expand: [String]?) async throws -> IssuingTransaction {
+    static func getIssuingTransactionsTransaction(
+        config: ClientConfig,
+        transaction: String,
+        expand: [String]?
+    ) async throws -> IssuingTransaction {
         try validateLength("transaction", transaction, max: 5000)
 
-        return try (await sdkRequest("GET", ["/v1/issuing/transactions/", sdkEncodePathSegment(sdkWireString(transaction))].joined(), config: config, query: [
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-        ], decoder: .json, operationId: "GetIssuingTransactionsTransaction")).data
+        return try await (sdkRequest(
+            "GET",
+            ["/v1/issuing/transactions/", sdkEncodePathSegment(sdkWireString(transaction))].joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+            ],
+            decoder: .json,
+            operationId: "GetIssuingTransactionsTransaction"
+        )).data
     }
 
-    /// Updates an Issuing transaction with the values supplied in the request. Omitted fields remain unchanged, while `metadata` lets you attach string key-value pairs or clear metadata and `expand` controls expanded response fields.
+    /// Updates an Issuing transaction with the values supplied in the request. Omitted fields remain unchanged, while
+    /// `metadata` lets you attach string key-value pairs or clear metadata and `expand` controls expanded response
+    /// fields.
     ///
-    /// Updates the specified Issuing Transaction object by setting the values of the parameters passed. Any parameters not provided will be left unchanged.
+    /// Updates the specified Issuing Transaction object by setting the values of the parameters passed. Any parameters
+    /// not provided will be left unchanged.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
@@ -32,11 +47,24 @@ extension V1IssuingTransactionsMethods {
     ///   information about the object in a structured format. Individual keys can be
     ///   unset by posting an empty value to them. All keys can be unset by posting an
     ///   empty value to `metadata`.
-    public static func postIssuingTransactionsTransaction(config: ClientConfig, transaction: String, expand: [String]?, metadata: PostIssuingTransactionsTransactionRequestBodyMetadata?) async throws -> IssuingTransaction {
+    static func postIssuingTransactionsTransaction(
+        config: ClientConfig,
+        transaction: String,
+        expand: [String]?,
+        metadata: PostIssuingTransactionsTransactionRequestBodyMetadata?
+    ) async throws -> IssuingTransaction {
         try validateLength("transaction", transaction, max: 5000)
 
         let requestBody = PostIssuingTransactionsTransactionRequestBody(expand: expand, metadata: metadata)
 
-        return try (await sdkRequest("POST", ["/v1/issuing/transactions/", sdkEncodePathSegment(sdkWireString(transaction))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostIssuingTransactionsTransaction")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/issuing/transactions/", sdkEncodePathSegment(sdkWireString(transaction))].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostIssuingTransactionsTransaction"
+        )).data
     }
 }

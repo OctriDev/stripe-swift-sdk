@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1InvoicesMethods {
-    public struct PostInvoicesOptions: Codable {
+public extension V1InvoicesMethods {
+    struct PostInvoicesOptions: Codable {
         public var accountTaxIds: PostInvoicesRequestBodyAccountTaxIds?
         public var applicationFeeAmount: Int?
         public var autoAdvance: Bool?
@@ -45,7 +45,8 @@ extension V1InvoicesMethods {
         public init() {}
     }
 
-    /// This endpoint creates a draft invoice for a given customer. The invoice remains a draft until you finalize the invoice, which allows you to pay or send the invoice to your customers.
+    /// This endpoint creates a draft invoice for a given customer. The invoice remains a draft until you finalize the
+    /// invoice, which allows you to pay or send the invoice to your customers.
     ///
     /// - Parameters:
     /// - accountTaxIds: The account tax IDs associated with the invoice. Only
@@ -147,7 +148,7 @@ extension V1InvoicesMethods {
     /// - transferData: If specified, the funds from the invoice will be transferred
     ///   to the destination and the ID of the resulting transfer will be found on the
     ///   invoice's charge.
-    public static func postInvoices(config: ClientConfig, options: PostInvoicesOptions) async throws -> Invoice {
+    static func postInvoices(config: ClientConfig, options: PostInvoicesOptions) async throws -> Invoice {
         if let customer = options.customer {
             try validateLength("customer", customer, max: 5000)
         }
@@ -186,6 +187,14 @@ extension V1InvoicesMethods {
 
         let requestBody = PostInvoicesRequestBody(options: options)
 
-        return try (await sdkRequest("POST", "/v1/invoices", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostInvoices")).data
+        return try await (sdkRequest(
+            "POST",
+            "/v1/invoices",
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostInvoices"
+        )).data
     }
 }

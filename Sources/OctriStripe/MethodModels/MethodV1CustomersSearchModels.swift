@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1CustomersSearch operation model declarations
+/// Canonical v1CustomersSearch operation model declarations
 public struct GetCustomersSearchResponse: Codable {
     public var data: [Customer]
     public var hasMore: Bool
@@ -27,43 +27,68 @@ public struct GetCustomersSearchResponse: Codable {
         case totalCount = "total_count"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension GetCustomersSearchResponse {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.data) else {
-            throw SdkValidationError(field: "data", code: "required", message: "Validation failed for 'data': value is required")
+            throw SdkValidationError(
+                field: "data",
+                code: "required",
+                message: "Validation failed for 'data': value is required"
+            )
         }
         guard container.contains(.hasMore) else {
-            throw SdkValidationError(field: "has_more", code: "required", message: "Validation failed for 'has_more': value is required")
+            throw SdkValidationError(
+                field: "has_more",
+                code: "required",
+                message: "Validation failed for 'has_more': value is required"
+            )
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
         }
         guard container.contains(.url) else {
-            throw SdkValidationError(field: "url", code: "required", message: "Validation failed for 'url': value is required")
+            throw SdkValidationError(
+                field: "url",
+                code: "required",
+                message: "Validation failed for 'url': value is required"
+            )
         }
-        self.data = try container.sdkDecodeRequired(.data)
-        self.hasMore = try container.sdkDecodeRequired(.hasMore)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.url = try container.sdkDecodeRequired(.url)
-        self.nextPage = try container.sdkDecodeIfPresent(.nextPage)
-        self.totalCount = try container.sdkDecodeIfPresent(.totalCount)
-            try validateLength("url", self.url, min: nil, max: 5000)
-        if let value = self.nextPage {
+        data = try container.sdkDecodeRequired(.data)
+        hasMore = try container.sdkDecodeRequired(.hasMore)
+        object = try container.sdkDecodeRequired(.object)
+        url = try container.sdkDecodeRequired(.url)
+        nextPage = try container.sdkDecodeIfPresent(.nextPage)
+        totalCount = try container.sdkDecodeIfPresent(.totalCount)
+        try validateLength("url", url, min: nil, max: 5000)
+        if let value = nextPage {
             try validateLength("next_page", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension GetCustomersSearchResponse {
-    public init(data: [Customer], hasMore: Bool, object: GetCustomersSearchResponseObject, url: String, nextPage: String? = nil, totalCount: Int? = nil) throws {
+    init(
+        data: [Customer],
+        hasMore: Bool,
+        object: GetCustomersSearchResponseObject,
+        url: String,
+        nextPage: String? = nil,
+        totalCount: Int? = nil
+    ) throws {
         (self.data, self.hasMore) = (data, hasMore)
         (self.object, self.url) = (object, url)
         (self.nextPage, self.totalCount) = (nextPage, totalCount)
-            try validateLength("url", self.url, min: nil, max: 5000)
+        try validateLength("url", self.url, min: nil, max: 5000)
         if let value = self.nextPage {
             try validateLength("next_page", value, min: nil, max: 5000)
         }

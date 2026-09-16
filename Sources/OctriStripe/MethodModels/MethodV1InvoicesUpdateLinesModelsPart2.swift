@@ -7,9 +7,9 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1InvoicesUpdateLines operation model declarations
+/// Canonical v1InvoicesUpdateLines operation model declarations
 public extension PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemPeriod {
-    public init(end: Int, start: Int) {
+    init(end: Int, start: Int) {
         (self.end, self.start) = (end, start)
     }
 }
@@ -32,29 +32,42 @@ public struct PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemPriceData: Codab
         case unitAmountDecimal = "unit_amount_decimal"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemPriceData {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.currency) else {
-            throw SdkValidationError(field: "currency", code: "required", message: "Validation failed for 'currency': value is required")
+            throw SdkValidationError(
+                field: "currency",
+                code: "required",
+                message: "Validation failed for 'currency': value is required"
+            )
         }
-        self.currency = try container.sdkDecodeRequired(.currency)
-        self.product = try container.sdkDecodeIfPresent(.product)
-        self.productData = try container.sdkDecodeIfPresent(.productData)
-        self.taxBehavior = try container.sdkDecodeIfPresent(.taxBehavior)
-        self.unitAmount = try container.sdkDecodeIfPresent(.unitAmount)
-        self.unitAmountDecimal = try container.sdkDecodeIfPresent(.unitAmountDecimal)
-        if let value = self.product {
+        currency = try container.sdkDecodeRequired(.currency)
+        product = try container.sdkDecodeIfPresent(.product)
+        productData = try container.sdkDecodeIfPresent(.productData)
+        taxBehavior = try container.sdkDecodeIfPresent(.taxBehavior)
+        unitAmount = try container.sdkDecodeIfPresent(.unitAmount)
+        unitAmountDecimal = try container.sdkDecodeIfPresent(.unitAmountDecimal)
+        if let value = product {
             try validateLength("product", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemPriceData {
-    public init(currency: String, product: String? = nil, productData: PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemPriceDataProductData? = nil, taxBehavior: PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemPriceDataTaxBehavior? = nil, unitAmount: Int? = nil, unitAmountDecimal: String? = nil) throws {
+    init(
+        currency: String,
+        product: String? = nil,
+        productData: PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemPriceDataProductData? = nil,
+        taxBehavior: PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemPriceDataTaxBehavior? = nil,
+        unitAmount: Int? = nil,
+        unitAmountDecimal: String? = nil
+    ) throws {
         (self.currency, self.product) = (currency, product)
         (self.productData, self.taxBehavior) = (productData, taxBehavior)
         (self.unitAmount, self.unitAmountDecimal) = (unitAmount, unitAmountDecimal)
@@ -70,21 +83,31 @@ public enum PostInvoicesInvoiceUpdateLinesRequestBodyInvoiceMetadata {
 }
 
 extension PostInvoicesInvoiceUpdateLinesRequestBodyInvoiceMetadata: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostInvoicesInvoiceUpdateLinesRequestBodyInvoiceMetadata")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PostInvoicesInvoiceUpdateLinesRequestBodyInvoiceMetadata"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode([String: String].self) { return .dictionary(value) }
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode([String: String].self) {
+            return .dictionary(value)
+        }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -94,5 +117,4 @@ extension PostInvoicesInvoiceUpdateLinesRequestBodyInvoiceMetadata: Codable {
         case let .stringValue(value): try container.encode(value); return true
         }
     }
-
 }

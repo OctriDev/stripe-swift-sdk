@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1CreditNotesPreviewLinesMethods {
-    public struct GetCreditNotesPreviewLinesOptions: Codable {
+public extension V1CreditNotesPreviewLinesMethods {
+    struct GetCreditNotesPreviewLinesOptions: Codable {
         public var invoice: String
         public var amount: Int?
         public var creditAmount: Int?
@@ -31,9 +31,12 @@ extension V1CreditNotesPreviewLinesMethods {
         }
     }
 
-    /// Lists the line items for a credit note preview. Provide the same preview inputs used to define the credit note, including `invoice` and one of `amount`, `lines`, or `shipping_cost`, then use the pagination cursors to retrieve additional items.
+    /// Lists the line items for a credit note preview. Provide the same preview inputs used to define the credit note,
+    /// including `invoice` and one of `amount`, `lines`, or `shipping_cost`, then use the pagination cursors to
+    /// retrieve additional items.
     ///
-    /// When retrieving a credit note preview, you’ll get a lines property containing the first handful of those items. This URL you can retrieve the full (paginated) list of line items.
+    /// When retrieving a credit note preview, you’ll get a lines property containing the first handful of those items.
+    /// This URL you can retrieve the full (paginated) list of line items.
     ///
     /// - Parameters:
     /// - invoice: ID of the invoice.
@@ -80,7 +83,10 @@ extension V1CreditNotesPreviewLinesMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    public static func getCreditNotesPreviewLines(config: ClientConfig, options: GetCreditNotesPreviewLinesOptions) async throws -> GetCreditNotesPreviewLinesResponse {
+    static func getCreditNotesPreviewLines(
+        config: ClientConfig,
+        options: GetCreditNotesPreviewLinesOptions
+    ) async throws -> GetCreditNotesPreviewLinesResponse {
         try validateLength("invoice", options.invoice, max: 5000)
 
         if let endingBefore = options.endingBefore {
@@ -95,7 +101,7 @@ extension V1CreditNotesPreviewLinesMethods {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try (await sdkRequest("GET", "/v1/credit_notes/preview/lines", config: config, query: [
+        return try await (sdkRequest("GET", "/v1/credit_notes/preview/lines", config: config, query: [
             SdkQueryParameter("invoice", value: options.invoice),
             SdkQueryParameter("amount", value: options.amount),
             SdkQueryParameter("credit_amount", value: options.creditAmount),

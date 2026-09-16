@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1BillingPortalSessions operation model declarations
+/// Canonical v1BillingPortalSessions operation model declarations
 public struct PostBillingPortalSessionsRequestBodyFlowDataAfterCompletionRedirect: Codable {
     public var returnUrl: String
 
@@ -15,21 +15,27 @@ public struct PostBillingPortalSessionsRequestBodyFlowDataAfterCompletionRedirec
         case returnUrl = "return_url"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostBillingPortalSessionsRequestBodyFlowDataAfterCompletionRedirect {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.returnUrl) else {
-            throw SdkValidationError(field: "return_url", code: "required", message: "Validation failed for 'return_url': value is required")
-        }
-        self.returnUrl = try container.sdkDecodeRequired(.returnUrl)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostBillingPortalSessionsRequestBodyFlowDataAfterCompletionRedirect {
-    public init(returnUrl: String) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.returnUrl) else {
+            throw SdkValidationError(
+                field: "return_url",
+                code: "required",
+                message: "Validation failed for 'return_url': value is required"
+            )
+        }
+        returnUrl = try container.sdkDecodeRequired(.returnUrl)
+    }
+}
+
+public extension PostBillingPortalSessionsRequestBodyFlowDataAfterCompletionRedirect {
+    init(returnUrl: String) {
         self.returnUrl = returnUrl
     }
 }
@@ -42,22 +48,22 @@ public struct PostBillingPortalSessionsRequestBodyFlowDataAfterCompletionHoX03b2
     }
 
     init() {
-        self.customMessage = nil
+        customMessage = nil
     }
 }
 
 public extension PostBillingPortalSessionsRequestBodyFlowDataAfterCompletionHoX03b25612b2 {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.customMessage = try container.sdkDecodeIfPresent(.customMessage)
-        if let value = self.customMessage {
+        customMessage = try container.sdkDecodeIfPresent(.customMessage)
+        if let value = customMessage {
             try validateLength("custom_message", value, min: nil, max: 500)
         }
     }
 }
 
 public extension PostBillingPortalSessionsRequestBodyFlowDataAfterCompletionHoX03b25612b2 {
-    public init(customMessage: String? = nil) throws {
+    init(customMessage: String? = nil) throws {
         self.init()
         self.customMessage = customMessage
         if let value = self.customMessage {
@@ -73,30 +79,38 @@ public struct PostBillingPortalSessionsRequestBodyFlowDataSubscriptionUpdate: Co
         case subscription
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension PostBillingPortalSessionsRequestBodyFlowDataSubscriptionUpdate {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.subscription) else {
-            throw SdkValidationError(field: "subscription", code: "required", message: "Validation failed for 'subscription': value is required")
+            throw SdkValidationError(
+                field: "subscription",
+                code: "required",
+                message: "Validation failed for 'subscription': value is required"
+            )
         }
-        self.subscription = try container.sdkDecodeRequired(.subscription)
-            try validateLength("subscription", self.subscription, min: nil, max: 5000)
+        subscription = try container.sdkDecodeRequired(.subscription)
+        try validateLength("subscription", subscription, min: nil, max: 5000)
     }
 }
 
 public extension PostBillingPortalSessionsRequestBodyFlowDataSubscriptionUpdate {
-    public init(subscription: String) throws {
+    init(subscription: String) throws {
         self.subscription = subscription
-            try validateLength("subscription", self.subscription, min: nil, max: 5000)
+        try validateLength("subscription", self.subscription, min: nil, max: 5000)
     }
 }
 
-public typealias PostBillingPortalSessionsRequestBodyFlowDataSubscriptionUpdatXdb10e2b541 = [PostBillingPortalSessionsRequestBodyFlowDataSubscriptionUpdatXd5abb4c317]
+public typealias PostBillingPortalSessionsRequestBodyFlowDataSubscriptionUpdatXdb10e2b541 =
+    [PostBillingPortalSessionsRequestBodyFlowDataSubscriptionUpdatXd5abb4c317]
 
-public typealias PostBillingPortalSessionsRequestBodyFlowDataSubscriptionUpdatXadc1b21f42 = [PostBillingPortalSessionsRequestBodyFlowDataSubscriptionUpdatX1e924a6290]
+public typealias PostBillingPortalSessionsRequestBodyFlowDataSubscriptionUpdatXadc1b21f42 =
+    [PostBillingPortalSessionsRequestBodyFlowDataSubscriptionUpdatX1e924a6290]
 
 public struct PostBillingPortalSessionsRequestBodyFlowDataSubscriptionUpdateConfirm: Codable {
     public var items: PostBillingPortalSessionsRequestBodyFlowDataSubscriptionUpdatXdb10e2b541
@@ -109,30 +123,44 @@ public struct PostBillingPortalSessionsRequestBodyFlowDataSubscriptionUpdateConf
         case discounts
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostBillingPortalSessionsRequestBodyFlowDataSubscriptionUpdateConfirm {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.items) else {
-            throw SdkValidationError(field: "items", code: "required", message: "Validation failed for 'items': value is required")
-        }
-        guard container.contains(.subscription) else {
-            throw SdkValidationError(field: "subscription", code: "required", message: "Validation failed for 'subscription': value is required")
-        }
-        self.items = try container.sdkDecodeRequired(.items)
-        self.subscription = try container.sdkDecodeRequired(.subscription)
-        self.discounts = try container.sdkDecodeIfPresent(.discounts)
-            try validateLength("subscription", self.subscription, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostBillingPortalSessionsRequestBodyFlowDataSubscriptionUpdateConfirm {
-    public init(items: PostBillingPortalSessionsRequestBodyFlowDataSubscriptionUpdatXdb10e2b541, subscription: String, discounts: PostBillingPortalSessionsRequestBodyFlowDataSubscriptionUpdatXadc1b21f42? = nil) throws {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.items) else {
+            throw SdkValidationError(
+                field: "items",
+                code: "required",
+                message: "Validation failed for 'items': value is required"
+            )
+        }
+        guard container.contains(.subscription) else {
+            throw SdkValidationError(
+                field: "subscription",
+                code: "required",
+                message: "Validation failed for 'subscription': value is required"
+            )
+        }
+        items = try container.sdkDecodeRequired(.items)
+        subscription = try container.sdkDecodeRequired(.subscription)
+        discounts = try container.sdkDecodeIfPresent(.discounts)
+        try validateLength("subscription", subscription, min: nil, max: 5000)
+    }
+}
+
+public extension PostBillingPortalSessionsRequestBodyFlowDataSubscriptionUpdateConfirm {
+    init(
+        items: PostBillingPortalSessionsRequestBodyFlowDataSubscriptionUpdatXdb10e2b541,
+        subscription: String,
+        discounts: PostBillingPortalSessionsRequestBodyFlowDataSubscriptionUpdatXadc1b21f42? = nil
+    ) throws {
         (self.items, self.subscription) = (items, subscription)
         self.discounts = discounts
-            try validateLength("subscription", self.subscription, min: nil, max: 5000)
+        try validateLength("subscription", self.subscription, min: nil, max: 5000)
     }
 }
 
@@ -146,25 +174,38 @@ public struct PostBillingPortalSessionsRequestBodyFlowDataSubscriptionCancelRete
         case type
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostBillingPortalSessionsRequestBodyFlowDataSubscriptionCancelRetention {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.couponOffer) else {
-            throw SdkValidationError(field: "coupon_offer", code: "required", message: "Validation failed for 'coupon_offer': value is required")
-        }
-        guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
-        }
-        self.couponOffer = try container.sdkDecodeRequired(.couponOffer)
-        self.type = try container.sdkDecodeRequired(.type)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostBillingPortalSessionsRequestBodyFlowDataSubscriptionCancelRetention {
-    public init(couponOffer: PostBillingPortalSessionsRequestBodyFlowDataSubscriptionCanceXe67e5ebcc1, type: PostBillingPortalSessionsRequestBodyFlowDataSubscriptionCanceXc9e5c47ee6) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.couponOffer) else {
+            throw SdkValidationError(
+                field: "coupon_offer",
+                code: "required",
+                message: "Validation failed for 'coupon_offer': value is required"
+            )
+        }
+        guard container.contains(.type) else {
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
+        }
+        couponOffer = try container.sdkDecodeRequired(.couponOffer)
+        type = try container.sdkDecodeRequired(.type)
+    }
+}
+
+public extension PostBillingPortalSessionsRequestBodyFlowDataSubscriptionCancelRetention {
+    init(
+        couponOffer: PostBillingPortalSessionsRequestBodyFlowDataSubscriptionCanceXe67e5ebcc1,
+        type: PostBillingPortalSessionsRequestBodyFlowDataSubscriptionCanceXc9e5c47ee6
+    ) {
         (self.couponOffer, self.type) = (couponOffer, type)
     }
 }
@@ -176,24 +217,30 @@ public struct PostBillingPortalSessionsRequestBodyFlowDataSubscriptionCanceXe67e
         case coupon
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostBillingPortalSessionsRequestBodyFlowDataSubscriptionCanceXe67e5ebcc1 {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.coupon) else {
-            throw SdkValidationError(field: "coupon", code: "required", message: "Validation failed for 'coupon': value is required")
-        }
-        self.coupon = try container.sdkDecodeRequired(.coupon)
-            try validateLength("coupon", self.coupon, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostBillingPortalSessionsRequestBodyFlowDataSubscriptionCanceXe67e5ebcc1 {
-    public init(coupon: String) throws {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.coupon) else {
+            throw SdkValidationError(
+                field: "coupon",
+                code: "required",
+                message: "Validation failed for 'coupon': value is required"
+            )
+        }
+        coupon = try container.sdkDecodeRequired(.coupon)
+        try validateLength("coupon", coupon, min: nil, max: 5000)
+    }
+}
+
+public extension PostBillingPortalSessionsRequestBodyFlowDataSubscriptionCanceXe67e5ebcc1 {
+    init(coupon: String) throws {
         self.coupon = coupon
-            try validateLength("coupon", self.coupon, min: nil, max: 5000)
+        try validateLength("coupon", self.coupon, min: nil, max: 5000)
     }
 }
 
@@ -207,26 +254,26 @@ public struct PostBillingPortalSessionsRequestBodyFlowDataSubscriptionUpdatX1e92
     }
 
     init() {
-        (self.coupon, self.promotionCode) = (nil, nil)
+        (coupon, promotionCode) = (nil, nil)
     }
 }
 
 public extension PostBillingPortalSessionsRequestBodyFlowDataSubscriptionUpdatX1e924a6290 {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.coupon = try container.sdkDecodeIfPresent(.coupon)
-        self.promotionCode = try container.sdkDecodeIfPresent(.promotionCode)
-        if let value = self.coupon {
+        coupon = try container.sdkDecodeIfPresent(.coupon)
+        promotionCode = try container.sdkDecodeIfPresent(.promotionCode)
+        if let value = coupon {
             try validateLength("coupon", value, min: nil, max: 5000)
         }
-        if let value = self.promotionCode {
+        if let value = promotionCode {
             try validateLength("promotion_code", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension PostBillingPortalSessionsRequestBodyFlowDataSubscriptionUpdatX1e924a6290 {
-    public init(coupon: String? = nil, promotionCode: String? = nil) throws {
+    init(coupon: String? = nil, promotionCode: String? = nil) throws {
         self.init()
         (self.coupon, self.promotionCode) = (coupon, promotionCode)
         if let value = self.coupon {
@@ -248,25 +295,34 @@ public struct PostBillingPortalSessionsRequestBodyFlowDataSubscriptionCancel: Co
         case retention
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostBillingPortalSessionsRequestBodyFlowDataSubscriptionCancel {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.subscription) else {
-            throw SdkValidationError(field: "subscription", code: "required", message: "Validation failed for 'subscription': value is required")
-        }
-        self.subscription = try container.sdkDecodeRequired(.subscription)
-        self.retention = try container.sdkDecodeIfPresent(.retention)
-            try validateLength("subscription", self.subscription, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostBillingPortalSessionsRequestBodyFlowDataSubscriptionCancel {
-    public init(subscription: String, retention: PostBillingPortalSessionsRequestBodyFlowDataSubscriptionCancelRetention? = nil) throws {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.subscription) else {
+            throw SdkValidationError(
+                field: "subscription",
+                code: "required",
+                message: "Validation failed for 'subscription': value is required"
+            )
+        }
+        subscription = try container.sdkDecodeRequired(.subscription)
+        retention = try container.sdkDecodeIfPresent(.retention)
+        try validateLength("subscription", subscription, min: nil, max: 5000)
+    }
+}
+
+public extension PostBillingPortalSessionsRequestBodyFlowDataSubscriptionCancel {
+    init(
+        subscription: String,
+        retention: PostBillingPortalSessionsRequestBodyFlowDataSubscriptionCancelRetention? = nil
+    ) throws {
         (self.subscription, self.retention) = (subscription, retention)
-            try validateLength("subscription", self.subscription, min: nil, max: 5000)
+        try validateLength("subscription", self.subscription, min: nil, max: 5000)
     }
 }
 
@@ -291,25 +347,37 @@ public struct PostBillingPortalSessionsRequestBodyFlowData: Codable {
         case subscriptionUpdateConfirm = "subscription_update_confirm"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostBillingPortalSessionsRequestBodyFlowData {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
-        }
-        self.type = try container.sdkDecodeRequired(.type)
-        self.afterCompletion = try container.sdkDecodeIfPresent(.afterCompletion)
-        self.subscriptionCancel = try container.sdkDecodeIfPresent(.subscriptionCancel)
-        self.subscriptionUpdate = try container.sdkDecodeIfPresent(.subscriptionUpdate)
-        self.subscriptionUpdateConfirm = try container.sdkDecodeIfPresent(.subscriptionUpdateConfirm)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostBillingPortalSessionsRequestBodyFlowData {
-    public init(type: PostBillingPortalSessionsRequestBodyFlowDataType, afterCompletion: PostBillingPortalSessionsRequestBodyFlowDataAfterCompletion? = nil, subscriptionCancel: PostBillingPortalSessionsRequestBodyFlowDataSubscriptionCancel? = nil, subscriptionUpdate: PostBillingPortalSessionsRequestBodyFlowDataSubscriptionUpdate? = nil, subscriptionUpdateConfirm: PostBillingPortalSessionsRequestBodyFlowDataSubscriptionUpdateConfirm? = nil) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.type) else {
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
+        }
+        type = try container.sdkDecodeRequired(.type)
+        afterCompletion = try container.sdkDecodeIfPresent(.afterCompletion)
+        subscriptionCancel = try container.sdkDecodeIfPresent(.subscriptionCancel)
+        subscriptionUpdate = try container.sdkDecodeIfPresent(.subscriptionUpdate)
+        subscriptionUpdateConfirm = try container.sdkDecodeIfPresent(.subscriptionUpdateConfirm)
+    }
+}
+
+public extension PostBillingPortalSessionsRequestBodyFlowData {
+    init(
+        type: PostBillingPortalSessionsRequestBodyFlowDataType,
+        afterCompletion: PostBillingPortalSessionsRequestBodyFlowDataAfterCompletion? = nil,
+        subscriptionCancel: PostBillingPortalSessionsRequestBodyFlowDataSubscriptionCancel? = nil,
+        subscriptionUpdate: PostBillingPortalSessionsRequestBodyFlowDataSubscriptionUpdate? = nil,
+        subscriptionUpdateConfirm: PostBillingPortalSessionsRequestBodyFlowDataSubscriptionUpdateConfirm? = nil
+    ) {
         (self.type, self.afterCompletion) = (type, afterCompletion)
         (self.subscriptionCancel, self.subscriptionUpdate) = (subscriptionCancel, subscriptionUpdate)
         self.subscriptionUpdateConfirm = subscriptionUpdateConfirm
@@ -327,30 +395,36 @@ public struct PostBillingPortalSessionsRequestBodyFlowDataSubscriptionUpdatXd5ab
         case quantity
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension PostBillingPortalSessionsRequestBodyFlowDataSubscriptionUpdatXd5abb4c317 {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.id) else {
-            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
+            throw SdkValidationError(
+                field: "id",
+                code: "required",
+                message: "Validation failed for 'id': value is required"
+            )
         }
-        self.id = try container.sdkDecodeRequired(.id)
-        self.price = try container.sdkDecodeIfPresent(.price)
-        self.quantity = try container.sdkDecodeIfPresent(.quantity)
-            try validateLength("id", self.id, min: nil, max: 5000)
-        if let value = self.price {
+        id = try container.sdkDecodeRequired(.id)
+        price = try container.sdkDecodeIfPresent(.price)
+        quantity = try container.sdkDecodeIfPresent(.quantity)
+        try validateLength("id", id, min: nil, max: 5000)
+        if let value = price {
             try validateLength("price", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension PostBillingPortalSessionsRequestBodyFlowDataSubscriptionUpdatXd5abb4c317 {
-    public init(id: String, price: String? = nil, quantity: Int? = nil) throws {
+    init(id: String, price: String? = nil, quantity: Int? = nil) throws {
         (self.id, self.price) = (id, price)
         self.quantity = quantity
-            try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
         if let value = self.price {
             try validateLength("price", value, min: nil, max: 5000)
         }
@@ -370,23 +444,33 @@ public struct PostBillingPortalSessionsRequestBodyFlowDataAfterCompletion: Codab
         case redirect
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostBillingPortalSessionsRequestBodyFlowDataAfterCompletion {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
-        }
-        self.type = try container.sdkDecodeRequired(.type)
-        self.hostedConfirmation = try container.sdkDecodeIfPresent(.hostedConfirmation)
-        self.redirect = try container.sdkDecodeIfPresent(.redirect)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostBillingPortalSessionsRequestBodyFlowDataAfterCompletion {
-    public init(type: PostBillingPortalSessionsRequestBodyFlowDataAfterCompletionType, hostedConfirmation: PostBillingPortalSessionsRequestBodyFlowDataAfterCompletionHoX03b25612b2? = nil, redirect: PostBillingPortalSessionsRequestBodyFlowDataAfterCompletionRedirect? = nil) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.type) else {
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
+        }
+        type = try container.sdkDecodeRequired(.type)
+        hostedConfirmation = try container.sdkDecodeIfPresent(.hostedConfirmation)
+        redirect = try container.sdkDecodeIfPresent(.redirect)
+    }
+}
+
+public extension PostBillingPortalSessionsRequestBodyFlowDataAfterCompletion {
+    init(
+        type: PostBillingPortalSessionsRequestBodyFlowDataAfterCompletionType,
+        hostedConfirmation: PostBillingPortalSessionsRequestBodyFlowDataAfterCompletionHoX03b25612b2? = nil,
+        redirect: PostBillingPortalSessionsRequestBodyFlowDataAfterCompletionRedirect? = nil
+    ) {
         (self.type, self.hostedConfirmation) = (type, hostedConfirmation)
         self.redirect = redirect
     }

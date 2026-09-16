@@ -6,15 +6,19 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public struct PostTerminalReadersRequestBodyMetadataVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostTerminalReadersRequestBodyMetadataVariant1: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostTerminalReadersRequestBodyMetadataVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -23,15 +27,19 @@ public struct PostTerminalReadersRequestBodyMetadataVariant1: RawRepresentable, 
     }
 }
 
-public struct PostTerminalReadersReaderRequestBodyLabelVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostTerminalReadersReaderRequestBodyLabelVariant1: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostTerminalReadersReaderRequestBodyLabelVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -40,15 +48,19 @@ public struct PostTerminalReadersReaderRequestBodyLabelVariant1: RawRepresentabl
     }
 }
 
-public struct PostTerminalReadersReaderRequestBodyMetadataVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostTerminalReadersReaderRequestBodyMetadataVariant1: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostTerminalReadersReaderRequestBodyMetadataVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -57,16 +69,22 @@ public struct PostTerminalReadersReaderRequestBodyMetadataVariant1: RawRepresent
     }
 }
 
-public struct PostTerminalReadersReaderCollectInputsRequestBodyInputsItemSeXedba7f48cb: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostTerminalReadersReaderCollectInputsRequestBodyInputsItemSeXedba7f48cb: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let primary = PostTerminalReadersReaderCollectInputsRequestBodyInputsItemSeXedba7f48cb(rawValue: "primary")
-    public static let secondary = PostTerminalReadersReaderCollectInputsRequestBodyInputsItemSeXedba7f48cb(rawValue: "secondary")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let primary =
+        PostTerminalReadersReaderCollectInputsRequestBodyInputsItemSeXedba7f48cb(rawValue: "primary")
+    public static let secondary =
+        PostTerminalReadersReaderCollectInputsRequestBodyInputsItemSeXedba7f48cb(rawValue: "secondary")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -75,16 +93,22 @@ public struct PostTerminalReadersReaderCollectInputsRequestBodyInputsItemSeXedba
     }
 }
 
-public struct PostTerminalReadersReaderCollectInputsRequestBodyInputsItemToXda4ed27e98: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostTerminalReadersReaderCollectInputsRequestBodyInputsItemToXda4ed27e98: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let disabled = PostTerminalReadersReaderCollectInputsRequestBodyInputsItemToXda4ed27e98(rawValue: "disabled")
-    public static let enabled = PostTerminalReadersReaderCollectInputsRequestBodyInputsItemToXda4ed27e98(rawValue: "enabled")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let disabled =
+        PostTerminalReadersReaderCollectInputsRequestBodyInputsItemToXda4ed27e98(rawValue: "disabled")
+    public static let enabled =
+        PostTerminalReadersReaderCollectInputsRequestBodyInputsItemToXda4ed27e98(rawValue: "enabled")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -93,10 +117,14 @@ public struct PostTerminalReadersReaderCollectInputsRequestBodyInputsItemToXda4e
     }
 }
 
-public struct PostTerminalReadersReaderCollectInputsRequestBodyInputsItemType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostTerminalReadersReaderCollectInputsRequestBodyInputsItemType: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let email = PostTerminalReadersReaderCollectInputsRequestBodyInputsItemType(rawValue: "email")
     public static let numeric = PostTerminalReadersReaderCollectInputsRequestBodyInputsItemType(rawValue: "numeric")
     public static let phone = PostTerminalReadersReaderCollectInputsRequestBodyInputsItemType(rawValue: "phone")
@@ -106,7 +134,7 @@ public struct PostTerminalReadersReaderCollectInputsRequestBodyInputsItemType: R
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -115,17 +143,24 @@ public struct PostTerminalReadersReaderCollectInputsRequestBodyInputsItemType: R
     }
 }
 
-public struct PostTerminalReadersReaderCollectPaymentMethodRequestBodyColleX3142aca5ba: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostTerminalReadersReaderCollectPaymentMethodRequestBodyColleX3142aca5ba: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let always = PostTerminalReadersReaderCollectPaymentMethodRequestBodyColleX3142aca5ba(rawValue: "always")
-    public static let limited = PostTerminalReadersReaderCollectPaymentMethodRequestBodyColleX3142aca5ba(rawValue: "limited")
-    public static let unspecified = PostTerminalReadersReaderCollectPaymentMethodRequestBodyColleX3142aca5ba(rawValue: "unspecified")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let always =
+        PostTerminalReadersReaderCollectPaymentMethodRequestBodyColleX3142aca5ba(rawValue: "always")
+    public static let limited =
+        PostTerminalReadersReaderCollectPaymentMethodRequestBodyColleX3142aca5ba(rawValue: "limited")
+    public static let unspecified =
+        PostTerminalReadersReaderCollectPaymentMethodRequestBodyColleX3142aca5ba(rawValue: "unspecified")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -134,17 +169,24 @@ public struct PostTerminalReadersReaderCollectPaymentMethodRequestBodyColleX3142
     }
 }
 
-public struct PostTerminalReadersReaderProcessPaymentIntentRequestBodyProceXcc98200e2d: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostTerminalReadersReaderProcessPaymentIntentRequestBodyProceXcc98200e2d: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let always = PostTerminalReadersReaderProcessPaymentIntentRequestBodyProceXcc98200e2d(rawValue: "always")
-    public static let limited = PostTerminalReadersReaderProcessPaymentIntentRequestBodyProceXcc98200e2d(rawValue: "limited")
-    public static let unspecified = PostTerminalReadersReaderProcessPaymentIntentRequestBodyProceXcc98200e2d(rawValue: "unspecified")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let always =
+        PostTerminalReadersReaderProcessPaymentIntentRequestBodyProceXcc98200e2d(rawValue: "always")
+    public static let limited =
+        PostTerminalReadersReaderProcessPaymentIntentRequestBodyProceXcc98200e2d(rawValue: "limited")
+    public static let unspecified =
+        PostTerminalReadersReaderProcessPaymentIntentRequestBodyProceXcc98200e2d(rawValue: "unspecified")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -156,17 +198,23 @@ public struct PostTerminalReadersReaderProcessPaymentIntentRequestBodyProceXcc98
 /// This field indicates whether this payment method can be shown again to its customer in a checkout flow.
 /// Stripe products such as Checkout and Elements use this field to determine whether a payment method can be
 /// shown as a saved payment method in a checkout flow.
-public struct PostTerminalReadersReaderProcessSetupIntentRequestBodyAllowRedisplay: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostTerminalReadersReaderProcessSetupIntentRequestBodyAllowRedisplay: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let always = PostTerminalReadersReaderProcessSetupIntentRequestBodyAllowRedisplay(rawValue: "always")
-    public static let limited = PostTerminalReadersReaderProcessSetupIntentRequestBodyAllowRedisplay(rawValue: "limited")
-    public static let unspecified = PostTerminalReadersReaderProcessSetupIntentRequestBodyAllowRedisplay(rawValue: "unspecified")
+    public static let limited =
+        PostTerminalReadersReaderProcessSetupIntentRequestBodyAllowRedisplay(rawValue: "limited")
+    public static let unspecified =
+        PostTerminalReadersReaderProcessSetupIntentRequestBodyAllowRedisplay(rawValue: "unspecified")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -176,15 +224,19 @@ public struct PostTerminalReadersReaderProcessSetupIntentRequestBodyAllowRedispl
 }
 
 /// Type of information to display. Only `cart` is currently supported.
-public struct PostTerminalReadersReaderSetReaderDisplayRequestBodyType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostTerminalReadersReaderSetReaderDisplayRequestBodyType: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let cart = PostTerminalReadersReaderSetReaderDisplayRequestBodyType(rawValue: "cart")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -193,17 +245,24 @@ public struct PostTerminalReadersReaderSetReaderDisplayRequestBodyType: RawRepre
     }
 }
 
-public struct PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataX01a56f2c8e: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataX01a56f2c8e: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let always = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataX01a56f2c8e(rawValue: "always")
-    public static let limited = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataX01a56f2c8e(rawValue: "limited")
-    public static let unspecified = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataX01a56f2c8e(rawValue: "unspecified")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let always =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataX01a56f2c8e(rawValue: "always")
+    public static let limited =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataX01a56f2c8e(rawValue: "limited")
+    public static let unspecified =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataX01a56f2c8e(rawValue: "unspecified")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

@@ -7,7 +7,9 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1TaxTransactionsLineItemsMethods {
-    /// Lists the line items for a committed standalone tax transaction. Use `transaction` to identify the transaction and `starting_after` or `ending_before` to navigate the collection. Set `limit` to control the page size and use `expand` when you need expanded response fields.
+    /// Lists the line items for a committed standalone tax transaction. Use `transaction` to identify the transaction
+    /// and `starting_after` or `ending_before` to navigate the collection. Set `limit` to control the page size and use
+    /// `expand` when you need expanded response fields.
     ///
     /// Retrieves the line items of a committed standalone transaction as a collection.
     ///
@@ -25,22 +27,36 @@ public enum V1TaxTransactionsLineItemsMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    public static func getTaxTransactionsTransactionLineItems(config: ClientConfig, transaction: String, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetTaxTransactionsTransactionLineItemsResponse {
+    public static func getTaxTransactionsTransactionLineItems(
+        config: ClientConfig,
+        transaction: String,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        startingAfter: String?
+    ) async throws -> GetTaxTransactionsTransactionLineItemsResponse {
         try validateLength("transaction", transaction, max: 5000)
 
-        if let endingBefore = endingBefore {
+        if let endingBefore {
             try validateLength("ending_before", endingBefore, max: 500)
         }
 
-        if let startingAfter = startingAfter {
+        if let startingAfter {
             try validateLength("starting_after", startingAfter, max: 500)
         }
 
-        return try (await sdkRequest("GET", ["/v1/tax/transactions/", sdkEncodePathSegment(sdkWireString(transaction)), "/line_items"].joined(), config: config, query: [
-            SdkQueryParameter("ending_before", value: endingBefore),
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            SdkQueryParameter("limit", value: limit),
-            SdkQueryParameter("starting_after", value: startingAfter),
-        ], decoder: .json, operationId: "GetTaxTransactionsTransactionLineItems")).data
+        return try await (sdkRequest(
+            "GET",
+            ["/v1/tax/transactions/", sdkEncodePathSegment(sdkWireString(transaction)), "/line_items"].joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("ending_before", value: endingBefore),
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+                SdkQueryParameter("limit", value: limit),
+                SdkQueryParameter("starting_after", value: startingAfter),
+            ],
+            decoder: .json,
+            operationId: "GetTaxTransactionsTransactionLineItems"
+        )).data
     }
 }

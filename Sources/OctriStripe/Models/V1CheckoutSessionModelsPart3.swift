@@ -3,26 +3,32 @@
 
 import Foundation
 
-// V1CheckoutSession domain models
+/// V1CheckoutSession domain models
 extension CheckoutSessionShippingAddressCollection: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for CheckoutSessionShippingAddressCollection")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for CheckoutSessionShippingAddressCollection"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PaymentPagesCheckoutSessionShippingAddressCollection.self
         ) {
-            return             .paymentPagesCheckoutSessionShippingAddressCollection(value)
+            return .paymentPagesCheckoutSessionShippingAddressCollection(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -31,7 +37,6 @@ extension CheckoutSessionShippingAddressCollection: Codable {
         case let .paymentPagesCheckoutSessionShippingAddressCollection(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum CheckoutSessionShippingCost {
@@ -39,24 +44,30 @@ public enum CheckoutSessionShippingCost {
 }
 
 extension CheckoutSessionShippingCost: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for CheckoutSessionShippingCost")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for CheckoutSessionShippingCost"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PaymentPagesCheckoutSessionShippingCost.self
         ) {
-            return             .paymentPagesCheckoutSessionShippingCost(value)
+            return .paymentPagesCheckoutSessionShippingCost(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -65,7 +76,6 @@ extension CheckoutSessionShippingCost: Codable {
         case let .paymentPagesCheckoutSessionShippingCost(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum CheckoutSessionSubscription {
@@ -74,21 +84,31 @@ public enum CheckoutSessionSubscription {
 }
 
 extension CheckoutSessionSubscription: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for CheckoutSessionSubscription")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for CheckoutSessionSubscription"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(Subscription.self) { return .subscription(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(Subscription.self) {
+            return .subscription(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -98,7 +118,6 @@ extension CheckoutSessionSubscription: Codable {
         case let .subscription(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum CheckoutSessionTotalDetails {
@@ -106,24 +125,30 @@ public enum CheckoutSessionTotalDetails {
 }
 
 extension CheckoutSessionTotalDetails: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for CheckoutSessionTotalDetails")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for CheckoutSessionTotalDetails"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PaymentPagesCheckoutSessionTotalDetails.self
         ) {
-            return             .paymentPagesCheckoutSessionTotalDetails(value)
+            return .paymentPagesCheckoutSessionTotalDetails(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -132,7 +157,6 @@ extension CheckoutSessionTotalDetails: Codable {
         case let .paymentPagesCheckoutSessionTotalDetails(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum CheckoutSessionWalletOptionsXd35ef903 {
@@ -140,20 +164,29 @@ public enum CheckoutSessionWalletOptionsXd35ef903 {
 }
 
 extension CheckoutSessionWalletOptionsXd35ef903: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for CheckoutSessionWalletOptionsXd35ef903")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for CheckoutSessionWalletOptionsXd35ef903"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(CheckoutSessionWalletOptions.self) { return .checkoutSessionWalletOptions(value) }
+        if let value = try? container
+            .decode(CheckoutSessionWalletOptions.self) {
+            return .checkoutSessionWalletOptions(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -162,7 +195,6 @@ extension CheckoutSessionWalletOptionsXd35ef903: Codable {
         case let .checkoutSessionWalletOptions(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Typed representation of the `CheckoutSessionPaymentMethodOptions` API schema.
@@ -315,7 +347,7 @@ extension CheckoutSessionPaymentMethodOptions {
 }
 
 public extension CheckoutSessionPaymentMethodOptions {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.init(sdkDefaults: ())
         try sdkDecodeFieldsPart1(container)
@@ -326,7 +358,54 @@ public extension CheckoutSessionPaymentMethodOptions {
 }
 
 public extension CheckoutSessionPaymentMethodOptions {
-    public init(acssDebit: CheckoutAcssDebitPaymentMethodOptions? = nil, affirm: CheckoutAffirmPaymentMethodOptions? = nil, afterpayClearpay: CheckoutAfterpayClearpayPaymentMethodOptions? = nil, alipay: CheckoutAlipayPaymentMethodOptions? = nil, alma: CheckoutAlmaPaymentMethodOptions? = nil, amazonPay: CheckoutAmazonPayPaymentMethodOptions? = nil, auBecsDebit: CheckoutAuBecsDebitPaymentMethodOptions? = nil, bacsDebit: CheckoutBacsDebitPaymentMethodOptions? = nil, bancontact: CheckoutBancontactPaymentMethodOptions? = nil, billie: CheckoutBilliePaymentMethodOptions? = nil, boleto: CheckoutBoletoPaymentMethodOptions? = nil, card: CheckoutCardPaymentMethodOptions? = nil, cashapp: CheckoutCashappPaymentMethodOptions? = nil, customerBalance: CheckoutCustomerBalancePaymentMethodOptions? = nil, eps: CheckoutEpsPaymentMethodOptions? = nil, fpx: CheckoutFpxPaymentMethodOptions? = nil, giropay: CheckoutGiropayPaymentMethodOptions? = nil, grabpay: CheckoutGrabPayPaymentMethodOptions? = nil, ideal: CheckoutIdealPaymentMethodOptions? = nil, kakaoPay: CheckoutKakaoPayPaymentMethodOptions? = nil, klarna: CheckoutKlarnaPaymentMethodOptions? = nil, konbini: CheckoutKonbiniPaymentMethodOptions? = nil, krCard: CheckoutKrCardPaymentMethodOptions? = nil, link: CheckoutLinkPaymentMethodOptions? = nil, mobilepay: CheckoutMobilepayPaymentMethodOptions? = nil, multibanco: CheckoutMultibancoPaymentMethodOptions? = nil, naverPay: CheckoutNaverPayPaymentMethodOptions? = nil, oxxo: CheckoutOxxoPaymentMethodOptions? = nil, p24: CheckoutP24PaymentMethodOptions? = nil, payco: CheckoutPaycoPaymentMethodOptions? = nil, paynow: CheckoutPaynowPaymentMethodOptions? = nil, paypal: CheckoutPaypalPaymentMethodOptions? = nil, payto: CheckoutPaytoPaymentMethodOptions? = nil, pix: CheckoutPixPaymentMethodOptions? = nil, revolutPay: CheckoutRevolutPayPaymentMethodOptions? = nil, samsungPay: CheckoutSamsungPayPaymentMethodOptions? = nil, satispay: CheckoutSatispayPaymentMethodOptions? = nil, scalapay: CheckoutScalapayPaymentMethodOptions? = nil, sepaDebit: CheckoutSepaDebitPaymentMethodOptions? = nil, sofort: CheckoutSofortPaymentMethodOptions? = nil, sunbit: CheckoutSunbitPaymentMethodOptions? = nil, swish: CheckoutSwishPaymentMethodOptions? = nil, twint: CheckoutTwintPaymentMethodOptions? = nil, upi: CheckoutUpiPaymentMethodOptions? = nil, usBankAccount: CheckoutUsBankAccountPaymentMethodOptions? = nil, wechatPay: CheckoutWechatPayPaymentMethodOptions? = nil) {
+    init(
+        acssDebit: CheckoutAcssDebitPaymentMethodOptions? = nil,
+        affirm: CheckoutAffirmPaymentMethodOptions? = nil,
+        afterpayClearpay: CheckoutAfterpayClearpayPaymentMethodOptions? = nil,
+        alipay: CheckoutAlipayPaymentMethodOptions? = nil,
+        alma: CheckoutAlmaPaymentMethodOptions? = nil,
+        amazonPay: CheckoutAmazonPayPaymentMethodOptions? = nil,
+        auBecsDebit: CheckoutAuBecsDebitPaymentMethodOptions? = nil,
+        bacsDebit: CheckoutBacsDebitPaymentMethodOptions? = nil,
+        bancontact: CheckoutBancontactPaymentMethodOptions? = nil,
+        billie: CheckoutBilliePaymentMethodOptions? = nil,
+        boleto: CheckoutBoletoPaymentMethodOptions? = nil,
+        card: CheckoutCardPaymentMethodOptions? = nil,
+        cashapp: CheckoutCashappPaymentMethodOptions? = nil,
+        customerBalance: CheckoutCustomerBalancePaymentMethodOptions? = nil,
+        eps: CheckoutEpsPaymentMethodOptions? = nil,
+        fpx: CheckoutFpxPaymentMethodOptions? = nil,
+        giropay: CheckoutGiropayPaymentMethodOptions? = nil,
+        grabpay: CheckoutGrabPayPaymentMethodOptions? = nil,
+        ideal: CheckoutIdealPaymentMethodOptions? = nil,
+        kakaoPay: CheckoutKakaoPayPaymentMethodOptions? = nil,
+        klarna: CheckoutKlarnaPaymentMethodOptions? = nil,
+        konbini: CheckoutKonbiniPaymentMethodOptions? = nil,
+        krCard: CheckoutKrCardPaymentMethodOptions? = nil,
+        link: CheckoutLinkPaymentMethodOptions? = nil,
+        mobilepay: CheckoutMobilepayPaymentMethodOptions? = nil,
+        multibanco: CheckoutMultibancoPaymentMethodOptions? = nil,
+        naverPay: CheckoutNaverPayPaymentMethodOptions? = nil,
+        oxxo: CheckoutOxxoPaymentMethodOptions? = nil,
+        p24: CheckoutP24PaymentMethodOptions? = nil,
+        payco: CheckoutPaycoPaymentMethodOptions? = nil,
+        paynow: CheckoutPaynowPaymentMethodOptions? = nil,
+        paypal: CheckoutPaypalPaymentMethodOptions? = nil,
+        payto: CheckoutPaytoPaymentMethodOptions? = nil,
+        pix: CheckoutPixPaymentMethodOptions? = nil,
+        revolutPay: CheckoutRevolutPayPaymentMethodOptions? = nil,
+        samsungPay: CheckoutSamsungPayPaymentMethodOptions? = nil,
+        satispay: CheckoutSatispayPaymentMethodOptions? = nil,
+        scalapay: CheckoutScalapayPaymentMethodOptions? = nil,
+        sepaDebit: CheckoutSepaDebitPaymentMethodOptions? = nil,
+        sofort: CheckoutSofortPaymentMethodOptions? = nil,
+        sunbit: CheckoutSunbitPaymentMethodOptions? = nil,
+        swish: CheckoutSwishPaymentMethodOptions? = nil,
+        twint: CheckoutTwintPaymentMethodOptions? = nil,
+        upi: CheckoutUpiPaymentMethodOptions? = nil,
+        usBankAccount: CheckoutUsBankAccountPaymentMethodOptions? = nil,
+        wechatPay: CheckoutWechatPayPaymentMethodOptions? = nil
+    ) {
         self.init(sdkDefaults: ())
         sdkSet1(acssDebit, affirm, afterpayClearpay, alipay, alma)
         sdkSet2(amazonPay, auBecsDebit, bacsDebit, bancontact, billie)
@@ -342,7 +421,13 @@ public extension CheckoutSessionPaymentMethodOptions {
 }
 
 extension CheckoutSessionPaymentMethodOptions {
-    mutating func sdkSet1(_ acssDebit: CheckoutAcssDebitPaymentMethodOptions?, _ affirm: CheckoutAffirmPaymentMethodOptions?, _ afterpayClearpay: CheckoutAfterpayClearpayPaymentMethodOptions?, _ alipay: CheckoutAlipayPaymentMethodOptions?, _ alma: CheckoutAlmaPaymentMethodOptions?) {
+    mutating func sdkSet1(
+        _ acssDebit: CheckoutAcssDebitPaymentMethodOptions?,
+        _ affirm: CheckoutAffirmPaymentMethodOptions?,
+        _ afterpayClearpay: CheckoutAfterpayClearpayPaymentMethodOptions?,
+        _ alipay: CheckoutAlipayPaymentMethodOptions?,
+        _ alma: CheckoutAlmaPaymentMethodOptions?
+    ) {
         self.acssDebit = acssDebit
         self.affirm = affirm
         self.afterpayClearpay = afterpayClearpay
@@ -352,7 +437,13 @@ extension CheckoutSessionPaymentMethodOptions {
 }
 
 extension CheckoutSessionPaymentMethodOptions {
-    mutating func sdkSet2(_ amazonPay: CheckoutAmazonPayPaymentMethodOptions?, _ auBecsDebit: CheckoutAuBecsDebitPaymentMethodOptions?, _ bacsDebit: CheckoutBacsDebitPaymentMethodOptions?, _ bancontact: CheckoutBancontactPaymentMethodOptions?, _ billie: CheckoutBilliePaymentMethodOptions?) {
+    mutating func sdkSet2(
+        _ amazonPay: CheckoutAmazonPayPaymentMethodOptions?,
+        _ auBecsDebit: CheckoutAuBecsDebitPaymentMethodOptions?,
+        _ bacsDebit: CheckoutBacsDebitPaymentMethodOptions?,
+        _ bancontact: CheckoutBancontactPaymentMethodOptions?,
+        _ billie: CheckoutBilliePaymentMethodOptions?
+    ) {
         self.amazonPay = amazonPay
         self.auBecsDebit = auBecsDebit
         self.bacsDebit = bacsDebit
@@ -362,7 +453,13 @@ extension CheckoutSessionPaymentMethodOptions {
 }
 
 extension CheckoutSessionPaymentMethodOptions {
-    mutating func sdkSet3(_ boleto: CheckoutBoletoPaymentMethodOptions?, _ card: CheckoutCardPaymentMethodOptions?, _ cashapp: CheckoutCashappPaymentMethodOptions?, _ customerBalance: CheckoutCustomerBalancePaymentMethodOptions?, _ eps: CheckoutEpsPaymentMethodOptions?) {
+    mutating func sdkSet3(
+        _ boleto: CheckoutBoletoPaymentMethodOptions?,
+        _ card: CheckoutCardPaymentMethodOptions?,
+        _ cashapp: CheckoutCashappPaymentMethodOptions?,
+        _ customerBalance: CheckoutCustomerBalancePaymentMethodOptions?,
+        _ eps: CheckoutEpsPaymentMethodOptions?
+    ) {
         self.boleto = boleto
         self.card = card
         self.cashapp = cashapp
@@ -372,7 +469,13 @@ extension CheckoutSessionPaymentMethodOptions {
 }
 
 extension CheckoutSessionPaymentMethodOptions {
-    mutating func sdkSet4(_ fpx: CheckoutFpxPaymentMethodOptions?, _ giropay: CheckoutGiropayPaymentMethodOptions?, _ grabpay: CheckoutGrabPayPaymentMethodOptions?, _ ideal: CheckoutIdealPaymentMethodOptions?, _ kakaoPay: CheckoutKakaoPayPaymentMethodOptions?) {
+    mutating func sdkSet4(
+        _ fpx: CheckoutFpxPaymentMethodOptions?,
+        _ giropay: CheckoutGiropayPaymentMethodOptions?,
+        _ grabpay: CheckoutGrabPayPaymentMethodOptions?,
+        _ ideal: CheckoutIdealPaymentMethodOptions?,
+        _ kakaoPay: CheckoutKakaoPayPaymentMethodOptions?
+    ) {
         self.fpx = fpx
         self.giropay = giropay
         self.grabpay = grabpay
@@ -382,7 +485,13 @@ extension CheckoutSessionPaymentMethodOptions {
 }
 
 extension CheckoutSessionPaymentMethodOptions {
-    mutating func sdkSet5(_ klarna: CheckoutKlarnaPaymentMethodOptions?, _ konbini: CheckoutKonbiniPaymentMethodOptions?, _ krCard: CheckoutKrCardPaymentMethodOptions?, _ link: CheckoutLinkPaymentMethodOptions?, _ mobilepay: CheckoutMobilepayPaymentMethodOptions?) {
+    mutating func sdkSet5(
+        _ klarna: CheckoutKlarnaPaymentMethodOptions?,
+        _ konbini: CheckoutKonbiniPaymentMethodOptions?,
+        _ krCard: CheckoutKrCardPaymentMethodOptions?,
+        _ link: CheckoutLinkPaymentMethodOptions?,
+        _ mobilepay: CheckoutMobilepayPaymentMethodOptions?
+    ) {
         self.klarna = klarna
         self.konbini = konbini
         self.krCard = krCard
@@ -392,7 +501,13 @@ extension CheckoutSessionPaymentMethodOptions {
 }
 
 extension CheckoutSessionPaymentMethodOptions {
-    mutating func sdkSet6(_ multibanco: CheckoutMultibancoPaymentMethodOptions?, _ naverPay: CheckoutNaverPayPaymentMethodOptions?, _ oxxo: CheckoutOxxoPaymentMethodOptions?, _ p24: CheckoutP24PaymentMethodOptions?, _ payco: CheckoutPaycoPaymentMethodOptions?) {
+    mutating func sdkSet6(
+        _ multibanco: CheckoutMultibancoPaymentMethodOptions?,
+        _ naverPay: CheckoutNaverPayPaymentMethodOptions?,
+        _ oxxo: CheckoutOxxoPaymentMethodOptions?,
+        _ p24: CheckoutP24PaymentMethodOptions?,
+        _ payco: CheckoutPaycoPaymentMethodOptions?
+    ) {
         self.multibanco = multibanco
         self.naverPay = naverPay
         self.oxxo = oxxo
@@ -402,7 +517,13 @@ extension CheckoutSessionPaymentMethodOptions {
 }
 
 extension CheckoutSessionPaymentMethodOptions {
-    mutating func sdkSet7(_ paynow: CheckoutPaynowPaymentMethodOptions?, _ paypal: CheckoutPaypalPaymentMethodOptions?, _ payto: CheckoutPaytoPaymentMethodOptions?, _ pix: CheckoutPixPaymentMethodOptions?, _ revolutPay: CheckoutRevolutPayPaymentMethodOptions?) {
+    mutating func sdkSet7(
+        _ paynow: CheckoutPaynowPaymentMethodOptions?,
+        _ paypal: CheckoutPaypalPaymentMethodOptions?,
+        _ payto: CheckoutPaytoPaymentMethodOptions?,
+        _ pix: CheckoutPixPaymentMethodOptions?,
+        _ revolutPay: CheckoutRevolutPayPaymentMethodOptions?
+    ) {
         self.paynow = paynow
         self.paypal = paypal
         self.payto = payto
@@ -412,7 +533,13 @@ extension CheckoutSessionPaymentMethodOptions {
 }
 
 extension CheckoutSessionPaymentMethodOptions {
-    mutating func sdkSet8(_ samsungPay: CheckoutSamsungPayPaymentMethodOptions?, _ satispay: CheckoutSatispayPaymentMethodOptions?, _ scalapay: CheckoutScalapayPaymentMethodOptions?, _ sepaDebit: CheckoutSepaDebitPaymentMethodOptions?, _ sofort: CheckoutSofortPaymentMethodOptions?) {
+    mutating func sdkSet8(
+        _ samsungPay: CheckoutSamsungPayPaymentMethodOptions?,
+        _ satispay: CheckoutSatispayPaymentMethodOptions?,
+        _ scalapay: CheckoutScalapayPaymentMethodOptions?,
+        _ sepaDebit: CheckoutSepaDebitPaymentMethodOptions?,
+        _ sofort: CheckoutSofortPaymentMethodOptions?
+    ) {
         self.samsungPay = samsungPay
         self.satispay = satispay
         self.scalapay = scalapay
@@ -422,7 +549,13 @@ extension CheckoutSessionPaymentMethodOptions {
 }
 
 extension CheckoutSessionPaymentMethodOptions {
-    mutating func sdkSet9(_ sunbit: CheckoutSunbitPaymentMethodOptions?, _ swish: CheckoutSwishPaymentMethodOptions?, _ twint: CheckoutTwintPaymentMethodOptions?, _ upi: CheckoutUpiPaymentMethodOptions?, _ usBankAccount: CheckoutUsBankAccountPaymentMethodOptions?) {
+    mutating func sdkSet9(
+        _ sunbit: CheckoutSunbitPaymentMethodOptions?,
+        _ swish: CheckoutSwishPaymentMethodOptions?,
+        _ twint: CheckoutTwintPaymentMethodOptions?,
+        _ upi: CheckoutUpiPaymentMethodOptions?,
+        _ usBankAccount: CheckoutUsBankAccountPaymentMethodOptions?
+    ) {
         self.sunbit = sunbit
         self.swish = swish
         self.twint = twint
@@ -439,66 +572,66 @@ extension CheckoutSessionPaymentMethodOptions {
 
 extension CheckoutSessionPaymentMethodOptions {
     mutating func sdkDecodeFieldsPart1(_ container: KeyedDecodingContainer<CodingKeys>) throws {
-        self.acssDebit = try container.sdkDecodeIfPresent(.acssDebit)
-        self.affirm = try container.sdkDecodeIfPresent(.affirm)
-        self.afterpayClearpay = try container.sdkDecodeIfPresent(.afterpayClearpay)
-        self.alipay = try container.sdkDecodeIfPresent(.alipay)
-        self.alma = try container.sdkDecodeIfPresent(.alma)
-        self.amazonPay = try container.sdkDecodeIfPresent(.amazonPay)
-        self.auBecsDebit = try container.sdkDecodeIfPresent(.auBecsDebit)
-        self.bacsDebit = try container.sdkDecodeIfPresent(.bacsDebit)
-        self.bancontact = try container.sdkDecodeIfPresent(.bancontact)
-        self.billie = try container.sdkDecodeIfPresent(.billie)
-        self.boleto = try container.sdkDecodeIfPresent(.boleto)
-        self.card = try container.sdkDecodeIfPresent(.card)
+        acssDebit = try container.sdkDecodeIfPresent(.acssDebit)
+        affirm = try container.sdkDecodeIfPresent(.affirm)
+        afterpayClearpay = try container.sdkDecodeIfPresent(.afterpayClearpay)
+        alipay = try container.sdkDecodeIfPresent(.alipay)
+        alma = try container.sdkDecodeIfPresent(.alma)
+        amazonPay = try container.sdkDecodeIfPresent(.amazonPay)
+        auBecsDebit = try container.sdkDecodeIfPresent(.auBecsDebit)
+        bacsDebit = try container.sdkDecodeIfPresent(.bacsDebit)
+        bancontact = try container.sdkDecodeIfPresent(.bancontact)
+        billie = try container.sdkDecodeIfPresent(.billie)
+        boleto = try container.sdkDecodeIfPresent(.boleto)
+        card = try container.sdkDecodeIfPresent(.card)
     }
 }
 
 extension CheckoutSessionPaymentMethodOptions {
     mutating func sdkDecodeFieldsPart2(_ container: KeyedDecodingContainer<CodingKeys>) throws {
-        self.cashapp = try container.sdkDecodeIfPresent(.cashapp)
-        self.customerBalance = try container.sdkDecodeIfPresent(.customerBalance)
-        self.eps = try container.sdkDecodeIfPresent(.eps)
-        self.fpx = try container.sdkDecodeIfPresent(.fpx)
-        self.giropay = try container.sdkDecodeIfPresent(.giropay)
-        self.grabpay = try container.sdkDecodeIfPresent(.grabpay)
-        self.ideal = try container.sdkDecodeIfPresent(.ideal)
-        self.kakaoPay = try container.sdkDecodeIfPresent(.kakaoPay)
-        self.klarna = try container.sdkDecodeIfPresent(.klarna)
-        self.konbini = try container.sdkDecodeIfPresent(.konbini)
-        self.krCard = try container.sdkDecodeIfPresent(.krCard)
-        self.link = try container.sdkDecodeIfPresent(.link)
+        cashapp = try container.sdkDecodeIfPresent(.cashapp)
+        customerBalance = try container.sdkDecodeIfPresent(.customerBalance)
+        eps = try container.sdkDecodeIfPresent(.eps)
+        fpx = try container.sdkDecodeIfPresent(.fpx)
+        giropay = try container.sdkDecodeIfPresent(.giropay)
+        grabpay = try container.sdkDecodeIfPresent(.grabpay)
+        ideal = try container.sdkDecodeIfPresent(.ideal)
+        kakaoPay = try container.sdkDecodeIfPresent(.kakaoPay)
+        klarna = try container.sdkDecodeIfPresent(.klarna)
+        konbini = try container.sdkDecodeIfPresent(.konbini)
+        krCard = try container.sdkDecodeIfPresent(.krCard)
+        link = try container.sdkDecodeIfPresent(.link)
     }
 }
 
 extension CheckoutSessionPaymentMethodOptions {
     mutating func sdkDecodeFieldsPart3(_ container: KeyedDecodingContainer<CodingKeys>) throws {
-        self.mobilepay = try container.sdkDecodeIfPresent(.mobilepay)
-        self.multibanco = try container.sdkDecodeIfPresent(.multibanco)
-        self.naverPay = try container.sdkDecodeIfPresent(.naverPay)
-        self.oxxo = try container.sdkDecodeIfPresent(.oxxo)
-        self.p24 = try container.sdkDecodeIfPresent(.p24)
-        self.payco = try container.sdkDecodeIfPresent(.payco)
-        self.paynow = try container.sdkDecodeIfPresent(.paynow)
-        self.paypal = try container.sdkDecodeIfPresent(.paypal)
-        self.payto = try container.sdkDecodeIfPresent(.payto)
-        self.pix = try container.sdkDecodeIfPresent(.pix)
-        self.revolutPay = try container.sdkDecodeIfPresent(.revolutPay)
-        self.samsungPay = try container.sdkDecodeIfPresent(.samsungPay)
+        mobilepay = try container.sdkDecodeIfPresent(.mobilepay)
+        multibanco = try container.sdkDecodeIfPresent(.multibanco)
+        naverPay = try container.sdkDecodeIfPresent(.naverPay)
+        oxxo = try container.sdkDecodeIfPresent(.oxxo)
+        p24 = try container.sdkDecodeIfPresent(.p24)
+        payco = try container.sdkDecodeIfPresent(.payco)
+        paynow = try container.sdkDecodeIfPresent(.paynow)
+        paypal = try container.sdkDecodeIfPresent(.paypal)
+        payto = try container.sdkDecodeIfPresent(.payto)
+        pix = try container.sdkDecodeIfPresent(.pix)
+        revolutPay = try container.sdkDecodeIfPresent(.revolutPay)
+        samsungPay = try container.sdkDecodeIfPresent(.samsungPay)
     }
 }
 
 extension CheckoutSessionPaymentMethodOptions {
     mutating func sdkDecodeFieldsPart4(_ container: KeyedDecodingContainer<CodingKeys>) throws {
-        self.satispay = try container.sdkDecodeIfPresent(.satispay)
-        self.scalapay = try container.sdkDecodeIfPresent(.scalapay)
-        self.sepaDebit = try container.sdkDecodeIfPresent(.sepaDebit)
-        self.sofort = try container.sdkDecodeIfPresent(.sofort)
-        self.sunbit = try container.sdkDecodeIfPresent(.sunbit)
-        self.swish = try container.sdkDecodeIfPresent(.swish)
-        self.twint = try container.sdkDecodeIfPresent(.twint)
-        self.upi = try container.sdkDecodeIfPresent(.upi)
-        self.usBankAccount = try container.sdkDecodeIfPresent(.usBankAccount)
-        self.wechatPay = try container.sdkDecodeIfPresent(.wechatPay)
+        satispay = try container.sdkDecodeIfPresent(.satispay)
+        scalapay = try container.sdkDecodeIfPresent(.scalapay)
+        sepaDebit = try container.sdkDecodeIfPresent(.sepaDebit)
+        sofort = try container.sdkDecodeIfPresent(.sofort)
+        sunbit = try container.sdkDecodeIfPresent(.sunbit)
+        swish = try container.sdkDecodeIfPresent(.swish)
+        twint = try container.sdkDecodeIfPresent(.twint)
+        upi = try container.sdkDecodeIfPresent(.upi)
+        usBankAccount = try container.sdkDecodeIfPresent(.usBankAccount)
+        wechatPay = try container.sdkDecodeIfPresent(.wechatPay)
     }
 }

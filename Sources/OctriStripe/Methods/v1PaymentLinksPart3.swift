@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1PaymentLinksMethods {
-    public struct PostPaymentLinksOptions: Codable {
+public extension V1PaymentLinksMethods {
+    struct PostPaymentLinksOptions: Codable {
         public var lineItems: [PostPaymentLinksRequestBodyLineItemsItem]
         public var afterCompletion: PostPaymentLinksRequestBodyAfterCompletion?
         public var allowPromotionCodes: Bool?
@@ -46,7 +46,10 @@ extension V1PaymentLinksMethods {
         }
     }
 
-    /// Creates a payment link that provides customers with a hosted payment page for the configured items. Supply `line_items` and configure checkout behaviour such as `after_completion`, `automatic_tax`, payment methods, customer creation, and shipping collection as needed. The response contains the created payment link and its hosted URL.
+    /// Creates a payment link that provides customers with a hosted payment page for the configured items. Supply
+    /// `line_items` and configure checkout behaviour such as `after_completion`, `automatic_tax`, payment methods,
+    /// customer creation, and shipping collection as needed. The response contains the created payment link and its
+    /// hosted URL.
     ///
     /// Creates a payment link.
     ///
@@ -143,13 +146,21 @@ extension V1PaymentLinksMethods {
     /// - taxIdCollection: Controls tax ID collection during checkout.
     /// - transferData: The account (if any) the payments will be attributed to for
     ///   tax reporting, and where funds from each payment will be transferred to.
-    public static func postPaymentLinks(config: ClientConfig, options: PostPaymentLinksOptions) async throws -> PaymentLink {
+    static func postPaymentLinks(config: ClientConfig, options: PostPaymentLinksOptions) async throws -> PaymentLink {
         if let inactiveMessage = options.inactiveMessage {
             try validateLength("inactive_message", inactiveMessage, max: 500)
         }
 
         let requestBody = PostPaymentLinksRequestBody(options: options)
 
-        return try (await sdkRequest("POST", "/v1/payment_links", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostPaymentLinks")).data
+        return try await (sdkRequest(
+            "POST",
+            "/v1/payment_links",
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostPaymentLinks"
+        )).data
     }
 }

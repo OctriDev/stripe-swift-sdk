@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1Insights domain models
+/// V1Insights domain models
 /// Address data.
 public struct InsightsResourcesPaymentEvaluationAddress: Codable {
     /// City, district, suburb, town, or village.
@@ -29,43 +29,50 @@ public struct InsightsResourcesPaymentEvaluationAddress: Codable {
     }
 
     init() {
-        (self.city, self.country, self.line1, self.line2, self.postalCode) = (nil, nil, nil, nil, nil)
-        self.state = nil
+        (city, country, line1, line2, postalCode) = (nil, nil, nil, nil, nil)
+        state = nil
     }
 }
 
 public extension InsightsResourcesPaymentEvaluationAddress {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.city = try container.sdkDecodeIfPresent(.city)
-        self.country = try container.sdkDecodeIfPresent(.country)
-        self.line1 = try container.sdkDecodeIfPresent(.line1)
-        self.line2 = try container.sdkDecodeIfPresent(.line2)
-        self.postalCode = try container.sdkDecodeIfPresent(.postalCode)
-        self.state = try container.sdkDecodeIfPresent(.state)
-        if let value = self.city {
+        city = try container.sdkDecodeIfPresent(.city)
+        country = try container.sdkDecodeIfPresent(.country)
+        line1 = try container.sdkDecodeIfPresent(.line1)
+        line2 = try container.sdkDecodeIfPresent(.line2)
+        postalCode = try container.sdkDecodeIfPresent(.postalCode)
+        state = try container.sdkDecodeIfPresent(.state)
+        if let value = city {
             try validateLength("city", value, min: nil, max: 5000)
         }
-        if let value = self.country {
+        if let value = country {
             try validateLength("country", value, min: nil, max: 5000)
         }
-        if let value = self.line1 {
+        if let value = line1 {
             try validateLength("line1", value, min: nil, max: 5000)
         }
-        if let value = self.line2 {
+        if let value = line2 {
             try validateLength("line2", value, min: nil, max: 5000)
         }
-        if let value = self.postalCode {
+        if let value = postalCode {
             try validateLength("postal_code", value, min: nil, max: 5000)
         }
-        if let value = self.state {
+        if let value = state {
             try validateLength("state", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension InsightsResourcesPaymentEvaluationAddress {
-    public init(city: String? = nil, country: String? = nil, line1: String? = nil, line2: String? = nil, postalCode: String? = nil, state: String? = nil) throws {
+    init(
+        city: String? = nil,
+        country: String? = nil,
+        line1: String? = nil,
+        line2: String? = nil,
+        postalCode: String? = nil,
+        state: String? = nil
+    ) throws {
         self.init()
         (self.city, self.country) = (city, country)
         (self.line1, self.line2) = (line1, line2)
@@ -109,33 +116,44 @@ public struct InsightsResourcesPaymentEvaluationBillingDetails: Codable {
         case phone
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension InsightsResourcesPaymentEvaluationBillingDetails {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.address) else {
-            throw SdkValidationError(field: "address", code: "required", message: "Validation failed for 'address': value is required")
+            throw SdkValidationError(
+                field: "address",
+                code: "required",
+                message: "Validation failed for 'address': value is required"
+            )
         }
-        self.address = try container.sdkDecodeRequired(.address)
-        self.email = try container.sdkDecodeIfPresent(.email)
-        self.name = try container.sdkDecodeIfPresent(.name)
-        self.phone = try container.sdkDecodeIfPresent(.phone)
-        if let value = self.email {
+        address = try container.sdkDecodeRequired(.address)
+        email = try container.sdkDecodeIfPresent(.email)
+        name = try container.sdkDecodeIfPresent(.name)
+        phone = try container.sdkDecodeIfPresent(.phone)
+        if let value = email {
             try validateLength("email", value, min: nil, max: 5000)
         }
-        if let value = self.name {
+        if let value = name {
             try validateLength("name", value, min: nil, max: 5000)
         }
-        if let value = self.phone {
+        if let value = phone {
             try validateLength("phone", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension InsightsResourcesPaymentEvaluationBillingDetails {
-    public init(address: InsightsResourcesPaymentEvaluationAddress, email: String? = nil, name: String? = nil, phone: String? = nil) throws {
+    init(
+        address: InsightsResourcesPaymentEvaluationAddress,
+        email: String? = nil,
+        name: String? = nil,
+        phone: String? = nil
+    ) throws {
         (self.address, self.email) = (address, email)
         (self.name, self.phone) = (name, phone)
         if let value = self.email {
@@ -160,24 +178,30 @@ public struct InsightsResourcesPaymentEvaluationClientDeviceMetadata: Codable {
         case radarSession = "radar_session"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension InsightsResourcesPaymentEvaluationClientDeviceMetadata {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.radarSession) else {
-            throw SdkValidationError(field: "radar_session", code: "required", message: "Validation failed for 'radar_session': value is required")
-        }
-        self.radarSession = try container.sdkDecodeRequired(.radarSession)
-            try validateLength("radar_session", self.radarSession, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension InsightsResourcesPaymentEvaluationClientDeviceMetadata {
-    public init(radarSession: String) throws {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.radarSession) else {
+            throw SdkValidationError(
+                field: "radar_session",
+                code: "required",
+                message: "Validation failed for 'radar_session': value is required"
+            )
+        }
+        radarSession = try container.sdkDecodeRequired(.radarSession)
+        try validateLength("radar_session", radarSession, min: nil, max: 5000)
+    }
+}
+
+public extension InsightsResourcesPaymentEvaluationClientDeviceMetadata {
+    init(radarSession: String) throws {
         self.radarSession = radarSession
-            try validateLength("radar_session", self.radarSession, min: nil, max: 5000)
+        try validateLength("radar_session", self.radarSession, min: nil, max: 5000)
     }
 }
 
@@ -203,38 +227,44 @@ public struct InsightsResourcesPaymentEvaluationCustomerDetails: Codable {
     }
 
     init() {
-        (self.customer, self.customerAccount, self.email, self.name, self.phone) = (nil, nil, nil, nil, nil)
+        (customer, customerAccount, email, name, phone) = (nil, nil, nil, nil, nil)
     }
 }
 
 public extension InsightsResourcesPaymentEvaluationCustomerDetails {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.customer = try container.sdkDecodeIfPresent(.customer)
-        self.customerAccount = try container.sdkDecodeIfPresent(.customerAccount)
-        self.email = try container.sdkDecodeIfPresent(.email)
-        self.name = try container.sdkDecodeIfPresent(.name)
-        self.phone = try container.sdkDecodeIfPresent(.phone)
-        if let value = self.customer {
+        customer = try container.sdkDecodeIfPresent(.customer)
+        customerAccount = try container.sdkDecodeIfPresent(.customerAccount)
+        email = try container.sdkDecodeIfPresent(.email)
+        name = try container.sdkDecodeIfPresent(.name)
+        phone = try container.sdkDecodeIfPresent(.phone)
+        if let value = customer {
             try validateLength("customer", value, min: nil, max: 5000)
         }
-        if let value = self.customerAccount {
+        if let value = customerAccount {
             try validateLength("customer_account", value, min: nil, max: 5000)
         }
-        if let value = self.email {
+        if let value = email {
             try validateLength("email", value, min: nil, max: 5000)
         }
-        if let value = self.name {
+        if let value = name {
             try validateLength("name", value, min: nil, max: 5000)
         }
-        if let value = self.phone {
+        if let value = phone {
             try validateLength("phone", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension InsightsResourcesPaymentEvaluationCustomerDetails {
-    public init(customer: String? = nil, customerAccount: String? = nil, email: String? = nil, name: String? = nil, phone: String? = nil) throws {
+    init(
+        customer: String? = nil,
+        customerAccount: String? = nil,
+        email: String? = nil,
+        name: String? = nil,
+        phone: String? = nil
+    ) throws {
         self.init()
         (self.customer, self.customerAccount) = (customer, customerAccount)
         (self.email, self.name) = (email, name)
@@ -273,29 +303,43 @@ public struct InsightsResourcesPaymentEvaluationDisputeOpened: Codable {
         case reason
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension InsightsResourcesPaymentEvaluationDisputeOpened {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.amount) else {
-            throw SdkValidationError(field: "amount", code: "required", message: "Validation failed for 'amount': value is required")
-        }
-        guard container.contains(.currency) else {
-            throw SdkValidationError(field: "currency", code: "required", message: "Validation failed for 'currency': value is required")
-        }
-        guard container.contains(.reason) else {
-            throw SdkValidationError(field: "reason", code: "required", message: "Validation failed for 'reason': value is required")
-        }
-        self.amount = try container.sdkDecodeRequired(.amount)
-        self.currency = try container.sdkDecodeRequired(.currency)
-        self.reason = try container.sdkDecodeRequired(.reason)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension InsightsResourcesPaymentEvaluationDisputeOpened {
-    public init(amount: Int, currency: String, reason: InsightsResourcesPaymentEvaluationDisputeOpenedReason) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.amount) else {
+            throw SdkValidationError(
+                field: "amount",
+                code: "required",
+                message: "Validation failed for 'amount': value is required"
+            )
+        }
+        guard container.contains(.currency) else {
+            throw SdkValidationError(
+                field: "currency",
+                code: "required",
+                message: "Validation failed for 'currency': value is required"
+            )
+        }
+        guard container.contains(.reason) else {
+            throw SdkValidationError(
+                field: "reason",
+                code: "required",
+                message: "Validation failed for 'reason': value is required"
+            )
+        }
+        amount = try container.sdkDecodeRequired(.amount)
+        currency = try container.sdkDecodeRequired(.currency)
+        reason = try container.sdkDecodeRequired(.reason)
+    }
+}
+
+public extension InsightsResourcesPaymentEvaluationDisputeOpened {
+    init(amount: Int, currency: String, reason: InsightsResourcesPaymentEvaluationDisputeOpenedReason) {
         (self.amount, self.currency) = (amount, currency)
         self.reason = reason
     }
@@ -310,21 +354,27 @@ public struct InsightsResourcesPaymentEvaluationEarlyFraudWarningReceived: Codab
         case fraudType = "fraud_type"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension InsightsResourcesPaymentEvaluationEarlyFraudWarningReceived {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.fraudType) else {
-            throw SdkValidationError(field: "fraud_type", code: "required", message: "Validation failed for 'fraud_type': value is required")
-        }
-        self.fraudType = try container.sdkDecodeRequired(.fraudType)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension InsightsResourcesPaymentEvaluationEarlyFraudWarningReceived {
-    public init(fraudType: InsightsResourcesPaymentEvaluationEarlyFraudWarningReceivedFraudType) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.fraudType) else {
+            throw SdkValidationError(
+                field: "fraud_type",
+                code: "required",
+                message: "Validation failed for 'fraud_type': value is required"
+            )
+        }
+        fraudType = try container.sdkDecodeRequired(.fraudType)
+    }
+}
+
+public extension InsightsResourcesPaymentEvaluationEarlyFraudWarningReceived {
+    init(fraudType: InsightsResourcesPaymentEvaluationEarlyFraudWarningReceivedFraudType) {
         self.fraudType = fraudType
     }
 }
@@ -356,30 +406,48 @@ public struct InsightsResourcesPaymentEvaluationEvent: Codable {
         case userInterventionResolved = "user_intervention_resolved"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension InsightsResourcesPaymentEvaluationEvent {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.occurredAt) else {
-            throw SdkValidationError(field: "occurred_at", code: "required", message: "Validation failed for 'occurred_at': value is required")
-        }
-        guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
-        }
-        self.occurredAt = try container.sdkDecodeRequired(.occurredAt)
-        self.type = try container.sdkDecodeRequired(.type)
-        self.disputeOpened = try container.sdkDecodeIfPresent(.disputeOpened)
-        self.earlyFraudWarningReceived = try container.sdkDecodeIfPresent(.earlyFraudWarningReceived)
-        self.refunded = try container.sdkDecodeIfPresent(.refunded)
-        self.userInterventionRaised = try container.sdkDecodeIfPresent(.userInterventionRaised)
-        self.userInterventionResolved = try container.sdkDecodeIfPresent(.userInterventionResolved)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension InsightsResourcesPaymentEvaluationEvent {
-    public init(occurredAt: Int, type: InsightsResourcesPaymentEvaluationEventType, disputeOpened: InsightsResourcesPaymentEvaluationDisputeOpened? = nil, earlyFraudWarningReceived: InsightsResourcesPaymentEvaluationEarlyFraudWarningReceived? = nil, refunded: InsightsResourcesPaymentEvaluationRefunded? = nil, userInterventionRaised: InsightsResourcesPaymentEvaluationUserInterventionRaised? = nil, userInterventionResolved: InsightsResourcesPaymentEvaluationUserInterventionResolved? = nil) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.occurredAt) else {
+            throw SdkValidationError(
+                field: "occurred_at",
+                code: "required",
+                message: "Validation failed for 'occurred_at': value is required"
+            )
+        }
+        guard container.contains(.type) else {
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
+        }
+        occurredAt = try container.sdkDecodeRequired(.occurredAt)
+        type = try container.sdkDecodeRequired(.type)
+        disputeOpened = try container.sdkDecodeIfPresent(.disputeOpened)
+        earlyFraudWarningReceived = try container.sdkDecodeIfPresent(.earlyFraudWarningReceived)
+        refunded = try container.sdkDecodeIfPresent(.refunded)
+        userInterventionRaised = try container.sdkDecodeIfPresent(.userInterventionRaised)
+        userInterventionResolved = try container.sdkDecodeIfPresent(.userInterventionResolved)
+    }
+}
+
+public extension InsightsResourcesPaymentEvaluationEvent {
+    init(
+        occurredAt: Int,
+        type: InsightsResourcesPaymentEvaluationEventType,
+        disputeOpened: InsightsResourcesPaymentEvaluationDisputeOpened? = nil,
+        earlyFraudWarningReceived: InsightsResourcesPaymentEvaluationEarlyFraudWarningReceived? = nil,
+        refunded: InsightsResourcesPaymentEvaluationRefunded? = nil,
+        userInterventionRaised: InsightsResourcesPaymentEvaluationUserInterventionRaised? = nil,
+        userInterventionResolved: InsightsResourcesPaymentEvaluationUserInterventionResolved? = nil
+    ) {
         (self.occurredAt, self.type) = (occurredAt, type)
         (self.disputeOpened, self.earlyFraudWarningReceived) = (disputeOpened, earlyFraudWarningReceived)
         (self.refunded, self.userInterventionRaised) = (refunded, userInterventionRaised)
@@ -396,21 +464,27 @@ public struct InsightsResourcesPaymentEvaluationMerchantBlocked: Codable {
         case reason
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension InsightsResourcesPaymentEvaluationMerchantBlocked {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.reason) else {
-            throw SdkValidationError(field: "reason", code: "required", message: "Validation failed for 'reason': value is required")
-        }
-        self.reason = try container.sdkDecodeRequired(.reason)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension InsightsResourcesPaymentEvaluationMerchantBlocked {
-    public init(reason: InsightsResourcesPaymentEvaluationMerchantBlockedReason) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.reason) else {
+            throw SdkValidationError(
+                field: "reason",
+                code: "required",
+                message: "Validation failed for 'reason': value is required"
+            )
+        }
+        reason = try container.sdkDecodeRequired(.reason)
+    }
+}
+
+public extension InsightsResourcesPaymentEvaluationMerchantBlocked {
+    init(reason: InsightsResourcesPaymentEvaluationMerchantBlockedReason) {
         self.reason = reason
     }
 }
@@ -428,20 +502,23 @@ public struct InsightsResourcesPaymentEvaluationMoneyMovementCard: Codable {
     }
 
     init() {
-        (self.customerPresence, self.paymentType) = (nil, nil)
+        (customerPresence, paymentType) = (nil, nil)
     }
 }
 
 public extension InsightsResourcesPaymentEvaluationMoneyMovementCard {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.customerPresence = try container.sdkDecodeIfPresent(.customerPresence)
-        self.paymentType = try container.sdkDecodeIfPresent(.paymentType)
+        customerPresence = try container.sdkDecodeIfPresent(.customerPresence)
+        paymentType = try container.sdkDecodeIfPresent(.paymentType)
     }
 }
 
 public extension InsightsResourcesPaymentEvaluationMoneyMovementCard {
-    public init(customerPresence: InsightsResourcesPaymentEvaluationMoneyMovementCardCustomerPresence? = nil, paymentType: InsightsResourcesPaymentEvaluationMoneyMovementCardPaymentType? = nil) {
+    init(
+        customerPresence: InsightsResourcesPaymentEvaluationMoneyMovementCardCustomerPresence? = nil,
+        paymentType: InsightsResourcesPaymentEvaluationMoneyMovementCardPaymentType? = nil
+    ) {
         self.init()
         (self.customerPresence, self.paymentType) = (customerPresence, paymentType)
     }
@@ -459,22 +536,31 @@ public struct InsightsResourcesPaymentEvaluationMoneyMovementDetails: Codable {
         case card
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension InsightsResourcesPaymentEvaluationMoneyMovementDetails {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.moneyMovementType) else {
-            throw SdkValidationError(field: "money_movement_type", code: "required", message: "Validation failed for 'money_movement_type': value is required")
-        }
-        self.moneyMovementType = try container.sdkDecodeRequired(.moneyMovementType)
-        self.card = try container.sdkDecodeIfPresent(.card)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension InsightsResourcesPaymentEvaluationMoneyMovementDetails {
-    public init(moneyMovementType: InsightsResourcesPaymentEvaluationMoneyMovementDetailsMoneyMovementType, card: InsightsResourcesPaymentEvaluationMoneyMovementDetailsCard? = nil) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.moneyMovementType) else {
+            throw SdkValidationError(
+                field: "money_movement_type",
+                code: "required",
+                message: "Validation failed for 'money_movement_type': value is required"
+            )
+        }
+        moneyMovementType = try container.sdkDecodeRequired(.moneyMovementType)
+        card = try container.sdkDecodeIfPresent(.card)
+    }
+}
+
+public extension InsightsResourcesPaymentEvaluationMoneyMovementDetails {
+    init(
+        moneyMovementType: InsightsResourcesPaymentEvaluationMoneyMovementDetailsMoneyMovementType,
+        card: InsightsResourcesPaymentEvaluationMoneyMovementDetailsCard? = nil
+    ) {
         (self.moneyMovementType, self.card) = (moneyMovementType, card)
     }
 }
@@ -484,24 +570,30 @@ public enum InsightsResourcesPaymentEvaluationMoneyMovementDetailsCard {
 }
 
 extension InsightsResourcesPaymentEvaluationMoneyMovementDetailsCard: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for InsightsResourcesPaymentEvaluationMoneyMovementDetailsCard")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for InsightsResourcesPaymentEvaluationMoneyMovementDetailsCard"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             InsightsResourcesPaymentEvaluationMoneyMovementCard.self
         ) {
-            return             .insightsResourcesPaymentEvaluationMoneyMovementCard(value)
+            return .insightsResourcesPaymentEvaluationMoneyMovementCard(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -510,7 +602,6 @@ extension InsightsResourcesPaymentEvaluationMoneyMovementDetailsCard: Codable {
         case let .insightsResourcesPaymentEvaluationMoneyMovementCard(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Outcome details for this payment evaluation.
@@ -534,5 +625,7 @@ public struct InsightsResourcesPaymentEvaluationOutcome: Codable {
         case succeeded
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }

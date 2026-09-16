@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1PaymentIntents operation model declarations
+/// Canonical v1PaymentIntents operation model declarations
 /// If provided, this hash will be used to create a PaymentMethod. The new PaymentMethod will appear in the
 /// payment_method property on the PaymentIntent.
 public struct PostPaymentIntentsRequestBodyPaymentMethodData: Codable {
@@ -189,76 +189,138 @@ public struct PostPaymentIntentsRequestBodyPaymentMethodData: Codable {
         case zip
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension PostPaymentIntentsRequestBodyPaymentMethodData {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.type = try container.sdkDecodeRequired(.type)
-        self.acssDebit = try container.sdkDecodeIfPresent(.acssDebit)
-        self.affirm = try container.sdkDecodeIfPresent(.affirm)
-        self.afterpayClearpay = try container.sdkDecodeIfPresent(.afterpayClearpay)
-        self.alipay = try container.sdkDecodeIfPresent(.alipay)
-        self.allowRedisplay = try container.sdkDecodeIfPresent(.allowRedisplay)
-        self.alma = try container.sdkDecodeIfPresent(.alma)
-        self.amazonPay = try container.sdkDecodeIfPresent(.amazonPay)
-        self.auBecsDebit = try container.sdkDecodeIfPresent(.auBecsDebit)
-        self.bacsDebit = try container.sdkDecodeIfPresent(.bacsDebit)
-        self.bancontact = try container.sdkDecodeIfPresent(.bancontact)
-        self.billie = try container.sdkDecodeIfPresent(.billie)
-        self.billingDetails = try container.sdkDecodeIfPresent(.billingDetails)
-        self.bizum = try container.sdkDecodeIfPresent(.bizum)
-        self.blik = try container.sdkDecodeIfPresent(.blik)
-        self.boleto = try container.sdkDecodeIfPresent(.boleto)
-        self.cashapp = try container.sdkDecodeIfPresent(.cashapp)
-        self.crypto = try container.sdkDecodeIfPresent(.crypto)
-        self.customerBalance = try container.sdkDecodeIfPresent(.customerBalance)
-        self.eps = try container.sdkDecodeIfPresent(.eps)
-        self.fpx = try container.sdkDecodeIfPresent(.fpx)
-        self.giropay = try container.sdkDecodeIfPresent(.giropay)
-        self.grabpay = try container.sdkDecodeIfPresent(.grabpay)
-        self.ideal = try container.sdkDecodeIfPresent(.ideal)
-        self.interacPresent = try container.sdkDecodeIfPresent(.interacPresent)
-        self.kakaoPay = try container.sdkDecodeIfPresent(.kakaoPay)
-        self.klarna = try container.sdkDecodeIfPresent(.klarna)
-        self.konbini = try container.sdkDecodeIfPresent(.konbini)
-        self.krCard = try container.sdkDecodeIfPresent(.krCard)
-        self.link = try container.sdkDecodeIfPresent(.link)
-        self.mbWay = try container.sdkDecodeIfPresent(.mbWay)
-        self.metadata = try container.sdkDecodeIfPresent(.metadata)
-        self.mobilepay = try container.sdkDecodeIfPresent(.mobilepay)
-        self.multibanco = try container.sdkDecodeIfPresent(.multibanco)
-        self.naverPay = try container.sdkDecodeIfPresent(.naverPay)
-        self.nzBankAccount = try container.sdkDecodeIfPresent(.nzBankAccount)
-        self.oxxo = try container.sdkDecodeIfPresent(.oxxo)
-        self.p24 = try container.sdkDecodeIfPresent(.p24)
-        self.payByBank = try container.sdkDecodeIfPresent(.payByBank)
-        self.payco = try container.sdkDecodeIfPresent(.payco)
-        self.paynow = try container.sdkDecodeIfPresent(.paynow)
-        self.paypal = try container.sdkDecodeIfPresent(.paypal)
-        self.payto = try container.sdkDecodeIfPresent(.payto)
-        self.pix = try container.sdkDecodeIfPresent(.pix)
-        self.promptpay = try container.sdkDecodeIfPresent(.promptpay)
-        self.radarOptions = try container.sdkDecodeIfPresent(.radarOptions)
-        self.revolutPay = try container.sdkDecodeIfPresent(.revolutPay)
-        self.samsungPay = try container.sdkDecodeIfPresent(.samsungPay)
-        self.satispay = try container.sdkDecodeIfPresent(.satispay)
-        self.scalapay = try container.sdkDecodeIfPresent(.scalapay)
-        self.sepaDebit = try container.sdkDecodeIfPresent(.sepaDebit)
-        self.sofort = try container.sdkDecodeIfPresent(.sofort)
-        self.sunbit = try container.sdkDecodeIfPresent(.sunbit)
-        self.swish = try container.sdkDecodeIfPresent(.swish)
-        self.twint = try container.sdkDecodeIfPresent(.twint)
-        self.upi = try container.sdkDecodeIfPresent(.upi)
-        self.usBankAccount = try container.sdkDecodeIfPresent(.usBankAccount)
-        self.wechatPay = try container.sdkDecodeIfPresent(.wechatPay)
+        type = try container.sdkDecodeRequired(.type)
+        acssDebit = try container.sdkDecodeIfPresent(.acssDebit)
+        affirm = try container.sdkDecodeIfPresent(.affirm)
+        afterpayClearpay = try container.sdkDecodeIfPresent(.afterpayClearpay)
+        alipay = try container.sdkDecodeIfPresent(.alipay)
+        allowRedisplay = try container.sdkDecodeIfPresent(.allowRedisplay)
+        alma = try container.sdkDecodeIfPresent(.alma)
+        amazonPay = try container.sdkDecodeIfPresent(.amazonPay)
+        auBecsDebit = try container.sdkDecodeIfPresent(.auBecsDebit)
+        bacsDebit = try container.sdkDecodeIfPresent(.bacsDebit)
+        bancontact = try container.sdkDecodeIfPresent(.bancontact)
+        billie = try container.sdkDecodeIfPresent(.billie)
+        billingDetails = try container.sdkDecodeIfPresent(.billingDetails)
+        bizum = try container.sdkDecodeIfPresent(.bizum)
+        blik = try container.sdkDecodeIfPresent(.blik)
+        boleto = try container.sdkDecodeIfPresent(.boleto)
+        cashapp = try container.sdkDecodeIfPresent(.cashapp)
+        crypto = try container.sdkDecodeIfPresent(.crypto)
+        customerBalance = try container.sdkDecodeIfPresent(.customerBalance)
+        eps = try container.sdkDecodeIfPresent(.eps)
+        fpx = try container.sdkDecodeIfPresent(.fpx)
+        giropay = try container.sdkDecodeIfPresent(.giropay)
+        grabpay = try container.sdkDecodeIfPresent(.grabpay)
+        ideal = try container.sdkDecodeIfPresent(.ideal)
+        interacPresent = try container.sdkDecodeIfPresent(.interacPresent)
+        kakaoPay = try container.sdkDecodeIfPresent(.kakaoPay)
+        klarna = try container.sdkDecodeIfPresent(.klarna)
+        konbini = try container.sdkDecodeIfPresent(.konbini)
+        krCard = try container.sdkDecodeIfPresent(.krCard)
+        link = try container.sdkDecodeIfPresent(.link)
+        mbWay = try container.sdkDecodeIfPresent(.mbWay)
+        metadata = try container.sdkDecodeIfPresent(.metadata)
+        mobilepay = try container.sdkDecodeIfPresent(.mobilepay)
+        multibanco = try container.sdkDecodeIfPresent(.multibanco)
+        naverPay = try container.sdkDecodeIfPresent(.naverPay)
+        nzBankAccount = try container.sdkDecodeIfPresent(.nzBankAccount)
+        oxxo = try container.sdkDecodeIfPresent(.oxxo)
+        p24 = try container.sdkDecodeIfPresent(.p24)
+        payByBank = try container.sdkDecodeIfPresent(.payByBank)
+        payco = try container.sdkDecodeIfPresent(.payco)
+        paynow = try container.sdkDecodeIfPresent(.paynow)
+        paypal = try container.sdkDecodeIfPresent(.paypal)
+        payto = try container.sdkDecodeIfPresent(.payto)
+        pix = try container.sdkDecodeIfPresent(.pix)
+        promptpay = try container.sdkDecodeIfPresent(.promptpay)
+        radarOptions = try container.sdkDecodeIfPresent(.radarOptions)
+        revolutPay = try container.sdkDecodeIfPresent(.revolutPay)
+        samsungPay = try container.sdkDecodeIfPresent(.samsungPay)
+        satispay = try container.sdkDecodeIfPresent(.satispay)
+        scalapay = try container.sdkDecodeIfPresent(.scalapay)
+        sepaDebit = try container.sdkDecodeIfPresent(.sepaDebit)
+        sofort = try container.sdkDecodeIfPresent(.sofort)
+        sunbit = try container.sdkDecodeIfPresent(.sunbit)
+        swish = try container.sdkDecodeIfPresent(.swish)
+        twint = try container.sdkDecodeIfPresent(.twint)
+        upi = try container.sdkDecodeIfPresent(.upi)
+        usBankAccount = try container.sdkDecodeIfPresent(.usBankAccount)
+        wechatPay = try container.sdkDecodeIfPresent(.wechatPay)
         self.zip = try container.sdkDecodeIfPresent(.zip)
     }
 }
 
 public extension PostPaymentIntentsRequestBodyPaymentMethodData {
-    public init(type: PostPaymentIntentsRequestBodyPaymentMethodDataType, acssDebit: PostPaymentIntentsRequestBodyPaymentMethodDataAcssDebit? = nil, affirm: PostPaymentIntentsRequestBodyPaymentMethodDataAffirm? = nil, afterpayClearpay: PostPaymentIntentsRequestBodyPaymentMethodDataAfterpayClearpay? = nil, alipay: PostPaymentIntentsRequestBodyPaymentMethodDataAlipay? = nil, allowRedisplay: PostPaymentIntentsRequestBodyPaymentMethodDataAllowRedisplay? = nil, alma: PostPaymentIntentsRequestBodyPaymentMethodDataAlma? = nil, amazonPay: PostPaymentIntentsRequestBodyPaymentMethodDataAmazonPay? = nil, auBecsDebit: PostPaymentIntentsRequestBodyPaymentMethodDataAuBecsDebit? = nil, bacsDebit: PostPaymentIntentsRequestBodyPaymentMethodDataBacsDebit? = nil, bancontact: PostPaymentIntentsRequestBodyPaymentMethodDataBancontact? = nil, billie: PostPaymentIntentsRequestBodyPaymentMethodDataBillie? = nil, billingDetails: PostPaymentIntentsRequestBodyPaymentMethodDataBillingDetails? = nil, bizum: PostPaymentIntentsRequestBodyPaymentMethodDataBizum? = nil, blik: PostPaymentIntentsRequestBodyPaymentMethodDataBlik? = nil, boleto: PostPaymentIntentsRequestBodyPaymentMethodDataBoleto? = nil, cashapp: PostPaymentIntentsRequestBodyPaymentMethodDataCashapp? = nil, crypto: PostPaymentIntentsRequestBodyPaymentMethodDataCrypto? = nil, customerBalance: PostPaymentIntentsRequestBodyPaymentMethodDataCustomerBalance? = nil, eps: PostPaymentIntentsRequestBodyPaymentMethodDataEps? = nil, fpx: PostPaymentIntentsRequestBodyPaymentMethodDataFpx? = nil, giropay: PostPaymentIntentsRequestBodyPaymentMethodDataGiropay? = nil, grabpay: PostPaymentIntentsRequestBodyPaymentMethodDataGrabpay? = nil, ideal: PostPaymentIntentsRequestBodyPaymentMethodDataIdeal? = nil, interacPresent: PostPaymentIntentsRequestBodyPaymentMethodDataInteracPresent? = nil, kakaoPay: PostPaymentIntentsRequestBodyPaymentMethodDataKakaoPay? = nil, klarna: PostPaymentIntentsRequestBodyPaymentMethodDataKlarna? = nil, konbini: PostPaymentIntentsRequestBodyPaymentMethodDataKonbini? = nil, krCard: PostPaymentIntentsRequestBodyPaymentMethodDataKrCard? = nil, link: PostPaymentIntentsRequestBodyPaymentMethodDataLink? = nil, mbWay: PostPaymentIntentsRequestBodyPaymentMethodDataMbWay? = nil, metadata: [String: String]? = nil, mobilepay: PostPaymentIntentsRequestBodyPaymentMethodDataMobilepay? = nil, multibanco: PostPaymentIntentsRequestBodyPaymentMethodDataMultibanco? = nil, naverPay: PostPaymentIntentsRequestBodyPaymentMethodDataNaverPay? = nil, nzBankAccount: PostPaymentIntentsRequestBodyPaymentMethodDataNzBankAccount? = nil, oxxo: PostPaymentIntentsRequestBodyPaymentMethodDataOxxo? = nil, p24: PostPaymentIntentsRequestBodyPaymentMethodDataP24? = nil, payByBank: PostPaymentIntentsRequestBodyPaymentMethodDataPayByBank? = nil, payco: PostPaymentIntentsRequestBodyPaymentMethodDataPayco? = nil, paynow: PostPaymentIntentsRequestBodyPaymentMethodDataPaynow? = nil, paypal: PostPaymentIntentsRequestBodyPaymentMethodDataPaypal? = nil, payto: PostPaymentIntentsRequestBodyPaymentMethodDataPayto? = nil, pix: PostPaymentIntentsRequestBodyPaymentMethodDataPix? = nil, promptpay: PostPaymentIntentsRequestBodyPaymentMethodDataPromptpay? = nil, radarOptions: PostPaymentIntentsRequestBodyPaymentMethodDataRadarOptions? = nil, revolutPay: PostPaymentIntentsRequestBodyPaymentMethodDataRevolutPay? = nil, samsungPay: PostPaymentIntentsRequestBodyPaymentMethodDataSamsungPay? = nil, satispay: PostPaymentIntentsRequestBodyPaymentMethodDataSatispay? = nil, scalapay: PostPaymentIntentsRequestBodyPaymentMethodDataScalapay? = nil, sepaDebit: PostPaymentIntentsRequestBodyPaymentMethodDataSepaDebit? = nil, sofort: PostPaymentIntentsRequestBodyPaymentMethodDataSofort? = nil, sunbit: PostPaymentIntentsRequestBodyPaymentMethodDataSunbit? = nil, swish: PostPaymentIntentsRequestBodyPaymentMethodDataSwish? = nil, twint: PostPaymentIntentsRequestBodyPaymentMethodDataTwint? = nil, upi: PostPaymentIntentsRequestBodyPaymentMethodDataUpi? = nil, usBankAccount: PostPaymentIntentsRequestBodyPaymentMethodDataUsBankAccount? = nil, wechatPay: PostPaymentIntentsRequestBodyPaymentMethodDataWechatPay? = nil, zip: PostPaymentIntentsRequestBodyPaymentMethodDataZip? = nil) {
+    init(
+        type: PostPaymentIntentsRequestBodyPaymentMethodDataType,
+        acssDebit: PostPaymentIntentsRequestBodyPaymentMethodDataAcssDebit? = nil,
+        affirm: PostPaymentIntentsRequestBodyPaymentMethodDataAffirm? = nil,
+        afterpayClearpay: PostPaymentIntentsRequestBodyPaymentMethodDataAfterpayClearpay? = nil,
+        alipay: PostPaymentIntentsRequestBodyPaymentMethodDataAlipay? = nil,
+        allowRedisplay: PostPaymentIntentsRequestBodyPaymentMethodDataAllowRedisplay? = nil,
+        alma: PostPaymentIntentsRequestBodyPaymentMethodDataAlma? = nil,
+        amazonPay: PostPaymentIntentsRequestBodyPaymentMethodDataAmazonPay? = nil,
+        auBecsDebit: PostPaymentIntentsRequestBodyPaymentMethodDataAuBecsDebit? = nil,
+        bacsDebit: PostPaymentIntentsRequestBodyPaymentMethodDataBacsDebit? = nil,
+        bancontact: PostPaymentIntentsRequestBodyPaymentMethodDataBancontact? = nil,
+        billie: PostPaymentIntentsRequestBodyPaymentMethodDataBillie? = nil,
+        billingDetails: PostPaymentIntentsRequestBodyPaymentMethodDataBillingDetails? = nil,
+        bizum: PostPaymentIntentsRequestBodyPaymentMethodDataBizum? = nil,
+        blik: PostPaymentIntentsRequestBodyPaymentMethodDataBlik? = nil,
+        boleto: PostPaymentIntentsRequestBodyPaymentMethodDataBoleto? = nil,
+        cashapp: PostPaymentIntentsRequestBodyPaymentMethodDataCashapp? = nil,
+        crypto: PostPaymentIntentsRequestBodyPaymentMethodDataCrypto? = nil,
+        customerBalance: PostPaymentIntentsRequestBodyPaymentMethodDataCustomerBalance? = nil,
+        eps: PostPaymentIntentsRequestBodyPaymentMethodDataEps? = nil,
+        fpx: PostPaymentIntentsRequestBodyPaymentMethodDataFpx? = nil,
+        giropay: PostPaymentIntentsRequestBodyPaymentMethodDataGiropay? = nil,
+        grabpay: PostPaymentIntentsRequestBodyPaymentMethodDataGrabpay? = nil,
+        ideal: PostPaymentIntentsRequestBodyPaymentMethodDataIdeal? = nil,
+        interacPresent: PostPaymentIntentsRequestBodyPaymentMethodDataInteracPresent? = nil,
+        kakaoPay: PostPaymentIntentsRequestBodyPaymentMethodDataKakaoPay? = nil,
+        klarna: PostPaymentIntentsRequestBodyPaymentMethodDataKlarna? = nil,
+        konbini: PostPaymentIntentsRequestBodyPaymentMethodDataKonbini? = nil,
+        krCard: PostPaymentIntentsRequestBodyPaymentMethodDataKrCard? = nil,
+        link: PostPaymentIntentsRequestBodyPaymentMethodDataLink? = nil,
+        mbWay: PostPaymentIntentsRequestBodyPaymentMethodDataMbWay? = nil,
+        metadata: [String: String]? = nil,
+        mobilepay: PostPaymentIntentsRequestBodyPaymentMethodDataMobilepay? = nil,
+        multibanco: PostPaymentIntentsRequestBodyPaymentMethodDataMultibanco? = nil,
+        naverPay: PostPaymentIntentsRequestBodyPaymentMethodDataNaverPay? = nil,
+        nzBankAccount: PostPaymentIntentsRequestBodyPaymentMethodDataNzBankAccount? = nil,
+        oxxo: PostPaymentIntentsRequestBodyPaymentMethodDataOxxo? = nil,
+        p24: PostPaymentIntentsRequestBodyPaymentMethodDataP24? = nil,
+        payByBank: PostPaymentIntentsRequestBodyPaymentMethodDataPayByBank? = nil,
+        payco: PostPaymentIntentsRequestBodyPaymentMethodDataPayco? = nil,
+        paynow: PostPaymentIntentsRequestBodyPaymentMethodDataPaynow? = nil,
+        paypal: PostPaymentIntentsRequestBodyPaymentMethodDataPaypal? = nil,
+        payto: PostPaymentIntentsRequestBodyPaymentMethodDataPayto? = nil,
+        pix: PostPaymentIntentsRequestBodyPaymentMethodDataPix? = nil,
+        promptpay: PostPaymentIntentsRequestBodyPaymentMethodDataPromptpay? = nil,
+        radarOptions: PostPaymentIntentsRequestBodyPaymentMethodDataRadarOptions? = nil,
+        revolutPay: PostPaymentIntentsRequestBodyPaymentMethodDataRevolutPay? = nil,
+        samsungPay: PostPaymentIntentsRequestBodyPaymentMethodDataSamsungPay? = nil,
+        satispay: PostPaymentIntentsRequestBodyPaymentMethodDataSatispay? = nil,
+        scalapay: PostPaymentIntentsRequestBodyPaymentMethodDataScalapay? = nil,
+        sepaDebit: PostPaymentIntentsRequestBodyPaymentMethodDataSepaDebit? = nil,
+        sofort: PostPaymentIntentsRequestBodyPaymentMethodDataSofort? = nil,
+        sunbit: PostPaymentIntentsRequestBodyPaymentMethodDataSunbit? = nil,
+        swish: PostPaymentIntentsRequestBodyPaymentMethodDataSwish? = nil,
+        twint: PostPaymentIntentsRequestBodyPaymentMethodDataTwint? = nil,
+        upi: PostPaymentIntentsRequestBodyPaymentMethodDataUpi? = nil,
+        usBankAccount: PostPaymentIntentsRequestBodyPaymentMethodDataUsBankAccount? = nil,
+        wechatPay: PostPaymentIntentsRequestBodyPaymentMethodDataWechatPay? = nil,
+        zip: PostPaymentIntentsRequestBodyPaymentMethodDataZip? = nil
+    ) {
         (self.type, self.acssDebit) = (type, acssDebit)
         (self.affirm, self.afterpayClearpay) = (affirm, afterpayClearpay)
         (self.alipay, self.allowRedisplay) = (alipay, allowRedisplay)
@@ -308,32 +370,44 @@ public struct PostPaymentIntentsRequestBodyPaymentMethodDataUsBankAccount: Codab
     }
 
     init() {
-        (self.accountHolderType, self.accountNumber, self.accountType, self.financialConnectionsAccount, self.routingNumber) = (nil, nil, nil, nil, nil)
+        (accountHolderType, accountNumber, accountType, financialConnectionsAccount, routingNumber) = (
+            nil,
+            nil,
+            nil,
+            nil,
+            nil
+        )
     }
 }
 
 public extension PostPaymentIntentsRequestBodyPaymentMethodDataUsBankAccount {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.accountHolderType = try container.sdkDecodeIfPresent(.accountHolderType)
-        self.accountNumber = try container.sdkDecodeIfPresent(.accountNumber)
-        self.accountType = try container.sdkDecodeIfPresent(.accountType)
-        self.financialConnectionsAccount = try container.sdkDecodeIfPresent(.financialConnectionsAccount)
-        self.routingNumber = try container.sdkDecodeIfPresent(.routingNumber)
-        if let value = self.accountNumber {
+        accountHolderType = try container.sdkDecodeIfPresent(.accountHolderType)
+        accountNumber = try container.sdkDecodeIfPresent(.accountNumber)
+        accountType = try container.sdkDecodeIfPresent(.accountType)
+        financialConnectionsAccount = try container.sdkDecodeIfPresent(.financialConnectionsAccount)
+        routingNumber = try container.sdkDecodeIfPresent(.routingNumber)
+        if let value = accountNumber {
             try validateLength("account_number", value, min: nil, max: 5000)
         }
-        if let value = self.financialConnectionsAccount {
+        if let value = financialConnectionsAccount {
             try validateLength("financial_connections_account", value, min: nil, max: 5000)
         }
-        if let value = self.routingNumber {
+        if let value = routingNumber {
             try validateLength("routing_number", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension PostPaymentIntentsRequestBodyPaymentMethodDataUsBankAccount {
-    public init(accountHolderType: PostPaymentIntentsRequestBodyPaymentMethodDataUsBankAccountAcX3b24a09d8b? = nil, accountNumber: String? = nil, accountType: PostPaymentIntentsRequestBodyPaymentMethodDataUsBankAccountAccountType? = nil, financialConnectionsAccount: String? = nil, routingNumber: String? = nil) throws {
+    init(
+        accountHolderType: PostPaymentIntentsRequestBodyPaymentMethodDataUsBankAccountAcX3b24a09d8b? = nil,
+        accountNumber: String? = nil,
+        accountType: PostPaymentIntentsRequestBodyPaymentMethodDataUsBankAccountAccountType? = nil,
+        financialConnectionsAccount: String? = nil,
+        routingNumber: String? = nil
+    ) throws {
         self.init()
         (self.accountHolderType, self.accountNumber) = (accountHolderType, accountNumber)
         (self.accountType, self.financialConnectionsAccount) = (accountType, financialConnectionsAccount)
@@ -351,40 +425,50 @@ public extension PostPaymentIntentsRequestBodyPaymentMethodDataUsBankAccount {
 }
 
 public enum PostPaymentIntentsRequestBodyPaymentMethodOptionsSunbit {
-    case postPaymentIntentsRequestBodyPaymentMethodOptionsSunbitVariant0(PostPaymentIntentsRequestBodyPaymentMethodOptionsSunbitVariant0)
+    case postPaymentIntentsRequestBodyPaymentMethodOptionsSunbitVariant0(
+        PostPaymentIntentsRequestBodyPaymentMethodOptionsSunbitVariant0
+    )
     case stringValue(String)
 }
 
 extension PostPaymentIntentsRequestBodyPaymentMethodOptionsSunbit: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostPaymentIntentsRequestBodyPaymentMethodOptionsSunbit")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PostPaymentIntentsRequestBodyPaymentMethodOptionsSunbit"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PostPaymentIntentsRequestBodyPaymentMethodOptionsSunbitVariant0.self
         ) {
-            return             .postPaymentIntentsRequestBodyPaymentMethodOptionsSunbitVariant0(value)
+            return .postPaymentIntentsRequestBodyPaymentMethodOptionsSunbitVariant0(value)
         }
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .postPaymentIntentsRequestBodyPaymentMethodOptionsSunbitVariant0(value): try container.encode(value); return true
+        case let .postPaymentIntentsRequestBodyPaymentMethodOptionsSunbitVariant0(value): try container
+            .encode(value); return true
         case let .stringValue(value): try container.encode(value); return true
         }
     }
-
 }
 
 public struct PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsSepaDeXbe8714b0aa: Codable {
@@ -395,19 +479,19 @@ public struct PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsSepaDeXbe87
     }
 
     init() {
-        self.referencePrefix = nil
+        referencePrefix = nil
     }
 }
 
 public extension PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsSepaDeXbe8714b0aa {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.referencePrefix = try container.sdkDecodeIfPresent(.referencePrefix)
+        referencePrefix = try container.sdkDecodeIfPresent(.referencePrefix)
     }
 }
 
 public extension PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsSepaDeXbe8714b0aa {
-    public init(referencePrefix: PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsSepaDeX8ed5ae8486? = nil) {
+    init(referencePrefix: PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsSepaDeX8ed5ae8486? = nil) {
         self.init()
         self.referencePrefix = referencePrefix
     }
@@ -421,35 +505,43 @@ public enum PostPaymentIntentsRequestBodyPaymentMethodOptionsPayByBank {
 }
 
 extension PostPaymentIntentsRequestBodyPaymentMethodOptionsPayByBank: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostPaymentIntentsRequestBodyPaymentMethodOptionsPayByBank")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PostPaymentIntentsRequestBodyPaymentMethodOptionsPayByBank"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PostPaymentIntentsRequestBodyPaymentMethodOptionsPayByBankVariant0.self
         ) {
-            return             .postPaymentIntentsRequestBodyPaymentMethodOptionsPayByBankVariant0(value)
+            return .postPaymentIntentsRequestBodyPaymentMethodOptionsPayByBankVariant0(value)
         }
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .postPaymentIntentsRequestBodyPaymentMethodOptionsPayByBankVariant0(value): try container.encode(value); return true
+        case let .postPaymentIntentsRequestBodyPaymentMethodOptionsPayByBankVariant0(value): try container
+            .encode(value); return true
         case let .stringValue(value): try container.encode(value); return true
         }
     }
-
 }
 
 public struct PostPaymentIntentsRequestBodyPaymentMethodOptionsKlarnaVariant0OnDemand: Codable {
@@ -468,23 +560,35 @@ public struct PostPaymentIntentsRequestBodyPaymentMethodOptionsKlarnaVariant0OnD
     }
 
     init() {
-        (self.averageAmount, self.maximumAmount, self.minimumAmount, self.purchaseInterval, self.purchaseIntervalCount) = (nil, nil, nil, nil, nil)
+        (averageAmount, maximumAmount, minimumAmount, purchaseInterval, purchaseIntervalCount) = (
+            nil,
+            nil,
+            nil,
+            nil,
+            nil
+        )
     }
 }
 
 public extension PostPaymentIntentsRequestBodyPaymentMethodOptionsKlarnaVariant0OnDemand {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.averageAmount = try container.sdkDecodeIfPresent(.averageAmount)
-        self.maximumAmount = try container.sdkDecodeIfPresent(.maximumAmount)
-        self.minimumAmount = try container.sdkDecodeIfPresent(.minimumAmount)
-        self.purchaseInterval = try container.sdkDecodeIfPresent(.purchaseInterval)
-        self.purchaseIntervalCount = try container.sdkDecodeIfPresent(.purchaseIntervalCount)
+        averageAmount = try container.sdkDecodeIfPresent(.averageAmount)
+        maximumAmount = try container.sdkDecodeIfPresent(.maximumAmount)
+        minimumAmount = try container.sdkDecodeIfPresent(.minimumAmount)
+        purchaseInterval = try container.sdkDecodeIfPresent(.purchaseInterval)
+        purchaseIntervalCount = try container.sdkDecodeIfPresent(.purchaseIntervalCount)
     }
 }
 
 public extension PostPaymentIntentsRequestBodyPaymentMethodOptionsKlarnaVariant0OnDemand {
-    public init(averageAmount: Int? = nil, maximumAmount: Int? = nil, minimumAmount: Int? = nil, purchaseInterval: PostPaymentIntentsRequestBodyPaymentMethodOptionsKlarnaVarianX92c3245c5c? = nil, purchaseIntervalCount: Int? = nil) {
+    init(
+        averageAmount: Int? = nil,
+        maximumAmount: Int? = nil,
+        minimumAmount: Int? = nil,
+        purchaseInterval: PostPaymentIntentsRequestBodyPaymentMethodOptionsKlarnaVarianX92c3245c5c? = nil,
+        purchaseIntervalCount: Int? = nil
+    ) {
         self.init()
         (self.averageAmount, self.maximumAmount) = (averageAmount, maximumAmount)
         (self.minimumAmount, self.purchaseInterval) = (minimumAmount, purchaseInterval)
@@ -503,5 +607,7 @@ public struct PostPaymentIntentsRequestBodyPaymentMethodOptionsCardVariant0X3d11
         case cbScore = "cb_score"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }

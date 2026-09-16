@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1CreditNotesPreviewMethods {
-    public struct GetCreditNotesPreviewOptions: Codable {
+public extension V1CreditNotesPreviewMethods {
+    struct GetCreditNotesPreviewOptions: Codable {
         public var invoice: String
         public var amount: Int?
         public var creditAmount: Int?
@@ -28,7 +28,9 @@ extension V1CreditNotesPreviewMethods {
         }
     }
 
-    /// Previews a credit note for an invoice without creating it. Provide `invoice` and at least one of `amount`, `lines`, or `shipping_cost`, then use the remaining parameters to define credits, refunds, shipping, customer-facing text, and metadata.
+    /// Previews a credit note for an invoice without creating it. Provide `invoice` and at least one of `amount`,
+    /// `lines`, or `shipping_cost`, then use the remaining parameters to define credits, refunds, shipping,
+    /// customer-facing text, and metadata.
     ///
     /// Get a preview of a credit note without creating it.
     ///
@@ -65,14 +67,17 @@ extension V1CreditNotesPreviewMethods {
     /// - shippingCost: When shipping_cost contains the shipping_rate from the
     ///   invoice, the shipping_cost is included in the credit note. One of `amount`,
     ///   `lines`, or `shipping_cost` must be provided.
-    public static func getCreditNotesPreview(config: ClientConfig, options: GetCreditNotesPreviewOptions) async throws -> CreditNote {
+    static func getCreditNotesPreview(
+        config: ClientConfig,
+        options: GetCreditNotesPreviewOptions
+    ) async throws -> CreditNote {
         try validateLength("invoice", options.invoice, max: 5000)
 
         if let memo = options.memo {
             try validateLength("memo", memo, max: 5000)
         }
 
-        return try (await sdkRequest("GET", "/v1/credit_notes/preview", config: config, query: [
+        return try await (sdkRequest("GET", "/v1/credit_notes/preview", config: config, query: [
             SdkQueryParameter("invoice", value: options.invoice),
             SdkQueryParameter("amount", value: options.amount),
             SdkQueryParameter("credit_amount", value: options.creditAmount),

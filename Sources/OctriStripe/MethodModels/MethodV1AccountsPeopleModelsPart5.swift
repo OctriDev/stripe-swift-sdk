@@ -7,28 +7,28 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1AccountsPeople operation model declarations
+/// Canonical v1AccountsPeople operation model declarations
 extension PostAccountsAccountPeopleRequestBodyAddressKana {
     func sdkValidateConstraints() throws {
-        if let value = self.city {
+        if let value = city {
             try validateLength("city", value, min: nil, max: 5000)
         }
-        if let value = self.country {
+        if let value = country {
             try validateLength("country", value, min: nil, max: 5000)
         }
-        if let value = self.line1 {
+        if let value = line1 {
             try validateLength("line1", value, min: nil, max: 5000)
         }
-        if let value = self.line2 {
+        if let value = line2 {
             try validateLength("line2", value, min: nil, max: 5000)
         }
-        if let value = self.postalCode {
+        if let value = postalCode {
             try validateLength("postal_code", value, min: nil, max: 5000)
         }
-        if let value = self.state {
+        if let value = state {
             try validateLength("state", value, min: nil, max: 5000)
         }
-        if let value = self.town {
+        if let value = town {
             try validateLength("town", value, min: nil, max: 5000)
         }
     }
@@ -46,21 +46,25 @@ public struct PostAccountsAccountPeoplePersonRequestBodyAdditionalTosAcceptX76c4
     }
 
     init() {
-        (self.date, self.ip, self.userAgent) = (nil, nil, nil)
+        (date, ip, userAgent) = (nil, nil, nil)
     }
 }
 
 public extension PostAccountsAccountPeoplePersonRequestBodyAdditionalTosAcceptX76c46dbf90 {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.date = try container.sdkDecodeIfPresent(.date)
-        self.ip = try container.sdkDecodeIfPresent(.ip)
-        self.userAgent = try container.sdkDecodeIfPresent(.userAgent)
+        date = try container.sdkDecodeIfPresent(.date)
+        ip = try container.sdkDecodeIfPresent(.ip)
+        userAgent = try container.sdkDecodeIfPresent(.userAgent)
     }
 }
 
 public extension PostAccountsAccountPeoplePersonRequestBodyAdditionalTosAcceptX76c46dbf90 {
-    public init(date: Int? = nil, ip: String? = nil, userAgent: PostAccountsAccountPeoplePersonRequestBodyAdditionalTosAcceptX4ad7c0c6a6? = nil) {
+    init(
+        date: Int? = nil,
+        ip: String? = nil,
+        userAgent: PostAccountsAccountPeoplePersonRequestBodyAdditionalTosAcceptX4ad7c0c6a6? = nil
+    ) {
         self.init()
         (self.date, self.ip) = (date, ip)
         self.userAgent = userAgent

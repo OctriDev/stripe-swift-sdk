@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1Climate domain models
+/// V1Climate domain models
 /// Orders represent your intent to purchase a particular Climate product. When you create an order, the payment is
 /// deducted from your merchant balance.
 public struct ClimateOrder: Codable {
@@ -81,44 +81,69 @@ public struct ClimateOrder: Codable {
         case productSubstitutedAt = "product_substituted_at"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension ClimateOrder {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.amountFees = try container.sdkDecodeRequired(.amountFees)
-        self.amountSubtotal = try container.sdkDecodeRequired(.amountSubtotal)
-        self.amountTotal = try container.sdkDecodeRequired(.amountTotal)
-        self.created = try container.sdkDecodeRequired(.created)
-        self.currency = try container.sdkDecodeRequired(.currency)
-        self.deliveryDetails = try container.sdkDecodeRequired(.deliveryDetails)
-        self.expectedDeliveryYear = try container.sdkDecodeRequired(.expectedDeliveryYear)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.livemode = try container.sdkDecodeRequired(.livemode)
-        self.metadata = try container.sdkDecodeRequired(.metadata)
-        self.metricTons = try container.sdkDecodeRequired(.metricTons)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.product = try container.sdkDecodeRequired(.product)
-        self.status = try container.sdkDecodeRequired(.status)
-        self.beneficiary = try container.sdkDecodeIfPresent(.beneficiary)
-        self.canceledAt = try container.sdkDecodeIfPresent(.canceledAt)
-        self.cancellationReason = try container.sdkDecodeIfPresent(.cancellationReason)
-        self.certificate = try container.sdkDecodeIfPresent(.certificate)
-        self.confirmedAt = try container.sdkDecodeIfPresent(.confirmedAt)
-        self.delayedAt = try container.sdkDecodeIfPresent(.delayedAt)
-        self.deliveredAt = try container.sdkDecodeIfPresent(.deliveredAt)
-        self.productSubstitutedAt = try container.sdkDecodeIfPresent(.productSubstitutedAt)
-            try validateLength("currency", self.currency, min: nil, max: 5000)
-            try validateLength("id", self.id, min: nil, max: 5000)
-        if let value = self.certificate {
+        amountFees = try container.sdkDecodeRequired(.amountFees)
+        amountSubtotal = try container.sdkDecodeRequired(.amountSubtotal)
+        amountTotal = try container.sdkDecodeRequired(.amountTotal)
+        created = try container.sdkDecodeRequired(.created)
+        currency = try container.sdkDecodeRequired(.currency)
+        deliveryDetails = try container.sdkDecodeRequired(.deliveryDetails)
+        expectedDeliveryYear = try container.sdkDecodeRequired(.expectedDeliveryYear)
+        id = try container.sdkDecodeRequired(.id)
+        livemode = try container.sdkDecodeRequired(.livemode)
+        metadata = try container.sdkDecodeRequired(.metadata)
+        metricTons = try container.sdkDecodeRequired(.metricTons)
+        object = try container.sdkDecodeRequired(.object)
+        product = try container.sdkDecodeRequired(.product)
+        status = try container.sdkDecodeRequired(.status)
+        beneficiary = try container.sdkDecodeIfPresent(.beneficiary)
+        canceledAt = try container.sdkDecodeIfPresent(.canceledAt)
+        cancellationReason = try container.sdkDecodeIfPresent(.cancellationReason)
+        certificate = try container.sdkDecodeIfPresent(.certificate)
+        confirmedAt = try container.sdkDecodeIfPresent(.confirmedAt)
+        delayedAt = try container.sdkDecodeIfPresent(.delayedAt)
+        deliveredAt = try container.sdkDecodeIfPresent(.deliveredAt)
+        productSubstitutedAt = try container.sdkDecodeIfPresent(.productSubstitutedAt)
+        try validateLength("currency", currency, min: nil, max: 5000)
+        try validateLength("id", id, min: nil, max: 5000)
+        if let value = certificate {
             try validateLength("certificate", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension ClimateOrder {
-    public init(amountFees: Int, amountSubtotal: Int, amountTotal: Int, created: Int, currency: String, deliveryDetails: [ClimateRemovalsOrderDeliveries], expectedDeliveryYear: Int, id: String, livemode: Bool, metadata: [String: String], metricTons: String, object: ClimateOrderObject, product: ClimateOrderProduct, status: ClimateOrderStatus, beneficiary: ClimateRemovalsBeneficiary? = nil, canceledAt: Int? = nil, cancellationReason: ClimateOrderCancellationReason? = nil, certificate: String? = nil, confirmedAt: Int? = nil, delayedAt: Int? = nil, deliveredAt: Int? = nil, productSubstitutedAt: Int? = nil) throws {
+    init(
+        amountFees: Int,
+        amountSubtotal: Int,
+        amountTotal: Int,
+        created: Int,
+        currency: String,
+        deliveryDetails: [ClimateRemovalsOrderDeliveries],
+        expectedDeliveryYear: Int,
+        id: String,
+        livemode: Bool,
+        metadata: [String: String],
+        metricTons: String,
+        object: ClimateOrderObject,
+        product: ClimateOrderProduct,
+        status: ClimateOrderStatus,
+        beneficiary: ClimateRemovalsBeneficiary? = nil,
+        canceledAt: Int? = nil,
+        cancellationReason: ClimateOrderCancellationReason? = nil,
+        certificate: String? = nil,
+        confirmedAt: Int? = nil,
+        delayedAt: Int? = nil,
+        deliveredAt: Int? = nil,
+        productSubstitutedAt: Int? = nil
+    ) throws {
         (self.amountFees, self.amountSubtotal) = (amountFees, amountSubtotal)
         (self.amountTotal, self.created) = (amountTotal, created)
         (self.currency, self.deliveryDetails) = (currency, deliveryDetails)
@@ -130,8 +155,8 @@ public extension ClimateOrder {
         (self.cancellationReason, self.certificate) = (cancellationReason, certificate)
         (self.confirmedAt, self.delayedAt) = (confirmedAt, delayedAt)
         (self.deliveredAt, self.productSubstitutedAt) = (deliveredAt, productSubstitutedAt)
-            try validateLength("currency", self.currency, min: nil, max: 5000)
-            try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("currency", self.currency, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
         if let value = self.certificate {
             try validateLength("certificate", value, min: nil, max: 5000)
         }
@@ -144,21 +169,31 @@ public enum ClimateOrderProduct {
 }
 
 extension ClimateOrderProduct: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for ClimateOrderProduct")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for ClimateOrderProduct"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(ClimateProduct.self) { return .climateProduct(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(ClimateProduct.self) {
+            return .climateProduct(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -168,7 +203,6 @@ extension ClimateOrderProduct: Codable {
         case let .climateProduct(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// A Climate product represents a type of carbon removal unit available for reservation. You can retrieve it to see
@@ -208,35 +242,47 @@ public struct ClimateProduct: Codable {
         case deliveryYear = "delivery_year"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension ClimateProduct {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.created = try container.sdkDecodeRequired(.created)
-        self.currentPricesPerMetricTon = try container.sdkDecodeRequired(.currentPricesPerMetricTon)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.livemode = try container.sdkDecodeRequired(.livemode)
-        self.metricTonsAvailable = try container.sdkDecodeRequired(.metricTonsAvailable)
-        self.name = try container.sdkDecodeRequired(.name)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.suppliers = try container.sdkDecodeRequired(.suppliers)
-        self.deliveryYear = try container.sdkDecodeIfPresent(.deliveryYear)
-            try validateLength("id", self.id, min: nil, max: 5000)
-            try validateLength("name", self.name, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension ClimateProduct {
-    public init(created: Int, currentPricesPerMetricTon: [String: ClimateRemovalsProductsPrice], id: String, livemode: Bool, metricTonsAvailable: String, name: String, object: ClimateProductObject, suppliers: [ClimateSupplier], deliveryYear: Int? = nil) throws {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        created = try container.sdkDecodeRequired(.created)
+        currentPricesPerMetricTon = try container.sdkDecodeRequired(.currentPricesPerMetricTon)
+        id = try container.sdkDecodeRequired(.id)
+        livemode = try container.sdkDecodeRequired(.livemode)
+        metricTonsAvailable = try container.sdkDecodeRequired(.metricTonsAvailable)
+        name = try container.sdkDecodeRequired(.name)
+        object = try container.sdkDecodeRequired(.object)
+        suppliers = try container.sdkDecodeRequired(.suppliers)
+        deliveryYear = try container.sdkDecodeIfPresent(.deliveryYear)
+        try validateLength("id", id, min: nil, max: 5000)
+        try validateLength("name", name, min: nil, max: 5000)
+    }
+}
+
+public extension ClimateProduct {
+    init(
+        created: Int,
+        currentPricesPerMetricTon: [String: ClimateRemovalsProductsPrice],
+        id: String,
+        livemode: Bool,
+        metricTonsAvailable: String,
+        name: String,
+        object: ClimateProductObject,
+        suppliers: [ClimateSupplier],
+        deliveryYear: Int? = nil
+    ) throws {
         (self.created, self.currentPricesPerMetricTon) = (created, currentPricesPerMetricTon)
         (self.id, self.livemode) = (id, livemode)
         (self.metricTonsAvailable, self.name) = (metricTonsAvailable, name)
         (self.object, self.suppliers) = (object, suppliers)
         self.deliveryYear = deliveryYear
-            try validateLength("id", self.id, min: nil, max: 5000)
-            try validateLength("name", self.name, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("name", self.name, min: nil, max: 5000)
     }
 }
 
@@ -249,24 +295,30 @@ public struct ClimateRemovalsBeneficiary: Codable {
         case publicName = "public_name"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension ClimateRemovalsBeneficiary {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.publicName) else {
-            throw SdkValidationError(field: "public_name", code: "required", message: "Validation failed for 'public_name': value is required")
-        }
-        self.publicName = try container.sdkDecodeRequired(.publicName)
-            try validateLength("public_name", self.publicName, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension ClimateRemovalsBeneficiary {
-    public init(publicName: String) throws {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.publicName) else {
+            throw SdkValidationError(
+                field: "public_name",
+                code: "required",
+                message: "Validation failed for 'public_name': value is required"
+            )
+        }
+        publicName = try container.sdkDecodeRequired(.publicName)
+        try validateLength("public_name", publicName, min: nil, max: 5000)
+    }
+}
+
+public extension ClimateRemovalsBeneficiary {
+    init(publicName: String) throws {
         self.publicName = publicName
-            try validateLength("public_name", self.publicName, min: nil, max: 5000)
+        try validateLength("public_name", self.publicName, min: nil, max: 5000)
     }
 }
 
@@ -291,36 +343,48 @@ public struct ClimateRemovalsLocation: Codable {
         case region
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension ClimateRemovalsLocation {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.country) else {
-            throw SdkValidationError(field: "country", code: "required", message: "Validation failed for 'country': value is required")
+            throw SdkValidationError(
+                field: "country",
+                code: "required",
+                message: "Validation failed for 'country': value is required"
+            )
         }
-        self.country = try container.sdkDecodeRequired(.country)
-        self.city = try container.sdkDecodeIfPresent(.city)
-        self.latitude = try container.sdkDecodeIfPresent(.latitude)
-        self.longitude = try container.sdkDecodeIfPresent(.longitude)
-        self.region = try container.sdkDecodeIfPresent(.region)
-            try validateLength("country", self.country, min: nil, max: 5000)
-        if let value = self.city {
+        country = try container.sdkDecodeRequired(.country)
+        city = try container.sdkDecodeIfPresent(.city)
+        latitude = try container.sdkDecodeIfPresent(.latitude)
+        longitude = try container.sdkDecodeIfPresent(.longitude)
+        region = try container.sdkDecodeIfPresent(.region)
+        try validateLength("country", country, min: nil, max: 5000)
+        if let value = city {
             try validateLength("city", value, min: nil, max: 5000)
         }
-        if let value = self.region {
+        if let value = region {
             try validateLength("region", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension ClimateRemovalsLocation {
-    public init(country: String, city: String? = nil, latitude: Double? = nil, longitude: Double? = nil, region: String? = nil) throws {
+    init(
+        country: String,
+        city: String? = nil,
+        latitude: Double? = nil,
+        longitude: Double? = nil,
+        region: String? = nil
+    ) throws {
         (self.country, self.city) = (country, city)
         (self.latitude, self.longitude) = (latitude, longitude)
         self.region = region
-            try validateLength("country", self.country, min: nil, max: 5000)
+        try validateLength("country", self.country, min: nil, max: 5000)
         if let value = self.city {
             try validateLength("city", value, min: nil, max: 5000)
         }
@@ -351,39 +415,59 @@ public struct ClimateRemovalsOrderDeliveries: Codable {
         case registryUrl = "registry_url"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension ClimateRemovalsOrderDeliveries {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.deliveredAt) else {
-            throw SdkValidationError(field: "delivered_at", code: "required", message: "Validation failed for 'delivered_at': value is required")
+            throw SdkValidationError(
+                field: "delivered_at",
+                code: "required",
+                message: "Validation failed for 'delivered_at': value is required"
+            )
         }
         guard container.contains(.metricTons) else {
-            throw SdkValidationError(field: "metric_tons", code: "required", message: "Validation failed for 'metric_tons': value is required")
+            throw SdkValidationError(
+                field: "metric_tons",
+                code: "required",
+                message: "Validation failed for 'metric_tons': value is required"
+            )
         }
         guard container.contains(.supplier) else {
-            throw SdkValidationError(field: "supplier", code: "required", message: "Validation failed for 'supplier': value is required")
+            throw SdkValidationError(
+                field: "supplier",
+                code: "required",
+                message: "Validation failed for 'supplier': value is required"
+            )
         }
-        self.deliveredAt = try container.sdkDecodeRequired(.deliveredAt)
-        self.metricTons = try container.sdkDecodeRequired(.metricTons)
-        self.supplier = try container.sdkDecodeRequired(.supplier)
-        self.location = try container.sdkDecodeIfPresent(.location)
-        self.registryUrl = try container.sdkDecodeIfPresent(.registryUrl)
-            try validateLength("metric_tons", self.metricTons, min: nil, max: 5000)
-        if let value = self.registryUrl {
+        deliveredAt = try container.sdkDecodeRequired(.deliveredAt)
+        metricTons = try container.sdkDecodeRequired(.metricTons)
+        supplier = try container.sdkDecodeRequired(.supplier)
+        location = try container.sdkDecodeIfPresent(.location)
+        registryUrl = try container.sdkDecodeIfPresent(.registryUrl)
+        try validateLength("metric_tons", metricTons, min: nil, max: 5000)
+        if let value = registryUrl {
             try validateLength("registry_url", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension ClimateRemovalsOrderDeliveries {
-    public init(deliveredAt: Int, metricTons: String, supplier: ClimateSupplier, location: ClimateRemovalsOrderDeliveriesLocation? = nil, registryUrl: String? = nil) throws {
+    init(
+        deliveredAt: Int,
+        metricTons: String,
+        supplier: ClimateSupplier,
+        location: ClimateRemovalsOrderDeliveriesLocation? = nil,
+        registryUrl: String? = nil
+    ) throws {
         (self.deliveredAt, self.metricTons) = (deliveredAt, metricTons)
         (self.supplier, self.location) = (supplier, location)
         self.registryUrl = registryUrl
-            try validateLength("metric_tons", self.metricTons, min: nil, max: 5000)
+        try validateLength("metric_tons", self.metricTons, min: nil, max: 5000)
         if let value = self.registryUrl {
             try validateLength("registry_url", value, min: nil, max: 5000)
         }
@@ -395,20 +479,28 @@ public enum ClimateRemovalsOrderDeliveriesLocation {
 }
 
 extension ClimateRemovalsOrderDeliveriesLocation: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for ClimateRemovalsOrderDeliveriesLocation")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for ClimateRemovalsOrderDeliveriesLocation"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(ClimateRemovalsLocation.self) { return .climateRemovalsLocation(value) }
+        if let value = try? container.decode(ClimateRemovalsLocation.self) {
+            return .climateRemovalsLocation(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -417,7 +509,6 @@ extension ClimateRemovalsOrderDeliveriesLocation: Codable {
         case let .climateRemovalsLocation(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Typed representation of the `ClimateRemovalsProductsPrice` API schema.
@@ -435,29 +526,43 @@ public struct ClimateRemovalsProductsPrice: Codable {
         case amountTotal = "amount_total"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension ClimateRemovalsProductsPrice {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.amountFees) else {
-            throw SdkValidationError(field: "amount_fees", code: "required", message: "Validation failed for 'amount_fees': value is required")
-        }
-        guard container.contains(.amountSubtotal) else {
-            throw SdkValidationError(field: "amount_subtotal", code: "required", message: "Validation failed for 'amount_subtotal': value is required")
-        }
-        guard container.contains(.amountTotal) else {
-            throw SdkValidationError(field: "amount_total", code: "required", message: "Validation failed for 'amount_total': value is required")
-        }
-        self.amountFees = try container.sdkDecodeRequired(.amountFees)
-        self.amountSubtotal = try container.sdkDecodeRequired(.amountSubtotal)
-        self.amountTotal = try container.sdkDecodeRequired(.amountTotal)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension ClimateRemovalsProductsPrice {
-    public init(amountFees: Int, amountSubtotal: Int, amountTotal: Int) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.amountFees) else {
+            throw SdkValidationError(
+                field: "amount_fees",
+                code: "required",
+                message: "Validation failed for 'amount_fees': value is required"
+            )
+        }
+        guard container.contains(.amountSubtotal) else {
+            throw SdkValidationError(
+                field: "amount_subtotal",
+                code: "required",
+                message: "Validation failed for 'amount_subtotal': value is required"
+            )
+        }
+        guard container.contains(.amountTotal) else {
+            throw SdkValidationError(
+                field: "amount_total",
+                code: "required",
+                message: "Validation failed for 'amount_total': value is required"
+            )
+        }
+        amountFees = try container.sdkDecodeRequired(.amountFees)
+        amountSubtotal = try container.sdkDecodeRequired(.amountSubtotal)
+        amountTotal = try container.sdkDecodeRequired(.amountTotal)
+    }
+}
+
+public extension ClimateRemovalsProductsPrice {
+    init(amountFees: Int, amountSubtotal: Int, amountTotal: Int) {
         (self.amountFees, self.amountSubtotal) = (amountFees, amountSubtotal)
         self.amountTotal = amountTotal
     }
@@ -491,5 +596,7 @@ public struct ClimateSupplier: Codable {
         case removalPathway = "removal_pathway"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }

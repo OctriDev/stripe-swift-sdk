@@ -6,10 +6,13 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1PlansMethods {
-    /// Updates the mutable properties of an existing plan while leaving omitted properties unchanged. You can change availability, metadata, nickname, product assignment, trial settings, and response expansion, but you cannot change the plan ID, amount, currency, or billing cycle.
+public extension V1PlansMethods {
+    /// Updates the mutable properties of an existing plan while leaving omitted properties unchanged. You can change
+    /// availability, metadata, nickname, product assignment, trial settings, and response expansion, but you cannot
+    /// change the plan ID, amount, currency, or billing cycle.
     ///
-    /// Updates the specified plan by setting the values of the parameters passed. Any parameters not provided are left unchanged. By design, you cannot change a plan’s ID, amount, currency, or billing cycle.
+    /// Updates the specified plan by setting the values of the parameters passed. Any parameters not provided are left
+    /// unchanged. By design, you cannot change a plan’s ID, amount, currency, or billing cycle.
     ///
     /// - Parameters:
     /// - active: Whether the plan is currently available for new subscriptions.
@@ -26,19 +29,43 @@ extension V1PlansMethods {
     ///   to this plan using
     ///   [`trial_from_plan=true`](https://docs.stripe.com/api#create_subscription-tri
     ///   al_from_plan).
-    public static func postPlansPlan(config: ClientConfig, plan: String, active: Bool?, expand: [String]?, metadata: PostPlansPlanRequestBodyMetadata?, nickname: String?, product: String?, trialPeriodDays: Int?) async throws -> Plan {
+    static func postPlansPlan(
+        config: ClientConfig,
+        plan: String,
+        active: Bool?,
+        expand: [String]?,
+        metadata: PostPlansPlanRequestBodyMetadata?,
+        nickname: String?,
+        product: String?,
+        trialPeriodDays: Int?
+    ) async throws -> Plan {
         try validateLength("plan", plan, max: 5000)
 
-        if let nickname = nickname {
+        if let nickname {
             try validateLength("nickname", nickname, max: 5000)
         }
 
-        if let product = product {
+        if let product {
             try validateLength("product", product, max: 5000)
         }
 
-        let requestBody = PostPlansPlanRequestBody(active: active, expand: expand, metadata: metadata, nickname: nickname, product: product, trialPeriodDays: trialPeriodDays)
+        let requestBody = PostPlansPlanRequestBody(
+            active: active,
+            expand: expand,
+            metadata: metadata,
+            nickname: nickname,
+            product: product,
+            trialPeriodDays: trialPeriodDays
+        )
 
-        return try (await sdkRequest("POST", ["/v1/plans/", sdkEncodePathSegment(sdkWireString(plan))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostPlansPlan")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/plans/", sdkEncodePathSegment(sdkWireString(plan))].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostPlansPlan"
+        )).data
     }
 }

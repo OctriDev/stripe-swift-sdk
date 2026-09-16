@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1AccountsBankAccounts operation model declarations
+/// Canonical v1AccountsBankAccounts operation model declarations
 /// Documents that may be submitted to satisfy various informational requests.
 public struct PostAccountsAccountBankAccountsIdRequestBodyDocuments: Codable {
     /// documents_param
@@ -19,19 +19,20 @@ public struct PostAccountsAccountBankAccountsIdRequestBodyDocuments: Codable {
     }
 
     init() {
-        self.bankAccountOwnershipVerification = nil
+        bankAccountOwnershipVerification = nil
     }
 }
 
 public extension PostAccountsAccountBankAccountsIdRequestBodyDocuments {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.bankAccountOwnershipVerification = try container.sdkDecodeIfPresent(.bankAccountOwnershipVerification)
+        bankAccountOwnershipVerification = try container.sdkDecodeIfPresent(.bankAccountOwnershipVerification)
     }
 }
 
 public extension PostAccountsAccountBankAccountsIdRequestBodyDocuments {
-    public init(bankAccountOwnershipVerification: PostAccountsAccountBankAccountsIdRequestBodyDocumentsBankAccoX0a0ae21397? = nil) {
+    init(bankAccountOwnershipVerification: PostAccountsAccountBankAccountsIdRequestBodyDocumentsBankAccoX0a0ae21397? =
+        nil) {
         self.init()
         self.bankAccountOwnershipVerification = bankAccountOwnershipVerification
     }
@@ -47,59 +48,70 @@ public struct PostAccountsAccountBankAccountsRequestBodyBankAccountVariant0Docum
     }
 
     init() {
-        self.bankAccountOwnershipVerification = nil
+        bankAccountOwnershipVerification = nil
     }
 }
 
 public extension PostAccountsAccountBankAccountsRequestBodyBankAccountVariant0Documents {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.bankAccountOwnershipVerification = try container.sdkDecodeIfPresent(.bankAccountOwnershipVerification)
+        bankAccountOwnershipVerification = try container.sdkDecodeIfPresent(.bankAccountOwnershipVerification)
     }
 }
 
 public extension PostAccountsAccountBankAccountsRequestBodyBankAccountVariant0Documents {
-    public init(bankAccountOwnershipVerification: PostAccountsAccountBankAccountsRequestBodyBankAccountVariant0Xb0db7b4920? = nil) {
+    init(bankAccountOwnershipVerification: PostAccountsAccountBankAccountsRequestBodyBankAccountVariant0Xb0db7b4920? =
+        nil) {
         self.init()
         self.bankAccountOwnershipVerification = bankAccountOwnershipVerification
     }
 }
 
 public enum PostAccountsAccountBankAccountsRequestBodyBankAccount {
-    case postAccountsAccountBankAccountsRequestBodyBankAccountVariant0(PostAccountsAccountBankAccountsRequestBodyBankAccountVariant0)
+    case postAccountsAccountBankAccountsRequestBodyBankAccountVariant0(
+        PostAccountsAccountBankAccountsRequestBodyBankAccountVariant0
+    )
     case stringValue(String)
 }
 
 extension PostAccountsAccountBankAccountsRequestBodyBankAccount: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostAccountsAccountBankAccountsRequestBodyBankAccount")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PostAccountsAccountBankAccountsRequestBodyBankAccount"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PostAccountsAccountBankAccountsRequestBodyBankAccountVariant0.self
         ) {
-            return             .postAccountsAccountBankAccountsRequestBodyBankAccountVariant0(value)
+            return .postAccountsAccountBankAccountsRequestBodyBankAccountVariant0(value)
         }
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .postAccountsAccountBankAccountsRequestBodyBankAccountVariant0(value): try container.encode(value); return true
+        case let .postAccountsAccountBankAccountsRequestBodyBankAccountVariant0(value): try container
+            .encode(value); return true
         case let .stringValue(value): try container.encode(value); return true
         }
     }
-
 }
 
 public struct PostAccountsAccountBankAccountsRequestBodyBankAccountVariant0Xb0db7b4920: Codable {
@@ -110,19 +122,19 @@ public struct PostAccountsAccountBankAccountsRequestBodyBankAccountVariant0Xb0db
     }
 
     init() {
-        self.files = nil
+        files = nil
     }
 }
 
 public extension PostAccountsAccountBankAccountsRequestBodyBankAccountVariant0Xb0db7b4920 {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.files = try container.sdkDecodeIfPresent(.files)
+        files = try container.sdkDecodeIfPresent(.files)
     }
 }
 
 public extension PostAccountsAccountBankAccountsRequestBodyBankAccountVariant0Xb0db7b4920 {
-    public init(files: [String]? = nil) {
+    init(files: [String]? = nil) {
         self.init()
         self.files = files
     }
@@ -134,21 +146,31 @@ public enum PostAccountsAccountBankAccountsIdRequestBodyMetadata {
 }
 
 extension PostAccountsAccountBankAccountsIdRequestBodyMetadata: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostAccountsAccountBankAccountsIdRequestBodyMetadata")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PostAccountsAccountBankAccountsIdRequestBodyMetadata"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode([String: String].self) { return .dictionary(value) }
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode([String: String].self) {
+            return .dictionary(value)
+        }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -158,14 +180,7 @@ extension PostAccountsAccountBankAccountsIdRequestBodyMetadata: Codable {
         case let .stringValue(value): try container.encode(value); return true
         }
     }
-
 }
-
-
-
-
-
-
 
 public struct PostAccountsAccountBankAccountsRequestBodyBankAccountVariant0: Codable {
     public var accountNumber: String
@@ -191,33 +206,53 @@ public struct PostAccountsAccountBankAccountsRequestBodyBankAccountVariant0: Cod
         case routingNumber = "routing_number"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension PostAccountsAccountBankAccountsRequestBodyBankAccountVariant0 {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.accountNumber) else {
-            throw SdkValidationError(field: "account_number", code: "required", message: "Validation failed for 'account_number': value is required")
+            throw SdkValidationError(
+                field: "account_number",
+                code: "required",
+                message: "Validation failed for 'account_number': value is required"
+            )
         }
         guard container.contains(.country) else {
-            throw SdkValidationError(field: "country", code: "required", message: "Validation failed for 'country': value is required")
+            throw SdkValidationError(
+                field: "country",
+                code: "required",
+                message: "Validation failed for 'country': value is required"
+            )
         }
-        self.accountNumber = try container.sdkDecodeRequired(.accountNumber)
-        self.country = try container.sdkDecodeRequired(.country)
-        self.accountHolderName = try container.sdkDecodeIfPresent(.accountHolderName)
-        self.accountHolderType = try container.sdkDecodeIfPresent(.accountHolderType)
-        self.accountType = try container.sdkDecodeIfPresent(.accountType)
-        self.currency = try container.sdkDecodeIfPresent(.currency)
-        self.documents = try container.sdkDecodeIfPresent(.documents)
-        self.object = try container.sdkDecodeIfPresent(.object)
-        self.routingNumber = try container.sdkDecodeIfPresent(.routingNumber)
+        accountNumber = try container.sdkDecodeRequired(.accountNumber)
+        country = try container.sdkDecodeRequired(.country)
+        accountHolderName = try container.sdkDecodeIfPresent(.accountHolderName)
+        accountHolderType = try container.sdkDecodeIfPresent(.accountHolderType)
+        accountType = try container.sdkDecodeIfPresent(.accountType)
+        currency = try container.sdkDecodeIfPresent(.currency)
+        documents = try container.sdkDecodeIfPresent(.documents)
+        object = try container.sdkDecodeIfPresent(.object)
+        routingNumber = try container.sdkDecodeIfPresent(.routingNumber)
         try sdkValidateConstraints()
     }
 }
 
 public extension PostAccountsAccountBankAccountsRequestBodyBankAccountVariant0 {
-    public init(accountNumber: String, country: String, accountHolderName: String? = nil, accountHolderType: PostAccountsAccountBankAccountsRequestBodyBankAccountVariant0Xc7c6163928? = nil, accountType: PostAccountsAccountBankAccountsRequestBodyBankAccountVariant0AccountType? = nil, currency: String? = nil, documents: PostAccountsAccountBankAccountsRequestBodyBankAccountVariant0Documents? = nil, object: PostAccountsAccountBankAccountsRequestBodyBankAccountVariant0Object? = nil, routingNumber: String? = nil) throws {
+    init(
+        accountNumber: String,
+        country: String,
+        accountHolderName: String? = nil,
+        accountHolderType: PostAccountsAccountBankAccountsRequestBodyBankAccountVariant0Xc7c6163928? = nil,
+        accountType: PostAccountsAccountBankAccountsRequestBodyBankAccountVariant0AccountType? = nil,
+        currency: String? = nil,
+        documents: PostAccountsAccountBankAccountsRequestBodyBankAccountVariant0Documents? = nil,
+        object: PostAccountsAccountBankAccountsRequestBodyBankAccountVariant0Object? = nil,
+        routingNumber: String? = nil
+    ) throws {
         (self.accountNumber, self.country) = (accountNumber, country)
         (self.accountHolderName, self.accountHolderType) = (accountHolderName, accountHolderType)
         (self.accountType, self.currency) = (accountType, currency)
@@ -229,21 +264,21 @@ public extension PostAccountsAccountBankAccountsRequestBodyBankAccountVariant0 {
 
 extension PostAccountsAccountBankAccountsRequestBodyBankAccountVariant0 {
     func sdkValidateConstraints() throws {
-            try validateLength("account_number", self.accountNumber, min: nil, max: 5000)
-            try validateLength("country", self.country, min: nil, max: 5000)
-        if let value = self.accountHolderName {
+        try validateLength("account_number", accountNumber, min: nil, max: 5000)
+        try validateLength("country", country, min: nil, max: 5000)
+        if let value = accountHolderName {
             try validateLength("account_holder_name", value, min: nil, max: 5000)
         }
-        if let value = self.accountHolderType {
+        if let value = accountHolderType {
             try validateLength("account_holder_type", sdkWireString(value), min: nil, max: 5000)
         }
-        if let value = self.accountType {
+        if let value = accountType {
             try validateLength("account_type", sdkWireString(value), min: nil, max: 5000)
         }
-        if let value = self.object {
+        if let value = object {
             try validateLength("object", sdkWireString(value), min: nil, max: 5000)
         }
-        if let value = self.routingNumber {
+        if let value = routingNumber {
             try validateLength("routing_number", value, min: nil, max: 5000)
         }
     }
@@ -257,19 +292,19 @@ public struct PostAccountsAccountBankAccountsIdRequestBodyDocumentsBankAccoX0a0a
     }
 
     init() {
-        self.files = nil
+        files = nil
     }
 }
 
 public extension PostAccountsAccountBankAccountsIdRequestBodyDocumentsBankAccoX0a0ae21397 {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.files = try container.sdkDecodeIfPresent(.files)
+        files = try container.sdkDecodeIfPresent(.files)
     }
 }
 
 public extension PostAccountsAccountBankAccountsIdRequestBodyDocumentsBankAccoX0a0ae21397 {
-    public init(files: [String]? = nil) {
+    init(files: [String]? = nil) {
         self.init()
         self.files = files
     }

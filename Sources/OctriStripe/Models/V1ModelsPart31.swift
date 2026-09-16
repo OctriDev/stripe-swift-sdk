@@ -3,9 +3,16 @@
 
 import Foundation
 
-// V1 domain models
+/// V1 domain models
 public extension PaymentMethodSepaDebit {
-    public init(bankCode: String? = nil, branchCode: String? = nil, country: String? = nil, fingerprint: String? = nil, generatedFrom: PaymentMethodSepaDebitGeneratedFrom? = nil, last4: String? = nil) throws {
+    init(
+        bankCode: String? = nil,
+        branchCode: String? = nil,
+        country: String? = nil,
+        fingerprint: String? = nil,
+        generatedFrom: PaymentMethodSepaDebitGeneratedFrom? = nil,
+        last4: String? = nil
+    ) throws {
         self.init()
         (self.bankCode, self.branchCode) = (bankCode, branchCode)
         (self.country, self.fingerprint) = (country, fingerprint)
@@ -33,20 +40,28 @@ public enum PaymentMethodSepaDebitGeneratedFrom {
 }
 
 extension PaymentMethodSepaDebitGeneratedFrom: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentMethodSepaDebitGeneratedFrom")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PaymentMethodSepaDebitGeneratedFrom"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(SepaDebitGeneratedFrom.self) { return .sepaDebitGeneratedFrom(value) }
+        if let value = try? container.decode(SepaDebitGeneratedFrom.self) {
+            return .sepaDebitGeneratedFrom(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -55,7 +70,6 @@ extension PaymentMethodSepaDebitGeneratedFrom: Codable {
         case let .sepaDebitGeneratedFrom(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// A Payment Record is a resource that allows you to represent payments that occur on- or off-Stripe. For example,
@@ -132,48 +146,72 @@ public struct PaymentRecord: Codable {
         case shippingDetails = "shipping_details"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension PaymentRecord {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.amount = try container.sdkDecodeRequired(.amount)
-        self.amountAuthorized = try container.sdkDecodeRequired(.amountAuthorized)
-        self.amountCanceled = try container.sdkDecodeRequired(.amountCanceled)
-        self.amountFailed = try container.sdkDecodeRequired(.amountFailed)
-        self.amountGuaranteed = try container.sdkDecodeRequired(.amountGuaranteed)
-        self.amountRefunded = try container.sdkDecodeRequired(.amountRefunded)
-        self.amountRequested = try container.sdkDecodeRequired(.amountRequested)
-        self.created = try container.sdkDecodeRequired(.created)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.livemode = try container.sdkDecodeRequired(.livemode)
-        self.metadata = try container.sdkDecodeRequired(.metadata)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.processorDetails = try container.sdkDecodeRequired(.processorDetails)
-        self.reportedBy = try container.sdkDecodeRequired(.reportedBy)
-        self.application = try container.sdkDecodeIfPresent(.application)
-        self.customerDetails = try container.sdkDecodeIfPresent(.customerDetails)
-        self.customerPresence = try container.sdkDecodeIfPresent(.customerPresence)
-        self.description = try container.sdkDecodeIfPresent(.description)
-        self.latestPaymentAttemptRecord = try container.sdkDecodeIfPresent(.latestPaymentAttemptRecord)
-        self.paymentMethodDetails = try container.sdkDecodeIfPresent(.paymentMethodDetails)
-        self.shippingDetails = try container.sdkDecodeIfPresent(.shippingDetails)
-            try validateLength("id", self.id, min: nil, max: 5000)
-        if let value = self.application {
+        amount = try container.sdkDecodeRequired(.amount)
+        amountAuthorized = try container.sdkDecodeRequired(.amountAuthorized)
+        amountCanceled = try container.sdkDecodeRequired(.amountCanceled)
+        amountFailed = try container.sdkDecodeRequired(.amountFailed)
+        amountGuaranteed = try container.sdkDecodeRequired(.amountGuaranteed)
+        amountRefunded = try container.sdkDecodeRequired(.amountRefunded)
+        amountRequested = try container.sdkDecodeRequired(.amountRequested)
+        created = try container.sdkDecodeRequired(.created)
+        id = try container.sdkDecodeRequired(.id)
+        livemode = try container.sdkDecodeRequired(.livemode)
+        metadata = try container.sdkDecodeRequired(.metadata)
+        object = try container.sdkDecodeRequired(.object)
+        processorDetails = try container.sdkDecodeRequired(.processorDetails)
+        reportedBy = try container.sdkDecodeRequired(.reportedBy)
+        application = try container.sdkDecodeIfPresent(.application)
+        customerDetails = try container.sdkDecodeIfPresent(.customerDetails)
+        customerPresence = try container.sdkDecodeIfPresent(.customerPresence)
+        description = try container.sdkDecodeIfPresent(.description)
+        latestPaymentAttemptRecord = try container.sdkDecodeIfPresent(.latestPaymentAttemptRecord)
+        paymentMethodDetails = try container.sdkDecodeIfPresent(.paymentMethodDetails)
+        shippingDetails = try container.sdkDecodeIfPresent(.shippingDetails)
+        try validateLength("id", id, min: nil, max: 5000)
+        if let value = application {
             try validateLength("application", value, min: nil, max: 5000)
         }
-        if let value = self.description {
+        if let value = description {
             try validateLength("description", value, min: nil, max: 5000)
         }
-        if let value = self.latestPaymentAttemptRecord {
+        if let value = latestPaymentAttemptRecord {
             try validateLength("latest_payment_attempt_record", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension PaymentRecord {
-    public init(amount: PaymentsPrimitivesPaymentRecordsResourceAmount, amountAuthorized: PaymentsPrimitivesPaymentRecordsResourceAmount, amountCanceled: PaymentsPrimitivesPaymentRecordsResourceAmount, amountFailed: PaymentsPrimitivesPaymentRecordsResourceAmount, amountGuaranteed: PaymentsPrimitivesPaymentRecordsResourceAmount, amountRefunded: PaymentsPrimitivesPaymentRecordsResourceAmount, amountRequested: PaymentsPrimitivesPaymentRecordsResourceAmount, created: Int, id: String, livemode: Bool, metadata: [String: String], object: PaymentRecordObject, processorDetails: PaymentsPrimitivesPaymentRecordsResourceProcessorDetails, reportedBy: PaymentRecordReportedBy, application: String? = nil, customerDetails: PaymentRecordCustomerDetails? = nil, customerPresence: PaymentRecordCustomerPresence? = nil, description: String? = nil, latestPaymentAttemptRecord: String? = nil, paymentMethodDetails: PaymentRecordPaymentMethodDetails? = nil, shippingDetails: PaymentRecordShippingDetails? = nil) throws {
+    init(
+        amount: PaymentsPrimitivesPaymentRecordsResourceAmount,
+        amountAuthorized: PaymentsPrimitivesPaymentRecordsResourceAmount,
+        amountCanceled: PaymentsPrimitivesPaymentRecordsResourceAmount,
+        amountFailed: PaymentsPrimitivesPaymentRecordsResourceAmount,
+        amountGuaranteed: PaymentsPrimitivesPaymentRecordsResourceAmount,
+        amountRefunded: PaymentsPrimitivesPaymentRecordsResourceAmount,
+        amountRequested: PaymentsPrimitivesPaymentRecordsResourceAmount,
+        created: Int,
+        id: String,
+        livemode: Bool,
+        metadata: [String: String],
+        object: PaymentRecordObject,
+        processorDetails: PaymentsPrimitivesPaymentRecordsResourceProcessorDetails,
+        reportedBy: PaymentRecordReportedBy,
+        application: String? = nil,
+        customerDetails: PaymentRecordCustomerDetails? = nil,
+        customerPresence: PaymentRecordCustomerPresence? = nil,
+        description: String? = nil,
+        latestPaymentAttemptRecord: String? = nil,
+        paymentMethodDetails: PaymentRecordPaymentMethodDetails? = nil,
+        shippingDetails: PaymentRecordShippingDetails? = nil
+    ) throws {
         (self.amount, self.amountAuthorized) = (amount, amountAuthorized)
         (self.amountCanceled, self.amountFailed) = (amountCanceled, amountFailed)
         (self.amountGuaranteed, self.amountRefunded) = (amountGuaranteed, amountRefunded)
@@ -185,7 +223,7 @@ public extension PaymentRecord {
         (self.customerPresence, self.description) = (customerPresence, description)
         self.latestPaymentAttemptRecord = latestPaymentAttemptRecord
         (self.paymentMethodDetails, self.shippingDetails) = (paymentMethodDetails, shippingDetails)
-            try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
         if let value = self.application {
             try validateLength("application", value, min: nil, max: 5000)
         }
@@ -199,105 +237,129 @@ public extension PaymentRecord {
 }
 
 public enum PaymentRecordCustomerDetails {
-    case paymentsPrimitivesPaymentRecordsResourceCustomerDetails(PaymentsPrimitivesPaymentRecordsResourceCustomerDetails)
+    case paymentsPrimitivesPaymentRecordsResourceCustomerDetails(
+        PaymentsPrimitivesPaymentRecordsResourceCustomerDetails
+    )
 }
 
 extension PaymentRecordCustomerDetails: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentRecordCustomerDetails")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PaymentRecordCustomerDetails"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PaymentsPrimitivesPaymentRecordsResourceCustomerDetails.self
         ) {
-            return             .paymentsPrimitivesPaymentRecordsResourceCustomerDetails(value)
+            return .paymentsPrimitivesPaymentRecordsResourceCustomerDetails(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .paymentsPrimitivesPaymentRecordsResourceCustomerDetails(value): try container.encode(value); return true
+        case let .paymentsPrimitivesPaymentRecordsResourceCustomerDetails(value): try container
+            .encode(value); return true
         }
     }
-
 }
 
 public enum PaymentRecordPaymentMethodDetails {
-    case paymentsPrimitivesPaymentRecordsResourcePaymentMethodDetails(PaymentsPrimitivesPaymentRecordsResourcePaymentMethodDetails)
+    case paymentsPrimitivesPaymentRecordsResourcePaymentMethodDetails(
+        PaymentsPrimitivesPaymentRecordsResourcePaymentMethodDetails
+    )
 }
 
 extension PaymentRecordPaymentMethodDetails: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentRecordPaymentMethodDetails")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PaymentRecordPaymentMethodDetails"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PaymentsPrimitivesPaymentRecordsResourcePaymentMethodDetails.self
         ) {
-            return             .paymentsPrimitivesPaymentRecordsResourcePaymentMethodDetails(value)
+            return .paymentsPrimitivesPaymentRecordsResourcePaymentMethodDetails(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .paymentsPrimitivesPaymentRecordsResourcePaymentMethodDetails(value): try container.encode(value); return true
+        case let .paymentsPrimitivesPaymentRecordsResourcePaymentMethodDetails(value): try container
+            .encode(value); return true
         }
     }
-
 }
 
 public enum PaymentRecordShippingDetails {
-    case paymentsPrimitivesPaymentRecordsResourceShippingDetails(PaymentsPrimitivesPaymentRecordsResourceShippingDetails)
+    case paymentsPrimitivesPaymentRecordsResourceShippingDetails(
+        PaymentsPrimitivesPaymentRecordsResourceShippingDetails
+    )
 }
 
 extension PaymentRecordShippingDetails: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentRecordShippingDetails")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PaymentRecordShippingDetails"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PaymentsPrimitivesPaymentRecordsResourceShippingDetails.self
         ) {
-            return             .paymentsPrimitivesPaymentRecordsResourceShippingDetails(value)
+            return .paymentsPrimitivesPaymentRecordsResourceShippingDetails(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .paymentsPrimitivesPaymentRecordsResourceShippingDetails(value): try container.encode(value); return true
+        case let .paymentsPrimitivesPaymentRecordsResourceShippingDetails(value): try container
+            .encode(value); return true
         }
     }
-
 }
 
 /// Details about the Payment Method used in this payment attempt.
@@ -501,5 +563,7 @@ public struct PaymentsPrimitivesPaymentRecordsResourcePaymentMethodDetails: Coda
         case zip
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }

@@ -6,8 +6,9 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1CustomersBalanceTransactionsMethods {
-    /// Lists transactions that have updated a customer's credit balance. Use `invoice` and `created` to filter the results, and use cursor parameters to page through the transaction history.
+public extension V1CustomersBalanceTransactionsMethods {
+    /// Lists transactions that have updated a customer's credit balance. Use `invoice` and `created` to filter the
+    /// results, and use cursor parameters to page through the transaction history.
     ///
     /// Returns a list of transactions that updated the customer’s balances.
     ///
@@ -29,28 +30,44 @@ extension V1CustomersBalanceTransactionsMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    public static func getCustomersCustomerBalanceTransactions(config: ClientConfig, customer: String, created: GetCustomersCustomerBalanceTransactionsParameter?, endingBefore: String?, expand: [String]?, invoice: String?, limit: Int?, startingAfter: String?) async throws -> GetCustomersCustomerBalanceTransactionsResponse {
+    static func getCustomersCustomerBalanceTransactions(
+        config: ClientConfig,
+        customer: String,
+        created: GetCustomersCustomerBalanceTransactionsParameter?,
+        endingBefore: String?,
+        expand: [String]?,
+        invoice: String?,
+        limit: Int?,
+        startingAfter: String?
+    ) async throws -> GetCustomersCustomerBalanceTransactionsResponse {
         try validateLength("customer", customer, max: 5000)
 
-        if let endingBefore = endingBefore {
+        if let endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let invoice = invoice {
+        if let invoice {
             try validateLength("invoice", invoice, max: 5000)
         }
 
-        if let startingAfter = startingAfter {
+        if let startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try (await sdkRequest("GET", ["/v1/customers/", sdkEncodePathSegment(sdkWireString(customer)), "/balance_transactions"].joined(), config: config, query: [
-            SdkQueryParameter("created", value: created),
-            SdkQueryParameter("ending_before", value: endingBefore),
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            SdkQueryParameter("invoice", value: invoice),
-            SdkQueryParameter("limit", value: limit),
-            SdkQueryParameter("starting_after", value: startingAfter),
-        ], decoder: .json, operationId: "GetCustomersCustomerBalanceTransactions")).data
+        return try await (sdkRequest(
+            "GET",
+            ["/v1/customers/", sdkEncodePathSegment(sdkWireString(customer)), "/balance_transactions"].joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("created", value: created),
+                SdkQueryParameter("ending_before", value: endingBefore),
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+                SdkQueryParameter("invoice", value: invoice),
+                SdkQueryParameter("limit", value: limit),
+                SdkQueryParameter("starting_after", value: startingAfter),
+            ],
+            decoder: .json,
+            operationId: "GetCustomersCustomerBalanceTransactions"
+        )).data
     }
 }

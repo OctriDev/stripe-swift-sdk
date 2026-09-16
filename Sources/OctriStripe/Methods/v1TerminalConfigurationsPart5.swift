@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1TerminalConfigurationsMethods {
-    public struct PostTerminalConfigurationsConfigurationOptions: Codable {
+public extension V1TerminalConfigurationsMethods {
+    struct PostTerminalConfigurationsConfigurationOptions: Codable {
         public var configuration: String
         public var bbposWisepad3: PostTerminalConfigurationsConfigurationRequestBodyBbposWisepad3?
         public var bbposWiseposE: PostTerminalConfigurationsConfigurationRequestBodyBbposWiseposE?
@@ -31,7 +31,9 @@ extension V1TerminalConfigurationsMethods {
         }
     }
 
-    /// Updates an existing Terminal configuration for readers. Supply only the configuration properties you want to change, including device-specific settings, connectivity, offline collection, reboot windows, tipping, or the configuration name. The response returns the updated configuration or a deleted configuration representation.
+    /// Updates an existing Terminal configuration for readers. Supply only the configuration properties you want to
+    /// change, including device-specific settings, connectivity, offline collection, reboot windows, tipping, or the
+    /// configuration name. The response returns the updated configuration or a deleted configuration representation.
     ///
     /// Updates a new Configuration object.
     ///
@@ -62,7 +64,10 @@ extension V1TerminalConfigurationsMethods {
     /// - verifoneV660p: An object containing device type specific settings for
     ///   Verifone V660p readers.
     /// - wifi: Configurations for connecting to a WiFi network.
-    public static func postTerminalConfigurationsConfiguration(config: ClientConfig, options: PostTerminalConfigurationsConfigurationOptions) async throws -> PostTerminalConfigurationsConfigurationResponse {
+    static func postTerminalConfigurationsConfiguration(
+        config: ClientConfig,
+        options: PostTerminalConfigurationsConfigurationOptions
+    ) async throws -> PostTerminalConfigurationsConfigurationResponse {
         try validateLength("configuration", options.configuration, max: 5000)
 
         if let name = options.name {
@@ -71,6 +76,14 @@ extension V1TerminalConfigurationsMethods {
 
         let requestBody = PostTerminalConfigurationsConfigurationRequestBody(options: options)
 
-        return try (await sdkRequest("POST", ["/v1/terminal/configurations/", sdkEncodePathSegment(sdkWireString(options.configuration))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTerminalConfigurationsConfiguration")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/terminal/configurations/", sdkEncodePathSegment(sdkWireString(options.configuration))].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostTerminalConfigurationsConfiguration"
+        )).data
     }
 }

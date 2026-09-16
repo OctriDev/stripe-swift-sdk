@@ -6,8 +6,9 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1AccountLinksMethods {
-    /// Creates an AccountLink object that includes a single-use Stripe URL that the platform can redirect their user to in order to take them through the Connect Onboarding flow.
+public extension V1AccountLinksMethods {
+    /// Creates an AccountLink object that includes a single-use Stripe URL that the platform can redirect their user to
+    /// in order to take them through the Connect Onboarding flow.
     ///
     /// - Parameters:
     /// - account: The identifier of the account to create an account link for.
@@ -33,11 +34,36 @@ extension V1AccountLinksMethods {
     ///   display a useful error to the user.
     /// - returnUrl: The URL that the user will be redirected to upon leaving or
     ///   completing the linked flow.
-    public static func postAccountLinks(config: ClientConfig, account: String, type: PostAccountLinksRequestBodyType, collect: PostAccountLinksRequestBodyCollect?, collectionOptions: PostAccountLinksRequestBodyCollectionOptions?, expand: [String]?, refreshUrl: String?, returnUrl: String?) async throws -> AccountLink {
+    static func postAccountLinks(
+        config: ClientConfig,
+        account: String,
+        type: PostAccountLinksRequestBodyType,
+        collect: PostAccountLinksRequestBodyCollect?,
+        collectionOptions: PostAccountLinksRequestBodyCollectionOptions?,
+        expand: [String]?,
+        refreshUrl: String?,
+        returnUrl: String?
+    ) async throws -> AccountLink {
         try validateLength("account", account, max: 5000)
 
-        let requestBody = PostAccountLinksRequestBody(account: account, type: type, collect: collect, collectionOptions: collectionOptions, expand: expand, refreshUrl: refreshUrl, returnUrl: returnUrl)
+        let requestBody = PostAccountLinksRequestBody(
+            account: account,
+            type: type,
+            collect: collect,
+            collectionOptions: collectionOptions,
+            expand: expand,
+            refreshUrl: refreshUrl,
+            returnUrl: returnUrl
+        )
 
-        return try (await sdkRequest("POST", "/v1/account_links", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostAccountLinks")).data
+        return try await (sdkRequest(
+            "POST",
+            "/v1/account_links",
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostAccountLinks"
+        )).data
     }
 }

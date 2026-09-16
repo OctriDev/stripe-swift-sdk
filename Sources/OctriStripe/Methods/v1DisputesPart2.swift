@@ -6,8 +6,9 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1DisputesMethods {
-    /// Lists disputes associated with your account. Use `charge` or `payment_intent` to filter the results, `created` to constrain the creation interval, and cursor parameters to paginate through the list.
+public extension V1DisputesMethods {
+    /// Lists disputes associated with your account. Use `charge` or `payment_intent` to filter the results, `created`
+    /// to constrain the creation interval, and cursor parameters to paginate through the list.
     ///
     /// Returns a list of your disputes.
     ///
@@ -31,24 +32,33 @@ extension V1DisputesMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    public static func getDisputes(config: ClientConfig, charge: String?, created: GetDisputesParameter?, endingBefore: String?, expand: [String]?, limit: Int?, paymentIntent: String?, startingAfter: String?) async throws -> GetDisputesResponse {
-        if let charge = charge {
+    static func getDisputes(
+        config: ClientConfig,
+        charge: String?,
+        created: GetDisputesParameter?,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        paymentIntent: String?,
+        startingAfter: String?
+    ) async throws -> GetDisputesResponse {
+        if let charge {
             try validateLength("charge", charge, max: 5000)
         }
 
-        if let endingBefore = endingBefore {
+        if let endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let paymentIntent = paymentIntent {
+        if let paymentIntent {
             try validateLength("payment_intent", paymentIntent, max: 5000)
         }
 
-        if let startingAfter = startingAfter {
+        if let startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try (await sdkRequest("GET", "/v1/disputes", config: config, query: [
+        return try await (sdkRequest("GET", "/v1/disputes", config: config, query: [
             SdkQueryParameter("charge", value: charge),
             SdkQueryParameter("created", value: created),
             SdkQueryParameter("ending_before", value: endingBefore),

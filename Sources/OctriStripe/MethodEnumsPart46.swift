@@ -6,16 +6,22 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public struct GetCreditNotesPreviewLinesParameterItemTypeX30dbb5ef: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct GetCreditNotesPreviewLinesParameterItemTypeX30dbb5ef: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let customLineItem = GetCreditNotesPreviewLinesParameterItemTypeX30dbb5ef(rawValue: "custom_line_item")
-    public static let invoiceLineItem = GetCreditNotesPreviewLinesParameterItemTypeX30dbb5ef(rawValue: "invoice_line_item")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let customLineItem =
+        GetCreditNotesPreviewLinesParameterItemTypeX30dbb5ef(rawValue: "custom_line_item")
+    public static let invoiceLineItem =
+        GetCreditNotesPreviewLinesParameterItemTypeX30dbb5ef(rawValue: "invoice_line_item")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -26,15 +32,19 @@ public struct GetCreditNotesPreviewLinesParameterItemTypeX30dbb5ef: RawRepresent
 
 /// String representing the object's type. Objects of the same type share the same value. Always has the value
 /// `list`.
-public struct GetCreditNotesPreviewLinesResponseObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct GetCreditNotesPreviewLinesResponseObject: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let list = GetCreditNotesPreviewLinesResponseObject(rawValue: "list")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -45,15 +55,19 @@ public struct GetCreditNotesPreviewLinesResponseObject: RawRepresentable, Hashab
 
 /// String representing the object's type. Objects of the same type share the same value. Always has the value
 /// `list`.
-public struct GetCreditNotesCreditNoteLinesResponseObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct GetCreditNotesCreditNoteLinesResponseObject: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let list = GetCreditNotesCreditNoteLinesResponseObject(rawValue: "list")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -62,17 +76,24 @@ public struct GetCreditNotesCreditNoteLinesResponseObject: RawRepresentable, Has
     }
 }
 
-public struct PostCustomerSessionsRequestBodyComponentsCustomerSheetFeatureX8614069c5b: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostCustomerSessionsRequestBodyComponentsCustomerSheetFeatureX8614069c5b: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let always = PostCustomerSessionsRequestBodyComponentsCustomerSheetFeatureX8614069c5b(rawValue: "always")
-    public static let limited = PostCustomerSessionsRequestBodyComponentsCustomerSheetFeatureX8614069c5b(rawValue: "limited")
-    public static let unspecified = PostCustomerSessionsRequestBodyComponentsCustomerSheetFeatureX8614069c5b(rawValue: "unspecified")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let always =
+        PostCustomerSessionsRequestBodyComponentsCustomerSheetFeatureX8614069c5b(rawValue: "always")
+    public static let limited =
+        PostCustomerSessionsRequestBodyComponentsCustomerSheetFeatureX8614069c5b(rawValue: "limited")
+    public static let unspecified =
+        PostCustomerSessionsRequestBodyComponentsCustomerSheetFeatureX8614069c5b(rawValue: "unspecified")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -81,16 +102,22 @@ public struct PostCustomerSessionsRequestBodyComponentsCustomerSheetFeatureX8614
     }
 }
 
-public struct PostCustomerSessionsRequestBodyComponentsCustomerSheetFeatureX2fb4e4cc42: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostCustomerSessionsRequestBodyComponentsCustomerSheetFeatureX2fb4e4cc42: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let disabled = PostCustomerSessionsRequestBodyComponentsCustomerSheetFeatureX2fb4e4cc42(rawValue: "disabled")
-    public static let enabled = PostCustomerSessionsRequestBodyComponentsCustomerSheetFeatureX2fb4e4cc42(rawValue: "enabled")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let disabled =
+        PostCustomerSessionsRequestBodyComponentsCustomerSheetFeatureX2fb4e4cc42(rawValue: "disabled")
+    public static let enabled =
+        PostCustomerSessionsRequestBodyComponentsCustomerSheetFeatureX2fb4e4cc42(rawValue: "enabled")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -99,17 +126,24 @@ public struct PostCustomerSessionsRequestBodyComponentsCustomerSheetFeatureX2fb4
     }
 }
 
-public struct PostCustomerSessionsRequestBodyComponentsMobilePaymentElementX964d2da593: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostCustomerSessionsRequestBodyComponentsMobilePaymentElementX964d2da593: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let always = PostCustomerSessionsRequestBodyComponentsMobilePaymentElementX964d2da593(rawValue: "always")
-    public static let limited = PostCustomerSessionsRequestBodyComponentsMobilePaymentElementX964d2da593(rawValue: "limited")
-    public static let unspecified = PostCustomerSessionsRequestBodyComponentsMobilePaymentElementX964d2da593(rawValue: "unspecified")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let always =
+        PostCustomerSessionsRequestBodyComponentsMobilePaymentElementX964d2da593(rawValue: "always")
+    public static let limited =
+        PostCustomerSessionsRequestBodyComponentsMobilePaymentElementX964d2da593(rawValue: "limited")
+    public static let unspecified =
+        PostCustomerSessionsRequestBodyComponentsMobilePaymentElementX964d2da593(rawValue: "unspecified")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -118,16 +152,22 @@ public struct PostCustomerSessionsRequestBodyComponentsMobilePaymentElementX964d
     }
 }
 
-public struct PostCustomerSessionsRequestBodyComponentsMobilePaymentElementX5c924a32fd: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostCustomerSessionsRequestBodyComponentsMobilePaymentElementX5c924a32fd: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let disabled = PostCustomerSessionsRequestBodyComponentsMobilePaymentElementX5c924a32fd(rawValue: "disabled")
-    public static let enabled = PostCustomerSessionsRequestBodyComponentsMobilePaymentElementX5c924a32fd(rawValue: "enabled")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let disabled =
+        PostCustomerSessionsRequestBodyComponentsMobilePaymentElementX5c924a32fd(rawValue: "disabled")
+    public static let enabled =
+        PostCustomerSessionsRequestBodyComponentsMobilePaymentElementX5c924a32fd(rawValue: "enabled")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -136,16 +176,22 @@ public struct PostCustomerSessionsRequestBodyComponentsMobilePaymentElementX5c92
     }
 }
 
-public struct PostCustomerSessionsRequestBodyComponentsMobilePaymentElementXe92e7f71fb: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostCustomerSessionsRequestBodyComponentsMobilePaymentElementXe92e7f71fb: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let disabled = PostCustomerSessionsRequestBodyComponentsMobilePaymentElementXe92e7f71fb(rawValue: "disabled")
-    public static let enabled = PostCustomerSessionsRequestBodyComponentsMobilePaymentElementXe92e7f71fb(rawValue: "enabled")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let disabled =
+        PostCustomerSessionsRequestBodyComponentsMobilePaymentElementXe92e7f71fb(rawValue: "disabled")
+    public static let enabled =
+        PostCustomerSessionsRequestBodyComponentsMobilePaymentElementXe92e7f71fb(rawValue: "enabled")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -154,16 +200,22 @@ public struct PostCustomerSessionsRequestBodyComponentsMobilePaymentElementXe92e
     }
 }
 
-public struct PostCustomerSessionsRequestBodyComponentsMobilePaymentElementXac013c8e20: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostCustomerSessionsRequestBodyComponentsMobilePaymentElementXac013c8e20: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let disabled = PostCustomerSessionsRequestBodyComponentsMobilePaymentElementXac013c8e20(rawValue: "disabled")
-    public static let enabled = PostCustomerSessionsRequestBodyComponentsMobilePaymentElementXac013c8e20(rawValue: "enabled")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let disabled =
+        PostCustomerSessionsRequestBodyComponentsMobilePaymentElementXac013c8e20(rawValue: "disabled")
+    public static let enabled =
+        PostCustomerSessionsRequestBodyComponentsMobilePaymentElementXac013c8e20(rawValue: "enabled")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -172,17 +224,24 @@ public struct PostCustomerSessionsRequestBodyComponentsMobilePaymentElementXac01
     }
 }
 
-public struct PostCustomerSessionsRequestBodyComponentsMobilePaymentElementX0d86d47258: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostCustomerSessionsRequestBodyComponentsMobilePaymentElementX0d86d47258: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let always = PostCustomerSessionsRequestBodyComponentsMobilePaymentElementX0d86d47258(rawValue: "always")
-    public static let limited = PostCustomerSessionsRequestBodyComponentsMobilePaymentElementX0d86d47258(rawValue: "limited")
-    public static let unspecified = PostCustomerSessionsRequestBodyComponentsMobilePaymentElementX0d86d47258(rawValue: "unspecified")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let always =
+        PostCustomerSessionsRequestBodyComponentsMobilePaymentElementX0d86d47258(rawValue: "always")
+    public static let limited =
+        PostCustomerSessionsRequestBodyComponentsMobilePaymentElementX0d86d47258(rawValue: "limited")
+    public static let unspecified =
+        PostCustomerSessionsRequestBodyComponentsMobilePaymentElementX0d86d47258(rawValue: "unspecified")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -191,17 +250,24 @@ public struct PostCustomerSessionsRequestBodyComponentsMobilePaymentElementX0d86
     }
 }
 
-public struct PostCustomerSessionsRequestBodyComponentsPaymentElementFeaturX528705d7ea: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostCustomerSessionsRequestBodyComponentsPaymentElementFeaturX528705d7ea: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let always = PostCustomerSessionsRequestBodyComponentsPaymentElementFeaturX528705d7ea(rawValue: "always")
-    public static let limited = PostCustomerSessionsRequestBodyComponentsPaymentElementFeaturX528705d7ea(rawValue: "limited")
-    public static let unspecified = PostCustomerSessionsRequestBodyComponentsPaymentElementFeaturX528705d7ea(rawValue: "unspecified")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let always =
+        PostCustomerSessionsRequestBodyComponentsPaymentElementFeaturX528705d7ea(rawValue: "always")
+    public static let limited =
+        PostCustomerSessionsRequestBodyComponentsPaymentElementFeaturX528705d7ea(rawValue: "limited")
+    public static let unspecified =
+        PostCustomerSessionsRequestBodyComponentsPaymentElementFeaturX528705d7ea(rawValue: "unspecified")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

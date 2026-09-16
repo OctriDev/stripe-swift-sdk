@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1BillingMeterEventAdjustments operation model declarations
+/// Canonical v1BillingMeterEventAdjustments operation model declarations
 /// Specifies which event to cancel.
 public struct PostBillingMeterEventAdjustmentsRequestBodyCancel: Codable {
     public var identifier: String?
@@ -17,22 +17,22 @@ public struct PostBillingMeterEventAdjustmentsRequestBodyCancel: Codable {
     }
 
     init() {
-        self.identifier = nil
+        identifier = nil
     }
 }
 
 public extension PostBillingMeterEventAdjustmentsRequestBodyCancel {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.identifier = try container.sdkDecodeIfPresent(.identifier)
-        if let value = self.identifier {
+        identifier = try container.sdkDecodeIfPresent(.identifier)
+        if let value = identifier {
             try validateLength("identifier", value, min: nil, max: 100)
         }
     }
 }
 
 public extension PostBillingMeterEventAdjustmentsRequestBodyCancel {
-    public init(identifier: String? = nil) throws {
+    init(identifier: String? = nil) throws {
         self.init()
         self.identifier = identifier
         if let value = self.identifier {

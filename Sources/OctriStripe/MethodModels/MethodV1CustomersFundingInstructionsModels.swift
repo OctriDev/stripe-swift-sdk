@@ -7,8 +7,9 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1CustomersFundingInstructions operation model declarations
-public typealias PostCustomersCustomerFundingInstructionsRequestBodyBankTransfX536cf3edb2 = [PostCustomersCustomerFundingInstructionsRequestBodyBankTransfXb9079d23d1]
+/// Canonical v1CustomersFundingInstructions operation model declarations
+public typealias PostCustomersCustomerFundingInstructionsRequestBodyBankTransfX536cf3edb2 =
+    [PostCustomersCustomerFundingInstructionsRequestBodyBankTransfXb9079d23d1]
 
 /// Additional parameters for `bank_transfer` funding types
 public struct PostCustomersCustomerFundingInstructionsRequestBodyBankTransfer: Codable {
@@ -23,23 +24,33 @@ public struct PostCustomersCustomerFundingInstructionsRequestBodyBankTransfer: C
         case requestedAddressTypes = "requested_address_types"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostCustomersCustomerFundingInstructionsRequestBodyBankTransfer {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
-        }
-        self.type = try container.sdkDecodeRequired(.type)
-        self.euBankTransfer = try container.sdkDecodeIfPresent(.euBankTransfer)
-        self.requestedAddressTypes = try container.sdkDecodeIfPresent(.requestedAddressTypes)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostCustomersCustomerFundingInstructionsRequestBodyBankTransfer {
-    public init(type: PostCustomersCustomerFundingInstructionsRequestBodyBankTransferType, euBankTransfer: PostCustomersCustomerFundingInstructionsRequestBodyBankTransfX0fcfd6638e? = nil, requestedAddressTypes: PostCustomersCustomerFundingInstructionsRequestBodyBankTransfX536cf3edb2? = nil) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.type) else {
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
+        }
+        type = try container.sdkDecodeRequired(.type)
+        euBankTransfer = try container.sdkDecodeIfPresent(.euBankTransfer)
+        requestedAddressTypes = try container.sdkDecodeIfPresent(.requestedAddressTypes)
+    }
+}
+
+public extension PostCustomersCustomerFundingInstructionsRequestBodyBankTransfer {
+    init(
+        type: PostCustomersCustomerFundingInstructionsRequestBodyBankTransferType,
+        euBankTransfer: PostCustomersCustomerFundingInstructionsRequestBodyBankTransfX0fcfd6638e? = nil,
+        requestedAddressTypes: PostCustomersCustomerFundingInstructionsRequestBodyBankTransfX536cf3edb2? = nil
+    ) {
         (self.type, self.euBankTransfer) = (type, euBankTransfer)
         self.requestedAddressTypes = requestedAddressTypes
     }
@@ -52,23 +63,29 @@ public struct PostCustomersCustomerFundingInstructionsRequestBodyBankTransfX0fcf
         case country
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostCustomersCustomerFundingInstructionsRequestBodyBankTransfX0fcfd6638e {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.country) else {
-            throw SdkValidationError(field: "country", code: "required", message: "Validation failed for 'country': value is required")
-        }
-        self.country = try container.sdkDecodeRequired(.country)
-            try validateLength("country", self.country, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostCustomersCustomerFundingInstructionsRequestBodyBankTransfX0fcfd6638e {
-    public init(country: String) throws {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.country) else {
+            throw SdkValidationError(
+                field: "country",
+                code: "required",
+                message: "Validation failed for 'country': value is required"
+            )
+        }
+        country = try container.sdkDecodeRequired(.country)
+        try validateLength("country", country, min: nil, max: 5000)
+    }
+}
+
+public extension PostCustomersCustomerFundingInstructionsRequestBodyBankTransfX0fcfd6638e {
+    init(country: String) throws {
         self.country = country
-            try validateLength("country", self.country, min: nil, max: 5000)
+        try validateLength("country", self.country, min: nil, max: 5000)
     }
 }

@@ -6,8 +6,10 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1BillingMetersMethods {
-    /// Creates a billing meter that defines how usage events are aggregated for billing. Supply `display_name`, `event_name`, and `default_aggregation`, and configure customer mapping or value extraction when those settings are needed. The created meter includes its lifecycle status and aggregation configuration.
+public extension V1BillingMetersMethods {
+    /// Creates a billing meter that defines how usage events are aggregated for billing. Supply `display_name`,
+    /// `event_name`, and `default_aggregation`, and configure customer mapping or value extraction when those settings
+    /// are needed. The created meter includes its lifecycle status and aggregation configuration.
     ///
     /// Creates a billing meter.
     ///
@@ -23,13 +25,38 @@ extension V1BillingMetersMethods {
     ///   pre-aggregated for, if any.
     /// - expand: Specifies which fields in the response should be expanded.
     /// - valueSettings: Fields that specify how to calculate a meter event's value.
-    public static func postBillingMeters(config: ClientConfig, defaultAggregation: PostBillingMetersRequestBodyDefaultAggregation, displayName: String, eventName: String, customerMapping: PostBillingMetersRequestBodyCustomerMapping?, eventTimeWindow: PostBillingMetersRequestBodyEventTimeWindow?, expand: [String]?, valueSettings: PostBillingMetersRequestBodyValueSettings?) async throws -> BillingMeter {
+    static func postBillingMeters(
+        config: ClientConfig,
+        defaultAggregation: PostBillingMetersRequestBodyDefaultAggregation,
+        displayName: String,
+        eventName: String,
+        customerMapping: PostBillingMetersRequestBodyCustomerMapping?,
+        eventTimeWindow: PostBillingMetersRequestBodyEventTimeWindow?,
+        expand: [String]?,
+        valueSettings: PostBillingMetersRequestBodyValueSettings?
+    ) async throws -> BillingMeter {
         try validateLength("display_name", displayName, max: 250)
 
         try validateLength("event_name", eventName, max: 100)
 
-        let requestBody = PostBillingMetersRequestBody(defaultAggregation: defaultAggregation, displayName: displayName, eventName: eventName, customerMapping: customerMapping, eventTimeWindow: eventTimeWindow, expand: expand, valueSettings: valueSettings)
+        let requestBody = PostBillingMetersRequestBody(
+            defaultAggregation: defaultAggregation,
+            displayName: displayName,
+            eventName: eventName,
+            customerMapping: customerMapping,
+            eventTimeWindow: eventTimeWindow,
+            expand: expand,
+            valueSettings: valueSettings
+        )
 
-        return try (await sdkRequest("POST", "/v1/billing/meters", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostBillingMeters")).data
+        return try await (sdkRequest(
+            "POST",
+            "/v1/billing/meters",
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostBillingMeters"
+        )).data
     }
 }

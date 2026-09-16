@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1IssuingCard domain models
+/// V1IssuingCard domain models
 extension IssuingCardAuthorizationControlsAllowedCategoriesItem {
     static let allCasesPart2: [IssuingCardAuthorizationControlsAllowedCategoriesItem] = [
         .danceHallStudiosSchools,
@@ -237,23 +237,27 @@ extension IssuingCardAuthorizationControlsAllowedCategoriesItem {
 extension IssuingCardAuthorizationControlsAllowedCategoriesItem: CaseIterable {
     public static var allCases: [IssuingCardAuthorizationControlsAllowedCategoriesItem] {
         allCasesPart1
-        +         allCasesPart2
-        +         allCasesPart3
-        +         allCasesPart4
+            + allCasesPart2
+            + allCasesPart3
+            + allCasesPart4
     }
 }
 
 /// Required enumerated value serialized in the `blocked_card_presences[]` wire field.
-public struct IssuingCardAuthorizationControlsBlockedCardPresencesItem: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct IssuingCardAuthorizationControlsBlockedCardPresencesItem: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let notPresent = IssuingCardAuthorizationControlsBlockedCardPresencesItem(rawValue: "not_present")
     public static let present = IssuingCardAuthorizationControlsBlockedCardPresencesItem(rawValue: "present")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -266,14 +270,17 @@ public struct IssuingCardAuthorizationControlsBlockedCardPresencesItem: RawRepre
 public struct IssuingCardShippingService: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let express = IssuingCardShippingService(rawValue: "express")
     public static let priority = IssuingCardShippingService(rawValue: "priority")
     public static let standard = IssuingCardShippingService(rawValue: "standard")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -286,14 +293,18 @@ public struct IssuingCardShippingService: RawRepresentable, Hashable, Codable, S
 public struct IssuingCardApplePayIneligibleReason: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let missingAgreement = IssuingCardApplePayIneligibleReason(rawValue: "missing_agreement")
-    public static let missingCardholderContact = IssuingCardApplePayIneligibleReason(rawValue: "missing_cardholder_contact")
+    public static let missingCardholderContact =
+        IssuingCardApplePayIneligibleReason(rawValue: "missing_cardholder_contact")
     public static let unsupportedRegion = IssuingCardApplePayIneligibleReason(rawValue: "unsupported_region")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -306,12 +317,15 @@ public struct IssuingCardApplePayIneligibleReason: RawRepresentable, Hashable, C
 public struct IssuingCardObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let issuingCard = IssuingCardObject(rawValue: "issuing.card")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -324,7 +338,10 @@ public struct IssuingCardObject: RawRepresentable, Hashable, Codable, Sendable, 
 public struct IssuingCardSpendingLimitInterval: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let allTime = IssuingCardSpendingLimitInterval(rawValue: "all_time")
     public static let daily = IssuingCardSpendingLimitInterval(rawValue: "daily")
     public static let monthly = IssuingCardSpendingLimitInterval(rawValue: "monthly")
@@ -334,7 +351,7 @@ public struct IssuingCardSpendingLimitInterval: RawRepresentable, Hashable, Coda
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -344,17 +361,21 @@ public struct IssuingCardSpendingLimitInterval: RawRepresentable, Hashable, Coda
 }
 
 /// The validation result for the shipping address.
-public struct IssuingCardShippingAddressValidationResult: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct IssuingCardShippingAddressValidationResult: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let indeterminate = IssuingCardShippingAddressValidationResult(rawValue: "indeterminate")
     public static let likelyDeliverable = IssuingCardShippingAddressValidationResult(rawValue: "likely_deliverable")
     public static let likelyUndeliverable = IssuingCardShippingAddressValidationResult(rawValue: "likely_undeliverable")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -364,14 +385,17 @@ public struct IssuingCardShippingAddressValidationResult: RawRepresentable, Hash
 }
 
 /// Required enumerated value serialized in the `categories[]` wire field.
-public struct IssuingCardSpendingLimitCategoriesItem: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct IssuingCardSpendingLimitCategoriesItem: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -382,7 +406,8 @@ public struct IssuingCardSpendingLimitCategoriesItem: RawRepresentable, Hashable
 
 public extension IssuingCardSpendingLimitCategoriesItem {
     static let acRefrigerationRepair = IssuingCardSpendingLimitCategoriesItem(rawValue: "ac_refrigeration_repair")
-    static let accountingBookkeepingServices = IssuingCardSpendingLimitCategoriesItem(rawValue: "accounting_bookkeeping_services")
+    static let accountingBookkeepingServices =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "accounting_bookkeeping_services")
     static let advertisingServices = IssuingCardSpendingLimitCategoriesItem(rawValue: "advertising_services")
     static let agriculturalCooperative = IssuingCardSpendingLimitCategoriesItem(rawValue: "agricultural_cooperative")
     static let airlinesAirCarriers = IssuingCardSpendingLimitCategoriesItem(rawValue: "airlines_air_carriers")
@@ -392,9 +417,11 @@ public extension IssuingCardSpendingLimitCategoriesItem {
     static let antiqueReproductions = IssuingCardSpendingLimitCategoriesItem(rawValue: "antique_reproductions")
     static let antiqueShops = IssuingCardSpendingLimitCategoriesItem(rawValue: "antique_shops")
     static let aquariums = IssuingCardSpendingLimitCategoriesItem(rawValue: "aquariums")
-    static let architecturalSurveyingServices = IssuingCardSpendingLimitCategoriesItem(rawValue: "architectural_surveying_services")
+    static let architecturalSurveyingServices =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "architectural_surveying_services")
     static let artDealersAndGalleries = IssuingCardSpendingLimitCategoriesItem(rawValue: "art_dealers_and_galleries")
-    static let artistsSupplyAndCraftShops = IssuingCardSpendingLimitCategoriesItem(rawValue: "artists_supply_and_craft_shops")
+    static let artistsSupplyAndCraftShops =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "artists_supply_and_craft_shops")
     static let autoAndHomeSupplyStores = IssuingCardSpendingLimitCategoriesItem(rawValue: "auto_and_home_supply_stores")
     static let autoBodyRepairShops = IssuingCardSpendingLimitCategoriesItem(rawValue: "auto_body_repair_shops")
     static let autoPaintShops = IssuingCardSpendingLimitCategoriesItem(rawValue: "auto_paint_shops")
@@ -402,7 +429,8 @@ public extension IssuingCardSpendingLimitCategoriesItem {
     static let automatedCashDisburse = IssuingCardSpendingLimitCategoriesItem(rawValue: "automated_cash_disburse")
     static let automatedFuelDispensers = IssuingCardSpendingLimitCategoriesItem(rawValue: "automated_fuel_dispensers")
     static let automobileAssociations = IssuingCardSpendingLimitCategoriesItem(rawValue: "automobile_associations")
-    static let automotivePartsAndAccessoriesStores = IssuingCardSpendingLimitCategoriesItem(rawValue: "automotive_parts_and_accessories_stores")
+    static let automotivePartsAndAccessoriesStores =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "automotive_parts_and_accessories_stores")
     static let automotiveTireStores = IssuingCardSpendingLimitCategoriesItem(rawValue: "automotive_tire_stores")
     static let bailAndBondPayments = IssuingCardSpendingLimitCategoriesItem(rawValue: "bail_and_bond_payments")
     static let bakeries = IssuingCardSpendingLimitCategoriesItem(rawValue: "bakeries")
@@ -410,48 +438,64 @@ public extension IssuingCardSpendingLimitCategoriesItem {
     static let barberAndBeautyShops = IssuingCardSpendingLimitCategoriesItem(rawValue: "barber_and_beauty_shops")
     static let bettingCasinoGambling = IssuingCardSpendingLimitCategoriesItem(rawValue: "betting_casino_gambling")
     static let bicycleShops = IssuingCardSpendingLimitCategoriesItem(rawValue: "bicycle_shops")
-    static let billiardPoolEstablishments = IssuingCardSpendingLimitCategoriesItem(rawValue: "billiard_pool_establishments")
+    static let billiardPoolEstablishments =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "billiard_pool_establishments")
     static let boatDealers = IssuingCardSpendingLimitCategoriesItem(rawValue: "boat_dealers")
     static let boatRentalsAndLeases = IssuingCardSpendingLimitCategoriesItem(rawValue: "boat_rentals_and_leases")
     static let bookStores = IssuingCardSpendingLimitCategoriesItem(rawValue: "book_stores")
-    static let booksPeriodicalsAndNewspapers = IssuingCardSpendingLimitCategoriesItem(rawValue: "books_periodicals_and_newspapers")
+    static let booksPeriodicalsAndNewspapers =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "books_periodicals_and_newspapers")
     static let bowlingAlleys = IssuingCardSpendingLimitCategoriesItem(rawValue: "bowling_alleys")
     static let busLines = IssuingCardSpendingLimitCategoriesItem(rawValue: "bus_lines")
-    static let businessSecretarialSchools = IssuingCardSpendingLimitCategoriesItem(rawValue: "business_secretarial_schools")
+    static let businessSecretarialSchools =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "business_secretarial_schools")
     static let buyingShoppingServices = IssuingCardSpendingLimitCategoriesItem(rawValue: "buying_shopping_services")
-    static let cableSatelliteAndOtherPayTelevisionAndRadio = IssuingCardSpendingLimitCategoriesItem(rawValue: "cable_satellite_and_other_pay_television_and_radio")
-    static let cameraAndPhotographicSupplyStores = IssuingCardSpendingLimitCategoriesItem(rawValue: "camera_and_photographic_supply_stores")
-    static let candyNutAndConfectioneryStores = IssuingCardSpendingLimitCategoriesItem(rawValue: "candy_nut_and_confectionery_stores")
-    static let carAndTruckDealersNewUsed = IssuingCardSpendingLimitCategoriesItem(rawValue: "car_and_truck_dealers_new_used")
-    static let carAndTruckDealersUsedOnly = IssuingCardSpendingLimitCategoriesItem(rawValue: "car_and_truck_dealers_used_only")
+    static let cableSatelliteAndOtherPayTelevisionAndRadio =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "cable_satellite_and_other_pay_television_and_radio")
+    static let cameraAndPhotographicSupplyStores =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "camera_and_photographic_supply_stores")
+    static let candyNutAndConfectioneryStores =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "candy_nut_and_confectionery_stores")
+    static let carAndTruckDealersNewUsed =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "car_and_truck_dealers_new_used")
+    static let carAndTruckDealersUsedOnly =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "car_and_truck_dealers_used_only")
     static let carRentalAgencies = IssuingCardSpendingLimitCategoriesItem(rawValue: "car_rental_agencies")
     static let carWashes = IssuingCardSpendingLimitCategoriesItem(rawValue: "car_washes")
     static let carpentryServices = IssuingCardSpendingLimitCategoriesItem(rawValue: "carpentry_services")
     static let carpetUpholsteryCleaning = IssuingCardSpendingLimitCategoriesItem(rawValue: "carpet_upholstery_cleaning")
     static let caterers = IssuingCardSpendingLimitCategoriesItem(rawValue: "caterers")
-    static let charitableAndSocialServiceOrganizationsFundraising = IssuingCardSpendingLimitCategoriesItem(rawValue: "charitable_and_social_service_organizations_fundraising")
-    static let chemicalsAndAlliedProducts = IssuingCardSpendingLimitCategoriesItem(rawValue: "chemicals_and_allied_products")
+    static let charitableAndSocialServiceOrganizationsFundraising =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "charitable_and_social_service_organizations_fundraising")
+    static let chemicalsAndAlliedProducts =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "chemicals_and_allied_products")
     static let childCareServices = IssuingCardSpendingLimitCategoriesItem(rawValue: "child_care_services")
-    static let childrensAndInfantsWearStores = IssuingCardSpendingLimitCategoriesItem(rawValue: "childrens_and_infants_wear_stores")
+    static let childrensAndInfantsWearStores =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "childrens_and_infants_wear_stores")
     static let chiropodistsPodiatrists = IssuingCardSpendingLimitCategoriesItem(rawValue: "chiropodists_podiatrists")
     static let chiropractors = IssuingCardSpendingLimitCategoriesItem(rawValue: "chiropractors")
     static let cigarStoresAndStands = IssuingCardSpendingLimitCategoriesItem(rawValue: "cigar_stores_and_stands")
-    static let civicSocialFraternalAssociations = IssuingCardSpendingLimitCategoriesItem(rawValue: "civic_social_fraternal_associations")
+    static let civicSocialFraternalAssociations =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "civic_social_fraternal_associations")
     static let cleaningAndMaintenance = IssuingCardSpendingLimitCategoriesItem(rawValue: "cleaning_and_maintenance")
     static let clothingRental = IssuingCardSpendingLimitCategoriesItem(rawValue: "clothing_rental")
     static let collegesUniversities = IssuingCardSpendingLimitCategoriesItem(rawValue: "colleges_universities")
     static let commercialEquipment = IssuingCardSpendingLimitCategoriesItem(rawValue: "commercial_equipment")
     static let commercialFootwear = IssuingCardSpendingLimitCategoriesItem(rawValue: "commercial_footwear")
-    static let commercialPhotographyArtAndGraphics = IssuingCardSpendingLimitCategoriesItem(rawValue: "commercial_photography_art_and_graphics")
-    static let commuterTransportAndFerries = IssuingCardSpendingLimitCategoriesItem(rawValue: "commuter_transport_and_ferries")
+    static let commercialPhotographyArtAndGraphics =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "commercial_photography_art_and_graphics")
+    static let commuterTransportAndFerries =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "commuter_transport_and_ferries")
     static let computerNetworkServices = IssuingCardSpendingLimitCategoriesItem(rawValue: "computer_network_services")
     static let computerProgramming = IssuingCardSpendingLimitCategoriesItem(rawValue: "computer_programming")
     static let computerRepair = IssuingCardSpendingLimitCategoriesItem(rawValue: "computer_repair")
     static let computerSoftwareStores = IssuingCardSpendingLimitCategoriesItem(rawValue: "computer_software_stores")
-    static let computersPeripheralsAndSoftware = IssuingCardSpendingLimitCategoriesItem(rawValue: "computers_peripherals_and_software")
+    static let computersPeripheralsAndSoftware =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "computers_peripherals_and_software")
     static let concreteWorkServices = IssuingCardSpendingLimitCategoriesItem(rawValue: "concrete_work_services")
     static let constructionMaterials = IssuingCardSpendingLimitCategoriesItem(rawValue: "construction_materials")
-    static let consultingPublicRelations = IssuingCardSpendingLimitCategoriesItem(rawValue: "consulting_public_relations")
+    static let consultingPublicRelations =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "consulting_public_relations")
     static let correspondenceSchools = IssuingCardSpendingLimitCategoriesItem(rawValue: "correspondence_schools")
     static let cosmeticStores = IssuingCardSpendingLimitCategoriesItem(rawValue: "cosmetic_stores")
     static let counselingServices = IssuingCardSpendingLimitCategoriesItem(rawValue: "counseling_services")

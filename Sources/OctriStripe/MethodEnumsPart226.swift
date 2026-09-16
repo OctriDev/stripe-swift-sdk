@@ -146,7 +146,7 @@ extension PostPaymentLinksRequestBodyShippingAddressCollectionAllowedCountriesIt
         .dj,
         .dk,
         .dm,
-        .`do`,
+        .do,
         .dz,
         .ec,
         .ee,

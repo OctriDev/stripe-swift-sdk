@@ -6,33 +6,59 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1IssuingTokensMethods {
-    /// Retrieves an Issuing token by its identifier. Use `token` to select the token and `expand` to request expanded response fields when needed.
+public extension V1IssuingTokensMethods {
+    /// Retrieves an Issuing token by its identifier. Use `token` to select the token and `expand` to request expanded
+    /// response fields when needed.
     ///
     /// Retrieves an Issuing Token object.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func getIssuingTokensToken(config: ClientConfig, token: String, expand: [String]?) async throws -> IssuingToken {
+    static func getIssuingTokensToken(
+        config: ClientConfig,
+        token: String,
+        expand: [String]?
+    ) async throws -> IssuingToken {
         try validateLength("token", token, max: 5000)
 
-        return try (await sdkRequest("GET", ["/v1/issuing/tokens/", sdkEncodePathSegment(sdkWireString(token))].joined(), config: config, query: [
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-        ], decoder: .json, operationId: "GetIssuingTokensToken")).data
+        return try await (sdkRequest(
+            "GET",
+            ["/v1/issuing/tokens/", sdkEncodePathSegment(sdkWireString(token))].joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+            ],
+            decoder: .json,
+            operationId: "GetIssuingTokensToken"
+        )).data
     }
 
-    /// Updates the status of an Issuing token. Supply `status` to select the token state, and use `expand` when the response should include expanded fields.
+    /// Updates the status of an Issuing token. Supply `status` to select the token state, and use `expand` when the
+    /// response should include expanded fields.
     ///
     /// Attempts to update the specified Issuing Token object to the status specified.
     ///
     /// - Parameters:
     /// - status: Specifies which status the token should be updated to.
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postIssuingTokensToken(config: ClientConfig, token: String, status: PostIssuingTokensTokenRequestBodyStatus, expand: [String]?) async throws -> IssuingToken {
+    static func postIssuingTokensToken(
+        config: ClientConfig,
+        token: String,
+        status: PostIssuingTokensTokenRequestBodyStatus,
+        expand: [String]?
+    ) async throws -> IssuingToken {
         try validateLength("token", token, max: 5000)
 
         let requestBody = PostIssuingTokensTokenRequestBody(status: status, expand: expand)
 
-        return try (await sdkRequest("POST", ["/v1/issuing/tokens/", sdkEncodePathSegment(sdkWireString(token))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostIssuingTokensToken")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/issuing/tokens/", sdkEncodePathSegment(sdkWireString(token))].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostIssuingTokensToken"
+        )).data
     }
 }

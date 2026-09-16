@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1PaymentMethodOptions domain models
+/// V1PaymentMethodOptions domain models
 /// Typed representation of the `PaymentMethodOptionsUsBankAccountMandateOptions` API schema.
 public struct PaymentMethodOptionsUsBankAccountMandateOptions: Codable {
     /// Mandate collection method
@@ -14,19 +14,19 @@ public struct PaymentMethodOptionsUsBankAccountMandateOptions: Codable {
     }
 
     init() {
-        self.collectionMethod = nil
+        collectionMethod = nil
     }
 }
 
 public extension PaymentMethodOptionsUsBankAccountMandateOptions {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.collectionMethod = try container.sdkDecodeIfPresent(.collectionMethod)
+        collectionMethod = try container.sdkDecodeIfPresent(.collectionMethod)
     }
 }
 
 public extension PaymentMethodOptionsUsBankAccountMandateOptions {
-    public init(collectionMethod: PaymentMethodOptionsUsBankAccountMandateOptionsCollectionMethod? = nil) {
+    init(collectionMethod: PaymentMethodOptionsUsBankAccountMandateOptionsCollectionMethod? = nil) {
         self.init()
         self.collectionMethod = collectionMethod
     }
@@ -52,24 +52,28 @@ public struct PaymentMethodOptionsWechatPay: Codable {
     }
 
     init() {
-        (self.appId, self.client, self.setupFutureUsage) = (nil, nil, nil)
+        (appId, client, setupFutureUsage) = (nil, nil, nil)
     }
 }
 
 public extension PaymentMethodOptionsWechatPay {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.appId = try container.sdkDecodeIfPresent(.appId)
-        self.client = try container.sdkDecodeIfPresent(.client)
-        self.setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
-        if let value = self.appId {
+        appId = try container.sdkDecodeIfPresent(.appId)
+        client = try container.sdkDecodeIfPresent(.client)
+        setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
+        if let value = appId {
             try validateLength("app_id", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension PaymentMethodOptionsWechatPay {
-    public init(appId: String? = nil, client: PaymentMethodOptionsWechatPayClient? = nil, setupFutureUsage: PaymentMethodOptionsWechatPaySetupFutureUsage? = nil) throws {
+    init(
+        appId: String? = nil,
+        client: PaymentMethodOptionsWechatPayClient? = nil,
+        setupFutureUsage: PaymentMethodOptionsWechatPaySetupFutureUsage? = nil
+    ) throws {
         self.init()
         (self.appId, self.client) = (appId, client)
         self.setupFutureUsage = setupFutureUsage
@@ -93,40 +97,47 @@ public struct PaymentMethodOptionsZip: Codable {
     }
 
     init() {
-        self.setupFutureUsage = nil
+        setupFutureUsage = nil
     }
 }
 
 public extension PaymentMethodOptionsZip {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
+        setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
     }
 }
 
 public extension PaymentMethodOptionsZip {
-    public init(setupFutureUsage: PaymentMethodOptionsZipSetupFutureUsage? = nil) {
+    init(setupFutureUsage: PaymentMethodOptionsZipSetupFutureUsage? = nil) {
         self.init()
         self.setupFutureUsage = setupFutureUsage
     }
 }
 
 /// Required enumerated value serialized in the `requested_address_types[]` wire field.
-public struct PaymentMethodOptionsCustomerBalanceBankTransferRequestedAddressTypesItem: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentMethodOptionsCustomerBalanceBankTransferRequestedAddressTypesItem: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let aba = PaymentMethodOptionsCustomerBalanceBankTransferRequestedAddressTypesItem(rawValue: "aba")
     public static let iban = PaymentMethodOptionsCustomerBalanceBankTransferRequestedAddressTypesItem(rawValue: "iban")
     public static let sepa = PaymentMethodOptionsCustomerBalanceBankTransferRequestedAddressTypesItem(rawValue: "sepa")
-    public static let sortCode = PaymentMethodOptionsCustomerBalanceBankTransferRequestedAddressTypesItem(rawValue: "sort_code")
+    public static let sortCode =
+        PaymentMethodOptionsCustomerBalanceBankTransferRequestedAddressTypesItem(rawValue: "sort_code")
     public static let spei = PaymentMethodOptionsCustomerBalanceBankTransferRequestedAddressTypesItem(rawValue: "spei")
-    public static let swift = PaymentMethodOptionsCustomerBalanceBankTransferRequestedAddressTypesItem(rawValue: "swift")
-    public static let zengin = PaymentMethodOptionsCustomerBalanceBankTransferRequestedAddressTypesItem(rawValue: "zengin")
+    public static let swift =
+        PaymentMethodOptionsCustomerBalanceBankTransferRequestedAddressTypesItem(rawValue: "swift")
+    public static let zengin =
+        PaymentMethodOptionsCustomerBalanceBankTransferRequestedAddressTypesItem(rawValue: "zengin")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -136,16 +147,20 @@ public struct PaymentMethodOptionsCustomerBalanceBankTransferRequestedAddressTyp
 }
 
 /// Determines if the amount includes the IOF tax.
-public struct PaymentMethodOptionsPixAmountIncludesIof: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentMethodOptionsPixAmountIncludesIof: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let always = PaymentMethodOptionsPixAmountIncludesIof(rawValue: "always")
     public static let never = PaymentMethodOptionsPixAmountIncludesIof(rawValue: "never")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -155,16 +170,20 @@ public struct PaymentMethodOptionsPixAmountIncludesIof: RawRepresentable, Hashab
 }
 
 /// Controls when the funds will be captured from the customer's account.
-public struct PaymentMethodOptionsCardPresentCaptureMethod: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentMethodOptionsCardPresentCaptureMethod: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let manual = PaymentMethodOptionsCardPresentCaptureMethod(rawValue: "manual")
     public static let manualPreferred = PaymentMethodOptionsCardPresentCaptureMethod(rawValue: "manual_preferred")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -175,15 +194,19 @@ public struct PaymentMethodOptionsCardPresentCaptureMethod: RawRepresentable, Ha
 
 /// The funding method type to be used when there are not enough funds in the customer balance. Permitted values
 /// include: `bank_transfer`.
-public struct PaymentMethodOptionsCustomerBalanceFundingType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentMethodOptionsCustomerBalanceFundingType: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let bankTransfer = PaymentMethodOptionsCustomerBalanceFundingType(rawValue: "bank_transfer")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -197,16 +220,20 @@ public struct PaymentMethodOptionsCustomerBalanceFundingType: RawRepresentable, 
 /// after the PaymentIntent is confirmed and the customer completes any required actions. If you don't provide a
 /// Customer, you can still attach the payment method to a Customer after the transaction completes. If the
 /// payment method is `card_present` and isn't a digital…
-public struct PaymentMethodOptionsIdealSetupFutureUsage: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentMethodOptionsIdealSetupFutureUsage: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let none = PaymentMethodOptionsIdealSetupFutureUsage(rawValue: "none")
     public static let offSession = PaymentMethodOptionsIdealSetupFutureUsage(rawValue: "off_session")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -216,15 +243,19 @@ public struct PaymentMethodOptionsIdealSetupFutureUsage: RawRepresentable, Hasha
 }
 
 /// Controls when the funds will be captured from the customer's account.
-public struct PaymentMethodOptionsKlarnaCaptureMethod: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentMethodOptionsKlarnaCaptureMethod: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let manual = PaymentMethodOptionsKlarnaCaptureMethod(rawValue: "manual")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -238,17 +269,21 @@ public struct PaymentMethodOptionsKlarnaCaptureMethod: RawRepresentable, Hashabl
 /// after the PaymentIntent is confirmed and the customer completes any required actions. If you don't provide a
 /// Customer, you can still attach the payment method to a Customer after the transaction completes. If the
 /// payment method is `card_present` and isn't a digital…
-public struct PaymentMethodOptionsBoletoSetupFutureUsage: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentMethodOptionsBoletoSetupFutureUsage: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let none = PaymentMethodOptionsBoletoSetupFutureUsage(rawValue: "none")
     public static let offSession = PaymentMethodOptionsBoletoSetupFutureUsage(rawValue: "off_session")
     public static let onSession = PaymentMethodOptionsBoletoSetupFutureUsage(rawValue: "on_session")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -258,15 +293,19 @@ public struct PaymentMethodOptionsBoletoSetupFutureUsage: RawRepresentable, Hash
 }
 
 /// Controls when the funds will be captured from the customer's account.
-public struct PaymentMethodOptionsSatispayCaptureMethod: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentMethodOptionsSatispayCaptureMethod: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let manual = PaymentMethodOptionsSatispayCaptureMethod(rawValue: "manual")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -280,16 +319,20 @@ public struct PaymentMethodOptionsSatispayCaptureMethod: RawRepresentable, Hasha
 /// after the PaymentIntent is confirmed and the customer completes any required actions. If you don't provide a
 /// Customer, you can still attach the payment method to a Customer after the transaction completes. If the
 /// payment method is `card_present` and isn't a digital…
-public struct PaymentMethodOptionsTwintSetupFutureUsage: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentMethodOptionsTwintSetupFutureUsage: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let none = PaymentMethodOptionsTwintSetupFutureUsage(rawValue: "none")
     public static let offSession = PaymentMethodOptionsTwintSetupFutureUsage(rawValue: "off_session")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -302,12 +345,15 @@ public struct PaymentMethodOptionsTwintSetupFutureUsage: RawRepresentable, Hasha
 public struct PaymentMethodOptionsAlmaCaptureMethod: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let manual = PaymentMethodOptionsAlmaCaptureMethod(rawValue: "manual")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -321,17 +367,21 @@ public struct PaymentMethodOptionsAlmaCaptureMethod: RawRepresentable, Hashable,
 /// after the PaymentIntent is confirmed and the customer completes any required actions. If you don't provide a
 /// Customer, you can still attach the payment method to a Customer after the transaction completes. If the
 /// payment method is `card_present` and isn't a digital…
-public struct PaymentMethodOptionsSatispaySetupFutureUsage: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentMethodOptionsSatispaySetupFutureUsage: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let none = PaymentMethodOptionsSatispaySetupFutureUsage(rawValue: "none")
     public static let offSession = PaymentMethodOptionsSatispaySetupFutureUsage(rawValue: "off_session")
     public static let onSession = PaymentMethodOptionsSatispaySetupFutureUsage(rawValue: "on_session")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -345,16 +395,20 @@ public struct PaymentMethodOptionsSatispaySetupFutureUsage: RawRepresentable, Ha
 /// after the PaymentIntent is confirmed and the customer completes any required actions. If you don't provide a
 /// Customer, you can still attach the payment method to a Customer after the transaction completes. If the
 /// payment method is `card_present` and isn't a digital…
-public struct PaymentMethodOptionsPixSetupFutureUsage: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentMethodOptionsPixSetupFutureUsage: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let none = PaymentMethodOptionsPixSetupFutureUsage(rawValue: "none")
     public static let offSession = PaymentMethodOptionsPixSetupFutureUsage(rawValue: "off_session")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -368,15 +422,19 @@ public struct PaymentMethodOptionsPixSetupFutureUsage: RawRepresentable, Hashabl
 /// after the PaymentIntent is confirmed and the customer completes any required actions. If you don't provide a
 /// Customer, you can still attach the payment method to a Customer after the transaction completes. If the
 /// payment method is `card_present` and isn't a digital…
-public struct PaymentMethodOptionsFpxSetupFutureUsage: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentMethodOptionsFpxSetupFutureUsage: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let none = PaymentMethodOptionsFpxSetupFutureUsage(rawValue: "none")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -390,15 +448,19 @@ public struct PaymentMethodOptionsFpxSetupFutureUsage: RawRepresentable, Hashabl
 /// after the PaymentIntent is confirmed and the customer completes any required actions. If you don't provide a
 /// Customer, you can still attach the payment method to a Customer after the transaction completes. If the
 /// payment method is `card_present` and isn't a digital…
-public struct PaymentMethodOptionsKonbiniSetupFutureUsage: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentMethodOptionsKonbiniSetupFutureUsage: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let none = PaymentMethodOptionsKonbiniSetupFutureUsage(rawValue: "none")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -412,15 +474,19 @@ public struct PaymentMethodOptionsKonbiniSetupFutureUsage: RawRepresentable, Has
 /// after the PaymentIntent is confirmed and the customer completes any required actions. If you don't provide a
 /// Customer, you can still attach the payment method to a Customer after the transaction completes. If the
 /// payment method is `card_present` and isn't a digital…
-public struct PaymentMethodOptionsZipSetupFutureUsage: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentMethodOptionsZipSetupFutureUsage: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let none = PaymentMethodOptionsZipSetupFutureUsage(rawValue: "none")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -430,15 +496,19 @@ public struct PaymentMethodOptionsZipSetupFutureUsage: RawRepresentable, Hashabl
 }
 
 /// Controls when the funds will be captured from the customer's account.
-public struct PaymentMethodOptionsSunbitCaptureMethod: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentMethodOptionsSunbitCaptureMethod: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let manual = PaymentMethodOptionsSunbitCaptureMethod(rawValue: "manual")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -452,16 +522,20 @@ public struct PaymentMethodOptionsSunbitCaptureMethod: RawRepresentable, Hashabl
 /// after the PaymentIntent is confirmed and the customer completes any required actions. If you don't provide a
 /// Customer, you can still attach the payment method to a Customer after the transaction completes. If the
 /// payment method is `card_present` and isn't a digital…
-public struct PaymentMethodOptionsAlipaySetupFutureUsage: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentMethodOptionsAlipaySetupFutureUsage: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let none = PaymentMethodOptionsAlipaySetupFutureUsage(rawValue: "none")
     public static let offSession = PaymentMethodOptionsAlipaySetupFutureUsage(rawValue: "off_session")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -475,16 +549,20 @@ public struct PaymentMethodOptionsAlipaySetupFutureUsage: RawRepresentable, Hash
 /// after the PaymentIntent is confirmed and the customer completes any required actions. If you don't provide a
 /// Customer, you can still attach the payment method to a Customer after the transaction completes. If the
 /// payment method is `card_present` and isn't a digital…
-public struct PaymentMethodOptionsUpiSetupFutureUsage: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentMethodOptionsUpiSetupFutureUsage: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let offSession = PaymentMethodOptionsUpiSetupFutureUsage(rawValue: "off_session")
     public static let onSession = PaymentMethodOptionsUpiSetupFutureUsage(rawValue: "on_session")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

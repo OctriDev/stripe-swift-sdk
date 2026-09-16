@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1TreasuryFinancial domain models
+/// V1TreasuryFinancial domain models
 /// Stripe Treasury for Platforms provides users with a container for money called a FinancialAccount that is
 /// separate from their Payments balance. FinancialAccounts serve as the source and destination of Treasury for
 /// Platform’s money movement APIs.
@@ -69,40 +69,61 @@ public struct TreasuryFinancialAccount: Codable {
         case restrictedFeatures = "restricted_features"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension TreasuryFinancialAccount {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.balance = try container.sdkDecodeRequired(.balance)
-        self.country = try container.sdkDecodeRequired(.country)
-        self.created = try container.sdkDecodeRequired(.created)
-        self.financialAddresses = try container.sdkDecodeRequired(.financialAddresses)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.livemode = try container.sdkDecodeRequired(.livemode)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.status = try container.sdkDecodeRequired(.status)
-        self.statusDetails = try container.sdkDecodeRequired(.statusDetails)
-        self.supportedCurrencies = try container.sdkDecodeRequired(.supportedCurrencies)
-        self.activeFeatures = try container.sdkDecodeIfPresent(.activeFeatures)
-        self.features = try container.sdkDecodeIfPresent(.features)
-        self.isDefault = try container.sdkDecodeIfPresent(.isDefault)
-        self.metadata = try container.sdkDecodeIfPresent(.metadata)
-        self.nickname = try container.sdkDecodeIfPresent(.nickname)
-        self.pendingFeatures = try container.sdkDecodeIfPresent(.pendingFeatures)
-        self.platformRestrictions = try container.sdkDecodeIfPresent(.platformRestrictions)
-        self.restrictedFeatures = try container.sdkDecodeIfPresent(.restrictedFeatures)
-            try validateLength("country", self.country, min: nil, max: 5000)
-            try validateLength("id", self.id, min: nil, max: 5000)
-        if let value = self.nickname {
+        balance = try container.sdkDecodeRequired(.balance)
+        country = try container.sdkDecodeRequired(.country)
+        created = try container.sdkDecodeRequired(.created)
+        financialAddresses = try container.sdkDecodeRequired(.financialAddresses)
+        id = try container.sdkDecodeRequired(.id)
+        livemode = try container.sdkDecodeRequired(.livemode)
+        object = try container.sdkDecodeRequired(.object)
+        status = try container.sdkDecodeRequired(.status)
+        statusDetails = try container.sdkDecodeRequired(.statusDetails)
+        supportedCurrencies = try container.sdkDecodeRequired(.supportedCurrencies)
+        activeFeatures = try container.sdkDecodeIfPresent(.activeFeatures)
+        features = try container.sdkDecodeIfPresent(.features)
+        isDefault = try container.sdkDecodeIfPresent(.isDefault)
+        metadata = try container.sdkDecodeIfPresent(.metadata)
+        nickname = try container.sdkDecodeIfPresent(.nickname)
+        pendingFeatures = try container.sdkDecodeIfPresent(.pendingFeatures)
+        platformRestrictions = try container.sdkDecodeIfPresent(.platformRestrictions)
+        restrictedFeatures = try container.sdkDecodeIfPresent(.restrictedFeatures)
+        try validateLength("country", country, min: nil, max: 5000)
+        try validateLength("id", id, min: nil, max: 5000)
+        if let value = nickname {
             try validateLength("nickname", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension TreasuryFinancialAccount {
-    public init(balance: TreasuryFinancialAccountsResourceBalance, country: String, created: Int, financialAddresses: [TreasuryFinancialAccountsResourceFinancialAddress], id: String, livemode: Bool, object: TreasuryFinancialAccountObject, status: TreasuryFinancialAccountStatus, statusDetails: TreasuryFinancialAccountsResourceStatusDetails, supportedCurrencies: [String], activeFeatures: [TreasuryFinancialAccountActiveFeaturesItem]? = nil, features: TreasuryFinancialAccountFeatures? = nil, isDefault: Bool? = nil, metadata: [String: String]? = nil, nickname: String? = nil, pendingFeatures: [TreasuryFinancialAccountPendingFeaturesItem]? = nil, platformRestrictions: TreasuryFinancialAccountPlatformRestrictions? = nil, restrictedFeatures: [TreasuryFinancialAccountRestrictedFeaturesItem]? = nil) throws {
+    init(
+        balance: TreasuryFinancialAccountsResourceBalance,
+        country: String,
+        created: Int,
+        financialAddresses: [TreasuryFinancialAccountsResourceFinancialAddress],
+        id: String,
+        livemode: Bool,
+        object: TreasuryFinancialAccountObject,
+        status: TreasuryFinancialAccountStatus,
+        statusDetails: TreasuryFinancialAccountsResourceStatusDetails,
+        supportedCurrencies: [String],
+        activeFeatures: [TreasuryFinancialAccountActiveFeaturesItem]? = nil,
+        features: TreasuryFinancialAccountFeatures? = nil,
+        isDefault: Bool? = nil,
+        metadata: [String: String]? = nil,
+        nickname: String? = nil,
+        pendingFeatures: [TreasuryFinancialAccountPendingFeaturesItem]? = nil,
+        platformRestrictions: TreasuryFinancialAccountPlatformRestrictions? = nil,
+        restrictedFeatures: [TreasuryFinancialAccountRestrictedFeaturesItem]? = nil
+    ) throws {
         (self.balance, self.country) = (balance, country)
         (self.created, self.financialAddresses) = (created, financialAddresses)
         (self.id, self.livemode) = (id, livemode)
@@ -112,8 +133,8 @@ public extension TreasuryFinancialAccount {
         (self.isDefault, self.metadata) = (isDefault, metadata)
         (self.nickname, self.pendingFeatures) = (nickname, pendingFeatures)
         (self.platformRestrictions, self.restrictedFeatures) = (platformRestrictions, restrictedFeatures)
-            try validateLength("country", self.country, min: nil, max: 5000)
-            try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("country", self.country, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
         if let value = self.nickname {
             try validateLength("nickname", value, min: nil, max: 5000)
         }
@@ -125,24 +146,30 @@ public enum TreasuryFinancialAccountPlatformRestrictions {
 }
 
 extension TreasuryFinancialAccountPlatformRestrictions: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for TreasuryFinancialAccountPlatformRestrictions")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for TreasuryFinancialAccountPlatformRestrictions"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             TreasuryFinancialAccountsResourcePlatformRestrictions.self
         ) {
-            return             .treasuryFinancialAccountsResourcePlatformRestrictions(value)
+            return .treasuryFinancialAccountsResourcePlatformRestrictions(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -151,7 +178,6 @@ extension TreasuryFinancialAccountPlatformRestrictions: Codable {
         case let .treasuryFinancialAccountsResourcePlatformRestrictions(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Encodes whether a FinancialAccount has access to a particular Feature, with a `status` enum and associated
@@ -185,28 +211,43 @@ public struct TreasuryFinancialAccountFeatures: Codable {
         case outboundTransfers = "outbound_transfers"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension TreasuryFinancialAccountFeatures {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
-        }
-        self.object = try container.sdkDecodeRequired(.object)
-        self.cardIssuing = try container.sdkDecodeIfPresent(.cardIssuing)
-        self.depositInsurance = try container.sdkDecodeIfPresent(.depositInsurance)
-        self.financialAddresses = try container.sdkDecodeIfPresent(.financialAddresses)
-        self.inboundTransfers = try container.sdkDecodeIfPresent(.inboundTransfers)
-        self.intraStripeFlows = try container.sdkDecodeIfPresent(.intraStripeFlows)
-        self.outboundPayments = try container.sdkDecodeIfPresent(.outboundPayments)
-        self.outboundTransfers = try container.sdkDecodeIfPresent(.outboundTransfers)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension TreasuryFinancialAccountFeatures {
-    public init(object: TreasuryFinancialAccountFeaturesObject, cardIssuing: TreasuryFinancialAccountsResourceToggleSettings? = nil, depositInsurance: TreasuryFinancialAccountsResourceToggleSettings? = nil, financialAddresses: TreasuryFinancialAccountsResourceFinancialAddressesFeatures? = nil, inboundTransfers: TreasuryFinancialAccountsResourceInboundTransfers? = nil, intraStripeFlows: TreasuryFinancialAccountsResourceToggleSettings? = nil, outboundPayments: TreasuryFinancialAccountsResourceOutboundPayments? = nil, outboundTransfers: TreasuryFinancialAccountsResourceOutboundTransfers? = nil) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.object) else {
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
+        }
+        object = try container.sdkDecodeRequired(.object)
+        cardIssuing = try container.sdkDecodeIfPresent(.cardIssuing)
+        depositInsurance = try container.sdkDecodeIfPresent(.depositInsurance)
+        financialAddresses = try container.sdkDecodeIfPresent(.financialAddresses)
+        inboundTransfers = try container.sdkDecodeIfPresent(.inboundTransfers)
+        intraStripeFlows = try container.sdkDecodeIfPresent(.intraStripeFlows)
+        outboundPayments = try container.sdkDecodeIfPresent(.outboundPayments)
+        outboundTransfers = try container.sdkDecodeIfPresent(.outboundTransfers)
+    }
+}
+
+public extension TreasuryFinancialAccountFeatures {
+    init(
+        object: TreasuryFinancialAccountFeaturesObject,
+        cardIssuing: TreasuryFinancialAccountsResourceToggleSettings? = nil,
+        depositInsurance: TreasuryFinancialAccountsResourceToggleSettings? = nil,
+        financialAddresses: TreasuryFinancialAccountsResourceFinancialAddressesFeatures? = nil,
+        inboundTransfers: TreasuryFinancialAccountsResourceInboundTransfers? = nil,
+        intraStripeFlows: TreasuryFinancialAccountsResourceToggleSettings? = nil,
+        outboundPayments: TreasuryFinancialAccountsResourceOutboundPayments? = nil,
+        outboundTransfers: TreasuryFinancialAccountsResourceOutboundTransfers? = nil
+    ) {
         (self.object, self.cardIssuing) = (object, cardIssuing)
         (self.depositInsurance, self.financialAddresses) = (depositInsurance, financialAddresses)
         (self.inboundTransfers, self.intraStripeFlows) = (inboundTransfers, intraStripeFlows)
@@ -235,48 +276,72 @@ public struct TreasuryFinancialAccountsResourceAbaRecord: Codable {
         case accountNumber = "account_number"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension TreasuryFinancialAccountsResourceAbaRecord {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.accountHolderName) else {
-            throw SdkValidationError(field: "account_holder_name", code: "required", message: "Validation failed for 'account_holder_name': value is required")
+            throw SdkValidationError(
+                field: "account_holder_name",
+                code: "required",
+                message: "Validation failed for 'account_holder_name': value is required"
+            )
         }
         guard container.contains(.accountNumberLast4) else {
-            throw SdkValidationError(field: "account_number_last4", code: "required", message: "Validation failed for 'account_number_last4': value is required")
+            throw SdkValidationError(
+                field: "account_number_last4",
+                code: "required",
+                message: "Validation failed for 'account_number_last4': value is required"
+            )
         }
         guard container.contains(.bankName) else {
-            throw SdkValidationError(field: "bank_name", code: "required", message: "Validation failed for 'bank_name': value is required")
+            throw SdkValidationError(
+                field: "bank_name",
+                code: "required",
+                message: "Validation failed for 'bank_name': value is required"
+            )
         }
         guard container.contains(.routingNumber) else {
-            throw SdkValidationError(field: "routing_number", code: "required", message: "Validation failed for 'routing_number': value is required")
+            throw SdkValidationError(
+                field: "routing_number",
+                code: "required",
+                message: "Validation failed for 'routing_number': value is required"
+            )
         }
-        self.accountHolderName = try container.sdkDecodeRequired(.accountHolderName)
-        self.accountNumberLast4 = try container.sdkDecodeRequired(.accountNumberLast4)
-        self.bankName = try container.sdkDecodeRequired(.bankName)
-        self.routingNumber = try container.sdkDecodeRequired(.routingNumber)
-        self.accountNumber = try container.sdkDecodeIfPresent(.accountNumber)
-            try validateLength("account_holder_name", self.accountHolderName, min: nil, max: 5000)
-            try validateLength("account_number_last4", self.accountNumberLast4, min: nil, max: 5000)
-            try validateLength("bank_name", self.bankName, min: nil, max: 5000)
-            try validateLength("routing_number", self.routingNumber, min: nil, max: 5000)
-        if let value = self.accountNumber {
+        accountHolderName = try container.sdkDecodeRequired(.accountHolderName)
+        accountNumberLast4 = try container.sdkDecodeRequired(.accountNumberLast4)
+        bankName = try container.sdkDecodeRequired(.bankName)
+        routingNumber = try container.sdkDecodeRequired(.routingNumber)
+        accountNumber = try container.sdkDecodeIfPresent(.accountNumber)
+        try validateLength("account_holder_name", accountHolderName, min: nil, max: 5000)
+        try validateLength("account_number_last4", accountNumberLast4, min: nil, max: 5000)
+        try validateLength("bank_name", bankName, min: nil, max: 5000)
+        try validateLength("routing_number", routingNumber, min: nil, max: 5000)
+        if let value = accountNumber {
             try validateLength("account_number", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension TreasuryFinancialAccountsResourceAbaRecord {
-    public init(accountHolderName: String, accountNumberLast4: String, bankName: String, routingNumber: String, accountNumber: String? = nil) throws {
+    init(
+        accountHolderName: String,
+        accountNumberLast4: String,
+        bankName: String,
+        routingNumber: String,
+        accountNumber: String? = nil
+    ) throws {
         (self.accountHolderName, self.accountNumberLast4) = (accountHolderName, accountNumberLast4)
         (self.bankName, self.routingNumber) = (bankName, routingNumber)
         self.accountNumber = accountNumber
-            try validateLength("account_holder_name", self.accountHolderName, min: nil, max: 5000)
-            try validateLength("account_number_last4", self.accountNumberLast4, min: nil, max: 5000)
-            try validateLength("bank_name", self.bankName, min: nil, max: 5000)
-            try validateLength("routing_number", self.routingNumber, min: nil, max: 5000)
+        try validateLength("account_holder_name", self.accountHolderName, min: nil, max: 5000)
+        try validateLength("account_number_last4", self.accountNumberLast4, min: nil, max: 5000)
+        try validateLength("bank_name", self.bankName, min: nil, max: 5000)
+        try validateLength("routing_number", self.routingNumber, min: nil, max: 5000)
         if let value = self.accountNumber {
             try validateLength("account_number", value, min: nil, max: 5000)
         }
@@ -298,29 +363,47 @@ public struct TreasuryFinancialAccountsResourceAbaToggleSettings: Codable {
         case statusDetails = "status_details"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension TreasuryFinancialAccountsResourceAbaToggleSettings {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.requested) else {
-            throw SdkValidationError(field: "requested", code: "required", message: "Validation failed for 'requested': value is required")
-        }
-        guard container.contains(.status) else {
-            throw SdkValidationError(field: "status", code: "required", message: "Validation failed for 'status': value is required")
-        }
-        guard container.contains(.statusDetails) else {
-            throw SdkValidationError(field: "status_details", code: "required", message: "Validation failed for 'status_details': value is required")
-        }
-        self.requested = try container.sdkDecodeRequired(.requested)
-        self.status = try container.sdkDecodeRequired(.status)
-        self.statusDetails = try container.sdkDecodeRequired(.statusDetails)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension TreasuryFinancialAccountsResourceAbaToggleSettings {
-    public init(requested: Bool, status: TreasuryFinancialAccountsResourceAbaToggleSettingsStatus, statusDetails: [TreasuryFinancialAccountsResourceTogglesSettingStatusDetails]) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.requested) else {
+            throw SdkValidationError(
+                field: "requested",
+                code: "required",
+                message: "Validation failed for 'requested': value is required"
+            )
+        }
+        guard container.contains(.status) else {
+            throw SdkValidationError(
+                field: "status",
+                code: "required",
+                message: "Validation failed for 'status': value is required"
+            )
+        }
+        guard container.contains(.statusDetails) else {
+            throw SdkValidationError(
+                field: "status_details",
+                code: "required",
+                message: "Validation failed for 'status_details': value is required"
+            )
+        }
+        requested = try container.sdkDecodeRequired(.requested)
+        status = try container.sdkDecodeRequired(.status)
+        statusDetails = try container.sdkDecodeRequired(.statusDetails)
+    }
+}
+
+public extension TreasuryFinancialAccountsResourceAbaToggleSettings {
+    init(
+        requested: Bool,
+        status: TreasuryFinancialAccountsResourceAbaToggleSettingsStatus,
+        statusDetails: [TreasuryFinancialAccountsResourceTogglesSettingStatusDetails]
+    ) {
         (self.requested, self.status) = (requested, status)
         self.statusDetails = statusDetails
     }
@@ -341,35 +424,50 @@ public struct TreasuryFinancialAccountsResourceBalance: Codable {
         case outboundPending = "outbound_pending"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension TreasuryFinancialAccountsResourceBalance {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.cash) else {
-            throw SdkValidationError(field: "cash", code: "required", message: "Validation failed for 'cash': value is required")
-        }
-        guard container.contains(.inboundPending) else {
-            throw SdkValidationError(field: "inbound_pending", code: "required", message: "Validation failed for 'inbound_pending': value is required")
-        }
-        guard container.contains(.outboundPending) else {
-            throw SdkValidationError(field: "outbound_pending", code: "required", message: "Validation failed for 'outbound_pending': value is required")
-        }
-        self.cash = try container.sdkDecodeRequired(.cash)
-        self.inboundPending = try container.sdkDecodeRequired(.inboundPending)
-        self.outboundPending = try container.sdkDecodeRequired(.outboundPending)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension TreasuryFinancialAccountsResourceBalance {
-    public init(cash: [String: Int], inboundPending: [String: Int], outboundPending: [String: Int]) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.cash) else {
+            throw SdkValidationError(
+                field: "cash",
+                code: "required",
+                message: "Validation failed for 'cash': value is required"
+            )
+        }
+        guard container.contains(.inboundPending) else {
+            throw SdkValidationError(
+                field: "inbound_pending",
+                code: "required",
+                message: "Validation failed for 'inbound_pending': value is required"
+            )
+        }
+        guard container.contains(.outboundPending) else {
+            throw SdkValidationError(
+                field: "outbound_pending",
+                code: "required",
+                message: "Validation failed for 'outbound_pending': value is required"
+            )
+        }
+        cash = try container.sdkDecodeRequired(.cash)
+        inboundPending = try container.sdkDecodeRequired(.inboundPending)
+        outboundPending = try container.sdkDecodeRequired(.outboundPending)
+    }
+}
+
+public extension TreasuryFinancialAccountsResourceBalance {
+    init(cash: [String: Int], inboundPending: [String: Int], outboundPending: [String: Int]) {
         (self.cash, self.inboundPending) = (cash, inboundPending)
         self.outboundPending = outboundPending
     }
 }
 
-public typealias TreasuryFinancialAccountsResourceClosedStatusDetailsReasonsList = [TreasuryFinancialAccountsResourceClosedStatusDetailsReasonsItem]
+public typealias TreasuryFinancialAccountsResourceClosedStatusDetailsReasonsList =
+    [TreasuryFinancialAccountsResourceClosedStatusDetailsReasonsItem]
 
 /// Typed representation of the `TreasuryFinancialAccountsResourceClosedStatusDetails` API schema.
 public struct TreasuryFinancialAccountsResourceClosedStatusDetails: Codable {
@@ -380,26 +478,33 @@ public struct TreasuryFinancialAccountsResourceClosedStatusDetails: Codable {
         case reasons
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension TreasuryFinancialAccountsResourceClosedStatusDetails {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.reasons) else {
-            throw SdkValidationError(field: "reasons", code: "required", message: "Validation failed for 'reasons': value is required")
-        }
-        self.reasons = try container.sdkDecodeRequired(.reasons)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension TreasuryFinancialAccountsResourceClosedStatusDetails {
-    public init(reasons: TreasuryFinancialAccountsResourceClosedStatusDetailsReasonsList) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.reasons) else {
+            throw SdkValidationError(
+                field: "reasons",
+                code: "required",
+                message: "Validation failed for 'reasons': value is required"
+            )
+        }
+        reasons = try container.sdkDecodeRequired(.reasons)
+    }
+}
+
+public extension TreasuryFinancialAccountsResourceClosedStatusDetails {
+    init(reasons: TreasuryFinancialAccountsResourceClosedStatusDetailsReasonsList) {
         self.reasons = reasons
     }
 }
 
-public typealias TreasuryFinancialAccountsResourceFinancialAddressSupportedNetworksList = [TreasuryFinancialAccountsResourceFinancialAddressSupportedNetworksItem]
+public typealias TreasuryFinancialAccountsResourceFinancialAddressSupportedNetworksList =
+    [TreasuryFinancialAccountsResourceFinancialAddressSupportedNetworksItem]
 
 /// FinancialAddresses contain identifying information that resolves to a FinancialAccount.
 public struct TreasuryFinancialAccountsResourceFinancialAddress: Codable {
@@ -416,23 +521,33 @@ public struct TreasuryFinancialAccountsResourceFinancialAddress: Codable {
         case supportedNetworks = "supported_networks"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension TreasuryFinancialAccountsResourceFinancialAddress {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
-        }
-        self.type = try container.sdkDecodeRequired(.type)
-        self.aba = try container.sdkDecodeIfPresent(.aba)
-        self.supportedNetworks = try container.sdkDecodeIfPresent(.supportedNetworks)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension TreasuryFinancialAccountsResourceFinancialAddress {
-    public init(type: TreasuryFinancialAccountsResourceFinancialAddressType, aba: TreasuryFinancialAccountsResourceAbaRecord? = nil, supportedNetworks: TreasuryFinancialAccountsResourceFinancialAddressSupportedNetworksList? = nil) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.type) else {
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
+        }
+        type = try container.sdkDecodeRequired(.type)
+        aba = try container.sdkDecodeIfPresent(.aba)
+        supportedNetworks = try container.sdkDecodeIfPresent(.supportedNetworks)
+    }
+}
+
+public extension TreasuryFinancialAccountsResourceFinancialAddress {
+    init(
+        type: TreasuryFinancialAccountsResourceFinancialAddressType,
+        aba: TreasuryFinancialAccountsResourceAbaRecord? = nil,
+        supportedNetworks: TreasuryFinancialAccountsResourceFinancialAddressSupportedNetworksList? = nil
+    ) {
         (self.type, self.aba) = (type, aba)
         self.supportedNetworks = supportedNetworks
     }
@@ -448,19 +563,19 @@ public struct TreasuryFinancialAccountsResourceFinancialAddressesFeatures: Codab
     }
 
     init() {
-        self.aba = nil
+        aba = nil
     }
 }
 
 public extension TreasuryFinancialAccountsResourceFinancialAddressesFeatures {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.aba = try container.sdkDecodeIfPresent(.aba)
+        aba = try container.sdkDecodeIfPresent(.aba)
     }
 }
 
 public extension TreasuryFinancialAccountsResourceFinancialAddressesFeatures {
-    public init(aba: TreasuryFinancialAccountsResourceAbaToggleSettings? = nil) {
+    init(aba: TreasuryFinancialAccountsResourceAbaToggleSettings? = nil) {
         self.init()
         self.aba = aba
     }
@@ -481,23 +596,37 @@ public struct TreasuryFinancialAccountsResourceInboundAchToggleSettings: Codable
         case statusDetails = "status_details"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension TreasuryFinancialAccountsResourceInboundAchToggleSettings {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.requested) else {
-            throw SdkValidationError(field: "requested", code: "required", message: "Validation failed for 'requested': value is required")
+            throw SdkValidationError(
+                field: "requested",
+                code: "required",
+                message: "Validation failed for 'requested': value is required"
+            )
         }
         guard container.contains(.status) else {
-            throw SdkValidationError(field: "status", code: "required", message: "Validation failed for 'status': value is required")
+            throw SdkValidationError(
+                field: "status",
+                code: "required",
+                message: "Validation failed for 'status': value is required"
+            )
         }
         guard container.contains(.statusDetails) else {
-            throw SdkValidationError(field: "status_details", code: "required", message: "Validation failed for 'status_details': value is required")
+            throw SdkValidationError(
+                field: "status_details",
+                code: "required",
+                message: "Validation failed for 'status_details': value is required"
+            )
         }
-        self.requested = try container.sdkDecodeRequired(.requested)
-        self.status = try container.sdkDecodeRequired(.status)
-        self.statusDetails = try container.sdkDecodeRequired(.statusDetails)
+        requested = try container.sdkDecodeRequired(.requested)
+        status = try container.sdkDecodeRequired(.status)
+        statusDetails = try container.sdkDecodeRequired(.statusDetails)
     }
 }

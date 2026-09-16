@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1 domain models
+/// V1 domain models
 /// This object represents a customer of your business. Use it to create recurring charges, save payment and contact
 /// information, and track payments that belong to the same customer.
 public struct Customer: Codable {
@@ -124,61 +124,111 @@ public struct Customer: Codable {
         case testClock = "test_clock"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension Customer {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.created) else {
-            throw SdkValidationError(field: "created", code: "required", message: "Validation failed for 'created': value is required")
+            throw SdkValidationError(
+                field: "created",
+                code: "required",
+                message: "Validation failed for 'created': value is required"
+            )
         }
         guard container.contains(.id) else {
-            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
+            throw SdkValidationError(
+                field: "id",
+                code: "required",
+                message: "Validation failed for 'id': value is required"
+            )
         }
         guard container.contains(.livemode) else {
-            throw SdkValidationError(field: "livemode", code: "required", message: "Validation failed for 'livemode': value is required")
+            throw SdkValidationError(
+                field: "livemode",
+                code: "required",
+                message: "Validation failed for 'livemode': value is required"
+            )
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
         }
-        self.created = try container.sdkDecodeRequired(.created)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.livemode = try container.sdkDecodeRequired(.livemode)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.address = try container.sdkDecodeIfPresent(.address)
-        self.balance = try container.sdkDecodeIfPresent(.balance)
-        self.businessName = try container.sdkDecodeIfPresent(.businessName)
-        self.cashBalance = try container.sdkDecodeIfPresent(.cashBalance)
-        self.currency = try container.sdkDecodeIfPresent(.currency)
-        self.customerAccount = try container.sdkDecodeIfPresent(.customerAccount)
-        self.defaultSource = try container.sdkDecodeIfPresent(.defaultSource)
-        self.delinquent = try container.sdkDecodeIfPresent(.delinquent)
-        self.description = try container.sdkDecodeIfPresent(.description)
-        self.discount = try container.sdkDecodeIfPresent(.discount)
-        self.email = try container.sdkDecodeIfPresent(.email)
-        self.individualName = try container.sdkDecodeIfPresent(.individualName)
-        self.invoiceCreditBalance = try container.sdkDecodeIfPresent(.invoiceCreditBalance)
-        self.invoicePrefix = try container.sdkDecodeIfPresent(.invoicePrefix)
-        self.invoiceSettings = try container.sdkDecodeIfPresent(.invoiceSettings)
-        self.metadata = try container.sdkDecodeIfPresent(.metadata)
-        self.name = try container.sdkDecodeIfPresent(.name)
-        self.nextInvoiceSequence = try container.sdkDecodeIfPresent(.nextInvoiceSequence)
-        self.phone = try container.sdkDecodeIfPresent(.phone)
-        self.preferredLocales = try container.sdkDecodeIfPresent(.preferredLocales)
-        self.shipping = try container.sdkDecodeIfPresent(.shipping)
-        self.sources = try container.sdkDecodeIfPresent(.sources)
-        self.subscriptions = try container.sdkDecodeIfPresent(.subscriptions)
-        self.tax = try container.sdkDecodeIfPresent(.tax)
-        self.taxExempt = try container.sdkDecodeIfPresent(.taxExempt)
-        self.taxIds = try container.sdkDecodeIfPresent(.taxIds)
-        self.testClock = try container.sdkDecodeIfPresent(.testClock)
+        created = try container.sdkDecodeRequired(.created)
+        id = try container.sdkDecodeRequired(.id)
+        livemode = try container.sdkDecodeRequired(.livemode)
+        object = try container.sdkDecodeRequired(.object)
+        address = try container.sdkDecodeIfPresent(.address)
+        balance = try container.sdkDecodeIfPresent(.balance)
+        businessName = try container.sdkDecodeIfPresent(.businessName)
+        cashBalance = try container.sdkDecodeIfPresent(.cashBalance)
+        currency = try container.sdkDecodeIfPresent(.currency)
+        customerAccount = try container.sdkDecodeIfPresent(.customerAccount)
+        defaultSource = try container.sdkDecodeIfPresent(.defaultSource)
+        delinquent = try container.sdkDecodeIfPresent(.delinquent)
+        description = try container.sdkDecodeIfPresent(.description)
+        discount = try container.sdkDecodeIfPresent(.discount)
+        email = try container.sdkDecodeIfPresent(.email)
+        individualName = try container.sdkDecodeIfPresent(.individualName)
+        invoiceCreditBalance = try container.sdkDecodeIfPresent(.invoiceCreditBalance)
+        invoicePrefix = try container.sdkDecodeIfPresent(.invoicePrefix)
+        invoiceSettings = try container.sdkDecodeIfPresent(.invoiceSettings)
+        metadata = try container.sdkDecodeIfPresent(.metadata)
+        name = try container.sdkDecodeIfPresent(.name)
+        nextInvoiceSequence = try container.sdkDecodeIfPresent(.nextInvoiceSequence)
+        phone = try container.sdkDecodeIfPresent(.phone)
+        preferredLocales = try container.sdkDecodeIfPresent(.preferredLocales)
+        shipping = try container.sdkDecodeIfPresent(.shipping)
+        sources = try container.sdkDecodeIfPresent(.sources)
+        subscriptions = try container.sdkDecodeIfPresent(.subscriptions)
+        tax = try container.sdkDecodeIfPresent(.tax)
+        taxExempt = try container.sdkDecodeIfPresent(.taxExempt)
+        taxIds = try container.sdkDecodeIfPresent(.taxIds)
+        testClock = try container.sdkDecodeIfPresent(.testClock)
         try sdkValidateConstraints()
     }
 }
 
 public extension Customer {
-    public init(created: Int, id: String, livemode: Bool, object: CustomerObject, address: CustomerAddress? = nil, balance: Int? = nil, businessName: String? = nil, cashBalance: CustomerCashBalance? = nil, currency: String? = nil, customerAccount: String? = nil, defaultSource: CustomerDefaultSource? = nil, delinquent: Bool? = nil, description: String? = nil, discount: CustomerDiscount? = nil, email: String? = nil, individualName: String? = nil, invoiceCreditBalance: [String: Int]? = nil, invoicePrefix: String? = nil, invoiceSettings: InvoiceSettingCustomerSetting? = nil, metadata: [String: String]? = nil, name: String? = nil, nextInvoiceSequence: Int? = nil, phone: String? = nil, preferredLocales: [String]? = nil, shipping: CustomerShipping? = nil, sources: CustomerSources? = nil, subscriptions: CustomerSubscriptions? = nil, tax: CustomerTax? = nil, taxExempt: CustomerTaxExempt? = nil, taxIds: CustomerTaxIds? = nil, testClock: CustomerTestClock? = nil) throws {
+    init(
+        created: Int,
+        id: String,
+        livemode: Bool,
+        object: CustomerObject,
+        address: CustomerAddress? = nil,
+        balance: Int? = nil,
+        businessName: String? = nil,
+        cashBalance: CustomerCashBalance? = nil,
+        currency: String? = nil,
+        customerAccount: String? = nil,
+        defaultSource: CustomerDefaultSource? = nil,
+        delinquent: Bool? = nil,
+        description: String? = nil,
+        discount: CustomerDiscount? = nil,
+        email: String? = nil,
+        individualName: String? = nil,
+        invoiceCreditBalance: [String: Int]? = nil,
+        invoicePrefix: String? = nil,
+        invoiceSettings: InvoiceSettingCustomerSetting? = nil,
+        metadata: [String: String]? = nil,
+        name: String? = nil,
+        nextInvoiceSequence: Int? = nil,
+        phone: String? = nil,
+        preferredLocales: [String]? = nil,
+        shipping: CustomerShipping? = nil,
+        sources: CustomerSources? = nil,
+        subscriptions: CustomerSubscriptions? = nil,
+        tax: CustomerTax? = nil,
+        taxExempt: CustomerTaxExempt? = nil,
+        taxIds: CustomerTaxIds? = nil,
+        testClock: CustomerTestClock? = nil
+    ) throws {
         (self.created, self.id) = (created, id)
         (self.livemode, self.object) = (livemode, object)
         (self.address, self.balance) = (address, balance)
@@ -201,32 +251,32 @@ public extension Customer {
 
 extension Customer {
     func sdkValidateConstraints() throws {
-            try validateLength("id", self.id, min: nil, max: 5000)
-        if let value = self.businessName {
+        try validateLength("id", id, min: nil, max: 5000)
+        if let value = businessName {
             try validateLength("business_name", value, min: nil, max: 150)
         }
-        if let value = self.currency {
+        if let value = currency {
             try validateLength("currency", value, min: nil, max: 5000)
         }
-        if let value = self.customerAccount {
+        if let value = customerAccount {
             try validateLength("customer_account", value, min: nil, max: 5000)
         }
-        if let value = self.description {
+        if let value = description {
             try validateLength("description", value, min: nil, max: 5000)
         }
-        if let value = self.email {
+        if let value = email {
             try validateLength("email", value, min: nil, max: 5000)
         }
-        if let value = self.individualName {
+        if let value = individualName {
             try validateLength("individual_name", value, min: nil, max: 150)
         }
-        if let value = self.invoicePrefix {
+        if let value = invoicePrefix {
             try validateLength("invoice_prefix", value, min: nil, max: 5000)
         }
-        if let value = self.name {
+        if let value = name {
             try validateLength("name", value, min: nil, max: 5000)
         }
-        if let value = self.phone {
+        if let value = phone {
             try validateLength("phone", value, min: nil, max: 5000)
         }
     }
@@ -237,20 +287,28 @@ public enum CustomerAddress {
 }
 
 extension CustomerAddress: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for CustomerAddress")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for CustomerAddress"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(Address.self) { return .address(value) }
+        if let value = try? container.decode(Address.self) {
+            return .address(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -259,7 +317,6 @@ extension CustomerAddress: Codable {
         case let .address(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum CustomerCashBalance {
@@ -267,20 +324,28 @@ public enum CustomerCashBalance {
 }
 
 extension CustomerCashBalance: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for CustomerCashBalance")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for CustomerCashBalance"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(CashBalance.self) { return .cashBalance(value) }
+        if let value = try? container.decode(CashBalance.self) {
+            return .cashBalance(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -289,7 +354,6 @@ extension CustomerCashBalance: Codable {
         case let .cashBalance(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum CustomerDiscount {
@@ -297,20 +361,28 @@ public enum CustomerDiscount {
 }
 
 extension CustomerDiscount: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for CustomerDiscount")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for CustomerDiscount"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(Discount.self) { return .discount(value) }
+        if let value = try? container.decode(Discount.self) {
+            return .discount(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -319,7 +391,6 @@ extension CustomerDiscount: Codable {
         case let .discount(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum CustomerShipping {
@@ -327,20 +398,28 @@ public enum CustomerShipping {
 }
 
 extension CustomerShipping: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for CustomerShipping")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for CustomerShipping"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(Shipping.self) { return .shipping(value) }
+        if let value = try? container.decode(Shipping.self) {
+            return .shipping(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -349,7 +428,6 @@ extension CustomerShipping: Codable {
         case let .shipping(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// The customer's payment sources, if any.
@@ -371,37 +449,55 @@ public struct CustomerSources: Codable {
         case url
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension CustomerSources {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.data) else {
-            throw SdkValidationError(field: "data", code: "required", message: "Validation failed for 'data': value is required")
-        }
-        guard container.contains(.hasMore) else {
-            throw SdkValidationError(field: "has_more", code: "required", message: "Validation failed for 'has_more': value is required")
-        }
-        guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
-        }
-        guard container.contains(.url) else {
-            throw SdkValidationError(field: "url", code: "required", message: "Validation failed for 'url': value is required")
-        }
-        self.data = try container.sdkDecodeRequired(.data)
-        self.hasMore = try container.sdkDecodeRequired(.hasMore)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.url = try container.sdkDecodeRequired(.url)
-            try validateLength("url", self.url, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension CustomerSources {
-    public init(data: [CustomerSourcesDataItem], hasMore: Bool, object: CustomerSourcesObject, url: String) throws {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.data) else {
+            throw SdkValidationError(
+                field: "data",
+                code: "required",
+                message: "Validation failed for 'data': value is required"
+            )
+        }
+        guard container.contains(.hasMore) else {
+            throw SdkValidationError(
+                field: "has_more",
+                code: "required",
+                message: "Validation failed for 'has_more': value is required"
+            )
+        }
+        guard container.contains(.object) else {
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
+        }
+        guard container.contains(.url) else {
+            throw SdkValidationError(
+                field: "url",
+                code: "required",
+                message: "Validation failed for 'url': value is required"
+            )
+        }
+        data = try container.sdkDecodeRequired(.data)
+        hasMore = try container.sdkDecodeRequired(.hasMore)
+        object = try container.sdkDecodeRequired(.object)
+        url = try container.sdkDecodeRequired(.url)
+        try validateLength("url", url, min: nil, max: 5000)
+    }
+}
+
+public extension CustomerSources {
+    init(data: [CustomerSourcesDataItem], hasMore: Bool, object: CustomerSourcesObject, url: String) throws {
         (self.data, self.hasMore) = (data, hasMore)
         (self.object, self.url) = (object, url)
-            try validateLength("url", self.url, min: nil, max: 5000)
+        try validateLength("url", self.url, min: nil, max: 5000)
     }
 }
 
@@ -424,37 +520,55 @@ public struct CustomerSubscriptions: Codable {
         case url
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension CustomerSubscriptions {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.data) else {
-            throw SdkValidationError(field: "data", code: "required", message: "Validation failed for 'data': value is required")
-        }
-        guard container.contains(.hasMore) else {
-            throw SdkValidationError(field: "has_more", code: "required", message: "Validation failed for 'has_more': value is required")
-        }
-        guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
-        }
-        guard container.contains(.url) else {
-            throw SdkValidationError(field: "url", code: "required", message: "Validation failed for 'url': value is required")
-        }
-        self.data = try container.sdkDecodeRequired(.data)
-        self.hasMore = try container.sdkDecodeRequired(.hasMore)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.url = try container.sdkDecodeRequired(.url)
-            try validateLength("url", self.url, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension CustomerSubscriptions {
-    public init(data: [Subscription], hasMore: Bool, object: CustomerSubscriptionsObject, url: String) throws {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.data) else {
+            throw SdkValidationError(
+                field: "data",
+                code: "required",
+                message: "Validation failed for 'data': value is required"
+            )
+        }
+        guard container.contains(.hasMore) else {
+            throw SdkValidationError(
+                field: "has_more",
+                code: "required",
+                message: "Validation failed for 'has_more': value is required"
+            )
+        }
+        guard container.contains(.object) else {
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
+        }
+        guard container.contains(.url) else {
+            throw SdkValidationError(
+                field: "url",
+                code: "required",
+                message: "Validation failed for 'url': value is required"
+            )
+        }
+        data = try container.sdkDecodeRequired(.data)
+        hasMore = try container.sdkDecodeRequired(.hasMore)
+        object = try container.sdkDecodeRequired(.object)
+        url = try container.sdkDecodeRequired(.url)
+        try validateLength("url", url, min: nil, max: 5000)
+    }
+}
+
+public extension CustomerSubscriptions {
+    init(data: [Subscription], hasMore: Bool, object: CustomerSubscriptionsObject, url: String) throws {
         (self.data, self.hasMore) = (data, hasMore)
         (self.object, self.url) = (object, url)
-            try validateLength("url", self.url, min: nil, max: 5000)
+        try validateLength("url", self.url, min: nil, max: 5000)
     }
 }
 
@@ -477,37 +591,55 @@ public struct CustomerTaxIds: Codable {
         case url
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension CustomerTaxIds {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.data) else {
-            throw SdkValidationError(field: "data", code: "required", message: "Validation failed for 'data': value is required")
-        }
-        guard container.contains(.hasMore) else {
-            throw SdkValidationError(field: "has_more", code: "required", message: "Validation failed for 'has_more': value is required")
-        }
-        guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
-        }
-        guard container.contains(.url) else {
-            throw SdkValidationError(field: "url", code: "required", message: "Validation failed for 'url': value is required")
-        }
-        self.data = try container.sdkDecodeRequired(.data)
-        self.hasMore = try container.sdkDecodeRequired(.hasMore)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.url = try container.sdkDecodeRequired(.url)
-            try validateLength("url", self.url, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension CustomerTaxIds {
-    public init(data: [TaxId], hasMore: Bool, object: CustomerTaxIdsObject, url: String) throws {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.data) else {
+            throw SdkValidationError(
+                field: "data",
+                code: "required",
+                message: "Validation failed for 'data': value is required"
+            )
+        }
+        guard container.contains(.hasMore) else {
+            throw SdkValidationError(
+                field: "has_more",
+                code: "required",
+                message: "Validation failed for 'has_more': value is required"
+            )
+        }
+        guard container.contains(.object) else {
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
+        }
+        guard container.contains(.url) else {
+            throw SdkValidationError(
+                field: "url",
+                code: "required",
+                message: "Validation failed for 'url': value is required"
+            )
+        }
+        data = try container.sdkDecodeRequired(.data)
+        hasMore = try container.sdkDecodeRequired(.hasMore)
+        object = try container.sdkDecodeRequired(.object)
+        url = try container.sdkDecodeRequired(.url)
+        try validateLength("url", url, min: nil, max: 5000)
+    }
+}
+
+public extension CustomerTaxIds {
+    init(data: [TaxId], hasMore: Bool, object: CustomerTaxIdsObject, url: String) throws {
         (self.data, self.hasMore) = (data, hasMore)
         (self.object, self.url) = (object, url)
-            try validateLength("url", self.url, min: nil, max: 5000)
+        try validateLength("url", self.url, min: nil, max: 5000)
     }
 }
 

@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1TreasuryTransactions domain models
+/// V1TreasuryTransactions domain models
 /// Typed representation of the `TreasuryTransactionsResourceAbstractTransactionResourceStatusTransitions` API
 /// schema.
 public struct TreasuryTransactionsResourceAbstractTransactionResourceStatusTransitions: Codable {
@@ -18,20 +18,20 @@ public struct TreasuryTransactionsResourceAbstractTransactionResourceStatusTrans
     }
 
     init() {
-        (self.postedAt, self.voidAt) = (nil, nil)
+        (postedAt, voidAt) = (nil, nil)
     }
 }
 
 public extension TreasuryTransactionsResourceAbstractTransactionResourceStatusTransitions {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.postedAt = try container.sdkDecodeIfPresent(.postedAt)
-        self.voidAt = try container.sdkDecodeIfPresent(.voidAt)
+        postedAt = try container.sdkDecodeIfPresent(.postedAt)
+        voidAt = try container.sdkDecodeIfPresent(.voidAt)
     }
 }
 
 public extension TreasuryTransactionsResourceAbstractTransactionResourceStatusTransitions {
-    public init(postedAt: Int? = nil, voidAt: Int? = nil) {
+    init(postedAt: Int? = nil, voidAt: Int? = nil) {
         self.init()
         (self.postedAt, self.voidAt) = (postedAt, voidAt)
     }
@@ -53,29 +53,43 @@ public struct TreasuryTransactionsResourceBalanceImpact: Codable {
         case outboundPending = "outbound_pending"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension TreasuryTransactionsResourceBalanceImpact {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.cash) else {
-            throw SdkValidationError(field: "cash", code: "required", message: "Validation failed for 'cash': value is required")
-        }
-        guard container.contains(.inboundPending) else {
-            throw SdkValidationError(field: "inbound_pending", code: "required", message: "Validation failed for 'inbound_pending': value is required")
-        }
-        guard container.contains(.outboundPending) else {
-            throw SdkValidationError(field: "outbound_pending", code: "required", message: "Validation failed for 'outbound_pending': value is required")
-        }
-        self.cash = try container.sdkDecodeRequired(.cash)
-        self.inboundPending = try container.sdkDecodeRequired(.inboundPending)
-        self.outboundPending = try container.sdkDecodeRequired(.outboundPending)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension TreasuryTransactionsResourceBalanceImpact {
-    public init(cash: Int, inboundPending: Int, outboundPending: Int) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.cash) else {
+            throw SdkValidationError(
+                field: "cash",
+                code: "required",
+                message: "Validation failed for 'cash': value is required"
+            )
+        }
+        guard container.contains(.inboundPending) else {
+            throw SdkValidationError(
+                field: "inbound_pending",
+                code: "required",
+                message: "Validation failed for 'inbound_pending': value is required"
+            )
+        }
+        guard container.contains(.outboundPending) else {
+            throw SdkValidationError(
+                field: "outbound_pending",
+                code: "required",
+                message: "Validation failed for 'outbound_pending': value is required"
+            )
+        }
+        cash = try container.sdkDecodeRequired(.cash)
+        inboundPending = try container.sdkDecodeRequired(.inboundPending)
+        outboundPending = try container.sdkDecodeRequired(.outboundPending)
+    }
+}
+
+public extension TreasuryTransactionsResourceBalanceImpact {
+    init(cash: Int, inboundPending: Int, outboundPending: Int) {
         (self.cash, self.inboundPending) = (cash, inboundPending)
         self.outboundPending = outboundPending
     }

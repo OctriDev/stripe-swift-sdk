@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1CustomersMethods {
-    public struct PostCustomersCustomerOptions: Codable {
+public extension V1CustomersMethods {
+    struct PostCustomersCustomerOptions: Codable {
         public var customer: String
         public var address: PostCustomersCustomerRequestBodyAddress?
         public var balance: Int?
@@ -40,9 +40,19 @@ extension V1CustomersMethods {
         }
     }
 
-    /// Updates an existing customer using only the fields supplied in the request. Change contact, billing, payment source, invoice, balance, or metadata settings as needed, while omitted fields remain unchanged. Supplying a new `source` can retry eligible past-due subscription invoices, whereas changing `default_source` does not trigger that retry behavior.
+    /// Updates an existing customer using only the fields supplied in the request. Change contact, billing, payment
+    /// source, invoice, balance, or metadata settings as needed, while omitted fields remain unchanged. Supplying a new
+    /// `source` can retry eligible past-due subscription invoices, whereas changing `default_source` does not trigger
+    /// that retry behavior.
     ///
-    /// Updates the specified customer by setting the values of the parameters passed. Any parameters not provided are left unchanged. For example, if you pass the source parameter, that becomes the customer’s active source (such as a card) to be used for all charges in the future. When you update a customer to a new valid card source by passing the source parameter: for each of the customer’s current subscriptions, if the subscription bills automatically and is in the past_due state, then the latest open invoice for the subscription with automatic collection enabled is retried. This retry doesn’t count as an automatic retry, and doesn’t affect the next regularly scheduled payment for the invoice. Changing the default_source for a customer doesn’t trigger this behavior. This request accepts mostly the same arguments as the customer creation call.
+    /// Updates the specified customer by setting the values of the parameters passed. Any parameters not provided are
+    /// left unchanged. For example, if you pass the source parameter, that becomes the customer’s active source (such
+    /// as a card) to be used for all charges in the future. When you update a customer to a new valid card source by
+    /// passing the source parameter: for each of the customer’s current subscriptions, if the subscription bills
+    /// automatically and is in the past_due state, then the latest open invoice for the subscription with automatic
+    /// collection enabled is retried. This retry doesn’t count as an automatic retry, and doesn’t affect the next
+    /// regularly scheduled payment for the invoice. Changing the default_source for a customer doesn’t trigger this
+    /// behavior. This request accepts mostly the same arguments as the customer creation call.
     ///
     /// - Parameters:
     /// - address: The customer's address. Learn about [country-specific
@@ -103,7 +113,10 @@ extension V1CustomersMethods {
     /// - tax: Tax details about the customer.
     /// - taxExempt: The customer's tax exemption. One of `none`, `exempt`, or
     ///   `reverse`.
-    public static func postCustomersCustomer(config: ClientConfig, options: PostCustomersCustomerOptions) async throws -> Customer {
+    static func postCustomersCustomer(
+        config: ClientConfig,
+        options: PostCustomersCustomerOptions
+    ) async throws -> Customer {
         try validateLength("customer", options.customer, max: 5000)
 
         if let defaultAlipayAccount = options.defaultAlipayAccount {
@@ -148,6 +161,14 @@ extension V1CustomersMethods {
 
         let requestBody = PostCustomersCustomerRequestBody(options: options)
 
-        return try (await sdkRequest("POST", ["/v1/customers/", sdkEncodePathSegment(sdkWireString(options.customer))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostCustomersCustomer")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/customers/", sdkEncodePathSegment(sdkWireString(options.customer))].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostCustomersCustomer"
+        )).data
     }
 }

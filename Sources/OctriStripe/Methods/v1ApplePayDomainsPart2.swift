@@ -6,8 +6,9 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1ApplePayDomainsMethods {
-    /// Lists Apple Pay domains registered for your account. Use `domain_name` to filter the results and `starting_after` or `ending_before` to navigate the cursor-based list; set `limit` to control the page size.
+public extension V1ApplePayDomainsMethods {
+    /// Lists Apple Pay domains registered for your account. Use `domain_name` to filter the results and
+    /// `starting_after` or `ending_before` to navigate the cursor-based list; set `limit` to control the page size.
     ///
     /// List apple pay domains.
     ///
@@ -25,20 +26,27 @@ extension V1ApplePayDomainsMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    public static func getApplePayDomains(config: ClientConfig, domainName: String?, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetApplePayDomainsResponse {
-        if let domainName = domainName {
+    static func getApplePayDomains(
+        config: ClientConfig,
+        domainName: String?,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        startingAfter: String?
+    ) async throws -> GetApplePayDomainsResponse {
+        if let domainName {
             try validateLength("domain_name", domainName, max: 5000)
         }
 
-        if let endingBefore = endingBefore {
+        if let endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let startingAfter = startingAfter {
+        if let startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try (await sdkRequest("GET", "/v1/apple_pay/domains", config: config, query: [
+        return try await (sdkRequest("GET", "/v1/apple_pay/domains", config: config, query: [
             SdkQueryParameter("domain_name", value: domainName),
             SdkQueryParameter("ending_before", value: endingBefore),
             SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),

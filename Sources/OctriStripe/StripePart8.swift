@@ -9,11 +9,27 @@ public class V1CreditNotesLinesNamespace {
         self.config = config
     }
 
-/// Lists the line items associated with a credit note. Use `starting_after` or `ending_before` to traverse the paginated results and `limit` to control the page size. The response includes pagination metadata and the credit note line item objects.
+    /// Lists the line items associated with a credit note. Use `starting_after` or `ending_before` to traverse the
+    /// paginated results and `limit` to control the page size. The response includes pagination metadata and the credit
+    /// note line item objects.
     ///
-    /// When retrieving a credit note, you’ll get a lines property containing the first handful of those items. There is also a URL where you can retrieve the full (paginated) list of line items.
-    public func getCreditNotesCreditNote(creditNote: String, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetCreditNotesCreditNoteLinesResponse {
-        return try await V1CreditNotesLinesMethods.getCreditNotesCreditNoteLines(config: config, creditNote: creditNote, endingBefore: endingBefore, expand: expand, limit: limit, startingAfter: startingAfter)
+    /// When retrieving a credit note, you’ll get a lines property containing the first handful of those items. There is
+    /// also a URL where you can retrieve the full (paginated) list of line items.
+    public func getCreditNotesCreditNote(
+        creditNote: String,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        startingAfter: String?
+    ) async throws -> GetCreditNotesCreditNoteLinesResponse {
+        try await V1CreditNotesLinesMethods.getCreditNotesCreditNoteLines(
+            config: config,
+            creditNote: creditNote,
+            endingBefore: endingBefore,
+            expand: expand,
+            limit: limit,
+            startingAfter: startingAfter
+        )
     }
 }
 
@@ -23,11 +39,12 @@ public class V1CreditNotesVoidNamespace {
         self.config = config
     }
 
-/// Triggers voiding for an existing credit note. Use `expand` when the response needs selected related fields expanded. The operation returns the credit note after its void state has been applied.
+    /// Triggers voiding for an existing credit note. Use `expand` when the response needs selected related fields
+    /// expanded. The operation returns the credit note after its void state has been applied.
     ///
     /// Marks a credit note as void. Learn more about voiding credit notes.
     public func postCreditNotesId(id: String, expand: [String]?) async throws -> CreditNote {
-        return try await V1CreditNotesVoidMethods.postCreditNotesIdVoid(config: config, id: id, expand: expand)
+        try await V1CreditNotesVoidMethods.postCreditNotesIdVoid(config: config, id: id, expand: expand)
     }
 }
 
@@ -43,30 +60,59 @@ public class V1CreditNotesNamespace {
         void = V1CreditNotesVoidNamespace(config: config)
     }
 
-/// Lists credit notes that match the supplied filters. Filter by creation interval, customer, customer account, or invoice, and use `starting_after` or `ending_before` to paginate the results.
+    /// Lists credit notes that match the supplied filters. Filter by creation interval, customer, customer account, or
+    /// invoice, and use `starting_after` or `ending_before` to paginate the results.
     ///
     /// Returns a list of credit notes.
     public func get(options: V1CreditNotesMethods.GetCreditNotesOptions) async throws -> GetCreditNotesResponse {
-        return try await V1CreditNotesMethods.getCreditNotes(config: config, options: options)
+        try await V1CreditNotesMethods.getCreditNotes(config: config, options: options)
     }
 
-/// Issue a credit note to adjust the amount of a finalized invoice. A credit note will first reduce the invoice’s amount_remaining (and amount_due ), but not below zero. This amount is indicated by the credit note’s pre_payment_amount . The excess amount is indicated by post_payment_amount , and it can result in any combination of the following: Refunds: create a new refund (using refund_amount ) or link existing refunds (using refunds ). Customer balance credit: credit the customer’s balance (using credit_amount ) which will be automatically applied to their next invoice when it’s finalized. Outside of Stripe credit: record the amount that is or will be credited outside of Stripe (using out_of_band_amount ). The sum of refunds, customer balance credits, and outside of Stripe credits must equal the post_payment_amount . You may issue multiple credit notes for an invoice. Each credit note may increment the invoice’s pre_payment_credit_notes_amount , post_payment_credit_notes_amount , or both, depending on the invoice’s amount_remaining at the time of credit note creation. For invoices that also have refunds created through the Refund API, the credit note API subtracts those refund amounts from the maximum creditable amount. This prevents the combined credit notes and refunds from exceeding the invoice amount. If you use both, ensure the combined total does not exceed the invoice’s paid amount.
+    /// Issue a credit note to adjust the amount of a finalized invoice. A credit note will first reduce the invoice’s
+    /// amount_remaining (and amount_due ), but not below zero. This amount is indicated by the credit note’s
+    /// pre_payment_amount . The excess amount is indicated by post_payment_amount , and it can result in any
+    /// combination of the following: Refunds: create a new refund (using refund_amount ) or link existing refunds
+    /// (using refunds ). Customer balance credit: credit the customer’s balance (using credit_amount ) which will be
+    /// automatically applied to their next invoice when it’s finalized. Outside of Stripe credit: record the amount
+    /// that is or will be credited outside of Stripe (using out_of_band_amount ). The sum of refunds, customer balance
+    /// credits, and outside of Stripe credits must equal the post_payment_amount . You may issue multiple credit notes
+    /// for an invoice. Each credit note may increment the invoice’s pre_payment_credit_notes_amount ,
+    /// post_payment_credit_notes_amount , or both, depending on the invoice’s amount_remaining at the time of credit
+    /// note creation. For invoices that also have refunds created through the Refund API, the credit note API subtracts
+    /// those refund amounts from the maximum creditable amount. This prevents the combined credit notes and refunds
+    /// from exceeding the invoice amount. If you use both, ensure the combined total does not exceed the invoice’s paid
+    /// amount.
     public func post(options: V1CreditNotesMethods.PostCreditNotesOptions) async throws -> CreditNote {
-        return try await V1CreditNotesMethods.postCreditNotes(config: config, options: options)
+        try await V1CreditNotesMethods.postCreditNotes(config: config, options: options)
     }
 
-/// Retrieves a credit note by its identifier. Use `expand` when you need selected related fields included in the response. The response contains the credit note's amounts, currency, customer, invoice, line items, and lifecycle data.
+    /// Retrieves a credit note by its identifier. Use `expand` when you need selected related fields included in the
+    /// response. The response contains the credit note's amounts, currency, customer, invoice, line items, and
+    /// lifecycle data.
     ///
     /// Retrieves the credit note object with the given identifier.
     public func getId(id: String, expand: [String]?) async throws -> CreditNote {
-        return try await V1CreditNotesMethods.getCreditNotesId(config: config, id: id, expand: expand)
+        try await V1CreditNotesMethods.getCreditNotesId(config: config, id: id, expand: expand)
     }
 
-/// Updates an existing credit note's editable fields. Supply `memo` to change the customer-facing text or `metadata` to attach structured key-value pairs, and use `expand` to request expanded response fields. Fields not supplied remain unchanged.
+    /// Updates an existing credit note's editable fields. Supply `memo` to change the customer-facing text or
+    /// `metadata` to attach structured key-value pairs, and use `expand` to request expanded response fields. Fields
+    /// not supplied remain unchanged.
     ///
     /// Updates an existing credit note.
-    public func postId(id: String, expand: [String]?, memo: String?, metadata: [String: String]?) async throws -> CreditNote {
-        return try await V1CreditNotesMethods.postCreditNotesId(config: config, id: id, expand: expand, memo: memo, metadata: metadata)
+    public func postId(
+        id: String,
+        expand: [String]?,
+        memo: String?,
+        metadata: [String: String]?
+    ) async throws -> CreditNote {
+        try await V1CreditNotesMethods.postCreditNotesId(
+            config: config,
+            id: id,
+            expand: expand,
+            memo: memo,
+            metadata: metadata
+        )
     }
 }
 
@@ -76,9 +122,21 @@ public class V1CustomerSessionsNamespace {
         self.config = config
     }
 
-/// Creates a Customer Session object that includes a single-use client secret that you can use on your front-end to grant client-side API access for certain customer resources.
-    public func post(components: PostCustomerSessionsRequestBodyComponents, customer: String?, customerAccount: String?, expand: [String]?) async throws -> CustomerSession {
-        return try await V1CustomerSessionsMethods.postCustomerSessions(config: config, components: components, customer: customer, customerAccount: customerAccount, expand: expand)
+    /// Creates a Customer Session object that includes a single-use client secret that you can use on your front-end to
+    /// grant client-side API access for certain customer resources.
+    public func post(
+        components: PostCustomerSessionsRequestBodyComponents,
+        customer: String?,
+        customerAccount: String?,
+        expand: [String]?
+    ) async throws -> CustomerSession {
+        try await V1CustomerSessionsMethods.postCustomerSessions(
+            config: config,
+            components: components,
+            customer: customer,
+            customerAccount: customerAccount,
+            expand: expand
+        )
     }
 }
 
@@ -88,18 +146,50 @@ public class V1CustomersSearchNamespace {
         self.config = config
     }
 
-/// Searches customers using the customer search query language. Provide `query` to filter the customer collection, and use `page` with the returned `next_page` value to retrieve subsequent result pages. Search results may lag behind recent customer changes and are not suitable for strict read-after-write flows.
+    /// Searches customers using the customer search query language. Provide `query` to filter the customer collection,
+    /// and use `page` with the returned `next_page` value to retrieve subsequent result pages. Search results may lag
+    /// behind recent customer changes and are not suitable for strict read-after-write flows.
     ///
-    /// Search for customers you’ve previously created using Stripe’s Search Query Language. Don’t use search in read-after-write flows where strict consistency is necessary. Under normal operating conditions, data is searchable in less than a minute. Occasionally, propagation of new or updated data can be up to an hour behind during outages. Search functionality is not available to merchants in India.
-    public func getCustomers(query: String, expand: [String]?, limit: Int?, page: String?) async throws -> GetCustomersSearchResponse {
-        return try await V1CustomersSearchMethods.getCustomersSearch(config: config, query: query, expand: expand, limit: limit, page: page)
+    /// Search for customers you’ve previously created using Stripe’s Search Query Language. Don’t use search in
+    /// read-after-write flows where strict consistency is necessary. Under normal operating conditions, data is
+    /// searchable in less than a minute. Occasionally, propagation of new or updated data can be up to an hour behind
+    /// during outages. Search functionality is not available to merchants in India.
+    public func getCustomers(
+        query: String,
+        expand: [String]?,
+        limit: Int?,
+        page: String?
+    ) async throws -> GetCustomersSearchResponse {
+        try await V1CustomersSearchMethods.getCustomersSearch(
+            config: config,
+            query: query,
+            expand: expand,
+            limit: limit,
+            page: page
+        )
     }
 
-/// Searches customers using the customer search query language. Provide `query` to filter the customer collection, and use `page` with the returned `next_page` value to retrieve subsequent result pages. Search results may lag behind recent customer changes and are not suitable for strict read-after-write flows.
+    /// Searches customers using the customer search query language. Provide `query` to filter the customer collection,
+    /// and use `page` with the returned `next_page` value to retrieve subsequent result pages. Search results may lag
+    /// behind recent customer changes and are not suitable for strict read-after-write flows.
     ///
-    /// Search for customers you’ve previously created using Stripe’s Search Query Language. Don’t use search in read-after-write flows where strict consistency is necessary. Under normal operating conditions, data is searchable in less than a minute. Occasionally, propagation of new or updated data can be up to an hour behind during outages. Search functionality is not available to merchants in India.
-    public func getCustomersPaginated(query: String, expand: [String]?, limit: Int?, page: String?) -> AsyncThrowingStream<Customer, Swift.Error> {
-        return V1CustomersSearchMethods.getCustomersSearchPaginated(config: config, query: query, expand: expand, limit: limit, page: page)
+    /// Search for customers you’ve previously created using Stripe’s Search Query Language. Don’t use search in
+    /// read-after-write flows where strict consistency is necessary. Under normal operating conditions, data is
+    /// searchable in less than a minute. Occasionally, propagation of new or updated data can be up to an hour behind
+    /// during outages. Search functionality is not available to merchants in India.
+    public func getCustomersPaginated(
+        query: String,
+        expand: [String]?,
+        limit: Int?,
+        page: String?
+    ) -> AsyncThrowingStream<Customer, Swift.Error> {
+        V1CustomersSearchMethods.getCustomersSearchPaginated(
+            config: config,
+            query: query,
+            expand: expand,
+            limit: limit,
+            page: page
+        )
     }
 }
 
@@ -109,32 +199,90 @@ public class V1CustomersBalanceTransactionsNamespace {
         self.config = config
     }
 
-/// Lists transactions that have updated a customer's credit balance. Use `invoice` and `created` to filter the results, and use cursor parameters to page through the transaction history.
+    /// Lists transactions that have updated a customer's credit balance. Use `invoice` and `created` to filter the
+    /// results, and use cursor parameters to page through the transaction history.
     ///
     /// Returns a list of transactions that updated the customer’s balances.
-    public func getCustomersCustomer(customer: String, created: GetCustomersCustomerBalanceTransactionsParameter?, endingBefore: String?, expand: [String]?, invoice: String?, limit: Int?, startingAfter: String?) async throws -> GetCustomersCustomerBalanceTransactionsResponse {
-        return try await V1CustomersBalanceTransactionsMethods.getCustomersCustomerBalanceTransactions(config: config, customer: customer, created: created, endingBefore: endingBefore, expand: expand, invoice: invoice, limit: limit, startingAfter: startingAfter)
+    public func getCustomersCustomer(
+        customer: String,
+        created: GetCustomersCustomerBalanceTransactionsParameter?,
+        endingBefore: String?,
+        expand: [String]?,
+        invoice: String?,
+        limit: Int?,
+        startingAfter: String?
+    ) async throws -> GetCustomersCustomerBalanceTransactionsResponse {
+        try await V1CustomersBalanceTransactionsMethods.getCustomersCustomerBalanceTransactions(
+            config: config,
+            customer: customer,
+            created: created,
+            endingBefore: endingBefore,
+            expand: expand,
+            invoice: invoice,
+            limit: limit,
+            startingAfter: startingAfter
+        )
     }
 
-/// Creates an immutable transaction that changes a customer's credit balance. Supply `amount` and `currency`, and optionally add a `description` or `metadata` to explain or categorize the adjustment.
+    /// Creates an immutable transaction that changes a customer's credit balance. Supply `amount` and `currency`, and
+    /// optionally add a `description` or `metadata` to explain or categorize the adjustment.
     ///
     /// Creates an immutable transaction that updates the customer’s credit balance.
-    public func postCustomersCustomer(customer: String, amount: Int, currency: String, description: String?, expand: [String]?, metadata: PostCustomersCustomerBalanceTransactionsRequestBodyMetadata?) async throws -> CustomerBalanceTransaction {
-        return try await V1CustomersBalanceTransactionsMethods.postCustomersCustomerBalanceTransactions(config: config, customer: customer, amount: amount, currency: currency, description: description, expand: expand, metadata: metadata)
+    public func postCustomersCustomer(
+        customer: String,
+        amount: Int,
+        currency: String,
+        description: String?,
+        expand: [String]?,
+        metadata: PostCustomersCustomerBalanceTransactionsRequestBodyMetadata?
+    ) async throws -> CustomerBalanceTransaction {
+        try await V1CustomersBalanceTransactionsMethods.postCustomersCustomerBalanceTransactions(
+            config: config,
+            customer: customer,
+            amount: amount,
+            currency: currency,
+            description: description,
+            expand: expand,
+            metadata: metadata
+        )
     }
 
-/// Retrieves one customer balance transaction that changed a customer's credit balance. Use `expand` when you need selected response fields returned in expanded form.
+    /// Retrieves one customer balance transaction that changed a customer's credit balance. Use `expand` when you need
+    /// selected response fields returned in expanded form.
     ///
     /// Retrieves a specific customer balance transaction that updated the customer’s balances.
-    public func getCustomersCustomerTransaction(customer: String, transaction: String, expand: [String]?) async throws -> CustomerBalanceTransaction {
-        return try await V1CustomersBalanceTransactionsMethods.getCustomersCustomerBalanceTransactionsTransaction(config: config, customer: customer, transaction: transaction, expand: expand)
+    public func getCustomersCustomerTransaction(
+        customer: String,
+        transaction: String,
+        expand: [String]?
+    ) async throws -> CustomerBalanceTransaction {
+        try await V1CustomersBalanceTransactionsMethods.getCustomersCustomerBalanceTransactionsTransaction(
+            config: config,
+            customer: customer,
+            transaction: transaction,
+            expand: expand
+        )
     }
 
-/// Updates the mutable fields of a customer credit balance transaction. Only `description` and `metadata` can be changed; the transaction's balance effect and other immutable fields remain unchanged.
+    /// Updates the mutable fields of a customer credit balance transaction. Only `description` and `metadata` can be
+    /// changed; the transaction's balance effect and other immutable fields remain unchanged.
     ///
     /// Most credit balance transaction fields are immutable, but you may update its description and metadata .
-    public func postCustomersCustomerTransaction(customer: String, transaction: String, description: String?, expand: [String]?, metadata: PostCustomersCustomerBalanceTransactionsTransactionRequestBodyMetadata?) async throws -> CustomerBalanceTransaction {
-        return try await V1CustomersBalanceTransactionsMethods.postCustomersCustomerBalanceTransactionsTransaction(config: config, customer: customer, transaction: transaction, description: description, expand: expand, metadata: metadata)
+    public func postCustomersCustomerTransaction(
+        customer: String,
+        transaction: String,
+        description: String?,
+        expand: [String]?,
+        metadata: PostCustomersCustomerBalanceTransactionsTransactionRequestBodyMetadata?
+    ) async throws -> CustomerBalanceTransaction {
+        try await V1CustomersBalanceTransactionsMethods.postCustomersCustomerBalanceTransactionsTransaction(
+            config: config,
+            customer: customer,
+            transaction: transaction,
+            description: description,
+            expand: expand,
+            metadata: metadata
+        )
     }
 }
 
@@ -144,11 +292,24 @@ public class V1CustomersBankAccountsVerifyNamespace {
         self.config = config
     }
 
-/// Verifies a bank account belonging to a customer using the microdeposit amounts sent to that account. Supply `amounts` when verification requires the two microdeposit values, and use `expand` to request expanded response fields. The response identifies the verified bank account and its verification status.
+    /// Verifies a bank account belonging to a customer using the microdeposit amounts sent to that account. Supply
+    /// `amounts` when verification requires the two microdeposit values, and use `expand` to request expanded response
+    /// fields. The response identifies the verified bank account and its verification status.
     ///
     /// Verify a specified bank account for a given customer.
-    public func postCustomersCustomerBankAccountsId(customer: String, id: String, amounts: [Int]?, expand: [String]?) async throws -> BankAccount {
-        return try await V1CustomersBankAccountsVerifyMethods.postCustomersCustomerBankAccountsIdVerify(config: config, customer: customer, id: id, amounts: amounts, expand: expand)
+    public func postCustomersCustomerBankAccountsId(
+        customer: String,
+        id: String,
+        amounts: [Int]?,
+        expand: [String]?
+    ) async throws -> BankAccount {
+        try await V1CustomersBankAccountsVerifyMethods.postCustomersCustomerBankAccountsIdVerify(
+            config: config,
+            customer: customer,
+            id: id,
+            amounts: amounts,
+            expand: expand
+        )
     }
 }
 
@@ -160,42 +321,99 @@ public class V1CustomersBankAccountsNamespace {
         verify = V1CustomersBankAccountsVerifyNamespace(config: config)
     }
 
-/// Lists the bank accounts belonging to a customer. Use `limit` with `starting_after` or `ending_before` to page through accounts beyond the 10 most recent sources shown directly on the customer.
+    /// Lists the bank accounts belonging to a customer. Use `limit` with `starting_after` or `ending_before` to page
+    /// through accounts beyond the 10 most recent sources shown directly on the customer.
     ///
-    /// You can see a list of the bank accounts belonging to a Customer. Note that the 10 most recent sources are always available by default on the Customer. If you need more than those 10, you can use this API method and the limit and starting_after parameters to page through additional bank accounts.
+    /// You can see a list of the bank accounts belonging to a Customer. Note that the 10 most recent sources are always
+    /// available by default on the Customer. If you need more than those 10, you can use this API method and the limit
+    /// and starting_after parameters to page through additional bank accounts.
     ///
     /// - Warning: This operation is deprecated and may be removed in a future release.
-    public func getCustomersCustomer(customer: String, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetCustomersCustomerBankAccountsResponse {
-        return try await V1CustomersBankAccountsMethods.getCustomersCustomerBankAccounts(config: config, customer: customer, endingBefore: endingBefore, expand: expand, limit: limit, startingAfter: startingAfter)
+    public func getCustomersCustomer(
+        customer: String,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        startingAfter: String?
+    ) async throws -> GetCustomersCustomerBankAccountsResponse {
+        try await V1CustomersBankAccountsMethods.getCustomersCustomerBankAccounts(
+            config: config,
+            customer: customer,
+            endingBefore: endingBefore,
+            expand: expand,
+            limit: limit,
+            startingAfter: startingAfter
+        )
     }
 
-/// Creates a payment source for a customer, such as a bank account or card. Provide a token or source details in the appropriate field, and a newly created source becomes the customer's default only when no default source currently exists.
+    /// Creates a payment source for a customer, such as a bank account or card. Provide a token or source details in
+    /// the appropriate field, and a newly created source becomes the customer's default only when no default source
+    /// currently exists.
     ///
-    /// When you create a new credit card, you must specify a customer or recipient on which to create it. If the card’s owner has no default card, then the new card will become the default. However, if the owner already has a default, then it will not change. To change the default, you should update the customer to have a new default_source .
-    public func postCustomersCustomer(customer: String, alipayAccount: String?, bankAccount: PostCustomersCustomerBankAccountsRequestBodyBankAccount?, card: PostCustomersCustomerBankAccountsRequestBodyCard?, expand: [String]?, metadata: [String: String]?, source: String?) async throws -> PaymentSource {
-        return try await V1CustomersBankAccountsMethods.postCustomersCustomerBankAccounts(config: config, customer: customer, alipayAccount: alipayAccount, bankAccount: bankAccount, card: card, expand: expand, metadata: metadata, source: source)
+    /// When you create a new credit card, you must specify a customer or recipient on which to create it. If the card’s
+    /// owner has no default card, then the new card will become the default. However, if the owner already has a
+    /// default, then it will not change. To change the default, you should update the customer to have a new
+    /// default_source .
+    public func postCustomersCustomer(
+        customer: String,
+        alipayAccount: String?,
+        bankAccount: PostCustomersCustomerBankAccountsRequestBodyBankAccount?,
+        card: PostCustomersCustomerBankAccountsRequestBodyCard?,
+        expand: [String]?,
+        metadata: [String: String]?,
+        source: String?
+    ) async throws -> PaymentSource {
+        try await V1CustomersBankAccountsMethods.postCustomersCustomerBankAccounts(
+            config: config,
+            customer: customer,
+            alipayAccount: alipayAccount,
+            bankAccount: bankAccount,
+            card: card,
+            expand: expand,
+            metadata: metadata,
+            source: source
+        )
     }
 
-/// Deletes a payment source from a customer. Use `expand` if the deleted source response needs selected related fields expanded, and treat the deletion as a permanent removal from the customer's sources.
+    /// Deletes a payment source from a customer. Use `expand` if the deleted source response needs selected related
+    /// fields expanded, and treat the deletion as a permanent removal from the customer's sources.
     ///
     /// Delete a specified source for a given customer.
-    public func deleteCustomersCustomerId(customer: String, id: String, expand: [String]?) async throws -> DeleteCustomersCustomerBankAccountsIdResponse {
-        return try await V1CustomersBankAccountsMethods.deleteCustomersCustomerBankAccountsId(config: config, customer: customer, id: id, expand: expand)
+    public func deleteCustomersCustomerId(
+        customer: String,
+        id: String,
+        expand: [String]?
+    ) async throws -> DeleteCustomersCustomerBankAccountsIdResponse {
+        try await V1CustomersBankAccountsMethods.deleteCustomersCustomerBankAccountsId(
+            config: config,
+            customer: customer,
+            id: id,
+            expand: expand
+        )
     }
 
-/// Retrieves a specific bank account associated with a customer. Use `expand` to request selected fields in expanded form when additional related object details are needed.
+    /// Retrieves a specific bank account associated with a customer. Use `expand` to request selected fields in
+    /// expanded form when additional related object details are needed.
     ///
-    /// By default, you can see the 10 most recent sources stored on a Customer directly on the object, but you can also retrieve details about a specific bank account stored on the Stripe account.
+    /// By default, you can see the 10 most recent sources stored on a Customer directly on the object, but you can also
+    /// retrieve details about a specific bank account stored on the Stripe account.
     ///
     /// - Warning: This operation is deprecated and may be removed in a future release.
     public func getCustomersCustomerId(customer: String, id: String, expand: [String]?) async throws -> BankAccount {
-        return try await V1CustomersBankAccountsMethods.getCustomersCustomerBankAccountsId(config: config, customer: customer, id: id, expand: expand)
+        try await V1CustomersBankAccountsMethods.getCustomersCustomerBankAccountsId(
+            config: config,
+            customer: customer,
+            id: id,
+            expand: expand
+        )
     }
 
-/// Updates a payment source associated with a customer. Submit only the mutable source attributes you want to change, such as account-holder details, billing address, expiration values, owner information, or metadata.
+    /// Updates a payment source associated with a customer. Submit only the mutable source attributes you want to
+    /// change, such as account-holder details, billing address, expiration values, owner information, or metadata.
     ///
     /// Update a specified source for a given customer.
-    public func postCustomersCustomerId(options: V1CustomersBankAccountsMethods.PostCustomersCustomerBankAccountsIdOptions) async throws -> PostCustomersCustomerBankAccountsIdResponse {
-        return try await V1CustomersBankAccountsMethods.postCustomersCustomerBankAccountsId(config: config, options: options)
+    public func postCustomersCustomerId(options: V1CustomersBankAccountsMethods
+        .PostCustomersCustomerBankAccountsIdOptions) async throws -> PostCustomersCustomerBankAccountsIdResponse {
+        try await V1CustomersBankAccountsMethods.postCustomersCustomerBankAccountsId(config: config, options: options)
     }
 }

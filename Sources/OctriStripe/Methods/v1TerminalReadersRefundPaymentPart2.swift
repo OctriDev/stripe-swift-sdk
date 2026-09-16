@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1TerminalReadersRefundPaymentMethods {
-    public struct PostTerminalReadersReaderRefundPaymentOptions: Codable {
+public extension V1TerminalReadersRefundPaymentMethods {
+    struct PostTerminalReadersReaderRefundPaymentOptions: Codable {
         public var reader: String
         public var amount: Int?
         public var charge: String?
@@ -23,7 +23,9 @@ extension V1TerminalReadersRefundPaymentMethods {
         }
     }
 
-    /// Triggers an in-person refund on a Reader for a Charge or PaymentIntent. Provide `charge` or `payment_intent` and optionally use `amount`, refund configuration, metadata, or transfer and application-fee options to control the refund. The Reader returns its current state after the refund flow is initiated.
+    /// Triggers an in-person refund on a Reader for a Charge or PaymentIntent. Provide `charge` or `payment_intent` and
+    /// optionally use `amount`, refund configuration, metadata, or transfer and application-fee options to control the
+    /// refund. The Reader returns its current state after the refund flow is initiated.
     ///
     /// Initiates an in-person refund on a Reader. See Refund an Interac Payment for more details.
     ///
@@ -51,7 +53,10 @@ extension V1TerminalReadersRefundPaymentMethods {
     ///   proportionally to the amount being refunded (either the entire or partial
     ///   amount). A transfer can be reversed only by the application that created the
     ///   charge.
-    public static func postTerminalReadersReaderRefundPayment(config: ClientConfig, options: PostTerminalReadersReaderRefundPaymentOptions) async throws -> TerminalReader {
+    static func postTerminalReadersReaderRefundPayment(
+        config: ClientConfig,
+        options: PostTerminalReadersReaderRefundPaymentOptions
+    ) async throws -> TerminalReader {
         try validateLength("reader", options.reader, max: 5000)
 
         if let charge = options.charge {
@@ -64,6 +69,14 @@ extension V1TerminalReadersRefundPaymentMethods {
 
         let requestBody = PostTerminalReadersReaderRefundPaymentRequestBody(options: options)
 
-        return try (await sdkRequest("POST", ["/v1/terminal/readers/", sdkEncodePathSegment(sdkWireString(options.reader)), "/refund_payment"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTerminalReadersReaderRefundPayment")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/terminal/readers/", sdkEncodePathSegment(sdkWireString(options.reader)), "/refund_payment"].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostTerminalReadersReaderRefundPayment"
+        )).data
     }
 }

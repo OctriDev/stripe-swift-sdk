@@ -7,29 +7,35 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1TreasuryOutboundPayments operation model declarations
+/// Canonical v1TreasuryOutboundPayments operation model declarations
 public extension PostTreasuryOutboundPaymentsRequestBodyDestinationPaymentMethX67cfdd9b2d {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.accountHolderType = try container.sdkDecodeIfPresent(.accountHolderType)
-        self.accountNumber = try container.sdkDecodeIfPresent(.accountNumber)
-        self.accountType = try container.sdkDecodeIfPresent(.accountType)
-        self.financialConnectionsAccount = try container.sdkDecodeIfPresent(.financialConnectionsAccount)
-        self.routingNumber = try container.sdkDecodeIfPresent(.routingNumber)
-        if let value = self.accountNumber {
+        accountHolderType = try container.sdkDecodeIfPresent(.accountHolderType)
+        accountNumber = try container.sdkDecodeIfPresent(.accountNumber)
+        accountType = try container.sdkDecodeIfPresent(.accountType)
+        financialConnectionsAccount = try container.sdkDecodeIfPresent(.financialConnectionsAccount)
+        routingNumber = try container.sdkDecodeIfPresent(.routingNumber)
+        if let value = accountNumber {
             try validateLength("account_number", value, min: nil, max: 5000)
         }
-        if let value = self.financialConnectionsAccount {
+        if let value = financialConnectionsAccount {
             try validateLength("financial_connections_account", value, min: nil, max: 5000)
         }
-        if let value = self.routingNumber {
+        if let value = routingNumber {
             try validateLength("routing_number", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension PostTreasuryOutboundPaymentsRequestBodyDestinationPaymentMethX67cfdd9b2d {
-    public init(accountHolderType: PostTreasuryOutboundPaymentsRequestBodyDestinationPaymentMethX435c615aa3? = nil, accountNumber: String? = nil, accountType: PostTreasuryOutboundPaymentsRequestBodyDestinationPaymentMethXb0f734f605? = nil, financialConnectionsAccount: String? = nil, routingNumber: String? = nil) throws {
+    init(
+        accountHolderType: PostTreasuryOutboundPaymentsRequestBodyDestinationPaymentMethX435c615aa3? = nil,
+        accountNumber: String? = nil,
+        accountType: PostTreasuryOutboundPaymentsRequestBodyDestinationPaymentMethXb0f734f605? = nil,
+        financialConnectionsAccount: String? = nil,
+        routingNumber: String? = nil
+    ) throws {
         self.init()
         (self.accountHolderType, self.accountNumber) = (accountHolderType, accountNumber)
         (self.accountType, self.financialConnectionsAccount) = (accountType, financialConnectionsAccount)

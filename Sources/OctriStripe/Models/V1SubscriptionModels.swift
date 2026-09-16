@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1Subscription domain models
+/// V1Subscription domain models
 /// Typed representation of the `SubscriptionBillingThresholds` API schema.
 public struct SubscriptionBillingThresholds: Codable {
     /// Monetary threshold that triggers the subscription to create an invoice
@@ -20,20 +20,20 @@ public struct SubscriptionBillingThresholds: Codable {
     }
 
     init() {
-        (self.amountGte, self.resetBillingCycleAnchor) = (nil, nil)
+        (amountGte, resetBillingCycleAnchor) = (nil, nil)
     }
 }
 
 public extension SubscriptionBillingThresholds {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.amountGte = try container.sdkDecodeIfPresent(.amountGte)
-        self.resetBillingCycleAnchor = try container.sdkDecodeIfPresent(.resetBillingCycleAnchor)
+        amountGte = try container.sdkDecodeIfPresent(.amountGte)
+        resetBillingCycleAnchor = try container.sdkDecodeIfPresent(.resetBillingCycleAnchor)
     }
 }
 
 public extension SubscriptionBillingThresholds {
-    public init(amountGte: Int? = nil, resetBillingCycleAnchor: Bool? = nil) {
+    init(amountGte: Int? = nil, resetBillingCycleAnchor: Bool? = nil) {
         self.init()
         (self.amountGte, self.resetBillingCycleAnchor) = (amountGte, resetBillingCycleAnchor)
     }
@@ -49,19 +49,19 @@ public struct SubscriptionItemBillingThresholds: Codable {
     }
 
     init() {
-        self.usageGte = nil
+        usageGte = nil
     }
 }
 
 public extension SubscriptionItemBillingThresholds {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.usageGte = try container.sdkDecodeIfPresent(.usageGte)
+        usageGte = try container.sdkDecodeIfPresent(.usageGte)
     }
 }
 
 public extension SubscriptionItemBillingThresholds {
-    public init(usageGte: Int? = nil) {
+    init(usageGte: Int? = nil) {
         self.init()
         self.usageGte = usageGte
     }
@@ -69,13 +69,13 @@ public extension SubscriptionItemBillingThresholds {
 
 /// Typed representation of the `SubscriptionPaymentMethodOptionsBillie` API schema.
 public struct SubscriptionPaymentMethodOptionsBillie: Codable {
-
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension SubscriptionPaymentMethodOptionsBillie {
-    public init() {
-    }
+    init() {}
 }
 
 /// Typed representation of the `SubscriptionPaymentMethodOptionsCard` API schema.
@@ -98,21 +98,25 @@ public struct SubscriptionPaymentMethodOptionsCard: Codable {
     }
 
     init() {
-        (self.mandateOptions, self.network, self.requestThreeDSecure) = (nil, nil, nil)
+        (mandateOptions, network, requestThreeDSecure) = (nil, nil, nil)
     }
 }
 
 public extension SubscriptionPaymentMethodOptionsCard {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.mandateOptions = try container.sdkDecodeIfPresent(.mandateOptions)
-        self.network = try container.sdkDecodeIfPresent(.network)
-        self.requestThreeDSecure = try container.sdkDecodeIfPresent(.requestThreeDSecure)
+        mandateOptions = try container.sdkDecodeIfPresent(.mandateOptions)
+        network = try container.sdkDecodeIfPresent(.network)
+        requestThreeDSecure = try container.sdkDecodeIfPresent(.requestThreeDSecure)
     }
 }
 
 public extension SubscriptionPaymentMethodOptionsCard {
-    public init(mandateOptions: InvoiceMandateOptionsCard? = nil, network: SubscriptionPaymentMethodOptionsCardNetwork? = nil, requestThreeDSecure: SubscriptionPaymentMethodOptionsCardRequestThreeDSecure? = nil) {
+    init(
+        mandateOptions: InvoiceMandateOptionsCard? = nil,
+        network: SubscriptionPaymentMethodOptionsCardNetwork? = nil,
+        requestThreeDSecure: SubscriptionPaymentMethodOptionsCardRequestThreeDSecure? = nil
+    ) {
         self.init()
         (self.mandateOptions, self.network) = (mandateOptions, network)
         self.requestThreeDSecure = requestThreeDSecure
@@ -138,25 +142,30 @@ public struct SubscriptionPaymentMethodOptionsMandateOptionsPix: Codable {
     }
 
     init() {
-        (self.amount, self.amountIncludesIof, self.endDate, self.paymentSchedule) = (nil, nil, nil, nil)
+        (amount, amountIncludesIof, endDate, paymentSchedule) = (nil, nil, nil, nil)
     }
 }
 
 public extension SubscriptionPaymentMethodOptionsMandateOptionsPix {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.amount = try container.sdkDecodeIfPresent(.amount)
-        self.amountIncludesIof = try container.sdkDecodeIfPresent(.amountIncludesIof)
-        self.endDate = try container.sdkDecodeIfPresent(.endDate)
-        self.paymentSchedule = try container.sdkDecodeIfPresent(.paymentSchedule)
-        if let value = self.endDate {
+        amount = try container.sdkDecodeIfPresent(.amount)
+        amountIncludesIof = try container.sdkDecodeIfPresent(.amountIncludesIof)
+        endDate = try container.sdkDecodeIfPresent(.endDate)
+        paymentSchedule = try container.sdkDecodeIfPresent(.paymentSchedule)
+        if let value = endDate {
             try validateLength("end_date", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension SubscriptionPaymentMethodOptionsMandateOptionsPix {
-    public init(amount: Int? = nil, amountIncludesIof: SubscriptionPaymentMethodOptionsMandateOptionsPixAmountIncludesIof? = nil, endDate: String? = nil, paymentSchedule: SubscriptionPaymentMethodOptionsMandateOptionsPixPaymentSchedule? = nil) throws {
+    init(
+        amount: Int? = nil,
+        amountIncludesIof: SubscriptionPaymentMethodOptionsMandateOptionsPixAmountIncludesIof? = nil,
+        endDate: String? = nil,
+        paymentSchedule: SubscriptionPaymentMethodOptionsMandateOptionsPixPaymentSchedule? = nil
+    ) throws {
         self.init()
         (self.amount, self.amountIncludesIof) = (amount, amountIncludesIof)
         (self.endDate, self.paymentSchedule) = (endDate, paymentSchedule)
@@ -180,20 +189,20 @@ public struct SubscriptionPaymentMethodOptionsPix: Codable {
     }
 
     init() {
-        (self.expiresAfterSeconds, self.mandateOptions) = (nil, nil)
+        (expiresAfterSeconds, mandateOptions) = (nil, nil)
     }
 }
 
 public extension SubscriptionPaymentMethodOptionsPix {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.expiresAfterSeconds = try container.sdkDecodeIfPresent(.expiresAfterSeconds)
-        self.mandateOptions = try container.sdkDecodeIfPresent(.mandateOptions)
+        expiresAfterSeconds = try container.sdkDecodeIfPresent(.expiresAfterSeconds)
+        mandateOptions = try container.sdkDecodeIfPresent(.mandateOptions)
     }
 }
 
 public extension SubscriptionPaymentMethodOptionsPix {
-    public init(expiresAfterSeconds: Int? = nil, mandateOptions: SubscriptionPaymentMethodOptionsMandateOptionsPix? = nil) {
+    init(expiresAfterSeconds: Int? = nil, mandateOptions: SubscriptionPaymentMethodOptionsMandateOptionsPix? = nil) {
         self.init()
         (self.expiresAfterSeconds, self.mandateOptions) = (expiresAfterSeconds, mandateOptions)
     }
@@ -212,25 +221,35 @@ public struct SubscriptionPendingInvoiceItemInterval: Codable {
         case intervalCount = "interval_count"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension SubscriptionPendingInvoiceItemInterval {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.interval) else {
-            throw SdkValidationError(field: "interval", code: "required", message: "Validation failed for 'interval': value is required")
-        }
-        guard container.contains(.intervalCount) else {
-            throw SdkValidationError(field: "interval_count", code: "required", message: "Validation failed for 'interval_count': value is required")
-        }
-        self.interval = try container.sdkDecodeRequired(.interval)
-        self.intervalCount = try container.sdkDecodeRequired(.intervalCount)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension SubscriptionPendingInvoiceItemInterval {
-    public init(interval: SubscriptionPendingInvoiceItemIntervalInterval, intervalCount: Int) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.interval) else {
+            throw SdkValidationError(
+                field: "interval",
+                code: "required",
+                message: "Validation failed for 'interval': value is required"
+            )
+        }
+        guard container.contains(.intervalCount) else {
+            throw SdkValidationError(
+                field: "interval_count",
+                code: "required",
+                message: "Validation failed for 'interval_count': value is required"
+            )
+        }
+        interval = try container.sdkDecodeRequired(.interval)
+        intervalCount = try container.sdkDecodeRequired(.intervalCount)
+    }
+}
+
+public extension SubscriptionPendingInvoiceItemInterval {
+    init(interval: SubscriptionPendingInvoiceItemIntervalInterval, intervalCount: Int) {
         (self.interval, self.intervalCount) = (interval, intervalCount)
     }
 }
@@ -247,25 +266,38 @@ public struct SubscriptionScheduleAddInvoiceItemPeriod: Codable {
         case start
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension SubscriptionScheduleAddInvoiceItemPeriod {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.end) else {
-            throw SdkValidationError(field: "end", code: "required", message: "Validation failed for 'end': value is required")
-        }
-        guard container.contains(.start) else {
-            throw SdkValidationError(field: "start", code: "required", message: "Validation failed for 'start': value is required")
-        }
-        self.end = try container.sdkDecodeRequired(.end)
-        self.start = try container.sdkDecodeRequired(.start)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension SubscriptionScheduleAddInvoiceItemPeriod {
-    public init(end: SubscriptionSchedulesResourceInvoiceItemPeriodResourcePeriodEnd, start: SubscriptionSchedulesResourceInvoiceItemPeriodResourcePeriodStart) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.end) else {
+            throw SdkValidationError(
+                field: "end",
+                code: "required",
+                message: "Validation failed for 'end': value is required"
+            )
+        }
+        guard container.contains(.start) else {
+            throw SdkValidationError(
+                field: "start",
+                code: "required",
+                message: "Validation failed for 'start': value is required"
+            )
+        }
+        end = try container.sdkDecodeRequired(.end)
+        start = try container.sdkDecodeRequired(.start)
+    }
+}
+
+public extension SubscriptionScheduleAddInvoiceItemPeriod {
+    init(
+        end: SubscriptionSchedulesResourceInvoiceItemPeriodResourcePeriodEnd,
+        start: SubscriptionSchedulesResourceInvoiceItemPeriodResourcePeriodStart
+    ) {
         (self.end, self.start) = (end, start)
     }
 }
@@ -282,25 +314,35 @@ public struct SubscriptionScheduleCurrentPhase: Codable {
         case startDate = "start_date"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension SubscriptionScheduleCurrentPhase {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.endDate) else {
-            throw SdkValidationError(field: "end_date", code: "required", message: "Validation failed for 'end_date': value is required")
-        }
-        guard container.contains(.startDate) else {
-            throw SdkValidationError(field: "start_date", code: "required", message: "Validation failed for 'start_date': value is required")
-        }
-        self.endDate = try container.sdkDecodeRequired(.endDate)
-        self.startDate = try container.sdkDecodeRequired(.startDate)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension SubscriptionScheduleCurrentPhase {
-    public init(endDate: Int, startDate: Int) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.endDate) else {
+            throw SdkValidationError(
+                field: "end_date",
+                code: "required",
+                message: "Validation failed for 'end_date': value is required"
+            )
+        }
+        guard container.contains(.startDate) else {
+            throw SdkValidationError(
+                field: "start_date",
+                code: "required",
+                message: "Validation failed for 'start_date': value is required"
+            )
+        }
+        endDate = try container.sdkDecodeRequired(.endDate)
+        startDate = try container.sdkDecodeRequired(.startDate)
+    }
+}
+
+public extension SubscriptionScheduleCurrentPhase {
+    init(endDate: Int, startDate: Int) {
         (self.endDate, self.startDate) = (endDate, startDate)
     }
 }
@@ -318,22 +360,28 @@ public struct SubscriptionSchedulesResourceInvoiceItemPeriodResourcePeriodEnd: C
         case timestamp
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension SubscriptionSchedulesResourceInvoiceItemPeriodResourcePeriodEnd {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
-        }
-        self.type = try container.sdkDecodeRequired(.type)
-        self.timestamp = try container.sdkDecodeIfPresent(.timestamp)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension SubscriptionSchedulesResourceInvoiceItemPeriodResourcePeriodEnd {
-    public init(type: SubscriptionSchedulesResourceInvoiceItemPeriodResourcePeriodEndType, timestamp: Int? = nil) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.type) else {
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
+        }
+        type = try container.sdkDecodeRequired(.type)
+        timestamp = try container.sdkDecodeIfPresent(.timestamp)
+    }
+}
+
+public extension SubscriptionSchedulesResourceInvoiceItemPeriodResourcePeriodEnd {
+    init(type: SubscriptionSchedulesResourceInvoiceItemPeriodResourcePeriodEndType, timestamp: Int? = nil) {
         (self.type, self.timestamp) = (type, timestamp)
     }
 }
@@ -351,22 +399,28 @@ public struct SubscriptionSchedulesResourceInvoiceItemPeriodResourcePeriodStart:
         case timestamp
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension SubscriptionSchedulesResourceInvoiceItemPeriodResourcePeriodStart {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
-        }
-        self.type = try container.sdkDecodeRequired(.type)
-        self.timestamp = try container.sdkDecodeIfPresent(.timestamp)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension SubscriptionSchedulesResourceInvoiceItemPeriodResourcePeriodStart {
-    public init(type: SubscriptionSchedulesResourceInvoiceItemPeriodResourcePeriodStartType, timestamp: Int? = nil) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.type) else {
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
+        }
+        type = try container.sdkDecodeRequired(.type)
+        timestamp = try container.sdkDecodeIfPresent(.timestamp)
+    }
+}
+
+public extension SubscriptionSchedulesResourceInvoiceItemPeriodResourcePeriodStart {
+    init(type: SubscriptionSchedulesResourceInvoiceItemPeriodResourcePeriodStartType, timestamp: Int? = nil) {
         (self.type, self.timestamp) = (type, timestamp)
     }
 }
@@ -375,17 +429,21 @@ public extension SubscriptionSchedulesResourceInvoiceItemPeriodResourcePeriodSta
 /// authentication based on risk level and other requirements. However, if you wish to request 3D Secure based
 /// on logic from your own fraud engine, provide this option. Read our guide on manually requesting 3D Secure
 /// for more information on how this configuration interacts with Radar and our SCA Engine.
-public struct SubscriptionPaymentMethodOptionsCardRequestThreeDSecure: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct SubscriptionPaymentMethodOptionsCardRequestThreeDSecure: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let any = SubscriptionPaymentMethodOptionsCardRequestThreeDSecure(rawValue: "any")
     public static let automatic = SubscriptionPaymentMethodOptionsCardRequestThreeDSecure(rawValue: "automatic")
     public static let challenge = SubscriptionPaymentMethodOptionsCardRequestThreeDSecure(rawValue: "challenge")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -395,17 +453,24 @@ public struct SubscriptionPaymentMethodOptionsCardRequestThreeDSecure: RawRepres
 }
 
 /// Select how to calculate the end of the invoice item period.
-public struct SubscriptionSchedulesResourceInvoiceItemPeriodResourcePeriodEndType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct SubscriptionSchedulesResourceInvoiceItemPeriodResourcePeriodEndType: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let minItemPeriodEnd = SubscriptionSchedulesResourceInvoiceItemPeriodResourcePeriodEndType(rawValue: "min_item_period_end")
-    public static let phaseEnd = SubscriptionSchedulesResourceInvoiceItemPeriodResourcePeriodEndType(rawValue: "phase_end")
-    public static let timestamp = SubscriptionSchedulesResourceInvoiceItemPeriodResourcePeriodEndType(rawValue: "timestamp")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let minItemPeriodEnd =
+        SubscriptionSchedulesResourceInvoiceItemPeriodResourcePeriodEndType(rawValue: "min_item_period_end")
+    public static let phaseEnd =
+        SubscriptionSchedulesResourceInvoiceItemPeriodResourcePeriodEndType(rawValue: "phase_end")
+    public static let timestamp =
+        SubscriptionSchedulesResourceInvoiceItemPeriodResourcePeriodEndType(rawValue: "timestamp")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -415,19 +480,25 @@ public struct SubscriptionSchedulesResourceInvoiceItemPeriodResourcePeriodEndTyp
 }
 
 /// Schedule at which the future payments will be charged.
-public struct SubscriptionPaymentMethodOptionsMandateOptionsPixPaymentSchedule: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct SubscriptionPaymentMethodOptionsMandateOptionsPixPaymentSchedule: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let halfyearly = SubscriptionPaymentMethodOptionsMandateOptionsPixPaymentSchedule(rawValue: "halfyearly")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let halfyearly =
+        SubscriptionPaymentMethodOptionsMandateOptionsPixPaymentSchedule(rawValue: "halfyearly")
     public static let monthly = SubscriptionPaymentMethodOptionsMandateOptionsPixPaymentSchedule(rawValue: "monthly")
-    public static let quarterly = SubscriptionPaymentMethodOptionsMandateOptionsPixPaymentSchedule(rawValue: "quarterly")
+    public static let quarterly =
+        SubscriptionPaymentMethodOptionsMandateOptionsPixPaymentSchedule(rawValue: "quarterly")
     public static let weekly = SubscriptionPaymentMethodOptionsMandateOptionsPixPaymentSchedule(rawValue: "weekly")
     public static let yearly = SubscriptionPaymentMethodOptionsMandateOptionsPixPaymentSchedule(rawValue: "yearly")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -437,17 +508,25 @@ public struct SubscriptionPaymentMethodOptionsMandateOptionsPixPaymentSchedule: 
 }
 
 /// Select how to calculate the start of the invoice item period.
-public struct SubscriptionSchedulesResourceInvoiceItemPeriodResourcePeriodStartType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct SubscriptionSchedulesResourceInvoiceItemPeriodResourcePeriodStartType: RawRepresentable, Hashable,
+    Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let maxItemPeriodStart = SubscriptionSchedulesResourceInvoiceItemPeriodResourcePeriodStartType(rawValue: "max_item_period_start")
-    public static let phaseStart = SubscriptionSchedulesResourceInvoiceItemPeriodResourcePeriodStartType(rawValue: "phase_start")
-    public static let timestamp = SubscriptionSchedulesResourceInvoiceItemPeriodResourcePeriodStartType(rawValue: "timestamp")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let maxItemPeriodStart =
+        SubscriptionSchedulesResourceInvoiceItemPeriodResourcePeriodStartType(rawValue: "max_item_period_start")
+    public static let phaseStart =
+        SubscriptionSchedulesResourceInvoiceItemPeriodResourcePeriodStartType(rawValue: "phase_start")
+    public static let timestamp =
+        SubscriptionSchedulesResourceInvoiceItemPeriodResourcePeriodStartType(rawValue: "timestamp")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -458,10 +537,14 @@ public struct SubscriptionSchedulesResourceInvoiceItemPeriodResourcePeriodStartT
 
 /// Selected network to process this Subscription on. Depends on the available networks of the card attached to
 /// the Subscription. Can be only set confirm-time.
-public struct SubscriptionPaymentMethodOptionsCardNetwork: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct SubscriptionPaymentMethodOptionsCardNetwork: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let amex = SubscriptionPaymentMethodOptionsCardNetwork(rawValue: "amex")
     public static let cartesBancaires = SubscriptionPaymentMethodOptionsCardNetwork(rawValue: "cartes_bancaires")
     public static let diners = SubscriptionPaymentMethodOptionsCardNetwork(rawValue: "diners")
@@ -478,7 +561,7 @@ public struct SubscriptionPaymentMethodOptionsCardNetwork: RawRepresentable, Has
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -488,10 +571,14 @@ public struct SubscriptionPaymentMethodOptionsCardNetwork: RawRepresentable, Has
 }
 
 /// Specifies invoicing frequency. Either `day`, `week`, `month` or `year`.
-public struct SubscriptionPendingInvoiceItemIntervalInterval: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct SubscriptionPendingInvoiceItemIntervalInterval: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let day = SubscriptionPendingInvoiceItemIntervalInterval(rawValue: "day")
     public static let month = SubscriptionPendingInvoiceItemIntervalInterval(rawValue: "month")
     public static let week = SubscriptionPendingInvoiceItemIntervalInterval(rawValue: "week")
@@ -499,7 +586,7 @@ public struct SubscriptionPendingInvoiceItemIntervalInterval: RawRepresentable, 
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

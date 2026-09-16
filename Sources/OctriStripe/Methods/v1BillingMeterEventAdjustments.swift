@@ -7,7 +7,9 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1BillingMeterEventAdjustmentsMethods {
-    /// Creates a billing meter event adjustment that cancels a meter event. Supply `event_name` and set `type` to `cancel`; use `cancel.identifier` to identify the event when applicable. Time-period cancellation is not supported by the declared schema.
+    /// Creates a billing meter event adjustment that cancels a meter event. Supply `event_name` and set `type` to
+    /// `cancel`; use `cancel.identifier` to identify the event when applicable. Time-period cancellation is not
+    /// supported by the declared schema.
     ///
     /// Creates a billing meter event adjustment.
     ///
@@ -18,11 +20,30 @@ public enum V1BillingMeterEventAdjustmentsMethods {
     ///   a time period. Time period cancellation is not supported yet.
     /// - cancel: Specifies which event to cancel.
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postBillingMeterEventAdjustments(config: ClientConfig, eventName: String, type: PostBillingMeterEventAdjustmentsRequestBodyType, cancel: PostBillingMeterEventAdjustmentsRequestBodyCancel?, expand: [String]?) async throws -> BillingMeterEventAdjustment {
+    public static func postBillingMeterEventAdjustments(
+        config: ClientConfig,
+        eventName: String,
+        type: PostBillingMeterEventAdjustmentsRequestBodyType,
+        cancel: PostBillingMeterEventAdjustmentsRequestBodyCancel?,
+        expand: [String]?
+    ) async throws -> BillingMeterEventAdjustment {
         try validateLength("event_name", eventName, max: 100)
 
-        let requestBody = PostBillingMeterEventAdjustmentsRequestBody(eventName: eventName, type: type, cancel: cancel, expand: expand)
+        let requestBody = PostBillingMeterEventAdjustmentsRequestBody(
+            eventName: eventName,
+            type: type,
+            cancel: cancel,
+            expand: expand
+        )
 
-        return try (await sdkRequest("POST", "/v1/billing/meter_event_adjustments", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostBillingMeterEventAdjustments")).data
+        return try await (sdkRequest(
+            "POST",
+            "/v1/billing/meter_event_adjustments",
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostBillingMeterEventAdjustments"
+        )).data
     }
 }

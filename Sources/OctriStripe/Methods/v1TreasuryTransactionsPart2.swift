@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1TreasuryTransactionsMethods {
-    public struct GetTreasuryTransactionsOptions: Codable {
+public extension V1TreasuryTransactionsMethods {
+    struct GetTreasuryTransactionsOptions: Codable {
         public var financialAccount: String
         public var created: GetTreasuryTransactionsParameter?
         public var endingBefore: String?
@@ -23,7 +23,8 @@ extension V1TreasuryTransactionsMethods {
         }
     }
 
-    /// Lists transactions that represent changes to a financial account's balance. Filter by status, creation time, posting time, and flow, and use cursor parameters to paginate the results.
+    /// Lists transactions that represent changes to a financial account's balance. Filter by status, creation time,
+    /// posting time, and flow, and use cursor parameters to paginate the results.
     ///
     /// Retrieves a list of Transaction objects.
     ///
@@ -51,7 +52,10 @@ extension V1TreasuryTransactionsMethods {
     /// - statusTransitions: A filter for the `status_transitions.posted_at`
     ///   timestamp. When using this filter, `status=posted` and `order_by=posted_at`
     ///   must also be specified.
-    public static func getTreasuryTransactions(config: ClientConfig, options: GetTreasuryTransactionsOptions) async throws -> GetTreasuryTransactionsResponse {
+    static func getTreasuryTransactions(
+        config: ClientConfig,
+        options: GetTreasuryTransactionsOptions
+    ) async throws -> GetTreasuryTransactionsResponse {
         if let endingBefore = options.endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
@@ -60,7 +64,7 @@ extension V1TreasuryTransactionsMethods {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try (await sdkRequest("GET", "/v1/treasury/transactions", config: config, query: [
+        return try await (sdkRequest("GET", "/v1/treasury/transactions", config: config, query: [
             SdkQueryParameter("financial_account", value: options.financialAccount),
             SdkQueryParameter("created", value: options.created),
             SdkQueryParameter("ending_before", value: options.endingBefore),

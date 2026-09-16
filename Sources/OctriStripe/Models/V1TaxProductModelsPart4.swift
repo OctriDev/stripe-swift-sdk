@@ -3,36 +3,63 @@
 
 import Foundation
 
-// V1TaxProduct domain models
+/// V1TaxProduct domain models
 public extension TaxProductResourceLineItemTaxBreakdown {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.amount) else {
-            throw SdkValidationError(field: "amount", code: "required", message: "Validation failed for 'amount': value is required")
+            throw SdkValidationError(
+                field: "amount",
+                code: "required",
+                message: "Validation failed for 'amount': value is required"
+            )
         }
         guard container.contains(.jurisdiction) else {
-            throw SdkValidationError(field: "jurisdiction", code: "required", message: "Validation failed for 'jurisdiction': value is required")
+            throw SdkValidationError(
+                field: "jurisdiction",
+                code: "required",
+                message: "Validation failed for 'jurisdiction': value is required"
+            )
         }
         guard container.contains(.sourcing) else {
-            throw SdkValidationError(field: "sourcing", code: "required", message: "Validation failed for 'sourcing': value is required")
+            throw SdkValidationError(
+                field: "sourcing",
+                code: "required",
+                message: "Validation failed for 'sourcing': value is required"
+            )
         }
         guard container.contains(.taxabilityReason) else {
-            throw SdkValidationError(field: "taxability_reason", code: "required", message: "Validation failed for 'taxability_reason': value is required")
+            throw SdkValidationError(
+                field: "taxability_reason",
+                code: "required",
+                message: "Validation failed for 'taxability_reason': value is required"
+            )
         }
         guard container.contains(.taxableAmount) else {
-            throw SdkValidationError(field: "taxable_amount", code: "required", message: "Validation failed for 'taxable_amount': value is required")
+            throw SdkValidationError(
+                field: "taxable_amount",
+                code: "required",
+                message: "Validation failed for 'taxable_amount': value is required"
+            )
         }
-        self.amount = try container.sdkDecodeRequired(.amount)
-        self.jurisdiction = try container.sdkDecodeRequired(.jurisdiction)
-        self.sourcing = try container.sdkDecodeRequired(.sourcing)
-        self.taxabilityReason = try container.sdkDecodeRequired(.taxabilityReason)
-        self.taxableAmount = try container.sdkDecodeRequired(.taxableAmount)
-        self.taxRateDetails = try container.sdkDecodeIfPresent(.taxRateDetails)
+        amount = try container.sdkDecodeRequired(.amount)
+        jurisdiction = try container.sdkDecodeRequired(.jurisdiction)
+        sourcing = try container.sdkDecodeRequired(.sourcing)
+        taxabilityReason = try container.sdkDecodeRequired(.taxabilityReason)
+        taxableAmount = try container.sdkDecodeRequired(.taxableAmount)
+        taxRateDetails = try container.sdkDecodeIfPresent(.taxRateDetails)
     }
 }
 
 public extension TaxProductResourceLineItemTaxBreakdown {
-    public init(amount: Int, jurisdiction: TaxProductResourceJurisdiction, sourcing: TaxProductResourceLineItemTaxBreakdownSourcing, taxabilityReason: TaxProductResourceLineItemTaxBreakdownTaxabilityReason, taxableAmount: Int, taxRateDetails: TaxProductResourceLineItemTaxBreakdownTaxRateDetails? = nil) {
+    init(
+        amount: Int,
+        jurisdiction: TaxProductResourceJurisdiction,
+        sourcing: TaxProductResourceLineItemTaxBreakdownSourcing,
+        taxabilityReason: TaxProductResourceLineItemTaxBreakdownTaxabilityReason,
+        taxableAmount: Int,
+        taxRateDetails: TaxProductResourceLineItemTaxBreakdownTaxRateDetails? = nil
+    ) {
         (self.amount, self.jurisdiction) = (amount, jurisdiction)
         (self.sourcing, self.taxabilityReason) = (sourcing, taxabilityReason)
         (self.taxableAmount, self.taxRateDetails) = (taxableAmount, taxRateDetails)
@@ -44,24 +71,30 @@ public enum TaxProductResourceLineItemTaxBreakdownTaxRateDetails {
 }
 
 extension TaxProductResourceLineItemTaxBreakdownTaxRateDetails: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for TaxProductResourceLineItemTaxBreakdownTaxRateDetails")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for TaxProductResourceLineItemTaxBreakdownTaxRateDetails"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             TaxProductResourceLineItemTaxRateDetails.self
         ) {
-            return             .taxProductResourceLineItemTaxRateDetails(value)
+            return .taxProductResourceLineItemTaxRateDetails(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -70,7 +103,6 @@ extension TaxProductResourceLineItemTaxBreakdownTaxRateDetails: Codable {
         case let .taxProductResourceLineItemTaxRateDetails(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Typed representation of the `TaxProductResourceLineItemTaxRateDetails` API schema.
@@ -89,35 +121,53 @@ public struct TaxProductResourceLineItemTaxRateDetails: Codable {
         case taxType = "tax_type"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension TaxProductResourceLineItemTaxRateDetails {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.displayName) else {
-            throw SdkValidationError(field: "display_name", code: "required", message: "Validation failed for 'display_name': value is required")
-        }
-        guard container.contains(.percentageDecimal) else {
-            throw SdkValidationError(field: "percentage_decimal", code: "required", message: "Validation failed for 'percentage_decimal': value is required")
-        }
-        guard container.contains(.taxType) else {
-            throw SdkValidationError(field: "tax_type", code: "required", message: "Validation failed for 'tax_type': value is required")
-        }
-        self.displayName = try container.sdkDecodeRequired(.displayName)
-        self.percentageDecimal = try container.sdkDecodeRequired(.percentageDecimal)
-        self.taxType = try container.sdkDecodeRequired(.taxType)
-            try validateLength("display_name", self.displayName, min: nil, max: 5000)
-            try validateLength("percentage_decimal", self.percentageDecimal, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension TaxProductResourceLineItemTaxRateDetails {
-    public init(displayName: String, percentageDecimal: String, taxType: TaxProductResourceLineItemTaxRateDetailsTaxType) throws {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.displayName) else {
+            throw SdkValidationError(
+                field: "display_name",
+                code: "required",
+                message: "Validation failed for 'display_name': value is required"
+            )
+        }
+        guard container.contains(.percentageDecimal) else {
+            throw SdkValidationError(
+                field: "percentage_decimal",
+                code: "required",
+                message: "Validation failed for 'percentage_decimal': value is required"
+            )
+        }
+        guard container.contains(.taxType) else {
+            throw SdkValidationError(
+                field: "tax_type",
+                code: "required",
+                message: "Validation failed for 'tax_type': value is required"
+            )
+        }
+        displayName = try container.sdkDecodeRequired(.displayName)
+        percentageDecimal = try container.sdkDecodeRequired(.percentageDecimal)
+        taxType = try container.sdkDecodeRequired(.taxType)
+        try validateLength("display_name", displayName, min: nil, max: 5000)
+        try validateLength("percentage_decimal", percentageDecimal, min: nil, max: 5000)
+    }
+}
+
+public extension TaxProductResourceLineItemTaxRateDetails {
+    init(
+        displayName: String,
+        percentageDecimal: String,
+        taxType: TaxProductResourceLineItemTaxRateDetailsTaxType
+    ) throws {
         (self.displayName, self.percentageDecimal) = (displayName, percentageDecimal)
         self.taxType = taxType
-            try validateLength("display_name", self.displayName, min: nil, max: 5000)
-            try validateLength("percentage_decimal", self.percentageDecimal, min: nil, max: 5000)
+        try validateLength("display_name", self.displayName, min: nil, max: 5000)
+        try validateLength("percentage_decimal", self.percentageDecimal, min: nil, max: 5000)
     }
 }
 
@@ -145,46 +195,59 @@ public struct TaxProductResourcePostalAddress: Codable {
         case state
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension TaxProductResourcePostalAddress {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.country) else {
-            throw SdkValidationError(field: "country", code: "required", message: "Validation failed for 'country': value is required")
+            throw SdkValidationError(
+                field: "country",
+                code: "required",
+                message: "Validation failed for 'country': value is required"
+            )
         }
-        self.country = try container.sdkDecodeRequired(.country)
-        self.city = try container.sdkDecodeIfPresent(.city)
-        self.line1 = try container.sdkDecodeIfPresent(.line1)
-        self.line2 = try container.sdkDecodeIfPresent(.line2)
-        self.postalCode = try container.sdkDecodeIfPresent(.postalCode)
-        self.state = try container.sdkDecodeIfPresent(.state)
-            try validateLength("country", self.country, min: nil, max: 5000)
-        if let value = self.city {
+        country = try container.sdkDecodeRequired(.country)
+        city = try container.sdkDecodeIfPresent(.city)
+        line1 = try container.sdkDecodeIfPresent(.line1)
+        line2 = try container.sdkDecodeIfPresent(.line2)
+        postalCode = try container.sdkDecodeIfPresent(.postalCode)
+        state = try container.sdkDecodeIfPresent(.state)
+        try validateLength("country", country, min: nil, max: 5000)
+        if let value = city {
             try validateLength("city", value, min: nil, max: 5000)
         }
-        if let value = self.line1 {
+        if let value = line1 {
             try validateLength("line1", value, min: nil, max: 5000)
         }
-        if let value = self.line2 {
+        if let value = line2 {
             try validateLength("line2", value, min: nil, max: 5000)
         }
-        if let value = self.postalCode {
+        if let value = postalCode {
             try validateLength("postal_code", value, min: nil, max: 5000)
         }
-        if let value = self.state {
+        if let value = state {
             try validateLength("state", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension TaxProductResourcePostalAddress {
-    public init(country: String, city: String? = nil, line1: String? = nil, line2: String? = nil, postalCode: String? = nil, state: String? = nil) throws {
+    init(
+        country: String,
+        city: String? = nil,
+        line1: String? = nil,
+        line2: String? = nil,
+        postalCode: String? = nil,
+        state: String? = nil
+    ) throws {
         (self.country, self.city) = (country, city)
         (self.line1, self.line2) = (line1, line2)
         (self.postalCode, self.state) = (postalCode, state)
-            try validateLength("country", self.country, min: nil, max: 5000)
+        try validateLength("country", self.country, min: nil, max: 5000)
         if let value = self.city {
             try validateLength("city", value, min: nil, max: 5000)
         }
@@ -212,21 +275,27 @@ public struct TaxProductResourceShipFromDetails: Codable {
         case address
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension TaxProductResourceShipFromDetails {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.address) else {
-            throw SdkValidationError(field: "address", code: "required", message: "Validation failed for 'address': value is required")
-        }
-        self.address = try container.sdkDecodeRequired(.address)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension TaxProductResourceShipFromDetails {
-    public init(address: TaxProductResourcePostalAddress) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.address) else {
+            throw SdkValidationError(
+                field: "address",
+                code: "required",
+                message: "Validation failed for 'address': value is required"
+            )
+        }
+        address = try container.sdkDecodeRequired(.address)
+    }
+}
+
+public extension TaxProductResourceShipFromDetails {
+    init(address: TaxProductResourcePostalAddress) {
         self.address = address
     }
 }
@@ -249,33 +318,48 @@ public struct TaxProductResourceTaxAssociationTransactionAttempts: Codable {
         case errored
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension TaxProductResourceTaxAssociationTransactionAttempts {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.source) else {
-            throw SdkValidationError(field: "source", code: "required", message: "Validation failed for 'source': value is required")
-        }
-        guard container.contains(.status) else {
-            throw SdkValidationError(field: "status", code: "required", message: "Validation failed for 'status': value is required")
-        }
-        self.source = try container.sdkDecodeRequired(.source)
-        self.status = try container.sdkDecodeRequired(.status)
-        self.committed = try container.sdkDecodeIfPresent(.committed)
-        self.errored = try container.sdkDecodeIfPresent(.errored)
-            try validateLength("source", self.source, min: nil, max: 5000)
-            try validateLength("status", self.status, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension TaxProductResourceTaxAssociationTransactionAttempts {
-    public init(source: String, status: String, committed: TaxProductResourceTaxAssociationTransactionAttemptsResourceCommitted? = nil, errored: TaxProductResourceTaxAssociationTransactionAttemptsResourceErrored? = nil) throws {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.source) else {
+            throw SdkValidationError(
+                field: "source",
+                code: "required",
+                message: "Validation failed for 'source': value is required"
+            )
+        }
+        guard container.contains(.status) else {
+            throw SdkValidationError(
+                field: "status",
+                code: "required",
+                message: "Validation failed for 'status': value is required"
+            )
+        }
+        source = try container.sdkDecodeRequired(.source)
+        status = try container.sdkDecodeRequired(.status)
+        committed = try container.sdkDecodeIfPresent(.committed)
+        errored = try container.sdkDecodeIfPresent(.errored)
+        try validateLength("source", source, min: nil, max: 5000)
+        try validateLength("status", status, min: nil, max: 5000)
+    }
+}
+
+public extension TaxProductResourceTaxAssociationTransactionAttempts {
+    init(
+        source: String,
+        status: String,
+        committed: TaxProductResourceTaxAssociationTransactionAttemptsResourceCommitted? = nil,
+        errored: TaxProductResourceTaxAssociationTransactionAttemptsResourceErrored? = nil
+    ) throws {
         (self.source, self.status) = (source, status)
         (self.committed, self.errored) = (committed, errored)
-            try validateLength("source", self.source, min: nil, max: 5000)
-            try validateLength("status", self.status, min: nil, max: 5000)
+        try validateLength("source", self.source, min: nil, max: 5000)
+        try validateLength("status", self.status, min: nil, max: 5000)
     }
 }
 
@@ -288,24 +372,30 @@ public struct TaxProductResourceTaxAssociationTransactionAttemptsResourceCommitt
         case transaction
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension TaxProductResourceTaxAssociationTransactionAttemptsResourceCommitted {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.transaction) else {
-            throw SdkValidationError(field: "transaction", code: "required", message: "Validation failed for 'transaction': value is required")
-        }
-        self.transaction = try container.sdkDecodeRequired(.transaction)
-            try validateLength("transaction", self.transaction, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension TaxProductResourceTaxAssociationTransactionAttemptsResourceCommitted {
-    public init(transaction: String) throws {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.transaction) else {
+            throw SdkValidationError(
+                field: "transaction",
+                code: "required",
+                message: "Validation failed for 'transaction': value is required"
+            )
+        }
+        transaction = try container.sdkDecodeRequired(.transaction)
+        try validateLength("transaction", transaction, min: nil, max: 5000)
+    }
+}
+
+public extension TaxProductResourceTaxAssociationTransactionAttemptsResourceCommitted {
+    init(transaction: String) throws {
         self.transaction = transaction
-            try validateLength("transaction", self.transaction, min: nil, max: 5000)
+        try validateLength("transaction", self.transaction, min: nil, max: 5000)
     }
 }
 
@@ -318,21 +408,27 @@ public struct TaxProductResourceTaxAssociationTransactionAttemptsResourceErrored
         case reason
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension TaxProductResourceTaxAssociationTransactionAttemptsResourceErrored {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.reason) else {
-            throw SdkValidationError(field: "reason", code: "required", message: "Validation failed for 'reason': value is required")
-        }
-        self.reason = try container.sdkDecodeRequired(.reason)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension TaxProductResourceTaxAssociationTransactionAttemptsResourceErrored {
-    public init(reason: TaxProductResourceTaxAssociationTransactionAttemptsResourceErroredReason) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.reason) else {
+            throw SdkValidationError(
+                field: "reason",
+                code: "required",
+                message: "Validation failed for 'reason': value is required"
+            )
+        }
+        reason = try container.sdkDecodeRequired(.reason)
+    }
+}
+
+public extension TaxProductResourceTaxAssociationTransactionAttemptsResourceErrored {
+    init(reason: TaxProductResourceTaxAssociationTransactionAttemptsResourceErroredReason) {
         self.reason = reason
     }
 }
@@ -359,37 +455,65 @@ public struct TaxProductResourceTaxBreakdown: Codable {
         case taxableAmount = "taxable_amount"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension TaxProductResourceTaxBreakdown {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.amount) else {
-            throw SdkValidationError(field: "amount", code: "required", message: "Validation failed for 'amount': value is required")
-        }
-        guard container.contains(.inclusive) else {
-            throw SdkValidationError(field: "inclusive", code: "required", message: "Validation failed for 'inclusive': value is required")
-        }
-        guard container.contains(.taxRateDetails) else {
-            throw SdkValidationError(field: "tax_rate_details", code: "required", message: "Validation failed for 'tax_rate_details': value is required")
-        }
-        guard container.contains(.taxabilityReason) else {
-            throw SdkValidationError(field: "taxability_reason", code: "required", message: "Validation failed for 'taxability_reason': value is required")
-        }
-        guard container.contains(.taxableAmount) else {
-            throw SdkValidationError(field: "taxable_amount", code: "required", message: "Validation failed for 'taxable_amount': value is required")
-        }
-        self.amount = try container.sdkDecodeRequired(.amount)
-        self.inclusive = try container.sdkDecodeRequired(.inclusive)
-        self.taxRateDetails = try container.sdkDecodeRequired(.taxRateDetails)
-        self.taxabilityReason = try container.sdkDecodeRequired(.taxabilityReason)
-        self.taxableAmount = try container.sdkDecodeRequired(.taxableAmount)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension TaxProductResourceTaxBreakdown {
-    public init(amount: Int, inclusive: Bool, taxRateDetails: TaxProductResourceTaxRateDetails, taxabilityReason: TaxProductResourceTaxBreakdownTaxabilityReason, taxableAmount: Int) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.amount) else {
+            throw SdkValidationError(
+                field: "amount",
+                code: "required",
+                message: "Validation failed for 'amount': value is required"
+            )
+        }
+        guard container.contains(.inclusive) else {
+            throw SdkValidationError(
+                field: "inclusive",
+                code: "required",
+                message: "Validation failed for 'inclusive': value is required"
+            )
+        }
+        guard container.contains(.taxRateDetails) else {
+            throw SdkValidationError(
+                field: "tax_rate_details",
+                code: "required",
+                message: "Validation failed for 'tax_rate_details': value is required"
+            )
+        }
+        guard container.contains(.taxabilityReason) else {
+            throw SdkValidationError(
+                field: "taxability_reason",
+                code: "required",
+                message: "Validation failed for 'taxability_reason': value is required"
+            )
+        }
+        guard container.contains(.taxableAmount) else {
+            throw SdkValidationError(
+                field: "taxable_amount",
+                code: "required",
+                message: "Validation failed for 'taxable_amount': value is required"
+            )
+        }
+        amount = try container.sdkDecodeRequired(.amount)
+        inclusive = try container.sdkDecodeRequired(.inclusive)
+        taxRateDetails = try container.sdkDecodeRequired(.taxRateDetails)
+        taxabilityReason = try container.sdkDecodeRequired(.taxabilityReason)
+        taxableAmount = try container.sdkDecodeRequired(.taxableAmount)
+    }
+}
+
+public extension TaxProductResourceTaxBreakdown {
+    init(
+        amount: Int,
+        inclusive: Bool,
+        taxRateDetails: TaxProductResourceTaxRateDetails,
+        taxabilityReason: TaxProductResourceTaxBreakdownTaxabilityReason,
+        taxableAmount: Int
+    ) {
         (self.amount, self.inclusive) = (amount, inclusive)
         (self.taxRateDetails, self.taxabilityReason) = (taxRateDetails, taxabilityReason)
         self.taxableAmount = taxableAmount
@@ -421,43 +545,68 @@ public struct TaxProductResourceTaxCalculationShippingCost: Codable {
         case taxBreakdown = "tax_breakdown"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension TaxProductResourceTaxCalculationShippingCost {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.amount) else {
-            throw SdkValidationError(field: "amount", code: "required", message: "Validation failed for 'amount': value is required")
+            throw SdkValidationError(
+                field: "amount",
+                code: "required",
+                message: "Validation failed for 'amount': value is required"
+            )
         }
         guard container.contains(.amountTax) else {
-            throw SdkValidationError(field: "amount_tax", code: "required", message: "Validation failed for 'amount_tax': value is required")
+            throw SdkValidationError(
+                field: "amount_tax",
+                code: "required",
+                message: "Validation failed for 'amount_tax': value is required"
+            )
         }
         guard container.contains(.taxBehavior) else {
-            throw SdkValidationError(field: "tax_behavior", code: "required", message: "Validation failed for 'tax_behavior': value is required")
+            throw SdkValidationError(
+                field: "tax_behavior",
+                code: "required",
+                message: "Validation failed for 'tax_behavior': value is required"
+            )
         }
         guard container.contains(.taxCode) else {
-            throw SdkValidationError(field: "tax_code", code: "required", message: "Validation failed for 'tax_code': value is required")
+            throw SdkValidationError(
+                field: "tax_code",
+                code: "required",
+                message: "Validation failed for 'tax_code': value is required"
+            )
         }
-        self.amount = try container.sdkDecodeRequired(.amount)
-        self.amountTax = try container.sdkDecodeRequired(.amountTax)
-        self.taxBehavior = try container.sdkDecodeRequired(.taxBehavior)
-        self.taxCode = try container.sdkDecodeRequired(.taxCode)
-        self.shippingRate = try container.sdkDecodeIfPresent(.shippingRate)
-        self.taxBreakdown = try container.sdkDecodeIfPresent(.taxBreakdown)
-            try validateLength("tax_code", self.taxCode, min: nil, max: 5000)
-        if let value = self.shippingRate {
+        amount = try container.sdkDecodeRequired(.amount)
+        amountTax = try container.sdkDecodeRequired(.amountTax)
+        taxBehavior = try container.sdkDecodeRequired(.taxBehavior)
+        taxCode = try container.sdkDecodeRequired(.taxCode)
+        shippingRate = try container.sdkDecodeIfPresent(.shippingRate)
+        taxBreakdown = try container.sdkDecodeIfPresent(.taxBreakdown)
+        try validateLength("tax_code", taxCode, min: nil, max: 5000)
+        if let value = shippingRate {
             try validateLength("shipping_rate", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension TaxProductResourceTaxCalculationShippingCost {
-    public init(amount: Int, amountTax: Int, taxBehavior: TaxProductResourceTaxCalculationShippingCostTaxBehavior, taxCode: String, shippingRate: String? = nil, taxBreakdown: [TaxProductResourceLineItemTaxBreakdown]? = nil) throws {
+    init(
+        amount: Int,
+        amountTax: Int,
+        taxBehavior: TaxProductResourceTaxCalculationShippingCostTaxBehavior,
+        taxCode: String,
+        shippingRate: String? = nil,
+        taxBreakdown: [TaxProductResourceLineItemTaxBreakdown]? = nil
+    ) throws {
         (self.amount, self.amountTax) = (amount, amountTax)
         (self.taxBehavior, self.taxCode) = (taxBehavior, taxCode)
         (self.shippingRate, self.taxBreakdown) = (shippingRate, taxBreakdown)
-            try validateLength("tax_code", self.taxCode, min: nil, max: 5000)
+        try validateLength("tax_code", self.taxCode, min: nil, max: 5000)
         if let value = self.shippingRate {
             try validateLength("shipping_rate", value, min: nil, max: 5000)
         }
@@ -491,5 +640,7 @@ public struct TaxProductResourceTaxRateDetails: Codable {
         case taxType = "tax_type"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }

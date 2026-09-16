@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1Confirmation domain models
+/// V1Confirmation domain models
 /// ConfirmationTokens help transport client side data collected by Stripe JS over to your server for confirming a
 /// PaymentIntent or SetupIntent. If the confirmation is successful, values present on the ConfirmationToken are
 /// written onto the Intent. To learn more about how to use ConfirmationToken, visit the related guides: - Finalize
@@ -67,57 +67,95 @@ public struct ConfirmationToken: Codable {
         case shipping
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension ConfirmationToken {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.created) else {
-            throw SdkValidationError(field: "created", code: "required", message: "Validation failed for 'created': value is required")
+            throw SdkValidationError(
+                field: "created",
+                code: "required",
+                message: "Validation failed for 'created': value is required"
+            )
         }
         guard container.contains(.id) else {
-            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
+            throw SdkValidationError(
+                field: "id",
+                code: "required",
+                message: "Validation failed for 'id': value is required"
+            )
         }
         guard container.contains(.livemode) else {
-            throw SdkValidationError(field: "livemode", code: "required", message: "Validation failed for 'livemode': value is required")
+            throw SdkValidationError(
+                field: "livemode",
+                code: "required",
+                message: "Validation failed for 'livemode': value is required"
+            )
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
         }
         guard container.contains(.useStripeSdk) else {
-            throw SdkValidationError(field: "use_stripe_sdk", code: "required", message: "Validation failed for 'use_stripe_sdk': value is required")
+            throw SdkValidationError(
+                field: "use_stripe_sdk",
+                code: "required",
+                message: "Validation failed for 'use_stripe_sdk': value is required"
+            )
         }
-        self.created = try container.sdkDecodeRequired(.created)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.livemode = try container.sdkDecodeRequired(.livemode)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.useStripeSdk = try container.sdkDecodeRequired(.useStripeSdk)
-        self.expiresAt = try container.sdkDecodeIfPresent(.expiresAt)
-        self.mandateData = try container.sdkDecodeIfPresent(.mandateData)
-        self.metadata = try container.sdkDecodeIfPresent(.metadata)
-        self.paymentIntent = try container.sdkDecodeIfPresent(.paymentIntent)
-        self.paymentMethodOptions = try container.sdkDecodeIfPresent(.paymentMethodOptions)
-        self.paymentMethodPreview = try container.sdkDecodeIfPresent(.paymentMethodPreview)
-        self.returnUrl = try container.sdkDecodeIfPresent(.returnUrl)
-        self.setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
-        self.setupIntent = try container.sdkDecodeIfPresent(.setupIntent)
-        self.shipping = try container.sdkDecodeIfPresent(.shipping)
-            try validateLength("id", self.id, min: nil, max: 5000)
-        if let value = self.paymentIntent {
+        created = try container.sdkDecodeRequired(.created)
+        id = try container.sdkDecodeRequired(.id)
+        livemode = try container.sdkDecodeRequired(.livemode)
+        object = try container.sdkDecodeRequired(.object)
+        useStripeSdk = try container.sdkDecodeRequired(.useStripeSdk)
+        expiresAt = try container.sdkDecodeIfPresent(.expiresAt)
+        mandateData = try container.sdkDecodeIfPresent(.mandateData)
+        metadata = try container.sdkDecodeIfPresent(.metadata)
+        paymentIntent = try container.sdkDecodeIfPresent(.paymentIntent)
+        paymentMethodOptions = try container.sdkDecodeIfPresent(.paymentMethodOptions)
+        paymentMethodPreview = try container.sdkDecodeIfPresent(.paymentMethodPreview)
+        returnUrl = try container.sdkDecodeIfPresent(.returnUrl)
+        setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
+        setupIntent = try container.sdkDecodeIfPresent(.setupIntent)
+        shipping = try container.sdkDecodeIfPresent(.shipping)
+        try validateLength("id", id, min: nil, max: 5000)
+        if let value = paymentIntent {
             try validateLength("payment_intent", value, min: nil, max: 5000)
         }
-        if let value = self.returnUrl {
+        if let value = returnUrl {
             try validateLength("return_url", value, min: nil, max: 5000)
         }
-        if let value = self.setupIntent {
+        if let value = setupIntent {
             try validateLength("setup_intent", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension ConfirmationToken {
-    public init(created: Int, id: String, livemode: Bool, object: ConfirmationTokenObject, useStripeSdk: Bool, expiresAt: Int? = nil, mandateData: ConfirmationTokenMandateData? = nil, metadata: [String: String]? = nil, paymentIntent: String? = nil, paymentMethodOptions: ConfirmationTokenPaymentMethodOptions? = nil, paymentMethodPreview: ConfirmationTokenPaymentMethodPreview? = nil, returnUrl: String? = nil, setupFutureUsage: ConfirmationTokenSetupFutureUsage? = nil, setupIntent: String? = nil, shipping: ConfirmationTokenShipping? = nil) throws {
+    init(
+        created: Int,
+        id: String,
+        livemode: Bool,
+        object: ConfirmationTokenObject,
+        useStripeSdk: Bool,
+        expiresAt: Int? = nil,
+        mandateData: ConfirmationTokenMandateData? = nil,
+        metadata: [String: String]? = nil,
+        paymentIntent: String? = nil,
+        paymentMethodOptions: ConfirmationTokenPaymentMethodOptions? = nil,
+        paymentMethodPreview: ConfirmationTokenPaymentMethodPreview? = nil,
+        returnUrl: String? = nil,
+        setupFutureUsage: ConfirmationTokenSetupFutureUsage? = nil,
+        setupIntent: String? = nil,
+        shipping: ConfirmationTokenShipping? = nil
+    ) throws {
         (self.created, self.id) = (created, id)
         (self.livemode, self.object) = (livemode, object)
         (self.useStripeSdk, self.expiresAt) = (useStripeSdk, expiresAt)
@@ -126,7 +164,7 @@ public extension ConfirmationToken {
         (self.paymentMethodPreview, self.returnUrl) = (paymentMethodPreview, returnUrl)
         (self.setupFutureUsage, self.setupIntent) = (setupFutureUsage, setupIntent)
         self.shipping = shipping
-            try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
         if let value = self.paymentIntent {
             try validateLength("payment_intent", value, min: nil, max: 5000)
         }
@@ -144,24 +182,30 @@ public enum ConfirmationTokenMandateData {
 }
 
 extension ConfirmationTokenMandateData: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for ConfirmationTokenMandateData")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for ConfirmationTokenMandateData"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             ConfirmationTokensResourceMandateData.self
         ) {
-            return             .confirmationTokensResourceMandateData(value)
+            return .confirmationTokensResourceMandateData(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -170,7 +214,6 @@ extension ConfirmationTokenMandateData: Codable {
         case let .confirmationTokensResourceMandateData(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum ConfirmationTokenPaymentMethodOptions {
@@ -178,24 +221,30 @@ public enum ConfirmationTokenPaymentMethodOptions {
 }
 
 extension ConfirmationTokenPaymentMethodOptions: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for ConfirmationTokenPaymentMethodOptions")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for ConfirmationTokenPaymentMethodOptions"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             ConfirmationTokensResourcePaymentMethodOptions.self
         ) {
-            return             .confirmationTokensResourcePaymentMethodOptions(value)
+            return .confirmationTokensResourcePaymentMethodOptions(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -204,7 +253,6 @@ extension ConfirmationTokenPaymentMethodOptions: Codable {
         case let .confirmationTokensResourcePaymentMethodOptions(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum ConfirmationTokenPaymentMethodPreview {
@@ -212,24 +260,30 @@ public enum ConfirmationTokenPaymentMethodPreview {
 }
 
 extension ConfirmationTokenPaymentMethodPreview: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for ConfirmationTokenPaymentMethodPreview")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for ConfirmationTokenPaymentMethodPreview"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             ConfirmationTokensResourcePaymentMethodPreview.self
         ) {
-            return             .confirmationTokensResourcePaymentMethodPreview(value)
+            return .confirmationTokensResourcePaymentMethodPreview(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -238,7 +292,6 @@ extension ConfirmationTokenPaymentMethodPreview: Codable {
         case let .confirmationTokensResourcePaymentMethodPreview(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum ConfirmationTokenShipping {
@@ -246,20 +299,29 @@ public enum ConfirmationTokenShipping {
 }
 
 extension ConfirmationTokenShipping: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for ConfirmationTokenShipping")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for ConfirmationTokenShipping"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(ConfirmationTokensResourceShipping.self) { return .confirmationTokensResourceShipping(value) }
+        if let value = try? container
+            .decode(ConfirmationTokensResourceShipping.self) {
+            return .confirmationTokensResourceShipping(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -268,7 +330,6 @@ extension ConfirmationTokenShipping: Codable {
         case let .confirmationTokensResourceShipping(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Data used for generating a Mandate.
@@ -280,21 +341,27 @@ public struct ConfirmationTokensResourceMandateData: Codable {
         case customerAcceptance = "customer_acceptance"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension ConfirmationTokensResourceMandateData {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.customerAcceptance) else {
-            throw SdkValidationError(field: "customer_acceptance", code: "required", message: "Validation failed for 'customer_acceptance': value is required")
-        }
-        self.customerAcceptance = try container.sdkDecodeRequired(.customerAcceptance)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension ConfirmationTokensResourceMandateData {
-    public init(customerAcceptance: ConfirmationTokensResourceMandateDataResourceCustomerAcceptance) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.customerAcceptance) else {
+            throw SdkValidationError(
+                field: "customer_acceptance",
+                code: "required",
+                message: "Validation failed for 'customer_acceptance': value is required"
+            )
+        }
+        customerAcceptance = try container.sdkDecodeRequired(.customerAcceptance)
+    }
+}
+
+public extension ConfirmationTokensResourceMandateData {
+    init(customerAcceptance: ConfirmationTokensResourceMandateDataResourceCustomerAcceptance) {
         self.customerAcceptance = customerAcceptance
     }
 }
@@ -311,25 +378,31 @@ public struct ConfirmationTokensResourceMandateDataResourceCustomerAcceptance: C
         case online
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension ConfirmationTokensResourceMandateDataResourceCustomerAcceptance {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
-        }
-        self.type = try container.sdkDecodeRequired(.type)
-        self.online = try container.sdkDecodeIfPresent(.online)
-            try validateLength("type", self.type, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension ConfirmationTokensResourceMandateDataResourceCustomerAcceptance {
-    public init(type: String, online: ConfirmationTokensResourceMandateDataResourceCustomerAcceptanceOnline? = nil) throws {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.type) else {
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
+        }
+        type = try container.sdkDecodeRequired(.type)
+        online = try container.sdkDecodeIfPresent(.online)
+        try validateLength("type", type, min: nil, max: 5000)
+    }
+}
+
+public extension ConfirmationTokensResourceMandateDataResourceCustomerAcceptance {
+    init(type: String, online: ConfirmationTokensResourceMandateDataResourceCustomerAcceptanceOnline? = nil) throws {
         (self.type, self.online) = (type, online)
-            try validateLength("type", self.type, min: nil, max: 5000)
+        try validateLength("type", self.type, min: nil, max: 5000)
     }
 }
 
@@ -340,33 +413,39 @@ public enum ConfirmationTokensResourceMandateDataResourceCustomerAcceptanceOnlin
 }
 
 extension ConfirmationTokensResourceMandateDataResourceCustomerAcceptanceOnline: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for ConfirmationTokensResourceMandateDataResourceCustomerAcceptanceOnline")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for ConfirmationTokensResourceMandateDataResourceCustomerAcceptanceOnline"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             ConfirmationTokensResourceMandateDataResourceCustomerAcceptanXcaec7acb33.self
         ) {
-            return             .confirmationTokensResourceMandateDataResourceCustomerAcceptanXcaec7acb33(value)
+            return .confirmationTokensResourceMandateDataResourceCustomerAcceptanXcaec7acb33(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .confirmationTokensResourceMandateDataResourceCustomerAcceptanXcaec7acb33(value): try container.encode(value); return true
+        case let .confirmationTokensResourceMandateDataResourceCustomerAcceptanXcaec7acb33(value): try container
+            .encode(value); return true
         }
     }
-
 }
 
 /// This hash contains details about the online acceptance.
@@ -382,26 +461,26 @@ public struct ConfirmationTokensResourceMandateDataResourceCustomerAcceptanXcaec
     }
 
     init() {
-        (self.ipAddress, self.userAgent) = (nil, nil)
+        (ipAddress, userAgent) = (nil, nil)
     }
 }
 
 public extension ConfirmationTokensResourceMandateDataResourceCustomerAcceptanXcaec7acb33 {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.ipAddress = try container.sdkDecodeIfPresent(.ipAddress)
-        self.userAgent = try container.sdkDecodeIfPresent(.userAgent)
-        if let value = self.ipAddress {
+        ipAddress = try container.sdkDecodeIfPresent(.ipAddress)
+        userAgent = try container.sdkDecodeIfPresent(.userAgent)
+        if let value = ipAddress {
             try validateLength("ip_address", value, min: nil, max: 5000)
         }
-        if let value = self.userAgent {
+        if let value = userAgent {
             try validateLength("user_agent", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension ConfirmationTokensResourceMandateDataResourceCustomerAcceptanXcaec7acb33 {
-    public init(ipAddress: String? = nil, userAgent: String? = nil) throws {
+    init(ipAddress: String? = nil, userAgent: String? = nil) throws {
         self.init()
         (self.ipAddress, self.userAgent) = (ipAddress, userAgent)
         if let value = self.ipAddress {
@@ -423,56 +502,64 @@ public struct ConfirmationTokensResourcePaymentMethodOptions: Codable {
     }
 
     init() {
-        self.card = nil
+        card = nil
     }
 }
 
 public extension ConfirmationTokensResourcePaymentMethodOptions {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.card = try container.sdkDecodeIfPresent(.card)
+        card = try container.sdkDecodeIfPresent(.card)
     }
 }
 
 public extension ConfirmationTokensResourcePaymentMethodOptions {
-    public init(card: ConfirmationTokensResourcePaymentMethodOptionsCard? = nil) {
+    init(card: ConfirmationTokensResourcePaymentMethodOptionsCard? = nil) {
         self.init()
         self.card = card
     }
 }
 
 public enum ConfirmationTokensResourcePaymentMethodOptionsCard {
-    case confirmationTokensResourcePaymentMethodOptionsResourceCard(ConfirmationTokensResourcePaymentMethodOptionsResourceCard)
+    case confirmationTokensResourcePaymentMethodOptionsResourceCard(
+        ConfirmationTokensResourcePaymentMethodOptionsResourceCard
+    )
 }
 
 extension ConfirmationTokensResourcePaymentMethodOptionsCard: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for ConfirmationTokensResourcePaymentMethodOptionsCard")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for ConfirmationTokensResourcePaymentMethodOptionsCard"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             ConfirmationTokensResourcePaymentMethodOptionsResourceCard.self
         ) {
-            return             .confirmationTokensResourcePaymentMethodOptionsResourceCard(value)
+            return .confirmationTokensResourcePaymentMethodOptionsResourceCard(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .confirmationTokensResourcePaymentMethodOptionsResourceCard(value): try container.encode(value); return true
+        case let .confirmationTokensResourcePaymentMethodOptionsResourceCard(value): try container
+            .encode(value); return true
         }
     }
-
 }
 
 /// This hash contains the card payment method options.
@@ -488,23 +575,26 @@ public struct ConfirmationTokensResourcePaymentMethodOptionsResourceCard: Codabl
     }
 
     init() {
-        (self.cvcToken, self.installments) = (nil, nil)
+        (cvcToken, installments) = (nil, nil)
     }
 }
 
 public extension ConfirmationTokensResourcePaymentMethodOptionsResourceCard {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.cvcToken = try container.sdkDecodeIfPresent(.cvcToken)
-        self.installments = try container.sdkDecodeIfPresent(.installments)
-        if let value = self.cvcToken {
+        cvcToken = try container.sdkDecodeIfPresent(.cvcToken)
+        installments = try container.sdkDecodeIfPresent(.installments)
+        if let value = cvcToken {
             try validateLength("cvc_token", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension ConfirmationTokensResourcePaymentMethodOptionsResourceCard {
-    public init(cvcToken: String? = nil, installments: ConfirmationTokensResourcePaymentMethodOptionsResourceCardResX9a2a09f92c? = nil) throws {
+    init(
+        cvcToken: String? = nil,
+        installments: ConfirmationTokensResourcePaymentMethodOptionsResourceCardResX9a2a09f92c? = nil
+    ) throws {
         self.init()
         (self.cvcToken, self.installments) = (cvcToken, installments)
         if let value = self.cvcToken {
@@ -523,19 +613,19 @@ public struct ConfirmationTokensResourcePaymentMethodOptionsResourceCardResX9a2a
     }
 
     init() {
-        self.plan = nil
+        plan = nil
     }
 }
 
 public extension ConfirmationTokensResourcePaymentMethodOptionsResourceCardResX9a2a09f92c {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.plan = try container.sdkDecodeIfPresent(.plan)
+        plan = try container.sdkDecodeIfPresent(.plan)
     }
 }
 
 public extension ConfirmationTokensResourcePaymentMethodOptionsResourceCardResX9a2a09f92c {
-    public init(plan: PaymentMethodDetailsCardInstallmentsPlan? = nil) {
+    init(plan: PaymentMethodDetailsCardInstallmentsPlan? = nil) {
         self.init()
         self.plan = plan
     }

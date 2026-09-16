@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1TaxRegistrations operation model declarations
+/// Canonical v1TaxRegistrations operation model declarations
 /// Specific options for a registration in the specified `country`.
 public struct PostTaxRegistrationsRequestBodyCountryOptions: Codable {
     /// default
@@ -323,7 +323,7 @@ extension PostTaxRegistrationsRequestBodyCountryOptions {
 }
 
 public extension PostTaxRegistrationsRequestBodyCountryOptions {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.init(sdkDefaults: ())
         try sdkDecodeFieldsPart1(container)
@@ -339,7 +339,109 @@ public extension PostTaxRegistrationsRequestBodyCountryOptions {
 }
 
 public extension PostTaxRegistrationsRequestBodyCountryOptions {
-    public init(ae: PostTaxRegistrationsRequestBodyCountryOptionsAe? = nil, al: PostTaxRegistrationsRequestBodyCountryOptionsAl? = nil, am: PostTaxRegistrationsRequestBodyCountryOptionsAm? = nil, ao: PostTaxRegistrationsRequestBodyCountryOptionsAo? = nil, at: PostTaxRegistrationsRequestBodyCountryOptionsAt? = nil, au: PostTaxRegistrationsRequestBodyCountryOptionsAu? = nil, aw: PostTaxRegistrationsRequestBodyCountryOptionsAw? = nil, az: PostTaxRegistrationsRequestBodyCountryOptionsAz? = nil, ba: PostTaxRegistrationsRequestBodyCountryOptionsBa? = nil, bb: PostTaxRegistrationsRequestBodyCountryOptionsBb? = nil, bd: PostTaxRegistrationsRequestBodyCountryOptionsBd? = nil, be: PostTaxRegistrationsRequestBodyCountryOptionsBe? = nil, bf: PostTaxRegistrationsRequestBodyCountryOptionsBf? = nil, bg: PostTaxRegistrationsRequestBodyCountryOptionsBg? = nil, bh: PostTaxRegistrationsRequestBodyCountryOptionsBh? = nil, bj: PostTaxRegistrationsRequestBodyCountryOptionsBj? = nil, bs: PostTaxRegistrationsRequestBodyCountryOptionsBs? = nil, by: PostTaxRegistrationsRequestBodyCountryOptionsBy? = nil, ca: PostTaxRegistrationsRequestBodyCountryOptionsCa? = nil, cd: PostTaxRegistrationsRequestBodyCountryOptionsCd? = nil, ch: PostTaxRegistrationsRequestBodyCountryOptionsCh? = nil, cl: PostTaxRegistrationsRequestBodyCountryOptionsCl? = nil, cm: PostTaxRegistrationsRequestBodyCountryOptionsCm? = nil, co: PostTaxRegistrationsRequestBodyCountryOptionsCo? = nil, cr: PostTaxRegistrationsRequestBodyCountryOptionsCr? = nil, cv: PostTaxRegistrationsRequestBodyCountryOptionsCv? = nil, cy: PostTaxRegistrationsRequestBodyCountryOptionsCy? = nil, cz: PostTaxRegistrationsRequestBodyCountryOptionsCz? = nil, de: PostTaxRegistrationsRequestBodyCountryOptionsDe? = nil, dk: PostTaxRegistrationsRequestBodyCountryOptionsDk? = nil, ec: PostTaxRegistrationsRequestBodyCountryOptionsEc? = nil, ee: PostTaxRegistrationsRequestBodyCountryOptionsEe? = nil, eg: PostTaxRegistrationsRequestBodyCountryOptionsEg? = nil, es: PostTaxRegistrationsRequestBodyCountryOptionsEs? = nil, et: PostTaxRegistrationsRequestBodyCountryOptionsEt? = nil, fi: PostTaxRegistrationsRequestBodyCountryOptionsFi? = nil, fr: PostTaxRegistrationsRequestBodyCountryOptionsFr? = nil, gb: PostTaxRegistrationsRequestBodyCountryOptionsGb? = nil, ge: PostTaxRegistrationsRequestBodyCountryOptionsGe? = nil, gn: PostTaxRegistrationsRequestBodyCountryOptionsGn? = nil, gr: PostTaxRegistrationsRequestBodyCountryOptionsGr? = nil, hr: PostTaxRegistrationsRequestBodyCountryOptionsHr? = nil, hu: PostTaxRegistrationsRequestBodyCountryOptionsHu? = nil, id: PostTaxRegistrationsRequestBodyCountryOptionsId? = nil, ie: PostTaxRegistrationsRequestBodyCountryOptionsIe? = nil, `in`: PostTaxRegistrationsRequestBodyCountryOptionsIn? = nil, `is`: PostTaxRegistrationsRequestBodyCountryOptionsIs? = nil, it: PostTaxRegistrationsRequestBodyCountryOptionsIt? = nil, jp: PostTaxRegistrationsRequestBodyCountryOptionsJp? = nil, ke: PostTaxRegistrationsRequestBodyCountryOptionsKe? = nil, kg: PostTaxRegistrationsRequestBodyCountryOptionsKg? = nil, kh: PostTaxRegistrationsRequestBodyCountryOptionsKh? = nil, kr: PostTaxRegistrationsRequestBodyCountryOptionsKr? = nil, kz: PostTaxRegistrationsRequestBodyCountryOptionsKz? = nil, la: PostTaxRegistrationsRequestBodyCountryOptionsLa? = nil, lk: PostTaxRegistrationsRequestBodyCountryOptionsLk? = nil, lt: PostTaxRegistrationsRequestBodyCountryOptionsLt? = nil, lu: PostTaxRegistrationsRequestBodyCountryOptionsLu? = nil, lv: PostTaxRegistrationsRequestBodyCountryOptionsLv? = nil, ma: PostTaxRegistrationsRequestBodyCountryOptionsMa? = nil, md: PostTaxRegistrationsRequestBodyCountryOptionsMd? = nil, me: PostTaxRegistrationsRequestBodyCountryOptionsMe? = nil, mk: PostTaxRegistrationsRequestBodyCountryOptionsMk? = nil, mr: PostTaxRegistrationsRequestBodyCountryOptionsMr? = nil, mt: PostTaxRegistrationsRequestBodyCountryOptionsMt? = nil, mx: PostTaxRegistrationsRequestBodyCountryOptionsMx? = nil, my: PostTaxRegistrationsRequestBodyCountryOptionsMy? = nil, ng: PostTaxRegistrationsRequestBodyCountryOptionsNg? = nil, nl: PostTaxRegistrationsRequestBodyCountryOptionsNl? = nil, no: PostTaxRegistrationsRequestBodyCountryOptionsNo? = nil, np: PostTaxRegistrationsRequestBodyCountryOptionsNp? = nil, nz: PostTaxRegistrationsRequestBodyCountryOptionsNz? = nil, om: PostTaxRegistrationsRequestBodyCountryOptionsOm? = nil, pe: PostTaxRegistrationsRequestBodyCountryOptionsPe? = nil, ph: PostTaxRegistrationsRequestBodyCountryOptionsPh? = nil, pl: PostTaxRegistrationsRequestBodyCountryOptionsPl? = nil, pt: PostTaxRegistrationsRequestBodyCountryOptionsPt? = nil, ro: PostTaxRegistrationsRequestBodyCountryOptionsRo? = nil, rs: PostTaxRegistrationsRequestBodyCountryOptionsRs? = nil, ru: PostTaxRegistrationsRequestBodyCountryOptionsRu? = nil, sa: PostTaxRegistrationsRequestBodyCountryOptionsSa? = nil, se: PostTaxRegistrationsRequestBodyCountryOptionsSe? = nil, sg: PostTaxRegistrationsRequestBodyCountryOptionsSg? = nil, si: PostTaxRegistrationsRequestBodyCountryOptionsSi? = nil, sk: PostTaxRegistrationsRequestBodyCountryOptionsSk? = nil, sn: PostTaxRegistrationsRequestBodyCountryOptionsSn? = nil, sr: PostTaxRegistrationsRequestBodyCountryOptionsSr? = nil, th: PostTaxRegistrationsRequestBodyCountryOptionsTh? = nil, tj: PostTaxRegistrationsRequestBodyCountryOptionsTj? = nil, tr: PostTaxRegistrationsRequestBodyCountryOptionsTr? = nil, tw: PostTaxRegistrationsRequestBodyCountryOptionsTw? = nil, tz: PostTaxRegistrationsRequestBodyCountryOptionsTz? = nil, ua: PostTaxRegistrationsRequestBodyCountryOptionsUa? = nil, ug: PostTaxRegistrationsRequestBodyCountryOptionsUg? = nil, us: PostTaxRegistrationsRequestBodyCountryOptionsUs? = nil, uy: PostTaxRegistrationsRequestBodyCountryOptionsUy? = nil, uz: PostTaxRegistrationsRequestBodyCountryOptionsUz? = nil, vn: PostTaxRegistrationsRequestBodyCountryOptionsVn? = nil, za: PostTaxRegistrationsRequestBodyCountryOptionsZa? = nil, zm: PostTaxRegistrationsRequestBodyCountryOptionsZm? = nil, zw: PostTaxRegistrationsRequestBodyCountryOptionsZw? = nil) {
+    init(
+        ae: PostTaxRegistrationsRequestBodyCountryOptionsAe? = nil,
+        al: PostTaxRegistrationsRequestBodyCountryOptionsAl? = nil,
+        am: PostTaxRegistrationsRequestBodyCountryOptionsAm? = nil,
+        ao: PostTaxRegistrationsRequestBodyCountryOptionsAo? = nil,
+        at: PostTaxRegistrationsRequestBodyCountryOptionsAt? = nil,
+        au: PostTaxRegistrationsRequestBodyCountryOptionsAu? = nil,
+        aw: PostTaxRegistrationsRequestBodyCountryOptionsAw? = nil,
+        az: PostTaxRegistrationsRequestBodyCountryOptionsAz? = nil,
+        ba: PostTaxRegistrationsRequestBodyCountryOptionsBa? = nil,
+        bb: PostTaxRegistrationsRequestBodyCountryOptionsBb? = nil,
+        bd: PostTaxRegistrationsRequestBodyCountryOptionsBd? = nil,
+        be: PostTaxRegistrationsRequestBodyCountryOptionsBe? = nil,
+        bf: PostTaxRegistrationsRequestBodyCountryOptionsBf? = nil,
+        bg: PostTaxRegistrationsRequestBodyCountryOptionsBg? = nil,
+        bh: PostTaxRegistrationsRequestBodyCountryOptionsBh? = nil,
+        bj: PostTaxRegistrationsRequestBodyCountryOptionsBj? = nil,
+        bs: PostTaxRegistrationsRequestBodyCountryOptionsBs? = nil,
+        by: PostTaxRegistrationsRequestBodyCountryOptionsBy? = nil,
+        ca: PostTaxRegistrationsRequestBodyCountryOptionsCa? = nil,
+        cd: PostTaxRegistrationsRequestBodyCountryOptionsCd? = nil,
+        ch: PostTaxRegistrationsRequestBodyCountryOptionsCh? = nil,
+        cl: PostTaxRegistrationsRequestBodyCountryOptionsCl? = nil,
+        cm: PostTaxRegistrationsRequestBodyCountryOptionsCm? = nil,
+        co: PostTaxRegistrationsRequestBodyCountryOptionsCo? = nil,
+        cr: PostTaxRegistrationsRequestBodyCountryOptionsCr? = nil,
+        cv: PostTaxRegistrationsRequestBodyCountryOptionsCv? = nil,
+        cy: PostTaxRegistrationsRequestBodyCountryOptionsCy? = nil,
+        cz: PostTaxRegistrationsRequestBodyCountryOptionsCz? = nil,
+        de: PostTaxRegistrationsRequestBodyCountryOptionsDe? = nil,
+        dk: PostTaxRegistrationsRequestBodyCountryOptionsDk? = nil,
+        ec: PostTaxRegistrationsRequestBodyCountryOptionsEc? = nil,
+        ee: PostTaxRegistrationsRequestBodyCountryOptionsEe? = nil,
+        eg: PostTaxRegistrationsRequestBodyCountryOptionsEg? = nil,
+        es: PostTaxRegistrationsRequestBodyCountryOptionsEs? = nil,
+        et: PostTaxRegistrationsRequestBodyCountryOptionsEt? = nil,
+        fi: PostTaxRegistrationsRequestBodyCountryOptionsFi? = nil,
+        fr: PostTaxRegistrationsRequestBodyCountryOptionsFr? = nil,
+        gb: PostTaxRegistrationsRequestBodyCountryOptionsGb? = nil,
+        ge: PostTaxRegistrationsRequestBodyCountryOptionsGe? = nil,
+        gn: PostTaxRegistrationsRequestBodyCountryOptionsGn? = nil,
+        gr: PostTaxRegistrationsRequestBodyCountryOptionsGr? = nil,
+        hr: PostTaxRegistrationsRequestBodyCountryOptionsHr? = nil,
+        hu: PostTaxRegistrationsRequestBodyCountryOptionsHu? = nil,
+        id: PostTaxRegistrationsRequestBodyCountryOptionsId? = nil,
+        ie: PostTaxRegistrationsRequestBodyCountryOptionsIe? = nil,
+        in: PostTaxRegistrationsRequestBodyCountryOptionsIn? = nil,
+        is: PostTaxRegistrationsRequestBodyCountryOptionsIs? = nil,
+        it: PostTaxRegistrationsRequestBodyCountryOptionsIt? = nil,
+        jp: PostTaxRegistrationsRequestBodyCountryOptionsJp? = nil,
+        ke: PostTaxRegistrationsRequestBodyCountryOptionsKe? = nil,
+        kg: PostTaxRegistrationsRequestBodyCountryOptionsKg? = nil,
+        kh: PostTaxRegistrationsRequestBodyCountryOptionsKh? = nil,
+        kr: PostTaxRegistrationsRequestBodyCountryOptionsKr? = nil,
+        kz: PostTaxRegistrationsRequestBodyCountryOptionsKz? = nil,
+        la: PostTaxRegistrationsRequestBodyCountryOptionsLa? = nil,
+        lk: PostTaxRegistrationsRequestBodyCountryOptionsLk? = nil,
+        lt: PostTaxRegistrationsRequestBodyCountryOptionsLt? = nil,
+        lu: PostTaxRegistrationsRequestBodyCountryOptionsLu? = nil,
+        lv: PostTaxRegistrationsRequestBodyCountryOptionsLv? = nil,
+        ma: PostTaxRegistrationsRequestBodyCountryOptionsMa? = nil,
+        md: PostTaxRegistrationsRequestBodyCountryOptionsMd? = nil,
+        me: PostTaxRegistrationsRequestBodyCountryOptionsMe? = nil,
+        mk: PostTaxRegistrationsRequestBodyCountryOptionsMk? = nil,
+        mr: PostTaxRegistrationsRequestBodyCountryOptionsMr? = nil,
+        mt: PostTaxRegistrationsRequestBodyCountryOptionsMt? = nil,
+        mx: PostTaxRegistrationsRequestBodyCountryOptionsMx? = nil,
+        my: PostTaxRegistrationsRequestBodyCountryOptionsMy? = nil,
+        ng: PostTaxRegistrationsRequestBodyCountryOptionsNg? = nil,
+        nl: PostTaxRegistrationsRequestBodyCountryOptionsNl? = nil,
+        no: PostTaxRegistrationsRequestBodyCountryOptionsNo? = nil,
+        np: PostTaxRegistrationsRequestBodyCountryOptionsNp? = nil,
+        nz: PostTaxRegistrationsRequestBodyCountryOptionsNz? = nil,
+        om: PostTaxRegistrationsRequestBodyCountryOptionsOm? = nil,
+        pe: PostTaxRegistrationsRequestBodyCountryOptionsPe? = nil,
+        ph: PostTaxRegistrationsRequestBodyCountryOptionsPh? = nil,
+        pl: PostTaxRegistrationsRequestBodyCountryOptionsPl? = nil,
+        pt: PostTaxRegistrationsRequestBodyCountryOptionsPt? = nil,
+        ro: PostTaxRegistrationsRequestBodyCountryOptionsRo? = nil,
+        rs: PostTaxRegistrationsRequestBodyCountryOptionsRs? = nil,
+        ru: PostTaxRegistrationsRequestBodyCountryOptionsRu? = nil,
+        sa: PostTaxRegistrationsRequestBodyCountryOptionsSa? = nil,
+        se: PostTaxRegistrationsRequestBodyCountryOptionsSe? = nil,
+        sg: PostTaxRegistrationsRequestBodyCountryOptionsSg? = nil,
+        si: PostTaxRegistrationsRequestBodyCountryOptionsSi? = nil,
+        sk: PostTaxRegistrationsRequestBodyCountryOptionsSk? = nil,
+        sn: PostTaxRegistrationsRequestBodyCountryOptionsSn? = nil,
+        sr: PostTaxRegistrationsRequestBodyCountryOptionsSr? = nil,
+        th: PostTaxRegistrationsRequestBodyCountryOptionsTh? = nil,
+        tj: PostTaxRegistrationsRequestBodyCountryOptionsTj? = nil,
+        tr: PostTaxRegistrationsRequestBodyCountryOptionsTr? = nil,
+        tw: PostTaxRegistrationsRequestBodyCountryOptionsTw? = nil,
+        tz: PostTaxRegistrationsRequestBodyCountryOptionsTz? = nil,
+        ua: PostTaxRegistrationsRequestBodyCountryOptionsUa? = nil,
+        ug: PostTaxRegistrationsRequestBodyCountryOptionsUg? = nil,
+        us: PostTaxRegistrationsRequestBodyCountryOptionsUs? = nil,
+        uy: PostTaxRegistrationsRequestBodyCountryOptionsUy? = nil,
+        uz: PostTaxRegistrationsRequestBodyCountryOptionsUz? = nil,
+        vn: PostTaxRegistrationsRequestBodyCountryOptionsVn? = nil,
+        za: PostTaxRegistrationsRequestBodyCountryOptionsZa? = nil,
+        zm: PostTaxRegistrationsRequestBodyCountryOptionsZm? = nil,
+        zw: PostTaxRegistrationsRequestBodyCountryOptionsZw? = nil
+    ) {
         self.init(sdkDefaults: ())
         sdkSet1(ae, al, am, ao, at)
         sdkSet2(au, aw, az, ba, bb)
@@ -366,7 +468,13 @@ public extension PostTaxRegistrationsRequestBodyCountryOptions {
 }
 
 extension PostTaxRegistrationsRequestBodyCountryOptions {
-    mutating func sdkSet1(_ ae: PostTaxRegistrationsRequestBodyCountryOptionsAe?, _ al: PostTaxRegistrationsRequestBodyCountryOptionsAl?, _ am: PostTaxRegistrationsRequestBodyCountryOptionsAm?, _ ao: PostTaxRegistrationsRequestBodyCountryOptionsAo?, _ at: PostTaxRegistrationsRequestBodyCountryOptionsAt?) {
+    mutating func sdkSet1(
+        _ ae: PostTaxRegistrationsRequestBodyCountryOptionsAe?,
+        _ al: PostTaxRegistrationsRequestBodyCountryOptionsAl?,
+        _ am: PostTaxRegistrationsRequestBodyCountryOptionsAm?,
+        _ ao: PostTaxRegistrationsRequestBodyCountryOptionsAo?,
+        _ at: PostTaxRegistrationsRequestBodyCountryOptionsAt?
+    ) {
         self.ae = ae
         self.al = al
         self.am = am
@@ -376,7 +484,13 @@ extension PostTaxRegistrationsRequestBodyCountryOptions {
 }
 
 extension PostTaxRegistrationsRequestBodyCountryOptions {
-    mutating func sdkSet2(_ au: PostTaxRegistrationsRequestBodyCountryOptionsAu?, _ aw: PostTaxRegistrationsRequestBodyCountryOptionsAw?, _ az: PostTaxRegistrationsRequestBodyCountryOptionsAz?, _ ba: PostTaxRegistrationsRequestBodyCountryOptionsBa?, _ bb: PostTaxRegistrationsRequestBodyCountryOptionsBb?) {
+    mutating func sdkSet2(
+        _ au: PostTaxRegistrationsRequestBodyCountryOptionsAu?,
+        _ aw: PostTaxRegistrationsRequestBodyCountryOptionsAw?,
+        _ az: PostTaxRegistrationsRequestBodyCountryOptionsAz?,
+        _ ba: PostTaxRegistrationsRequestBodyCountryOptionsBa?,
+        _ bb: PostTaxRegistrationsRequestBodyCountryOptionsBb?
+    ) {
         self.au = au
         self.aw = aw
         self.az = az
@@ -386,7 +500,13 @@ extension PostTaxRegistrationsRequestBodyCountryOptions {
 }
 
 extension PostTaxRegistrationsRequestBodyCountryOptions {
-    mutating func sdkSet3(_ bd: PostTaxRegistrationsRequestBodyCountryOptionsBd?, _ be: PostTaxRegistrationsRequestBodyCountryOptionsBe?, _ bf: PostTaxRegistrationsRequestBodyCountryOptionsBf?, _ bg: PostTaxRegistrationsRequestBodyCountryOptionsBg?, _ bh: PostTaxRegistrationsRequestBodyCountryOptionsBh?) {
+    mutating func sdkSet3(
+        _ bd: PostTaxRegistrationsRequestBodyCountryOptionsBd?,
+        _ be: PostTaxRegistrationsRequestBodyCountryOptionsBe?,
+        _ bf: PostTaxRegistrationsRequestBodyCountryOptionsBf?,
+        _ bg: PostTaxRegistrationsRequestBodyCountryOptionsBg?,
+        _ bh: PostTaxRegistrationsRequestBodyCountryOptionsBh?
+    ) {
         self.bd = bd
         self.be = be
         self.bf = bf
@@ -396,7 +516,13 @@ extension PostTaxRegistrationsRequestBodyCountryOptions {
 }
 
 extension PostTaxRegistrationsRequestBodyCountryOptions {
-    mutating func sdkSet4(_ bj: PostTaxRegistrationsRequestBodyCountryOptionsBj?, _ bs: PostTaxRegistrationsRequestBodyCountryOptionsBs?, _ by: PostTaxRegistrationsRequestBodyCountryOptionsBy?, _ ca: PostTaxRegistrationsRequestBodyCountryOptionsCa?, _ cd: PostTaxRegistrationsRequestBodyCountryOptionsCd?) {
+    mutating func sdkSet4(
+        _ bj: PostTaxRegistrationsRequestBodyCountryOptionsBj?,
+        _ bs: PostTaxRegistrationsRequestBodyCountryOptionsBs?,
+        _ by: PostTaxRegistrationsRequestBodyCountryOptionsBy?,
+        _ ca: PostTaxRegistrationsRequestBodyCountryOptionsCa?,
+        _ cd: PostTaxRegistrationsRequestBodyCountryOptionsCd?
+    ) {
         self.bj = bj
         self.bs = bs
         self.by = by
@@ -406,7 +532,13 @@ extension PostTaxRegistrationsRequestBodyCountryOptions {
 }
 
 extension PostTaxRegistrationsRequestBodyCountryOptions {
-    mutating func sdkSet5(_ ch: PostTaxRegistrationsRequestBodyCountryOptionsCh?, _ cl: PostTaxRegistrationsRequestBodyCountryOptionsCl?, _ cm: PostTaxRegistrationsRequestBodyCountryOptionsCm?, _ co: PostTaxRegistrationsRequestBodyCountryOptionsCo?, _ cr: PostTaxRegistrationsRequestBodyCountryOptionsCr?) {
+    mutating func sdkSet5(
+        _ ch: PostTaxRegistrationsRequestBodyCountryOptionsCh?,
+        _ cl: PostTaxRegistrationsRequestBodyCountryOptionsCl?,
+        _ cm: PostTaxRegistrationsRequestBodyCountryOptionsCm?,
+        _ co: PostTaxRegistrationsRequestBodyCountryOptionsCo?,
+        _ cr: PostTaxRegistrationsRequestBodyCountryOptionsCr?
+    ) {
         self.ch = ch
         self.cl = cl
         self.cm = cm
@@ -416,7 +548,13 @@ extension PostTaxRegistrationsRequestBodyCountryOptions {
 }
 
 extension PostTaxRegistrationsRequestBodyCountryOptions {
-    mutating func sdkSet6(_ cv: PostTaxRegistrationsRequestBodyCountryOptionsCv?, _ cy: PostTaxRegistrationsRequestBodyCountryOptionsCy?, _ cz: PostTaxRegistrationsRequestBodyCountryOptionsCz?, _ de: PostTaxRegistrationsRequestBodyCountryOptionsDe?, _ dk: PostTaxRegistrationsRequestBodyCountryOptionsDk?) {
+    mutating func sdkSet6(
+        _ cv: PostTaxRegistrationsRequestBodyCountryOptionsCv?,
+        _ cy: PostTaxRegistrationsRequestBodyCountryOptionsCy?,
+        _ cz: PostTaxRegistrationsRequestBodyCountryOptionsCz?,
+        _ de: PostTaxRegistrationsRequestBodyCountryOptionsDe?,
+        _ dk: PostTaxRegistrationsRequestBodyCountryOptionsDk?
+    ) {
         self.cv = cv
         self.cy = cy
         self.cz = cz
@@ -426,7 +564,13 @@ extension PostTaxRegistrationsRequestBodyCountryOptions {
 }
 
 extension PostTaxRegistrationsRequestBodyCountryOptions {
-    mutating func sdkSet7(_ ec: PostTaxRegistrationsRequestBodyCountryOptionsEc?, _ ee: PostTaxRegistrationsRequestBodyCountryOptionsEe?, _ eg: PostTaxRegistrationsRequestBodyCountryOptionsEg?, _ es: PostTaxRegistrationsRequestBodyCountryOptionsEs?, _ et: PostTaxRegistrationsRequestBodyCountryOptionsEt?) {
+    mutating func sdkSet7(
+        _ ec: PostTaxRegistrationsRequestBodyCountryOptionsEc?,
+        _ ee: PostTaxRegistrationsRequestBodyCountryOptionsEe?,
+        _ eg: PostTaxRegistrationsRequestBodyCountryOptionsEg?,
+        _ es: PostTaxRegistrationsRequestBodyCountryOptionsEs?,
+        _ et: PostTaxRegistrationsRequestBodyCountryOptionsEt?
+    ) {
         self.ec = ec
         self.ee = ee
         self.eg = eg
@@ -436,7 +580,13 @@ extension PostTaxRegistrationsRequestBodyCountryOptions {
 }
 
 extension PostTaxRegistrationsRequestBodyCountryOptions {
-    mutating func sdkSet8(_ fi: PostTaxRegistrationsRequestBodyCountryOptionsFi?, _ fr: PostTaxRegistrationsRequestBodyCountryOptionsFr?, _ gb: PostTaxRegistrationsRequestBodyCountryOptionsGb?, _ ge: PostTaxRegistrationsRequestBodyCountryOptionsGe?, _ gn: PostTaxRegistrationsRequestBodyCountryOptionsGn?) {
+    mutating func sdkSet8(
+        _ fi: PostTaxRegistrationsRequestBodyCountryOptionsFi?,
+        _ fr: PostTaxRegistrationsRequestBodyCountryOptionsFr?,
+        _ gb: PostTaxRegistrationsRequestBodyCountryOptionsGb?,
+        _ ge: PostTaxRegistrationsRequestBodyCountryOptionsGe?,
+        _ gn: PostTaxRegistrationsRequestBodyCountryOptionsGn?
+    ) {
         self.fi = fi
         self.fr = fr
         self.gb = gb
@@ -446,7 +596,13 @@ extension PostTaxRegistrationsRequestBodyCountryOptions {
 }
 
 extension PostTaxRegistrationsRequestBodyCountryOptions {
-    mutating func sdkSet9(_ gr: PostTaxRegistrationsRequestBodyCountryOptionsGr?, _ hr: PostTaxRegistrationsRequestBodyCountryOptionsHr?, _ hu: PostTaxRegistrationsRequestBodyCountryOptionsHu?, _ id: PostTaxRegistrationsRequestBodyCountryOptionsId?, _ ie: PostTaxRegistrationsRequestBodyCountryOptionsIe?) {
+    mutating func sdkSet9(
+        _ gr: PostTaxRegistrationsRequestBodyCountryOptionsGr?,
+        _ hr: PostTaxRegistrationsRequestBodyCountryOptionsHr?,
+        _ hu: PostTaxRegistrationsRequestBodyCountryOptionsHu?,
+        _ id: PostTaxRegistrationsRequestBodyCountryOptionsId?,
+        _ ie: PostTaxRegistrationsRequestBodyCountryOptionsIe?
+    ) {
         self.gr = gr
         self.hr = hr
         self.hu = hu
@@ -456,9 +612,15 @@ extension PostTaxRegistrationsRequestBodyCountryOptions {
 }
 
 extension PostTaxRegistrationsRequestBodyCountryOptions {
-    mutating func sdkSet10(_ `in`: PostTaxRegistrationsRequestBodyCountryOptionsIn?, _ `is`: PostTaxRegistrationsRequestBodyCountryOptionsIs?, _ it: PostTaxRegistrationsRequestBodyCountryOptionsIt?, _ jp: PostTaxRegistrationsRequestBodyCountryOptionsJp?, _ ke: PostTaxRegistrationsRequestBodyCountryOptionsKe?) {
-        self.`in` = `in`
-        self.`is` = `is`
+    mutating func sdkSet10(
+        _ in: PostTaxRegistrationsRequestBodyCountryOptionsIn?,
+        _ is: PostTaxRegistrationsRequestBodyCountryOptionsIs?,
+        _ it: PostTaxRegistrationsRequestBodyCountryOptionsIt?,
+        _ jp: PostTaxRegistrationsRequestBodyCountryOptionsJp?,
+        _ ke: PostTaxRegistrationsRequestBodyCountryOptionsKe?
+    ) {
+        self.in = `in`
+        self.is = `is`
         self.it = it
         self.jp = jp
         self.ke = ke

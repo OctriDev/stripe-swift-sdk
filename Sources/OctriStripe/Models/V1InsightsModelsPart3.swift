@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1Insights domain models
+/// V1Insights domain models
 /// Collection of signals for this payment evaluation.
 public struct InsightsResourcesPaymentEvaluationSignals: Codable {
     /// A payment evaluation signal with evaluated_at, risk_level, and score fields.
@@ -13,21 +13,27 @@ public struct InsightsResourcesPaymentEvaluationSignals: Codable {
         case fraudulentPayment = "fraudulent_payment"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension InsightsResourcesPaymentEvaluationSignals {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.fraudulentPayment) else {
-            throw SdkValidationError(field: "fraudulent_payment", code: "required", message: "Validation failed for 'fraudulent_payment': value is required")
-        }
-        self.fraudulentPayment = try container.sdkDecodeRequired(.fraudulentPayment)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension InsightsResourcesPaymentEvaluationSignals {
-    public init(fraudulentPayment: InsightsResourcesPaymentEvaluationSignalV2) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.fraudulentPayment) else {
+            throw SdkValidationError(
+                field: "fraudulent_payment",
+                code: "required",
+                message: "Validation failed for 'fraudulent_payment': value is required"
+            )
+        }
+        fraudulentPayment = try container.sdkDecodeRequired(.fraudulentPayment)
+    }
+}
+
+public extension InsightsResourcesPaymentEvaluationSignals {
+    init(fraudulentPayment: InsightsResourcesPaymentEvaluationSignalV2) {
         self.fraudulentPayment = fraudulentPayment
     }
 }
@@ -42,19 +48,19 @@ public struct InsightsResourcesPaymentEvaluationSucceeded: Codable {
     }
 
     init() {
-        self.card = nil
+        card = nil
     }
 }
 
 public extension InsightsResourcesPaymentEvaluationSucceeded {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.card = try container.sdkDecodeIfPresent(.card)
+        card = try container.sdkDecodeIfPresent(.card)
     }
 }
 
 public extension InsightsResourcesPaymentEvaluationSucceeded {
-    public init(card: InsightsResourcesPaymentEvaluationSucceededCard? = nil) {
+    init(card: InsightsResourcesPaymentEvaluationSucceededCard? = nil) {
         self.init()
         self.card = card
     }
@@ -75,29 +81,47 @@ public struct InsightsResourcesPaymentEvaluationSucceededCard: Codable {
         case cvcCheck = "cvc_check"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension InsightsResourcesPaymentEvaluationSucceededCard {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.addressLine1Check) else {
-            throw SdkValidationError(field: "address_line1_check", code: "required", message: "Validation failed for 'address_line1_check': value is required")
-        }
-        guard container.contains(.addressPostalCodeCheck) else {
-            throw SdkValidationError(field: "address_postal_code_check", code: "required", message: "Validation failed for 'address_postal_code_check': value is required")
-        }
-        guard container.contains(.cvcCheck) else {
-            throw SdkValidationError(field: "cvc_check", code: "required", message: "Validation failed for 'cvc_check': value is required")
-        }
-        self.addressLine1Check = try container.sdkDecodeRequired(.addressLine1Check)
-        self.addressPostalCodeCheck = try container.sdkDecodeRequired(.addressPostalCodeCheck)
-        self.cvcCheck = try container.sdkDecodeRequired(.cvcCheck)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension InsightsResourcesPaymentEvaluationSucceededCard {
-    public init(addressLine1Check: InsightsResourcesPaymentEvaluationSucceededCardAddressLine1Check, addressPostalCodeCheck: InsightsResourcesPaymentEvaluationSucceededCardAddressPostalCodeCheck, cvcCheck: InsightsResourcesPaymentEvaluationSucceededCardCvcCheck) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.addressLine1Check) else {
+            throw SdkValidationError(
+                field: "address_line1_check",
+                code: "required",
+                message: "Validation failed for 'address_line1_check': value is required"
+            )
+        }
+        guard container.contains(.addressPostalCodeCheck) else {
+            throw SdkValidationError(
+                field: "address_postal_code_check",
+                code: "required",
+                message: "Validation failed for 'address_postal_code_check': value is required"
+            )
+        }
+        guard container.contains(.cvcCheck) else {
+            throw SdkValidationError(
+                field: "cvc_check",
+                code: "required",
+                message: "Validation failed for 'cvc_check': value is required"
+            )
+        }
+        addressLine1Check = try container.sdkDecodeRequired(.addressLine1Check)
+        addressPostalCodeCheck = try container.sdkDecodeRequired(.addressPostalCodeCheck)
+        cvcCheck = try container.sdkDecodeRequired(.cvcCheck)
+    }
+}
+
+public extension InsightsResourcesPaymentEvaluationSucceededCard {
+    init(
+        addressLine1Check: InsightsResourcesPaymentEvaluationSucceededCardAddressLine1Check,
+        addressPostalCodeCheck: InsightsResourcesPaymentEvaluationSucceededCardAddressPostalCodeCheck,
+        cvcCheck: InsightsResourcesPaymentEvaluationSucceededCardCvcCheck
+    ) {
         (self.addressLine1Check, self.addressPostalCodeCheck) = (addressLine1Check, addressPostalCodeCheck)
         self.cvcCheck = cvcCheck
     }
@@ -118,30 +142,44 @@ public struct InsightsResourcesPaymentEvaluationUserInterventionRaised: Codable 
         case custom
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension InsightsResourcesPaymentEvaluationUserInterventionRaised {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.key) else {
-            throw SdkValidationError(field: "key", code: "required", message: "Validation failed for 'key': value is required")
-        }
-        guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
-        }
-        self.key = try container.sdkDecodeRequired(.key)
-        self.type = try container.sdkDecodeRequired(.type)
-        self.custom = try container.sdkDecodeIfPresent(.custom)
-            try validateLength("key", self.key, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension InsightsResourcesPaymentEvaluationUserInterventionRaised {
-    public init(key: String, type: InsightsResourcesPaymentEvaluationUserInterventionRaisedType, custom: InsightsResourcesPaymentEvaluationUserInterventionRaisedCustom? = nil) throws {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.key) else {
+            throw SdkValidationError(
+                field: "key",
+                code: "required",
+                message: "Validation failed for 'key': value is required"
+            )
+        }
+        guard container.contains(.type) else {
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
+        }
+        key = try container.sdkDecodeRequired(.key)
+        type = try container.sdkDecodeRequired(.type)
+        custom = try container.sdkDecodeIfPresent(.custom)
+        try validateLength("key", key, min: nil, max: 5000)
+    }
+}
+
+public extension InsightsResourcesPaymentEvaluationUserInterventionRaised {
+    init(
+        key: String,
+        type: InsightsResourcesPaymentEvaluationUserInterventionRaisedType,
+        custom: InsightsResourcesPaymentEvaluationUserInterventionRaisedCustom? = nil
+    ) throws {
         (self.key, self.type) = (key, type)
         self.custom = custom
-            try validateLength("key", self.key, min: nil, max: 5000)
+        try validateLength("key", self.key, min: nil, max: 5000)
     }
 }
 
@@ -155,24 +193,30 @@ public struct InsightsResourcesPaymentEvaluationUserInterventionRaisedCustom: Co
         case type
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension InsightsResourcesPaymentEvaluationUserInterventionRaisedCustom {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
-        }
-        self.type = try container.sdkDecodeRequired(.type)
-            try validateLength("type", self.type, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension InsightsResourcesPaymentEvaluationUserInterventionRaisedCustom {
-    public init(type: String) throws {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.type) else {
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
+        }
+        type = try container.sdkDecodeRequired(.type)
+        try validateLength("type", type, min: nil, max: 5000)
+    }
+}
+
+public extension InsightsResourcesPaymentEvaluationUserInterventionRaisedCustom {
+    init(type: String) throws {
         self.type = type
-            try validateLength("type", self.type, min: nil, max: 5000)
+        try validateLength("type", self.type, min: nil, max: 5000)
     }
 }
 
@@ -188,40 +232,50 @@ public struct InsightsResourcesPaymentEvaluationUserInterventionResolved: Codabl
         case outcome
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension InsightsResourcesPaymentEvaluationUserInterventionResolved {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.key) else {
-            throw SdkValidationError(field: "key", code: "required", message: "Validation failed for 'key': value is required")
-        }
-        self.key = try container.sdkDecodeRequired(.key)
-        self.outcome = try container.sdkDecodeIfPresent(.outcome)
-            try validateLength("key", self.key, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension InsightsResourcesPaymentEvaluationUserInterventionResolved {
-    public init(key: String, outcome: InsightsResourcesPaymentEvaluationUserInterventionResolvedOutcome? = nil) throws {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.key) else {
+            throw SdkValidationError(
+                field: "key",
+                code: "required",
+                message: "Validation failed for 'key': value is required"
+            )
+        }
+        key = try container.sdkDecodeRequired(.key)
+        outcome = try container.sdkDecodeIfPresent(.outcome)
+        try validateLength("key", key, min: nil, max: 5000)
+    }
+}
+
+public extension InsightsResourcesPaymentEvaluationUserInterventionResolved {
+    init(key: String, outcome: InsightsResourcesPaymentEvaluationUserInterventionResolvedOutcome? = nil) throws {
         (self.key, self.outcome) = (key, outcome)
-            try validateLength("key", self.key, min: nil, max: 5000)
+        try validateLength("key", self.key, min: nil, max: 5000)
     }
 }
 
 /// Type of user intervention raised.
-public struct InsightsResourcesPaymentEvaluationUserInterventionRaisedType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct InsightsResourcesPaymentEvaluationUserInterventionRaisedType: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let value3ds = InsightsResourcesPaymentEvaluationUserInterventionRaisedType(rawValue: "3ds")
     public static let captcha = InsightsResourcesPaymentEvaluationUserInterventionRaisedType(rawValue: "captcha")
     public static let custom = InsightsResourcesPaymentEvaluationUserInterventionRaisedType(rawValue: "custom")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -231,18 +285,24 @@ public struct InsightsResourcesPaymentEvaluationUserInterventionRaisedType: RawR
 }
 
 /// Result of the address line 1 check.
-public struct InsightsResourcesPaymentEvaluationSucceededCardAddressLine1Check: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct InsightsResourcesPaymentEvaluationSucceededCardAddressLine1Check: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let fail = InsightsResourcesPaymentEvaluationSucceededCardAddressLine1Check(rawValue: "fail")
     public static let pass = InsightsResourcesPaymentEvaluationSucceededCardAddressLine1Check(rawValue: "pass")
-    public static let unavailable = InsightsResourcesPaymentEvaluationSucceededCardAddressLine1Check(rawValue: "unavailable")
-    public static let unchecked = InsightsResourcesPaymentEvaluationSucceededCardAddressLine1Check(rawValue: "unchecked")
+    public static let unavailable =
+        InsightsResourcesPaymentEvaluationSucceededCardAddressLine1Check(rawValue: "unavailable")
+    public static let unchecked =
+        InsightsResourcesPaymentEvaluationSucceededCardAddressLine1Check(rawValue: "unchecked")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -252,10 +312,14 @@ public struct InsightsResourcesPaymentEvaluationSucceededCardAddressLine1Check: 
 }
 
 /// Indicates the outcome of the payment evaluation.
-public struct InsightsResourcesPaymentEvaluationOutcomeType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct InsightsResourcesPaymentEvaluationOutcomeType: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let failed = InsightsResourcesPaymentEvaluationOutcomeType(rawValue: "failed")
     public static let merchantBlocked = InsightsResourcesPaymentEvaluationOutcomeType(rawValue: "merchant_blocked")
     public static let rejected = InsightsResourcesPaymentEvaluationOutcomeType(rawValue: "rejected")
@@ -263,7 +327,7 @@ public struct InsightsResourcesPaymentEvaluationOutcomeType: RawRepresentable, H
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -273,18 +337,25 @@ public struct InsightsResourcesPaymentEvaluationOutcomeType: RawRepresentable, H
 }
 
 /// Indicates whether the cardholder provided a postal code and if it matched the cardholder’s billing address.
-public struct InsightsResourcesPaymentEvaluationSucceededCardAddressPostalCodeCheck: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct InsightsResourcesPaymentEvaluationSucceededCardAddressPostalCodeCheck: RawRepresentable, Hashable,
+    Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let fail = InsightsResourcesPaymentEvaluationSucceededCardAddressPostalCodeCheck(rawValue: "fail")
     public static let pass = InsightsResourcesPaymentEvaluationSucceededCardAddressPostalCodeCheck(rawValue: "pass")
-    public static let unavailable = InsightsResourcesPaymentEvaluationSucceededCardAddressPostalCodeCheck(rawValue: "unavailable")
-    public static let unchecked = InsightsResourcesPaymentEvaluationSucceededCardAddressPostalCodeCheck(rawValue: "unchecked")
+    public static let unavailable =
+        InsightsResourcesPaymentEvaluationSucceededCardAddressPostalCodeCheck(rawValue: "unavailable")
+    public static let unchecked =
+        InsightsResourcesPaymentEvaluationSucceededCardAddressPostalCodeCheck(rawValue: "unchecked")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -294,19 +365,26 @@ public struct InsightsResourcesPaymentEvaluationSucceededCardAddressPostalCodeCh
 }
 
 /// Indicates the type of event attached to the payment evaluation.
-public struct InsightsResourcesPaymentEvaluationEventType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct InsightsResourcesPaymentEvaluationEventType: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let disputeOpened = InsightsResourcesPaymentEvaluationEventType(rawValue: "dispute_opened")
-    public static let earlyFraudWarningReceived = InsightsResourcesPaymentEvaluationEventType(rawValue: "early_fraud_warning_received")
+    public static let earlyFraudWarningReceived =
+        InsightsResourcesPaymentEvaluationEventType(rawValue: "early_fraud_warning_received")
     public static let refunded = InsightsResourcesPaymentEvaluationEventType(rawValue: "refunded")
-    public static let userInterventionRaised = InsightsResourcesPaymentEvaluationEventType(rawValue: "user_intervention_raised")
-    public static let userInterventionResolved = InsightsResourcesPaymentEvaluationEventType(rawValue: "user_intervention_resolved")
+    public static let userInterventionRaised =
+        InsightsResourcesPaymentEvaluationEventType(rawValue: "user_intervention_raised")
+    public static let userInterventionResolved =
+        InsightsResourcesPaymentEvaluationEventType(rawValue: "user_intervention_resolved")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -316,27 +394,36 @@ public struct InsightsResourcesPaymentEvaluationEventType: RawRepresentable, Has
 }
 
 /// Card issuer's reason for the network decline.
-public struct InsightsResourcesPaymentEvaluationRejectedCardReason: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct InsightsResourcesPaymentEvaluationRejectedCardReason: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let authenticationFailed = InsightsResourcesPaymentEvaluationRejectedCardReason(rawValue: "authentication_failed")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let authenticationFailed =
+        InsightsResourcesPaymentEvaluationRejectedCardReason(rawValue: "authentication_failed")
     public static let doNotHonor = InsightsResourcesPaymentEvaluationRejectedCardReason(rawValue: "do_not_honor")
     public static let expired = InsightsResourcesPaymentEvaluationRejectedCardReason(rawValue: "expired")
     public static let incorrectCvc = InsightsResourcesPaymentEvaluationRejectedCardReason(rawValue: "incorrect_cvc")
-    public static let incorrectNumber = InsightsResourcesPaymentEvaluationRejectedCardReason(rawValue: "incorrect_number")
-    public static let incorrectPostalCode = InsightsResourcesPaymentEvaluationRejectedCardReason(rawValue: "incorrect_postal_code")
-    public static let insufficientFunds = InsightsResourcesPaymentEvaluationRejectedCardReason(rawValue: "insufficient_funds")
+    public static let incorrectNumber =
+        InsightsResourcesPaymentEvaluationRejectedCardReason(rawValue: "incorrect_number")
+    public static let incorrectPostalCode =
+        InsightsResourcesPaymentEvaluationRejectedCardReason(rawValue: "incorrect_postal_code")
+    public static let insufficientFunds =
+        InsightsResourcesPaymentEvaluationRejectedCardReason(rawValue: "insufficient_funds")
     public static let invalidAccount = InsightsResourcesPaymentEvaluationRejectedCardReason(rawValue: "invalid_account")
     public static let lostCard = InsightsResourcesPaymentEvaluationRejectedCardReason(rawValue: "lost_card")
     public static let other = InsightsResourcesPaymentEvaluationRejectedCardReason(rawValue: "other")
-    public static let processingError = InsightsResourcesPaymentEvaluationRejectedCardReason(rawValue: "processing_error")
+    public static let processingError =
+        InsightsResourcesPaymentEvaluationRejectedCardReason(rawValue: "processing_error")
     public static let reportedStolen = InsightsResourcesPaymentEvaluationRejectedCardReason(rawValue: "reported_stolen")
     public static let tryAgainLater = InsightsResourcesPaymentEvaluationRejectedCardReason(rawValue: "try_again_later")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -346,15 +433,19 @@ public struct InsightsResourcesPaymentEvaluationRejectedCardReason: RawRepresent
 }
 
 /// Describes the type of money movement. Currently only `card` is supported.
-public struct InsightsResourcesPaymentEvaluationMoneyMovementDetailsMoneyMovementType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct InsightsResourcesPaymentEvaluationMoneyMovementDetailsMoneyMovementType: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let card = InsightsResourcesPaymentEvaluationMoneyMovementDetailsMoneyMovementType(rawValue: "card")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -364,18 +455,23 @@ public struct InsightsResourcesPaymentEvaluationMoneyMovementDetailsMoneyMovemen
 }
 
 /// Result of the address line 1 check.
-public struct InsightsResourcesPaymentEvaluationRejectedCardAddressLine1Check: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct InsightsResourcesPaymentEvaluationRejectedCardAddressLine1Check: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let fail = InsightsResourcesPaymentEvaluationRejectedCardAddressLine1Check(rawValue: "fail")
     public static let pass = InsightsResourcesPaymentEvaluationRejectedCardAddressLine1Check(rawValue: "pass")
-    public static let unavailable = InsightsResourcesPaymentEvaluationRejectedCardAddressLine1Check(rawValue: "unavailable")
+    public static let unavailable =
+        InsightsResourcesPaymentEvaluationRejectedCardAddressLine1Check(rawValue: "unavailable")
     public static let unchecked = InsightsResourcesPaymentEvaluationRejectedCardAddressLine1Check(rawValue: "unchecked")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -385,10 +481,14 @@ public struct InsightsResourcesPaymentEvaluationRejectedCardAddressLine1Check: R
 }
 
 /// Risk level of this signal, based on the score.
-public struct InsightsResourcesPaymentEvaluationSignalV2RiskLevel: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct InsightsResourcesPaymentEvaluationSignalV2RiskLevel: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let elevated = InsightsResourcesPaymentEvaluationSignalV2RiskLevel(rawValue: "elevated")
     public static let highest = InsightsResourcesPaymentEvaluationSignalV2RiskLevel(rawValue: "highest")
     public static let low = InsightsResourcesPaymentEvaluationSignalV2RiskLevel(rawValue: "low")
@@ -398,7 +498,7 @@ public struct InsightsResourcesPaymentEvaluationSignalV2RiskLevel: RawRepresenta
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -408,17 +508,22 @@ public struct InsightsResourcesPaymentEvaluationSignalV2RiskLevel: RawRepresenta
 }
 
 /// Result of the intervention if it has been completed.
-public struct InsightsResourcesPaymentEvaluationUserInterventionResolvedOutcome: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct InsightsResourcesPaymentEvaluationUserInterventionResolvedOutcome: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let abandoned = InsightsResourcesPaymentEvaluationUserInterventionResolvedOutcome(rawValue: "abandoned")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let abandoned =
+        InsightsResourcesPaymentEvaluationUserInterventionResolvedOutcome(rawValue: "abandoned")
     public static let failed = InsightsResourcesPaymentEvaluationUserInterventionResolvedOutcome(rawValue: "failed")
     public static let passed = InsightsResourcesPaymentEvaluationUserInterventionResolvedOutcome(rawValue: "passed")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -428,25 +533,35 @@ public struct InsightsResourcesPaymentEvaluationUserInterventionResolvedOutcome:
 }
 
 /// Reason given by cardholder for dispute.
-public struct InsightsResourcesPaymentEvaluationDisputeOpenedReason: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct InsightsResourcesPaymentEvaluationDisputeOpenedReason: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let accountNotAvailable = InsightsResourcesPaymentEvaluationDisputeOpenedReason(rawValue: "account_not_available")
-    public static let creditNotProcessed = InsightsResourcesPaymentEvaluationDisputeOpenedReason(rawValue: "credit_not_processed")
-    public static let customerInitiated = InsightsResourcesPaymentEvaluationDisputeOpenedReason(rawValue: "customer_initiated")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let accountNotAvailable =
+        InsightsResourcesPaymentEvaluationDisputeOpenedReason(rawValue: "account_not_available")
+    public static let creditNotProcessed =
+        InsightsResourcesPaymentEvaluationDisputeOpenedReason(rawValue: "credit_not_processed")
+    public static let customerInitiated =
+        InsightsResourcesPaymentEvaluationDisputeOpenedReason(rawValue: "customer_initiated")
     public static let duplicate = InsightsResourcesPaymentEvaluationDisputeOpenedReason(rawValue: "duplicate")
     public static let fraudulent = InsightsResourcesPaymentEvaluationDisputeOpenedReason(rawValue: "fraudulent")
     public static let general = InsightsResourcesPaymentEvaluationDisputeOpenedReason(rawValue: "general")
     public static let noncompliant = InsightsResourcesPaymentEvaluationDisputeOpenedReason(rawValue: "noncompliant")
-    public static let productNotReceived = InsightsResourcesPaymentEvaluationDisputeOpenedReason(rawValue: "product_not_received")
-    public static let productUnacceptable = InsightsResourcesPaymentEvaluationDisputeOpenedReason(rawValue: "product_unacceptable")
-    public static let subscriptionCanceled = InsightsResourcesPaymentEvaluationDisputeOpenedReason(rawValue: "subscription_canceled")
+    public static let productNotReceived =
+        InsightsResourcesPaymentEvaluationDisputeOpenedReason(rawValue: "product_not_received")
+    public static let productUnacceptable =
+        InsightsResourcesPaymentEvaluationDisputeOpenedReason(rawValue: "product_unacceptable")
+    public static let subscriptionCanceled =
+        InsightsResourcesPaymentEvaluationDisputeOpenedReason(rawValue: "subscription_canceled")
     public static let unrecognized = InsightsResourcesPaymentEvaluationDisputeOpenedReason(rawValue: "unrecognized")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

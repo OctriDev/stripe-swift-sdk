@@ -6,10 +6,12 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1IdentityVerificationSessionsMethods {
-    /// Updates a verification session's verification check and options. Use this operation when the session has `requires_input` status, and supply only the fields you want to change.
+public extension V1IdentityVerificationSessionsMethods {
+    /// Updates a verification session's verification check and options. Use this operation when the session has
+    /// `requires_input` status, and supply only the fields you want to change.
     ///
-    /// Updates a VerificationSession object. When the session status is requires_input , you can use this method to update the verification check and options.
+    /// Updates a VerificationSession object. When the session status is requires_input , you can use this method to
+    /// update the verification check and options.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
@@ -24,11 +26,33 @@ extension V1IdentityVerificationSessionsMethods {
     /// - type: The type of [verification
     ///   check](https://docs.stripe.com/identity/verification-checks) to be
     ///   performed.
-    public static func postIdentityVerificationSessionsSession(config: ClientConfig, session: String, expand: [String]?, metadata: [String: String]?, options: PostIdentityVerificationSessionsSessionRequestBodyOptions?, providedDetails: PostIdentityVerificationSessionsSessionRequestBodyProvidedDetails?, type: PostIdentityVerificationSessionsSessionRequestBodyType?) async throws -> IdentityVerificationSession {
+    static func postIdentityVerificationSessionsSession(
+        config: ClientConfig,
+        session: String,
+        expand: [String]?,
+        metadata: [String: String]?,
+        options: PostIdentityVerificationSessionsSessionRequestBodyOptions?,
+        providedDetails: PostIdentityVerificationSessionsSessionRequestBodyProvidedDetails?,
+        type: PostIdentityVerificationSessionsSessionRequestBodyType?
+    ) async throws -> IdentityVerificationSession {
         try validateLength("session", session, max: 5000)
 
-        let requestBody = PostIdentityVerificationSessionsSessionRequestBody(expand: expand, metadata: metadata, options: options, providedDetails: providedDetails, type: type)
+        let requestBody = PostIdentityVerificationSessionsSessionRequestBody(
+            expand: expand,
+            metadata: metadata,
+            options: options,
+            providedDetails: providedDetails,
+            type: type
+        )
 
-        return try (await sdkRequest("POST", ["/v1/identity/verification_sessions/", sdkEncodePathSegment(sdkWireString(session))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostIdentityVerificationSessionsSession")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/identity/verification_sessions/", sdkEncodePathSegment(sdkWireString(session))].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostIdentityVerificationSessionsSession"
+        )).data
     }
 }

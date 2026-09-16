@@ -3,21 +3,29 @@
 
 import Foundation
 
-// V1 domain models
+/// V1 domain models
 public extension SchedulesPhaseAutomaticTax {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.enabled) else {
-            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
+            throw SdkValidationError(
+                field: "enabled",
+                code: "required",
+                message: "Validation failed for 'enabled': value is required"
+            )
         }
-        self.enabled = try container.sdkDecodeRequired(.enabled)
-        self.disabledReason = try container.sdkDecodeIfPresent(.disabledReason)
-        self.liability = try container.sdkDecodeIfPresent(.liability)
+        enabled = try container.sdkDecodeRequired(.enabled)
+        disabledReason = try container.sdkDecodeIfPresent(.disabledReason)
+        liability = try container.sdkDecodeIfPresent(.liability)
     }
 }
 
 public extension SchedulesPhaseAutomaticTax {
-    public init(enabled: Bool, disabledReason: SchedulesPhaseAutomaticTaxDisabledReason? = nil, liability: SchedulesPhaseAutomaticTaxLiability? = nil) {
+    init(
+        enabled: Bool,
+        disabledReason: SchedulesPhaseAutomaticTaxDisabledReason? = nil,
+        liability: SchedulesPhaseAutomaticTaxLiability? = nil
+    ) {
         (self.enabled, self.disabledReason) = (enabled, disabledReason)
         self.liability = liability
     }
@@ -28,20 +36,28 @@ public enum SchedulesPhaseAutomaticTaxLiability {
 }
 
 extension SchedulesPhaseAutomaticTaxLiability: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for SchedulesPhaseAutomaticTaxLiability")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for SchedulesPhaseAutomaticTaxLiability"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(ConnectAccountReference.self) { return .connectAccountReference(value) }
+        if let value = try? container.decode(ConnectAccountReference.self) {
+            return .connectAccountReference(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -50,7 +66,6 @@ extension SchedulesPhaseAutomaticTaxLiability: Codable {
         case let .connectAccountReference(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Typed representation of the `SecretServiceResourceScope` API schema.
@@ -65,25 +80,31 @@ public struct SecretServiceResourceScope: Codable {
         case user
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension SecretServiceResourceScope {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
         }
-        self.type = try container.sdkDecodeRequired(.type)
-        self.user = try container.sdkDecodeIfPresent(.user)
-        if let value = self.user {
+        type = try container.sdkDecodeRequired(.type)
+        user = try container.sdkDecodeIfPresent(.user)
+        if let value = user {
             try validateLength("user", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension SecretServiceResourceScope {
-    public init(type: SecretServiceResourceScopeType, user: String? = nil) throws {
+    init(type: SecretServiceResourceScopeType, user: String? = nil) throws {
         (self.type, self.user) = (type, user)
         if let value = self.user {
             try validateLength("user", value, min: nil, max: 5000)
@@ -104,20 +125,20 @@ public struct SepaDebitGeneratedFrom: Codable {
     }
 
     init() {
-        (self.charge, self.setupAttempt) = (nil, nil)
+        (charge, setupAttempt) = (nil, nil)
     }
 }
 
 public extension SepaDebitGeneratedFrom {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.charge = try container.sdkDecodeIfPresent(.charge)
-        self.setupAttempt = try container.sdkDecodeIfPresent(.setupAttempt)
+        charge = try container.sdkDecodeIfPresent(.charge)
+        setupAttempt = try container.sdkDecodeIfPresent(.setupAttempt)
     }
 }
 
 public extension SepaDebitGeneratedFrom {
-    public init(charge: SepaDebitGeneratedFromCharge? = nil, setupAttempt: SepaDebitGeneratedFromSetupAttempt? = nil) {
+    init(charge: SepaDebitGeneratedFromCharge? = nil, setupAttempt: SepaDebitGeneratedFromSetupAttempt? = nil) {
         self.init()
         (self.charge, self.setupAttempt) = (charge, setupAttempt)
     }
@@ -129,21 +150,31 @@ public enum SepaDebitGeneratedFromCharge {
 }
 
 extension SepaDebitGeneratedFromCharge: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for SepaDebitGeneratedFromCharge")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for SepaDebitGeneratedFromCharge"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(Charge.self) { return .charge(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(Charge.self) {
+            return .charge(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -153,7 +184,6 @@ extension SepaDebitGeneratedFromCharge: Codable {
         case let .charge(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum SepaDebitGeneratedFromSetupAttempt {
@@ -162,21 +192,31 @@ public enum SepaDebitGeneratedFromSetupAttempt {
 }
 
 extension SepaDebitGeneratedFromSetupAttempt: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for SepaDebitGeneratedFromSetupAttempt")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for SepaDebitGeneratedFromSetupAttempt"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(SetupAttempt.self) { return .setupAttempt(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(SetupAttempt.self) {
+            return .setupAttempt(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -186,7 +226,6 @@ extension SepaDebitGeneratedFromSetupAttempt: Codable {
         case let .setupAttempt(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// A SetupAttempt describes one attempted confirmation of a SetupIntent, whether that confirmation is successful or
@@ -254,39 +293,58 @@ public struct SetupAttempt: Codable {
         case setupError = "setup_error"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension SetupAttempt {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.created = try container.sdkDecodeRequired(.created)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.livemode = try container.sdkDecodeRequired(.livemode)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.paymentMethod = try container.sdkDecodeRequired(.paymentMethod)
-        self.paymentMethodDetails = try container.sdkDecodeRequired(.paymentMethodDetails)
-        self.setupIntent = try container.sdkDecodeRequired(.setupIntent)
-        self.status = try container.sdkDecodeRequired(.status)
-        self.usage = try container.sdkDecodeRequired(.usage)
-        self.application = try container.sdkDecodeIfPresent(.application)
-        self.attachToSelf = try container.sdkDecodeIfPresent(.attachToSelf)
-        self.customer = try container.sdkDecodeIfPresent(.customer)
-        self.customerAccount = try container.sdkDecodeIfPresent(.customerAccount)
-        self.flowDirections = try container.sdkDecodeIfPresent(.flowDirections)
-        self.onBehalfOf = try container.sdkDecodeIfPresent(.onBehalfOf)
-        self.setupError = try container.sdkDecodeIfPresent(.setupError)
-            try validateLength("id", self.id, min: nil, max: 5000)
-            try validateLength("status", self.status, min: nil, max: 5000)
-            try validateLength("usage", self.usage, min: nil, max: 5000)
-        if let value = self.customerAccount {
+        created = try container.sdkDecodeRequired(.created)
+        id = try container.sdkDecodeRequired(.id)
+        livemode = try container.sdkDecodeRequired(.livemode)
+        object = try container.sdkDecodeRequired(.object)
+        paymentMethod = try container.sdkDecodeRequired(.paymentMethod)
+        paymentMethodDetails = try container.sdkDecodeRequired(.paymentMethodDetails)
+        setupIntent = try container.sdkDecodeRequired(.setupIntent)
+        status = try container.sdkDecodeRequired(.status)
+        usage = try container.sdkDecodeRequired(.usage)
+        application = try container.sdkDecodeIfPresent(.application)
+        attachToSelf = try container.sdkDecodeIfPresent(.attachToSelf)
+        customer = try container.sdkDecodeIfPresent(.customer)
+        customerAccount = try container.sdkDecodeIfPresent(.customerAccount)
+        flowDirections = try container.sdkDecodeIfPresent(.flowDirections)
+        onBehalfOf = try container.sdkDecodeIfPresent(.onBehalfOf)
+        setupError = try container.sdkDecodeIfPresent(.setupError)
+        try validateLength("id", id, min: nil, max: 5000)
+        try validateLength("status", status, min: nil, max: 5000)
+        try validateLength("usage", usage, min: nil, max: 5000)
+        if let value = customerAccount {
             try validateLength("customer_account", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension SetupAttempt {
-    public init(created: Int, id: String, livemode: Bool, object: SetupAttemptObject, paymentMethod: SetupAttemptPaymentMethod, paymentMethodDetails: SetupAttemptPaymentMethodDetails, setupIntent: SetupAttemptSetupIntent, status: String, usage: String, application: SetupAttemptApplication? = nil, attachToSelf: Bool? = nil, customer: SetupAttemptCustomer? = nil, customerAccount: String? = nil, flowDirections: [SetupAttemptFlowDirectionsItem]? = nil, onBehalfOf: SetupAttemptOnBehalfOf? = nil, setupError: SetupAttemptSetupError? = nil) throws {
+    init(
+        created: Int,
+        id: String,
+        livemode: Bool,
+        object: SetupAttemptObject,
+        paymentMethod: SetupAttemptPaymentMethod,
+        paymentMethodDetails: SetupAttemptPaymentMethodDetails,
+        setupIntent: SetupAttemptSetupIntent,
+        status: String,
+        usage: String,
+        application: SetupAttemptApplication? = nil,
+        attachToSelf: Bool? = nil,
+        customer: SetupAttemptCustomer? = nil,
+        customerAccount: String? = nil,
+        flowDirections: [SetupAttemptFlowDirectionsItem]? = nil,
+        onBehalfOf: SetupAttemptOnBehalfOf? = nil,
+        setupError: SetupAttemptSetupError? = nil
+    ) throws {
         (self.created, self.id) = (created, id)
         (self.livemode, self.object) = (livemode, object)
         (self.paymentMethod, self.paymentMethodDetails) = (paymentMethod, paymentMethodDetails)
@@ -295,9 +353,9 @@ public extension SetupAttempt {
         (self.attachToSelf, self.customer) = (attachToSelf, customer)
         (self.customerAccount, self.flowDirections) = (customerAccount, flowDirections)
         (self.onBehalfOf, self.setupError) = (onBehalfOf, setupError)
-            try validateLength("id", self.id, min: nil, max: 5000)
-            try validateLength("status", self.status, min: nil, max: 5000)
-            try validateLength("usage", self.usage, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("status", self.status, min: nil, max: 5000)
+        try validateLength("usage", self.usage, min: nil, max: 5000)
         if let value = self.customerAccount {
             try validateLength("customer_account", value, min: nil, max: 5000)
         }
@@ -310,21 +368,31 @@ public enum SetupAttemptApplication {
 }
 
 extension SetupAttemptApplication: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for SetupAttemptApplication")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for SetupAttemptApplication"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(Application.self) { return .application(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(Application.self) {
+            return .application(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -334,7 +402,6 @@ extension SetupAttemptApplication: Codable {
         case let .application(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum SetupAttemptCustomer {
@@ -344,22 +411,34 @@ public enum SetupAttemptCustomer {
 }
 
 extension SetupAttemptCustomer: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for SetupAttemptCustomer")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for SetupAttemptCustomer"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(Customer.self) { return .customer(value) }
-        if let value = try? container.decode(DeletedCustomer.self) { return .deletedCustomer(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(Customer.self) {
+            return .customer(value)
+        }
+        if let value = try? container.decode(DeletedCustomer.self) {
+            return .deletedCustomer(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -370,7 +449,6 @@ extension SetupAttemptCustomer: Codable {
         case let .deletedCustomer(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum SetupAttemptOnBehalfOf {
@@ -379,21 +457,31 @@ public enum SetupAttemptOnBehalfOf {
 }
 
 extension SetupAttemptOnBehalfOf: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for SetupAttemptOnBehalfOf")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for SetupAttemptOnBehalfOf"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(Account.self) { return .account(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(Account.self) {
+            return .account(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -403,7 +491,6 @@ extension SetupAttemptOnBehalfOf: Codable {
         case let .account(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum SetupAttemptPaymentMethod {
@@ -412,21 +499,31 @@ public enum SetupAttemptPaymentMethod {
 }
 
 extension SetupAttemptPaymentMethod: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for SetupAttemptPaymentMethod")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for SetupAttemptPaymentMethod"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(PaymentMethod.self) { return .paymentMethod(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(PaymentMethod.self) {
+            return .paymentMethod(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -436,7 +533,6 @@ extension SetupAttemptPaymentMethod: Codable {
         case let .paymentMethod(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum SetupAttemptSetupError {
@@ -444,20 +540,28 @@ public enum SetupAttemptSetupError {
 }
 
 extension SetupAttemptSetupError: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for SetupAttemptSetupError")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for SetupAttemptSetupError"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(ApiErrors.self) { return .apiErrors(value) }
+        if let value = try? container.decode(ApiErrors.self) {
+            return .apiErrors(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -466,7 +570,6 @@ extension SetupAttemptSetupError: Codable {
         case let .apiErrors(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum SetupAttemptSetupIntent {
@@ -475,21 +578,31 @@ public enum SetupAttemptSetupIntent {
 }
 
 extension SetupAttemptSetupIntent: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for SetupAttemptSetupIntent")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for SetupAttemptSetupIntent"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(SetupIntent.self) { return .setupIntent(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(SetupIntent.self) {
+            return .setupIntent(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -499,5 +612,4 @@ extension SetupAttemptSetupIntent: Codable {
         case let .setupIntent(value): try container.encode(value); return true
         }
     }
-
 }

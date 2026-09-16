@@ -7,8 +7,9 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1TerminalReadersSetReaderDisplay operation model declarations
-public typealias PostTerminalReadersReaderSetReaderDisplayRequestBodyCartLineItemsList = [PostTerminalReadersReaderSetReaderDisplayRequestBodyCartLineItemsItem]
+/// Canonical v1TerminalReadersSetReaderDisplay operation model declarations
+public typealias PostTerminalReadersReaderSetReaderDisplayRequestBodyCartLineItemsList =
+    [PostTerminalReadersReaderSetReaderDisplayRequestBodyCartLineItemsItem]
 
 /// Cart details to display on the reader screen, including line items, amounts, and currency.
 public struct PostTerminalReadersReaderSetReaderDisplayRequestBodyCart: Codable {
@@ -24,30 +25,49 @@ public struct PostTerminalReadersReaderSetReaderDisplayRequestBodyCart: Codable 
         case tax
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostTerminalReadersReaderSetReaderDisplayRequestBodyCart {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.currency) else {
-            throw SdkValidationError(field: "currency", code: "required", message: "Validation failed for 'currency': value is required")
-        }
-        guard container.contains(.lineItems) else {
-            throw SdkValidationError(field: "line_items", code: "required", message: "Validation failed for 'line_items': value is required")
-        }
-        guard container.contains(.total) else {
-            throw SdkValidationError(field: "total", code: "required", message: "Validation failed for 'total': value is required")
-        }
-        self.currency = try container.sdkDecodeRequired(.currency)
-        self.lineItems = try container.sdkDecodeRequired(.lineItems)
-        self.total = try container.sdkDecodeRequired(.total)
-        self.tax = try container.sdkDecodeIfPresent(.tax)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostTerminalReadersReaderSetReaderDisplayRequestBodyCart {
-    public init(currency: String, lineItems: PostTerminalReadersReaderSetReaderDisplayRequestBodyCartLineItemsList, total: Int, tax: Int? = nil) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.currency) else {
+            throw SdkValidationError(
+                field: "currency",
+                code: "required",
+                message: "Validation failed for 'currency': value is required"
+            )
+        }
+        guard container.contains(.lineItems) else {
+            throw SdkValidationError(
+                field: "line_items",
+                code: "required",
+                message: "Validation failed for 'line_items': value is required"
+            )
+        }
+        guard container.contains(.total) else {
+            throw SdkValidationError(
+                field: "total",
+                code: "required",
+                message: "Validation failed for 'total': value is required"
+            )
+        }
+        currency = try container.sdkDecodeRequired(.currency)
+        lineItems = try container.sdkDecodeRequired(.lineItems)
+        total = try container.sdkDecodeRequired(.total)
+        tax = try container.sdkDecodeIfPresent(.tax)
+    }
+}
+
+public extension PostTerminalReadersReaderSetReaderDisplayRequestBodyCart {
+    init(
+        currency: String,
+        lineItems: PostTerminalReadersReaderSetReaderDisplayRequestBodyCartLineItemsList,
+        total: Int,
+        tax: Int? = nil
+    ) {
         (self.currency, self.lineItems) = (currency, lineItems)
         (self.total, self.tax) = (total, tax)
     }
@@ -64,32 +84,46 @@ public struct PostTerminalReadersReaderSetReaderDisplayRequestBodyCartLineItemsI
         case quantity
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostTerminalReadersReaderSetReaderDisplayRequestBodyCartLineItemsItem {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.amount) else {
-            throw SdkValidationError(field: "amount", code: "required", message: "Validation failed for 'amount': value is required")
-        }
-        guard container.contains(.description) else {
-            throw SdkValidationError(field: "description", code: "required", message: "Validation failed for 'description': value is required")
-        }
-        guard container.contains(.quantity) else {
-            throw SdkValidationError(field: "quantity", code: "required", message: "Validation failed for 'quantity': value is required")
-        }
-        self.amount = try container.sdkDecodeRequired(.amount)
-        self.description = try container.sdkDecodeRequired(.description)
-        self.quantity = try container.sdkDecodeRequired(.quantity)
-            try validateLength("description", self.description, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostTerminalReadersReaderSetReaderDisplayRequestBodyCartLineItemsItem {
-    public init(amount: Int, description: String, quantity: Int) throws {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.amount) else {
+            throw SdkValidationError(
+                field: "amount",
+                code: "required",
+                message: "Validation failed for 'amount': value is required"
+            )
+        }
+        guard container.contains(.description) else {
+            throw SdkValidationError(
+                field: "description",
+                code: "required",
+                message: "Validation failed for 'description': value is required"
+            )
+        }
+        guard container.contains(.quantity) else {
+            throw SdkValidationError(
+                field: "quantity",
+                code: "required",
+                message: "Validation failed for 'quantity': value is required"
+            )
+        }
+        amount = try container.sdkDecodeRequired(.amount)
+        description = try container.sdkDecodeRequired(.description)
+        quantity = try container.sdkDecodeRequired(.quantity)
+        try validateLength("description", description, min: nil, max: 5000)
+    }
+}
+
+public extension PostTerminalReadersReaderSetReaderDisplayRequestBodyCartLineItemsItem {
+    init(amount: Int, description: String, quantity: Int) throws {
         (self.amount, self.description) = (amount, description)
         self.quantity = quantity
-            try validateLength("description", self.description, min: nil, max: 5000)
+        try validateLength("description", self.description, min: nil, max: 5000)
     }
 }

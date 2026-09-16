@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1PricesMethods {
-    public struct GetPricesOptions: Codable {
+public extension V1PricesMethods {
+    struct GetPricesOptions: Codable {
         public var active: Bool?
         public var created: GetPricesParameter?
         public var currency: String?
@@ -23,9 +23,11 @@ extension V1PricesMethods {
         public init() {}
     }
 
-    /// Lists active or inactive prices, excluding inline prices by default. Use `active`, `currency`, `product`, `recurring`, or `type` to filter the results, and use cursor parameters to navigate between pages.
+    /// Lists active or inactive prices, excluding inline prices by default. Use `active`, `currency`, `product`,
+    /// `recurring`, or `type` to filter the results, and use cursor parameters to navigate between pages.
     ///
-    /// Returns a list of your active prices, excluding inline prices. For the list of inactive prices, set active to false.
+    /// Returns a list of your active prices, excluding inline prices. For the list of inactive prices, set active to
+    /// false.
     ///
     /// - Parameters:
     /// - active: Only return prices that are active or inactive (e.g., pass `false`
@@ -52,7 +54,7 @@ extension V1PricesMethods {
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
     /// - type: Only return prices of type `recurring` or `one_time`.
-    public static func getPrices(config: ClientConfig, options: GetPricesOptions) async throws -> GetPricesResponse {
+    static func getPrices(config: ClientConfig, options: GetPricesOptions) async throws -> GetPricesResponse {
         if let endingBefore = options.endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
@@ -65,7 +67,7 @@ extension V1PricesMethods {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try (await sdkRequest("GET", "/v1/prices", config: config, query: [
+        return try await (sdkRequest("GET", "/v1/prices", config: config, query: [
             SdkQueryParameter("active", value: options.active),
             SdkQueryParameter("created", value: options.created),
             SdkQueryParameter("currency", value: options.currency),

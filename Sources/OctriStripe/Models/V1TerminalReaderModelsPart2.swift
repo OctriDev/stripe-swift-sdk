@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1TerminalReader domain models
+/// V1TerminalReader domain models
 /// Represents custom text to be displayed when collecting the input using a reader
 public struct TerminalReaderReaderResourceCustomText: Codable {
     /// Customize the default description for this input
@@ -23,34 +23,39 @@ public struct TerminalReaderReaderResourceCustomText: Codable {
     }
 
     init() {
-        (self.description, self.skipButton, self.submitButton, self.title) = (nil, nil, nil, nil)
+        (description, skipButton, submitButton, title) = (nil, nil, nil, nil)
     }
 }
 
 public extension TerminalReaderReaderResourceCustomText {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.description = try container.sdkDecodeIfPresent(.description)
-        self.skipButton = try container.sdkDecodeIfPresent(.skipButton)
-        self.submitButton = try container.sdkDecodeIfPresent(.submitButton)
-        self.title = try container.sdkDecodeIfPresent(.title)
-        if let value = self.description {
+        description = try container.sdkDecodeIfPresent(.description)
+        skipButton = try container.sdkDecodeIfPresent(.skipButton)
+        submitButton = try container.sdkDecodeIfPresent(.submitButton)
+        title = try container.sdkDecodeIfPresent(.title)
+        if let value = description {
             try validateLength("description", value, min: nil, max: 5000)
         }
-        if let value = self.skipButton {
+        if let value = skipButton {
             try validateLength("skip_button", value, min: nil, max: 5000)
         }
-        if let value = self.submitButton {
+        if let value = submitButton {
             try validateLength("submit_button", value, min: nil, max: 5000)
         }
-        if let value = self.title {
+        if let value = title {
             try validateLength("title", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension TerminalReaderReaderResourceCustomText {
-    public init(description: String? = nil, skipButton: String? = nil, submitButton: String? = nil, title: String? = nil) throws {
+    init(
+        description: String? = nil,
+        skipButton: String? = nil,
+        submitButton: String? = nil,
+        title: String? = nil
+    ) throws {
         self.init()
         (self.description, self.skipButton) = (description, skipButton)
         (self.submitButton, self.title) = (submitButton, title)
@@ -79,22 +84,22 @@ public struct TerminalReaderReaderResourceEmail: Codable {
     }
 
     init() {
-        self.value = nil
+        value = nil
     }
 }
 
 public extension TerminalReaderReaderResourceEmail {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.value = try container.sdkDecodeIfPresent(.value)
-        if let value = self.value {
+        value = try container.sdkDecodeIfPresent(.value)
+        if let value {
             try validateLength("value", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension TerminalReaderReaderResourceEmail {
-    public init(value: String? = nil) throws {
+    init(value: String? = nil) throws {
         self.init()
         self.value = value
         if let value = self.value {
@@ -121,39 +126,57 @@ public struct TerminalReaderReaderResourceFileMetadata: Codable {
         case type
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension TerminalReaderReaderResourceFileMetadata {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.createdAt) else {
-            throw SdkValidationError(field: "created_at", code: "required", message: "Validation failed for 'created_at': value is required")
-        }
-        guard container.contains(.filename) else {
-            throw SdkValidationError(field: "filename", code: "required", message: "Validation failed for 'filename': value is required")
-        }
-        guard container.contains(.size) else {
-            throw SdkValidationError(field: "size", code: "required", message: "Validation failed for 'size': value is required")
-        }
-        guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
-        }
-        self.createdAt = try container.sdkDecodeRequired(.createdAt)
-        self.filename = try container.sdkDecodeRequired(.filename)
-        self.size = try container.sdkDecodeRequired(.size)
-        self.type = try container.sdkDecodeRequired(.type)
-            try validateLength("filename", self.filename, min: nil, max: 5000)
-            try validateLength("type", self.type, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension TerminalReaderReaderResourceFileMetadata {
-    public init(createdAt: Int, filename: String, size: Int, type: String) throws {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.createdAt) else {
+            throw SdkValidationError(
+                field: "created_at",
+                code: "required",
+                message: "Validation failed for 'created_at': value is required"
+            )
+        }
+        guard container.contains(.filename) else {
+            throw SdkValidationError(
+                field: "filename",
+                code: "required",
+                message: "Validation failed for 'filename': value is required"
+            )
+        }
+        guard container.contains(.size) else {
+            throw SdkValidationError(
+                field: "size",
+                code: "required",
+                message: "Validation failed for 'size': value is required"
+            )
+        }
+        guard container.contains(.type) else {
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
+        }
+        createdAt = try container.sdkDecodeRequired(.createdAt)
+        filename = try container.sdkDecodeRequired(.filename)
+        size = try container.sdkDecodeRequired(.size)
+        type = try container.sdkDecodeRequired(.type)
+        try validateLength("filename", filename, min: nil, max: 5000)
+        try validateLength("type", type, min: nil, max: 5000)
+    }
+}
+
+public extension TerminalReaderReaderResourceFileMetadata {
+    init(createdAt: Int, filename: String, size: Int, type: String) throws {
         (self.createdAt, self.filename) = (createdAt, filename)
         (self.size, self.type) = (size, type)
-            try validateLength("filename", self.filename, min: nil, max: 5000)
-            try validateLength("type", self.type, min: nil, max: 5000)
+        try validateLength("filename", self.filename, min: nil, max: 5000)
+        try validateLength("type", self.type, min: nil, max: 5000)
     }
 }
 
@@ -196,31 +219,49 @@ public struct TerminalReaderReaderResourceInput: Codable {
         case toggles
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension TerminalReaderReaderResourceInput {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
-        }
-        self.type = try container.sdkDecodeRequired(.type)
-        self.customText = try container.sdkDecodeIfPresent(.customText)
-        self.email = try container.sdkDecodeIfPresent(.email)
-        self.numeric = try container.sdkDecodeIfPresent(.numeric)
-        self.phone = try container.sdkDecodeIfPresent(.phone)
-        self.required = try container.sdkDecodeIfPresent(.required)
-        self.selection = try container.sdkDecodeIfPresent(.selection)
-        self.signature = try container.sdkDecodeIfPresent(.signature)
-        self.skipped = try container.sdkDecodeIfPresent(.skipped)
-        self.text = try container.sdkDecodeIfPresent(.text)
-        self.toggles = try container.sdkDecodeIfPresent(.toggles)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension TerminalReaderReaderResourceInput {
-    public init(type: TerminalReaderReaderResourceInputType, customText: TerminalReaderReaderResourceInputCustomText? = nil, email: TerminalReaderReaderResourceEmail? = nil, numeric: TerminalReaderReaderResourceNumeric? = nil, phone: TerminalReaderReaderResourcePhone? = nil, required: Bool? = nil, selection: TerminalReaderReaderResourceSelection? = nil, signature: TerminalReaderReaderResourceSignature? = nil, skipped: Bool? = nil, text: TerminalReaderReaderResourceText? = nil, toggles: [TerminalReaderReaderResourceToggle]? = nil) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.type) else {
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
+        }
+        type = try container.sdkDecodeRequired(.type)
+        customText = try container.sdkDecodeIfPresent(.customText)
+        email = try container.sdkDecodeIfPresent(.email)
+        numeric = try container.sdkDecodeIfPresent(.numeric)
+        phone = try container.sdkDecodeIfPresent(.phone)
+        required = try container.sdkDecodeIfPresent(.required)
+        selection = try container.sdkDecodeIfPresent(.selection)
+        signature = try container.sdkDecodeIfPresent(.signature)
+        skipped = try container.sdkDecodeIfPresent(.skipped)
+        text = try container.sdkDecodeIfPresent(.text)
+        toggles = try container.sdkDecodeIfPresent(.toggles)
+    }
+}
+
+public extension TerminalReaderReaderResourceInput {
+    init(
+        type: TerminalReaderReaderResourceInputType,
+        customText: TerminalReaderReaderResourceInputCustomText? = nil,
+        email: TerminalReaderReaderResourceEmail? = nil,
+        numeric: TerminalReaderReaderResourceNumeric? = nil,
+        phone: TerminalReaderReaderResourcePhone? = nil,
+        required: Bool? = nil,
+        selection: TerminalReaderReaderResourceSelection? = nil,
+        signature: TerminalReaderReaderResourceSignature? = nil,
+        skipped: Bool? = nil,
+        text: TerminalReaderReaderResourceText? = nil,
+        toggles: [TerminalReaderReaderResourceToggle]? = nil
+    ) {
         (self.type, self.customText) = (type, customText)
         (self.email, self.numeric) = (email, numeric)
         (self.phone, self.required) = (phone, required)
@@ -235,24 +276,30 @@ public enum TerminalReaderReaderResourceInputCustomText {
 }
 
 extension TerminalReaderReaderResourceInputCustomText: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for TerminalReaderReaderResourceInputCustomText")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for TerminalReaderReaderResourceInputCustomText"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             TerminalReaderReaderResourceCustomText.self
         ) {
-            return             .terminalReaderReaderResourceCustomText(value)
+            return .terminalReaderReaderResourceCustomText(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -261,7 +308,6 @@ extension TerminalReaderReaderResourceInputCustomText: Codable {
         case let .terminalReaderReaderResourceCustomText(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Represents a line item to be displayed on the reader
@@ -279,33 +325,47 @@ public struct TerminalReaderReaderResourceLineItem: Codable {
         case quantity
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension TerminalReaderReaderResourceLineItem {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.amount) else {
-            throw SdkValidationError(field: "amount", code: "required", message: "Validation failed for 'amount': value is required")
-        }
-        guard container.contains(.description) else {
-            throw SdkValidationError(field: "description", code: "required", message: "Validation failed for 'description': value is required")
-        }
-        guard container.contains(.quantity) else {
-            throw SdkValidationError(field: "quantity", code: "required", message: "Validation failed for 'quantity': value is required")
-        }
-        self.amount = try container.sdkDecodeRequired(.amount)
-        self.description = try container.sdkDecodeRequired(.description)
-        self.quantity = try container.sdkDecodeRequired(.quantity)
-            try validateLength("description", self.description, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension TerminalReaderReaderResourceLineItem {
-    public init(amount: Int, description: String, quantity: Int) throws {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.amount) else {
+            throw SdkValidationError(
+                field: "amount",
+                code: "required",
+                message: "Validation failed for 'amount': value is required"
+            )
+        }
+        guard container.contains(.description) else {
+            throw SdkValidationError(
+                field: "description",
+                code: "required",
+                message: "Validation failed for 'description': value is required"
+            )
+        }
+        guard container.contains(.quantity) else {
+            throw SdkValidationError(
+                field: "quantity",
+                code: "required",
+                message: "Validation failed for 'quantity': value is required"
+            )
+        }
+        amount = try container.sdkDecodeRequired(.amount)
+        description = try container.sdkDecodeRequired(.description)
+        quantity = try container.sdkDecodeRequired(.quantity)
+        try validateLength("description", description, min: nil, max: 5000)
+    }
+}
+
+public extension TerminalReaderReaderResourceLineItem {
+    init(amount: Int, description: String, quantity: Int) throws {
         (self.amount, self.description) = (amount, description)
         self.quantity = quantity
-            try validateLength("description", self.description, min: nil, max: 5000)
+        try validateLength("description", self.description, min: nil, max: 5000)
     }
 }
 
@@ -319,22 +379,22 @@ public struct TerminalReaderReaderResourceNumeric: Codable {
     }
 
     init() {
-        self.value = nil
+        value = nil
     }
 }
 
 public extension TerminalReaderReaderResourceNumeric {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.value = try container.sdkDecodeIfPresent(.value)
-        if let value = self.value {
+        value = try container.sdkDecodeIfPresent(.value)
+        if let value {
             try validateLength("value", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension TerminalReaderReaderResourceNumeric {
-    public init(value: String? = nil) throws {
+    init(value: String? = nil) throws {
         self.init()
         self.value = value
         if let value = self.value {
@@ -353,22 +413,22 @@ public struct TerminalReaderReaderResourcePhone: Codable {
     }
 
     init() {
-        self.value = nil
+        value = nil
     }
 }
 
 public extension TerminalReaderReaderResourcePhone {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.value = try container.sdkDecodeIfPresent(.value)
-        if let value = self.value {
+        value = try container.sdkDecodeIfPresent(.value)
+        if let value {
             try validateLength("value", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension TerminalReaderReaderResourcePhone {
-    public init(value: String? = nil) throws {
+    init(value: String? = nil) throws {
         self.init()
         self.value = value
         if let value = self.value {
@@ -389,22 +449,28 @@ public struct TerminalReaderReaderResourcePrintContent: Codable {
         case image
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension TerminalReaderReaderResourcePrintContent {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
-        }
-        self.type = try container.sdkDecodeRequired(.type)
-        self.image = try container.sdkDecodeIfPresent(.image)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension TerminalReaderReaderResourcePrintContent {
-    public init(type: TerminalReaderReaderResourcePrintContentType, image: TerminalReaderReaderResourceFileMetadata? = nil) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.type) else {
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
+        }
+        type = try container.sdkDecodeRequired(.type)
+        image = try container.sdkDecodeIfPresent(.image)
+    }
+}
+
+public extension TerminalReaderReaderResourcePrintContent {
+    init(type: TerminalReaderReaderResourcePrintContentType, image: TerminalReaderReaderResourceFileMetadata? = nil) {
         (self.type, self.image) = (type, image)
     }
 }
@@ -428,25 +494,30 @@ public struct TerminalReaderReaderResourceProcessConfig: Codable {
     }
 
     init() {
-        (self.enableCustomerCancellation, self.returnUrl, self.skipTipping, self.tipping) = (nil, nil, nil, nil)
+        (enableCustomerCancellation, returnUrl, skipTipping, tipping) = (nil, nil, nil, nil)
     }
 }
 
 public extension TerminalReaderReaderResourceProcessConfig {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.enableCustomerCancellation = try container.sdkDecodeIfPresent(.enableCustomerCancellation)
-        self.returnUrl = try container.sdkDecodeIfPresent(.returnUrl)
-        self.skipTipping = try container.sdkDecodeIfPresent(.skipTipping)
-        self.tipping = try container.sdkDecodeIfPresent(.tipping)
-        if let value = self.returnUrl {
+        enableCustomerCancellation = try container.sdkDecodeIfPresent(.enableCustomerCancellation)
+        returnUrl = try container.sdkDecodeIfPresent(.returnUrl)
+        skipTipping = try container.sdkDecodeIfPresent(.skipTipping)
+        tipping = try container.sdkDecodeIfPresent(.tipping)
+        if let value = returnUrl {
             try validateLength("return_url", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension TerminalReaderReaderResourceProcessConfig {
-    public init(enableCustomerCancellation: Bool? = nil, returnUrl: String? = nil, skipTipping: Bool? = nil, tipping: TerminalReaderReaderResourceTippingConfig? = nil) throws {
+    init(
+        enableCustomerCancellation: Bool? = nil,
+        returnUrl: String? = nil,
+        skipTipping: Bool? = nil,
+        tipping: TerminalReaderReaderResourceTippingConfig? = nil
+    ) throws {
         self.init()
         (self.enableCustomerCancellation, self.returnUrl) = (enableCustomerCancellation, returnUrl)
         (self.skipTipping, self.tipping) = (skipTipping, tipping)
@@ -468,22 +539,31 @@ public struct TerminalReaderReaderResourceProcessPaymentIntentAction: Codable {
         case processConfig = "process_config"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension TerminalReaderReaderResourceProcessPaymentIntentAction {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.paymentIntent) else {
-            throw SdkValidationError(field: "payment_intent", code: "required", message: "Validation failed for 'payment_intent': value is required")
-        }
-        self.paymentIntent = try container.sdkDecodeRequired(.paymentIntent)
-        self.processConfig = try container.sdkDecodeIfPresent(.processConfig)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension TerminalReaderReaderResourceProcessPaymentIntentAction {
-    public init(paymentIntent: TerminalReaderReaderResourceProcessPaymentIntentActionPaymentIntent, processConfig: TerminalReaderReaderResourceProcessConfig? = nil) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.paymentIntent) else {
+            throw SdkValidationError(
+                field: "payment_intent",
+                code: "required",
+                message: "Validation failed for 'payment_intent': value is required"
+            )
+        }
+        paymentIntent = try container.sdkDecodeRequired(.paymentIntent)
+        processConfig = try container.sdkDecodeIfPresent(.processConfig)
+    }
+}
+
+public extension TerminalReaderReaderResourceProcessPaymentIntentAction {
+    init(
+        paymentIntent: TerminalReaderReaderResourceProcessPaymentIntentActionPaymentIntent,
+        processConfig: TerminalReaderReaderResourceProcessConfig? = nil
+    ) {
         (self.paymentIntent, self.processConfig) = (paymentIntent, processConfig)
     }
 }
@@ -494,21 +574,31 @@ public enum TerminalReaderReaderResourceProcessPaymentIntentActionPaymentIntent 
 }
 
 extension TerminalReaderReaderResourceProcessPaymentIntentActionPaymentIntent: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for TerminalReaderReaderResourceProcessPaymentIntentActionPaymentIntent")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for TerminalReaderReaderResourceProcessPaymentIntentActionPaymentIntent"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(PaymentIntent.self) { return .paymentIntent(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(PaymentIntent.self) {
+            return .paymentIntent(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -518,7 +608,6 @@ extension TerminalReaderReaderResourceProcessPaymentIntentActionPaymentIntent: C
         case let .paymentIntent(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Represents a per-setup override of a reader configuration
@@ -531,19 +620,19 @@ public struct TerminalReaderReaderResourceProcessSetupConfig: Codable {
     }
 
     init() {
-        self.enableCustomerCancellation = nil
+        enableCustomerCancellation = nil
     }
 }
 
 public extension TerminalReaderReaderResourceProcessSetupConfig {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.enableCustomerCancellation = try container.sdkDecodeIfPresent(.enableCustomerCancellation)
+        enableCustomerCancellation = try container.sdkDecodeIfPresent(.enableCustomerCancellation)
     }
 }
 
 public extension TerminalReaderReaderResourceProcessSetupConfig {
-    public init(enableCustomerCancellation: Bool? = nil) {
+    init(enableCustomerCancellation: Bool? = nil) {
         self.init()
         self.enableCustomerCancellation = enableCustomerCancellation
     }

@@ -7,38 +7,49 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1InvoicesLines operation model declarations
+/// Canonical v1InvoicesLines operation model declarations
 public extension PostInvoicesInvoiceLinesLineItemIdRequestBodyPriceDataProductData {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.name) else {
-            throw SdkValidationError(field: "name", code: "required", message: "Validation failed for 'name': value is required")
+            throw SdkValidationError(
+                field: "name",
+                code: "required",
+                message: "Validation failed for 'name': value is required"
+            )
         }
-        self.name = try container.sdkDecodeRequired(.name)
-        self.description = try container.sdkDecodeIfPresent(.description)
-        self.images = try container.sdkDecodeIfPresent(.images)
-        self.metadata = try container.sdkDecodeIfPresent(.metadata)
-        self.taxCode = try container.sdkDecodeIfPresent(.taxCode)
-        self.unitLabel = try container.sdkDecodeIfPresent(.unitLabel)
-            try validateLength("name", self.name, min: nil, max: 5000)
-        if let value = self.description {
+        name = try container.sdkDecodeRequired(.name)
+        description = try container.sdkDecodeIfPresent(.description)
+        images = try container.sdkDecodeIfPresent(.images)
+        metadata = try container.sdkDecodeIfPresent(.metadata)
+        taxCode = try container.sdkDecodeIfPresent(.taxCode)
+        unitLabel = try container.sdkDecodeIfPresent(.unitLabel)
+        try validateLength("name", name, min: nil, max: 5000)
+        if let value = description {
             try validateLength("description", value, min: nil, max: 40000)
         }
-        if let value = self.taxCode {
+        if let value = taxCode {
             try validateLength("tax_code", value, min: nil, max: 5000)
         }
-        if let value = self.unitLabel {
+        if let value = unitLabel {
             try validateLength("unit_label", value, min: nil, max: 12)
         }
     }
 }
 
 public extension PostInvoicesInvoiceLinesLineItemIdRequestBodyPriceDataProductData {
-    public init(name: String, description: String? = nil, images: [String]? = nil, metadata: [String: String]? = nil, taxCode: String? = nil, unitLabel: String? = nil) throws {
+    init(
+        name: String,
+        description: String? = nil,
+        images: [String]? = nil,
+        metadata: [String: String]? = nil,
+        taxCode: String? = nil,
+        unitLabel: String? = nil
+    ) throws {
         (self.name, self.description) = (name, description)
         (self.images, self.metadata) = (images, metadata)
         (self.taxCode, self.unitLabel) = (taxCode, unitLabel)
-            try validateLength("name", self.name, min: nil, max: 5000)
+        try validateLength("name", self.name, min: nil, max: 5000)
         if let value = self.description {
             try validateLength("description", value, min: nil, max: 40000)
         }

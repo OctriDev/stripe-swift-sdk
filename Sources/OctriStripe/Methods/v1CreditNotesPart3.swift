@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1CreditNotesMethods {
-    public struct PostCreditNotesOptions: Codable {
+public extension V1CreditNotesMethods {
+    struct PostCreditNotesOptions: Codable {
         public var invoice: String
         public var amount: Int?
         public var creditAmount: Int?
@@ -28,7 +28,20 @@ extension V1CreditNotesMethods {
         }
     }
 
-    /// Issue a credit note to adjust the amount of a finalized invoice. A credit note will first reduce the invoice’s amount_remaining (and amount_due ), but not below zero. This amount is indicated by the credit note’s pre_payment_amount . The excess amount is indicated by post_payment_amount , and it can result in any combination of the following: Refunds: create a new refund (using refund_amount ) or link existing refunds (using refunds ). Customer balance credit: credit the customer’s balance (using credit_amount ) which will be automatically applied to their next invoice when it’s finalized. Outside of Stripe credit: record the amount that is or will be credited outside of Stripe (using out_of_band_amount ). The sum of refunds, customer balance credits, and outside of Stripe credits must equal the post_payment_amount . You may issue multiple credit notes for an invoice. Each credit note may increment the invoice’s pre_payment_credit_notes_amount , post_payment_credit_notes_amount , or both, depending on the invoice’s amount_remaining at the time of credit note creation. For invoices that also have refunds created through the Refund API, the credit note API subtracts those refund amounts from the maximum creditable amount. This prevents the combined credit notes and refunds from exceeding the invoice amount. If you use both, ensure the combined total does not exceed the invoice’s paid amount.
+    /// Issue a credit note to adjust the amount of a finalized invoice. A credit note will first reduce the invoice’s
+    /// amount_remaining (and amount_due ), but not below zero. This amount is indicated by the credit note’s
+    /// pre_payment_amount . The excess amount is indicated by post_payment_amount , and it can result in any
+    /// combination of the following: Refunds: create a new refund (using refund_amount ) or link existing refunds
+    /// (using refunds ). Customer balance credit: credit the customer’s balance (using credit_amount ) which will be
+    /// automatically applied to their next invoice when it’s finalized. Outside of Stripe credit: record the amount
+    /// that is or will be credited outside of Stripe (using out_of_band_amount ). The sum of refunds, customer balance
+    /// credits, and outside of Stripe credits must equal the post_payment_amount . You may issue multiple credit notes
+    /// for an invoice. Each credit note may increment the invoice’s pre_payment_credit_notes_amount ,
+    /// post_payment_credit_notes_amount , or both, depending on the invoice’s amount_remaining at the time of credit
+    /// note creation. For invoices that also have refunds created through the Refund API, the credit note API subtracts
+    /// those refund amounts from the maximum creditable amount. This prevents the combined credit notes and refunds
+    /// from exceeding the invoice amount. If you use both, ensure the combined total does not exceed the invoice’s paid
+    /// amount.
     ///
     /// - Parameters:
     /// - invoice: ID of the invoice.
@@ -63,7 +76,7 @@ extension V1CreditNotesMethods {
     /// - shippingCost: When shipping_cost contains the shipping_rate from the
     ///   invoice, the shipping_cost is included in the credit note. One of `amount`,
     ///   `lines`, or `shipping_cost` must be provided.
-    public static func postCreditNotes(config: ClientConfig, options: PostCreditNotesOptions) async throws -> CreditNote {
+    static func postCreditNotes(config: ClientConfig, options: PostCreditNotesOptions) async throws -> CreditNote {
         try validateLength("invoice", options.invoice, max: 5000)
 
         if let memo = options.memo {
@@ -72,6 +85,14 @@ extension V1CreditNotesMethods {
 
         let requestBody = PostCreditNotesRequestBody(options: options)
 
-        return try (await sdkRequest("POST", "/v1/credit_notes", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostCreditNotes")).data
+        return try await (sdkRequest(
+            "POST",
+            "/v1/credit_notes",
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostCreditNotes"
+        )).data
     }
 }

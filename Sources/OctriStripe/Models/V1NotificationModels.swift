@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1Notification domain models
+/// V1Notification domain models
 /// Typed representation of the `NotificationEventData` API schema.
 public struct NotificationEventData: Codable {
     /// Object containing the API resource relevant to the event. For example, an `invoice.created` event will have
@@ -20,22 +20,28 @@ public struct NotificationEventData: Codable {
         case previousAttributes = "previous_attributes"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension NotificationEventData {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
-        }
-        self.object = try container.sdkDecodeRequired(.object)
-        self.previousAttributes = try container.sdkDecodeIfPresent(.previousAttributes)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension NotificationEventData {
-    public init(object: [String: JSONValue], previousAttributes: [String: JSONValue]? = nil) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.object) else {
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
+        }
+        object = try container.sdkDecodeRequired(.object)
+        previousAttributes = try container.sdkDecodeIfPresent(.previousAttributes)
+    }
+}
+
+public extension NotificationEventData {
+    init(object: [String: JSONValue], previousAttributes: [String: JSONValue]? = nil) {
         (self.object, self.previousAttributes) = (object, previousAttributes)
     }
 }
@@ -55,26 +61,26 @@ public struct NotificationEventRequest: Codable {
     }
 
     init() {
-        (self.id, self.idempotencyKey) = (nil, nil)
+        (id, idempotencyKey) = (nil, nil)
     }
 }
 
 public extension NotificationEventRequest {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.id = try container.sdkDecodeIfPresent(.id)
-        self.idempotencyKey = try container.sdkDecodeIfPresent(.idempotencyKey)
-        if let value = self.id {
+        id = try container.sdkDecodeIfPresent(.id)
+        idempotencyKey = try container.sdkDecodeIfPresent(.idempotencyKey)
+        if let value = id {
             try validateLength("id", value, min: nil, max: 5000)
         }
-        if let value = self.idempotencyKey {
+        if let value = idempotencyKey {
             try validateLength("idempotency_key", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension NotificationEventRequest {
-    public init(id: String? = nil, idempotencyKey: String? = nil) throws {
+    init(id: String? = nil, idempotencyKey: String? = nil) throws {
         self.init()
         (self.id, self.idempotencyKey) = (id, idempotencyKey)
         if let value = self.id {

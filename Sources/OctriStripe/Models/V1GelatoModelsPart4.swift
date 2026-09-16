@@ -3,19 +3,22 @@
 
 import Foundation
 
-// V1Gelato domain models
+/// V1Gelato domain models
 /// The user's verified id number type.
 public struct GelatoVerifiedOutputsIdNumberType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let brCpf = GelatoVerifiedOutputsIdNumberType(rawValue: "br_cpf")
     public static let sgNric = GelatoVerifiedOutputsIdNumberType(rawValue: "sg_nric")
     public static let usSsn = GelatoVerifiedOutputsIdNumberType(rawValue: "us_ssn")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -28,7 +31,10 @@ public struct GelatoVerifiedOutputsIdNumberType: RawRepresentable, Hashable, Cod
 public struct GelatoDocumentReportSex: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let redacted = GelatoDocumentReportSex(rawValue: "[redacted]")
     public static let female = GelatoDocumentReportSex(rawValue: "female")
     public static let male = GelatoDocumentReportSex(rawValue: "male")
@@ -36,7 +42,7 @@ public struct GelatoDocumentReportSex: RawRepresentable, Hashable, Codable, Send
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -49,13 +55,16 @@ public struct GelatoDocumentReportSex: RawRepresentable, Hashable, Codable, Send
 public struct GelatoSessionMatchingOptionsDob: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let none = GelatoSessionMatchingOptionsDob(rawValue: "none")
     public static let similar = GelatoSessionMatchingOptionsDob(rawValue: "similar")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -68,13 +77,16 @@ public struct GelatoSessionMatchingOptionsDob: RawRepresentable, Hashable, Codab
 public struct GelatoEmailReportStatus: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unverified = GelatoEmailReportStatus(rawValue: "unverified")
     public static let verified = GelatoEmailReportStatus(rawValue: "verified")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -87,14 +99,17 @@ public struct GelatoEmailReportStatus: RawRepresentable, Hashable, Codable, Send
 public struct GelatoDocumentReportErrorCode: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let documentExpired = GelatoDocumentReportErrorCode(rawValue: "document_expired")
     public static let documentTypeNotSupported = GelatoDocumentReportErrorCode(rawValue: "document_type_not_supported")
     public static let documentUnverifiedOther = GelatoDocumentReportErrorCode(rawValue: "document_unverified_other")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -107,13 +122,16 @@ public struct GelatoDocumentReportErrorCode: RawRepresentable, Hashable, Codable
 public struct GelatoSessionMatchingOptionsName: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let none = GelatoSessionMatchingOptionsName(rawValue: "none")
     public static let similar = GelatoSessionMatchingOptionsName(rawValue: "similar")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -123,17 +141,21 @@ public struct GelatoSessionMatchingOptionsName: RawRepresentable, Hashable, Coda
 }
 
 /// Required enumerated value serialized in the `allowed_types[]` wire field.
-public struct GelatoReportDocumentOptionsAllowedTypesItem: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct GelatoReportDocumentOptionsAllowedTypesItem: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let drivingLicense = GelatoReportDocumentOptionsAllowedTypesItem(rawValue: "driving_license")
     public static let idCard = GelatoReportDocumentOptionsAllowedTypesItem(rawValue: "id_card")
     public static let passport = GelatoReportDocumentOptionsAllowedTypesItem(rawValue: "passport")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -146,15 +168,19 @@ public struct GelatoReportDocumentOptionsAllowedTypesItem: RawRepresentable, Has
 public struct GelatoSelfieReportErrorCode: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let selfieDocumentMissingPhoto = GelatoSelfieReportErrorCode(rawValue: "selfie_document_missing_photo")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let selfieDocumentMissingPhoto =
+        GelatoSelfieReportErrorCode(rawValue: "selfie_document_missing_photo")
     public static let selfieFaceMismatch = GelatoSelfieReportErrorCode(rawValue: "selfie_face_mismatch")
     public static let selfieManipulated = GelatoSelfieReportErrorCode(rawValue: "selfie_manipulated")
     public static let selfieUnverifiedOther = GelatoSelfieReportErrorCode(rawValue: "selfie_unverified_other")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -167,13 +193,16 @@ public struct GelatoSelfieReportErrorCode: RawRepresentable, Hashable, Codable, 
 public struct GelatoSelfieReportStatus: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unverified = GelatoSelfieReportStatus(rawValue: "unverified")
     public static let verified = GelatoSelfieReportStatus(rawValue: "verified")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -186,14 +215,17 @@ public struct GelatoSelfieReportStatus: RawRepresentable, Hashable, Codable, Sen
 public struct GelatoIdNumberReportIdNumberType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let brCpf = GelatoIdNumberReportIdNumberType(rawValue: "br_cpf")
     public static let sgNric = GelatoIdNumberReportIdNumberType(rawValue: "sg_nric")
     public static let usSsn = GelatoIdNumberReportIdNumberType(rawValue: "us_ssn")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -206,13 +238,16 @@ public struct GelatoIdNumberReportIdNumberType: RawRepresentable, Hashable, Coda
 public struct GelatoDocumentReportStatus: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unverified = GelatoDocumentReportStatus(rawValue: "unverified")
     public static let verified = GelatoDocumentReportStatus(rawValue: "verified")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -222,17 +257,21 @@ public struct GelatoDocumentReportStatus: RawRepresentable, Hashable, Codable, S
 }
 
 /// Required enumerated value serialized in the `allowed_types[]` wire field.
-public struct GelatoSessionDocumentOptionsAllowedTypesItem: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct GelatoSessionDocumentOptionsAllowedTypesItem: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let drivingLicense = GelatoSessionDocumentOptionsAllowedTypesItem(rawValue: "driving_license")
     public static let idCard = GelatoSessionDocumentOptionsAllowedTypesItem(rawValue: "id_card")
     public static let passport = GelatoSessionDocumentOptionsAllowedTypesItem(rawValue: "passport")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -245,7 +284,10 @@ public struct GelatoSessionDocumentOptionsAllowedTypesItem: RawRepresentable, Ha
 public struct GelatoVerifiedOutputsSex: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let redacted = GelatoVerifiedOutputsSex(rawValue: "[redacted]")
     public static let female = GelatoVerifiedOutputsSex(rawValue: "female")
     public static let male = GelatoVerifiedOutputsSex(rawValue: "male")
@@ -253,7 +295,7 @@ public struct GelatoVerifiedOutputsSex: RawRepresentable, Hashable, Codable, Sen
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -266,7 +308,10 @@ public struct GelatoVerifiedOutputsSex: RawRepresentable, Hashable, Codable, Sen
 public struct GelatoSessionLastErrorCode: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let abandoned = GelatoSessionLastErrorCode(rawValue: "abandoned")
     public static let consentDeclined = GelatoSessionLastErrorCode(rawValue: "consent_declined")
     public static let countryNotSupported = GelatoSessionLastErrorCode(rawValue: "country_not_supported")
@@ -276,7 +321,8 @@ public struct GelatoSessionLastErrorCode: RawRepresentable, Hashable, Codable, S
     public static let documentUnverifiedOther = GelatoSessionLastErrorCode(rawValue: "document_unverified_other")
     public static let emailUnverifiedOther = GelatoSessionLastErrorCode(rawValue: "email_unverified_other")
     public static let emailVerificationDeclined = GelatoSessionLastErrorCode(rawValue: "email_verification_declined")
-    public static let idNumberInsufficientDocumentData = GelatoSessionLastErrorCode(rawValue: "id_number_insufficient_document_data")
+    public static let idNumberInsufficientDocumentData =
+        GelatoSessionLastErrorCode(rawValue: "id_number_insufficient_document_data")
     public static let idNumberMismatch = GelatoSessionLastErrorCode(rawValue: "id_number_mismatch")
     public static let idNumberUnverifiedOther = GelatoSessionLastErrorCode(rawValue: "id_number_unverified_other")
     public static let phoneUnverifiedOther = GelatoSessionLastErrorCode(rawValue: "phone_unverified_other")
@@ -289,7 +335,7 @@ public struct GelatoSessionLastErrorCode: RawRepresentable, Hashable, Codable, S
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -302,14 +348,18 @@ public struct GelatoSessionLastErrorCode: RawRepresentable, Hashable, Codable, S
 public struct GelatoIdNumberReportErrorCode: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let idNumberInsufficientDocumentData = GelatoIdNumberReportErrorCode(rawValue: "id_number_insufficient_document_data")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let idNumberInsufficientDocumentData =
+        GelatoIdNumberReportErrorCode(rawValue: "id_number_insufficient_document_data")
     public static let idNumberMismatch = GelatoIdNumberReportErrorCode(rawValue: "id_number_mismatch")
     public static let idNumberUnverifiedOther = GelatoIdNumberReportErrorCode(rawValue: "id_number_unverified_other")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -322,13 +372,16 @@ public struct GelatoIdNumberReportErrorCode: RawRepresentable, Hashable, Codable
 public struct GelatoPhoneReportStatus: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unverified = GelatoPhoneReportStatus(rawValue: "unverified")
     public static let verified = GelatoPhoneReportStatus(rawValue: "verified")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

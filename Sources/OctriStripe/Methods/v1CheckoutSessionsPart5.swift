@@ -6,8 +6,11 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1CheckoutSessionsMethods {
-    /// Updates an existing Checkout Session with customer information, line items, metadata, shipping options, or expanded response fields. When changing `line_items`, retransmit the entire array and include existing item IDs for items you want to retain. Use this operation for dynamic Checkout Session updates before the customer completes the session.
+public extension V1CheckoutSessionsMethods {
+    /// Updates an existing Checkout Session with customer information, line items, metadata, shipping options, or
+    /// expanded response fields. When changing `line_items`, retransmit the entire array and include existing item IDs
+    /// for items you want to retain. Use this operation for dynamic Checkout Session updates before the customer
+    /// completes the session.
     ///
     /// Updates a Checkout Session object. Related guide: Dynamically update a Checkout Session
     ///
@@ -31,11 +34,33 @@ extension V1CheckoutSessionsMethods {
     ///   empty value to `metadata`.
     /// - shippingOptions: The shipping rate options to apply to this Session. Up to
     ///   a maximum of 5.
-    public static func postCheckoutSessionsSession(config: ClientConfig, session: String, collectedInformation: PostCheckoutSessionsSessionRequestBodyCollectedInformation?, expand: [String]?, lineItems: [PostCheckoutSessionsSessionRequestBodyLineItemsItem]?, metadata: PostCheckoutSessionsSessionRequestBodyMetadata?, shippingOptions: PostCheckoutSessionsSessionRequestBodyShippingOptions?) async throws -> CheckoutSession {
+    static func postCheckoutSessionsSession(
+        config: ClientConfig,
+        session: String,
+        collectedInformation: PostCheckoutSessionsSessionRequestBodyCollectedInformation?,
+        expand: [String]?,
+        lineItems: [PostCheckoutSessionsSessionRequestBodyLineItemsItem]?,
+        metadata: PostCheckoutSessionsSessionRequestBodyMetadata?,
+        shippingOptions: PostCheckoutSessionsSessionRequestBodyShippingOptions?
+    ) async throws -> CheckoutSession {
         try validateLength("session", session, max: 5000)
 
-        let requestBody = PostCheckoutSessionsSessionRequestBody(collectedInformation: collectedInformation, expand: expand, lineItems: lineItems, metadata: metadata, shippingOptions: shippingOptions)
+        let requestBody = PostCheckoutSessionsSessionRequestBody(
+            collectedInformation: collectedInformation,
+            expand: expand,
+            lineItems: lineItems,
+            metadata: metadata,
+            shippingOptions: shippingOptions
+        )
 
-        return try (await sdkRequest("POST", ["/v1/checkout/sessions/", sdkEncodePathSegment(sdkWireString(session))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostCheckoutSessionsSession")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/checkout/sessions/", sdkEncodePathSegment(sdkWireString(session))].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostCheckoutSessionsSession"
+        )).data
     }
 }

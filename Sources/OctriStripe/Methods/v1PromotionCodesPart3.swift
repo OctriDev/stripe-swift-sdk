@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1PromotionCodesMethods {
-    public struct PostPromotionCodesOptions: Codable {
+public extension V1PromotionCodesMethods {
+    struct PostPromotionCodesOptions: Codable {
         public var promotion: PostPromotionCodesRequestBodyPromotion
         public var active: Bool?
         public var code: String?
@@ -24,7 +24,8 @@ extension V1PromotionCodesMethods {
         }
     }
 
-    /// A promotion code points to an underlying promotion. You can optionally restrict the code to a specific customer, redemption limit, and expiration date.
+    /// A promotion code points to an underlying promotion. You can optionally restrict the code to a specific customer,
+    /// redemption limit, and expiration date.
     ///
     /// - Parameters:
     /// - promotion: The promotion referenced by this promotion code.
@@ -51,7 +52,10 @@ extension V1PromotionCodesMethods {
     ///   unset by posting an empty value to them. All keys can be unset by posting an
     ///   empty value to `metadata`.
     /// - restrictions: Settings that restrict the redemption of the promotion code.
-    public static func postPromotionCodes(config: ClientConfig, options: PostPromotionCodesOptions) async throws -> PromotionCode {
+    static func postPromotionCodes(
+        config: ClientConfig,
+        options: PostPromotionCodesOptions
+    ) async throws -> PromotionCode {
         if let code = options.code {
             try validateLength("code", code, max: 500)
         }
@@ -66,6 +70,14 @@ extension V1PromotionCodesMethods {
 
         let requestBody = PostPromotionCodesRequestBody(options: options)
 
-        return try (await sdkRequest("POST", "/v1/promotion_codes", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostPromotionCodes")).data
+        return try await (sdkRequest(
+            "POST",
+            "/v1/promotion_codes",
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostPromotionCodes"
+        )).data
     }
 }

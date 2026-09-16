@@ -6,7 +6,8 @@ import Foundation
 import XCTest
 
 extension SdkMethodTests {
-    func testGetInvoicePaymentsInvoicePaymentGetInvoicePaymentsInvoicePaymentReachesMockAndDecodesResponse() async throws {
+    func testGetInvoicePaymentsInvoicePaymentGetInvoicePaymentsInvoicePaymentReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -49,7 +50,8 @@ extension SdkMethodTests {
         )
     }
 
-    func testGetInvoiceRenderingTemplatesTemplateGetInvoiceRenderingTemplatesTemplateReachesMockAndDecodesResponse() async throws {
+    func testGetInvoiceRenderingTemplatesTemplateGetInvoiceRenderingTemplatesTemplateReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -188,7 +190,8 @@ extension SdkMethodTests {
         )
     }
 
-    func testGetIssuingAuthorizationsAuthorizationGetIssuingAuthorizationsX39e316c200ReachesMockAndDecodesResponse() async throws {
+    func testGetIssuingAuthorizationsAuthorizationGetIssuingAuthorizationsX39e316c200ReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -354,7 +357,8 @@ extension SdkMethodTests {
         )
     }
 
-    func testGetIssuingPersonalizationDesignsGetIssuingPersonalizationDesignsReachesMockAndDecodesResponse() async throws {
+    func testGetIssuingPersonalizationDesignsGetIssuingPersonalizationDesignsReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -379,7 +383,8 @@ extension SdkMethodTests {
         )
     }
 
-    func testGetIssuingPersonalizationDesignsPersonalizationDesignGetIssuiX3c38670487ReachesMockAndDecodesResponse() async throws {
+    func testGetIssuingPersonalizationDesignsPersonalizationDesignGetIssuiX3c38670487ReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -423,7 +428,8 @@ extension SdkMethodTests {
         )
     }
 
-    func testGetIssuingPhysicalBundlesPhysicalBundleGetIssuingPhysicalBundX94f5b976cfReachesMockAndDecodesResponse() async throws {
+    func testGetIssuingPhysicalBundlesPhysicalBundleGetIssuingPhysicalBundX94f5b976cfReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -536,7 +542,8 @@ extension SdkMethodTests {
         )
     }
 
-    func testGetIssuingTransactionsTransactionGetIssuingTransactionsTransactionReachesMockAndDecodesResponse() async throws {
+    func testGetIssuingTransactionsTransactionGetIssuingTransactionsTransactionReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }

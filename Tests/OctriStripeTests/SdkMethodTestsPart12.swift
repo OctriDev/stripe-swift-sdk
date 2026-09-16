@@ -120,7 +120,8 @@ extension SdkMethodTests {
         )
     }
 
-    func testGetTreasuryCreditReversalsCreditReversalGetTreasuryCreditReveX7ee858c925ReachesMockAndDecodesResponse() async throws {
+    func testGetTreasuryCreditReversalsCreditReversalGetTreasuryCreditReveX7ee858c925ReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -145,7 +146,8 @@ extension SdkMethodTests {
             return
         }
         _ = client
-        var options = try V1TreasuryDebitReversalsMethods.GetTreasuryDebitReversalsOptions(financialAccount: decoded("\"financial_account\""))
+        var options = try V1TreasuryDebitReversalsMethods
+            .GetTreasuryDebitReversalsOptions(financialAccount: decoded("\"financial_account\""))
         options.endingBefore = try decoded("\"ending_before\"")
         options.expand = try decoded("[\"expand\"]")
         options.limit = try decoded("1")
@@ -167,7 +169,8 @@ extension SdkMethodTests {
         )
     }
 
-    func testGetTreasuryDebitReversalsDebitReversalGetTreasuryDebitReversaX438df60b2eReachesMockAndDecodesResponse() async throws {
+    func testGetTreasuryDebitReversalsDebitReversalGetTreasuryDebitReversaX438df60b2eReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -211,15 +214,17 @@ extension SdkMethodTests {
         )
     }
 
-    func testGetTreasuryFinancialAccountsFinancialAccountGetTreasuryFinancXdb0a779ce8ReachesMockAndDecodesResponse() async throws {
+    func testGetTreasuryFinancialAccountsFinancialAccountGetTreasuryFinancXdb0a779ce8ReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        let actual = try await client.v1.treasury.financialAccounts.features.getTreasuryFinancialAccountsFinancialAccount(
-            financialAccount: decoded("\"financial_account\""),
-            expand: decoded("[\"expand\"]")
-        )
+        let actual = try await client.v1.treasury.financialAccounts.features
+            .getTreasuryFinancialAccountsFinancialAccount(
+                financialAccount: decoded("\"financial_account\""),
+                expand: decoded("[\"expand\"]")
+            )
         let expected = try JSONSerialization.jsonObject(
             with: Data(sdkMethodFixture280Expected.utf8),
             options: [.fragmentsAllowed]
@@ -231,15 +236,17 @@ extension SdkMethodTests {
         )
     }
 
-    func testGetTreasuryFinancialAccountsFinancialAccountFeaturesGetTreasuXdff3fcc558ReachesMockAndDecodesResponse() async throws {
+    func testGetTreasuryFinancialAccountsFinancialAccountFeaturesGetTreasuXdff3fcc558ReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        let actual = try await client.v1.treasury.financialAccounts.features.getTreasuryFinancialAccountsFinancialAccount(
-            financialAccount: decoded("\"financial_account\""),
-            expand: decoded("[\"expand\"]")
-        )
+        let actual = try await client.v1.treasury.financialAccounts.features
+            .getTreasuryFinancialAccountsFinancialAccount(
+                financialAccount: decoded("\"financial_account\""),
+                expand: decoded("[\"expand\"]")
+            )
         let expected = try JSONSerialization.jsonObject(
             with: Data(sdkMethodFixture281Expected.utf8),
             options: [.fragmentsAllowed]
@@ -300,7 +307,8 @@ extension SdkMethodTests {
             return
         }
         _ = client
-        var options = try V1TreasuryOutboundPaymentsMethods.GetTreasuryOutboundPaymentsOptions(financialAccount: decoded("\"financial_account\""))
+        var options = try V1TreasuryOutboundPaymentsMethods
+            .GetTreasuryOutboundPaymentsOptions(financialAccount: decoded("\"financial_account\""))
         options.created = try decoded("{\"gt\":1,\"gte\":1,\"lt\":1,\"lte\":1}")
         options.customer = try decoded("\"customer\"")
         options.endingBefore = try decoded("\"ending_before\"")
@@ -366,7 +374,8 @@ extension SdkMethodTests {
         )
     }
 
-    func testGetTreasuryOutboundTransfersOutboundTransferGetTreasuryOutbouXdd2d60ea37ReachesMockAndDecodesResponse() async throws {
+    func testGetTreasuryOutboundTransfersOutboundTransferGetTreasuryOutbouXdd2d60ea37ReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -480,7 +489,8 @@ extension SdkMethodTests {
             return
         }
         _ = client
-        var options = try V1TreasuryTransactionEntriesMethods.GetTreasuryTransactionEntriesOptions(financialAccount: decoded("\"financial_account\""))
+        var options = try V1TreasuryTransactionEntriesMethods
+            .GetTreasuryTransactionEntriesOptions(financialAccount: decoded("\"financial_account\""))
         options.created = try decoded("{\"gt\":1,\"gte\":1,\"lt\":1,\"lte\":1}")
         options.effectiveAt = try decoded("{\"gt\":1,\"gte\":1,\"lt\":1,\"lte\":1}")
         options.endingBefore = try decoded("\"ending_before\"")

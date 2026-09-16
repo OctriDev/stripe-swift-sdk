@@ -6,18 +6,31 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1TreasuryOutboundTransfersMethods {
-    /// Retrieves the details of an existing OutboundTransfer by its unique identifier. Pass `outbound_transfer` from an OutboundTransfer creation response or list, and use `expand` to request additional response fields inline.
+public extension V1TreasuryOutboundTransfersMethods {
+    /// Retrieves the details of an existing OutboundTransfer by its unique identifier. Pass `outbound_transfer` from an
+    /// OutboundTransfer creation response or list, and use `expand` to request additional response fields inline.
     ///
-    /// Retrieves the details of an existing OutboundTransfer by passing the unique OutboundTransfer ID from either the OutboundTransfer creation request or OutboundTransfer list.
+    /// Retrieves the details of an existing OutboundTransfer by passing the unique OutboundTransfer ID from either the
+    /// OutboundTransfer creation request or OutboundTransfer list.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func getTreasuryOutboundTransfersOutboundTransfer(config: ClientConfig, outboundTransfer: String, expand: [String]?) async throws -> TreasuryOutboundTransfer {
+    static func getTreasuryOutboundTransfersOutboundTransfer(
+        config: ClientConfig,
+        outboundTransfer: String,
+        expand: [String]?
+    ) async throws -> TreasuryOutboundTransfer {
         try validateLength("outbound_transfer", outboundTransfer, max: 5000)
 
-        return try (await sdkRequest("GET", ["/v1/treasury/outbound_transfers/", sdkEncodePathSegment(sdkWireString(outboundTransfer))].joined(), config: config, query: [
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-        ], decoder: .json, operationId: "GetTreasuryOutboundTransfersOutboundTransfer")).data
+        return try await (sdkRequest(
+            "GET",
+            ["/v1/treasury/outbound_transfers/", sdkEncodePathSegment(sdkWireString(outboundTransfer))].joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+            ],
+            decoder: .json,
+            operationId: "GetTreasuryOutboundTransfersOutboundTransfer"
+        )).data
     }
 }

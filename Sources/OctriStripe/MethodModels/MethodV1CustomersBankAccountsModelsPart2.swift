@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1CustomersBankAccounts operation model declarations
+/// Canonical v1CustomersBankAccounts operation model declarations
 public struct GetCustomersCustomerBankAccountsResponse: Codable {
     /// Details about each object.
     public var data: [BankAccount]
@@ -26,37 +26,60 @@ public struct GetCustomersCustomerBankAccountsResponse: Codable {
         case url
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension GetCustomersCustomerBankAccountsResponse {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.data) else {
-            throw SdkValidationError(field: "data", code: "required", message: "Validation failed for 'data': value is required")
-        }
-        guard container.contains(.hasMore) else {
-            throw SdkValidationError(field: "has_more", code: "required", message: "Validation failed for 'has_more': value is required")
-        }
-        guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
-        }
-        guard container.contains(.url) else {
-            throw SdkValidationError(field: "url", code: "required", message: "Validation failed for 'url': value is required")
-        }
-        self.data = try container.sdkDecodeRequired(.data)
-        self.hasMore = try container.sdkDecodeRequired(.hasMore)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.url = try container.sdkDecodeRequired(.url)
-            try validateLength("url", self.url, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension GetCustomersCustomerBankAccountsResponse {
-    public init(data: [BankAccount], hasMore: Bool, object: GetCustomersCustomerBankAccountsResponseObject, url: String) throws {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.data) else {
+            throw SdkValidationError(
+                field: "data",
+                code: "required",
+                message: "Validation failed for 'data': value is required"
+            )
+        }
+        guard container.contains(.hasMore) else {
+            throw SdkValidationError(
+                field: "has_more",
+                code: "required",
+                message: "Validation failed for 'has_more': value is required"
+            )
+        }
+        guard container.contains(.object) else {
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
+        }
+        guard container.contains(.url) else {
+            throw SdkValidationError(
+                field: "url",
+                code: "required",
+                message: "Validation failed for 'url': value is required"
+            )
+        }
+        data = try container.sdkDecodeRequired(.data)
+        hasMore = try container.sdkDecodeRequired(.hasMore)
+        object = try container.sdkDecodeRequired(.object)
+        url = try container.sdkDecodeRequired(.url)
+        try validateLength("url", url, min: nil, max: 5000)
+    }
+}
+
+public extension GetCustomersCustomerBankAccountsResponse {
+    init(
+        data: [BankAccount],
+        hasMore: Bool,
+        object: GetCustomersCustomerBankAccountsResponseObject,
+        url: String
+    ) throws {
         (self.data, self.hasMore) = (data, hasMore)
         (self.object, self.url) = (object, url)
-            try validateLength("url", self.url, min: nil, max: 5000)
+        try validateLength("url", self.url, min: nil, max: 5000)
     }
 }
 
@@ -68,22 +91,22 @@ public struct PostCustomersCustomerBankAccountsRequestBodyCardVariant0NetworkTok
     }
 
     init() {
-        self.number = nil
+        number = nil
     }
 }
 
 public extension PostCustomersCustomerBankAccountsRequestBodyCardVariant0NetworkToken {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.number = try container.sdkDecodeIfPresent(.number)
-        if let value = self.number {
+        number = try container.sdkDecodeIfPresent(.number)
+        if let value = number {
             try validateLength("number", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension PostCustomersCustomerBankAccountsRequestBodyCardVariant0NetworkToken {
-    public init(number: String? = nil) throws {
+    init(number: String? = nil) throws {
         self.init()
         self.number = number
         if let value = self.number {

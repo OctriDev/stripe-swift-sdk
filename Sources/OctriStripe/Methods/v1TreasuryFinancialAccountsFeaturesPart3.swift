@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1TreasuryFinancialAccountsFeaturesMethods {
-    public struct PostTreasuryFinancialAccountsFinancialAccountFeaturesOptions: Codable {
+public extension V1TreasuryFinancialAccountsFeaturesMethods {
+    struct PostTreasuryFinancialAccountsFinancialAccountFeaturesOptions: Codable {
         public var financialAccount: String
         public var cardIssuing: PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBXbd3d53825a?
         public var depositInsurance: PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBX7f07895a38?
@@ -23,7 +23,8 @@ extension V1TreasuryFinancialAccountsFeaturesMethods {
         }
     }
 
-    /// Updates feature access settings for a FinancialAccount. Submit the feature groups you want to change and set each requested access value to control whether that capability is requested.
+    /// Updates feature access settings for a FinancialAccount. Submit the feature groups you want to change and set
+    /// each requested access value to control whether that capability is requested.
     ///
     /// Updates the Features associated with a FinancialAccount.
     ///
@@ -45,11 +46,26 @@ extension V1TreasuryFinancialAccountsFeaturesMethods {
     ///   out of the FinancialAccount to someone else's bucket of money.
     /// - outboundTransfers: Contains a Feature and settings related to moving money
     ///   out of the FinancialAccount into another Account with the same owner.
-    public static func postTreasuryFinancialAccountsFinancialAccountFeatures(config: ClientConfig, options: PostTreasuryFinancialAccountsFinancialAccountFeaturesOptions) async throws -> TreasuryFinancialAccountFeatures {
+    static func postTreasuryFinancialAccountsFinancialAccountFeatures(
+        config: ClientConfig,
+        options: PostTreasuryFinancialAccountsFinancialAccountFeaturesOptions
+    ) async throws -> TreasuryFinancialAccountFeatures {
         try validateLength("financial_account", options.financialAccount, max: 5000)
 
         let requestBody = PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBody(options: options)
 
-        return try (await sdkRequest("POST", ["/v1/treasury/financial_accounts/", sdkEncodePathSegment(sdkWireString(options.financialAccount)), "/features"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTreasuryFinancialAccountsFinancialAccountFeatures")).data
+        return try await (sdkRequest(
+            "POST",
+            [
+                "/v1/treasury/financial_accounts/",
+                sdkEncodePathSegment(sdkWireString(options.financialAccount)),
+                "/features",
+            ].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostTreasuryFinancialAccountsFinancialAccountFeatures"
+        )).data
     }
 }

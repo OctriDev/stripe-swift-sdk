@@ -6,16 +6,20 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public struct PostCheckoutSessionsRequestBodyAutomaticTaxLiabilityType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostCheckoutSessionsRequestBodyAutomaticTaxLiabilityType: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let account = PostCheckoutSessionsRequestBodyAutomaticTaxLiabilityType(rawValue: "account")
     public static let `self` = PostCheckoutSessionsRequestBodyAutomaticTaxLiabilityType(rawValue: "self")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -25,16 +29,20 @@ public struct PostCheckoutSessionsRequestBodyAutomaticTaxLiabilityType: RawRepre
 }
 
 /// Specify whether Checkout should collect the customer's billing address. Defaults to `auto`.
-public struct PostCheckoutSessionsRequestBodyBillingAddressCollection: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostCheckoutSessionsRequestBodyBillingAddressCollection: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let auto = PostCheckoutSessionsRequestBodyBillingAddressCollection(rawValue: "auto")
     public static let required = PostCheckoutSessionsRequestBodyBillingAddressCollection(rawValue: "required")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -43,15 +51,19 @@ public struct PostCheckoutSessionsRequestBodyBillingAddressCollection: RawRepres
     }
 }
 
-public struct PostCheckoutSessionsRequestBodyBrandingSettingsBackgroundColorVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostCheckoutSessionsRequestBodyBrandingSettingsBackgroundColorVariant1: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostCheckoutSessionsRequestBodyBrandingSettingsBackgroundColorVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -60,10 +72,14 @@ public struct PostCheckoutSessionsRequestBodyBrandingSettingsBackgroundColorVari
     }
 }
 
-public struct PostCheckoutSessionsRequestBodyBrandingSettingsBorderStyle: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostCheckoutSessionsRequestBodyBrandingSettingsBorderStyle: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostCheckoutSessionsRequestBodyBrandingSettingsBorderStyle(rawValue: "")
     public static let pill = PostCheckoutSessionsRequestBodyBrandingSettingsBorderStyle(rawValue: "pill")
     public static let rectangular = PostCheckoutSessionsRequestBodyBrandingSettingsBorderStyle(rawValue: "rectangular")
@@ -71,7 +87,7 @@ public struct PostCheckoutSessionsRequestBodyBrandingSettingsBorderStyle: RawRep
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -80,15 +96,19 @@ public struct PostCheckoutSessionsRequestBodyBrandingSettingsBorderStyle: RawRep
     }
 }
 
-public struct PostCheckoutSessionsRequestBodyBrandingSettingsButtonColorVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostCheckoutSessionsRequestBodyBrandingSettingsButtonColorVariant1: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostCheckoutSessionsRequestBodyBrandingSettingsButtonColorVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -97,12 +117,17 @@ public struct PostCheckoutSessionsRequestBodyBrandingSettingsButtonColorVariant1
     }
 }
 
-public struct PostCheckoutSessionsRequestBodyBrandingSettingsFontFamily: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostCheckoutSessionsRequestBodyBrandingSettingsFontFamily: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostCheckoutSessionsRequestBodyBrandingSettingsFontFamily(rawValue: "")
-    public static let beVietnamPro = PostCheckoutSessionsRequestBodyBrandingSettingsFontFamily(rawValue: "be_vietnam_pro")
+    public static let beVietnamPro =
+        PostCheckoutSessionsRequestBodyBrandingSettingsFontFamily(rawValue: "be_vietnam_pro")
     public static let bitter = PostCheckoutSessionsRequestBodyBrandingSettingsFontFamily(rawValue: "bitter")
     public static let chakraPetch = PostCheckoutSessionsRequestBodyBrandingSettingsFontFamily(rawValue: "chakra_petch")
     public static let `default` = PostCheckoutSessionsRequestBodyBrandingSettingsFontFamily(rawValue: "default")
@@ -124,14 +149,17 @@ public struct PostCheckoutSessionsRequestBodyBrandingSettingsFontFamily: RawRepr
     public static let raleway = PostCheckoutSessionsRequestBodyBrandingSettingsFontFamily(rawValue: "raleway")
     public static let roboto = PostCheckoutSessionsRequestBodyBrandingSettingsFontFamily(rawValue: "roboto")
     public static let robotoSlab = PostCheckoutSessionsRequestBodyBrandingSettingsFontFamily(rawValue: "roboto_slab")
-    public static let sourceSansPro = PostCheckoutSessionsRequestBodyBrandingSettingsFontFamily(rawValue: "source_sans_pro")
-    public static let titilliumWeb = PostCheckoutSessionsRequestBodyBrandingSettingsFontFamily(rawValue: "titillium_web")
+    public static let sourceSansPro =
+        PostCheckoutSessionsRequestBodyBrandingSettingsFontFamily(rawValue: "source_sans_pro")
+    public static let titilliumWeb =
+        PostCheckoutSessionsRequestBodyBrandingSettingsFontFamily(rawValue: "titillium_web")
     public static let ubuntuMono = PostCheckoutSessionsRequestBodyBrandingSettingsFontFamily(rawValue: "ubuntu_mono")
-    public static let zenMaruGothic = PostCheckoutSessionsRequestBodyBrandingSettingsFontFamily(rawValue: "zen_maru_gothic")
+    public static let zenMaruGothic =
+        PostCheckoutSessionsRequestBodyBrandingSettingsFontFamily(rawValue: "zen_maru_gothic")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -140,16 +168,20 @@ public struct PostCheckoutSessionsRequestBodyBrandingSettingsFontFamily: RawRepr
     }
 }
 
-public struct PostCheckoutSessionsRequestBodyBrandingSettingsIconType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostCheckoutSessionsRequestBodyBrandingSettingsIconType: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let file = PostCheckoutSessionsRequestBodyBrandingSettingsIconType(rawValue: "file")
     public static let url = PostCheckoutSessionsRequestBodyBrandingSettingsIconType(rawValue: "url")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -158,16 +190,20 @@ public struct PostCheckoutSessionsRequestBodyBrandingSettingsIconType: RawRepres
     }
 }
 
-public struct PostCheckoutSessionsRequestBodyBrandingSettingsLogoType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostCheckoutSessionsRequestBodyBrandingSettingsLogoType: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let file = PostCheckoutSessionsRequestBodyBrandingSettingsLogoType(rawValue: "file")
     public static let url = PostCheckoutSessionsRequestBodyBrandingSettingsLogoType(rawValue: "url")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -176,16 +212,21 @@ public struct PostCheckoutSessionsRequestBodyBrandingSettingsLogoType: RawRepres
     }
 }
 
-public struct PostCheckoutSessionsRequestBodyConsentCollectionPaymentMethodX33b88147e3: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostCheckoutSessionsRequestBodyConsentCollectionPaymentMethodX33b88147e3: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let auto = PostCheckoutSessionsRequestBodyConsentCollectionPaymentMethodX33b88147e3(rawValue: "auto")
-    public static let hidden = PostCheckoutSessionsRequestBodyConsentCollectionPaymentMethodX33b88147e3(rawValue: "hidden")
+    public static let hidden =
+        PostCheckoutSessionsRequestBodyConsentCollectionPaymentMethodX33b88147e3(rawValue: "hidden")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -194,16 +235,20 @@ public struct PostCheckoutSessionsRequestBodyConsentCollectionPaymentMethodX33b8
     }
 }
 
-public struct PostCheckoutSessionsRequestBodyConsentCollectionPromotions: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostCheckoutSessionsRequestBodyConsentCollectionPromotions: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let auto = PostCheckoutSessionsRequestBodyConsentCollectionPromotions(rawValue: "auto")
     public static let none = PostCheckoutSessionsRequestBodyConsentCollectionPromotions(rawValue: "none")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

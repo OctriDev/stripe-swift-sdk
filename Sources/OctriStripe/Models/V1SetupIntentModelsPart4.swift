@@ -3,19 +3,23 @@
 
 import Foundation
 
-// V1SetupIntent domain models
+/// V1SetupIntent domain models
 /// The type of amount that will be collected. The amount charged must be exact or up to the value of `amount`
 /// param for `fixed` or `maximum` type respectively. Defaults to `maximum`.
-public struct SetupIntentPaymentMethodOptionsMandateOptionsPaytoAmountType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct SetupIntentPaymentMethodOptionsMandateOptionsPaytoAmountType: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let fixed = SetupIntentPaymentMethodOptionsMandateOptionsPaytoAmountType(rawValue: "fixed")
     public static let maximum = SetupIntentPaymentMethodOptionsMandateOptionsPaytoAmountType(rawValue: "maximum")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -25,15 +29,19 @@ public struct SetupIntentPaymentMethodOptionsMandateOptionsPaytoAmountType: RawR
 }
 
 /// Required enumerated value serialized in the `supported_types[]` wire field.
-public struct SetupIntentPaymentMethodOptionsCardMandateOptionsSupportedTypesItem: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct SetupIntentPaymentMethodOptionsCardMandateOptionsSupportedTypesItem: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let india = SetupIntentPaymentMethodOptionsCardMandateOptionsSupportedTypesItem(rawValue: "india")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -43,17 +51,23 @@ public struct SetupIntentPaymentMethodOptionsCardMandateOptionsSupportedTypesIte
 }
 
 /// Bank account verification method. The default value is `automatic`.
-public struct SetupIntentTypeSpecificPaymentMethodOptionsClientVerificationMethod: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct SetupIntentTypeSpecificPaymentMethodOptionsClientVerificationMethod: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let automatic = SetupIntentTypeSpecificPaymentMethodOptionsClientVerificationMethod(rawValue: "automatic")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let automatic =
+        SetupIntentTypeSpecificPaymentMethodOptionsClientVerificationMethod(rawValue: "automatic")
     public static let instant = SetupIntentTypeSpecificPaymentMethodOptionsClientVerificationMethod(rawValue: "instant")
-    public static let microdeposits = SetupIntentTypeSpecificPaymentMethodOptionsClientVerificationMethod(rawValue: "microdeposits")
+    public static let microdeposits =
+        SetupIntentTypeSpecificPaymentMethodOptionsClientVerificationMethod(rawValue: "microdeposits")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -63,16 +77,22 @@ public struct SetupIntentTypeSpecificPaymentMethodOptionsClientVerificationMetho
 }
 
 /// Required enumerated value serialized in the `default_for[]` wire field.
-public struct SetupIntentPaymentMethodOptionsMandateOptionsAcssDebitDefaultForItem: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct SetupIntentPaymentMethodOptionsMandateOptionsAcssDebitDefaultForItem: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let invoice = SetupIntentPaymentMethodOptionsMandateOptionsAcssDebitDefaultForItem(rawValue: "invoice")
-    public static let subscription = SetupIntentPaymentMethodOptionsMandateOptionsAcssDebitDefaultForItem(rawValue: "subscription")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let invoice =
+        SetupIntentPaymentMethodOptionsMandateOptionsAcssDebitDefaultForItem(rawValue: "invoice")
+    public static let subscription =
+        SetupIntentPaymentMethodOptionsMandateOptionsAcssDebitDefaultForItem(rawValue: "subscription")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -82,17 +102,25 @@ public struct SetupIntentPaymentMethodOptionsMandateOptionsAcssDebitDefaultForIt
 }
 
 /// Payment schedule for the mandate.
-public struct SetupIntentPaymentMethodOptionsMandateOptionsAcssDebitPaymentSchedule: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct SetupIntentPaymentMethodOptionsMandateOptionsAcssDebitPaymentSchedule: RawRepresentable, Hashable,
+    Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let combined = SetupIntentPaymentMethodOptionsMandateOptionsAcssDebitPaymentSchedule(rawValue: "combined")
-    public static let interval = SetupIntentPaymentMethodOptionsMandateOptionsAcssDebitPaymentSchedule(rawValue: "interval")
-    public static let sporadic = SetupIntentPaymentMethodOptionsMandateOptionsAcssDebitPaymentSchedule(rawValue: "sporadic")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let combined =
+        SetupIntentPaymentMethodOptionsMandateOptionsAcssDebitPaymentSchedule(rawValue: "combined")
+    public static let interval =
+        SetupIntentPaymentMethodOptionsMandateOptionsAcssDebitPaymentSchedule(rawValue: "interval")
+    public static let sporadic =
+        SetupIntentPaymentMethodOptionsMandateOptionsAcssDebitPaymentSchedule(rawValue: "sporadic")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -102,22 +130,29 @@ public struct SetupIntentPaymentMethodOptionsMandateOptionsAcssDebitPaymentSched
 }
 
 /// The periodicity at which payments will be collected. Defaults to `adhoc`.
-public struct SetupIntentPaymentMethodOptionsMandateOptionsPaytoPaymentSchedule: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct SetupIntentPaymentMethodOptionsMandateOptionsPaytoPaymentSchedule: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let adhoc = SetupIntentPaymentMethodOptionsMandateOptionsPaytoPaymentSchedule(rawValue: "adhoc")
     public static let annual = SetupIntentPaymentMethodOptionsMandateOptionsPaytoPaymentSchedule(rawValue: "annual")
     public static let daily = SetupIntentPaymentMethodOptionsMandateOptionsPaytoPaymentSchedule(rawValue: "daily")
-    public static let fortnightly = SetupIntentPaymentMethodOptionsMandateOptionsPaytoPaymentSchedule(rawValue: "fortnightly")
+    public static let fortnightly =
+        SetupIntentPaymentMethodOptionsMandateOptionsPaytoPaymentSchedule(rawValue: "fortnightly")
     public static let monthly = SetupIntentPaymentMethodOptionsMandateOptionsPaytoPaymentSchedule(rawValue: "monthly")
-    public static let quarterly = SetupIntentPaymentMethodOptionsMandateOptionsPaytoPaymentSchedule(rawValue: "quarterly")
-    public static let semiAnnual = SetupIntentPaymentMethodOptionsMandateOptionsPaytoPaymentSchedule(rawValue: "semi_annual")
+    public static let quarterly =
+        SetupIntentPaymentMethodOptionsMandateOptionsPaytoPaymentSchedule(rawValue: "quarterly")
+    public static let semiAnnual =
+        SetupIntentPaymentMethodOptionsMandateOptionsPaytoPaymentSchedule(rawValue: "semi_annual")
     public static let weekly = SetupIntentPaymentMethodOptionsMandateOptionsPaytoPaymentSchedule(rawValue: "weekly")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -127,11 +162,16 @@ public struct SetupIntentPaymentMethodOptionsMandateOptionsPaytoPaymentSchedule:
 }
 
 /// The purpose for which payments are made. Has a default value based on your merchant category code.
-public struct SetupIntentPaymentMethodOptionsMandateOptionsPaytoPurpose: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct SetupIntentPaymentMethodOptionsMandateOptionsPaytoPurpose: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let dependantSupport = SetupIntentPaymentMethodOptionsMandateOptionsPaytoPurpose(rawValue: "dependant_support")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let dependantSupport =
+        SetupIntentPaymentMethodOptionsMandateOptionsPaytoPurpose(rawValue: "dependant_support")
     public static let government = SetupIntentPaymentMethodOptionsMandateOptionsPaytoPurpose(rawValue: "government")
     public static let loan = SetupIntentPaymentMethodOptionsMandateOptionsPaytoPurpose(rawValue: "loan")
     public static let mortgage = SetupIntentPaymentMethodOptionsMandateOptionsPaytoPurpose(rawValue: "mortgage")
@@ -145,7 +185,7 @@ public struct SetupIntentPaymentMethodOptionsMandateOptionsPaytoPurpose: RawRepr
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -155,16 +195,23 @@ public struct SetupIntentPaymentMethodOptionsMandateOptionsPaytoPurpose: RawRepr
 }
 
 /// Transaction type of the mandate.
-public struct SetupIntentPaymentMethodOptionsMandateOptionsAcssDebitTransactionType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct SetupIntentPaymentMethodOptionsMandateOptionsAcssDebitTransactionType: RawRepresentable, Hashable,
+    Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let business = SetupIntentPaymentMethodOptionsMandateOptionsAcssDebitTransactionType(rawValue: "business")
-    public static let personal = SetupIntentPaymentMethodOptionsMandateOptionsAcssDebitTransactionType(rawValue: "personal")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let business =
+        SetupIntentPaymentMethodOptionsMandateOptionsAcssDebitTransactionType(rawValue: "business")
+    public static let personal =
+        SetupIntentPaymentMethodOptionsMandateOptionsAcssDebitTransactionType(rawValue: "personal")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -175,16 +222,21 @@ public struct SetupIntentPaymentMethodOptionsMandateOptionsAcssDebitTransactionT
 
 /// The type of the microdeposit sent to the customer. Used to distinguish between different verification
 /// methods.
-public struct SetupIntentNextActionVerifyWithMicrodepositsMicrodepositType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct SetupIntentNextActionVerifyWithMicrodepositsMicrodepositType: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let amounts = SetupIntentNextActionVerifyWithMicrodepositsMicrodepositType(rawValue: "amounts")
-    public static let descriptorCode = SetupIntentNextActionVerifyWithMicrodepositsMicrodepositType(rawValue: "descriptor_code")
+    public static let descriptorCode =
+        SetupIntentNextActionVerifyWithMicrodepositsMicrodepositType(rawValue: "descriptor_code")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -194,17 +246,22 @@ public struct SetupIntentNextActionVerifyWithMicrodepositsMicrodepositType: RawR
 }
 
 /// Bank account verification method. The default value is `automatic`.
-public struct SetupIntentPaymentMethodOptionsUsBankAccountVerificationMethod: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct SetupIntentPaymentMethodOptionsUsBankAccountVerificationMethod: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let automatic = SetupIntentPaymentMethodOptionsUsBankAccountVerificationMethod(rawValue: "automatic")
     public static let instant = SetupIntentPaymentMethodOptionsUsBankAccountVerificationMethod(rawValue: "instant")
-    public static let microdeposits = SetupIntentPaymentMethodOptionsUsBankAccountVerificationMethod(rawValue: "microdeposits")
+    public static let microdeposits =
+        SetupIntentPaymentMethodOptionsUsBankAccountVerificationMethod(rawValue: "microdeposits")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -218,17 +275,21 @@ public struct SetupIntentPaymentMethodOptionsUsBankAccountVerificationMethod: Ra
 /// on logic from your own fraud engine, provide this option. If not provided, this value defaults to
 /// `automatic`. Read our guide on manually requesting 3D Secure for more information on how this configuration
 /// interacts with Radar and our SCA Engine.
-public struct SetupIntentPaymentMethodOptionsCardRequestThreeDSecure: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct SetupIntentPaymentMethodOptionsCardRequestThreeDSecure: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let any = SetupIntentPaymentMethodOptionsCardRequestThreeDSecure(rawValue: "any")
     public static let automatic = SetupIntentPaymentMethodOptionsCardRequestThreeDSecure(rawValue: "automatic")
     public static let challenge = SetupIntentPaymentMethodOptionsCardRequestThreeDSecure(rawValue: "challenge")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -239,10 +300,14 @@ public struct SetupIntentPaymentMethodOptionsCardRequestThreeDSecure: RawReprese
 
 /// Selected network to process this SetupIntent on. Depends on the available networks of the card attached to
 /// the setup intent. Can be only set confirm-time.
-public struct SetupIntentPaymentMethodOptionsCardNetwork: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct SetupIntentPaymentMethodOptionsCardNetwork: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let amex = SetupIntentPaymentMethodOptionsCardNetwork(rawValue: "amex")
     public static let cartesBancaires = SetupIntentPaymentMethodOptionsCardNetwork(rawValue: "cartes_bancaires")
     public static let diners = SetupIntentPaymentMethodOptionsCardNetwork(rawValue: "diners")
@@ -259,7 +324,7 @@ public struct SetupIntentPaymentMethodOptionsCardNetwork: RawRepresentable, Hash
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -269,16 +334,20 @@ public struct SetupIntentPaymentMethodOptionsCardNetwork: RawRepresentable, Hash
 }
 
 /// Currency supported by the bank account
-public struct SetupIntentPaymentMethodOptionsAcssDebitCurrency: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct SetupIntentPaymentMethodOptionsAcssDebitCurrency: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let cad = SetupIntentPaymentMethodOptionsAcssDebitCurrency(rawValue: "cad")
     public static let usd = SetupIntentPaymentMethodOptionsAcssDebitCurrency(rawValue: "usd")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -288,17 +357,22 @@ public struct SetupIntentPaymentMethodOptionsAcssDebitCurrency: RawRepresentable
 }
 
 /// Bank account verification method. The default value is `automatic`.
-public struct SetupIntentPaymentMethodOptionsAcssDebitVerificationMethod: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct SetupIntentPaymentMethodOptionsAcssDebitVerificationMethod: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let automatic = SetupIntentPaymentMethodOptionsAcssDebitVerificationMethod(rawValue: "automatic")
     public static let instant = SetupIntentPaymentMethodOptionsAcssDebitVerificationMethod(rawValue: "instant")
-    public static let microdeposits = SetupIntentPaymentMethodOptionsAcssDebitVerificationMethod(rawValue: "microdeposits")
+    public static let microdeposits =
+        SetupIntentPaymentMethodOptionsAcssDebitVerificationMethod(rawValue: "microdeposits")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -308,10 +382,14 @@ public struct SetupIntentPaymentMethodOptionsAcssDebitVerificationMethod: RawRep
 }
 
 /// Specifies payment frequency. One of `day`, `week`, `month`, `year`, or `sporadic`.
-public struct SetupIntentPaymentMethodOptionsCardMandateOptionsInterval: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct SetupIntentPaymentMethodOptionsCardMandateOptionsInterval: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let day = SetupIntentPaymentMethodOptionsCardMandateOptionsInterval(rawValue: "day")
     public static let month = SetupIntentPaymentMethodOptionsCardMandateOptionsInterval(rawValue: "month")
     public static let sporadic = SetupIntentPaymentMethodOptionsCardMandateOptionsInterval(rawValue: "sporadic")
@@ -320,7 +398,7 @@ public struct SetupIntentPaymentMethodOptionsCardMandateOptionsInterval: RawRepr
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -331,16 +409,21 @@ public struct SetupIntentPaymentMethodOptionsCardMandateOptionsInterval: RawRepr
 
 /// One of `fixed` or `maximum`. If `fixed`, the `amount` param refers to the exact amount to be charged in
 /// future payments. If `maximum`, the amount charged can be up to the value passed for the `amount` param.
-public struct SetupIntentPaymentMethodOptionsCardMandateOptionsAmountType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct SetupIntentPaymentMethodOptionsCardMandateOptionsAmountType: RawRepresentable, Hashable, Codable,
+    Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let fixed = SetupIntentPaymentMethodOptionsCardMandateOptionsAmountType(rawValue: "fixed")
     public static let maximum = SetupIntentPaymentMethodOptionsCardMandateOptionsAmountType(rawValue: "maximum")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

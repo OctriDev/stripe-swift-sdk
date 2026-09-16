@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1Customer domain models
+/// V1Customer domain models
 /// Typed representation of the `CustomerAcceptance` API schema.
 public struct CustomerAcceptance: Codable {
     /// The mandate includes the type of customer acceptance information, such as: `online` or `offline`.
@@ -22,24 +22,35 @@ public struct CustomerAcceptance: Codable {
         case online
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension CustomerAcceptance {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
-        }
-        self.type = try container.sdkDecodeRequired(.type)
-        self.acceptedAt = try container.sdkDecodeIfPresent(.acceptedAt)
-        self.offline = try container.sdkDecodeIfPresent(.offline)
-        self.online = try container.sdkDecodeIfPresent(.online)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension CustomerAcceptance {
-    public init(type: CustomerAcceptanceType, acceptedAt: Int? = nil, offline: OfflineAcceptance? = nil, online: OnlineAcceptance? = nil) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.type) else {
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
+        }
+        type = try container.sdkDecodeRequired(.type)
+        acceptedAt = try container.sdkDecodeIfPresent(.acceptedAt)
+        offline = try container.sdkDecodeIfPresent(.offline)
+        online = try container.sdkDecodeIfPresent(.online)
+    }
+}
+
+public extension CustomerAcceptance {
+    init(
+        type: CustomerAcceptanceType,
+        acceptedAt: Int? = nil,
+        offline: OfflineAcceptance? = nil,
+        online: OnlineAcceptance? = nil
+    ) {
         (self.type, self.acceptedAt) = (type, acceptedAt)
         (self.offline, self.online) = (offline, online)
     }
@@ -58,25 +69,35 @@ public struct CustomerBalanceCustomerBalanceSettings: Codable {
         case usingMerchantDefault = "using_merchant_default"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension CustomerBalanceCustomerBalanceSettings {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.reconciliationMode) else {
-            throw SdkValidationError(field: "reconciliation_mode", code: "required", message: "Validation failed for 'reconciliation_mode': value is required")
-        }
-        guard container.contains(.usingMerchantDefault) else {
-            throw SdkValidationError(field: "using_merchant_default", code: "required", message: "Validation failed for 'using_merchant_default': value is required")
-        }
-        self.reconciliationMode = try container.sdkDecodeRequired(.reconciliationMode)
-        self.usingMerchantDefault = try container.sdkDecodeRequired(.usingMerchantDefault)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension CustomerBalanceCustomerBalanceSettings {
-    public init(reconciliationMode: CustomerBalanceCustomerBalanceSettingsReconciliationMode, usingMerchantDefault: Bool) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.reconciliationMode) else {
+            throw SdkValidationError(
+                field: "reconciliation_mode",
+                code: "required",
+                message: "Validation failed for 'reconciliation_mode': value is required"
+            )
+        }
+        guard container.contains(.usingMerchantDefault) else {
+            throw SdkValidationError(
+                field: "using_merchant_default",
+                code: "required",
+                message: "Validation failed for 'using_merchant_default': value is required"
+            )
+        }
+        reconciliationMode = try container.sdkDecodeRequired(.reconciliationMode)
+        usingMerchantDefault = try container.sdkDecodeRequired(.usingMerchantDefault)
+    }
+}
+
+public extension CustomerBalanceCustomerBalanceSettings {
+    init(reconciliationMode: CustomerBalanceCustomerBalanceSettingsReconciliationMode, usingMerchantDefault: Bool) {
         (self.reconciliationMode, self.usingMerchantDefault) = (reconciliationMode, usingMerchantDefault)
     }
 }
@@ -90,21 +111,27 @@ public struct CustomerBalanceResourceCashBalanceTransactionResourceFundedTransac
         case bankTransfer = "bank_transfer"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension CustomerBalanceResourceCashBalanceTransactionResourceFundedTransaction {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.bankTransfer) else {
-            throw SdkValidationError(field: "bank_transfer", code: "required", message: "Validation failed for 'bank_transfer': value is required")
-        }
-        self.bankTransfer = try container.sdkDecodeRequired(.bankTransfer)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension CustomerBalanceResourceCashBalanceTransactionResourceFundedTransaction {
-    public init(bankTransfer: CustomerBalanceResourceCashBalanceTransactionResourceFundedTrX7ecce6186f) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.bankTransfer) else {
+            throw SdkValidationError(
+                field: "bank_transfer",
+                code: "required",
+                message: "Validation failed for 'bank_transfer': value is required"
+            )
+        }
+        bankTransfer = try container.sdkDecodeRequired(.bankTransfer)
+    }
+}
+
+public extension CustomerBalanceResourceCashBalanceTransactionResourceFundedTransaction {
+    init(bankTransfer: CustomerBalanceResourceCashBalanceTransactionResourceFundedTrX7ecce6186f) {
         self.bankTransfer = bankTransfer
     }
 }
@@ -135,29 +162,42 @@ public struct CustomerBalanceResourceCashBalanceTransactionResourceFundedTrX7ecc
         case usBankTransfer = "us_bank_transfer"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension CustomerBalanceResourceCashBalanceTransactionResourceFundedTrX7ecce6186f {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
         }
-        self.type = try container.sdkDecodeRequired(.type)
-        self.euBankTransfer = try container.sdkDecodeIfPresent(.euBankTransfer)
-        self.gbBankTransfer = try container.sdkDecodeIfPresent(.gbBankTransfer)
-        self.jpBankTransfer = try container.sdkDecodeIfPresent(.jpBankTransfer)
-        self.reference = try container.sdkDecodeIfPresent(.reference)
-        self.usBankTransfer = try container.sdkDecodeIfPresent(.usBankTransfer)
-        if let value = self.reference {
+        type = try container.sdkDecodeRequired(.type)
+        euBankTransfer = try container.sdkDecodeIfPresent(.euBankTransfer)
+        gbBankTransfer = try container.sdkDecodeIfPresent(.gbBankTransfer)
+        jpBankTransfer = try container.sdkDecodeIfPresent(.jpBankTransfer)
+        reference = try container.sdkDecodeIfPresent(.reference)
+        usBankTransfer = try container.sdkDecodeIfPresent(.usBankTransfer)
+        if let value = reference {
             try validateLength("reference", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension CustomerBalanceResourceCashBalanceTransactionResourceFundedTrX7ecce6186f {
-    public init(type: CustomerBalanceResourceCashBalanceTransactionResourceFundedTrXbb06d05e55, euBankTransfer: CustomerBalanceResourceCashBalanceTransactionResourceFundedTrXe819408832? = nil, gbBankTransfer: CustomerBalanceResourceCashBalanceTransactionResourceFundedTrX6f7f88e5e9? = nil, jpBankTransfer: CustomerBalanceResourceCashBalanceTransactionResourceFundedTrX25577a378a? = nil, reference: String? = nil, usBankTransfer: CustomerBalanceResourceCashBalanceTransactionResourceFundedTrX92ce20bd8e? = nil) throws {
+    init(
+        type: CustomerBalanceResourceCashBalanceTransactionResourceFundedTrXbb06d05e55,
+        euBankTransfer: CustomerBalanceResourceCashBalanceTransactionResourceFundedTrXe819408832? = nil,
+        gbBankTransfer: CustomerBalanceResourceCashBalanceTransactionResourceFundedTrX6f7f88e5e9? = nil,
+        jpBankTransfer: CustomerBalanceResourceCashBalanceTransactionResourceFundedTrX25577a378a? = nil,
+        reference: String? = nil,
+        usBankTransfer: CustomerBalanceResourceCashBalanceTransactionResourceFundedTrX92ce20bd8e? = nil
+    ) throws {
         (self.type, self.euBankTransfer) = (type, euBankTransfer)
         (self.gbBankTransfer, self.jpBankTransfer) = (gbBankTransfer, jpBankTransfer)
         (self.reference, self.usBankTransfer) = (reference, usBankTransfer)
@@ -185,30 +225,30 @@ public struct CustomerBalanceResourceCashBalanceTransactionResourceFundedTrXe819
     }
 
     init() {
-        (self.bic, self.ibanLast4, self.senderName) = (nil, nil, nil)
+        (bic, ibanLast4, senderName) = (nil, nil, nil)
     }
 }
 
 public extension CustomerBalanceResourceCashBalanceTransactionResourceFundedTrXe819408832 {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.bic = try container.sdkDecodeIfPresent(.bic)
-        self.ibanLast4 = try container.sdkDecodeIfPresent(.ibanLast4)
-        self.senderName = try container.sdkDecodeIfPresent(.senderName)
-        if let value = self.bic {
+        bic = try container.sdkDecodeIfPresent(.bic)
+        ibanLast4 = try container.sdkDecodeIfPresent(.ibanLast4)
+        senderName = try container.sdkDecodeIfPresent(.senderName)
+        if let value = bic {
             try validateLength("bic", value, min: nil, max: 5000)
         }
-        if let value = self.ibanLast4 {
+        if let value = ibanLast4 {
             try validateLength("iban_last4", value, min: nil, max: 5000)
         }
-        if let value = self.senderName {
+        if let value = senderName {
             try validateLength("sender_name", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension CustomerBalanceResourceCashBalanceTransactionResourceFundedTrXe819408832 {
-    public init(bic: String? = nil, ibanLast4: String? = nil, senderName: String? = nil) throws {
+    init(bic: String? = nil, ibanLast4: String? = nil, senderName: String? = nil) throws {
         self.init()
         (self.bic, self.ibanLast4) = (bic, ibanLast4)
         self.senderName = senderName
@@ -242,30 +282,30 @@ public struct CustomerBalanceResourceCashBalanceTransactionResourceFundedTrX6f7f
     }
 
     init() {
-        (self.accountNumberLast4, self.senderName, self.sortCode) = (nil, nil, nil)
+        (accountNumberLast4, senderName, sortCode) = (nil, nil, nil)
     }
 }
 
 public extension CustomerBalanceResourceCashBalanceTransactionResourceFundedTrX6f7f88e5e9 {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.accountNumberLast4 = try container.sdkDecodeIfPresent(.accountNumberLast4)
-        self.senderName = try container.sdkDecodeIfPresent(.senderName)
-        self.sortCode = try container.sdkDecodeIfPresent(.sortCode)
-        if let value = self.accountNumberLast4 {
+        accountNumberLast4 = try container.sdkDecodeIfPresent(.accountNumberLast4)
+        senderName = try container.sdkDecodeIfPresent(.senderName)
+        sortCode = try container.sdkDecodeIfPresent(.sortCode)
+        if let value = accountNumberLast4 {
             try validateLength("account_number_last4", value, min: nil, max: 5000)
         }
-        if let value = self.senderName {
+        if let value = senderName {
             try validateLength("sender_name", value, min: nil, max: 5000)
         }
-        if let value = self.sortCode {
+        if let value = sortCode {
             try validateLength("sort_code", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension CustomerBalanceResourceCashBalanceTransactionResourceFundedTrX6f7f88e5e9 {
-    public init(accountNumberLast4: String? = nil, senderName: String? = nil, sortCode: String? = nil) throws {
+    init(accountNumberLast4: String? = nil, senderName: String? = nil, sortCode: String? = nil) throws {
         self.init()
         (self.accountNumberLast4, self.senderName) = (accountNumberLast4, senderName)
         self.sortCode = sortCode
@@ -299,30 +339,30 @@ public struct CustomerBalanceResourceCashBalanceTransactionResourceFundedTrX2557
     }
 
     init() {
-        (self.senderBank, self.senderBranch, self.senderName) = (nil, nil, nil)
+        (senderBank, senderBranch, senderName) = (nil, nil, nil)
     }
 }
 
 public extension CustomerBalanceResourceCashBalanceTransactionResourceFundedTrX25577a378a {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.senderBank = try container.sdkDecodeIfPresent(.senderBank)
-        self.senderBranch = try container.sdkDecodeIfPresent(.senderBranch)
-        self.senderName = try container.sdkDecodeIfPresent(.senderName)
-        if let value = self.senderBank {
+        senderBank = try container.sdkDecodeIfPresent(.senderBank)
+        senderBranch = try container.sdkDecodeIfPresent(.senderBranch)
+        senderName = try container.sdkDecodeIfPresent(.senderName)
+        if let value = senderBank {
             try validateLength("sender_bank", value, min: nil, max: 5000)
         }
-        if let value = self.senderBranch {
+        if let value = senderBranch {
             try validateLength("sender_branch", value, min: nil, max: 5000)
         }
-        if let value = self.senderName {
+        if let value = senderName {
             try validateLength("sender_name", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension CustomerBalanceResourceCashBalanceTransactionResourceFundedTrX25577a378a {
-    public init(senderBank: String? = nil, senderBranch: String? = nil, senderName: String? = nil) throws {
+    init(senderBank: String? = nil, senderBranch: String? = nil, senderName: String? = nil) throws {
         self.init()
         (self.senderBank, self.senderBranch) = (senderBank, senderBranch)
         self.senderName = senderName
@@ -353,23 +393,26 @@ public struct CustomerBalanceResourceCashBalanceTransactionResourceFundedTrX92ce
     }
 
     init() {
-        (self.network, self.senderName) = (nil, nil)
+        (network, senderName) = (nil, nil)
     }
 }
 
 public extension CustomerBalanceResourceCashBalanceTransactionResourceFundedTrX92ce20bd8e {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.network = try container.sdkDecodeIfPresent(.network)
-        self.senderName = try container.sdkDecodeIfPresent(.senderName)
-        if let value = self.senderName {
+        network = try container.sdkDecodeIfPresent(.network)
+        senderName = try container.sdkDecodeIfPresent(.senderName)
+        if let value = senderName {
             try validateLength("sender_name", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension CustomerBalanceResourceCashBalanceTransactionResourceFundedTrX92ce20bd8e {
-    public init(network: CustomerBalanceResourceCashBalanceTransactionResourceFundedTrX53643cdf8c? = nil, senderName: String? = nil) throws {
+    init(
+        network: CustomerBalanceResourceCashBalanceTransactionResourceFundedTrX53643cdf8c? = nil,
+        senderName: String? = nil
+    ) throws {
         self.init()
         (self.network, self.senderName) = (network, senderName)
         if let value = self.senderName {
@@ -414,52 +457,87 @@ public struct CustomerSession: Codable {
         case customerAccount = "customer_account"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension CustomerSession {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.clientSecret) else {
-            throw SdkValidationError(field: "client_secret", code: "required", message: "Validation failed for 'client_secret': value is required")
+            throw SdkValidationError(
+                field: "client_secret",
+                code: "required",
+                message: "Validation failed for 'client_secret': value is required"
+            )
         }
         guard container.contains(.created) else {
-            throw SdkValidationError(field: "created", code: "required", message: "Validation failed for 'created': value is required")
+            throw SdkValidationError(
+                field: "created",
+                code: "required",
+                message: "Validation failed for 'created': value is required"
+            )
         }
         guard container.contains(.customer) else {
-            throw SdkValidationError(field: "customer", code: "required", message: "Validation failed for 'customer': value is required")
+            throw SdkValidationError(
+                field: "customer",
+                code: "required",
+                message: "Validation failed for 'customer': value is required"
+            )
         }
         guard container.contains(.expiresAt) else {
-            throw SdkValidationError(field: "expires_at", code: "required", message: "Validation failed for 'expires_at': value is required")
+            throw SdkValidationError(
+                field: "expires_at",
+                code: "required",
+                message: "Validation failed for 'expires_at': value is required"
+            )
         }
         guard container.contains(.livemode) else {
-            throw SdkValidationError(field: "livemode", code: "required", message: "Validation failed for 'livemode': value is required")
+            throw SdkValidationError(
+                field: "livemode",
+                code: "required",
+                message: "Validation failed for 'livemode': value is required"
+            )
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
         }
-        self.clientSecret = try container.sdkDecodeRequired(.clientSecret)
-        self.created = try container.sdkDecodeRequired(.created)
-        self.customer = try container.sdkDecodeRequired(.customer)
-        self.expiresAt = try container.sdkDecodeRequired(.expiresAt)
-        self.livemode = try container.sdkDecodeRequired(.livemode)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.components = try container.sdkDecodeIfPresent(.components)
-        self.customerAccount = try container.sdkDecodeIfPresent(.customerAccount)
-            try validateLength("client_secret", self.clientSecret, min: nil, max: 5000)
-        if let value = self.customerAccount {
+        clientSecret = try container.sdkDecodeRequired(.clientSecret)
+        created = try container.sdkDecodeRequired(.created)
+        customer = try container.sdkDecodeRequired(.customer)
+        expiresAt = try container.sdkDecodeRequired(.expiresAt)
+        livemode = try container.sdkDecodeRequired(.livemode)
+        object = try container.sdkDecodeRequired(.object)
+        components = try container.sdkDecodeIfPresent(.components)
+        customerAccount = try container.sdkDecodeIfPresent(.customerAccount)
+        try validateLength("client_secret", clientSecret, min: nil, max: 5000)
+        if let value = customerAccount {
             try validateLength("customer_account", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension CustomerSession {
-    public init(clientSecret: String, created: Int, customer: CustomerSessionCustomer, expiresAt: Int, livemode: Bool, object: CustomerSessionObject, components: CustomerSessionResourceComponents? = nil, customerAccount: String? = nil) throws {
+    init(
+        clientSecret: String,
+        created: Int,
+        customer: CustomerSessionCustomer,
+        expiresAt: Int,
+        livemode: Bool,
+        object: CustomerSessionObject,
+        components: CustomerSessionResourceComponents? = nil,
+        customerAccount: String? = nil
+    ) throws {
         (self.clientSecret, self.created) = (clientSecret, created)
         (self.customer, self.expiresAt) = (customer, expiresAt)
         (self.livemode, self.object) = (livemode, object)
         (self.components, self.customerAccount) = (components, customerAccount)
-            try validateLength("client_secret", self.clientSecret, min: nil, max: 5000)
+        try validateLength("client_secret", self.clientSecret, min: nil, max: 5000)
         if let value = self.customerAccount {
             try validateLength("customer_account", value, min: nil, max: 5000)
         }
@@ -472,21 +550,31 @@ public enum CustomerSessionCustomer {
 }
 
 extension CustomerSessionCustomer: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for CustomerSessionCustomer")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for CustomerSessionCustomer"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(Customer.self) { return .customer(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(Customer.self) {
+            return .customer(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -496,7 +584,6 @@ extension CustomerSessionCustomer: Codable {
         case let .customer(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Configuration for the components supported by this Customer Session.
@@ -526,5 +613,7 @@ public struct CustomerSessionResourceComponents: Codable {
         case pricingTable = "pricing_table"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }

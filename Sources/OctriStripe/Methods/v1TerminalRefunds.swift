@@ -7,13 +7,22 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1TerminalRefundsMethods {
-    /// Internal endpoint for terminal use to create a refund for a card_present or card charge. You can optionally refund only part of a charge.
+    /// Internal endpoint for terminal use to create a refund for a card_present or card charge. You can optionally
+    /// refund only part of a charge.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
     public static func postTerminalRefunds(config: ClientConfig, expand: [String]?) async throws -> TerminalRefund {
         let requestBody = PostTerminalRefundsRequestBody(expand: expand)
 
-        return try (await sdkRequest("POST", "/v1/terminal/refunds", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTerminalRefunds")).data
+        return try await (sdkRequest(
+            "POST",
+            "/v1/terminal/refunds",
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostTerminalRefunds"
+        )).data
     }
 }

@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1SubscriptionItemsMethods {
-    public struct PostSubscriptionItemsItemOptions: Codable {
+public extension V1SubscriptionItemsMethods {
+    struct PostSubscriptionItemsItemOptions: Codable {
         public var item: String
         public var billingThresholds: PostSubscriptionItemsItemRequestBodyBillingThresholds?
         public var discounts: PostSubscriptionItemsItemRequestBodyDiscounts?
@@ -27,7 +27,10 @@ extension V1SubscriptionItemsMethods {
         }
     }
 
-    /// Updates the plan, quantity, billing thresholds, discounts, or tax settings for a subscription item. Supply `price` or `price_data` when changing the item's price, and use `quantity`, `proration_behavior`, and `payment_behavior` to control billing changes. The response includes the updated subscription item and its associated price and subscription.
+    /// Updates the plan, quantity, billing thresholds, discounts, or tax settings for a subscription item. Supply
+    /// `price` or `price_data` when changing the item's price, and use `quantity`, `proration_behavior`, and
+    /// `payment_behavior` to control billing changes. The response includes the updated subscription item and its
+    /// associated price and subscription.
     ///
     /// Updates the plan or quantity of an item on a current subscription.
     ///
@@ -67,7 +70,10 @@ extension V1SubscriptionItemsMethods {
     ///   [`default_tax_rates`](https://docs.stripe.com/api/subscriptions/create#creat
     ///   e_subscription-default_tax_rates) on the Subscription. When updating, pass
     ///   an empty string to remove previously-defined tax rates.
-    public static func postSubscriptionItemsItem(config: ClientConfig, options: PostSubscriptionItemsItemOptions) async throws -> SubscriptionItem {
+    static func postSubscriptionItemsItem(
+        config: ClientConfig,
+        options: PostSubscriptionItemsItemOptions
+    ) async throws -> SubscriptionItem {
         try validateLength("item", options.item, max: 5000)
 
         if let price = options.price {
@@ -76,6 +82,14 @@ extension V1SubscriptionItemsMethods {
 
         let requestBody = PostSubscriptionItemsItemRequestBody(options: options)
 
-        return try (await sdkRequest("POST", ["/v1/subscription_items/", sdkEncodePathSegment(sdkWireString(options.item))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostSubscriptionItemsItem")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/subscription_items/", sdkEncodePathSegment(sdkWireString(options.item))].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostSubscriptionItemsItem"
+        )).data
     }
 }

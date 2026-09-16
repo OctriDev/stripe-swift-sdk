@@ -3,14 +3,13 @@
 
 import Foundation
 
-// V1 domain models
+/// V1 domain models
 public enum AccountExternalAccountsDataItem {
     case bankAccount(BankAccount)
     case card(Card)
 }
 
 extension AccountExternalAccountsDataItem: Codable {
-
     private enum CodingKeys: String, CodingKey {
         case discriminator = "object"
     }
@@ -18,20 +17,28 @@ extension AccountExternalAccountsDataItem: Codable {
     public init(from decoder: Decoder) throws {
         let tagged = try decoder.container(keyedBy: CodingKeys.self)
         let discriminator = try tagged.decode(String.self, forKey: .discriminator)
-        if let value = try Self.decodeGroup1(discriminator, from: decoder) { self = value; return }
-        throw DecodingError.dataCorruptedError(forKey: .discriminator, in: tagged, debugDescription: "Unknown discriminator for AccountExternalAccountsDataItem")
+        if let value = try Self.decodeGroup1(discriminator, from: decoder) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            forKey: .discriminator,
+            in: tagged,
+            debugDescription: "Unknown discriminator for AccountExternalAccountsDataItem"
+        )
     }
 
     private static func decodeGroup1(_ discriminator: String, from decoder: Decoder) throws -> Self? {
         switch discriminator {
-        case "bank_account": return .bankAccount(try BankAccount(from: decoder))
-        case "card": return .card(try Card(from: decoder))
-        default: return nil
+        case "bank_account": try .bankAccount(BankAccount(from: decoder))
+        case "card": try .card(Card(from: decoder))
+        default: nil
         }
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -41,7 +48,6 @@ extension AccountExternalAccountsDataItem: Codable {
         case let .card(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum ApiErrorsSource {
@@ -51,7 +57,6 @@ public enum ApiErrorsSource {
 }
 
 extension ApiErrorsSource: Codable {
-
     private enum CodingKeys: String, CodingKey {
         case discriminator = "object"
     }
@@ -59,21 +64,29 @@ extension ApiErrorsSource: Codable {
     public init(from decoder: Decoder) throws {
         let tagged = try decoder.container(keyedBy: CodingKeys.self)
         let discriminator = try tagged.decode(String.self, forKey: .discriminator)
-        if let value = try Self.decodeGroup1(discriminator, from: decoder) { self = value; return }
-        throw DecodingError.dataCorruptedError(forKey: .discriminator, in: tagged, debugDescription: "Unknown discriminator for ApiErrorsSource")
+        if let value = try Self.decodeGroup1(discriminator, from: decoder) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            forKey: .discriminator,
+            in: tagged,
+            debugDescription: "Unknown discriminator for ApiErrorsSource"
+        )
     }
 
     private static func decodeGroup1(_ discriminator: String, from decoder: Decoder) throws -> Self? {
         switch discriminator {
-        case "bank_account": return .bankAccount(try BankAccount(from: decoder))
-        case "card": return .card(try Card(from: decoder))
-        case "source": return .source(try Source(from: decoder))
-        default: return nil
+        case "bank_account": try .bankAccount(BankAccount(from: decoder))
+        case "card": try .card(Card(from: decoder))
+        case "source": try .source(Source(from: decoder))
+        default: nil
         }
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -84,7 +97,6 @@ extension ApiErrorsSource: Codable {
         case let .source(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum BalanceTransactionSource {
@@ -108,7 +120,6 @@ public enum BalanceTransactionSource {
 }
 
 extension BalanceTransactionSource: Codable {
-
     private enum CodingKeys: String, CodingKey {
         case discriminator = "object"
     }
@@ -116,43 +127,58 @@ extension BalanceTransactionSource: Codable {
     public init(from decoder: Decoder) throws {
         if let tagged = try? decoder.container(keyedBy: CodingKeys.self),
            let discriminator = try? tagged.decode(String.self, forKey: .discriminator) {
-            if let value = try Self.decodeGroup1(discriminator, from: decoder) { self = value; return }
+            if let value = try Self.decodeGroup1(discriminator, from: decoder) {
+                self = value; return
+            }
         }
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeUntaggedGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for BalanceTransactionSource")
+        if let value = Self.decodeUntaggedGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for BalanceTransactionSource"
+        )
     }
 
     private static func decodeGroup1(_ discriminator: String, from decoder: Decoder) throws -> Self? {
         switch discriminator {
-        case "application_fee": return .applicationFee(try ApplicationFee(from: decoder))
-        case "charge": return .charge(try Charge(from: decoder))
-        case "connect_collection_transfer": return .connectCollectionTransfer(try ConnectCollectionTransfer(from: decoder))
-        case "customer_cash_balance_transaction": return .customerCashBalanceTransaction(try CustomerCashBalanceTransaction(from: decoder))
-        case "dispute": return .dispute(try Dispute(from: decoder))
-        case "fee_refund": return .feeRefund(try FeeRefund(from: decoder))
-        case "issuing.authorization": return .issuingAuthorization(try IssuingAuthorization(from: decoder))
-        case "issuing.dispute": return .issuingDispute(try IssuingDispute(from: decoder))
-        case "issuing.transaction": return .issuingTransaction(try IssuingTransaction(from: decoder))
-        case "payout": return .payout(try Payout(from: decoder))
-        case "refund": return .refund(try Refund(from: decoder))
-        case "reserve_transaction": return .reserveTransaction(try ReserveTransaction(from: decoder))
-        case "tax_deducted_at_source": return .taxDeductedAtSource(try TaxDeductedAtSource(from: decoder))
-        case "topup": return .topup(try Topup(from: decoder))
-        case "transfer": return .transfer(try Transfer(from: decoder))
-        case "transfer_reversal": return .transferReversal(try TransferReversal(from: decoder))
-        default: return nil
+        case "application_fee": try .applicationFee(ApplicationFee(from: decoder))
+        case "charge": try .charge(Charge(from: decoder))
+        case "connect_collection_transfer": try .connectCollectionTransfer(ConnectCollectionTransfer(from: decoder))
+        case "customer_cash_balance_transaction": try .customerCashBalanceTransaction(
+                CustomerCashBalanceTransaction(from: decoder)
+            )
+        case "dispute": try .dispute(Dispute(from: decoder))
+        case "fee_refund": try .feeRefund(FeeRefund(from: decoder))
+        case "issuing.authorization": try .issuingAuthorization(IssuingAuthorization(from: decoder))
+        case "issuing.dispute": try .issuingDispute(IssuingDispute(from: decoder))
+        case "issuing.transaction": try .issuingTransaction(IssuingTransaction(from: decoder))
+        case "payout": try .payout(Payout(from: decoder))
+        case "refund": try .refund(Refund(from: decoder))
+        case "reserve_transaction": try .reserveTransaction(ReserveTransaction(from: decoder))
+        case "tax_deducted_at_source": try .taxDeductedAtSource(TaxDeductedAtSource(from: decoder))
+        case "topup": try .topup(Topup(from: decoder))
+        case "transfer": try .transfer(Transfer(from: decoder))
+        case "transfer_reversal": try .transferReversal(TransferReversal(from: decoder))
+        default: nil
         }
     }
 
     private static func decodeUntaggedGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
-        if try encodeGroup2(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
+        if try encodeGroup2(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -185,7 +211,6 @@ extension BalanceTransactionSource: Codable {
         default: return false
         }
     }
-
 }
 
 public enum CustomerDefaultSource {
@@ -196,7 +221,6 @@ public enum CustomerDefaultSource {
 }
 
 extension CustomerDefaultSource: Codable {
-
     private enum CodingKeys: String, CodingKey {
         case discriminator = "object"
     }
@@ -204,29 +228,40 @@ extension CustomerDefaultSource: Codable {
     public init(from decoder: Decoder) throws {
         if let tagged = try? decoder.container(keyedBy: CodingKeys.self),
            let discriminator = try? tagged.decode(String.self, forKey: .discriminator) {
-            if let value = try Self.decodeGroup1(discriminator, from: decoder) { self = value; return }
+            if let value = try Self.decodeGroup1(discriminator, from: decoder) {
+                self = value; return
+            }
         }
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeUntaggedGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for CustomerDefaultSource")
+        if let value = Self.decodeUntaggedGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for CustomerDefaultSource"
+        )
     }
 
     private static func decodeGroup1(_ discriminator: String, from decoder: Decoder) throws -> Self? {
         switch discriminator {
-        case "bank_account": return .bankAccount(try BankAccount(from: decoder))
-        case "card": return .card(try Card(from: decoder))
-        case "source": return .source(try Source(from: decoder))
-        default: return nil
+        case "bank_account": try .bankAccount(BankAccount(from: decoder))
+        case "card": try .card(Card(from: decoder))
+        case "source": try .source(Source(from: decoder))
+        default: nil
         }
     }
 
     private static func decodeUntaggedGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -238,7 +273,6 @@ extension CustomerDefaultSource: Codable {
         case let .source(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum CustomerSourcesDataItem {
@@ -248,7 +282,6 @@ public enum CustomerSourcesDataItem {
 }
 
 extension CustomerSourcesDataItem: Codable {
-
     private enum CodingKeys: String, CodingKey {
         case discriminator = "object"
     }
@@ -256,21 +289,29 @@ extension CustomerSourcesDataItem: Codable {
     public init(from decoder: Decoder) throws {
         let tagged = try decoder.container(keyedBy: CodingKeys.self)
         let discriminator = try tagged.decode(String.self, forKey: .discriminator)
-        if let value = try Self.decodeGroup1(discriminator, from: decoder) { self = value; return }
-        throw DecodingError.dataCorruptedError(forKey: .discriminator, in: tagged, debugDescription: "Unknown discriminator for CustomerSourcesDataItem")
+        if let value = try Self.decodeGroup1(discriminator, from: decoder) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            forKey: .discriminator,
+            in: tagged,
+            debugDescription: "Unknown discriminator for CustomerSourcesDataItem"
+        )
     }
 
     private static func decodeGroup1(_ discriminator: String, from decoder: Decoder) throws -> Self? {
         switch discriminator {
-        case "bank_account": return .bankAccount(try BankAccount(from: decoder))
-        case "card": return .card(try Card(from: decoder))
-        case "source": return .source(try Source(from: decoder))
-        default: return nil
+        case "bank_account": try .bankAccount(BankAccount(from: decoder))
+        case "card": try .card(Card(from: decoder))
+        case "source": try .source(Source(from: decoder))
+        default: nil
         }
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -281,7 +322,6 @@ extension CustomerSourcesDataItem: Codable {
         case let .source(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum InvoiceDefaultSource {
@@ -292,7 +332,6 @@ public enum InvoiceDefaultSource {
 }
 
 extension InvoiceDefaultSource: Codable {
-
     private enum CodingKeys: String, CodingKey {
         case discriminator = "object"
     }
@@ -300,29 +339,40 @@ extension InvoiceDefaultSource: Codable {
     public init(from decoder: Decoder) throws {
         if let tagged = try? decoder.container(keyedBy: CodingKeys.self),
            let discriminator = try? tagged.decode(String.self, forKey: .discriminator) {
-            if let value = try Self.decodeGroup1(discriminator, from: decoder) { self = value; return }
+            if let value = try Self.decodeGroup1(discriminator, from: decoder) {
+                self = value; return
+            }
         }
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeUntaggedGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for InvoiceDefaultSource")
+        if let value = Self.decodeUntaggedGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for InvoiceDefaultSource"
+        )
     }
 
     private static func decodeGroup1(_ discriminator: String, from decoder: Decoder) throws -> Self? {
         switch discriminator {
-        case "bank_account": return .bankAccount(try BankAccount(from: decoder))
-        case "card": return .card(try Card(from: decoder))
-        case "source": return .source(try Source(from: decoder))
-        default: return nil
+        case "bank_account": try .bankAccount(BankAccount(from: decoder))
+        case "card": try .card(Card(from: decoder))
+        case "source": try .source(Source(from: decoder))
+        default: nil
         }
     }
 
     private static func decodeUntaggedGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -334,7 +384,6 @@ extension InvoiceDefaultSource: Codable {
         case let .source(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum SubscriptionDefaultSource {
@@ -345,7 +394,6 @@ public enum SubscriptionDefaultSource {
 }
 
 extension SubscriptionDefaultSource: Codable {
-
     private enum CodingKeys: String, CodingKey {
         case discriminator = "object"
     }
@@ -353,29 +401,40 @@ extension SubscriptionDefaultSource: Codable {
     public init(from decoder: Decoder) throws {
         if let tagged = try? decoder.container(keyedBy: CodingKeys.self),
            let discriminator = try? tagged.decode(String.self, forKey: .discriminator) {
-            if let value = try Self.decodeGroup1(discriminator, from: decoder) { self = value; return }
+            if let value = try Self.decodeGroup1(discriminator, from: decoder) {
+                self = value; return
+            }
         }
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeUntaggedGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for SubscriptionDefaultSource")
+        if let value = Self.decodeUntaggedGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for SubscriptionDefaultSource"
+        )
     }
 
     private static func decodeGroup1(_ discriminator: String, from decoder: Decoder) throws -> Self? {
         switch discriminator {
-        case "bank_account": return .bankAccount(try BankAccount(from: decoder))
-        case "card": return .card(try Card(from: decoder))
-        case "source": return .source(try Source(from: decoder))
-        default: return nil
+        case "bank_account": try .bankAccount(BankAccount(from: decoder))
+        case "card": try .card(Card(from: decoder))
+        case "source": try .source(Source(from: decoder))
+        default: nil
         }
     }
 
     private static func decodeUntaggedGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -387,7 +446,6 @@ extension SubscriptionDefaultSource: Codable {
         case let .source(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// For new integrations, we recommend using the Accounts v2 API, in place of /v1/accounts and /v1/customers to
@@ -479,56 +537,90 @@ public struct Account: Codable {
         case type
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension Account {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.id) else {
-            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
+            throw SdkValidationError(
+                field: "id",
+                code: "required",
+                message: "Validation failed for 'id': value is required"
+            )
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
         }
-        self.id = try container.sdkDecodeRequired(.id)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.businessProfile = try container.sdkDecodeIfPresent(.businessProfile)
-        self.businessType = try container.sdkDecodeIfPresent(.businessType)
-        self.capabilities = try container.sdkDecodeIfPresent(.capabilities)
-        self.chargesEnabled = try container.sdkDecodeIfPresent(.chargesEnabled)
-        self.company = try container.sdkDecodeIfPresent(.company)
-        self.controller = try container.sdkDecodeIfPresent(.controller)
-        self.country = try container.sdkDecodeIfPresent(.country)
-        self.created = try container.sdkDecodeIfPresent(.created)
-        self.defaultCurrency = try container.sdkDecodeIfPresent(.defaultCurrency)
-        self.detailsSubmitted = try container.sdkDecodeIfPresent(.detailsSubmitted)
-        self.email = try container.sdkDecodeIfPresent(.email)
-        self.externalAccounts = try container.sdkDecodeIfPresent(.externalAccounts)
-        self.futureRequirements = try container.sdkDecodeIfPresent(.futureRequirements)
-        self.groups = try container.sdkDecodeIfPresent(.groups)
-        self.individual = try container.sdkDecodeIfPresent(.individual)
-        self.metadata = try container.sdkDecodeIfPresent(.metadata)
-        self.payoutsEnabled = try container.sdkDecodeIfPresent(.payoutsEnabled)
-        self.requirements = try container.sdkDecodeIfPresent(.requirements)
-        self.settings = try container.sdkDecodeIfPresent(.settings)
-        self.tosAcceptance = try container.sdkDecodeIfPresent(.tosAcceptance)
-        self.type = try container.sdkDecodeIfPresent(.type)
-            try validateLength("id", self.id, min: nil, max: 5000)
-        if let value = self.country {
+        id = try container.sdkDecodeRequired(.id)
+        object = try container.sdkDecodeRequired(.object)
+        businessProfile = try container.sdkDecodeIfPresent(.businessProfile)
+        businessType = try container.sdkDecodeIfPresent(.businessType)
+        capabilities = try container.sdkDecodeIfPresent(.capabilities)
+        chargesEnabled = try container.sdkDecodeIfPresent(.chargesEnabled)
+        company = try container.sdkDecodeIfPresent(.company)
+        controller = try container.sdkDecodeIfPresent(.controller)
+        country = try container.sdkDecodeIfPresent(.country)
+        created = try container.sdkDecodeIfPresent(.created)
+        defaultCurrency = try container.sdkDecodeIfPresent(.defaultCurrency)
+        detailsSubmitted = try container.sdkDecodeIfPresent(.detailsSubmitted)
+        email = try container.sdkDecodeIfPresent(.email)
+        externalAccounts = try container.sdkDecodeIfPresent(.externalAccounts)
+        futureRequirements = try container.sdkDecodeIfPresent(.futureRequirements)
+        groups = try container.sdkDecodeIfPresent(.groups)
+        individual = try container.sdkDecodeIfPresent(.individual)
+        metadata = try container.sdkDecodeIfPresent(.metadata)
+        payoutsEnabled = try container.sdkDecodeIfPresent(.payoutsEnabled)
+        requirements = try container.sdkDecodeIfPresent(.requirements)
+        settings = try container.sdkDecodeIfPresent(.settings)
+        tosAcceptance = try container.sdkDecodeIfPresent(.tosAcceptance)
+        type = try container.sdkDecodeIfPresent(.type)
+        try validateLength("id", id, min: nil, max: 5000)
+        if let value = country {
             try validateLength("country", value, min: nil, max: 5000)
         }
-        if let value = self.defaultCurrency {
+        if let value = defaultCurrency {
             try validateLength("default_currency", value, min: nil, max: 5000)
         }
-        if let value = self.email {
+        if let value = email {
             try validateLength("email", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension Account {
-    public init(id: String, object: AccountObject, businessProfile: AccountBusinessProfileXc496d4ba? = nil, businessType: AccountBusinessType? = nil, capabilities: AccountCapabilities? = nil, chargesEnabled: Bool? = nil, company: LegalEntityCompany? = nil, controller: AccountUnificationAccountController? = nil, country: String? = nil, created: Int? = nil, defaultCurrency: String? = nil, detailsSubmitted: Bool? = nil, email: String? = nil, externalAccounts: AccountExternalAccounts? = nil, futureRequirements: AccountFutureRequirements? = nil, groups: AccountGroups? = nil, individual: Person? = nil, metadata: [String: String]? = nil, payoutsEnabled: Bool? = nil, requirements: AccountRequirements? = nil, settings: AccountSettingsXf131fa57? = nil, tosAcceptance: AccountTosAcceptance? = nil, type: AccountType? = nil) throws {
+    init(
+        id: String,
+        object: AccountObject,
+        businessProfile: AccountBusinessProfileXc496d4ba? = nil,
+        businessType: AccountBusinessType? = nil,
+        capabilities: AccountCapabilities? = nil,
+        chargesEnabled: Bool? = nil,
+        company: LegalEntityCompany? = nil,
+        controller: AccountUnificationAccountController? = nil,
+        country: String? = nil,
+        created: Int? = nil,
+        defaultCurrency: String? = nil,
+        detailsSubmitted: Bool? = nil,
+        email: String? = nil,
+        externalAccounts: AccountExternalAccounts? = nil,
+        futureRequirements: AccountFutureRequirements? = nil,
+        groups: AccountGroups? = nil,
+        individual: Person? = nil,
+        metadata: [String: String]? = nil,
+        payoutsEnabled: Bool? = nil,
+        requirements: AccountRequirements? = nil,
+        settings: AccountSettingsXf131fa57? = nil,
+        tosAcceptance: AccountTosAcceptance? = nil,
+        type: AccountType? = nil
+    ) throws {
         (self.id, self.object) = (id, object)
         (self.businessProfile, self.businessType) = (businessProfile, businessType)
         (self.capabilities, self.chargesEnabled) = (capabilities, chargesEnabled)
@@ -541,7 +633,7 @@ public extension Account {
         (self.payoutsEnabled, self.requirements) = (payoutsEnabled, requirements)
         (self.settings, self.tosAcceptance) = (settings, tosAcceptance)
         self.type = type
-            try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
         if let value = self.country {
             try validateLength("country", value, min: nil, max: 5000)
         }

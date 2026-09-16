@@ -7,17 +7,35 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1InvoicesVoidMethods {
-    /// Voids a finalized invoice while preserving it for historical and accounting records. Supply the `invoice` identifier to mark the invoice as void instead of deleting it. Voiding is irreversible, so verify that the invoice should be voided before submitting the request.
+    /// Voids a finalized invoice while preserving it for historical and accounting records. Supply the `invoice`
+    /// identifier to mark the invoice as void instead of deleting it. Voiding is irreversible, so verify that the
+    /// invoice should be voided before submitting the request.
     ///
-    /// Mark a finalized invoice as void. This cannot be undone. Voiding an invoice is similar to deletion, however it only applies to finalized invoices and maintains a papertrail where the invoice can still be found. Consult with local regulations to determine whether and how an invoice might be amended, canceled, or voided in the jurisdiction you’re doing business in. You might need to issue another invoice or credit note instead. Stripe recommends that you consult with your legal counsel for advice specific to your business.
+    /// Mark a finalized invoice as void. This cannot be undone. Voiding an invoice is similar to deletion, however it
+    /// only applies to finalized invoices and maintains a papertrail where the invoice can still be found. Consult with
+    /// local regulations to determine whether and how an invoice might be amended, canceled, or voided in the
+    /// jurisdiction you’re doing business in. You might need to issue another invoice or credit note instead. Stripe
+    /// recommends that you consult with your legal counsel for advice specific to your business.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postInvoicesInvoiceVoid(config: ClientConfig, invoice: String, expand: [String]?) async throws -> Invoice {
+    public static func postInvoicesInvoiceVoid(
+        config: ClientConfig,
+        invoice: String,
+        expand: [String]?
+    ) async throws -> Invoice {
         try validateLength("invoice", invoice, max: 5000)
 
         let requestBody = PostInvoicesInvoiceVoidRequestBody(expand: expand)
 
-        return try (await sdkRequest("POST", ["/v1/invoices/", sdkEncodePathSegment(sdkWireString(invoice)), "/void"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostInvoicesInvoiceVoid")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/invoices/", sdkEncodePathSegment(sdkWireString(invoice)), "/void"].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostInvoicesInvoiceVoid"
+        )).data
     }
 }

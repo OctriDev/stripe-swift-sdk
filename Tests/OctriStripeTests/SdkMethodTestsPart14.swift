@@ -304,7 +304,10 @@ extension SdkMethodTests {
             return
         }
         _ = client
-        var options = try V1BillingCreditGrantsMethods.PostBillingCreditGrantsOptions(amount: decoded(sdkMethodFixture325Value1), applicabilityConfig: decoded(sdkMethodFixture325Value2))
+        var options = try V1BillingCreditGrantsMethods.PostBillingCreditGrantsOptions(
+            amount: decoded(sdkMethodFixture325Value1),
+            applicabilityConfig: decoded(sdkMethodFixture325Value2)
+        )
         options.category = try decoded("\"paid\"")
         options.customer = try decoded("\"customer\"")
         options.customerAccount = try decoded("\"customer_account\"")
@@ -428,7 +431,8 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostBillingFeedbackOptionsIdDeactivatePostBillingFeedbackOptiX13869239eaReachesMockAndDecodesResponse() async throws {
+    func testPostBillingFeedbackOptionsIdDeactivatePostBillingFeedbackOptiX13869239eaReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -448,7 +452,8 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostBillingMeterEventAdjustmentsPostBillingMeterEventAdjustmentsReachesMockAndDecodesResponse() async throws {
+    func testPostBillingMeterEventAdjustmentsPostBillingMeterEventAdjustmentsReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }

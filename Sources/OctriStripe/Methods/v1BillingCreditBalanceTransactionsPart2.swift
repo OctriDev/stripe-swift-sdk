@@ -6,8 +6,10 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1BillingCreditBalanceTransactionsMethods {
-    /// Lists credit balance transactions recorded against credit grants. Use `credit_grant`, `customer`, or `customer_account` to scope the transactions, and use cursor parameters to navigate through the results. The response is a paginated list with transaction data and a continuation indicator.
+public extension V1BillingCreditBalanceTransactionsMethods {
+    /// Lists credit balance transactions recorded against credit grants. Use `credit_grant`, `customer`, or
+    /// `customer_account` to scope the transactions, and use cursor parameters to navigate through the results. The
+    /// response is a paginated list with transaction data and a continuation indicator.
     ///
     /// Retrieve a list of credit balance transactions.
     ///
@@ -31,28 +33,37 @@ extension V1BillingCreditBalanceTransactionsMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    public static func getBillingCreditBalanceTransactions(config: ClientConfig, creditGrant: String?, customer: String?, customerAccount: String?, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetBillingCreditBalanceTransactionsResponse {
-        if let creditGrant = creditGrant {
+    static func getBillingCreditBalanceTransactions(
+        config: ClientConfig,
+        creditGrant: String?,
+        customer: String?,
+        customerAccount: String?,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        startingAfter: String?
+    ) async throws -> GetBillingCreditBalanceTransactionsResponse {
+        if let creditGrant {
             try validateLength("credit_grant", creditGrant, max: 5000)
         }
 
-        if let customer = customer {
+        if let customer {
             try validateLength("customer", customer, max: 5000)
         }
 
-        if let customerAccount = customerAccount {
+        if let customerAccount {
             try validateLength("customer_account", customerAccount, max: 5000)
         }
 
-        if let endingBefore = endingBefore {
+        if let endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let startingAfter = startingAfter {
+        if let startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try (await sdkRequest("GET", "/v1/billing/credit_balance_transactions", config: config, query: [
+        return try await (sdkRequest("GET", "/v1/billing/credit_balance_transactions", config: config, query: [
             SdkQueryParameter("credit_grant", value: creditGrant),
             SdkQueryParameter("customer", value: customer),
             SdkQueryParameter("customer_account", value: customerAccount),

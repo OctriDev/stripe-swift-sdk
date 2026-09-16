@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1IdentityVerificationReportsMethods {
-    public struct GetIdentityVerificationReportsOptions: Codable {
+public extension V1IdentityVerificationReportsMethods {
+    struct GetIdentityVerificationReportsOptions: Codable {
         public var clientReferenceId: String?
         public var created: GetIdentityVerificationReportsParameter?
         public var endingBefore: String?
@@ -20,7 +20,9 @@ extension V1IdentityVerificationReportsMethods {
         public init() {}
     }
 
-    /// Lists verification reports generated from identity verification attempts. Use `client_reference_id`, `verification_session`, and `type` to filter results, and use cursor parameters with `limit` to control pagination.
+    /// Lists verification reports generated from identity verification attempts. Use `client_reference_id`,
+    /// `verification_session`, and `type` to filter results, and use cursor parameters with `limit` to control
+    /// pagination.
     ///
     /// List all verification reports.
     ///
@@ -46,7 +48,10 @@ extension V1IdentityVerificationReportsMethods {
     /// - type: Only return VerificationReports of this type
     /// - verificationSession: Only return VerificationReports created by this
     ///   VerificationSession ID. It is allowed to provide a VerificationIntent ID.
-    public static func getIdentityVerificationReports(config: ClientConfig, options: GetIdentityVerificationReportsOptions) async throws -> GetIdentityVerificationReportsResponse {
+    static func getIdentityVerificationReports(
+        config: ClientConfig,
+        options: GetIdentityVerificationReportsOptions
+    ) async throws -> GetIdentityVerificationReportsResponse {
         if let clientReferenceId = options.clientReferenceId {
             try validateLength("client_reference_id", clientReferenceId, max: 5000)
         }
@@ -63,7 +68,7 @@ extension V1IdentityVerificationReportsMethods {
             try validateLength("verification_session", verificationSession, max: 5000)
         }
 
-        return try (await sdkRequest("GET", "/v1/identity/verification_reports", config: config, query: [
+        return try await (sdkRequest("GET", "/v1/identity/verification_reports", config: config, query: [
             SdkQueryParameter("client_reference_id", value: options.clientReferenceId),
             SdkQueryParameter("created", value: options.created),
             SdkQueryParameter("ending_before", value: options.endingBefore),

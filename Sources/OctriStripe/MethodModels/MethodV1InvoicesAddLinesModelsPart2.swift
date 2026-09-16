@@ -7,9 +7,9 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1InvoicesAddLines operation model declarations
+/// Canonical v1InvoicesAddLines operation model declarations
 public extension PostInvoicesInvoiceAddLinesRequestBodyLinesItemPeriod {
-    public init(end: Int, start: Int) {
+    init(end: Int, start: Int) {
         (self.end, self.start) = (end, start)
     }
 }
@@ -49,39 +49,53 @@ public struct PostInvoicesInvoiceAddLinesRequestBodyLinesItem: Codable {
     }
 
     init() {
-        (self.amount, self.description, self.discountable, self.discounts, self.invoiceItem) = (nil, nil, nil, nil, nil)
-        (self.metadata, self.period, self.priceData, self.pricing, self.quantity) = (nil, nil, nil, nil, nil)
-        (self.quantityDecimal, self.taxAmounts, self.taxRates) = (nil, nil, nil)
+        (amount, description, discountable, discounts, invoiceItem) = (nil, nil, nil, nil, nil)
+        (metadata, period, priceData, pricing, quantity) = (nil, nil, nil, nil, nil)
+        (quantityDecimal, taxAmounts, taxRates) = (nil, nil, nil)
     }
 }
 
 public extension PostInvoicesInvoiceAddLinesRequestBodyLinesItem {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.amount = try container.sdkDecodeIfPresent(.amount)
-        self.description = try container.sdkDecodeIfPresent(.description)
-        self.discountable = try container.sdkDecodeIfPresent(.discountable)
-        self.discounts = try container.sdkDecodeIfPresent(.discounts)
-        self.invoiceItem = try container.sdkDecodeIfPresent(.invoiceItem)
-        self.metadata = try container.sdkDecodeIfPresent(.metadata)
-        self.period = try container.sdkDecodeIfPresent(.period)
-        self.priceData = try container.sdkDecodeIfPresent(.priceData)
-        self.pricing = try container.sdkDecodeIfPresent(.pricing)
-        self.quantity = try container.sdkDecodeIfPresent(.quantity)
-        self.quantityDecimal = try container.sdkDecodeIfPresent(.quantityDecimal)
-        self.taxAmounts = try container.sdkDecodeIfPresent(.taxAmounts)
-        self.taxRates = try container.sdkDecodeIfPresent(.taxRates)
-        if let value = self.description {
+        amount = try container.sdkDecodeIfPresent(.amount)
+        description = try container.sdkDecodeIfPresent(.description)
+        discountable = try container.sdkDecodeIfPresent(.discountable)
+        discounts = try container.sdkDecodeIfPresent(.discounts)
+        invoiceItem = try container.sdkDecodeIfPresent(.invoiceItem)
+        metadata = try container.sdkDecodeIfPresent(.metadata)
+        period = try container.sdkDecodeIfPresent(.period)
+        priceData = try container.sdkDecodeIfPresent(.priceData)
+        pricing = try container.sdkDecodeIfPresent(.pricing)
+        quantity = try container.sdkDecodeIfPresent(.quantity)
+        quantityDecimal = try container.sdkDecodeIfPresent(.quantityDecimal)
+        taxAmounts = try container.sdkDecodeIfPresent(.taxAmounts)
+        taxRates = try container.sdkDecodeIfPresent(.taxRates)
+        if let value = description {
             try validateLength("description", value, min: nil, max: 5000)
         }
-        if let value = self.invoiceItem {
+        if let value = invoiceItem {
             try validateLength("invoice_item", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension PostInvoicesInvoiceAddLinesRequestBodyLinesItem {
-    public init(amount: Int? = nil, description: String? = nil, discountable: Bool? = nil, discounts: PostInvoicesInvoiceAddLinesRequestBodyLinesItemDiscounts? = nil, invoiceItem: String? = nil, metadata: PostInvoicesInvoiceAddLinesRequestBodyLinesItemMetadata? = nil, period: PostInvoicesInvoiceAddLinesRequestBodyLinesItemPeriod? = nil, priceData: PostInvoicesInvoiceAddLinesRequestBodyLinesItemPriceData? = nil, pricing: PostInvoicesInvoiceAddLinesRequestBodyLinesItemPricing? = nil, quantity: Int? = nil, quantityDecimal: String? = nil, taxAmounts: PostInvoicesInvoiceAddLinesRequestBodyLinesItemTaxAmounts? = nil, taxRates: PostInvoicesInvoiceAddLinesRequestBodyLinesItemTaxRates? = nil) throws {
+    init(
+        amount: Int? = nil,
+        description: String? = nil,
+        discountable: Bool? = nil,
+        discounts: PostInvoicesInvoiceAddLinesRequestBodyLinesItemDiscounts? = nil,
+        invoiceItem: String? = nil,
+        metadata: PostInvoicesInvoiceAddLinesRequestBodyLinesItemMetadata? = nil,
+        period: PostInvoicesInvoiceAddLinesRequestBodyLinesItemPeriod? = nil,
+        priceData: PostInvoicesInvoiceAddLinesRequestBodyLinesItemPriceData? = nil,
+        pricing: PostInvoicesInvoiceAddLinesRequestBodyLinesItemPricing? = nil,
+        quantity: Int? = nil,
+        quantityDecimal: String? = nil,
+        taxAmounts: PostInvoicesInvoiceAddLinesRequestBodyLinesItemTaxAmounts? = nil,
+        taxRates: PostInvoicesInvoiceAddLinesRequestBodyLinesItemTaxRates? = nil
+    ) throws {
         self.init()
         (self.amount, self.description) = (amount, description)
         (self.discountable, self.discounts) = (discountable, discounts)

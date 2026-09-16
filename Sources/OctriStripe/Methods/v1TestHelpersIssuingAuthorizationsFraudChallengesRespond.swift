@@ -7,20 +7,42 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1TestHelpersIssuingAuthorizationsFraudChallengesRespondMethods {
-    /// Responds to a fraud challenge on a test-mode Issuing authorization. Set `confirmed` to indicate whether the simulated cardholder confirms the transaction was legitimate or reports it as fraudulent.
+    /// Responds to a fraud challenge on a test-mode Issuing authorization. Set `confirmed` to indicate whether the
+    /// simulated cardholder confirms the transaction was legitimate or reports it as fraudulent.
     ///
-    /// Respond to a fraud challenge on a testmode Issuing authorization, simulating either a confirmation of fraud or a correction of legitimacy.
+    /// Respond to a fraud challenge on a testmode Issuing authorization, simulating either a confirmation of fraud or a
+    /// correction of legitimacy.
     ///
     /// - Parameters:
     /// - confirmed: Whether to simulate the user confirming that the transaction
     ///   was legitimate (true) or telling Stripe that it was fraudulent (false).
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postTestHelpersIssuingAuthorizationsAuthorizationFraudChallengesRespond(config: ClientConfig, authorization: String, confirmed: Bool, expand: [String]?) async throws -> IssuingAuthorization {
+    public static func postTestHelpersIssuingAuthorizationsAuthorizationFraudChallengesRespond(
+        config: ClientConfig,
+        authorization: String,
+        confirmed: Bool,
+        expand: [String]?
+    ) async throws -> IssuingAuthorization {
         try validateLength("authorization", authorization, max: 5000)
 
-        let requestBody = PostTestHelpersIssuingAuthorizationsAuthorizationFraudChallenX8ea058b876(confirmed: confirmed, expand: expand)
+        let requestBody = PostTestHelpersIssuingAuthorizationsAuthorizationFraudChallenX8ea058b876(
+            confirmed: confirmed,
+            expand: expand
+        )
 
-        return try (await sdkRequest("POST", ["/v1/test_helpers/issuing/authorizations/", sdkEncodePathSegment(sdkWireString(authorization)), "/fraud_challenges/respond"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTestHelpersIssuingAuthorizationsAuthorizationFraudChallengesRespond")).data
+        return try await (sdkRequest(
+            "POST",
+            [
+                "/v1/test_helpers/issuing/authorizations/",
+                sdkEncodePathSegment(sdkWireString(authorization)),
+                "/fraud_challenges/respond",
+            ].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostTestHelpersIssuingAuthorizationsAuthorizationFraudChallengesRespond"
+        )).data
     }
 
     private struct PostTestHelpersIssuingAuthorizationsAuthorizationFraudChallenX8ea058b876: Encodable {
@@ -29,8 +51,8 @@ public enum V1TestHelpersIssuingAuthorizationsFraudChallengesRespondMethods {
 
         func encode(to encoder: Encoder) throws {
             var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-            try keyedContainer.encode(self.confirmed, forKey: SdkCodingKey("confirmed"))
-            try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+            try keyedContainer.encode(confirmed, forKey: SdkCodingKey("confirmed"))
+            try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
         }
     }
 }

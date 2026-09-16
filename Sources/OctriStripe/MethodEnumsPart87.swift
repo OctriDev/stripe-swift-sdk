@@ -6,15 +6,19 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public struct PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptXba0b31b1d7: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptXba0b31b1d7: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptXba0b31b1d7(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -23,15 +27,19 @@ public struct PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptXba0b
     }
 }
 
-public struct PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptXfe8a192744: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptXfe8a192744: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptXfe8a192744(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -40,15 +48,19 @@ public struct PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptXfe8a
     }
 }
 
-public struct PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptXe846732e01: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptXe846732e01: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptXe846732e01(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -57,25 +69,38 @@ public struct PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptXe846
     }
 }
 
-public struct PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptX7694239f06: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptX7694239f06: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let dependantSupport = PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptX7694239f06(rawValue: "dependant_support")
-    public static let government = PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptX7694239f06(rawValue: "government")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let dependantSupport =
+        PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptX7694239f06(rawValue: "dependant_support")
+    public static let government =
+        PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptX7694239f06(rawValue: "government")
     public static let loan = PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptX7694239f06(rawValue: "loan")
-    public static let mortgage = PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptX7694239f06(rawValue: "mortgage")
-    public static let other = PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptX7694239f06(rawValue: "other")
-    public static let pension = PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptX7694239f06(rawValue: "pension")
-    public static let personal = PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptX7694239f06(rawValue: "personal")
-    public static let retail = PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptX7694239f06(rawValue: "retail")
-    public static let salary = PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptX7694239f06(rawValue: "salary")
+    public static let mortgage =
+        PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptX7694239f06(rawValue: "mortgage")
+    public static let other =
+        PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptX7694239f06(rawValue: "other")
+    public static let pension =
+        PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptX7694239f06(rawValue: "pension")
+    public static let personal =
+        PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptX7694239f06(rawValue: "personal")
+    public static let retail =
+        PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptX7694239f06(rawValue: "retail")
+    public static let salary =
+        PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptX7694239f06(rawValue: "salary")
     public static let tax = PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptX7694239f06(rawValue: "tax")
-    public static let utility = PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptX7694239f06(rawValue: "utility")
+    public static let utility =
+        PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptX7694239f06(rawValue: "utility")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -84,15 +109,19 @@ public struct PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptX7694
     }
 }
 
-public struct PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptX05c94c2ee7: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptX05c94c2ee7: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptX05c94c2ee7(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -101,16 +130,22 @@ public struct PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptX05c9
     }
 }
 
-public struct PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptXe2fe059478: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptXe2fe059478: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let always = PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptXe2fe059478(rawValue: "always")
-    public static let never = PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptXe2fe059478(rawValue: "never")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let always =
+        PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptXe2fe059478(rawValue: "always")
+    public static let never =
+        PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptXe2fe059478(rawValue: "never")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -119,15 +154,19 @@ public struct PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptXe2fe
     }
 }
 
-public struct PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptX4d753509ae: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptX4d753509ae: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptX4d753509ae(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -136,15 +175,19 @@ public struct PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptX4d75
     }
 }
 
-public struct PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptX0c505dfd8b: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptX0c505dfd8b: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptX0c505dfd8b(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -153,16 +196,22 @@ public struct PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptX0c50
     }
 }
 
-public struct PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptX725fb341df: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptX725fb341df: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let fixed = PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptX725fb341df(rawValue: "fixed")
-    public static let maximum = PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptX725fb341df(rawValue: "maximum")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let fixed =
+        PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptX725fb341df(rawValue: "fixed")
+    public static let maximum =
+        PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptX725fb341df(rawValue: "maximum")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -171,15 +220,19 @@ public struct PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptX725f
     }
 }
 
-public struct PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptXfa2f1a8a70: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptXfa2f1a8a70: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptXfa2f1a8a70(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -188,16 +241,22 @@ public struct PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptXfa2f
     }
 }
 
-public struct PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptX20aeaea018: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptX20aeaea018: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let checking = PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptX20aeaea018(rawValue: "checking")
-    public static let savings = PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptX20aeaea018(rawValue: "savings")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let checking =
+        PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptX20aeaea018(rawValue: "checking")
+    public static let savings =
+        PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptX20aeaea018(rawValue: "savings")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

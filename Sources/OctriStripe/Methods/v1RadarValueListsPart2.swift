@@ -6,10 +6,12 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1RadarValueListsMethods {
-    /// Lists Radar value lists used to group values referenced by rules. Filter by `alias` or `contains`, restrict results by `created`, and use cursor parameters to paginate results sorted with the newest value lists first.
+public extension V1RadarValueListsMethods {
+    /// Lists Radar value lists used to group values referenced by rules. Filter by `alias` or `contains`, restrict
+    /// results by `created`, and use cursor parameters to paginate results sorted with the newest value lists first.
     ///
-    /// Returns a list of ValueList objects. The objects are sorted in descending order by creation date, with the most recently created object appearing first.
+    /// Returns a list of ValueList objects. The objects are sorted in descending order by creation date, with the most
+    /// recently created object appearing first.
     ///
     /// - Parameters:
     /// - alias: The alias used to reference the value list when writing rules.
@@ -30,24 +32,33 @@ extension V1RadarValueListsMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    public static func getRadarValueLists(config: ClientConfig, alias: String?, contains: String?, created: GetRadarValueListsParameter?, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetRadarValueListsResponse {
-        if let alias = alias {
+    static func getRadarValueLists(
+        config: ClientConfig,
+        alias: String?,
+        contains: String?,
+        created: GetRadarValueListsParameter?,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        startingAfter: String?
+    ) async throws -> GetRadarValueListsResponse {
+        if let alias {
             try validateLength("alias", alias, max: 100)
         }
 
-        if let contains = contains {
+        if let contains {
             try validateLength("contains", contains, max: 800)
         }
 
-        if let endingBefore = endingBefore {
+        if let endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let startingAfter = startingAfter {
+        if let startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try (await sdkRequest("GET", "/v1/radar/value_lists", config: config, query: [
+        return try await (sdkRequest("GET", "/v1/radar/value_lists", config: config, query: [
             SdkQueryParameter("alias", value: alias),
             SdkQueryParameter("contains", value: contains),
             SdkQueryParameter("created", value: created),

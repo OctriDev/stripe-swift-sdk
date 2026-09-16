@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1IssuingTransactionsMethods {
-    public struct GetIssuingTransactionsOptions: Codable {
+public extension V1IssuingTransactionsMethods {
+    struct GetIssuingTransactionsOptions: Codable {
         public var card: String?
         public var cardholder: String?
         public var created: GetIssuingTransactionsParameter?
@@ -20,9 +20,12 @@ extension V1IssuingTransactionsMethods {
         public init() {}
     }
 
-    /// Lists Issuing transactions in descending creation order, with the most recently created transaction first. Filter results by card, cardholder, creation time, or transaction `type`, and use cursor parameters to navigate additional pages.
+    /// Lists Issuing transactions in descending creation order, with the most recently created transaction first.
+    /// Filter results by card, cardholder, creation time, or transaction `type`, and use cursor parameters to navigate
+    /// additional pages.
     ///
-    /// Returns a list of Issuing Transaction objects. The objects are sorted in descending order by creation date, with the most recently created object appearing first.
+    /// Returns a list of Issuing Transaction objects. The objects are sorted in descending order by creation date, with
+    /// the most recently created object appearing first.
     ///
     /// - Parameters:
     /// - card: Only return transactions that belong to the given card.
@@ -44,7 +47,10 @@ extension V1IssuingTransactionsMethods {
     ///   the list.
     /// - type: Only return transactions that have the given type. One of `capture`
     ///   or `refund`.
-    public static func getIssuingTransactions(config: ClientConfig, options: GetIssuingTransactionsOptions) async throws -> GetIssuingTransactionsResponse {
+    static func getIssuingTransactions(
+        config: ClientConfig,
+        options: GetIssuingTransactionsOptions
+    ) async throws -> GetIssuingTransactionsResponse {
         if let card = options.card {
             try validateLength("card", card, max: 5000)
         }
@@ -61,7 +67,7 @@ extension V1IssuingTransactionsMethods {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try (await sdkRequest("GET", "/v1/issuing/transactions", config: config, query: [
+        return try await (sdkRequest("GET", "/v1/issuing/transactions", config: config, query: [
             SdkQueryParameter("card", value: options.card),
             SdkQueryParameter("cardholder", value: options.cardholder),
             SdkQueryParameter("created", value: options.created),

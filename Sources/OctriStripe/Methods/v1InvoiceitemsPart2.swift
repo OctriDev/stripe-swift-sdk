@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1InvoiceitemsMethods {
-    public struct GetInvoiceitemsOptions: Codable {
+public extension V1InvoiceitemsMethods {
+    struct GetInvoiceitemsOptions: Codable {
         public var created: GetInvoiceitemsParameter?
         public var customer: String?
         public var customerAccount: String?
@@ -21,9 +21,12 @@ extension V1InvoiceitemsMethods {
         public init() {}
     }
 
-    /// Lists invoice items ordered by creation date, with the newest items first. Filter by `customer`, `customer_account`, `invoice`, `pending`, or `created`, and use `starting_after` or `ending_before` to paginate the results.
+    /// Lists invoice items ordered by creation date, with the newest items first. Filter by `customer`,
+    /// `customer_account`, `invoice`, `pending`, or `created`, and use `starting_after` or `ending_before` to paginate
+    /// the results.
     ///
-    /// Returns a list of your invoice items. Invoice items are returned sorted by creation date, with the most recently created invoice items appearing first.
+    /// Returns a list of your invoice items. Invoice items are returned sorted by creation date, with the most recently
+    /// created invoice items appearing first.
     ///
     /// - Parameters:
     /// - created: Only return invoice items that were created during the given date
@@ -52,7 +55,10 @@ extension V1InvoiceitemsMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    public static func getInvoiceitems(config: ClientConfig, options: GetInvoiceitemsOptions) async throws -> GetInvoiceitemsResponse {
+    static func getInvoiceitems(
+        config: ClientConfig,
+        options: GetInvoiceitemsOptions
+    ) async throws -> GetInvoiceitemsResponse {
         if let customer = options.customer {
             try validateLength("customer", customer, max: 5000)
         }
@@ -73,7 +79,7 @@ extension V1InvoiceitemsMethods {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try (await sdkRequest("GET", "/v1/invoiceitems", config: config, query: [
+        return try await (sdkRequest("GET", "/v1/invoiceitems", config: config, query: [
             SdkQueryParameter("created", value: options.created),
             SdkQueryParameter("customer", value: options.customer),
             SdkQueryParameter("customer_account", value: options.customerAccount),

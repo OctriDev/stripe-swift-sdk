@@ -3,53 +3,88 @@
 
 import Foundation
 
-// V1SetupIntent domain models
+/// V1SetupIntent domain models
 public extension SetupIntentPaymentMethodOptionsCardMandateOptions {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.amount) else {
-            throw SdkValidationError(field: "amount", code: "required", message: "Validation failed for 'amount': value is required")
+            throw SdkValidationError(
+                field: "amount",
+                code: "required",
+                message: "Validation failed for 'amount': value is required"
+            )
         }
         guard container.contains(.amountType) else {
-            throw SdkValidationError(field: "amount_type", code: "required", message: "Validation failed for 'amount_type': value is required")
+            throw SdkValidationError(
+                field: "amount_type",
+                code: "required",
+                message: "Validation failed for 'amount_type': value is required"
+            )
         }
         guard container.contains(.currency) else {
-            throw SdkValidationError(field: "currency", code: "required", message: "Validation failed for 'currency': value is required")
+            throw SdkValidationError(
+                field: "currency",
+                code: "required",
+                message: "Validation failed for 'currency': value is required"
+            )
         }
         guard container.contains(.interval) else {
-            throw SdkValidationError(field: "interval", code: "required", message: "Validation failed for 'interval': value is required")
+            throw SdkValidationError(
+                field: "interval",
+                code: "required",
+                message: "Validation failed for 'interval': value is required"
+            )
         }
         guard container.contains(.reference) else {
-            throw SdkValidationError(field: "reference", code: "required", message: "Validation failed for 'reference': value is required")
+            throw SdkValidationError(
+                field: "reference",
+                code: "required",
+                message: "Validation failed for 'reference': value is required"
+            )
         }
         guard container.contains(.startDate) else {
-            throw SdkValidationError(field: "start_date", code: "required", message: "Validation failed for 'start_date': value is required")
+            throw SdkValidationError(
+                field: "start_date",
+                code: "required",
+                message: "Validation failed for 'start_date': value is required"
+            )
         }
-        self.amount = try container.sdkDecodeRequired(.amount)
-        self.amountType = try container.sdkDecodeRequired(.amountType)
-        self.currency = try container.sdkDecodeRequired(.currency)
-        self.interval = try container.sdkDecodeRequired(.interval)
-        self.reference = try container.sdkDecodeRequired(.reference)
-        self.startDate = try container.sdkDecodeRequired(.startDate)
-        self.description = try container.sdkDecodeIfPresent(.description)
-        self.endDate = try container.sdkDecodeIfPresent(.endDate)
-        self.intervalCount = try container.sdkDecodeIfPresent(.intervalCount)
-        self.supportedTypes = try container.sdkDecodeIfPresent(.supportedTypes)
-            try validateLength("reference", self.reference, min: nil, max: 80)
-        if let value = self.description {
+        amount = try container.sdkDecodeRequired(.amount)
+        amountType = try container.sdkDecodeRequired(.amountType)
+        currency = try container.sdkDecodeRequired(.currency)
+        interval = try container.sdkDecodeRequired(.interval)
+        reference = try container.sdkDecodeRequired(.reference)
+        startDate = try container.sdkDecodeRequired(.startDate)
+        description = try container.sdkDecodeIfPresent(.description)
+        endDate = try container.sdkDecodeIfPresent(.endDate)
+        intervalCount = try container.sdkDecodeIfPresent(.intervalCount)
+        supportedTypes = try container.sdkDecodeIfPresent(.supportedTypes)
+        try validateLength("reference", reference, min: nil, max: 80)
+        if let value = description {
             try validateLength("description", value, min: nil, max: 200)
         }
     }
 }
 
 public extension SetupIntentPaymentMethodOptionsCardMandateOptions {
-    public init(amount: Int, amountType: SetupIntentPaymentMethodOptionsCardMandateOptionsAmountType, currency: String, interval: SetupIntentPaymentMethodOptionsCardMandateOptionsInterval, reference: String, startDate: Int, description: String? = nil, endDate: Int? = nil, intervalCount: Int? = nil, supportedTypes: SetupIntentPaymentMethodOptionsCardMandateOptionsSupportedTypesList? = nil) throws {
+    init(
+        amount: Int,
+        amountType: SetupIntentPaymentMethodOptionsCardMandateOptionsAmountType,
+        currency: String,
+        interval: SetupIntentPaymentMethodOptionsCardMandateOptionsInterval,
+        reference: String,
+        startDate: Int,
+        description: String? = nil,
+        endDate: Int? = nil,
+        intervalCount: Int? = nil,
+        supportedTypes: SetupIntentPaymentMethodOptionsCardMandateOptionsSupportedTypesList? = nil
+    ) throws {
         (self.amount, self.amountType) = (amount, amountType)
         (self.currency, self.interval) = (currency, interval)
         (self.reference, self.startDate) = (reference, startDate)
         (self.description, self.endDate) = (description, endDate)
         (self.intervalCount, self.supportedTypes) = (intervalCount, supportedTypes)
-            try validateLength("reference", self.reference, min: nil, max: 80)
+        try validateLength("reference", self.reference, min: nil, max: 80)
         if let value = self.description {
             try validateLength("description", value, min: nil, max: 200)
         }
@@ -58,13 +93,13 @@ public extension SetupIntentPaymentMethodOptionsCardMandateOptions {
 
 /// Typed representation of the `SetupIntentPaymentMethodOptionsCardPresent` API schema.
 public struct SetupIntentPaymentMethodOptionsCardPresent: Codable {
-
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension SetupIntentPaymentMethodOptionsCardPresent {
-    public init() {
-    }
+    init() {}
 }
 
 /// Typed representation of the `SetupIntentPaymentMethodOptionsKlarna` API schema.
@@ -80,23 +115,23 @@ public struct SetupIntentPaymentMethodOptionsKlarna: Codable {
     }
 
     init() {
-        (self.currency, self.preferredLocale) = (nil, nil)
+        (currency, preferredLocale) = (nil, nil)
     }
 }
 
 public extension SetupIntentPaymentMethodOptionsKlarna {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.currency = try container.sdkDecodeIfPresent(.currency)
-        self.preferredLocale = try container.sdkDecodeIfPresent(.preferredLocale)
-        if let value = self.preferredLocale {
+        currency = try container.sdkDecodeIfPresent(.currency)
+        preferredLocale = try container.sdkDecodeIfPresent(.preferredLocale)
+        if let value = preferredLocale {
             try validateLength("preferred_locale", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension SetupIntentPaymentMethodOptionsKlarna {
-    public init(currency: String? = nil, preferredLocale: String? = nil) throws {
+    init(currency: String? = nil, preferredLocale: String? = nil) throws {
         self.init()
         (self.currency, self.preferredLocale) = (currency, preferredLocale)
         if let value = self.preferredLocale {
@@ -107,16 +142,17 @@ public extension SetupIntentPaymentMethodOptionsKlarna {
 
 /// Typed representation of the `SetupIntentPaymentMethodOptionsLink` API schema.
 public struct SetupIntentPaymentMethodOptionsLink: Codable {
-
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension SetupIntentPaymentMethodOptionsLink {
-    public init() {
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-public typealias SetupIntentPaymentMethodOptionsMandateOptionsAcssDebitDefaultForList = [SetupIntentPaymentMethodOptionsMandateOptionsAcssDebitDefaultForItem]
+public extension SetupIntentPaymentMethodOptionsLink {
+    init() {}
+}
+
+public typealias SetupIntentPaymentMethodOptionsMandateOptionsAcssDebitDefaultForList =
+    [SetupIntentPaymentMethodOptionsMandateOptionsAcssDebitDefaultForItem]
 
 /// Typed representation of the `SetupIntentPaymentMethodOptionsMandateOptionsAcssDebit` API schema.
 public struct SetupIntentPaymentMethodOptionsMandateOptionsAcssDebit: Codable {
@@ -140,29 +176,41 @@ public struct SetupIntentPaymentMethodOptionsMandateOptionsAcssDebit: Codable {
     }
 
     init() {
-        (self.customMandateUrl, self.defaultFor, self.intervalDescription, self.paymentSchedule, self.transactionType) = (nil, nil, nil, nil, nil)
+        (customMandateUrl, defaultFor, intervalDescription, paymentSchedule, transactionType) = (
+            nil,
+            nil,
+            nil,
+            nil,
+            nil
+        )
     }
 }
 
 public extension SetupIntentPaymentMethodOptionsMandateOptionsAcssDebit {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.customMandateUrl = try container.sdkDecodeIfPresent(.customMandateUrl)
-        self.defaultFor = try container.sdkDecodeIfPresent(.defaultFor)
-        self.intervalDescription = try container.sdkDecodeIfPresent(.intervalDescription)
-        self.paymentSchedule = try container.sdkDecodeIfPresent(.paymentSchedule)
-        self.transactionType = try container.sdkDecodeIfPresent(.transactionType)
-        if let value = self.customMandateUrl {
+        customMandateUrl = try container.sdkDecodeIfPresent(.customMandateUrl)
+        defaultFor = try container.sdkDecodeIfPresent(.defaultFor)
+        intervalDescription = try container.sdkDecodeIfPresent(.intervalDescription)
+        paymentSchedule = try container.sdkDecodeIfPresent(.paymentSchedule)
+        transactionType = try container.sdkDecodeIfPresent(.transactionType)
+        if let value = customMandateUrl {
             try validateLength("custom_mandate_url", value, min: nil, max: 5000)
         }
-        if let value = self.intervalDescription {
+        if let value = intervalDescription {
             try validateLength("interval_description", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension SetupIntentPaymentMethodOptionsMandateOptionsAcssDebit {
-    public init(customMandateUrl: String? = nil, defaultFor: SetupIntentPaymentMethodOptionsMandateOptionsAcssDebitDefaultForList? = nil, intervalDescription: String? = nil, paymentSchedule: SetupIntentPaymentMethodOptionsMandateOptionsAcssDebitPaymentSchedule? = nil, transactionType: SetupIntentPaymentMethodOptionsMandateOptionsAcssDebitTransactionType? = nil) throws {
+    init(
+        customMandateUrl: String? = nil,
+        defaultFor: SetupIntentPaymentMethodOptionsMandateOptionsAcssDebitDefaultForList? = nil,
+        intervalDescription: String? = nil,
+        paymentSchedule: SetupIntentPaymentMethodOptionsMandateOptionsAcssDebitPaymentSchedule? = nil,
+        transactionType: SetupIntentPaymentMethodOptionsMandateOptionsAcssDebitTransactionType? = nil
+    ) throws {
         self.init()
         (self.customMandateUrl, self.defaultFor) = (customMandateUrl, defaultFor)
         (self.intervalDescription, self.paymentSchedule) = (intervalDescription, paymentSchedule)
@@ -188,22 +236,22 @@ public struct SetupIntentPaymentMethodOptionsMandateOptionsBacsDebit: Codable {
     }
 
     init() {
-        self.referencePrefix = nil
+        referencePrefix = nil
     }
 }
 
 public extension SetupIntentPaymentMethodOptionsMandateOptionsBacsDebit {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.referencePrefix = try container.sdkDecodeIfPresent(.referencePrefix)
-        if let value = self.referencePrefix {
+        referencePrefix = try container.sdkDecodeIfPresent(.referencePrefix)
+        if let value = referencePrefix {
             try validateLength("reference_prefix", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension SetupIntentPaymentMethodOptionsMandateOptionsBacsDebit {
-    public init(referencePrefix: String? = nil) throws {
+    init(referencePrefix: String? = nil) throws {
         self.init()
         self.referencePrefix = referencePrefix
         if let value = self.referencePrefix {
@@ -242,32 +290,40 @@ public struct SetupIntentPaymentMethodOptionsMandateOptionsPayto: Codable {
     }
 
     init() {
-        (self.amount, self.amountType, self.endDate, self.paymentSchedule, self.paymentsPerPeriod) = (nil, nil, nil, nil, nil)
-        (self.purpose, self.startDate) = (nil, nil)
+        (amount, amountType, endDate, paymentSchedule, paymentsPerPeriod) = (nil, nil, nil, nil, nil)
+        (purpose, startDate) = (nil, nil)
     }
 }
 
 public extension SetupIntentPaymentMethodOptionsMandateOptionsPayto {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.amount = try container.sdkDecodeIfPresent(.amount)
-        self.amountType = try container.sdkDecodeIfPresent(.amountType)
-        self.endDate = try container.sdkDecodeIfPresent(.endDate)
-        self.paymentSchedule = try container.sdkDecodeIfPresent(.paymentSchedule)
-        self.paymentsPerPeriod = try container.sdkDecodeIfPresent(.paymentsPerPeriod)
-        self.purpose = try container.sdkDecodeIfPresent(.purpose)
-        self.startDate = try container.sdkDecodeIfPresent(.startDate)
-        if let value = self.endDate {
+        amount = try container.sdkDecodeIfPresent(.amount)
+        amountType = try container.sdkDecodeIfPresent(.amountType)
+        endDate = try container.sdkDecodeIfPresent(.endDate)
+        paymentSchedule = try container.sdkDecodeIfPresent(.paymentSchedule)
+        paymentsPerPeriod = try container.sdkDecodeIfPresent(.paymentsPerPeriod)
+        purpose = try container.sdkDecodeIfPresent(.purpose)
+        startDate = try container.sdkDecodeIfPresent(.startDate)
+        if let value = endDate {
             try validateLength("end_date", value, min: nil, max: 5000)
         }
-        if let value = self.startDate {
+        if let value = startDate {
             try validateLength("start_date", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension SetupIntentPaymentMethodOptionsMandateOptionsPayto {
-    public init(amount: Int? = nil, amountType: SetupIntentPaymentMethodOptionsMandateOptionsPaytoAmountType? = nil, endDate: String? = nil, paymentSchedule: SetupIntentPaymentMethodOptionsMandateOptionsPaytoPaymentSchedule? = nil, paymentsPerPeriod: Int? = nil, purpose: SetupIntentPaymentMethodOptionsMandateOptionsPaytoPurpose? = nil, startDate: String? = nil) throws {
+    init(
+        amount: Int? = nil,
+        amountType: SetupIntentPaymentMethodOptionsMandateOptionsPaytoAmountType? = nil,
+        endDate: String? = nil,
+        paymentSchedule: SetupIntentPaymentMethodOptionsMandateOptionsPaytoPaymentSchedule? = nil,
+        paymentsPerPeriod: Int? = nil,
+        purpose: SetupIntentPaymentMethodOptionsMandateOptionsPaytoPurpose? = nil,
+        startDate: String? = nil
+    ) throws {
         self.init()
         (self.amount, self.amountType) = (amount, amountType)
         (self.endDate, self.paymentSchedule) = (endDate, paymentSchedule)
@@ -294,22 +350,22 @@ public struct SetupIntentPaymentMethodOptionsMandateOptionsSepaDebit: Codable {
     }
 
     init() {
-        self.referencePrefix = nil
+        referencePrefix = nil
     }
 }
 
 public extension SetupIntentPaymentMethodOptionsMandateOptionsSepaDebit {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.referencePrefix = try container.sdkDecodeIfPresent(.referencePrefix)
-        if let value = self.referencePrefix {
+        referencePrefix = try container.sdkDecodeIfPresent(.referencePrefix)
+        if let value = referencePrefix {
             try validateLength("reference_prefix", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension SetupIntentPaymentMethodOptionsMandateOptionsSepaDebit {
-    public init(referencePrefix: String? = nil) throws {
+    init(referencePrefix: String? = nil) throws {
         self.init()
         self.referencePrefix = referencePrefix
         if let value = self.referencePrefix {
@@ -329,22 +385,22 @@ public struct SetupIntentPaymentMethodOptionsPaypal: Codable {
     }
 
     init() {
-        self.billingAgreementId = nil
+        billingAgreementId = nil
     }
 }
 
 public extension SetupIntentPaymentMethodOptionsPaypal {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.billingAgreementId = try container.sdkDecodeIfPresent(.billingAgreementId)
-        if let value = self.billingAgreementId {
+        billingAgreementId = try container.sdkDecodeIfPresent(.billingAgreementId)
+        if let value = billingAgreementId {
             try validateLength("billing_agreement_id", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension SetupIntentPaymentMethodOptionsPaypal {
-    public init(billingAgreementId: String? = nil) throws {
+    init(billingAgreementId: String? = nil) throws {
         self.init()
         self.billingAgreementId = billingAgreementId
         if let value = self.billingAgreementId {
@@ -363,19 +419,19 @@ public struct SetupIntentPaymentMethodOptionsPayto: Codable {
     }
 
     init() {
-        self.mandateOptions = nil
+        mandateOptions = nil
     }
 }
 
 public extension SetupIntentPaymentMethodOptionsPayto {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.mandateOptions = try container.sdkDecodeIfPresent(.mandateOptions)
+        mandateOptions = try container.sdkDecodeIfPresent(.mandateOptions)
     }
 }
 
 public extension SetupIntentPaymentMethodOptionsPayto {
-    public init(mandateOptions: SetupIntentPaymentMethodOptionsMandateOptionsPayto? = nil) {
+    init(mandateOptions: SetupIntentPaymentMethodOptionsMandateOptionsPayto? = nil) {
         self.init()
         self.mandateOptions = mandateOptions
     }
@@ -391,19 +447,19 @@ public struct SetupIntentPaymentMethodOptionsPix: Codable {
     }
 
     init() {
-        self.mandateOptions = nil
+        mandateOptions = nil
     }
 }
 
 public extension SetupIntentPaymentMethodOptionsPix {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.mandateOptions = try container.sdkDecodeIfPresent(.mandateOptions)
+        mandateOptions = try container.sdkDecodeIfPresent(.mandateOptions)
     }
 }
 
 public extension SetupIntentPaymentMethodOptionsPix {
-    public init(mandateOptions: PaymentMethodOptionsMandateOptionsPix? = nil) {
+    init(mandateOptions: PaymentMethodOptionsMandateOptionsPix? = nil) {
         self.init()
         self.mandateOptions = mandateOptions
     }
@@ -419,19 +475,19 @@ public struct SetupIntentPaymentMethodOptionsSepaDebit: Codable {
     }
 
     init() {
-        self.mandateOptions = nil
+        mandateOptions = nil
     }
 }
 
 public extension SetupIntentPaymentMethodOptionsSepaDebit {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.mandateOptions = try container.sdkDecodeIfPresent(.mandateOptions)
+        mandateOptions = try container.sdkDecodeIfPresent(.mandateOptions)
     }
 }
 
 public extension SetupIntentPaymentMethodOptionsSepaDebit {
-    public init(mandateOptions: SetupIntentPaymentMethodOptionsMandateOptionsSepaDebit? = nil) {
+    init(mandateOptions: SetupIntentPaymentMethodOptionsMandateOptionsSepaDebit? = nil) {
         self.init()
         self.mandateOptions = mandateOptions
     }
@@ -447,19 +503,19 @@ public struct SetupIntentPaymentMethodOptionsUpi: Codable {
     }
 
     init() {
-        self.mandateOptions = nil
+        mandateOptions = nil
     }
 }
 
 public extension SetupIntentPaymentMethodOptionsUpi {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.mandateOptions = try container.sdkDecodeIfPresent(.mandateOptions)
+        mandateOptions = try container.sdkDecodeIfPresent(.mandateOptions)
     }
 }
 
 public extension SetupIntentPaymentMethodOptionsUpi {
-    public init(mandateOptions: PaymentMethodOptionsMandateOptionsUpi? = nil) {
+    init(mandateOptions: PaymentMethodOptionsMandateOptionsUpi? = nil) {
         self.init()
         self.mandateOptions = mandateOptions
     }
@@ -481,21 +537,25 @@ public struct SetupIntentPaymentMethodOptionsUsBankAccount: Codable {
     }
 
     init() {
-        (self.financialConnections, self.mandateOptions, self.verificationMethod) = (nil, nil, nil)
+        (financialConnections, mandateOptions, verificationMethod) = (nil, nil, nil)
     }
 }
 
 public extension SetupIntentPaymentMethodOptionsUsBankAccount {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.financialConnections = try container.sdkDecodeIfPresent(.financialConnections)
-        self.mandateOptions = try container.sdkDecodeIfPresent(.mandateOptions)
-        self.verificationMethod = try container.sdkDecodeIfPresent(.verificationMethod)
+        financialConnections = try container.sdkDecodeIfPresent(.financialConnections)
+        mandateOptions = try container.sdkDecodeIfPresent(.mandateOptions)
+        verificationMethod = try container.sdkDecodeIfPresent(.verificationMethod)
     }
 }
 
 public extension SetupIntentPaymentMethodOptionsUsBankAccount {
-    public init(financialConnections: LinkedAccountOptionsCommon? = nil, mandateOptions: PaymentMethodOptionsUsBankAccountMandateOptions? = nil, verificationMethod: SetupIntentPaymentMethodOptionsUsBankAccountVerificationMethod? = nil) {
+    init(
+        financialConnections: LinkedAccountOptionsCommon? = nil,
+        mandateOptions: PaymentMethodOptionsUsBankAccountMandateOptions? = nil,
+        verificationMethod: SetupIntentPaymentMethodOptionsUsBankAccountVerificationMethod? = nil
+    ) {
         self.init()
         (self.financialConnections, self.mandateOptions) = (financialConnections, mandateOptions)
         self.verificationMethod = verificationMethod
@@ -515,20 +575,23 @@ public struct SetupIntentTypeSpecificPaymentMethodOptionsClient: Codable {
     }
 
     init() {
-        (self.mandateOptions, self.verificationMethod) = (nil, nil)
+        (mandateOptions, verificationMethod) = (nil, nil)
     }
 }
 
 public extension SetupIntentTypeSpecificPaymentMethodOptionsClient {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.mandateOptions = try container.sdkDecodeIfPresent(.mandateOptions)
-        self.verificationMethod = try container.sdkDecodeIfPresent(.verificationMethod)
+        mandateOptions = try container.sdkDecodeIfPresent(.mandateOptions)
+        verificationMethod = try container.sdkDecodeIfPresent(.verificationMethod)
     }
 }
 
 public extension SetupIntentTypeSpecificPaymentMethodOptionsClient {
-    public init(mandateOptions: SetupIntentPaymentMethodOptionsMandateOptionsPayto? = nil, verificationMethod: SetupIntentTypeSpecificPaymentMethodOptionsClientVerificationMethod? = nil) {
+    init(
+        mandateOptions: SetupIntentPaymentMethodOptionsMandateOptionsPayto? = nil,
+        verificationMethod: SetupIntentTypeSpecificPaymentMethodOptionsClientVerificationMethod? = nil
+    ) {
         self.init()
         (self.mandateOptions, self.verificationMethod) = (mandateOptions, verificationMethod)
     }

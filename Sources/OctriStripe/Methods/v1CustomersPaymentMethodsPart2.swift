@@ -6,8 +6,9 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1CustomersPaymentMethodsMethods {
-    /// Lists the payment methods attached to a customer. Use `type` to restrict results to a payment method type, `allow_redisplay` to filter by checkout redisplay policy, and cursor parameters to paginate the list.
+public extension V1CustomersPaymentMethodsMethods {
+    /// Lists the payment methods attached to a customer. Use `type` to restrict results to a payment method type,
+    /// `allow_redisplay` to filter by checkout redisplay policy, and cursor parameters to paginate the list.
     ///
     /// Returns a list of PaymentMethods for a given Customer
     ///
@@ -33,24 +34,40 @@ extension V1CustomersPaymentMethodsMethods {
     ///   Without the filter, the list includes all current and future payment method
     ///   types. If your integration expects only one type of payment method in the
     ///   response, make sure to provide a type value in the request.
-    public static func getCustomersCustomerPaymentMethods(config: ClientConfig, customer: String, allowRedisplay: GetCustomersCustomerPaymentMethodsParameter?, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?, type: GetCustomersCustomerPaymentMethodsParameterXbd61a528?) async throws -> GetCustomersCustomerPaymentMethodsResponse {
+    static func getCustomersCustomerPaymentMethods(
+        config: ClientConfig,
+        customer: String,
+        allowRedisplay: GetCustomersCustomerPaymentMethodsParameter?,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        startingAfter: String?,
+        type: GetCustomersCustomerPaymentMethodsParameterXbd61a528?
+    ) async throws -> GetCustomersCustomerPaymentMethodsResponse {
         try validateLength("customer", customer, max: 5000)
 
-        if let endingBefore = endingBefore {
+        if let endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let startingAfter = startingAfter {
+        if let startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try (await sdkRequest("GET", ["/v1/customers/", sdkEncodePathSegment(sdkWireString(customer)), "/payment_methods"].joined(), config: config, query: [
-            SdkQueryParameter("allow_redisplay", value: allowRedisplay),
-            SdkQueryParameter("ending_before", value: endingBefore),
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            SdkQueryParameter("limit", value: limit),
-            SdkQueryParameter("starting_after", value: startingAfter),
-            SdkQueryParameter("type", value: type),
-        ], decoder: .json, operationId: "GetCustomersCustomerPaymentMethods")).data
+        return try await (sdkRequest(
+            "GET",
+            ["/v1/customers/", sdkEncodePathSegment(sdkWireString(customer)), "/payment_methods"].joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("allow_redisplay", value: allowRedisplay),
+                SdkQueryParameter("ending_before", value: endingBefore),
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+                SdkQueryParameter("limit", value: limit),
+                SdkQueryParameter("starting_after", value: startingAfter),
+                SdkQueryParameter("type", value: type),
+            ],
+            decoder: .json,
+            operationId: "GetCustomersCustomerPaymentMethods"
+        )).data
     }
 }

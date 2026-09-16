@@ -7,14 +7,15 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1AccountMethods {
-    /// Retrieves the details of the authenticated user's account. Use `expand` to include additional nested fields in the response when the default account representation is insufficient.
+    /// Retrieves the details of the authenticated user's account. Use `expand` to include additional nested fields in
+    /// the response when the default account representation is insufficient.
     ///
     /// Retrieves the details of an account.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
     public static func getAccount(config: ClientConfig, expand: [String]?) async throws -> Account {
-        return try (await sdkRequest("GET", "/v1/account", config: config, query: [
+        try await (sdkRequest("GET", "/v1/account", config: config, query: [
             SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
         ], decoder: .json, operationId: "GetAccount")).data
     }

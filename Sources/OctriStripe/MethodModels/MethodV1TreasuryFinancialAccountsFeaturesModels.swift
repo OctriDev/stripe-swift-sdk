@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1TreasuryFinancialAccountsFeatures operation model declarations
+/// Canonical v1TreasuryFinancialAccountsFeatures operation model declarations
 public struct PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBX1d35b57231: Codable {
     public var requested: Bool
 
@@ -15,21 +15,27 @@ public struct PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBX1d35
         case requested
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBX1d35b57231 {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.requested) else {
-            throw SdkValidationError(field: "requested", code: "required", message: "Validation failed for 'requested': value is required")
-        }
-        self.requested = try container.sdkDecodeRequired(.requested)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBX1d35b57231 {
-    public init(requested: Bool) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.requested) else {
+            throw SdkValidationError(
+                field: "requested",
+                code: "required",
+                message: "Validation failed for 'requested': value is required"
+            )
+        }
+        requested = try container.sdkDecodeRequired(.requested)
+    }
+}
+
+public extension PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBX1d35b57231 {
+    init(requested: Bool) {
         self.requested = requested
     }
 }
@@ -41,21 +47,27 @@ public struct PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBXb435
         case requested
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBXb435d10c79 {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.requested) else {
-            throw SdkValidationError(field: "requested", code: "required", message: "Validation failed for 'requested': value is required")
-        }
-        self.requested = try container.sdkDecodeRequired(.requested)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBXb435d10c79 {
-    public init(requested: Bool) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.requested) else {
+            throw SdkValidationError(
+                field: "requested",
+                code: "required",
+                message: "Validation failed for 'requested': value is required"
+            )
+        }
+        requested = try container.sdkDecodeRequired(.requested)
+    }
+}
+
+public extension PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBXb435d10c79 {
+    init(requested: Bool) {
         self.requested = requested
     }
 }
@@ -69,21 +81,27 @@ public struct PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBXbd3d
         case requested
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBXbd3d53825a {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.requested) else {
-            throw SdkValidationError(field: "requested", code: "required", message: "Validation failed for 'requested': value is required")
-        }
-        self.requested = try container.sdkDecodeRequired(.requested)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBXbd3d53825a {
-    public init(requested: Bool) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.requested) else {
+            throw SdkValidationError(
+                field: "requested",
+                code: "required",
+                message: "Validation failed for 'requested': value is required"
+            )
+        }
+        requested = try container.sdkDecodeRequired(.requested)
+    }
+}
+
+public extension PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBXbd3d53825a {
+    init(requested: Bool) {
         self.requested = requested
     }
 }
@@ -95,21 +113,27 @@ public struct PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBX46e9
         case requested
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBX46e90b1a77 {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.requested) else {
-            throw SdkValidationError(field: "requested", code: "required", message: "Validation failed for 'requested': value is required")
-        }
-        self.requested = try container.sdkDecodeRequired(.requested)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBX46e90b1a77 {
-    public init(requested: Bool) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.requested) else {
+            throw SdkValidationError(
+                field: "requested",
+                code: "required",
+                message: "Validation failed for 'requested': value is required"
+            )
+        }
+        requested = try container.sdkDecodeRequired(.requested)
+    }
+}
+
+public extension PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBX46e90b1a77 {
+    init(requested: Bool) {
         self.requested = requested
     }
 }
@@ -124,19 +148,19 @@ public struct PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBXe141
     }
 
     init() {
-        self.aba = nil
+        aba = nil
     }
 }
 
 public extension PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBXe141de2353 {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.aba = try container.sdkDecodeIfPresent(.aba)
+        aba = try container.sdkDecodeIfPresent(.aba)
     }
 }
 
 public extension PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBXe141de2353 {
-    public init(aba: PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBXcea1a15bed? = nil) {
+    init(aba: PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBXcea1a15bed? = nil) {
         self.init()
         self.aba = aba
     }
@@ -149,21 +173,27 @@ public struct PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBXedc3
         case requested
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBXedc34bdc5b {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.requested) else {
-            throw SdkValidationError(field: "requested", code: "required", message: "Validation failed for 'requested': value is required")
-        }
-        self.requested = try container.sdkDecodeRequired(.requested)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBXedc34bdc5b {
-    public init(requested: Bool) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.requested) else {
+            throw SdkValidationError(
+                field: "requested",
+                code: "required",
+                message: "Validation failed for 'requested': value is required"
+            )
+        }
+        requested = try container.sdkDecodeRequired(.requested)
+    }
+}
+
+public extension PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBXedc34bdc5b {
+    init(requested: Bool) {
         self.requested = requested
     }
 }
@@ -178,19 +208,19 @@ public struct PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBXf04e
     }
 
     init() {
-        self.ach = nil
+        ach = nil
     }
 }
 
 public extension PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBXf04ee0bc13 {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.ach = try container.sdkDecodeIfPresent(.ach)
+        ach = try container.sdkDecodeIfPresent(.ach)
     }
 }
 
 public extension PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBXf04ee0bc13 {
-    public init(ach: PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBXedc34bdc5b? = nil) {
+    init(ach: PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBXedc34bdc5b? = nil) {
         self.init()
         self.ach = ach
     }
@@ -210,20 +240,23 @@ public struct PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBX0b56
     }
 
     init() {
-        (self.ach, self.usDomesticWire) = (nil, nil)
+        (ach, usDomesticWire) = (nil, nil)
     }
 }
 
 public extension PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBX0b5640c511 {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.ach = try container.sdkDecodeIfPresent(.ach)
-        self.usDomesticWire = try container.sdkDecodeIfPresent(.usDomesticWire)
+        ach = try container.sdkDecodeIfPresent(.ach)
+        usDomesticWire = try container.sdkDecodeIfPresent(.usDomesticWire)
     }
 }
 
 public extension PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBX0b5640c511 {
-    public init(ach: PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBX46e90b1a77? = nil, usDomesticWire: PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBX1d35b57231? = nil) {
+    init(
+        ach: PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBX46e90b1a77? = nil,
+        usDomesticWire: PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBX1d35b57231? = nil
+    ) {
         self.init()
         (self.ach, self.usDomesticWire) = (ach, usDomesticWire)
     }
@@ -236,21 +269,27 @@ public struct PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBXcea1
         case requested
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBXcea1a15bed {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.requested) else {
-            throw SdkValidationError(field: "requested", code: "required", message: "Validation failed for 'requested': value is required")
-        }
-        self.requested = try container.sdkDecodeRequired(.requested)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBXcea1a15bed {
-    public init(requested: Bool) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.requested) else {
+            throw SdkValidationError(
+                field: "requested",
+                code: "required",
+                message: "Validation failed for 'requested': value is required"
+            )
+        }
+        requested = try container.sdkDecodeRequired(.requested)
+    }
+}
+
+public extension PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBXcea1a15bed {
+    init(requested: Bool) {
         self.requested = requested
     }
 }
@@ -262,21 +301,27 @@ public struct PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBX83db
         case requested
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBX83db3908a6 {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.requested) else {
-            throw SdkValidationError(field: "requested", code: "required", message: "Validation failed for 'requested': value is required")
-        }
-        self.requested = try container.sdkDecodeRequired(.requested)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBX83db3908a6 {
-    public init(requested: Bool) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.requested) else {
+            throw SdkValidationError(
+                field: "requested",
+                code: "required",
+                message: "Validation failed for 'requested': value is required"
+            )
+        }
+        requested = try container.sdkDecodeRequired(.requested)
+    }
+}
+
+public extension PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBX83db3908a6 {
+    init(requested: Bool) {
         self.requested = requested
     }
 }
@@ -295,20 +340,23 @@ public struct PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBX1d7d
     }
 
     init() {
-        (self.ach, self.usDomesticWire) = (nil, nil)
+        (ach, usDomesticWire) = (nil, nil)
     }
 }
 
 public extension PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBX1d7d7b6587 {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.ach = try container.sdkDecodeIfPresent(.ach)
-        self.usDomesticWire = try container.sdkDecodeIfPresent(.usDomesticWire)
+        ach = try container.sdkDecodeIfPresent(.ach)
+        usDomesticWire = try container.sdkDecodeIfPresent(.usDomesticWire)
     }
 }
 
 public extension PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBX1d7d7b6587 {
-    public init(ach: PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBXb435d10c79? = nil, usDomesticWire: PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBX83db3908a6? = nil) {
+    init(
+        ach: PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBXb435d10c79? = nil,
+        usDomesticWire: PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBX83db3908a6? = nil
+    ) {
         self.init()
         (self.ach, self.usDomesticWire) = (ach, usDomesticWire)
     }
@@ -323,21 +371,27 @@ public struct PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBX7f07
         case requested
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBX7f07895a38 {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.requested) else {
-            throw SdkValidationError(field: "requested", code: "required", message: "Validation failed for 'requested': value is required")
-        }
-        self.requested = try container.sdkDecodeRequired(.requested)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBX7f07895a38 {
-    public init(requested: Bool) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.requested) else {
+            throw SdkValidationError(
+                field: "requested",
+                code: "required",
+                message: "Validation failed for 'requested': value is required"
+            )
+        }
+        requested = try container.sdkDecodeRequired(.requested)
+    }
+}
+
+public extension PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBX7f07895a38 {
+    init(requested: Bool) {
         self.requested = requested
     }
 }
@@ -351,21 +405,27 @@ public struct PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBX4d66
         case requested
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBX4d66d1b7ae {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.requested) else {
-            throw SdkValidationError(field: "requested", code: "required", message: "Validation failed for 'requested': value is required")
-        }
-        self.requested = try container.sdkDecodeRequired(.requested)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBX4d66d1b7ae {
-    public init(requested: Bool) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.requested) else {
+            throw SdkValidationError(
+                field: "requested",
+                code: "required",
+                message: "Validation failed for 'requested': value is required"
+            )
+        }
+        requested = try container.sdkDecodeRequired(.requested)
+    }
+}
+
+public extension PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBX4d66d1b7ae {
+    init(requested: Bool) {
         self.requested = requested
     }
 }

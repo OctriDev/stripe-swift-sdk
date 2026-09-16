@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1Reporting domain models
+/// V1Reporting domain models
 /// The Report Run object represents an instance of a report type generated with specific run parameters. Once the
 /// object is created, Stripe begins processing the report. When the report has finished running, it will give you a
 /// reference to a file where you can retrieve your results. For an overview, see API Access to Reports. Note that
@@ -47,62 +47,103 @@ public struct ReportingReportRun: Codable {
         case succeededAt = "succeeded_at"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension ReportingReportRun {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.created) else {
-            throw SdkValidationError(field: "created", code: "required", message: "Validation failed for 'created': value is required")
+            throw SdkValidationError(
+                field: "created",
+                code: "required",
+                message: "Validation failed for 'created': value is required"
+            )
         }
         guard container.contains(.id) else {
-            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
+            throw SdkValidationError(
+                field: "id",
+                code: "required",
+                message: "Validation failed for 'id': value is required"
+            )
         }
         guard container.contains(.livemode) else {
-            throw SdkValidationError(field: "livemode", code: "required", message: "Validation failed for 'livemode': value is required")
+            throw SdkValidationError(
+                field: "livemode",
+                code: "required",
+                message: "Validation failed for 'livemode': value is required"
+            )
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
         }
         guard container.contains(.parameters) else {
-            throw SdkValidationError(field: "parameters", code: "required", message: "Validation failed for 'parameters': value is required")
+            throw SdkValidationError(
+                field: "parameters",
+                code: "required",
+                message: "Validation failed for 'parameters': value is required"
+            )
         }
         guard container.contains(.reportType) else {
-            throw SdkValidationError(field: "report_type", code: "required", message: "Validation failed for 'report_type': value is required")
+            throw SdkValidationError(
+                field: "report_type",
+                code: "required",
+                message: "Validation failed for 'report_type': value is required"
+            )
         }
         guard container.contains(.status) else {
-            throw SdkValidationError(field: "status", code: "required", message: "Validation failed for 'status': value is required")
+            throw SdkValidationError(
+                field: "status",
+                code: "required",
+                message: "Validation failed for 'status': value is required"
+            )
         }
-        self.created = try container.sdkDecodeRequired(.created)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.livemode = try container.sdkDecodeRequired(.livemode)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.parameters = try container.sdkDecodeRequired(.parameters)
-        self.reportType = try container.sdkDecodeRequired(.reportType)
-        self.status = try container.sdkDecodeRequired(.status)
-        self.error = try container.sdkDecodeIfPresent(.error)
-        self.result = try container.sdkDecodeIfPresent(.result)
-        self.succeededAt = try container.sdkDecodeIfPresent(.succeededAt)
-            try validateLength("id", self.id, min: nil, max: 5000)
-            try validateLength("report_type", self.reportType, min: nil, max: 5000)
-            try validateLength("status", self.status, min: nil, max: 5000)
-        if let value = self.error {
+        created = try container.sdkDecodeRequired(.created)
+        id = try container.sdkDecodeRequired(.id)
+        livemode = try container.sdkDecodeRequired(.livemode)
+        object = try container.sdkDecodeRequired(.object)
+        parameters = try container.sdkDecodeRequired(.parameters)
+        reportType = try container.sdkDecodeRequired(.reportType)
+        status = try container.sdkDecodeRequired(.status)
+        error = try container.sdkDecodeIfPresent(.error)
+        result = try container.sdkDecodeIfPresent(.result)
+        succeededAt = try container.sdkDecodeIfPresent(.succeededAt)
+        try validateLength("id", id, min: nil, max: 5000)
+        try validateLength("report_type", reportType, min: nil, max: 5000)
+        try validateLength("status", status, min: nil, max: 5000)
+        if let value = error {
             try validateLength("error", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension ReportingReportRun {
-    public init(created: Int, id: String, livemode: Bool, object: ReportingReportRunObject, parameters: FinancialReportingFinanceReportRunRunParameters, reportType: String, status: String, error: String? = nil, result: ReportingReportRunResult? = nil, succeededAt: Int? = nil) throws {
+    init(
+        created: Int,
+        id: String,
+        livemode: Bool,
+        object: ReportingReportRunObject,
+        parameters: FinancialReportingFinanceReportRunRunParameters,
+        reportType: String,
+        status: String,
+        error: String? = nil,
+        result: ReportingReportRunResult? = nil,
+        succeededAt: Int? = nil
+    ) throws {
         (self.created, self.id) = (created, id)
         (self.livemode, self.object) = (livemode, object)
         (self.parameters, self.reportType) = (parameters, reportType)
         (self.status, self.error) = (status, error)
         (self.result, self.succeededAt) = (result, succeededAt)
-            try validateLength("id", self.id, min: nil, max: 5000)
-            try validateLength("report_type", self.reportType, min: nil, max: 5000)
-            try validateLength("status", self.status, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("report_type", self.reportType, min: nil, max: 5000)
+        try validateLength("status", self.status, min: nil, max: 5000)
         if let value = self.error {
             try validateLength("error", value, min: nil, max: 5000)
         }
@@ -114,20 +155,28 @@ public enum ReportingReportRunResult {
 }
 
 extension ReportingReportRunResult: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for ReportingReportRunResult")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for ReportingReportRunResult"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(File2.self) { return .file2(value) }
+        if let value = try? container.decode(File2.self) {
+            return .file2(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -136,7 +185,6 @@ extension ReportingReportRunResult: Codable {
         case let .file2(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// The Report Type resource corresponds to a particular type of report, such as the "Activity summary" or "Itemized
@@ -179,35 +227,47 @@ public struct ReportingReportType: Codable {
         case defaultColumns = "default_columns"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension ReportingReportType {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.dataAvailableEnd = try container.sdkDecodeRequired(.dataAvailableEnd)
-        self.dataAvailableStart = try container.sdkDecodeRequired(.dataAvailableStart)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.livemode = try container.sdkDecodeRequired(.livemode)
-        self.name = try container.sdkDecodeRequired(.name)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.updated = try container.sdkDecodeRequired(.updated)
-        self.version = try container.sdkDecodeRequired(.version)
-        self.defaultColumns = try container.sdkDecodeIfPresent(.defaultColumns)
-            try validateLength("id", self.id, min: nil, max: 5000)
-            try validateLength("name", self.name, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension ReportingReportType {
-    public init(dataAvailableEnd: Int, dataAvailableStart: Int, id: String, livemode: Bool, name: String, object: ReportingReportTypeObject, updated: Int, version: Int, defaultColumns: [String]? = nil) throws {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        dataAvailableEnd = try container.sdkDecodeRequired(.dataAvailableEnd)
+        dataAvailableStart = try container.sdkDecodeRequired(.dataAvailableStart)
+        id = try container.sdkDecodeRequired(.id)
+        livemode = try container.sdkDecodeRequired(.livemode)
+        name = try container.sdkDecodeRequired(.name)
+        object = try container.sdkDecodeRequired(.object)
+        updated = try container.sdkDecodeRequired(.updated)
+        version = try container.sdkDecodeRequired(.version)
+        defaultColumns = try container.sdkDecodeIfPresent(.defaultColumns)
+        try validateLength("id", id, min: nil, max: 5000)
+        try validateLength("name", name, min: nil, max: 5000)
+    }
+}
+
+public extension ReportingReportType {
+    init(
+        dataAvailableEnd: Int,
+        dataAvailableStart: Int,
+        id: String,
+        livemode: Bool,
+        name: String,
+        object: ReportingReportTypeObject,
+        updated: Int,
+        version: Int,
+        defaultColumns: [String]? = nil
+    ) throws {
         (self.dataAvailableEnd, self.dataAvailableStart) = (dataAvailableEnd, dataAvailableStart)
         (self.id, self.livemode) = (id, livemode)
         (self.name, self.object) = (name, object)
         (self.updated, self.version) = (updated, version)
         self.defaultColumns = defaultColumns
-            try validateLength("id", self.id, min: nil, max: 5000)
-            try validateLength("name", self.name, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("name", self.name, min: nil, max: 5000)
     }
 }
 
@@ -215,12 +275,15 @@ public extension ReportingReportType {
 public struct ReportingReportRunObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let reportingReportRun = ReportingReportRunObject(rawValue: "reporting.report_run")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -233,12 +296,15 @@ public struct ReportingReportRunObject: RawRepresentable, Hashable, Codable, Sen
 public struct ReportingReportTypeObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let reportingReportType = ReportingReportTypeObject(rawValue: "reporting.report_type")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

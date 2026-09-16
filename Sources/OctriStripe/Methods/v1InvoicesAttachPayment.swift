@@ -7,27 +7,51 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1InvoicesAttachPaymentMethods {
-    /// Attaches a PaymentIntent or an out-of-band payment to an invoice. Use `payment_intent` or `payment_record` to add the payment to the invoice's payments, and a succeeded PaymentIntent credits the invoice immediately or when it succeeds later.
+    /// Attaches a PaymentIntent or an out-of-band payment to an invoice. Use `payment_intent` or `payment_record` to
+    /// add the payment to the invoice's payments, and a succeeded PaymentIntent credits the invoice immediately or when
+    /// it succeeds later.
     ///
-    /// Attaches a PaymentIntent or an Out of Band Payment to the invoice, adding it to the list of payments . For the PaymentIntent, when the PaymentIntent’s status changes to succeeded , the payment is credited to the invoice, increasing its amount_paid . When the invoice is fully paid, the invoice’s status becomes paid . If the PaymentIntent’s status is already succeeded when it’s attached, it’s credited to the invoice immediately. See: Partial payments to learn more.
+    /// Attaches a PaymentIntent or an Out of Band Payment to the invoice, adding it to the list of payments . For the
+    /// PaymentIntent, when the PaymentIntent’s status changes to succeeded , the payment is credited to the invoice,
+    /// increasing its amount_paid . When the invoice is fully paid, the invoice’s status becomes paid . If the
+    /// PaymentIntent’s status is already succeeded when it’s attached, it’s credited to the invoice immediately. See:
+    /// Partial payments to learn more.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
     /// - paymentIntent: The ID of the PaymentIntent to attach to the invoice.
     /// - paymentRecord: The ID of the PaymentRecord to attach to the invoice.
-    public static func postInvoicesInvoiceAttachPayment(config: ClientConfig, invoice: String, expand: [String]?, paymentIntent: String?, paymentRecord: String?) async throws -> Invoice {
+    public static func postInvoicesInvoiceAttachPayment(
+        config: ClientConfig,
+        invoice: String,
+        expand: [String]?,
+        paymentIntent: String?,
+        paymentRecord: String?
+    ) async throws -> Invoice {
         try validateLength("invoice", invoice, max: 5000)
 
-        if let paymentIntent = paymentIntent {
+        if let paymentIntent {
             try validateLength("payment_intent", paymentIntent, max: 5000)
         }
 
-        if let paymentRecord = paymentRecord {
+        if let paymentRecord {
             try validateLength("payment_record", paymentRecord, max: 5000)
         }
 
-        let requestBody = PostInvoicesInvoiceAttachPaymentRequestBody(expand: expand, paymentIntent: paymentIntent, paymentRecord: paymentRecord)
+        let requestBody = PostInvoicesInvoiceAttachPaymentRequestBody(
+            expand: expand,
+            paymentIntent: paymentIntent,
+            paymentRecord: paymentRecord
+        )
 
-        return try (await sdkRequest("POST", ["/v1/invoices/", sdkEncodePathSegment(sdkWireString(invoice)), "/attach_payment"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostInvoicesInvoiceAttachPayment")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/invoices/", sdkEncodePathSegment(sdkWireString(invoice)), "/attach_payment"].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostInvoicesInvoiceAttachPayment"
+        )).data
     }
 }

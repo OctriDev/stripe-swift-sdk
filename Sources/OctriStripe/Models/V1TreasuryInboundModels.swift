@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1TreasuryInbound domain models
+/// V1TreasuryInbound domain models
 /// Typed representation of the `TreasuryInboundTransfersResourceFailureDetails` API schema.
 public struct TreasuryInboundTransfersResourceFailureDetails: Codable {
     /// Reason for the failure.
@@ -13,21 +13,27 @@ public struct TreasuryInboundTransfersResourceFailureDetails: Codable {
         case code
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension TreasuryInboundTransfersResourceFailureDetails {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.code) else {
-            throw SdkValidationError(field: "code", code: "required", message: "Validation failed for 'code': value is required")
-        }
-        self.code = try container.sdkDecodeRequired(.code)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension TreasuryInboundTransfersResourceFailureDetails {
-    public init(code: TreasuryInboundTransfersResourceFailureDetailsCode) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.code) else {
+            throw SdkValidationError(
+                field: "code",
+                code: "required",
+                message: "Validation failed for 'code': value is required"
+            )
+        }
+        code = try container.sdkDecodeRequired(.code)
+    }
+}
+
+public extension TreasuryInboundTransfersResourceFailureDetails {
+    init(code: TreasuryInboundTransfersResourceFailureDetailsCode) {
         self.code = code
     }
 }
@@ -43,22 +49,22 @@ public struct TreasuryInboundTransfersResourceInboundTransferResourceLinkedFlows
     }
 
     init() {
-        self.receivedDebit = nil
+        receivedDebit = nil
     }
 }
 
 public extension TreasuryInboundTransfersResourceInboundTransferResourceLinkedFlows {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.receivedDebit = try container.sdkDecodeIfPresent(.receivedDebit)
-        if let value = self.receivedDebit {
+        receivedDebit = try container.sdkDecodeIfPresent(.receivedDebit)
+        if let value = receivedDebit {
             try validateLength("received_debit", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension TreasuryInboundTransfersResourceInboundTransferResourceLinkedFlows {
-    public init(receivedDebit: String? = nil) throws {
+    init(receivedDebit: String? = nil) throws {
         self.init()
         self.receivedDebit = receivedDebit
         if let value = self.receivedDebit {
@@ -84,21 +90,21 @@ public struct TreasuryInboundTransfersResourceInboundTransferResourceStatusTrans
     }
 
     init() {
-        (self.canceledAt, self.failedAt, self.succeededAt) = (nil, nil, nil)
+        (canceledAt, failedAt, succeededAt) = (nil, nil, nil)
     }
 }
 
 public extension TreasuryInboundTransfersResourceInboundTransferResourceStatusTransitions {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.canceledAt = try container.sdkDecodeIfPresent(.canceledAt)
-        self.failedAt = try container.sdkDecodeIfPresent(.failedAt)
-        self.succeededAt = try container.sdkDecodeIfPresent(.succeededAt)
+        canceledAt = try container.sdkDecodeIfPresent(.canceledAt)
+        failedAt = try container.sdkDecodeIfPresent(.failedAt)
+        succeededAt = try container.sdkDecodeIfPresent(.succeededAt)
     }
 }
 
 public extension TreasuryInboundTransfersResourceInboundTransferResourceStatusTransitions {
-    public init(canceledAt: Int? = nil, failedAt: Int? = nil, succeededAt: Int? = nil) {
+    init(canceledAt: Int? = nil, failedAt: Int? = nil, succeededAt: Int? = nil) {
         self.init()
         (self.canceledAt, self.failedAt) = (canceledAt, failedAt)
         self.succeededAt = succeededAt
@@ -106,27 +112,39 @@ public extension TreasuryInboundTransfersResourceInboundTransferResourceStatusTr
 }
 
 /// Reason for the failure.
-public struct TreasuryInboundTransfersResourceFailureDetailsCode: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct TreasuryInboundTransfersResourceFailureDetailsCode: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let accountClosed = TreasuryInboundTransfersResourceFailureDetailsCode(rawValue: "account_closed")
     public static let accountFrozen = TreasuryInboundTransfersResourceFailureDetailsCode(rawValue: "account_frozen")
-    public static let bankAccountRestricted = TreasuryInboundTransfersResourceFailureDetailsCode(rawValue: "bank_account_restricted")
-    public static let bankOwnershipChanged = TreasuryInboundTransfersResourceFailureDetailsCode(rawValue: "bank_ownership_changed")
-    public static let debitNotAuthorized = TreasuryInboundTransfersResourceFailureDetailsCode(rawValue: "debit_not_authorized")
-    public static let incorrectAccountHolderAddress = TreasuryInboundTransfersResourceFailureDetailsCode(rawValue: "incorrect_account_holder_address")
-    public static let incorrectAccountHolderName = TreasuryInboundTransfersResourceFailureDetailsCode(rawValue: "incorrect_account_holder_name")
-    public static let incorrectAccountHolderTaxId = TreasuryInboundTransfersResourceFailureDetailsCode(rawValue: "incorrect_account_holder_tax_id")
-    public static let insufficientFunds = TreasuryInboundTransfersResourceFailureDetailsCode(rawValue: "insufficient_funds")
-    public static let invalidAccountNumber = TreasuryInboundTransfersResourceFailureDetailsCode(rawValue: "invalid_account_number")
+    public static let bankAccountRestricted =
+        TreasuryInboundTransfersResourceFailureDetailsCode(rawValue: "bank_account_restricted")
+    public static let bankOwnershipChanged =
+        TreasuryInboundTransfersResourceFailureDetailsCode(rawValue: "bank_ownership_changed")
+    public static let debitNotAuthorized =
+        TreasuryInboundTransfersResourceFailureDetailsCode(rawValue: "debit_not_authorized")
+    public static let incorrectAccountHolderAddress =
+        TreasuryInboundTransfersResourceFailureDetailsCode(rawValue: "incorrect_account_holder_address")
+    public static let incorrectAccountHolderName =
+        TreasuryInboundTransfersResourceFailureDetailsCode(rawValue: "incorrect_account_holder_name")
+    public static let incorrectAccountHolderTaxId =
+        TreasuryInboundTransfersResourceFailureDetailsCode(rawValue: "incorrect_account_holder_tax_id")
+    public static let insufficientFunds =
+        TreasuryInboundTransfersResourceFailureDetailsCode(rawValue: "insufficient_funds")
+    public static let invalidAccountNumber =
+        TreasuryInboundTransfersResourceFailureDetailsCode(rawValue: "invalid_account_number")
     public static let invalidCurrency = TreasuryInboundTransfersResourceFailureDetailsCode(rawValue: "invalid_currency")
     public static let noAccount = TreasuryInboundTransfersResourceFailureDetailsCode(rawValue: "no_account")
     public static let other = TreasuryInboundTransfersResourceFailureDetailsCode(rawValue: "other")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

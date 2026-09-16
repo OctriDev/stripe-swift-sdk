@@ -6,8 +6,11 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1ChargesDisputeMethods {
-    /// Updates the evidence associated with the dispute for a charge and can submit that evidence to the bank. Supply `evidence` fields to respond to the dispute, and use `submit` to control whether the evidence is submitted immediately. Updating any evidence field submits the complete evidence set for review when submission is enabled.
+public extension V1ChargesDisputeMethods {
+    /// Updates the evidence associated with the dispute for a charge and can submit that evidence to the bank. Supply
+    /// `evidence` fields to respond to the dispute, and use `submit` to control whether the evidence is submitted
+    /// immediately. Updating any evidence field submits the complete evidence set for review when submission is
+    /// enabled.
     ///
     /// - Parameters:
     /// - evidence: Evidence to upload, to respond to a dispute. Updating any field
@@ -23,11 +26,31 @@ extension V1ChargesDisputeMethods {
     ///   evidence is staged on the dispute. Staged evidence is visible in the API and
     ///   Dashboard, and can be submitted to the bank by making another request with
     ///   this attribute set to `true` (the default).
-    public static func postChargesChargeDispute(config: ClientConfig, charge: String, evidence: PostChargesChargeDisputeRequestBodyEvidence?, expand: [String]?, metadata: PostChargesChargeDisputeRequestBodyMetadata?, submit: Bool?) async throws -> Dispute {
+    static func postChargesChargeDispute(
+        config: ClientConfig,
+        charge: String,
+        evidence: PostChargesChargeDisputeRequestBodyEvidence?,
+        expand: [String]?,
+        metadata: PostChargesChargeDisputeRequestBodyMetadata?,
+        submit: Bool?
+    ) async throws -> Dispute {
         try validateLength("charge", charge, max: 5000)
 
-        let requestBody = PostChargesChargeDisputeRequestBody(evidence: evidence, expand: expand, metadata: metadata, submit: submit)
+        let requestBody = PostChargesChargeDisputeRequestBody(
+            evidence: evidence,
+            expand: expand,
+            metadata: metadata,
+            submit: submit
+        )
 
-        return try (await sdkRequest("POST", ["/v1/charges/", sdkEncodePathSegment(sdkWireString(charge)), "/dispute"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostChargesChargeDispute")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/charges/", sdkEncodePathSegment(sdkWireString(charge)), "/dispute"].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostChargesChargeDispute"
+        )).data
     }
 }

@@ -6,27 +6,46 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1AccountsMethods {
-    /// Deletes a connected account managed by the authenticated user's platform. Test-mode accounts can be deleted at any time, while eligible live-mode accounts must have zero balances before deletion.
+public extension V1AccountsMethods {
+    /// Deletes a connected account managed by the authenticated user's platform. Test-mode accounts can be deleted at
+    /// any time, while eligible live-mode accounts must have zero balances before deletion.
     ///
-    /// With Connect, you can delete accounts you manage. Test-mode accounts can be deleted at any time. Live-mode accounts that have access to the standard dashboard and Stripe is responsible for negative account balances cannot be deleted, which includes Standard accounts. All other Live-mode accounts, can be deleted when all balances are zero. If you want to delete your own account, use the account information tab in your account settings instead.
-    public static func deleteAccountsAccount(config: ClientConfig, account: String) async throws -> DeletedAccount {
+    /// With Connect, you can delete accounts you manage. Test-mode accounts can be deleted at any time. Live-mode
+    /// accounts that have access to the standard dashboard and Stripe is responsible for negative account balances
+    /// cannot be deleted, which includes Standard accounts. All other Live-mode accounts, can be deleted when all
+    /// balances are zero. If you want to delete your own account, use the account information tab in your account
+    /// settings instead.
+    static func deleteAccountsAccount(config: ClientConfig, account: String) async throws -> DeletedAccount {
         try validateLength("account", account, max: 5000)
 
-        return try (await sdkRequest("DELETE", ["/v1/accounts/", sdkEncodePathSegment(sdkWireString(account))].joined(), config: config, decoder: .json, operationId: "DeleteAccountsAccount")).data
+        return try await (sdkRequest(
+            "DELETE",
+            ["/v1/accounts/", sdkEncodePathSegment(sdkWireString(account))].joined(),
+            config: config,
+            decoder: .json,
+            operationId: "DeleteAccountsAccount"
+        )).data
     }
 
-    /// Retrieves the details of a connected account identified by `account`. Use `expand` to include additional nested fields in the account response when needed.
+    /// Retrieves the details of a connected account identified by `account`. Use `expand` to include additional nested
+    /// fields in the account response when needed.
     ///
     /// Retrieves the details of an account.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func getAccountsAccount(config: ClientConfig, account: String, expand: [String]?) async throws -> Account {
+    static func getAccountsAccount(config: ClientConfig, account: String, expand: [String]?) async throws -> Account {
         try validateLength("account", account, max: 5000)
 
-        return try (await sdkRequest("GET", ["/v1/accounts/", sdkEncodePathSegment(sdkWireString(account))].joined(), config: config, query: [
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-        ], decoder: .json, operationId: "GetAccountsAccount")).data
+        return try await (sdkRequest(
+            "GET",
+            ["/v1/accounts/", sdkEncodePathSegment(sdkWireString(account))].joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+            ],
+            decoder: .json,
+            operationId: "GetAccountsAccount"
+        )).data
     }
 }

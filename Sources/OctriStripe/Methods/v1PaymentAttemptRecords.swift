@@ -7,7 +7,8 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1PaymentAttemptRecordsMethods {
-    /// Lists Payment Attempt Records attached to a specified Payment Record. Supply `payment_record` to scope the results, use `limit` to control page size, and use `starting_after` to retrieve subsequent pages.
+    /// Lists Payment Attempt Records attached to a specified Payment Record. Supply `payment_record` to scope the
+    /// results, use `limit` to control page size, and use `starting_after` to retrieve subsequent pages.
     ///
     /// List all the Payment Attempt Records attached to the specified Payment Record.
     ///
@@ -21,32 +22,51 @@ public enum V1PaymentAttemptRecordsMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    public static func getPaymentAttemptRecords(config: ClientConfig, paymentRecord: String, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetPaymentAttemptRecordsResponse {
+    public static func getPaymentAttemptRecords(
+        config: ClientConfig,
+        paymentRecord: String,
+        expand: [String]?,
+        limit: Int?,
+        startingAfter: String?
+    ) async throws -> GetPaymentAttemptRecordsResponse {
         try validateLength("payment_record", paymentRecord, max: 5000)
 
-        if let startingAfter = startingAfter {
+        if let startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try (await sdkRequest("GET", "/v1/payment_attempt_records", config: config, query: [
+        return try await (sdkRequest("GET", "/v1/payment_attempt_records", config: config, query: [
             SdkQueryParameter("payment_record", value: paymentRecord),
             SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
             SdkQueryParameter("limit", value: limit),
             SdkQueryParameter("starting_after", value: startingAfter),
         ], decoder: .json, operationId: "GetPaymentAttemptRecords")).data
     }
-    /// Retrieves a Payment Attempt Record by its identifier. Use `id` to select the individual payment attempt and `expand` to request additional fields in the returned record.
+
+    /// Retrieves a Payment Attempt Record by its identifier. Use `id` to select the individual payment attempt and
+    /// `expand` to request additional fields in the returned record.
     ///
     /// Retrieves a Payment Attempt Record with the given ID
     ///
     /// - Parameters:
     /// - id: The ID of the Payment Attempt Record.
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func getPaymentAttemptRecordsId(config: ClientConfig, id: String, expand: [String]?) async throws -> PaymentAttemptRecord {
+    public static func getPaymentAttemptRecordsId(
+        config: ClientConfig,
+        id: String,
+        expand: [String]?
+    ) async throws -> PaymentAttemptRecord {
         try validateLength("id", id, max: 5000)
 
-        return try (await sdkRequest("GET", ["/v1/payment_attempt_records/", sdkEncodePathSegment(sdkWireString(id))].joined(), config: config, query: [
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-        ], decoder: .json, operationId: "GetPaymentAttemptRecordsId")).data
+        return try await (sdkRequest(
+            "GET",
+            ["/v1/payment_attempt_records/", sdkEncodePathSegment(sdkWireString(id))].joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+            ],
+            decoder: .json,
+            operationId: "GetPaymentAttemptRecordsId"
+        )).data
     }
 }

@@ -7,17 +7,34 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1AccountsUnrejectMethods {
-    /// Unrejects an account that your platform previously rejected. Use `account` to identify the account; unrejection can restore charges or payouts only when no separate restrictions remain.
+    /// Unrejects an account that your platform previously rejected. Use `account` to identify the account; unrejection
+    /// can restore charges or payouts only when no separate restrictions remain.
     ///
-    /// With Connect, you can unreject accounts that you have previously rejected. Only accounts that were rejected by your platform can be unrejected. This API cannot be used to unreject accounts that were rejected by Stripe. Unreject will only enable charges and/or payouts if there are no other restrictions other than those placed by a previous rejection. If you have separately paused charges and/or payouts outside of rejection, those pauses will remain in place after unrejection.
+    /// With Connect, you can unreject accounts that you have previously rejected. Only accounts that were rejected by
+    /// your platform can be unrejected. This API cannot be used to unreject accounts that were rejected by Stripe.
+    /// Unreject will only enable charges and/or payouts if there are no other restrictions other than those placed by a
+    /// previous rejection. If you have separately paused charges and/or payouts outside of rejection, those pauses will
+    /// remain in place after unrejection.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postAccountsAccountUnreject(config: ClientConfig, account: String, expand: [String]?) async throws -> Account {
+    public static func postAccountsAccountUnreject(
+        config: ClientConfig,
+        account: String,
+        expand: [String]?
+    ) async throws -> Account {
         try validateLength("account", account, max: 5000)
 
         let requestBody = PostAccountsAccountUnrejectRequestBody(expand: expand)
 
-        return try (await sdkRequest("POST", ["/v1/accounts/", sdkEncodePathSegment(sdkWireString(account)), "/unreject"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostAccountsAccountUnreject")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/accounts/", sdkEncodePathSegment(sdkWireString(account)), "/unreject"].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostAccountsAccountUnreject"
+        )).data
     }
 }

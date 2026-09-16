@@ -229,7 +229,8 @@ extension SdkMethodTests {
         )
     }
 
-    func testGetFinancialConnectionsAccountsAccountGetFinancialConnectionsX9df8685ee6ReachesMockAndDecodesResponse() async throws {
+    func testGetFinancialConnectionsAccountsAccountGetFinancialConnectionsX9df8685ee6ReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -253,7 +254,8 @@ extension SdkMethodTests {
         )
     }
 
-    func testGetFinancialConnectionsAccountsAccountOwnersGetFinancialConneX1c94b27312ReachesMockAndDecodesResponse() async throws {
+    func testGetFinancialConnectionsAccountsAccountOwnersGetFinancialConneX1c94b27312ReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -277,7 +279,8 @@ extension SdkMethodTests {
         )
     }
 
-    func testGetFinancialConnectionsSessionsSessionGetFinancialConnectionsXd328f442d6ReachesMockAndDecodesResponse() async throws {
+    func testGetFinancialConnectionsSessionsSessionGetFinancialConnectionsXd328f442d6ReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -297,7 +300,8 @@ extension SdkMethodTests {
         )
     }
 
-    func testGetFinancialConnectionsTransactionsGetFinancialConnectionsTransactionsReachesMockAndDecodesResponse() async throws {
+    func testGetFinancialConnectionsTransactionsGetFinancialConnectionsTransactionsReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -322,7 +326,8 @@ extension SdkMethodTests {
         )
     }
 
-    func testGetFinancialConnectionsTransactionsTransactionGetFinancialConXb6df86722dReachesMockAndDecodesResponse() async throws {
+    func testGetFinancialConnectionsTransactionsTransactionGetFinancialConXb6df86722dReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -413,7 +418,8 @@ extension SdkMethodTests {
         )
     }
 
-    func testGetIdentityVerificationReportsReportGetIdentityVerificationReportsReportReachesMockAndDecodesResponse() async throws {
+    func testGetIdentityVerificationReportsReportGetIdentityVerificationReportsReportReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -462,7 +468,8 @@ extension SdkMethodTests {
         )
     }
 
-    func testGetIdentityVerificationSessionsSessionGetIdentityVerificationX3176451fd5ReachesMockAndDecodesResponse() async throws {
+    func testGetIdentityVerificationSessionsSessionGetIdentityVerificationX3176451fd5ReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }

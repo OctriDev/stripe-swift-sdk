@@ -3,12 +3,16 @@
 
 import Foundation
 
-// V1Connect domain models
+/// V1Connect domain models
 public extension ConnectEmbeddedPaymentsFeatures {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.capturePayments) else {
-            throw SdkValidationError(field: "capture_payments", code: "required", message: "Validation failed for 'capture_payments': value is required")
+            throw SdkValidationError(
+                field: "capture_payments",
+                code: "required",
+                message: "Validation failed for 'capture_payments': value is required"
+            )
         }
         guard container.contains(.destinationOnBehalfOfChargeManagement) else {
             let field = "destination_on_behalf_of_charge_management"
@@ -19,24 +23,42 @@ public extension ConnectEmbeddedPaymentsFeatures {
             )
         }
         guard container.contains(.disputeManagement) else {
-            throw SdkValidationError(field: "dispute_management", code: "required", message: "Validation failed for 'dispute_management': value is required")
+            throw SdkValidationError(
+                field: "dispute_management",
+                code: "required",
+                message: "Validation failed for 'dispute_management': value is required"
+            )
         }
         guard container.contains(.refundManagement) else {
-            throw SdkValidationError(field: "refund_management", code: "required", message: "Validation failed for 'refund_management': value is required")
+            throw SdkValidationError(
+                field: "refund_management",
+                code: "required",
+                message: "Validation failed for 'refund_management': value is required"
+            )
         }
         guard container.contains(.smartDisputesManagement) else {
-            throw SdkValidationError(field: "smart_disputes_management", code: "required", message: "Validation failed for 'smart_disputes_management': value is required")
+            throw SdkValidationError(
+                field: "smart_disputes_management",
+                code: "required",
+                message: "Validation failed for 'smart_disputes_management': value is required"
+            )
         }
-        self.capturePayments = try container.sdkDecodeRequired(.capturePayments)
-        self.destinationOnBehalfOfChargeManagement = try container.sdkDecodeRequired(.destinationOnBehalfOfChargeManagement)
-        self.disputeManagement = try container.sdkDecodeRequired(.disputeManagement)
-        self.refundManagement = try container.sdkDecodeRequired(.refundManagement)
-        self.smartDisputesManagement = try container.sdkDecodeRequired(.smartDisputesManagement)
+        capturePayments = try container.sdkDecodeRequired(.capturePayments)
+        destinationOnBehalfOfChargeManagement = try container.sdkDecodeRequired(.destinationOnBehalfOfChargeManagement)
+        disputeManagement = try container.sdkDecodeRequired(.disputeManagement)
+        refundManagement = try container.sdkDecodeRequired(.refundManagement)
+        smartDisputesManagement = try container.sdkDecodeRequired(.smartDisputesManagement)
     }
 }
 
 public extension ConnectEmbeddedPaymentsFeatures {
-    public init(capturePayments: Bool, destinationOnBehalfOfChargeManagement: Bool, disputeManagement: Bool, refundManagement: Bool, smartDisputesManagement: Bool) {
+    init(
+        capturePayments: Bool,
+        destinationOnBehalfOfChargeManagement: Bool,
+        disputeManagement: Bool,
+        refundManagement: Bool,
+        smartDisputesManagement: Bool
+    ) {
         self.capturePayments = capturePayments
         self.destinationOnBehalfOfChargeManagement = destinationOnBehalfOfChargeManagement
         (self.disputeManagement, self.refundManagement) = (disputeManagement, refundManagement)
@@ -56,25 +78,35 @@ public struct ConnectEmbeddedPayoutsConfig: Codable {
         case features
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension ConnectEmbeddedPayoutsConfig {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.enabled) else {
-            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
-        }
-        guard container.contains(.features) else {
-            throw SdkValidationError(field: "features", code: "required", message: "Validation failed for 'features': value is required")
-        }
-        self.enabled = try container.sdkDecodeRequired(.enabled)
-        self.features = try container.sdkDecodeRequired(.features)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension ConnectEmbeddedPayoutsConfig {
-    public init(enabled: Bool, features: ConnectEmbeddedPayoutsFeatures) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.enabled) else {
+            throw SdkValidationError(
+                field: "enabled",
+                code: "required",
+                message: "Validation failed for 'enabled': value is required"
+            )
+        }
+        guard container.contains(.features) else {
+            throw SdkValidationError(
+                field: "features",
+                code: "required",
+                message: "Validation failed for 'features': value is required"
+            )
+        }
+        enabled = try container.sdkDecodeRequired(.enabled)
+        features = try container.sdkDecodeRequired(.features)
+    }
+}
+
+public extension ConnectEmbeddedPayoutsConfig {
+    init(enabled: Bool, features: ConnectEmbeddedPayoutsFeatures) {
         (self.enabled, self.features) = (enabled, features)
     }
 }
@@ -108,37 +140,65 @@ public struct ConnectEmbeddedPayoutsFeatures: Codable {
         case standardPayouts = "standard_payouts"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension ConnectEmbeddedPayoutsFeatures {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.disableStripeUserAuthentication) else {
-            throw SdkValidationError(field: "disable_stripe_user_authentication", code: "required", message: "Validation failed for 'disable_stripe_user_authentication': value is required")
-        }
-        guard container.contains(.editPayoutSchedule) else {
-            throw SdkValidationError(field: "edit_payout_schedule", code: "required", message: "Validation failed for 'edit_payout_schedule': value is required")
-        }
-        guard container.contains(.externalAccountCollection) else {
-            throw SdkValidationError(field: "external_account_collection", code: "required", message: "Validation failed for 'external_account_collection': value is required")
-        }
-        guard container.contains(.instantPayouts) else {
-            throw SdkValidationError(field: "instant_payouts", code: "required", message: "Validation failed for 'instant_payouts': value is required")
-        }
-        guard container.contains(.standardPayouts) else {
-            throw SdkValidationError(field: "standard_payouts", code: "required", message: "Validation failed for 'standard_payouts': value is required")
-        }
-        self.disableStripeUserAuthentication = try container.sdkDecodeRequired(.disableStripeUserAuthentication)
-        self.editPayoutSchedule = try container.sdkDecodeRequired(.editPayoutSchedule)
-        self.externalAccountCollection = try container.sdkDecodeRequired(.externalAccountCollection)
-        self.instantPayouts = try container.sdkDecodeRequired(.instantPayouts)
-        self.standardPayouts = try container.sdkDecodeRequired(.standardPayouts)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension ConnectEmbeddedPayoutsFeatures {
-    public init(disableStripeUserAuthentication: Bool, editPayoutSchedule: Bool, externalAccountCollection: Bool, instantPayouts: Bool, standardPayouts: Bool) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.disableStripeUserAuthentication) else {
+            throw SdkValidationError(
+                field: "disable_stripe_user_authentication",
+                code: "required",
+                message: "Validation failed for 'disable_stripe_user_authentication': value is required"
+            )
+        }
+        guard container.contains(.editPayoutSchedule) else {
+            throw SdkValidationError(
+                field: "edit_payout_schedule",
+                code: "required",
+                message: "Validation failed for 'edit_payout_schedule': value is required"
+            )
+        }
+        guard container.contains(.externalAccountCollection) else {
+            throw SdkValidationError(
+                field: "external_account_collection",
+                code: "required",
+                message: "Validation failed for 'external_account_collection': value is required"
+            )
+        }
+        guard container.contains(.instantPayouts) else {
+            throw SdkValidationError(
+                field: "instant_payouts",
+                code: "required",
+                message: "Validation failed for 'instant_payouts': value is required"
+            )
+        }
+        guard container.contains(.standardPayouts) else {
+            throw SdkValidationError(
+                field: "standard_payouts",
+                code: "required",
+                message: "Validation failed for 'standard_payouts': value is required"
+            )
+        }
+        disableStripeUserAuthentication = try container.sdkDecodeRequired(.disableStripeUserAuthentication)
+        editPayoutSchedule = try container.sdkDecodeRequired(.editPayoutSchedule)
+        externalAccountCollection = try container.sdkDecodeRequired(.externalAccountCollection)
+        instantPayouts = try container.sdkDecodeRequired(.instantPayouts)
+        standardPayouts = try container.sdkDecodeRequired(.standardPayouts)
+    }
+}
+
+public extension ConnectEmbeddedPayoutsFeatures {
+    init(
+        disableStripeUserAuthentication: Bool,
+        editPayoutSchedule: Bool,
+        externalAccountCollection: Bool,
+        instantPayouts: Bool,
+        standardPayouts: Bool
+    ) {
         self.disableStripeUserAuthentication = disableStripeUserAuthentication
         self.editPayoutSchedule = editPayoutSchedule
         (self.externalAccountCollection, self.instantPayouts) = (externalAccountCollection, instantPayouts)

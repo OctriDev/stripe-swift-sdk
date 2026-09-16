@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1InvoiceitemsMethods {
-    public struct PostInvoiceitemsOptions: Codable {
+public extension V1InvoiceitemsMethods {
+    struct PostInvoiceitemsOptions: Codable {
         public var amount: Int?
         public var currency: String?
         public var customer: String?
@@ -32,7 +32,8 @@ extension V1InvoiceitemsMethods {
         public init() {}
     }
 
-    /// Creates an item to be added to a draft invoice (up to 250 items per invoice). If no invoice is specified, the item will be on the next invoice created for the customer specified.
+    /// Creates an item to be added to a draft invoice (up to 250 items per invoice). If no invoice is specified, the
+    /// item will be on the next invoice created for the customer specified.
     ///
     /// - Parameters:
     /// - amount: The integer amount in cents (or local equivalent) of the charge to
@@ -101,7 +102,7 @@ extension V1InvoiceitemsMethods {
     ///   `unit_amount_decimal` will be multiplied by the quantity to get the full
     ///   amount. Passing in a negative `unit_amount_decimal` will reduce the
     ///   `amount_due` on the invoice. Accepts at most 12 decimal places.
-    public static func postInvoiceitems(config: ClientConfig, options: PostInvoiceitemsOptions) async throws -> Invoiceitem {
+    static func postInvoiceitems(config: ClientConfig, options: PostInvoiceitemsOptions) async throws -> Invoiceitem {
         if let customer = options.customer {
             try validateLength("customer", customer, max: 5000)
         }
@@ -124,6 +125,14 @@ extension V1InvoiceitemsMethods {
 
         let requestBody = PostInvoiceitemsRequestBody(options: options)
 
-        return try (await sdkRequest("POST", "/v1/invoiceitems", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostInvoiceitems")).data
+        return try await (sdkRequest(
+            "POST",
+            "/v1/invoiceitems",
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostInvoiceitems"
+        )).data
     }
 }

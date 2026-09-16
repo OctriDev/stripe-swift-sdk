@@ -7,9 +7,11 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1QuotesLineItemsMethods {
-    /// Lists all line items associated with a quote. Use cursor parameters to retrieve additional pages and `expand` to include related fields in each result. Use `page` and `per_page` to paginate the results.
+    /// Lists all line items associated with a quote. Use cursor parameters to retrieve additional pages and `expand` to
+    /// include related fields in each result. Use `page` and `per_page` to paginate the results.
     ///
-    /// When retrieving a quote, there is an includable line_items property containing the first handful of those items. There is also a URL where you can retrieve the full (paginated) list of line items.
+    /// When retrieving a quote, there is an includable line_items property containing the first handful of those items.
+    /// There is also a URL where you can retrieve the full (paginated) list of line items.
     ///
     /// - Parameters:
     /// - endingBefore: A cursor for use in pagination. `ending_before` is an object
@@ -25,22 +27,36 @@ public enum V1QuotesLineItemsMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    public static func getQuotesQuoteLineItems(config: ClientConfig, quote: String, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetQuotesQuoteLineItemsResponse {
+    public static func getQuotesQuoteLineItems(
+        config: ClientConfig,
+        quote: String,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        startingAfter: String?
+    ) async throws -> GetQuotesQuoteLineItemsResponse {
         try validateLength("quote", quote, max: 5000)
 
-        if let endingBefore = endingBefore {
+        if let endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let startingAfter = startingAfter {
+        if let startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try (await sdkRequest("GET", ["/v1/quotes/", sdkEncodePathSegment(sdkWireString(quote)), "/line_items"].joined(), config: config, query: [
-            SdkQueryParameter("ending_before", value: endingBefore),
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            SdkQueryParameter("limit", value: limit),
-            SdkQueryParameter("starting_after", value: startingAfter),
-        ], decoder: .json, operationId: "GetQuotesQuoteLineItems")).data
+        return try await (sdkRequest(
+            "GET",
+            ["/v1/quotes/", sdkEncodePathSegment(sdkWireString(quote)), "/line_items"].joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("ending_before", value: endingBefore),
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+                SdkQueryParameter("limit", value: limit),
+                SdkQueryParameter("starting_after", value: startingAfter),
+            ],
+            decoder: .json,
+            operationId: "GetQuotesQuoteLineItems"
+        )).data
     }
 }

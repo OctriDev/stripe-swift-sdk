@@ -6,10 +6,15 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1DisputesMethods {
-    /// Updates a dispute with evidence and related metadata. Supply evidence fields to respond to the dispute, and use `submit` to choose whether the evidence is submitted immediately or staged for later submission.
+public extension V1DisputesMethods {
+    /// Updates a dispute with evidence and related metadata. Supply evidence fields to respond to the dispute, and use
+    /// `submit` to choose whether the evidence is submitted immediately or staged for later submission.
     ///
-    /// When you get a dispute, contacting your customer is always the best first step. If that doesn’t work, you can submit evidence to help us resolve the dispute in your favor. You can do this in your dashboard, but if you prefer, you can use the API to submit evidence programmatically. Depending on your dispute type, different evidence fields will give you a better chance of winning your dispute. To figure out which evidence fields to provide, see our guide to dispute types.
+    /// When you get a dispute, contacting your customer is always the best first step. If that doesn’t work, you can
+    /// submit evidence to help us resolve the dispute in your favor. You can do this in your dashboard, but if you
+    /// prefer, you can use the API to submit evidence programmatically. Depending on your dispute type, different
+    /// evidence fields will give you a better chance of winning your dispute. To figure out which evidence fields to
+    /// provide, see our guide to dispute types.
     ///
     /// - Parameters:
     /// - evidence: Evidence to upload, to respond to a dispute. Updating any field
@@ -25,11 +30,31 @@ extension V1DisputesMethods {
     ///   evidence is staged on the dispute. Staged evidence is visible in the API and
     ///   Dashboard, and can be submitted to the bank by making another request with
     ///   this attribute set to `true` (the default).
-    public static func postDisputesDispute(config: ClientConfig, dispute: String, evidence: PostDisputesDisputeRequestBodyEvidence?, expand: [String]?, metadata: PostDisputesDisputeRequestBodyMetadata?, submit: Bool?) async throws -> Dispute {
+    static func postDisputesDispute(
+        config: ClientConfig,
+        dispute: String,
+        evidence: PostDisputesDisputeRequestBodyEvidence?,
+        expand: [String]?,
+        metadata: PostDisputesDisputeRequestBodyMetadata?,
+        submit: Bool?
+    ) async throws -> Dispute {
         try validateLength("dispute", dispute, max: 5000)
 
-        let requestBody = PostDisputesDisputeRequestBody(evidence: evidence, expand: expand, metadata: metadata, submit: submit)
+        let requestBody = PostDisputesDisputeRequestBody(
+            evidence: evidence,
+            expand: expand,
+            metadata: metadata,
+            submit: submit
+        )
 
-        return try (await sdkRequest("POST", ["/v1/disputes/", sdkEncodePathSegment(sdkWireString(dispute))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostDisputesDispute")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/disputes/", sdkEncodePathSegment(sdkWireString(dispute))].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostDisputesDispute"
+        )).data
     }
 }

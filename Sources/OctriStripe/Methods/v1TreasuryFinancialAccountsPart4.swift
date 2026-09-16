@@ -6,18 +6,30 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1TreasuryFinancialAccountsMethods {
-    /// Retrieves the details of a specific FinancialAccount. Use `financial_account` to identify the account and `expand` to request additional response fields.
+public extension V1TreasuryFinancialAccountsMethods {
+    /// Retrieves the details of a specific FinancialAccount. Use `financial_account` to identify the account and
+    /// `expand` to request additional response fields.
     ///
     /// Retrieves the details of a FinancialAccount.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func getTreasuryFinancialAccountsFinancialAccount(config: ClientConfig, financialAccount: String, expand: [String]?) async throws -> TreasuryFinancialAccount {
+    static func getTreasuryFinancialAccountsFinancialAccount(
+        config: ClientConfig,
+        financialAccount: String,
+        expand: [String]?
+    ) async throws -> TreasuryFinancialAccount {
         try validateLength("financial_account", financialAccount, max: 5000)
 
-        return try (await sdkRequest("GET", ["/v1/treasury/financial_accounts/", sdkEncodePathSegment(sdkWireString(financialAccount))].joined(), config: config, query: [
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-        ], decoder: .json, operationId: "GetTreasuryFinancialAccountsFinancialAccount")).data
+        return try await (sdkRequest(
+            "GET",
+            ["/v1/treasury/financial_accounts/", sdkEncodePathSegment(sdkWireString(financialAccount))].joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+            ],
+            decoder: .json,
+            operationId: "GetTreasuryFinancialAccountsFinancialAccount"
+        )).data
     }
 }

@@ -6,18 +6,31 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1TreasuryReceivedDebitsMethods {
-    /// Retrieves a specific received debit by its unique identifier. Use `expand` when you need selected fields returned in expanded form.
+public extension V1TreasuryReceivedDebitsMethods {
+    /// Retrieves a specific received debit by its unique identifier. Use `expand` when you need selected fields
+    /// returned in expanded form.
     ///
-    /// Retrieves the details of an existing ReceivedDebit by passing the unique ReceivedDebit ID from the ReceivedDebit list
+    /// Retrieves the details of an existing ReceivedDebit by passing the unique ReceivedDebit ID from the ReceivedDebit
+    /// list
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func getTreasuryReceivedDebitsId(config: ClientConfig, id: String, expand: [String]?) async throws -> TreasuryReceivedDebit {
+    static func getTreasuryReceivedDebitsId(
+        config: ClientConfig,
+        id: String,
+        expand: [String]?
+    ) async throws -> TreasuryReceivedDebit {
         try validateLength("id", id, max: 5000)
 
-        return try (await sdkRequest("GET", ["/v1/treasury/received_debits/", sdkEncodePathSegment(sdkWireString(id))].joined(), config: config, query: [
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-        ], decoder: .json, operationId: "GetTreasuryReceivedDebitsId")).data
+        return try await (sdkRequest(
+            "GET",
+            ["/v1/treasury/received_debits/", sdkEncodePathSegment(sdkWireString(id))].joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+            ],
+            decoder: .json,
+            operationId: "GetTreasuryReceivedDebitsId"
+        )).data
     }
 }

@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1IssuingPersonalization domain models
+/// V1IssuingPersonalization domain models
 /// A Personalization Design is a logical grouping of a Physical Bundle, card logo, and carrier text that represents
 /// a product line.
 public struct IssuingPersonalizationDesign: Codable {
@@ -55,37 +55,53 @@ public struct IssuingPersonalizationDesign: Codable {
         case name
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension IssuingPersonalizationDesign {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.created = try container.sdkDecodeRequired(.created)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.livemode = try container.sdkDecodeRequired(.livemode)
-        self.metadata = try container.sdkDecodeRequired(.metadata)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.physicalBundle = try container.sdkDecodeRequired(.physicalBundle)
-        self.preferences = try container.sdkDecodeRequired(.preferences)
-        self.rejectionReasons = try container.sdkDecodeRequired(.rejectionReasons)
-        self.status = try container.sdkDecodeRequired(.status)
-        self.cardLogo = try container.sdkDecodeIfPresent(.cardLogo)
-        self.carrierText = try container.sdkDecodeIfPresent(.carrierText)
-        self.lookupKey = try container.sdkDecodeIfPresent(.lookupKey)
-        self.name = try container.sdkDecodeIfPresent(.name)
-            try validateLength("id", self.id, min: nil, max: 5000)
-        if let value = self.lookupKey {
+        created = try container.sdkDecodeRequired(.created)
+        id = try container.sdkDecodeRequired(.id)
+        livemode = try container.sdkDecodeRequired(.livemode)
+        metadata = try container.sdkDecodeRequired(.metadata)
+        object = try container.sdkDecodeRequired(.object)
+        physicalBundle = try container.sdkDecodeRequired(.physicalBundle)
+        preferences = try container.sdkDecodeRequired(.preferences)
+        rejectionReasons = try container.sdkDecodeRequired(.rejectionReasons)
+        status = try container.sdkDecodeRequired(.status)
+        cardLogo = try container.sdkDecodeIfPresent(.cardLogo)
+        carrierText = try container.sdkDecodeIfPresent(.carrierText)
+        lookupKey = try container.sdkDecodeIfPresent(.lookupKey)
+        name = try container.sdkDecodeIfPresent(.name)
+        try validateLength("id", id, min: nil, max: 5000)
+        if let value = lookupKey {
             try validateLength("lookup_key", value, min: nil, max: 5000)
         }
-        if let value = self.name {
+        if let value = name {
             try validateLength("name", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension IssuingPersonalizationDesign {
-    public init(created: Int, id: String, livemode: Bool, metadata: [String: String], object: IssuingPersonalizationDesignObject, physicalBundle: IssuingPersonalizationDesignPhysicalBundle, preferences: IssuingPersonalizationDesignPreferences, rejectionReasons: IssuingPersonalizationDesignRejectionReasons, status: IssuingPersonalizationDesignStatus, cardLogo: IssuingPersonalizationDesignCardLogo? = nil, carrierText: IssuingPersonalizationDesignCarrierTextX2fcef158? = nil, lookupKey: String? = nil, name: String? = nil) throws {
+    init(
+        created: Int,
+        id: String,
+        livemode: Bool,
+        metadata: [String: String],
+        object: IssuingPersonalizationDesignObject,
+        physicalBundle: IssuingPersonalizationDesignPhysicalBundle,
+        preferences: IssuingPersonalizationDesignPreferences,
+        rejectionReasons: IssuingPersonalizationDesignRejectionReasons,
+        status: IssuingPersonalizationDesignStatus,
+        cardLogo: IssuingPersonalizationDesignCardLogo? = nil,
+        carrierText: IssuingPersonalizationDesignCarrierTextX2fcef158? = nil,
+        lookupKey: String? = nil,
+        name: String? = nil
+    ) throws {
         (self.created, self.id) = (created, id)
         (self.livemode, self.metadata) = (livemode, metadata)
         (self.object, self.physicalBundle) = (object, physicalBundle)
@@ -93,7 +109,7 @@ public extension IssuingPersonalizationDesign {
         (self.status, self.cardLogo) = (status, cardLogo)
         (self.carrierText, self.lookupKey) = (carrierText, lookupKey)
         self.name = name
-            try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
         if let value = self.lookupKey {
             try validateLength("lookup_key", value, min: nil, max: 5000)
         }
@@ -109,21 +125,31 @@ public enum IssuingPersonalizationDesignCardLogo {
 }
 
 extension IssuingPersonalizationDesignCardLogo: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for IssuingPersonalizationDesignCardLogo")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for IssuingPersonalizationDesignCardLogo"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(File2.self) { return .file2(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(File2.self) {
+            return .file2(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -133,7 +159,6 @@ extension IssuingPersonalizationDesignCardLogo: Codable {
         case let .file2(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum IssuingPersonalizationDesignCarrierTextX2fcef158 {
@@ -141,24 +166,30 @@ public enum IssuingPersonalizationDesignCarrierTextX2fcef158 {
 }
 
 extension IssuingPersonalizationDesignCarrierTextX2fcef158: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for IssuingPersonalizationDesignCarrierTextX2fcef158")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for IssuingPersonalizationDesignCarrierTextX2fcef158"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             IssuingPersonalizationDesignCarrierText.self
         ) {
-            return             .issuingPersonalizationDesignCarrierText(value)
+            return .issuingPersonalizationDesignCarrierText(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -167,7 +198,6 @@ extension IssuingPersonalizationDesignCarrierTextX2fcef158: Codable {
         case let .issuingPersonalizationDesignCarrierText(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum IssuingPersonalizationDesignPhysicalBundle {
@@ -176,21 +206,31 @@ public enum IssuingPersonalizationDesignPhysicalBundle {
 }
 
 extension IssuingPersonalizationDesignPhysicalBundle: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for IssuingPersonalizationDesignPhysicalBundle")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for IssuingPersonalizationDesignPhysicalBundle"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(IssuingPhysicalBundle.self) { return .issuingPhysicalBundle(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(IssuingPhysicalBundle.self) {
+            return .issuingPhysicalBundle(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -200,7 +240,6 @@ extension IssuingPersonalizationDesignPhysicalBundle: Codable {
         case let .issuingPhysicalBundle(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Typed representation of the `IssuingPersonalizationDesignCarrierText` API schema.
@@ -222,34 +261,39 @@ public struct IssuingPersonalizationDesignCarrierText: Codable {
     }
 
     init() {
-        (self.footerBody, self.footerTitle, self.headerBody, self.headerTitle) = (nil, nil, nil, nil)
+        (footerBody, footerTitle, headerBody, headerTitle) = (nil, nil, nil, nil)
     }
 }
 
 public extension IssuingPersonalizationDesignCarrierText {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.footerBody = try container.sdkDecodeIfPresent(.footerBody)
-        self.footerTitle = try container.sdkDecodeIfPresent(.footerTitle)
-        self.headerBody = try container.sdkDecodeIfPresent(.headerBody)
-        self.headerTitle = try container.sdkDecodeIfPresent(.headerTitle)
-        if let value = self.footerBody {
+        footerBody = try container.sdkDecodeIfPresent(.footerBody)
+        footerTitle = try container.sdkDecodeIfPresent(.footerTitle)
+        headerBody = try container.sdkDecodeIfPresent(.headerBody)
+        headerTitle = try container.sdkDecodeIfPresent(.headerTitle)
+        if let value = footerBody {
             try validateLength("footer_body", value, min: nil, max: 5000)
         }
-        if let value = self.footerTitle {
+        if let value = footerTitle {
             try validateLength("footer_title", value, min: nil, max: 5000)
         }
-        if let value = self.headerBody {
+        if let value = headerBody {
             try validateLength("header_body", value, min: nil, max: 5000)
         }
-        if let value = self.headerTitle {
+        if let value = headerTitle {
             try validateLength("header_title", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension IssuingPersonalizationDesignCarrierText {
-    public init(footerBody: String? = nil, footerTitle: String? = nil, headerBody: String? = nil, headerTitle: String? = nil) throws {
+    init(
+        footerBody: String? = nil,
+        footerTitle: String? = nil,
+        headerBody: String? = nil,
+        headerTitle: String? = nil
+    ) throws {
         self.init()
         (self.footerBody, self.footerTitle) = (footerBody, footerTitle)
         (self.headerBody, self.headerTitle) = (headerBody, headerTitle)
@@ -282,29 +326,31 @@ public struct IssuingPersonalizationDesignPreferences: Codable {
         case isPlatformDefault = "is_platform_default"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension IssuingPersonalizationDesignPreferences {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.isDefault) else {
-            throw SdkValidationError(field: "is_default", code: "required", message: "Validation failed for 'is_default': value is required")
-        }
-        self.isDefault = try container.sdkDecodeRequired(.isDefault)
-        self.isPlatformDefault = try container.sdkDecodeIfPresent(.isPlatformDefault)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension IssuingPersonalizationDesignPreferences {
-    public init(isDefault: Bool, isPlatformDefault: Bool? = nil) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.isDefault) else {
+            throw SdkValidationError(
+                field: "is_default",
+                code: "required",
+                message: "Validation failed for 'is_default': value is required"
+            )
+        }
+        isDefault = try container.sdkDecodeRequired(.isDefault)
+        isPlatformDefault = try container.sdkDecodeIfPresent(.isPlatformDefault)
+    }
+}
+
+public extension IssuingPersonalizationDesignPreferences {
+    init(isDefault: Bool, isPlatformDefault: Bool? = nil) {
         (self.isDefault, self.isPlatformDefault) = (isDefault, isPlatformDefault)
     }
 }
-
-
-
-
 
 /// Typed representation of the `IssuingPersonalizationDesignRejectionReasons` API schema.
 public struct IssuingPersonalizationDesignRejectionReasons: Codable {
@@ -319,20 +365,23 @@ public struct IssuingPersonalizationDesignRejectionReasons: Codable {
     }
 
     init() {
-        (self.cardLogo, self.carrierText) = (nil, nil)
+        (cardLogo, carrierText) = (nil, nil)
     }
 }
 
 public extension IssuingPersonalizationDesignRejectionReasons {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.cardLogo = try container.sdkDecodeIfPresent(.cardLogo)
-        self.carrierText = try container.sdkDecodeIfPresent(.carrierText)
+        cardLogo = try container.sdkDecodeIfPresent(.cardLogo)
+        carrierText = try container.sdkDecodeIfPresent(.carrierText)
     }
 }
 
 public extension IssuingPersonalizationDesignRejectionReasons {
-    public init(cardLogo: [IssuingPersonalizationDesignRejectionReasonsCardLogoItem]? = nil, carrierText: [IssuingPersonalizationDesignRejectionReasonsCarrierTextItem]? = nil) {
+    init(
+        cardLogo: [IssuingPersonalizationDesignRejectionReasonsCardLogoItem]? = nil,
+        carrierText: [IssuingPersonalizationDesignRejectionReasonsCarrierTextItem]? = nil
+    ) {
         self.init()
         (self.cardLogo, self.carrierText) = (cardLogo, carrierText)
     }
@@ -342,12 +391,16 @@ public extension IssuingPersonalizationDesignRejectionReasons {
 public struct IssuingPersonalizationDesignObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let issuingPersonalizationDesign = IssuingPersonalizationDesignObject(rawValue: "issuing.personalization_design")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let issuingPersonalizationDesign =
+        IssuingPersonalizationDesignObject(rawValue: "issuing.personalization_design")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -357,22 +410,31 @@ public struct IssuingPersonalizationDesignObject: RawRepresentable, Hashable, Co
 }
 
 /// Required enumerated value serialized in the `card_logo[]` wire field.
-public struct IssuingPersonalizationDesignRejectionReasonsCardLogoItem: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct IssuingPersonalizationDesignRejectionReasonsCardLogoItem: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let geographicLocation = IssuingPersonalizationDesignRejectionReasonsCardLogoItem(rawValue: "geographic_location")
-    public static let inappropriate = IssuingPersonalizationDesignRejectionReasonsCardLogoItem(rawValue: "inappropriate")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let geographicLocation =
+        IssuingPersonalizationDesignRejectionReasonsCardLogoItem(rawValue: "geographic_location")
+    public static let inappropriate =
+        IssuingPersonalizationDesignRejectionReasonsCardLogoItem(rawValue: "inappropriate")
     public static let networkName = IssuingPersonalizationDesignRejectionReasonsCardLogoItem(rawValue: "network_name")
-    public static let nonBinaryImage = IssuingPersonalizationDesignRejectionReasonsCardLogoItem(rawValue: "non_binary_image")
-    public static let nonFiatCurrency = IssuingPersonalizationDesignRejectionReasonsCardLogoItem(rawValue: "non_fiat_currency")
+    public static let nonBinaryImage =
+        IssuingPersonalizationDesignRejectionReasonsCardLogoItem(rawValue: "non_binary_image")
+    public static let nonFiatCurrency =
+        IssuingPersonalizationDesignRejectionReasonsCardLogoItem(rawValue: "non_fiat_currency")
     public static let other = IssuingPersonalizationDesignRejectionReasonsCardLogoItem(rawValue: "other")
     public static let otherEntity = IssuingPersonalizationDesignRejectionReasonsCardLogoItem(rawValue: "other_entity")
-    public static let promotionalMaterial = IssuingPersonalizationDesignRejectionReasonsCardLogoItem(rawValue: "promotional_material")
+    public static let promotionalMaterial =
+        IssuingPersonalizationDesignRejectionReasonsCardLogoItem(rawValue: "promotional_material")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -385,7 +447,10 @@ public struct IssuingPersonalizationDesignRejectionReasonsCardLogoItem: RawRepre
 public struct IssuingPersonalizationDesignStatus: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let active = IssuingPersonalizationDesignStatus(rawValue: "active")
     public static let inactive = IssuingPersonalizationDesignStatus(rawValue: "inactive")
     public static let rejected = IssuingPersonalizationDesignStatus(rawValue: "rejected")
@@ -393,7 +458,7 @@ public struct IssuingPersonalizationDesignStatus: RawRepresentable, Hashable, Co
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -403,21 +468,32 @@ public struct IssuingPersonalizationDesignStatus: RawRepresentable, Hashable, Co
 }
 
 /// Required enumerated value serialized in the `carrier_text[]` wire field.
-public struct IssuingPersonalizationDesignRejectionReasonsCarrierTextItem: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct IssuingPersonalizationDesignRejectionReasonsCarrierTextItem: RawRepresentable, Hashable, Codable,
+    Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let geographicLocation = IssuingPersonalizationDesignRejectionReasonsCarrierTextItem(rawValue: "geographic_location")
-    public static let inappropriate = IssuingPersonalizationDesignRejectionReasonsCarrierTextItem(rawValue: "inappropriate")
-    public static let networkName = IssuingPersonalizationDesignRejectionReasonsCarrierTextItem(rawValue: "network_name")
-    public static let nonFiatCurrency = IssuingPersonalizationDesignRejectionReasonsCarrierTextItem(rawValue: "non_fiat_currency")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let geographicLocation =
+        IssuingPersonalizationDesignRejectionReasonsCarrierTextItem(rawValue: "geographic_location")
+    public static let inappropriate =
+        IssuingPersonalizationDesignRejectionReasonsCarrierTextItem(rawValue: "inappropriate")
+    public static let networkName =
+        IssuingPersonalizationDesignRejectionReasonsCarrierTextItem(rawValue: "network_name")
+    public static let nonFiatCurrency =
+        IssuingPersonalizationDesignRejectionReasonsCarrierTextItem(rawValue: "non_fiat_currency")
     public static let other = IssuingPersonalizationDesignRejectionReasonsCarrierTextItem(rawValue: "other")
-    public static let otherEntity = IssuingPersonalizationDesignRejectionReasonsCarrierTextItem(rawValue: "other_entity")
-    public static let promotionalMaterial = IssuingPersonalizationDesignRejectionReasonsCarrierTextItem(rawValue: "promotional_material")
+    public static let otherEntity =
+        IssuingPersonalizationDesignRejectionReasonsCarrierTextItem(rawValue: "other_entity")
+    public static let promotionalMaterial =
+        IssuingPersonalizationDesignRejectionReasonsCarrierTextItem(rawValue: "promotional_material")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

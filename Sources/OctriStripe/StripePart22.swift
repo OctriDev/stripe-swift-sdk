@@ -9,18 +9,46 @@ public class V1RadarEarlyFraudWarningsNamespace {
         self.config = config
     }
 
-/// Lists early fraud warnings associated with charges and PaymentIntents. Use `charge` or `payment_intent` to filter results, and use cursor parameters to retrieve adjacent pages ordered by the API. Set `limit` to control page size; it defaults to 10 and accepts values from 1 to 100.
+    /// Lists early fraud warnings associated with charges and PaymentIntents. Use `charge` or `payment_intent` to
+    /// filter results, and use cursor parameters to retrieve adjacent pages ordered by the API. Set `limit` to control
+    /// page size; it defaults to 10 and accepts values from 1 to 100.
     ///
     /// Returns a list of early fraud warnings.
-    public func getRadar(charge: String?, created: GetRadarEarlyFraudWarningsParameter?, endingBefore: String?, expand: [String]?, limit: Int?, paymentIntent: String?, startingAfter: String?) async throws -> GetRadarEarlyFraudWarningsResponse {
-        return try await V1RadarEarlyFraudWarningsMethods.getRadarEarlyFraudWarnings(config: config, charge: charge, created: created, endingBefore: endingBefore, expand: expand, limit: limit, paymentIntent: paymentIntent, startingAfter: startingAfter)
+    public func getRadar(
+        charge: String?,
+        created: GetRadarEarlyFraudWarningsParameter?,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        paymentIntent: String?,
+        startingAfter: String?
+    ) async throws -> GetRadarEarlyFraudWarningsResponse {
+        try await V1RadarEarlyFraudWarningsMethods.getRadarEarlyFraudWarnings(
+            config: config,
+            charge: charge,
+            created: created,
+            endingBefore: endingBefore,
+            expand: expand,
+            limit: limit,
+            paymentIntent: paymentIntent,
+            startingAfter: startingAfter
+        )
     }
 
-/// Retrieves the details of a previously created early fraud warning. Supply the warning identifier and optionally expand related charge or PaymentIntent data in the response.
+    /// Retrieves the details of a previously created early fraud warning. Supply the warning identifier and optionally
+    /// expand related charge or PaymentIntent data in the response.
     ///
-    /// Retrieves the details of an early fraud warning that has previously been created. Please refer to the early fraud warning object reference for more details.
-    public func getRadarEarlyFraudWarning(earlyFraudWarning: String, expand: [String]?) async throws -> RadarEarlyFraudWarning {
-        return try await V1RadarEarlyFraudWarningsMethods.getRadarEarlyFraudWarningsEarlyFraudWarning(config: config, earlyFraudWarning: earlyFraudWarning, expand: expand)
+    /// Retrieves the details of an early fraud warning that has previously been created. Please refer to the early
+    /// fraud warning object reference for more details.
+    public func getRadarEarlyFraudWarning(
+        earlyFraudWarning: String,
+        expand: [String]?
+    ) async throws -> RadarEarlyFraudWarning {
+        try await V1RadarEarlyFraudWarningsMethods.getRadarEarlyFraudWarningsEarlyFraudWarning(
+            config: config,
+            earlyFraudWarning: earlyFraudWarning,
+            expand: expand
+        )
     }
 }
 
@@ -30,9 +58,23 @@ public class V1RadarPaymentEvaluationsNamespace {
         self.config = config
     }
 
-/// Request a Radar API fraud risk score from Stripe for a payment before sending it for external processor authorization.
-    public func postRadar(customerDetails: PostRadarPaymentEvaluationsRequestBodyCustomerDetails, paymentDetails: PostRadarPaymentEvaluationsRequestBodyPaymentDetails, clientDeviceMetadataDetails: PostRadarPaymentEvaluationsRequestBodyClientDeviceMetadataDetails?, expand: [String]?, metadata: [String: String]?) async throws -> RadarPaymentEvaluation {
-        return try await V1RadarPaymentEvaluationsMethods.postRadarPaymentEvaluations(config: config, customerDetails: customerDetails, paymentDetails: paymentDetails, clientDeviceMetadataDetails: clientDeviceMetadataDetails, expand: expand, metadata: metadata)
+    /// Request a Radar API fraud risk score from Stripe for a payment before sending it for external processor
+    /// authorization.
+    public func postRadar(
+        customerDetails: PostRadarPaymentEvaluationsRequestBodyCustomerDetails,
+        paymentDetails: PostRadarPaymentEvaluationsRequestBodyPaymentDetails,
+        clientDeviceMetadataDetails: PostRadarPaymentEvaluationsRequestBodyClientDeviceMetadataDetails?,
+        expand: [String]?,
+        metadata: [String: String]?
+    ) async throws -> RadarPaymentEvaluation {
+        try await V1RadarPaymentEvaluationsMethods.postRadarPaymentEvaluations(
+            config: config,
+            customerDetails: customerDetails,
+            paymentDetails: paymentDetails,
+            clientDeviceMetadataDetails: clientDeviceMetadataDetails,
+            expand: expand,
+            metadata: metadata
+        )
     }
 }
 
@@ -42,30 +84,57 @@ public class V1RadarValueListItemsNamespace {
         self.config = config
     }
 
-/// Lists value list items belonging to a specified Radar value list. Use `value` to perform an “is like” match, `created` to filter by creation time, and cursor parameters to paginate results sorted with the newest items first.
+    /// Lists value list items belonging to a specified Radar value list. Use `value` to perform an “is like” match,
+    /// `created` to filter by creation time, and cursor parameters to paginate results sorted with the newest items
+    /// first.
     ///
-    /// Returns a list of ValueListItem objects. The objects are sorted in descending order by creation date, with the most recently created object appearing first.
-    public func getRadar(valueList: String, created: GetRadarValueListItemsParameter?, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?, value: String?) async throws -> GetRadarValueListItemsResponse {
-        return try await V1RadarValueListItemsMethods.getRadarValueListItems(config: config, valueList: valueList, created: created, endingBefore: endingBefore, expand: expand, limit: limit, startingAfter: startingAfter, value: value)
+    /// Returns a list of ValueListItem objects. The objects are sorted in descending order by creation date, with the
+    /// most recently created object appearing first.
+    public func getRadar(
+        valueList: String,
+        created: GetRadarValueListItemsParameter?,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        startingAfter: String?,
+        value: String?
+    ) async throws -> GetRadarValueListItemsResponse {
+        try await V1RadarValueListItemsMethods.getRadarValueListItems(
+            config: config,
+            valueList: valueList,
+            created: created,
+            endingBefore: endingBefore,
+            expand: expand,
+            limit: limit,
+            startingAfter: startingAfter,
+            value: value
+        )
     }
 
-/// Creates a new ValueListItem object, which is added to the specified parent value list.
+    /// Creates a new ValueListItem object, which is added to the specified parent value list.
     public func postRadar(value: String, valueList: String, expand: [String]?) async throws -> RadarValueListItem {
-        return try await V1RadarValueListItemsMethods.postRadarValueListItems(config: config, value: value, valueList: valueList, expand: expand)
+        try await V1RadarValueListItemsMethods.postRadarValueListItems(
+            config: config,
+            value: value,
+            valueList: valueList,
+            expand: expand
+        )
     }
 
-/// Deletes a value list item and removes it from its parent Radar value list. Supply the item identifier to permanently remove that item from the list.
+    /// Deletes a value list item and removes it from its parent Radar value list. Supply the item identifier to
+    /// permanently remove that item from the list.
     ///
     /// Deletes a ValueListItem object, removing it from its parent value list.
     public func deleteRadarItem(item: String) async throws -> DeletedRadarValueListItem {
-        return try await V1RadarValueListItemsMethods.deleteRadarValueListItemsItem(config: config, item: item)
+        try await V1RadarValueListItemsMethods.deleteRadarValueListItemsItem(config: config, item: item)
     }
 
-/// Retrieves a value list item from its parent Radar value list. Use the item identifier to obtain its value, creator, creation time, parent list, and livemode information.
+    /// Retrieves a value list item from its parent Radar value list. Use the item identifier to obtain its value,
+    /// creator, creation time, parent list, and livemode information.
     ///
     /// Retrieves a ValueListItem object.
     public func getRadarItem(item: String, expand: [String]?) async throws -> RadarValueListItem {
-        return try await V1RadarValueListItemsMethods.getRadarValueListItemsItem(config: config, item: item, expand: expand)
+        try await V1RadarValueListItemsMethods.getRadarValueListItemsItem(config: config, item: item, expand: expand)
     }
 }
 
@@ -75,37 +144,91 @@ public class V1RadarValueListsNamespace {
         self.config = config
     }
 
-/// Lists Radar value lists used to group values referenced by rules. Filter by `alias` or `contains`, restrict results by `created`, and use cursor parameters to paginate results sorted with the newest value lists first.
+    /// Lists Radar value lists used to group values referenced by rules. Filter by `alias` or `contains`, restrict
+    /// results by `created`, and use cursor parameters to paginate results sorted with the newest value lists first.
     ///
-    /// Returns a list of ValueList objects. The objects are sorted in descending order by creation date, with the most recently created object appearing first.
-    public func getRadar(alias: String?, contains: String?, created: GetRadarValueListsParameter?, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetRadarValueListsResponse {
-        return try await V1RadarValueListsMethods.getRadarValueLists(config: config, alias: alias, contains: contains, created: created, endingBefore: endingBefore, expand: expand, limit: limit, startingAfter: startingAfter)
+    /// Returns a list of ValueList objects. The objects are sorted in descending order by creation date, with the most
+    /// recently created object appearing first.
+    public func getRadar(
+        alias: String?,
+        contains: String?,
+        created: GetRadarValueListsParameter?,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        startingAfter: String?
+    ) async throws -> GetRadarValueListsResponse {
+        try await V1RadarValueListsMethods.getRadarValueLists(
+            config: config,
+            alias: alias,
+            contains: contains,
+            created: created,
+            endingBefore: endingBefore,
+            expand: expand,
+            limit: limit,
+            startingAfter: startingAfter
+        )
     }
 
-/// Creates a new ValueList object, which can then be referenced in rules.
-    public func postRadar(alias: String, name: String, expand: [String]?, itemType: PostRadarValueListsRequestBodyItemType?, metadata: [String: String]?) async throws -> RadarValueList {
-        return try await V1RadarValueListsMethods.postRadarValueLists(config: config, alias: alias, name: name, expand: expand, itemType: itemType, metadata: metadata)
+    /// Creates a new ValueList object, which can then be referenced in rules.
+    public func postRadar(
+        alias: String,
+        name: String,
+        expand: [String]?,
+        itemType: PostRadarValueListsRequestBodyItemType?,
+        metadata: [String: String]?
+    ) async throws -> RadarValueList {
+        try await V1RadarValueListsMethods.postRadarValueLists(
+            config: config,
+            alias: alias,
+            name: name,
+            expand: expand,
+            itemType: itemType,
+            metadata: metadata
+        )
     }
 
-/// Deletes a Radar value list and all items contained in it. The value list must not be referenced by any rules before you delete it.
+    /// Deletes a Radar value list and all items contained in it. The value list must not be referenced by any rules
+    /// before you delete it.
     ///
-    /// Deletes a ValueList object, also deleting any items contained within the value list. To be deleted, a value list must not be referenced in any rules.
+    /// Deletes a ValueList object, also deleting any items contained within the value list. To be deleted, a value list
+    /// must not be referenced in any rules.
     public func deleteRadarValueList(valueList: String) async throws -> DeletedRadarValueList {
-        return try await V1RadarValueListsMethods.deleteRadarValueListsValueList(config: config, valueList: valueList)
+        try await V1RadarValueListsMethods.deleteRadarValueListsValueList(config: config, valueList: valueList)
     }
 
-/// Retrieves a Radar value list and its configured items. Use the value list identifier to inspect its alias, item type, metadata, creator, and current list items.
+    /// Retrieves a Radar value list and its configured items. Use the value list identifier to inspect its alias, item
+    /// type, metadata, creator, and current list items.
     ///
     /// Retrieves a ValueList object.
     public func getRadarValueList(valueList: String, expand: [String]?) async throws -> RadarValueList {
-        return try await V1RadarValueListsMethods.getRadarValueListsValueList(config: config, valueList: valueList, expand: expand)
+        try await V1RadarValueListsMethods.getRadarValueListsValueList(
+            config: config,
+            valueList: valueList,
+            expand: expand
+        )
     }
 
-/// Updates a Radar value list without changing its item type. Supply only the fields you want to change; omitted fields remain unchanged, and `item_type` cannot be modified.
+    /// Updates a Radar value list without changing its item type. Supply only the fields you want to change; omitted
+    /// fields remain unchanged, and `item_type` cannot be modified.
     ///
-    /// Updates a ValueList object by setting the values of the parameters passed. Any parameters not provided will be left unchanged. Note that item_type is immutable.
-    public func postRadarValueList(valueList: String, alias: String?, expand: [String]?, metadata: [String: String]?, name: String?) async throws -> RadarValueList {
-        return try await V1RadarValueListsMethods.postRadarValueListsValueList(config: config, valueList: valueList, alias: alias, expand: expand, metadata: metadata, name: name)
+    /// Updates a ValueList object by setting the values of the parameters passed. Any parameters not provided will be
+    /// left unchanged. Note that item_type is immutable.
+    public func postRadarValueList(
+        valueList: String,
+        alias: String?,
+        expand: [String]?,
+        metadata: [String: String]?,
+        name: String?
+    ) async throws -> RadarValueList {
+        try await V1RadarValueListsMethods.postRadarValueListsValueList(
+            config: config,
+            valueList: valueList,
+            alias: alias,
+            expand: expand,
+            metadata: metadata,
+            name: name
+        )
     }
 }
 
@@ -128,11 +251,13 @@ public class V1RefundsCancelNamespace {
         self.config = config
     }
 
-/// Cancels a refund that is waiting for customer action. Refunds in other states cannot be cancelled, and only payment methods requiring customer action can enter `requires_action`.
+    /// Cancels a refund that is waiting for customer action. Refunds in other states cannot be cancelled, and only
+    /// payment methods requiring customer action can enter `requires_action`.
     ///
-    /// Cancels a refund with a status of requires_action . You can’t cancel refunds in other states. Only refunds for payment methods that require customer action can enter the requires_action state.
+    /// Cancels a refund with a status of requires_action . You can’t cancel refunds in other states. Only refunds for
+    /// payment methods that require customer action can enter the requires_action state.
     public func postRefundsRefund(refund: String, expand: [String]?) async throws -> Refund {
-        return try await V1RefundsCancelMethods.postRefundsRefundCancel(config: config, refund: refund, expand: expand)
+        try await V1RefundsCancelMethods.postRefundsRefundCancel(config: config, refund: refund, expand: expand)
     }
 }
 
@@ -144,32 +269,63 @@ public class V1RefundsNamespace {
         cancel = V1RefundsCancelNamespace(config: config)
     }
 
-/// Lists refunds created through the API, with the most recent refunds first. Use `charge` or `payment_intent` to filter the results, and use cursor parameters to retrieve adjacent pages.
+    /// Lists refunds created through the API, with the most recent refunds first. Use `charge` or `payment_intent` to
+    /// filter the results, and use cursor parameters to retrieve adjacent pages.
     ///
-    /// Returns a list of all refunds you created. We return the refunds in sorted order, with the most recent refunds appearing first. The 10 most recent refunds are always available by default on the Charge object.
-    public func get(charge: String?, created: GetRefundsParameter?, endingBefore: String?, expand: [String]?, limit: Int?, paymentIntent: String?, startingAfter: String?) async throws -> GetRefundsResponse {
-        return try await V1RefundsMethods.getRefunds(config: config, charge: charge, created: created, endingBefore: endingBefore, expand: expand, limit: limit, paymentIntent: paymentIntent, startingAfter: startingAfter)
+    /// Returns a list of all refunds you created. We return the refunds in sorted order, with the most recent refunds
+    /// appearing first. The 10 most recent refunds are always available by default on the Charge object.
+    public func get(
+        charge: String?,
+        created: GetRefundsParameter?,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        paymentIntent: String?,
+        startingAfter: String?
+    ) async throws -> GetRefundsResponse {
+        try await V1RefundsMethods.getRefunds(
+            config: config,
+            charge: charge,
+            created: created,
+            endingBefore: endingBefore,
+            expand: expand,
+            limit: limit,
+            paymentIntent: paymentIntent,
+            startingAfter: startingAfter
+        )
     }
 
-/// Creates a refund for a previously created charge or PaymentIntent. Provide a full or partial amount, and you can issue multiple partial refunds until the charge is fully refunded.
+    /// Creates a refund for a previously created charge or PaymentIntent. Provide a full or partial amount, and you can
+    /// issue multiple partial refunds until the charge is fully refunded.
     ///
-    /// When you create a new refund, you must specify a Charge or a PaymentIntent object on which to create it. Creating a new refund will refund a charge that has previously been created but not yet refunded. Funds will be refunded to the credit or debit card that was originally charged. You can optionally refund only part of a charge. You can do so multiple times, until the entire charge has been refunded. Once entirely refunded, a charge can’t be refunded again. This method will raise an error when called on an already-refunded charge, or when trying to refund more money than is left on a charge.
+    /// When you create a new refund, you must specify a Charge or a PaymentIntent object on which to create it.
+    /// Creating a new refund will refund a charge that has previously been created but not yet refunded. Funds will be
+    /// refunded to the credit or debit card that was originally charged. You can optionally refund only part of a
+    /// charge. You can do so multiple times, until the entire charge has been refunded. Once entirely refunded, a
+    /// charge can’t be refunded again. This method will raise an error when called on an already-refunded charge, or
+    /// when trying to refund more money than is left on a charge.
     public func post(options: V1RefundsMethods.PostRefundsOptions) async throws -> Refund {
-        return try await V1RefundsMethods.postRefunds(config: config, options: options)
+        try await V1RefundsMethods.postRefunds(config: config, options: options)
     }
 
-/// Retrieves the details of a specific refund. Use `expand` to request additional response fields when needed.
+    /// Retrieves the details of a specific refund. Use `expand` to request additional response fields when needed.
     ///
     /// Retrieves the details of an existing refund.
     public func getRefund(refund: String, expand: [String]?) async throws -> Refund {
-        return try await V1RefundsMethods.getRefundsRefund(config: config, refund: refund, expand: expand)
+        try await V1RefundsMethods.getRefundsRefund(config: config, refund: refund, expand: expand)
     }
 
-/// Updates the metadata of a specific refund without changing its payment or amount details. Supply only the metadata changes you want to apply; omitted values remain unchanged.
+    /// Updates the metadata of a specific refund without changing its payment or amount details. Supply only the
+    /// metadata changes you want to apply; omitted values remain unchanged.
     ///
-    /// Updates the refund that you specify by setting the values of the passed parameters. Any parameters that you don’t provide remain unchanged. This request only accepts metadata as an argument.
-    public func postRefund(refund: String, expand: [String]?, metadata: PostRefundsRefundRequestBodyMetadata?) async throws -> Refund {
-        return try await V1RefundsMethods.postRefundsRefund(config: config, refund: refund, expand: expand, metadata: metadata)
+    /// Updates the refund that you specify by setting the values of the passed parameters. Any parameters that you
+    /// don’t provide remain unchanged. This request only accepts metadata as an argument.
+    public func postRefund(
+        refund: String,
+        expand: [String]?,
+        metadata: PostRefundsRefundRequestBodyMetadata?
+    ) async throws -> Refund {
+        try await V1RefundsMethods.postRefundsRefund(config: config, refund: refund, expand: expand, metadata: metadata)
     }
 }
 
@@ -179,22 +335,50 @@ public class V1ReportingReportRunsNamespace {
         self.config = config
     }
 
-/// Lists Report Runs in reverse chronological order, with the most recently created runs first. Use creation-time filters and cursor parameters to narrow the results or navigate through multiple pages.
+    /// Lists Report Runs in reverse chronological order, with the most recently created runs first. Use creation-time
+    /// filters and cursor parameters to narrow the results or navigate through multiple pages.
     ///
     /// Returns a list of Report Runs, with the most recent appearing first.
-    public func getReporting(created: GetReportingReportRunsParameter?, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetReportingReportRunsResponse {
-        return try await V1ReportingReportRunsMethods.getReportingReportRuns(config: config, created: created, endingBefore: endingBefore, expand: expand, limit: limit, startingAfter: startingAfter)
+    public func getReporting(
+        created: GetReportingReportRunsParameter?,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        startingAfter: String?
+    ) async throws -> GetReportingReportRunsResponse {
+        try await V1ReportingReportRunsMethods.getReportingReportRuns(
+            config: config,
+            created: created,
+            endingBefore: endingBefore,
+            expand: expand,
+            limit: limit,
+            startingAfter: startingAfter
+        )
     }
 
-/// Creates a new object and begin running the report. (Certain report types require a live-mode API key.)
-    public func postReporting(reportType: String, expand: [String]?, parameters: PostReportingReportRunsRequestBodyParameters?) async throws -> ReportingReportRun {
-        return try await V1ReportingReportRunsMethods.postReportingReportRuns(config: config, reportType: reportType, expand: expand, parameters: parameters)
+    /// Creates a new object and begin running the report. (Certain report types require a live-mode API key.)
+    public func postReporting(
+        reportType: String,
+        expand: [String]?,
+        parameters: PostReportingReportRunsRequestBodyParameters?
+    ) async throws -> ReportingReportRun {
+        try await V1ReportingReportRunsMethods.postReportingReportRuns(
+            config: config,
+            reportType: reportType,
+            expand: expand,
+            parameters: parameters
+        )
     }
 
-/// Retrieves the details of an existing Report Run. Use the returned `status` to determine whether processing is pending, succeeded, or failed, and inspect `result` or `error` when available.
+    /// Retrieves the details of an existing Report Run. Use the returned `status` to determine whether processing is
+    /// pending, succeeded, or failed, and inspect `result` or `error` when available.
     ///
     /// Retrieves the details of an existing Report Run.
     public func getReportingReportRun(reportRun: String, expand: [String]?) async throws -> ReportingReportRun {
-        return try await V1ReportingReportRunsMethods.getReportingReportRunsReportRun(config: config, reportRun: reportRun, expand: expand)
+        try await V1ReportingReportRunsMethods.getReportingReportRunsReportRun(
+            config: config,
+            reportRun: reportRun,
+            expand: expand
+        )
     }
 }

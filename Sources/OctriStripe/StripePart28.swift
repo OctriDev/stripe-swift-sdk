@@ -9,11 +9,26 @@ public class V1TerminalReadersProcessSetupIntentNamespace {
         self.config = config
     }
 
-/// Triggers processing of a SetupIntent on a Reader to save payment details without charging the customer. Supply `setup_intent` and `allow_redisplay`, then use `process_config` for customer cancellation settings. The Reader returns its current state after the SetupIntent flow is initiated.
+    /// Triggers processing of a SetupIntent on a Reader to save payment details without charging the customer. Supply
+    /// `setup_intent` and `allow_redisplay`, then use `process_config` for customer cancellation settings. The Reader
+    /// returns its current state after the SetupIntent flow is initiated.
     ///
     /// Initiates a SetupIntent flow on a Reader. See Save directly without charging for more details.
-    public func postTerminalReadersReader(reader: String, allowRedisplay: PostTerminalReadersReaderProcessSetupIntentRequestBodyAllowRedisplay, setupIntent: String, expand: [String]?, processConfig: PostTerminalReadersReaderProcessSetupIntentRequestBodyProcessConfig?) async throws -> TerminalReader {
-        return try await V1TerminalReadersProcessSetupIntentMethods.postTerminalReadersReaderProcessSetupIntent(config: config, reader: reader, allowRedisplay: allowRedisplay, setupIntent: setupIntent, expand: expand, processConfig: processConfig)
+    public func postTerminalReadersReader(
+        reader: String,
+        allowRedisplay: PostTerminalReadersReaderProcessSetupIntentRequestBodyAllowRedisplay,
+        setupIntent: String,
+        expand: [String]?,
+        processConfig: PostTerminalReadersReaderProcessSetupIntentRequestBodyProcessConfig?
+    ) async throws -> TerminalReader {
+        try await V1TerminalReadersProcessSetupIntentMethods.postTerminalReadersReaderProcessSetupIntent(
+            config: config,
+            reader: reader,
+            allowRedisplay: allowRedisplay,
+            setupIntent: setupIntent,
+            expand: expand,
+            processConfig: processConfig
+        )
     }
 }
 
@@ -23,11 +38,17 @@ public class V1TerminalReadersRefundPaymentNamespace {
         self.config = config
     }
 
-/// Triggers an in-person refund on a Reader for a Charge or PaymentIntent. Provide `charge` or `payment_intent` and optionally use `amount`, refund configuration, metadata, or transfer and application-fee options to control the refund. The Reader returns its current state after the refund flow is initiated.
+    /// Triggers an in-person refund on a Reader for a Charge or PaymentIntent. Provide `charge` or `payment_intent` and
+    /// optionally use `amount`, refund configuration, metadata, or transfer and application-fee options to control the
+    /// refund. The Reader returns its current state after the refund flow is initiated.
     ///
     /// Initiates an in-person refund on a Reader. See Refund an Interac Payment for more details.
-    public func postTerminalReadersReader(options: V1TerminalReadersRefundPaymentMethods.PostTerminalReadersReaderRefundPaymentOptions) async throws -> TerminalReader {
-        return try await V1TerminalReadersRefundPaymentMethods.postTerminalReadersReaderRefundPayment(config: config, options: options)
+    public func postTerminalReadersReader(options: V1TerminalReadersRefundPaymentMethods
+        .PostTerminalReadersReaderRefundPaymentOptions) async throws -> TerminalReader {
+        try await V1TerminalReadersRefundPaymentMethods.postTerminalReadersReaderRefundPayment(
+            config: config,
+            options: options
+        )
     }
 }
 
@@ -37,11 +58,24 @@ public class V1TerminalReadersSetReaderDisplayNamespace {
         self.config = config
     }
 
-/// Triggers a Reader display update that shows cart details to the customer. Set `type` to `cart` and provide the cart's `currency`, `line_items`, and `total`; each line item must include `amount`, `description`, and `quantity`. The Reader returns its current state after the display request is initiated.
+    /// Triggers a Reader display update that shows cart details to the customer. Set `type` to `cart` and provide the
+    /// cart's `currency`, `line_items`, and `total`; each line item must include `amount`, `description`, and
+    /// `quantity`. The Reader returns its current state after the display request is initiated.
     ///
     /// Sets the reader display to show cart details.
-    public func postTerminalReadersReader(reader: String, type: PostTerminalReadersReaderSetReaderDisplayRequestBodyType, cart: PostTerminalReadersReaderSetReaderDisplayRequestBodyCart?, expand: [String]?) async throws -> TerminalReader {
-        return try await V1TerminalReadersSetReaderDisplayMethods.postTerminalReadersReaderSetReaderDisplay(config: config, reader: reader, type: type, cart: cart, expand: expand)
+    public func postTerminalReadersReader(
+        reader: String,
+        type: PostTerminalReadersReaderSetReaderDisplayRequestBodyType,
+        cart: PostTerminalReadersReaderSetReaderDisplayRequestBodyCart?,
+        expand: [String]?
+    ) async throws -> TerminalReader {
+        try await V1TerminalReadersSetReaderDisplayMethods.postTerminalReadersReaderSetReaderDisplay(
+            config: config,
+            reader: reader,
+            type: type,
+            cart: cart,
+            expand: expand
+        )
     }
 }
 
@@ -67,39 +101,70 @@ public class V1TerminalReadersNamespace {
         setReaderDisplay = V1TerminalReadersSetReaderDisplayNamespace(config: config)
     }
 
-/// Lists Terminal readers and returns a paginated collection of reader objects. Use filters such as `device_type`, `location`, `serial_number`, or `status`, and use cursor parameters to navigate between result pages.
+    /// Lists Terminal readers and returns a paginated collection of reader objects. Use filters such as `device_type`,
+    /// `location`, `serial_number`, or `status`, and use cursor parameters to navigate between result pages.
     ///
     /// Returns a list of Reader objects.
-    public func getTerminal(options: V1TerminalReadersMethods.GetTerminalReadersOptions) async throws -> GetTerminalReadersResponse {
-        return try await V1TerminalReadersMethods.getTerminalReaders(config: config, options: options)
+    public func getTerminal(options: V1TerminalReadersMethods
+        .GetTerminalReadersOptions) async throws -> GetTerminalReadersResponse {
+        try await V1TerminalReadersMethods.getTerminalReaders(config: config, options: options)
     }
 
-/// Creates a new Terminal reader and optionally assigns it to a location. Provide the reader's `registration_code`, then use `label`, `location`, and `metadata` to configure the reader during creation.
+    /// Creates a new Terminal reader and optionally assigns it to a location. Provide the reader's `registration_code`,
+    /// then use `label`, `location`, and `metadata` to configure the reader during creation.
     ///
     /// Creates a new Reader object.
-    public func postTerminal(registrationCode: String, expand: [String]?, label: String?, location: String?, metadata: PostTerminalReadersRequestBodyMetadata?) async throws -> TerminalReader {
-        return try await V1TerminalReadersMethods.postTerminalReaders(config: config, registrationCode: registrationCode, expand: expand, label: label, location: location, metadata: metadata)
+    public func postTerminal(
+        registrationCode: String,
+        expand: [String]?,
+        label: String?,
+        location: String?,
+        metadata: PostTerminalReadersRequestBodyMetadata?
+    ) async throws -> TerminalReader {
+        try await V1TerminalReadersMethods.postTerminalReaders(
+            config: config,
+            registrationCode: registrationCode,
+            expand: expand,
+            label: label,
+            location: location,
+            metadata: metadata
+        )
     }
 
-/// Deletes a Terminal reader and removes it from the active reader inventory. Supply the reader identifier for the device you want to delete; the request body has no fields.
+    /// Deletes a Terminal reader and removes it from the active reader inventory. Supply the reader identifier for the
+    /// device you want to delete; the request body has no fields.
     ///
     /// Deletes a Reader object.
     public func deleteTerminalReader(reader: String) async throws -> DeletedTerminalReader {
-        return try await V1TerminalReadersMethods.deleteTerminalReadersReader(config: config, reader: reader)
+        try await V1TerminalReadersMethods.deleteTerminalReadersReader(config: config, reader: reader)
     }
 
-/// Retrieves a specific Terminal reader by its identifier. Use `expand` when you need additional response fields expanded instead of returned as identifiers.
+    /// Retrieves a specific Terminal reader by its identifier. Use `expand` when you need additional response fields
+    /// expanded instead of returned as identifiers.
     ///
     /// Retrieves a Reader object.
     public func getTerminalReader(reader: String, expand: [String]?) async throws -> GetTerminalReadersReaderResponse {
-        return try await V1TerminalReadersMethods.getTerminalReadersReader(config: config, reader: reader, expand: expand)
+        try await V1TerminalReadersMethods.getTerminalReadersReader(config: config, reader: reader, expand: expand)
     }
 
-/// Updates the configurable properties of a Terminal reader without changing fields that you omit. Use `label` to change or clear the reader label, and use `metadata` to add, update, or remove metadata entries.
+    /// Updates the configurable properties of a Terminal reader without changing fields that you omit. Use `label` to
+    /// change or clear the reader label, and use `metadata` to add, update, or remove metadata entries.
     ///
-    /// Updates a Reader object by setting the values of the parameters passed. Any parameters not provided will be left unchanged.
-    public func postTerminalReader(reader: String, expand: [String]?, label: PostTerminalReadersReaderRequestBodyLabelVariant1?, metadata: PostTerminalReadersReaderRequestBodyMetadata?) async throws -> PostTerminalReadersReaderResponse {
-        return try await V1TerminalReadersMethods.postTerminalReadersReader(config: config, reader: reader, expand: expand, label: label, metadata: metadata)
+    /// Updates a Reader object by setting the values of the parameters passed. Any parameters not provided will be left
+    /// unchanged.
+    public func postTerminalReader(
+        reader: String,
+        expand: [String]?,
+        label: PostTerminalReadersReaderRequestBodyLabelVariant1?,
+        metadata: PostTerminalReadersReaderRequestBodyMetadata?
+    ) async throws -> PostTerminalReadersReaderResponse {
+        try await V1TerminalReadersMethods.postTerminalReadersReader(
+            config: config,
+            reader: reader,
+            expand: expand,
+            label: label,
+            metadata: metadata
+        )
     }
 }
 
@@ -109,9 +174,10 @@ public class V1TerminalRefundsNamespace {
         self.config = config
     }
 
-/// Internal endpoint for terminal use to create a refund for a card_present or card charge. You can optionally refund only part of a charge.
+    /// Internal endpoint for terminal use to create a refund for a card_present or card charge. You can optionally
+    /// refund only part of a charge.
     public func postTerminal(expand: [String]?) async throws -> TerminalRefund {
-        return try await V1TerminalRefundsMethods.postTerminalRefunds(config: config, expand: expand)
+        try await V1TerminalRefundsMethods.postTerminalRefunds(config: config, expand: expand)
     }
 }
 
@@ -138,9 +204,26 @@ public class V1TestHelpersConfirmationTokensNamespace {
         self.config = config
     }
 
-/// Creates a test mode Confirmation Token server side for your integration tests.
-    public func postTestHelpers(expand: [String]?, paymentMethod: String?, paymentMethodData: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodData?, paymentMethodOptions: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodOptions?, returnUrl: String?, setupFutureUsage: PostTestHelpersConfirmationTokensRequestBodySetupFutureUsage?, shipping: PostTestHelpersConfirmationTokensRequestBodyShipping?) async throws -> ConfirmationToken {
-        return try await V1TestHelpersConfirmationTokensMethods.postTestHelpersConfirmationTokens(config: config, expand: expand, paymentMethod: paymentMethod, paymentMethodData: paymentMethodData, paymentMethodOptions: paymentMethodOptions, returnUrl: returnUrl, setupFutureUsage: setupFutureUsage, shipping: shipping)
+    /// Creates a test mode Confirmation Token server side for your integration tests.
+    public func postTestHelpers(
+        expand: [String]?,
+        paymentMethod: String?,
+        paymentMethodData: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodData?,
+        paymentMethodOptions: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodOptions?,
+        returnUrl: String?,
+        setupFutureUsage: PostTestHelpersConfirmationTokensRequestBodySetupFutureUsage?,
+        shipping: PostTestHelpersConfirmationTokensRequestBodyShipping?
+    ) async throws -> ConfirmationToken {
+        try await V1TestHelpersConfirmationTokensMethods.postTestHelpersConfirmationTokens(
+            config: config,
+            expand: expand,
+            paymentMethod: paymentMethod,
+            paymentMethodData: paymentMethodData,
+            paymentMethodOptions: paymentMethodOptions,
+            returnUrl: returnUrl,
+            setupFutureUsage: setupFutureUsage,
+            shipping: shipping
+        )
     }
 }
 
@@ -150,11 +233,26 @@ public class V1TestHelpersCustomersFundCashBalanceNamespace {
         self.config = config
     }
 
-/// Creates a test-mode cash balance transaction that simulates an incoming bank transfer for a customer. Supply `amount` and `currency`, and optionally provide a free-text `reference` for reconciliation testing. The response identifies the resulting customer cash balance transaction and its ending balance.
+    /// Creates a test-mode cash balance transaction that simulates an incoming bank transfer for a customer. Supply
+    /// `amount` and `currency`, and optionally provide a free-text `reference` for reconciliation testing. The response
+    /// identifies the resulting customer cash balance transaction and its ending balance.
     ///
     /// Create an incoming testmode bank transfer
-    public func postTestHelpersCustomersCustomer(customer: String, amount: Int, currency: String, expand: [String]?, reference: String?) async throws -> CustomerCashBalanceTransaction {
-        return try await V1TestHelpersCustomersFundCashBalanceMethods.postTestHelpersCustomersCustomerFundCashBalance(config: config, customer: customer, amount: amount, currency: currency, expand: expand, reference: reference)
+    public func postTestHelpersCustomersCustomer(
+        customer: String,
+        amount: Int,
+        currency: String,
+        expand: [String]?,
+        reference: String?
+    ) async throws -> CustomerCashBalanceTransaction {
+        try await V1TestHelpersCustomersFundCashBalanceMethods.postTestHelpersCustomersCustomerFundCashBalance(
+            config: config,
+            customer: customer,
+            amount: amount,
+            currency: currency,
+            expand: expand,
+            reference: reference
+        )
     }
 }
 
@@ -171,11 +269,27 @@ public class V1TestHelpersIssuingAuthorizationsCaptureNamespace {
         self.config = config
     }
 
-/// Captures an Issuing authorization in test mode. Use `capture_amount` to capture a partial amount or omit it to capture the full authorized amount, and use `close_authorization` to control whether the authorization closes after capture.
+    /// Captures an Issuing authorization in test mode. Use `capture_amount` to capture a partial amount or omit it to
+    /// capture the full authorized amount, and use `close_authorization` to control whether the authorization closes
+    /// after capture.
     ///
     /// Capture a test-mode authorization.
-    public func postTestHelpersIssuingAuthorizationsAuthorization(authorization: String, captureAmount: Int?, closeAuthorization: Bool?, expand: [String]?, purchaseDetails: PostTestHelpersIssuingAuthorizationsAuthorizationCaptureRequeX9a6e57731c?) async throws -> IssuingAuthorization {
-        return try await V1TestHelpersIssuingAuthorizationsCaptureMethods.postTestHelpersIssuingAuthorizationsAuthorizationCapture(config: config, authorization: authorization, captureAmount: captureAmount, closeAuthorization: closeAuthorization, expand: expand, purchaseDetails: purchaseDetails)
+    public func postTestHelpersIssuingAuthorizationsAuthorization(
+        authorization: String,
+        captureAmount: Int?,
+        closeAuthorization: Bool?,
+        expand: [String]?,
+        purchaseDetails: PostTestHelpersIssuingAuthorizationsAuthorizationCaptureRequeX9a6e57731c?
+    ) async throws -> IssuingAuthorization {
+        try await V1TestHelpersIssuingAuthorizationsCaptureMethods
+            .postTestHelpersIssuingAuthorizationsAuthorizationCapture(
+                config: config,
+                authorization: authorization,
+                captureAmount: captureAmount,
+                closeAuthorization: closeAuthorization,
+                expand: expand,
+                purchaseDetails: purchaseDetails
+            )
     }
 }
 
@@ -185,11 +299,20 @@ public class V1TestHelpersIssuingAuthorizationsExpireNamespace {
         self.config = config
     }
 
-/// Expires an Issuing authorization in test mode. Use this action to move the authorization to an expired state before it is captured, optionally expanding selected response fields.
+    /// Expires an Issuing authorization in test mode. Use this action to move the authorization to an expired state
+    /// before it is captured, optionally expanding selected response fields.
     ///
     /// Expire a test-mode Authorization.
-    public func postTestHelpersIssuingAuthorizationsAuthorization(authorization: String, expand: [String]?) async throws -> IssuingAuthorization {
-        return try await V1TestHelpersIssuingAuthorizationsExpireMethods.postTestHelpersIssuingAuthorizationsAuthorizationExpire(config: config, authorization: authorization, expand: expand)
+    public func postTestHelpersIssuingAuthorizationsAuthorization(
+        authorization: String,
+        expand: [String]?
+    ) async throws -> IssuingAuthorization {
+        try await V1TestHelpersIssuingAuthorizationsExpireMethods
+            .postTestHelpersIssuingAuthorizationsAuthorizationExpire(
+                config: config,
+                authorization: authorization,
+                expand: expand
+            )
     }
 }
 
@@ -199,10 +322,26 @@ public class V1TestHelpersIssuingAuthorizationsFinalizeAmountNamespace {
         self.config = config
     }
 
-/// Finalizes the amount of a test-mode Issuing authorization before capture. Supply `final_amount` when the initial authorization used an estimated amount, and include `fleet` or `fuel` details when applicable.
+    /// Finalizes the amount of a test-mode Issuing authorization before capture. Supply `final_amount` when the initial
+    /// authorization used an estimated amount, and include `fleet` or `fuel` details when applicable.
     ///
-    /// Finalize the amount on an Authorization prior to capture, when the initial authorization was for an estimated amount.
-    public func postTestHelpersIssuingAuthorizationsAuthorization(authorization: String, finalAmount: Int, expand: [String]?, fleet: PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX41b490a2e9?, fuel: PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX27f1047fe4?) async throws -> IssuingAuthorization {
-        return try await V1TestHelpersIssuingAuthorizationsFinalizeAmountMethods.postTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmount(config: config, authorization: authorization, finalAmount: finalAmount, expand: expand, fleet: fleet, fuel: fuel)
+    /// Finalize the amount on an Authorization prior to capture, when the initial authorization was for an estimated
+    /// amount.
+    public func postTestHelpersIssuingAuthorizationsAuthorization(
+        authorization: String,
+        finalAmount: Int,
+        expand: [String]?,
+        fleet: PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX41b490a2e9?,
+        fuel: PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX27f1047fe4?
+    ) async throws -> IssuingAuthorization {
+        try await V1TestHelpersIssuingAuthorizationsFinalizeAmountMethods
+            .postTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmount(
+                config: config,
+                authorization: authorization,
+                finalAmount: finalAmount,
+                expand: expand,
+                fleet: fleet,
+                fuel: fuel
+            )
     }
 }

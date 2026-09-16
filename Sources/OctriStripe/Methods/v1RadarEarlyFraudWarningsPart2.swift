@@ -6,8 +6,10 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1RadarEarlyFraudWarningsMethods {
-    /// Lists early fraud warnings associated with charges and PaymentIntents. Use `charge` or `payment_intent` to filter results, and use cursor parameters to retrieve adjacent pages ordered by the API. Set `limit` to control page size; it defaults to 10 and accepts values from 1 to 100.
+public extension V1RadarEarlyFraudWarningsMethods {
+    /// Lists early fraud warnings associated with charges and PaymentIntents. Use `charge` or `payment_intent` to
+    /// filter results, and use cursor parameters to retrieve adjacent pages ordered by the API. Set `limit` to control
+    /// page size; it defaults to 10 and accepts values from 1 to 100.
     ///
     /// Returns a list of early fraud warnings.
     ///
@@ -31,20 +33,29 @@ extension V1RadarEarlyFraudWarningsMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    public static func getRadarEarlyFraudWarnings(config: ClientConfig, charge: String?, created: GetRadarEarlyFraudWarningsParameter?, endingBefore: String?, expand: [String]?, limit: Int?, paymentIntent: String?, startingAfter: String?) async throws -> GetRadarEarlyFraudWarningsResponse {
-        if let endingBefore = endingBefore {
+    static func getRadarEarlyFraudWarnings(
+        config: ClientConfig,
+        charge: String?,
+        created: GetRadarEarlyFraudWarningsParameter?,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        paymentIntent: String?,
+        startingAfter: String?
+    ) async throws -> GetRadarEarlyFraudWarningsResponse {
+        if let endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let paymentIntent = paymentIntent {
+        if let paymentIntent {
             try validateLength("payment_intent", paymentIntent, max: 5000)
         }
 
-        if let startingAfter = startingAfter {
+        if let startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try (await sdkRequest("GET", "/v1/radar/early_fraud_warnings", config: config, query: [
+        return try await (sdkRequest("GET", "/v1/radar/early_fraud_warnings", config: config, query: [
             SdkQueryParameter("charge", value: charge),
             SdkQueryParameter("created", value: created),
             SdkQueryParameter("ending_before", value: endingBefore),

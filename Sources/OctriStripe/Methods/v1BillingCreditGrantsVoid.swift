@@ -7,18 +7,32 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1BillingCreditGrantsVoidMethods {
-    /// Voids an existing credit grant and removes its remaining billing credits from future use. Supply the grant `id` and optionally use `expand` to include additional response fields. The response contains the voided credit grant with its allocation and current state.
+    /// Voids an existing credit grant and removes its remaining billing credits from future use. Supply the grant `id`
+    /// and optionally use `expand` to include additional response fields. The response contains the voided credit grant
+    /// with its allocation and current state.
     ///
     /// Voids a credit grant.
     ///
     /// - Parameters:
     /// - id: Unique identifier for the object.
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postBillingCreditGrantsIdVoid(config: ClientConfig, id: String, expand: [String]?) async throws -> BillingCreditGrant {
+    public static func postBillingCreditGrantsIdVoid(
+        config: ClientConfig,
+        id: String,
+        expand: [String]?
+    ) async throws -> BillingCreditGrant {
         try validateLength("id", id, max: 5000)
 
         let requestBody = PostBillingCreditGrantsIdVoidRequestBody(expand: expand)
 
-        return try (await sdkRequest("POST", ["/v1/billing/credit_grants/", sdkEncodePathSegment(sdkWireString(id)), "/void"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostBillingCreditGrantsIdVoid")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/billing/credit_grants/", sdkEncodePathSegment(sdkWireString(id)), "/void"].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostBillingCreditGrantsIdVoid"
+        )).data
     }
 }

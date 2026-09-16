@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1Dispute domain models
+/// V1Dispute domain models
 /// Typed representation of the `DisputeEnhancedEligibility` API schema.
 public struct DisputeEnhancedEligibility: Codable {
     /// Optional object value serialized in the `mastercard_compliance` wire field.
@@ -20,21 +20,25 @@ public struct DisputeEnhancedEligibility: Codable {
     }
 
     init() {
-        (self.primarycardCompliance, self.visaCompellingEvidence3, self.visaCompliance) = (nil, nil, nil)
+        (primarycardCompliance, visaCompellingEvidence3, visaCompliance) = (nil, nil, nil)
     }
 }
 
 public extension DisputeEnhancedEligibility {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.primarycardCompliance = try container.sdkDecodeIfPresent(.primarycardCompliance)
-        self.visaCompellingEvidence3 = try container.sdkDecodeIfPresent(.visaCompellingEvidence3)
-        self.visaCompliance = try container.sdkDecodeIfPresent(.visaCompliance)
+        primarycardCompliance = try container.sdkDecodeIfPresent(.primarycardCompliance)
+        visaCompellingEvidence3 = try container.sdkDecodeIfPresent(.visaCompellingEvidence3)
+        visaCompliance = try container.sdkDecodeIfPresent(.visaCompliance)
     }
 }
 
 public extension DisputeEnhancedEligibility {
-    public init(primarycardCompliance: DisputeEnhancedEligibilityPrimarycardCompliance? = nil, visaCompellingEvidence3: DisputeEnhancedEligibilityVisaCompellingEvidence3? = nil, visaCompliance: DisputeEnhancedEligibilityVisaCompliance? = nil) {
+    init(
+        primarycardCompliance: DisputeEnhancedEligibilityPrimarycardCompliance? = nil,
+        visaCompellingEvidence3: DisputeEnhancedEligibilityVisaCompellingEvidence3? = nil,
+        visaCompliance: DisputeEnhancedEligibilityVisaCompliance? = nil
+    ) {
         self.init()
         self.primarycardCompliance = primarycardCompliance
         (self.visaCompellingEvidence3, self.visaCompliance) = (visaCompellingEvidence3, visaCompliance)
@@ -50,26 +54,33 @@ public struct DisputeEnhancedEligibilityPrimarycardCompliance: Codable {
         case status
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension DisputeEnhancedEligibilityPrimarycardCompliance {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.status) else {
-            throw SdkValidationError(field: "status", code: "required", message: "Validation failed for 'status': value is required")
-        }
-        self.status = try container.sdkDecodeRequired(.status)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension DisputeEnhancedEligibilityPrimarycardCompliance {
-    public init(status: DisputeEnhancedEligibilityPrimarycardComplianceStatus) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.status) else {
+            throw SdkValidationError(
+                field: "status",
+                code: "required",
+                message: "Validation failed for 'status': value is required"
+            )
+        }
+        status = try container.sdkDecodeRequired(.status)
+    }
+}
+
+public extension DisputeEnhancedEligibilityPrimarycardCompliance {
+    init(status: DisputeEnhancedEligibilityPrimarycardComplianceStatus) {
         self.status = status
     }
 }
 
-public typealias DisputeEnhancedEligibilityVisaCompellingEvidence3RequiredActionsList = [DisputeEnhancedEligibilityVisaCompellingEvidence3RequiredActionsItem]
+public typealias DisputeEnhancedEligibilityVisaCompellingEvidence3RequiredActionsList =
+    [DisputeEnhancedEligibilityVisaCompellingEvidence3RequiredActionsItem]
 
 /// Typed representation of the `DisputeEnhancedEligibilityVisaCompellingEvidence3` API schema.
 public struct DisputeEnhancedEligibilityVisaCompellingEvidence3: Codable {
@@ -83,25 +94,38 @@ public struct DisputeEnhancedEligibilityVisaCompellingEvidence3: Codable {
         case status
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension DisputeEnhancedEligibilityVisaCompellingEvidence3 {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.requiredActions) else {
-            throw SdkValidationError(field: "required_actions", code: "required", message: "Validation failed for 'required_actions': value is required")
-        }
-        guard container.contains(.status) else {
-            throw SdkValidationError(field: "status", code: "required", message: "Validation failed for 'status': value is required")
-        }
-        self.requiredActions = try container.sdkDecodeRequired(.requiredActions)
-        self.status = try container.sdkDecodeRequired(.status)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension DisputeEnhancedEligibilityVisaCompellingEvidence3 {
-    public init(requiredActions: DisputeEnhancedEligibilityVisaCompellingEvidence3RequiredActionsList, status: DisputeEnhancedEligibilityVisaCompellingEvidence3Status) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.requiredActions) else {
+            throw SdkValidationError(
+                field: "required_actions",
+                code: "required",
+                message: "Validation failed for 'required_actions': value is required"
+            )
+        }
+        guard container.contains(.status) else {
+            throw SdkValidationError(
+                field: "status",
+                code: "required",
+                message: "Validation failed for 'status': value is required"
+            )
+        }
+        requiredActions = try container.sdkDecodeRequired(.requiredActions)
+        status = try container.sdkDecodeRequired(.status)
+    }
+}
+
+public extension DisputeEnhancedEligibilityVisaCompellingEvidence3 {
+    init(
+        requiredActions: DisputeEnhancedEligibilityVisaCompellingEvidence3RequiredActionsList,
+        status: DisputeEnhancedEligibilityVisaCompellingEvidence3Status
+    ) {
         (self.requiredActions, self.status) = (requiredActions, status)
     }
 }
@@ -115,21 +139,27 @@ public struct DisputeEnhancedEligibilityVisaCompliance: Codable {
         case status
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension DisputeEnhancedEligibilityVisaCompliance {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.status) else {
-            throw SdkValidationError(field: "status", code: "required", message: "Validation failed for 'status': value is required")
-        }
-        self.status = try container.sdkDecodeRequired(.status)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension DisputeEnhancedEligibilityVisaCompliance {
-    public init(status: DisputeEnhancedEligibilityVisaComplianceStatus) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.status) else {
+            throw SdkValidationError(
+                field: "status",
+                code: "required",
+                message: "Validation failed for 'status': value is required"
+            )
+        }
+        status = try container.sdkDecodeRequired(.status)
+    }
+}
+
+public extension DisputeEnhancedEligibilityVisaCompliance {
+    init(status: DisputeEnhancedEligibilityVisaComplianceStatus) {
         self.status = status
     }
 }
@@ -150,21 +180,25 @@ public struct DisputeEnhancedEvidence: Codable {
     }
 
     init() {
-        (self.primarycardCompliance, self.visaCompellingEvidence3, self.visaCompliance) = (nil, nil, nil)
+        (primarycardCompliance, visaCompellingEvidence3, visaCompliance) = (nil, nil, nil)
     }
 }
 
 public extension DisputeEnhancedEvidence {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.primarycardCompliance = try container.sdkDecodeIfPresent(.primarycardCompliance)
-        self.visaCompellingEvidence3 = try container.sdkDecodeIfPresent(.visaCompellingEvidence3)
-        self.visaCompliance = try container.sdkDecodeIfPresent(.visaCompliance)
+        primarycardCompliance = try container.sdkDecodeIfPresent(.primarycardCompliance)
+        visaCompellingEvidence3 = try container.sdkDecodeIfPresent(.visaCompellingEvidence3)
+        visaCompliance = try container.sdkDecodeIfPresent(.visaCompliance)
     }
 }
 
 public extension DisputeEnhancedEvidence {
-    public init(primarycardCompliance: DisputeEnhancedEvidencePrimarycardCompliance? = nil, visaCompellingEvidence3: DisputeEnhancedEvidenceVisaCompellingEvidence3? = nil, visaCompliance: DisputeEnhancedEvidenceVisaCompliance? = nil) {
+    init(
+        primarycardCompliance: DisputeEnhancedEvidencePrimarycardCompliance? = nil,
+        visaCompellingEvidence3: DisputeEnhancedEvidenceVisaCompellingEvidence3? = nil,
+        visaCompliance: DisputeEnhancedEvidenceVisaCompliance? = nil
+    ) {
         self.init()
         self.primarycardCompliance = primarycardCompliance
         (self.visaCompellingEvidence3, self.visaCompliance) = (visaCompellingEvidence3, visaCompliance)
@@ -181,21 +215,27 @@ public struct DisputeEnhancedEvidencePrimarycardCompliance: Codable {
         case feeAcknowledged = "fee_acknowledged"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension DisputeEnhancedEvidencePrimarycardCompliance {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.feeAcknowledged) else {
-            throw SdkValidationError(field: "fee_acknowledged", code: "required", message: "Validation failed for 'fee_acknowledged': value is required")
-        }
-        self.feeAcknowledged = try container.sdkDecodeRequired(.feeAcknowledged)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension DisputeEnhancedEvidencePrimarycardCompliance {
-    public init(feeAcknowledged: Bool) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.feeAcknowledged) else {
+            throw SdkValidationError(
+                field: "fee_acknowledged",
+                code: "required",
+                message: "Validation failed for 'fee_acknowledged': value is required"
+            )
+        }
+        feeAcknowledged = try container.sdkDecodeRequired(.feeAcknowledged)
+    }
+}
+
+public extension DisputeEnhancedEvidencePrimarycardCompliance {
+    init(feeAcknowledged: Bool) {
         self.feeAcknowledged = feeAcknowledged
     }
 }
@@ -213,22 +253,31 @@ public struct DisputeEnhancedEvidenceVisaCompellingEvidence3: Codable {
         case disputedTransaction = "disputed_transaction"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension DisputeEnhancedEvidenceVisaCompellingEvidence3 {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.priorUndisputedTransactions) else {
-            throw SdkValidationError(field: "prior_undisputed_transactions", code: "required", message: "Validation failed for 'prior_undisputed_transactions': value is required")
-        }
-        self.priorUndisputedTransactions = try container.sdkDecodeRequired(.priorUndisputedTransactions)
-        self.disputedTransaction = try container.sdkDecodeIfPresent(.disputedTransaction)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension DisputeEnhancedEvidenceVisaCompellingEvidence3 {
-    public init(priorUndisputedTransactions: [DisputeVisaCompellingEvidence3PriorUndisputedTransaction], disputedTransaction: DisputeEnhancedEvidenceVisaCompellingEvidence3DisputedTransaction? = nil) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.priorUndisputedTransactions) else {
+            throw SdkValidationError(
+                field: "prior_undisputed_transactions",
+                code: "required",
+                message: "Validation failed for 'prior_undisputed_transactions': value is required"
+            )
+        }
+        priorUndisputedTransactions = try container.sdkDecodeRequired(.priorUndisputedTransactions)
+        disputedTransaction = try container.sdkDecodeIfPresent(.disputedTransaction)
+    }
+}
+
+public extension DisputeEnhancedEvidenceVisaCompellingEvidence3 {
+    init(
+        priorUndisputedTransactions: [DisputeVisaCompellingEvidence3PriorUndisputedTransaction],
+        disputedTransaction: DisputeEnhancedEvidenceVisaCompellingEvidence3DisputedTransaction? = nil
+    ) {
         self.priorUndisputedTransactions = priorUndisputedTransactions
         self.disputedTransaction = disputedTransaction
     }
@@ -239,24 +288,30 @@ public enum DisputeEnhancedEvidenceVisaCompellingEvidence3DisputedTransaction {
 }
 
 extension DisputeEnhancedEvidenceVisaCompellingEvidence3DisputedTransaction: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for DisputeEnhancedEvidenceVisaCompellingEvidence3DisputedTransaction")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for DisputeEnhancedEvidenceVisaCompellingEvidence3DisputedTransaction"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             DisputeVisaCompellingEvidence3DisputedTransaction.self
         ) {
-            return             .disputeVisaCompellingEvidence3DisputedTransaction(value)
+            return .disputeVisaCompellingEvidence3DisputedTransaction(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -265,7 +320,6 @@ extension DisputeEnhancedEvidenceVisaCompellingEvidence3DisputedTransaction: Cod
         case let .disputeVisaCompellingEvidence3DisputedTransaction(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Typed representation of the `DisputeEnhancedEvidenceVisaCompliance` API schema.
@@ -280,21 +334,27 @@ public struct DisputeEnhancedEvidenceVisaCompliance: Codable {
         case feeAcknowledged = "fee_acknowledged"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension DisputeEnhancedEvidenceVisaCompliance {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.feeAcknowledged) else {
-            throw SdkValidationError(field: "fee_acknowledged", code: "required", message: "Validation failed for 'fee_acknowledged': value is required")
-        }
-        self.feeAcknowledged = try container.sdkDecodeRequired(.feeAcknowledged)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension DisputeEnhancedEvidenceVisaCompliance {
-    public init(feeAcknowledged: Bool) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.feeAcknowledged) else {
+            throw SdkValidationError(
+                field: "fee_acknowledged",
+                code: "required",
+                message: "Validation failed for 'fee_acknowledged': value is required"
+            )
+        }
+        feeAcknowledged = try container.sdkDecodeRequired(.feeAcknowledged)
+    }
+}
+
+public extension DisputeEnhancedEvidenceVisaCompliance {
+    init(feeAcknowledged: Bool) {
         self.feeAcknowledged = feeAcknowledged
     }
 }
@@ -404,50 +464,85 @@ public struct DisputeEvidence: Codable {
         case uncategorizedText = "uncategorized_text"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension DisputeEvidence {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.enhancedEvidence) else {
-            throw SdkValidationError(field: "enhanced_evidence", code: "required", message: "Validation failed for 'enhanced_evidence': value is required")
+            throw SdkValidationError(
+                field: "enhanced_evidence",
+                code: "required",
+                message: "Validation failed for 'enhanced_evidence': value is required"
+            )
         }
-        self.enhancedEvidence = try container.sdkDecodeRequired(.enhancedEvidence)
-        self.accessActivityLog = try container.sdkDecodeIfPresent(.accessActivityLog)
-        self.billingAddress = try container.sdkDecodeIfPresent(.billingAddress)
-        self.cancellationPolicy = try container.sdkDecodeIfPresent(.cancellationPolicy)
-        self.cancellationPolicyDisclosure = try container.sdkDecodeIfPresent(.cancellationPolicyDisclosure)
-        self.cancellationRebuttal = try container.sdkDecodeIfPresent(.cancellationRebuttal)
-        self.customerCommunication = try container.sdkDecodeIfPresent(.customerCommunication)
-        self.customerEmailAddress = try container.sdkDecodeIfPresent(.customerEmailAddress)
-        self.customerName = try container.sdkDecodeIfPresent(.customerName)
-        self.customerPurchaseIp = try container.sdkDecodeIfPresent(.customerPurchaseIp)
-        self.customerSignature = try container.sdkDecodeIfPresent(.customerSignature)
-        self.duplicateChargeDocumentation = try container.sdkDecodeIfPresent(.duplicateChargeDocumentation)
-        self.duplicateChargeExplanation = try container.sdkDecodeIfPresent(.duplicateChargeExplanation)
-        self.duplicateChargeId = try container.sdkDecodeIfPresent(.duplicateChargeId)
-        self.productDescription = try container.sdkDecodeIfPresent(.productDescription)
-        self.receipt = try container.sdkDecodeIfPresent(.receipt)
-        self.refundPolicy = try container.sdkDecodeIfPresent(.refundPolicy)
-        self.refundPolicyDisclosure = try container.sdkDecodeIfPresent(.refundPolicyDisclosure)
-        self.refundRefusalExplanation = try container.sdkDecodeIfPresent(.refundRefusalExplanation)
-        self.serviceDate = try container.sdkDecodeIfPresent(.serviceDate)
-        self.serviceDocumentation = try container.sdkDecodeIfPresent(.serviceDocumentation)
-        self.shippingAddress = try container.sdkDecodeIfPresent(.shippingAddress)
-        self.shippingCarrier = try container.sdkDecodeIfPresent(.shippingCarrier)
-        self.shippingDate = try container.sdkDecodeIfPresent(.shippingDate)
-        self.shippingDocumentation = try container.sdkDecodeIfPresent(.shippingDocumentation)
-        self.shippingTrackingNumber = try container.sdkDecodeIfPresent(.shippingTrackingNumber)
-        self.uncategorizedFile = try container.sdkDecodeIfPresent(.uncategorizedFile)
-        self.uncategorizedText = try container.sdkDecodeIfPresent(.uncategorizedText)
+        enhancedEvidence = try container.sdkDecodeRequired(.enhancedEvidence)
+        accessActivityLog = try container.sdkDecodeIfPresent(.accessActivityLog)
+        billingAddress = try container.sdkDecodeIfPresent(.billingAddress)
+        cancellationPolicy = try container.sdkDecodeIfPresent(.cancellationPolicy)
+        cancellationPolicyDisclosure = try container.sdkDecodeIfPresent(.cancellationPolicyDisclosure)
+        cancellationRebuttal = try container.sdkDecodeIfPresent(.cancellationRebuttal)
+        customerCommunication = try container.sdkDecodeIfPresent(.customerCommunication)
+        customerEmailAddress = try container.sdkDecodeIfPresent(.customerEmailAddress)
+        customerName = try container.sdkDecodeIfPresent(.customerName)
+        customerPurchaseIp = try container.sdkDecodeIfPresent(.customerPurchaseIp)
+        customerSignature = try container.sdkDecodeIfPresent(.customerSignature)
+        duplicateChargeDocumentation = try container.sdkDecodeIfPresent(.duplicateChargeDocumentation)
+        duplicateChargeExplanation = try container.sdkDecodeIfPresent(.duplicateChargeExplanation)
+        duplicateChargeId = try container.sdkDecodeIfPresent(.duplicateChargeId)
+        productDescription = try container.sdkDecodeIfPresent(.productDescription)
+        receipt = try container.sdkDecodeIfPresent(.receipt)
+        refundPolicy = try container.sdkDecodeIfPresent(.refundPolicy)
+        refundPolicyDisclosure = try container.sdkDecodeIfPresent(.refundPolicyDisclosure)
+        refundRefusalExplanation = try container.sdkDecodeIfPresent(.refundRefusalExplanation)
+        serviceDate = try container.sdkDecodeIfPresent(.serviceDate)
+        serviceDocumentation = try container.sdkDecodeIfPresent(.serviceDocumentation)
+        shippingAddress = try container.sdkDecodeIfPresent(.shippingAddress)
+        shippingCarrier = try container.sdkDecodeIfPresent(.shippingCarrier)
+        shippingDate = try container.sdkDecodeIfPresent(.shippingDate)
+        shippingDocumentation = try container.sdkDecodeIfPresent(.shippingDocumentation)
+        shippingTrackingNumber = try container.sdkDecodeIfPresent(.shippingTrackingNumber)
+        uncategorizedFile = try container.sdkDecodeIfPresent(.uncategorizedFile)
+        uncategorizedText = try container.sdkDecodeIfPresent(.uncategorizedText)
         try sdkValidateConstraintsPart1()
         try sdkValidateConstraintsPart2()
     }
 }
 
 public extension DisputeEvidence {
-    public init(enhancedEvidence: DisputeEnhancedEvidence, accessActivityLog: String? = nil, billingAddress: String? = nil, cancellationPolicy: DisputeEvidenceCancellationPolicy? = nil, cancellationPolicyDisclosure: String? = nil, cancellationRebuttal: String? = nil, customerCommunication: DisputeEvidenceCustomerCommunication? = nil, customerEmailAddress: String? = nil, customerName: String? = nil, customerPurchaseIp: String? = nil, customerSignature: DisputeEvidenceCustomerSignature? = nil, duplicateChargeDocumentation: DisputeEvidenceDuplicateChargeDocumentation? = nil, duplicateChargeExplanation: String? = nil, duplicateChargeId: String? = nil, productDescription: String? = nil, receipt: DisputeEvidenceReceipt? = nil, refundPolicy: DisputeEvidenceRefundPolicy? = nil, refundPolicyDisclosure: String? = nil, refundRefusalExplanation: String? = nil, serviceDate: String? = nil, serviceDocumentation: DisputeEvidenceServiceDocumentation? = nil, shippingAddress: String? = nil, shippingCarrier: String? = nil, shippingDate: String? = nil, shippingDocumentation: DisputeEvidenceShippingDocumentation? = nil, shippingTrackingNumber: String? = nil, uncategorizedFile: DisputeEvidenceUncategorizedFile? = nil, uncategorizedText: String? = nil) throws {
+    init(
+        enhancedEvidence: DisputeEnhancedEvidence,
+        accessActivityLog: String? = nil,
+        billingAddress: String? = nil,
+        cancellationPolicy: DisputeEvidenceCancellationPolicy? = nil,
+        cancellationPolicyDisclosure: String? = nil,
+        cancellationRebuttal: String? = nil,
+        customerCommunication: DisputeEvidenceCustomerCommunication? = nil,
+        customerEmailAddress: String? = nil,
+        customerName: String? = nil,
+        customerPurchaseIp: String? = nil,
+        customerSignature: DisputeEvidenceCustomerSignature? = nil,
+        duplicateChargeDocumentation: DisputeEvidenceDuplicateChargeDocumentation? = nil,
+        duplicateChargeExplanation: String? = nil,
+        duplicateChargeId: String? = nil,
+        productDescription: String? = nil,
+        receipt: DisputeEvidenceReceipt? = nil,
+        refundPolicy: DisputeEvidenceRefundPolicy? = nil,
+        refundPolicyDisclosure: String? = nil,
+        refundRefusalExplanation: String? = nil,
+        serviceDate: String? = nil,
+        serviceDocumentation: DisputeEvidenceServiceDocumentation? = nil,
+        shippingAddress: String? = nil,
+        shippingCarrier: String? = nil,
+        shippingDate: String? = nil,
+        shippingDocumentation: DisputeEvidenceShippingDocumentation? = nil,
+        shippingTrackingNumber: String? = nil,
+        uncategorizedFile: DisputeEvidenceUncategorizedFile? = nil,
+        uncategorizedText: String? = nil
+    ) throws {
         (self.enhancedEvidence, self.accessActivityLog) = (enhancedEvidence, accessActivityLog)
         (self.billingAddress, self.cancellationPolicy) = (billingAddress, cancellationPolicy)
         self.cancellationPolicyDisclosure = cancellationPolicyDisclosure
@@ -473,64 +568,64 @@ public extension DisputeEvidence {
 
 extension DisputeEvidence {
     func sdkValidateConstraintsPart1() throws {
-        if let value = self.accessActivityLog {
-            try validateLength("access_activity_log", value, min: nil, max: 150000)
+        if let value = accessActivityLog {
+            try validateLength("access_activity_log", value, min: nil, max: 150_000)
         }
-        if let value = self.billingAddress {
+        if let value = billingAddress {
             try validateLength("billing_address", value, min: nil, max: 5000)
         }
-        if let value = self.cancellationPolicyDisclosure {
-            try validateLength("cancellation_policy_disclosure", value, min: nil, max: 150000)
+        if let value = cancellationPolicyDisclosure {
+            try validateLength("cancellation_policy_disclosure", value, min: nil, max: 150_000)
         }
-        if let value = self.cancellationRebuttal {
-            try validateLength("cancellation_rebuttal", value, min: nil, max: 150000)
+        if let value = cancellationRebuttal {
+            try validateLength("cancellation_rebuttal", value, min: nil, max: 150_000)
         }
-        if let value = self.customerEmailAddress {
+        if let value = customerEmailAddress {
             try validateLength("customer_email_address", value, min: nil, max: 5000)
         }
-        if let value = self.customerName {
+        if let value = customerName {
             try validateLength("customer_name", value, min: nil, max: 5000)
         }
-        if let value = self.customerPurchaseIp {
+        if let value = customerPurchaseIp {
             try validateLength("customer_purchase_ip", value, min: nil, max: 5000)
         }
-        if let value = self.duplicateChargeExplanation {
-            try validateLength("duplicate_charge_explanation", value, min: nil, max: 150000)
+        if let value = duplicateChargeExplanation {
+            try validateLength("duplicate_charge_explanation", value, min: nil, max: 150_000)
         }
-        if let value = self.duplicateChargeId {
+        if let value = duplicateChargeId {
             try validateLength("duplicate_charge_id", value, min: nil, max: 5000)
         }
-        if let value = self.productDescription {
-            try validateLength("product_description", value, min: nil, max: 150000)
+        if let value = productDescription {
+            try validateLength("product_description", value, min: nil, max: 150_000)
         }
-        if let value = self.refundPolicyDisclosure {
-            try validateLength("refund_policy_disclosure", value, min: nil, max: 150000)
+        if let value = refundPolicyDisclosure {
+            try validateLength("refund_policy_disclosure", value, min: nil, max: 150_000)
         }
-        if let value = self.refundRefusalExplanation {
-            try validateLength("refund_refusal_explanation", value, min: nil, max: 150000)
+        if let value = refundRefusalExplanation {
+            try validateLength("refund_refusal_explanation", value, min: nil, max: 150_000)
         }
     }
 }
 
 extension DisputeEvidence {
     func sdkValidateConstraintsPart2() throws {
-        if let value = self.serviceDate {
+        if let value = serviceDate {
             try validateLength("service_date", value, min: nil, max: 5000)
         }
-        if let value = self.shippingAddress {
+        if let value = shippingAddress {
             try validateLength("shipping_address", value, min: nil, max: 5000)
         }
-        if let value = self.shippingCarrier {
+        if let value = shippingCarrier {
             try validateLength("shipping_carrier", value, min: nil, max: 5000)
         }
-        if let value = self.shippingDate {
+        if let value = shippingDate {
             try validateLength("shipping_date", value, min: nil, max: 5000)
         }
-        if let value = self.shippingTrackingNumber {
+        if let value = shippingTrackingNumber {
             try validateLength("shipping_tracking_number", value, min: nil, max: 5000)
         }
-        if let value = self.uncategorizedText {
-            try validateLength("uncategorized_text", value, min: nil, max: 150000)
+        if let value = uncategorizedText {
+            try validateLength("uncategorized_text", value, min: nil, max: 150_000)
         }
     }
 }

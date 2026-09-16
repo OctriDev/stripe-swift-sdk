@@ -3,169 +3,330 @@
 
 import Foundation
 
-// V1IssuingCardholder domain models
+/// V1IssuingCardholder domain models
 public extension IssuingCardholderAuthorizationControlsAllowedCategoriesItem {
-    static let acRefrigerationRepair = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "ac_refrigeration_repair")
-    static let accountingBookkeepingServices = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "accounting_bookkeeping_services")
-    static let advertisingServices = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "advertising_services")
-    static let agriculturalCooperative = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "agricultural_cooperative")
-    static let airlinesAirCarriers = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "airlines_air_carriers")
-    static let airportsFlyingFields = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "airports_flying_fields")
-    static let ambulanceServices = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "ambulance_services")
-    static let amusementParksCarnivals = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "amusement_parks_carnivals")
-    static let antiqueReproductions = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "antique_reproductions")
+    static let acRefrigerationRepair =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "ac_refrigeration_repair")
+    static let accountingBookkeepingServices =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "accounting_bookkeeping_services")
+    static let advertisingServices =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "advertising_services")
+    static let agriculturalCooperative =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "agricultural_cooperative")
+    static let airlinesAirCarriers =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "airlines_air_carriers")
+    static let airportsFlyingFields =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "airports_flying_fields")
+    static let ambulanceServices =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "ambulance_services")
+    static let amusementParksCarnivals =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "amusement_parks_carnivals")
+    static let antiqueReproductions =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "antique_reproductions")
     static let antiqueShops = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "antique_shops")
     static let aquariums = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "aquariums")
-    static let architecturalSurveyingServices = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "architectural_surveying_services")
-    static let artDealersAndGalleries = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "art_dealers_and_galleries")
-    static let artistsSupplyAndCraftShops = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "artists_supply_and_craft_shops")
-    static let autoAndHomeSupplyStores = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "auto_and_home_supply_stores")
-    static let autoBodyRepairShops = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "auto_body_repair_shops")
-    static let autoPaintShops = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "auto_paint_shops")
-    static let autoServiceShops = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "auto_service_shops")
-    static let automatedCashDisburse = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "automated_cash_disburse")
-    static let automatedFuelDispensers = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "automated_fuel_dispensers")
-    static let automobileAssociations = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "automobile_associations")
-    static let automotivePartsAndAccessoriesStores = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "automotive_parts_and_accessories_stores")
-    static let automotiveTireStores = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "automotive_tire_stores")
-    static let bailAndBondPayments = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "bail_and_bond_payments")
+    static let architecturalSurveyingServices =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "architectural_surveying_services")
+    static let artDealersAndGalleries =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "art_dealers_and_galleries")
+    static let artistsSupplyAndCraftShops =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "artists_supply_and_craft_shops")
+    static let autoAndHomeSupplyStores =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "auto_and_home_supply_stores")
+    static let autoBodyRepairShops =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "auto_body_repair_shops")
+    static let autoPaintShops =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "auto_paint_shops")
+    static let autoServiceShops =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "auto_service_shops")
+    static let automatedCashDisburse =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "automated_cash_disburse")
+    static let automatedFuelDispensers =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "automated_fuel_dispensers")
+    static let automobileAssociations =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "automobile_associations")
+    static let automotivePartsAndAccessoriesStores =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "automotive_parts_and_accessories_stores")
+    static let automotiveTireStores =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "automotive_tire_stores")
+    static let bailAndBondPayments =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "bail_and_bond_payments")
     static let bakeries = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "bakeries")
-    static let bandsOrchestras = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "bands_orchestras")
-    static let barberAndBeautyShops = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "barber_and_beauty_shops")
-    static let bettingCasinoGambling = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "betting_casino_gambling")
+    static let bandsOrchestras =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "bands_orchestras")
+    static let barberAndBeautyShops =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "barber_and_beauty_shops")
+    static let bettingCasinoGambling =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "betting_casino_gambling")
     static let bicycleShops = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "bicycle_shops")
-    static let billiardPoolEstablishments = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "billiard_pool_establishments")
+    static let billiardPoolEstablishments =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "billiard_pool_establishments")
     static let boatDealers = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "boat_dealers")
-    static let boatRentalsAndLeases = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "boat_rentals_and_leases")
+    static let boatRentalsAndLeases =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "boat_rentals_and_leases")
     static let bookStores = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "book_stores")
-    static let booksPeriodicalsAndNewspapers = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "books_periodicals_and_newspapers")
+    static let booksPeriodicalsAndNewspapers =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "books_periodicals_and_newspapers")
     static let bowlingAlleys = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "bowling_alleys")
     static let busLines = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "bus_lines")
-    static let businessSecretarialSchools = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "business_secretarial_schools")
-    static let buyingShoppingServices = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "buying_shopping_services")
-    static let cableSatelliteAndOtherPayTelevisionAndRadio = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "cable_satellite_and_other_pay_television_and_radio")
-    static let cameraAndPhotographicSupplyStores = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "camera_and_photographic_supply_stores")
-    static let candyNutAndConfectioneryStores = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "candy_nut_and_confectionery_stores")
-    static let carAndTruckDealersNewUsed = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "car_and_truck_dealers_new_used")
-    static let carAndTruckDealersUsedOnly = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "car_and_truck_dealers_used_only")
-    static let carRentalAgencies = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "car_rental_agencies")
+    static let businessSecretarialSchools =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "business_secretarial_schools")
+    static let buyingShoppingServices =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "buying_shopping_services")
+    static let cableSatelliteAndOtherPayTelevisionAndRadio =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(
+            rawValue: "cable_satellite_and_other_pay_television_and_radio"
+        )
+    static let cameraAndPhotographicSupplyStores =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "camera_and_photographic_supply_stores")
+    static let candyNutAndConfectioneryStores =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "candy_nut_and_confectionery_stores")
+    static let carAndTruckDealersNewUsed =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "car_and_truck_dealers_new_used")
+    static let carAndTruckDealersUsedOnly =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "car_and_truck_dealers_used_only")
+    static let carRentalAgencies =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "car_rental_agencies")
     static let carWashes = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "car_washes")
-    static let carpentryServices = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "carpentry_services")
-    static let carpetUpholsteryCleaning = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "carpet_upholstery_cleaning")
+    static let carpentryServices =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "carpentry_services")
+    static let carpetUpholsteryCleaning =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "carpet_upholstery_cleaning")
     static let caterers = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "caterers")
-    static let charitableAndSocialServiceOrganizationsFundraising = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "charitable_and_social_service_organizations_fundraising")
-    static let chemicalsAndAlliedProducts = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "chemicals_and_allied_products")
-    static let childCareServices = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "child_care_services")
-    static let childrensAndInfantsWearStores = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "childrens_and_infants_wear_stores")
-    static let chiropodistsPodiatrists = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "chiropodists_podiatrists")
+    static let charitableAndSocialServiceOrganizationsFundraising =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(
+            rawValue: "charitable_and_social_service_organizations_fundraising"
+        )
+    static let chemicalsAndAlliedProducts =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "chemicals_and_allied_products")
+    static let childCareServices =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "child_care_services")
+    static let childrensAndInfantsWearStores =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "childrens_and_infants_wear_stores")
+    static let chiropodistsPodiatrists =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "chiropodists_podiatrists")
     static let chiropractors = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "chiropractors")
-    static let cigarStoresAndStands = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "cigar_stores_and_stands")
-    static let civicSocialFraternalAssociations = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "civic_social_fraternal_associations")
-    static let cleaningAndMaintenance = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "cleaning_and_maintenance")
+    static let cigarStoresAndStands =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "cigar_stores_and_stands")
+    static let civicSocialFraternalAssociations =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "civic_social_fraternal_associations")
+    static let cleaningAndMaintenance =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "cleaning_and_maintenance")
     static let clothingRental = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "clothing_rental")
-    static let collegesUniversities = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "colleges_universities")
-    static let commercialEquipment = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "commercial_equipment")
-    static let commercialFootwear = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "commercial_footwear")
-    static let commercialPhotographyArtAndGraphics = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "commercial_photography_art_and_graphics")
-    static let commuterTransportAndFerries = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "commuter_transport_and_ferries")
-    static let computerNetworkServices = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "computer_network_services")
-    static let computerProgramming = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "computer_programming")
+    static let collegesUniversities =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "colleges_universities")
+    static let commercialEquipment =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "commercial_equipment")
+    static let commercialFootwear =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "commercial_footwear")
+    static let commercialPhotographyArtAndGraphics =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "commercial_photography_art_and_graphics")
+    static let commuterTransportAndFerries =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "commuter_transport_and_ferries")
+    static let computerNetworkServices =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "computer_network_services")
+    static let computerProgramming =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "computer_programming")
     static let computerRepair = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "computer_repair")
-    static let computerSoftwareStores = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "computer_software_stores")
-    static let computersPeripheralsAndSoftware = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "computers_peripherals_and_software")
-    static let concreteWorkServices = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "concrete_work_services")
-    static let constructionMaterials = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "construction_materials")
-    static let consultingPublicRelations = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "consulting_public_relations")
-    static let correspondenceSchools = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "correspondence_schools")
+    static let computerSoftwareStores =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "computer_software_stores")
+    static let computersPeripheralsAndSoftware =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "computers_peripherals_and_software")
+    static let concreteWorkServices =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "concrete_work_services")
+    static let constructionMaterials =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "construction_materials")
+    static let consultingPublicRelations =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "consulting_public_relations")
+    static let correspondenceSchools =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "correspondence_schools")
     static let cosmeticStores = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "cosmetic_stores")
-    static let counselingServices = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "counseling_services")
+    static let counselingServices =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "counseling_services")
     static let countryClubs = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "country_clubs")
-    static let courierServices = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "courier_services")
+    static let courierServices =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "courier_services")
     static let courtCosts = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "court_costs")
-    static let creditReportingAgencies = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "credit_reporting_agencies")
+    static let creditReportingAgencies =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "credit_reporting_agencies")
     static let cruiseLines = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "cruise_lines")
-    static let dairyProductsStores = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "dairy_products_stores")
+    static let dairyProductsStores =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "dairy_products_stores")
 }
 
 public extension IssuingCardholderAuthorizationControlsAllowedCategoriesItem {
-    static let danceHallStudiosSchools = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "dance_hall_studios_schools")
-    static let datingEscortServices = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "dating_escort_services")
-    static let dentistsOrthodontists = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "dentists_orthodontists")
-    static let departmentStores = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "department_stores")
-    static let detectiveAgencies = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "detective_agencies")
-    static let digitalGoodsApplications = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "digital_goods_applications")
-    static let digitalGoodsGames = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "digital_goods_games")
-    static let digitalGoodsLargeVolume = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "digital_goods_large_volume")
-    static let digitalGoodsMedia = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "digital_goods_media")
-    static let directMarketingCatalogMerchant = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "direct_marketing_catalog_merchant")
-    static let directMarketingCombinationCatalogAndRetailMerchant = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "direct_marketing_combination_catalog_and_retail_merchant")
-    static let directMarketingInboundTelemarketing = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "direct_marketing_inbound_telemarketing")
-    static let directMarketingInsuranceServices = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "direct_marketing_insurance_services")
-    static let directMarketingOther = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "direct_marketing_other")
-    static let directMarketingOutboundTelemarketing = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "direct_marketing_outbound_telemarketing")
-    static let directMarketingSubscription = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "direct_marketing_subscription")
-    static let directMarketingTravel = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "direct_marketing_travel")
+    static let danceHallStudiosSchools =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "dance_hall_studios_schools")
+    static let datingEscortServices =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "dating_escort_services")
+    static let dentistsOrthodontists =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "dentists_orthodontists")
+    static let departmentStores =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "department_stores")
+    static let detectiveAgencies =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "detective_agencies")
+    static let digitalGoodsApplications =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "digital_goods_applications")
+    static let digitalGoodsGames =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "digital_goods_games")
+    static let digitalGoodsLargeVolume =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "digital_goods_large_volume")
+    static let digitalGoodsMedia =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "digital_goods_media")
+    static let directMarketingCatalogMerchant =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "direct_marketing_catalog_merchant")
+    static let directMarketingCombinationCatalogAndRetailMerchant =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(
+            rawValue: "direct_marketing_combination_catalog_and_retail_merchant"
+        )
+    static let directMarketingInboundTelemarketing =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "direct_marketing_inbound_telemarketing")
+    static let directMarketingInsuranceServices =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "direct_marketing_insurance_services")
+    static let directMarketingOther =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "direct_marketing_other")
+    static let directMarketingOutboundTelemarketing =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "direct_marketing_outbound_telemarketing")
+    static let directMarketingSubscription =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "direct_marketing_subscription")
+    static let directMarketingTravel =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "direct_marketing_travel")
     static let discountStores = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "discount_stores")
     static let doctors = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "doctors")
-    static let doorToDoorSales = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "door_to_door_sales")
-    static let draperyWindowCoveringAndUpholsteryStores = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "drapery_window_covering_and_upholstery_stores")
+    static let doorToDoorSales =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "door_to_door_sales")
+    static let draperyWindowCoveringAndUpholsteryStores =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(
+            rawValue: "drapery_window_covering_and_upholstery_stores"
+        )
     static let drinkingPlaces = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "drinking_places")
-    static let drugStoresAndPharmacies = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "drug_stores_and_pharmacies")
-    static let drugsDrugProprietariesAndDruggistSundries = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "drugs_drug_proprietaries_and_druggist_sundries")
+    static let drugStoresAndPharmacies =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "drug_stores_and_pharmacies")
+    static let drugsDrugProprietariesAndDruggistSundries =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(
+            rawValue: "drugs_drug_proprietaries_and_druggist_sundries"
+        )
     static let dryCleaners = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "dry_cleaners")
     static let durableGoods = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "durable_goods")
-    static let dutyFreeStores = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "duty_free_stores")
-    static let eatingPlacesRestaurants = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "eating_places_restaurants")
-    static let educationalServices = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "educational_services")
-    static let electricRazorStores = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "electric_razor_stores")
-    static let electricVehicleCharging = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "electric_vehicle_charging")
-    static let electricalPartsAndEquipment = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "electrical_parts_and_equipment")
-    static let electricalServices = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "electrical_services")
-    static let electronicsRepairShops = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "electronics_repair_shops")
-    static let electronicsStores = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "electronics_stores")
-    static let elementarySecondarySchools = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "elementary_secondary_schools")
-    static let emergencyServicesGcasVisaUseOnly = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "emergency_services_gcas_visa_use_only")
-    static let employmentTempAgencies = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "employment_temp_agencies")
-    static let equipmentRental = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "equipment_rental")
-    static let exterminatingServices = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "exterminating_services")
-    static let familyClothingStores = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "family_clothing_stores")
-    static let fastFoodRestaurants = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "fast_food_restaurants")
-    static let financialInstitutions = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "financial_institutions")
-    static let finesGovernmentAdministrativeEntities = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "fines_government_administrative_entities")
-    static let fireplaceFireplaceScreensAndAccessoriesStores = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "fireplace_fireplace_screens_and_accessories_stores")
-    static let floorCoveringStores = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "floor_covering_stores")
+    static let dutyFreeStores =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "duty_free_stores")
+    static let eatingPlacesRestaurants =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "eating_places_restaurants")
+    static let educationalServices =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "educational_services")
+    static let electricRazorStores =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "electric_razor_stores")
+    static let electricVehicleCharging =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "electric_vehicle_charging")
+    static let electricalPartsAndEquipment =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "electrical_parts_and_equipment")
+    static let electricalServices =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "electrical_services")
+    static let electronicsRepairShops =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "electronics_repair_shops")
+    static let electronicsStores =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "electronics_stores")
+    static let elementarySecondarySchools =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "elementary_secondary_schools")
+    static let emergencyServicesGcasVisaUseOnly =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "emergency_services_gcas_visa_use_only")
+    static let employmentTempAgencies =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "employment_temp_agencies")
+    static let equipmentRental =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "equipment_rental")
+    static let exterminatingServices =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "exterminating_services")
+    static let familyClothingStores =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "family_clothing_stores")
+    static let fastFoodRestaurants =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "fast_food_restaurants")
+    static let financialInstitutions =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "financial_institutions")
+    static let finesGovernmentAdministrativeEntities =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(
+            rawValue: "fines_government_administrative_entities"
+        )
+    static let fireplaceFireplaceScreensAndAccessoriesStores =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(
+            rawValue: "fireplace_fireplace_screens_and_accessories_stores"
+        )
+    static let floorCoveringStores =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "floor_covering_stores")
     static let florists = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "florists")
-    static let floristsSuppliesNurseryStockAndFlowers = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "florists_supplies_nursery_stock_and_flowers")
-    static let freezerAndLockerMeatProvisioners = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "freezer_and_locker_meat_provisioners")
-    static let fuelDealersNonAutomotive = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "fuel_dealers_non_automotive")
-    static let funeralServicesCrematories = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "funeral_services_crematories")
-    static let furnitureHomeFurnishingsAndEquipmentStoresExceptAppliances = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "furniture_home_furnishings_and_equipment_stores_except_appliances")
-    static let furnitureRepairRefinishing = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "furniture_repair_refinishing")
-    static let furriersAndFurShops = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "furriers_and_fur_shops")
-    static let generalServices = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "general_services")
-    static let giftCardNoveltyAndSouvenirShops = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "gift_card_novelty_and_souvenir_shops")
-    static let glassPaintAndWallpaperStores = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "glass_paint_and_wallpaper_stores")
-    static let glasswareCrystalStores = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "glassware_crystal_stores")
-    static let golfCoursesPublic = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "golf_courses_public")
-    static let governmentLicensedHorseDogRacingUsRegionOnly = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "government_licensed_horse_dog_racing_us_region_only")
-    static let governmentLicensedOnlineCasionsOnlineGamblingUsRegionOnly = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "government_licensed_online_casions_online_gambling_us_region_only")
-    static let governmentOwnedLotteriesNonUsRegion = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "government_owned_lotteries_non_us_region")
-    static let governmentOwnedLotteriesUsRegionOnly = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "government_owned_lotteries_us_region_only")
-    static let governmentServices = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "government_services")
-    static let groceryStoresSupermarkets = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "grocery_stores_supermarkets")
-    static let hardwareEquipmentAndSupplies = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "hardware_equipment_and_supplies")
+    static let floristsSuppliesNurseryStockAndFlowers =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(
+            rawValue: "florists_supplies_nursery_stock_and_flowers"
+        )
+    static let freezerAndLockerMeatProvisioners =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "freezer_and_locker_meat_provisioners")
+    static let fuelDealersNonAutomotive =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "fuel_dealers_non_automotive")
+    static let funeralServicesCrematories =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "funeral_services_crematories")
+    static let furnitureHomeFurnishingsAndEquipmentStoresExceptAppliances =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(
+            rawValue: "furniture_home_furnishings_and_equipment_stores_except_appliances"
+        )
+    static let furnitureRepairRefinishing =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "furniture_repair_refinishing")
+    static let furriersAndFurShops =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "furriers_and_fur_shops")
+    static let generalServices =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "general_services")
+    static let giftCardNoveltyAndSouvenirShops =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "gift_card_novelty_and_souvenir_shops")
+    static let glassPaintAndWallpaperStores =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "glass_paint_and_wallpaper_stores")
+    static let glasswareCrystalStores =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "glassware_crystal_stores")
+    static let golfCoursesPublic =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "golf_courses_public")
+    static let governmentLicensedHorseDogRacingUsRegionOnly =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(
+            rawValue: "government_licensed_horse_dog_racing_us_region_only"
+        )
+    static let governmentLicensedOnlineCasionsOnlineGamblingUsRegionOnly =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(
+            rawValue: "government_licensed_online_casions_online_gambling_us_region_only"
+        )
+    static let governmentOwnedLotteriesNonUsRegion =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(
+            rawValue: "government_owned_lotteries_non_us_region"
+        )
+    static let governmentOwnedLotteriesUsRegionOnly =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(
+            rawValue: "government_owned_lotteries_us_region_only"
+        )
+    static let governmentServices =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "government_services")
+    static let groceryStoresSupermarkets =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "grocery_stores_supermarkets")
+    static let hardwareEquipmentAndSupplies =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "hardware_equipment_and_supplies")
     static let hardwareStores = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "hardware_stores")
-    static let healthAndBeautySpas = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "health_and_beauty_spas")
-    static let hearingAidsSalesAndSupplies = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "hearing_aids_sales_and_supplies")
-    static let heatingPlumbingAC = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "heating_plumbing_a_c")
-    static let hobbyToyAndGameShops = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "hobby_toy_and_game_shops")
-    static let homeSupplyWarehouseStores = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "home_supply_warehouse_stores")
+    static let healthAndBeautySpas =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "health_and_beauty_spas")
+    static let hearingAidsSalesAndSupplies =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "hearing_aids_sales_and_supplies")
+    static let heatingPlumbingAC =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "heating_plumbing_a_c")
+    static let hobbyToyAndGameShops =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "hobby_toy_and_game_shops")
+    static let homeSupplyWarehouseStores =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "home_supply_warehouse_stores")
     static let hospitals = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "hospitals")
-    static let hotelsMotelsAndResorts = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "hotels_motels_and_resorts")
-    static let householdApplianceStores = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "household_appliance_stores")
-    static let industrialSupplies = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "industrial_supplies")
-    static let informationRetrievalServices = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "information_retrieval_services")
-    static let insuranceDefault = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "insurance_default")
-    static let insuranceUnderwritingPremiums = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "insurance_underwriting_premiums")
-    static let intraCompanyPurchases = IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "intra_company_purchases")
+    static let hotelsMotelsAndResorts =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "hotels_motels_and_resorts")
+    static let householdApplianceStores =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "household_appliance_stores")
+    static let industrialSupplies =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "industrial_supplies")
+    static let informationRetrievalServices =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "information_retrieval_services")
+    static let insuranceDefault =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "insurance_default")
+    static let insuranceUnderwritingPremiums =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "insurance_underwriting_premiums")
+    static let intraCompanyPurchases =
+        IssuingCardholderAuthorizationControlsAllowedCategoriesItem(rawValue: "intra_company_purchases")
 }

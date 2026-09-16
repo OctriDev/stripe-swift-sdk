@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1Funding domain models
+/// V1Funding domain models
 /// Each customer has a `balance` that is automatically applied to future invoices and payments using the
 /// `customer_balance` payment method. Customers can fund this balance by initiating a bank transfer to any account
 /// in the `financial_addresses` field. Related guide: Customer balance funding instructions
@@ -28,42 +28,70 @@ public struct FundingInstructions: Codable {
         case object
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension FundingInstructions {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.bankTransfer) else {
-            throw SdkValidationError(field: "bank_transfer", code: "required", message: "Validation failed for 'bank_transfer': value is required")
-        }
-        guard container.contains(.currency) else {
-            throw SdkValidationError(field: "currency", code: "required", message: "Validation failed for 'currency': value is required")
-        }
-        guard container.contains(.fundingType) else {
-            throw SdkValidationError(field: "funding_type", code: "required", message: "Validation failed for 'funding_type': value is required")
-        }
-        guard container.contains(.livemode) else {
-            throw SdkValidationError(field: "livemode", code: "required", message: "Validation failed for 'livemode': value is required")
-        }
-        guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
-        }
-        self.bankTransfer = try container.sdkDecodeRequired(.bankTransfer)
-        self.currency = try container.sdkDecodeRequired(.currency)
-        self.fundingType = try container.sdkDecodeRequired(.fundingType)
-        self.livemode = try container.sdkDecodeRequired(.livemode)
-        self.object = try container.sdkDecodeRequired(.object)
-            try validateLength("currency", self.currency, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension FundingInstructions {
-    public init(bankTransfer: FundingInstructionsBankTransfer, currency: String, fundingType: FundingInstructionsFundingType, livemode: Bool, object: FundingInstructionsObject) throws {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.bankTransfer) else {
+            throw SdkValidationError(
+                field: "bank_transfer",
+                code: "required",
+                message: "Validation failed for 'bank_transfer': value is required"
+            )
+        }
+        guard container.contains(.currency) else {
+            throw SdkValidationError(
+                field: "currency",
+                code: "required",
+                message: "Validation failed for 'currency': value is required"
+            )
+        }
+        guard container.contains(.fundingType) else {
+            throw SdkValidationError(
+                field: "funding_type",
+                code: "required",
+                message: "Validation failed for 'funding_type': value is required"
+            )
+        }
+        guard container.contains(.livemode) else {
+            throw SdkValidationError(
+                field: "livemode",
+                code: "required",
+                message: "Validation failed for 'livemode': value is required"
+            )
+        }
+        guard container.contains(.object) else {
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
+        }
+        bankTransfer = try container.sdkDecodeRequired(.bankTransfer)
+        currency = try container.sdkDecodeRequired(.currency)
+        fundingType = try container.sdkDecodeRequired(.fundingType)
+        livemode = try container.sdkDecodeRequired(.livemode)
+        object = try container.sdkDecodeRequired(.object)
+        try validateLength("currency", currency, min: nil, max: 5000)
+    }
+}
+
+public extension FundingInstructions {
+    init(
+        bankTransfer: FundingInstructionsBankTransfer,
+        currency: String,
+        fundingType: FundingInstructionsFundingType,
+        livemode: Bool,
+        object: FundingInstructionsObject
+    ) throws {
         (self.bankTransfer, self.currency) = (bankTransfer, currency)
         (self.fundingType, self.livemode) = (fundingType, livemode)
         self.object = object
-            try validateLength("currency", self.currency, min: nil, max: 5000)
+        try validateLength("currency", self.currency, min: nil, max: 5000)
     }
 }
 
@@ -82,33 +110,51 @@ public struct FundingInstructionsBankTransfer: Codable {
         case type
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension FundingInstructionsBankTransfer {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.country) else {
-            throw SdkValidationError(field: "country", code: "required", message: "Validation failed for 'country': value is required")
-        }
-        guard container.contains(.financialAddresses) else {
-            throw SdkValidationError(field: "financial_addresses", code: "required", message: "Validation failed for 'financial_addresses': value is required")
-        }
-        guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
-        }
-        self.country = try container.sdkDecodeRequired(.country)
-        self.financialAddresses = try container.sdkDecodeRequired(.financialAddresses)
-        self.type = try container.sdkDecodeRequired(.type)
-            try validateLength("country", self.country, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension FundingInstructionsBankTransfer {
-    public init(country: String, financialAddresses: [FundingInstructionsBankTransferFinancialAddress], type: FundingInstructionsBankTransferType) throws {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.country) else {
+            throw SdkValidationError(
+                field: "country",
+                code: "required",
+                message: "Validation failed for 'country': value is required"
+            )
+        }
+        guard container.contains(.financialAddresses) else {
+            throw SdkValidationError(
+                field: "financial_addresses",
+                code: "required",
+                message: "Validation failed for 'financial_addresses': value is required"
+            )
+        }
+        guard container.contains(.type) else {
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
+        }
+        country = try container.sdkDecodeRequired(.country)
+        financialAddresses = try container.sdkDecodeRequired(.financialAddresses)
+        type = try container.sdkDecodeRequired(.type)
+        try validateLength("country", country, min: nil, max: 5000)
+    }
+}
+
+public extension FundingInstructionsBankTransfer {
+    init(
+        country: String,
+        financialAddresses: [FundingInstructionsBankTransferFinancialAddress],
+        type: FundingInstructionsBankTransferType
+    ) throws {
         (self.country, self.financialAddresses) = (country, financialAddresses)
         self.type = type
-            try validateLength("country", self.country, min: nil, max: 5000)
+        try validateLength("country", self.country, min: nil, max: 5000)
     }
 }
 
@@ -139,63 +185,102 @@ public struct FundingInstructionsBankTransferAbaRecord: Codable {
         case routingNumber = "routing_number"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension FundingInstructionsBankTransferAbaRecord {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.accountHolderAddress) else {
-            throw SdkValidationError(field: "account_holder_address", code: "required", message: "Validation failed for 'account_holder_address': value is required")
-        }
-        guard container.contains(.accountHolderName) else {
-            throw SdkValidationError(field: "account_holder_name", code: "required", message: "Validation failed for 'account_holder_name': value is required")
-        }
-        guard container.contains(.accountNumber) else {
-            throw SdkValidationError(field: "account_number", code: "required", message: "Validation failed for 'account_number': value is required")
-        }
-        guard container.contains(.accountType) else {
-            throw SdkValidationError(field: "account_type", code: "required", message: "Validation failed for 'account_type': value is required")
-        }
-        guard container.contains(.bankAddress) else {
-            throw SdkValidationError(field: "bank_address", code: "required", message: "Validation failed for 'bank_address': value is required")
-        }
-        guard container.contains(.bankName) else {
-            throw SdkValidationError(field: "bank_name", code: "required", message: "Validation failed for 'bank_name': value is required")
-        }
-        guard container.contains(.routingNumber) else {
-            throw SdkValidationError(field: "routing_number", code: "required", message: "Validation failed for 'routing_number': value is required")
-        }
-        self.accountHolderAddress = try container.sdkDecodeRequired(.accountHolderAddress)
-        self.accountHolderName = try container.sdkDecodeRequired(.accountHolderName)
-        self.accountNumber = try container.sdkDecodeRequired(.accountNumber)
-        self.accountType = try container.sdkDecodeRequired(.accountType)
-        self.bankAddress = try container.sdkDecodeRequired(.bankAddress)
-        self.bankName = try container.sdkDecodeRequired(.bankName)
-        self.routingNumber = try container.sdkDecodeRequired(.routingNumber)
-            try validateLength("account_holder_name", self.accountHolderName, min: nil, max: 5000)
-            try validateLength("account_number", self.accountNumber, min: nil, max: 5000)
-            try validateLength("account_type", self.accountType, min: nil, max: 5000)
-            try validateLength("bank_name", self.bankName, min: nil, max: 5000)
-            try validateLength("routing_number", self.routingNumber, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension FundingInstructionsBankTransferAbaRecord {
-    public init(accountHolderAddress: Address, accountHolderName: String, accountNumber: String, accountType: String, bankAddress: Address, bankName: String, routingNumber: String) throws {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.accountHolderAddress) else {
+            throw SdkValidationError(
+                field: "account_holder_address",
+                code: "required",
+                message: "Validation failed for 'account_holder_address': value is required"
+            )
+        }
+        guard container.contains(.accountHolderName) else {
+            throw SdkValidationError(
+                field: "account_holder_name",
+                code: "required",
+                message: "Validation failed for 'account_holder_name': value is required"
+            )
+        }
+        guard container.contains(.accountNumber) else {
+            throw SdkValidationError(
+                field: "account_number",
+                code: "required",
+                message: "Validation failed for 'account_number': value is required"
+            )
+        }
+        guard container.contains(.accountType) else {
+            throw SdkValidationError(
+                field: "account_type",
+                code: "required",
+                message: "Validation failed for 'account_type': value is required"
+            )
+        }
+        guard container.contains(.bankAddress) else {
+            throw SdkValidationError(
+                field: "bank_address",
+                code: "required",
+                message: "Validation failed for 'bank_address': value is required"
+            )
+        }
+        guard container.contains(.bankName) else {
+            throw SdkValidationError(
+                field: "bank_name",
+                code: "required",
+                message: "Validation failed for 'bank_name': value is required"
+            )
+        }
+        guard container.contains(.routingNumber) else {
+            throw SdkValidationError(
+                field: "routing_number",
+                code: "required",
+                message: "Validation failed for 'routing_number': value is required"
+            )
+        }
+        accountHolderAddress = try container.sdkDecodeRequired(.accountHolderAddress)
+        accountHolderName = try container.sdkDecodeRequired(.accountHolderName)
+        accountNumber = try container.sdkDecodeRequired(.accountNumber)
+        accountType = try container.sdkDecodeRequired(.accountType)
+        bankAddress = try container.sdkDecodeRequired(.bankAddress)
+        bankName = try container.sdkDecodeRequired(.bankName)
+        routingNumber = try container.sdkDecodeRequired(.routingNumber)
+        try validateLength("account_holder_name", accountHolderName, min: nil, max: 5000)
+        try validateLength("account_number", accountNumber, min: nil, max: 5000)
+        try validateLength("account_type", accountType, min: nil, max: 5000)
+        try validateLength("bank_name", bankName, min: nil, max: 5000)
+        try validateLength("routing_number", routingNumber, min: nil, max: 5000)
+    }
+}
+
+public extension FundingInstructionsBankTransferAbaRecord {
+    init(
+        accountHolderAddress: Address,
+        accountHolderName: String,
+        accountNumber: String,
+        accountType: String,
+        bankAddress: Address,
+        bankName: String,
+        routingNumber: String
+    ) throws {
         (self.accountHolderAddress, self.accountHolderName) = (accountHolderAddress, accountHolderName)
         (self.accountNumber, self.accountType) = (accountNumber, accountType)
         (self.bankAddress, self.bankName) = (bankAddress, bankName)
         self.routingNumber = routingNumber
-            try validateLength("account_holder_name", self.accountHolderName, min: nil, max: 5000)
-            try validateLength("account_number", self.accountNumber, min: nil, max: 5000)
-            try validateLength("account_type", self.accountType, min: nil, max: 5000)
-            try validateLength("bank_name", self.bankName, min: nil, max: 5000)
-            try validateLength("routing_number", self.routingNumber, min: nil, max: 5000)
+        try validateLength("account_holder_name", self.accountHolderName, min: nil, max: 5000)
+        try validateLength("account_number", self.accountNumber, min: nil, max: 5000)
+        try validateLength("account_type", self.accountType, min: nil, max: 5000)
+        try validateLength("bank_name", self.bankName, min: nil, max: 5000)
+        try validateLength("routing_number", self.routingNumber, min: nil, max: 5000)
     }
 }
 
-public typealias FundingInstructionsBankTransferFinancialAddressSupportedNetworksList = [FundingInstructionsBankTransferFinancialAddressSupportedNetworksItem]
+public typealias FundingInstructionsBankTransferFinancialAddressSupportedNetworksList =
+    [FundingInstructionsBankTransferFinancialAddressSupportedNetworksItem]
 
 /// FinancialAddresses contain identifying information that resolves to a FinancialAccount.
 public struct FundingInstructionsBankTransferFinancialAddress: Codable {
@@ -227,28 +312,43 @@ public struct FundingInstructionsBankTransferFinancialAddress: Codable {
         case zengin
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension FundingInstructionsBankTransferFinancialAddress {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
-        }
-        self.type = try container.sdkDecodeRequired(.type)
-        self.aba = try container.sdkDecodeIfPresent(.aba)
-        self.iban = try container.sdkDecodeIfPresent(.iban)
-        self.sortCode = try container.sdkDecodeIfPresent(.sortCode)
-        self.spei = try container.sdkDecodeIfPresent(.spei)
-        self.supportedNetworks = try container.sdkDecodeIfPresent(.supportedNetworks)
-        self.swift = try container.sdkDecodeIfPresent(.swift)
-        self.zengin = try container.sdkDecodeIfPresent(.zengin)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension FundingInstructionsBankTransferFinancialAddress {
-    public init(type: FundingInstructionsBankTransferFinancialAddressType, aba: FundingInstructionsBankTransferAbaRecord? = nil, iban: FundingInstructionsBankTransferIbanRecord? = nil, sortCode: FundingInstructionsBankTransferSortCodeRecord? = nil, spei: FundingInstructionsBankTransferSpeiRecord? = nil, supportedNetworks: FundingInstructionsBankTransferFinancialAddressSupportedNetworksList? = nil, swift: FundingInstructionsBankTransferSwiftRecord? = nil, zengin: FundingInstructionsBankTransferZenginRecord? = nil) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.type) else {
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
+        }
+        type = try container.sdkDecodeRequired(.type)
+        aba = try container.sdkDecodeIfPresent(.aba)
+        iban = try container.sdkDecodeIfPresent(.iban)
+        sortCode = try container.sdkDecodeIfPresent(.sortCode)
+        spei = try container.sdkDecodeIfPresent(.spei)
+        supportedNetworks = try container.sdkDecodeIfPresent(.supportedNetworks)
+        swift = try container.sdkDecodeIfPresent(.swift)
+        zengin = try container.sdkDecodeIfPresent(.zengin)
+    }
+}
+
+public extension FundingInstructionsBankTransferFinancialAddress {
+    init(
+        type: FundingInstructionsBankTransferFinancialAddressType,
+        aba: FundingInstructionsBankTransferAbaRecord? = nil,
+        iban: FundingInstructionsBankTransferIbanRecord? = nil,
+        sortCode: FundingInstructionsBankTransferSortCodeRecord? = nil,
+        spei: FundingInstructionsBankTransferSpeiRecord? = nil,
+        supportedNetworks: FundingInstructionsBankTransferFinancialAddressSupportedNetworksList? = nil,
+        swift: FundingInstructionsBankTransferSwiftRecord? = nil,
+        zengin: FundingInstructionsBankTransferZenginRecord? = nil
+    ) {
         (self.type, self.aba) = (type, aba)
         (self.iban, self.sortCode) = (iban, sortCode)
         (self.spei, self.supportedNetworks) = (spei, supportedNetworks)
@@ -280,52 +380,85 @@ public struct FundingInstructionsBankTransferIbanRecord: Codable {
         case iban
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension FundingInstructionsBankTransferIbanRecord {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.accountHolderAddress) else {
-            throw SdkValidationError(field: "account_holder_address", code: "required", message: "Validation failed for 'account_holder_address': value is required")
-        }
-        guard container.contains(.accountHolderName) else {
-            throw SdkValidationError(field: "account_holder_name", code: "required", message: "Validation failed for 'account_holder_name': value is required")
-        }
-        guard container.contains(.bankAddress) else {
-            throw SdkValidationError(field: "bank_address", code: "required", message: "Validation failed for 'bank_address': value is required")
-        }
-        guard container.contains(.bic) else {
-            throw SdkValidationError(field: "bic", code: "required", message: "Validation failed for 'bic': value is required")
-        }
-        guard container.contains(.country) else {
-            throw SdkValidationError(field: "country", code: "required", message: "Validation failed for 'country': value is required")
-        }
-        guard container.contains(.iban) else {
-            throw SdkValidationError(field: "iban", code: "required", message: "Validation failed for 'iban': value is required")
-        }
-        self.accountHolderAddress = try container.sdkDecodeRequired(.accountHolderAddress)
-        self.accountHolderName = try container.sdkDecodeRequired(.accountHolderName)
-        self.bankAddress = try container.sdkDecodeRequired(.bankAddress)
-        self.bic = try container.sdkDecodeRequired(.bic)
-        self.country = try container.sdkDecodeRequired(.country)
-        self.iban = try container.sdkDecodeRequired(.iban)
-            try validateLength("account_holder_name", self.accountHolderName, min: nil, max: 5000)
-            try validateLength("bic", self.bic, min: nil, max: 5000)
-            try validateLength("country", self.country, min: nil, max: 5000)
-            try validateLength("iban", self.iban, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension FundingInstructionsBankTransferIbanRecord {
-    public init(accountHolderAddress: Address, accountHolderName: String, bankAddress: Address, bic: String, country: String, iban: String) throws {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.accountHolderAddress) else {
+            throw SdkValidationError(
+                field: "account_holder_address",
+                code: "required",
+                message: "Validation failed for 'account_holder_address': value is required"
+            )
+        }
+        guard container.contains(.accountHolderName) else {
+            throw SdkValidationError(
+                field: "account_holder_name",
+                code: "required",
+                message: "Validation failed for 'account_holder_name': value is required"
+            )
+        }
+        guard container.contains(.bankAddress) else {
+            throw SdkValidationError(
+                field: "bank_address",
+                code: "required",
+                message: "Validation failed for 'bank_address': value is required"
+            )
+        }
+        guard container.contains(.bic) else {
+            throw SdkValidationError(
+                field: "bic",
+                code: "required",
+                message: "Validation failed for 'bic': value is required"
+            )
+        }
+        guard container.contains(.country) else {
+            throw SdkValidationError(
+                field: "country",
+                code: "required",
+                message: "Validation failed for 'country': value is required"
+            )
+        }
+        guard container.contains(.iban) else {
+            throw SdkValidationError(
+                field: "iban",
+                code: "required",
+                message: "Validation failed for 'iban': value is required"
+            )
+        }
+        accountHolderAddress = try container.sdkDecodeRequired(.accountHolderAddress)
+        accountHolderName = try container.sdkDecodeRequired(.accountHolderName)
+        bankAddress = try container.sdkDecodeRequired(.bankAddress)
+        bic = try container.sdkDecodeRequired(.bic)
+        country = try container.sdkDecodeRequired(.country)
+        iban = try container.sdkDecodeRequired(.iban)
+        try validateLength("account_holder_name", accountHolderName, min: nil, max: 5000)
+        try validateLength("bic", bic, min: nil, max: 5000)
+        try validateLength("country", country, min: nil, max: 5000)
+        try validateLength("iban", iban, min: nil, max: 5000)
+    }
+}
+
+public extension FundingInstructionsBankTransferIbanRecord {
+    init(
+        accountHolderAddress: Address,
+        accountHolderName: String,
+        bankAddress: Address,
+        bic: String,
+        country: String,
+        iban: String
+    ) throws {
         (self.accountHolderAddress, self.accountHolderName) = (accountHolderAddress, accountHolderName)
         (self.bankAddress, self.bic) = (bankAddress, bic)
         (self.country, self.iban) = (country, iban)
-            try validateLength("account_holder_name", self.accountHolderName, min: nil, max: 5000)
-            try validateLength("bic", self.bic, min: nil, max: 5000)
-            try validateLength("country", self.country, min: nil, max: 5000)
-            try validateLength("iban", self.iban, min: nil, max: 5000)
+        try validateLength("account_holder_name", self.accountHolderName, min: nil, max: 5000)
+        try validateLength("bic", self.bic, min: nil, max: 5000)
+        try validateLength("country", self.country, min: nil, max: 5000)
+        try validateLength("iban", self.iban, min: nil, max: 5000)
     }
 }
 
@@ -350,46 +483,74 @@ public struct FundingInstructionsBankTransferSortCodeRecord: Codable {
         case sortCode = "sort_code"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension FundingInstructionsBankTransferSortCodeRecord {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.accountHolderAddress) else {
-            throw SdkValidationError(field: "account_holder_address", code: "required", message: "Validation failed for 'account_holder_address': value is required")
-        }
-        guard container.contains(.accountHolderName) else {
-            throw SdkValidationError(field: "account_holder_name", code: "required", message: "Validation failed for 'account_holder_name': value is required")
-        }
-        guard container.contains(.accountNumber) else {
-            throw SdkValidationError(field: "account_number", code: "required", message: "Validation failed for 'account_number': value is required")
-        }
-        guard container.contains(.bankAddress) else {
-            throw SdkValidationError(field: "bank_address", code: "required", message: "Validation failed for 'bank_address': value is required")
-        }
-        guard container.contains(.sortCode) else {
-            throw SdkValidationError(field: "sort_code", code: "required", message: "Validation failed for 'sort_code': value is required")
-        }
-        self.accountHolderAddress = try container.sdkDecodeRequired(.accountHolderAddress)
-        self.accountHolderName = try container.sdkDecodeRequired(.accountHolderName)
-        self.accountNumber = try container.sdkDecodeRequired(.accountNumber)
-        self.bankAddress = try container.sdkDecodeRequired(.bankAddress)
-        self.sortCode = try container.sdkDecodeRequired(.sortCode)
-            try validateLength("account_holder_name", self.accountHolderName, min: nil, max: 5000)
-            try validateLength("account_number", self.accountNumber, min: nil, max: 5000)
-            try validateLength("sort_code", self.sortCode, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension FundingInstructionsBankTransferSortCodeRecord {
-    public init(accountHolderAddress: Address, accountHolderName: String, accountNumber: String, bankAddress: Address, sortCode: String) throws {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.accountHolderAddress) else {
+            throw SdkValidationError(
+                field: "account_holder_address",
+                code: "required",
+                message: "Validation failed for 'account_holder_address': value is required"
+            )
+        }
+        guard container.contains(.accountHolderName) else {
+            throw SdkValidationError(
+                field: "account_holder_name",
+                code: "required",
+                message: "Validation failed for 'account_holder_name': value is required"
+            )
+        }
+        guard container.contains(.accountNumber) else {
+            throw SdkValidationError(
+                field: "account_number",
+                code: "required",
+                message: "Validation failed for 'account_number': value is required"
+            )
+        }
+        guard container.contains(.bankAddress) else {
+            throw SdkValidationError(
+                field: "bank_address",
+                code: "required",
+                message: "Validation failed for 'bank_address': value is required"
+            )
+        }
+        guard container.contains(.sortCode) else {
+            throw SdkValidationError(
+                field: "sort_code",
+                code: "required",
+                message: "Validation failed for 'sort_code': value is required"
+            )
+        }
+        accountHolderAddress = try container.sdkDecodeRequired(.accountHolderAddress)
+        accountHolderName = try container.sdkDecodeRequired(.accountHolderName)
+        accountNumber = try container.sdkDecodeRequired(.accountNumber)
+        bankAddress = try container.sdkDecodeRequired(.bankAddress)
+        sortCode = try container.sdkDecodeRequired(.sortCode)
+        try validateLength("account_holder_name", accountHolderName, min: nil, max: 5000)
+        try validateLength("account_number", accountNumber, min: nil, max: 5000)
+        try validateLength("sort_code", sortCode, min: nil, max: 5000)
+    }
+}
+
+public extension FundingInstructionsBankTransferSortCodeRecord {
+    init(
+        accountHolderAddress: Address,
+        accountHolderName: String,
+        accountNumber: String,
+        bankAddress: Address,
+        sortCode: String
+    ) throws {
         (self.accountHolderAddress, self.accountHolderName) = (accountHolderAddress, accountHolderName)
         (self.accountNumber, self.bankAddress) = (accountNumber, bankAddress)
         self.sortCode = sortCode
-            try validateLength("account_holder_name", self.accountHolderName, min: nil, max: 5000)
-            try validateLength("account_number", self.accountNumber, min: nil, max: 5000)
-            try validateLength("sort_code", self.sortCode, min: nil, max: 5000)
+        try validateLength("account_holder_name", self.accountHolderName, min: nil, max: 5000)
+        try validateLength("account_number", self.accountNumber, min: nil, max: 5000)
+        try validateLength("sort_code", self.sortCode, min: nil, max: 5000)
     }
 }
 
@@ -417,5 +578,7 @@ public struct FundingInstructionsBankTransferSpeiRecord: Codable {
         case clabe
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }

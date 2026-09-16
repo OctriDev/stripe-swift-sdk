@@ -6,15 +6,19 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public struct PostIssuingDisputesDisputeRequestBodyEvidenceCanceledVariant0X93f654f3d9: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostIssuingDisputesDisputeRequestBodyEvidenceCanceledVariant0X93f654f3d9: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostIssuingDisputesDisputeRequestBodyEvidenceCanceledVariant0X93f654f3d9(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -23,15 +27,19 @@ public struct PostIssuingDisputesDisputeRequestBodyEvidenceCanceledVariant0X93f6
     }
 }
 
-public struct PostIssuingDisputesDisputeRequestBodyEvidenceCanceledVariant0X23e7c28678: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostIssuingDisputesDisputeRequestBodyEvidenceCanceledVariant0X23e7c28678: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostIssuingDisputesDisputeRequestBodyEvidenceCanceledVariant0X23e7c28678(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -40,15 +48,19 @@ public struct PostIssuingDisputesDisputeRequestBodyEvidenceCanceledVariant0X23e7
     }
 }
 
-public struct PostIssuingDisputesDisputeRequestBodyEvidenceCanceledVariant0Xbd716cf0c7: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostIssuingDisputesDisputeRequestBodyEvidenceCanceledVariant0Xbd716cf0c7: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostIssuingDisputesDisputeRequestBodyEvidenceCanceledVariant0Xbd716cf0c7(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -57,15 +69,19 @@ public struct PostIssuingDisputesDisputeRequestBodyEvidenceCanceledVariant0Xbd71
     }
 }
 
-public struct PostIssuingDisputesDisputeRequestBodyEvidenceCanceledVariant0X7b060053ab: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostIssuingDisputesDisputeRequestBodyEvidenceCanceledVariant0X7b060053ab: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostIssuingDisputesDisputeRequestBodyEvidenceCanceledVariant0X7b060053ab(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -74,15 +90,19 @@ public struct PostIssuingDisputesDisputeRequestBodyEvidenceCanceledVariant0X7b06
     }
 }
 
-public struct PostIssuingDisputesDisputeRequestBodyEvidenceCanceledVariant0X8d0456f44e: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostIssuingDisputesDisputeRequestBodyEvidenceCanceledVariant0X8d0456f44e: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostIssuingDisputesDisputeRequestBodyEvidenceCanceledVariant0X8d0456f44e(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -91,17 +111,23 @@ public struct PostIssuingDisputesDisputeRequestBodyEvidenceCanceledVariant0X8d04
     }
 }
 
-public struct PostIssuingDisputesDisputeRequestBodyEvidenceCanceledVariant0ProductType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostIssuingDisputesDisputeRequestBodyEvidenceCanceledVariant0ProductType: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostIssuingDisputesDisputeRequestBodyEvidenceCanceledVariant0ProductType(rawValue: "")
-    public static let merchandise = PostIssuingDisputesDisputeRequestBodyEvidenceCanceledVariant0ProductType(rawValue: "merchandise")
-    public static let service = PostIssuingDisputesDisputeRequestBodyEvidenceCanceledVariant0ProductType(rawValue: "service")
+    public static let merchandise =
+        PostIssuingDisputesDisputeRequestBodyEvidenceCanceledVariant0ProductType(rawValue: "merchandise")
+    public static let service =
+        PostIssuingDisputesDisputeRequestBodyEvidenceCanceledVariant0ProductType(rawValue: "service")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -110,17 +136,23 @@ public struct PostIssuingDisputesDisputeRequestBodyEvidenceCanceledVariant0Produ
     }
 }
 
-public struct PostIssuingDisputesDisputeRequestBodyEvidenceCanceledVariant0Xae57ebcb41: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostIssuingDisputesDisputeRequestBodyEvidenceCanceledVariant0Xae57ebcb41: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostIssuingDisputesDisputeRequestBodyEvidenceCanceledVariant0Xae57ebcb41(rawValue: "")
-    public static let merchantRejected = PostIssuingDisputesDisputeRequestBodyEvidenceCanceledVariant0Xae57ebcb41(rawValue: "merchant_rejected")
-    public static let successful = PostIssuingDisputesDisputeRequestBodyEvidenceCanceledVariant0Xae57ebcb41(rawValue: "successful")
+    public static let merchantRejected =
+        PostIssuingDisputesDisputeRequestBodyEvidenceCanceledVariant0Xae57ebcb41(rawValue: "merchant_rejected")
+    public static let successful =
+        PostIssuingDisputesDisputeRequestBodyEvidenceCanceledVariant0Xae57ebcb41(rawValue: "successful")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -129,15 +161,19 @@ public struct PostIssuingDisputesDisputeRequestBodyEvidenceCanceledVariant0Xae57
     }
 }
 
-public struct PostIssuingDisputesDisputeRequestBodyEvidenceCanceledVariant0X29f72edc1a: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostIssuingDisputesDisputeRequestBodyEvidenceCanceledVariant0X29f72edc1a: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostIssuingDisputesDisputeRequestBodyEvidenceCanceledVariant0X29f72edc1a(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -146,15 +182,19 @@ public struct PostIssuingDisputesDisputeRequestBodyEvidenceCanceledVariant0X29f7
     }
 }
 
-public struct PostIssuingDisputesDisputeRequestBodyEvidenceCanceledVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostIssuingDisputesDisputeRequestBodyEvidenceCanceledVariant1: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostIssuingDisputesDisputeRequestBodyEvidenceCanceledVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -163,15 +203,19 @@ public struct PostIssuingDisputesDisputeRequestBodyEvidenceCanceledVariant1: Raw
     }
 }
 
-public struct PostIssuingDisputesDisputeRequestBodyEvidenceDuplicateVariantX2d4a58e83a: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostIssuingDisputesDisputeRequestBodyEvidenceDuplicateVariantX2d4a58e83a: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostIssuingDisputesDisputeRequestBodyEvidenceDuplicateVariantX2d4a58e83a(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -180,15 +224,19 @@ public struct PostIssuingDisputesDisputeRequestBodyEvidenceDuplicateVariantX2d4a
     }
 }
 
-public struct PostIssuingDisputesDisputeRequestBodyEvidenceDuplicateVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostIssuingDisputesDisputeRequestBodyEvidenceDuplicateVariant1: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostIssuingDisputesDisputeRequestBodyEvidenceDuplicateVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -197,15 +245,19 @@ public struct PostIssuingDisputesDisputeRequestBodyEvidenceDuplicateVariant1: Ra
     }
 }
 
-public struct PostIssuingDisputesDisputeRequestBodyEvidenceFraudulentVarianX04b648c384: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostIssuingDisputesDisputeRequestBodyEvidenceFraudulentVarianX04b648c384: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostIssuingDisputesDisputeRequestBodyEvidenceFraudulentVarianX04b648c384(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

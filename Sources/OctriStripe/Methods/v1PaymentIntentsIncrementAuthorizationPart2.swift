@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1PaymentIntentsIncrementAuthorizationMethods {
-    public struct PostPaymentIntentsIntentIncrementAuthorizationOptions: Codable {
+public extension V1PaymentIntentsIncrementAuthorizationMethods {
+    struct PostPaymentIntentsIntentIncrementAuthorizationOptions: Codable {
         public var intent: String
         public var amount: Int
         public var amountDetails: PostPaymentIntentsIntentIncrementAuthorizationRequestBodyAmountDetails?
@@ -26,9 +26,21 @@ extension V1PaymentIntentsIncrementAuthorizationMethods {
         }
     }
 
-    /// Increases the authorized amount on an eligible PaymentIntent through an incremental authorization. The PaymentIntent must have status `requires_capture` and support incremental authorization; provide a higher `amount` than the currently authorized amount, and do not exceed 10 authorization attempts for one PaymentIntent.
+    /// Increases the authorized amount on an eligible PaymentIntent through an incremental authorization. The
+    /// PaymentIntent must have status `requires_capture` and support incremental authorization; provide a higher
+    /// `amount` than the currently authorized amount, and do not exceed 10 authorization attempts for one
+    /// PaymentIntent.
     ///
-    /// Perform an incremental authorization on an eligible PaymentIntent. To be eligible, the PaymentIntent’s status must be requires_capture and incremental_authorization_supported must be true . Incremental authorizations attempt to increase the authorized amount on your customer’s card to the new, higher amount provided. Similar to the initial authorization, incremental authorizations can be declined. A single PaymentIntent can call this endpoint multiple times to further increase the authorized amount. If the incremental authorization succeeds, the PaymentIntent object returns with the updated amount. If the incremental authorization fails, a card_declined error returns, and no other fields on the PaymentIntent or Charge update. The PaymentIntent object remains capturable for the previously authorized amount. Each PaymentIntent can have a maximum of 10 incremental authorization attempts, including declines. After it’s captured, a PaymentIntent can no longer be incremented. Learn more about incremental authorizations with in-person payments and online payments.
+    /// Perform an incremental authorization on an eligible PaymentIntent. To be eligible, the PaymentIntent’s status
+    /// must be requires_capture and incremental_authorization_supported must be true . Incremental authorizations
+    /// attempt to increase the authorized amount on your customer’s card to the new, higher amount provided. Similar to
+    /// the initial authorization, incremental authorizations can be declined. A single PaymentIntent can call this
+    /// endpoint multiple times to further increase the authorized amount. If the incremental authorization succeeds,
+    /// the PaymentIntent object returns with the updated amount. If the incremental authorization fails, a
+    /// card_declined error returns, and no other fields on the PaymentIntent or Charge update. The PaymentIntent object
+    /// remains capturable for the previously authorized amount. Each PaymentIntent can have a maximum of 10 incremental
+    /// authorization attempts, including declines. After it’s captured, a PaymentIntent can no longer be incremented.
+    /// Learn more about incremental authorizations with in-person payments and online payments.
     ///
     /// - Parameters:
     /// - amount: The updated total amount that you intend to collect from the
@@ -59,7 +71,10 @@ extension V1PaymentIntentsIncrementAuthorizationMethods {
     /// - transferData: The parameters used to automatically create a transfer after
     ///   the payment is captured. Learn more about the [use case for connected
     ///   accounts](https://docs.stripe.com/payments/connected-accounts).
-    public static func postPaymentIntentsIntentIncrementAuthorization(config: ClientConfig, options: PostPaymentIntentsIntentIncrementAuthorizationOptions) async throws -> PaymentIntent {
+    static func postPaymentIntentsIntentIncrementAuthorization(
+        config: ClientConfig,
+        options: PostPaymentIntentsIntentIncrementAuthorizationOptions
+    ) async throws -> PaymentIntent {
         try validateLength("intent", options.intent, max: 5000)
 
         if let description = options.description {
@@ -72,6 +87,15 @@ extension V1PaymentIntentsIncrementAuthorizationMethods {
 
         let requestBody = PostPaymentIntentsIntentIncrementAuthorizationRequestBody(options: options)
 
-        return try (await sdkRequest("POST", ["/v1/payment_intents/", sdkEncodePathSegment(sdkWireString(options.intent)), "/increment_authorization"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostPaymentIntentsIntentIncrementAuthorization")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/payment_intents/", sdkEncodePathSegment(sdkWireString(options.intent)), "/increment_authorization"]
+                .joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostPaymentIntentsIntentIncrementAuthorization"
+        )).data
     }
 }

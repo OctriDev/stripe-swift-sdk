@@ -7,7 +7,8 @@ import Foundation
     import FoundationNetworking
 #endif
 public extension PostWebhookEndpointsRequestBodyEnabledEventsItem {
-    static let payoutReconciliationCompleted = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "payout.reconciliation_completed")
+    static let payoutReconciliationCompleted =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "payout.reconciliation_completed")
     static let payoutUpdated = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "payout.updated")
     static let personCreated = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "person.created")
     static let personDeleted = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "person.deleted")
@@ -21,60 +22,91 @@ public extension PostWebhookEndpointsRequestBodyEnabledEventsItem {
     static let productCreated = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "product.created")
     static let productDeleted = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "product.deleted")
     static let productUpdated = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "product.updated")
-    static let promotionCodeCreated = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "promotion_code.created")
-    static let promotionCodeUpdated = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "promotion_code.updated")
+    static let promotionCodeCreated =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "promotion_code.created")
+    static let promotionCodeUpdated =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "promotion_code.updated")
     static let quoteAccepted = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "quote.accepted")
     static let quoteCanceled = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "quote.canceled")
     static let quoteCreated = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "quote.created")
     static let quoteFinalized = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "quote.finalized")
-    static let radarEarlyFraudWarningCreated = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "radar.early_fraud_warning.created")
-    static let radarEarlyFraudWarningUpdated = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "radar.early_fraud_warning.updated")
+    static let radarEarlyFraudWarningCreated =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "radar.early_fraud_warning.created")
+    static let radarEarlyFraudWarningUpdated =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "radar.early_fraud_warning.updated")
     static let refundCreated = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "refund.created")
     static let refundFailed = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "refund.failed")
     static let refundUpdated = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "refund.updated")
-    static let reportingReportRunFailed = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "reporting.report_run.failed")
-    static let reportingReportRunSucceeded = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "reporting.report_run.succeeded")
-    static let reportingReportTypeUpdated = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "reporting.report_type.updated")
+    static let reportingReportRunFailed =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "reporting.report_run.failed")
+    static let reportingReportRunSucceeded =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "reporting.report_run.succeeded")
+    static let reportingReportTypeUpdated =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "reporting.report_type.updated")
     static let reserveHoldCreated = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "reserve.hold.created")
     static let reserveHoldUpdated = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "reserve.hold.updated")
     static let reservePlanCreated = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "reserve.plan.created")
     static let reservePlanDisabled = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "reserve.plan.disabled")
     static let reservePlanExpired = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "reserve.plan.expired")
     static let reservePlanUpdated = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "reserve.plan.updated")
-    static let reserveReleaseCreated = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "reserve.release.created")
+    static let reserveReleaseCreated =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "reserve.release.created")
     static let reviewClosed = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "review.closed")
     static let reviewOpened = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "review.opened")
     static let setupIntentCanceled = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "setup_intent.canceled")
     static let setupIntentCreated = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "setup_intent.created")
-    static let setupIntentRequiresAction = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "setup_intent.requires_action")
-    static let setupIntentSetupFailed = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "setup_intent.setup_failed")
-    static let setupIntentSucceeded = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "setup_intent.succeeded")
-    static let sigmaScheduledQueryRunCreated = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "sigma.scheduled_query_run.created")
+    static let setupIntentRequiresAction =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "setup_intent.requires_action")
+    static let setupIntentSetupFailed =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "setup_intent.setup_failed")
+    static let setupIntentSucceeded =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "setup_intent.succeeded")
+    static let sigmaScheduledQueryRunCreated =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "sigma.scheduled_query_run.created")
     static let sourceCanceled = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "source.canceled")
     static let sourceChargeable = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "source.chargeable")
     static let sourceFailed = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "source.failed")
-    static let sourceMandateNotification = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "source.mandate_notification")
-    static let sourceRefundAttributesRequired = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "source.refund_attributes_required")
-    static let sourceTransactionCreated = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "source.transaction.created")
-    static let sourceTransactionUpdated = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "source.transaction.updated")
-    static let subscriptionScheduleAborted = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "subscription_schedule.aborted")
-    static let subscriptionScheduleCanceled = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "subscription_schedule.canceled")
-    static let subscriptionScheduleCompleted = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "subscription_schedule.completed")
-    static let subscriptionScheduleCreated = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "subscription_schedule.created")
-    static let subscriptionScheduleExpiring = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "subscription_schedule.expiring")
-    static let subscriptionScheduleReleased = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "subscription_schedule.released")
-    static let subscriptionScheduleUpdated = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "subscription_schedule.updated")
+    static let sourceMandateNotification =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "source.mandate_notification")
+    static let sourceRefundAttributesRequired =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "source.refund_attributes_required")
+    static let sourceTransactionCreated =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "source.transaction.created")
+    static let sourceTransactionUpdated =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "source.transaction.updated")
+    static let subscriptionScheduleAborted =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "subscription_schedule.aborted")
+    static let subscriptionScheduleCanceled =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "subscription_schedule.canceled")
+    static let subscriptionScheduleCompleted =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "subscription_schedule.completed")
+    static let subscriptionScheduleCreated =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "subscription_schedule.created")
+    static let subscriptionScheduleExpiring =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "subscription_schedule.expiring")
+    static let subscriptionScheduleReleased =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "subscription_schedule.released")
+    static let subscriptionScheduleUpdated =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "subscription_schedule.updated")
     static let taxSettingsUpdated = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "tax.settings.updated")
     static let taxRateCreated = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "tax_rate.created")
     static let taxRateUpdated = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "tax_rate.updated")
-    static let terminalReaderActionFailed = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "terminal.reader.action_failed")
-    static let terminalReaderActionSucceeded = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "terminal.reader.action_succeeded")
-    static let terminalReaderActionUpdated = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "terminal.reader.action_updated")
-    static let testHelpersTestClockAdvancing = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "test_helpers.test_clock.advancing")
-    static let testHelpersTestClockCreated = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "test_helpers.test_clock.created")
-    static let testHelpersTestClockDeleted = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "test_helpers.test_clock.deleted")
-    static let testHelpersTestClockInternalFailure = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "test_helpers.test_clock.internal_failure")
-    static let testHelpersTestClockReady = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "test_helpers.test_clock.ready")
+    static let terminalReaderActionFailed =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "terminal.reader.action_failed")
+    static let terminalReaderActionSucceeded =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "terminal.reader.action_succeeded")
+    static let terminalReaderActionUpdated =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "terminal.reader.action_updated")
+    static let testHelpersTestClockAdvancing =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "test_helpers.test_clock.advancing")
+    static let testHelpersTestClockCreated =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "test_helpers.test_clock.created")
+    static let testHelpersTestClockDeleted =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "test_helpers.test_clock.deleted")
+    static let testHelpersTestClockInternalFailure =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "test_helpers.test_clock.internal_failure")
+    static let testHelpersTestClockReady =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "test_helpers.test_clock.ready")
     static let topupCanceled = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "topup.canceled")
     static let topupCreated = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "topup.created")
     static let topupFailed = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "topup.failed")
@@ -83,39 +115,75 @@ public extension PostWebhookEndpointsRequestBodyEnabledEventsItem {
     static let transferCreated = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "transfer.created")
     static let transferReversed = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "transfer.reversed")
     static let transferUpdated = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "transfer.updated")
-    static let treasuryCreditReversalCreated = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "treasury.credit_reversal.created")
-    static let treasuryCreditReversalPosted = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "treasury.credit_reversal.posted")
-    static let treasuryDebitReversalCompleted = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "treasury.debit_reversal.completed")
-    static let treasuryDebitReversalCreated = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "treasury.debit_reversal.created")
+    static let treasuryCreditReversalCreated =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "treasury.credit_reversal.created")
+    static let treasuryCreditReversalPosted =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "treasury.credit_reversal.posted")
+    static let treasuryDebitReversalCompleted =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "treasury.debit_reversal.completed")
+    static let treasuryDebitReversalCreated =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "treasury.debit_reversal.created")
 }
 
 public extension PostWebhookEndpointsRequestBodyEnabledEventsItem {
-    static let treasuryDebitReversalInitialCreditGranted = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "treasury.debit_reversal.initial_credit_granted")
-    static let treasuryFinancialAccountClosed = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "treasury.financial_account.closed")
-    static let treasuryFinancialAccountCreated = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "treasury.financial_account.created")
-    static let treasuryFinancialAccountFeaturesStatusUpdated = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "treasury.financial_account.features_status_updated")
-    static let treasuryInboundTransferCanceled = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "treasury.inbound_transfer.canceled")
-    static let treasuryInboundTransferCreated = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "treasury.inbound_transfer.created")
-    static let treasuryInboundTransferFailed = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "treasury.inbound_transfer.failed")
-    static let treasuryInboundTransferSucceeded = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "treasury.inbound_transfer.succeeded")
-    static let treasuryOutboundPaymentCanceled = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "treasury.outbound_payment.canceled")
-    static let treasuryOutboundPaymentCreated = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "treasury.outbound_payment.created")
-    static let treasuryOutboundPaymentExpectedArrivalDateUpdated = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "treasury.outbound_payment.expected_arrival_date_updated")
-    static let treasuryOutboundPaymentFailed = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "treasury.outbound_payment.failed")
-    static let treasuryOutboundPaymentPosted = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "treasury.outbound_payment.posted")
-    static let treasuryOutboundPaymentReturned = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "treasury.outbound_payment.returned")
-    static let treasuryOutboundPaymentTrackingDetailsUpdated = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "treasury.outbound_payment.tracking_details_updated")
-    static let treasuryOutboundTransferCanceled = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "treasury.outbound_transfer.canceled")
-    static let treasuryOutboundTransferCreated = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "treasury.outbound_transfer.created")
-    static let treasuryOutboundTransferExpectedArrivalDateUpdated = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "treasury.outbound_transfer.expected_arrival_date_updated")
-    static let treasuryOutboundTransferFailed = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "treasury.outbound_transfer.failed")
-    static let treasuryOutboundTransferPosted = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "treasury.outbound_transfer.posted")
-    static let treasuryOutboundTransferReturned = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "treasury.outbound_transfer.returned")
-    static let treasuryOutboundTransferTrackingDetailsUpdated = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "treasury.outbound_transfer.tracking_details_updated")
-    static let treasuryReceivedCreditCreated = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "treasury.received_credit.created")
-    static let treasuryReceivedCreditFailed = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "treasury.received_credit.failed")
-    static let treasuryReceivedCreditSucceeded = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "treasury.received_credit.succeeded")
-    static let treasuryReceivedDebitCreated = PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "treasury.received_debit.created")
+    static let treasuryDebitReversalInitialCreditGranted =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "treasury.debit_reversal.initial_credit_granted")
+    static let treasuryFinancialAccountClosed =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "treasury.financial_account.closed")
+    static let treasuryFinancialAccountCreated =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "treasury.financial_account.created")
+    static let treasuryFinancialAccountFeaturesStatusUpdated =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "treasury.financial_account.features_status_updated")
+    static let treasuryInboundTransferCanceled =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "treasury.inbound_transfer.canceled")
+    static let treasuryInboundTransferCreated =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "treasury.inbound_transfer.created")
+    static let treasuryInboundTransferFailed =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "treasury.inbound_transfer.failed")
+    static let treasuryInboundTransferSucceeded =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "treasury.inbound_transfer.succeeded")
+    static let treasuryOutboundPaymentCanceled =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "treasury.outbound_payment.canceled")
+    static let treasuryOutboundPaymentCreated =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "treasury.outbound_payment.created")
+    static let treasuryOutboundPaymentExpectedArrivalDateUpdated =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(
+            rawValue: "treasury.outbound_payment.expected_arrival_date_updated"
+        )
+    static let treasuryOutboundPaymentFailed =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "treasury.outbound_payment.failed")
+    static let treasuryOutboundPaymentPosted =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "treasury.outbound_payment.posted")
+    static let treasuryOutboundPaymentReturned =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "treasury.outbound_payment.returned")
+    static let treasuryOutboundPaymentTrackingDetailsUpdated =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "treasury.outbound_payment.tracking_details_updated")
+    static let treasuryOutboundTransferCanceled =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "treasury.outbound_transfer.canceled")
+    static let treasuryOutboundTransferCreated =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "treasury.outbound_transfer.created")
+    static let treasuryOutboundTransferExpectedArrivalDateUpdated =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(
+            rawValue: "treasury.outbound_transfer.expected_arrival_date_updated"
+        )
+    static let treasuryOutboundTransferFailed =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "treasury.outbound_transfer.failed")
+    static let treasuryOutboundTransferPosted =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "treasury.outbound_transfer.posted")
+    static let treasuryOutboundTransferReturned =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "treasury.outbound_transfer.returned")
+    static let treasuryOutboundTransferTrackingDetailsUpdated =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(
+            rawValue: "treasury.outbound_transfer.tracking_details_updated"
+        )
+    static let treasuryReceivedCreditCreated =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "treasury.received_credit.created")
+    static let treasuryReceivedCreditFailed =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "treasury.received_credit.failed")
+    static let treasuryReceivedCreditSucceeded =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "treasury.received_credit.succeeded")
+    static let treasuryReceivedDebitCreated =
+        PostWebhookEndpointsRequestBodyEnabledEventsItem(rawValue: "treasury.received_debit.created")
 }
 
 extension PostWebhookEndpointsRequestBodyEnabledEventsItem {

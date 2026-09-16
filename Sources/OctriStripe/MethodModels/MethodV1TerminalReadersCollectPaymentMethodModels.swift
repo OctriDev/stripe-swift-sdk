@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1TerminalReadersCollectPaymentMethod operation model declarations
+/// Canonical v1TerminalReadersCollectPaymentMethod operation model declarations
 /// Configuration overrides for this collection, such as tipping, surcharging, and customer cancellation settings.
 public struct PostTerminalReadersReaderCollectPaymentMethodRequestBodyCollectConfig: Codable {
     public var allowRedisplay: PostTerminalReadersReaderCollectPaymentMethodRequestBodyColleX3142aca5ba?
@@ -24,22 +24,27 @@ public struct PostTerminalReadersReaderCollectPaymentMethodRequestBodyCollectCon
     }
 
     init() {
-        (self.allowRedisplay, self.enableCustomerCancellation, self.skipTipping, self.tipping) = (nil, nil, nil, nil)
+        (allowRedisplay, enableCustomerCancellation, skipTipping, tipping) = (nil, nil, nil, nil)
     }
 }
 
 public extension PostTerminalReadersReaderCollectPaymentMethodRequestBodyCollectConfig {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.allowRedisplay = try container.sdkDecodeIfPresent(.allowRedisplay)
-        self.enableCustomerCancellation = try container.sdkDecodeIfPresent(.enableCustomerCancellation)
-        self.skipTipping = try container.sdkDecodeIfPresent(.skipTipping)
-        self.tipping = try container.sdkDecodeIfPresent(.tipping)
+        allowRedisplay = try container.sdkDecodeIfPresent(.allowRedisplay)
+        enableCustomerCancellation = try container.sdkDecodeIfPresent(.enableCustomerCancellation)
+        skipTipping = try container.sdkDecodeIfPresent(.skipTipping)
+        tipping = try container.sdkDecodeIfPresent(.tipping)
     }
 }
 
 public extension PostTerminalReadersReaderCollectPaymentMethodRequestBodyCollectConfig {
-    public init(allowRedisplay: PostTerminalReadersReaderCollectPaymentMethodRequestBodyColleX3142aca5ba? = nil, enableCustomerCancellation: Bool? = nil, skipTipping: Bool? = nil, tipping: PostTerminalReadersReaderCollectPaymentMethodRequestBodyColleX7671a858c5? = nil) {
+    init(
+        allowRedisplay: PostTerminalReadersReaderCollectPaymentMethodRequestBodyColleX3142aca5ba? = nil,
+        enableCustomerCancellation: Bool? = nil,
+        skipTipping: Bool? = nil,
+        tipping: PostTerminalReadersReaderCollectPaymentMethodRequestBodyColleX7671a858c5? = nil
+    ) {
         self.init()
         self.allowRedisplay = allowRedisplay
         (self.enableCustomerCancellation, self.skipTipping) = (enableCustomerCancellation, skipTipping)
@@ -55,19 +60,19 @@ public struct PostTerminalReadersReaderCollectPaymentMethodRequestBodyColleX7671
     }
 
     init() {
-        self.amountEligible = nil
+        amountEligible = nil
     }
 }
 
 public extension PostTerminalReadersReaderCollectPaymentMethodRequestBodyColleX7671a858c5 {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.amountEligible = try container.sdkDecodeIfPresent(.amountEligible)
+        amountEligible = try container.sdkDecodeIfPresent(.amountEligible)
     }
 }
 
 public extension PostTerminalReadersReaderCollectPaymentMethodRequestBodyColleX7671a858c5 {
-    public init(amountEligible: Int? = nil) {
+    init(amountEligible: Int? = nil) {
         self.init()
         self.amountEligible = amountEligible
     }

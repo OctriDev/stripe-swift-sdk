@@ -7,7 +7,9 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1FinancialConnectionsAccountsUnsubscribeMethods {
-    /// Stops periodic refreshes for selected data associated with a Financial Connections account. Supply `features` to identify the account data from which to unsubscribe. The response contains the account with the requested refresh subscription removed.
+    /// Stops periodic refreshes for selected data associated with a Financial Connections account. Supply `features` to
+    /// identify the account data from which to unsubscribe. The response contains the account with the requested
+    /// refresh subscription removed.
     ///
     /// Unsubscribes from periodic refreshes of data associated with a Financial Connections Account .
     ///
@@ -15,11 +17,28 @@ public enum V1FinancialConnectionsAccountsUnsubscribeMethods {
     /// - features: The list of account features from which you would like to
     ///   unsubscribe.
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postFinancialConnectionsAccountsAccountUnsubscribe(config: ClientConfig, account: String, features: [PostFinancialConnectionsAccountsAccountUnsubscribeRequestBodyXe4e4ae677c], expand: [String]?) async throws -> FinancialConnectionsAccount {
+    public static func postFinancialConnectionsAccountsAccountUnsubscribe(
+        config: ClientConfig,
+        account: String,
+        features: [PostFinancialConnectionsAccountsAccountUnsubscribeRequestBodyXe4e4ae677c],
+        expand: [String]?
+    ) async throws -> FinancialConnectionsAccount {
         try validateLength("account", account, max: 5000)
 
-        let requestBody = PostFinancialConnectionsAccountsAccountUnsubscribeRequestBody(features: features, expand: expand)
+        let requestBody = PostFinancialConnectionsAccountsAccountUnsubscribeRequestBody(
+            features: features,
+            expand: expand
+        )
 
-        return try (await sdkRequest("POST", ["/v1/financial_connections/accounts/", sdkEncodePathSegment(sdkWireString(account)), "/unsubscribe"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostFinancialConnectionsAccountsAccountUnsubscribe")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/financial_connections/accounts/", sdkEncodePathSegment(sdkWireString(account)), "/unsubscribe"]
+                .joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostFinancialConnectionsAccountsAccountUnsubscribe"
+        )).data
     }
 }

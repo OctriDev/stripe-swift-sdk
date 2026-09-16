@@ -14,13 +14,32 @@ public enum V1TerminalOnboardingLinksMethods {
     /// - linkType: The type of link being generated.
     /// - expand: Specifies which fields in the response should be expanded.
     /// - onBehalfOf: Stripe account ID to generate the link for.
-    public static func postTerminalOnboardingLinks(config: ClientConfig, linkOptions: PostTerminalOnboardingLinksRequestBodyLinkOptions, linkType: PostTerminalOnboardingLinksRequestBodyLinkType, expand: [String]?, onBehalfOf: String?) async throws -> TerminalOnboardingLink {
-        if let onBehalfOf = onBehalfOf {
+    public static func postTerminalOnboardingLinks(
+        config: ClientConfig,
+        linkOptions: PostTerminalOnboardingLinksRequestBodyLinkOptions,
+        linkType: PostTerminalOnboardingLinksRequestBodyLinkType,
+        expand: [String]?,
+        onBehalfOf: String?
+    ) async throws -> TerminalOnboardingLink {
+        if let onBehalfOf {
             try validateLength("on_behalf_of", onBehalfOf, max: 5000)
         }
 
-        let requestBody = PostTerminalOnboardingLinksRequestBody(linkOptions: linkOptions, linkType: linkType, expand: expand, onBehalfOf: onBehalfOf)
+        let requestBody = PostTerminalOnboardingLinksRequestBody(
+            linkOptions: linkOptions,
+            linkType: linkType,
+            expand: expand,
+            onBehalfOf: onBehalfOf
+        )
 
-        return try (await sdkRequest("POST", "/v1/terminal/onboarding_links", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTerminalOnboardingLinks")).data
+        return try await (sdkRequest(
+            "POST",
+            "/v1/terminal/onboarding_links",
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostTerminalOnboardingLinks"
+        )).data
     }
 }

@@ -6,18 +6,30 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1InvoicePaymentsMethods {
-    /// Retrieves an invoice payment by its identifier. Use `expand` to include selected related invoice or payment resources directly in the response.
+public extension V1InvoicePaymentsMethods {
+    /// Retrieves an invoice payment by its identifier. Use `expand` to include selected related invoice or payment
+    /// resources directly in the response.
     ///
     /// Retrieves the invoice payment with the given ID.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func getInvoicePaymentsInvoicePayment(config: ClientConfig, invoicePayment: String, expand: [String]?) async throws -> InvoicePayment {
+    static func getInvoicePaymentsInvoicePayment(
+        config: ClientConfig,
+        invoicePayment: String,
+        expand: [String]?
+    ) async throws -> InvoicePayment {
         try validateLength("invoice_payment", invoicePayment, max: 5000)
 
-        return try (await sdkRequest("GET", ["/v1/invoice_payments/", sdkEncodePathSegment(sdkWireString(invoicePayment))].joined(), config: config, query: [
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-        ], decoder: .json, operationId: "GetInvoicePaymentsInvoicePayment")).data
+        return try await (sdkRequest(
+            "GET",
+            ["/v1/invoice_payments/", sdkEncodePathSegment(sdkWireString(invoicePayment))].joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+            ],
+            decoder: .json,
+            operationId: "GetInvoicePaymentsInvoicePayment"
+        )).data
     }
 }

@@ -7,28 +7,36 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1SetupIntentsConfirm operation model declarations
+/// Canonical v1SetupIntentsConfirm operation model declarations
 public extension PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataAuBecsDebit {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.accountNumber) else {
-            throw SdkValidationError(field: "account_number", code: "required", message: "Validation failed for 'account_number': value is required")
+            throw SdkValidationError(
+                field: "account_number",
+                code: "required",
+                message: "Validation failed for 'account_number': value is required"
+            )
         }
         guard container.contains(.bsbNumber) else {
-            throw SdkValidationError(field: "bsb_number", code: "required", message: "Validation failed for 'bsb_number': value is required")
+            throw SdkValidationError(
+                field: "bsb_number",
+                code: "required",
+                message: "Validation failed for 'bsb_number': value is required"
+            )
         }
-        self.accountNumber = try container.sdkDecodeRequired(.accountNumber)
-        self.bsbNumber = try container.sdkDecodeRequired(.bsbNumber)
-            try validateLength("account_number", self.accountNumber, min: nil, max: 5000)
-            try validateLength("bsb_number", self.bsbNumber, min: nil, max: 5000)
+        accountNumber = try container.sdkDecodeRequired(.accountNumber)
+        bsbNumber = try container.sdkDecodeRequired(.bsbNumber)
+        try validateLength("account_number", accountNumber, min: nil, max: 5000)
+        try validateLength("bsb_number", bsbNumber, min: nil, max: 5000)
     }
 }
 
 public extension PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataAuBecsDebit {
-    public init(accountNumber: String, bsbNumber: String) throws {
+    init(accountNumber: String, bsbNumber: String) throws {
         (self.accountNumber, self.bsbNumber) = (accountNumber, bsbNumber)
-            try validateLength("account_number", self.accountNumber, min: nil, max: 5000)
-            try validateLength("bsb_number", self.bsbNumber, min: nil, max: 5000)
+        try validateLength("account_number", self.accountNumber, min: nil, max: 5000)
+        try validateLength("bsb_number", self.bsbNumber, min: nil, max: 5000)
     }
 }
 
@@ -39,35 +47,41 @@ public struct PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataFpx: Coda
         case bank
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataFpx {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.bank) else {
-            throw SdkValidationError(field: "bank", code: "required", message: "Validation failed for 'bank': value is required")
-        }
-        self.bank = try container.sdkDecodeRequired(.bank)
-            try validateLength("bank", sdkWireString(self.bank), min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataFpx {
-    public init(bank: PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataFpxBank) throws {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.bank) else {
+            throw SdkValidationError(
+                field: "bank",
+                code: "required",
+                message: "Validation failed for 'bank': value is required"
+            )
+        }
+        bank = try container.sdkDecodeRequired(.bank)
+        try validateLength("bank", sdkWireString(bank), min: nil, max: 5000)
+    }
+}
+
+public extension PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataFpx {
+    init(bank: PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataFpxBank) throws {
         self.bank = bank
-            try validateLength("bank", sdkWireString(self.bank), min: nil, max: 5000)
+        try validateLength("bank", sdkWireString(self.bank), min: nil, max: 5000)
     }
 }
 
 public struct PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataKrCard: Codable {
-
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataKrCard {
-    public init() {
-    }
+    init() {}
 }
 
 public enum PostSetupIntentsIntentConfirmRequestBodyPaymentMethodOptionsBX5cc52be2ea {
@@ -76,21 +90,31 @@ public enum PostSetupIntentsIntentConfirmRequestBodyPaymentMethodOptionsBX5cc52b
 }
 
 extension PostSetupIntentsIntentConfirmRequestBodyPaymentMethodOptionsBX5cc52be2ea: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostSetupIntentsIntentConfirmRequestBodyPaymentMethodOptionsBX5cc52be2ea")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PostSetupIntentsIntentConfirmRequestBodyPaymentMethodOptionsBX5cc52be2ea"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(String.self) { return .stringValue1(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(String.self) {
+            return .stringValue1(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -100,5 +124,4 @@ extension PostSetupIntentsIntentConfirmRequestBodyPaymentMethodOptionsBX5cc52be2
         case let .stringValue1(value): try container.encode(value); return true
         }
     }
-
 }

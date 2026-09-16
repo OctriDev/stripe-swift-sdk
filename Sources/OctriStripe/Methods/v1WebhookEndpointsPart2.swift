@@ -6,8 +6,9 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1WebhookEndpointsMethods {
-    /// Lists webhook endpoints configured for the account. Use cursor parameters to paginate the endpoint collection and `expand` to request additional response fields.
+public extension V1WebhookEndpointsMethods {
+    /// Lists webhook endpoints configured for the account. Use cursor parameters to paginate the endpoint collection
+    /// and `expand` to request additional response fields.
     ///
     /// Returns a list of your webhook endpoints.
     ///
@@ -25,16 +26,22 @@ extension V1WebhookEndpointsMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    public static func getWebhookEndpoints(config: ClientConfig, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetWebhookEndpointsResponse {
-        if let endingBefore = endingBefore {
+    static func getWebhookEndpoints(
+        config: ClientConfig,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        startingAfter: String?
+    ) async throws -> GetWebhookEndpointsResponse {
+        if let endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let startingAfter = startingAfter {
+        if let startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try (await sdkRequest("GET", "/v1/webhook_endpoints", config: config, query: [
+        return try await (sdkRequest("GET", "/v1/webhook_endpoints", config: config, query: [
             SdkQueryParameter("ending_before", value: endingBefore),
             SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
             SdkQueryParameter("limit", value: limit),

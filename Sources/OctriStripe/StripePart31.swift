@@ -9,11 +9,23 @@ public class V1TestHelpersTestClocksAdvanceNamespace {
         self.config = config
     }
 
-/// Triggers advancement of a test clock to a specified future time. Supply `frozen_time` after the clock's current frozen time and within the permitted future range; advancement continues until the clock reaches the ready state.
+    /// Triggers advancement of a test clock to a specified future time. Supply `frozen_time` after the clock's current
+    /// frozen time and within the permitted future range; advancement continues until the clock reaches the ready
+    /// state.
     ///
-    /// Starts advancing a test clock to a specified time in the future. Advancement is done when status changes to Ready .
-    public func postTestHelpersTestClocksTestClock(testClock: String, frozenTime: Int, expand: [String]?) async throws -> TestHelpersTestClock {
-        return try await V1TestHelpersTestClocksAdvanceMethods.postTestHelpersTestClocksTestClockAdvance(config: config, testClock: testClock, frozenTime: frozenTime, expand: expand)
+    /// Starts advancing a test clock to a specified time in the future. Advancement is done when status changes to
+    /// Ready .
+    public func postTestHelpersTestClocksTestClock(
+        testClock: String,
+        frozenTime: Int,
+        expand: [String]?
+    ) async throws -> TestHelpersTestClock {
+        try await V1TestHelpersTestClocksAdvanceMethods.postTestHelpersTestClocksTestClockAdvance(
+            config: config,
+            testClock: testClock,
+            frozenTime: frozenTime,
+            expand: expand
+        )
     }
 }
 
@@ -25,30 +37,63 @@ public class V1TestHelpersTestClocksNamespace {
         advance = V1TestHelpersTestClocksAdvanceNamespace(config: config)
     }
 
-/// Lists test clocks available in the test environment. Use `starting_after` and `ending_before` to navigate the collection, and `limit` to control the number of clocks returned per page. Use `page` and `per_page` to paginate the results.
+    /// Lists test clocks available in the test environment. Use `starting_after` and `ending_before` to navigate the
+    /// collection, and `limit` to control the number of clocks returned per page. Use `page` and `per_page` to paginate
+    /// the results.
     ///
     /// Returns a list of your test clocks.
-    public func getTestHelpers(endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetTestHelpersTestClocksResponse {
-        return try await V1TestHelpersTestClocksMethods.getTestHelpersTestClocks(config: config, endingBefore: endingBefore, expand: expand, limit: limit, startingAfter: startingAfter)
+    public func getTestHelpers(
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        startingAfter: String?
+    ) async throws -> GetTestHelpersTestClocksResponse {
+        try await V1TestHelpersTestClocksMethods.getTestHelpersTestClocks(
+            config: config,
+            endingBefore: endingBefore,
+            expand: expand,
+            limit: limit,
+            startingAfter: startingAfter
+        )
     }
 
-/// Creates a new test clock that can be attached to new customers and quotes.
-    public func postTestHelpers(frozenTime: Int, customer: String?, expand: [String]?, name: String?) async throws -> TestHelpersTestClock {
-        return try await V1TestHelpersTestClocksMethods.postTestHelpersTestClocks(config: config, frozenTime: frozenTime, customer: customer, expand: expand, name: name)
+    /// Creates a new test clock that can be attached to new customers and quotes.
+    public func postTestHelpers(
+        frozenTime: Int,
+        customer: String?,
+        expand: [String]?,
+        name: String?
+    ) async throws -> TestHelpersTestClock {
+        try await V1TestHelpersTestClocksMethods.postTestHelpersTestClocks(
+            config: config,
+            frozenTime: frozenTime,
+            customer: customer,
+            expand: expand,
+            name: name
+        )
     }
 
-/// Deletes a test clock from the test environment. Supply the test clock identifier to remove the clock and receive a confirmation object identifying the deleted resource.
+    /// Deletes a test clock from the test environment. Supply the test clock identifier to remove the clock and receive
+    /// a confirmation object identifying the deleted resource.
     ///
     /// Deletes a test clock.
     public func deleteTestHelpersTestClock(testClock: String) async throws -> DeletedTestHelpersTestClock {
-        return try await V1TestHelpersTestClocksMethods.deleteTestHelpersTestClocksTestClock(config: config, testClock: testClock)
+        try await V1TestHelpersTestClocksMethods.deleteTestHelpersTestClocksTestClock(
+            config: config,
+            testClock: testClock
+        )
     }
 
-/// Retrieves a single test clock by its identifier. Use `expand` when you need additional fields included in the returned test clock representation.
+    /// Retrieves a single test clock by its identifier. Use `expand` when you need additional fields included in the
+    /// returned test clock representation.
     ///
     /// Retrieves a test clock.
     public func getTestHelpersTestClock(testClock: String, expand: [String]?) async throws -> TestHelpersTestClock {
-        return try await V1TestHelpersTestClocksMethods.getTestHelpersTestClocksTestClock(config: config, testClock: testClock, expand: expand)
+        try await V1TestHelpersTestClocksMethods.getTestHelpersTestClocksTestClock(
+            config: config,
+            testClock: testClock,
+            expand: expand
+        )
     }
 }
 
@@ -58,11 +103,22 @@ public class V1TestHelpersTreasuryInboundTransfersFailNamespace {
         self.config = config
     }
 
-/// Triggers a failed state for a test-mode InboundTransfer. The InboundTransfer must already be in the `processing` state, and you can provide failure details to describe the simulated failure.
+    /// Triggers a failed state for a test-mode InboundTransfer. The InboundTransfer must already be in the `processing`
+    /// state, and you can provide failure details to describe the simulated failure.
     ///
-    /// Transitions a test mode created InboundTransfer to the failed status. The InboundTransfer must already be in the processing state.
-    public func postTestHelpersTreasuryInboundTransfersId(id: String, expand: [String]?, failureDetails: PostTestHelpersTreasuryInboundTransfersIdFailRequestBodyFailureDetails?) async throws -> TreasuryInboundTransfer {
-        return try await V1TestHelpersTreasuryInboundTransfersFailMethods.postTestHelpersTreasuryInboundTransfersIdFail(config: config, id: id, expand: expand, failureDetails: failureDetails)
+    /// Transitions a test mode created InboundTransfer to the failed status. The InboundTransfer must already be in the
+    /// processing state.
+    public func postTestHelpersTreasuryInboundTransfersId(
+        id: String,
+        expand: [String]?,
+        failureDetails: PostTestHelpersTreasuryInboundTransfersIdFailRequestBodyFailureDetails?
+    ) async throws -> TreasuryInboundTransfer {
+        try await V1TestHelpersTreasuryInboundTransfersFailMethods.postTestHelpersTreasuryInboundTransfersIdFail(
+            config: config,
+            id: id,
+            expand: expand,
+            failureDetails: failureDetails
+        )
     }
 }
 
@@ -72,11 +128,20 @@ public class V1TestHelpersTreasuryInboundTransfersReturnNamespace {
         self.config = config
     }
 
-/// Triggers the return of a test-mode InboundTransfer and links it to a ReceivedDebit. The InboundTransfer must already be in the `succeeded` state before you call this operation.
+    /// Triggers the return of a test-mode InboundTransfer and links it to a ReceivedDebit. The InboundTransfer must
+    /// already be in the `succeeded` state before you call this operation.
     ///
-    /// Marks the test mode InboundTransfer object as returned and links the InboundTransfer to a ReceivedDebit. The InboundTransfer must already be in the succeeded state.
-    public func postTestHelpersTreasuryInboundTransfersId(id: String, expand: [String]?) async throws -> TreasuryInboundTransfer {
-        return try await V1TestHelpersTreasuryInboundTransfersReturnMethods.postTestHelpersTreasuryInboundTransfersIdReturn(config: config, id: id, expand: expand)
+    /// Marks the test mode InboundTransfer object as returned and links the InboundTransfer to a ReceivedDebit. The
+    /// InboundTransfer must already be in the succeeded state.
+    public func postTestHelpersTreasuryInboundTransfersId(
+        id: String,
+        expand: [String]?
+    ) async throws -> TreasuryInboundTransfer {
+        try await V1TestHelpersTreasuryInboundTransfersReturnMethods.postTestHelpersTreasuryInboundTransfersIdReturn(
+            config: config,
+            id: id,
+            expand: expand
+        )
     }
 }
 
@@ -86,11 +151,20 @@ public class V1TestHelpersTreasuryInboundTransfersSucceedNamespace {
         self.config = config
     }
 
-/// Triggers a test-mode InboundTransfer transition to the succeeded status. Supply the `id` of an InboundTransfer that is currently processing; use `expand` to request expanded response fields when needed.
+    /// Triggers a test-mode InboundTransfer transition to the succeeded status. Supply the `id` of an InboundTransfer
+    /// that is currently processing; use `expand` to request expanded response fields when needed.
     ///
-    /// Transitions a test mode created InboundTransfer to the succeeded status. The InboundTransfer must already be in the processing state.
-    public func postTestHelpersTreasuryInboundTransfersId(id: String, expand: [String]?) async throws -> TreasuryInboundTransfer {
-        return try await V1TestHelpersTreasuryInboundTransfersSucceedMethods.postTestHelpersTreasuryInboundTransfersIdSucceed(config: config, id: id, expand: expand)
+    /// Transitions a test mode created InboundTransfer to the succeeded status. The InboundTransfer must already be in
+    /// the processing state.
+    public func postTestHelpersTreasuryInboundTransfersId(
+        id: String,
+        expand: [String]?
+    ) async throws -> TreasuryInboundTransfer {
+        try await V1TestHelpersTreasuryInboundTransfersSucceedMethods.postTestHelpersTreasuryInboundTransfersIdSucceed(
+            config: config,
+            id: id,
+            expand: expand
+        )
     }
 }
 
@@ -111,11 +185,20 @@ public class V1TestHelpersTreasuryOutboundPaymentsFailNamespace {
         self.config = config
     }
 
-/// Triggers a test-mode OutboundPayment transition to the failed status. Supply the `id` of an OutboundPayment that is currently processing, and use `expand` to request expanded response fields when needed.
+    /// Triggers a test-mode OutboundPayment transition to the failed status. Supply the `id` of an OutboundPayment that
+    /// is currently processing, and use `expand` to request expanded response fields when needed.
     ///
-    /// Transitions a test mode created OutboundPayment to the failed status. The OutboundPayment must already be in the processing state.
-    public func postTestHelpersTreasuryOutboundPaymentsId(id: String, expand: [String]?) async throws -> TreasuryOutboundPayment {
-        return try await V1TestHelpersTreasuryOutboundPaymentsFailMethods.postTestHelpersTreasuryOutboundPaymentsIdFail(config: config, id: id, expand: expand)
+    /// Transitions a test mode created OutboundPayment to the failed status. The OutboundPayment must already be in the
+    /// processing state.
+    public func postTestHelpersTreasuryOutboundPaymentsId(
+        id: String,
+        expand: [String]?
+    ) async throws -> TreasuryOutboundPayment {
+        try await V1TestHelpersTreasuryOutboundPaymentsFailMethods.postTestHelpersTreasuryOutboundPaymentsIdFail(
+            config: config,
+            id: id,
+            expand: expand
+        )
     }
 }
 
@@ -125,11 +208,20 @@ public class V1TestHelpersTreasuryOutboundPaymentsPostNamespace {
         self.config = config
     }
 
-/// Triggers a test-mode OutboundPayment transition to the posted status. Supply the `id` of an OutboundPayment that is currently processing, and use `expand` to request expanded response fields when needed.
+    /// Triggers a test-mode OutboundPayment transition to the posted status. Supply the `id` of an OutboundPayment that
+    /// is currently processing, and use `expand` to request expanded response fields when needed.
     ///
-    /// Transitions a test mode created OutboundPayment to the posted status. The OutboundPayment must already be in the processing state.
-    public func postTestHelpersTreasuryOutboundPaymentsId(id: String, expand: [String]?) async throws -> TreasuryOutboundPayment {
-        return try await V1TestHelpersTreasuryOutboundPaymentsPostMethods.postTestHelpersTreasuryOutboundPaymentsIdPost(config: config, id: id, expand: expand)
+    /// Transitions a test mode created OutboundPayment to the posted status. The OutboundPayment must already be in the
+    /// processing state.
+    public func postTestHelpersTreasuryOutboundPaymentsId(
+        id: String,
+        expand: [String]?
+    ) async throws -> TreasuryOutboundPayment {
+        try await V1TestHelpersTreasuryOutboundPaymentsPostMethods.postTestHelpersTreasuryOutboundPaymentsIdPost(
+            config: config,
+            id: id,
+            expand: expand
+        )
     }
 }
 
@@ -139,11 +231,22 @@ public class V1TestHelpersTreasuryOutboundPaymentsReturnNamespace {
         self.config = config
     }
 
-/// Triggers a test-mode OutboundPayment transition to the returned status. Supply the `id` of an OutboundPayment that is currently processing, and optionally provide a return code through `returned_details`.
+    /// Triggers a test-mode OutboundPayment transition to the returned status. Supply the `id` of an OutboundPayment
+    /// that is currently processing, and optionally provide a return code through `returned_details`.
     ///
-    /// Transitions a test mode created OutboundPayment to the returned status. The OutboundPayment must already be in the processing state.
-    public func postTestHelpersTreasuryOutboundPaymentsId(id: String, expand: [String]?, returnedDetails: PostTestHelpersTreasuryOutboundPaymentsIdReturnRequestBodyRetX14e5924c34?) async throws -> TreasuryOutboundPayment {
-        return try await V1TestHelpersTreasuryOutboundPaymentsReturnMethods.postTestHelpersTreasuryOutboundPaymentsIdReturn(config: config, id: id, expand: expand, returnedDetails: returnedDetails)
+    /// Transitions a test mode created OutboundPayment to the returned status. The OutboundPayment must already be in
+    /// the processing state.
+    public func postTestHelpersTreasuryOutboundPaymentsId(
+        id: String,
+        expand: [String]?,
+        returnedDetails: PostTestHelpersTreasuryOutboundPaymentsIdReturnRequestBodyRetX14e5924c34?
+    ) async throws -> TreasuryOutboundPayment {
+        try await V1TestHelpersTreasuryOutboundPaymentsReturnMethods.postTestHelpersTreasuryOutboundPaymentsIdReturn(
+            config: config,
+            id: id,
+            expand: expand,
+            returnedDetails: returnedDetails
+        )
     }
 }
 
@@ -159,11 +262,23 @@ public class V1TestHelpersTreasuryOutboundPaymentsNamespace {
         `return` = V1TestHelpersTreasuryOutboundPaymentsReturnNamespace(config: config)
     }
 
-/// Updates a test-mode OutboundPayment with network-specific tracking details. Supply the `tracking_details` object for an OutboundPayment that is not cancelable and is not canceled or failed; use `expand` to request expanded response fields.
+    /// Updates a test-mode OutboundPayment with network-specific tracking details. Supply the `tracking_details` object
+    /// for an OutboundPayment that is not cancelable and is not canceled or failed; use `expand` to request expanded
+    /// response fields.
     ///
-    /// Updates a test mode created OutboundPayment with tracking details. The OutboundPayment must not be cancelable, and cannot be in the canceled or failed states.
-    public func postTestHelpersTreasuryId(id: String, trackingDetails: PostTestHelpersTreasuryOutboundPaymentsIdRequestBodyTrackingDetails, expand: [String]?) async throws -> TreasuryOutboundPayment {
-        return try await V1TestHelpersTreasuryOutboundPaymentsMethods.postTestHelpersTreasuryOutboundPaymentsId(config: config, id: id, trackingDetails: trackingDetails, expand: expand)
+    /// Updates a test mode created OutboundPayment with tracking details. The OutboundPayment must not be cancelable,
+    /// and cannot be in the canceled or failed states.
+    public func postTestHelpersTreasuryId(
+        id: String,
+        trackingDetails: PostTestHelpersTreasuryOutboundPaymentsIdRequestBodyTrackingDetails,
+        expand: [String]?
+    ) async throws -> TreasuryOutboundPayment {
+        try await V1TestHelpersTreasuryOutboundPaymentsMethods.postTestHelpersTreasuryOutboundPaymentsId(
+            config: config,
+            id: id,
+            trackingDetails: trackingDetails,
+            expand: expand
+        )
     }
 }
 
@@ -173,11 +288,22 @@ public class V1TestHelpersTreasuryOutboundTransfersFailNamespace {
         self.config = config
     }
 
-/// Triggers a test-mode OutboundTransfer transition to the failed status. Supply the `outbound_transfer` identifier for an OutboundTransfer that is currently processing, and use `expand` to request expanded response fields when needed.
+    /// Triggers a test-mode OutboundTransfer transition to the failed status. Supply the `outbound_transfer` identifier
+    /// for an OutboundTransfer that is currently processing, and use `expand` to request expanded response fields when
+    /// needed.
     ///
-    /// Transitions a test mode created OutboundTransfer to the failed status. The OutboundTransfer must already be in the processing state.
-    public func postTestHelpersTreasuryOutboundTransfersOutboundTransfer(outboundTransfer: String, expand: [String]?) async throws -> TreasuryOutboundTransfer {
-        return try await V1TestHelpersTreasuryOutboundTransfersFailMethods.postTestHelpersTreasuryOutboundTransfersOutboundTransferFail(config: config, outboundTransfer: outboundTransfer, expand: expand)
+    /// Transitions a test mode created OutboundTransfer to the failed status. The OutboundTransfer must already be in
+    /// the processing state.
+    public func postTestHelpersTreasuryOutboundTransfersOutboundTransfer(
+        outboundTransfer: String,
+        expand: [String]?
+    ) async throws -> TreasuryOutboundTransfer {
+        try await V1TestHelpersTreasuryOutboundTransfersFailMethods
+            .postTestHelpersTreasuryOutboundTransfersOutboundTransferFail(
+                config: config,
+                outboundTransfer: outboundTransfer,
+                expand: expand
+            )
     }
 }
 
@@ -187,11 +313,22 @@ public class V1TestHelpersTreasuryOutboundTransfersPostNamespace {
         self.config = config
     }
 
-/// Triggers a test-mode OutboundTransfer transition to the posted status. Supply the `outbound_transfer` identifier for an OutboundTransfer that is currently processing, and use `expand` to request expanded response fields when needed.
+    /// Triggers a test-mode OutboundTransfer transition to the posted status. Supply the `outbound_transfer` identifier
+    /// for an OutboundTransfer that is currently processing, and use `expand` to request expanded response fields when
+    /// needed.
     ///
-    /// Transitions a test mode created OutboundTransfer to the posted status. The OutboundTransfer must already be in the processing state.
-    public func postTestHelpersTreasuryOutboundTransfersOutboundTransfer(outboundTransfer: String, expand: [String]?) async throws -> TreasuryOutboundTransfer {
-        return try await V1TestHelpersTreasuryOutboundTransfersPostMethods.postTestHelpersTreasuryOutboundTransfersOutboundTransferPost(config: config, outboundTransfer: outboundTransfer, expand: expand)
+    /// Transitions a test mode created OutboundTransfer to the posted status. The OutboundTransfer must already be in
+    /// the processing state.
+    public func postTestHelpersTreasuryOutboundTransfersOutboundTransfer(
+        outboundTransfer: String,
+        expand: [String]?
+    ) async throws -> TreasuryOutboundTransfer {
+        try await V1TestHelpersTreasuryOutboundTransfersPostMethods
+            .postTestHelpersTreasuryOutboundTransfersOutboundTransferPost(
+                config: config,
+                outboundTransfer: outboundTransfer,
+                expand: expand
+            )
     }
 }
 
@@ -201,10 +338,23 @@ public class V1TestHelpersTreasuryOutboundTransfersReturnNamespace {
         self.config = config
     }
 
-/// Triggers a test-mode OutboundTransfer transition to the returned status. Supply the `outbound_transfer` identifier for an OutboundTransfer that is currently processing, and optionally provide a return code through `returned_details`.
+    /// Triggers a test-mode OutboundTransfer transition to the returned status. Supply the `outbound_transfer`
+    /// identifier for an OutboundTransfer that is currently processing, and optionally provide a return code through
+    /// `returned_details`.
     ///
-    /// Transitions a test mode created OutboundTransfer to the returned status. The OutboundTransfer must already be in the processing state.
-    public func postTestHelpersTreasuryOutboundTransfersOutboundTransfer(outboundTransfer: String, expand: [String]?, returnedDetails: PostTestHelpersTreasuryOutboundTransfersOutboundTransferReturXbc4f70dfa3?) async throws -> TreasuryOutboundTransfer {
-        return try await V1TestHelpersTreasuryOutboundTransfersReturnMethods.postTestHelpersTreasuryOutboundTransfersOutboundTransferReturn(config: config, outboundTransfer: outboundTransfer, expand: expand, returnedDetails: returnedDetails)
+    /// Transitions a test mode created OutboundTransfer to the returned status. The OutboundTransfer must already be in
+    /// the processing state.
+    public func postTestHelpersTreasuryOutboundTransfersOutboundTransfer(
+        outboundTransfer: String,
+        expand: [String]?,
+        returnedDetails: PostTestHelpersTreasuryOutboundTransfersOutboundTransferReturXbc4f70dfa3?
+    ) async throws -> TreasuryOutboundTransfer {
+        try await V1TestHelpersTreasuryOutboundTransfersReturnMethods
+            .postTestHelpersTreasuryOutboundTransfersOutboundTransferReturn(
+                config: config,
+                outboundTransfer: outboundTransfer,
+                expand: expand,
+                returnedDetails: returnedDetails
+            )
     }
 }

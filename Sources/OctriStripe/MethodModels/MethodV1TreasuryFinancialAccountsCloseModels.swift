@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1TreasuryFinancialAccountsClose operation model declarations
+/// Canonical v1TreasuryFinancialAccountsClose operation model declarations
 /// A different bank account where funds can be deposited/debited in order to get the closing FA's balance to $0
 public struct PostTreasuryFinancialAccountsFinancialAccountCloseRequestBodyXc3be678722: Codable {
     public var type: PostTreasuryFinancialAccountsFinancialAccountCloseRequestBodyX96a2f4a961
@@ -20,26 +20,36 @@ public struct PostTreasuryFinancialAccountsFinancialAccountCloseRequestBodyXc3be
         case paymentMethod = "payment_method"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension PostTreasuryFinancialAccountsFinancialAccountCloseRequestBodyXc3be678722 {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
         }
-        self.type = try container.sdkDecodeRequired(.type)
-        self.financialAccount = try container.sdkDecodeIfPresent(.financialAccount)
-        self.paymentMethod = try container.sdkDecodeIfPresent(.paymentMethod)
-        if let value = self.paymentMethod {
+        type = try container.sdkDecodeRequired(.type)
+        financialAccount = try container.sdkDecodeIfPresent(.financialAccount)
+        paymentMethod = try container.sdkDecodeIfPresent(.paymentMethod)
+        if let value = paymentMethod {
             try validateLength("payment_method", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension PostTreasuryFinancialAccountsFinancialAccountCloseRequestBodyXc3be678722 {
-    public init(type: PostTreasuryFinancialAccountsFinancialAccountCloseRequestBodyX96a2f4a961, financialAccount: String? = nil, paymentMethod: String? = nil) throws {
+    init(
+        type: PostTreasuryFinancialAccountsFinancialAccountCloseRequestBodyX96a2f4a961,
+        financialAccount: String? = nil,
+        paymentMethod: String? = nil
+    ) throws {
         (self.type, self.financialAccount) = (type, financialAccount)
         self.paymentMethod = paymentMethod
         if let value = self.paymentMethod {

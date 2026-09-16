@@ -6,10 +6,12 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1TaxRegistrationsMethods {
-    /// Updates an existing Tax Registration object. Use `active_from` to set when the registration becomes active and `expires_at` to end it; registrations cannot be deleted after creation.
+public extension V1TaxRegistrationsMethods {
+    /// Updates an existing Tax Registration object. Use `active_from` to set when the registration becomes active and
+    /// `expires_at` to end it; registrations cannot be deleted after creation.
     ///
-    /// Updates an existing Tax Registration object. A registration cannot be deleted after it has been created. If you wish to end a registration you may do so by setting expires_at .
+    /// Updates an existing Tax Registration object. A registration cannot be deleted after it has been created. If you
+    /// wish to end a registration you may do so by setting expires_at .
     ///
     /// - Parameters:
     /// - activeFrom: Time at which the registration becomes active. It can be
@@ -20,11 +22,29 @@ extension V1TaxRegistrationsMethods {
     ///   not set, the registration will be active indefinitely. It can be either
     ///   `now` to indicate the current time, or a timestamp measured in seconds since
     ///   the Unix epoch.
-    public static func postTaxRegistrationsId(config: ClientConfig, id: String, activeFrom: PostTaxRegistrationsIdRequestBodyActiveFrom?, expand: [String]?, expiresAt: PostTaxRegistrationsIdRequestBodyExpiresAt?) async throws -> TaxRegistration {
+    static func postTaxRegistrationsId(
+        config: ClientConfig,
+        id: String,
+        activeFrom: PostTaxRegistrationsIdRequestBodyActiveFrom?,
+        expand: [String]?,
+        expiresAt: PostTaxRegistrationsIdRequestBodyExpiresAt?
+    ) async throws -> TaxRegistration {
         try validateLength("id", id, max: 5000)
 
-        let requestBody = PostTaxRegistrationsIdRequestBody(activeFrom: activeFrom, expand: expand, expiresAt: expiresAt)
+        let requestBody = PostTaxRegistrationsIdRequestBody(
+            activeFrom: activeFrom,
+            expand: expand,
+            expiresAt: expiresAt
+        )
 
-        return try (await sdkRequest("POST", ["/v1/tax/registrations/", sdkEncodePathSegment(sdkWireString(id))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTaxRegistrationsId")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/tax/registrations/", sdkEncodePathSegment(sdkWireString(id))].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostTaxRegistrationsId"
+        )).data
     }
 }

@@ -7,17 +7,32 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1LinkedAccountsDisconnectMethods {
-    /// Disconnects a Financial Connections Account from the authenticated user's access. Use `account` to identify the account and optionally request expanded fields in the response; disconnecting removes access to associated balances and transactions.
+    /// Disconnects a Financial Connections Account from the authenticated user's access. Use `account` to identify the
+    /// account and optionally request expanded fields in the response; disconnecting removes access to associated
+    /// balances and transactions.
     ///
-    /// Disables your access to a Financial Connections Account . You will no longer be able to access data associated with the account (e.g. balances, transactions).
+    /// Disables your access to a Financial Connections Account . You will no longer be able to access data associated
+    /// with the account (e.g. balances, transactions).
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postLinkedAccountsAccountDisconnect(config: ClientConfig, account: String, expand: [String]?) async throws -> FinancialConnectionsAccount {
+    public static func postLinkedAccountsAccountDisconnect(
+        config: ClientConfig,
+        account: String,
+        expand: [String]?
+    ) async throws -> FinancialConnectionsAccount {
         try validateLength("account", account, max: 5000)
 
         let requestBody = PostLinkedAccountsAccountDisconnectRequestBody(expand: expand)
 
-        return try (await sdkRequest("POST", ["/v1/linked_accounts/", sdkEncodePathSegment(sdkWireString(account)), "/disconnect"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostLinkedAccountsAccountDisconnect")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/linked_accounts/", sdkEncodePathSegment(sdkWireString(account)), "/disconnect"].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostLinkedAccountsAccountDisconnect"
+        )).data
     }
 }

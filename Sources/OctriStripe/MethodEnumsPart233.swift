@@ -146,7 +146,7 @@ extension PostPaymentLinksPaymentLinkRequestBodyShippingAddressCollectiX128a888f
         .dj,
         .dk,
         .dm,
-        .`do`,
+        .do,
         .dz,
         .ec,
         .ee,

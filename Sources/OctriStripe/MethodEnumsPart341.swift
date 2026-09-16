@@ -11,12 +11,15 @@ import Foundation
 public struct GetTerminalLocationsResponseObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let list = GetTerminalLocationsResponseObject(rawValue: "list")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -25,15 +28,19 @@ public struct GetTerminalLocationsResponseObject: RawRepresentable, Hashable, Co
     }
 }
 
-public struct PostTerminalLocationsRequestBodyMetadataVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostTerminalLocationsRequestBodyMetadataVariant1: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostTerminalLocationsRequestBodyMetadataVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -42,15 +49,19 @@ public struct PostTerminalLocationsRequestBodyMetadataVariant1: RawRepresentable
     }
 }
 
-public struct PostTerminalLocationsLocationRequestBodyConfigurationOverridesVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostTerminalLocationsLocationRequestBodyConfigurationOverridesVariant1: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostTerminalLocationsLocationRequestBodyConfigurationOverridesVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -59,15 +70,20 @@ public struct PostTerminalLocationsLocationRequestBodyConfigurationOverridesVari
     }
 }
 
-public struct PostTerminalLocationsLocationRequestBodyDisplayNameVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostTerminalLocationsLocationRequestBodyDisplayNameVariant1: RawRepresentable, Hashable, Codable,
+    Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostTerminalLocationsLocationRequestBodyDisplayNameVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -76,15 +92,19 @@ public struct PostTerminalLocationsLocationRequestBodyDisplayNameVariant1: RawRe
     }
 }
 
-public struct PostTerminalLocationsLocationRequestBodyDisplayNameKanaVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostTerminalLocationsLocationRequestBodyDisplayNameKanaVariant1: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostTerminalLocationsLocationRequestBodyDisplayNameKanaVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -93,15 +113,19 @@ public struct PostTerminalLocationsLocationRequestBodyDisplayNameKanaVariant1: R
     }
 }
 
-public struct PostTerminalLocationsLocationRequestBodyDisplayNameKanjiVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostTerminalLocationsLocationRequestBodyDisplayNameKanjiVariant1: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostTerminalLocationsLocationRequestBodyDisplayNameKanjiVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -110,15 +134,19 @@ public struct PostTerminalLocationsLocationRequestBodyDisplayNameKanjiVariant1: 
     }
 }
 
-public struct PostTerminalLocationsLocationRequestBodyMetadataVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostTerminalLocationsLocationRequestBodyMetadataVariant1: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostTerminalLocationsLocationRequestBodyMetadataVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -128,15 +156,20 @@ public struct PostTerminalLocationsLocationRequestBodyMetadataVariant1: RawRepre
 }
 
 /// The type of link being generated.
-public struct PostTerminalOnboardingLinksRequestBodyLinkType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostTerminalOnboardingLinksRequestBodyLinkType: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let appleTermsAndConditions = PostTerminalOnboardingLinksRequestBodyLinkType(rawValue: "apple_terms_and_conditions")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let appleTermsAndConditions =
+        PostTerminalOnboardingLinksRequestBodyLinkType(rawValue: "apple_terms_and_conditions")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -148,7 +181,10 @@ public struct PostTerminalOnboardingLinksRequestBodyLinkType: RawRepresentable, 
 public struct GetTerminalReadersParameter: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let bbposChipper2x = GetTerminalReadersParameter(rawValue: "bbpos_chipper2x")
     public static let bbposWisepad3 = GetTerminalReadersParameter(rawValue: "bbpos_wisepad3")
     public static let bbposWiseposE = GetTerminalReadersParameter(rawValue: "bbpos_wisepos_e")
@@ -171,7 +207,7 @@ public struct GetTerminalReadersParameter: RawRepresentable, Hashable, Codable, 
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -183,13 +219,16 @@ public struct GetTerminalReadersParameter: RawRepresentable, Hashable, Codable, 
 public struct GetTerminalReadersParameterX4f6fd0cc: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let offline = GetTerminalReadersParameterX4f6fd0cc(rawValue: "offline")
     public static let online = GetTerminalReadersParameterX4f6fd0cc(rawValue: "online")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -203,12 +242,15 @@ public struct GetTerminalReadersParameterX4f6fd0cc: RawRepresentable, Hashable, 
 public struct GetTerminalReadersResponseObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let list = GetTerminalReadersResponseObject(rawValue: "list")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

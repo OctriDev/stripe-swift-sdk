@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1TestHelpersTreasuryOutboundPayments operation model declarations
+/// Canonical v1TestHelpersTreasuryOutboundPayments operation model declarations
 public struct PostTestHelpersTreasuryOutboundPaymentsIdRequestBodyTrackingDX6def454484: Codable {
     public var chips: String?
     public var imad: String?
@@ -20,30 +20,30 @@ public struct PostTestHelpersTreasuryOutboundPaymentsIdRequestBodyTrackingDX6def
     }
 
     init() {
-        (self.chips, self.imad, self.omad) = (nil, nil, nil)
+        (chips, imad, omad) = (nil, nil, nil)
     }
 }
 
 public extension PostTestHelpersTreasuryOutboundPaymentsIdRequestBodyTrackingDX6def454484 {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.chips = try container.sdkDecodeIfPresent(.chips)
-        self.imad = try container.sdkDecodeIfPresent(.imad)
-        self.omad = try container.sdkDecodeIfPresent(.omad)
-        if let value = self.chips {
+        chips = try container.sdkDecodeIfPresent(.chips)
+        imad = try container.sdkDecodeIfPresent(.imad)
+        omad = try container.sdkDecodeIfPresent(.omad)
+        if let value = chips {
             try validateLength("chips", value, min: nil, max: 5000)
         }
-        if let value = self.imad {
+        if let value = imad {
             try validateLength("imad", value, min: nil, max: 5000)
         }
-        if let value = self.omad {
+        if let value = omad {
             try validateLength("omad", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension PostTestHelpersTreasuryOutboundPaymentsIdRequestBodyTrackingDX6def454484 {
-    public init(chips: String? = nil, imad: String? = nil, omad: String? = nil) throws {
+    init(chips: String? = nil, imad: String? = nil, omad: String? = nil) throws {
         self.init()
         (self.chips, self.imad) = (chips, imad)
         self.omad = omad
@@ -66,24 +66,30 @@ public struct PostTestHelpersTreasuryOutboundPaymentsIdRequestBodyTrackingDetail
         case traceId = "trace_id"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostTestHelpersTreasuryOutboundPaymentsIdRequestBodyTrackingDetailsAch {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.traceId) else {
-            throw SdkValidationError(field: "trace_id", code: "required", message: "Validation failed for 'trace_id': value is required")
-        }
-        self.traceId = try container.sdkDecodeRequired(.traceId)
-            try validateLength("trace_id", self.traceId, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostTestHelpersTreasuryOutboundPaymentsIdRequestBodyTrackingDetailsAch {
-    public init(traceId: String) throws {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.traceId) else {
+            throw SdkValidationError(
+                field: "trace_id",
+                code: "required",
+                message: "Validation failed for 'trace_id': value is required"
+            )
+        }
+        traceId = try container.sdkDecodeRequired(.traceId)
+        try validateLength("trace_id", traceId, min: nil, max: 5000)
+    }
+}
+
+public extension PostTestHelpersTreasuryOutboundPaymentsIdRequestBodyTrackingDetailsAch {
+    init(traceId: String) throws {
         self.traceId = traceId
-            try validateLength("trace_id", self.traceId, min: nil, max: 5000)
+        try validateLength("trace_id", self.traceId, min: nil, max: 5000)
     }
 }
 
@@ -101,23 +107,33 @@ public struct PostTestHelpersTreasuryOutboundPaymentsIdRequestBodyTrackingDetail
         case usDomesticWire = "us_domestic_wire"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostTestHelpersTreasuryOutboundPaymentsIdRequestBodyTrackingDetails {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
-        }
-        self.type = try container.sdkDecodeRequired(.type)
-        self.ach = try container.sdkDecodeIfPresent(.ach)
-        self.usDomesticWire = try container.sdkDecodeIfPresent(.usDomesticWire)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostTestHelpersTreasuryOutboundPaymentsIdRequestBodyTrackingDetails {
-    public init(type: PostTestHelpersTreasuryOutboundPaymentsIdRequestBodyTrackingDetailsType, ach: PostTestHelpersTreasuryOutboundPaymentsIdRequestBodyTrackingDetailsAch? = nil, usDomesticWire: PostTestHelpersTreasuryOutboundPaymentsIdRequestBodyTrackingDX6def454484? = nil) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.type) else {
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
+        }
+        type = try container.sdkDecodeRequired(.type)
+        ach = try container.sdkDecodeIfPresent(.ach)
+        usDomesticWire = try container.sdkDecodeIfPresent(.usDomesticWire)
+    }
+}
+
+public extension PostTestHelpersTreasuryOutboundPaymentsIdRequestBodyTrackingDetails {
+    init(
+        type: PostTestHelpersTreasuryOutboundPaymentsIdRequestBodyTrackingDetailsType,
+        ach: PostTestHelpersTreasuryOutboundPaymentsIdRequestBodyTrackingDetailsAch? = nil,
+        usDomesticWire: PostTestHelpersTreasuryOutboundPaymentsIdRequestBodyTrackingDX6def454484? = nil
+    ) {
         (self.type, self.ach) = (type, ach)
         self.usDomesticWire = usDomesticWire
     }

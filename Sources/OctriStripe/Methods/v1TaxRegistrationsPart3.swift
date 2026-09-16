@@ -6,7 +6,7 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1TaxRegistrationsMethods {
+public extension V1TaxRegistrationsMethods {
     /// Creates a new Tax Registration object.
     ///
     /// - Parameters:
@@ -21,25 +21,58 @@ extension V1TaxRegistrationsMethods {
     /// - expiresAt: If set, the Tax Registration stops being active at this time.
     ///   If not set, the Tax Registration will be active indefinitely. Timestamp
     ///   measured in seconds since the Unix epoch.
-    public static func postTaxRegistrations(config: ClientConfig, activeFrom: PostTaxRegistrationsRequestBodyActiveFrom, country: String, countryOptions: PostTaxRegistrationsRequestBodyCountryOptions, expand: [String]?, expiresAt: Int?) async throws -> TaxRegistration {
+    static func postTaxRegistrations(
+        config: ClientConfig,
+        activeFrom: PostTaxRegistrationsRequestBodyActiveFrom,
+        country: String,
+        countryOptions: PostTaxRegistrationsRequestBodyCountryOptions,
+        expand: [String]?,
+        expiresAt: Int?
+    ) async throws -> TaxRegistration {
         try validateLength("country", country, max: 5000)
 
-        let requestBody = PostTaxRegistrationsRequestBody(activeFrom: activeFrom, country: country, countryOptions: countryOptions, expand: expand, expiresAt: expiresAt)
+        let requestBody = PostTaxRegistrationsRequestBody(
+            activeFrom: activeFrom,
+            country: country,
+            countryOptions: countryOptions,
+            expand: expand,
+            expiresAt: expiresAt
+        )
 
-        return try (await sdkRequest("POST", "/v1/tax/registrations", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTaxRegistrations")).data
+        return try await (sdkRequest(
+            "POST",
+            "/v1/tax/registrations",
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostTaxRegistrations"
+        )).data
     }
 
-    /// Retrieves a Tax Registration object by its identifier. Use `expand` when you need selected response fields expanded instead of returned as references.
+    /// Retrieves a Tax Registration object by its identifier. Use `expand` when you need selected response fields
+    /// expanded instead of returned as references.
     ///
     /// Returns a Tax Registration object.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func getTaxRegistrationsId(config: ClientConfig, id: String, expand: [String]?) async throws -> TaxRegistration {
+    static func getTaxRegistrationsId(
+        config: ClientConfig,
+        id: String,
+        expand: [String]?
+    ) async throws -> TaxRegistration {
         try validateLength("id", id, max: 5000)
 
-        return try (await sdkRequest("GET", ["/v1/tax/registrations/", sdkEncodePathSegment(sdkWireString(id))].joined(), config: config, query: [
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-        ], decoder: .json, operationId: "GetTaxRegistrationsId")).data
+        return try await (sdkRequest(
+            "GET",
+            ["/v1/tax/registrations/", sdkEncodePathSegment(sdkWireString(id))].joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+            ],
+            decoder: .json,
+            operationId: "GetTaxRegistrationsId"
+        )).data
     }
 }

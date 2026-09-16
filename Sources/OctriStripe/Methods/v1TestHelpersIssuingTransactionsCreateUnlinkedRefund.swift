@@ -23,11 +23,34 @@ public enum V1TestHelpersIssuingTransactionsCreateUnlinkedRefundMethods {
     ///   etc.) where the card authorization happened.
     /// - purchaseDetails: Additional purchase information that is optionally
     ///   provided by the merchant.
-    public static func postTestHelpersIssuingTransactionsCreateUnlinkedRefund(config: ClientConfig, amount: Int, card: String, currency: String?, expand: [String]?, merchantData: PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestXa21a1acd5b?, purchaseDetails: PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestXe8df3d9918?) async throws -> IssuingTransaction {
+    public static func postTestHelpersIssuingTransactionsCreateUnlinkedRefund(
+        config: ClientConfig,
+        amount: Int,
+        card: String,
+        currency: String?,
+        expand: [String]?,
+        merchantData: PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestXa21a1acd5b?,
+        purchaseDetails: PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestXe8df3d9918?
+    ) async throws -> IssuingTransaction {
         try validateLength("card", card, max: 5000)
 
-        let requestBody = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestBody(amount: amount, card: card, currency: currency, expand: expand, merchantData: merchantData, purchaseDetails: purchaseDetails)
+        let requestBody = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestBody(
+            amount: amount,
+            card: card,
+            currency: currency,
+            expand: expand,
+            merchantData: merchantData,
+            purchaseDetails: purchaseDetails
+        )
 
-        return try (await sdkRequest("POST", "/v1/test_helpers/issuing/transactions/create_unlinked_refund", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTestHelpersIssuingTransactionsCreateUnlinkedRefund")).data
+        return try await (sdkRequest(
+            "POST",
+            "/v1/test_helpers/issuing/transactions/create_unlinked_refund",
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostTestHelpersIssuingTransactionsCreateUnlinkedRefund"
+        )).data
     }
 }

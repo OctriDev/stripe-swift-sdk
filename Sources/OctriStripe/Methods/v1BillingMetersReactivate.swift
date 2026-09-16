@@ -7,17 +7,30 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1BillingMetersReactivateMethods {
-    /// Reactivates a billing meter so that it can accept meter events again. You can also attach the reactivated meter to a price; use `expand` when the response should include expanded fields.
+    /// Reactivates a billing meter so that it can accept meter events again. You can also attach the reactivated meter
+    /// to a price; use `expand` when the response should include expanded fields.
     ///
     /// When a meter is reactivated, events for this meter can be accepted and you can attach the meter to a price.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postBillingMetersIdReactivate(config: ClientConfig, id: String, expand: [String]?) async throws -> BillingMeter {
+    public static func postBillingMetersIdReactivate(
+        config: ClientConfig,
+        id: String,
+        expand: [String]?
+    ) async throws -> BillingMeter {
         try validateLength("id", id, max: 5000)
 
         let requestBody = PostBillingMetersIdReactivateRequestBody(expand: expand)
 
-        return try (await sdkRequest("POST", ["/v1/billing/meters/", sdkEncodePathSegment(sdkWireString(id)), "/reactivate"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostBillingMetersIdReactivate")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/billing/meters/", sdkEncodePathSegment(sdkWireString(id)), "/reactivate"].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostBillingMetersIdReactivate"
+        )).data
     }
 }

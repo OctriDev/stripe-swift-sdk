@@ -3,20 +3,23 @@
 
 import Foundation
 
-// V1Account domain models
+/// V1Account domain models
 /// The status of the Cash App Pay capability of the account, or whether the account can directly process Cash
 /// App Pay payments.
 public struct AccountCapabilitiesCashappPayments: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let active = AccountCapabilitiesCashappPayments(rawValue: "active")
     public static let inactive = AccountCapabilitiesCashappPayments(rawValue: "inactive")
     public static let pending = AccountCapabilitiesCashappPayments(rawValue: "pending")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -30,14 +33,17 @@ public struct AccountCapabilitiesCashappPayments: RawRepresentable, Hashable, Co
 public struct AccountCapabilitiesBlikPayments: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let active = AccountCapabilitiesBlikPayments(rawValue: "active")
     public static let inactive = AccountCapabilitiesBlikPayments(rawValue: "inactive")
     public static let pending = AccountCapabilitiesBlikPayments(rawValue: "pending")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -48,17 +54,21 @@ public struct AccountCapabilitiesBlikPayments: RawRepresentable, Hashable, Codab
 
 /// The status of the SEPA customer_balance payments (EUR currency) capability of the account, or whether the
 /// account can directly process SEPA customer_balance charges.
-public struct AccountCapabilitiesSepaBankTransferPayments: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct AccountCapabilitiesSepaBankTransferPayments: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let active = AccountCapabilitiesSepaBankTransferPayments(rawValue: "active")
     public static let inactive = AccountCapabilitiesSepaBankTransferPayments(rawValue: "inactive")
     public static let pending = AccountCapabilitiesSepaBankTransferPayments(rawValue: "pending")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -69,16 +79,20 @@ public struct AccountCapabilitiesSepaBankTransferPayments: RawRepresentable, Has
 
 /// A value indicating responsibility for collecting requirements on this account. Only returned when the
 /// Connect application retrieving the resource controls the account.
-public struct AccountUnificationAccountControllerRequirementCollection: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct AccountUnificationAccountControllerRequirementCollection: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let application = AccountUnificationAccountControllerRequirementCollection(rawValue: "application")
     public static let stripe = AccountUnificationAccountControllerRequirementCollection(rawValue: "stripe")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -92,14 +106,17 @@ public struct AccountUnificationAccountControllerRequirementCollection: RawRepre
 public struct AccountCapabilitiesPaytoPayments: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let active = AccountCapabilitiesPaytoPayments(rawValue: "active")
     public static let inactive = AccountCapabilitiesPaytoPayments(rawValue: "inactive")
     public static let pending = AccountCapabilitiesPaytoPayments(rawValue: "pending")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -113,14 +130,17 @@ public struct AccountCapabilitiesPaytoPayments: RawRepresentable, Hashable, Coda
 public struct AccountCapabilitiesLinkPayments: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let active = AccountCapabilitiesLinkPayments(rawValue: "active")
     public static let inactive = AccountCapabilitiesLinkPayments(rawValue: "inactive")
     public static let pending = AccountCapabilitiesLinkPayments(rawValue: "pending")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -134,14 +154,17 @@ public struct AccountCapabilitiesLinkPayments: RawRepresentable, Hashable, Codab
 public struct AccountCapabilitiesSofortPayments: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let active = AccountCapabilitiesSofortPayments(rawValue: "active")
     public static let inactive = AccountCapabilitiesSofortPayments(rawValue: "inactive")
     public static let pending = AccountCapabilitiesSofortPayments(rawValue: "pending")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -151,17 +174,21 @@ public struct AccountCapabilitiesSofortPayments: RawRepresentable, Hashable, Cod
 }
 
 /// The status of the tax reporting 1099-K (US) capability of the account.
-public struct AccountCapabilitiesTaxReportingUs1099K: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct AccountCapabilitiesTaxReportingUs1099K: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let active = AccountCapabilitiesTaxReportingUs1099K(rawValue: "active")
     public static let inactive = AccountCapabilitiesTaxReportingUs1099K(rawValue: "inactive")
     public static let pending = AccountCapabilitiesTaxReportingUs1099K(rawValue: "pending")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -175,14 +202,17 @@ public struct AccountCapabilitiesTaxReportingUs1099K: RawRepresentable, Hashable
 public struct AccountCapabilitiesSepaDebitPayments: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let active = AccountCapabilitiesSepaDebitPayments(rawValue: "active")
     public static let inactive = AccountCapabilitiesSepaDebitPayments(rawValue: "inactive")
     public static let pending = AccountCapabilitiesSepaDebitPayments(rawValue: "pending")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -196,14 +226,17 @@ public struct AccountCapabilitiesSepaDebitPayments: RawRepresentable, Hashable, 
 public struct AccountCapabilitiesSatispayPayments: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let active = AccountCapabilitiesSatispayPayments(rawValue: "active")
     public static let inactive = AccountCapabilitiesSatispayPayments(rawValue: "inactive")
     public static let pending = AccountCapabilitiesSatispayPayments(rawValue: "pending")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -217,14 +250,17 @@ public struct AccountCapabilitiesSatispayPayments: RawRepresentable, Hashable, C
 public struct AccountCapabilitiesTwintPayments: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let active = AccountCapabilitiesTwintPayments(rawValue: "active")
     public static let inactive = AccountCapabilitiesTwintPayments(rawValue: "inactive")
     public static let pending = AccountCapabilitiesTwintPayments(rawValue: "pending")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -237,12 +273,15 @@ public struct AccountCapabilitiesTwintPayments: RawRepresentable, Hashable, Coda
 public struct AccountLinkObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let accountLink = AccountLinkObject(rawValue: "account_link")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -253,17 +292,21 @@ public struct AccountLinkObject: RawRepresentable, Hashable, Codable, Sendable, 
 
 /// The status of the US bank account ACH payments capability of the account, or whether the account can
 /// directly process US bank account charges.
-public struct AccountCapabilitiesUsBankAccountAchPayments: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct AccountCapabilitiesUsBankAccountAchPayments: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let active = AccountCapabilitiesUsBankAccountAchPayments(rawValue: "active")
     public static let inactive = AccountCapabilitiesUsBankAccountAchPayments(rawValue: "inactive")
     public static let pending = AccountCapabilitiesUsBankAccountAchPayments(rawValue: "pending")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -277,14 +320,17 @@ public struct AccountCapabilitiesUsBankAccountAchPayments: RawRepresentable, Has
 public struct AccountCapabilitiesEpsPayments: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let active = AccountCapabilitiesEpsPayments(rawValue: "active")
     public static let inactive = AccountCapabilitiesEpsPayments(rawValue: "inactive")
     public static let pending = AccountCapabilitiesEpsPayments(rawValue: "pending")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -295,17 +341,21 @@ public struct AccountCapabilitiesEpsPayments: RawRepresentable, Hashable, Codabl
 
 /// The status of the india_international_payments capability of the account, or whether the account can process
 /// international charges (non INR) in India.
-public struct AccountCapabilitiesIndiaInternationalPayments: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct AccountCapabilitiesIndiaInternationalPayments: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let active = AccountCapabilitiesIndiaInternationalPayments(rawValue: "active")
     public static let inactive = AccountCapabilitiesIndiaInternationalPayments(rawValue: "inactive")
     public static let pending = AccountCapabilitiesIndiaInternationalPayments(rawValue: "pending")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -319,14 +369,17 @@ public struct AccountCapabilitiesIndiaInternationalPayments: RawRepresentable, H
 public struct AccountCapabilitiesTransfers: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let active = AccountCapabilitiesTransfers(rawValue: "active")
     public static let inactive = AccountCapabilitiesTransfers(rawValue: "inactive")
     public static let pending = AccountCapabilitiesTransfers(rawValue: "pending")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -339,12 +392,15 @@ public struct AccountCapabilitiesTransfers: RawRepresentable, Hashable, Codable,
 public struct AccountSessionObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let accountSession = AccountSessionObject(rawValue: "account_session")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -358,14 +414,17 @@ public struct AccountSessionObject: RawRepresentable, Hashable, Codable, Sendabl
 public struct AccountCapabilitiesPixPayments: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let active = AccountCapabilitiesPixPayments(rawValue: "active")
     public static let inactive = AccountCapabilitiesPixPayments(rawValue: "inactive")
     public static let pending = AccountCapabilitiesPixPayments(rawValue: "pending")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -379,14 +438,17 @@ public struct AccountCapabilitiesPixPayments: RawRepresentable, Hashable, Codabl
 public struct AccountCapabilitiesFpxPayments: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let active = AccountCapabilitiesFpxPayments(rawValue: "active")
     public static let inactive = AccountCapabilitiesFpxPayments(rawValue: "inactive")
     public static let pending = AccountCapabilitiesFpxPayments(rawValue: "pending")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -400,14 +462,17 @@ public struct AccountCapabilitiesFpxPayments: RawRepresentable, Hashable, Codabl
 public struct AccountCapabilitiesPaycoPayments: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let active = AccountCapabilitiesPaycoPayments(rawValue: "active")
     public static let inactive = AccountCapabilitiesPaycoPayments(rawValue: "inactive")
     public static let pending = AccountCapabilitiesPaycoPayments(rawValue: "pending")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -421,14 +486,17 @@ public struct AccountCapabilitiesPaycoPayments: RawRepresentable, Hashable, Coda
 public struct AccountCapabilitiesAffirmPayments: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let active = AccountCapabilitiesAffirmPayments(rawValue: "active")
     public static let inactive = AccountCapabilitiesAffirmPayments(rawValue: "inactive")
     public static let pending = AccountCapabilitiesAffirmPayments(rawValue: "pending")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -442,14 +510,17 @@ public struct AccountCapabilitiesAffirmPayments: RawRepresentable, Hashable, Cod
 public struct AccountCapabilitiesPromptpayPayments: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let active = AccountCapabilitiesPromptpayPayments(rawValue: "active")
     public static let inactive = AccountCapabilitiesPromptpayPayments(rawValue: "inactive")
     public static let pending = AccountCapabilitiesPromptpayPayments(rawValue: "pending")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -463,14 +534,17 @@ public struct AccountCapabilitiesPromptpayPayments: RawRepresentable, Hashable, 
 public struct AccountCapabilitiesKakaoPayPayments: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let active = AccountCapabilitiesKakaoPayPayments(rawValue: "active")
     public static let inactive = AccountCapabilitiesKakaoPayPayments(rawValue: "inactive")
     public static let pending = AccountCapabilitiesKakaoPayPayments(rawValue: "pending")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -481,16 +555,20 @@ public struct AccountCapabilitiesKakaoPayPayments: RawRepresentable, Hashable, C
 
 /// The controller type. Can be `application`, if a Connect application controls the account, or `account`, if
 /// the account controls itself.
-public struct AccountUnificationAccountControllerType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct AccountUnificationAccountControllerType: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let account = AccountUnificationAccountControllerType(rawValue: "account")
     public static let application = AccountUnificationAccountControllerType(rawValue: "application")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -504,14 +582,17 @@ public struct AccountUnificationAccountControllerType: RawRepresentable, Hashabl
 public struct AccountCapabilitiesCryptoPayments: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let active = AccountCapabilitiesCryptoPayments(rawValue: "active")
     public static let inactive = AccountCapabilitiesCryptoPayments(rawValue: "inactive")
     public static let pending = AccountCapabilitiesCryptoPayments(rawValue: "pending")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -521,17 +602,21 @@ public struct AccountCapabilitiesCryptoPayments: RawRepresentable, Hashable, Cod
 }
 
 /// A value indicating the Stripe dashboard this account has access to independent of the Connect application.
-public struct AccountUnificationAccountControllerStripeDashboardType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct AccountUnificationAccountControllerStripeDashboardType: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let express = AccountUnificationAccountControllerStripeDashboardType(rawValue: "express")
     public static let full = AccountUnificationAccountControllerStripeDashboardType(rawValue: "full")
     public static let none = AccountUnificationAccountControllerStripeDashboardType(rawValue: "none")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -541,16 +626,20 @@ public struct AccountUnificationAccountControllerStripeDashboardType: RawReprese
 }
 
 /// A value indicating who is liable when this account can't pay back negative balances from payments.
-public struct AccountUnificationAccountControllerLossesPayments: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct AccountUnificationAccountControllerLossesPayments: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let application = AccountUnificationAccountControllerLossesPayments(rawValue: "application")
     public static let stripe = AccountUnificationAccountControllerLossesPayments(rawValue: "stripe")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

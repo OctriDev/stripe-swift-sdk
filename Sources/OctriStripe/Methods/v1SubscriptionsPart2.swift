@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1SubscriptionsMethods {
-    public struct GetSubscriptionsOptions: Codable {
+public extension V1SubscriptionsMethods {
+    struct GetSubscriptionsOptions: Codable {
         public var automaticTax: GetSubscriptionsParameter?
         public var collectionMethod: GetSubscriptionsParameterXcfd548b6?
         public var created: GetSubscriptionsParameterXd3c9c31a?
@@ -26,9 +26,12 @@ extension V1SubscriptionsMethods {
         public init() {}
     }
 
-    /// Lists subscriptions using filters for customer, account, status, collection method, price, automatic tax, test clock, and lifecycle dates. By default, returns subscriptions that have not been canceled; pass `status=canceled` to include canceled subscriptions. Use cursor parameters and `limit` to paginate the results.
+    /// Lists subscriptions using filters for customer, account, status, collection method, price, automatic tax, test
+    /// clock, and lifecycle dates. By default, returns subscriptions that have not been canceled; pass
+    /// `status=canceled` to include canceled subscriptions. Use cursor parameters and `limit` to paginate the results.
     ///
-    /// By default, returns a list of subscriptions that have not been canceled. In order to list canceled subscriptions, specify status=canceled .
+    /// By default, returns a list of subscriptions that have not been canceled. In order to list canceled
+    /// subscriptions, specify status=canceled .
     ///
     /// - Parameters:
     /// - automaticTax: Filter subscriptions by their automatic tax settings.
@@ -68,7 +71,10 @@ extension V1SubscriptionsMethods {
     /// - testClock: Filter for subscriptions that are associated with the specified
     ///   test clock. The response will not include subscriptions with test clocks if
     ///   this and the customer parameter is not set.
-    public static func getSubscriptions(config: ClientConfig, options: GetSubscriptionsOptions) async throws -> GetSubscriptionsResponse {
+    static func getSubscriptions(
+        config: ClientConfig,
+        options: GetSubscriptionsOptions
+    ) async throws -> GetSubscriptionsResponse {
         if let customer = options.customer {
             try validateLength("customer", customer, max: 5000)
         }
@@ -93,7 +99,7 @@ extension V1SubscriptionsMethods {
             try validateLength("test_clock", testClock, max: 5000)
         }
 
-        return try (await sdkRequest("GET", "/v1/subscriptions", config: config, query: [
+        return try await (sdkRequest("GET", "/v1/subscriptions", config: config, query: [
             SdkQueryParameter("automatic_tax", value: options.automaticTax),
             SdkQueryParameter("collection_method", value: options.collectionMethod),
             SdkQueryParameter("created", value: options.created),

@@ -154,26 +154,36 @@ extension PostIssuingCardholdersRequestBodySpendingControlsSpendingLimiXc317383f
 extension PostIssuingCardholdersRequestBodySpendingControlsSpendingLimiXc317383fbc: CaseIterable {
     public static var allCases: [PostIssuingCardholdersRequestBodySpendingControlsSpendingLimiXc317383fbc] {
         allCasesPart1
-        +         allCasesPart2
-        +         allCasesPart3
-        +         allCasesPart4
+            + allCasesPart2
+            + allCasesPart3
+            + allCasesPart4
     }
 }
 
-public struct PostIssuingCardholdersRequestBodySpendingControlsSpendingLimiX8ea92942fa: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostIssuingCardholdersRequestBodySpendingControlsSpendingLimiX8ea92942fa: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let allTime = PostIssuingCardholdersRequestBodySpendingControlsSpendingLimiX8ea92942fa(rawValue: "all_time")
-    public static let daily = PostIssuingCardholdersRequestBodySpendingControlsSpendingLimiX8ea92942fa(rawValue: "daily")
-    public static let monthly = PostIssuingCardholdersRequestBodySpendingControlsSpendingLimiX8ea92942fa(rawValue: "monthly")
-    public static let perAuthorization = PostIssuingCardholdersRequestBodySpendingControlsSpendingLimiX8ea92942fa(rawValue: "per_authorization")
-    public static let weekly = PostIssuingCardholdersRequestBodySpendingControlsSpendingLimiX8ea92942fa(rawValue: "weekly")
-    public static let yearly = PostIssuingCardholdersRequestBodySpendingControlsSpendingLimiX8ea92942fa(rawValue: "yearly")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let allTime =
+        PostIssuingCardholdersRequestBodySpendingControlsSpendingLimiX8ea92942fa(rawValue: "all_time")
+    public static let daily =
+        PostIssuingCardholdersRequestBodySpendingControlsSpendingLimiX8ea92942fa(rawValue: "daily")
+    public static let monthly =
+        PostIssuingCardholdersRequestBodySpendingControlsSpendingLimiX8ea92942fa(rawValue: "monthly")
+    public static let perAuthorization =
+        PostIssuingCardholdersRequestBodySpendingControlsSpendingLimiX8ea92942fa(rawValue: "per_authorization")
+    public static let weekly =
+        PostIssuingCardholdersRequestBodySpendingControlsSpendingLimiX8ea92942fa(rawValue: "weekly")
+    public static let yearly =
+        PostIssuingCardholdersRequestBodySpendingControlsSpendingLimiX8ea92942fa(rawValue: "yearly")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -183,16 +193,20 @@ public struct PostIssuingCardholdersRequestBodySpendingControlsSpendingLimiX8ea9
 }
 
 /// Specifies whether to permit authorizations on this cardholder's cards. Defaults to `active`.
-public struct PostIssuingCardholdersRequestBodyStatus: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostIssuingCardholdersRequestBodyStatus: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let active = PostIssuingCardholdersRequestBodyStatus(rawValue: "active")
     public static let inactive = PostIssuingCardholdersRequestBodyStatus(rawValue: "inactive")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -205,13 +219,16 @@ public struct PostIssuingCardholdersRequestBodyStatus: RawRepresentable, Hashabl
 public struct PostIssuingCardholdersRequestBodyType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let company = PostIssuingCardholdersRequestBodyType(rawValue: "company")
     public static let individual = PostIssuingCardholdersRequestBodyType(rawValue: "individual")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

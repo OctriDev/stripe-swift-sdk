@@ -6,15 +6,19 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public struct PostPaymentIntentsIntentRequestBodyTransferDataMetadataVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostPaymentIntentsIntentRequestBodyTransferDataMetadataVariant1: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostPaymentIntentsIntentRequestBodyTransferDataMetadataVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -23,15 +27,19 @@ public struct PostPaymentIntentsIntentRequestBodyTransferDataMetadataVariant1: R
     }
 }
 
-public struct PostPaymentIntentsIntentRequestBodyTransferDataPaymentDataMetX0c933b3d02: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostPaymentIntentsIntentRequestBodyTransferDataPaymentDataMetX0c933b3d02: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostPaymentIntentsIntentRequestBodyTransferDataPaymentDataMetX0c933b3d02(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -42,15 +50,20 @@ public struct PostPaymentIntentsIntentRequestBodyTransferDataPaymentDataMetX0c93
 
 /// String representing the object's type. Objects of the same type share the same value. Always has the value
 /// `list`.
-public struct GetPaymentIntentsIntentAmountDetailsLineItemsResponseObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct GetPaymentIntentsIntentAmountDetailsLineItemsResponseObject: RawRepresentable, Hashable, Codable,
+    Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let list = GetPaymentIntentsIntentAmountDetailsLineItemsResponseObject(rawValue: "list")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -61,18 +74,24 @@ public struct GetPaymentIntentsIntentAmountDetailsLineItemsResponseObject: RawRe
 
 /// Reason for canceling this PaymentIntent. Possible values are: `duplicate`, `fraudulent`,
 /// `requested_by_customer`, or `abandoned`
-public struct PostPaymentIntentsIntentCancelRequestBodyCancellationReason: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostPaymentIntentsIntentCancelRequestBodyCancellationReason: RawRepresentable, Hashable, Codable,
+    Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let abandoned = PostPaymentIntentsIntentCancelRequestBodyCancellationReason(rawValue: "abandoned")
     public static let duplicate = PostPaymentIntentsIntentCancelRequestBodyCancellationReason(rawValue: "duplicate")
     public static let fraudulent = PostPaymentIntentsIntentCancelRequestBodyCancellationReason(rawValue: "fraudulent")
-    public static let requestedByCustomer = PostPaymentIntentsIntentCancelRequestBodyCancellationReason(rawValue: "requested_by_customer")
+    public static let requestedByCustomer =
+        PostPaymentIntentsIntentCancelRequestBodyCancellationReason(rawValue: "requested_by_customer")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -81,15 +100,19 @@ public struct PostPaymentIntentsIntentCancelRequestBodyCancellationReason: RawRe
     }
 }
 
-public struct PostPaymentIntentsIntentCaptureRequestBodyAmountDetailsDiscouX779d4dee28: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostPaymentIntentsIntentCaptureRequestBodyAmountDetailsDiscouX779d4dee28: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostPaymentIntentsIntentCaptureRequestBodyAmountDetailsDiscouX779d4dee28(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -98,17 +121,24 @@ public struct PostPaymentIntentsIntentCaptureRequestBodyAmountDetailsDiscouX779d
     }
 }
 
-public struct PostPaymentIntentsIntentCaptureRequestBodyAmountDetailsLineItXa1605ad628: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostPaymentIntentsIntentCaptureRequestBodyAmountDetailsLineItXa1605ad628: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let digitalGoods = PostPaymentIntentsIntentCaptureRequestBodyAmountDetailsLineItXa1605ad628(rawValue: "digital_goods")
-    public static let donation = PostPaymentIntentsIntentCaptureRequestBodyAmountDetailsLineItXa1605ad628(rawValue: "donation")
-    public static let physicalGoods = PostPaymentIntentsIntentCaptureRequestBodyAmountDetailsLineItXa1605ad628(rawValue: "physical_goods")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let digitalGoods =
+        PostPaymentIntentsIntentCaptureRequestBodyAmountDetailsLineItXa1605ad628(rawValue: "digital_goods")
+    public static let donation =
+        PostPaymentIntentsIntentCaptureRequestBodyAmountDetailsLineItXa1605ad628(rawValue: "donation")
+    public static let physicalGoods =
+        PostPaymentIntentsIntentCaptureRequestBodyAmountDetailsLineItXa1605ad628(rawValue: "physical_goods")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -117,15 +147,19 @@ public struct PostPaymentIntentsIntentCaptureRequestBodyAmountDetailsLineItXa160
     }
 }
 
-public struct PostPaymentIntentsIntentCaptureRequestBodyAmountDetailsLineItemsVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostPaymentIntentsIntentCaptureRequestBodyAmountDetailsLineItemsVariant1: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostPaymentIntentsIntentCaptureRequestBodyAmountDetailsLineItemsVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -134,15 +168,19 @@ public struct PostPaymentIntentsIntentCaptureRequestBodyAmountDetailsLineItemsVa
     }
 }
 
-public struct PostPaymentIntentsIntentCaptureRequestBodyAmountDetailsShippiX20e2ebc1b9: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostPaymentIntentsIntentCaptureRequestBodyAmountDetailsShippiX20e2ebc1b9: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostPaymentIntentsIntentCaptureRequestBodyAmountDetailsShippiX20e2ebc1b9(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -151,15 +189,19 @@ public struct PostPaymentIntentsIntentCaptureRequestBodyAmountDetailsShippiX20e2
     }
 }
 
-public struct PostPaymentIntentsIntentCaptureRequestBodyAmountDetailsShippiX1fc8a074ed: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostPaymentIntentsIntentCaptureRequestBodyAmountDetailsShippiX1fc8a074ed: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostPaymentIntentsIntentCaptureRequestBodyAmountDetailsShippiX1fc8a074ed(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -168,15 +210,19 @@ public struct PostPaymentIntentsIntentCaptureRequestBodyAmountDetailsShippiX1fc8
     }
 }
 
-public struct PostPaymentIntentsIntentCaptureRequestBodyAmountDetailsShippiX6493169ee4: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostPaymentIntentsIntentCaptureRequestBodyAmountDetailsShippiX6493169ee4: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostPaymentIntentsIntentCaptureRequestBodyAmountDetailsShippiX6493169ee4(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -185,15 +231,19 @@ public struct PostPaymentIntentsIntentCaptureRequestBodyAmountDetailsShippiX6493
     }
 }
 
-public struct PostPaymentIntentsIntentCaptureRequestBodyAmountDetailsShippingVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostPaymentIntentsIntentCaptureRequestBodyAmountDetailsShippingVariant1: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostPaymentIntentsIntentCaptureRequestBodyAmountDetailsShippingVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

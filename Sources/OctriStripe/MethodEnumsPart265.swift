@@ -112,7 +112,8 @@ public extension PostReportingReportRunsRequestBodyParametersTimezone {
     static let hst = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "HST")
     static let hongkong = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Hongkong")
     static let iceland = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Iceland")
-    static let indianAntananarivo = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Indian/Antananarivo")
+    static let indianAntananarivo =
+        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Indian/Antananarivo")
     static let indianChagos = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Indian/Chagos")
     static let indianChristmas = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Indian/Christmas")
     static let indianCocos = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Indian/Cocos")
@@ -142,7 +143,8 @@ public extension PostReportingReportRunsRequestBodyParametersTimezone {
     static let pst8pdt = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "PST8PDT")
     static let pacificApia = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Pacific/Apia")
     static let pacificAuckland = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Pacific/Auckland")
-    static let pacificBougainville = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Pacific/Bougainville")
+    static let pacificBougainville =
+        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Pacific/Bougainville")
     static let pacificChatham = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Pacific/Chatham")
     static let pacificChuuk = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Pacific/Chuuk")
     static let pacificEaster = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Pacific/Easter")
@@ -153,7 +155,8 @@ public extension PostReportingReportRunsRequestBodyParametersTimezone {
     static let pacificFunafuti = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Pacific/Funafuti")
     static let pacificGalapagos = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Pacific/Galapagos")
     static let pacificGambier = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Pacific/Gambier")
-    static let pacificGuadalcanal = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Pacific/Guadalcanal")
+    static let pacificGuadalcanal =
+        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Pacific/Guadalcanal")
     static let pacificGuam = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Pacific/Guam")
     static let pacificHonolulu = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Pacific/Honolulu")
     static let pacificJohnston = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Pacific/Johnston")
@@ -176,7 +179,8 @@ public extension PostReportingReportRunsRequestBodyParametersTimezone {
     static let pacificPitcairn = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Pacific/Pitcairn")
     static let pacificPohnpei = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Pacific/Pohnpei")
     static let pacificPonape = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Pacific/Ponape")
-    static let pacificPortMoresby = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Pacific/Port_Moresby")
+    static let pacificPortMoresby =
+        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Pacific/Port_Moresby")
     static let pacificRarotonga = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Pacific/Rarotonga")
     static let pacificSaipan = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Pacific/Saipan")
     static let pacificSamoa = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Pacific/Samoa")

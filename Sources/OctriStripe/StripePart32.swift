@@ -15,11 +15,24 @@ public class V1TestHelpersTreasuryOutboundTransfersNamespace {
         `return` = V1TestHelpersTreasuryOutboundTransfersReturnNamespace(config: config)
     }
 
-/// Updates a test-mode OutboundTransfer with network-specific tracking details. Supply the `outbound_transfer` identifier and `tracking_details` for an OutboundTransfer that is not cancelable and is not canceled or failed; use `expand` to request expanded response fields.
+    /// Updates a test-mode OutboundTransfer with network-specific tracking details. Supply the `outbound_transfer`
+    /// identifier and `tracking_details` for an OutboundTransfer that is not cancelable and is not canceled or failed;
+    /// use `expand` to request expanded response fields.
     ///
-    /// Updates a test mode created OutboundTransfer with tracking details. The OutboundTransfer must not be cancelable, and cannot be in the canceled or failed states.
-    public func postTestHelpersTreasuryOutboundTransfer(outboundTransfer: String, trackingDetails: PostTestHelpersTreasuryOutboundTransfersOutboundTransferRequeXff52e9e383, expand: [String]?) async throws -> TreasuryOutboundTransfer {
-        return try await V1TestHelpersTreasuryOutboundTransfersMethods.postTestHelpersTreasuryOutboundTransfersOutboundTransfer(config: config, outboundTransfer: outboundTransfer, trackingDetails: trackingDetails, expand: expand)
+    /// Updates a test mode created OutboundTransfer with tracking details. The OutboundTransfer must not be cancelable,
+    /// and cannot be in the canceled or failed states.
+    public func postTestHelpersTreasuryOutboundTransfer(
+        outboundTransfer: String,
+        trackingDetails: PostTestHelpersTreasuryOutboundTransfersOutboundTransferRequeXff52e9e383,
+        expand: [String]?
+    ) async throws -> TreasuryOutboundTransfer {
+        try await V1TestHelpersTreasuryOutboundTransfersMethods
+            .postTestHelpersTreasuryOutboundTransfersOutboundTransfer(
+                config: config,
+                outboundTransfer: outboundTransfer,
+                trackingDetails: trackingDetails,
+                expand: expand
+            )
     }
 }
 
@@ -29,9 +42,27 @@ public class V1TestHelpersTreasuryReceivedCreditsNamespace {
         self.config = config
     }
 
-/// Use this endpoint to simulate a test mode ReceivedCredit initiated by a third party. In live mode, you can’t directly create ReceivedCredits initiated by third parties.
-    public func postTestHelpersTreasury(amount: Int, currency: String, financialAccount: String, network: PostTestHelpersTreasuryReceivedCreditsRequestBodyNetwork, description: String?, expand: [String]?, initiatingPaymentMethodDetails: PostTestHelpersTreasuryReceivedCreditsRequestBodyInitiatingPaXdf8fbf265c?) async throws -> TreasuryReceivedCredit {
-        return try await V1TestHelpersTreasuryReceivedCreditsMethods.postTestHelpersTreasuryReceivedCredits(config: config, amount: amount, currency: currency, financialAccount: financialAccount, network: network, description: description, expand: expand, initiatingPaymentMethodDetails: initiatingPaymentMethodDetails)
+    /// Use this endpoint to simulate a test mode ReceivedCredit initiated by a third party. In live mode, you can’t
+    /// directly create ReceivedCredits initiated by third parties.
+    public func postTestHelpersTreasury(
+        amount: Int,
+        currency: String,
+        financialAccount: String,
+        network: PostTestHelpersTreasuryReceivedCreditsRequestBodyNetwork,
+        description: String?,
+        expand: [String]?,
+        initiatingPaymentMethodDetails: PostTestHelpersTreasuryReceivedCreditsRequestBodyInitiatingPaXdf8fbf265c?
+    ) async throws -> TreasuryReceivedCredit {
+        try await V1TestHelpersTreasuryReceivedCreditsMethods.postTestHelpersTreasuryReceivedCredits(
+            config: config,
+            amount: amount,
+            currency: currency,
+            financialAccount: financialAccount,
+            network: network,
+            description: description,
+            expand: expand,
+            initiatingPaymentMethodDetails: initiatingPaymentMethodDetails
+        )
     }
 }
 
@@ -41,9 +72,27 @@ public class V1TestHelpersTreasuryReceivedDebitsNamespace {
         self.config = config
     }
 
-/// Use this endpoint to simulate a test mode ReceivedDebit initiated by a third party. In live mode, you can’t directly create ReceivedDebits initiated by third parties.
-    public func postTestHelpersTreasury(amount: Int, currency: String, financialAccount: String, network: PostTestHelpersTreasuryReceivedDebitsRequestBodyNetwork, description: String?, expand: [String]?, initiatingPaymentMethodDetails: PostTestHelpersTreasuryReceivedDebitsRequestBodyInitiatingPayXf7d739b1dc?) async throws -> TreasuryReceivedDebit {
-        return try await V1TestHelpersTreasuryReceivedDebitsMethods.postTestHelpersTreasuryReceivedDebits(config: config, amount: amount, currency: currency, financialAccount: financialAccount, network: network, description: description, expand: expand, initiatingPaymentMethodDetails: initiatingPaymentMethodDetails)
+    /// Use this endpoint to simulate a test mode ReceivedDebit initiated by a third party. In live mode, you can’t
+    /// directly create ReceivedDebits initiated by third parties.
+    public func postTestHelpersTreasury(
+        amount: Int,
+        currency: String,
+        financialAccount: String,
+        network: PostTestHelpersTreasuryReceivedDebitsRequestBodyNetwork,
+        description: String?,
+        expand: [String]?,
+        initiatingPaymentMethodDetails: PostTestHelpersTreasuryReceivedDebitsRequestBodyInitiatingPayXf7d739b1dc?
+    ) async throws -> TreasuryReceivedDebit {
+        try await V1TestHelpersTreasuryReceivedDebitsMethods.postTestHelpersTreasuryReceivedDebits(
+            config: config,
+            amount: amount,
+            currency: currency,
+            financialAccount: financialAccount,
+            network: network,
+            description: description,
+            expand: expand,
+            initiatingPaymentMethodDetails: initiatingPaymentMethodDetails
+        )
     }
 }
 
@@ -87,16 +136,19 @@ public class V1TokensNamespace {
         self.config = config
     }
 
-/// Creates a single-use token that represents a bank account’s details. You can use this token with any v1 API method in place of a bank account dictionary. You can only use this token once. To do so, attach it to a connected account where controller.requirement_collection is application , which includes Custom accounts.
+    /// Creates a single-use token that represents a bank account’s details. You can use this token with any v1 API
+    /// method in place of a bank account dictionary. You can only use this token once. To do so, attach it to a
+    /// connected account where controller.requirement_collection is application , which includes Custom accounts.
     public func post(options: V1TokensMethods.PostTokensOptions) async throws -> Token {
-        return try await V1TokensMethods.postTokens(config: config, options: options)
+        try await V1TokensMethods.postTokens(config: config, options: options)
     }
 
-/// Retrieves the token identified by `token`. Use `expand` to request expanded response fields when the default token representation is insufficient.
+    /// Retrieves the token identified by `token`. Use `expand` to request expanded response fields when the default
+    /// token representation is insufficient.
     ///
     /// Retrieves the token with the given ID.
     public func getToken(token: String, expand: [String]?) async throws -> Token {
-        return try await V1TokensMethods.getTokensToken(config: config, token: token, expand: expand)
+        try await V1TokensMethods.getTokensToken(config: config, token: token, expand: expand)
     }
 }
 
@@ -106,11 +158,12 @@ public class V1TopupsCancelNamespace {
         self.config = config
     }
 
-/// Cancels an existing top-up before it completes. Only top-ups with a pending status can be canceled, and `expand` controls which response fields are expanded.
+    /// Cancels an existing top-up before it completes. Only top-ups with a pending status can be canceled, and `expand`
+    /// controls which response fields are expanded.
     ///
     /// Cancels a top-up. Only pending top-ups can be canceled.
     public func postTopupsTopup(topup: String, expand: [String]?) async throws -> Topup {
-        return try await V1TopupsCancelMethods.postTopupsTopupCancel(config: config, topup: topup, expand: expand)
+        try await V1TopupsCancelMethods.postTopupsTopupCancel(config: config, topup: topup, expand: expand)
     }
 }
 
@@ -122,32 +175,66 @@ public class V1TopupsNamespace {
         cancel = V1TopupsCancelNamespace(config: config)
     }
 
-/// Lists top-ups recorded for the account balance. Use `status`, `created`, and `amount` to filter results, and use cursor parameters with `limit` to paginate the list.
+    /// Lists top-ups recorded for the account balance. Use `status`, `created`, and `amount` to filter results, and use
+    /// cursor parameters with `limit` to paginate the list.
     ///
     /// Returns a list of top-ups.
-    public func get(amount: GetTopupsParameter?, created: GetTopupsParameterX32c7f8fc?, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?, status: GetTopupsParameterXc0111896?) async throws -> GetTopupsResponse {
-        return try await V1TopupsMethods.getTopups(config: config, amount: amount, created: created, endingBefore: endingBefore, expand: expand, limit: limit, startingAfter: startingAfter, status: status)
+    public func get(
+        amount: GetTopupsParameter?,
+        created: GetTopupsParameterX32c7f8fc?,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        startingAfter: String?,
+        status: GetTopupsParameterXc0111896?
+    ) async throws -> GetTopupsResponse {
+        try await V1TopupsMethods.getTopups(
+            config: config,
+            amount: amount,
+            created: created,
+            endingBefore: endingBefore,
+            expand: expand,
+            limit: limit,
+            startingAfter: startingAfter,
+            status: status
+        )
     }
 
-/// Creates a top-up to add funds to the account balance. Supply `amount` and `currency`, and provide a `payment_method` or `source` when the funding method must be selected explicitly. The response includes the created top-up and its processing status.
+    /// Creates a top-up to add funds to the account balance. Supply `amount` and `currency`, and provide a
+    /// `payment_method` or `source` when the funding method must be selected explicitly. The response includes the
+    /// created top-up and its processing status.
     ///
     /// Top up the balance of an account
     public func post(options: V1TopupsMethods.PostTopupsOptions) async throws -> Topup {
-        return try await V1TopupsMethods.postTopups(config: config, options: options)
+        try await V1TopupsMethods.postTopups(config: config, options: options)
     }
 
-/// Retrieves the details of an existing top-up by its unique identifier. Use `expand` to include expanded fields in the returned top-up representation.
+    /// Retrieves the details of an existing top-up by its unique identifier. Use `expand` to include expanded fields in
+    /// the returned top-up representation.
     ///
-    /// Retrieves the details of a top-up that has previously been created. Supply the unique top-up ID that was returned from your previous request, and Stripe will return the corresponding top-up information.
+    /// Retrieves the details of a top-up that has previously been created. Supply the unique top-up ID that was
+    /// returned from your previous request, and Stripe will return the corresponding top-up information.
     public func getTopup(topup: String, expand: [String]?) async throws -> Topup {
-        return try await V1TopupsMethods.getTopupsTopup(config: config, topup: topup, expand: expand)
+        try await V1TopupsMethods.getTopupsTopup(config: config, topup: topup, expand: expand)
     }
 
-/// Updates the editable metadata and description of an existing top-up. Other top-up details remain unchanged because they cannot be edited after creation. Use `expand` to request expanded fields in the response.
+    /// Updates the editable metadata and description of an existing top-up. Other top-up details remain unchanged
+    /// because they cannot be edited after creation. Use `expand` to request expanded fields in the response.
     ///
     /// Updates the metadata of a top-up. Other top-up details are not editable by design.
-    public func postTopup(topup: String, description: String?, expand: [String]?, metadata: PostTopupsTopupRequestBodyMetadata?) async throws -> Topup {
-        return try await V1TopupsMethods.postTopupsTopup(config: config, topup: topup, description: description, expand: expand, metadata: metadata)
+    public func postTopup(
+        topup: String,
+        description: String?,
+        expand: [String]?,
+        metadata: PostTopupsTopupRequestBodyMetadata?
+    ) async throws -> Topup {
+        try await V1TopupsMethods.postTopupsTopup(
+            config: config,
+            topup: topup,
+            description: description,
+            expand: expand,
+            metadata: metadata
+        )
     }
 }
 
@@ -157,31 +244,91 @@ public class V1TransfersReversalsNamespace {
         self.config = config
     }
 
-/// Lists reversals associated with a specific transfer. Use `limit`, `starting_after`, and `ending_before` to page through reversals beyond the 10 most recent entries available on the transfer object.
+    /// Lists reversals associated with a specific transfer. Use `limit`, `starting_after`, and `ending_before` to page
+    /// through reversals beyond the 10 most recent entries available on the transfer object.
     ///
-    /// You can see a list of the reversals belonging to a specific transfer. Note that the 10 most recent reversals are always available by default on the transfer object. If you need more than those 10, you can use this API method and the limit and starting_after parameters to page through additional reversals.
-    public func getTransfersId(id: String, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetTransfersIdReversalsResponse {
-        return try await V1TransfersReversalsMethods.getTransfersIdReversals(config: config, id: id, endingBefore: endingBefore, expand: expand, limit: limit, startingAfter: startingAfter)
+    /// You can see a list of the reversals belonging to a specific transfer. Note that the 10 most recent reversals are
+    /// always available by default on the transfer object. If you need more than those 10, you can use this API method
+    /// and the limit and starting_after parameters to page through additional reversals.
+    public func getTransfersId(
+        id: String,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        startingAfter: String?
+    ) async throws -> GetTransfersIdReversalsResponse {
+        try await V1TransfersReversalsMethods.getTransfersIdReversals(
+            config: config,
+            id: id,
+            endingBefore: endingBefore,
+            expand: expand,
+            limit: limit,
+            startingAfter: startingAfter
+        )
     }
 
-/// Creates a reversal for a specific transfer. Supply `amount` to reverse only part of the unreversed transfer amount, or omit it to reverse the entire remaining amount; partial reversals are allowed only for transfers to Stripe Accounts.
+    /// Creates a reversal for a specific transfer. Supply `amount` to reverse only part of the unreversed transfer
+    /// amount, or omit it to reverse the entire remaining amount; partial reversals are allowed only for transfers to
+    /// Stripe Accounts.
     ///
-    /// When you create a new reversal, you must specify a transfer to create it on. When reversing transfers, you can optionally reverse part of the transfer. You can do so as many times as you wish until the entire transfer has been reversed. Once entirely reversed, a transfer can’t be reversed again. This method will return an error when called on an already-reversed transfer, or when trying to reverse more money than is left on a transfer.
-    public func postTransfersId(id: String, amount: Int?, description: String?, expand: [String]?, metadata: PostTransfersIdReversalsRequestBodyMetadata?, refundApplicationFee: Bool?) async throws -> TransferReversal {
-        return try await V1TransfersReversalsMethods.postTransfersIdReversals(config: config, id: id, amount: amount, description: description, expand: expand, metadata: metadata, refundApplicationFee: refundApplicationFee)
+    /// When you create a new reversal, you must specify a transfer to create it on. When reversing transfers, you can
+    /// optionally reverse part of the transfer. You can do so as many times as you wish until the entire transfer has
+    /// been reversed. Once entirely reversed, a transfer can’t be reversed again. This method will return an error when
+    /// called on an already-reversed transfer, or when trying to reverse more money than is left on a transfer.
+    public func postTransfersId(
+        id: String,
+        amount: Int?,
+        description: String?,
+        expand: [String]?,
+        metadata: PostTransfersIdReversalsRequestBodyMetadata?,
+        refundApplicationFee: Bool?
+    ) async throws -> TransferReversal {
+        try await V1TransfersReversalsMethods.postTransfersIdReversals(
+            config: config,
+            id: id,
+            amount: amount,
+            description: description,
+            expand: expand,
+            metadata: metadata,
+            refundApplicationFee: refundApplicationFee
+        )
     }
 
-/// Retrieves a specific reversal belonging to a transfer. Use the transfer and reversal identifiers together to obtain details about the reversal, including its amount, currency, and related refunds.
+    /// Retrieves a specific reversal belonging to a transfer. Use the transfer and reversal identifiers together to
+    /// obtain details about the reversal, including its amount, currency, and related refunds.
     ///
-    /// By default, you can see the 10 most recent reversals stored directly on the transfer object, but you can also retrieve details about a specific reversal stored on the transfer.
-    public func getTransfersTransferId(id: String, transfer: String, expand: [String]?) async throws -> TransferReversal {
-        return try await V1TransfersReversalsMethods.getTransfersTransferReversalsId(config: config, id: id, transfer: transfer, expand: expand)
+    /// By default, you can see the 10 most recent reversals stored directly on the transfer object, but you can also
+    /// retrieve details about a specific reversal stored on the transfer.
+    public func getTransfersTransferId(
+        id: String,
+        transfer: String,
+        expand: [String]?
+    ) async throws -> TransferReversal {
+        try await V1TransfersReversalsMethods.getTransfersTransferReversalsId(
+            config: config,
+            id: id,
+            transfer: transfer,
+            expand: expand
+        )
     }
 
-/// Updates an existing transfer reversal without changing values that you omit. Use the request body to manage `metadata` or request expanded response fields for the reversal.
+    /// Updates an existing transfer reversal without changing values that you omit. Use the request body to manage
+    /// `metadata` or request expanded response fields for the reversal.
     ///
-    /// Updates the specified reversal by setting the values of the parameters passed. Any parameters not provided will be left unchanged. This request only accepts metadata and description as arguments.
-    public func postTransfersTransferId(id: String, transfer: String, expand: [String]?, metadata: PostTransfersTransferReversalsIdRequestBodyMetadata?) async throws -> TransferReversal {
-        return try await V1TransfersReversalsMethods.postTransfersTransferReversalsId(config: config, id: id, transfer: transfer, expand: expand, metadata: metadata)
+    /// Updates the specified reversal by setting the values of the parameters passed. Any parameters not provided will
+    /// be left unchanged. This request only accepts metadata and description as arguments.
+    public func postTransfersTransferId(
+        id: String,
+        transfer: String,
+        expand: [String]?,
+        metadata: PostTransfersTransferReversalsIdRequestBodyMetadata?
+    ) async throws -> TransferReversal {
+        try await V1TransfersReversalsMethods.postTransfersTransferReversalsId(
+            config: config,
+            id: id,
+            transfer: transfer,
+            expand: expand,
+            metadata: metadata
+        )
     }
 }

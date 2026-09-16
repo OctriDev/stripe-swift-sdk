@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1PaymentLinks domain models
+/// V1PaymentLinks domain models
 /// Typed representation of the `PaymentLinksResourceSubscriptionData` API schema.
 public struct PaymentLinksResourceSubscriptionData: Codable {
     /// Required object value serialized in the `invoice_settings` wire field.
@@ -26,31 +26,47 @@ public struct PaymentLinksResourceSubscriptionData: Codable {
         case trialSettings = "trial_settings"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension PaymentLinksResourceSubscriptionData {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.invoiceSettings) else {
-            throw SdkValidationError(field: "invoice_settings", code: "required", message: "Validation failed for 'invoice_settings': value is required")
+            throw SdkValidationError(
+                field: "invoice_settings",
+                code: "required",
+                message: "Validation failed for 'invoice_settings': value is required"
+            )
         }
         guard container.contains(.metadata) else {
-            throw SdkValidationError(field: "metadata", code: "required", message: "Validation failed for 'metadata': value is required")
+            throw SdkValidationError(
+                field: "metadata",
+                code: "required",
+                message: "Validation failed for 'metadata': value is required"
+            )
         }
-        self.invoiceSettings = try container.sdkDecodeRequired(.invoiceSettings)
-        self.metadata = try container.sdkDecodeRequired(.metadata)
-        self.description = try container.sdkDecodeIfPresent(.description)
-        self.trialPeriodDays = try container.sdkDecodeIfPresent(.trialPeriodDays)
-        self.trialSettings = try container.sdkDecodeIfPresent(.trialSettings)
-        if let value = self.description {
+        invoiceSettings = try container.sdkDecodeRequired(.invoiceSettings)
+        metadata = try container.sdkDecodeRequired(.metadata)
+        description = try container.sdkDecodeIfPresent(.description)
+        trialPeriodDays = try container.sdkDecodeIfPresent(.trialPeriodDays)
+        trialSettings = try container.sdkDecodeIfPresent(.trialSettings)
+        if let value = description {
             try validateLength("description", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension PaymentLinksResourceSubscriptionData {
-    public init(invoiceSettings: PaymentLinksResourceSubscriptionDataInvoiceSettings, metadata: [String: String], description: String? = nil, trialPeriodDays: Int? = nil, trialSettings: PaymentLinksResourceSubscriptionDataTrialSettings? = nil) throws {
+    init(
+        invoiceSettings: PaymentLinksResourceSubscriptionDataInvoiceSettings,
+        metadata: [String: String],
+        description: String? = nil,
+        trialPeriodDays: Int? = nil,
+        trialSettings: PaymentLinksResourceSubscriptionDataTrialSettings? = nil
+    ) throws {
         (self.invoiceSettings, self.metadata) = (invoiceSettings, metadata)
         (self.description, self.trialPeriodDays) = (description, trialPeriodDays)
         self.trialSettings = trialSettings
@@ -65,24 +81,30 @@ public enum PaymentLinksResourceSubscriptionDataTrialSettings {
 }
 
 extension PaymentLinksResourceSubscriptionDataTrialSettings: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentLinksResourceSubscriptionDataTrialSettings")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PaymentLinksResourceSubscriptionDataTrialSettings"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             SubscriptionsTrialsResourceTrialSettings.self
         ) {
-            return             .subscriptionsTrialsResourceTrialSettings(value)
+            return .subscriptionsTrialsResourceTrialSettings(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -91,7 +113,6 @@ extension PaymentLinksResourceSubscriptionDataTrialSettings: Codable {
         case let .subscriptionsTrialsResourceTrialSettings(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Typed representation of the `PaymentLinksResourceSubscriptionDataInvoiceSettings` API schema.
@@ -103,21 +124,27 @@ public struct PaymentLinksResourceSubscriptionDataInvoiceSettings: Codable {
         case issuer
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PaymentLinksResourceSubscriptionDataInvoiceSettings {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.issuer) else {
-            throw SdkValidationError(field: "issuer", code: "required", message: "Validation failed for 'issuer': value is required")
-        }
-        self.issuer = try container.sdkDecodeRequired(.issuer)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PaymentLinksResourceSubscriptionDataInvoiceSettings {
-    public init(issuer: ConnectAccountReference) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.issuer) else {
+            throw SdkValidationError(
+                field: "issuer",
+                code: "required",
+                message: "Validation failed for 'issuer': value is required"
+            )
+        }
+        issuer = try container.sdkDecodeRequired(.issuer)
+    }
+}
+
+public extension PaymentLinksResourceSubscriptionDataInvoiceSettings {
+    init(issuer: ConnectAccountReference) {
         self.issuer = issuer
     }
 }
@@ -134,25 +161,35 @@ public struct PaymentLinksResourceTaxIdCollection: Codable {
         case required
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PaymentLinksResourceTaxIdCollection {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.enabled) else {
-            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
-        }
-        guard container.contains(.required) else {
-            throw SdkValidationError(field: "required", code: "required", message: "Validation failed for 'required': value is required")
-        }
-        self.enabled = try container.sdkDecodeRequired(.enabled)
-        self.required = try container.sdkDecodeRequired(.required)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PaymentLinksResourceTaxIdCollection {
-    public init(enabled: Bool, required: PaymentLinksResourceTaxIdCollectionRequired) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.enabled) else {
+            throw SdkValidationError(
+                field: "enabled",
+                code: "required",
+                message: "Validation failed for 'enabled': value is required"
+            )
+        }
+        guard container.contains(.required) else {
+            throw SdkValidationError(
+                field: "required",
+                code: "required",
+                message: "Validation failed for 'required': value is required"
+            )
+        }
+        enabled = try container.sdkDecodeRequired(.enabled)
+        required = try container.sdkDecodeRequired(.required)
+    }
+}
+
+public extension PaymentLinksResourceTaxIdCollection {
+    init(enabled: Bool, required: PaymentLinksResourceTaxIdCollectionRequired) {
         (self.enabled, self.required) = (enabled, required)
     }
 }
@@ -170,22 +207,28 @@ public struct PaymentLinksResourceTransferData: Codable {
         case amount
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PaymentLinksResourceTransferData {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.destination) else {
-            throw SdkValidationError(field: "destination", code: "required", message: "Validation failed for 'destination': value is required")
-        }
-        self.destination = try container.sdkDecodeRequired(.destination)
-        self.amount = try container.sdkDecodeIfPresent(.amount)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PaymentLinksResourceTransferData {
-    public init(destination: PaymentLinksResourceTransferDataDestination, amount: Int? = nil) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.destination) else {
+            throw SdkValidationError(
+                field: "destination",
+                code: "required",
+                message: "Validation failed for 'destination': value is required"
+            )
+        }
+        destination = try container.sdkDecodeRequired(.destination)
+        amount = try container.sdkDecodeIfPresent(.amount)
+    }
+}
+
+public extension PaymentLinksResourceTransferData {
+    init(destination: PaymentLinksResourceTransferDataDestination, amount: Int? = nil) {
         (self.destination, self.amount) = (destination, amount)
     }
 }
@@ -196,21 +239,31 @@ public enum PaymentLinksResourceTransferDataDestination {
 }
 
 extension PaymentLinksResourceTransferDataDestination: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentLinksResourceTransferDataDestination")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PaymentLinksResourceTransferDataDestination"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(Account.self) { return .account(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(Account.self) {
+            return .account(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -220,21 +273,23 @@ extension PaymentLinksResourceTransferDataDestination: Codable {
         case let .account(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// The type of the field.
 public struct PaymentLinksResourceCustomFieldsType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let dropdown = PaymentLinksResourceCustomFieldsType(rawValue: "dropdown")
     public static let numeric = PaymentLinksResourceCustomFieldsType(rawValue: "numeric")
     public static let text = PaymentLinksResourceCustomFieldsType(rawValue: "text")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -244,18 +299,24 @@ public struct PaymentLinksResourceCustomFieldsType: RawRepresentable, Hashable, 
 }
 
 /// Required enumerated value serialized in the `brands_blocked[]` wire field.
-public struct PaymentLinksResourceCardRestrictionsBrandsBlockedItem: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentLinksResourceCardRestrictionsBrandsBlockedItem: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let americanExpress = PaymentLinksResourceCardRestrictionsBrandsBlockedItem(rawValue: "american_express")
-    public static let discoverGlobalNetwork = PaymentLinksResourceCardRestrictionsBrandsBlockedItem(rawValue: "discover_global_network")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let americanExpress =
+        PaymentLinksResourceCardRestrictionsBrandsBlockedItem(rawValue: "american_express")
+    public static let discoverGlobalNetwork =
+        PaymentLinksResourceCardRestrictionsBrandsBlockedItem(rawValue: "discover_global_network")
     public static let primarycard = PaymentLinksResourceCardRestrictionsBrandsBlockedItem(rawValue: "mastercard")
     public static let visa = PaymentLinksResourceCardRestrictionsBrandsBlockedItem(rawValue: "visa")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -267,16 +328,20 @@ public struct PaymentLinksResourceCardRestrictionsBrandsBlockedItem: RawRepresen
 /// Determines the position and visibility of the payment method reuse agreement in the UI. When set to `auto`,
 /// Stripe's defaults will be used. When set to `hidden`, the payment method reuse agreement text will always be
 /// hidden in the UI.
-public struct PaymentLinksResourcePaymentMethodReuseAgreementPosition: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentLinksResourcePaymentMethodReuseAgreementPosition: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let auto = PaymentLinksResourcePaymentMethodReuseAgreementPosition(rawValue: "auto")
     public static let hidden = PaymentLinksResourcePaymentMethodReuseAgreementPosition(rawValue: "hidden")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -286,14 +351,17 @@ public struct PaymentLinksResourcePaymentMethodReuseAgreementPosition: RawRepres
 }
 
 /// Required enumerated value serialized in the `allowed_countries[]` wire field.
-public struct PaymentLinksResourceShippingAddressCollectionAllowedCountriesItem: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentLinksResourceShippingAddressCollectionAllowedCountriesItem: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

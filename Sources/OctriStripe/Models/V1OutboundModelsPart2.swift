@@ -3,18 +3,22 @@
 
 import Foundation
 
-// V1Outbound domain models
+/// V1Outbound domain models
 /// Account type: checkings or savings. Defaults to checking if omitted.
-public struct OutboundTransfersPaymentMethodDetailsUsBankAccountAccountType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct OutboundTransfersPaymentMethodDetailsUsBankAccountAccountType: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let checking = OutboundTransfersPaymentMethodDetailsUsBankAccountAccountType(rawValue: "checking")
     public static let savings = OutboundTransfersPaymentMethodDetailsUsBankAccountAccountType(rawValue: "savings")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -24,16 +28,20 @@ public struct OutboundTransfersPaymentMethodDetailsUsBankAccountAccountType: Raw
 }
 
 /// The type of the payment method used in the OutboundPayment.
-public struct OutboundPaymentsPaymentMethodDetailsType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct OutboundPaymentsPaymentMethodDetailsType: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let financialAccount = OutboundPaymentsPaymentMethodDetailsType(rawValue: "financial_account")
     public static let usBankAccount = OutboundPaymentsPaymentMethodDetailsType(rawValue: "us_bank_account")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -43,16 +51,21 @@ public struct OutboundPaymentsPaymentMethodDetailsType: RawRepresentable, Hashab
 }
 
 /// The network rails used. See the docs to learn more about money movement timelines for each network type.
-public struct OutboundPaymentsPaymentMethodDetailsUsBankAccountNetwork: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct OutboundPaymentsPaymentMethodDetailsUsBankAccountNetwork: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let ach = OutboundPaymentsPaymentMethodDetailsUsBankAccountNetwork(rawValue: "ach")
-    public static let usDomesticWire = OutboundPaymentsPaymentMethodDetailsUsBankAccountNetwork(rawValue: "us_domestic_wire")
+    public static let usDomesticWire =
+        OutboundPaymentsPaymentMethodDetailsUsBankAccountNetwork(rawValue: "us_domestic_wire")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -62,16 +75,21 @@ public struct OutboundPaymentsPaymentMethodDetailsUsBankAccountNetwork: RawRepre
 }
 
 /// Account holder type: individual or company.
-public struct OutboundTransfersPaymentMethodDetailsUsBankAccountAccountHolderType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct OutboundTransfersPaymentMethodDetailsUsBankAccountAccountHolderType: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let company = OutboundTransfersPaymentMethodDetailsUsBankAccountAccountHolderType(rawValue: "company")
-    public static let individual = OutboundTransfersPaymentMethodDetailsUsBankAccountAccountHolderType(rawValue: "individual")
+    public static let individual =
+        OutboundTransfersPaymentMethodDetailsUsBankAccountAccountHolderType(rawValue: "individual")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -81,16 +99,20 @@ public struct OutboundTransfersPaymentMethodDetailsUsBankAccountAccountHolderTyp
 }
 
 /// The type of the payment method used in the OutboundTransfer.
-public struct OutboundTransfersPaymentMethodDetailsType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct OutboundTransfersPaymentMethodDetailsType: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let financialAccount = OutboundTransfersPaymentMethodDetailsType(rawValue: "financial_account")
     public static let usBankAccount = OutboundTransfersPaymentMethodDetailsType(rawValue: "us_bank_account")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

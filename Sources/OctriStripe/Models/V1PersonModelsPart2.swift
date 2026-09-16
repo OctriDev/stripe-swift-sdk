@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1Person domain models
+/// V1Person domain models
 /// Typed representation of the `PersonFutureRequirements` API schema.
 public struct PersonFutureRequirements: Codable {
     /// Fields that need to be resolved to keep the person's account enabled. If not resolved by the account's
@@ -40,38 +40,67 @@ public struct PersonFutureRequirements: Codable {
         case alternatives
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PersonFutureRequirements {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.currentlyDue) else {
-            throw SdkValidationError(field: "currently_due", code: "required", message: "Validation failed for 'currently_due': value is required")
-        }
-        guard container.contains(.errors) else {
-            throw SdkValidationError(field: "errors", code: "required", message: "Validation failed for 'errors': value is required")
-        }
-        guard container.contains(.eventuallyDue) else {
-            throw SdkValidationError(field: "eventually_due", code: "required", message: "Validation failed for 'eventually_due': value is required")
-        }
-        guard container.contains(.pastDue) else {
-            throw SdkValidationError(field: "past_due", code: "required", message: "Validation failed for 'past_due': value is required")
-        }
-        guard container.contains(.pendingVerification) else {
-            throw SdkValidationError(field: "pending_verification", code: "required", message: "Validation failed for 'pending_verification': value is required")
-        }
-        self.currentlyDue = try container.sdkDecodeRequired(.currentlyDue)
-        self.errors = try container.sdkDecodeRequired(.errors)
-        self.eventuallyDue = try container.sdkDecodeRequired(.eventuallyDue)
-        self.pastDue = try container.sdkDecodeRequired(.pastDue)
-        self.pendingVerification = try container.sdkDecodeRequired(.pendingVerification)
-        self.alternatives = try container.sdkDecodeIfPresent(.alternatives)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PersonFutureRequirements {
-    public init(currentlyDue: [String], errors: [AccountRequirementsError], eventuallyDue: [String], pastDue: [String], pendingVerification: [String], alternatives: [AccountRequirementsAlternative]? = nil) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.currentlyDue) else {
+            throw SdkValidationError(
+                field: "currently_due",
+                code: "required",
+                message: "Validation failed for 'currently_due': value is required"
+            )
+        }
+        guard container.contains(.errors) else {
+            throw SdkValidationError(
+                field: "errors",
+                code: "required",
+                message: "Validation failed for 'errors': value is required"
+            )
+        }
+        guard container.contains(.eventuallyDue) else {
+            throw SdkValidationError(
+                field: "eventually_due",
+                code: "required",
+                message: "Validation failed for 'eventually_due': value is required"
+            )
+        }
+        guard container.contains(.pastDue) else {
+            throw SdkValidationError(
+                field: "past_due",
+                code: "required",
+                message: "Validation failed for 'past_due': value is required"
+            )
+        }
+        guard container.contains(.pendingVerification) else {
+            throw SdkValidationError(
+                field: "pending_verification",
+                code: "required",
+                message: "Validation failed for 'pending_verification': value is required"
+            )
+        }
+        currentlyDue = try container.sdkDecodeRequired(.currentlyDue)
+        errors = try container.sdkDecodeRequired(.errors)
+        eventuallyDue = try container.sdkDecodeRequired(.eventuallyDue)
+        pastDue = try container.sdkDecodeRequired(.pastDue)
+        pendingVerification = try container.sdkDecodeRequired(.pendingVerification)
+        alternatives = try container.sdkDecodeIfPresent(.alternatives)
+    }
+}
+
+public extension PersonFutureRequirements {
+    init(
+        currentlyDue: [String],
+        errors: [AccountRequirementsError],
+        eventuallyDue: [String],
+        pastDue: [String],
+        pendingVerification: [String],
+        alternatives: [AccountRequirementsAlternative]? = nil
+    ) {
         (self.currentlyDue, self.errors) = (currentlyDue, errors)
         (self.eventuallyDue, self.pastDue) = (eventuallyDue, pastDue)
         (self.pendingVerification, self.alternatives) = (pendingVerification, alternatives)
@@ -91,23 +120,23 @@ public struct PersonRaceDetails: Codable {
     }
 
     init() {
-        (self.race, self.raceOther) = (nil, nil)
+        (race, raceOther) = (nil, nil)
     }
 }
 
 public extension PersonRaceDetails {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.race = try container.sdkDecodeIfPresent(.race)
-        self.raceOther = try container.sdkDecodeIfPresent(.raceOther)
-        if let value = self.raceOther {
+        race = try container.sdkDecodeIfPresent(.race)
+        raceOther = try container.sdkDecodeIfPresent(.raceOther)
+        if let value = raceOther {
             try validateLength("race_other", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension PersonRaceDetails {
-    public init(race: [PersonRaceDetailsRaceItem]? = nil, raceOther: String? = nil) throws {
+    init(race: [PersonRaceDetailsRaceItem]? = nil, raceOther: String? = nil) throws {
         self.init()
         (self.race, self.raceOther) = (race, raceOther)
         if let value = self.raceOther {
@@ -151,30 +180,39 @@ public struct PersonRelationship: Codable {
     }
 
     init() {
-        (self.authorizer, self.director, self.executive, self.legalGuardian, self.owner) = (nil, nil, nil, nil, nil)
-        (self.percentOwnership, self.representative, self.title) = (nil, nil, nil)
+        (authorizer, director, executive, legalGuardian, owner) = (nil, nil, nil, nil, nil)
+        (percentOwnership, representative, title) = (nil, nil, nil)
     }
 }
 
 public extension PersonRelationship {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.authorizer = try container.sdkDecodeIfPresent(.authorizer)
-        self.director = try container.sdkDecodeIfPresent(.director)
-        self.executive = try container.sdkDecodeIfPresent(.executive)
-        self.legalGuardian = try container.sdkDecodeIfPresent(.legalGuardian)
-        self.owner = try container.sdkDecodeIfPresent(.owner)
-        self.percentOwnership = try container.sdkDecodeIfPresent(.percentOwnership)
-        self.representative = try container.sdkDecodeIfPresent(.representative)
-        self.title = try container.sdkDecodeIfPresent(.title)
-        if let value = self.title {
+        authorizer = try container.sdkDecodeIfPresent(.authorizer)
+        director = try container.sdkDecodeIfPresent(.director)
+        executive = try container.sdkDecodeIfPresent(.executive)
+        legalGuardian = try container.sdkDecodeIfPresent(.legalGuardian)
+        owner = try container.sdkDecodeIfPresent(.owner)
+        percentOwnership = try container.sdkDecodeIfPresent(.percentOwnership)
+        representative = try container.sdkDecodeIfPresent(.representative)
+        title = try container.sdkDecodeIfPresent(.title)
+        if let value = title {
             try validateLength("title", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension PersonRelationship {
-    public init(authorizer: Bool? = nil, director: Bool? = nil, executive: Bool? = nil, legalGuardian: Bool? = nil, owner: Bool? = nil, percentOwnership: Double? = nil, representative: Bool? = nil, title: String? = nil) throws {
+    init(
+        authorizer: Bool? = nil,
+        director: Bool? = nil,
+        executive: Bool? = nil,
+        legalGuardian: Bool? = nil,
+        owner: Bool? = nil,
+        percentOwnership: Double? = nil,
+        representative: Bool? = nil,
+        title: String? = nil
+    ) throws {
         self.init()
         (self.authorizer, self.director) = (authorizer, director)
         (self.executive, self.legalGuardian) = (executive, legalGuardian)
@@ -219,38 +257,67 @@ public struct PersonRequirements: Codable {
         case alternatives
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PersonRequirements {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.currentlyDue) else {
-            throw SdkValidationError(field: "currently_due", code: "required", message: "Validation failed for 'currently_due': value is required")
-        }
-        guard container.contains(.errors) else {
-            throw SdkValidationError(field: "errors", code: "required", message: "Validation failed for 'errors': value is required")
-        }
-        guard container.contains(.eventuallyDue) else {
-            throw SdkValidationError(field: "eventually_due", code: "required", message: "Validation failed for 'eventually_due': value is required")
-        }
-        guard container.contains(.pastDue) else {
-            throw SdkValidationError(field: "past_due", code: "required", message: "Validation failed for 'past_due': value is required")
-        }
-        guard container.contains(.pendingVerification) else {
-            throw SdkValidationError(field: "pending_verification", code: "required", message: "Validation failed for 'pending_verification': value is required")
-        }
-        self.currentlyDue = try container.sdkDecodeRequired(.currentlyDue)
-        self.errors = try container.sdkDecodeRequired(.errors)
-        self.eventuallyDue = try container.sdkDecodeRequired(.eventuallyDue)
-        self.pastDue = try container.sdkDecodeRequired(.pastDue)
-        self.pendingVerification = try container.sdkDecodeRequired(.pendingVerification)
-        self.alternatives = try container.sdkDecodeIfPresent(.alternatives)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PersonRequirements {
-    public init(currentlyDue: [String], errors: [AccountRequirementsError], eventuallyDue: [String], pastDue: [String], pendingVerification: [String], alternatives: [AccountRequirementsAlternative]? = nil) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.currentlyDue) else {
+            throw SdkValidationError(
+                field: "currently_due",
+                code: "required",
+                message: "Validation failed for 'currently_due': value is required"
+            )
+        }
+        guard container.contains(.errors) else {
+            throw SdkValidationError(
+                field: "errors",
+                code: "required",
+                message: "Validation failed for 'errors': value is required"
+            )
+        }
+        guard container.contains(.eventuallyDue) else {
+            throw SdkValidationError(
+                field: "eventually_due",
+                code: "required",
+                message: "Validation failed for 'eventually_due': value is required"
+            )
+        }
+        guard container.contains(.pastDue) else {
+            throw SdkValidationError(
+                field: "past_due",
+                code: "required",
+                message: "Validation failed for 'past_due': value is required"
+            )
+        }
+        guard container.contains(.pendingVerification) else {
+            throw SdkValidationError(
+                field: "pending_verification",
+                code: "required",
+                message: "Validation failed for 'pending_verification': value is required"
+            )
+        }
+        currentlyDue = try container.sdkDecodeRequired(.currentlyDue)
+        errors = try container.sdkDecodeRequired(.errors)
+        eventuallyDue = try container.sdkDecodeRequired(.eventuallyDue)
+        pastDue = try container.sdkDecodeRequired(.pastDue)
+        pendingVerification = try container.sdkDecodeRequired(.pendingVerification)
+        alternatives = try container.sdkDecodeIfPresent(.alternatives)
+    }
+}
+
+public extension PersonRequirements {
+    init(
+        currentlyDue: [String],
+        errors: [AccountRequirementsError],
+        eventuallyDue: [String],
+        pastDue: [String],
+        pendingVerification: [String],
+        alternatives: [AccountRequirementsAlternative]? = nil
+    ) {
         (self.currentlyDue, self.errors) = (currentlyDue, errors)
         (self.eventuallyDue, self.pastDue) = (eventuallyDue, pastDue)
         (self.pendingVerification, self.alternatives) = (pendingVerification, alternatives)
@@ -273,24 +340,28 @@ public struct PersonUsCfpbData: Codable {
     }
 
     init() {
-        (self.ethnicityDetails, self.raceDetails, self.selfIdentifiedGender) = (nil, nil, nil)
+        (ethnicityDetails, raceDetails, selfIdentifiedGender) = (nil, nil, nil)
     }
 }
 
 public extension PersonUsCfpbData {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.ethnicityDetails = try container.sdkDecodeIfPresent(.ethnicityDetails)
-        self.raceDetails = try container.sdkDecodeIfPresent(.raceDetails)
-        self.selfIdentifiedGender = try container.sdkDecodeIfPresent(.selfIdentifiedGender)
-        if let value = self.selfIdentifiedGender {
+        ethnicityDetails = try container.sdkDecodeIfPresent(.ethnicityDetails)
+        raceDetails = try container.sdkDecodeIfPresent(.raceDetails)
+        selfIdentifiedGender = try container.sdkDecodeIfPresent(.selfIdentifiedGender)
+        if let value = selfIdentifiedGender {
             try validateLength("self_identified_gender", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension PersonUsCfpbData {
-    public init(ethnicityDetails: PersonUsCfpbDataEthnicityDetails? = nil, raceDetails: PersonUsCfpbDataRaceDetails? = nil, selfIdentifiedGender: String? = nil) throws {
+    init(
+        ethnicityDetails: PersonUsCfpbDataEthnicityDetails? = nil,
+        raceDetails: PersonUsCfpbDataRaceDetails? = nil,
+        selfIdentifiedGender: String? = nil
+    ) throws {
         self.init()
         (self.ethnicityDetails, self.raceDetails) = (ethnicityDetails, raceDetails)
         self.selfIdentifiedGender = selfIdentifiedGender
@@ -305,20 +376,28 @@ public enum PersonUsCfpbDataEthnicityDetails {
 }
 
 extension PersonUsCfpbDataEthnicityDetails: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PersonUsCfpbDataEthnicityDetails")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PersonUsCfpbDataEthnicityDetails"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(PersonEthnicityDetails.self) { return .personEthnicityDetails(value) }
+        if let value = try? container.decode(PersonEthnicityDetails.self) {
+            return .personEthnicityDetails(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -327,7 +406,6 @@ extension PersonUsCfpbDataEthnicityDetails: Codable {
         case let .personEthnicityDetails(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum PersonUsCfpbDataRaceDetails {
@@ -335,20 +413,28 @@ public enum PersonUsCfpbDataRaceDetails {
 }
 
 extension PersonUsCfpbDataRaceDetails: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PersonUsCfpbDataRaceDetails")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PersonUsCfpbDataRaceDetails"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(PersonRaceDetails.self) { return .personRaceDetails(value) }
+        if let value = try? container.decode(PersonRaceDetails.self) {
+            return .personRaceDetails(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -357,7 +443,6 @@ extension PersonUsCfpbDataRaceDetails: Codable {
         case let .personRaceDetails(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Indicates if the person or any of their representatives, family members, or other closely related persons,
@@ -365,13 +450,16 @@ extension PersonUsCfpbDataRaceDetails: Codable {
 public struct PersonPoliticalExposure: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let existing = PersonPoliticalExposure(rawValue: "existing")
     public static let none = PersonPoliticalExposure(rawValue: "none")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -384,12 +472,15 @@ public struct PersonPoliticalExposure: RawRepresentable, Hashable, Codable, Send
 public struct PersonObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let person = PersonObject(rawValue: "person")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -402,9 +493,13 @@ public struct PersonObject: RawRepresentable, Hashable, Codable, Sendable, SdkWi
 public struct PersonRaceDetailsRaceItem: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let africanAmerican = PersonRaceDetailsRaceItem(rawValue: "african_american")
-    public static let americanIndianOrAlaskaNative = PersonRaceDetailsRaceItem(rawValue: "american_indian_or_alaska_native")
+    public static let americanIndianOrAlaskaNative =
+        PersonRaceDetailsRaceItem(rawValue: "american_indian_or_alaska_native")
     public static let asian = PersonRaceDetailsRaceItem(rawValue: "asian")
     public static let asianIndian = PersonRaceDetailsRaceItem(rawValue: "asian_indian")
     public static let blackOrAfricanAmerican = PersonRaceDetailsRaceItem(rawValue: "black_or_african_american")
@@ -417,10 +512,12 @@ public struct PersonRaceDetailsRaceItem: RawRepresentable, Hashable, Codable, Se
     public static let japanese = PersonRaceDetailsRaceItem(rawValue: "japanese")
     public static let korean = PersonRaceDetailsRaceItem(rawValue: "korean")
     public static let nativeHawaiian = PersonRaceDetailsRaceItem(rawValue: "native_hawaiian")
-    public static let nativeHawaiianOrOtherPacificIslander = PersonRaceDetailsRaceItem(rawValue: "native_hawaiian_or_other_pacific_islander")
+    public static let nativeHawaiianOrOtherPacificIslander =
+        PersonRaceDetailsRaceItem(rawValue: "native_hawaiian_or_other_pacific_islander")
     public static let nigerian = PersonRaceDetailsRaceItem(rawValue: "nigerian")
     public static let otherAsian = PersonRaceDetailsRaceItem(rawValue: "other_asian")
-    public static let otherBlackOrAfricanAmerican = PersonRaceDetailsRaceItem(rawValue: "other_black_or_african_american")
+    public static let otherBlackOrAfricanAmerican =
+        PersonRaceDetailsRaceItem(rawValue: "other_black_or_african_american")
     public static let otherPacificIslander = PersonRaceDetailsRaceItem(rawValue: "other_pacific_islander")
     public static let preferNotToAnswer = PersonRaceDetailsRaceItem(rawValue: "prefer_not_to_answer")
     public static let samoan = PersonRaceDetailsRaceItem(rawValue: "samoan")
@@ -430,7 +527,7 @@ public struct PersonRaceDetailsRaceItem: RawRepresentable, Hashable, Codable, Se
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -443,7 +540,10 @@ public struct PersonRaceDetailsRaceItem: RawRepresentable, Hashable, Codable, Se
 public struct PersonEthnicityDetailsEthnicityItem: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let cuban = PersonEthnicityDetailsEthnicityItem(rawValue: "cuban")
     public static let hispanicOrLatino = PersonEthnicityDetailsEthnicityItem(rawValue: "hispanic_or_latino")
     public static let mexican = PersonEthnicityDetailsEthnicityItem(rawValue: "mexican")
@@ -454,7 +554,7 @@ public struct PersonEthnicityDetailsEthnicityItem: RawRepresentable, Hashable, C
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

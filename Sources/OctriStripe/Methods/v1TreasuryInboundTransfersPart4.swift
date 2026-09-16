@@ -6,18 +6,30 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1TreasuryInboundTransfersMethods {
-    /// Retrieves the details of an existing InboundTransfer by its unique identifier. Pass `id` to select the transfer and use `expand` when you need additional response fields included inline.
+public extension V1TreasuryInboundTransfersMethods {
+    /// Retrieves the details of an existing InboundTransfer by its unique identifier. Pass `id` to select the transfer
+    /// and use `expand` when you need additional response fields included inline.
     ///
     /// Retrieves the details of an existing InboundTransfer.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func getTreasuryInboundTransfersId(config: ClientConfig, id: String, expand: [String]?) async throws -> TreasuryInboundTransfer {
+    static func getTreasuryInboundTransfersId(
+        config: ClientConfig,
+        id: String,
+        expand: [String]?
+    ) async throws -> TreasuryInboundTransfer {
         try validateLength("id", id, max: 5000)
 
-        return try (await sdkRequest("GET", ["/v1/treasury/inbound_transfers/", sdkEncodePathSegment(sdkWireString(id))].joined(), config: config, query: [
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-        ], decoder: .json, operationId: "GetTreasuryInboundTransfersId")).data
+        return try await (sdkRequest(
+            "GET",
+            ["/v1/treasury/inbound_transfers/", sdkEncodePathSegment(sdkWireString(id))].joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+            ],
+            decoder: .json,
+            operationId: "GetTreasuryInboundTransfersId"
+        )).data
     }
 }

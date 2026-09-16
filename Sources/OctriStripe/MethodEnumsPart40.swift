@@ -27,10 +27,10 @@ extension PostCheckoutSessionsRequestBodyShippingAddressCollectionAllowX7d610cd6
         .ie,
         .il,
         .im,
-        .`in`,
+        .in,
         .io,
         .iq,
-        .`is`,
+        .is,
         .it,
         .je,
         .jm,
@@ -177,24 +177,30 @@ extension PostCheckoutSessionsRequestBodyShippingAddressCollectionAllowX7d610cd6
 extension PostCheckoutSessionsRequestBodyShippingAddressCollectionAllowX7d610cd6a9: CaseIterable {
     public static var allCases: [PostCheckoutSessionsRequestBodyShippingAddressCollectionAllowX7d610cd6a9] {
         allCasesPart1
-        +         allCasesPart2
-        +         allCasesPart3
+            + allCasesPart2
+            + allCasesPart3
     }
 }
 
-public struct PostCheckoutSessionsRequestBodyShippingOptionsItemShippingRatXe4cc00065a: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostCheckoutSessionsRequestBodyShippingOptionsItemShippingRatXe4cc00065a: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let businessDay = PostCheckoutSessionsRequestBodyShippingOptionsItemShippingRatXe4cc00065a(rawValue: "business_day")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let businessDay =
+        PostCheckoutSessionsRequestBodyShippingOptionsItemShippingRatXe4cc00065a(rawValue: "business_day")
     public static let day = PostCheckoutSessionsRequestBodyShippingOptionsItemShippingRatXe4cc00065a(rawValue: "day")
     public static let hour = PostCheckoutSessionsRequestBodyShippingOptionsItemShippingRatXe4cc00065a(rawValue: "hour")
-    public static let month = PostCheckoutSessionsRequestBodyShippingOptionsItemShippingRatXe4cc00065a(rawValue: "month")
+    public static let month =
+        PostCheckoutSessionsRequestBodyShippingOptionsItemShippingRatXe4cc00065a(rawValue: "month")
     public static let week = PostCheckoutSessionsRequestBodyShippingOptionsItemShippingRatXe4cc00065a(rawValue: "week")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

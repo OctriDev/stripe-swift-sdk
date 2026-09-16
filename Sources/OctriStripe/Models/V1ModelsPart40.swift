@@ -3,23 +3,33 @@
 
 import Foundation
 
-// V1 domain models
+/// V1 domain models
 extension SetupAttemptPaymentMethodDetailsIdealGeneratedSepaDebitMandate: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for SetupAttemptPaymentMethodDetailsIdealGeneratedSepaDebitMandate")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for SetupAttemptPaymentMethodDetailsIdealGeneratedSepaDebitMandate"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(Mandate.self) { return .mandate(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(Mandate.self) {
+            return .mandate(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -29,7 +39,6 @@ extension SetupAttemptPaymentMethodDetailsIdealGeneratedSepaDebitMandate: Codabl
         case let .mandate(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Typed representation of the `SetupAttemptPaymentMethodDetailsSofort` API schema.
@@ -65,42 +74,51 @@ public struct SetupAttemptPaymentMethodDetailsSofort: Codable {
     }
 
     init() {
-        (self.bankCode, self.bankName, self.bic, self.generatedSepaDebit, self.generatedSepaDebitMandate) = (nil, nil, nil, nil, nil)
-        (self.ibanLast4, self.preferredLanguage, self.verifiedName) = (nil, nil, nil)
+        (bankCode, bankName, bic, generatedSepaDebit, generatedSepaDebitMandate) = (nil, nil, nil, nil, nil)
+        (ibanLast4, preferredLanguage, verifiedName) = (nil, nil, nil)
     }
 }
 
 public extension SetupAttemptPaymentMethodDetailsSofort {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.bankCode = try container.sdkDecodeIfPresent(.bankCode)
-        self.bankName = try container.sdkDecodeIfPresent(.bankName)
-        self.bic = try container.sdkDecodeIfPresent(.bic)
-        self.generatedSepaDebit = try container.sdkDecodeIfPresent(.generatedSepaDebit)
-        self.generatedSepaDebitMandate = try container.sdkDecodeIfPresent(.generatedSepaDebitMandate)
-        self.ibanLast4 = try container.sdkDecodeIfPresent(.ibanLast4)
-        self.preferredLanguage = try container.sdkDecodeIfPresent(.preferredLanguage)
-        self.verifiedName = try container.sdkDecodeIfPresent(.verifiedName)
-        if let value = self.bankCode {
+        bankCode = try container.sdkDecodeIfPresent(.bankCode)
+        bankName = try container.sdkDecodeIfPresent(.bankName)
+        bic = try container.sdkDecodeIfPresent(.bic)
+        generatedSepaDebit = try container.sdkDecodeIfPresent(.generatedSepaDebit)
+        generatedSepaDebitMandate = try container.sdkDecodeIfPresent(.generatedSepaDebitMandate)
+        ibanLast4 = try container.sdkDecodeIfPresent(.ibanLast4)
+        preferredLanguage = try container.sdkDecodeIfPresent(.preferredLanguage)
+        verifiedName = try container.sdkDecodeIfPresent(.verifiedName)
+        if let value = bankCode {
             try validateLength("bank_code", value, min: nil, max: 5000)
         }
-        if let value = self.bankName {
+        if let value = bankName {
             try validateLength("bank_name", value, min: nil, max: 5000)
         }
-        if let value = self.bic {
+        if let value = bic {
             try validateLength("bic", value, min: nil, max: 5000)
         }
-        if let value = self.ibanLast4 {
+        if let value = ibanLast4 {
             try validateLength("iban_last4", value, min: nil, max: 5000)
         }
-        if let value = self.verifiedName {
+        if let value = verifiedName {
             try validateLength("verified_name", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension SetupAttemptPaymentMethodDetailsSofort {
-    public init(bankCode: String? = nil, bankName: String? = nil, bic: String? = nil, generatedSepaDebit: SetupAttemptPaymentMethodDetailsSofortGeneratedSepaDebit? = nil, generatedSepaDebitMandate: SetupAttemptPaymentMethodDetailsSofortGeneratedSepaDebitMandate? = nil, ibanLast4: String? = nil, preferredLanguage: SetupAttemptPaymentMethodDetailsSofortPreferredLanguage? = nil, verifiedName: String? = nil) throws {
+    init(
+        bankCode: String? = nil,
+        bankName: String? = nil,
+        bic: String? = nil,
+        generatedSepaDebit: SetupAttemptPaymentMethodDetailsSofortGeneratedSepaDebit? = nil,
+        generatedSepaDebitMandate: SetupAttemptPaymentMethodDetailsSofortGeneratedSepaDebitMandate? = nil,
+        ibanLast4: String? = nil,
+        preferredLanguage: SetupAttemptPaymentMethodDetailsSofortPreferredLanguage? = nil,
+        verifiedName: String? = nil
+    ) throws {
         self.init()
         (self.bankCode, self.bankName) = (bankCode, bankName)
         (self.bic, self.generatedSepaDebit) = (bic, generatedSepaDebit)
@@ -130,21 +148,31 @@ public enum SetupAttemptPaymentMethodDetailsSofortGeneratedSepaDebit {
 }
 
 extension SetupAttemptPaymentMethodDetailsSofortGeneratedSepaDebit: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for SetupAttemptPaymentMethodDetailsSofortGeneratedSepaDebit")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for SetupAttemptPaymentMethodDetailsSofortGeneratedSepaDebit"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(PaymentMethod.self) { return .paymentMethod(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(PaymentMethod.self) {
+            return .paymentMethod(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -154,7 +182,6 @@ extension SetupAttemptPaymentMethodDetailsSofortGeneratedSepaDebit: Codable {
         case let .paymentMethod(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum SetupAttemptPaymentMethodDetailsSofortGeneratedSepaDebitMandate {
@@ -163,21 +190,31 @@ public enum SetupAttemptPaymentMethodDetailsSofortGeneratedSepaDebitMandate {
 }
 
 extension SetupAttemptPaymentMethodDetailsSofortGeneratedSepaDebitMandate: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for SetupAttemptPaymentMethodDetailsSofortGeneratedSepaDebitMandate")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for SetupAttemptPaymentMethodDetailsSofortGeneratedSepaDebitMandate"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(Mandate.self) { return .mandate(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(Mandate.self) {
+            return .mandate(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -187,7 +224,6 @@ extension SetupAttemptPaymentMethodDetailsSofortGeneratedSepaDebitMandate: Codab
         case let .mandate(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// A SetupIntent guides you through the process of setting up and saving a customer's payment credentials for
@@ -310,78 +346,138 @@ public struct SetupIntent: Codable {
         case singleUseMandate = "single_use_mandate"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension SetupIntent {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.created) else {
-            throw SdkValidationError(field: "created", code: "required", message: "Validation failed for 'created': value is required")
+            throw SdkValidationError(
+                field: "created",
+                code: "required",
+                message: "Validation failed for 'created': value is required"
+            )
         }
         guard container.contains(.id) else {
-            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
+            throw SdkValidationError(
+                field: "id",
+                code: "required",
+                message: "Validation failed for 'id': value is required"
+            )
         }
         guard container.contains(.livemode) else {
-            throw SdkValidationError(field: "livemode", code: "required", message: "Validation failed for 'livemode': value is required")
+            throw SdkValidationError(
+                field: "livemode",
+                code: "required",
+                message: "Validation failed for 'livemode': value is required"
+            )
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
         }
         guard container.contains(.paymentMethodTypes) else {
-            throw SdkValidationError(field: "payment_method_types", code: "required", message: "Validation failed for 'payment_method_types': value is required")
+            throw SdkValidationError(
+                field: "payment_method_types",
+                code: "required",
+                message: "Validation failed for 'payment_method_types': value is required"
+            )
         }
         guard container.contains(.status) else {
-            throw SdkValidationError(field: "status", code: "required", message: "Validation failed for 'status': value is required")
+            throw SdkValidationError(
+                field: "status",
+                code: "required",
+                message: "Validation failed for 'status': value is required"
+            )
         }
         guard container.contains(.usage) else {
-            throw SdkValidationError(field: "usage", code: "required", message: "Validation failed for 'usage': value is required")
+            throw SdkValidationError(
+                field: "usage",
+                code: "required",
+                message: "Validation failed for 'usage': value is required"
+            )
         }
-        self.created = try container.sdkDecodeRequired(.created)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.livemode = try container.sdkDecodeRequired(.livemode)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.paymentMethodTypes = try container.sdkDecodeRequired(.paymentMethodTypes)
-        self.status = try container.sdkDecodeRequired(.status)
-        self.usage = try container.sdkDecodeRequired(.usage)
-        self.allowedPaymentMethodTypes = try container.sdkDecodeIfPresent(.allowedPaymentMethodTypes)
-        self.application = try container.sdkDecodeIfPresent(.application)
-        self.attachToSelf = try container.sdkDecodeIfPresent(.attachToSelf)
-        self.automaticPaymentMethods = try container.sdkDecodeIfPresent(.automaticPaymentMethods)
-        self.cancellationReason = try container.sdkDecodeIfPresent(.cancellationReason)
-        self.clientSecret = try container.sdkDecodeIfPresent(.clientSecret)
-        self.customer = try container.sdkDecodeIfPresent(.customer)
-        self.customerAccount = try container.sdkDecodeIfPresent(.customerAccount)
-        self.description = try container.sdkDecodeIfPresent(.description)
-        self.excludedPaymentMethodTypes = try container.sdkDecodeIfPresent(.excludedPaymentMethodTypes)
-        self.flowDirections = try container.sdkDecodeIfPresent(.flowDirections)
-        self.lastSetupError = try container.sdkDecodeIfPresent(.lastSetupError)
-        self.latestAttempt = try container.sdkDecodeIfPresent(.latestAttempt)
-        self.managedPayments = try container.sdkDecodeIfPresent(.managedPayments)
-        self.mandate = try container.sdkDecodeIfPresent(.mandate)
-        self.metadata = try container.sdkDecodeIfPresent(.metadata)
-        self.nextAction = try container.sdkDecodeIfPresent(.nextAction)
-        self.onBehalfOf = try container.sdkDecodeIfPresent(.onBehalfOf)
-        self.paymentMethod = try container.sdkDecodeIfPresent(.paymentMethod)
-        self.paymentMethodConfigurationDetails = try container.sdkDecodeIfPresent(.paymentMethodConfigurationDetails)
-        self.paymentMethodOptions = try container.sdkDecodeIfPresent(.paymentMethodOptions)
-        self.singleUseMandate = try container.sdkDecodeIfPresent(.singleUseMandate)
-            try validateLength("id", self.id, min: nil, max: 5000)
-            try validateLength("usage", self.usage, min: nil, max: 5000)
-        if let value = self.clientSecret {
+        created = try container.sdkDecodeRequired(.created)
+        id = try container.sdkDecodeRequired(.id)
+        livemode = try container.sdkDecodeRequired(.livemode)
+        object = try container.sdkDecodeRequired(.object)
+        paymentMethodTypes = try container.sdkDecodeRequired(.paymentMethodTypes)
+        status = try container.sdkDecodeRequired(.status)
+        usage = try container.sdkDecodeRequired(.usage)
+        allowedPaymentMethodTypes = try container.sdkDecodeIfPresent(.allowedPaymentMethodTypes)
+        application = try container.sdkDecodeIfPresent(.application)
+        attachToSelf = try container.sdkDecodeIfPresent(.attachToSelf)
+        automaticPaymentMethods = try container.sdkDecodeIfPresent(.automaticPaymentMethods)
+        cancellationReason = try container.sdkDecodeIfPresent(.cancellationReason)
+        clientSecret = try container.sdkDecodeIfPresent(.clientSecret)
+        customer = try container.sdkDecodeIfPresent(.customer)
+        customerAccount = try container.sdkDecodeIfPresent(.customerAccount)
+        description = try container.sdkDecodeIfPresent(.description)
+        excludedPaymentMethodTypes = try container.sdkDecodeIfPresent(.excludedPaymentMethodTypes)
+        flowDirections = try container.sdkDecodeIfPresent(.flowDirections)
+        lastSetupError = try container.sdkDecodeIfPresent(.lastSetupError)
+        latestAttempt = try container.sdkDecodeIfPresent(.latestAttempt)
+        managedPayments = try container.sdkDecodeIfPresent(.managedPayments)
+        mandate = try container.sdkDecodeIfPresent(.mandate)
+        metadata = try container.sdkDecodeIfPresent(.metadata)
+        nextAction = try container.sdkDecodeIfPresent(.nextAction)
+        onBehalfOf = try container.sdkDecodeIfPresent(.onBehalfOf)
+        paymentMethod = try container.sdkDecodeIfPresent(.paymentMethod)
+        paymentMethodConfigurationDetails = try container.sdkDecodeIfPresent(.paymentMethodConfigurationDetails)
+        paymentMethodOptions = try container.sdkDecodeIfPresent(.paymentMethodOptions)
+        singleUseMandate = try container.sdkDecodeIfPresent(.singleUseMandate)
+        try validateLength("id", id, min: nil, max: 5000)
+        try validateLength("usage", usage, min: nil, max: 5000)
+        if let value = clientSecret {
             try validateLength("client_secret", value, min: nil, max: 5000)
         }
-        if let value = self.customerAccount {
+        if let value = customerAccount {
             try validateLength("customer_account", value, min: nil, max: 5000)
         }
-        if let value = self.description {
+        if let value = description {
             try validateLength("description", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension SetupIntent {
-    public init(created: Int, id: String, livemode: Bool, object: SetupIntentObject, paymentMethodTypes: [String], status: SetupIntentStatus, usage: String, allowedPaymentMethodTypes: [SetupIntentAllowedPaymentMethodTypesItem]? = nil, application: SetupIntentApplication? = nil, attachToSelf: Bool? = nil, automaticPaymentMethods: SetupIntentAutomaticPaymentMethods? = nil, cancellationReason: SetupIntentCancellationReason? = nil, clientSecret: String? = nil, customer: SetupIntentCustomer? = nil, customerAccount: String? = nil, description: String? = nil, excludedPaymentMethodTypes: [SetupIntentExcludedPaymentMethodTypesItem]? = nil, flowDirections: [SetupIntentFlowDirectionsItem]? = nil, lastSetupError: SetupIntentLastSetupError? = nil, latestAttempt: SetupIntentLatestAttempt? = nil, managedPayments: SetupIntentManagedPayments? = nil, mandate: SetupIntentMandate? = nil, metadata: [String: String]? = nil, nextAction: SetupIntentNextActionXe0e117ee? = nil, onBehalfOf: SetupIntentOnBehalfOf? = nil, paymentMethod: SetupIntentPaymentMethod? = nil, paymentMethodConfigurationDetails: SetupIntentPaymentMethodConfigurationDetails? = nil, paymentMethodOptions: SetupIntentPaymentMethodOptionsX9e24e185? = nil, singleUseMandate: SetupIntentSingleUseMandate? = nil) throws {
+    init(
+        created: Int,
+        id: String,
+        livemode: Bool,
+        object: SetupIntentObject,
+        paymentMethodTypes: [String],
+        status: SetupIntentStatus,
+        usage: String,
+        allowedPaymentMethodTypes: [SetupIntentAllowedPaymentMethodTypesItem]? = nil,
+        application: SetupIntentApplication? = nil,
+        attachToSelf: Bool? = nil,
+        automaticPaymentMethods: SetupIntentAutomaticPaymentMethods? = nil,
+        cancellationReason: SetupIntentCancellationReason? = nil,
+        clientSecret: String? = nil,
+        customer: SetupIntentCustomer? = nil,
+        customerAccount: String? = nil,
+        description: String? = nil,
+        excludedPaymentMethodTypes: [SetupIntentExcludedPaymentMethodTypesItem]? = nil,
+        flowDirections: [SetupIntentFlowDirectionsItem]? = nil,
+        lastSetupError: SetupIntentLastSetupError? = nil,
+        latestAttempt: SetupIntentLatestAttempt? = nil,
+        managedPayments: SetupIntentManagedPayments? = nil,
+        mandate: SetupIntentMandate? = nil,
+        metadata: [String: String]? = nil,
+        nextAction: SetupIntentNextActionXe0e117ee? = nil,
+        onBehalfOf: SetupIntentOnBehalfOf? = nil,
+        paymentMethod: SetupIntentPaymentMethod? = nil,
+        paymentMethodConfigurationDetails: SetupIntentPaymentMethodConfigurationDetails? = nil,
+        paymentMethodOptions: SetupIntentPaymentMethodOptionsX9e24e185? = nil,
+        singleUseMandate: SetupIntentSingleUseMandate? = nil
+    ) throws {
         (self.created, self.id) = (created, id)
         (self.livemode, self.object) = (livemode, object)
         (self.paymentMethodTypes, self.status) = (paymentMethodTypes, status)
@@ -398,8 +494,8 @@ public extension SetupIntent {
         self.paymentMethod = paymentMethod
         self.paymentMethodConfigurationDetails = paymentMethodConfigurationDetails
         (self.paymentMethodOptions, self.singleUseMandate) = (paymentMethodOptions, singleUseMandate)
-            try validateLength("id", self.id, min: nil, max: 5000)
-            try validateLength("usage", self.usage, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("usage", self.usage, min: nil, max: 5000)
         if let value = self.clientSecret {
             try validateLength("client_secret", value, min: nil, max: 5000)
         }
@@ -418,21 +514,31 @@ public enum SetupIntentApplication {
 }
 
 extension SetupIntentApplication: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for SetupIntentApplication")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for SetupIntentApplication"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(Application.self) { return .application(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(Application.self) {
+            return .application(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -442,7 +548,6 @@ extension SetupIntentApplication: Codable {
         case let .application(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum SetupIntentAutomaticPaymentMethods {
@@ -450,24 +555,30 @@ public enum SetupIntentAutomaticPaymentMethods {
 }
 
 extension SetupIntentAutomaticPaymentMethods: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for SetupIntentAutomaticPaymentMethods")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for SetupIntentAutomaticPaymentMethods"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PaymentFlowsAutomaticPaymentMethodsSetupIntent.self
         ) {
-            return             .paymentFlowsAutomaticPaymentMethodsSetupIntent(value)
+            return .paymentFlowsAutomaticPaymentMethodsSetupIntent(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -476,7 +587,6 @@ extension SetupIntentAutomaticPaymentMethods: Codable {
         case let .paymentFlowsAutomaticPaymentMethodsSetupIntent(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum SetupIntentCustomer {
@@ -486,22 +596,34 @@ public enum SetupIntentCustomer {
 }
 
 extension SetupIntentCustomer: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for SetupIntentCustomer")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for SetupIntentCustomer"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(Customer.self) { return .customer(value) }
-        if let value = try? container.decode(DeletedCustomer.self) { return .deletedCustomer(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(Customer.self) {
+            return .customer(value)
+        }
+        if let value = try? container.decode(DeletedCustomer.self) {
+            return .deletedCustomer(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -512,7 +634,6 @@ extension SetupIntentCustomer: Codable {
         case let .deletedCustomer(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum SetupIntentLastSetupError {

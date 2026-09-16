@@ -19,11 +19,30 @@ public enum V1PaymentRecordsReportPaymentAttemptGuaranteedMethods {
     ///   information about the object in a structured format. Individual keys can be
     ///   unset by posting an empty value to them. All keys can be unset by posting an
     ///   empty value to `metadata`.
-    public static func postPaymentRecordsIdReportPaymentAttemptGuaranteed(config: ClientConfig, id: String, guaranteedAt: Int, expand: [String]?, metadata: PostPaymentRecordsIdReportPaymentAttemptGuaranteedRequestBodyMetadata?) async throws -> PaymentRecord {
+    public static func postPaymentRecordsIdReportPaymentAttemptGuaranteed(
+        config: ClientConfig,
+        id: String,
+        guaranteedAt: Int,
+        expand: [String]?,
+        metadata: PostPaymentRecordsIdReportPaymentAttemptGuaranteedRequestBodyMetadata?
+    ) async throws -> PaymentRecord {
         try validateLength("id", id, max: 5000)
 
-        let requestBody = PostPaymentRecordsIdReportPaymentAttemptGuaranteedRequestBody(guaranteedAt: guaranteedAt, expand: expand, metadata: metadata)
+        let requestBody = PostPaymentRecordsIdReportPaymentAttemptGuaranteedRequestBody(
+            guaranteedAt: guaranteedAt,
+            expand: expand,
+            metadata: metadata
+        )
 
-        return try (await sdkRequest("POST", ["/v1/payment_records/", sdkEncodePathSegment(sdkWireString(id)), "/report_payment_attempt_guaranteed"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostPaymentRecordsIdReportPaymentAttemptGuaranteed")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/payment_records/", sdkEncodePathSegment(sdkWireString(id)), "/report_payment_attempt_guaranteed"]
+                .joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostPaymentRecordsIdReportPaymentAttemptGuaranteed"
+        )).data
     }
 }

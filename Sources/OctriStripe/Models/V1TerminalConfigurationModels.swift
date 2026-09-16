@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1TerminalConfiguration domain models
+/// V1TerminalConfiguration domain models
 /// A Configurations object represents how features should be configured for terminal readers. For information about
 /// how to use it, see the Terminal configurations documentation.
 public struct TerminalConfiguration: Codable {
@@ -69,49 +69,83 @@ public struct TerminalConfiguration: Codable {
         case wifi
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension TerminalConfiguration {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.id) else {
-            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
+            throw SdkValidationError(
+                field: "id",
+                code: "required",
+                message: "Validation failed for 'id': value is required"
+            )
         }
         guard container.contains(.livemode) else {
-            throw SdkValidationError(field: "livemode", code: "required", message: "Validation failed for 'livemode': value is required")
+            throw SdkValidationError(
+                field: "livemode",
+                code: "required",
+                message: "Validation failed for 'livemode': value is required"
+            )
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
         }
-        self.id = try container.sdkDecodeRequired(.id)
-        self.livemode = try container.sdkDecodeRequired(.livemode)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.bbposWisepad3 = try container.sdkDecodeIfPresent(.bbposWisepad3)
-        self.bbposWiseposE = try container.sdkDecodeIfPresent(.bbposWiseposE)
-        self.cellular = try container.sdkDecodeIfPresent(.cellular)
-        self.isAccountDefault = try container.sdkDecodeIfPresent(.isAccountDefault)
-        self.name = try container.sdkDecodeIfPresent(.name)
-        self.offline = try container.sdkDecodeIfPresent(.offline)
-        self.rebootWindow = try container.sdkDecodeIfPresent(.rebootWindow)
-        self.stripeS700 = try container.sdkDecodeIfPresent(.stripeS700)
-        self.stripeS710 = try container.sdkDecodeIfPresent(.stripeS710)
-        self.tipping = try container.sdkDecodeIfPresent(.tipping)
-        self.verifoneM425 = try container.sdkDecodeIfPresent(.verifoneM425)
-        self.verifoneP400 = try container.sdkDecodeIfPresent(.verifoneP400)
-        self.verifoneP630 = try container.sdkDecodeIfPresent(.verifoneP630)
-        self.verifoneUx700 = try container.sdkDecodeIfPresent(.verifoneUx700)
-        self.verifoneV660p = try container.sdkDecodeIfPresent(.verifoneV660p)
-        self.wifi = try container.sdkDecodeIfPresent(.wifi)
-            try validateLength("id", self.id, min: nil, max: 5000)
-        if let value = self.name {
+        id = try container.sdkDecodeRequired(.id)
+        livemode = try container.sdkDecodeRequired(.livemode)
+        object = try container.sdkDecodeRequired(.object)
+        bbposWisepad3 = try container.sdkDecodeIfPresent(.bbposWisepad3)
+        bbposWiseposE = try container.sdkDecodeIfPresent(.bbposWiseposE)
+        cellular = try container.sdkDecodeIfPresent(.cellular)
+        isAccountDefault = try container.sdkDecodeIfPresent(.isAccountDefault)
+        name = try container.sdkDecodeIfPresent(.name)
+        offline = try container.sdkDecodeIfPresent(.offline)
+        rebootWindow = try container.sdkDecodeIfPresent(.rebootWindow)
+        stripeS700 = try container.sdkDecodeIfPresent(.stripeS700)
+        stripeS710 = try container.sdkDecodeIfPresent(.stripeS710)
+        tipping = try container.sdkDecodeIfPresent(.tipping)
+        verifoneM425 = try container.sdkDecodeIfPresent(.verifoneM425)
+        verifoneP400 = try container.sdkDecodeIfPresent(.verifoneP400)
+        verifoneP630 = try container.sdkDecodeIfPresent(.verifoneP630)
+        verifoneUx700 = try container.sdkDecodeIfPresent(.verifoneUx700)
+        verifoneV660p = try container.sdkDecodeIfPresent(.verifoneV660p)
+        wifi = try container.sdkDecodeIfPresent(.wifi)
+        try validateLength("id", id, min: nil, max: 5000)
+        if let value = name {
             try validateLength("name", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension TerminalConfiguration {
-    public init(id: String, livemode: Bool, object: TerminalConfigurationObject, bbposWisepad3: TerminalConfigurationConfigurationResourceDeviceTypeSpecificConfig? = nil, bbposWiseposE: TerminalConfigurationConfigurationResourceDeviceTypeSpecificConfig? = nil, cellular: TerminalConfigurationConfigurationResourceCellularConfig? = nil, isAccountDefault: Bool? = nil, name: String? = nil, offline: TerminalConfigurationConfigurationResourceOfflineConfig? = nil, rebootWindow: TerminalConfigurationConfigurationResourceRebootWindow? = nil, stripeS700: TerminalConfigurationConfigurationResourceDeviceTypeSpecificConfig? = nil, stripeS710: TerminalConfigurationConfigurationResourceDeviceTypeSpecificConfig? = nil, tipping: TerminalConfigurationConfigurationResourceTipping? = nil, verifoneM425: TerminalConfigurationConfigurationResourceDeviceTypeSpecificConfig? = nil, verifoneP400: TerminalConfigurationConfigurationResourceDeviceTypeSpecificConfig? = nil, verifoneP630: TerminalConfigurationConfigurationResourceDeviceTypeSpecificConfig? = nil, verifoneUx700: TerminalConfigurationConfigurationResourceDeviceTypeSpecificConfig? = nil, verifoneV660p: TerminalConfigurationConfigurationResourceDeviceTypeSpecificConfig? = nil, wifi: TerminalConfigurationConfigurationResourceWifiConfig? = nil) throws {
+    init(
+        id: String,
+        livemode: Bool,
+        object: TerminalConfigurationObject,
+        bbposWisepad3: TerminalConfigurationConfigurationResourceDeviceTypeSpecificConfig? = nil,
+        bbposWiseposE: TerminalConfigurationConfigurationResourceDeviceTypeSpecificConfig? = nil,
+        cellular: TerminalConfigurationConfigurationResourceCellularConfig? = nil,
+        isAccountDefault: Bool? = nil,
+        name: String? = nil,
+        offline: TerminalConfigurationConfigurationResourceOfflineConfig? = nil,
+        rebootWindow: TerminalConfigurationConfigurationResourceRebootWindow? = nil,
+        stripeS700: TerminalConfigurationConfigurationResourceDeviceTypeSpecificConfig? = nil,
+        stripeS710: TerminalConfigurationConfigurationResourceDeviceTypeSpecificConfig? = nil,
+        tipping: TerminalConfigurationConfigurationResourceTipping? = nil,
+        verifoneM425: TerminalConfigurationConfigurationResourceDeviceTypeSpecificConfig? = nil,
+        verifoneP400: TerminalConfigurationConfigurationResourceDeviceTypeSpecificConfig? = nil,
+        verifoneP630: TerminalConfigurationConfigurationResourceDeviceTypeSpecificConfig? = nil,
+        verifoneUx700: TerminalConfigurationConfigurationResourceDeviceTypeSpecificConfig? = nil,
+        verifoneV660p: TerminalConfigurationConfigurationResourceDeviceTypeSpecificConfig? = nil,
+        wifi: TerminalConfigurationConfigurationResourceWifiConfig? = nil
+    ) throws {
         (self.id, self.livemode) = (id, livemode)
         (self.object, self.bbposWisepad3) = (object, bbposWisepad3)
         (self.bbposWiseposE, self.cellular) = (bbposWiseposE, cellular)
@@ -122,7 +156,7 @@ public extension TerminalConfiguration {
         (self.verifoneP400, self.verifoneP630) = (verifoneP400, verifoneP630)
         (self.verifoneUx700, self.verifoneV660p) = (verifoneUx700, verifoneV660p)
         self.wifi = wifi
-            try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
         if let value = self.name {
             try validateLength("name", value, min: nil, max: 5000)
         }
@@ -138,21 +172,27 @@ public struct TerminalConfigurationConfigurationResourceCellularConfig: Codable 
         case enabled
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension TerminalConfigurationConfigurationResourceCellularConfig {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.enabled) else {
-            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
-        }
-        self.enabled = try container.sdkDecodeRequired(.enabled)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension TerminalConfigurationConfigurationResourceCellularConfig {
-    public init(enabled: Bool) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.enabled) else {
+            throw SdkValidationError(
+                field: "enabled",
+                code: "required",
+                message: "Validation failed for 'enabled': value is required"
+            )
+        }
+        enabled = try container.sdkDecodeRequired(.enabled)
+    }
+}
+
+public extension TerminalConfigurationConfigurationResourceCellularConfig {
+    init(enabled: Bool) {
         self.enabled = enabled
     }
 }
@@ -173,21 +213,21 @@ public struct TerminalConfigurationConfigurationResourceCurrencySpecificConfig: 
     }
 
     init() {
-        (self.fixedAmounts, self.percentages, self.smartTipThreshold) = (nil, nil, nil)
+        (fixedAmounts, percentages, smartTipThreshold) = (nil, nil, nil)
     }
 }
 
 public extension TerminalConfigurationConfigurationResourceCurrencySpecificConfig {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.fixedAmounts = try container.sdkDecodeIfPresent(.fixedAmounts)
-        self.percentages = try container.sdkDecodeIfPresent(.percentages)
-        self.smartTipThreshold = try container.sdkDecodeIfPresent(.smartTipThreshold)
+        fixedAmounts = try container.sdkDecodeIfPresent(.fixedAmounts)
+        percentages = try container.sdkDecodeIfPresent(.percentages)
+        smartTipThreshold = try container.sdkDecodeIfPresent(.smartTipThreshold)
     }
 }
 
 public extension TerminalConfigurationConfigurationResourceCurrencySpecificConfig {
-    public init(fixedAmounts: [Int]? = nil, percentages: [Int]? = nil, smartTipThreshold: Int? = nil) {
+    init(fixedAmounts: [Int]? = nil, percentages: [Int]? = nil, smartTipThreshold: Int? = nil) {
         self.init()
         (self.fixedAmounts, self.percentages) = (fixedAmounts, percentages)
         self.smartTipThreshold = smartTipThreshold
@@ -204,19 +244,19 @@ public struct TerminalConfigurationConfigurationResourceDeviceTypeSpecificConfig
     }
 
     init() {
-        self.splashscreen = nil
+        splashscreen = nil
     }
 }
 
 public extension TerminalConfigurationConfigurationResourceDeviceTypeSpecificConfig {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.splashscreen = try container.sdkDecodeIfPresent(.splashscreen)
+        splashscreen = try container.sdkDecodeIfPresent(.splashscreen)
     }
 }
 
 public extension TerminalConfigurationConfigurationResourceDeviceTypeSpecificConfig {
-    public init(splashscreen: TerminalConfigurationConfigurationResourceDeviceTypeSpecificCX991a286ed5? = nil) {
+    init(splashscreen: TerminalConfigurationConfigurationResourceDeviceTypeSpecificCX991a286ed5? = nil) {
         self.init()
         self.splashscreen = splashscreen
     }
@@ -228,21 +268,31 @@ public enum TerminalConfigurationConfigurationResourceDeviceTypeSpecificCX991a28
 }
 
 extension TerminalConfigurationConfigurationResourceDeviceTypeSpecificCX991a286ed5: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for TerminalConfigurationConfigurationResourceDeviceTypeSpecificCX991a286ed5")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for TerminalConfigurationConfigurationResourceDeviceTypeSpecificCX991a286ed5"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(File2.self) { return .file2(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(File2.self) {
+            return .file2(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -252,7 +302,6 @@ extension TerminalConfigurationConfigurationResourceDeviceTypeSpecificCX991a286e
         case let .file2(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Typed representation of the `TerminalConfigurationConfigurationResourceEnterprisePeapWifi` API schema.
@@ -273,41 +322,55 @@ public struct TerminalConfigurationConfigurationResourceEnterprisePeapWifi: Coda
         case caCertificateFile = "ca_certificate_file"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension TerminalConfigurationConfigurationResourceEnterprisePeapWifi {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.password) else {
-            throw SdkValidationError(field: "password", code: "required", message: "Validation failed for 'password': value is required")
+            throw SdkValidationError(
+                field: "password",
+                code: "required",
+                message: "Validation failed for 'password': value is required"
+            )
         }
         guard container.contains(.ssid) else {
-            throw SdkValidationError(field: "ssid", code: "required", message: "Validation failed for 'ssid': value is required")
+            throw SdkValidationError(
+                field: "ssid",
+                code: "required",
+                message: "Validation failed for 'ssid': value is required"
+            )
         }
         guard container.contains(.username) else {
-            throw SdkValidationError(field: "username", code: "required", message: "Validation failed for 'username': value is required")
+            throw SdkValidationError(
+                field: "username",
+                code: "required",
+                message: "Validation failed for 'username': value is required"
+            )
         }
-        self.password = try container.sdkDecodeRequired(.password)
-        self.ssid = try container.sdkDecodeRequired(.ssid)
-        self.username = try container.sdkDecodeRequired(.username)
-        self.caCertificateFile = try container.sdkDecodeIfPresent(.caCertificateFile)
-            try validateLength("password", self.password, min: nil, max: 5000)
-            try validateLength("ssid", self.ssid, min: nil, max: 5000)
-            try validateLength("username", self.username, min: nil, max: 5000)
-        if let value = self.caCertificateFile {
+        password = try container.sdkDecodeRequired(.password)
+        ssid = try container.sdkDecodeRequired(.ssid)
+        username = try container.sdkDecodeRequired(.username)
+        caCertificateFile = try container.sdkDecodeIfPresent(.caCertificateFile)
+        try validateLength("password", password, min: nil, max: 5000)
+        try validateLength("ssid", ssid, min: nil, max: 5000)
+        try validateLength("username", username, min: nil, max: 5000)
+        if let value = caCertificateFile {
             try validateLength("ca_certificate_file", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension TerminalConfigurationConfigurationResourceEnterprisePeapWifi {
-    public init(password: String, ssid: String, username: String, caCertificateFile: String? = nil) throws {
+    init(password: String, ssid: String, username: String, caCertificateFile: String? = nil) throws {
         (self.password, self.ssid) = (password, ssid)
         (self.username, self.caCertificateFile) = (username, caCertificateFile)
-            try validateLength("password", self.password, min: nil, max: 5000)
-            try validateLength("ssid", self.ssid, min: nil, max: 5000)
-            try validateLength("username", self.username, min: nil, max: 5000)
+        try validateLength("password", self.password, min: nil, max: 5000)
+        try validateLength("ssid", self.ssid, min: nil, max: 5000)
+        try validateLength("username", self.username, min: nil, max: 5000)
         if let value = self.caCertificateFile {
             try validateLength("ca_certificate_file", value, min: nil, max: 5000)
         }
@@ -335,46 +398,66 @@ public struct TerminalConfigurationConfigurationResourceEnterpriseTlsWifi: Codab
         case privateKeyFilePassword = "private_key_file_password"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension TerminalConfigurationConfigurationResourceEnterpriseTlsWifi {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.clientCertificateFile) else {
-            throw SdkValidationError(field: "client_certificate_file", code: "required", message: "Validation failed for 'client_certificate_file': value is required")
+            throw SdkValidationError(
+                field: "client_certificate_file",
+                code: "required",
+                message: "Validation failed for 'client_certificate_file': value is required"
+            )
         }
         guard container.contains(.privateKeyFile) else {
-            throw SdkValidationError(field: "private_key_file", code: "required", message: "Validation failed for 'private_key_file': value is required")
+            throw SdkValidationError(
+                field: "private_key_file",
+                code: "required",
+                message: "Validation failed for 'private_key_file': value is required"
+            )
         }
         guard container.contains(.ssid) else {
-            throw SdkValidationError(field: "ssid", code: "required", message: "Validation failed for 'ssid': value is required")
+            throw SdkValidationError(
+                field: "ssid",
+                code: "required",
+                message: "Validation failed for 'ssid': value is required"
+            )
         }
-        self.clientCertificateFile = try container.sdkDecodeRequired(.clientCertificateFile)
-        self.privateKeyFile = try container.sdkDecodeRequired(.privateKeyFile)
-        self.ssid = try container.sdkDecodeRequired(.ssid)
-        self.caCertificateFile = try container.sdkDecodeIfPresent(.caCertificateFile)
-        self.privateKeyFilePassword = try container.sdkDecodeIfPresent(.privateKeyFilePassword)
-            try validateLength("client_certificate_file", self.clientCertificateFile, min: nil, max: 5000)
-            try validateLength("private_key_file", self.privateKeyFile, min: nil, max: 5000)
-            try validateLength("ssid", self.ssid, min: nil, max: 5000)
-        if let value = self.caCertificateFile {
+        clientCertificateFile = try container.sdkDecodeRequired(.clientCertificateFile)
+        privateKeyFile = try container.sdkDecodeRequired(.privateKeyFile)
+        ssid = try container.sdkDecodeRequired(.ssid)
+        caCertificateFile = try container.sdkDecodeIfPresent(.caCertificateFile)
+        privateKeyFilePassword = try container.sdkDecodeIfPresent(.privateKeyFilePassword)
+        try validateLength("client_certificate_file", clientCertificateFile, min: nil, max: 5000)
+        try validateLength("private_key_file", privateKeyFile, min: nil, max: 5000)
+        try validateLength("ssid", ssid, min: nil, max: 5000)
+        if let value = caCertificateFile {
             try validateLength("ca_certificate_file", value, min: nil, max: 5000)
         }
-        if let value = self.privateKeyFilePassword {
+        if let value = privateKeyFilePassword {
             try validateLength("private_key_file_password", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension TerminalConfigurationConfigurationResourceEnterpriseTlsWifi {
-    public init(clientCertificateFile: String, privateKeyFile: String, ssid: String, caCertificateFile: String? = nil, privateKeyFilePassword: String? = nil) throws {
+    init(
+        clientCertificateFile: String,
+        privateKeyFile: String,
+        ssid: String,
+        caCertificateFile: String? = nil,
+        privateKeyFilePassword: String? = nil
+    ) throws {
         (self.clientCertificateFile, self.privateKeyFile) = (clientCertificateFile, privateKeyFile)
         (self.ssid, self.caCertificateFile) = (ssid, caCertificateFile)
         self.privateKeyFilePassword = privateKeyFilePassword
-            try validateLength("client_certificate_file", self.clientCertificateFile, min: nil, max: 5000)
-            try validateLength("private_key_file", self.privateKeyFile, min: nil, max: 5000)
-            try validateLength("ssid", self.ssid, min: nil, max: 5000)
+        try validateLength("client_certificate_file", self.clientCertificateFile, min: nil, max: 5000)
+        try validateLength("private_key_file", self.privateKeyFile, min: nil, max: 5000)
+        try validateLength("ssid", self.ssid, min: nil, max: 5000)
         if let value = self.caCertificateFile {
             try validateLength("ca_certificate_file", value, min: nil, max: 5000)
         }
@@ -394,19 +477,19 @@ public struct TerminalConfigurationConfigurationResourceOfflineConfig: Codable {
     }
 
     init() {
-        self.enabled = nil
+        enabled = nil
     }
 }
 
 public extension TerminalConfigurationConfigurationResourceOfflineConfig {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.enabled = try container.sdkDecodeIfPresent(.enabled)
+        enabled = try container.sdkDecodeIfPresent(.enabled)
     }
 }
 
 public extension TerminalConfigurationConfigurationResourceOfflineConfig {
-    public init(enabled: Bool? = nil) {
+    init(enabled: Bool? = nil) {
         self.init()
         self.enabled = enabled
     }
@@ -424,30 +507,40 @@ public struct TerminalConfigurationConfigurationResourcePersonalPskWifi: Codable
         case ssid
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension TerminalConfigurationConfigurationResourcePersonalPskWifi {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.password) else {
-            throw SdkValidationError(field: "password", code: "required", message: "Validation failed for 'password': value is required")
-        }
-        guard container.contains(.ssid) else {
-            throw SdkValidationError(field: "ssid", code: "required", message: "Validation failed for 'ssid': value is required")
-        }
-        self.password = try container.sdkDecodeRequired(.password)
-        self.ssid = try container.sdkDecodeRequired(.ssid)
-            try validateLength("password", self.password, min: nil, max: 5000)
-            try validateLength("ssid", self.ssid, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension TerminalConfigurationConfigurationResourcePersonalPskWifi {
-    public init(password: String, ssid: String) throws {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.password) else {
+            throw SdkValidationError(
+                field: "password",
+                code: "required",
+                message: "Validation failed for 'password': value is required"
+            )
+        }
+        guard container.contains(.ssid) else {
+            throw SdkValidationError(
+                field: "ssid",
+                code: "required",
+                message: "Validation failed for 'ssid': value is required"
+            )
+        }
+        password = try container.sdkDecodeRequired(.password)
+        ssid = try container.sdkDecodeRequired(.ssid)
+        try validateLength("password", password, min: nil, max: 5000)
+        try validateLength("ssid", ssid, min: nil, max: 5000)
+    }
+}
+
+public extension TerminalConfigurationConfigurationResourcePersonalPskWifi {
+    init(password: String, ssid: String) throws {
         (self.password, self.ssid) = (password, ssid)
-            try validateLength("password", self.password, min: nil, max: 5000)
-            try validateLength("ssid", self.ssid, min: nil, max: 5000)
+        try validateLength("password", self.password, min: nil, max: 5000)
+        try validateLength("ssid", self.ssid, min: nil, max: 5000)
     }
 }
 
@@ -464,25 +557,35 @@ public struct TerminalConfigurationConfigurationResourceRebootWindow: Codable {
         case startHour = "start_hour"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension TerminalConfigurationConfigurationResourceRebootWindow {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.endHour) else {
-            throw SdkValidationError(field: "end_hour", code: "required", message: "Validation failed for 'end_hour': value is required")
-        }
-        guard container.contains(.startHour) else {
-            throw SdkValidationError(field: "start_hour", code: "required", message: "Validation failed for 'start_hour': value is required")
-        }
-        self.endHour = try container.sdkDecodeRequired(.endHour)
-        self.startHour = try container.sdkDecodeRequired(.startHour)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension TerminalConfigurationConfigurationResourceRebootWindow {
-    public init(endHour: Int, startHour: Int) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.endHour) else {
+            throw SdkValidationError(
+                field: "end_hour",
+                code: "required",
+                message: "Validation failed for 'end_hour': value is required"
+            )
+        }
+        guard container.contains(.startHour) else {
+            throw SdkValidationError(
+                field: "start_hour",
+                code: "required",
+                message: "Validation failed for 'start_hour': value is required"
+            )
+        }
+        endHour = try container.sdkDecodeRequired(.endHour)
+        startHour = try container.sdkDecodeRequired(.startHour)
+    }
+}
+
+public extension TerminalConfigurationConfigurationResourceRebootWindow {
+    init(endHour: Int, startHour: Int) {
         (self.endHour, self.startHour) = (endHour, startHour)
     }
 }

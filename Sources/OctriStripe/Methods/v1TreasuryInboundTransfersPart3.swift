@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1TreasuryInboundTransfersMethods {
-    public struct PostTreasuryInboundTransfersOptions: Codable {
+public extension V1TreasuryInboundTransfersMethods {
+    struct PostTreasuryInboundTransfersOptions: Codable {
         public var amount: Int
         public var currency: String
         public var financialAccount: String
@@ -25,7 +25,9 @@ extension V1TreasuryInboundTransfersMethods {
         }
     }
 
-    /// Creates a new InboundTransfer to add funds to a FinancialAccount through an ACH debit from an origin PaymentMethod. Supply `amount`, `currency`, `financial_account`, and `origin_payment_method`, and optionally include descriptive or response-expansion fields.
+    /// Creates a new InboundTransfer to add funds to a FinancialAccount through an ACH debit from an origin
+    /// PaymentMethod. Supply `amount`, `currency`, `financial_account`, and `origin_payment_method`, and optionally
+    /// include descriptive or response-expansion fields.
     ///
     /// Creates an InboundTransfer.
     ///
@@ -48,7 +50,10 @@ extension V1TreasuryInboundTransfersMethods {
     /// - statementDescriptor: The complete description that appears on your
     ///   customers' statements. Maximum 10 characters. Can only include -#.$&*,
     ///   spaces, and alphanumeric characters.
-    public static func postTreasuryInboundTransfers(config: ClientConfig, options: PostTreasuryInboundTransfersOptions) async throws -> TreasuryInboundTransfer {
+    static func postTreasuryInboundTransfers(
+        config: ClientConfig,
+        options: PostTreasuryInboundTransfersOptions
+    ) async throws -> TreasuryInboundTransfer {
         try validateLength("origin_payment_method", options.originPaymentMethod, max: 5000)
 
         if let description = options.description {
@@ -61,6 +66,14 @@ extension V1TreasuryInboundTransfersMethods {
 
         let requestBody = PostTreasuryInboundTransfersRequestBody(options: options)
 
-        return try (await sdkRequest("POST", "/v1/treasury/inbound_transfers", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTreasuryInboundTransfers")).data
+        return try await (sdkRequest(
+            "POST",
+            "/v1/treasury/inbound_transfers",
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostTreasuryInboundTransfers"
+        )).data
     }
 }

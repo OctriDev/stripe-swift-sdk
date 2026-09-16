@@ -3,22 +3,30 @@
 
 import Foundation
 
-// V1 domain models
+/// V1 domain models
 extension SetupIntentLastSetupError: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for SetupIntentLastSetupError")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for SetupIntentLastSetupError"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(ApiErrors.self) { return .apiErrors(value) }
+        if let value = try? container.decode(ApiErrors.self) {
+            return .apiErrors(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -27,7 +35,6 @@ extension SetupIntentLastSetupError: Codable {
         case let .apiErrors(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum SetupIntentLatestAttempt {
@@ -36,21 +43,31 @@ public enum SetupIntentLatestAttempt {
 }
 
 extension SetupIntentLatestAttempt: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for SetupIntentLatestAttempt")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for SetupIntentLatestAttempt"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(SetupAttempt.self) { return .setupAttempt(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(SetupAttempt.self) {
+            return .setupAttempt(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -60,7 +77,6 @@ extension SetupIntentLatestAttempt: Codable {
         case let .setupAttempt(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum SetupIntentManagedPayments {
@@ -68,20 +84,29 @@ public enum SetupIntentManagedPayments {
 }
 
 extension SetupIntentManagedPayments: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for SetupIntentManagedPayments")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for SetupIntentManagedPayments"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(SmorResourceManagedPayments.self) { return .smorResourceManagedPayments(value) }
+        if let value = try? container
+            .decode(SmorResourceManagedPayments.self) {
+            return .smorResourceManagedPayments(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -90,7 +115,6 @@ extension SetupIntentManagedPayments: Codable {
         case let .smorResourceManagedPayments(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum SetupIntentMandate {
@@ -99,21 +123,31 @@ public enum SetupIntentMandate {
 }
 
 extension SetupIntentMandate: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for SetupIntentMandate")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for SetupIntentMandate"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(Mandate.self) { return .mandate(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(Mandate.self) {
+            return .mandate(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -123,7 +157,6 @@ extension SetupIntentMandate: Codable {
         case let .mandate(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum SetupIntentNextActionXe0e117ee {
@@ -131,20 +164,28 @@ public enum SetupIntentNextActionXe0e117ee {
 }
 
 extension SetupIntentNextActionXe0e117ee: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for SetupIntentNextActionXe0e117ee")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for SetupIntentNextActionXe0e117ee"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(SetupIntentNextAction.self) { return .setupIntentNextAction(value) }
+        if let value = try? container.decode(SetupIntentNextAction.self) {
+            return .setupIntentNextAction(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -153,7 +194,6 @@ extension SetupIntentNextActionXe0e117ee: Codable {
         case let .setupIntentNextAction(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum SetupIntentOnBehalfOf {
@@ -162,21 +202,31 @@ public enum SetupIntentOnBehalfOf {
 }
 
 extension SetupIntentOnBehalfOf: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for SetupIntentOnBehalfOf")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for SetupIntentOnBehalfOf"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(Account.self) { return .account(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(Account.self) {
+            return .account(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -186,7 +236,6 @@ extension SetupIntentOnBehalfOf: Codable {
         case let .account(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum SetupIntentPaymentMethod {
@@ -195,21 +244,31 @@ public enum SetupIntentPaymentMethod {
 }
 
 extension SetupIntentPaymentMethod: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for SetupIntentPaymentMethod")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for SetupIntentPaymentMethod"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(PaymentMethod.self) { return .paymentMethod(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(PaymentMethod.self) {
+            return .paymentMethod(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -219,41 +278,48 @@ extension SetupIntentPaymentMethod: Codable {
         case let .paymentMethod(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum SetupIntentPaymentMethodConfigurationDetails {
-    case paymentMethodConfigBizPaymentMethodConfigurationDetails(PaymentMethodConfigBizPaymentMethodConfigurationDetails)
+    case paymentMethodConfigBizPaymentMethodConfigurationDetails(
+        PaymentMethodConfigBizPaymentMethodConfigurationDetails
+    )
 }
 
 extension SetupIntentPaymentMethodConfigurationDetails: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for SetupIntentPaymentMethodConfigurationDetails")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for SetupIntentPaymentMethodConfigurationDetails"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PaymentMethodConfigBizPaymentMethodConfigurationDetails.self
         ) {
-            return             .paymentMethodConfigBizPaymentMethodConfigurationDetails(value)
+            return .paymentMethodConfigBizPaymentMethodConfigurationDetails(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .paymentMethodConfigBizPaymentMethodConfigurationDetails(value): try container.encode(value); return true
+        case let .paymentMethodConfigBizPaymentMethodConfigurationDetails(value): try container
+            .encode(value); return true
         }
     }
-
 }
 
 public enum SetupIntentPaymentMethodOptionsX9e24e185 {
@@ -261,20 +327,29 @@ public enum SetupIntentPaymentMethodOptionsX9e24e185 {
 }
 
 extension SetupIntentPaymentMethodOptionsX9e24e185: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for SetupIntentPaymentMethodOptionsX9e24e185")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for SetupIntentPaymentMethodOptionsX9e24e185"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(SetupIntentPaymentMethodOptions.self) { return .setupIntentPaymentMethodOptions(value) }
+        if let value = try? container
+            .decode(SetupIntentPaymentMethodOptions.self) {
+            return .setupIntentPaymentMethodOptions(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -283,7 +358,6 @@ extension SetupIntentPaymentMethodOptionsX9e24e185: Codable {
         case let .setupIntentPaymentMethodOptions(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum SetupIntentSingleUseMandate {
@@ -292,21 +366,31 @@ public enum SetupIntentSingleUseMandate {
 }
 
 extension SetupIntentSingleUseMandate: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for SetupIntentSingleUseMandate")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for SetupIntentSingleUseMandate"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(Mandate.self) { return .mandate(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(Mandate.self) {
+            return .mandate(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -316,7 +400,6 @@ extension SetupIntentSingleUseMandate: Codable {
         case let .mandate(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Typed representation of the `SmorResourceManagedPayments` API schema.
@@ -328,21 +411,27 @@ public struct SmorResourceManagedPayments: Codable {
         case enabled
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension SmorResourceManagedPayments {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.enabled) else {
-            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
-        }
-        self.enabled = try container.sdkDecodeRequired(.enabled)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension SmorResourceManagedPayments {
-    public init(enabled: Bool) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.enabled) else {
+            throw SdkValidationError(
+                field: "enabled",
+                code: "required",
+                message: "Validation failed for 'enabled': value is required"
+            )
+        }
+        enabled = try container.sdkDecodeRequired(.enabled)
+    }
+}
+
+public extension SmorResourceManagedPayments {
+    init(enabled: Bool) {
         self.enabled = enabled
     }
 }
@@ -363,21 +452,25 @@ public struct StackableDiscountWithDiscountSettings: Codable {
     }
 
     init() {
-        (self.coupon, self.discount, self.promotionCode) = (nil, nil, nil)
+        (coupon, discount, promotionCode) = (nil, nil, nil)
     }
 }
 
 public extension StackableDiscountWithDiscountSettings {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.coupon = try container.sdkDecodeIfPresent(.coupon)
-        self.discount = try container.sdkDecodeIfPresent(.discount)
-        self.promotionCode = try container.sdkDecodeIfPresent(.promotionCode)
+        coupon = try container.sdkDecodeIfPresent(.coupon)
+        discount = try container.sdkDecodeIfPresent(.discount)
+        promotionCode = try container.sdkDecodeIfPresent(.promotionCode)
     }
 }
 
 public extension StackableDiscountWithDiscountSettings {
-    public init(coupon: StackableDiscountWithDiscountSettingsCoupon? = nil, discount: StackableDiscountWithDiscountSettingsDiscount? = nil, promotionCode: StackableDiscountWithDiscountSettingsPromotionCode? = nil) {
+    init(
+        coupon: StackableDiscountWithDiscountSettingsCoupon? = nil,
+        discount: StackableDiscountWithDiscountSettingsDiscount? = nil,
+        promotionCode: StackableDiscountWithDiscountSettingsPromotionCode? = nil
+    ) {
         self.init()
         (self.coupon, self.discount) = (coupon, discount)
         self.promotionCode = promotionCode
@@ -390,21 +483,31 @@ public enum StackableDiscountWithDiscountSettingsCoupon {
 }
 
 extension StackableDiscountWithDiscountSettingsCoupon: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for StackableDiscountWithDiscountSettingsCoupon")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for StackableDiscountWithDiscountSettingsCoupon"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(Coupon.self) { return .coupon(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(Coupon.self) {
+            return .coupon(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -414,7 +517,6 @@ extension StackableDiscountWithDiscountSettingsCoupon: Codable {
         case let .coupon(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum StackableDiscountWithDiscountSettingsDiscount {
@@ -423,21 +525,31 @@ public enum StackableDiscountWithDiscountSettingsDiscount {
 }
 
 extension StackableDiscountWithDiscountSettingsDiscount: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for StackableDiscountWithDiscountSettingsDiscount")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for StackableDiscountWithDiscountSettingsDiscount"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(Discount.self) { return .discount(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(Discount.self) {
+            return .discount(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -447,7 +559,6 @@ extension StackableDiscountWithDiscountSettingsDiscount: Codable {
         case let .discount(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum StackableDiscountWithDiscountSettingsPromotionCode {
@@ -456,21 +567,31 @@ public enum StackableDiscountWithDiscountSettingsPromotionCode {
 }
 
 extension StackableDiscountWithDiscountSettingsPromotionCode: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for StackableDiscountWithDiscountSettingsPromotionCode")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for StackableDiscountWithDiscountSettingsPromotionCode"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(PromotionCode.self) { return .promotionCode(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(PromotionCode.self) {
+            return .promotionCode(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -480,7 +601,6 @@ extension StackableDiscountWithDiscountSettingsPromotionCode: Codable {
         case let .promotionCode(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Typed representation of the `StackableDiscountWithDiscountSettingsAndDiscountEnd` API schema.
@@ -499,21 +619,25 @@ public struct StackableDiscountWithDiscountSettingsAndDiscountEnd: Codable {
     }
 
     init() {
-        (self.coupon, self.discount, self.promotionCode) = (nil, nil, nil)
+        (coupon, discount, promotionCode) = (nil, nil, nil)
     }
 }
 
 public extension StackableDiscountWithDiscountSettingsAndDiscountEnd {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.coupon = try container.sdkDecodeIfPresent(.coupon)
-        self.discount = try container.sdkDecodeIfPresent(.discount)
-        self.promotionCode = try container.sdkDecodeIfPresent(.promotionCode)
+        coupon = try container.sdkDecodeIfPresent(.coupon)
+        discount = try container.sdkDecodeIfPresent(.discount)
+        promotionCode = try container.sdkDecodeIfPresent(.promotionCode)
     }
 }
 
 public extension StackableDiscountWithDiscountSettingsAndDiscountEnd {
-    public init(coupon: StackableDiscountWithDiscountSettingsAndDiscountEndCoupon? = nil, discount: StackableDiscountWithDiscountSettingsAndDiscountEndDiscount? = nil, promotionCode: StackableDiscountWithDiscountSettingsAndDiscountEndPromotionCode? = nil) {
+    init(
+        coupon: StackableDiscountWithDiscountSettingsAndDiscountEndCoupon? = nil,
+        discount: StackableDiscountWithDiscountSettingsAndDiscountEndDiscount? = nil,
+        promotionCode: StackableDiscountWithDiscountSettingsAndDiscountEndPromotionCode? = nil
+    ) {
         self.init()
         (self.coupon, self.discount) = (coupon, discount)
         self.promotionCode = promotionCode
@@ -526,21 +650,31 @@ public enum StackableDiscountWithDiscountSettingsAndDiscountEndCoupon {
 }
 
 extension StackableDiscountWithDiscountSettingsAndDiscountEndCoupon: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for StackableDiscountWithDiscountSettingsAndDiscountEndCoupon")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for StackableDiscountWithDiscountSettingsAndDiscountEndCoupon"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(Coupon.self) { return .coupon(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(Coupon.self) {
+            return .coupon(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -550,7 +684,6 @@ extension StackableDiscountWithDiscountSettingsAndDiscountEndCoupon: Codable {
         case let .coupon(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum StackableDiscountWithDiscountSettingsAndDiscountEndDiscount {

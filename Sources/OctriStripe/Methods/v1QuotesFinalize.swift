@@ -7,7 +7,9 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1QuotesFinalizeMethods {
-    /// Finalizes a specified quote so it can proceed to the next billing stage. Supply `expires_at` when you need to set or update the future cancellation time before finalization. After finalization, use the returned quote to continue the invoice, subscription, or subscription schedule flow.
+    /// Finalizes a specified quote so it can proceed to the next billing stage. Supply `expires_at` when you need to
+    /// set or update the future cancellation time before finalization. After finalization, use the returned quote to
+    /// continue the invoice, subscription, or subscription schedule flow.
     ///
     /// Finalizes the quote.
     ///
@@ -15,11 +17,24 @@ public enum V1QuotesFinalizeMethods {
     /// - expand: Specifies which fields in the response should be expanded.
     /// - expiresAt: A future timestamp on which the quote will be canceled if in
     ///   `open` or `draft` status. Measured in seconds since the Unix epoch.
-    public static func postQuotesQuoteFinalize(config: ClientConfig, quote: String, expand: [String]?, expiresAt: Int?) async throws -> Quote {
+    public static func postQuotesQuoteFinalize(
+        config: ClientConfig,
+        quote: String,
+        expand: [String]?,
+        expiresAt: Int?
+    ) async throws -> Quote {
         try validateLength("quote", quote, max: 5000)
 
         let requestBody = PostQuotesQuoteFinalizeRequestBody(expand: expand, expiresAt: expiresAt)
 
-        return try (await sdkRequest("POST", ["/v1/quotes/", sdkEncodePathSegment(sdkWireString(quote)), "/finalize"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostQuotesQuoteFinalize")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/quotes/", sdkEncodePathSegment(sdkWireString(quote)), "/finalize"].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostQuotesQuoteFinalize"
+        )).data
     }
 }

@@ -42,73 +42,76 @@ struct PostPaymentLinksRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encode(self.lineItems, forKey: SdkCodingKey("line_items"))
-        try keyedContainer.encodeIfPresent(self.afterCompletion, forKey: SdkCodingKey("after_completion"))
-        try keyedContainer.encodeIfPresent(self.allowPromotionCodes, forKey: SdkCodingKey("allow_promotion_codes"))
-        try keyedContainer.encodeIfPresent(self.applicationFeeAmount, forKey: SdkCodingKey("application_fee_amount"))
-        try keyedContainer.encodeIfPresent(self.applicationFeePercent, forKey: SdkCodingKey("application_fee_percent"))
-        try keyedContainer.encodeIfPresent(self.automaticTax, forKey: SdkCodingKey("automatic_tax"))
-        try keyedContainer.encodeIfPresent(self.billingAddressCollection, forKey: SdkCodingKey("billing_address_collection"))
-        try keyedContainer.encodeIfPresent(self.consentCollection, forKey: SdkCodingKey("consent_collection"))
-        try keyedContainer.encodeIfPresent(self.currency, forKey: SdkCodingKey("currency"))
-        try keyedContainer.encodeIfPresent(self.customFields, forKey: SdkCodingKey("custom_fields"))
-        try keyedContainer.encodeIfPresent(self.customText, forKey: SdkCodingKey("custom_text"))
-        try keyedContainer.encodeIfPresent(self.customerCreation, forKey: SdkCodingKey("customer_creation"))
-        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(self.inactiveMessage, forKey: SdkCodingKey("inactive_message"))
-        try keyedContainer.encodeIfPresent(self.invoiceCreation, forKey: SdkCodingKey("invoice_creation"))
-        try keyedContainer.encodeIfPresent(self.managedPayments, forKey: SdkCodingKey("managed_payments"))
-        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
-        try keyedContainer.encodeIfPresent(self.nameCollection, forKey: SdkCodingKey("name_collection"))
-        try keyedContainer.encodeIfPresent(self.onBehalfOf, forKey: SdkCodingKey("on_behalf_of"))
-        try keyedContainer.encodeIfPresent(self.optionalItems, forKey: SdkCodingKey("optional_items"))
-        try keyedContainer.encodeIfPresent(self.paymentIntentData, forKey: SdkCodingKey("payment_intent_data"))
-        try keyedContainer.encodeIfPresent(self.paymentMethodCollection, forKey: SdkCodingKey("payment_method_collection"))
-        try keyedContainer.encodeIfPresent(self.paymentMethodOptions, forKey: SdkCodingKey("payment_method_options"))
-        try keyedContainer.encodeIfPresent(self.paymentMethodTypes, forKey: SdkCodingKey("payment_method_types"))
-        try keyedContainer.encodeIfPresent(self.phoneNumberCollection, forKey: SdkCodingKey("phone_number_collection"))
-        try keyedContainer.encodeIfPresent(self.restrictions, forKey: SdkCodingKey("restrictions"))
-        try keyedContainer.encodeIfPresent(self.shippingAddressCollection, forKey: SdkCodingKey("shipping_address_collection"))
-        try keyedContainer.encodeIfPresent(self.shippingOptions, forKey: SdkCodingKey("shipping_options"))
-        try keyedContainer.encodeIfPresent(self.submitType, forKey: SdkCodingKey("submit_type"))
-        try keyedContainer.encodeIfPresent(self.subscriptionData, forKey: SdkCodingKey("subscription_data"))
-        try keyedContainer.encodeIfPresent(self.taxIdCollection, forKey: SdkCodingKey("tax_id_collection"))
-        try keyedContainer.encodeIfPresent(self.transferData, forKey: SdkCodingKey("transfer_data"))
+        try keyedContainer.encode(lineItems, forKey: SdkCodingKey("line_items"))
+        try keyedContainer.encodeIfPresent(afterCompletion, forKey: SdkCodingKey("after_completion"))
+        try keyedContainer.encodeIfPresent(allowPromotionCodes, forKey: SdkCodingKey("allow_promotion_codes"))
+        try keyedContainer.encodeIfPresent(applicationFeeAmount, forKey: SdkCodingKey("application_fee_amount"))
+        try keyedContainer.encodeIfPresent(applicationFeePercent, forKey: SdkCodingKey("application_fee_percent"))
+        try keyedContainer.encodeIfPresent(automaticTax, forKey: SdkCodingKey("automatic_tax"))
+        try keyedContainer.encodeIfPresent(billingAddressCollection, forKey: SdkCodingKey("billing_address_collection"))
+        try keyedContainer.encodeIfPresent(consentCollection, forKey: SdkCodingKey("consent_collection"))
+        try keyedContainer.encodeIfPresent(currency, forKey: SdkCodingKey("currency"))
+        try keyedContainer.encodeIfPresent(customFields, forKey: SdkCodingKey("custom_fields"))
+        try keyedContainer.encodeIfPresent(customText, forKey: SdkCodingKey("custom_text"))
+        try keyedContainer.encodeIfPresent(customerCreation, forKey: SdkCodingKey("customer_creation"))
+        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(inactiveMessage, forKey: SdkCodingKey("inactive_message"))
+        try keyedContainer.encodeIfPresent(invoiceCreation, forKey: SdkCodingKey("invoice_creation"))
+        try keyedContainer.encodeIfPresent(managedPayments, forKey: SdkCodingKey("managed_payments"))
+        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encodeIfPresent(nameCollection, forKey: SdkCodingKey("name_collection"))
+        try keyedContainer.encodeIfPresent(onBehalfOf, forKey: SdkCodingKey("on_behalf_of"))
+        try keyedContainer.encodeIfPresent(optionalItems, forKey: SdkCodingKey("optional_items"))
+        try keyedContainer.encodeIfPresent(paymentIntentData, forKey: SdkCodingKey("payment_intent_data"))
+        try keyedContainer.encodeIfPresent(paymentMethodCollection, forKey: SdkCodingKey("payment_method_collection"))
+        try keyedContainer.encodeIfPresent(paymentMethodOptions, forKey: SdkCodingKey("payment_method_options"))
+        try keyedContainer.encodeIfPresent(paymentMethodTypes, forKey: SdkCodingKey("payment_method_types"))
+        try keyedContainer.encodeIfPresent(phoneNumberCollection, forKey: SdkCodingKey("phone_number_collection"))
+        try keyedContainer.encodeIfPresent(restrictions, forKey: SdkCodingKey("restrictions"))
+        try keyedContainer.encodeIfPresent(
+            shippingAddressCollection,
+            forKey: SdkCodingKey("shipping_address_collection")
+        )
+        try keyedContainer.encodeIfPresent(shippingOptions, forKey: SdkCodingKey("shipping_options"))
+        try keyedContainer.encodeIfPresent(submitType, forKey: SdkCodingKey("submit_type"))
+        try keyedContainer.encodeIfPresent(subscriptionData, forKey: SdkCodingKey("subscription_data"))
+        try keyedContainer.encodeIfPresent(taxIdCollection, forKey: SdkCodingKey("tax_id_collection"))
+        try keyedContainer.encodeIfPresent(transferData, forKey: SdkCodingKey("transfer_data"))
     }
 
     init(options: V1PaymentLinksMethods.PostPaymentLinksOptions) {
-        self.lineItems = options.lineItems
-        self.afterCompletion = options.afterCompletion
-        self.allowPromotionCodes = options.allowPromotionCodes
-        self.applicationFeeAmount = options.applicationFeeAmount
-        self.applicationFeePercent = options.applicationFeePercent
-        self.automaticTax = options.automaticTax
-        self.billingAddressCollection = options.billingAddressCollection
-        self.consentCollection = options.consentCollection
-        self.currency = options.currency
-        self.customFields = options.customFields
-        self.customText = options.customText
-        self.customerCreation = options.customerCreation
-        self.expand = options.expand
-        self.inactiveMessage = options.inactiveMessage
-        self.invoiceCreation = options.invoiceCreation
-        self.managedPayments = options.managedPayments
-        self.metadata = options.metadata
-        self.nameCollection = options.nameCollection
-        self.onBehalfOf = options.onBehalfOf
-        self.optionalItems = options.optionalItems
-        self.paymentIntentData = options.paymentIntentData
-        self.paymentMethodCollection = options.paymentMethodCollection
-        self.paymentMethodOptions = options.paymentMethodOptions
-        self.paymentMethodTypes = options.paymentMethodTypes
-        self.phoneNumberCollection = options.phoneNumberCollection
-        self.restrictions = options.restrictions
-        self.shippingAddressCollection = options.shippingAddressCollection
-        self.shippingOptions = options.shippingOptions
-        self.submitType = options.submitType
-        self.subscriptionData = options.subscriptionData
-        self.taxIdCollection = options.taxIdCollection
-        self.transferData = options.transferData
+        lineItems = options.lineItems
+        afterCompletion = options.afterCompletion
+        allowPromotionCodes = options.allowPromotionCodes
+        applicationFeeAmount = options.applicationFeeAmount
+        applicationFeePercent = options.applicationFeePercent
+        automaticTax = options.automaticTax
+        billingAddressCollection = options.billingAddressCollection
+        consentCollection = options.consentCollection
+        currency = options.currency
+        customFields = options.customFields
+        customText = options.customText
+        customerCreation = options.customerCreation
+        expand = options.expand
+        inactiveMessage = options.inactiveMessage
+        invoiceCreation = options.invoiceCreation
+        managedPayments = options.managedPayments
+        metadata = options.metadata
+        nameCollection = options.nameCollection
+        onBehalfOf = options.onBehalfOf
+        optionalItems = options.optionalItems
+        paymentIntentData = options.paymentIntentData
+        paymentMethodCollection = options.paymentMethodCollection
+        paymentMethodOptions = options.paymentMethodOptions
+        paymentMethodTypes = options.paymentMethodTypes
+        phoneNumberCollection = options.phoneNumberCollection
+        restrictions = options.restrictions
+        shippingAddressCollection = options.shippingAddressCollection
+        shippingOptions = options.shippingOptions
+        submitType = options.submitType
+        subscriptionData = options.subscriptionData
+        taxIdCollection = options.taxIdCollection
+        transferData = options.transferData
     }
 }
 
@@ -147,70 +150,73 @@ struct PostPaymentLinksPaymentLinkRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(self.active, forKey: SdkCodingKey("active"))
-        try keyedContainer.encodeIfPresent(self.afterCompletion, forKey: SdkCodingKey("after_completion"))
-        try keyedContainer.encodeIfPresent(self.allowPromotionCodes, forKey: SdkCodingKey("allow_promotion_codes"))
-        try keyedContainer.encodeIfPresent(self.applicationFeeAmount, forKey: SdkCodingKey("application_fee_amount"))
-        try keyedContainer.encodeIfPresent(self.applicationFeePercent, forKey: SdkCodingKey("application_fee_percent"))
-        try keyedContainer.encodeIfPresent(self.automaticTax, forKey: SdkCodingKey("automatic_tax"))
-        try keyedContainer.encodeIfPresent(self.billingAddressCollection, forKey: SdkCodingKey("billing_address_collection"))
-        try keyedContainer.encodeIfPresent(self.consentCollection, forKey: SdkCodingKey("consent_collection"))
-        try keyedContainer.encodeIfPresent(self.customFields, forKey: SdkCodingKey("custom_fields"))
-        try keyedContainer.encodeIfPresent(self.customText, forKey: SdkCodingKey("custom_text"))
-        try keyedContainer.encodeIfPresent(self.customerCreation, forKey: SdkCodingKey("customer_creation"))
-        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(self.inactiveMessage, forKey: SdkCodingKey("inactive_message"))
-        try keyedContainer.encodeIfPresent(self.invoiceCreation, forKey: SdkCodingKey("invoice_creation"))
-        try keyedContainer.encodeIfPresent(self.lineItems, forKey: SdkCodingKey("line_items"))
-        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
-        try keyedContainer.encodeIfPresent(self.nameCollection, forKey: SdkCodingKey("name_collection"))
-        try keyedContainer.encodeIfPresent(self.onBehalfOf, forKey: SdkCodingKey("on_behalf_of"))
-        try keyedContainer.encodeIfPresent(self.optionalItems, forKey: SdkCodingKey("optional_items"))
-        try keyedContainer.encodeIfPresent(self.paymentIntentData, forKey: SdkCodingKey("payment_intent_data"))
-        try keyedContainer.encodeIfPresent(self.paymentMethodCollection, forKey: SdkCodingKey("payment_method_collection"))
-        try keyedContainer.encodeIfPresent(self.paymentMethodOptions, forKey: SdkCodingKey("payment_method_options"))
-        try keyedContainer.encodeIfPresent(self.paymentMethodTypes, forKey: SdkCodingKey("payment_method_types"))
-        try keyedContainer.encodeIfPresent(self.phoneNumberCollection, forKey: SdkCodingKey("phone_number_collection"))
-        try keyedContainer.encodeIfPresent(self.restrictions, forKey: SdkCodingKey("restrictions"))
-        try keyedContainer.encodeIfPresent(self.shippingAddressCollection, forKey: SdkCodingKey("shipping_address_collection"))
-        try keyedContainer.encodeIfPresent(self.shippingOptions, forKey: SdkCodingKey("shipping_options"))
-        try keyedContainer.encodeIfPresent(self.submitType, forKey: SdkCodingKey("submit_type"))
-        try keyedContainer.encodeIfPresent(self.subscriptionData, forKey: SdkCodingKey("subscription_data"))
-        try keyedContainer.encodeIfPresent(self.taxIdCollection, forKey: SdkCodingKey("tax_id_collection"))
-        try keyedContainer.encodeIfPresent(self.transferData, forKey: SdkCodingKey("transfer_data"))
+        try keyedContainer.encodeIfPresent(active, forKey: SdkCodingKey("active"))
+        try keyedContainer.encodeIfPresent(afterCompletion, forKey: SdkCodingKey("after_completion"))
+        try keyedContainer.encodeIfPresent(allowPromotionCodes, forKey: SdkCodingKey("allow_promotion_codes"))
+        try keyedContainer.encodeIfPresent(applicationFeeAmount, forKey: SdkCodingKey("application_fee_amount"))
+        try keyedContainer.encodeIfPresent(applicationFeePercent, forKey: SdkCodingKey("application_fee_percent"))
+        try keyedContainer.encodeIfPresent(automaticTax, forKey: SdkCodingKey("automatic_tax"))
+        try keyedContainer.encodeIfPresent(billingAddressCollection, forKey: SdkCodingKey("billing_address_collection"))
+        try keyedContainer.encodeIfPresent(consentCollection, forKey: SdkCodingKey("consent_collection"))
+        try keyedContainer.encodeIfPresent(customFields, forKey: SdkCodingKey("custom_fields"))
+        try keyedContainer.encodeIfPresent(customText, forKey: SdkCodingKey("custom_text"))
+        try keyedContainer.encodeIfPresent(customerCreation, forKey: SdkCodingKey("customer_creation"))
+        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(inactiveMessage, forKey: SdkCodingKey("inactive_message"))
+        try keyedContainer.encodeIfPresent(invoiceCreation, forKey: SdkCodingKey("invoice_creation"))
+        try keyedContainer.encodeIfPresent(lineItems, forKey: SdkCodingKey("line_items"))
+        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encodeIfPresent(nameCollection, forKey: SdkCodingKey("name_collection"))
+        try keyedContainer.encodeIfPresent(onBehalfOf, forKey: SdkCodingKey("on_behalf_of"))
+        try keyedContainer.encodeIfPresent(optionalItems, forKey: SdkCodingKey("optional_items"))
+        try keyedContainer.encodeIfPresent(paymentIntentData, forKey: SdkCodingKey("payment_intent_data"))
+        try keyedContainer.encodeIfPresent(paymentMethodCollection, forKey: SdkCodingKey("payment_method_collection"))
+        try keyedContainer.encodeIfPresent(paymentMethodOptions, forKey: SdkCodingKey("payment_method_options"))
+        try keyedContainer.encodeIfPresent(paymentMethodTypes, forKey: SdkCodingKey("payment_method_types"))
+        try keyedContainer.encodeIfPresent(phoneNumberCollection, forKey: SdkCodingKey("phone_number_collection"))
+        try keyedContainer.encodeIfPresent(restrictions, forKey: SdkCodingKey("restrictions"))
+        try keyedContainer.encodeIfPresent(
+            shippingAddressCollection,
+            forKey: SdkCodingKey("shipping_address_collection")
+        )
+        try keyedContainer.encodeIfPresent(shippingOptions, forKey: SdkCodingKey("shipping_options"))
+        try keyedContainer.encodeIfPresent(submitType, forKey: SdkCodingKey("submit_type"))
+        try keyedContainer.encodeIfPresent(subscriptionData, forKey: SdkCodingKey("subscription_data"))
+        try keyedContainer.encodeIfPresent(taxIdCollection, forKey: SdkCodingKey("tax_id_collection"))
+        try keyedContainer.encodeIfPresent(transferData, forKey: SdkCodingKey("transfer_data"))
     }
 
     init(options: V1PaymentLinksMethods.PostPaymentLinksPaymentLinkOptions) {
-        self.active = options.active
-        self.afterCompletion = options.afterCompletion
-        self.allowPromotionCodes = options.allowPromotionCodes
-        self.applicationFeeAmount = options.applicationFeeAmount
-        self.applicationFeePercent = options.applicationFeePercent
-        self.automaticTax = options.automaticTax
-        self.billingAddressCollection = options.billingAddressCollection
-        self.consentCollection = options.consentCollection
-        self.customFields = options.customFields
-        self.customText = options.customText
-        self.customerCreation = options.customerCreation
-        self.expand = options.expand
-        self.inactiveMessage = options.inactiveMessage
-        self.invoiceCreation = options.invoiceCreation
-        self.lineItems = options.lineItems
-        self.metadata = options.metadata
-        self.nameCollection = options.nameCollection
-        self.onBehalfOf = options.onBehalfOf
-        self.optionalItems = options.optionalItems
-        self.paymentIntentData = options.paymentIntentData
-        self.paymentMethodCollection = options.paymentMethodCollection
-        self.paymentMethodOptions = options.paymentMethodOptions
-        self.paymentMethodTypes = options.paymentMethodTypes
-        self.phoneNumberCollection = options.phoneNumberCollection
-        self.restrictions = options.restrictions
-        self.shippingAddressCollection = options.shippingAddressCollection
-        self.shippingOptions = options.shippingOptions
-        self.submitType = options.submitType
-        self.subscriptionData = options.subscriptionData
-        self.taxIdCollection = options.taxIdCollection
-        self.transferData = options.transferData
+        active = options.active
+        afterCompletion = options.afterCompletion
+        allowPromotionCodes = options.allowPromotionCodes
+        applicationFeeAmount = options.applicationFeeAmount
+        applicationFeePercent = options.applicationFeePercent
+        automaticTax = options.automaticTax
+        billingAddressCollection = options.billingAddressCollection
+        consentCollection = options.consentCollection
+        customFields = options.customFields
+        customText = options.customText
+        customerCreation = options.customerCreation
+        expand = options.expand
+        inactiveMessage = options.inactiveMessage
+        invoiceCreation = options.invoiceCreation
+        lineItems = options.lineItems
+        metadata = options.metadata
+        nameCollection = options.nameCollection
+        onBehalfOf = options.onBehalfOf
+        optionalItems = options.optionalItems
+        paymentIntentData = options.paymentIntentData
+        paymentMethodCollection = options.paymentMethodCollection
+        paymentMethodOptions = options.paymentMethodOptions
+        paymentMethodTypes = options.paymentMethodTypes
+        phoneNumberCollection = options.phoneNumberCollection
+        restrictions = options.restrictions
+        shippingAddressCollection = options.shippingAddressCollection
+        shippingOptions = options.shippingOptions
+        submitType = options.submitType
+        subscriptionData = options.subscriptionData
+        taxIdCollection = options.taxIdCollection
+        transferData = options.transferData
     }
 }

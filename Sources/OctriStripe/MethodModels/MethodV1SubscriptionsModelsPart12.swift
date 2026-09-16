@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1Subscriptions operation model declarations
+/// Canonical v1Subscriptions operation model declarations
 public struct PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXbda25513d6: Codable {
     public var amount: Int?
     public var amountIncludesIof: PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXf889af2907?
@@ -22,25 +22,30 @@ public struct PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXbda2
     }
 
     init() {
-        (self.amount, self.amountIncludesIof, self.endDate, self.paymentSchedule) = (nil, nil, nil, nil)
+        (amount, amountIncludesIof, endDate, paymentSchedule) = (nil, nil, nil, nil)
     }
 }
 
 public extension PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXbda25513d6 {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.amount = try container.sdkDecodeIfPresent(.amount)
-        self.amountIncludesIof = try container.sdkDecodeIfPresent(.amountIncludesIof)
-        self.endDate = try container.sdkDecodeIfPresent(.endDate)
-        self.paymentSchedule = try container.sdkDecodeIfPresent(.paymentSchedule)
-        if let value = self.endDate {
+        amount = try container.sdkDecodeIfPresent(.amount)
+        amountIncludesIof = try container.sdkDecodeIfPresent(.amountIncludesIof)
+        endDate = try container.sdkDecodeIfPresent(.endDate)
+        paymentSchedule = try container.sdkDecodeIfPresent(.paymentSchedule)
+        if let value = endDate {
             try validateLength("end_date", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXbda25513d6 {
-    public init(amount: Int? = nil, amountIncludesIof: PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXf889af2907? = nil, endDate: String? = nil, paymentSchedule: PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXf72a14c8a1? = nil) throws {
+    init(
+        amount: Int? = nil,
+        amountIncludesIof: PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXf889af2907? = nil,
+        endDate: String? = nil,
+        paymentSchedule: PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXf72a14c8a1? = nil
+    ) throws {
         self.init()
         (self.amount, self.amountIncludesIof) = (amount, amountIncludesIof)
         (self.endDate, self.paymentSchedule) = (endDate, paymentSchedule)
@@ -58,38 +63,47 @@ public enum PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiX0bfbaf
 }
 
 extension PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiX0bfbaf7501: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiX0bfbaf7501")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiX0bfbaf7501"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXa1a4f63b71.self
         ) {
-            return             .postSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXa1a4f63b71(value)
+            return .postSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXa1a4f63b71(value)
         }
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .postSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXa1a4f63b71(value): try container.encode(value); return true
+        case let .postSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXa1a4f63b71(value): try container
+            .encode(value); return true
         case let .stringValue(value): try container.encode(value); return true
         }
     }
-
 }
 
-public typealias PostSubscriptionsSubscriptionExposedIdRequestBodyAddInvoiceItX044e2a2393 = [PostSubscriptionsSubscriptionExposedIdRequestBodyAddInvoiceItX120a9f8467]
+public typealias PostSubscriptionsSubscriptionExposedIdRequestBodyAddInvoiceItX044e2a2393 =
+    [PostSubscriptionsSubscriptionExposedIdRequestBodyAddInvoiceItX120a9f8467]
 
 public struct PostSubscriptionsSubscriptionExposedIdRequestBodyAddInvoiceItemsItem: Codable {
     public var discountable: Bool?
@@ -115,30 +129,39 @@ public struct PostSubscriptionsSubscriptionExposedIdRequestBodyAddInvoiceItemsIt
     }
 
     init() {
-        (self.discountable, self.discounts, self.metadata, self.period, self.price) = (nil, nil, nil, nil, nil)
-        (self.priceData, self.quantity, self.taxRates) = (nil, nil, nil)
+        (discountable, discounts, metadata, period, price) = (nil, nil, nil, nil, nil)
+        (priceData, quantity, taxRates) = (nil, nil, nil)
     }
 }
 
 public extension PostSubscriptionsSubscriptionExposedIdRequestBodyAddInvoiceItemsItem {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.discountable = try container.sdkDecodeIfPresent(.discountable)
-        self.discounts = try container.sdkDecodeIfPresent(.discounts)
-        self.metadata = try container.sdkDecodeIfPresent(.metadata)
-        self.period = try container.sdkDecodeIfPresent(.period)
-        self.price = try container.sdkDecodeIfPresent(.price)
-        self.priceData = try container.sdkDecodeIfPresent(.priceData)
-        self.quantity = try container.sdkDecodeIfPresent(.quantity)
-        self.taxRates = try container.sdkDecodeIfPresent(.taxRates)
-        if let value = self.price {
+        discountable = try container.sdkDecodeIfPresent(.discountable)
+        discounts = try container.sdkDecodeIfPresent(.discounts)
+        metadata = try container.sdkDecodeIfPresent(.metadata)
+        period = try container.sdkDecodeIfPresent(.period)
+        price = try container.sdkDecodeIfPresent(.price)
+        priceData = try container.sdkDecodeIfPresent(.priceData)
+        quantity = try container.sdkDecodeIfPresent(.quantity)
+        taxRates = try container.sdkDecodeIfPresent(.taxRates)
+        if let value = price {
             try validateLength("price", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension PostSubscriptionsSubscriptionExposedIdRequestBodyAddInvoiceItemsItem {
-    public init(discountable: Bool? = nil, discounts: PostSubscriptionsSubscriptionExposedIdRequestBodyAddInvoiceItX044e2a2393? = nil, metadata: [String: String]? = nil, period: PostSubscriptionsSubscriptionExposedIdRequestBodyAddInvoiceItXafd1b45aa7? = nil, price: String? = nil, priceData: PostSubscriptionsSubscriptionExposedIdRequestBodyAddInvoiceItXd8c9ae5263? = nil, quantity: Int? = nil, taxRates: PostSubscriptionsSubscriptionExposedIdRequestBodyAddInvoiceItXf3fdf63996? = nil) throws {
+    init(
+        discountable: Bool? = nil,
+        discounts: PostSubscriptionsSubscriptionExposedIdRequestBodyAddInvoiceItX044e2a2393? = nil,
+        metadata: [String: String]? = nil,
+        period: PostSubscriptionsSubscriptionExposedIdRequestBodyAddInvoiceItXafd1b45aa7? = nil,
+        price: String? = nil,
+        priceData: PostSubscriptionsSubscriptionExposedIdRequestBodyAddInvoiceItXd8c9ae5263? = nil,
+        quantity: Int? = nil,
+        taxRates: PostSubscriptionsSubscriptionExposedIdRequestBodyAddInvoiceItXf3fdf63996? = nil
+    ) throws {
         self.init()
         (self.discountable, self.discounts) = (discountable, discounts)
         (self.metadata, self.period) = (metadata, period)

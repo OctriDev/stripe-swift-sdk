@@ -6,7 +6,7 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1AppsSecretsMethods {
+public extension V1AppsSecretsMethods {
     /// Create or replace a secret in the secret store.
     ///
     /// - Parameters:
@@ -18,13 +18,34 @@ extension V1AppsSecretsMethods {
     /// - expand: Specifies which fields in the response should be expanded.
     /// - expiresAt: The Unix timestamp for the expiry time of the secret, after
     ///   which the secret deletes.
-    public static func postAppsSecrets(config: ClientConfig, name: String, payload: String, scope: PostAppsSecretsRequestBodyScope, expand: [String]?, expiresAt: Int?) async throws -> AppsSecret {
+    static func postAppsSecrets(
+        config: ClientConfig,
+        name: String,
+        payload: String,
+        scope: PostAppsSecretsRequestBodyScope,
+        expand: [String]?,
+        expiresAt: Int?
+    ) async throws -> AppsSecret {
         try validateLength("name", name, max: 5000)
 
         try validateLength("payload", payload, max: 5000)
 
-        let requestBody = PostAppsSecretsRequestBody(name: name, payload: payload, scope: scope, expand: expand, expiresAt: expiresAt)
+        let requestBody = PostAppsSecretsRequestBody(
+            name: name,
+            payload: payload,
+            scope: scope,
+            expand: expand,
+            expiresAt: expiresAt
+        )
 
-        return try (await sdkRequest("POST", "/v1/apps/secrets", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostAppsSecrets")).data
+        return try await (sdkRequest(
+            "POST",
+            "/v1/apps/secrets",
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostAppsSecrets"
+        )).data
     }
 }

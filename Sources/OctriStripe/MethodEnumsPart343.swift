@@ -6,15 +6,19 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public struct PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataXeba0f2f69d: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataXeba0f2f69d: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataXeba0f2f69d(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -23,15 +27,19 @@ public struct PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataXeba0
     }
 }
 
-public struct PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataX8424a48eed: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataX8424a48eed: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataX8424a48eed(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -40,15 +48,19 @@ public struct PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataX8424
     }
 }
 
-public struct PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataX327f98f9a4: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataX327f98f9a4: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataX327f98f9a4(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -57,42 +69,86 @@ public struct PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataX327f
     }
 }
 
-public struct PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBank: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBank: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let arzteUndApothekerBank = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBank(rawValue: "arzte_und_apotheker_bank")
-    public static let austrianAnadiBankAg = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBank(rawValue: "austrian_anadi_bank_ag")
-    public static let bankAustria = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBank(rawValue: "bank_austria")
-    public static let bankhausCarlSpangler = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBank(rawValue: "bankhaus_carl_spangler")
-    public static let bankhausSchelhammerUndSchatteraAg = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBank(rawValue: "bankhaus_schelhammer_und_schattera_ag")
-    public static let bawagPskAg = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBank(rawValue: "bawag_psk_ag")
-    public static let bksBankAg = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBank(rawValue: "bks_bank_ag")
-    public static let brullKallmusBankAg = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBank(rawValue: "brull_kallmus_bank_ag")
-    public static let btvVierLanderBank = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBank(rawValue: "btv_vier_lander_bank")
-    public static let capitalBankGraweGruppeAg = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBank(rawValue: "capital_bank_grawe_gruppe_ag")
-    public static let deutscheBankAg = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBank(rawValue: "deutsche_bank_ag")
-    public static let dolomitenbank = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBank(rawValue: "dolomitenbank")
-    public static let easybankAg = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBank(rawValue: "easybank_ag")
-    public static let ersteBankUndSparkassen = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBank(rawValue: "erste_bank_und_sparkassen")
-    public static let hypoAlpeadriabankInternationalAg = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBank(rawValue: "hypo_alpeadriabank_international_ag")
-    public static let hypoBankBurgenlandAktiengesellschaft = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBank(rawValue: "hypo_bank_burgenland_aktiengesellschaft")
-    public static let hypoNoeLbFurNiederosterreichUWien = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBank(rawValue: "hypo_noe_lb_fur_niederosterreich_u_wien")
-    public static let hypoOberosterreichSalzburgSteiermark = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBank(rawValue: "hypo_oberosterreich_salzburg_steiermark")
-    public static let hypoTirolBankAg = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBank(rawValue: "hypo_tirol_bank_ag")
-    public static let hypoVorarlbergBankAg = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBank(rawValue: "hypo_vorarlberg_bank_ag")
-    public static let marchfelderBank = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBank(rawValue: "marchfelder_bank")
-    public static let oberbankAg = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBank(rawValue: "oberbank_ag")
-    public static let raiffeisenBankengruppeOsterreich = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBank(rawValue: "raiffeisen_bankengruppe_osterreich")
-    public static let schoellerbankAg = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBank(rawValue: "schoellerbank_ag")
-    public static let spardaBankWien = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBank(rawValue: "sparda_bank_wien")
-    public static let volksbankGruppe = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBank(rawValue: "volksbank_gruppe")
-    public static let volkskreditbankAg = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBank(rawValue: "volkskreditbank_ag")
-    public static let vrBankBraunau = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBank(rawValue: "vr_bank_braunau")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let arzteUndApothekerBank =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBank(rawValue: "arzte_und_apotheker_bank")
+    public static let austrianAnadiBankAg =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBank(rawValue: "austrian_anadi_bank_ag")
+    public static let bankAustria =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBank(rawValue: "bank_austria")
+    public static let bankhausCarlSpangler =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBank(rawValue: "bankhaus_carl_spangler")
+    public static let bankhausSchelhammerUndSchatteraAg =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBank(
+            rawValue: "bankhaus_schelhammer_und_schattera_ag"
+        )
+    public static let bawagPskAg =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBank(rawValue: "bawag_psk_ag")
+    public static let bksBankAg =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBank(rawValue: "bks_bank_ag")
+    public static let brullKallmusBankAg =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBank(rawValue: "brull_kallmus_bank_ag")
+    public static let btvVierLanderBank =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBank(rawValue: "btv_vier_lander_bank")
+    public static let capitalBankGraweGruppeAg =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBank(rawValue: "capital_bank_grawe_gruppe_ag")
+    public static let deutscheBankAg =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBank(rawValue: "deutsche_bank_ag")
+    public static let dolomitenbank =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBank(rawValue: "dolomitenbank")
+    public static let easybankAg =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBank(rawValue: "easybank_ag")
+    public static let ersteBankUndSparkassen =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBank(rawValue: "erste_bank_und_sparkassen")
+    public static let hypoAlpeadriabankInternationalAg =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBank(
+            rawValue: "hypo_alpeadriabank_international_ag"
+        )
+    public static let hypoBankBurgenlandAktiengesellschaft =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBank(
+            rawValue: "hypo_bank_burgenland_aktiengesellschaft"
+        )
+    public static let hypoNoeLbFurNiederosterreichUWien =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBank(
+            rawValue: "hypo_noe_lb_fur_niederosterreich_u_wien"
+        )
+    public static let hypoOberosterreichSalzburgSteiermark =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBank(
+            rawValue: "hypo_oberosterreich_salzburg_steiermark"
+        )
+    public static let hypoTirolBankAg =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBank(rawValue: "hypo_tirol_bank_ag")
+    public static let hypoVorarlbergBankAg =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBank(rawValue: "hypo_vorarlberg_bank_ag")
+    public static let marchfelderBank =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBank(rawValue: "marchfelder_bank")
+    public static let oberbankAg =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBank(rawValue: "oberbank_ag")
+    public static let raiffeisenBankengruppeOsterreich =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBank(
+            rawValue: "raiffeisen_bankengruppe_osterreich"
+        )
+    public static let schoellerbankAg =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBank(rawValue: "schoellerbank_ag")
+    public static let spardaBankWien =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBank(rawValue: "sparda_bank_wien")
+    public static let volksbankGruppe =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBank(rawValue: "volksbank_gruppe")
+    public static let volkskreditbankAg =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBank(rawValue: "volkskreditbank_ag")
+    public static let vrBankBraunau =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBank(rawValue: "vr_bank_braunau")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -101,39 +157,60 @@ public struct PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEpsBa
     }
 }
 
-public struct PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataFpxBank: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataFpxBank: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let affinBank = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataFpxBank(rawValue: "affin_bank")
-    public static let agrobank = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataFpxBank(rawValue: "agrobank")
-    public static let allianceBank = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataFpxBank(rawValue: "alliance_bank")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let affinBank =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataFpxBank(rawValue: "affin_bank")
+    public static let agrobank =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataFpxBank(rawValue: "agrobank")
+    public static let allianceBank =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataFpxBank(rawValue: "alliance_bank")
     public static let ambank = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataFpxBank(rawValue: "ambank")
-    public static let bankIslam = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataFpxBank(rawValue: "bank_islam")
-    public static let bankMuamalat = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataFpxBank(rawValue: "bank_muamalat")
-    public static let bankOfChina = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataFpxBank(rawValue: "bank_of_china")
-    public static let bankRakyat = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataFpxBank(rawValue: "bank_rakyat")
-    public static let bnpParibas = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataFpxBank(rawValue: "bnp_paribas")
+    public static let bankIslam =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataFpxBank(rawValue: "bank_islam")
+    public static let bankMuamalat =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataFpxBank(rawValue: "bank_muamalat")
+    public static let bankOfChina =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataFpxBank(rawValue: "bank_of_china")
+    public static let bankRakyat =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataFpxBank(rawValue: "bank_rakyat")
+    public static let bnpParibas =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataFpxBank(rawValue: "bnp_paribas")
     public static let bsn = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataFpxBank(rawValue: "bsn")
     public static let cimb = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataFpxBank(rawValue: "cimb")
-    public static let citibank = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataFpxBank(rawValue: "citibank")
-    public static let deutscheBank = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataFpxBank(rawValue: "deutsche_bank")
-    public static let hongLeongBank = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataFpxBank(rawValue: "hong_leong_bank")
+    public static let citibank =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataFpxBank(rawValue: "citibank")
+    public static let deutscheBank =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataFpxBank(rawValue: "deutsche_bank")
+    public static let hongLeongBank =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataFpxBank(rawValue: "hong_leong_bank")
     public static let hsbc = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataFpxBank(rawValue: "hsbc")
     public static let kfh = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataFpxBank(rawValue: "kfh")
-    public static let maybank2e = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataFpxBank(rawValue: "maybank2e")
-    public static let maybank2u = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataFpxBank(rawValue: "maybank2u")
-    public static let mbsbBank = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataFpxBank(rawValue: "mbsb_bank")
+    public static let maybank2e =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataFpxBank(rawValue: "maybank2e")
+    public static let maybank2u =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataFpxBank(rawValue: "maybank2u")
+    public static let mbsbBank =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataFpxBank(rawValue: "mbsb_bank")
     public static let ocbc = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataFpxBank(rawValue: "ocbc")
-    public static let pbEnterprise = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataFpxBank(rawValue: "pb_enterprise")
-    public static let publicBank = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataFpxBank(rawValue: "public_bank")
+    public static let pbEnterprise =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataFpxBank(rawValue: "pb_enterprise")
+    public static let publicBank =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataFpxBank(rawValue: "public_bank")
     public static let rhb = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataFpxBank(rawValue: "rhb")
-    public static let standardChartered = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataFpxBank(rawValue: "standard_chartered")
+    public static let standardChartered =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataFpxBank(rawValue: "standard_chartered")
     public static let uob = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataFpxBank(rawValue: "uob")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -142,34 +219,50 @@ public struct PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataFpxBa
     }
 }
 
-public struct PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataIdealBank: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataIdealBank: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let abnAmro = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataIdealBank(rawValue: "abn_amro")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let abnAmro =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataIdealBank(rawValue: "abn_amro")
     public static let adyen = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataIdealBank(rawValue: "adyen")
-    public static let asnBank = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataIdealBank(rawValue: "asn_bank")
+    public static let asnBank =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataIdealBank(rawValue: "asn_bank")
     public static let bunq = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataIdealBank(rawValue: "bunq")
     public static let buut = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataIdealBank(rawValue: "buut")
     public static let finom = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataIdealBank(rawValue: "finom")
-    public static let handelsbanken = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataIdealBank(rawValue: "handelsbanken")
+    public static let handelsbanken =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataIdealBank(rawValue: "handelsbanken")
     public static let ing = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataIdealBank(rawValue: "ing")
     public static let knab = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataIdealBank(rawValue: "knab")
-    public static let mollie = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataIdealBank(rawValue: "mollie")
-    public static let moneyou = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataIdealBank(rawValue: "moneyou")
+    public static let mollie =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataIdealBank(rawValue: "mollie")
+    public static let moneyou =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataIdealBank(rawValue: "moneyou")
     public static let n26 = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataIdealBank(rawValue: "n26")
     public static let nn = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataIdealBank(rawValue: "nn")
-    public static let rabobank = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataIdealBank(rawValue: "rabobank")
-    public static let regiobank = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataIdealBank(rawValue: "regiobank")
-    public static let revolut = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataIdealBank(rawValue: "revolut")
-    public static let snsBank = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataIdealBank(rawValue: "sns_bank")
-    public static let triodosBank = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataIdealBank(rawValue: "triodos_bank")
-    public static let vanLanschot = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataIdealBank(rawValue: "van_lanschot")
-    public static let yoursafe = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataIdealBank(rawValue: "yoursafe")
+    public static let rabobank =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataIdealBank(rawValue: "rabobank")
+    public static let regiobank =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataIdealBank(rawValue: "regiobank")
+    public static let revolut =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataIdealBank(rawValue: "revolut")
+    public static let snsBank =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataIdealBank(rawValue: "sns_bank")
+    public static let triodosBank =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataIdealBank(rawValue: "triodos_bank")
+    public static let vanLanschot =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataIdealBank(rawValue: "van_lanschot")
+    public static let yoursafe =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataIdealBank(rawValue: "yoursafe")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -178,16 +271,21 @@ public struct PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataIdeal
     }
 }
 
-public struct PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataX51a1126c15: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataX51a1126c15: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let card = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataX51a1126c15(rawValue: "card")
-    public static let points = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataX51a1126c15(rawValue: "points")
+    public static let points =
+        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataX51a1126c15(rawValue: "points")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

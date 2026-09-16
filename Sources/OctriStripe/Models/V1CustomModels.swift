@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1Custom domain models
+/// V1Custom domain models
 /// Typed representation of the `CustomLogo` API schema.
 public struct CustomLogo: Codable {
     /// URL of the Dashboard-only CustomPaymentMethodType logo.
@@ -16,28 +16,34 @@ public struct CustomLogo: Codable {
         case contentType = "content_type"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension CustomLogo {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.url) else {
-            throw SdkValidationError(field: "url", code: "required", message: "Validation failed for 'url': value is required")
+            throw SdkValidationError(
+                field: "url",
+                code: "required",
+                message: "Validation failed for 'url': value is required"
+            )
         }
-        self.url = try container.sdkDecodeRequired(.url)
-        self.contentType = try container.sdkDecodeIfPresent(.contentType)
-            try validateLength("url", self.url, min: nil, max: 5000)
-        if let value = self.contentType {
+        url = try container.sdkDecodeRequired(.url)
+        contentType = try container.sdkDecodeIfPresent(.contentType)
+        try validateLength("url", url, min: nil, max: 5000)
+        if let value = contentType {
             try validateLength("content_type", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension CustomLogo {
-    public init(url: String, contentType: String? = nil) throws {
+    init(url: String, contentType: String? = nil) throws {
         (self.url, self.contentType) = (url, contentType)
-            try validateLength("url", self.url, min: nil, max: 5000)
+        try validateLength("url", self.url, min: nil, max: 5000)
         if let value = self.contentType {
             try validateLength("content_type", value, min: nil, max: 5000)
         }
@@ -60,21 +66,21 @@ public struct CustomUnitAmount: Codable {
     }
 
     init() {
-        (self.maximum, self.minimum, self.preset) = (nil, nil, nil)
+        (maximum, minimum, preset) = (nil, nil, nil)
     }
 }
 
 public extension CustomUnitAmount {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.maximum = try container.sdkDecodeIfPresent(.maximum)
-        self.minimum = try container.sdkDecodeIfPresent(.minimum)
-        self.preset = try container.sdkDecodeIfPresent(.preset)
+        maximum = try container.sdkDecodeIfPresent(.maximum)
+        minimum = try container.sdkDecodeIfPresent(.minimum)
+        preset = try container.sdkDecodeIfPresent(.preset)
     }
 }
 
 public extension CustomUnitAmount {
-    public init(maximum: Int? = nil, minimum: Int? = nil, preset: Int? = nil) {
+    init(maximum: Int? = nil, minimum: Int? = nil, preset: Int? = nil) {
         self.init()
         (self.maximum, self.minimum) = (maximum, minimum)
         self.preset = preset

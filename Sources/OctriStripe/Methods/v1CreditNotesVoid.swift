@@ -7,17 +7,30 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1CreditNotesVoidMethods {
-    /// Triggers voiding for an existing credit note. Use `expand` when the response needs selected related fields expanded. The operation returns the credit note after its void state has been applied.
+    /// Triggers voiding for an existing credit note. Use `expand` when the response needs selected related fields
+    /// expanded. The operation returns the credit note after its void state has been applied.
     ///
     /// Marks a credit note as void. Learn more about voiding credit notes.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postCreditNotesIdVoid(config: ClientConfig, id: String, expand: [String]?) async throws -> CreditNote {
+    public static func postCreditNotesIdVoid(
+        config: ClientConfig,
+        id: String,
+        expand: [String]?
+    ) async throws -> CreditNote {
         try validateLength("id", id, max: 5000)
 
         let requestBody = PostCreditNotesIdVoidRequestBody(expand: expand)
 
-        return try (await sdkRequest("POST", ["/v1/credit_notes/", sdkEncodePathSegment(sdkWireString(id)), "/void"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostCreditNotesIdVoid")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/credit_notes/", sdkEncodePathSegment(sdkWireString(id)), "/void"].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostCreditNotesIdVoid"
+        )).data
     }
 }

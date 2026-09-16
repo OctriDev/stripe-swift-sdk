@@ -26,41 +26,41 @@ struct PostExternalAccountsIdRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(self.accountHolderName, forKey: SdkCodingKey("account_holder_name"))
-        try keyedContainer.encodeIfPresent(self.accountHolderType, forKey: SdkCodingKey("account_holder_type"))
-        try keyedContainer.encodeIfPresent(self.accountType, forKey: SdkCodingKey("account_type"))
-        try keyedContainer.encodeIfPresent(self.addressCity, forKey: SdkCodingKey("address_city"))
-        try keyedContainer.encodeIfPresent(self.addressCountry, forKey: SdkCodingKey("address_country"))
-        try keyedContainer.encodeIfPresent(self.addressLine1, forKey: SdkCodingKey("address_line1"))
-        try keyedContainer.encodeIfPresent(self.addressLine2, forKey: SdkCodingKey("address_line2"))
-        try keyedContainer.encodeIfPresent(self.addressState, forKey: SdkCodingKey("address_state"))
-        try keyedContainer.encodeIfPresent(self.addressZip, forKey: SdkCodingKey("address_zip"))
-        try keyedContainer.encodeIfPresent(self.defaultForCurrency, forKey: SdkCodingKey("default_for_currency"))
-        try keyedContainer.encodeIfPresent(self.documents, forKey: SdkCodingKey("documents"))
-        try keyedContainer.encodeIfPresent(self.expMonth, forKey: SdkCodingKey("exp_month"))
-        try keyedContainer.encodeIfPresent(self.expYear, forKey: SdkCodingKey("exp_year"))
-        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
-        try keyedContainer.encodeIfPresent(self.name, forKey: SdkCodingKey("name"))
+        try keyedContainer.encodeIfPresent(accountHolderName, forKey: SdkCodingKey("account_holder_name"))
+        try keyedContainer.encodeIfPresent(accountHolderType, forKey: SdkCodingKey("account_holder_type"))
+        try keyedContainer.encodeIfPresent(accountType, forKey: SdkCodingKey("account_type"))
+        try keyedContainer.encodeIfPresent(addressCity, forKey: SdkCodingKey("address_city"))
+        try keyedContainer.encodeIfPresent(addressCountry, forKey: SdkCodingKey("address_country"))
+        try keyedContainer.encodeIfPresent(addressLine1, forKey: SdkCodingKey("address_line1"))
+        try keyedContainer.encodeIfPresent(addressLine2, forKey: SdkCodingKey("address_line2"))
+        try keyedContainer.encodeIfPresent(addressState, forKey: SdkCodingKey("address_state"))
+        try keyedContainer.encodeIfPresent(addressZip, forKey: SdkCodingKey("address_zip"))
+        try keyedContainer.encodeIfPresent(defaultForCurrency, forKey: SdkCodingKey("default_for_currency"))
+        try keyedContainer.encodeIfPresent(documents, forKey: SdkCodingKey("documents"))
+        try keyedContainer.encodeIfPresent(expMonth, forKey: SdkCodingKey("exp_month"))
+        try keyedContainer.encodeIfPresent(expYear, forKey: SdkCodingKey("exp_year"))
+        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encodeIfPresent(name, forKey: SdkCodingKey("name"))
     }
 
     init(options: V1ExternalAccountsMethods.PostExternalAccountsIdOptions) {
-        self.accountHolderName = options.accountHolderName
-        self.accountHolderType = options.accountHolderType
-        self.accountType = options.accountType
-        self.addressCity = options.addressCity
-        self.addressCountry = options.addressCountry
-        self.addressLine1 = options.addressLine1
-        self.addressLine2 = options.addressLine2
-        self.addressState = options.addressState
-        self.addressZip = options.addressZip
-        self.defaultForCurrency = options.defaultForCurrency
-        self.documents = options.documents
-        self.expMonth = options.expMonth
-        self.expYear = options.expYear
-        self.expand = options.expand
-        self.metadata = options.metadata
-        self.name = options.name
+        accountHolderName = options.accountHolderName
+        accountHolderType = options.accountHolderType
+        accountType = options.accountType
+        addressCity = options.addressCity
+        addressCountry = options.addressCountry
+        addressLine1 = options.addressLine1
+        addressLine2 = options.addressLine2
+        addressState = options.addressState
+        addressZip = options.addressZip
+        defaultForCurrency = options.defaultForCurrency
+        documents = options.documents
+        expMonth = options.expMonth
+        expYear = options.expYear
+        expand = options.expand
+        metadata = options.metadata
+        name = options.name
     }
 }
 
@@ -72,10 +72,10 @@ struct PostFileLinksRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encode(self.file, forKey: SdkCodingKey("file"))
-        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(self.expiresAt, forKey: SdkCodingKey("expires_at"))
-        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encode(file, forKey: SdkCodingKey("file"))
+        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(expiresAt, forKey: SdkCodingKey("expires_at"))
+        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
     }
 }
 
@@ -86,9 +86,9 @@ struct PostFileLinksLinkRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(self.expiresAt, forKey: SdkCodingKey("expires_at"))
-        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(expiresAt, forKey: SdkCodingKey("expires_at"))
+        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
     }
 }
 
@@ -97,7 +97,7 @@ struct PostFinancialConnectionsAccountsAccountDisconnectRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
     }
 }
 
@@ -107,8 +107,8 @@ struct PostFinancialConnectionsAccountsAccountRefreshRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encode(self.features, forKey: SdkCodingKey("features"))
-        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encode(features, forKey: SdkCodingKey("features"))
+        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
     }
 }
 
@@ -118,8 +118,8 @@ struct PostFinancialConnectionsAccountsAccountSubscribeRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encode(self.features, forKey: SdkCodingKey("features"))
-        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encode(features, forKey: SdkCodingKey("features"))
+        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
     }
 }
 
@@ -129,8 +129,8 @@ struct PostFinancialConnectionsAccountsAccountUnsubscribeRequestBody: Encodable 
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encode(self.features, forKey: SdkCodingKey("features"))
-        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encode(features, forKey: SdkCodingKey("features"))
+        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
     }
 }
 
@@ -146,25 +146,25 @@ struct PostFinancialConnectionsSessionsRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encode(self.accountHolder, forKey: SdkCodingKey("account_holder"))
-        try keyedContainer.encode(self.permissions, forKey: SdkCodingKey("permissions"))
-        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(self.filters, forKey: SdkCodingKey("filters"))
-        try keyedContainer.encodeIfPresent(self.limits, forKey: SdkCodingKey("limits"))
-        try keyedContainer.encodeIfPresent(self.manualEntry, forKey: SdkCodingKey("manual_entry"))
-        try keyedContainer.encodeIfPresent(self.prefetch, forKey: SdkCodingKey("prefetch"))
-        try keyedContainer.encodeIfPresent(self.returnUrl, forKey: SdkCodingKey("return_url"))
+        try keyedContainer.encode(accountHolder, forKey: SdkCodingKey("account_holder"))
+        try keyedContainer.encode(permissions, forKey: SdkCodingKey("permissions"))
+        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(filters, forKey: SdkCodingKey("filters"))
+        try keyedContainer.encodeIfPresent(limits, forKey: SdkCodingKey("limits"))
+        try keyedContainer.encodeIfPresent(manualEntry, forKey: SdkCodingKey("manual_entry"))
+        try keyedContainer.encodeIfPresent(prefetch, forKey: SdkCodingKey("prefetch"))
+        try keyedContainer.encodeIfPresent(returnUrl, forKey: SdkCodingKey("return_url"))
     }
 
     init(options: V1FinancialConnectionsSessionsMethods.PostFinancialConnectionsSessionsOptions) {
-        self.accountHolder = options.accountHolder
-        self.permissions = options.permissions
-        self.expand = options.expand
-        self.filters = options.filters
-        self.limits = options.limits
-        self.manualEntry = options.manualEntry
-        self.prefetch = options.prefetch
-        self.returnUrl = options.returnUrl
+        accountHolder = options.accountHolder
+        permissions = options.permissions
+        expand = options.expand
+        filters = options.filters
+        limits = options.limits
+        manualEntry = options.manualEntry
+        prefetch = options.prefetch
+        returnUrl = options.returnUrl
     }
 }
 
@@ -178,11 +178,11 @@ struct PostForwardingRequestsRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encode(self.paymentMethod, forKey: SdkCodingKey("payment_method"))
-        try keyedContainer.encode(self.replacements, forKey: SdkCodingKey("replacements"))
-        try keyedContainer.encode(self.url, forKey: SdkCodingKey("url"))
-        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
-        try keyedContainer.encodeIfPresent(self.request, forKey: SdkCodingKey("request"))
+        try keyedContainer.encode(paymentMethod, forKey: SdkCodingKey("payment_method"))
+        try keyedContainer.encode(replacements, forKey: SdkCodingKey("replacements"))
+        try keyedContainer.encode(url, forKey: SdkCodingKey("url"))
+        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encodeIfPresent(request, forKey: SdkCodingKey("request"))
     }
 }

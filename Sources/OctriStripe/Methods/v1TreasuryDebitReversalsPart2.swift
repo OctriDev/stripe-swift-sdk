@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1TreasuryDebitReversalsMethods {
-    public struct GetTreasuryDebitReversalsOptions: Codable {
+public extension V1TreasuryDebitReversalsMethods {
+    struct GetTreasuryDebitReversalsOptions: Codable {
         public var financialAccount: String
         public var endingBefore: String?
         public var expand: [String]?
@@ -22,7 +22,8 @@ extension V1TreasuryDebitReversalsMethods {
         }
     }
 
-    /// Lists debit reversals associated with a financial account. Use `received_debit`, `resolution`, and `status` to filter the results, and use cursor parameters to paginate through the account's debit reversals.
+    /// Lists debit reversals associated with a financial account. Use `received_debit`, `resolution`, and `status` to
+    /// filter the results, and use cursor parameters to paginate through the account's debit reversals.
     ///
     /// Returns a list of DebitReversals.
     ///
@@ -44,7 +45,10 @@ extension V1TreasuryDebitReversalsMethods {
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
     /// - status: Only return DebitReversals for a given status.
-    public static func getTreasuryDebitReversals(config: ClientConfig, options: GetTreasuryDebitReversalsOptions) async throws -> GetTreasuryDebitReversalsResponse {
+    static func getTreasuryDebitReversals(
+        config: ClientConfig,
+        options: GetTreasuryDebitReversalsOptions
+    ) async throws -> GetTreasuryDebitReversalsResponse {
         if let endingBefore = options.endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
@@ -57,7 +61,7 @@ extension V1TreasuryDebitReversalsMethods {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try (await sdkRequest("GET", "/v1/treasury/debit_reversals", config: config, query: [
+        return try await (sdkRequest("GET", "/v1/treasury/debit_reversals", config: config, query: [
             SdkQueryParameter("financial_account", value: options.financialAccount),
             SdkQueryParameter("ending_before", value: options.endingBefore),
             SdkQueryParameter("expand", values: options.expand, style: "deepObject", explode: true),

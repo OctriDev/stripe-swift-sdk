@@ -6,18 +6,31 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1FinancialConnectionsTransactionsMethods {
-    /// Retrieves a Financial Connections transaction by its identifier. Use `expand` to request expanded fields in the transaction response. The returned transaction includes its account, amount, currency, status, transaction time, and refresh metadata.
+public extension V1FinancialConnectionsTransactionsMethods {
+    /// Retrieves a Financial Connections transaction by its identifier. Use `expand` to request expanded fields in the
+    /// transaction response. The returned transaction includes its account, amount, currency, status, transaction time,
+    /// and refresh metadata.
     ///
     /// Retrieves the details of a Financial Connections Transaction
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func getFinancialConnectionsTransactionsTransaction(config: ClientConfig, transaction: String, expand: [String]?) async throws -> FinancialConnectionsTransaction {
+    static func getFinancialConnectionsTransactionsTransaction(
+        config: ClientConfig,
+        transaction: String,
+        expand: [String]?
+    ) async throws -> FinancialConnectionsTransaction {
         try validateLength("transaction", transaction, max: 5000)
 
-        return try (await sdkRequest("GET", ["/v1/financial_connections/transactions/", sdkEncodePathSegment(sdkWireString(transaction))].joined(), config: config, query: [
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-        ], decoder: .json, operationId: "GetFinancialConnectionsTransactionsTransaction")).data
+        return try await (sdkRequest(
+            "GET",
+            ["/v1/financial_connections/transactions/", sdkEncodePathSegment(sdkWireString(transaction))].joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+            ],
+            decoder: .json,
+            operationId: "GetFinancialConnectionsTransactionsTransaction"
+        )).data
     }
 }

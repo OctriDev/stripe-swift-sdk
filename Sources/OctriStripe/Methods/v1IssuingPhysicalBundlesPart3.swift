@@ -6,18 +6,30 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1IssuingPhysicalBundlesMethods {
-    /// Retrieves an Issuing physical bundle object by its identifier. Use `physical_bundle` to select the bundle and `expand` to request expanded response fields when needed.
+public extension V1IssuingPhysicalBundlesMethods {
+    /// Retrieves an Issuing physical bundle object by its identifier. Use `physical_bundle` to select the bundle and
+    /// `expand` to request expanded response fields when needed.
     ///
     /// Retrieves a physical bundle object.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func getIssuingPhysicalBundlesPhysicalBundle(config: ClientConfig, physicalBundle: String, expand: [String]?) async throws -> IssuingPhysicalBundle {
+    static func getIssuingPhysicalBundlesPhysicalBundle(
+        config: ClientConfig,
+        physicalBundle: String,
+        expand: [String]?
+    ) async throws -> IssuingPhysicalBundle {
         try validateLength("physical_bundle", physicalBundle, max: 5000)
 
-        return try (await sdkRequest("GET", ["/v1/issuing/physical_bundles/", sdkEncodePathSegment(sdkWireString(physicalBundle))].joined(), config: config, query: [
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-        ], decoder: .json, operationId: "GetIssuingPhysicalBundlesPhysicalBundle")).data
+        return try await (sdkRequest(
+            "GET",
+            ["/v1/issuing/physical_bundles/", sdkEncodePathSegment(sdkWireString(physicalBundle))].joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+            ],
+            decoder: .json,
+            operationId: "GetIssuingPhysicalBundlesPhysicalBundle"
+        )).data
     }
 }

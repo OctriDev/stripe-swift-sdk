@@ -276,7 +276,8 @@ extension SdkMethodTests {
             return
         }
         _ = client
-        var options = try V1SetupIntentsConfirmMethods.PostSetupIntentsIntentConfirmOptions(intent: decoded("\"intent\""))
+        var options = try V1SetupIntentsConfirmMethods
+            .PostSetupIntentsIntentConfirmOptions(intent: decoded("\"intent\""))
         options.allowedPaymentMethodTypes = try decoded("[\"acss_debit\"]")
         options.clientSecret = try decoded("\"client_secret\"")
         options.confirmationToken = try decoded("\"confirmation_token\"")
@@ -301,7 +302,8 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostSetupIntentsIntentVerifyMicrodepositsPostSetupIntentsInteX3f7879e560ReachesMockAndDecodesResponse() async throws {
+    func testPostSetupIntentsIntentVerifyMicrodepositsPostSetupIntentsInteX3f7879e560ReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -351,7 +353,8 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostShippingRatesShippingRateTokenPostShippingRatesShippingRateTokenReachesMockAndDecodesResponse() async throws {
+    func testPostShippingRatesShippingRateTokenPostShippingRatesShippingRateTokenReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -480,7 +483,8 @@ extension SdkMethodTests {
             return
         }
         _ = client
-        var options = try V1SubscriptionItemsMethods.PostSubscriptionItemsOptions(subscription: decoded("\"subscription\""))
+        var options = try V1SubscriptionItemsMethods
+            .PostSubscriptionItemsOptions(subscription: decoded("\"subscription\""))
         options.billingThresholds = try decoded("{\"usage_gte\":30}")
         options.discounts = try decoded(sdkMethodFixture496Value1)
         options.expand = try decoded("[\"expand\"]")

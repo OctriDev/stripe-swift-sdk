@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1IssuingPersonalizationDesigns operation model declarations
+/// Canonical v1IssuingPersonalizationDesigns operation model declarations
 public struct GetIssuingPersonalizationDesignsParameter: Codable {
     public var isDefault: Bool?
     public var isPlatformDefault: Bool?
@@ -18,20 +18,20 @@ public struct GetIssuingPersonalizationDesignsParameter: Codable {
     }
 
     init() {
-        (self.isDefault, self.isPlatformDefault) = (nil, nil)
+        (isDefault, isPlatformDefault) = (nil, nil)
     }
 }
 
 public extension GetIssuingPersonalizationDesignsParameter {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.isDefault = try container.sdkDecodeIfPresent(.isDefault)
-        self.isPlatformDefault = try container.sdkDecodeIfPresent(.isPlatformDefault)
+        isDefault = try container.sdkDecodeIfPresent(.isDefault)
+        isPlatformDefault = try container.sdkDecodeIfPresent(.isPlatformDefault)
     }
 }
 
 public extension GetIssuingPersonalizationDesignsParameter {
-    public init(isDefault: Bool? = nil, isPlatformDefault: Bool? = nil) {
+    init(isDefault: Bool? = nil, isPlatformDefault: Bool? = nil) {
         self.init()
         (self.isDefault, self.isPlatformDefault) = (isDefault, isPlatformDefault)
     }
@@ -43,21 +43,31 @@ public enum PostIssuingPersonalizationDesignsPersonalizationDesignRequestX7fafcb
 }
 
 extension PostIssuingPersonalizationDesignsPersonalizationDesignRequestX7fafcbaa3e: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostIssuingPersonalizationDesignsPersonalizationDesignRequestX7fafcbaa3e")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PostIssuingPersonalizationDesignsPersonalizationDesignRequestX7fafcbaa3e"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(String.self) { return .stringValue1(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(String.self) {
+            return .stringValue1(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -67,7 +77,6 @@ extension PostIssuingPersonalizationDesignsPersonalizationDesignRequestX7fafcbaa
         case let .stringValue1(value): try container.encode(value); return true
         }
     }
-
 }
 
 public struct PostIssuingPersonalizationDesignsPersonalizationDesignRequestX19f2a06934: Codable {
@@ -84,22 +93,27 @@ public struct PostIssuingPersonalizationDesignsPersonalizationDesignRequestX19f2
     }
 
     init() {
-        (self.footerBody, self.footerTitle, self.headerBody, self.headerTitle) = (nil, nil, nil, nil)
+        (footerBody, footerTitle, headerBody, headerTitle) = (nil, nil, nil, nil)
     }
 }
 
 public extension PostIssuingPersonalizationDesignsPersonalizationDesignRequestX19f2a06934 {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.footerBody = try container.sdkDecodeIfPresent(.footerBody)
-        self.footerTitle = try container.sdkDecodeIfPresent(.footerTitle)
-        self.headerBody = try container.sdkDecodeIfPresent(.headerBody)
-        self.headerTitle = try container.sdkDecodeIfPresent(.headerTitle)
+        footerBody = try container.sdkDecodeIfPresent(.footerBody)
+        footerTitle = try container.sdkDecodeIfPresent(.footerTitle)
+        headerBody = try container.sdkDecodeIfPresent(.headerBody)
+        headerTitle = try container.sdkDecodeIfPresent(.headerTitle)
     }
 }
 
 public extension PostIssuingPersonalizationDesignsPersonalizationDesignRequestX19f2a06934 {
-    public init(footerBody: PostIssuingPersonalizationDesignsPersonalizationDesignRequestXd40a706c46? = nil, footerTitle: PostIssuingPersonalizationDesignsPersonalizationDesignRequestX246089880a? = nil, headerBody: PostIssuingPersonalizationDesignsPersonalizationDesignRequestX7fafcbaa3e? = nil, headerTitle: PostIssuingPersonalizationDesignsPersonalizationDesignRequestX421127ed51? = nil) {
+    init(
+        footerBody: PostIssuingPersonalizationDesignsPersonalizationDesignRequestXd40a706c46? = nil,
+        footerTitle: PostIssuingPersonalizationDesignsPersonalizationDesignRequestX246089880a? = nil,
+        headerBody: PostIssuingPersonalizationDesignsPersonalizationDesignRequestX7fafcbaa3e? = nil,
+        headerTitle: PostIssuingPersonalizationDesignsPersonalizationDesignRequestX421127ed51? = nil
+    ) {
         self.init()
         (self.footerBody, self.footerTitle) = (footerBody, footerTitle)
         (self.headerBody, self.headerTitle) = (headerBody, headerTitle)
@@ -123,39 +137,62 @@ public struct GetIssuingPersonalizationDesignsResponse: Codable {
         case url
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension GetIssuingPersonalizationDesignsResponse {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.data) else {
-            throw SdkValidationError(field: "data", code: "required", message: "Validation failed for 'data': value is required")
-        }
-        guard container.contains(.hasMore) else {
-            throw SdkValidationError(field: "has_more", code: "required", message: "Validation failed for 'has_more': value is required")
-        }
-        guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
-        }
-        guard container.contains(.url) else {
-            throw SdkValidationError(field: "url", code: "required", message: "Validation failed for 'url': value is required")
-        }
-        self.data = try container.sdkDecodeRequired(.data)
-        self.hasMore = try container.sdkDecodeRequired(.hasMore)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.url = try container.sdkDecodeRequired(.url)
-            try validateLength("url", self.url, min: nil, max: 5000)
-            try sdkValidatePattern("url", self.url, sdkPattern51eddde197f8)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension GetIssuingPersonalizationDesignsResponse {
-    public init(data: [IssuingPersonalizationDesign], hasMore: Bool, object: GetIssuingPersonalizationDesignsResponseObject, url: String) throws {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.data) else {
+            throw SdkValidationError(
+                field: "data",
+                code: "required",
+                message: "Validation failed for 'data': value is required"
+            )
+        }
+        guard container.contains(.hasMore) else {
+            throw SdkValidationError(
+                field: "has_more",
+                code: "required",
+                message: "Validation failed for 'has_more': value is required"
+            )
+        }
+        guard container.contains(.object) else {
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
+        }
+        guard container.contains(.url) else {
+            throw SdkValidationError(
+                field: "url",
+                code: "required",
+                message: "Validation failed for 'url': value is required"
+            )
+        }
+        data = try container.sdkDecodeRequired(.data)
+        hasMore = try container.sdkDecodeRequired(.hasMore)
+        object = try container.sdkDecodeRequired(.object)
+        url = try container.sdkDecodeRequired(.url)
+        try validateLength("url", url, min: nil, max: 5000)
+        try sdkValidatePattern("url", url, sdkPattern51eddde197f8)
+    }
+}
+
+public extension GetIssuingPersonalizationDesignsResponse {
+    init(
+        data: [IssuingPersonalizationDesign],
+        hasMore: Bool,
+        object: GetIssuingPersonalizationDesignsResponseObject,
+        url: String
+    ) throws {
         (self.data, self.hasMore) = (data, hasMore)
         (self.object, self.url) = (object, url)
-            try validateLength("url", self.url, min: nil, max: 5000)
-            try sdkValidatePattern("url", self.url, sdkPattern51eddde197f8)
+        try validateLength("url", self.url, min: nil, max: 5000)
+        try sdkValidatePattern("url", self.url, sdkPattern51eddde197f8)
     }
 }
 
@@ -165,21 +202,31 @@ public enum PostIssuingPersonalizationDesignsPersonalizationDesignRequestXd40a70
 }
 
 extension PostIssuingPersonalizationDesignsPersonalizationDesignRequestXd40a706c46: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostIssuingPersonalizationDesignsPersonalizationDesignRequestXd40a706c46")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PostIssuingPersonalizationDesignsPersonalizationDesignRequestXd40a706c46"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(String.self) { return .stringValue1(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(String.self) {
+            return .stringValue1(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -189,7 +236,6 @@ extension PostIssuingPersonalizationDesignsPersonalizationDesignRequestXd40a706c
         case let .stringValue1(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum PostIssuingPersonalizationDesignsPersonalizationDesignRequestX246089880a {
@@ -198,21 +244,31 @@ public enum PostIssuingPersonalizationDesignsPersonalizationDesignRequestX246089
 }
 
 extension PostIssuingPersonalizationDesignsPersonalizationDesignRequestX246089880a: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostIssuingPersonalizationDesignsPersonalizationDesignRequestX246089880a")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PostIssuingPersonalizationDesignsPersonalizationDesignRequestX246089880a"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(String.self) { return .stringValue1(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(String.self) {
+            return .stringValue1(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -222,7 +278,6 @@ extension PostIssuingPersonalizationDesignsPersonalizationDesignRequestX24608988
         case let .stringValue1(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum PostIssuingPersonalizationDesignsPersonalizationDesignRequestX421127ed51 {
@@ -231,21 +286,31 @@ public enum PostIssuingPersonalizationDesignsPersonalizationDesignRequestX421127
 }
 
 extension PostIssuingPersonalizationDesignsPersonalizationDesignRequestX421127ed51: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostIssuingPersonalizationDesignsPersonalizationDesignRequestX421127ed51")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PostIssuingPersonalizationDesignsPersonalizationDesignRequestX421127ed51"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(String.self) { return .stringValue1(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(String.self) {
+            return .stringValue1(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -255,7 +320,6 @@ extension PostIssuingPersonalizationDesignsPersonalizationDesignRequestX421127ed
         case let .stringValue1(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum PostIssuingPersonalizationDesignsRequestBodyCarrierTextFooterBody {
@@ -264,21 +328,31 @@ public enum PostIssuingPersonalizationDesignsRequestBodyCarrierTextFooterBody {
 }
 
 extension PostIssuingPersonalizationDesignsRequestBodyCarrierTextFooterBody: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostIssuingPersonalizationDesignsRequestBodyCarrierTextFooterBody")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PostIssuingPersonalizationDesignsRequestBodyCarrierTextFooterBody"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(String.self) { return .stringValue1(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(String.self) {
+            return .stringValue1(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -288,7 +362,6 @@ extension PostIssuingPersonalizationDesignsRequestBodyCarrierTextFooterBody: Cod
         case let .stringValue1(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Information on whether this personalization design is used to create cards when one is not specified.
@@ -299,21 +372,27 @@ public struct PostIssuingPersonalizationDesignsRequestBodyPreferences: Codable {
         case isDefault = "is_default"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostIssuingPersonalizationDesignsRequestBodyPreferences {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.isDefault) else {
-            throw SdkValidationError(field: "is_default", code: "required", message: "Validation failed for 'is_default': value is required")
-        }
-        self.isDefault = try container.sdkDecodeRequired(.isDefault)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostIssuingPersonalizationDesignsRequestBodyPreferences {
-    public init(isDefault: Bool) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.isDefault) else {
+            throw SdkValidationError(
+                field: "is_default",
+                code: "required",
+                message: "Validation failed for 'is_default': value is required"
+            )
+        }
+        isDefault = try container.sdkDecodeRequired(.isDefault)
+    }
+}
+
+public extension PostIssuingPersonalizationDesignsRequestBodyPreferences {
+    init(isDefault: Bool) {
         self.isDefault = isDefault
     }
 }
@@ -326,21 +405,27 @@ public struct PostIssuingPersonalizationDesignsPersonalizationDesignRequestX99f5
         case isDefault = "is_default"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostIssuingPersonalizationDesignsPersonalizationDesignRequestX99f5723ca1 {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.isDefault) else {
-            throw SdkValidationError(field: "is_default", code: "required", message: "Validation failed for 'is_default': value is required")
-        }
-        self.isDefault = try container.sdkDecodeRequired(.isDefault)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostIssuingPersonalizationDesignsPersonalizationDesignRequestX99f5723ca1 {
-    public init(isDefault: Bool) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.isDefault) else {
+            throw SdkValidationError(
+                field: "is_default",
+                code: "required",
+                message: "Validation failed for 'is_default': value is required"
+            )
+        }
+        isDefault = try container.sdkDecodeRequired(.isDefault)
+    }
+}
+
+public extension PostIssuingPersonalizationDesignsPersonalizationDesignRequestX99f5723ca1 {
+    init(isDefault: Bool) {
         self.isDefault = isDefault
     }
 }
@@ -353,35 +438,43 @@ public enum PostIssuingPersonalizationDesignsPersonalizationDesignRequestX4d7bd0
 }
 
 extension PostIssuingPersonalizationDesignsPersonalizationDesignRequestX4d7bd04606: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostIssuingPersonalizationDesignsPersonalizationDesignRequestX4d7bd04606")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PostIssuingPersonalizationDesignsPersonalizationDesignRequestX4d7bd04606"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PostIssuingPersonalizationDesignsPersonalizationDesignRequestX19f2a06934.self
         ) {
-            return             .postIssuingPersonalizationDesignsPersonalizationDesignRequestX19f2a06934(value)
+            return .postIssuingPersonalizationDesignsPersonalizationDesignRequestX19f2a06934(value)
         }
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .postIssuingPersonalizationDesignsPersonalizationDesignRequestX19f2a06934(value): try container.encode(value); return true
+        case let .postIssuingPersonalizationDesignsPersonalizationDesignRequestX19f2a06934(value): try container
+            .encode(value); return true
         case let .stringValue(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum PostIssuingPersonalizationDesignsRequestBodyCarrierTextHeaderTitle {
@@ -390,21 +483,31 @@ public enum PostIssuingPersonalizationDesignsRequestBodyCarrierTextHeaderTitle {
 }
 
 extension PostIssuingPersonalizationDesignsRequestBodyCarrierTextHeaderTitle: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostIssuingPersonalizationDesignsRequestBodyCarrierTextHeaderTitle")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PostIssuingPersonalizationDesignsRequestBodyCarrierTextHeaderTitle"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(String.self) { return .stringValue1(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(String.self) {
+            return .stringValue1(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -414,7 +517,6 @@ extension PostIssuingPersonalizationDesignsRequestBodyCarrierTextHeaderTitle: Co
         case let .stringValue1(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum PostIssuingPersonalizationDesignsRequestBodyCarrierTextFooterTitle {
@@ -423,21 +525,31 @@ public enum PostIssuingPersonalizationDesignsRequestBodyCarrierTextFooterTitle {
 }
 
 extension PostIssuingPersonalizationDesignsRequestBodyCarrierTextFooterTitle: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostIssuingPersonalizationDesignsRequestBodyCarrierTextFooterTitle")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PostIssuingPersonalizationDesignsRequestBodyCarrierTextFooterTitle"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(String.self) { return .stringValue1(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(String.self) {
+            return .stringValue1(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -447,7 +559,6 @@ extension PostIssuingPersonalizationDesignsRequestBodyCarrierTextFooterTitle: Co
         case let .stringValue1(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Hash containing carrier text, for use with physical bundles that support carrier text.
@@ -465,22 +576,27 @@ public struct PostIssuingPersonalizationDesignsRequestBodyCarrierText: Codable {
     }
 
     init() {
-        (self.footerBody, self.footerTitle, self.headerBody, self.headerTitle) = (nil, nil, nil, nil)
+        (footerBody, footerTitle, headerBody, headerTitle) = (nil, nil, nil, nil)
     }
 }
 
 public extension PostIssuingPersonalizationDesignsRequestBodyCarrierText {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.footerBody = try container.sdkDecodeIfPresent(.footerBody)
-        self.footerTitle = try container.sdkDecodeIfPresent(.footerTitle)
-        self.headerBody = try container.sdkDecodeIfPresent(.headerBody)
-        self.headerTitle = try container.sdkDecodeIfPresent(.headerTitle)
+        footerBody = try container.sdkDecodeIfPresent(.footerBody)
+        footerTitle = try container.sdkDecodeIfPresent(.footerTitle)
+        headerBody = try container.sdkDecodeIfPresent(.headerBody)
+        headerTitle = try container.sdkDecodeIfPresent(.headerTitle)
     }
 }
 
 public extension PostIssuingPersonalizationDesignsRequestBodyCarrierText {
-    public init(footerBody: PostIssuingPersonalizationDesignsRequestBodyCarrierTextFooterBody? = nil, footerTitle: PostIssuingPersonalizationDesignsRequestBodyCarrierTextFooterTitle? = nil, headerBody: PostIssuingPersonalizationDesignsRequestBodyCarrierTextHeaderBody? = nil, headerTitle: PostIssuingPersonalizationDesignsRequestBodyCarrierTextHeaderTitle? = nil) {
+    init(
+        footerBody: PostIssuingPersonalizationDesignsRequestBodyCarrierTextFooterBody? = nil,
+        footerTitle: PostIssuingPersonalizationDesignsRequestBodyCarrierTextFooterTitle? = nil,
+        headerBody: PostIssuingPersonalizationDesignsRequestBodyCarrierTextHeaderBody? = nil,
+        headerTitle: PostIssuingPersonalizationDesignsRequestBodyCarrierTextHeaderTitle? = nil
+    ) {
         self.init()
         (self.footerBody, self.footerTitle) = (footerBody, footerTitle)
         (self.headerBody, self.headerTitle) = (headerBody, headerTitle)
@@ -493,21 +609,31 @@ public enum PostIssuingPersonalizationDesignsPersonalizationDesignRequestX70f720
 }
 
 extension PostIssuingPersonalizationDesignsPersonalizationDesignRequestX70f720c5c8: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostIssuingPersonalizationDesignsPersonalizationDesignRequestX70f720c5c8")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PostIssuingPersonalizationDesignsPersonalizationDesignRequestX70f720c5c8"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(String.self) { return .stringValue1(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(String.self) {
+            return .stringValue1(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -517,7 +643,6 @@ extension PostIssuingPersonalizationDesignsPersonalizationDesignRequestX70f720c5
         case let .stringValue1(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum PostIssuingPersonalizationDesignsRequestBodyCarrierTextHeaderBody {
@@ -526,21 +651,31 @@ public enum PostIssuingPersonalizationDesignsRequestBodyCarrierTextHeaderBody {
 }
 
 extension PostIssuingPersonalizationDesignsRequestBodyCarrierTextHeaderBody: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostIssuingPersonalizationDesignsRequestBodyCarrierTextHeaderBody")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PostIssuingPersonalizationDesignsRequestBodyCarrierTextHeaderBody"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(String.self) { return .stringValue1(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(String.self) {
+            return .stringValue1(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -550,5 +685,4 @@ extension PostIssuingPersonalizationDesignsRequestBodyCarrierTextHeaderBody: Cod
         case let .stringValue1(value): try container.encode(value); return true
         }
     }
-
 }

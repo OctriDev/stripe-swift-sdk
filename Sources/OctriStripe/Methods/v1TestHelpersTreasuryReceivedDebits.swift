@@ -7,7 +7,8 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1TestHelpersTreasuryReceivedDebitsMethods {
-    /// Use this endpoint to simulate a test mode ReceivedDebit initiated by a third party. In live mode, you can’t directly create ReceivedDebits initiated by third parties.
+    /// Use this endpoint to simulate a test mode ReceivedDebit initiated by a third party. In live mode, you can’t
+    /// directly create ReceivedDebits initiated by third parties.
     ///
     /// - Parameters:
     /// - amount: Amount (in cents) to be transferred.
@@ -24,13 +25,38 @@ public enum V1TestHelpersTreasuryReceivedDebitsMethods {
     /// - expand: Specifies which fields in the response should be expanded.
     /// - initiatingPaymentMethodDetails: Initiating payment method details for the
     ///   object.
-    public static func postTestHelpersTreasuryReceivedDebits(config: ClientConfig, amount: Int, currency: String, financialAccount: String, network: PostTestHelpersTreasuryReceivedDebitsRequestBodyNetwork, description: String?, expand: [String]?, initiatingPaymentMethodDetails: PostTestHelpersTreasuryReceivedDebitsRequestBodyInitiatingPayXf7d739b1dc?) async throws -> TreasuryReceivedDebit {
-        if let description = description {
+    public static func postTestHelpersTreasuryReceivedDebits(
+        config: ClientConfig,
+        amount: Int,
+        currency: String,
+        financialAccount: String,
+        network: PostTestHelpersTreasuryReceivedDebitsRequestBodyNetwork,
+        description: String?,
+        expand: [String]?,
+        initiatingPaymentMethodDetails: PostTestHelpersTreasuryReceivedDebitsRequestBodyInitiatingPayXf7d739b1dc?
+    ) async throws -> TreasuryReceivedDebit {
+        if let description {
             try validateLength("description", description, max: 5000)
         }
 
-        let requestBody = PostTestHelpersTreasuryReceivedDebitsRequestBody(amount: amount, currency: currency, financialAccount: financialAccount, network: network, description: description, expand: expand, initiatingPaymentMethodDetails: initiatingPaymentMethodDetails)
+        let requestBody = PostTestHelpersTreasuryReceivedDebitsRequestBody(
+            amount: amount,
+            currency: currency,
+            financialAccount: financialAccount,
+            network: network,
+            description: description,
+            expand: expand,
+            initiatingPaymentMethodDetails: initiatingPaymentMethodDetails
+        )
 
-        return try (await sdkRequest("POST", "/v1/test_helpers/treasury/received_debits", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTestHelpersTreasuryReceivedDebits")).data
+        return try await (sdkRequest(
+            "POST",
+            "/v1/test_helpers/treasury/received_debits",
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostTestHelpersTreasuryReceivedDebits"
+        )).data
     }
 }

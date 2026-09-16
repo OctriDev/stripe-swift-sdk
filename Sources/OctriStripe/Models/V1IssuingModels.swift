@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1Issuing domain models
+/// V1Issuing domain models
 /// When a non-stripe BIN is used, any use of an issued card must be settled directly with the card network. The net
 /// amount owed is represented by an Issuing `Settlement` object.
 public struct IssuingSettlement: Codable {
@@ -64,38 +64,58 @@ public struct IssuingSettlement: Codable {
         case transactionCount = "transaction_count"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension IssuingSettlement {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.bin = try container.sdkDecodeRequired(.bin)
-        self.clearingDate = try container.sdkDecodeRequired(.clearingDate)
-        self.created = try container.sdkDecodeRequired(.created)
-        self.currency = try container.sdkDecodeRequired(.currency)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.interchangeFeesAmount = try container.sdkDecodeRequired(.interchangeFeesAmount)
-        self.livemode = try container.sdkDecodeRequired(.livemode)
-        self.metadata = try container.sdkDecodeRequired(.metadata)
-        self.netTotalAmount = try container.sdkDecodeRequired(.netTotalAmount)
-        self.network = try container.sdkDecodeRequired(.network)
-        self.networkFeesAmount = try container.sdkDecodeRequired(.networkFeesAmount)
-        self.networkSettlementIdentifier = try container.sdkDecodeRequired(.networkSettlementIdentifier)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.settlementService = try container.sdkDecodeRequired(.settlementService)
-        self.status = try container.sdkDecodeRequired(.status)
-        self.transactionAmount = try container.sdkDecodeRequired(.transactionAmount)
-        self.transactionCount = try container.sdkDecodeRequired(.transactionCount)
-            try validateLength("bin", self.bin, min: nil, max: 5000)
-            try validateLength("id", self.id, min: nil, max: 5000)
-            try validateLength("network_settlement_identifier", self.networkSettlementIdentifier, min: nil, max: 5000)
-            try validateLength("settlement_service", self.settlementService, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension IssuingSettlement {
-    public init(bin: String, clearingDate: Int, created: Int, currency: String, id: String, interchangeFeesAmount: Int, livemode: Bool, metadata: [String: String], netTotalAmount: Int, network: IssuingSettlementNetwork, networkFeesAmount: Int, networkSettlementIdentifier: String, object: IssuingSettlementObject, settlementService: String, status: IssuingSettlementStatus, transactionAmount: Int, transactionCount: Int) throws {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        bin = try container.sdkDecodeRequired(.bin)
+        clearingDate = try container.sdkDecodeRequired(.clearingDate)
+        created = try container.sdkDecodeRequired(.created)
+        currency = try container.sdkDecodeRequired(.currency)
+        id = try container.sdkDecodeRequired(.id)
+        interchangeFeesAmount = try container.sdkDecodeRequired(.interchangeFeesAmount)
+        livemode = try container.sdkDecodeRequired(.livemode)
+        metadata = try container.sdkDecodeRequired(.metadata)
+        netTotalAmount = try container.sdkDecodeRequired(.netTotalAmount)
+        network = try container.sdkDecodeRequired(.network)
+        networkFeesAmount = try container.sdkDecodeRequired(.networkFeesAmount)
+        networkSettlementIdentifier = try container.sdkDecodeRequired(.networkSettlementIdentifier)
+        object = try container.sdkDecodeRequired(.object)
+        settlementService = try container.sdkDecodeRequired(.settlementService)
+        status = try container.sdkDecodeRequired(.status)
+        transactionAmount = try container.sdkDecodeRequired(.transactionAmount)
+        transactionCount = try container.sdkDecodeRequired(.transactionCount)
+        try validateLength("bin", bin, min: nil, max: 5000)
+        try validateLength("id", id, min: nil, max: 5000)
+        try validateLength("network_settlement_identifier", networkSettlementIdentifier, min: nil, max: 5000)
+        try validateLength("settlement_service", settlementService, min: nil, max: 5000)
+    }
+}
+
+public extension IssuingSettlement {
+    init(
+        bin: String,
+        clearingDate: Int,
+        created: Int,
+        currency: String,
+        id: String,
+        interchangeFeesAmount: Int,
+        livemode: Bool,
+        metadata: [String: String],
+        netTotalAmount: Int,
+        network: IssuingSettlementNetwork,
+        networkFeesAmount: Int,
+        networkSettlementIdentifier: String,
+        object: IssuingSettlementObject,
+        settlementService: String,
+        status: IssuingSettlementStatus,
+        transactionAmount: Int,
+        transactionCount: Int
+    ) throws {
         (self.bin, self.clearingDate) = (bin, clearingDate)
         (self.created, self.currency) = (created, currency)
         (self.id, self.interchangeFeesAmount) = (id, interchangeFeesAmount)
@@ -105,20 +125,12 @@ public extension IssuingSettlement {
         (self.networkSettlementIdentifier, self.object) = (networkSettlementIdentifier, object)
         (self.settlementService, self.status) = (settlementService, status)
         (self.transactionAmount, self.transactionCount) = (transactionAmount, transactionCount)
-            try validateLength("bin", self.bin, min: nil, max: 5000)
-            try validateLength("id", self.id, min: nil, max: 5000)
-            try validateLength("network_settlement_identifier", self.networkSettlementIdentifier, min: nil, max: 5000)
-            try validateLength("settlement_service", self.settlementService, min: nil, max: 5000)
+        try validateLength("bin", self.bin, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("network_settlement_identifier", self.networkSettlementIdentifier, min: nil, max: 5000)
+        try validateLength("settlement_service", self.settlementService, min: nil, max: 5000)
     }
 }
-
-
-
-
-
-
-
-
 
 /// An issuing token object is created when an issued card is added to a digital wallet. As a card issuer, you can
 /// view and manage these tokens through Stripe.
@@ -164,43 +176,58 @@ public struct IssuingToken: Codable {
         case walletProvider = "wallet_provider"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension IssuingToken {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.card = try container.sdkDecodeRequired(.card)
-        self.created = try container.sdkDecodeRequired(.created)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.livemode = try container.sdkDecodeRequired(.livemode)
-        self.network = try container.sdkDecodeRequired(.network)
-        self.networkUpdatedAt = try container.sdkDecodeRequired(.networkUpdatedAt)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.status = try container.sdkDecodeRequired(.status)
-        self.deviceFingerprint = try container.sdkDecodeIfPresent(.deviceFingerprint)
-        self.last4 = try container.sdkDecodeIfPresent(.last4)
-        self.networkData = try container.sdkDecodeIfPresent(.networkData)
-        self.walletProvider = try container.sdkDecodeIfPresent(.walletProvider)
-            try validateLength("id", self.id, min: nil, max: 5000)
-        if let value = self.deviceFingerprint {
+        card = try container.sdkDecodeRequired(.card)
+        created = try container.sdkDecodeRequired(.created)
+        id = try container.sdkDecodeRequired(.id)
+        livemode = try container.sdkDecodeRequired(.livemode)
+        network = try container.sdkDecodeRequired(.network)
+        networkUpdatedAt = try container.sdkDecodeRequired(.networkUpdatedAt)
+        object = try container.sdkDecodeRequired(.object)
+        status = try container.sdkDecodeRequired(.status)
+        deviceFingerprint = try container.sdkDecodeIfPresent(.deviceFingerprint)
+        last4 = try container.sdkDecodeIfPresent(.last4)
+        networkData = try container.sdkDecodeIfPresent(.networkData)
+        walletProvider = try container.sdkDecodeIfPresent(.walletProvider)
+        try validateLength("id", id, min: nil, max: 5000)
+        if let value = deviceFingerprint {
             try validateLength("device_fingerprint", value, min: nil, max: 5000)
         }
-        if let value = self.last4 {
+        if let value = last4 {
             try validateLength("last4", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension IssuingToken {
-    public init(card: IssuingTokenCard, created: Int, id: String, livemode: Bool, network: IssuingTokenNetwork, networkUpdatedAt: Int, object: IssuingTokenObject, status: IssuingTokenStatus, deviceFingerprint: String? = nil, last4: String? = nil, networkData: IssuingNetworkTokenNetworkData? = nil, walletProvider: IssuingTokenWalletProvider? = nil) throws {
+    init(
+        card: IssuingTokenCard,
+        created: Int,
+        id: String,
+        livemode: Bool,
+        network: IssuingTokenNetwork,
+        networkUpdatedAt: Int,
+        object: IssuingTokenObject,
+        status: IssuingTokenStatus,
+        deviceFingerprint: String? = nil,
+        last4: String? = nil,
+        networkData: IssuingNetworkTokenNetworkData? = nil,
+        walletProvider: IssuingTokenWalletProvider? = nil
+    ) throws {
         (self.card, self.created) = (card, created)
         (self.id, self.livemode) = (id, livemode)
         (self.network, self.networkUpdatedAt) = (network, networkUpdatedAt)
         (self.object, self.status) = (object, status)
         (self.deviceFingerprint, self.last4) = (deviceFingerprint, last4)
         (self.networkData, self.walletProvider) = (networkData, walletProvider)
-            try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
         if let value = self.deviceFingerprint {
             try validateLength("device_fingerprint", value, min: nil, max: 5000)
         }
@@ -216,21 +243,31 @@ public enum IssuingTokenCard {
 }
 
 extension IssuingTokenCard: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for IssuingTokenCard")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for IssuingTokenCard"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(IssuingCard.self) { return .issuingCard(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(IssuingCard.self) {
+            return .issuingCard(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -240,20 +277,22 @@ extension IssuingTokenCard: Codable {
         case let .issuingCard(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// The current processing status of this settlement.
 public struct IssuingSettlementStatus: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let complete = IssuingSettlementStatus(rawValue: "complete")
     public static let pending = IssuingSettlementStatus(rawValue: "pending")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -266,12 +305,15 @@ public struct IssuingSettlementStatus: RawRepresentable, Hashable, Codable, Send
 public struct IssuingTokenObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let issuingToken = IssuingTokenObject(rawValue: "issuing.token")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -284,12 +326,15 @@ public struct IssuingTokenObject: RawRepresentable, Hashable, Codable, Sendable,
 public struct IssuingSettlementObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let issuingSettlement = IssuingSettlementObject(rawValue: "issuing.settlement")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -302,13 +347,16 @@ public struct IssuingSettlementObject: RawRepresentable, Hashable, Codable, Send
 public struct IssuingTokenNetwork: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let primarycard = IssuingTokenNetwork(rawValue: "mastercard")
     public static let visa = IssuingTokenNetwork(rawValue: "visa")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -321,14 +369,17 @@ public struct IssuingTokenNetwork: RawRepresentable, Hashable, Codable, Sendable
 public struct IssuingTokenWalletProvider: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let applePay = IssuingTokenWalletProvider(rawValue: "apple_pay")
     public static let googlePay = IssuingTokenWalletProvider(rawValue: "google_pay")
     public static let samsungPay = IssuingTokenWalletProvider(rawValue: "samsung_pay")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -341,14 +392,17 @@ public struct IssuingTokenWalletProvider: RawRepresentable, Hashable, Codable, S
 public struct IssuingSettlementNetwork: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let maestro = IssuingSettlementNetwork(rawValue: "maestro")
     public static let primarycard = IssuingSettlementNetwork(rawValue: "mastercard")
     public static let visa = IssuingSettlementNetwork(rawValue: "visa")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -361,7 +415,10 @@ public struct IssuingSettlementNetwork: RawRepresentable, Hashable, Codable, Sen
 public struct IssuingTokenStatus: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let active = IssuingTokenStatus(rawValue: "active")
     public static let deleted = IssuingTokenStatus(rawValue: "deleted")
     public static let requested = IssuingTokenStatus(rawValue: "requested")
@@ -369,7 +426,7 @@ public struct IssuingTokenStatus: RawRepresentable, Hashable, Codable, Sendable,
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

@@ -6,24 +6,38 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1RadarValueListsMethods {
-    /// Retrieves a Radar value list and its configured items. Use the value list identifier to inspect its alias, item type, metadata, creator, and current list items.
+public extension V1RadarValueListsMethods {
+    /// Retrieves a Radar value list and its configured items. Use the value list identifier to inspect its alias, item
+    /// type, metadata, creator, and current list items.
     ///
     /// Retrieves a ValueList object.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func getRadarValueListsValueList(config: ClientConfig, valueList: String, expand: [String]?) async throws -> RadarValueList {
+    static func getRadarValueListsValueList(
+        config: ClientConfig,
+        valueList: String,
+        expand: [String]?
+    ) async throws -> RadarValueList {
         try validateLength("value_list", valueList, max: 5000)
 
-        return try (await sdkRequest("GET", ["/v1/radar/value_lists/", sdkEncodePathSegment(sdkWireString(valueList))].joined(), config: config, query: [
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-        ], decoder: .json, operationId: "GetRadarValueListsValueList")).data
+        return try await (sdkRequest(
+            "GET",
+            ["/v1/radar/value_lists/", sdkEncodePathSegment(sdkWireString(valueList))].joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+            ],
+            decoder: .json,
+            operationId: "GetRadarValueListsValueList"
+        )).data
     }
 
-    /// Updates a Radar value list without changing its item type. Supply only the fields you want to change; omitted fields remain unchanged, and `item_type` cannot be modified.
+    /// Updates a Radar value list without changing its item type. Supply only the fields you want to change; omitted
+    /// fields remain unchanged, and `item_type` cannot be modified.
     ///
-    /// Updates a ValueList object by setting the values of the parameters passed. Any parameters not provided will be left unchanged. Note that item_type is immutable.
+    /// Updates a ValueList object by setting the values of the parameters passed. Any parameters not provided will be
+    /// left unchanged. Note that item_type is immutable.
     ///
     /// - Parameters:
     /// - alias: The name of the value list for use in rules.
@@ -34,19 +48,39 @@ extension V1RadarValueListsMethods {
     ///   unset by posting an empty value to them. All keys can be unset by posting an
     ///   empty value to `metadata`.
     /// - name: The human-readable name of the value list.
-    public static func postRadarValueListsValueList(config: ClientConfig, valueList: String, alias: String?, expand: [String]?, metadata: [String: String]?, name: String?) async throws -> RadarValueList {
+    static func postRadarValueListsValueList(
+        config: ClientConfig,
+        valueList: String,
+        alias: String?,
+        expand: [String]?,
+        metadata: [String: String]?,
+        name: String?
+    ) async throws -> RadarValueList {
         try validateLength("value_list", valueList, max: 5000)
 
-        if let alias = alias {
+        if let alias {
             try validateLength("alias", alias, max: 100)
         }
 
-        if let name = name {
+        if let name {
             try validateLength("name", name, max: 100)
         }
 
-        let requestBody = PostRadarValueListsValueListRequestBody(alias: alias, expand: expand, metadata: metadata, name: name)
+        let requestBody = PostRadarValueListsValueListRequestBody(
+            alias: alias,
+            expand: expand,
+            metadata: metadata,
+            name: name
+        )
 
-        return try (await sdkRequest("POST", ["/v1/radar/value_lists/", sdkEncodePathSegment(sdkWireString(valueList))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostRadarValueListsValueList")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/radar/value_lists/", sdkEncodePathSegment(sdkWireString(valueList))].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostRadarValueListsValueList"
+        )).data
     }
 }

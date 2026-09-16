@@ -6,8 +6,9 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1AccountsMethods {
-    /// Lists connected accounts associated with the authenticated user's platform. Use the cursor parameters to move through the result set, `created` to filter by creation time, and `limit` to control the page size.
+public extension V1AccountsMethods {
+    /// Lists connected accounts associated with the authenticated user's platform. Use the cursor parameters to move
+    /// through the result set, `created` to filter by creation time, and `limit` to control the page size.
     ///
     /// Returns a list of accounts connected to your platform via Connect. If you’re not a platform, the list is empty.
     ///
@@ -27,8 +28,15 @@ extension V1AccountsMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    public static func getAccounts(config: ClientConfig, created: GetAccountsParameter?, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetAccountsResponse {
-        return try (await sdkRequest("GET", "/v1/accounts", config: config, query: [
+    static func getAccounts(
+        config: ClientConfig,
+        created: GetAccountsParameter?,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        startingAfter: String?
+    ) async throws -> GetAccountsResponse {
+        try await (sdkRequest("GET", "/v1/accounts", config: config, query: [
             SdkQueryParameter("created", value: created),
             SdkQueryParameter("ending_before", value: endingBefore),
             SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),

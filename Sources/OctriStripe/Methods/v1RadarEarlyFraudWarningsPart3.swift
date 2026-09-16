@@ -6,18 +6,31 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1RadarEarlyFraudWarningsMethods {
-    /// Retrieves the details of a previously created early fraud warning. Supply the warning identifier and optionally expand related charge or PaymentIntent data in the response.
+public extension V1RadarEarlyFraudWarningsMethods {
+    /// Retrieves the details of a previously created early fraud warning. Supply the warning identifier and optionally
+    /// expand related charge or PaymentIntent data in the response.
     ///
-    /// Retrieves the details of an early fraud warning that has previously been created. Please refer to the early fraud warning object reference for more details.
+    /// Retrieves the details of an early fraud warning that has previously been created. Please refer to the early
+    /// fraud warning object reference for more details.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func getRadarEarlyFraudWarningsEarlyFraudWarning(config: ClientConfig, earlyFraudWarning: String, expand: [String]?) async throws -> RadarEarlyFraudWarning {
+    static func getRadarEarlyFraudWarningsEarlyFraudWarning(
+        config: ClientConfig,
+        earlyFraudWarning: String,
+        expand: [String]?
+    ) async throws -> RadarEarlyFraudWarning {
         try validateLength("early_fraud_warning", earlyFraudWarning, max: 5000)
 
-        return try (await sdkRequest("GET", ["/v1/radar/early_fraud_warnings/", sdkEncodePathSegment(sdkWireString(earlyFraudWarning))].joined(), config: config, query: [
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-        ], decoder: .json, operationId: "GetRadarEarlyFraudWarningsEarlyFraudWarning")).data
+        return try await (sdkRequest(
+            "GET",
+            ["/v1/radar/early_fraud_warnings/", sdkEncodePathSegment(sdkWireString(earlyFraudWarning))].joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+            ],
+            decoder: .json,
+            operationId: "GetRadarEarlyFraudWarningsEarlyFraudWarning"
+        )).data
     }
 }

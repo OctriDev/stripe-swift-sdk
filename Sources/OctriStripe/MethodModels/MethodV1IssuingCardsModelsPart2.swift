@@ -7,40 +7,58 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1IssuingCards operation model declarations
+/// Canonical v1IssuingCards operation model declarations
 public extension PostIssuingCardsCardRequestBodyShipping {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.address) else {
-            throw SdkValidationError(field: "address", code: "required", message: "Validation failed for 'address': value is required")
+            throw SdkValidationError(
+                field: "address",
+                code: "required",
+                message: "Validation failed for 'address': value is required"
+            )
         }
         guard container.contains(.name) else {
-            throw SdkValidationError(field: "name", code: "required", message: "Validation failed for 'name': value is required")
+            throw SdkValidationError(
+                field: "name",
+                code: "required",
+                message: "Validation failed for 'name': value is required"
+            )
         }
-        self.address = try container.sdkDecodeRequired(.address)
-        self.name = try container.sdkDecodeRequired(.name)
-        self.addressValidation = try container.sdkDecodeIfPresent(.addressValidation)
-        self.businessName = try container.sdkDecodeIfPresent(.businessName)
-        self.customs = try container.sdkDecodeIfPresent(.customs)
-        self.phoneNumber = try container.sdkDecodeIfPresent(.phoneNumber)
-        self.requireSignature = try container.sdkDecodeIfPresent(.requireSignature)
-        self.service = try container.sdkDecodeIfPresent(.service)
-        self.type = try container.sdkDecodeIfPresent(.type)
-            try validateLength("name", self.name, min: nil, max: 5000)
-        if let value = self.businessName {
+        address = try container.sdkDecodeRequired(.address)
+        name = try container.sdkDecodeRequired(.name)
+        addressValidation = try container.sdkDecodeIfPresent(.addressValidation)
+        businessName = try container.sdkDecodeIfPresent(.businessName)
+        customs = try container.sdkDecodeIfPresent(.customs)
+        phoneNumber = try container.sdkDecodeIfPresent(.phoneNumber)
+        requireSignature = try container.sdkDecodeIfPresent(.requireSignature)
+        service = try container.sdkDecodeIfPresent(.service)
+        type = try container.sdkDecodeIfPresent(.type)
+        try validateLength("name", name, min: nil, max: 5000)
+        if let value = businessName {
             try validateLength("business_name", value, min: nil, max: 50)
         }
     }
 }
 
 public extension PostIssuingCardsCardRequestBodyShipping {
-    public init(address: PostIssuingCardsCardRequestBodyShippingAddress, name: String, addressValidation: PostIssuingCardsCardRequestBodyShippingAddressValidation? = nil, businessName: String? = nil, customs: PostIssuingCardsCardRequestBodyShippingCustoms? = nil, phoneNumber: String? = nil, requireSignature: Bool? = nil, service: PostIssuingCardsCardRequestBodyShippingService? = nil, type: PostIssuingCardsCardRequestBodyShippingType? = nil) throws {
+    init(
+        address: PostIssuingCardsCardRequestBodyShippingAddress,
+        name: String,
+        addressValidation: PostIssuingCardsCardRequestBodyShippingAddressValidation? = nil,
+        businessName: String? = nil,
+        customs: PostIssuingCardsCardRequestBodyShippingCustoms? = nil,
+        phoneNumber: String? = nil,
+        requireSignature: Bool? = nil,
+        service: PostIssuingCardsCardRequestBodyShippingService? = nil,
+        type: PostIssuingCardsCardRequestBodyShippingType? = nil
+    ) throws {
         (self.address, self.name) = (address, name)
         (self.addressValidation, self.businessName) = (addressValidation, businessName)
         (self.customs, self.phoneNumber) = (customs, phoneNumber)
         (self.requireSignature, self.service) = (requireSignature, service)
         self.type = type
-            try validateLength("name", self.name, min: nil, max: 5000)
+        try validateLength("name", self.name, min: nil, max: 5000)
         if let value = self.businessName {
             try validateLength("business_name", value, min: nil, max: 50)
         }
@@ -55,22 +73,22 @@ public struct PostIssuingCardsRequestBodyShippingCustoms: Codable {
     }
 
     init() {
-        self.eoriNumber = nil
+        eoriNumber = nil
     }
 }
 
 public extension PostIssuingCardsRequestBodyShippingCustoms {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.eoriNumber = try container.sdkDecodeIfPresent(.eoriNumber)
-        if let value = self.eoriNumber {
+        eoriNumber = try container.sdkDecodeIfPresent(.eoriNumber)
+        if let value = eoriNumber {
             try validateLength("eori_number", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension PostIssuingCardsRequestBodyShippingCustoms {
-    public init(eoriNumber: String? = nil) throws {
+    init(eoriNumber: String? = nil) throws {
         self.init()
         self.eoriNumber = eoriNumber
         if let value = self.eoriNumber {
@@ -88,22 +106,22 @@ public struct PostIssuingCardsRequestBodyPin: Codable {
     }
 
     init() {
-        self.encryptedNumber = nil
+        encryptedNumber = nil
     }
 }
 
 public extension PostIssuingCardsRequestBodyPin {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.encryptedNumber = try container.sdkDecodeIfPresent(.encryptedNumber)
-        if let value = self.encryptedNumber {
+        encryptedNumber = try container.sdkDecodeIfPresent(.encryptedNumber)
+        if let value = encryptedNumber {
             try validateLength("encrypted_number", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension PostIssuingCardsRequestBodyPin {
-    public init(encryptedNumber: String? = nil) throws {
+    init(encryptedNumber: String? = nil) throws {
         self.init()
         self.encryptedNumber = encryptedNumber
         if let value = self.encryptedNumber {
@@ -129,52 +147,77 @@ public struct PostIssuingCardsRequestBodyShippingAddress: Codable {
         case state
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension PostIssuingCardsRequestBodyShippingAddress {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.city) else {
-            throw SdkValidationError(field: "city", code: "required", message: "Validation failed for 'city': value is required")
+            throw SdkValidationError(
+                field: "city",
+                code: "required",
+                message: "Validation failed for 'city': value is required"
+            )
         }
         guard container.contains(.country) else {
-            throw SdkValidationError(field: "country", code: "required", message: "Validation failed for 'country': value is required")
+            throw SdkValidationError(
+                field: "country",
+                code: "required",
+                message: "Validation failed for 'country': value is required"
+            )
         }
         guard container.contains(.line1) else {
-            throw SdkValidationError(field: "line1", code: "required", message: "Validation failed for 'line1': value is required")
+            throw SdkValidationError(
+                field: "line1",
+                code: "required",
+                message: "Validation failed for 'line1': value is required"
+            )
         }
         guard container.contains(.postalCode) else {
-            throw SdkValidationError(field: "postal_code", code: "required", message: "Validation failed for 'postal_code': value is required")
+            throw SdkValidationError(
+                field: "postal_code",
+                code: "required",
+                message: "Validation failed for 'postal_code': value is required"
+            )
         }
-        self.city = try container.sdkDecodeRequired(.city)
-        self.country = try container.sdkDecodeRequired(.country)
-        self.line1 = try container.sdkDecodeRequired(.line1)
-        self.postalCode = try container.sdkDecodeRequired(.postalCode)
-        self.line2 = try container.sdkDecodeIfPresent(.line2)
-        self.state = try container.sdkDecodeIfPresent(.state)
-            try validateLength("city", self.city, min: nil, max: 5000)
-            try validateLength("country", self.country, min: nil, max: 5000)
-            try validateLength("line1", self.line1, min: nil, max: 5000)
-            try validateLength("postal_code", self.postalCode, min: nil, max: 5000)
-        if let value = self.line2 {
+        city = try container.sdkDecodeRequired(.city)
+        country = try container.sdkDecodeRequired(.country)
+        line1 = try container.sdkDecodeRequired(.line1)
+        postalCode = try container.sdkDecodeRequired(.postalCode)
+        line2 = try container.sdkDecodeIfPresent(.line2)
+        state = try container.sdkDecodeIfPresent(.state)
+        try validateLength("city", city, min: nil, max: 5000)
+        try validateLength("country", country, min: nil, max: 5000)
+        try validateLength("line1", line1, min: nil, max: 5000)
+        try validateLength("postal_code", postalCode, min: nil, max: 5000)
+        if let value = line2 {
             try validateLength("line2", value, min: nil, max: 5000)
         }
-        if let value = self.state {
+        if let value = state {
             try validateLength("state", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension PostIssuingCardsRequestBodyShippingAddress {
-    public init(city: String, country: String, line1: String, postalCode: String, line2: String? = nil, state: String? = nil) throws {
+    init(
+        city: String,
+        country: String,
+        line1: String,
+        postalCode: String,
+        line2: String? = nil,
+        state: String? = nil
+    ) throws {
         (self.city, self.country) = (city, country)
         (self.line1, self.postalCode) = (line1, postalCode)
         (self.line2, self.state) = (line2, state)
-            try validateLength("city", self.city, min: nil, max: 5000)
-            try validateLength("country", self.country, min: nil, max: 5000)
-            try validateLength("line1", self.line1, min: nil, max: 5000)
-            try validateLength("postal_code", self.postalCode, min: nil, max: 5000)
+        try validateLength("city", self.city, min: nil, max: 5000)
+        try validateLength("country", self.country, min: nil, max: 5000)
+        try validateLength("line1", self.line1, min: nil, max: 5000)
+        try validateLength("postal_code", self.postalCode, min: nil, max: 5000)
         if let value = self.line2 {
             try validateLength("line2", value, min: nil, max: 5000)
         }
@@ -191,26 +234,33 @@ public struct PostIssuingCardsRequestBodyLifecycleControlsCancelAfter: Codable {
         case paymentCount = "payment_count"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostIssuingCardsRequestBodyLifecycleControlsCancelAfter {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.paymentCount) else {
-            throw SdkValidationError(field: "payment_count", code: "required", message: "Validation failed for 'payment_count': value is required")
-        }
-        self.paymentCount = try container.sdkDecodeRequired(.paymentCount)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostIssuingCardsRequestBodyLifecycleControlsCancelAfter {
-    public init(paymentCount: Int) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.paymentCount) else {
+            throw SdkValidationError(
+                field: "payment_count",
+                code: "required",
+                message: "Validation failed for 'payment_count': value is required"
+            )
+        }
+        paymentCount = try container.sdkDecodeRequired(.paymentCount)
+    }
+}
+
+public extension PostIssuingCardsRequestBodyLifecycleControlsCancelAfter {
+    init(paymentCount: Int) {
         self.paymentCount = paymentCount
     }
 }
 
-public typealias PostIssuingCardsRequestBodySpendingControlsSpendingLimitsItemXfb1eac49eb = [PostIssuingCardsRequestBodySpendingControlsSpendingLimitsItemX556825da5b]
+public typealias PostIssuingCardsRequestBodySpendingControlsSpendingLimitsItemXfb1eac49eb =
+    [PostIssuingCardsRequestBodySpendingControlsSpendingLimitsItemX556825da5b]
 
 public struct PostIssuingCardsRequestBodySpendingControlsSpendingLimitsItem: Codable {
     public var amount: Int
@@ -223,26 +273,40 @@ public struct PostIssuingCardsRequestBodySpendingControlsSpendingLimitsItem: Cod
         case categories
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension PostIssuingCardsRequestBodySpendingControlsSpendingLimitsItem {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.amount) else {
-            throw SdkValidationError(field: "amount", code: "required", message: "Validation failed for 'amount': value is required")
-        }
-        guard container.contains(.interval) else {
-            throw SdkValidationError(field: "interval", code: "required", message: "Validation failed for 'interval': value is required")
-        }
-        self.amount = try container.sdkDecodeRequired(.amount)
-        self.interval = try container.sdkDecodeRequired(.interval)
-        self.categories = try container.sdkDecodeIfPresent(.categories)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension PostIssuingCardsRequestBodySpendingControlsSpendingLimitsItem {
-    public init(amount: Int, interval: PostIssuingCardsRequestBodySpendingControlsSpendingLimitsItemInterval, categories: PostIssuingCardsRequestBodySpendingControlsSpendingLimitsItemXfb1eac49eb? = nil) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.amount) else {
+            throw SdkValidationError(
+                field: "amount",
+                code: "required",
+                message: "Validation failed for 'amount': value is required"
+            )
+        }
+        guard container.contains(.interval) else {
+            throw SdkValidationError(
+                field: "interval",
+                code: "required",
+                message: "Validation failed for 'interval': value is required"
+            )
+        }
+        amount = try container.sdkDecodeRequired(.amount)
+        interval = try container.sdkDecodeRequired(.interval)
+        categories = try container.sdkDecodeIfPresent(.categories)
+    }
+}
+
+public extension PostIssuingCardsRequestBodySpendingControlsSpendingLimitsItem {
+    init(
+        amount: Int,
+        interval: PostIssuingCardsRequestBodySpendingControlsSpendingLimitsItemInterval,
+        categories: PostIssuingCardsRequestBodySpendingControlsSpendingLimitsItemXfb1eac49eb? = nil
+    ) {
         (self.amount, self.interval) = (amount, interval)
         self.categories = categories
     }
@@ -257,22 +321,22 @@ public struct PostIssuingCardsCardRequestBodyPin: Codable {
     }
 
     init() {
-        self.encryptedNumber = nil
+        encryptedNumber = nil
     }
 }
 
 public extension PostIssuingCardsCardRequestBodyPin {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.encryptedNumber = try container.sdkDecodeIfPresent(.encryptedNumber)
-        if let value = self.encryptedNumber {
+        encryptedNumber = try container.sdkDecodeIfPresent(.encryptedNumber)
+        if let value = encryptedNumber {
             try validateLength("encrypted_number", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension PostIssuingCardsCardRequestBodyPin {
-    public init(encryptedNumber: String? = nil) throws {
+    init(encryptedNumber: String? = nil) throws {
         self.init()
         self.encryptedNumber = encryptedNumber
         if let value = self.encryptedNumber {
@@ -308,42 +372,62 @@ public struct PostIssuingCardsRequestBodyShipping: Codable {
         case type
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension PostIssuingCardsRequestBodyShipping {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.address) else {
-            throw SdkValidationError(field: "address", code: "required", message: "Validation failed for 'address': value is required")
+            throw SdkValidationError(
+                field: "address",
+                code: "required",
+                message: "Validation failed for 'address': value is required"
+            )
         }
         guard container.contains(.name) else {
-            throw SdkValidationError(field: "name", code: "required", message: "Validation failed for 'name': value is required")
+            throw SdkValidationError(
+                field: "name",
+                code: "required",
+                message: "Validation failed for 'name': value is required"
+            )
         }
-        self.address = try container.sdkDecodeRequired(.address)
-        self.name = try container.sdkDecodeRequired(.name)
-        self.addressValidation = try container.sdkDecodeIfPresent(.addressValidation)
-        self.businessName = try container.sdkDecodeIfPresent(.businessName)
-        self.customs = try container.sdkDecodeIfPresent(.customs)
-        self.phoneNumber = try container.sdkDecodeIfPresent(.phoneNumber)
-        self.requireSignature = try container.sdkDecodeIfPresent(.requireSignature)
-        self.service = try container.sdkDecodeIfPresent(.service)
-        self.type = try container.sdkDecodeIfPresent(.type)
-            try validateLength("name", self.name, min: nil, max: 5000)
-        if let value = self.businessName {
+        address = try container.sdkDecodeRequired(.address)
+        name = try container.sdkDecodeRequired(.name)
+        addressValidation = try container.sdkDecodeIfPresent(.addressValidation)
+        businessName = try container.sdkDecodeIfPresent(.businessName)
+        customs = try container.sdkDecodeIfPresent(.customs)
+        phoneNumber = try container.sdkDecodeIfPresent(.phoneNumber)
+        requireSignature = try container.sdkDecodeIfPresent(.requireSignature)
+        service = try container.sdkDecodeIfPresent(.service)
+        type = try container.sdkDecodeIfPresent(.type)
+        try validateLength("name", name, min: nil, max: 5000)
+        if let value = businessName {
             try validateLength("business_name", value, min: nil, max: 50)
         }
     }
 }
 
 public extension PostIssuingCardsRequestBodyShipping {
-    public init(address: PostIssuingCardsRequestBodyShippingAddress, name: String, addressValidation: PostIssuingCardsRequestBodyShippingAddressValidation? = nil, businessName: String? = nil, customs: PostIssuingCardsRequestBodyShippingCustoms? = nil, phoneNumber: String? = nil, requireSignature: Bool? = nil, service: PostIssuingCardsRequestBodyShippingService? = nil, type: PostIssuingCardsRequestBodyShippingType? = nil) throws {
+    init(
+        address: PostIssuingCardsRequestBodyShippingAddress,
+        name: String,
+        addressValidation: PostIssuingCardsRequestBodyShippingAddressValidation? = nil,
+        businessName: String? = nil,
+        customs: PostIssuingCardsRequestBodyShippingCustoms? = nil,
+        phoneNumber: String? = nil,
+        requireSignature: Bool? = nil,
+        service: PostIssuingCardsRequestBodyShippingService? = nil,
+        type: PostIssuingCardsRequestBodyShippingType? = nil
+    ) throws {
         (self.address, self.name) = (address, name)
         (self.addressValidation, self.businessName) = (addressValidation, businessName)
         (self.customs, self.phoneNumber) = (customs, phoneNumber)
         (self.requireSignature, self.service) = (requireSignature, service)
         self.type = type
-            try validateLength("name", self.name, min: nil, max: 5000)
+        try validateLength("name", self.name, min: nil, max: 5000)
         if let value = self.businessName {
             try validateLength("business_name", value, min: nil, max: 50)
         }
@@ -367,52 +451,77 @@ public struct PostIssuingCardsCardRequestBodyShippingAddress: Codable {
         case state
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension PostIssuingCardsCardRequestBodyShippingAddress {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.city) else {
-            throw SdkValidationError(field: "city", code: "required", message: "Validation failed for 'city': value is required")
+            throw SdkValidationError(
+                field: "city",
+                code: "required",
+                message: "Validation failed for 'city': value is required"
+            )
         }
         guard container.contains(.country) else {
-            throw SdkValidationError(field: "country", code: "required", message: "Validation failed for 'country': value is required")
+            throw SdkValidationError(
+                field: "country",
+                code: "required",
+                message: "Validation failed for 'country': value is required"
+            )
         }
         guard container.contains(.line1) else {
-            throw SdkValidationError(field: "line1", code: "required", message: "Validation failed for 'line1': value is required")
+            throw SdkValidationError(
+                field: "line1",
+                code: "required",
+                message: "Validation failed for 'line1': value is required"
+            )
         }
         guard container.contains(.postalCode) else {
-            throw SdkValidationError(field: "postal_code", code: "required", message: "Validation failed for 'postal_code': value is required")
+            throw SdkValidationError(
+                field: "postal_code",
+                code: "required",
+                message: "Validation failed for 'postal_code': value is required"
+            )
         }
-        self.city = try container.sdkDecodeRequired(.city)
-        self.country = try container.sdkDecodeRequired(.country)
-        self.line1 = try container.sdkDecodeRequired(.line1)
-        self.postalCode = try container.sdkDecodeRequired(.postalCode)
-        self.line2 = try container.sdkDecodeIfPresent(.line2)
-        self.state = try container.sdkDecodeIfPresent(.state)
-            try validateLength("city", self.city, min: nil, max: 5000)
-            try validateLength("country", self.country, min: nil, max: 5000)
-            try validateLength("line1", self.line1, min: nil, max: 5000)
-            try validateLength("postal_code", self.postalCode, min: nil, max: 5000)
-        if let value = self.line2 {
+        city = try container.sdkDecodeRequired(.city)
+        country = try container.sdkDecodeRequired(.country)
+        line1 = try container.sdkDecodeRequired(.line1)
+        postalCode = try container.sdkDecodeRequired(.postalCode)
+        line2 = try container.sdkDecodeIfPresent(.line2)
+        state = try container.sdkDecodeIfPresent(.state)
+        try validateLength("city", city, min: nil, max: 5000)
+        try validateLength("country", country, min: nil, max: 5000)
+        try validateLength("line1", line1, min: nil, max: 5000)
+        try validateLength("postal_code", postalCode, min: nil, max: 5000)
+        if let value = line2 {
             try validateLength("line2", value, min: nil, max: 5000)
         }
-        if let value = self.state {
+        if let value = state {
             try validateLength("state", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension PostIssuingCardsCardRequestBodyShippingAddress {
-    public init(city: String, country: String, line1: String, postalCode: String, line2: String? = nil, state: String? = nil) throws {
+    init(
+        city: String,
+        country: String,
+        line1: String,
+        postalCode: String,
+        line2: String? = nil,
+        state: String? = nil
+    ) throws {
         (self.city, self.country) = (city, country)
         (self.line1, self.postalCode) = (line1, postalCode)
         (self.line2, self.state) = (line2, state)
-            try validateLength("city", self.city, min: nil, max: 5000)
-            try validateLength("country", self.country, min: nil, max: 5000)
-            try validateLength("line1", self.line1, min: nil, max: 5000)
-            try validateLength("postal_code", self.postalCode, min: nil, max: 5000)
+        try validateLength("city", self.city, min: nil, max: 5000)
+        try validateLength("country", self.country, min: nil, max: 5000)
+        try validateLength("line1", self.line1, min: nil, max: 5000)
+        try validateLength("postal_code", self.postalCode, min: nil, max: 5000)
         if let value = self.line2 {
             try validateLength("line2", value, min: nil, max: 5000)
         }

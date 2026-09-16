@@ -7,18 +7,33 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1LinkedAccountsRefreshMethods {
-    /// Refreshes selected data for a Financial Connections Account. Provide `features` to specify whether to refresh balances, ownership, or transactions, and use `expand` when the refreshed account response needs additional fields.
+    /// Refreshes selected data for a Financial Connections Account. Provide `features` to specify whether to refresh
+    /// balances, ownership, or transactions, and use `expand` when the refreshed account response needs additional
+    /// fields.
     ///
     /// Refreshes the data associated with a Financial Connections Account .
     ///
     /// - Parameters:
     /// - features: The list of account features that you would like to refresh.
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postLinkedAccountsAccountRefresh(config: ClientConfig, account: String, features: [PostLinkedAccountsAccountRefreshRequestBodyFeaturesItem], expand: [String]?) async throws -> FinancialConnectionsAccount {
+    public static func postLinkedAccountsAccountRefresh(
+        config: ClientConfig,
+        account: String,
+        features: [PostLinkedAccountsAccountRefreshRequestBodyFeaturesItem],
+        expand: [String]?
+    ) async throws -> FinancialConnectionsAccount {
         try validateLength("account", account, max: 5000)
 
         let requestBody = PostLinkedAccountsAccountRefreshRequestBody(features: features, expand: expand)
 
-        return try (await sdkRequest("POST", ["/v1/linked_accounts/", sdkEncodePathSegment(sdkWireString(account)), "/refresh"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostLinkedAccountsAccountRefresh")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/linked_accounts/", sdkEncodePathSegment(sdkWireString(account)), "/refresh"].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostLinkedAccountsAccountRefresh"
+        )).data
     }
 }

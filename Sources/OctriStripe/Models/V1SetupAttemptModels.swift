@@ -3,60 +3,60 @@
 
 import Foundation
 
-// V1SetupAttempt domain models
+/// V1SetupAttempt domain models
 /// Typed representation of the `SetupAttemptPaymentMethodDetailsAcssDebit` API schema.
 public struct SetupAttemptPaymentMethodDetailsAcssDebit: Codable {
-
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension SetupAttemptPaymentMethodDetailsAcssDebit {
-    public init() {
-    }
+    init() {}
 }
 
 /// Typed representation of the `SetupAttemptPaymentMethodDetailsAmazonPay` API schema.
 public struct SetupAttemptPaymentMethodDetailsAmazonPay: Codable {
-
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension SetupAttemptPaymentMethodDetailsAmazonPay {
-    public init() {
-    }
+    init() {}
 }
 
 /// Typed representation of the `SetupAttemptPaymentMethodDetailsAuBecsDebit` API schema.
 public struct SetupAttemptPaymentMethodDetailsAuBecsDebit: Codable {
-
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension SetupAttemptPaymentMethodDetailsAuBecsDebit {
-    public init() {
-    }
+    init() {}
 }
 
 /// Typed representation of the `SetupAttemptPaymentMethodDetailsBacsDebit` API schema.
 public struct SetupAttemptPaymentMethodDetailsBacsDebit: Codable {
-
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension SetupAttemptPaymentMethodDetailsBacsDebit {
-    public init() {
-    }
+    init() {}
 }
 
 /// Typed representation of the `SetupAttemptPaymentMethodDetailsBoleto` API schema.
 public struct SetupAttemptPaymentMethodDetailsBoleto: Codable {
-
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension SetupAttemptPaymentMethodDetailsBoleto {
-    public init() {
-    }
+    init() {}
 }
 
 /// Typed representation of the `SetupAttemptPaymentMethodDetailsCard` API schema.
@@ -106,49 +106,61 @@ public struct SetupAttemptPaymentMethodDetailsCard: Codable {
     }
 
     init() {
-        (self.brand, self.checks, self.country, self.expMonth, self.expYear) = (nil, nil, nil, nil, nil)
-        (self.fingerprint, self.funding, self.last4, self.network, self.threeDSecure) = (nil, nil, nil, nil, nil)
-        self.wallet = nil
+        (brand, checks, country, expMonth, expYear) = (nil, nil, nil, nil, nil)
+        (fingerprint, funding, last4, network, threeDSecure) = (nil, nil, nil, nil, nil)
+        wallet = nil
     }
 }
 
 public extension SetupAttemptPaymentMethodDetailsCard {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.brand = try container.sdkDecodeIfPresent(.brand)
-        self.checks = try container.sdkDecodeIfPresent(.checks)
-        self.country = try container.sdkDecodeIfPresent(.country)
-        self.expMonth = try container.sdkDecodeIfPresent(.expMonth)
-        self.expYear = try container.sdkDecodeIfPresent(.expYear)
-        self.fingerprint = try container.sdkDecodeIfPresent(.fingerprint)
-        self.funding = try container.sdkDecodeIfPresent(.funding)
-        self.last4 = try container.sdkDecodeIfPresent(.last4)
-        self.network = try container.sdkDecodeIfPresent(.network)
-        self.threeDSecure = try container.sdkDecodeIfPresent(.threeDSecure)
-        self.wallet = try container.sdkDecodeIfPresent(.wallet)
-        if let value = self.brand {
+        brand = try container.sdkDecodeIfPresent(.brand)
+        checks = try container.sdkDecodeIfPresent(.checks)
+        country = try container.sdkDecodeIfPresent(.country)
+        expMonth = try container.sdkDecodeIfPresent(.expMonth)
+        expYear = try container.sdkDecodeIfPresent(.expYear)
+        fingerprint = try container.sdkDecodeIfPresent(.fingerprint)
+        funding = try container.sdkDecodeIfPresent(.funding)
+        last4 = try container.sdkDecodeIfPresent(.last4)
+        network = try container.sdkDecodeIfPresent(.network)
+        threeDSecure = try container.sdkDecodeIfPresent(.threeDSecure)
+        wallet = try container.sdkDecodeIfPresent(.wallet)
+        if let value = brand {
             try validateLength("brand", value, min: nil, max: 5000)
         }
-        if let value = self.country {
+        if let value = country {
             try validateLength("country", value, min: nil, max: 5000)
         }
-        if let value = self.fingerprint {
+        if let value = fingerprint {
             try validateLength("fingerprint", value, min: nil, max: 5000)
         }
-        if let value = self.funding {
+        if let value = funding {
             try validateLength("funding", value, min: nil, max: 5000)
         }
-        if let value = self.last4 {
+        if let value = last4 {
             try validateLength("last4", value, min: nil, max: 5000)
         }
-        if let value = self.network {
+        if let value = network {
             try validateLength("network", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension SetupAttemptPaymentMethodDetailsCard {
-    public init(brand: String? = nil, checks: SetupAttemptPaymentMethodDetailsCardChecksX02d94a28? = nil, country: String? = nil, expMonth: Int? = nil, expYear: Int? = nil, fingerprint: String? = nil, funding: String? = nil, last4: String? = nil, network: String? = nil, threeDSecure: SetupAttemptPaymentMethodDetailsCardThreeDSecure? = nil, wallet: SetupAttemptPaymentMethodDetailsCardWalletX9a392d85? = nil) throws {
+    init(
+        brand: String? = nil,
+        checks: SetupAttemptPaymentMethodDetailsCardChecksX02d94a28? = nil,
+        country: String? = nil,
+        expMonth: Int? = nil,
+        expYear: Int? = nil,
+        fingerprint: String? = nil,
+        funding: String? = nil,
+        last4: String? = nil,
+        network: String? = nil,
+        threeDSecure: SetupAttemptPaymentMethodDetailsCardThreeDSecure? = nil,
+        wallet: SetupAttemptPaymentMethodDetailsCardWalletX9a392d85? = nil
+    ) throws {
         self.init()
         (self.brand, self.checks) = (brand, checks)
         (self.country, self.expMonth) = (country, expMonth)
@@ -182,24 +194,30 @@ public enum SetupAttemptPaymentMethodDetailsCardChecksX02d94a28 {
 }
 
 extension SetupAttemptPaymentMethodDetailsCardChecksX02d94a28: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for SetupAttemptPaymentMethodDetailsCardChecksX02d94a28")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for SetupAttemptPaymentMethodDetailsCardChecksX02d94a28"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             SetupAttemptPaymentMethodDetailsCardChecks.self
         ) {
-            return             .setupAttemptPaymentMethodDetailsCardChecks(value)
+            return .setupAttemptPaymentMethodDetailsCardChecks(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -208,7 +226,6 @@ extension SetupAttemptPaymentMethodDetailsCardChecksX02d94a28: Codable {
         case let .setupAttemptPaymentMethodDetailsCardChecks(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum SetupAttemptPaymentMethodDetailsCardThreeDSecure {
@@ -216,20 +233,28 @@ public enum SetupAttemptPaymentMethodDetailsCardThreeDSecure {
 }
 
 extension SetupAttemptPaymentMethodDetailsCardThreeDSecure: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for SetupAttemptPaymentMethodDetailsCardThreeDSecure")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for SetupAttemptPaymentMethodDetailsCardThreeDSecure"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(ThreeDSecureDetails.self) { return .threeDSecureDetails(value) }
+        if let value = try? container.decode(ThreeDSecureDetails.self) {
+            return .threeDSecureDetails(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -238,7 +263,6 @@ extension SetupAttemptPaymentMethodDetailsCardThreeDSecure: Codable {
         case let .threeDSecureDetails(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum SetupAttemptPaymentMethodDetailsCardWalletX9a392d85 {
@@ -246,24 +270,30 @@ public enum SetupAttemptPaymentMethodDetailsCardWalletX9a392d85 {
 }
 
 extension SetupAttemptPaymentMethodDetailsCardWalletX9a392d85: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for SetupAttemptPaymentMethodDetailsCardWalletX9a392d85")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for SetupAttemptPaymentMethodDetailsCardWalletX9a392d85"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             SetupAttemptPaymentMethodDetailsCardWallet.self
         ) {
-            return             .setupAttemptPaymentMethodDetailsCardWallet(value)
+            return .setupAttemptPaymentMethodDetailsCardWallet(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -272,7 +302,6 @@ extension SetupAttemptPaymentMethodDetailsCardWalletX9a392d85: Codable {
         case let .setupAttemptPaymentMethodDetailsCardWallet(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Typed representation of the `SetupAttemptPaymentMethodDetailsCardChecks` API schema.
@@ -292,30 +321,30 @@ public struct SetupAttemptPaymentMethodDetailsCardChecks: Codable {
     }
 
     init() {
-        (self.addressLine1Check, self.addressPostalCodeCheck, self.cvcCheck) = (nil, nil, nil)
+        (addressLine1Check, addressPostalCodeCheck, cvcCheck) = (nil, nil, nil)
     }
 }
 
 public extension SetupAttemptPaymentMethodDetailsCardChecks {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.addressLine1Check = try container.sdkDecodeIfPresent(.addressLine1Check)
-        self.addressPostalCodeCheck = try container.sdkDecodeIfPresent(.addressPostalCodeCheck)
-        self.cvcCheck = try container.sdkDecodeIfPresent(.cvcCheck)
-        if let value = self.addressLine1Check {
+        addressLine1Check = try container.sdkDecodeIfPresent(.addressLine1Check)
+        addressPostalCodeCheck = try container.sdkDecodeIfPresent(.addressPostalCodeCheck)
+        cvcCheck = try container.sdkDecodeIfPresent(.cvcCheck)
+        if let value = addressLine1Check {
             try validateLength("address_line1_check", value, min: nil, max: 5000)
         }
-        if let value = self.addressPostalCodeCheck {
+        if let value = addressPostalCodeCheck {
             try validateLength("address_postal_code_check", value, min: nil, max: 5000)
         }
-        if let value = self.cvcCheck {
+        if let value = cvcCheck {
             try validateLength("cvc_check", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension SetupAttemptPaymentMethodDetailsCardChecks {
-    public init(addressLine1Check: String? = nil, addressPostalCodeCheck: String? = nil, cvcCheck: String? = nil) throws {
+    init(addressLine1Check: String? = nil, addressPostalCodeCheck: String? = nil, cvcCheck: String? = nil) throws {
         self.init()
         (self.addressLine1Check, self.addressPostalCodeCheck) = (addressLine1Check, addressPostalCodeCheck)
         self.cvcCheck = cvcCheck
@@ -348,23 +377,33 @@ public struct SetupAttemptPaymentMethodDetailsCardWallet: Codable {
         case googlePay = "google_pay"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-public extension SetupAttemptPaymentMethodDetailsCardWallet {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
-        }
-        self.type = try container.sdkDecodeRequired(.type)
-        self.applePay = try container.sdkDecodeIfPresent(.applePay)
-        self.googlePay = try container.sdkDecodeIfPresent(.googlePay)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
 public extension SetupAttemptPaymentMethodDetailsCardWallet {
-    public init(type: SetupAttemptPaymentMethodDetailsCardWalletType, applePay: PaymentMethodDetailsCardWalletApplePay? = nil, googlePay: PaymentMethodDetailsCardWalletGooglePay? = nil) {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.type) else {
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
+        }
+        type = try container.sdkDecodeRequired(.type)
+        applePay = try container.sdkDecodeIfPresent(.applePay)
+        googlePay = try container.sdkDecodeIfPresent(.googlePay)
+    }
+}
+
+public extension SetupAttemptPaymentMethodDetailsCardWallet {
+    init(
+        type: SetupAttemptPaymentMethodDetailsCardWalletType,
+        applePay: PaymentMethodDetailsCardWalletApplePay? = nil,
+        googlePay: PaymentMethodDetailsCardWalletGooglePay? = nil
+    ) {
         (self.type, self.applePay) = (type, applePay)
         self.googlePay = googlePay
     }
@@ -372,57 +411,57 @@ public extension SetupAttemptPaymentMethodDetailsCardWallet {
 
 /// Typed representation of the `SetupAttemptPaymentMethodDetailsCashapp` API schema.
 public struct SetupAttemptPaymentMethodDetailsCashapp: Codable {
-
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension SetupAttemptPaymentMethodDetailsCashapp {
-    public init() {
-    }
+    init() {}
 }
 
 /// Typed representation of the `SetupAttemptPaymentMethodDetailsKakaoPay` API schema.
 public struct SetupAttemptPaymentMethodDetailsKakaoPay: Codable {
-
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension SetupAttemptPaymentMethodDetailsKakaoPay {
-    public init() {
-    }
+    init() {}
 }
 
 /// Typed representation of the `SetupAttemptPaymentMethodDetailsKlarna` API schema.
 public struct SetupAttemptPaymentMethodDetailsKlarna: Codable {
-
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension SetupAttemptPaymentMethodDetailsKlarna {
-    public init() {
-    }
+    init() {}
 }
 
 /// Typed representation of the `SetupAttemptPaymentMethodDetailsKrCard` API schema.
 public struct SetupAttemptPaymentMethodDetailsKrCard: Codable {
-
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension SetupAttemptPaymentMethodDetailsKrCard {
-    public init() {
-    }
+    init() {}
 }
 
 /// Typed representation of the `SetupAttemptPaymentMethodDetailsLink` API schema.
 public struct SetupAttemptPaymentMethodDetailsLink: Codable {
-
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension SetupAttemptPaymentMethodDetailsLink {
-    public init() {
-    }
+    init() {}
 }
 
 /// Typed representation of the `SetupAttemptPaymentMethodDetailsNaverPay` API schema.
@@ -436,22 +475,22 @@ public struct SetupAttemptPaymentMethodDetailsNaverPay: Codable {
     }
 
     init() {
-        self.buyerId = nil
+        buyerId = nil
     }
 }
 
 public extension SetupAttemptPaymentMethodDetailsNaverPay {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.buyerId = try container.sdkDecodeIfPresent(.buyerId)
-        if let value = self.buyerId {
+        buyerId = try container.sdkDecodeIfPresent(.buyerId)
+        if let value = buyerId {
             try validateLength("buyer_id", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension SetupAttemptPaymentMethodDetailsNaverPay {
-    public init(buyerId: String? = nil) throws {
+    init(buyerId: String? = nil) throws {
         self.init()
         self.buyerId = buyerId
         if let value = self.buyerId {
@@ -462,35 +501,35 @@ public extension SetupAttemptPaymentMethodDetailsNaverPay {
 
 /// Typed representation of the `SetupAttemptPaymentMethodDetailsNzBankAccount` API schema.
 public struct SetupAttemptPaymentMethodDetailsNzBankAccount: Codable {
-
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension SetupAttemptPaymentMethodDetailsNzBankAccount {
-    public init() {
-    }
+    init() {}
 }
 
 /// Typed representation of the `SetupAttemptPaymentMethodDetailsPaypal` API schema.
 public struct SetupAttemptPaymentMethodDetailsPaypal: Codable {
-
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension SetupAttemptPaymentMethodDetailsPaypal {
-    public init() {
-    }
+    init() {}
 }
 
 /// Typed representation of the `SetupAttemptPaymentMethodDetailsPayto` API schema.
 public struct SetupAttemptPaymentMethodDetailsPayto: Codable {
-
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension SetupAttemptPaymentMethodDetailsPayto {
-    public init() {
-    }
+    init() {}
 }
 
 /// Typed representation of the `SetupAttemptPaymentMethodDetailsPix` API schema.
@@ -504,22 +543,22 @@ public struct SetupAttemptPaymentMethodDetailsPix: Codable {
     }
 
     init() {
-        self.fingerprint = nil
+        fingerprint = nil
     }
 }
 
 public extension SetupAttemptPaymentMethodDetailsPix {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.fingerprint = try container.sdkDecodeIfPresent(.fingerprint)
-        if let value = self.fingerprint {
+        fingerprint = try container.sdkDecodeIfPresent(.fingerprint)
+        if let value = fingerprint {
             try validateLength("fingerprint", value, min: nil, max: 5000)
         }
     }
 }
 
 public extension SetupAttemptPaymentMethodDetailsPix {
-    public init(fingerprint: String? = nil) throws {
+    init(fingerprint: String? = nil) throws {
         self.init()
         self.fingerprint = fingerprint
         if let value = self.fingerprint {
@@ -530,55 +569,55 @@ public extension SetupAttemptPaymentMethodDetailsPix {
 
 /// Typed representation of the `SetupAttemptPaymentMethodDetailsRevolutPay` API schema.
 public struct SetupAttemptPaymentMethodDetailsRevolutPay: Codable {
-
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension SetupAttemptPaymentMethodDetailsRevolutPay {
-    public init() {
-    }
+    init() {}
 }
 
 /// Typed representation of the `SetupAttemptPaymentMethodDetailsSepaDebit` API schema.
 public struct SetupAttemptPaymentMethodDetailsSepaDebit: Codable {
-
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension SetupAttemptPaymentMethodDetailsSepaDebit {
-    public init() {
-    }
+    init() {}
 }
 
 /// Typed representation of the `SetupAttemptPaymentMethodDetailsTwint` API schema.
 public struct SetupAttemptPaymentMethodDetailsTwint: Codable {
-
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension SetupAttemptPaymentMethodDetailsTwint {
-    public init() {
-    }
+    init() {}
 }
 
 /// Typed representation of the `SetupAttemptPaymentMethodDetailsUpi` API schema.
 public struct SetupAttemptPaymentMethodDetailsUpi: Codable {
-
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension SetupAttemptPaymentMethodDetailsUpi {
-    public init() {
-    }
+    init() {}
 }
 
 /// Typed representation of the `SetupAttemptPaymentMethodDetailsUsBankAccount` API schema.
 public struct SetupAttemptPaymentMethodDetailsUsBankAccount: Codable {
-
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
 public extension SetupAttemptPaymentMethodDetailsUsBankAccount {
-    public init() {
-    }
+    init() {}
 }
