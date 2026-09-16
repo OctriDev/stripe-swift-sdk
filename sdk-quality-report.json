@@ -1,0 +1,4845 @@
+{
+  "language": "swift",
+  "operations": 594,
+  "operationCount": 594,
+  "operationIdentities": [
+    {
+      "publicOperationId": "deleteAccountsAccount",
+      "wireOperationId": "DeleteAccountsAccount",
+      "method": "delete",
+      "path": "/v1/accounts/{account}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "deleteAccountsAccountBankAccountsId",
+      "wireOperationId": "DeleteAccountsAccountBankAccountsId",
+      "method": "delete",
+      "path": "/v1/accounts/{account}/bank_accounts/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "deleteAccountsAccountExternalAccountsId",
+      "wireOperationId": "DeleteAccountsAccountExternalAccountsId",
+      "method": "delete",
+      "path": "/v1/accounts/{account}/external_accounts/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "deleteAccountsAccountPeoplePerson",
+      "wireOperationId": "DeleteAccountsAccountPeoplePerson",
+      "method": "delete",
+      "path": "/v1/accounts/{account}/people/{person}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "deleteAccountsAccountPersonsPerson",
+      "wireOperationId": "DeleteAccountsAccountPersonsPerson",
+      "method": "delete",
+      "path": "/v1/accounts/{account}/persons/{person}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "deleteApplePayDomainsDomain",
+      "wireOperationId": "DeleteApplePayDomainsDomain",
+      "method": "delete",
+      "path": "/v1/apple_pay/domains/{domain}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "deleteCouponsCoupon",
+      "wireOperationId": "DeleteCouponsCoupon",
+      "method": "delete",
+      "path": "/v1/coupons/{coupon}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "deleteCustomersCustomer",
+      "wireOperationId": "DeleteCustomersCustomer",
+      "method": "delete",
+      "path": "/v1/customers/{customer}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "deleteCustomersCustomerBankAccountsId",
+      "wireOperationId": "DeleteCustomersCustomerBankAccountsId",
+      "method": "delete",
+      "path": "/v1/customers/{customer}/bank_accounts/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "deleteCustomersCustomerCardsId",
+      "wireOperationId": "DeleteCustomersCustomerCardsId",
+      "method": "delete",
+      "path": "/v1/customers/{customer}/cards/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "deleteCustomersCustomerDiscount",
+      "wireOperationId": "DeleteCustomersCustomerDiscount",
+      "method": "delete",
+      "path": "/v1/customers/{customer}/discount",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "deleteCustomersCustomerSourcesId",
+      "wireOperationId": "DeleteCustomersCustomerSourcesId",
+      "method": "delete",
+      "path": "/v1/customers/{customer}/sources/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "deleteCustomersCustomerSubscriptionsSubscriptionExposedId",
+      "wireOperationId": "DeleteCustomersCustomerSubscriptionsSubscriptionExposedId",
+      "method": "delete",
+      "path": "/v1/customers/{customer}/subscriptions/{subscription_exposed_id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "deleteCustomersCustomerSubscriptionsSubscriptionExposedIdDiscount",
+      "wireOperationId": "DeleteCustomersCustomerSubscriptionsSubscriptionExposedIdDiscount",
+      "method": "delete",
+      "path": "/v1/customers/{customer}/subscriptions/{subscription_exposed_id}/discount",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "deleteCustomersCustomerTaxIdsId",
+      "wireOperationId": "DeleteCustomersCustomerTaxIdsId",
+      "method": "delete",
+      "path": "/v1/customers/{customer}/tax_ids/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "deleteEphemeralKeysKey",
+      "wireOperationId": "DeleteEphemeralKeysKey",
+      "method": "delete",
+      "path": "/v1/ephemeral_keys/{key}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "deleteInvoiceitemsInvoiceitem",
+      "wireOperationId": "DeleteInvoiceitemsInvoiceitem",
+      "method": "delete",
+      "path": "/v1/invoiceitems/{invoiceitem}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "deleteInvoicesInvoice",
+      "wireOperationId": "DeleteInvoicesInvoice",
+      "method": "delete",
+      "path": "/v1/invoices/{invoice}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "deletePlansPlan",
+      "wireOperationId": "DeletePlansPlan",
+      "method": "delete",
+      "path": "/v1/plans/{plan}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "deleteProductsId",
+      "wireOperationId": "DeleteProductsId",
+      "method": "delete",
+      "path": "/v1/products/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "deleteProductsProductFeaturesId",
+      "wireOperationId": "DeleteProductsProductFeaturesId",
+      "method": "delete",
+      "path": "/v1/products/{product}/features/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "deleteRadarValueListItemsItem",
+      "wireOperationId": "DeleteRadarValueListItemsItem",
+      "method": "delete",
+      "path": "/v1/radar/value_list_items/{item}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "deleteRadarValueListsValueList",
+      "wireOperationId": "DeleteRadarValueListsValueList",
+      "method": "delete",
+      "path": "/v1/radar/value_lists/{value_list}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "deleteSubscriptionItemsItem",
+      "wireOperationId": "DeleteSubscriptionItemsItem",
+      "method": "delete",
+      "path": "/v1/subscription_items/{item}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "deleteSubscriptionsSubscriptionExposedId",
+      "wireOperationId": "DeleteSubscriptionsSubscriptionExposedId",
+      "method": "delete",
+      "path": "/v1/subscriptions/{subscription_exposed_id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "deleteSubscriptionsSubscriptionExposedIdDiscount",
+      "wireOperationId": "DeleteSubscriptionsSubscriptionExposedIdDiscount",
+      "method": "delete",
+      "path": "/v1/subscriptions/{subscription_exposed_id}/discount",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "deleteTaxIdsId",
+      "wireOperationId": "DeleteTaxIdsId",
+      "method": "delete",
+      "path": "/v1/tax_ids/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "deleteTerminalConfigurationsConfiguration",
+      "wireOperationId": "DeleteTerminalConfigurationsConfiguration",
+      "method": "delete",
+      "path": "/v1/terminal/configurations/{configuration}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "deleteTerminalLocationsLocation",
+      "wireOperationId": "DeleteTerminalLocationsLocation",
+      "method": "delete",
+      "path": "/v1/terminal/locations/{location}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "deleteTerminalReadersReader",
+      "wireOperationId": "DeleteTerminalReadersReader",
+      "method": "delete",
+      "path": "/v1/terminal/readers/{reader}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "deleteTestHelpersTestClocksTestClock",
+      "wireOperationId": "DeleteTestHelpersTestClocksTestClock",
+      "method": "delete",
+      "path": "/v1/test_helpers/test_clocks/{test_clock}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "deleteWebhookEndpointsWebhookEndpoint",
+      "wireOperationId": "DeleteWebhookEndpointsWebhookEndpoint",
+      "method": "delete",
+      "path": "/v1/webhook_endpoints/{webhook_endpoint}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getAccount",
+      "wireOperationId": "GetAccount",
+      "method": "get",
+      "path": "/v1/account",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getAccounts",
+      "wireOperationId": "GetAccounts",
+      "method": "get",
+      "path": "/v1/accounts",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getAccountsAccount",
+      "wireOperationId": "GetAccountsAccount",
+      "method": "get",
+      "path": "/v1/accounts/{account}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getAccountsAccountBankAccountsId",
+      "wireOperationId": "GetAccountsAccountBankAccountsId",
+      "method": "get",
+      "path": "/v1/accounts/{account}/bank_accounts/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getAccountsAccountCapabilities",
+      "wireOperationId": "GetAccountsAccountCapabilities",
+      "method": "get",
+      "path": "/v1/accounts/{account}/capabilities",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getAccountsAccountCapabilitiesCapability",
+      "wireOperationId": "GetAccountsAccountCapabilitiesCapability",
+      "method": "get",
+      "path": "/v1/accounts/{account}/capabilities/{capability}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getAccountsAccountExternalAccounts",
+      "wireOperationId": "GetAccountsAccountExternalAccounts",
+      "method": "get",
+      "path": "/v1/accounts/{account}/external_accounts",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getAccountsAccountExternalAccountsId",
+      "wireOperationId": "GetAccountsAccountExternalAccountsId",
+      "method": "get",
+      "path": "/v1/accounts/{account}/external_accounts/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getAccountsAccountPeople",
+      "wireOperationId": "GetAccountsAccountPeople",
+      "method": "get",
+      "path": "/v1/accounts/{account}/people",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getAccountsAccountPeoplePerson",
+      "wireOperationId": "GetAccountsAccountPeoplePerson",
+      "method": "get",
+      "path": "/v1/accounts/{account}/people/{person}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getAccountsAccountPersons",
+      "wireOperationId": "GetAccountsAccountPersons",
+      "method": "get",
+      "path": "/v1/accounts/{account}/persons",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getAccountsAccountPersonsPerson",
+      "wireOperationId": "GetAccountsAccountPersonsPerson",
+      "method": "get",
+      "path": "/v1/accounts/{account}/persons/{person}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getApplePayDomains",
+      "wireOperationId": "GetApplePayDomains",
+      "method": "get",
+      "path": "/v1/apple_pay/domains",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getApplePayDomainsDomain",
+      "wireOperationId": "GetApplePayDomainsDomain",
+      "method": "get",
+      "path": "/v1/apple_pay/domains/{domain}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getApplicationFees",
+      "wireOperationId": "GetApplicationFees",
+      "method": "get",
+      "path": "/v1/application_fees",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getApplicationFeesFeeRefundsId",
+      "wireOperationId": "GetApplicationFeesFeeRefundsId",
+      "method": "get",
+      "path": "/v1/application_fees/{fee}/refunds/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getApplicationFeesId",
+      "wireOperationId": "GetApplicationFeesId",
+      "method": "get",
+      "path": "/v1/application_fees/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getApplicationFeesIdRefunds",
+      "wireOperationId": "GetApplicationFeesIdRefunds",
+      "method": "get",
+      "path": "/v1/application_fees/{id}/refunds",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getAppsSecrets",
+      "wireOperationId": "GetAppsSecrets",
+      "method": "get",
+      "path": "/v1/apps/secrets",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getAppsSecretsFind",
+      "wireOperationId": "GetAppsSecretsFind",
+      "method": "get",
+      "path": "/v1/apps/secrets/find",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getBalance",
+      "wireOperationId": "GetBalance",
+      "method": "get",
+      "path": "/v1/balance",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getBalanceHistory",
+      "wireOperationId": "GetBalanceHistory",
+      "method": "get",
+      "path": "/v1/balance/history",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getBalanceHistoryId",
+      "wireOperationId": "GetBalanceHistoryId",
+      "method": "get",
+      "path": "/v1/balance/history/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getBalanceSettings",
+      "wireOperationId": "GetBalanceSettings",
+      "method": "get",
+      "path": "/v1/balance_settings",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getBalanceTransactions",
+      "wireOperationId": "GetBalanceTransactions",
+      "method": "get",
+      "path": "/v1/balance_transactions",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getBalanceTransactionsId",
+      "wireOperationId": "GetBalanceTransactionsId",
+      "method": "get",
+      "path": "/v1/balance_transactions/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getBillingAlerts",
+      "wireOperationId": "GetBillingAlerts",
+      "method": "get",
+      "path": "/v1/billing/alerts",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getBillingAlertsId",
+      "wireOperationId": "GetBillingAlertsId",
+      "method": "get",
+      "path": "/v1/billing/alerts/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getBillingCreditBalanceSummary",
+      "wireOperationId": "GetBillingCreditBalanceSummary",
+      "method": "get",
+      "path": "/v1/billing/credit_balance_summary",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getBillingCreditBalanceTransactions",
+      "wireOperationId": "GetBillingCreditBalanceTransactions",
+      "method": "get",
+      "path": "/v1/billing/credit_balance_transactions",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getBillingCreditBalanceTransactionsId",
+      "wireOperationId": "GetBillingCreditBalanceTransactionsId",
+      "method": "get",
+      "path": "/v1/billing/credit_balance_transactions/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getBillingCreditGrants",
+      "wireOperationId": "GetBillingCreditGrants",
+      "method": "get",
+      "path": "/v1/billing/credit_grants",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getBillingCreditGrantsId",
+      "wireOperationId": "GetBillingCreditGrantsId",
+      "method": "get",
+      "path": "/v1/billing/credit_grants/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getBillingFeedbackOptions",
+      "wireOperationId": "GetBillingFeedbackOptions",
+      "method": "get",
+      "path": "/v1/billing/feedback_options",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getBillingFeedbackOptionsId",
+      "wireOperationId": "GetBillingFeedbackOptionsId",
+      "method": "get",
+      "path": "/v1/billing/feedback_options/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getBillingMeters",
+      "wireOperationId": "GetBillingMeters",
+      "method": "get",
+      "path": "/v1/billing/meters",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getBillingMetersId",
+      "wireOperationId": "GetBillingMetersId",
+      "method": "get",
+      "path": "/v1/billing/meters/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getBillingMetersIdEventSummaries",
+      "wireOperationId": "GetBillingMetersIdEventSummaries",
+      "method": "get",
+      "path": "/v1/billing/meters/{id}/event_summaries",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getBillingPortalConfigurations",
+      "wireOperationId": "GetBillingPortalConfigurations",
+      "method": "get",
+      "path": "/v1/billing_portal/configurations",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getBillingPortalConfigurationsConfiguration",
+      "wireOperationId": "GetBillingPortalConfigurationsConfiguration",
+      "method": "get",
+      "path": "/v1/billing_portal/configurations/{configuration}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getCharges",
+      "wireOperationId": "GetCharges",
+      "method": "get",
+      "path": "/v1/charges",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getChargesCharge",
+      "wireOperationId": "GetChargesCharge",
+      "method": "get",
+      "path": "/v1/charges/{charge}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getChargesChargeDispute",
+      "wireOperationId": "GetChargesChargeDispute",
+      "method": "get",
+      "path": "/v1/charges/{charge}/dispute",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getChargesChargeRefunds",
+      "wireOperationId": "GetChargesChargeRefunds",
+      "method": "get",
+      "path": "/v1/charges/{charge}/refunds",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getChargesChargeRefundsRefund",
+      "wireOperationId": "GetChargesChargeRefundsRefund",
+      "method": "get",
+      "path": "/v1/charges/{charge}/refunds/{refund}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getChargesSearch",
+      "wireOperationId": "GetChargesSearch",
+      "method": "get",
+      "path": "/v1/charges/search",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getCheckoutSessions",
+      "wireOperationId": "GetCheckoutSessions",
+      "method": "get",
+      "path": "/v1/checkout/sessions",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getCheckoutSessionsSession",
+      "wireOperationId": "GetCheckoutSessionsSession",
+      "method": "get",
+      "path": "/v1/checkout/sessions/{session}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getCheckoutSessionsSessionLineItems",
+      "wireOperationId": "GetCheckoutSessionsSessionLineItems",
+      "method": "get",
+      "path": "/v1/checkout/sessions/{session}/line_items",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getClimateOrders",
+      "wireOperationId": "GetClimateOrders",
+      "method": "get",
+      "path": "/v1/climate/orders",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getClimateOrdersOrder",
+      "wireOperationId": "GetClimateOrdersOrder",
+      "method": "get",
+      "path": "/v1/climate/orders/{order}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getClimateProducts",
+      "wireOperationId": "GetClimateProducts",
+      "method": "get",
+      "path": "/v1/climate/products",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getClimateProductsProduct",
+      "wireOperationId": "GetClimateProductsProduct",
+      "method": "get",
+      "path": "/v1/climate/products/{product}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getClimateSuppliers",
+      "wireOperationId": "GetClimateSuppliers",
+      "method": "get",
+      "path": "/v1/climate/suppliers",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getClimateSuppliersSupplier",
+      "wireOperationId": "GetClimateSuppliersSupplier",
+      "method": "get",
+      "path": "/v1/climate/suppliers/{supplier}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getConfirmationTokensConfirmationToken",
+      "wireOperationId": "GetConfirmationTokensConfirmationToken",
+      "method": "get",
+      "path": "/v1/confirmation_tokens/{confirmation_token}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getCountrySpecs",
+      "wireOperationId": "GetCountrySpecs",
+      "method": "get",
+      "path": "/v1/country_specs",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getCountrySpecsCountry",
+      "wireOperationId": "GetCountrySpecsCountry",
+      "method": "get",
+      "path": "/v1/country_specs/{country}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getCoupons",
+      "wireOperationId": "GetCoupons",
+      "method": "get",
+      "path": "/v1/coupons",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getCouponsCoupon",
+      "wireOperationId": "GetCouponsCoupon",
+      "method": "get",
+      "path": "/v1/coupons/{coupon}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getCreditNotes",
+      "wireOperationId": "GetCreditNotes",
+      "method": "get",
+      "path": "/v1/credit_notes",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getCreditNotesCreditNoteLines",
+      "wireOperationId": "GetCreditNotesCreditNoteLines",
+      "method": "get",
+      "path": "/v1/credit_notes/{credit_note}/lines",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getCreditNotesId",
+      "wireOperationId": "GetCreditNotesId",
+      "method": "get",
+      "path": "/v1/credit_notes/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getCreditNotesPreview",
+      "wireOperationId": "GetCreditNotesPreview",
+      "method": "get",
+      "path": "/v1/credit_notes/preview",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getCreditNotesPreviewLines",
+      "wireOperationId": "GetCreditNotesPreviewLines",
+      "method": "get",
+      "path": "/v1/credit_notes/preview/lines",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getCustomers",
+      "wireOperationId": "GetCustomers",
+      "method": "get",
+      "path": "/v1/customers",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getCustomersCustomer",
+      "wireOperationId": "GetCustomersCustomer",
+      "method": "get",
+      "path": "/v1/customers/{customer}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getCustomersCustomerBalanceTransactions",
+      "wireOperationId": "GetCustomersCustomerBalanceTransactions",
+      "method": "get",
+      "path": "/v1/customers/{customer}/balance_transactions",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getCustomersCustomerBalanceTransactionsTransaction",
+      "wireOperationId": "GetCustomersCustomerBalanceTransactionsTransaction",
+      "method": "get",
+      "path": "/v1/customers/{customer}/balance_transactions/{transaction}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getCustomersCustomerBankAccounts",
+      "wireOperationId": "GetCustomersCustomerBankAccounts",
+      "method": "get",
+      "path": "/v1/customers/{customer}/bank_accounts",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getCustomersCustomerBankAccountsId",
+      "wireOperationId": "GetCustomersCustomerBankAccountsId",
+      "method": "get",
+      "path": "/v1/customers/{customer}/bank_accounts/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getCustomersCustomerCards",
+      "wireOperationId": "GetCustomersCustomerCards",
+      "method": "get",
+      "path": "/v1/customers/{customer}/cards",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getCustomersCustomerCardsId",
+      "wireOperationId": "GetCustomersCustomerCardsId",
+      "method": "get",
+      "path": "/v1/customers/{customer}/cards/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getCustomersCustomerCashBalance",
+      "wireOperationId": "GetCustomersCustomerCashBalance",
+      "method": "get",
+      "path": "/v1/customers/{customer}/cash_balance",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getCustomersCustomerCashBalanceTransactions",
+      "wireOperationId": "GetCustomersCustomerCashBalanceTransactions",
+      "method": "get",
+      "path": "/v1/customers/{customer}/cash_balance_transactions",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getCustomersCustomerCashBalanceTransactionsTransaction",
+      "wireOperationId": "GetCustomersCustomerCashBalanceTransactionsTransaction",
+      "method": "get",
+      "path": "/v1/customers/{customer}/cash_balance_transactions/{transaction}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getCustomersCustomerDiscount",
+      "wireOperationId": "GetCustomersCustomerDiscount",
+      "method": "get",
+      "path": "/v1/customers/{customer}/discount",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getCustomersCustomerPaymentMethods",
+      "wireOperationId": "GetCustomersCustomerPaymentMethods",
+      "method": "get",
+      "path": "/v1/customers/{customer}/payment_methods",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getCustomersCustomerPaymentMethodsPaymentMethod",
+      "wireOperationId": "GetCustomersCustomerPaymentMethodsPaymentMethod",
+      "method": "get",
+      "path": "/v1/customers/{customer}/payment_methods/{payment_method}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getCustomersCustomerSources",
+      "wireOperationId": "GetCustomersCustomerSources",
+      "method": "get",
+      "path": "/v1/customers/{customer}/sources",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getCustomersCustomerSourcesId",
+      "wireOperationId": "GetCustomersCustomerSourcesId",
+      "method": "get",
+      "path": "/v1/customers/{customer}/sources/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getCustomersCustomerSubscriptions",
+      "wireOperationId": "GetCustomersCustomerSubscriptions",
+      "method": "get",
+      "path": "/v1/customers/{customer}/subscriptions",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getCustomersCustomerSubscriptionsSubscriptionExposedId",
+      "wireOperationId": "GetCustomersCustomerSubscriptionsSubscriptionExposedId",
+      "method": "get",
+      "path": "/v1/customers/{customer}/subscriptions/{subscription_exposed_id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getCustomersCustomerSubscriptionsSubscriptionExposedIdDiscount",
+      "wireOperationId": "GetCustomersCustomerSubscriptionsSubscriptionExposedIdDiscount",
+      "method": "get",
+      "path": "/v1/customers/{customer}/subscriptions/{subscription_exposed_id}/discount",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getCustomersCustomerTaxIds",
+      "wireOperationId": "GetCustomersCustomerTaxIds",
+      "method": "get",
+      "path": "/v1/customers/{customer}/tax_ids",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getCustomersCustomerTaxIdsId",
+      "wireOperationId": "GetCustomersCustomerTaxIdsId",
+      "method": "get",
+      "path": "/v1/customers/{customer}/tax_ids/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getCustomersSearch",
+      "wireOperationId": "GetCustomersSearch",
+      "method": "get",
+      "path": "/v1/customers/search",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getDisputes",
+      "wireOperationId": "GetDisputes",
+      "method": "get",
+      "path": "/v1/disputes",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getDisputesDispute",
+      "wireOperationId": "GetDisputesDispute",
+      "method": "get",
+      "path": "/v1/disputes/{dispute}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getEntitlementsActiveEntitlements",
+      "wireOperationId": "GetEntitlementsActiveEntitlements",
+      "method": "get",
+      "path": "/v1/entitlements/active_entitlements",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getEntitlementsActiveEntitlementsId",
+      "wireOperationId": "GetEntitlementsActiveEntitlementsId",
+      "method": "get",
+      "path": "/v1/entitlements/active_entitlements/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getEntitlementsFeatures",
+      "wireOperationId": "GetEntitlementsFeatures",
+      "method": "get",
+      "path": "/v1/entitlements/features",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getEntitlementsFeaturesId",
+      "wireOperationId": "GetEntitlementsFeaturesId",
+      "method": "get",
+      "path": "/v1/entitlements/features/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getEvents",
+      "wireOperationId": "GetEvents",
+      "method": "get",
+      "path": "/v1/events",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getEventsId",
+      "wireOperationId": "GetEventsId",
+      "method": "get",
+      "path": "/v1/events/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getExchangeRates",
+      "wireOperationId": "GetExchangeRates",
+      "method": "get",
+      "path": "/v1/exchange_rates",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getExchangeRatesRateId",
+      "wireOperationId": "GetExchangeRatesRateId",
+      "method": "get",
+      "path": "/v1/exchange_rates/{rate_id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getFileLinks",
+      "wireOperationId": "GetFileLinks",
+      "method": "get",
+      "path": "/v1/file_links",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getFileLinksLink",
+      "wireOperationId": "GetFileLinksLink",
+      "method": "get",
+      "path": "/v1/file_links/{link}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getFiles",
+      "wireOperationId": "GetFiles",
+      "method": "get",
+      "path": "/v1/files",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getFilesFile",
+      "wireOperationId": "GetFilesFile",
+      "method": "get",
+      "path": "/v1/files/{file}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getFinancialConnectionsAccounts",
+      "wireOperationId": "GetFinancialConnectionsAccounts",
+      "method": "get",
+      "path": "/v1/financial_connections/accounts",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getFinancialConnectionsAccountsAccount",
+      "wireOperationId": "GetFinancialConnectionsAccountsAccount",
+      "method": "get",
+      "path": "/v1/financial_connections/accounts/{account}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getFinancialConnectionsAccountsAccountOwners",
+      "wireOperationId": "GetFinancialConnectionsAccountsAccountOwners",
+      "method": "get",
+      "path": "/v1/financial_connections/accounts/{account}/owners",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getFinancialConnectionsSessionsSession",
+      "wireOperationId": "GetFinancialConnectionsSessionsSession",
+      "method": "get",
+      "path": "/v1/financial_connections/sessions/{session}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getFinancialConnectionsTransactions",
+      "wireOperationId": "GetFinancialConnectionsTransactions",
+      "method": "get",
+      "path": "/v1/financial_connections/transactions",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getFinancialConnectionsTransactionsTransaction",
+      "wireOperationId": "GetFinancialConnectionsTransactionsTransaction",
+      "method": "get",
+      "path": "/v1/financial_connections/transactions/{transaction}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getForwardingRequests",
+      "wireOperationId": "GetForwardingRequests",
+      "method": "get",
+      "path": "/v1/forwarding/requests",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getForwardingRequestsId",
+      "wireOperationId": "GetForwardingRequestsId",
+      "method": "get",
+      "path": "/v1/forwarding/requests/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getIdentityVerificationReports",
+      "wireOperationId": "GetIdentityVerificationReports",
+      "method": "get",
+      "path": "/v1/identity/verification_reports",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getIdentityVerificationReportsReport",
+      "wireOperationId": "GetIdentityVerificationReportsReport",
+      "method": "get",
+      "path": "/v1/identity/verification_reports/{report}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getIdentityVerificationSessions",
+      "wireOperationId": "GetIdentityVerificationSessions",
+      "method": "get",
+      "path": "/v1/identity/verification_sessions",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getIdentityVerificationSessionsSession",
+      "wireOperationId": "GetIdentityVerificationSessionsSession",
+      "method": "get",
+      "path": "/v1/identity/verification_sessions/{session}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getInvoiceitems",
+      "wireOperationId": "GetInvoiceitems",
+      "method": "get",
+      "path": "/v1/invoiceitems",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getInvoiceitemsInvoiceitem",
+      "wireOperationId": "GetInvoiceitemsInvoiceitem",
+      "method": "get",
+      "path": "/v1/invoiceitems/{invoiceitem}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getInvoicePayments",
+      "wireOperationId": "GetInvoicePayments",
+      "method": "get",
+      "path": "/v1/invoice_payments",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getInvoicePaymentsInvoicePayment",
+      "wireOperationId": "GetInvoicePaymentsInvoicePayment",
+      "method": "get",
+      "path": "/v1/invoice_payments/{invoice_payment}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getInvoiceRenderingTemplates",
+      "wireOperationId": "GetInvoiceRenderingTemplates",
+      "method": "get",
+      "path": "/v1/invoice_rendering_templates",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getInvoiceRenderingTemplatesTemplate",
+      "wireOperationId": "GetInvoiceRenderingTemplatesTemplate",
+      "method": "get",
+      "path": "/v1/invoice_rendering_templates/{template}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getInvoices",
+      "wireOperationId": "GetInvoices",
+      "method": "get",
+      "path": "/v1/invoices",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getInvoicesInvoice",
+      "wireOperationId": "GetInvoicesInvoice",
+      "method": "get",
+      "path": "/v1/invoices/{invoice}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getInvoicesInvoiceLines",
+      "wireOperationId": "GetInvoicesInvoiceLines",
+      "method": "get",
+      "path": "/v1/invoices/{invoice}/lines",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getInvoicesSearch",
+      "wireOperationId": "GetInvoicesSearch",
+      "method": "get",
+      "path": "/v1/invoices/search",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getIssuingAuthorizations",
+      "wireOperationId": "GetIssuingAuthorizations",
+      "method": "get",
+      "path": "/v1/issuing/authorizations",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getIssuingAuthorizationsAuthorization",
+      "wireOperationId": "GetIssuingAuthorizationsAuthorization",
+      "method": "get",
+      "path": "/v1/issuing/authorizations/{authorization}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getIssuingCardholders",
+      "wireOperationId": "GetIssuingCardholders",
+      "method": "get",
+      "path": "/v1/issuing/cardholders",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getIssuingCardholdersCardholder",
+      "wireOperationId": "GetIssuingCardholdersCardholder",
+      "method": "get",
+      "path": "/v1/issuing/cardholders/{cardholder}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getIssuingCards",
+      "wireOperationId": "GetIssuingCards",
+      "method": "get",
+      "path": "/v1/issuing/cards",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getIssuingCardsCard",
+      "wireOperationId": "GetIssuingCardsCard",
+      "method": "get",
+      "path": "/v1/issuing/cards/{card}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getIssuingDisputes",
+      "wireOperationId": "GetIssuingDisputes",
+      "method": "get",
+      "path": "/v1/issuing/disputes",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getIssuingDisputesDispute",
+      "wireOperationId": "GetIssuingDisputesDispute",
+      "method": "get",
+      "path": "/v1/issuing/disputes/{dispute}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getIssuingPersonalizationDesigns",
+      "wireOperationId": "GetIssuingPersonalizationDesigns",
+      "method": "get",
+      "path": "/v1/issuing/personalization_designs",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getIssuingPersonalizationDesignsPersonalizationDesign",
+      "wireOperationId": "GetIssuingPersonalizationDesignsPersonalizationDesign",
+      "method": "get",
+      "path": "/v1/issuing/personalization_designs/{personalization_design}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getIssuingPhysicalBundles",
+      "wireOperationId": "GetIssuingPhysicalBundles",
+      "method": "get",
+      "path": "/v1/issuing/physical_bundles",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getIssuingPhysicalBundlesPhysicalBundle",
+      "wireOperationId": "GetIssuingPhysicalBundlesPhysicalBundle",
+      "method": "get",
+      "path": "/v1/issuing/physical_bundles/{physical_bundle}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getIssuingSettlementsSettlement",
+      "wireOperationId": "GetIssuingSettlementsSettlement",
+      "method": "get",
+      "path": "/v1/issuing/settlements/{settlement}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getIssuingTokens",
+      "wireOperationId": "GetIssuingTokens",
+      "method": "get",
+      "path": "/v1/issuing/tokens",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getIssuingTokensToken",
+      "wireOperationId": "GetIssuingTokensToken",
+      "method": "get",
+      "path": "/v1/issuing/tokens/{token}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getIssuingTransactions",
+      "wireOperationId": "GetIssuingTransactions",
+      "method": "get",
+      "path": "/v1/issuing/transactions",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getIssuingTransactionsTransaction",
+      "wireOperationId": "GetIssuingTransactionsTransaction",
+      "method": "get",
+      "path": "/v1/issuing/transactions/{transaction}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getLinkAccountSessionsSession",
+      "wireOperationId": "GetLinkAccountSessionsSession",
+      "method": "get",
+      "path": "/v1/link_account_sessions/{session}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getLinkedAccounts",
+      "wireOperationId": "GetLinkedAccounts",
+      "method": "get",
+      "path": "/v1/linked_accounts",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getLinkedAccountsAccount",
+      "wireOperationId": "GetLinkedAccountsAccount",
+      "method": "get",
+      "path": "/v1/linked_accounts/{account}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getLinkedAccountsAccountOwners",
+      "wireOperationId": "GetLinkedAccountsAccountOwners",
+      "method": "get",
+      "path": "/v1/linked_accounts/{account}/owners",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getMandatesMandate",
+      "wireOperationId": "GetMandatesMandate",
+      "method": "get",
+      "path": "/v1/mandates/{mandate}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getPaymentAttemptRecords",
+      "wireOperationId": "GetPaymentAttemptRecords",
+      "method": "get",
+      "path": "/v1/payment_attempt_records",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getPaymentAttemptRecordsId",
+      "wireOperationId": "GetPaymentAttemptRecordsId",
+      "method": "get",
+      "path": "/v1/payment_attempt_records/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getPaymentIntents",
+      "wireOperationId": "GetPaymentIntents",
+      "method": "get",
+      "path": "/v1/payment_intents",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getPaymentIntentsIntent",
+      "wireOperationId": "GetPaymentIntentsIntent",
+      "method": "get",
+      "path": "/v1/payment_intents/{intent}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getPaymentIntentsIntentAmountDetailsLineItems",
+      "wireOperationId": "GetPaymentIntentsIntentAmountDetailsLineItems",
+      "method": "get",
+      "path": "/v1/payment_intents/{intent}/amount_details_line_items",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getPaymentIntentsSearch",
+      "wireOperationId": "GetPaymentIntentsSearch",
+      "method": "get",
+      "path": "/v1/payment_intents/search",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getPaymentLinks",
+      "wireOperationId": "GetPaymentLinks",
+      "method": "get",
+      "path": "/v1/payment_links",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getPaymentLinksPaymentLink",
+      "wireOperationId": "GetPaymentLinksPaymentLink",
+      "method": "get",
+      "path": "/v1/payment_links/{payment_link}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getPaymentLinksPaymentLinkLineItems",
+      "wireOperationId": "GetPaymentLinksPaymentLinkLineItems",
+      "method": "get",
+      "path": "/v1/payment_links/{payment_link}/line_items",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getPaymentMethodConfigurations",
+      "wireOperationId": "GetPaymentMethodConfigurations",
+      "method": "get",
+      "path": "/v1/payment_method_configurations",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getPaymentMethodConfigurationsConfiguration",
+      "wireOperationId": "GetPaymentMethodConfigurationsConfiguration",
+      "method": "get",
+      "path": "/v1/payment_method_configurations/{configuration}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getPaymentMethodDomains",
+      "wireOperationId": "GetPaymentMethodDomains",
+      "method": "get",
+      "path": "/v1/payment_method_domains",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getPaymentMethodDomainsPaymentMethodDomain",
+      "wireOperationId": "GetPaymentMethodDomainsPaymentMethodDomain",
+      "method": "get",
+      "path": "/v1/payment_method_domains/{payment_method_domain}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getPaymentMethods",
+      "wireOperationId": "GetPaymentMethods",
+      "method": "get",
+      "path": "/v1/payment_methods",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getPaymentMethodsPaymentMethod",
+      "wireOperationId": "GetPaymentMethodsPaymentMethod",
+      "method": "get",
+      "path": "/v1/payment_methods/{payment_method}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getPaymentRecords",
+      "wireOperationId": "GetPaymentRecords",
+      "method": "get",
+      "path": "/v1/payment_records",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getPaymentRecordsId",
+      "wireOperationId": "GetPaymentRecordsId",
+      "method": "get",
+      "path": "/v1/payment_records/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getPayouts",
+      "wireOperationId": "GetPayouts",
+      "method": "get",
+      "path": "/v1/payouts",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getPayoutsPayout",
+      "wireOperationId": "GetPayoutsPayout",
+      "method": "get",
+      "path": "/v1/payouts/{payout}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getPlans",
+      "wireOperationId": "GetPlans",
+      "method": "get",
+      "path": "/v1/plans",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getPlansPlan",
+      "wireOperationId": "GetPlansPlan",
+      "method": "get",
+      "path": "/v1/plans/{plan}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getPrices",
+      "wireOperationId": "GetPrices",
+      "method": "get",
+      "path": "/v1/prices",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getPricesPrice",
+      "wireOperationId": "GetPricesPrice",
+      "method": "get",
+      "path": "/v1/prices/{price}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getPricesSearch",
+      "wireOperationId": "GetPricesSearch",
+      "method": "get",
+      "path": "/v1/prices/search",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getProducts",
+      "wireOperationId": "GetProducts",
+      "method": "get",
+      "path": "/v1/products",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getProductsId",
+      "wireOperationId": "GetProductsId",
+      "method": "get",
+      "path": "/v1/products/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getProductsProductFeatures",
+      "wireOperationId": "GetProductsProductFeatures",
+      "method": "get",
+      "path": "/v1/products/{product}/features",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getProductsProductFeaturesId",
+      "wireOperationId": "GetProductsProductFeaturesId",
+      "method": "get",
+      "path": "/v1/products/{product}/features/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getProductsSearch",
+      "wireOperationId": "GetProductsSearch",
+      "method": "get",
+      "path": "/v1/products/search",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getPromotionCodes",
+      "wireOperationId": "GetPromotionCodes",
+      "method": "get",
+      "path": "/v1/promotion_codes",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getPromotionCodesPromotionCode",
+      "wireOperationId": "GetPromotionCodesPromotionCode",
+      "method": "get",
+      "path": "/v1/promotion_codes/{promotion_code}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getQuotes",
+      "wireOperationId": "GetQuotes",
+      "method": "get",
+      "path": "/v1/quotes",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getQuotesQuote",
+      "wireOperationId": "GetQuotesQuote",
+      "method": "get",
+      "path": "/v1/quotes/{quote}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getQuotesQuoteComputedUpfrontLineItems",
+      "wireOperationId": "GetQuotesQuoteComputedUpfrontLineItems",
+      "method": "get",
+      "path": "/v1/quotes/{quote}/computed_upfront_line_items",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getQuotesQuoteLineItems",
+      "wireOperationId": "GetQuotesQuoteLineItems",
+      "method": "get",
+      "path": "/v1/quotes/{quote}/line_items",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getQuotesQuotePdf",
+      "wireOperationId": "GetQuotesQuotePdf",
+      "method": "get",
+      "path": "/v1/quotes/{quote}/pdf",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getRadarEarlyFraudWarnings",
+      "wireOperationId": "GetRadarEarlyFraudWarnings",
+      "method": "get",
+      "path": "/v1/radar/early_fraud_warnings",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getRadarEarlyFraudWarningsEarlyFraudWarning",
+      "wireOperationId": "GetRadarEarlyFraudWarningsEarlyFraudWarning",
+      "method": "get",
+      "path": "/v1/radar/early_fraud_warnings/{early_fraud_warning}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getRadarValueListItems",
+      "wireOperationId": "GetRadarValueListItems",
+      "method": "get",
+      "path": "/v1/radar/value_list_items",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getRadarValueListItemsItem",
+      "wireOperationId": "GetRadarValueListItemsItem",
+      "method": "get",
+      "path": "/v1/radar/value_list_items/{item}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getRadarValueLists",
+      "wireOperationId": "GetRadarValueLists",
+      "method": "get",
+      "path": "/v1/radar/value_lists",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getRadarValueListsValueList",
+      "wireOperationId": "GetRadarValueListsValueList",
+      "method": "get",
+      "path": "/v1/radar/value_lists/{value_list}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getRefunds",
+      "wireOperationId": "GetRefunds",
+      "method": "get",
+      "path": "/v1/refunds",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getRefundsRefund",
+      "wireOperationId": "GetRefundsRefund",
+      "method": "get",
+      "path": "/v1/refunds/{refund}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getReportingReportRuns",
+      "wireOperationId": "GetReportingReportRuns",
+      "method": "get",
+      "path": "/v1/reporting/report_runs",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getReportingReportRunsReportRun",
+      "wireOperationId": "GetReportingReportRunsReportRun",
+      "method": "get",
+      "path": "/v1/reporting/report_runs/{report_run}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getReportingReportTypes",
+      "wireOperationId": "GetReportingReportTypes",
+      "method": "get",
+      "path": "/v1/reporting/report_types",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getReportingReportTypesReportType",
+      "wireOperationId": "GetReportingReportTypesReportType",
+      "method": "get",
+      "path": "/v1/reporting/report_types/{report_type}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getReviews",
+      "wireOperationId": "GetReviews",
+      "method": "get",
+      "path": "/v1/reviews",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getReviewsReview",
+      "wireOperationId": "GetReviewsReview",
+      "method": "get",
+      "path": "/v1/reviews/{review}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getSetupAttempts",
+      "wireOperationId": "GetSetupAttempts",
+      "method": "get",
+      "path": "/v1/setup_attempts",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getSetupIntents",
+      "wireOperationId": "GetSetupIntents",
+      "method": "get",
+      "path": "/v1/setup_intents",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getSetupIntentsIntent",
+      "wireOperationId": "GetSetupIntentsIntent",
+      "method": "get",
+      "path": "/v1/setup_intents/{intent}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getShippingRates",
+      "wireOperationId": "GetShippingRates",
+      "method": "get",
+      "path": "/v1/shipping_rates",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getShippingRatesShippingRateToken",
+      "wireOperationId": "GetShippingRatesShippingRateToken",
+      "method": "get",
+      "path": "/v1/shipping_rates/{shipping_rate_token}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getSigmaScheduledQueryRuns",
+      "wireOperationId": "GetSigmaScheduledQueryRuns",
+      "method": "get",
+      "path": "/v1/sigma/scheduled_query_runs",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getSigmaScheduledQueryRunsScheduledQueryRun",
+      "wireOperationId": "GetSigmaScheduledQueryRunsScheduledQueryRun",
+      "method": "get",
+      "path": "/v1/sigma/scheduled_query_runs/{scheduled_query_run}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getSourcesSource",
+      "wireOperationId": "GetSourcesSource",
+      "method": "get",
+      "path": "/v1/sources/{source}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getSourcesSourceMandateNotificationsMandateNotification",
+      "wireOperationId": "GetSourcesSourceMandateNotificationsMandateNotification",
+      "method": "get",
+      "path": "/v1/sources/{source}/mandate_notifications/{mandate_notification}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getSourcesSourceSourceTransactions",
+      "wireOperationId": "GetSourcesSourceSourceTransactions",
+      "method": "get",
+      "path": "/v1/sources/{source}/source_transactions",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getSourcesSourceSourceTransactionsSourceTransaction",
+      "wireOperationId": "GetSourcesSourceSourceTransactionsSourceTransaction",
+      "method": "get",
+      "path": "/v1/sources/{source}/source_transactions/{source_transaction}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getSubscriptionItems",
+      "wireOperationId": "GetSubscriptionItems",
+      "method": "get",
+      "path": "/v1/subscription_items",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getSubscriptionItemsItem",
+      "wireOperationId": "GetSubscriptionItemsItem",
+      "method": "get",
+      "path": "/v1/subscription_items/{item}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getSubscriptions",
+      "wireOperationId": "GetSubscriptions",
+      "method": "get",
+      "path": "/v1/subscriptions",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getSubscriptionSchedules",
+      "wireOperationId": "GetSubscriptionSchedules",
+      "method": "get",
+      "path": "/v1/subscription_schedules",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getSubscriptionSchedulesSchedule",
+      "wireOperationId": "GetSubscriptionSchedulesSchedule",
+      "method": "get",
+      "path": "/v1/subscription_schedules/{schedule}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getSubscriptionsSearch",
+      "wireOperationId": "GetSubscriptionsSearch",
+      "method": "get",
+      "path": "/v1/subscriptions/search",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getSubscriptionsSubscriptionExposedId",
+      "wireOperationId": "GetSubscriptionsSubscriptionExposedId",
+      "method": "get",
+      "path": "/v1/subscriptions/{subscription_exposed_id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getTaxAssociationsFind",
+      "wireOperationId": "GetTaxAssociationsFind",
+      "method": "get",
+      "path": "/v1/tax/associations/find",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getTaxCalculationsCalculation",
+      "wireOperationId": "GetTaxCalculationsCalculation",
+      "method": "get",
+      "path": "/v1/tax/calculations/{calculation}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getTaxCalculationsCalculationLineItems",
+      "wireOperationId": "GetTaxCalculationsCalculationLineItems",
+      "method": "get",
+      "path": "/v1/tax/calculations/{calculation}/line_items",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getTaxCodes",
+      "wireOperationId": "GetTaxCodes",
+      "method": "get",
+      "path": "/v1/tax_codes",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getTaxCodesId",
+      "wireOperationId": "GetTaxCodesId",
+      "method": "get",
+      "path": "/v1/tax_codes/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getTaxIds",
+      "wireOperationId": "GetTaxIds",
+      "method": "get",
+      "path": "/v1/tax_ids",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getTaxIdsId",
+      "wireOperationId": "GetTaxIdsId",
+      "method": "get",
+      "path": "/v1/tax_ids/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getTaxRates",
+      "wireOperationId": "GetTaxRates",
+      "method": "get",
+      "path": "/v1/tax_rates",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getTaxRatesTaxRate",
+      "wireOperationId": "GetTaxRatesTaxRate",
+      "method": "get",
+      "path": "/v1/tax_rates/{tax_rate}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getTaxRegistrations",
+      "wireOperationId": "GetTaxRegistrations",
+      "method": "get",
+      "path": "/v1/tax/registrations",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getTaxRegistrationsId",
+      "wireOperationId": "GetTaxRegistrationsId",
+      "method": "get",
+      "path": "/v1/tax/registrations/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getTaxSettings",
+      "wireOperationId": "GetTaxSettings",
+      "method": "get",
+      "path": "/v1/tax/settings",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getTaxTransactionsTransaction",
+      "wireOperationId": "GetTaxTransactionsTransaction",
+      "method": "get",
+      "path": "/v1/tax/transactions/{transaction}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getTaxTransactionsTransactionLineItems",
+      "wireOperationId": "GetTaxTransactionsTransactionLineItems",
+      "method": "get",
+      "path": "/v1/tax/transactions/{transaction}/line_items",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getTerminalConfigurations",
+      "wireOperationId": "GetTerminalConfigurations",
+      "method": "get",
+      "path": "/v1/terminal/configurations",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getTerminalConfigurationsConfiguration",
+      "wireOperationId": "GetTerminalConfigurationsConfiguration",
+      "method": "get",
+      "path": "/v1/terminal/configurations/{configuration}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getTerminalLocations",
+      "wireOperationId": "GetTerminalLocations",
+      "method": "get",
+      "path": "/v1/terminal/locations",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getTerminalLocationsLocation",
+      "wireOperationId": "GetTerminalLocationsLocation",
+      "method": "get",
+      "path": "/v1/terminal/locations/{location}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getTerminalReaders",
+      "wireOperationId": "GetTerminalReaders",
+      "method": "get",
+      "path": "/v1/terminal/readers",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getTerminalReadersReader",
+      "wireOperationId": "GetTerminalReadersReader",
+      "method": "get",
+      "path": "/v1/terminal/readers/{reader}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getTestHelpersTestClocks",
+      "wireOperationId": "GetTestHelpersTestClocks",
+      "method": "get",
+      "path": "/v1/test_helpers/test_clocks",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getTestHelpersTestClocksTestClock",
+      "wireOperationId": "GetTestHelpersTestClocksTestClock",
+      "method": "get",
+      "path": "/v1/test_helpers/test_clocks/{test_clock}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getTokensToken",
+      "wireOperationId": "GetTokensToken",
+      "method": "get",
+      "path": "/v1/tokens/{token}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getTopups",
+      "wireOperationId": "GetTopups",
+      "method": "get",
+      "path": "/v1/topups",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getTopupsTopup",
+      "wireOperationId": "GetTopupsTopup",
+      "method": "get",
+      "path": "/v1/topups/{topup}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getTransfers",
+      "wireOperationId": "GetTransfers",
+      "method": "get",
+      "path": "/v1/transfers",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getTransfersIdReversals",
+      "wireOperationId": "GetTransfersIdReversals",
+      "method": "get",
+      "path": "/v1/transfers/{id}/reversals",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getTransfersTransfer",
+      "wireOperationId": "GetTransfersTransfer",
+      "method": "get",
+      "path": "/v1/transfers/{transfer}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getTransfersTransferReversalsId",
+      "wireOperationId": "GetTransfersTransferReversalsId",
+      "method": "get",
+      "path": "/v1/transfers/{transfer}/reversals/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getTreasuryCreditReversals",
+      "wireOperationId": "GetTreasuryCreditReversals",
+      "method": "get",
+      "path": "/v1/treasury/credit_reversals",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getTreasuryCreditReversalsCreditReversal",
+      "wireOperationId": "GetTreasuryCreditReversalsCreditReversal",
+      "method": "get",
+      "path": "/v1/treasury/credit_reversals/{credit_reversal}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getTreasuryDebitReversals",
+      "wireOperationId": "GetTreasuryDebitReversals",
+      "method": "get",
+      "path": "/v1/treasury/debit_reversals",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getTreasuryDebitReversalsDebitReversal",
+      "wireOperationId": "GetTreasuryDebitReversalsDebitReversal",
+      "method": "get",
+      "path": "/v1/treasury/debit_reversals/{debit_reversal}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getTreasuryFinancialAccounts",
+      "wireOperationId": "GetTreasuryFinancialAccounts",
+      "method": "get",
+      "path": "/v1/treasury/financial_accounts",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getTreasuryFinancialAccountsFinancialAccount",
+      "wireOperationId": "GetTreasuryFinancialAccountsFinancialAccount",
+      "method": "get",
+      "path": "/v1/treasury/financial_accounts/{financial_account}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getTreasuryFinancialAccountsFinancialAccountFeatures",
+      "wireOperationId": "GetTreasuryFinancialAccountsFinancialAccountFeatures",
+      "method": "get",
+      "path": "/v1/treasury/financial_accounts/{financial_account}/features",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getTreasuryInboundTransfers",
+      "wireOperationId": "GetTreasuryInboundTransfers",
+      "method": "get",
+      "path": "/v1/treasury/inbound_transfers",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getTreasuryInboundTransfersId",
+      "wireOperationId": "GetTreasuryInboundTransfersId",
+      "method": "get",
+      "path": "/v1/treasury/inbound_transfers/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getTreasuryOutboundPayments",
+      "wireOperationId": "GetTreasuryOutboundPayments",
+      "method": "get",
+      "path": "/v1/treasury/outbound_payments",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getTreasuryOutboundPaymentsId",
+      "wireOperationId": "GetTreasuryOutboundPaymentsId",
+      "method": "get",
+      "path": "/v1/treasury/outbound_payments/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getTreasuryOutboundTransfers",
+      "wireOperationId": "GetTreasuryOutboundTransfers",
+      "method": "get",
+      "path": "/v1/treasury/outbound_transfers",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getTreasuryOutboundTransfersOutboundTransfer",
+      "wireOperationId": "GetTreasuryOutboundTransfersOutboundTransfer",
+      "method": "get",
+      "path": "/v1/treasury/outbound_transfers/{outbound_transfer}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getTreasuryReceivedCredits",
+      "wireOperationId": "GetTreasuryReceivedCredits",
+      "method": "get",
+      "path": "/v1/treasury/received_credits",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getTreasuryReceivedCreditsId",
+      "wireOperationId": "GetTreasuryReceivedCreditsId",
+      "method": "get",
+      "path": "/v1/treasury/received_credits/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getTreasuryReceivedDebits",
+      "wireOperationId": "GetTreasuryReceivedDebits",
+      "method": "get",
+      "path": "/v1/treasury/received_debits",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getTreasuryReceivedDebitsId",
+      "wireOperationId": "GetTreasuryReceivedDebitsId",
+      "method": "get",
+      "path": "/v1/treasury/received_debits/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getTreasuryTransactionEntries",
+      "wireOperationId": "GetTreasuryTransactionEntries",
+      "method": "get",
+      "path": "/v1/treasury/transaction_entries",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getTreasuryTransactionEntriesId",
+      "wireOperationId": "GetTreasuryTransactionEntriesId",
+      "method": "get",
+      "path": "/v1/treasury/transaction_entries/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getTreasuryTransactions",
+      "wireOperationId": "GetTreasuryTransactions",
+      "method": "get",
+      "path": "/v1/treasury/transactions",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getTreasuryTransactionsId",
+      "wireOperationId": "GetTreasuryTransactionsId",
+      "method": "get",
+      "path": "/v1/treasury/transactions/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getWebhookEndpoints",
+      "wireOperationId": "GetWebhookEndpoints",
+      "method": "get",
+      "path": "/v1/webhook_endpoints",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "getWebhookEndpointsWebhookEndpoint",
+      "wireOperationId": "GetWebhookEndpointsWebhookEndpoint",
+      "method": "get",
+      "path": "/v1/webhook_endpoints/{webhook_endpoint}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postAccountLinks",
+      "wireOperationId": "PostAccountLinks",
+      "method": "post",
+      "path": "/v1/account_links",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postAccounts",
+      "wireOperationId": "PostAccounts",
+      "method": "post",
+      "path": "/v1/accounts",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postAccountsAccount",
+      "wireOperationId": "PostAccountsAccount",
+      "method": "post",
+      "path": "/v1/accounts/{account}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postAccountsAccountBankAccounts",
+      "wireOperationId": "PostAccountsAccountBankAccounts",
+      "method": "post",
+      "path": "/v1/accounts/{account}/bank_accounts",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postAccountsAccountBankAccountsId",
+      "wireOperationId": "PostAccountsAccountBankAccountsId",
+      "method": "post",
+      "path": "/v1/accounts/{account}/bank_accounts/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postAccountsAccountCapabilitiesCapability",
+      "wireOperationId": "PostAccountsAccountCapabilitiesCapability",
+      "method": "post",
+      "path": "/v1/accounts/{account}/capabilities/{capability}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postAccountsAccountExternalAccounts",
+      "wireOperationId": "PostAccountsAccountExternalAccounts",
+      "method": "post",
+      "path": "/v1/accounts/{account}/external_accounts",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postAccountsAccountExternalAccountsId",
+      "wireOperationId": "PostAccountsAccountExternalAccountsId",
+      "method": "post",
+      "path": "/v1/accounts/{account}/external_accounts/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postAccountsAccountLoginLinks",
+      "wireOperationId": "PostAccountsAccountLoginLinks",
+      "method": "post",
+      "path": "/v1/accounts/{account}/login_links",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postAccountsAccountPeople",
+      "wireOperationId": "PostAccountsAccountPeople",
+      "method": "post",
+      "path": "/v1/accounts/{account}/people",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postAccountsAccountPeoplePerson",
+      "wireOperationId": "PostAccountsAccountPeoplePerson",
+      "method": "post",
+      "path": "/v1/accounts/{account}/people/{person}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postAccountsAccountPersons",
+      "wireOperationId": "PostAccountsAccountPersons",
+      "method": "post",
+      "path": "/v1/accounts/{account}/persons",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postAccountsAccountPersonsPerson",
+      "wireOperationId": "PostAccountsAccountPersonsPerson",
+      "method": "post",
+      "path": "/v1/accounts/{account}/persons/{person}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postAccountsAccountReject",
+      "wireOperationId": "PostAccountsAccountReject",
+      "method": "post",
+      "path": "/v1/accounts/{account}/reject",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postAccountsAccountUnreject",
+      "wireOperationId": "PostAccountsAccountUnreject",
+      "method": "post",
+      "path": "/v1/accounts/{account}/unreject",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postAccountSessions",
+      "wireOperationId": "PostAccountSessions",
+      "method": "post",
+      "path": "/v1/account_sessions",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postApplePayDomains",
+      "wireOperationId": "PostApplePayDomains",
+      "method": "post",
+      "path": "/v1/apple_pay/domains",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postApplicationFeesFeeRefundsId",
+      "wireOperationId": "PostApplicationFeesFeeRefundsId",
+      "method": "post",
+      "path": "/v1/application_fees/{fee}/refunds/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postApplicationFeesIdRefund",
+      "wireOperationId": "PostApplicationFeesIdRefund",
+      "method": "post",
+      "path": "/v1/application_fees/{id}/refund",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postApplicationFeesIdRefunds",
+      "wireOperationId": "PostApplicationFeesIdRefunds",
+      "method": "post",
+      "path": "/v1/application_fees/{id}/refunds",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postAppsSecrets",
+      "wireOperationId": "PostAppsSecrets",
+      "method": "post",
+      "path": "/v1/apps/secrets",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postAppsSecretsDelete",
+      "wireOperationId": "PostAppsSecretsDelete",
+      "method": "post",
+      "path": "/v1/apps/secrets/delete",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postBalanceSettings",
+      "wireOperationId": "PostBalanceSettings",
+      "method": "post",
+      "path": "/v1/balance_settings",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postBillingAlerts",
+      "wireOperationId": "PostBillingAlerts",
+      "method": "post",
+      "path": "/v1/billing/alerts",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postBillingAlertsIdActivate",
+      "wireOperationId": "PostBillingAlertsIdActivate",
+      "method": "post",
+      "path": "/v1/billing/alerts/{id}/activate",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postBillingAlertsIdArchive",
+      "wireOperationId": "PostBillingAlertsIdArchive",
+      "method": "post",
+      "path": "/v1/billing/alerts/{id}/archive",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postBillingAlertsIdDeactivate",
+      "wireOperationId": "PostBillingAlertsIdDeactivate",
+      "method": "post",
+      "path": "/v1/billing/alerts/{id}/deactivate",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postBillingCreditGrants",
+      "wireOperationId": "PostBillingCreditGrants",
+      "method": "post",
+      "path": "/v1/billing/credit_grants",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postBillingCreditGrantsId",
+      "wireOperationId": "PostBillingCreditGrantsId",
+      "method": "post",
+      "path": "/v1/billing/credit_grants/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postBillingCreditGrantsIdExpire",
+      "wireOperationId": "PostBillingCreditGrantsIdExpire",
+      "method": "post",
+      "path": "/v1/billing/credit_grants/{id}/expire",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postBillingCreditGrantsIdVoid",
+      "wireOperationId": "PostBillingCreditGrantsIdVoid",
+      "method": "post",
+      "path": "/v1/billing/credit_grants/{id}/void",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postBillingFeedbackOptions",
+      "wireOperationId": "PostBillingFeedbackOptions",
+      "method": "post",
+      "path": "/v1/billing/feedback_options",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postBillingFeedbackOptionsId",
+      "wireOperationId": "PostBillingFeedbackOptionsId",
+      "method": "post",
+      "path": "/v1/billing/feedback_options/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postBillingFeedbackOptionsIdDeactivate",
+      "wireOperationId": "PostBillingFeedbackOptionsIdDeactivate",
+      "method": "post",
+      "path": "/v1/billing/feedback_options/{id}/deactivate",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postBillingMeterEventAdjustments",
+      "wireOperationId": "PostBillingMeterEventAdjustments",
+      "method": "post",
+      "path": "/v1/billing/meter_event_adjustments",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postBillingMeterEvents",
+      "wireOperationId": "PostBillingMeterEvents",
+      "method": "post",
+      "path": "/v1/billing/meter_events",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postBillingMeters",
+      "wireOperationId": "PostBillingMeters",
+      "method": "post",
+      "path": "/v1/billing/meters",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postBillingMetersId",
+      "wireOperationId": "PostBillingMetersId",
+      "method": "post",
+      "path": "/v1/billing/meters/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postBillingMetersIdDeactivate",
+      "wireOperationId": "PostBillingMetersIdDeactivate",
+      "method": "post",
+      "path": "/v1/billing/meters/{id}/deactivate",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postBillingMetersIdReactivate",
+      "wireOperationId": "PostBillingMetersIdReactivate",
+      "method": "post",
+      "path": "/v1/billing/meters/{id}/reactivate",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postBillingPortalConfigurations",
+      "wireOperationId": "PostBillingPortalConfigurations",
+      "method": "post",
+      "path": "/v1/billing_portal/configurations",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postBillingPortalConfigurationsConfiguration",
+      "wireOperationId": "PostBillingPortalConfigurationsConfiguration",
+      "method": "post",
+      "path": "/v1/billing_portal/configurations/{configuration}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postBillingPortalSessions",
+      "wireOperationId": "PostBillingPortalSessions",
+      "method": "post",
+      "path": "/v1/billing_portal/sessions",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postCharges",
+      "wireOperationId": "PostCharges",
+      "method": "post",
+      "path": "/v1/charges",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postChargesCharge",
+      "wireOperationId": "PostChargesCharge",
+      "method": "post",
+      "path": "/v1/charges/{charge}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postChargesChargeCapture",
+      "wireOperationId": "PostChargesChargeCapture",
+      "method": "post",
+      "path": "/v1/charges/{charge}/capture",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postChargesChargeDispute",
+      "wireOperationId": "PostChargesChargeDispute",
+      "method": "post",
+      "path": "/v1/charges/{charge}/dispute",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postChargesChargeDisputeClose",
+      "wireOperationId": "PostChargesChargeDisputeClose",
+      "method": "post",
+      "path": "/v1/charges/{charge}/dispute/close",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postChargesChargeRefund",
+      "wireOperationId": "PostChargesChargeRefund",
+      "method": "post",
+      "path": "/v1/charges/{charge}/refund",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postChargesChargeRefunds",
+      "wireOperationId": "PostChargesChargeRefunds",
+      "method": "post",
+      "path": "/v1/charges/{charge}/refunds",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postChargesChargeRefundsRefund",
+      "wireOperationId": "PostChargesChargeRefundsRefund",
+      "method": "post",
+      "path": "/v1/charges/{charge}/refunds/{refund}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postCheckoutSessions",
+      "wireOperationId": "PostCheckoutSessions",
+      "method": "post",
+      "path": "/v1/checkout/sessions",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postCheckoutSessionsSession",
+      "wireOperationId": "PostCheckoutSessionsSession",
+      "method": "post",
+      "path": "/v1/checkout/sessions/{session}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postCheckoutSessionsSessionExpire",
+      "wireOperationId": "PostCheckoutSessionsSessionExpire",
+      "method": "post",
+      "path": "/v1/checkout/sessions/{session}/expire",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postClimateOrders",
+      "wireOperationId": "PostClimateOrders",
+      "method": "post",
+      "path": "/v1/climate/orders",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postClimateOrdersOrder",
+      "wireOperationId": "PostClimateOrdersOrder",
+      "method": "post",
+      "path": "/v1/climate/orders/{order}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postClimateOrdersOrderCancel",
+      "wireOperationId": "PostClimateOrdersOrderCancel",
+      "method": "post",
+      "path": "/v1/climate/orders/{order}/cancel",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postCoupons",
+      "wireOperationId": "PostCoupons",
+      "method": "post",
+      "path": "/v1/coupons",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postCouponsCoupon",
+      "wireOperationId": "PostCouponsCoupon",
+      "method": "post",
+      "path": "/v1/coupons/{coupon}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postCreditNotes",
+      "wireOperationId": "PostCreditNotes",
+      "method": "post",
+      "path": "/v1/credit_notes",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postCreditNotesId",
+      "wireOperationId": "PostCreditNotesId",
+      "method": "post",
+      "path": "/v1/credit_notes/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postCreditNotesIdVoid",
+      "wireOperationId": "PostCreditNotesIdVoid",
+      "method": "post",
+      "path": "/v1/credit_notes/{id}/void",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postCustomers",
+      "wireOperationId": "PostCustomers",
+      "method": "post",
+      "path": "/v1/customers",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postCustomersCustomer",
+      "wireOperationId": "PostCustomersCustomer",
+      "method": "post",
+      "path": "/v1/customers/{customer}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postCustomersCustomerBalanceTransactions",
+      "wireOperationId": "PostCustomersCustomerBalanceTransactions",
+      "method": "post",
+      "path": "/v1/customers/{customer}/balance_transactions",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postCustomersCustomerBalanceTransactionsTransaction",
+      "wireOperationId": "PostCustomersCustomerBalanceTransactionsTransaction",
+      "method": "post",
+      "path": "/v1/customers/{customer}/balance_transactions/{transaction}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postCustomersCustomerBankAccounts",
+      "wireOperationId": "PostCustomersCustomerBankAccounts",
+      "method": "post",
+      "path": "/v1/customers/{customer}/bank_accounts",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postCustomersCustomerBankAccountsId",
+      "wireOperationId": "PostCustomersCustomerBankAccountsId",
+      "method": "post",
+      "path": "/v1/customers/{customer}/bank_accounts/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postCustomersCustomerBankAccountsIdVerify",
+      "wireOperationId": "PostCustomersCustomerBankAccountsIdVerify",
+      "method": "post",
+      "path": "/v1/customers/{customer}/bank_accounts/{id}/verify",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postCustomersCustomerCards",
+      "wireOperationId": "PostCustomersCustomerCards",
+      "method": "post",
+      "path": "/v1/customers/{customer}/cards",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postCustomersCustomerCardsId",
+      "wireOperationId": "PostCustomersCustomerCardsId",
+      "method": "post",
+      "path": "/v1/customers/{customer}/cards/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postCustomersCustomerCashBalance",
+      "wireOperationId": "PostCustomersCustomerCashBalance",
+      "method": "post",
+      "path": "/v1/customers/{customer}/cash_balance",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postCustomersCustomerFundingInstructions",
+      "wireOperationId": "PostCustomersCustomerFundingInstructions",
+      "method": "post",
+      "path": "/v1/customers/{customer}/funding_instructions",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postCustomersCustomerSources",
+      "wireOperationId": "PostCustomersCustomerSources",
+      "method": "post",
+      "path": "/v1/customers/{customer}/sources",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postCustomersCustomerSourcesId",
+      "wireOperationId": "PostCustomersCustomerSourcesId",
+      "method": "post",
+      "path": "/v1/customers/{customer}/sources/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postCustomersCustomerSourcesIdVerify",
+      "wireOperationId": "PostCustomersCustomerSourcesIdVerify",
+      "method": "post",
+      "path": "/v1/customers/{customer}/sources/{id}/verify",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postCustomersCustomerSubscriptions",
+      "wireOperationId": "PostCustomersCustomerSubscriptions",
+      "method": "post",
+      "path": "/v1/customers/{customer}/subscriptions",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postCustomersCustomerSubscriptionsSubscriptionExposedId",
+      "wireOperationId": "PostCustomersCustomerSubscriptionsSubscriptionExposedId",
+      "method": "post",
+      "path": "/v1/customers/{customer}/subscriptions/{subscription_exposed_id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postCustomersCustomerTaxIds",
+      "wireOperationId": "PostCustomersCustomerTaxIds",
+      "method": "post",
+      "path": "/v1/customers/{customer}/tax_ids",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postCustomerSessions",
+      "wireOperationId": "PostCustomerSessions",
+      "method": "post",
+      "path": "/v1/customer_sessions",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postDisputesDispute",
+      "wireOperationId": "PostDisputesDispute",
+      "method": "post",
+      "path": "/v1/disputes/{dispute}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postDisputesDisputeClose",
+      "wireOperationId": "PostDisputesDisputeClose",
+      "method": "post",
+      "path": "/v1/disputes/{dispute}/close",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postEntitlementsFeatures",
+      "wireOperationId": "PostEntitlementsFeatures",
+      "method": "post",
+      "path": "/v1/entitlements/features",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postEntitlementsFeaturesId",
+      "wireOperationId": "PostEntitlementsFeaturesId",
+      "method": "post",
+      "path": "/v1/entitlements/features/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postEphemeralKeys",
+      "wireOperationId": "PostEphemeralKeys",
+      "method": "post",
+      "path": "/v1/ephemeral_keys",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postExternalAccountsId",
+      "wireOperationId": "PostExternalAccountsId",
+      "method": "post",
+      "path": "/v1/external_accounts/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postFileLinks",
+      "wireOperationId": "PostFileLinks",
+      "method": "post",
+      "path": "/v1/file_links",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postFileLinksLink",
+      "wireOperationId": "PostFileLinksLink",
+      "method": "post",
+      "path": "/v1/file_links/{link}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postFiles",
+      "wireOperationId": "PostFiles",
+      "method": "post",
+      "path": "/v1/files",
+      "mode": "normal",
+      "requestMediaType": "multipart/form-data"
+    },
+    {
+      "publicOperationId": "postFinancialConnectionsAccountsAccountDisconnect",
+      "wireOperationId": "PostFinancialConnectionsAccountsAccountDisconnect",
+      "method": "post",
+      "path": "/v1/financial_connections/accounts/{account}/disconnect",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postFinancialConnectionsAccountsAccountRefresh",
+      "wireOperationId": "PostFinancialConnectionsAccountsAccountRefresh",
+      "method": "post",
+      "path": "/v1/financial_connections/accounts/{account}/refresh",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postFinancialConnectionsAccountsAccountSubscribe",
+      "wireOperationId": "PostFinancialConnectionsAccountsAccountSubscribe",
+      "method": "post",
+      "path": "/v1/financial_connections/accounts/{account}/subscribe",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postFinancialConnectionsAccountsAccountUnsubscribe",
+      "wireOperationId": "PostFinancialConnectionsAccountsAccountUnsubscribe",
+      "method": "post",
+      "path": "/v1/financial_connections/accounts/{account}/unsubscribe",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postFinancialConnectionsSessions",
+      "wireOperationId": "PostFinancialConnectionsSessions",
+      "method": "post",
+      "path": "/v1/financial_connections/sessions",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postForwardingRequests",
+      "wireOperationId": "PostForwardingRequests",
+      "method": "post",
+      "path": "/v1/forwarding/requests",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postIdentityVerificationSessions",
+      "wireOperationId": "PostIdentityVerificationSessions",
+      "method": "post",
+      "path": "/v1/identity/verification_sessions",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postIdentityVerificationSessionsSession",
+      "wireOperationId": "PostIdentityVerificationSessionsSession",
+      "method": "post",
+      "path": "/v1/identity/verification_sessions/{session}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postIdentityVerificationSessionsSessionCancel",
+      "wireOperationId": "PostIdentityVerificationSessionsSessionCancel",
+      "method": "post",
+      "path": "/v1/identity/verification_sessions/{session}/cancel",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postIdentityVerificationSessionsSessionRedact",
+      "wireOperationId": "PostIdentityVerificationSessionsSessionRedact",
+      "method": "post",
+      "path": "/v1/identity/verification_sessions/{session}/redact",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postInvoiceitems",
+      "wireOperationId": "PostInvoiceitems",
+      "method": "post",
+      "path": "/v1/invoiceitems",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postInvoiceitemsInvoiceitem",
+      "wireOperationId": "PostInvoiceitemsInvoiceitem",
+      "method": "post",
+      "path": "/v1/invoiceitems/{invoiceitem}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postInvoiceRenderingTemplatesTemplateArchive",
+      "wireOperationId": "PostInvoiceRenderingTemplatesTemplateArchive",
+      "method": "post",
+      "path": "/v1/invoice_rendering_templates/{template}/archive",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postInvoiceRenderingTemplatesTemplateUnarchive",
+      "wireOperationId": "PostInvoiceRenderingTemplatesTemplateUnarchive",
+      "method": "post",
+      "path": "/v1/invoice_rendering_templates/{template}/unarchive",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postInvoices",
+      "wireOperationId": "PostInvoices",
+      "method": "post",
+      "path": "/v1/invoices",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postInvoicesCreatePreview",
+      "wireOperationId": "PostInvoicesCreatePreview",
+      "method": "post",
+      "path": "/v1/invoices/create_preview",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postInvoicesInvoice",
+      "wireOperationId": "PostInvoicesInvoice",
+      "method": "post",
+      "path": "/v1/invoices/{invoice}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postInvoicesInvoiceAddLines",
+      "wireOperationId": "PostInvoicesInvoiceAddLines",
+      "method": "post",
+      "path": "/v1/invoices/{invoice}/add_lines",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postInvoicesInvoiceAttachPayment",
+      "wireOperationId": "PostInvoicesInvoiceAttachPayment",
+      "method": "post",
+      "path": "/v1/invoices/{invoice}/attach_payment",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postInvoicesInvoiceFinalize",
+      "wireOperationId": "PostInvoicesInvoiceFinalize",
+      "method": "post",
+      "path": "/v1/invoices/{invoice}/finalize",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postInvoicesInvoiceLinesLineItemId",
+      "wireOperationId": "PostInvoicesInvoiceLinesLineItemId",
+      "method": "post",
+      "path": "/v1/invoices/{invoice}/lines/{line_item_id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postInvoicesInvoiceMarkUncollectible",
+      "wireOperationId": "PostInvoicesInvoiceMarkUncollectible",
+      "method": "post",
+      "path": "/v1/invoices/{invoice}/mark_uncollectible",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postInvoicesInvoicePay",
+      "wireOperationId": "PostInvoicesInvoicePay",
+      "method": "post",
+      "path": "/v1/invoices/{invoice}/pay",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postInvoicesInvoiceRemoveLines",
+      "wireOperationId": "PostInvoicesInvoiceRemoveLines",
+      "method": "post",
+      "path": "/v1/invoices/{invoice}/remove_lines",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postInvoicesInvoiceSend",
+      "wireOperationId": "PostInvoicesInvoiceSend",
+      "method": "post",
+      "path": "/v1/invoices/{invoice}/send",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postInvoicesInvoiceUpdateLines",
+      "wireOperationId": "PostInvoicesInvoiceUpdateLines",
+      "method": "post",
+      "path": "/v1/invoices/{invoice}/update_lines",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postInvoicesInvoiceVoid",
+      "wireOperationId": "PostInvoicesInvoiceVoid",
+      "method": "post",
+      "path": "/v1/invoices/{invoice}/void",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postIssuingAuthorizationsAuthorization",
+      "wireOperationId": "PostIssuingAuthorizationsAuthorization",
+      "method": "post",
+      "path": "/v1/issuing/authorizations/{authorization}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postIssuingAuthorizationsAuthorizationApprove",
+      "wireOperationId": "PostIssuingAuthorizationsAuthorizationApprove",
+      "method": "post",
+      "path": "/v1/issuing/authorizations/{authorization}/approve",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postIssuingAuthorizationsAuthorizationDecline",
+      "wireOperationId": "PostIssuingAuthorizationsAuthorizationDecline",
+      "method": "post",
+      "path": "/v1/issuing/authorizations/{authorization}/decline",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postIssuingCardholders",
+      "wireOperationId": "PostIssuingCardholders",
+      "method": "post",
+      "path": "/v1/issuing/cardholders",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postIssuingCardholdersCardholder",
+      "wireOperationId": "PostIssuingCardholdersCardholder",
+      "method": "post",
+      "path": "/v1/issuing/cardholders/{cardholder}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postIssuingCards",
+      "wireOperationId": "PostIssuingCards",
+      "method": "post",
+      "path": "/v1/issuing/cards",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postIssuingCardsCard",
+      "wireOperationId": "PostIssuingCardsCard",
+      "method": "post",
+      "path": "/v1/issuing/cards/{card}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postIssuingDisputes",
+      "wireOperationId": "PostIssuingDisputes",
+      "method": "post",
+      "path": "/v1/issuing/disputes",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postIssuingDisputesDispute",
+      "wireOperationId": "PostIssuingDisputesDispute",
+      "method": "post",
+      "path": "/v1/issuing/disputes/{dispute}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postIssuingDisputesDisputeSubmit",
+      "wireOperationId": "PostIssuingDisputesDisputeSubmit",
+      "method": "post",
+      "path": "/v1/issuing/disputes/{dispute}/submit",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postIssuingPersonalizationDesigns",
+      "wireOperationId": "PostIssuingPersonalizationDesigns",
+      "method": "post",
+      "path": "/v1/issuing/personalization_designs",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postIssuingPersonalizationDesignsPersonalizationDesign",
+      "wireOperationId": "PostIssuingPersonalizationDesignsPersonalizationDesign",
+      "method": "post",
+      "path": "/v1/issuing/personalization_designs/{personalization_design}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postIssuingSettlementsSettlement",
+      "wireOperationId": "PostIssuingSettlementsSettlement",
+      "method": "post",
+      "path": "/v1/issuing/settlements/{settlement}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postIssuingTokensToken",
+      "wireOperationId": "PostIssuingTokensToken",
+      "method": "post",
+      "path": "/v1/issuing/tokens/{token}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postIssuingTransactionsTransaction",
+      "wireOperationId": "PostIssuingTransactionsTransaction",
+      "method": "post",
+      "path": "/v1/issuing/transactions/{transaction}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postLinkAccountSessions",
+      "wireOperationId": "PostLinkAccountSessions",
+      "method": "post",
+      "path": "/v1/link_account_sessions",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postLinkedAccountsAccountDisconnect",
+      "wireOperationId": "PostLinkedAccountsAccountDisconnect",
+      "method": "post",
+      "path": "/v1/linked_accounts/{account}/disconnect",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postLinkedAccountsAccountRefresh",
+      "wireOperationId": "PostLinkedAccountsAccountRefresh",
+      "method": "post",
+      "path": "/v1/linked_accounts/{account}/refresh",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postPaymentIntents",
+      "wireOperationId": "PostPaymentIntents",
+      "method": "post",
+      "path": "/v1/payment_intents",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postPaymentIntentsIntent",
+      "wireOperationId": "PostPaymentIntentsIntent",
+      "method": "post",
+      "path": "/v1/payment_intents/{intent}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postPaymentIntentsIntentApplyCustomerBalance",
+      "wireOperationId": "PostPaymentIntentsIntentApplyCustomerBalance",
+      "method": "post",
+      "path": "/v1/payment_intents/{intent}/apply_customer_balance",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postPaymentIntentsIntentCancel",
+      "wireOperationId": "PostPaymentIntentsIntentCancel",
+      "method": "post",
+      "path": "/v1/payment_intents/{intent}/cancel",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postPaymentIntentsIntentCapture",
+      "wireOperationId": "PostPaymentIntentsIntentCapture",
+      "method": "post",
+      "path": "/v1/payment_intents/{intent}/capture",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postPaymentIntentsIntentConfirm",
+      "wireOperationId": "PostPaymentIntentsIntentConfirm",
+      "method": "post",
+      "path": "/v1/payment_intents/{intent}/confirm",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postPaymentIntentsIntentIncrementAuthorization",
+      "wireOperationId": "PostPaymentIntentsIntentIncrementAuthorization",
+      "method": "post",
+      "path": "/v1/payment_intents/{intent}/increment_authorization",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postPaymentIntentsIntentVerifyMicrodeposits",
+      "wireOperationId": "PostPaymentIntentsIntentVerifyMicrodeposits",
+      "method": "post",
+      "path": "/v1/payment_intents/{intent}/verify_microdeposits",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postPaymentLinks",
+      "wireOperationId": "PostPaymentLinks",
+      "method": "post",
+      "path": "/v1/payment_links",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postPaymentLinksPaymentLink",
+      "wireOperationId": "PostPaymentLinksPaymentLink",
+      "method": "post",
+      "path": "/v1/payment_links/{payment_link}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postPaymentMethodConfigurations",
+      "wireOperationId": "PostPaymentMethodConfigurations",
+      "method": "post",
+      "path": "/v1/payment_method_configurations",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postPaymentMethodConfigurationsConfiguration",
+      "wireOperationId": "PostPaymentMethodConfigurationsConfiguration",
+      "method": "post",
+      "path": "/v1/payment_method_configurations/{configuration}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postPaymentMethodDomains",
+      "wireOperationId": "PostPaymentMethodDomains",
+      "method": "post",
+      "path": "/v1/payment_method_domains",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postPaymentMethodDomainsPaymentMethodDomain",
+      "wireOperationId": "PostPaymentMethodDomainsPaymentMethodDomain",
+      "method": "post",
+      "path": "/v1/payment_method_domains/{payment_method_domain}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postPaymentMethodDomainsPaymentMethodDomainValidate",
+      "wireOperationId": "PostPaymentMethodDomainsPaymentMethodDomainValidate",
+      "method": "post",
+      "path": "/v1/payment_method_domains/{payment_method_domain}/validate",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postPaymentMethods",
+      "wireOperationId": "PostPaymentMethods",
+      "method": "post",
+      "path": "/v1/payment_methods",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postPaymentMethodsPaymentMethod",
+      "wireOperationId": "PostPaymentMethodsPaymentMethod",
+      "method": "post",
+      "path": "/v1/payment_methods/{payment_method}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postPaymentMethodsPaymentMethodAttach",
+      "wireOperationId": "PostPaymentMethodsPaymentMethodAttach",
+      "method": "post",
+      "path": "/v1/payment_methods/{payment_method}/attach",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postPaymentMethodsPaymentMethodDetach",
+      "wireOperationId": "PostPaymentMethodsPaymentMethodDetach",
+      "method": "post",
+      "path": "/v1/payment_methods/{payment_method}/detach",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postPaymentRecordsIdReportPaymentAttempt",
+      "wireOperationId": "PostPaymentRecordsIdReportPaymentAttempt",
+      "method": "post",
+      "path": "/v1/payment_records/{id}/report_payment_attempt",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postPaymentRecordsIdReportPaymentAttemptCanceled",
+      "wireOperationId": "PostPaymentRecordsIdReportPaymentAttemptCanceled",
+      "method": "post",
+      "path": "/v1/payment_records/{id}/report_payment_attempt_canceled",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postPaymentRecordsIdReportPaymentAttemptFailed",
+      "wireOperationId": "PostPaymentRecordsIdReportPaymentAttemptFailed",
+      "method": "post",
+      "path": "/v1/payment_records/{id}/report_payment_attempt_failed",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postPaymentRecordsIdReportPaymentAttemptGuaranteed",
+      "wireOperationId": "PostPaymentRecordsIdReportPaymentAttemptGuaranteed",
+      "method": "post",
+      "path": "/v1/payment_records/{id}/report_payment_attempt_guaranteed",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postPaymentRecordsIdReportPaymentAttemptInformational",
+      "wireOperationId": "PostPaymentRecordsIdReportPaymentAttemptInformational",
+      "method": "post",
+      "path": "/v1/payment_records/{id}/report_payment_attempt_informational",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postPaymentRecordsIdReportRefund",
+      "wireOperationId": "PostPaymentRecordsIdReportRefund",
+      "method": "post",
+      "path": "/v1/payment_records/{id}/report_refund",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postPaymentRecordsReportPayment",
+      "wireOperationId": "PostPaymentRecordsReportPayment",
+      "method": "post",
+      "path": "/v1/payment_records/report_payment",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postPayouts",
+      "wireOperationId": "PostPayouts",
+      "method": "post",
+      "path": "/v1/payouts",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postPayoutsPayout",
+      "wireOperationId": "PostPayoutsPayout",
+      "method": "post",
+      "path": "/v1/payouts/{payout}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postPayoutsPayoutCancel",
+      "wireOperationId": "PostPayoutsPayoutCancel",
+      "method": "post",
+      "path": "/v1/payouts/{payout}/cancel",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postPayoutsPayoutReverse",
+      "wireOperationId": "PostPayoutsPayoutReverse",
+      "method": "post",
+      "path": "/v1/payouts/{payout}/reverse",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postPlans",
+      "wireOperationId": "PostPlans",
+      "method": "post",
+      "path": "/v1/plans",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postPlansPlan",
+      "wireOperationId": "PostPlansPlan",
+      "method": "post",
+      "path": "/v1/plans/{plan}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postPrices",
+      "wireOperationId": "PostPrices",
+      "method": "post",
+      "path": "/v1/prices",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postPricesPrice",
+      "wireOperationId": "PostPricesPrice",
+      "method": "post",
+      "path": "/v1/prices/{price}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postProducts",
+      "wireOperationId": "PostProducts",
+      "method": "post",
+      "path": "/v1/products",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postProductsId",
+      "wireOperationId": "PostProductsId",
+      "method": "post",
+      "path": "/v1/products/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postProductsProductFeatures",
+      "wireOperationId": "PostProductsProductFeatures",
+      "method": "post",
+      "path": "/v1/products/{product}/features",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postPromotionCodes",
+      "wireOperationId": "PostPromotionCodes",
+      "method": "post",
+      "path": "/v1/promotion_codes",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postPromotionCodesPromotionCode",
+      "wireOperationId": "PostPromotionCodesPromotionCode",
+      "method": "post",
+      "path": "/v1/promotion_codes/{promotion_code}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postQuotes",
+      "wireOperationId": "PostQuotes",
+      "method": "post",
+      "path": "/v1/quotes",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postQuotesQuote",
+      "wireOperationId": "PostQuotesQuote",
+      "method": "post",
+      "path": "/v1/quotes/{quote}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postQuotesQuoteAccept",
+      "wireOperationId": "PostQuotesQuoteAccept",
+      "method": "post",
+      "path": "/v1/quotes/{quote}/accept",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postQuotesQuoteCancel",
+      "wireOperationId": "PostQuotesQuoteCancel",
+      "method": "post",
+      "path": "/v1/quotes/{quote}/cancel",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postQuotesQuoteFinalize",
+      "wireOperationId": "PostQuotesQuoteFinalize",
+      "method": "post",
+      "path": "/v1/quotes/{quote}/finalize",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postRadarPaymentEvaluations",
+      "wireOperationId": "PostRadarPaymentEvaluations",
+      "method": "post",
+      "path": "/v1/radar/payment_evaluations",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postRadarValueListItems",
+      "wireOperationId": "PostRadarValueListItems",
+      "method": "post",
+      "path": "/v1/radar/value_list_items",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postRadarValueLists",
+      "wireOperationId": "PostRadarValueLists",
+      "method": "post",
+      "path": "/v1/radar/value_lists",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postRadarValueListsValueList",
+      "wireOperationId": "PostRadarValueListsValueList",
+      "method": "post",
+      "path": "/v1/radar/value_lists/{value_list}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postRefunds",
+      "wireOperationId": "PostRefunds",
+      "method": "post",
+      "path": "/v1/refunds",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postRefundsRefund",
+      "wireOperationId": "PostRefundsRefund",
+      "method": "post",
+      "path": "/v1/refunds/{refund}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postRefundsRefundCancel",
+      "wireOperationId": "PostRefundsRefundCancel",
+      "method": "post",
+      "path": "/v1/refunds/{refund}/cancel",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postReportingReportRuns",
+      "wireOperationId": "PostReportingReportRuns",
+      "method": "post",
+      "path": "/v1/reporting/report_runs",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postReviewsReviewApprove",
+      "wireOperationId": "PostReviewsReviewApprove",
+      "method": "post",
+      "path": "/v1/reviews/{review}/approve",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postSetupIntents",
+      "wireOperationId": "PostSetupIntents",
+      "method": "post",
+      "path": "/v1/setup_intents",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postSetupIntentsIntent",
+      "wireOperationId": "PostSetupIntentsIntent",
+      "method": "post",
+      "path": "/v1/setup_intents/{intent}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postSetupIntentsIntentCancel",
+      "wireOperationId": "PostSetupIntentsIntentCancel",
+      "method": "post",
+      "path": "/v1/setup_intents/{intent}/cancel",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postSetupIntentsIntentConfirm",
+      "wireOperationId": "PostSetupIntentsIntentConfirm",
+      "method": "post",
+      "path": "/v1/setup_intents/{intent}/confirm",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postSetupIntentsIntentVerifyMicrodeposits",
+      "wireOperationId": "PostSetupIntentsIntentVerifyMicrodeposits",
+      "method": "post",
+      "path": "/v1/setup_intents/{intent}/verify_microdeposits",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postShippingRates",
+      "wireOperationId": "PostShippingRates",
+      "method": "post",
+      "path": "/v1/shipping_rates",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postShippingRatesShippingRateToken",
+      "wireOperationId": "PostShippingRatesShippingRateToken",
+      "method": "post",
+      "path": "/v1/shipping_rates/{shipping_rate_token}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postSigmaSavedQueriesId",
+      "wireOperationId": "PostSigmaSavedQueriesId",
+      "method": "post",
+      "path": "/v1/sigma/saved_queries/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postSources",
+      "wireOperationId": "PostSources",
+      "method": "post",
+      "path": "/v1/sources",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postSourcesSource",
+      "wireOperationId": "PostSourcesSource",
+      "method": "post",
+      "path": "/v1/sources/{source}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postSourcesSourceVerify",
+      "wireOperationId": "PostSourcesSourceVerify",
+      "method": "post",
+      "path": "/v1/sources/{source}/verify",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postSubscriptionItems",
+      "wireOperationId": "PostSubscriptionItems",
+      "method": "post",
+      "path": "/v1/subscription_items",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postSubscriptionItemsItem",
+      "wireOperationId": "PostSubscriptionItemsItem",
+      "method": "post",
+      "path": "/v1/subscription_items/{item}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postSubscriptions",
+      "wireOperationId": "PostSubscriptions",
+      "method": "post",
+      "path": "/v1/subscriptions",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postSubscriptionSchedules",
+      "wireOperationId": "PostSubscriptionSchedules",
+      "method": "post",
+      "path": "/v1/subscription_schedules",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postSubscriptionSchedulesSchedule",
+      "wireOperationId": "PostSubscriptionSchedulesSchedule",
+      "method": "post",
+      "path": "/v1/subscription_schedules/{schedule}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postSubscriptionSchedulesScheduleCancel",
+      "wireOperationId": "PostSubscriptionSchedulesScheduleCancel",
+      "method": "post",
+      "path": "/v1/subscription_schedules/{schedule}/cancel",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postSubscriptionSchedulesScheduleRelease",
+      "wireOperationId": "PostSubscriptionSchedulesScheduleRelease",
+      "method": "post",
+      "path": "/v1/subscription_schedules/{schedule}/release",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postSubscriptionsSubscriptionExposedId",
+      "wireOperationId": "PostSubscriptionsSubscriptionExposedId",
+      "method": "post",
+      "path": "/v1/subscriptions/{subscription_exposed_id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postSubscriptionsSubscriptionMigrate",
+      "wireOperationId": "PostSubscriptionsSubscriptionMigrate",
+      "method": "post",
+      "path": "/v1/subscriptions/{subscription}/migrate",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postSubscriptionsSubscriptionResume",
+      "wireOperationId": "PostSubscriptionsSubscriptionResume",
+      "method": "post",
+      "path": "/v1/subscriptions/{subscription}/resume",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTaxCalculations",
+      "wireOperationId": "PostTaxCalculations",
+      "method": "post",
+      "path": "/v1/tax/calculations",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTaxIds",
+      "wireOperationId": "PostTaxIds",
+      "method": "post",
+      "path": "/v1/tax_ids",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTaxRates",
+      "wireOperationId": "PostTaxRates",
+      "method": "post",
+      "path": "/v1/tax_rates",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTaxRatesTaxRate",
+      "wireOperationId": "PostTaxRatesTaxRate",
+      "method": "post",
+      "path": "/v1/tax_rates/{tax_rate}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTaxRegistrations",
+      "wireOperationId": "PostTaxRegistrations",
+      "method": "post",
+      "path": "/v1/tax/registrations",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTaxRegistrationsId",
+      "wireOperationId": "PostTaxRegistrationsId",
+      "method": "post",
+      "path": "/v1/tax/registrations/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTaxSettings",
+      "wireOperationId": "PostTaxSettings",
+      "method": "post",
+      "path": "/v1/tax/settings",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTaxTransactionsCreateFromCalculation",
+      "wireOperationId": "PostTaxTransactionsCreateFromCalculation",
+      "method": "post",
+      "path": "/v1/tax/transactions/create_from_calculation",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTaxTransactionsCreateReversal",
+      "wireOperationId": "PostTaxTransactionsCreateReversal",
+      "method": "post",
+      "path": "/v1/tax/transactions/create_reversal",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTerminalConfigurations",
+      "wireOperationId": "PostTerminalConfigurations",
+      "method": "post",
+      "path": "/v1/terminal/configurations",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTerminalConfigurationsConfiguration",
+      "wireOperationId": "PostTerminalConfigurationsConfiguration",
+      "method": "post",
+      "path": "/v1/terminal/configurations/{configuration}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTerminalConnectionTokens",
+      "wireOperationId": "PostTerminalConnectionTokens",
+      "method": "post",
+      "path": "/v1/terminal/connection_tokens",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTerminalLocations",
+      "wireOperationId": "PostTerminalLocations",
+      "method": "post",
+      "path": "/v1/terminal/locations",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTerminalLocationsLocation",
+      "wireOperationId": "PostTerminalLocationsLocation",
+      "method": "post",
+      "path": "/v1/terminal/locations/{location}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTerminalOnboardingLinks",
+      "wireOperationId": "PostTerminalOnboardingLinks",
+      "method": "post",
+      "path": "/v1/terminal/onboarding_links",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTerminalReaders",
+      "wireOperationId": "PostTerminalReaders",
+      "method": "post",
+      "path": "/v1/terminal/readers",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTerminalReadersReader",
+      "wireOperationId": "PostTerminalReadersReader",
+      "method": "post",
+      "path": "/v1/terminal/readers/{reader}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTerminalReadersReaderCancelAction",
+      "wireOperationId": "PostTerminalReadersReaderCancelAction",
+      "method": "post",
+      "path": "/v1/terminal/readers/{reader}/cancel_action",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTerminalReadersReaderCollectInputs",
+      "wireOperationId": "PostTerminalReadersReaderCollectInputs",
+      "method": "post",
+      "path": "/v1/terminal/readers/{reader}/collect_inputs",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTerminalReadersReaderCollectPaymentMethod",
+      "wireOperationId": "PostTerminalReadersReaderCollectPaymentMethod",
+      "method": "post",
+      "path": "/v1/terminal/readers/{reader}/collect_payment_method",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTerminalReadersReaderConfirmPaymentIntent",
+      "wireOperationId": "PostTerminalReadersReaderConfirmPaymentIntent",
+      "method": "post",
+      "path": "/v1/terminal/readers/{reader}/confirm_payment_intent",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTerminalReadersReaderProcessPaymentIntent",
+      "wireOperationId": "PostTerminalReadersReaderProcessPaymentIntent",
+      "method": "post",
+      "path": "/v1/terminal/readers/{reader}/process_payment_intent",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTerminalReadersReaderProcessSetupIntent",
+      "wireOperationId": "PostTerminalReadersReaderProcessSetupIntent",
+      "method": "post",
+      "path": "/v1/terminal/readers/{reader}/process_setup_intent",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTerminalReadersReaderRefundPayment",
+      "wireOperationId": "PostTerminalReadersReaderRefundPayment",
+      "method": "post",
+      "path": "/v1/terminal/readers/{reader}/refund_payment",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTerminalReadersReaderSetReaderDisplay",
+      "wireOperationId": "PostTerminalReadersReaderSetReaderDisplay",
+      "method": "post",
+      "path": "/v1/terminal/readers/{reader}/set_reader_display",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTerminalRefunds",
+      "wireOperationId": "PostTerminalRefunds",
+      "method": "post",
+      "path": "/v1/terminal/refunds",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTestHelpersConfirmationTokens",
+      "wireOperationId": "PostTestHelpersConfirmationTokens",
+      "method": "post",
+      "path": "/v1/test_helpers/confirmation_tokens",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTestHelpersCustomersCustomerFundCashBalance",
+      "wireOperationId": "PostTestHelpersCustomersCustomerFundCashBalance",
+      "method": "post",
+      "path": "/v1/test_helpers/customers/{customer}/fund_cash_balance",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTestHelpersIssuingAuthorizations",
+      "wireOperationId": "PostTestHelpersIssuingAuthorizations",
+      "method": "post",
+      "path": "/v1/test_helpers/issuing/authorizations",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTestHelpersIssuingAuthorizationsAuthorizationCapture",
+      "wireOperationId": "PostTestHelpersIssuingAuthorizationsAuthorizationCapture",
+      "method": "post",
+      "path": "/v1/test_helpers/issuing/authorizations/{authorization}/capture",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTestHelpersIssuingAuthorizationsAuthorizationExpire",
+      "wireOperationId": "PostTestHelpersIssuingAuthorizationsAuthorizationExpire",
+      "method": "post",
+      "path": "/v1/test_helpers/issuing/authorizations/{authorization}/expire",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmount",
+      "wireOperationId": "PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmount",
+      "method": "post",
+      "path": "/v1/test_helpers/issuing/authorizations/{authorization}/finalize_amount",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTestHelpersIssuingAuthorizationsAuthorizationFraudChallengesRespond",
+      "wireOperationId": "PostTestHelpersIssuingAuthorizationsAuthorizationFraudChallengesRespond",
+      "method": "post",
+      "path": "/v1/test_helpers/issuing/authorizations/{authorization}/fraud_challenges/respond",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTestHelpersIssuingAuthorizationsAuthorizationIncrement",
+      "wireOperationId": "PostTestHelpersIssuingAuthorizationsAuthorizationIncrement",
+      "method": "post",
+      "path": "/v1/test_helpers/issuing/authorizations/{authorization}/increment",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTestHelpersIssuingAuthorizationsAuthorizationReverse",
+      "wireOperationId": "PostTestHelpersIssuingAuthorizationsAuthorizationReverse",
+      "method": "post",
+      "path": "/v1/test_helpers/issuing/authorizations/{authorization}/reverse",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTestHelpersIssuingCardsCardShippingDeliver",
+      "wireOperationId": "PostTestHelpersIssuingCardsCardShippingDeliver",
+      "method": "post",
+      "path": "/v1/test_helpers/issuing/cards/{card}/shipping/deliver",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTestHelpersIssuingCardsCardShippingFail",
+      "wireOperationId": "PostTestHelpersIssuingCardsCardShippingFail",
+      "method": "post",
+      "path": "/v1/test_helpers/issuing/cards/{card}/shipping/fail",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTestHelpersIssuingCardsCardShippingReturn",
+      "wireOperationId": "PostTestHelpersIssuingCardsCardShippingReturn",
+      "method": "post",
+      "path": "/v1/test_helpers/issuing/cards/{card}/shipping/return",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTestHelpersIssuingCardsCardShippingShip",
+      "wireOperationId": "PostTestHelpersIssuingCardsCardShippingShip",
+      "method": "post",
+      "path": "/v1/test_helpers/issuing/cards/{card}/shipping/ship",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTestHelpersIssuingCardsCardShippingSubmit",
+      "wireOperationId": "PostTestHelpersIssuingCardsCardShippingSubmit",
+      "method": "post",
+      "path": "/v1/test_helpers/issuing/cards/{card}/shipping/submit",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTestHelpersIssuingPersonalizationDesignsPersonalizationDesignActivate",
+      "wireOperationId": "PostTestHelpersIssuingPersonalizationDesignsPersonalizationDesignActivate",
+      "method": "post",
+      "path": "/v1/test_helpers/issuing/personalization_designs/{personalization_design}/activate",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTestHelpersIssuingPersonalizationDesignsPersonalizationDesignDeactivate",
+      "wireOperationId": "PostTestHelpersIssuingPersonalizationDesignsPersonalizationDesignDeactivate",
+      "method": "post",
+      "path": "/v1/test_helpers/issuing/personalization_designs/{personalization_design}/deactivate",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTestHelpersIssuingPersonalizationDesignsPersonalizationDesignReject",
+      "wireOperationId": "PostTestHelpersIssuingPersonalizationDesignsPersonalizationDesignReject",
+      "method": "post",
+      "path": "/v1/test_helpers/issuing/personalization_designs/{personalization_design}/reject",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTestHelpersIssuingSettlements",
+      "wireOperationId": "PostTestHelpersIssuingSettlements",
+      "method": "post",
+      "path": "/v1/test_helpers/issuing/settlements",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTestHelpersIssuingSettlementsSettlementComplete",
+      "wireOperationId": "PostTestHelpersIssuingSettlementsSettlementComplete",
+      "method": "post",
+      "path": "/v1/test_helpers/issuing/settlements/{settlement}/complete",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTestHelpersIssuingTransactionsCreateForceCapture",
+      "wireOperationId": "PostTestHelpersIssuingTransactionsCreateForceCapture",
+      "method": "post",
+      "path": "/v1/test_helpers/issuing/transactions/create_force_capture",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTestHelpersIssuingTransactionsCreateUnlinkedRefund",
+      "wireOperationId": "PostTestHelpersIssuingTransactionsCreateUnlinkedRefund",
+      "method": "post",
+      "path": "/v1/test_helpers/issuing/transactions/create_unlinked_refund",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTestHelpersIssuingTransactionsTransactionRefund",
+      "wireOperationId": "PostTestHelpersIssuingTransactionsTransactionRefund",
+      "method": "post",
+      "path": "/v1/test_helpers/issuing/transactions/{transaction}/refund",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTestHelpersRefundsRefundExpire",
+      "wireOperationId": "PostTestHelpersRefundsRefundExpire",
+      "method": "post",
+      "path": "/v1/test_helpers/refunds/{refund}/expire",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTestHelpersTerminalReadersReaderPresentPaymentMethod",
+      "wireOperationId": "PostTestHelpersTerminalReadersReaderPresentPaymentMethod",
+      "method": "post",
+      "path": "/v1/test_helpers/terminal/readers/{reader}/present_payment_method",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTestHelpersTerminalReadersReaderSucceedInputCollection",
+      "wireOperationId": "PostTestHelpersTerminalReadersReaderSucceedInputCollection",
+      "method": "post",
+      "path": "/v1/test_helpers/terminal/readers/{reader}/succeed_input_collection",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTestHelpersTerminalReadersReaderTimeoutInputCollection",
+      "wireOperationId": "PostTestHelpersTerminalReadersReaderTimeoutInputCollection",
+      "method": "post",
+      "path": "/v1/test_helpers/terminal/readers/{reader}/timeout_input_collection",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTestHelpersTestClocks",
+      "wireOperationId": "PostTestHelpersTestClocks",
+      "method": "post",
+      "path": "/v1/test_helpers/test_clocks",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTestHelpersTestClocksTestClockAdvance",
+      "wireOperationId": "PostTestHelpersTestClocksTestClockAdvance",
+      "method": "post",
+      "path": "/v1/test_helpers/test_clocks/{test_clock}/advance",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTestHelpersTreasuryInboundTransfersIdFail",
+      "wireOperationId": "PostTestHelpersTreasuryInboundTransfersIdFail",
+      "method": "post",
+      "path": "/v1/test_helpers/treasury/inbound_transfers/{id}/fail",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTestHelpersTreasuryInboundTransfersIdReturn",
+      "wireOperationId": "PostTestHelpersTreasuryInboundTransfersIdReturn",
+      "method": "post",
+      "path": "/v1/test_helpers/treasury/inbound_transfers/{id}/return",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTestHelpersTreasuryInboundTransfersIdSucceed",
+      "wireOperationId": "PostTestHelpersTreasuryInboundTransfersIdSucceed",
+      "method": "post",
+      "path": "/v1/test_helpers/treasury/inbound_transfers/{id}/succeed",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTestHelpersTreasuryOutboundPaymentsId",
+      "wireOperationId": "PostTestHelpersTreasuryOutboundPaymentsId",
+      "method": "post",
+      "path": "/v1/test_helpers/treasury/outbound_payments/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTestHelpersTreasuryOutboundPaymentsIdFail",
+      "wireOperationId": "PostTestHelpersTreasuryOutboundPaymentsIdFail",
+      "method": "post",
+      "path": "/v1/test_helpers/treasury/outbound_payments/{id}/fail",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTestHelpersTreasuryOutboundPaymentsIdPost",
+      "wireOperationId": "PostTestHelpersTreasuryOutboundPaymentsIdPost",
+      "method": "post",
+      "path": "/v1/test_helpers/treasury/outbound_payments/{id}/post",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTestHelpersTreasuryOutboundPaymentsIdReturn",
+      "wireOperationId": "PostTestHelpersTreasuryOutboundPaymentsIdReturn",
+      "method": "post",
+      "path": "/v1/test_helpers/treasury/outbound_payments/{id}/return",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTestHelpersTreasuryOutboundTransfersOutboundTransfer",
+      "wireOperationId": "PostTestHelpersTreasuryOutboundTransfersOutboundTransfer",
+      "method": "post",
+      "path": "/v1/test_helpers/treasury/outbound_transfers/{outbound_transfer}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTestHelpersTreasuryOutboundTransfersOutboundTransferFail",
+      "wireOperationId": "PostTestHelpersTreasuryOutboundTransfersOutboundTransferFail",
+      "method": "post",
+      "path": "/v1/test_helpers/treasury/outbound_transfers/{outbound_transfer}/fail",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTestHelpersTreasuryOutboundTransfersOutboundTransferPost",
+      "wireOperationId": "PostTestHelpersTreasuryOutboundTransfersOutboundTransferPost",
+      "method": "post",
+      "path": "/v1/test_helpers/treasury/outbound_transfers/{outbound_transfer}/post",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTestHelpersTreasuryOutboundTransfersOutboundTransferReturn",
+      "wireOperationId": "PostTestHelpersTreasuryOutboundTransfersOutboundTransferReturn",
+      "method": "post",
+      "path": "/v1/test_helpers/treasury/outbound_transfers/{outbound_transfer}/return",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTestHelpersTreasuryReceivedCredits",
+      "wireOperationId": "PostTestHelpersTreasuryReceivedCredits",
+      "method": "post",
+      "path": "/v1/test_helpers/treasury/received_credits",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTestHelpersTreasuryReceivedDebits",
+      "wireOperationId": "PostTestHelpersTreasuryReceivedDebits",
+      "method": "post",
+      "path": "/v1/test_helpers/treasury/received_debits",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTokens",
+      "wireOperationId": "PostTokens",
+      "method": "post",
+      "path": "/v1/tokens",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTopups",
+      "wireOperationId": "PostTopups",
+      "method": "post",
+      "path": "/v1/topups",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTopupsTopup",
+      "wireOperationId": "PostTopupsTopup",
+      "method": "post",
+      "path": "/v1/topups/{topup}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTopupsTopupCancel",
+      "wireOperationId": "PostTopupsTopupCancel",
+      "method": "post",
+      "path": "/v1/topups/{topup}/cancel",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTransfers",
+      "wireOperationId": "PostTransfers",
+      "method": "post",
+      "path": "/v1/transfers",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTransfersIdReversals",
+      "wireOperationId": "PostTransfersIdReversals",
+      "method": "post",
+      "path": "/v1/transfers/{id}/reversals",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTransfersTransfer",
+      "wireOperationId": "PostTransfersTransfer",
+      "method": "post",
+      "path": "/v1/transfers/{transfer}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTransfersTransferReversalsId",
+      "wireOperationId": "PostTransfersTransferReversalsId",
+      "method": "post",
+      "path": "/v1/transfers/{transfer}/reversals/{id}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTreasuryCreditReversals",
+      "wireOperationId": "PostTreasuryCreditReversals",
+      "method": "post",
+      "path": "/v1/treasury/credit_reversals",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTreasuryDebitReversals",
+      "wireOperationId": "PostTreasuryDebitReversals",
+      "method": "post",
+      "path": "/v1/treasury/debit_reversals",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTreasuryFinancialAccounts",
+      "wireOperationId": "PostTreasuryFinancialAccounts",
+      "method": "post",
+      "path": "/v1/treasury/financial_accounts",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTreasuryFinancialAccountsFinancialAccount",
+      "wireOperationId": "PostTreasuryFinancialAccountsFinancialAccount",
+      "method": "post",
+      "path": "/v1/treasury/financial_accounts/{financial_account}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTreasuryFinancialAccountsFinancialAccountClose",
+      "wireOperationId": "PostTreasuryFinancialAccountsFinancialAccountClose",
+      "method": "post",
+      "path": "/v1/treasury/financial_accounts/{financial_account}/close",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTreasuryFinancialAccountsFinancialAccountFeatures",
+      "wireOperationId": "PostTreasuryFinancialAccountsFinancialAccountFeatures",
+      "method": "post",
+      "path": "/v1/treasury/financial_accounts/{financial_account}/features",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTreasuryInboundTransfers",
+      "wireOperationId": "PostTreasuryInboundTransfers",
+      "method": "post",
+      "path": "/v1/treasury/inbound_transfers",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTreasuryInboundTransfersInboundTransferCancel",
+      "wireOperationId": "PostTreasuryInboundTransfersInboundTransferCancel",
+      "method": "post",
+      "path": "/v1/treasury/inbound_transfers/{inbound_transfer}/cancel",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTreasuryOutboundPayments",
+      "wireOperationId": "PostTreasuryOutboundPayments",
+      "method": "post",
+      "path": "/v1/treasury/outbound_payments",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTreasuryOutboundPaymentsIdCancel",
+      "wireOperationId": "PostTreasuryOutboundPaymentsIdCancel",
+      "method": "post",
+      "path": "/v1/treasury/outbound_payments/{id}/cancel",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTreasuryOutboundTransfers",
+      "wireOperationId": "PostTreasuryOutboundTransfers",
+      "method": "post",
+      "path": "/v1/treasury/outbound_transfers",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postTreasuryOutboundTransfersOutboundTransferCancel",
+      "wireOperationId": "PostTreasuryOutboundTransfersOutboundTransferCancel",
+      "method": "post",
+      "path": "/v1/treasury/outbound_transfers/{outbound_transfer}/cancel",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postWebhookEndpoints",
+      "wireOperationId": "PostWebhookEndpoints",
+      "method": "post",
+      "path": "/v1/webhook_endpoints",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    },
+    {
+      "publicOperationId": "postWebhookEndpointsWebhookEndpoint",
+      "wireOperationId": "PostWebhookEndpointsWebhookEndpoint",
+      "method": "post",
+      "path": "/v1/webhook_endpoints/{webhook_endpoint}",
+      "mode": "normal",
+      "requestMediaType": "application/x-www-form-urlencoded"
+    }
+  ],
+  "models": 1463,
+  "modelCount": 1463,
+  "sourceFiles": 1916,
+  "testFiles": 141,
+  "sourceLines": 424845,
+  "averageSourceFileLines": 221.74,
+  "largestSourceFileLines": 631,
+  "largestNonExemptSourceFileLines": 631,
+  "sourceFileLineLimit": 1000,
+  "oversizedSourceFileExceptions": [],
+  "artifactBytes": 93365338,
+  "generatedUnitTests": 598,
+  "nativeExecutableTests": 598,
+  "sharedTestCaseDefinitions": 87,
+  "generatedTestCaseDefinitions": 87,
+  "renderedBehaviorCases": 87,
+  "behaviorKindsDeclared": [
+    "auth-application",
+    "binary-response",
+    "error-response",
+    "form-request",
+    "json-response",
+    "multipart-request",
+    "object-query-serialization",
+    "pagination",
+    "path-serialization",
+    "query-serialization"
+  ],
+  "behaviorKindsExercised": [
+    "auth-application",
+    "binary-response",
+    "error-response",
+    "form-request",
+    "json-response",
+    "multipart-request",
+    "pagination",
+    "path-serialization",
+    "query-serialization"
+  ],
+  "nativeBehaviorCoverageComplete": false,
+  "apiManifestPresent": true,
+  "apiManifestMatchesSchema": true,
+  "enumStrategy": "open",
+  "authoredContractTests": 0,
+  "authoredContractResponseModes": 0,
+  "synthesizedMockRoutes": 594,
+  "shadowedMockRoutes": 0,
+  "publicSymbols": 8816,
+  "documentedPublicSymbols": 8816,
+  "authoredDocumentedPublicSymbols": 6306,
+  "synthesizedDocumentedPublicSymbols": 2510,
+  "documentationCoverage": 1,
+  "authoredDocumentationCoverage": 0.7152903811252269,
+  "nativeTestCountPassed": null,
+  "contractResponseModesPassed": null,
+  "formattingPassed": "pending",
+  "lintingPassed": "pending",
+  "compilationPassed": "pending",
+  "nativeTestsPassed": "pending",
+  "contractTestsPassed": "pending",
+  "packagePassed": "pending",
+  "consumerInstallPassed": "pending",
+  "pythonLintFix": null,
+  "pythonLint": null,
+  "warnings": [],
+  "blockingFailures": [],
+  "registryPackageBytes": null,
+  "deliveryReady": false,
+  "gateStates": {
+    "formatting": "pending",
+    "linting": "pending",
+    "compilation": "pending",
+    "nativeTests": "pending",
+    "contractTests": "pending",
+    "package": "pending",
+    "consumerInstall": "pending"
+  },
+  "releaseScorecard": {
+    "status": "pending",
+    "score": null,
+    "outOf": 10,
+    "releaseReady": false,
+    "blockers": [
+      "verification has not run"
+    ]
+  }
+}
