@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1CustomersCashBalance operation model declarations
+// Canonical v1CustomersCashBalance operation model declarations
 /// A hash of settings for this cash balance.
 public struct PostCustomersCustomerCashBalanceRequestBodySettings: Codable {
     public var reconciliationMode: PostCustomersCustomerCashBalanceRequestBodySettingsReconciliationMode?
@@ -17,19 +17,19 @@ public struct PostCustomersCustomerCashBalanceRequestBodySettings: Codable {
     }
 
     init() {
-        reconciliationMode = nil
+        self.reconciliationMode = nil
     }
 }
 
-public extension PostCustomersCustomerCashBalanceRequestBodySettings {
-    init(from decoder: Decoder) throws {
+extension PostCustomersCustomerCashBalanceRequestBodySettings {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        reconciliationMode = try container.sdkDecodeIfPresent(.reconciliationMode)
+        self.reconciliationMode = try container.sdkDecodeIfPresent(.reconciliationMode)
     }
 }
 
-public extension PostCustomersCustomerCashBalanceRequestBodySettings {
-    init(reconciliationMode: PostCustomersCustomerCashBalanceRequestBodySettingsReconciliationMode? = nil) {
+extension PostCustomersCustomerCashBalanceRequestBodySettings {
+    public init(reconciliationMode: PostCustomersCustomerCashBalanceRequestBodySettingsReconciliationMode? = nil) {
         self.init()
         self.reconciliationMode = reconciliationMode
     }

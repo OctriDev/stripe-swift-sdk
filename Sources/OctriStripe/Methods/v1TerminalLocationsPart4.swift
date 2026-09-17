@@ -6,49 +6,27 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1TerminalLocationsMethods {
-    /// Deletes a Terminal location and removes the location object from active use. Supply the location identifier for
-    /// the location you want to delete; the request body has no fields.
+extension V1TerminalLocationsMethods {
+    /// Deletes a Terminal location and removes the location object from active use. Supply the location identifier for the location you want to delete; the request body has no fields.
     ///
     /// Deletes a Location object.
-    static func deleteTerminalLocationsLocation(
-        config: ClientConfig,
-        location: String
-    ) async throws -> DeletedTerminalLocation {
+    public static func deleteTerminalLocationsLocation(config: ClientConfig, location: String) async throws -> DeletedTerminalLocation {
         try validateLength("location", location, max: 5000)
 
-        return try await (sdkRequest(
-            "DELETE",
-            ["/v1/terminal/locations/", sdkEncodePathSegment(sdkWireString(location))].joined(),
-            config: config,
-            decoder: .json,
-            operationId: "DeleteTerminalLocationsLocation"
-        )).data
+        return try (await sdkRequest("DELETE", ["/v1/terminal/locations/", sdkEncodePathSegment(sdkWireString(location))].joined(), config: config, decoder: .json, operationId: "DeleteTerminalLocationsLocation")).data
     }
 
-    /// Retrieves a Terminal location by its location ID. Use `expand` to include additional response fields when
-    /// retrieving the location. The response can contain either the location object or a deleted location object.
+    /// Retrieves a Terminal location by its location ID. Use `expand` to include additional response fields when retrieving the location. The response can contain either the location object or a deleted location object.
     ///
     /// Retrieves a Location object.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    static func getTerminalLocationsLocation(
-        config: ClientConfig,
-        location: String,
-        expand: [String]?
-    ) async throws -> GetTerminalLocationsLocationResponse {
+    public static func getTerminalLocationsLocation(config: ClientConfig, location: String, expand: [String]?) async throws -> GetTerminalLocationsLocationResponse {
         try validateLength("location", location, max: 5000)
 
-        return try await (sdkRequest(
-            "GET",
-            ["/v1/terminal/locations/", sdkEncodePathSegment(sdkWireString(location))].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .json,
-            operationId: "GetTerminalLocationsLocation"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/terminal/locations/", sdkEncodePathSegment(sdkWireString(location))].joined(), config: config, query: [
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .json, operationId: "GetTerminalLocationsLocation")).data
     }
 }

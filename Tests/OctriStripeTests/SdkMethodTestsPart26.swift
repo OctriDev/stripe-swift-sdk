@@ -6,18 +6,16 @@ import Foundation
 import XCTest
 
 extension SdkMethodTests {
-    func testPostTestHelpersTreasuryInboundTransfersIdFailPostTestHelpersTX927066009eReachesMockAndDecodesResponse(
-    ) async throws {
+    func testPostTestHelpersTreasuryInboundTransfersIdFailPostTestHelpersTX927066009eReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        let actual = try await client.v1.testHelpers.treasury.inboundTransfers.fail
-            .postTestHelpersTreasuryInboundTransfersId(
-                id: decoded("\"id-1\""),
-                expand: decoded("[\"expand\"]"),
-                failureDetails: decoded("{\"code\":\"account_closed\"}")
-            )
+        let actual = try await client.v1.testHelpers.treasury.inboundTransfers.fail.postTestHelpersTreasuryInboundTransfersId(
+            id: decoded("\"id-1\""),
+            expand: decoded("[\"expand\"]"),
+            failureDetails: decoded("{\"code\":\"account_closed\"}")
+        )
         let expected = try JSONSerialization.jsonObject(
             with: Data(sdkMethodFixture560Expected.utf8),
             options: [.fragmentsAllowed]
@@ -29,17 +27,15 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostTestHelpersTreasuryInboundTransfersIdReturnPostTestHelperX678cc472c3ReachesMockAndDecodesResponse(
-    ) async throws {
+    func testPostTestHelpersTreasuryInboundTransfersIdReturnPostTestHelperX678cc472c3ReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        let actual = try await client.v1.testHelpers.treasury.inboundTransfers.return
-            .postTestHelpersTreasuryInboundTransfersId(
-                id: decoded("\"id-1\""),
-                expand: decoded("[\"expand\"]")
-            )
+        let actual = try await client.v1.testHelpers.treasury.inboundTransfers.`return`.postTestHelpersTreasuryInboundTransfersId(
+            id: decoded("\"id-1\""),
+            expand: decoded("[\"expand\"]")
+        )
         let expected = try JSONSerialization.jsonObject(
             with: Data(sdkMethodFixture561Expected.utf8),
             options: [.fragmentsAllowed]
@@ -51,17 +47,15 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostTestHelpersTreasuryInboundTransfersIdSucceedPostTestHelpeX695b33db30ReachesMockAndDecodesResponse(
-    ) async throws {
+    func testPostTestHelpersTreasuryInboundTransfersIdSucceedPostTestHelpeX695b33db30ReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        let actual = try await client.v1.testHelpers.treasury.inboundTransfers.succeed
-            .postTestHelpersTreasuryInboundTransfersId(
-                id: decoded("\"id-1\""),
-                expand: decoded("[\"expand\"]")
-            )
+        let actual = try await client.v1.testHelpers.treasury.inboundTransfers.succeed.postTestHelpersTreasuryInboundTransfersId(
+            id: decoded("\"id-1\""),
+            expand: decoded("[\"expand\"]")
+        )
         let expected = try JSONSerialization.jsonObject(
             with: Data(sdkMethodFixture562Expected.utf8),
             options: [.fragmentsAllowed]
@@ -73,17 +67,15 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostTestHelpersTreasuryOutboundPaymentsIdPostTestHelpersTreasX407330b884ReachesMockAndDecodesResponse(
-    ) async throws {
+    func testPostTestHelpersTreasuryOutboundPaymentsIdPostTestHelpersTreasX407330b884ReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        let actual = try await client.v1.testHelpers.treasury.outboundPayments.fail
-            .postTestHelpersTreasuryOutboundPaymentsId(
-                id: decoded("\"id-1\""),
-                expand: decoded("[\"expand\"]")
-            )
+        let actual = try await client.v1.testHelpers.treasury.outboundPayments.fail.postTestHelpersTreasuryOutboundPaymentsId(
+            id: decoded("\"id-1\""),
+            expand: decoded("[\"expand\"]")
+        )
         let expected = try JSONSerialization.jsonObject(
             with: Data(sdkMethodFixture563Expected.utf8),
             options: [.fragmentsAllowed]
@@ -95,17 +87,15 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostTestHelpersTreasuryOutboundPaymentsIdFailPostTestHelpersTX41af13fce2ReachesMockAndDecodesResponse(
-    ) async throws {
+    func testPostTestHelpersTreasuryOutboundPaymentsIdFailPostTestHelpersTX41af13fce2ReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        let actual = try await client.v1.testHelpers.treasury.outboundPayments.fail
-            .postTestHelpersTreasuryOutboundPaymentsId(
-                id: decoded("\"id-1\""),
-                expand: decoded("[\"expand\"]")
-            )
+        let actual = try await client.v1.testHelpers.treasury.outboundPayments.fail.postTestHelpersTreasuryOutboundPaymentsId(
+            id: decoded("\"id-1\""),
+            expand: decoded("[\"expand\"]")
+        )
         let expected = try JSONSerialization.jsonObject(
             with: Data(sdkMethodFixture564Expected.utf8),
             options: [.fragmentsAllowed]
@@ -117,17 +107,15 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostTestHelpersTreasuryOutboundPaymentsIdPostPostTestHelpersTX5a913bbdeaReachesMockAndDecodesResponse(
-    ) async throws {
+    func testPostTestHelpersTreasuryOutboundPaymentsIdPostPostTestHelpersTX5a913bbdeaReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        let actual = try await client.v1.testHelpers.treasury.outboundPayments.post
-            .postTestHelpersTreasuryOutboundPaymentsId(
-                id: decoded("\"id-1\""),
-                expand: decoded("[\"expand\"]")
-            )
+        let actual = try await client.v1.testHelpers.treasury.outboundPayments.post.postTestHelpersTreasuryOutboundPaymentsId(
+            id: decoded("\"id-1\""),
+            expand: decoded("[\"expand\"]")
+        )
         let expected = try JSONSerialization.jsonObject(
             with: Data(sdkMethodFixture565Expected.utf8),
             options: [.fragmentsAllowed]
@@ -139,18 +127,16 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostTestHelpersTreasuryOutboundPaymentsIdReturnPostTestHelperX452fe6702aReachesMockAndDecodesResponse(
-    ) async throws {
+    func testPostTestHelpersTreasuryOutboundPaymentsIdReturnPostTestHelperX452fe6702aReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        let actual = try await client.v1.testHelpers.treasury.outboundPayments.return
-            .postTestHelpersTreasuryOutboundPaymentsId(
-                id: decoded("\"id-1\""),
-                expand: decoded("[\"expand\"]"),
-                returnedDetails: decoded("{\"code\":\"account_closed\"}")
-            )
+        let actual = try await client.v1.testHelpers.treasury.outboundPayments.`return`.postTestHelpersTreasuryOutboundPaymentsId(
+            id: decoded("\"id-1\""),
+            expand: decoded("[\"expand\"]"),
+            returnedDetails: decoded("{\"code\":\"account_closed\"}")
+        )
         let expected = try JSONSerialization.jsonObject(
             with: Data(sdkMethodFixture566Expected.utf8),
             options: [.fragmentsAllowed]
@@ -162,17 +148,15 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostTestHelpersTreasuryOutboundTransfersOutboundTransferPostTX12ab3ddd94ReachesMockAndDecodesResponse(
-    ) async throws {
+    func testPostTestHelpersTreasuryOutboundTransfersOutboundTransferPostTX12ab3ddd94ReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        let actual = try await client.v1.testHelpers.treasury.outboundTransfers.fail
-            .postTestHelpersTreasuryOutboundTransfersOutboundTransfer(
-                outboundTransfer: decoded("\"outbound_transfer\""),
-                expand: decoded("[\"expand\"]")
-            )
+        let actual = try await client.v1.testHelpers.treasury.outboundTransfers.fail.postTestHelpersTreasuryOutboundTransfersOutboundTransfer(
+            outboundTransfer: decoded("\"outbound_transfer\""),
+            expand: decoded("[\"expand\"]")
+        )
         let expected = try JSONSerialization.jsonObject(
             with: Data(sdkMethodFixture567Expected.utf8),
             options: [.fragmentsAllowed]
@@ -184,17 +168,15 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostTestHelpersTreasuryOutboundTransfersOutboundTransferFailPX1c213f5ad0ReachesMockAndDecodesResponse(
-    ) async throws {
+    func testPostTestHelpersTreasuryOutboundTransfersOutboundTransferFailPX1c213f5ad0ReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        let actual = try await client.v1.testHelpers.treasury.outboundTransfers.fail
-            .postTestHelpersTreasuryOutboundTransfersOutboundTransfer(
-                outboundTransfer: decoded("\"outbound_transfer\""),
-                expand: decoded("[\"expand\"]")
-            )
+        let actual = try await client.v1.testHelpers.treasury.outboundTransfers.fail.postTestHelpersTreasuryOutboundTransfersOutboundTransfer(
+            outboundTransfer: decoded("\"outbound_transfer\""),
+            expand: decoded("[\"expand\"]")
+        )
         let expected = try JSONSerialization.jsonObject(
             with: Data(sdkMethodFixture568Expected.utf8),
             options: [.fragmentsAllowed]
@@ -206,17 +188,15 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostTestHelpersTreasuryOutboundTransfersOutboundTransferPostPXe63be5a3c7ReachesMockAndDecodesResponse(
-    ) async throws {
+    func testPostTestHelpersTreasuryOutboundTransfersOutboundTransferPostPXe63be5a3c7ReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        let actual = try await client.v1.testHelpers.treasury.outboundTransfers.post
-            .postTestHelpersTreasuryOutboundTransfersOutboundTransfer(
-                outboundTransfer: decoded("\"outbound_transfer\""),
-                expand: decoded("[\"expand\"]")
-            )
+        let actual = try await client.v1.testHelpers.treasury.outboundTransfers.post.postTestHelpersTreasuryOutboundTransfersOutboundTransfer(
+            outboundTransfer: decoded("\"outbound_transfer\""),
+            expand: decoded("[\"expand\"]")
+        )
         let expected = try JSONSerialization.jsonObject(
             with: Data(sdkMethodFixture569Expected.utf8),
             options: [.fragmentsAllowed]
@@ -228,18 +208,16 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostTestHelpersTreasuryOutboundTransfersOutboundTransferReturX9d13d1bdc4ReachesMockAndDecodesResponse(
-    ) async throws {
+    func testPostTestHelpersTreasuryOutboundTransfersOutboundTransferReturX9d13d1bdc4ReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        let actual = try await client.v1.testHelpers.treasury.outboundTransfers.return
-            .postTestHelpersTreasuryOutboundTransfersOutboundTransfer(
-                outboundTransfer: decoded("\"outbound_transfer\""),
-                expand: decoded("[\"expand\"]"),
-                returnedDetails: decoded("{\"code\":\"account_closed\"}")
-            )
+        let actual = try await client.v1.testHelpers.treasury.outboundTransfers.`return`.postTestHelpersTreasuryOutboundTransfersOutboundTransfer(
+            outboundTransfer: decoded("\"outbound_transfer\""),
+            expand: decoded("[\"expand\"]"),
+            returnedDetails: decoded("{\"code\":\"account_closed\"}")
+        )
         let expected = try JSONSerialization.jsonObject(
             with: Data(sdkMethodFixture570Expected.utf8),
             options: [.fragmentsAllowed]
@@ -251,8 +229,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostTestHelpersTreasuryReceivedCreditsPostTestHelpersTreasuryXad36664063ReachesMockAndDecodesResponse(
-    ) async throws {
+    func testPostTestHelpersTreasuryReceivedCreditsPostTestHelpersTreasuryXad36664063ReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -277,8 +254,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostTestHelpersTreasuryReceivedDebitsPostTestHelpersTreasuryRX09ba9eae5cReachesMockAndDecodesResponse(
-    ) async throws {
+    func testPostTestHelpersTreasuryReceivedDebitsPostTestHelpersTreasuryRX09ba9eae5cReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -404,10 +380,7 @@ extension SdkMethodTests {
             return
         }
         _ = client
-        var options = try V1TransfersMethods.PostTransfersOptions(
-            currency: decoded("\"currency\""),
-            destination: decoded("\"destination\"")
-        )
+        var options = try V1TransfersMethods.PostTransfersOptions(currency: decoded("\"currency\""), destination: decoded("\"destination\""))
         options.amount = try decoded("100")
         options.description = try decoded("\"example text\"")
         options.expand = try decoded("[\"expand\"]")
@@ -475,8 +448,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostTransfersTransferReversalsIdPostTransfersTransferReversalsIdReachesMockAndDecodesResponse(
-    ) async throws {
+    func testPostTransfersTransferReversalsIdPostTransfersTransferReversalsIdReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }

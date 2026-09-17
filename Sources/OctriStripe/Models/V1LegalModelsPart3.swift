@@ -3,25 +3,19 @@
 
 import Foundation
 
-/// V1Legal domain models
+// V1Legal domain models
 /// This value is used to determine if a business is exempt from providing ultimate beneficial owners. See this
 /// support article and changelog for more details.
-public struct LegalEntityCompanyOwnershipExemptionReason: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct LegalEntityCompanyOwnershipExemptionReason: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let qualifiedEntityExceedsOwnershipThreshold =
-        LegalEntityCompanyOwnershipExemptionReason(rawValue: "qualified_entity_exceeds_ownership_threshold")
-    public static let qualifiesAsFinancialInstitution =
-        LegalEntityCompanyOwnershipExemptionReason(rawValue: "qualifies_as_financial_institution")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let qualifiedEntityExceedsOwnershipThreshold = LegalEntityCompanyOwnershipExemptionReason(rawValue: "qualified_entity_exceeds_ownership_threshold")
+    public static let qualifiesAsFinancialInstitution = LegalEntityCompanyOwnershipExemptionReason(rawValue: "qualifies_as_financial_institution")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -35,18 +29,14 @@ public struct LegalEntityCompanyOwnershipExemptionReason: RawRepresentable, Hash
 public struct LegalEntityCompanyStructure: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let freeZoneEstablishment = LegalEntityCompanyStructure(rawValue: "free_zone_establishment")
     public static let freeZoneLlc = LegalEntityCompanyStructure(rawValue: "free_zone_llc")
     public static let governmentInstrumentality = LegalEntityCompanyStructure(rawValue: "government_instrumentality")
     public static let governmentalUnit = LegalEntityCompanyStructure(rawValue: "governmental_unit")
     public static let incorporatedNonProfit = LegalEntityCompanyStructure(rawValue: "incorporated_non_profit")
     public static let incorporatedPartnership = LegalEntityCompanyStructure(rawValue: "incorporated_partnership")
-    public static let limitedLiabilityPartnership =
-        LegalEntityCompanyStructure(rawValue: "limited_liability_partnership")
+    public static let limitedLiabilityPartnership = LegalEntityCompanyStructure(rawValue: "limited_liability_partnership")
     public static let llc = LegalEntityCompanyStructure(rawValue: "llc")
     public static let multiMemberLlc = LegalEntityCompanyStructure(rawValue: "multi_member_llc")
     public static let privateCompany = LegalEntityCompanyStructure(rawValue: "private_company")
@@ -59,15 +49,14 @@ public struct LegalEntityCompanyStructure: RawRepresentable, Hashable, Codable, 
     public static let singleMemberLlc = LegalEntityCompanyStructure(rawValue: "single_member_llc")
     public static let soleEstablishment = LegalEntityCompanyStructure(rawValue: "sole_establishment")
     public static let soleProprietorship = LegalEntityCompanyStructure(rawValue: "sole_proprietorship")
-    public static let taxExemptGovernmentInstrumentality =
-        LegalEntityCompanyStructure(rawValue: "tax_exempt_government_instrumentality")
+    public static let taxExemptGovernmentInstrumentality = LegalEntityCompanyStructure(rawValue: "tax_exempt_government_instrumentality")
     public static let unincorporatedAssociation = LegalEntityCompanyStructure(rawValue: "unincorporated_association")
     public static let unincorporatedNonProfit = LegalEntityCompanyStructure(rawValue: "unincorporated_non_profit")
     public static let unincorporatedPartnership = LegalEntityCompanyStructure(rawValue: "unincorporated_partnership")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

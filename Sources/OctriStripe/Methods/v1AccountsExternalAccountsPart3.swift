@@ -6,10 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1AccountsExternalAccountsMethods {
-    /// Creates an external account for a connected account. Provide an external account token or bank account details,
-    /// and optionally make the new account the default for its currency. You can also attach metadata and request
-    /// expanded response fields.
+extension V1AccountsExternalAccountsMethods {
+    /// Creates an external account for a connected account. Provide an external account token or bank account details, and optionally make the new account the default for its currency. You can also attach metadata and request expanded response fields.
     ///
     /// Create an external account for a given account.
     ///
@@ -30,37 +28,15 @@ public extension V1AccountsExternalAccountsMethods {
     ///   information about the object in a structured format. Individual keys can be
     ///   unset by posting an empty value to them. All keys can be unset by posting an
     ///   empty value to `metadata`.
-    static func postAccountsAccountExternalAccounts(
-        config: ClientConfig,
-        account: String,
-        bankAccount: PostAccountsAccountExternalAccountsRequestBodyBankAccount?,
-        defaultForCurrency: Bool?,
-        expand: [String]?,
-        externalAccount: String?,
-        metadata: [String: String]?
-    ) async throws -> ExternalAccount {
+    public static func postAccountsAccountExternalAccounts(config: ClientConfig, account: String, bankAccount: PostAccountsAccountExternalAccountsRequestBodyBankAccount?, defaultForCurrency: Bool?, expand: [String]?, externalAccount: String?, metadata: [String: String]?) async throws -> ExternalAccount {
         try validateLength("account", account, max: 5000)
 
-        if let externalAccount {
+        if let externalAccount = externalAccount {
             try validateLength("external_account", externalAccount, max: 5000)
         }
 
-        let requestBody = PostAccountsAccountExternalAccountsRequestBody(
-            bankAccount: bankAccount,
-            defaultForCurrency: defaultForCurrency,
-            expand: expand,
-            externalAccount: externalAccount,
-            metadata: metadata
-        )
+        let requestBody = PostAccountsAccountExternalAccountsRequestBody(bankAccount: bankAccount, defaultForCurrency: defaultForCurrency, expand: expand, externalAccount: externalAccount, metadata: metadata)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/accounts/", sdkEncodePathSegment(sdkWireString(account)), "/external_accounts"].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostAccountsAccountExternalAccounts"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/accounts/", sdkEncodePathSegment(sdkWireString(account)), "/external_accounts"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostAccountsAccountExternalAccounts")).data
     }
 }

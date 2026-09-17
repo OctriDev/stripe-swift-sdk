@@ -7,12 +7,9 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1TerminalReadersCollectInputsMethods {
-    /// Triggers an input collection flow on a Terminal reader to display forms and collect information from customers.
-    /// Supply up to five entries in `inputs`, with each entry defining an input type and its corresponding
-    /// configuration such as custom text, selection choices, or toggles.
+    /// Triggers an input collection flow on a Terminal reader to display forms and collect information from customers. Supply up to five entries in `inputs`, with each entry defining an input type and its corresponding configuration such as custom text, selection choices, or toggles.
     ///
-    /// Initiates an input collection flow on a Reader to display input forms and collect information from your
-    /// customers.
+    /// Initiates an input collection flow on a Reader to display input forms and collect information from your customers.
     ///
     /// - Parameters:
     /// - inputs: List of inputs to be collected from the customer using the Reader.
@@ -23,29 +20,11 @@ public enum V1TerminalReadersCollectInputsMethods {
     ///   information about the object in a structured format. Individual keys can be
     ///   unset by posting an empty value to them. All keys can be unset by posting an
     ///   empty value to `metadata`.
-    public static func postTerminalReadersReaderCollectInputs(
-        config: ClientConfig,
-        reader: String,
-        inputs: [PostTerminalReadersReaderCollectInputsRequestBodyInputsItem],
-        expand: [String]?,
-        metadata: [String: String]?
-    ) async throws -> TerminalReader {
+    public static func postTerminalReadersReaderCollectInputs(config: ClientConfig, reader: String, inputs: [PostTerminalReadersReaderCollectInputsRequestBodyInputsItem], expand: [String]?, metadata: [String: String]?) async throws -> TerminalReader {
         try validateLength("reader", reader, max: 5000)
 
-        let requestBody = PostTerminalReadersReaderCollectInputsRequestBody(
-            inputs: inputs,
-            expand: expand,
-            metadata: metadata
-        )
+        let requestBody = PostTerminalReadersReaderCollectInputsRequestBody(inputs: inputs, expand: expand, metadata: metadata)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/terminal/readers/", sdkEncodePathSegment(sdkWireString(reader)), "/collect_inputs"].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostTerminalReadersReaderCollectInputs"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/terminal/readers/", sdkEncodePathSegment(sdkWireString(reader)), "/collect_inputs"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTerminalReadersReaderCollectInputs")).data
     }
 }

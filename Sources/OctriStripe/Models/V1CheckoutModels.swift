@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1Checkout domain models
+// V1Checkout domain models
 /// Typed representation of the `CheckoutAffirmPaymentMethodOptions` API schema.
 public struct CheckoutAffirmPaymentMethodOptions: Codable {
     /// Controls when the funds will be captured from the customer's account.
@@ -21,23 +21,20 @@ public struct CheckoutAffirmPaymentMethodOptions: Codable {
     }
 
     init() {
-        (captureMethod, setupFutureUsage) = (nil, nil)
+        (self.captureMethod, self.setupFutureUsage) = (nil, nil)
     }
 }
 
-public extension CheckoutAffirmPaymentMethodOptions {
-    init(from decoder: Decoder) throws {
+extension CheckoutAffirmPaymentMethodOptions {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        captureMethod = try container.sdkDecodeIfPresent(.captureMethod)
-        setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
+        self.captureMethod = try container.sdkDecodeIfPresent(.captureMethod)
+        self.setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
     }
 }
 
-public extension CheckoutAffirmPaymentMethodOptions {
-    init(
-        captureMethod: CheckoutAffirmPaymentMethodOptionsCaptureMethod? = nil,
-        setupFutureUsage: CheckoutAffirmPaymentMethodOptionsSetupFutureUsage? = nil
-    ) {
+extension CheckoutAffirmPaymentMethodOptions {
+    public init(captureMethod: CheckoutAffirmPaymentMethodOptionsCaptureMethod? = nil, setupFutureUsage: CheckoutAffirmPaymentMethodOptionsSetupFutureUsage? = nil) {
         self.init()
         (self.captureMethod, self.setupFutureUsage) = (captureMethod, setupFutureUsage)
     }
@@ -60,23 +57,20 @@ public struct CheckoutAfterpayClearpayPaymentMethodOptions: Codable {
     }
 
     init() {
-        (captureMethod, setupFutureUsage) = (nil, nil)
+        (self.captureMethod, self.setupFutureUsage) = (nil, nil)
     }
 }
 
-public extension CheckoutAfterpayClearpayPaymentMethodOptions {
-    init(from decoder: Decoder) throws {
+extension CheckoutAfterpayClearpayPaymentMethodOptions {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        captureMethod = try container.sdkDecodeIfPresent(.captureMethod)
-        setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
+        self.captureMethod = try container.sdkDecodeIfPresent(.captureMethod)
+        self.setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
     }
 }
 
-public extension CheckoutAfterpayClearpayPaymentMethodOptions {
-    init(
-        captureMethod: CheckoutAfterpayClearpayPaymentMethodOptionsCaptureMethod? = nil,
-        setupFutureUsage: CheckoutAfterpayClearpayPaymentMethodOptionsSetupFutureUsage? = nil
-    ) {
+extension CheckoutAfterpayClearpayPaymentMethodOptions {
+    public init(captureMethod: CheckoutAfterpayClearpayPaymentMethodOptionsCaptureMethod? = nil, setupFutureUsage: CheckoutAfterpayClearpayPaymentMethodOptionsSetupFutureUsage? = nil) {
         self.init()
         (self.captureMethod, self.setupFutureUsage) = (captureMethod, setupFutureUsage)
     }
@@ -96,19 +90,19 @@ public struct CheckoutAlipayPaymentMethodOptions: Codable {
     }
 
     init() {
-        setupFutureUsage = nil
+        self.setupFutureUsage = nil
     }
 }
 
-public extension CheckoutAlipayPaymentMethodOptions {
-    init(from decoder: Decoder) throws {
+extension CheckoutAlipayPaymentMethodOptions {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
+        self.setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
     }
 }
 
-public extension CheckoutAlipayPaymentMethodOptions {
-    init(setupFutureUsage: CheckoutAlipayPaymentMethodOptionsSetupFutureUsage? = nil) {
+extension CheckoutAlipayPaymentMethodOptions {
+    public init(setupFutureUsage: CheckoutAlipayPaymentMethodOptionsSetupFutureUsage? = nil) {
         self.init()
         self.setupFutureUsage = setupFutureUsage
     }
@@ -124,19 +118,19 @@ public struct CheckoutAlmaPaymentMethodOptions: Codable {
     }
 
     init() {
-        captureMethod = nil
+        self.captureMethod = nil
     }
 }
 
-public extension CheckoutAlmaPaymentMethodOptions {
-    init(from decoder: Decoder) throws {
+extension CheckoutAlmaPaymentMethodOptions {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        captureMethod = try container.sdkDecodeIfPresent(.captureMethod)
+        self.captureMethod = try container.sdkDecodeIfPresent(.captureMethod)
     }
 }
 
-public extension CheckoutAlmaPaymentMethodOptions {
-    init(captureMethod: CheckoutAlmaPaymentMethodOptionsCaptureMethod? = nil) {
+extension CheckoutAlmaPaymentMethodOptions {
+    public init(captureMethod: CheckoutAlmaPaymentMethodOptionsCaptureMethod? = nil) {
         self.init()
         self.captureMethod = captureMethod
     }
@@ -159,23 +153,20 @@ public struct CheckoutAmazonPayPaymentMethodOptions: Codable {
     }
 
     init() {
-        (captureMethod, setupFutureUsage) = (nil, nil)
+        (self.captureMethod, self.setupFutureUsage) = (nil, nil)
     }
 }
 
-public extension CheckoutAmazonPayPaymentMethodOptions {
-    init(from decoder: Decoder) throws {
+extension CheckoutAmazonPayPaymentMethodOptions {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        captureMethod = try container.sdkDecodeIfPresent(.captureMethod)
-        setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
+        self.captureMethod = try container.sdkDecodeIfPresent(.captureMethod)
+        self.setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
     }
 }
 
-public extension CheckoutAmazonPayPaymentMethodOptions {
-    init(
-        captureMethod: CheckoutAmazonPayPaymentMethodOptionsCaptureMethod? = nil,
-        setupFutureUsage: CheckoutAmazonPayPaymentMethodOptionsSetupFutureUsage? = nil
-    ) {
+extension CheckoutAmazonPayPaymentMethodOptions {
+    public init(captureMethod: CheckoutAmazonPayPaymentMethodOptionsCaptureMethod? = nil, setupFutureUsage: CheckoutAmazonPayPaymentMethodOptionsSetupFutureUsage? = nil) {
         self.init()
         (self.captureMethod, self.setupFutureUsage) = (captureMethod, setupFutureUsage)
     }
@@ -199,26 +190,23 @@ public struct CheckoutAuBecsDebitPaymentMethodOptions: Codable {
     }
 
     init() {
-        (setupFutureUsage, targetDate) = (nil, nil)
+        (self.setupFutureUsage, self.targetDate) = (nil, nil)
     }
 }
 
-public extension CheckoutAuBecsDebitPaymentMethodOptions {
-    init(from decoder: Decoder) throws {
+extension CheckoutAuBecsDebitPaymentMethodOptions {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
-        targetDate = try container.sdkDecodeIfPresent(.targetDate)
-        if let value = targetDate {
+        self.setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
+        self.targetDate = try container.sdkDecodeIfPresent(.targetDate)
+        if let value = self.targetDate {
             try validateLength("target_date", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension CheckoutAuBecsDebitPaymentMethodOptions {
-    init(
-        setupFutureUsage: CheckoutAuBecsDebitPaymentMethodOptionsSetupFutureUsage? = nil,
-        targetDate: String? = nil
-    ) throws {
+extension CheckoutAuBecsDebitPaymentMethodOptions {
+    public init(setupFutureUsage: CheckoutAuBecsDebitPaymentMethodOptionsSetupFutureUsage? = nil, targetDate: String? = nil) throws {
         self.init()
         (self.setupFutureUsage, self.targetDate) = (setupFutureUsage, targetDate)
         if let value = self.targetDate {
@@ -248,28 +236,24 @@ public struct CheckoutBacsDebitPaymentMethodOptions: Codable {
     }
 
     init() {
-        (mandateOptions, setupFutureUsage, targetDate) = (nil, nil, nil)
+        (self.mandateOptions, self.setupFutureUsage, self.targetDate) = (nil, nil, nil)
     }
 }
 
-public extension CheckoutBacsDebitPaymentMethodOptions {
-    init(from decoder: Decoder) throws {
+extension CheckoutBacsDebitPaymentMethodOptions {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        mandateOptions = try container.sdkDecodeIfPresent(.mandateOptions)
-        setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
-        targetDate = try container.sdkDecodeIfPresent(.targetDate)
-        if let value = targetDate {
+        self.mandateOptions = try container.sdkDecodeIfPresent(.mandateOptions)
+        self.setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
+        self.targetDate = try container.sdkDecodeIfPresent(.targetDate)
+        if let value = self.targetDate {
             try validateLength("target_date", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension CheckoutBacsDebitPaymentMethodOptions {
-    init(
-        mandateOptions: CheckoutPaymentMethodOptionsMandateOptionsBacsDebit? = nil,
-        setupFutureUsage: CheckoutBacsDebitPaymentMethodOptionsSetupFutureUsage? = nil,
-        targetDate: String? = nil
-    ) throws {
+extension CheckoutBacsDebitPaymentMethodOptions {
+    public init(mandateOptions: CheckoutPaymentMethodOptionsMandateOptionsBacsDebit? = nil, setupFutureUsage: CheckoutBacsDebitPaymentMethodOptionsSetupFutureUsage? = nil, targetDate: String? = nil) throws {
         self.init()
         (self.mandateOptions, self.setupFutureUsage) = (mandateOptions, setupFutureUsage)
         self.targetDate = targetDate
@@ -293,19 +277,19 @@ public struct CheckoutBancontactPaymentMethodOptions: Codable {
     }
 
     init() {
-        setupFutureUsage = nil
+        self.setupFutureUsage = nil
     }
 }
 
-public extension CheckoutBancontactPaymentMethodOptions {
-    init(from decoder: Decoder) throws {
+extension CheckoutBancontactPaymentMethodOptions {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
+        self.setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
     }
 }
 
-public extension CheckoutBancontactPaymentMethodOptions {
-    init(setupFutureUsage: CheckoutBancontactPaymentMethodOptionsSetupFutureUsage? = nil) {
+extension CheckoutBancontactPaymentMethodOptions {
+    public init(setupFutureUsage: CheckoutBancontactPaymentMethodOptionsSetupFutureUsage? = nil) {
         self.init()
         self.setupFutureUsage = setupFutureUsage
     }
@@ -321,19 +305,19 @@ public struct CheckoutBilliePaymentMethodOptions: Codable {
     }
 
     init() {
-        captureMethod = nil
+        self.captureMethod = nil
     }
 }
 
-public extension CheckoutBilliePaymentMethodOptions {
-    init(from decoder: Decoder) throws {
+extension CheckoutBilliePaymentMethodOptions {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        captureMethod = try container.sdkDecodeIfPresent(.captureMethod)
+        self.captureMethod = try container.sdkDecodeIfPresent(.captureMethod)
     }
 }
 
-public extension CheckoutBilliePaymentMethodOptions {
-    init(captureMethod: CheckoutBilliePaymentMethodOptionsCaptureMethod? = nil) {
+extension CheckoutBilliePaymentMethodOptions {
+    public init(captureMethod: CheckoutBilliePaymentMethodOptionsCaptureMethod? = nil) {
         self.init()
         self.captureMethod = captureMethod
     }
@@ -357,28 +341,22 @@ public struct CheckoutBoletoPaymentMethodOptions: Codable {
         case setupFutureUsage = "setup_future_usage"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension CheckoutBoletoPaymentMethodOptions {
-    init(from decoder: Decoder) throws {
+extension CheckoutBoletoPaymentMethodOptions {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.expiresAfterDays) else {
-            throw SdkValidationError(
-                field: "expires_after_days",
-                code: "required",
-                message: "Validation failed for 'expires_after_days': value is required"
-            )
+            throw SdkValidationError(field: "expires_after_days", code: "required", message: "Validation failed for 'expires_after_days': value is required")
         }
-        expiresAfterDays = try container.sdkDecodeRequired(.expiresAfterDays)
-        setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
+        self.expiresAfterDays = try container.sdkDecodeRequired(.expiresAfterDays)
+        self.setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
     }
 }
 
-public extension CheckoutBoletoPaymentMethodOptions {
-    init(expiresAfterDays: Int, setupFutureUsage: CheckoutBoletoPaymentMethodOptionsSetupFutureUsage? = nil) {
+extension CheckoutBoletoPaymentMethodOptions {
+    public init(expiresAfterDays: Int, setupFutureUsage: CheckoutBoletoPaymentMethodOptionsSetupFutureUsage? = nil) {
         (self.expiresAfterDays, self.setupFutureUsage) = (expiresAfterDays, setupFutureUsage)
     }
 }
@@ -400,23 +378,20 @@ public struct CheckoutCashappPaymentMethodOptions: Codable {
     }
 
     init() {
-        (captureMethod, setupFutureUsage) = (nil, nil)
+        (self.captureMethod, self.setupFutureUsage) = (nil, nil)
     }
 }
 
-public extension CheckoutCashappPaymentMethodOptions {
-    init(from decoder: Decoder) throws {
+extension CheckoutCashappPaymentMethodOptions {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        captureMethod = try container.sdkDecodeIfPresent(.captureMethod)
-        setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
+        self.captureMethod = try container.sdkDecodeIfPresent(.captureMethod)
+        self.setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
     }
 }
 
-public extension CheckoutCashappPaymentMethodOptions {
-    init(
-        captureMethod: CheckoutCashappPaymentMethodOptionsCaptureMethod? = nil,
-        setupFutureUsage: CheckoutCashappPaymentMethodOptionsSetupFutureUsage? = nil
-    ) {
+extension CheckoutCashappPaymentMethodOptions {
+    public init(captureMethod: CheckoutCashappPaymentMethodOptionsCaptureMethod? = nil, setupFutureUsage: CheckoutCashappPaymentMethodOptionsSetupFutureUsage? = nil) {
         self.init()
         (self.captureMethod, self.setupFutureUsage) = (captureMethod, setupFutureUsage)
     }
@@ -436,19 +411,19 @@ public struct CheckoutEpsPaymentMethodOptions: Codable {
     }
 
     init() {
-        setupFutureUsage = nil
+        self.setupFutureUsage = nil
     }
 }
 
-public extension CheckoutEpsPaymentMethodOptions {
-    init(from decoder: Decoder) throws {
+extension CheckoutEpsPaymentMethodOptions {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
+        self.setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
     }
 }
 
-public extension CheckoutEpsPaymentMethodOptions {
-    init(setupFutureUsage: CheckoutEpsPaymentMethodOptionsSetupFutureUsage? = nil) {
+extension CheckoutEpsPaymentMethodOptions {
+    public init(setupFutureUsage: CheckoutEpsPaymentMethodOptionsSetupFutureUsage? = nil) {
         self.init()
         self.setupFutureUsage = setupFutureUsage
     }
@@ -468,19 +443,19 @@ public struct CheckoutFpxPaymentMethodOptions: Codable {
     }
 
     init() {
-        setupFutureUsage = nil
+        self.setupFutureUsage = nil
     }
 }
 
-public extension CheckoutFpxPaymentMethodOptions {
-    init(from decoder: Decoder) throws {
+extension CheckoutFpxPaymentMethodOptions {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
+        self.setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
     }
 }
 
-public extension CheckoutFpxPaymentMethodOptions {
-    init(setupFutureUsage: CheckoutFpxPaymentMethodOptionsSetupFutureUsage? = nil) {
+extension CheckoutFpxPaymentMethodOptions {
+    public init(setupFutureUsage: CheckoutFpxPaymentMethodOptionsSetupFutureUsage? = nil) {
         self.init()
         self.setupFutureUsage = setupFutureUsage
     }
@@ -500,19 +475,19 @@ public struct CheckoutGiropayPaymentMethodOptions: Codable {
     }
 
     init() {
-        setupFutureUsage = nil
+        self.setupFutureUsage = nil
     }
 }
 
-public extension CheckoutGiropayPaymentMethodOptions {
-    init(from decoder: Decoder) throws {
+extension CheckoutGiropayPaymentMethodOptions {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
+        self.setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
     }
 }
 
-public extension CheckoutGiropayPaymentMethodOptions {
-    init(setupFutureUsage: CheckoutGiropayPaymentMethodOptionsSetupFutureUsage? = nil) {
+extension CheckoutGiropayPaymentMethodOptions {
+    public init(setupFutureUsage: CheckoutGiropayPaymentMethodOptionsSetupFutureUsage? = nil) {
         self.init()
         self.setupFutureUsage = setupFutureUsage
     }
@@ -532,19 +507,19 @@ public struct CheckoutGrabPayPaymentMethodOptions: Codable {
     }
 
     init() {
-        setupFutureUsage = nil
+        self.setupFutureUsage = nil
     }
 }
 
-public extension CheckoutGrabPayPaymentMethodOptions {
-    init(from decoder: Decoder) throws {
+extension CheckoutGrabPayPaymentMethodOptions {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
+        self.setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
     }
 }
 
-public extension CheckoutGrabPayPaymentMethodOptions {
-    init(setupFutureUsage: CheckoutGrabPayPaymentMethodOptionsSetupFutureUsage? = nil) {
+extension CheckoutGrabPayPaymentMethodOptions {
+    public init(setupFutureUsage: CheckoutGrabPayPaymentMethodOptionsSetupFutureUsage? = nil) {
         self.init()
         self.setupFutureUsage = setupFutureUsage
     }
@@ -564,19 +539,19 @@ public struct CheckoutIdealPaymentMethodOptions: Codable {
     }
 
     init() {
-        setupFutureUsage = nil
+        self.setupFutureUsage = nil
     }
 }
 
-public extension CheckoutIdealPaymentMethodOptions {
-    init(from decoder: Decoder) throws {
+extension CheckoutIdealPaymentMethodOptions {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
+        self.setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
     }
 }
 
-public extension CheckoutIdealPaymentMethodOptions {
-    init(setupFutureUsage: CheckoutIdealPaymentMethodOptionsSetupFutureUsage? = nil) {
+extension CheckoutIdealPaymentMethodOptions {
+    public init(setupFutureUsage: CheckoutIdealPaymentMethodOptionsSetupFutureUsage? = nil) {
         self.init()
         self.setupFutureUsage = setupFutureUsage
     }
@@ -599,23 +574,20 @@ public struct CheckoutKakaoPayPaymentMethodOptions: Codable {
     }
 
     init() {
-        (captureMethod, setupFutureUsage) = (nil, nil)
+        (self.captureMethod, self.setupFutureUsage) = (nil, nil)
     }
 }
 
-public extension CheckoutKakaoPayPaymentMethodOptions {
-    init(from decoder: Decoder) throws {
+extension CheckoutKakaoPayPaymentMethodOptions {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        captureMethod = try container.sdkDecodeIfPresent(.captureMethod)
-        setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
+        self.captureMethod = try container.sdkDecodeIfPresent(.captureMethod)
+        self.setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
     }
 }
 
-public extension CheckoutKakaoPayPaymentMethodOptions {
-    init(
-        captureMethod: CheckoutKakaoPayPaymentMethodOptionsCaptureMethod? = nil,
-        setupFutureUsage: CheckoutKakaoPayPaymentMethodOptionsSetupFutureUsage? = nil
-    ) {
+extension CheckoutKakaoPayPaymentMethodOptions {
+    public init(captureMethod: CheckoutKakaoPayPaymentMethodOptionsCaptureMethod? = nil, setupFutureUsage: CheckoutKakaoPayPaymentMethodOptionsSetupFutureUsage? = nil) {
         self.init()
         (self.captureMethod, self.setupFutureUsage) = (captureMethod, setupFutureUsage)
     }

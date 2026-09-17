@@ -6,15 +6,10 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1PaymentIntentsSearchMethods {
-    /// Searches previously created PaymentIntents using the PaymentIntent search query language. Supply `query` to
-    /// define the search, and use `limit` and `page` to control pagination; search results may lag behind recent
-    /// changes and are unavailable to merchants in India.
+extension V1PaymentIntentsSearchMethods {
+    /// Searches previously created PaymentIntents using the PaymentIntent search query language. Supply `query` to define the search, and use `limit` and `page` to control pagination; search results may lag behind recent changes and are unavailable to merchants in India.
     ///
-    /// Search for PaymentIntents you’ve previously created using Stripe’s Search Query Language. Don’t use search in
-    /// read-after-write flows where strict consistency is necessary. Under normal operating conditions, data is
-    /// searchable in less than a minute. Occasionally, propagation of new or updated data can be up to an hour behind
-    /// during outages. Search functionality is not available to merchants in India.
+    /// Search for PaymentIntents you’ve previously created using Stripe’s Search Query Language. Don’t use search in read-after-write flows where strict consistency is necessary. Under normal operating conditions, data is searchable in less than a minute. Occasionally, propagation of new or updated data can be up to an hour behind during outages. Search functionality is not available to merchants in India.
     ///
     /// - Parameters:
     /// - query: The search query string. See [search query
@@ -27,20 +22,14 @@ public extension V1PaymentIntentsSearchMethods {
     /// - page: A cursor for pagination across multiple pages of results. Don't
     ///   include this parameter on the first call. Use the next_page value returned
     ///   in a previous response to request subsequent results.
-    static func getPaymentIntentsSearch(
-        config: ClientConfig,
-        query: String,
-        expand: [String]?,
-        limit: Int?,
-        page: String?
-    ) async throws -> GetPaymentIntentsSearchResponse {
+    public static func getPaymentIntentsSearch(config: ClientConfig, query: String, expand: [String]?, limit: Int?, page: String?) async throws -> GetPaymentIntentsSearchResponse {
         try validateLength("query", query, max: 5000)
 
-        if let page {
+        if let page = page {
             try validateLength("page", page, max: 5000)
         }
 
-        return try await (sdkRequest("GET", "/v1/payment_intents/search", config: config, query: [
+        return try (await sdkRequest("GET", "/v1/payment_intents/search", config: config, query: [
             SdkQueryParameter("query", value: query),
             SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
             SdkQueryParameter("limit", value: limit),
@@ -48,14 +37,9 @@ public extension V1PaymentIntentsSearchMethods {
         ], decoder: .json, operationId: "GetPaymentIntentsSearch")).data
     }
 
-    /// Searches previously created PaymentIntents using the PaymentIntent search query language. Supply `query` to
-    /// define the search, and use `limit` and `page` to control pagination; search results may lag behind recent
-    /// changes and are unavailable to merchants in India.
+    /// Searches previously created PaymentIntents using the PaymentIntent search query language. Supply `query` to define the search, and use `limit` and `page` to control pagination; search results may lag behind recent changes and are unavailable to merchants in India.
     ///
-    /// Search for PaymentIntents you’ve previously created using Stripe’s Search Query Language. Don’t use search in
-    /// read-after-write flows where strict consistency is necessary. Under normal operating conditions, data is
-    /// searchable in less than a minute. Occasionally, propagation of new or updated data can be up to an hour behind
-    /// during outages. Search functionality is not available to merchants in India.
+    /// Search for PaymentIntents you’ve previously created using Stripe’s Search Query Language. Don’t use search in read-after-write flows where strict consistency is necessary. Under normal operating conditions, data is searchable in less than a minute. Occasionally, propagation of new or updated data can be up to an hour behind during outages. Search functionality is not available to merchants in India.
     ///
     /// - Parameters:
     /// - query: The search query string. See [search query
@@ -68,34 +52,15 @@ public extension V1PaymentIntentsSearchMethods {
     /// - page: A cursor for pagination across multiple pages of results. Don't
     ///   include this parameter on the first call. Use the next_page value returned
     ///   in a previous response to request subsequent results.
-    static func getPaymentIntentsSearchPaginated(
-        config: ClientConfig,
-        query: String,
-        expand: [String]?,
-        limit: Int?,
-        page: String?
-    ) -> AsyncThrowingStream<PaymentIntent, Swift.Error> {
-        AsyncThrowingStream<PaymentIntent, Swift.Error> { (continuation: AsyncThrowingStream<
-            PaymentIntent,
-            Swift.Error
-        >.Continuation) in
+    public static func getPaymentIntentsSearchPaginated(config: ClientConfig, query: String, expand: [String]?, limit: Int?, page: String?) -> AsyncThrowingStream<PaymentIntent, Swift.Error> {
+        return AsyncThrowingStream<PaymentIntent, Swift.Error> { (continuation: AsyncThrowingStream<PaymentIntent, Swift.Error>.Continuation) in
             let task = _Concurrency.Task {
                 do {
                     var pageCursor = page
                     while true {
-                        let pageResponse = try await getPaymentIntentsSearch(
-                            config: config,
-                            query: query,
-                            expand: expand,
-                            limit: limit,
-                            page: pageCursor
-                        )
-                        for item in pageResponse.data {
-                            continuation.yield(item)
-                        }
-                        if !pageResponse.hasMore {
-                            break
-                        }
+                        let pageResponse = try await getPaymentIntentsSearch(config: config, query: query, expand: expand, limit: limit, page: pageCursor)
+                        for item in pageResponse.data { continuation.yield(item) }
+                        if !pageResponse.hasMore { break }
                         guard let nextCursor = pageResponse.nextPage else { break }
                         pageCursor = nextCursor
                     }
@@ -109,47 +74,24 @@ public extension V1PaymentIntentsSearchMethods {
         }
     }
 
-    struct GetPaymentIntentsSearchPage {
+    public struct GetPaymentIntentsSearchPage {
         public let data: GetPaymentIntentsSearchResponse
         public let items: [PaymentIntent]
         public let hasMore: Bool
     }
 
-    static func getPaymentIntentsSearchPages(
-        config: ClientConfig,
-        query: String,
-        expand: [String]?,
-        limit: Int?,
-        page: String?
-    ) -> AsyncThrowingStream<GetPaymentIntentsSearchPage, Swift.Error> {
-        AsyncThrowingStream<GetPaymentIntentsSearchPage, Swift.Error> { (pageContinuation: AsyncThrowingStream<
-            GetPaymentIntentsSearchPage,
-            Swift.Error
-        >.Continuation) in
+    public static func getPaymentIntentsSearchPages(config: ClientConfig, query: String, expand: [String]?, limit: Int?, page: String?) -> AsyncThrowingStream<GetPaymentIntentsSearchPage, Swift.Error> {
+        return AsyncThrowingStream<GetPaymentIntentsSearchPage, Swift.Error> { (pageContinuation: AsyncThrowingStream<GetPaymentIntentsSearchPage, Swift.Error>.Continuation) in
             let task = _Concurrency.Task {
                 do {
                     var pageCursor = page
                     while true {
-                        let pageResponse = try await getPaymentIntentsSearch(
-                            config: config,
-                            query: query,
-                            expand: expand,
-                            limit: limit,
-                            page: pageCursor
-                        )
+                        let pageResponse = try await getPaymentIntentsSearch(config: config, query: query, expand: expand, limit: limit, page: pageCursor)
                         let pageItems = pageResponse.data
-                        if pageItems.isEmpty {
-                            break
-                        }
+                        if pageItems.isEmpty { break }
                         let hasMore = pageResponse.hasMore && pageResponse.nextPage != nil
-                        pageContinuation.yield(GetPaymentIntentsSearchPage(
-                            data: pageResponse,
-                            items: pageItems,
-                            hasMore: hasMore
-                        ))
-                        if !hasMore {
-                            break
-                        }
+                        pageContinuation.yield(GetPaymentIntentsSearchPage(data: pageResponse, items: pageItems, hasMore: hasMore))
+                        if !hasMore { break }
                         guard let nextCursor = pageResponse.nextPage else { break }
                         pageCursor = nextCursor
                     }

@@ -6,74 +6,39 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1ApplePayDomainsMethods {
-    /// Creates an Apple Pay domain registration. Supply `domain_name` to identify the domain you want to register, and
-    /// use `expand` when you need additional response fields included.
+extension V1ApplePayDomainsMethods {
+    /// Creates an Apple Pay domain registration. Supply `domain_name` to identify the domain you want to register, and use `expand` when you need additional response fields included.
     ///
     /// Create an apple pay domain.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    static func postApplePayDomains(
-        config: ClientConfig,
-        domainName: String,
-        expand: [String]?
-    ) async throws -> ApplePayDomain {
+    public static func postApplePayDomains(config: ClientConfig, domainName: String, expand: [String]?) async throws -> ApplePayDomain {
         let requestBody = PostApplePayDomainsRequestBody(domainName: domainName, expand: expand)
 
-        return try await (sdkRequest(
-            "POST",
-            "/v1/apple_pay/domains",
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostApplePayDomains"
-        )).data
+        return try (await sdkRequest("POST", "/v1/apple_pay/domains", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostApplePayDomains")).data
     }
 
-    /// Deletes a registered Apple Pay domain. Use `domain` to identify the domain registration you want to remove from
-    /// your account.
+    /// Deletes a registered Apple Pay domain. Use `domain` to identify the domain registration you want to remove from your account.
     ///
     /// Delete an apple pay domain.
-    static func deleteApplePayDomainsDomain(
-        config: ClientConfig,
-        domain: String
-    ) async throws -> DeletedApplePayDomain {
+    public static func deleteApplePayDomainsDomain(config: ClientConfig, domain: String) async throws -> DeletedApplePayDomain {
         try validateLength("domain", domain, max: 5000)
 
-        return try await (sdkRequest(
-            "DELETE",
-            ["/v1/apple_pay/domains/", sdkEncodePathSegment(sdkWireString(domain))].joined(),
-            config: config,
-            decoder: .json,
-            operationId: "DeleteApplePayDomainsDomain"
-        )).data
+        return try (await sdkRequest("DELETE", ["/v1/apple_pay/domains/", sdkEncodePathSegment(sdkWireString(domain))].joined(), config: config, decoder: .json, operationId: "DeleteApplePayDomainsDomain")).data
     }
 
-    /// Retrieves a registered Apple Pay domain by its identifier. Use `expand` to include additional response fields
-    /// when retrieving the domain.
+    /// Retrieves a registered Apple Pay domain by its identifier. Use `expand` to include additional response fields when retrieving the domain.
     ///
     /// Retrieve an apple pay domain.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    static func getApplePayDomainsDomain(
-        config: ClientConfig,
-        domain: String,
-        expand: [String]?
-    ) async throws -> ApplePayDomain {
+    public static func getApplePayDomainsDomain(config: ClientConfig, domain: String, expand: [String]?) async throws -> ApplePayDomain {
         try validateLength("domain", domain, max: 5000)
 
-        return try await (sdkRequest(
-            "GET",
-            ["/v1/apple_pay/domains/", sdkEncodePathSegment(sdkWireString(domain))].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .json,
-            operationId: "GetApplePayDomainsDomain"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/apple_pay/domains/", sdkEncodePathSegment(sdkWireString(domain))].joined(), config: config, query: [
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .json, operationId: "GetApplePayDomainsDomain")).data
     }
 }

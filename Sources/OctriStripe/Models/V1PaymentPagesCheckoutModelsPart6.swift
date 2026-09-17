@@ -3,23 +3,19 @@
 
 import Foundation
 
-/// V1PaymentPagesCheckout domain models
+// V1PaymentPagesCheckout domain models
 /// The border style for the Checkout Session. Must be one of `rounded`, `rectangular`, or `pill`.
-public struct PaymentPagesCheckoutSessionBrandingSettingsBorderStyle: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PaymentPagesCheckoutSessionBrandingSettingsBorderStyle: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let pill = PaymentPagesCheckoutSessionBrandingSettingsBorderStyle(rawValue: "pill")
     public static let rectangular = PaymentPagesCheckoutSessionBrandingSettingsBorderStyle(rawValue: "rectangular")
     public static let rounded = PaymentPagesCheckoutSessionBrandingSettingsBorderStyle(rawValue: "rounded")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -29,20 +25,16 @@ public struct PaymentPagesCheckoutSessionBrandingSettingsBorderStyle: RawReprese
 }
 
 /// Indicates whether a tax ID is required on the payment page
-public struct PaymentPagesCheckoutSessionTaxIdCollectionRequired: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PaymentPagesCheckoutSessionTaxIdCollectionRequired: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let ifSupported = PaymentPagesCheckoutSessionTaxIdCollectionRequired(rawValue: "if_supported")
     public static let never = PaymentPagesCheckoutSessionTaxIdCollectionRequired(rawValue: "never")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -53,20 +45,16 @@ public struct PaymentPagesCheckoutSessionTaxIdCollectionRequired: RawRepresentab
 
 /// If `opt_in`, the customer consents to receiving promotional communications from the merchant about this
 /// Checkout Session.
-public struct PaymentPagesCheckoutSessionConsentPromotions: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PaymentPagesCheckoutSessionConsentPromotions: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let optIn = PaymentPagesCheckoutSessionConsentPromotions(rawValue: "opt_in")
     public static let optOut = PaymentPagesCheckoutSessionConsentPromotions(rawValue: "opt_out")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -76,20 +64,16 @@ public struct PaymentPagesCheckoutSessionConsentPromotions: RawRepresentable, Ha
 }
 
 /// The type of image for the icon. Must be one of `file` or `url`.
-public struct PaymentPagesCheckoutSessionBrandingSettingsIconType: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PaymentPagesCheckoutSessionBrandingSettingsIconType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let file = PaymentPagesCheckoutSessionBrandingSettingsIconType(rawValue: "file")
     public static let url = PaymentPagesCheckoutSessionBrandingSettingsIconType(rawValue: "url")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -99,23 +83,16 @@ public struct PaymentPagesCheckoutSessionBrandingSettingsIconType: RawRepresenta
 }
 
 /// Enable customers to choose if they wish to save their payment method for future use. Disabled by default.
-public struct PaymentPagesCheckoutSessionSavedPaymentMethodOptionsPaymentMethodSave: RawRepresentable, Hashable,
-    Codable,
-    Sendable, SdkWireConvertible {
+public struct PaymentPagesCheckoutSessionSavedPaymentMethodOptionsPaymentMethodSave: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let disabled =
-        PaymentPagesCheckoutSessionSavedPaymentMethodOptionsPaymentMethodSave(rawValue: "disabled")
-    public static let enabled =
-        PaymentPagesCheckoutSessionSavedPaymentMethodOptionsPaymentMethodSave(rawValue: "enabled")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let disabled = PaymentPagesCheckoutSessionSavedPaymentMethodOptionsPaymentMethodSave(rawValue: "disabled")
+    public static let enabled = PaymentPagesCheckoutSessionSavedPaymentMethodOptionsPaymentMethodSave(rawValue: "enabled")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -125,21 +102,17 @@ public struct PaymentPagesCheckoutSessionSavedPaymentMethodOptionsPaymentMethodS
 }
 
 /// The type of the field.
-public struct PaymentPagesCheckoutSessionCustomFieldsType: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PaymentPagesCheckoutSessionCustomFieldsType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let dropdown = PaymentPagesCheckoutSessionCustomFieldsType(rawValue: "dropdown")
     public static let numeric = PaymentPagesCheckoutSessionCustomFieldsType(rawValue: "numeric")
     public static let text = PaymentPagesCheckoutSessionCustomFieldsType(rawValue: "text")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -149,24 +122,17 @@ public struct PaymentPagesCheckoutSessionCustomFieldsType: RawRepresentable, Has
 }
 
 /// Required enumerated value serialized in the `allow_redisplay_filters[]` wire field.
-public struct PaymentPagesCheckoutSessionSavedPaymentMethodOptionsAllowRediX17c0aca639: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PaymentPagesCheckoutSessionSavedPaymentMethodOptionsAllowRediX17c0aca639: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let always =
-        PaymentPagesCheckoutSessionSavedPaymentMethodOptionsAllowRediX17c0aca639(rawValue: "always")
-    public static let limited =
-        PaymentPagesCheckoutSessionSavedPaymentMethodOptionsAllowRediX17c0aca639(rawValue: "limited")
-    public static let unspecified =
-        PaymentPagesCheckoutSessionSavedPaymentMethodOptionsAllowRediX17c0aca639(rawValue: "unspecified")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let always = PaymentPagesCheckoutSessionSavedPaymentMethodOptionsAllowRediX17c0aca639(rawValue: "always")
+    public static let limited = PaymentPagesCheckoutSessionSavedPaymentMethodOptionsAllowRediX17c0aca639(rawValue: "limited")
+    public static let unspecified = PaymentPagesCheckoutSessionSavedPaymentMethodOptionsAllowRediX17c0aca639(rawValue: "unspecified")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -176,21 +142,17 @@ public struct PaymentPagesCheckoutSessionSavedPaymentMethodOptionsAllowRediX17c0
 }
 
 /// The customer’s tax exempt status after a completed Checkout Session.
-public struct PaymentPagesCheckoutSessionCustomerDetailsTaxExempt: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PaymentPagesCheckoutSessionCustomerDetailsTaxExempt: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let exempt = PaymentPagesCheckoutSessionCustomerDetailsTaxExempt(rawValue: "exempt")
     public static let none = PaymentPagesCheckoutSessionCustomerDetailsTaxExempt(rawValue: "none")
     public static let reverse = PaymentPagesCheckoutSessionCustomerDetailsTaxExempt(rawValue: "reverse")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -200,19 +162,15 @@ public struct PaymentPagesCheckoutSessionCustomerDetailsTaxExempt: RawRepresenta
 }
 
 /// The type of the label.
-public struct PaymentPagesCheckoutSessionCustomFieldsLabelType: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PaymentPagesCheckoutSessionCustomFieldsLabelType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let custom = PaymentPagesCheckoutSessionCustomFieldsLabelType(rawValue: "custom")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -222,20 +180,16 @@ public struct PaymentPagesCheckoutSessionCustomFieldsLabelType: RawRepresentable
 }
 
 /// The type of image for the logo. Must be one of `file` or `url`.
-public struct PaymentPagesCheckoutSessionBrandingSettingsLogoType: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PaymentPagesCheckoutSessionBrandingSettingsLogoType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let file = PaymentPagesCheckoutSessionBrandingSettingsLogoType(rawValue: "file")
     public static let url = PaymentPagesCheckoutSessionBrandingSettingsLogoType(rawValue: "url")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -245,22 +199,17 @@ public struct PaymentPagesCheckoutSessionBrandingSettingsLogoType: RawRepresenta
 }
 
 /// The status of the most recent automated tax calculation for this session.
-public struct PaymentPagesCheckoutSessionAutomaticTaxStatus: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PaymentPagesCheckoutSessionAutomaticTaxStatus: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let complete = PaymentPagesCheckoutSessionAutomaticTaxStatus(rawValue: "complete")
     public static let failed = PaymentPagesCheckoutSessionAutomaticTaxStatus(rawValue: "failed")
-    public static let requiresLocationInputs =
-        PaymentPagesCheckoutSessionAutomaticTaxStatus(rawValue: "requires_location_inputs")
+    public static let requiresLocationInputs = PaymentPagesCheckoutSessionAutomaticTaxStatus(rawValue: "requires_location_inputs")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -272,20 +221,16 @@ public struct PaymentPagesCheckoutSessionAutomaticTaxStatus: RawRepresentable, H
 /// Determines the position and visibility of the payment method reuse agreement in the UI. When set to `auto`,
 /// Stripe's defaults will be used. When set to `hidden`, the payment method reuse agreement text will always be
 /// hidden in the UI.
-public struct PaymentPagesCheckoutSessionPaymentMethodReuseAgreementPosition: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct PaymentPagesCheckoutSessionPaymentMethodReuseAgreementPosition: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let auto = PaymentPagesCheckoutSessionPaymentMethodReuseAgreementPosition(rawValue: "auto")
     public static let hidden = PaymentPagesCheckoutSessionPaymentMethodReuseAgreementPosition(rawValue: "hidden")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -295,17 +240,14 @@ public struct PaymentPagesCheckoutSessionPaymentMethodReuseAgreementPosition: Ra
 }
 
 /// Required enumerated value serialized in the `allowed_countries[]` wire field.
-public struct PaymentPagesCheckoutSessionShippingAddressCollectionAllowedCountriesItem: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PaymentPagesCheckoutSessionShippingAddressCollectionAllowedCountriesItem: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
+    public init(rawValue: String) { self.rawValue = rawValue }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1CheckoutLink domain models
+// V1CheckoutLink domain models
 /// Typed representation of the `CheckoutLinkPaymentMethodOptions` API schema.
 public struct CheckoutLinkPaymentMethodOptions: Codable {
     /// Controls when the funds will be captured from the customer's account.
@@ -21,23 +21,20 @@ public struct CheckoutLinkPaymentMethodOptions: Codable {
     }
 
     init() {
-        (captureMethod, setupFutureUsage) = (nil, nil)
+        (self.captureMethod, self.setupFutureUsage) = (nil, nil)
     }
 }
 
-public extension CheckoutLinkPaymentMethodOptions {
-    init(from decoder: Decoder) throws {
+extension CheckoutLinkPaymentMethodOptions {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        captureMethod = try container.sdkDecodeIfPresent(.captureMethod)
-        setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
+        self.captureMethod = try container.sdkDecodeIfPresent(.captureMethod)
+        self.setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
     }
 }
 
-public extension CheckoutLinkPaymentMethodOptions {
-    init(
-        captureMethod: CheckoutLinkPaymentMethodOptionsCaptureMethod? = nil,
-        setupFutureUsage: CheckoutLinkPaymentMethodOptionsSetupFutureUsage? = nil
-    ) {
+extension CheckoutLinkPaymentMethodOptions {
+    public init(captureMethod: CheckoutLinkPaymentMethodOptionsCaptureMethod? = nil, setupFutureUsage: CheckoutLinkPaymentMethodOptionsSetupFutureUsage? = nil) {
         self.init()
         (self.captureMethod, self.setupFutureUsage) = (captureMethod, setupFutureUsage)
     }
@@ -53,19 +50,19 @@ public struct CheckoutLinkWalletOptions: Codable {
     }
 
     init() {
-        display = nil
+        self.display = nil
     }
 }
 
-public extension CheckoutLinkWalletOptions {
-    init(from decoder: Decoder) throws {
+extension CheckoutLinkWalletOptions {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        display = try container.sdkDecodeIfPresent(.display)
+        self.display = try container.sdkDecodeIfPresent(.display)
     }
 }
 
-public extension CheckoutLinkWalletOptions {
-    init(display: CheckoutLinkWalletOptionsDisplay? = nil) {
+extension CheckoutLinkWalletOptions {
+    public init(display: CheckoutLinkWalletOptionsDisplay? = nil) {
         self.init()
         self.display = display
     }
@@ -75,16 +72,13 @@ public extension CheckoutLinkWalletOptions {
 public struct CheckoutLinkWalletOptionsDisplay: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let auto = CheckoutLinkWalletOptionsDisplay(rawValue: "auto")
     public static let never = CheckoutLinkWalletOptionsDisplay(rawValue: "never")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -94,19 +88,15 @@ public struct CheckoutLinkWalletOptionsDisplay: RawRepresentable, Hashable, Coda
 }
 
 /// Controls when the funds will be captured from the customer's account.
-public struct CheckoutLinkPaymentMethodOptionsCaptureMethod: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct CheckoutLinkPaymentMethodOptionsCaptureMethod: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let manual = CheckoutLinkPaymentMethodOptionsCaptureMethod(rawValue: "manual")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -120,20 +110,16 @@ public struct CheckoutLinkPaymentMethodOptionsCaptureMethod: RawRepresentable, H
 /// after the PaymentIntent is confirmed and the customer completes any required actions. If you don't provide a
 /// Customer, you can still attach the payment method to a Customer after the transaction completes. If the
 /// payment method is `card_present` and isn't a digital…
-public struct CheckoutLinkPaymentMethodOptionsSetupFutureUsage: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct CheckoutLinkPaymentMethodOptionsSetupFutureUsage: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let none = CheckoutLinkPaymentMethodOptionsSetupFutureUsage(rawValue: "none")
     public static let offSession = CheckoutLinkPaymentMethodOptionsSetupFutureUsage(rawValue: "off_session")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

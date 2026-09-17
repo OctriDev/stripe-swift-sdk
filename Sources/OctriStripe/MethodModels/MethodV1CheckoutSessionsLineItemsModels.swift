@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1CheckoutSessionsLineItems operation model declarations
+// Canonical v1CheckoutSessionsLineItems operation model declarations
 public struct GetCheckoutSessionsSessionLineItemsResponse: Codable {
     /// Details about each object.
     public var data: [Item]
@@ -26,54 +26,36 @@ public struct GetCheckoutSessionsSessionLineItemsResponse: Codable {
         case url
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension GetCheckoutSessionsSessionLineItemsResponse {
-    init(from decoder: Decoder) throws {
+extension GetCheckoutSessionsSessionLineItemsResponse {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.data) else {
-            throw SdkValidationError(
-                field: "data",
-                code: "required",
-                message: "Validation failed for 'data': value is required"
-            )
+            throw SdkValidationError(field: "data", code: "required", message: "Validation failed for 'data': value is required")
         }
         guard container.contains(.hasMore) else {
-            throw SdkValidationError(
-                field: "has_more",
-                code: "required",
-                message: "Validation failed for 'has_more': value is required"
-            )
+            throw SdkValidationError(field: "has_more", code: "required", message: "Validation failed for 'has_more': value is required")
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(
-                field: "object",
-                code: "required",
-                message: "Validation failed for 'object': value is required"
-            )
+            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
         }
         guard container.contains(.url) else {
-            throw SdkValidationError(
-                field: "url",
-                code: "required",
-                message: "Validation failed for 'url': value is required"
-            )
+            throw SdkValidationError(field: "url", code: "required", message: "Validation failed for 'url': value is required")
         }
-        data = try container.sdkDecodeRequired(.data)
-        hasMore = try container.sdkDecodeRequired(.hasMore)
-        object = try container.sdkDecodeRequired(.object)
-        url = try container.sdkDecodeRequired(.url)
-        try validateLength("url", url, min: nil, max: 5000)
+        self.data = try container.sdkDecodeRequired(.data)
+        self.hasMore = try container.sdkDecodeRequired(.hasMore)
+        self.object = try container.sdkDecodeRequired(.object)
+        self.url = try container.sdkDecodeRequired(.url)
+            try validateLength("url", self.url, min: nil, max: 5000)
     }
 }
 
-public extension GetCheckoutSessionsSessionLineItemsResponse {
-    init(data: [Item], hasMore: Bool, object: GetCheckoutSessionsSessionLineItemsResponseObject, url: String) throws {
+extension GetCheckoutSessionsSessionLineItemsResponse {
+    public init(data: [Item], hasMore: Bool, object: GetCheckoutSessionsSessionLineItemsResponseObject, url: String) throws {
         (self.data, self.hasMore) = (data, hasMore)
         (self.object, self.url) = (object, url)
-        try validateLength("url", self.url, min: nil, max: 5000)
+            try validateLength("url", self.url, min: nil, max: 5000)
     }
 }

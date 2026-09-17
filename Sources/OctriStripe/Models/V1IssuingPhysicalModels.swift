@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1IssuingPhysical domain models
+// V1IssuingPhysical domain models
 /// A Physical Bundle represents the bundle of physical items - card stock, carrier letter, and envelope - that is
 /// shipped to a cardholder when you create a physical card.
 public struct IssuingPhysicalBundle: Codable {
@@ -33,93 +33,61 @@ public struct IssuingPhysicalBundle: Codable {
         case type
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension IssuingPhysicalBundle {
-    init(from decoder: Decoder) throws {
+extension IssuingPhysicalBundle {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.features) else {
-            throw SdkValidationError(
-                field: "features",
-                code: "required",
-                message: "Validation failed for 'features': value is required"
-            )
+            throw SdkValidationError(field: "features", code: "required", message: "Validation failed for 'features': value is required")
         }
         guard container.contains(.id) else {
-            throw SdkValidationError(
-                field: "id",
-                code: "required",
-                message: "Validation failed for 'id': value is required"
-            )
+            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
         }
         guard container.contains(.livemode) else {
-            throw SdkValidationError(
-                field: "livemode",
-                code: "required",
-                message: "Validation failed for 'livemode': value is required"
-            )
+            throw SdkValidationError(field: "livemode", code: "required", message: "Validation failed for 'livemode': value is required")
         }
         guard container.contains(.name) else {
-            throw SdkValidationError(
-                field: "name",
-                code: "required",
-                message: "Validation failed for 'name': value is required"
-            )
+            throw SdkValidationError(field: "name", code: "required", message: "Validation failed for 'name': value is required")
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(
-                field: "object",
-                code: "required",
-                message: "Validation failed for 'object': value is required"
-            )
+            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
         }
         guard container.contains(.status) else {
-            throw SdkValidationError(
-                field: "status",
-                code: "required",
-                message: "Validation failed for 'status': value is required"
-            )
+            throw SdkValidationError(field: "status", code: "required", message: "Validation failed for 'status': value is required")
         }
         guard container.contains(.type) else {
-            throw SdkValidationError(
-                field: "type",
-                code: "required",
-                message: "Validation failed for 'type': value is required"
-            )
+            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
         }
-        features = try container.sdkDecodeRequired(.features)
-        id = try container.sdkDecodeRequired(.id)
-        livemode = try container.sdkDecodeRequired(.livemode)
-        name = try container.sdkDecodeRequired(.name)
-        object = try container.sdkDecodeRequired(.object)
-        status = try container.sdkDecodeRequired(.status)
-        type = try container.sdkDecodeRequired(.type)
-        try validateLength("id", id, min: nil, max: 5000)
-        try validateLength("name", name, min: nil, max: 5000)
+        self.features = try container.sdkDecodeRequired(.features)
+        self.id = try container.sdkDecodeRequired(.id)
+        self.livemode = try container.sdkDecodeRequired(.livemode)
+        self.name = try container.sdkDecodeRequired(.name)
+        self.object = try container.sdkDecodeRequired(.object)
+        self.status = try container.sdkDecodeRequired(.status)
+        self.type = try container.sdkDecodeRequired(.type)
+            try validateLength("id", self.id, min: nil, max: 5000)
+            try validateLength("name", self.name, min: nil, max: 5000)
     }
 }
 
-public extension IssuingPhysicalBundle {
-    init(
-        features: IssuingPhysicalBundleFeatures,
-        id: String,
-        livemode: Bool,
-        name: String,
-        object: IssuingPhysicalBundleObject,
-        status: IssuingPhysicalBundleStatus,
-        type: IssuingPhysicalBundleType
-    ) throws {
+extension IssuingPhysicalBundle {
+    public init(features: IssuingPhysicalBundleFeatures, id: String, livemode: Bool, name: String, object: IssuingPhysicalBundleObject, status: IssuingPhysicalBundleStatus, type: IssuingPhysicalBundleType) throws {
         (self.features, self.id) = (features, id)
         (self.livemode, self.name) = (livemode, name)
         (self.object, self.status) = (object, status)
         self.type = type
-        try validateLength("id", self.id, min: nil, max: 5000)
-        try validateLength("name", self.name, min: nil, max: 5000)
+            try validateLength("id", self.id, min: nil, max: 5000)
+            try validateLength("name", self.name, min: nil, max: 5000)
     }
 }
+
+
+
+
+
+
 
 /// Typed representation of the `IssuingPhysicalBundleFeatures` API schema.
 public struct IssuingPhysicalBundleFeatures: Codable {
@@ -136,47 +104,29 @@ public struct IssuingPhysicalBundleFeatures: Codable {
         case secondLine = "second_line"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension IssuingPhysicalBundleFeatures {
-    init(from decoder: Decoder) throws {
+extension IssuingPhysicalBundleFeatures {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.cardLogo) else {
-            throw SdkValidationError(
-                field: "card_logo",
-                code: "required",
-                message: "Validation failed for 'card_logo': value is required"
-            )
+            throw SdkValidationError(field: "card_logo", code: "required", message: "Validation failed for 'card_logo': value is required")
         }
         guard container.contains(.carrierText) else {
-            throw SdkValidationError(
-                field: "carrier_text",
-                code: "required",
-                message: "Validation failed for 'carrier_text': value is required"
-            )
+            throw SdkValidationError(field: "carrier_text", code: "required", message: "Validation failed for 'carrier_text': value is required")
         }
         guard container.contains(.secondLine) else {
-            throw SdkValidationError(
-                field: "second_line",
-                code: "required",
-                message: "Validation failed for 'second_line': value is required"
-            )
+            throw SdkValidationError(field: "second_line", code: "required", message: "Validation failed for 'second_line': value is required")
         }
-        cardLogo = try container.sdkDecodeRequired(.cardLogo)
-        carrierText = try container.sdkDecodeRequired(.carrierText)
-        secondLine = try container.sdkDecodeRequired(.secondLine)
+        self.cardLogo = try container.sdkDecodeRequired(.cardLogo)
+        self.carrierText = try container.sdkDecodeRequired(.carrierText)
+        self.secondLine = try container.sdkDecodeRequired(.secondLine)
     }
 }
 
-public extension IssuingPhysicalBundleFeatures {
-    init(
-        cardLogo: IssuingPhysicalBundleFeaturesCardLogo,
-        carrierText: IssuingPhysicalBundleFeaturesCarrierText,
-        secondLine: IssuingPhysicalBundleFeaturesSecondLine
-    ) {
+extension IssuingPhysicalBundleFeatures {
+    public init(cardLogo: IssuingPhysicalBundleFeaturesCardLogo, carrierText: IssuingPhysicalBundleFeaturesCarrierText, secondLine: IssuingPhysicalBundleFeaturesSecondLine) {
         (self.cardLogo, self.carrierText) = (cardLogo, carrierText)
         self.secondLine = secondLine
     }
@@ -186,17 +136,14 @@ public extension IssuingPhysicalBundleFeatures {
 public struct IssuingPhysicalBundleStatus: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let active = IssuingPhysicalBundleStatus(rawValue: "active")
     public static let inactive = IssuingPhysicalBundleStatus(rawValue: "inactive")
     public static let review = IssuingPhysicalBundleStatus(rawValue: "review")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -206,21 +153,17 @@ public struct IssuingPhysicalBundleStatus: RawRepresentable, Hashable, Codable, 
 }
 
 /// The policy for how to use a second line on a card with this physical bundle.
-public struct IssuingPhysicalBundleFeaturesSecondLine: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct IssuingPhysicalBundleFeaturesSecondLine: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let optional = IssuingPhysicalBundleFeaturesSecondLine(rawValue: "optional")
     public static let required = IssuingPhysicalBundleFeaturesSecondLine(rawValue: "required")
     public static let unsupported = IssuingPhysicalBundleFeaturesSecondLine(rawValue: "unsupported")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -233,15 +176,12 @@ public struct IssuingPhysicalBundleFeaturesSecondLine: RawRepresentable, Hashabl
 public struct IssuingPhysicalBundleObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let issuingPhysicalBundle = IssuingPhysicalBundleObject(rawValue: "issuing.physical_bundle")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -251,21 +191,17 @@ public struct IssuingPhysicalBundleObject: RawRepresentable, Hashable, Codable, 
 }
 
 /// The policy for how to use carrier letter text in a card design with this physical bundle.
-public struct IssuingPhysicalBundleFeaturesCarrierText: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct IssuingPhysicalBundleFeaturesCarrierText: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let optional = IssuingPhysicalBundleFeaturesCarrierText(rawValue: "optional")
     public static let required = IssuingPhysicalBundleFeaturesCarrierText(rawValue: "required")
     public static let unsupported = IssuingPhysicalBundleFeaturesCarrierText(rawValue: "unsupported")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -278,16 +214,13 @@ public struct IssuingPhysicalBundleFeaturesCarrierText: RawRepresentable, Hashab
 public struct IssuingPhysicalBundleType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let custom = IssuingPhysicalBundleType(rawValue: "custom")
     public static let standard = IssuingPhysicalBundleType(rawValue: "standard")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -300,17 +233,14 @@ public struct IssuingPhysicalBundleType: RawRepresentable, Hashable, Codable, Se
 public struct IssuingPhysicalBundleFeaturesCardLogo: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let optional = IssuingPhysicalBundleFeaturesCardLogo(rawValue: "optional")
     public static let required = IssuingPhysicalBundleFeaturesCardLogo(rawValue: "required")
     public static let unsupported = IssuingPhysicalBundleFeaturesCardLogo(rawValue: "unsupported")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

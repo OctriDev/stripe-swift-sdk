@@ -2,7 +2,7 @@
 
 The Stripe REST API. Please see https://stripe.com/docs/api for more details.
 
-> Package `OctriStripe` · Version `2026-08-26.dahlia` · 594 operations
+> Package `OctriStripe` · Version `1.0.0` · 594 operations
 
 ## Installation
 
@@ -10,7 +10,7 @@ The Stripe REST API. Please see https://stripe.com/docs/api for more details.
 .package(path: "/path/to/generated-sdk")
 
 // After this version is tagged
-.package(url: "https://github.com/OctriDev/stripe-swift-sdk.git", from: "2026-08-26.dahlia")
+.package(url: "https://github.com/OctriDev/stripe-swift-sdk.git", from: "1.0.0")
 ```
 
 ## Quickstart

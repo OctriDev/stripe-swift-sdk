@@ -3,17 +3,9 @@
 
 import Foundation
 
-/// V1PaymentMethodDetails domain models
-public extension PaymentMethodDetailsNzBankAccount {
-    init(
-        bankCode: String,
-        bankName: String,
-        branchCode: String,
-        last4: String,
-        accountHolderName: String? = nil,
-        expectedDebitDate: String? = nil,
-        suffix: String? = nil
-    ) throws {
+// V1PaymentMethodDetails domain models
+extension PaymentMethodDetailsNzBankAccount {
+    public init(bankCode: String, bankName: String, branchCode: String, last4: String, accountHolderName: String? = nil, expectedDebitDate: String? = nil, suffix: String? = nil) throws {
         (self.bankCode, self.bankName) = (bankCode, bankName)
         (self.branchCode, self.last4) = (branchCode, last4)
         (self.accountHolderName, self.expectedDebitDate) = (accountHolderName, expectedDebitDate)
@@ -24,17 +16,17 @@ public extension PaymentMethodDetailsNzBankAccount {
 
 extension PaymentMethodDetailsNzBankAccount {
     func sdkValidateConstraints() throws {
-        try validateLength("bank_code", bankCode, min: nil, max: 5000)
-        try validateLength("bank_name", bankName, min: nil, max: 5000)
-        try validateLength("branch_code", branchCode, min: nil, max: 5000)
-        try validateLength("last4", last4, min: nil, max: 5000)
-        if let value = accountHolderName {
+            try validateLength("bank_code", self.bankCode, min: nil, max: 5000)
+            try validateLength("bank_name", self.bankName, min: nil, max: 5000)
+            try validateLength("branch_code", self.branchCode, min: nil, max: 5000)
+            try validateLength("last4", self.last4, min: nil, max: 5000)
+        if let value = self.accountHolderName {
             try validateLength("account_holder_name", value, min: nil, max: 5000)
         }
-        if let value = expectedDebitDate {
+        if let value = self.expectedDebitDate {
             try validateLength("expected_debit_date", value, min: nil, max: 5000)
         }
-        if let value = suffix {
+        if let value = self.suffix {
             try validateLength("suffix", value, min: nil, max: 5000)
         }
     }
@@ -50,22 +42,22 @@ public struct PaymentMethodDetailsOxxo: Codable {
     }
 
     init() {
-        number = nil
+        self.number = nil
     }
 }
 
-public extension PaymentMethodDetailsOxxo {
-    init(from decoder: Decoder) throws {
+extension PaymentMethodDetailsOxxo {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        number = try container.sdkDecodeIfPresent(.number)
-        if let value = number {
+        self.number = try container.sdkDecodeIfPresent(.number)
+        if let value = self.number {
             try validateLength("number", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PaymentMethodDetailsOxxo {
-    init(number: String? = nil) throws {
+extension PaymentMethodDetailsOxxo {
+    public init(number: String? = nil) throws {
         self.init()
         self.number = number
         if let value = self.number {
@@ -96,27 +88,27 @@ public struct PaymentMethodDetailsP24: Codable {
     }
 
     init() {
-        (bank, reference, verifiedName) = (nil, nil, nil)
+        (self.bank, self.reference, self.verifiedName) = (nil, nil, nil)
     }
 }
 
-public extension PaymentMethodDetailsP24 {
-    init(from decoder: Decoder) throws {
+extension PaymentMethodDetailsP24 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        bank = try container.sdkDecodeIfPresent(.bank)
-        reference = try container.sdkDecodeIfPresent(.reference)
-        verifiedName = try container.sdkDecodeIfPresent(.verifiedName)
-        if let value = reference {
+        self.bank = try container.sdkDecodeIfPresent(.bank)
+        self.reference = try container.sdkDecodeIfPresent(.reference)
+        self.verifiedName = try container.sdkDecodeIfPresent(.verifiedName)
+        if let value = self.reference {
             try validateLength("reference", value, min: nil, max: 5000)
         }
-        if let value = verifiedName {
+        if let value = self.verifiedName {
             try validateLength("verified_name", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PaymentMethodDetailsP24 {
-    init(bank: PaymentMethodDetailsP24Bank? = nil, reference: String? = nil, verifiedName: String? = nil) throws {
+extension PaymentMethodDetailsP24 {
+    public init(bank: PaymentMethodDetailsP24Bank? = nil, reference: String? = nil, verifiedName: String? = nil) throws {
         self.init()
         (self.bank, self.reference) = (bank, reference)
         self.verifiedName = verifiedName
@@ -156,44 +148,37 @@ public struct PaymentMethodDetailsPassthroughCard: Codable {
     }
 
     init() {
-        (brand, country, expMonth, expYear, funding) = (nil, nil, nil, nil, nil)
-        last4 = nil
+        (self.brand, self.country, self.expMonth, self.expYear, self.funding) = (nil, nil, nil, nil, nil)
+        self.last4 = nil
     }
 }
 
-public extension PaymentMethodDetailsPassthroughCard {
-    init(from decoder: Decoder) throws {
+extension PaymentMethodDetailsPassthroughCard {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        brand = try container.sdkDecodeIfPresent(.brand)
-        country = try container.sdkDecodeIfPresent(.country)
-        expMonth = try container.sdkDecodeIfPresent(.expMonth)
-        expYear = try container.sdkDecodeIfPresent(.expYear)
-        funding = try container.sdkDecodeIfPresent(.funding)
-        last4 = try container.sdkDecodeIfPresent(.last4)
-        if let value = brand {
+        self.brand = try container.sdkDecodeIfPresent(.brand)
+        self.country = try container.sdkDecodeIfPresent(.country)
+        self.expMonth = try container.sdkDecodeIfPresent(.expMonth)
+        self.expYear = try container.sdkDecodeIfPresent(.expYear)
+        self.funding = try container.sdkDecodeIfPresent(.funding)
+        self.last4 = try container.sdkDecodeIfPresent(.last4)
+        if let value = self.brand {
             try validateLength("brand", value, min: nil, max: 5000)
         }
-        if let value = country {
+        if let value = self.country {
             try validateLength("country", value, min: nil, max: 5000)
         }
-        if let value = funding {
+        if let value = self.funding {
             try validateLength("funding", value, min: nil, max: 5000)
         }
-        if let value = last4 {
+        if let value = self.last4 {
             try validateLength("last4", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PaymentMethodDetailsPassthroughCard {
-    init(
-        brand: String? = nil,
-        country: String? = nil,
-        expMonth: Int? = nil,
-        expYear: Int? = nil,
-        funding: String? = nil,
-        last4: String? = nil
-    ) throws {
+extension PaymentMethodDetailsPassthroughCard {
+    public init(brand: String? = nil, country: String? = nil, expMonth: Int? = nil, expYear: Int? = nil, funding: String? = nil, last4: String? = nil) throws {
         self.init()
         (self.brand, self.country) = (brand, country)
         (self.expMonth, self.expYear) = (expMonth, expYear)
@@ -215,13 +200,13 @@ public extension PaymentMethodDetailsPassthroughCard {
 
 /// Typed representation of the `PaymentMethodDetailsPayByBank` API schema.
 public struct PaymentMethodDetailsPayByBank: Codable {
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PaymentMethodDetailsPayByBank {
-    init() {}
+extension PaymentMethodDetailsPayByBank {
+    public init() {
+    }
 }
 
 /// Typed representation of the `PaymentMethodDetailsPayco` API schema.
@@ -237,26 +222,26 @@ public struct PaymentMethodDetailsPayco: Codable {
     }
 
     init() {
-        (buyerId, transactionId) = (nil, nil)
+        (self.buyerId, self.transactionId) = (nil, nil)
     }
 }
 
-public extension PaymentMethodDetailsPayco {
-    init(from decoder: Decoder) throws {
+extension PaymentMethodDetailsPayco {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        buyerId = try container.sdkDecodeIfPresent(.buyerId)
-        transactionId = try container.sdkDecodeIfPresent(.transactionId)
-        if let value = buyerId {
+        self.buyerId = try container.sdkDecodeIfPresent(.buyerId)
+        self.transactionId = try container.sdkDecodeIfPresent(.transactionId)
+        if let value = self.buyerId {
             try validateLength("buyer_id", value, min: nil, max: 5000)
         }
-        if let value = transactionId {
+        if let value = self.transactionId {
             try validateLength("transaction_id", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PaymentMethodDetailsPayco {
-    init(buyerId: String? = nil, transactionId: String? = nil) throws {
+extension PaymentMethodDetailsPayco {
+    public init(buyerId: String? = nil, transactionId: String? = nil) throws {
         self.init()
         (self.buyerId, self.transactionId) = (buyerId, transactionId)
         if let value = self.buyerId {
@@ -297,35 +282,27 @@ public struct PaymentMethodDetailsPaymentRecordAcssDebit: Codable {
     }
 
     init() {
-        (bankName, expectedDebitDate, fingerprint, institutionNumber, last4) = (nil, nil, nil, nil, nil)
-        (mandate, transitNumber) = (nil, nil)
+        (self.bankName, self.expectedDebitDate, self.fingerprint, self.institutionNumber, self.last4) = (nil, nil, nil, nil, nil)
+        (self.mandate, self.transitNumber) = (nil, nil)
     }
 }
 
-public extension PaymentMethodDetailsPaymentRecordAcssDebit {
-    init(from decoder: Decoder) throws {
+extension PaymentMethodDetailsPaymentRecordAcssDebit {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        bankName = try container.sdkDecodeIfPresent(.bankName)
-        expectedDebitDate = try container.sdkDecodeIfPresent(.expectedDebitDate)
-        fingerprint = try container.sdkDecodeIfPresent(.fingerprint)
-        institutionNumber = try container.sdkDecodeIfPresent(.institutionNumber)
-        last4 = try container.sdkDecodeIfPresent(.last4)
-        mandate = try container.sdkDecodeIfPresent(.mandate)
-        transitNumber = try container.sdkDecodeIfPresent(.transitNumber)
+        self.bankName = try container.sdkDecodeIfPresent(.bankName)
+        self.expectedDebitDate = try container.sdkDecodeIfPresent(.expectedDebitDate)
+        self.fingerprint = try container.sdkDecodeIfPresent(.fingerprint)
+        self.institutionNumber = try container.sdkDecodeIfPresent(.institutionNumber)
+        self.last4 = try container.sdkDecodeIfPresent(.last4)
+        self.mandate = try container.sdkDecodeIfPresent(.mandate)
+        self.transitNumber = try container.sdkDecodeIfPresent(.transitNumber)
         try sdkValidateConstraints()
     }
 }
 
-public extension PaymentMethodDetailsPaymentRecordAcssDebit {
-    init(
-        bankName: String? = nil,
-        expectedDebitDate: String? = nil,
-        fingerprint: String? = nil,
-        institutionNumber: String? = nil,
-        last4: String? = nil,
-        mandate: String? = nil,
-        transitNumber: String? = nil
-    ) throws {
+extension PaymentMethodDetailsPaymentRecordAcssDebit {
+    public init(bankName: String? = nil, expectedDebitDate: String? = nil, fingerprint: String? = nil, institutionNumber: String? = nil, last4: String? = nil, mandate: String? = nil, transitNumber: String? = nil) throws {
         self.init()
         (self.bankName, self.expectedDebitDate) = (bankName, expectedDebitDate)
         (self.fingerprint, self.institutionNumber) = (fingerprint, institutionNumber)
@@ -337,25 +314,25 @@ public extension PaymentMethodDetailsPaymentRecordAcssDebit {
 
 extension PaymentMethodDetailsPaymentRecordAcssDebit {
     func sdkValidateConstraints() throws {
-        if let value = bankName {
+        if let value = self.bankName {
             try validateLength("bank_name", value, min: nil, max: 5000)
         }
-        if let value = expectedDebitDate {
+        if let value = self.expectedDebitDate {
             try validateLength("expected_debit_date", value, min: nil, max: 5000)
         }
-        if let value = fingerprint {
+        if let value = self.fingerprint {
             try validateLength("fingerprint", value, min: nil, max: 5000)
         }
-        if let value = institutionNumber {
+        if let value = self.institutionNumber {
             try validateLength("institution_number", value, min: nil, max: 5000)
         }
-        if let value = last4 {
+        if let value = self.last4 {
             try validateLength("last4", value, min: nil, max: 5000)
         }
-        if let value = mandate {
+        if let value = self.mandate {
             try validateLength("mandate", value, min: nil, max: 5000)
         }
-        if let value = transitNumber {
+        if let value = self.transitNumber {
             try validateLength("transit_number", value, min: nil, max: 5000)
         }
     }
@@ -377,30 +354,30 @@ public struct PaymentMethodDetailsPaymentRecordAffirm: Codable {
     }
 
     init() {
-        (location, reader, transactionId) = (nil, nil, nil)
+        (self.location, self.reader, self.transactionId) = (nil, nil, nil)
     }
 }
 
-public extension PaymentMethodDetailsPaymentRecordAffirm {
-    init(from decoder: Decoder) throws {
+extension PaymentMethodDetailsPaymentRecordAffirm {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        location = try container.sdkDecodeIfPresent(.location)
-        reader = try container.sdkDecodeIfPresent(.reader)
-        transactionId = try container.sdkDecodeIfPresent(.transactionId)
-        if let value = location {
+        self.location = try container.sdkDecodeIfPresent(.location)
+        self.reader = try container.sdkDecodeIfPresent(.reader)
+        self.transactionId = try container.sdkDecodeIfPresent(.transactionId)
+        if let value = self.location {
             try validateLength("location", value, min: nil, max: 5000)
         }
-        if let value = reader {
+        if let value = self.reader {
             try validateLength("reader", value, min: nil, max: 5000)
         }
-        if let value = transactionId {
+        if let value = self.transactionId {
             try validateLength("transaction_id", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PaymentMethodDetailsPaymentRecordAffirm {
-    init(location: String? = nil, reader: String? = nil, transactionId: String? = nil) throws {
+extension PaymentMethodDetailsPaymentRecordAffirm {
+    public init(location: String? = nil, reader: String? = nil, transactionId: String? = nil) throws {
         self.init()
         (self.location, self.reader) = (location, reader)
         self.transactionId = transactionId
@@ -429,26 +406,26 @@ public struct PaymentMethodDetailsPaymentRecordAfterpayClearpay: Codable {
     }
 
     init() {
-        (orderId, reference) = (nil, nil)
+        (self.orderId, self.reference) = (nil, nil)
     }
 }
 
-public extension PaymentMethodDetailsPaymentRecordAfterpayClearpay {
-    init(from decoder: Decoder) throws {
+extension PaymentMethodDetailsPaymentRecordAfterpayClearpay {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        orderId = try container.sdkDecodeIfPresent(.orderId)
-        reference = try container.sdkDecodeIfPresent(.reference)
-        if let value = orderId {
+        self.orderId = try container.sdkDecodeIfPresent(.orderId)
+        self.reference = try container.sdkDecodeIfPresent(.reference)
+        if let value = self.orderId {
             try validateLength("order_id", value, min: nil, max: 5000)
         }
-        if let value = reference {
+        if let value = self.reference {
             try validateLength("reference", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PaymentMethodDetailsPaymentRecordAfterpayClearpay {
-    init(orderId: String? = nil, reference: String? = nil) throws {
+extension PaymentMethodDetailsPaymentRecordAfterpayClearpay {
+    public init(orderId: String? = nil, reference: String? = nil) throws {
         self.init()
         (self.orderId, self.reference) = (orderId, reference)
         if let value = self.orderId {
@@ -478,30 +455,30 @@ public struct PaymentMethodDetailsPaymentRecordAlipay: Codable {
     }
 
     init() {
-        (buyerId, fingerprint, transactionId) = (nil, nil, nil)
+        (self.buyerId, self.fingerprint, self.transactionId) = (nil, nil, nil)
     }
 }
 
-public extension PaymentMethodDetailsPaymentRecordAlipay {
-    init(from decoder: Decoder) throws {
+extension PaymentMethodDetailsPaymentRecordAlipay {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        buyerId = try container.sdkDecodeIfPresent(.buyerId)
-        fingerprint = try container.sdkDecodeIfPresent(.fingerprint)
-        transactionId = try container.sdkDecodeIfPresent(.transactionId)
-        if let value = buyerId {
+        self.buyerId = try container.sdkDecodeIfPresent(.buyerId)
+        self.fingerprint = try container.sdkDecodeIfPresent(.fingerprint)
+        self.transactionId = try container.sdkDecodeIfPresent(.transactionId)
+        if let value = self.buyerId {
             try validateLength("buyer_id", value, min: nil, max: 5000)
         }
-        if let value = fingerprint {
+        if let value = self.fingerprint {
             try validateLength("fingerprint", value, min: nil, max: 5000)
         }
-        if let value = transactionId {
+        if let value = self.transactionId {
             try validateLength("transaction_id", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PaymentMethodDetailsPaymentRecordAlipay {
-    init(buyerId: String? = nil, fingerprint: String? = nil, transactionId: String? = nil) throws {
+extension PaymentMethodDetailsPaymentRecordAlipay {
+    public init(buyerId: String? = nil, fingerprint: String? = nil, transactionId: String? = nil) throws {
         self.init()
         (self.buyerId, self.fingerprint) = (buyerId, fingerprint)
         self.transactionId = transactionId
@@ -530,26 +507,23 @@ public struct PaymentMethodDetailsPaymentRecordAlma: Codable {
     }
 
     init() {
-        (installments, transactionId) = (nil, nil)
+        (self.installments, self.transactionId) = (nil, nil)
     }
 }
 
-public extension PaymentMethodDetailsPaymentRecordAlma {
-    init(from decoder: Decoder) throws {
+extension PaymentMethodDetailsPaymentRecordAlma {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        installments = try container.sdkDecodeIfPresent(.installments)
-        transactionId = try container.sdkDecodeIfPresent(.transactionId)
-        if let value = transactionId {
+        self.installments = try container.sdkDecodeIfPresent(.installments)
+        self.transactionId = try container.sdkDecodeIfPresent(.transactionId)
+        if let value = self.transactionId {
             try validateLength("transaction_id", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PaymentMethodDetailsPaymentRecordAlma {
-    init(
-        installments: PaymentsPrimitivesPaymentRecordsResourcePaymentMethodAlmaDetaX1a7d018a02? = nil,
-        transactionId: String? = nil
-    ) throws {
+extension PaymentMethodDetailsPaymentRecordAlma {
+    public init(installments: PaymentsPrimitivesPaymentRecordsResourcePaymentMethodAlmaDetaX1a7d018a02? = nil, transactionId: String? = nil) throws {
         self.init()
         (self.installments, self.transactionId) = (installments, transactionId)
         if let value = self.transactionId {
@@ -571,26 +545,23 @@ public struct PaymentMethodDetailsPaymentRecordAmazonPay: Codable {
     }
 
     init() {
-        (funding, transactionId) = (nil, nil)
+        (self.funding, self.transactionId) = (nil, nil)
     }
 }
 
-public extension PaymentMethodDetailsPaymentRecordAmazonPay {
-    init(from decoder: Decoder) throws {
+extension PaymentMethodDetailsPaymentRecordAmazonPay {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        funding = try container.sdkDecodeIfPresent(.funding)
-        transactionId = try container.sdkDecodeIfPresent(.transactionId)
-        if let value = transactionId {
+        self.funding = try container.sdkDecodeIfPresent(.funding)
+        self.transactionId = try container.sdkDecodeIfPresent(.transactionId)
+        if let value = self.transactionId {
             try validateLength("transaction_id", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PaymentMethodDetailsPaymentRecordAmazonPay {
-    init(
-        funding: PaymentsPrimitivesPaymentRecordsResourcePaymentMethodAmazonPaX0d2af51811? = nil,
-        transactionId: String? = nil
-    ) throws {
+extension PaymentMethodDetailsPaymentRecordAmazonPay {
+    public init(funding: PaymentsPrimitivesPaymentRecordsResourcePaymentMethodAmazonPaX0d2af51811? = nil, transactionId: String? = nil) throws {
         self.init()
         (self.funding, self.transactionId) = (funding, transactionId)
         if let value = self.transactionId {

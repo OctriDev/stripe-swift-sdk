@@ -7,31 +7,17 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1BillingFeedbackOptionsDeactivateMethods {
-    /// Deactivates a feedback option so it can no longer be used in portal configurations. Supply `id` to select the
-    /// feedback option and use `expand` to include expanded response fields. The response records the option's inactive
-    /// status and deactivation transition.
+    /// Deactivates a feedback option so it can no longer be used in portal configurations. Supply `id` to select the feedback option and use `expand` to include expanded response fields. The response records the option's inactive status and deactivation transition.
     ///
     /// Deactivates a feedback option. Deactivated feedback options cannot be used in portal configurations.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postBillingFeedbackOptionsIdDeactivate(
-        config: ClientConfig,
-        id: String,
-        expand: [String]?
-    ) async throws -> BillingFeedbackOption {
+    public static func postBillingFeedbackOptionsIdDeactivate(config: ClientConfig, id: String, expand: [String]?) async throws -> BillingFeedbackOption {
         try validateLength("id", id, max: 5000)
 
         let requestBody = PostBillingFeedbackOptionsIdDeactivateRequestBody(expand: expand)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/billing/feedback_options/", sdkEncodePathSegment(sdkWireString(id)), "/deactivate"].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostBillingFeedbackOptionsIdDeactivate"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/billing/feedback_options/", sdkEncodePathSegment(sdkWireString(id)), "/deactivate"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostBillingFeedbackOptionsIdDeactivate")).data
     }
 }

@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1Confirmation domain models
+// V1Confirmation domain models
 /// Details of the PaymentMethod collected by Payment Element
 public struct ConfirmationTokensResourcePaymentMethodPreview: Codable {
     /// Required object value serialized in the `billing_details` wire field.
@@ -197,145 +197,81 @@ public struct ConfirmationTokensResourcePaymentMethodPreview: Codable {
         case zip
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension ConfirmationTokensResourcePaymentMethodPreview {
-    init(from decoder: Decoder) throws {
+extension ConfirmationTokensResourcePaymentMethodPreview {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        billingDetails = try container.sdkDecodeRequired(.billingDetails)
-        type = try container.sdkDecodeRequired(.type)
-        acssDebit = try container.sdkDecodeIfPresent(.acssDebit)
-        affirm = try container.sdkDecodeIfPresent(.affirm)
-        afterpayClearpay = try container.sdkDecodeIfPresent(.afterpayClearpay)
-        alipay = try container.sdkDecodeIfPresent(.alipay)
-        allowRedisplay = try container.sdkDecodeIfPresent(.allowRedisplay)
-        alma = try container.sdkDecodeIfPresent(.alma)
-        amazonPay = try container.sdkDecodeIfPresent(.amazonPay)
-        auBecsDebit = try container.sdkDecodeIfPresent(.auBecsDebit)
-        bacsDebit = try container.sdkDecodeIfPresent(.bacsDebit)
-        bancontact = try container.sdkDecodeIfPresent(.bancontact)
-        billie = try container.sdkDecodeIfPresent(.billie)
-        bizum = try container.sdkDecodeIfPresent(.bizum)
-        blik = try container.sdkDecodeIfPresent(.blik)
-        boleto = try container.sdkDecodeIfPresent(.boleto)
-        card = try container.sdkDecodeIfPresent(.card)
-        cardPresent = try container.sdkDecodeIfPresent(.cardPresent)
-        cashapp = try container.sdkDecodeIfPresent(.cashapp)
-        crypto = try container.sdkDecodeIfPresent(.crypto)
-        customer = try container.sdkDecodeIfPresent(.customer)
-        customerAccount = try container.sdkDecodeIfPresent(.customerAccount)
-        customerBalance = try container.sdkDecodeIfPresent(.customerBalance)
-        eps = try container.sdkDecodeIfPresent(.eps)
-        fpx = try container.sdkDecodeIfPresent(.fpx)
-        giropay = try container.sdkDecodeIfPresent(.giropay)
-        grabpay = try container.sdkDecodeIfPresent(.grabpay)
-        ideal = try container.sdkDecodeIfPresent(.ideal)
-        interacPresent = try container.sdkDecodeIfPresent(.interacPresent)
-        kakaoPay = try container.sdkDecodeIfPresent(.kakaoPay)
-        klarna = try container.sdkDecodeIfPresent(.klarna)
-        konbini = try container.sdkDecodeIfPresent(.konbini)
-        krCard = try container.sdkDecodeIfPresent(.krCard)
-        link = try container.sdkDecodeIfPresent(.link)
-        mbWay = try container.sdkDecodeIfPresent(.mbWay)
-        mobilepay = try container.sdkDecodeIfPresent(.mobilepay)
-        multibanco = try container.sdkDecodeIfPresent(.multibanco)
-        naverPay = try container.sdkDecodeIfPresent(.naverPay)
-        nzBankAccount = try container.sdkDecodeIfPresent(.nzBankAccount)
-        oxxo = try container.sdkDecodeIfPresent(.oxxo)
-        p24 = try container.sdkDecodeIfPresent(.p24)
-        payByBank = try container.sdkDecodeIfPresent(.payByBank)
-        payco = try container.sdkDecodeIfPresent(.payco)
-        paynow = try container.sdkDecodeIfPresent(.paynow)
-        paypal = try container.sdkDecodeIfPresent(.paypal)
-        payto = try container.sdkDecodeIfPresent(.payto)
-        pix = try container.sdkDecodeIfPresent(.pix)
-        promptpay = try container.sdkDecodeIfPresent(.promptpay)
-        revolutPay = try container.sdkDecodeIfPresent(.revolutPay)
-        samsungPay = try container.sdkDecodeIfPresent(.samsungPay)
-        satispay = try container.sdkDecodeIfPresent(.satispay)
-        scalapay = try container.sdkDecodeIfPresent(.scalapay)
-        sepaDebit = try container.sdkDecodeIfPresent(.sepaDebit)
-        sofort = try container.sdkDecodeIfPresent(.sofort)
-        sunbit = try container.sdkDecodeIfPresent(.sunbit)
-        swish = try container.sdkDecodeIfPresent(.swish)
-        twint = try container.sdkDecodeIfPresent(.twint)
-        upi = try container.sdkDecodeIfPresent(.upi)
-        usBankAccount = try container.sdkDecodeIfPresent(.usBankAccount)
-        wechatPay = try container.sdkDecodeIfPresent(.wechatPay)
+        self.billingDetails = try container.sdkDecodeRequired(.billingDetails)
+        self.type = try container.sdkDecodeRequired(.type)
+        self.acssDebit = try container.sdkDecodeIfPresent(.acssDebit)
+        self.affirm = try container.sdkDecodeIfPresent(.affirm)
+        self.afterpayClearpay = try container.sdkDecodeIfPresent(.afterpayClearpay)
+        self.alipay = try container.sdkDecodeIfPresent(.alipay)
+        self.allowRedisplay = try container.sdkDecodeIfPresent(.allowRedisplay)
+        self.alma = try container.sdkDecodeIfPresent(.alma)
+        self.amazonPay = try container.sdkDecodeIfPresent(.amazonPay)
+        self.auBecsDebit = try container.sdkDecodeIfPresent(.auBecsDebit)
+        self.bacsDebit = try container.sdkDecodeIfPresent(.bacsDebit)
+        self.bancontact = try container.sdkDecodeIfPresent(.bancontact)
+        self.billie = try container.sdkDecodeIfPresent(.billie)
+        self.bizum = try container.sdkDecodeIfPresent(.bizum)
+        self.blik = try container.sdkDecodeIfPresent(.blik)
+        self.boleto = try container.sdkDecodeIfPresent(.boleto)
+        self.card = try container.sdkDecodeIfPresent(.card)
+        self.cardPresent = try container.sdkDecodeIfPresent(.cardPresent)
+        self.cashapp = try container.sdkDecodeIfPresent(.cashapp)
+        self.crypto = try container.sdkDecodeIfPresent(.crypto)
+        self.customer = try container.sdkDecodeIfPresent(.customer)
+        self.customerAccount = try container.sdkDecodeIfPresent(.customerAccount)
+        self.customerBalance = try container.sdkDecodeIfPresent(.customerBalance)
+        self.eps = try container.sdkDecodeIfPresent(.eps)
+        self.fpx = try container.sdkDecodeIfPresent(.fpx)
+        self.giropay = try container.sdkDecodeIfPresent(.giropay)
+        self.grabpay = try container.sdkDecodeIfPresent(.grabpay)
+        self.ideal = try container.sdkDecodeIfPresent(.ideal)
+        self.interacPresent = try container.sdkDecodeIfPresent(.interacPresent)
+        self.kakaoPay = try container.sdkDecodeIfPresent(.kakaoPay)
+        self.klarna = try container.sdkDecodeIfPresent(.klarna)
+        self.konbini = try container.sdkDecodeIfPresent(.konbini)
+        self.krCard = try container.sdkDecodeIfPresent(.krCard)
+        self.link = try container.sdkDecodeIfPresent(.link)
+        self.mbWay = try container.sdkDecodeIfPresent(.mbWay)
+        self.mobilepay = try container.sdkDecodeIfPresent(.mobilepay)
+        self.multibanco = try container.sdkDecodeIfPresent(.multibanco)
+        self.naverPay = try container.sdkDecodeIfPresent(.naverPay)
+        self.nzBankAccount = try container.sdkDecodeIfPresent(.nzBankAccount)
+        self.oxxo = try container.sdkDecodeIfPresent(.oxxo)
+        self.p24 = try container.sdkDecodeIfPresent(.p24)
+        self.payByBank = try container.sdkDecodeIfPresent(.payByBank)
+        self.payco = try container.sdkDecodeIfPresent(.payco)
+        self.paynow = try container.sdkDecodeIfPresent(.paynow)
+        self.paypal = try container.sdkDecodeIfPresent(.paypal)
+        self.payto = try container.sdkDecodeIfPresent(.payto)
+        self.pix = try container.sdkDecodeIfPresent(.pix)
+        self.promptpay = try container.sdkDecodeIfPresent(.promptpay)
+        self.revolutPay = try container.sdkDecodeIfPresent(.revolutPay)
+        self.samsungPay = try container.sdkDecodeIfPresent(.samsungPay)
+        self.satispay = try container.sdkDecodeIfPresent(.satispay)
+        self.scalapay = try container.sdkDecodeIfPresent(.scalapay)
+        self.sepaDebit = try container.sdkDecodeIfPresent(.sepaDebit)
+        self.sofort = try container.sdkDecodeIfPresent(.sofort)
+        self.sunbit = try container.sdkDecodeIfPresent(.sunbit)
+        self.swish = try container.sdkDecodeIfPresent(.swish)
+        self.twint = try container.sdkDecodeIfPresent(.twint)
+        self.upi = try container.sdkDecodeIfPresent(.upi)
+        self.usBankAccount = try container.sdkDecodeIfPresent(.usBankAccount)
+        self.wechatPay = try container.sdkDecodeIfPresent(.wechatPay)
         self.zip = try container.sdkDecodeIfPresent(.zip)
-        if let value = customerAccount {
+        if let value = self.customerAccount {
             try validateLength("customer_account", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension ConfirmationTokensResourcePaymentMethodPreview {
-    init(
-        billingDetails: BillingDetails,
-        type: ConfirmationTokensResourcePaymentMethodPreviewType,
-        acssDebit: PaymentMethodAcssDebit? = nil,
-        affirm: PaymentMethodAffirm? = nil,
-        afterpayClearpay: PaymentMethodAfterpayClearpay? = nil,
-        alipay: PaymentFlowsPrivatePaymentMethodsAlipay? = nil,
-        allowRedisplay: ConfirmationTokensResourcePaymentMethodPreviewAllowRedisplay? = nil,
-        alma: PaymentMethodAlma? = nil,
-        amazonPay: PaymentMethodAmazonPay? = nil,
-        auBecsDebit: PaymentMethodAuBecsDebit? = nil,
-        bacsDebit: PaymentMethodBacsDebit? = nil,
-        bancontact: PaymentMethodBancontact? = nil,
-        billie: PaymentMethodBillie? = nil,
-        bizum: PaymentMethodBizum? = nil,
-        blik: PaymentMethodBlik? = nil,
-        boleto: PaymentMethodBoleto? = nil,
-        card: PaymentMethodCard? = nil,
-        cardPresent: PaymentMethodCardPresent? = nil,
-        cashapp: PaymentMethodCashapp? = nil,
-        crypto: PaymentMethodCrypto? = nil,
-        customer: ConfirmationTokensResourcePaymentMethodPreviewCustomer? = nil,
-        customerAccount: String? = nil,
-        customerBalance: PaymentMethodCustomerBalance? = nil,
-        eps: PaymentMethodEps? = nil,
-        fpx: PaymentMethodFpx? = nil,
-        giropay: PaymentMethodGiropay? = nil,
-        grabpay: PaymentMethodGrabpay? = nil,
-        ideal: PaymentMethodIdeal? = nil,
-        interacPresent: PaymentMethodInteracPresent? = nil,
-        kakaoPay: PaymentMethodKakaoPay? = nil,
-        klarna: PaymentMethodKlarna? = nil,
-        konbini: PaymentMethodKonbini? = nil,
-        krCard: PaymentMethodKrCard? = nil,
-        link: PaymentMethodLink? = nil,
-        mbWay: PaymentMethodMbWay? = nil,
-        mobilepay: PaymentMethodMobilepay? = nil,
-        multibanco: PaymentMethodMultibanco? = nil,
-        naverPay: PaymentMethodNaverPay? = nil,
-        nzBankAccount: PaymentMethodNzBankAccount? = nil,
-        oxxo: PaymentMethodOxxo? = nil,
-        p24: PaymentMethodP24? = nil,
-        payByBank: PaymentMethodPayByBank? = nil,
-        payco: PaymentMethodPayco? = nil,
-        paynow: PaymentMethodPaynow? = nil,
-        paypal: PaymentMethodPaypal? = nil,
-        payto: PaymentMethodPayto? = nil,
-        pix: PaymentMethodPix? = nil,
-        promptpay: PaymentMethodPromptpay? = nil,
-        revolutPay: PaymentMethodRevolutPay? = nil,
-        samsungPay: PaymentMethodSamsungPay? = nil,
-        satispay: PaymentMethodSatispay? = nil,
-        scalapay: PaymentMethodScalapay? = nil,
-        sepaDebit: PaymentMethodSepaDebit? = nil,
-        sofort: PaymentMethodSofort? = nil,
-        sunbit: PaymentMethodSunbit? = nil,
-        swish: PaymentMethodSwish? = nil,
-        twint: PaymentMethodTwint? = nil,
-        upi: PaymentMethodUpi? = nil,
-        usBankAccount: PaymentMethodUsBankAccount? = nil,
-        wechatPay: PaymentMethodWechatPay? = nil,
-        zip: PaymentMethodZip? = nil
-    ) throws {
+extension ConfirmationTokensResourcePaymentMethodPreview {
+    public init(billingDetails: BillingDetails, type: ConfirmationTokensResourcePaymentMethodPreviewType, acssDebit: PaymentMethodAcssDebit? = nil, affirm: PaymentMethodAffirm? = nil, afterpayClearpay: PaymentMethodAfterpayClearpay? = nil, alipay: PaymentFlowsPrivatePaymentMethodsAlipay? = nil, allowRedisplay: ConfirmationTokensResourcePaymentMethodPreviewAllowRedisplay? = nil, alma: PaymentMethodAlma? = nil, amazonPay: PaymentMethodAmazonPay? = nil, auBecsDebit: PaymentMethodAuBecsDebit? = nil, bacsDebit: PaymentMethodBacsDebit? = nil, bancontact: PaymentMethodBancontact? = nil, billie: PaymentMethodBillie? = nil, bizum: PaymentMethodBizum? = nil, blik: PaymentMethodBlik? = nil, boleto: PaymentMethodBoleto? = nil, card: PaymentMethodCard? = nil, cardPresent: PaymentMethodCardPresent? = nil, cashapp: PaymentMethodCashapp? = nil, crypto: PaymentMethodCrypto? = nil, customer: ConfirmationTokensResourcePaymentMethodPreviewCustomer? = nil, customerAccount: String? = nil, customerBalance: PaymentMethodCustomerBalance? = nil, eps: PaymentMethodEps? = nil, fpx: PaymentMethodFpx? = nil, giropay: PaymentMethodGiropay? = nil, grabpay: PaymentMethodGrabpay? = nil, ideal: PaymentMethodIdeal? = nil, interacPresent: PaymentMethodInteracPresent? = nil, kakaoPay: PaymentMethodKakaoPay? = nil, klarna: PaymentMethodKlarna? = nil, konbini: PaymentMethodKonbini? = nil, krCard: PaymentMethodKrCard? = nil, link: PaymentMethodLink? = nil, mbWay: PaymentMethodMbWay? = nil, mobilepay: PaymentMethodMobilepay? = nil, multibanco: PaymentMethodMultibanco? = nil, naverPay: PaymentMethodNaverPay? = nil, nzBankAccount: PaymentMethodNzBankAccount? = nil, oxxo: PaymentMethodOxxo? = nil, p24: PaymentMethodP24? = nil, payByBank: PaymentMethodPayByBank? = nil, payco: PaymentMethodPayco? = nil, paynow: PaymentMethodPaynow? = nil, paypal: PaymentMethodPaypal? = nil, payto: PaymentMethodPayto? = nil, pix: PaymentMethodPix? = nil, promptpay: PaymentMethodPromptpay? = nil, revolutPay: PaymentMethodRevolutPay? = nil, samsungPay: PaymentMethodSamsungPay? = nil, satispay: PaymentMethodSatispay? = nil, scalapay: PaymentMethodScalapay? = nil, sepaDebit: PaymentMethodSepaDebit? = nil, sofort: PaymentMethodSofort? = nil, sunbit: PaymentMethodSunbit? = nil, swish: PaymentMethodSwish? = nil, twint: PaymentMethodTwint? = nil, upi: PaymentMethodUpi? = nil, usBankAccount: PaymentMethodUsBankAccount? = nil, wechatPay: PaymentMethodWechatPay? = nil, zip: PaymentMethodZip? = nil) throws {
         (self.billingDetails, self.type) = (billingDetails, type)
         (self.acssDebit, self.affirm) = (acssDebit, affirm)
         (self.afterpayClearpay, self.alipay) = (afterpayClearpay, alipay)
@@ -379,31 +315,21 @@ public enum ConfirmationTokensResourcePaymentMethodPreviewCustomer {
 }
 
 extension ConfirmationTokensResourcePaymentMethodPreviewCustomer: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for ConfirmationTokensResourcePaymentMethodPreviewCustomer"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for ConfirmationTokensResourcePaymentMethodPreviewCustomer")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(Customer.self) {
-            return .customer(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(Customer.self) { return .customer(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -413,6 +339,7 @@ extension ConfirmationTokensResourcePaymentMethodPreviewCustomer: Codable {
         case let .customer(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// Typed representation of the `ConfirmationTokensResourceShipping` API schema.
@@ -430,43 +357,33 @@ public struct ConfirmationTokensResourceShipping: Codable {
         case phone
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension ConfirmationTokensResourceShipping {
-    init(from decoder: Decoder) throws {
+extension ConfirmationTokensResourceShipping {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.address) else {
-            throw SdkValidationError(
-                field: "address",
-                code: "required",
-                message: "Validation failed for 'address': value is required"
-            )
+            throw SdkValidationError(field: "address", code: "required", message: "Validation failed for 'address': value is required")
         }
         guard container.contains(.name) else {
-            throw SdkValidationError(
-                field: "name",
-                code: "required",
-                message: "Validation failed for 'name': value is required"
-            )
+            throw SdkValidationError(field: "name", code: "required", message: "Validation failed for 'name': value is required")
         }
-        address = try container.sdkDecodeRequired(.address)
-        name = try container.sdkDecodeRequired(.name)
-        phone = try container.sdkDecodeIfPresent(.phone)
-        try validateLength("name", name, min: nil, max: 5000)
-        if let value = phone {
+        self.address = try container.sdkDecodeRequired(.address)
+        self.name = try container.sdkDecodeRequired(.name)
+        self.phone = try container.sdkDecodeIfPresent(.phone)
+            try validateLength("name", self.name, min: nil, max: 5000)
+        if let value = self.phone {
             try validateLength("phone", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension ConfirmationTokensResourceShipping {
-    init(address: Address, name: String, phone: String? = nil) throws {
+extension ConfirmationTokensResourceShipping {
+    public init(address: Address, name: String, phone: String? = nil) throws {
         (self.address, self.name) = (address, name)
         self.phone = phone
-        try validateLength("name", self.name, min: nil, max: 5000)
+            try validateLength("name", self.name, min: nil, max: 5000)
         if let value = self.phone {
             try validateLength("phone", value, min: nil, max: 5000)
         }
@@ -477,15 +394,12 @@ public extension ConfirmationTokensResourceShipping {
 public struct ConfirmationTokenObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let confirmationToken = ConfirmationTokenObject(rawValue: "confirmation_token")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -500,16 +414,13 @@ public struct ConfirmationTokenObject: RawRepresentable, Hashable, Codable, Send
 public struct ConfirmationTokenSetupFutureUsage: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let offSession = ConfirmationTokenSetupFutureUsage(rawValue: "off_session")
     public static let onSession = ConfirmationTokenSetupFutureUsage(rawValue: "on_session")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -520,18 +431,13 @@ public struct ConfirmationTokenSetupFutureUsage: RawRepresentable, Hashable, Cod
 
 /// The type of the PaymentMethod. An additional hash is included on the PaymentMethod with a name matching this
 /// value. It contains additional information specific to the PaymentMethod type.
-public struct ConfirmationTokensResourcePaymentMethodPreviewType: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct ConfirmationTokensResourcePaymentMethodPreviewType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let acssDebit = ConfirmationTokensResourcePaymentMethodPreviewType(rawValue: "acss_debit")
     public static let affirm = ConfirmationTokensResourcePaymentMethodPreviewType(rawValue: "affirm")
-    public static let afterpayClearpay =
-        ConfirmationTokensResourcePaymentMethodPreviewType(rawValue: "afterpay_clearpay")
+    public static let afterpayClearpay = ConfirmationTokensResourcePaymentMethodPreviewType(rawValue: "afterpay_clearpay")
     public static let alipay = ConfirmationTokensResourcePaymentMethodPreviewType(rawValue: "alipay")
     public static let alma = ConfirmationTokensResourcePaymentMethodPreviewType(rawValue: "alma")
     public static let amazonPay = ConfirmationTokensResourcePaymentMethodPreviewType(rawValue: "amazon_pay")
@@ -589,7 +495,7 @@ public struct ConfirmationTokensResourcePaymentMethodPreviewType: RawRepresentab
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -601,22 +507,17 @@ public struct ConfirmationTokensResourcePaymentMethodPreviewType: RawRepresentab
 /// This field indicates whether this payment method can be shown again to its customer in a checkout flow.
 /// Stripe products such as Checkout and Elements use this field to determine whether a payment method can be
 /// shown as a saved payment method in a checkout flow. The field defaults to “unspecified”.
-public struct ConfirmationTokensResourcePaymentMethodPreviewAllowRedisplay: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct ConfirmationTokensResourcePaymentMethodPreviewAllowRedisplay: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let always = ConfirmationTokensResourcePaymentMethodPreviewAllowRedisplay(rawValue: "always")
     public static let limited = ConfirmationTokensResourcePaymentMethodPreviewAllowRedisplay(rawValue: "limited")
-    public static let unspecified =
-        ConfirmationTokensResourcePaymentMethodPreviewAllowRedisplay(rawValue: "unspecified")
+    public static let unspecified = ConfirmationTokensResourcePaymentMethodPreviewAllowRedisplay(rawValue: "unspecified")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

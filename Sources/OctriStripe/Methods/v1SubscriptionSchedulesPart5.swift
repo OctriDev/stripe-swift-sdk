@@ -6,11 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1SubscriptionSchedulesMethods {
-    /// Updates the default settings, phases, end behavior, metadata, or proration behavior of an existing subscription
-    /// schedule. Use `phases` to change the schedule's future billing configuration and `end_behavior` to control what
-    /// happens when the schedule ends. The updated schedule response includes its current lifecycle state and complete
-    /// phase configuration.
+extension V1SubscriptionSchedulesMethods {
+    /// Updates the default settings, phases, end behavior, metadata, or proration behavior of an existing subscription schedule. Use `phases` to change the schedule's future billing configuration and `end_behavior` to control what happens when the schedule ends. The updated schedule response includes its current lifecycle state and complete phase configuration.
     ///
     /// Updates an existing subscription schedule.
     ///
@@ -35,35 +32,11 @@ public extension V1SubscriptionSchedulesMethods {
     /// - prorationBehavior: If the update changes the billing configuration (item
     ///   price, quantity, etc.) of the current phase, indicates how prorations from
     ///   this change should be handled. The default value is `create_prorations`.
-    static func postSubscriptionSchedulesSchedule(
-        config: ClientConfig,
-        schedule: String,
-        defaultSettings: PostSubscriptionSchedulesScheduleRequestBodyDefaultSettings?,
-        endBehavior: PostSubscriptionSchedulesScheduleRequestBodyEndBehavior?,
-        expand: [String]?,
-        metadata: PostSubscriptionSchedulesScheduleRequestBodyMetadata?,
-        phases: [PostSubscriptionSchedulesScheduleRequestBodyPhasesItem]?,
-        prorationBehavior: PostSubscriptionSchedulesScheduleRequestBodyProrationBehavior?
-    ) async throws -> SubscriptionSchedule {
+    public static func postSubscriptionSchedulesSchedule(config: ClientConfig, schedule: String, defaultSettings: PostSubscriptionSchedulesScheduleRequestBodyDefaultSettings?, endBehavior: PostSubscriptionSchedulesScheduleRequestBodyEndBehavior?, expand: [String]?, metadata: PostSubscriptionSchedulesScheduleRequestBodyMetadata?, phases: [PostSubscriptionSchedulesScheduleRequestBodyPhasesItem]?, prorationBehavior: PostSubscriptionSchedulesScheduleRequestBodyProrationBehavior?) async throws -> SubscriptionSchedule {
         try validateLength("schedule", schedule, max: 5000)
 
-        let requestBody = PostSubscriptionSchedulesScheduleRequestBody(
-            defaultSettings: defaultSettings,
-            endBehavior: endBehavior,
-            expand: expand,
-            metadata: metadata,
-            phases: phases,
-            prorationBehavior: prorationBehavior
-        )
+        let requestBody = PostSubscriptionSchedulesScheduleRequestBody(defaultSettings: defaultSettings, endBehavior: endBehavior, expand: expand, metadata: metadata, phases: phases, prorationBehavior: prorationBehavior)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/subscription_schedules/", sdkEncodePathSegment(sdkWireString(schedule))].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostSubscriptionSchedulesSchedule"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/subscription_schedules/", sdkEncodePathSegment(sdkWireString(schedule))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostSubscriptionSchedulesSchedule")).data
     }
 }

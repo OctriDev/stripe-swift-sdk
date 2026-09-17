@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1 domain models
+// V1 domain models
 /// To top up your Stripe balance, you create a top-up object. You can retrieve individual top-ups, as well as list
 /// all top-ups. Top-ups are identified by a unique, random ID. Related guide: Topping up your platform account
 public struct Topup: Codable {
@@ -74,59 +74,37 @@ public struct Topup: Codable {
         case transferGroup = "transfer_group"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension Topup {
-    init(from decoder: Decoder) throws {
+extension Topup {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        amount = try container.sdkDecodeRequired(.amount)
-        created = try container.sdkDecodeRequired(.created)
-        currency = try container.sdkDecodeRequired(.currency)
-        id = try container.sdkDecodeRequired(.id)
-        livemode = try container.sdkDecodeRequired(.livemode)
-        metadata = try container.sdkDecodeRequired(.metadata)
-        object = try container.sdkDecodeRequired(.object)
-        status = try container.sdkDecodeRequired(.status)
-        balanceTransaction = try container.sdkDecodeIfPresent(.balanceTransaction)
-        description = try container.sdkDecodeIfPresent(.description)
-        expectedAvailabilityDate = try container.sdkDecodeIfPresent(.expectedAvailabilityDate)
-        failureCode = try container.sdkDecodeIfPresent(.failureCode)
-        failureMessage = try container.sdkDecodeIfPresent(.failureMessage)
-        initiatedBy = try container.sdkDecodeIfPresent(.initiatedBy)
-        paymentMethod = try container.sdkDecodeIfPresent(.paymentMethod)
-        paymentMethodOptions = try container.sdkDecodeIfPresent(.paymentMethodOptions)
-        source = try container.sdkDecodeIfPresent(.source)
-        statementDescriptor = try container.sdkDecodeIfPresent(.statementDescriptor)
-        transferGroup = try container.sdkDecodeIfPresent(.transferGroup)
+        self.amount = try container.sdkDecodeRequired(.amount)
+        self.created = try container.sdkDecodeRequired(.created)
+        self.currency = try container.sdkDecodeRequired(.currency)
+        self.id = try container.sdkDecodeRequired(.id)
+        self.livemode = try container.sdkDecodeRequired(.livemode)
+        self.metadata = try container.sdkDecodeRequired(.metadata)
+        self.object = try container.sdkDecodeRequired(.object)
+        self.status = try container.sdkDecodeRequired(.status)
+        self.balanceTransaction = try container.sdkDecodeIfPresent(.balanceTransaction)
+        self.description = try container.sdkDecodeIfPresent(.description)
+        self.expectedAvailabilityDate = try container.sdkDecodeIfPresent(.expectedAvailabilityDate)
+        self.failureCode = try container.sdkDecodeIfPresent(.failureCode)
+        self.failureMessage = try container.sdkDecodeIfPresent(.failureMessage)
+        self.initiatedBy = try container.sdkDecodeIfPresent(.initiatedBy)
+        self.paymentMethod = try container.sdkDecodeIfPresent(.paymentMethod)
+        self.paymentMethodOptions = try container.sdkDecodeIfPresent(.paymentMethodOptions)
+        self.source = try container.sdkDecodeIfPresent(.source)
+        self.statementDescriptor = try container.sdkDecodeIfPresent(.statementDescriptor)
+        self.transferGroup = try container.sdkDecodeIfPresent(.transferGroup)
         try sdkValidateConstraints()
     }
 }
 
-public extension Topup {
-    init(
-        amount: Int,
-        created: Int,
-        currency: String,
-        id: String,
-        livemode: Bool,
-        metadata: [String: String],
-        object: TopupObject,
-        status: TopupStatus,
-        balanceTransaction: TopupBalanceTransaction? = nil,
-        description: String? = nil,
-        expectedAvailabilityDate: Int? = nil,
-        failureCode: String? = nil,
-        failureMessage: String? = nil,
-        initiatedBy: TopupInitiatedBy? = nil,
-        paymentMethod: TopupPaymentMethod? = nil,
-        paymentMethodOptions: TopupPaymentMethodOptions? = nil,
-        source: TopupSource? = nil,
-        statementDescriptor: String? = nil,
-        transferGroup: String? = nil
-    ) throws {
+extension Topup {
+    public init(amount: Int, created: Int, currency: String, id: String, livemode: Bool, metadata: [String: String], object: TopupObject, status: TopupStatus, balanceTransaction: TopupBalanceTransaction? = nil, description: String? = nil, expectedAvailabilityDate: Int? = nil, failureCode: String? = nil, failureMessage: String? = nil, initiatedBy: TopupInitiatedBy? = nil, paymentMethod: TopupPaymentMethod? = nil, paymentMethodOptions: TopupPaymentMethodOptions? = nil, source: TopupSource? = nil, statementDescriptor: String? = nil, transferGroup: String? = nil) throws {
         (self.amount, self.created) = (amount, created)
         (self.currency, self.id) = (currency, id)
         (self.livemode, self.metadata) = (livemode, metadata)
@@ -143,57 +121,47 @@ public extension Topup {
 
 extension Topup {
     func sdkValidateConstraints() throws {
-        try validateLength("currency", currency, min: nil, max: 5000)
-        try validateLength("id", id, min: nil, max: 5000)
-        if let value = description {
+            try validateLength("currency", self.currency, min: nil, max: 5000)
+            try validateLength("id", self.id, min: nil, max: 5000)
+        if let value = self.description {
             try validateLength("description", value, min: nil, max: 5000)
         }
-        if let value = failureCode {
+        if let value = self.failureCode {
             try validateLength("failure_code", value, min: nil, max: 5000)
         }
-        if let value = failureMessage {
+        if let value = self.failureMessage {
             try validateLength("failure_message", value, min: nil, max: 5000)
         }
-        if let value = statementDescriptor {
+        if let value = self.statementDescriptor {
             try validateLength("statement_descriptor", value, min: nil, max: 5000)
         }
-        if let value = transferGroup {
+        if let value = self.transferGroup {
             try validateLength("transfer_group", value, min: nil, max: 5000)
         }
     }
 }
 
-public enum TopupBalanceTransaction {
+public indirect enum TopupBalanceTransaction {
     case stringValue(String)
     case balanceTransaction(BalanceTransaction)
 }
 
 extension TopupBalanceTransaction: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for TopupBalanceTransaction"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for TopupBalanceTransaction")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(BalanceTransaction.self) {
-            return .balanceTransaction(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(BalanceTransaction.self) { return .balanceTransaction(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -203,39 +171,30 @@ extension TopupBalanceTransaction: Codable {
         case let .balanceTransaction(value): try container.encode(value); return true
         }
     }
+
 }
 
-public enum TopupPaymentMethod {
+public indirect enum TopupPaymentMethod {
     case stringValue(String)
     case paymentMethod(PaymentMethod)
 }
 
 extension TopupPaymentMethod: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for TopupPaymentMethod"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for TopupPaymentMethod")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(PaymentMethod.self) {
-            return .paymentMethod(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(PaymentMethod.self) { return .paymentMethod(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -245,6 +204,7 @@ extension TopupPaymentMethod: Codable {
         case let .paymentMethod(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum TopupPaymentMethodOptions {
@@ -252,29 +212,20 @@ public enum TopupPaymentMethodOptions {
 }
 
 extension TopupPaymentMethodOptions: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for TopupPaymentMethodOptions"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for TopupPaymentMethodOptions")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container
-            .decode(TopupResourcePaymentMethodOptions.self) {
-            return .topupResourcePaymentMethodOptions(value)
-        }
+        if let value = try? container.decode(TopupResourcePaymentMethodOptions.self) { return .topupResourcePaymentMethodOptions(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -283,6 +234,7 @@ extension TopupPaymentMethodOptions: Codable {
         case let .topupResourcePaymentMethodOptions(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum TopupSource {
@@ -290,25 +242,20 @@ public enum TopupSource {
 }
 
 extension TopupSource: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
         throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for TopupSource")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(Source.self) {
-            return .source(value)
-        }
+        if let value = try? container.decode(Source.self) { return .source(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -317,6 +264,7 @@ extension TopupSource: Codable {
         case let .source(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// A `Transfer` object is created when you move funds between Stripe accounts as part of Connect. Before April 6,
@@ -385,74 +333,30 @@ public struct Transfer: Codable {
         case transferGroup = "transfer_group"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension Transfer {
-    init(from decoder: Decoder) throws {
+extension Transfer {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        amount = try container.sdkDecodeRequired(.amount)
-        amountReversed = try container.sdkDecodeRequired(.amountReversed)
-        created = try container.sdkDecodeRequired(.created)
-        currency = try container.sdkDecodeRequired(.currency)
-        id = try container.sdkDecodeRequired(.id)
-        livemode = try container.sdkDecodeRequired(.livemode)
-        metadata = try container.sdkDecodeRequired(.metadata)
-        object = try container.sdkDecodeRequired(.object)
-        reversals = try container.sdkDecodeRequired(.reversals)
-        reversed = try container.sdkDecodeRequired(.reversed)
-        balanceTransaction = try container.sdkDecodeIfPresent(.balanceTransaction)
-        description = try container.sdkDecodeIfPresent(.description)
-        destination = try container.sdkDecodeIfPresent(.destination)
-        destinationPayment = try container.sdkDecodeIfPresent(.destinationPayment)
-        sourceTransaction = try container.sdkDecodeIfPresent(.sourceTransaction)
-        sourceType = try container.sdkDecodeIfPresent(.sourceType)
-        transferGroup = try container.sdkDecodeIfPresent(.transferGroup)
-        try validateLength("id", id, min: nil, max: 5000)
-        if let value = description {
-            try validateLength("description", value, min: nil, max: 5000)
-        }
-        if let value = sourceType {
-            try validateLength("source_type", value, min: nil, max: 5000)
-        }
-        if let value = transferGroup {
-            try validateLength("transfer_group", value, min: nil, max: 5000)
-        }
-    }
-}
-
-public extension Transfer {
-    init(
-        amount: Int,
-        amountReversed: Int,
-        created: Int,
-        currency: String,
-        id: String,
-        livemode: Bool,
-        metadata: [String: String],
-        object: TransferObject,
-        reversals: TransferReversals,
-        reversed: Bool,
-        balanceTransaction: TransferBalanceTransaction? = nil,
-        description: String? = nil,
-        destination: TransferDestination? = nil,
-        destinationPayment: TransferDestinationPayment? = nil,
-        sourceTransaction: TransferSourceTransaction? = nil,
-        sourceType: String? = nil,
-        transferGroup: String? = nil
-    ) throws {
-        (self.amount, self.amountReversed) = (amount, amountReversed)
-        (self.created, self.currency) = (created, currency)
-        (self.id, self.livemode) = (id, livemode)
-        (self.metadata, self.object) = (metadata, object)
-        (self.reversals, self.reversed) = (reversals, reversed)
-        (self.balanceTransaction, self.description) = (balanceTransaction, description)
-        (self.destination, self.destinationPayment) = (destination, destinationPayment)
-        (self.sourceTransaction, self.sourceType) = (sourceTransaction, sourceType)
-        self.transferGroup = transferGroup
-        try validateLength("id", self.id, min: nil, max: 5000)
+        self.amount = try container.sdkDecodeRequired(.amount)
+        self.amountReversed = try container.sdkDecodeRequired(.amountReversed)
+        self.created = try container.sdkDecodeRequired(.created)
+        self.currency = try container.sdkDecodeRequired(.currency)
+        self.id = try container.sdkDecodeRequired(.id)
+        self.livemode = try container.sdkDecodeRequired(.livemode)
+        self.metadata = try container.sdkDecodeRequired(.metadata)
+        self.object = try container.sdkDecodeRequired(.object)
+        self.reversals = try container.sdkDecodeRequired(.reversals)
+        self.reversed = try container.sdkDecodeRequired(.reversed)
+        self.balanceTransaction = try container.sdkDecodeIfPresent(.balanceTransaction)
+        self.description = try container.sdkDecodeIfPresent(.description)
+        self.destination = try container.sdkDecodeIfPresent(.destination)
+        self.destinationPayment = try container.sdkDecodeIfPresent(.destinationPayment)
+        self.sourceTransaction = try container.sdkDecodeIfPresent(.sourceTransaction)
+        self.sourceType = try container.sdkDecodeIfPresent(.sourceType)
+        self.transferGroup = try container.sdkDecodeIfPresent(.transferGroup)
+            try validateLength("id", self.id, min: nil, max: 5000)
         if let value = self.description {
             try validateLength("description", value, min: nil, max: 5000)
         }
@@ -465,37 +369,51 @@ public extension Transfer {
     }
 }
 
-public enum TransferBalanceTransaction {
+extension Transfer {
+    public init(amount: Int, amountReversed: Int, created: Int, currency: String, id: String, livemode: Bool, metadata: [String: String], object: TransferObject, reversals: TransferReversals, reversed: Bool, balanceTransaction: TransferBalanceTransaction? = nil, description: String? = nil, destination: TransferDestination? = nil, destinationPayment: TransferDestinationPayment? = nil, sourceTransaction: TransferSourceTransaction? = nil, sourceType: String? = nil, transferGroup: String? = nil) throws {
+        (self.amount, self.amountReversed) = (amount, amountReversed)
+        (self.created, self.currency) = (created, currency)
+        (self.id, self.livemode) = (id, livemode)
+        (self.metadata, self.object) = (metadata, object)
+        (self.reversals, self.reversed) = (reversals, reversed)
+        (self.balanceTransaction, self.description) = (balanceTransaction, description)
+        (self.destination, self.destinationPayment) = (destination, destinationPayment)
+        (self.sourceTransaction, self.sourceType) = (sourceTransaction, sourceType)
+        self.transferGroup = transferGroup
+            try validateLength("id", self.id, min: nil, max: 5000)
+        if let value = self.description {
+            try validateLength("description", value, min: nil, max: 5000)
+        }
+        if let value = self.sourceType {
+            try validateLength("source_type", value, min: nil, max: 5000)
+        }
+        if let value = self.transferGroup {
+            try validateLength("transfer_group", value, min: nil, max: 5000)
+        }
+    }
+}
+
+public indirect enum TransferBalanceTransaction {
     case stringValue(String)
     case balanceTransaction(BalanceTransaction)
 }
 
 extension TransferBalanceTransaction: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for TransferBalanceTransaction"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for TransferBalanceTransaction")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(BalanceTransaction.self) {
-            return .balanceTransaction(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(BalanceTransaction.self) { return .balanceTransaction(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -505,6 +423,7 @@ extension TransferBalanceTransaction: Codable {
         case let .balanceTransaction(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum TransferDestination {
@@ -513,31 +432,21 @@ public enum TransferDestination {
 }
 
 extension TransferDestination: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for TransferDestination"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for TransferDestination")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(Account.self) {
-            return .account(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(Account.self) { return .account(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -547,39 +456,30 @@ extension TransferDestination: Codable {
         case let .account(value): try container.encode(value); return true
         }
     }
+
 }
 
-public enum TransferDestinationPayment {
+public indirect enum TransferDestinationPayment {
     case stringValue(String)
     case charge(Charge)
 }
 
 extension TransferDestinationPayment: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for TransferDestinationPayment"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for TransferDestinationPayment")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(Charge.self) {
-            return .charge(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(Charge.self) { return .charge(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -589,6 +489,7 @@ extension TransferDestinationPayment: Codable {
         case let .charge(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// A list of reversals that have been applied to the transfer.
@@ -610,59 +511,41 @@ public struct TransferReversals: Codable {
         case url
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension TransferReversals {
-    init(from decoder: Decoder) throws {
+extension TransferReversals {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.data) else {
-            throw SdkValidationError(
-                field: "data",
-                code: "required",
-                message: "Validation failed for 'data': value is required"
-            )
+            throw SdkValidationError(field: "data", code: "required", message: "Validation failed for 'data': value is required")
         }
         guard container.contains(.hasMore) else {
-            throw SdkValidationError(
-                field: "has_more",
-                code: "required",
-                message: "Validation failed for 'has_more': value is required"
-            )
+            throw SdkValidationError(field: "has_more", code: "required", message: "Validation failed for 'has_more': value is required")
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(
-                field: "object",
-                code: "required",
-                message: "Validation failed for 'object': value is required"
-            )
+            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
         }
         guard container.contains(.url) else {
-            throw SdkValidationError(
-                field: "url",
-                code: "required",
-                message: "Validation failed for 'url': value is required"
-            )
+            throw SdkValidationError(field: "url", code: "required", message: "Validation failed for 'url': value is required")
         }
-        data = try container.sdkDecodeRequired(.data)
-        hasMore = try container.sdkDecodeRequired(.hasMore)
-        object = try container.sdkDecodeRequired(.object)
-        url = try container.sdkDecodeRequired(.url)
-        try validateLength("url", url, min: nil, max: 5000)
+        self.data = try container.sdkDecodeRequired(.data)
+        self.hasMore = try container.sdkDecodeRequired(.hasMore)
+        self.object = try container.sdkDecodeRequired(.object)
+        self.url = try container.sdkDecodeRequired(.url)
+            try validateLength("url", self.url, min: nil, max: 5000)
     }
 }
 
-public extension TransferReversals {
-    init(data: [TransferReversal], hasMore: Bool, object: TransferReversalsObject, url: String) throws {
+extension TransferReversals {
+    public init(data: [TransferReversal], hasMore: Bool, object: TransferReversalsObject, url: String) throws {
         (self.data, self.hasMore) = (data, hasMore)
         (self.object, self.url) = (object, url)
-        try validateLength("url", self.url, min: nil, max: 5000)
+            try validateLength("url", self.url, min: nil, max: 5000)
     }
 }
 
-public enum TransferSourceTransaction {
+public indirect enum TransferSourceTransaction {
     case stringValue(String)
     case charge(Charge)
 }

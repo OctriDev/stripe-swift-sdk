@@ -6,15 +6,10 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1InvoicesSearchMethods {
-    /// Searches invoices using the supplied search query. Use `query` with the invoice search query language, and use
-    /// `page` and `limit` to paginate results; search data can lag behind recent changes and is unavailable to
-    /// merchants in India.
+extension V1InvoicesSearchMethods {
+    /// Searches invoices using the supplied search query. Use `query` with the invoice search query language, and use `page` and `limit` to paginate results; search data can lag behind recent changes and is unavailable to merchants in India.
     ///
-    /// Search for invoices you’ve previously created using Stripe’s Search Query Language. Don’t use search in
-    /// read-after-write flows where strict consistency is necessary. Under normal operating conditions, data is
-    /// searchable in less than a minute. Occasionally, propagation of new or updated data can be up to an hour behind
-    /// during outages. Search functionality is not available to merchants in India.
+    /// Search for invoices you’ve previously created using Stripe’s Search Query Language. Don’t use search in read-after-write flows where strict consistency is necessary. Under normal operating conditions, data is searchable in less than a minute. Occasionally, propagation of new or updated data can be up to an hour behind during outages. Search functionality is not available to merchants in India.
     ///
     /// - Parameters:
     /// - query: The search query string. See [search query
@@ -27,20 +22,14 @@ public extension V1InvoicesSearchMethods {
     /// - page: A cursor for pagination across multiple pages of results. Don't
     ///   include this parameter on the first call. Use the next_page value returned
     ///   in a previous response to request subsequent results.
-    static func getInvoicesSearch(
-        config: ClientConfig,
-        query: String,
-        expand: [String]?,
-        limit: Int?,
-        page: String?
-    ) async throws -> GetInvoicesSearchResponse {
+    public static func getInvoicesSearch(config: ClientConfig, query: String, expand: [String]?, limit: Int?, page: String?) async throws -> GetInvoicesSearchResponse {
         try validateLength("query", query, max: 5000)
 
-        if let page {
+        if let page = page {
             try validateLength("page", page, max: 5000)
         }
 
-        return try await (sdkRequest("GET", "/v1/invoices/search", config: config, query: [
+        return try (await sdkRequest("GET", "/v1/invoices/search", config: config, query: [
             SdkQueryParameter("query", value: query),
             SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
             SdkQueryParameter("limit", value: limit),
@@ -48,14 +37,9 @@ public extension V1InvoicesSearchMethods {
         ], decoder: .json, operationId: "GetInvoicesSearch")).data
     }
 
-    /// Searches invoices using the supplied search query. Use `query` with the invoice search query language, and use
-    /// `page` and `limit` to paginate results; search data can lag behind recent changes and is unavailable to
-    /// merchants in India.
+    /// Searches invoices using the supplied search query. Use `query` with the invoice search query language, and use `page` and `limit` to paginate results; search data can lag behind recent changes and is unavailable to merchants in India.
     ///
-    /// Search for invoices you’ve previously created using Stripe’s Search Query Language. Don’t use search in
-    /// read-after-write flows where strict consistency is necessary. Under normal operating conditions, data is
-    /// searchable in less than a minute. Occasionally, propagation of new or updated data can be up to an hour behind
-    /// during outages. Search functionality is not available to merchants in India.
+    /// Search for invoices you’ve previously created using Stripe’s Search Query Language. Don’t use search in read-after-write flows where strict consistency is necessary. Under normal operating conditions, data is searchable in less than a minute. Occasionally, propagation of new or updated data can be up to an hour behind during outages. Search functionality is not available to merchants in India.
     ///
     /// - Parameters:
     /// - query: The search query string. See [search query
@@ -68,34 +52,15 @@ public extension V1InvoicesSearchMethods {
     /// - page: A cursor for pagination across multiple pages of results. Don't
     ///   include this parameter on the first call. Use the next_page value returned
     ///   in a previous response to request subsequent results.
-    static func getInvoicesSearchPaginated(
-        config: ClientConfig,
-        query: String,
-        expand: [String]?,
-        limit: Int?,
-        page: String?
-    ) -> AsyncThrowingStream<Invoice, Swift.Error> {
-        AsyncThrowingStream<Invoice, Swift.Error> { (continuation: AsyncThrowingStream<
-            Invoice,
-            Swift.Error
-        >.Continuation) in
+    public static func getInvoicesSearchPaginated(config: ClientConfig, query: String, expand: [String]?, limit: Int?, page: String?) -> AsyncThrowingStream<Invoice, Swift.Error> {
+        return AsyncThrowingStream<Invoice, Swift.Error> { (continuation: AsyncThrowingStream<Invoice, Swift.Error>.Continuation) in
             let task = _Concurrency.Task {
                 do {
                     var pageCursor = page
                     while true {
-                        let pageResponse = try await getInvoicesSearch(
-                            config: config,
-                            query: query,
-                            expand: expand,
-                            limit: limit,
-                            page: pageCursor
-                        )
-                        for item in pageResponse.data {
-                            continuation.yield(item)
-                        }
-                        if !pageResponse.hasMore {
-                            break
-                        }
+                        let pageResponse = try await getInvoicesSearch(config: config, query: query, expand: expand, limit: limit, page: pageCursor)
+                        for item in pageResponse.data { continuation.yield(item) }
+                        if !pageResponse.hasMore { break }
                         guard let nextCursor = pageResponse.nextPage else { break }
                         pageCursor = nextCursor
                     }
@@ -109,47 +74,24 @@ public extension V1InvoicesSearchMethods {
         }
     }
 
-    struct GetInvoicesSearchPage {
+    public struct GetInvoicesSearchPage {
         public let data: GetInvoicesSearchResponse
         public let items: [Invoice]
         public let hasMore: Bool
     }
 
-    static func getInvoicesSearchPages(
-        config: ClientConfig,
-        query: String,
-        expand: [String]?,
-        limit: Int?,
-        page: String?
-    ) -> AsyncThrowingStream<GetInvoicesSearchPage, Swift.Error> {
-        AsyncThrowingStream<GetInvoicesSearchPage, Swift.Error> { (pageContinuation: AsyncThrowingStream<
-            GetInvoicesSearchPage,
-            Swift.Error
-        >.Continuation) in
+    public static func getInvoicesSearchPages(config: ClientConfig, query: String, expand: [String]?, limit: Int?, page: String?) -> AsyncThrowingStream<GetInvoicesSearchPage, Swift.Error> {
+        return AsyncThrowingStream<GetInvoicesSearchPage, Swift.Error> { (pageContinuation: AsyncThrowingStream<GetInvoicesSearchPage, Swift.Error>.Continuation) in
             let task = _Concurrency.Task {
                 do {
                     var pageCursor = page
                     while true {
-                        let pageResponse = try await getInvoicesSearch(
-                            config: config,
-                            query: query,
-                            expand: expand,
-                            limit: limit,
-                            page: pageCursor
-                        )
+                        let pageResponse = try await getInvoicesSearch(config: config, query: query, expand: expand, limit: limit, page: pageCursor)
                         let pageItems = pageResponse.data
-                        if pageItems.isEmpty {
-                            break
-                        }
+                        if pageItems.isEmpty { break }
                         let hasMore = pageResponse.hasMore && pageResponse.nextPage != nil
-                        pageContinuation.yield(GetInvoicesSearchPage(
-                            data: pageResponse,
-                            items: pageItems,
-                            hasMore: hasMore
-                        ))
-                        if !hasMore {
-                            break
-                        }
+                        pageContinuation.yield(GetInvoicesSearchPage(data: pageResponse, items: pageItems, hasMore: hasMore))
+                        if !hasMore { break }
                         guard let nextCursor = pageResponse.nextPage else { break }
                         pageCursor = nextCursor
                     }

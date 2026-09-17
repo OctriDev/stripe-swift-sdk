@@ -6,23 +6,17 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public struct PostAccountsRequestBodyCompanyOwnershipExemptionReason: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostAccountsRequestBodyCompanyOwnershipExemptionReason: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostAccountsRequestBodyCompanyOwnershipExemptionReason(rawValue: "")
-    public static let qualifiedEntityExceedsOwnershipThreshold =
-        PostAccountsRequestBodyCompanyOwnershipExemptionReason(rawValue: "qualified_entity_exceeds_ownership_threshold")
-    public static let qualifiesAsFinancialInstitution =
-        PostAccountsRequestBodyCompanyOwnershipExemptionReason(rawValue: "qualifies_as_financial_institution")
+    public static let qualifiedEntityExceedsOwnershipThreshold = PostAccountsRequestBodyCompanyOwnershipExemptionReason(rawValue: "qualified_entity_exceeds_ownership_threshold")
+    public static let qualifiesAsFinancialInstitution = PostAccountsRequestBodyCompanyOwnershipExemptionReason(rawValue: "qualifies_as_financial_institution")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -31,19 +25,15 @@ public struct PostAccountsRequestBodyCompanyOwnershipExemptionReason: RawReprese
     }
 }
 
-public struct PostAccountsRequestBodyCompanyRegistrationDateVariant1: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostAccountsRequestBodyCompanyRegistrationDateVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostAccountsRequestBodyCompanyRegistrationDateVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -52,27 +42,18 @@ public struct PostAccountsRequestBodyCompanyRegistrationDateVariant1: RawReprese
     }
 }
 
-public struct PostAccountsRequestBodyCompanyStructure: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostAccountsRequestBodyCompanyStructure: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostAccountsRequestBodyCompanyStructure(rawValue: "")
-    public static let freeZoneEstablishment =
-        PostAccountsRequestBodyCompanyStructure(rawValue: "free_zone_establishment")
+    public static let freeZoneEstablishment = PostAccountsRequestBodyCompanyStructure(rawValue: "free_zone_establishment")
     public static let freeZoneLlc = PostAccountsRequestBodyCompanyStructure(rawValue: "free_zone_llc")
-    public static let governmentInstrumentality =
-        PostAccountsRequestBodyCompanyStructure(rawValue: "government_instrumentality")
+    public static let governmentInstrumentality = PostAccountsRequestBodyCompanyStructure(rawValue: "government_instrumentality")
     public static let governmentalUnit = PostAccountsRequestBodyCompanyStructure(rawValue: "governmental_unit")
-    public static let incorporatedNonProfit =
-        PostAccountsRequestBodyCompanyStructure(rawValue: "incorporated_non_profit")
-    public static let incorporatedPartnership =
-        PostAccountsRequestBodyCompanyStructure(rawValue: "incorporated_partnership")
-    public static let limitedLiabilityPartnership =
-        PostAccountsRequestBodyCompanyStructure(rawValue: "limited_liability_partnership")
+    public static let incorporatedNonProfit = PostAccountsRequestBodyCompanyStructure(rawValue: "incorporated_non_profit")
+    public static let incorporatedPartnership = PostAccountsRequestBodyCompanyStructure(rawValue: "incorporated_partnership")
+    public static let limitedLiabilityPartnership = PostAccountsRequestBodyCompanyStructure(rawValue: "limited_liability_partnership")
     public static let llc = PostAccountsRequestBodyCompanyStructure(rawValue: "llc")
     public static let multiMemberLlc = PostAccountsRequestBodyCompanyStructure(rawValue: "multi_member_llc")
     public static let privateCompany = PostAccountsRequestBodyCompanyStructure(rawValue: "private_company")
@@ -85,18 +66,14 @@ public struct PostAccountsRequestBodyCompanyStructure: RawRepresentable, Hashabl
     public static let singleMemberLlc = PostAccountsRequestBodyCompanyStructure(rawValue: "single_member_llc")
     public static let soleEstablishment = PostAccountsRequestBodyCompanyStructure(rawValue: "sole_establishment")
     public static let soleProprietorship = PostAccountsRequestBodyCompanyStructure(rawValue: "sole_proprietorship")
-    public static let taxExemptGovernmentInstrumentality =
-        PostAccountsRequestBodyCompanyStructure(rawValue: "tax_exempt_government_instrumentality")
-    public static let unincorporatedAssociation =
-        PostAccountsRequestBodyCompanyStructure(rawValue: "unincorporated_association")
-    public static let unincorporatedNonProfit =
-        PostAccountsRequestBodyCompanyStructure(rawValue: "unincorporated_non_profit")
-    public static let unincorporatedPartnership =
-        PostAccountsRequestBodyCompanyStructure(rawValue: "unincorporated_partnership")
+    public static let taxExemptGovernmentInstrumentality = PostAccountsRequestBodyCompanyStructure(rawValue: "tax_exempt_government_instrumentality")
+    public static let unincorporatedAssociation = PostAccountsRequestBodyCompanyStructure(rawValue: "unincorporated_association")
+    public static let unincorporatedNonProfit = PostAccountsRequestBodyCompanyStructure(rawValue: "unincorporated_non_profit")
+    public static let unincorporatedPartnership = PostAccountsRequestBodyCompanyStructure(rawValue: "unincorporated_partnership")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -105,20 +82,16 @@ public struct PostAccountsRequestBodyCompanyStructure: RawRepresentable, Hashabl
     }
 }
 
-public struct PostAccountsRequestBodyControllerFeesPayer: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostAccountsRequestBodyControllerFeesPayer: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let account = PostAccountsRequestBodyControllerFeesPayer(rawValue: "account")
     public static let application = PostAccountsRequestBodyControllerFeesPayer(rawValue: "application")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -127,20 +100,16 @@ public struct PostAccountsRequestBodyControllerFeesPayer: RawRepresentable, Hash
     }
 }
 
-public struct PostAccountsRequestBodyControllerLossesPayments: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostAccountsRequestBodyControllerLossesPayments: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let application = PostAccountsRequestBodyControllerLossesPayments(rawValue: "application")
     public static let stripe = PostAccountsRequestBodyControllerLossesPayments(rawValue: "stripe")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -149,20 +118,16 @@ public struct PostAccountsRequestBodyControllerLossesPayments: RawRepresentable,
     }
 }
 
-public struct PostAccountsRequestBodyControllerRequirementCollection: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostAccountsRequestBodyControllerRequirementCollection: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let application = PostAccountsRequestBodyControllerRequirementCollection(rawValue: "application")
     public static let stripe = PostAccountsRequestBodyControllerRequirementCollection(rawValue: "stripe")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -171,21 +136,17 @@ public struct PostAccountsRequestBodyControllerRequirementCollection: RawReprese
     }
 }
 
-public struct PostAccountsRequestBodyControllerStripeDashboardType: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostAccountsRequestBodyControllerStripeDashboardType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let express = PostAccountsRequestBodyControllerStripeDashboardType(rawValue: "express")
     public static let full = PostAccountsRequestBodyControllerStripeDashboardType(rawValue: "full")
     public static let none = PostAccountsRequestBodyControllerStripeDashboardType(rawValue: "none")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -194,19 +155,15 @@ public struct PostAccountsRequestBodyControllerStripeDashboardType: RawRepresent
     }
 }
 
-public struct PostAccountsRequestBodyGroupsPaymentsPricingVariant1: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostAccountsRequestBodyGroupsPaymentsPricingVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostAccountsRequestBodyGroupsPaymentsPricingVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -215,19 +172,15 @@ public struct PostAccountsRequestBodyGroupsPaymentsPricingVariant1: RawRepresent
     }
 }
 
-public struct PostAccountsRequestBodyIndividualDobVariant1: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostAccountsRequestBodyIndividualDobVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostAccountsRequestBodyIndividualDobVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -236,19 +189,15 @@ public struct PostAccountsRequestBodyIndividualDobVariant1: RawRepresentable, Ha
     }
 }
 
-public struct PostAccountsRequestBodyIndividualFullNameAliasesVariant1: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostAccountsRequestBodyIndividualFullNameAliasesVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostAccountsRequestBodyIndividualFullNameAliasesVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

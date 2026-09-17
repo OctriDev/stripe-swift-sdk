@@ -6,10 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1CustomersTaxIdsMethods {
-    /// Creates a tax ID for a customer. Supply the tax ID `type` and its corresponding `value`, then use `expand` if
-    /// you need selected response fields expanded. The tax ID is displayed on invoices and credit notes associated with
-    /// the customer.
+extension V1CustomersTaxIdsMethods {
+    /// Creates a tax ID for a customer. Supply the tax ID `type` and its corresponding `value`, then use `expand` if you need selected response fields expanded. The tax ID is displayed on invoices and credit notes associated with the customer.
     ///
     /// Creates a new tax_id object for a customer.
     ///
@@ -34,27 +32,13 @@ public extension V1CustomersTaxIdsMethods {
     ///   `zw_tin`
     /// - value: Value of the tax ID.
     /// - expand: Specifies which fields in the response should be expanded.
-    static func postCustomersCustomerTaxIds(
-        config: ClientConfig,
-        customer: String,
-        type: PostCustomersCustomerTaxIdsRequestBodyType,
-        value: String,
-        expand: [String]?
-    ) async throws -> TaxId {
+    public static func postCustomersCustomerTaxIds(config: ClientConfig, customer: String, type: PostCustomersCustomerTaxIdsRequestBodyType, value: String, expand: [String]?) async throws -> TaxId {
         try validateLength("customer", customer, max: 5000)
 
         try validateLength("type", type.rawValue, max: 5000)
 
         let requestBody = PostCustomersCustomerTaxIdsRequestBody(type: type, value: value, expand: expand)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/customers/", sdkEncodePathSegment(sdkWireString(customer)), "/tax_ids"].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostCustomersCustomerTaxIds"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/customers/", sdkEncodePathSegment(sdkWireString(customer)), "/tax_ids"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostCustomersCustomerTaxIds")).data
     }
 }

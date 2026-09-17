@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1PaymentIntentNext domain models
+// V1PaymentIntentNext domain models
 /// Typed representation of the `PaymentIntentNextActionPixDisplayQrCode` API schema.
 public struct PaymentIntentNextActionPixDisplayQrCode: Codable {
     /// The raw data string used to generate QR code, it should be used together with QR code library.
@@ -26,41 +26,35 @@ public struct PaymentIntentNextActionPixDisplayQrCode: Codable {
     }
 
     init() {
-        (data, expiresAt, hostedInstructionsUrl, imageUrlPng, imageUrlSvg) = (nil, nil, nil, nil, nil)
+        (self.data, self.expiresAt, self.hostedInstructionsUrl, self.imageUrlPng, self.imageUrlSvg) = (nil, nil, nil, nil, nil)
     }
 }
 
-public extension PaymentIntentNextActionPixDisplayQrCode {
-    init(from decoder: Decoder) throws {
+extension PaymentIntentNextActionPixDisplayQrCode {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        data = try container.sdkDecodeIfPresent(.data)
-        expiresAt = try container.sdkDecodeIfPresent(.expiresAt)
-        hostedInstructionsUrl = try container.sdkDecodeIfPresent(.hostedInstructionsUrl)
-        imageUrlPng = try container.sdkDecodeIfPresent(.imageUrlPng)
-        imageUrlSvg = try container.sdkDecodeIfPresent(.imageUrlSvg)
-        if let value = data {
+        self.data = try container.sdkDecodeIfPresent(.data)
+        self.expiresAt = try container.sdkDecodeIfPresent(.expiresAt)
+        self.hostedInstructionsUrl = try container.sdkDecodeIfPresent(.hostedInstructionsUrl)
+        self.imageUrlPng = try container.sdkDecodeIfPresent(.imageUrlPng)
+        self.imageUrlSvg = try container.sdkDecodeIfPresent(.imageUrlSvg)
+        if let value = self.data {
             try validateLength("data", value, min: nil, max: 5000)
         }
-        if let value = hostedInstructionsUrl {
+        if let value = self.hostedInstructionsUrl {
             try validateLength("hosted_instructions_url", value, min: nil, max: 5000)
         }
-        if let value = imageUrlPng {
+        if let value = self.imageUrlPng {
             try validateLength("image_url_png", value, min: nil, max: 5000)
         }
-        if let value = imageUrlSvg {
+        if let value = self.imageUrlSvg {
             try validateLength("image_url_svg", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PaymentIntentNextActionPixDisplayQrCode {
-    init(
-        data: String? = nil,
-        expiresAt: Int? = nil,
-        hostedInstructionsUrl: String? = nil,
-        imageUrlPng: String? = nil,
-        imageUrlSvg: String? = nil
-    ) throws {
+extension PaymentIntentNextActionPixDisplayQrCode {
+    public init(data: String? = nil, expiresAt: Int? = nil, hostedInstructionsUrl: String? = nil, imageUrlPng: String? = nil, imageUrlSvg: String? = nil) throws {
         self.init()
         (self.data, self.expiresAt) = (data, expiresAt)
         (self.hostedInstructionsUrl, self.imageUrlPng) = (hostedInstructionsUrl, imageUrlPng)
@@ -98,61 +92,43 @@ public struct PaymentIntentNextActionPromptpayDisplayQrCode: Codable {
         case imageUrlSvg = "image_url_svg"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PaymentIntentNextActionPromptpayDisplayQrCode {
-    init(from decoder: Decoder) throws {
+extension PaymentIntentNextActionPromptpayDisplayQrCode {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.data) else {
-            throw SdkValidationError(
-                field: "data",
-                code: "required",
-                message: "Validation failed for 'data': value is required"
-            )
+            throw SdkValidationError(field: "data", code: "required", message: "Validation failed for 'data': value is required")
         }
         guard container.contains(.hostedInstructionsUrl) else {
-            throw SdkValidationError(
-                field: "hosted_instructions_url",
-                code: "required",
-                message: "Validation failed for 'hosted_instructions_url': value is required"
-            )
+            throw SdkValidationError(field: "hosted_instructions_url", code: "required", message: "Validation failed for 'hosted_instructions_url': value is required")
         }
         guard container.contains(.imageUrlPng) else {
-            throw SdkValidationError(
-                field: "image_url_png",
-                code: "required",
-                message: "Validation failed for 'image_url_png': value is required"
-            )
+            throw SdkValidationError(field: "image_url_png", code: "required", message: "Validation failed for 'image_url_png': value is required")
         }
         guard container.contains(.imageUrlSvg) else {
-            throw SdkValidationError(
-                field: "image_url_svg",
-                code: "required",
-                message: "Validation failed for 'image_url_svg': value is required"
-            )
+            throw SdkValidationError(field: "image_url_svg", code: "required", message: "Validation failed for 'image_url_svg': value is required")
         }
-        data = try container.sdkDecodeRequired(.data)
-        hostedInstructionsUrl = try container.sdkDecodeRequired(.hostedInstructionsUrl)
-        imageUrlPng = try container.sdkDecodeRequired(.imageUrlPng)
-        imageUrlSvg = try container.sdkDecodeRequired(.imageUrlSvg)
-        try validateLength("data", data, min: nil, max: 5000)
-        try validateLength("hosted_instructions_url", hostedInstructionsUrl, min: nil, max: 5000)
-        try validateLength("image_url_png", imageUrlPng, min: nil, max: 5000)
-        try validateLength("image_url_svg", imageUrlSvg, min: nil, max: 5000)
+        self.data = try container.sdkDecodeRequired(.data)
+        self.hostedInstructionsUrl = try container.sdkDecodeRequired(.hostedInstructionsUrl)
+        self.imageUrlPng = try container.sdkDecodeRequired(.imageUrlPng)
+        self.imageUrlSvg = try container.sdkDecodeRequired(.imageUrlSvg)
+            try validateLength("data", self.data, min: nil, max: 5000)
+            try validateLength("hosted_instructions_url", self.hostedInstructionsUrl, min: nil, max: 5000)
+            try validateLength("image_url_png", self.imageUrlPng, min: nil, max: 5000)
+            try validateLength("image_url_svg", self.imageUrlSvg, min: nil, max: 5000)
     }
 }
 
-public extension PaymentIntentNextActionPromptpayDisplayQrCode {
-    init(data: String, hostedInstructionsUrl: String, imageUrlPng: String, imageUrlSvg: String) throws {
+extension PaymentIntentNextActionPromptpayDisplayQrCode {
+    public init(data: String, hostedInstructionsUrl: String, imageUrlPng: String, imageUrlSvg: String) throws {
         (self.data, self.hostedInstructionsUrl) = (data, hostedInstructionsUrl)
         (self.imageUrlPng, self.imageUrlSvg) = (imageUrlPng, imageUrlSvg)
-        try validateLength("data", self.data, min: nil, max: 5000)
-        try validateLength("hosted_instructions_url", self.hostedInstructionsUrl, min: nil, max: 5000)
-        try validateLength("image_url_png", self.imageUrlPng, min: nil, max: 5000)
-        try validateLength("image_url_svg", self.imageUrlSvg, min: nil, max: 5000)
+            try validateLength("data", self.data, min: nil, max: 5000)
+            try validateLength("hosted_instructions_url", self.hostedInstructionsUrl, min: nil, max: 5000)
+            try validateLength("image_url_png", self.imageUrlPng, min: nil, max: 5000)
+            try validateLength("image_url_svg", self.imageUrlSvg, min: nil, max: 5000)
     }
 }
 
@@ -170,26 +146,26 @@ public struct PaymentIntentNextActionRedirectToUrl: Codable {
     }
 
     init() {
-        (returnUrl, url) = (nil, nil)
+        (self.returnUrl, self.url) = (nil, nil)
     }
 }
 
-public extension PaymentIntentNextActionRedirectToUrl {
-    init(from decoder: Decoder) throws {
+extension PaymentIntentNextActionRedirectToUrl {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        returnUrl = try container.sdkDecodeIfPresent(.returnUrl)
-        url = try container.sdkDecodeIfPresent(.url)
-        if let value = returnUrl {
+        self.returnUrl = try container.sdkDecodeIfPresent(.returnUrl)
+        self.url = try container.sdkDecodeIfPresent(.url)
+        if let value = self.returnUrl {
             try validateLength("return_url", value, min: nil, max: 5000)
         }
-        if let value = url {
+        if let value = self.url {
             try validateLength("url", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PaymentIntentNextActionRedirectToUrl {
-    init(returnUrl: String? = nil, url: String? = nil) throws {
+extension PaymentIntentNextActionRedirectToUrl {
+    public init(returnUrl: String? = nil, url: String? = nil) throws {
         self.init()
         (self.returnUrl, self.url) = (returnUrl, url)
         if let value = self.returnUrl {
@@ -213,38 +189,28 @@ public struct PaymentIntentNextActionSwishHandleRedirectOrDisplayQrCode: Codable
         case qrCode = "qr_code"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PaymentIntentNextActionSwishHandleRedirectOrDisplayQrCode {
-    init(from decoder: Decoder) throws {
+extension PaymentIntentNextActionSwishHandleRedirectOrDisplayQrCode {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.hostedInstructionsUrl) else {
-            throw SdkValidationError(
-                field: "hosted_instructions_url",
-                code: "required",
-                message: "Validation failed for 'hosted_instructions_url': value is required"
-            )
+            throw SdkValidationError(field: "hosted_instructions_url", code: "required", message: "Validation failed for 'hosted_instructions_url': value is required")
         }
         guard container.contains(.qrCode) else {
-            throw SdkValidationError(
-                field: "qr_code",
-                code: "required",
-                message: "Validation failed for 'qr_code': value is required"
-            )
+            throw SdkValidationError(field: "qr_code", code: "required", message: "Validation failed for 'qr_code': value is required")
         }
-        hostedInstructionsUrl = try container.sdkDecodeRequired(.hostedInstructionsUrl)
-        qrCode = try container.sdkDecodeRequired(.qrCode)
-        try validateLength("hosted_instructions_url", hostedInstructionsUrl, min: nil, max: 5000)
+        self.hostedInstructionsUrl = try container.sdkDecodeRequired(.hostedInstructionsUrl)
+        self.qrCode = try container.sdkDecodeRequired(.qrCode)
+            try validateLength("hosted_instructions_url", self.hostedInstructionsUrl, min: nil, max: 5000)
     }
 }
 
-public extension PaymentIntentNextActionSwishHandleRedirectOrDisplayQrCode {
-    init(hostedInstructionsUrl: String, qrCode: PaymentIntentNextActionSwishQrCode) throws {
+extension PaymentIntentNextActionSwishHandleRedirectOrDisplayQrCode {
+    public init(hostedInstructionsUrl: String, qrCode: PaymentIntentNextActionSwishQrCode) throws {
         (self.hostedInstructionsUrl, self.qrCode) = (hostedInstructionsUrl, qrCode)
-        try validateLength("hosted_instructions_url", self.hostedInstructionsUrl, min: nil, max: 5000)
+            try validateLength("hosted_instructions_url", self.hostedInstructionsUrl, min: nil, max: 5000)
     }
 }
 
@@ -263,51 +229,37 @@ public struct PaymentIntentNextActionSwishQrCode: Codable {
         case imageUrlSvg = "image_url_svg"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PaymentIntentNextActionSwishQrCode {
-    init(from decoder: Decoder) throws {
+extension PaymentIntentNextActionSwishQrCode {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.data) else {
-            throw SdkValidationError(
-                field: "data",
-                code: "required",
-                message: "Validation failed for 'data': value is required"
-            )
+            throw SdkValidationError(field: "data", code: "required", message: "Validation failed for 'data': value is required")
         }
         guard container.contains(.imageUrlPng) else {
-            throw SdkValidationError(
-                field: "image_url_png",
-                code: "required",
-                message: "Validation failed for 'image_url_png': value is required"
-            )
+            throw SdkValidationError(field: "image_url_png", code: "required", message: "Validation failed for 'image_url_png': value is required")
         }
         guard container.contains(.imageUrlSvg) else {
-            throw SdkValidationError(
-                field: "image_url_svg",
-                code: "required",
-                message: "Validation failed for 'image_url_svg': value is required"
-            )
+            throw SdkValidationError(field: "image_url_svg", code: "required", message: "Validation failed for 'image_url_svg': value is required")
         }
-        data = try container.sdkDecodeRequired(.data)
-        imageUrlPng = try container.sdkDecodeRequired(.imageUrlPng)
-        imageUrlSvg = try container.sdkDecodeRequired(.imageUrlSvg)
-        try validateLength("data", data, min: nil, max: 5000)
-        try validateLength("image_url_png", imageUrlPng, min: nil, max: 5000)
-        try validateLength("image_url_svg", imageUrlSvg, min: nil, max: 5000)
+        self.data = try container.sdkDecodeRequired(.data)
+        self.imageUrlPng = try container.sdkDecodeRequired(.imageUrlPng)
+        self.imageUrlSvg = try container.sdkDecodeRequired(.imageUrlSvg)
+            try validateLength("data", self.data, min: nil, max: 5000)
+            try validateLength("image_url_png", self.imageUrlPng, min: nil, max: 5000)
+            try validateLength("image_url_svg", self.imageUrlSvg, min: nil, max: 5000)
     }
 }
 
-public extension PaymentIntentNextActionSwishQrCode {
-    init(data: String, imageUrlPng: String, imageUrlSvg: String) throws {
+extension PaymentIntentNextActionSwishQrCode {
+    public init(data: String, imageUrlPng: String, imageUrlSvg: String) throws {
         (self.data, self.imageUrlPng) = (data, imageUrlPng)
         self.imageUrlSvg = imageUrlSvg
-        try validateLength("data", self.data, min: nil, max: 5000)
-        try validateLength("image_url_png", self.imageUrlPng, min: nil, max: 5000)
-        try validateLength("image_url_svg", self.imageUrlSvg, min: nil, max: 5000)
+            try validateLength("data", self.data, min: nil, max: 5000)
+            try validateLength("image_url_png", self.imageUrlPng, min: nil, max: 5000)
+            try validateLength("image_url_svg", self.imageUrlSvg, min: nil, max: 5000)
     }
 }
 
@@ -323,38 +275,28 @@ public struct PaymentIntentNextActionUpiHandleRedirectOrDisplayQrCode: Codable {
         case qrCode = "qr_code"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PaymentIntentNextActionUpiHandleRedirectOrDisplayQrCode {
-    init(from decoder: Decoder) throws {
+extension PaymentIntentNextActionUpiHandleRedirectOrDisplayQrCode {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.hostedInstructionsUrl) else {
-            throw SdkValidationError(
-                field: "hosted_instructions_url",
-                code: "required",
-                message: "Validation failed for 'hosted_instructions_url': value is required"
-            )
+            throw SdkValidationError(field: "hosted_instructions_url", code: "required", message: "Validation failed for 'hosted_instructions_url': value is required")
         }
         guard container.contains(.qrCode) else {
-            throw SdkValidationError(
-                field: "qr_code",
-                code: "required",
-                message: "Validation failed for 'qr_code': value is required"
-            )
+            throw SdkValidationError(field: "qr_code", code: "required", message: "Validation failed for 'qr_code': value is required")
         }
-        hostedInstructionsUrl = try container.sdkDecodeRequired(.hostedInstructionsUrl)
-        qrCode = try container.sdkDecodeRequired(.qrCode)
-        try validateLength("hosted_instructions_url", hostedInstructionsUrl, min: nil, max: 5000)
+        self.hostedInstructionsUrl = try container.sdkDecodeRequired(.hostedInstructionsUrl)
+        self.qrCode = try container.sdkDecodeRequired(.qrCode)
+            try validateLength("hosted_instructions_url", self.hostedInstructionsUrl, min: nil, max: 5000)
     }
 }
 
-public extension PaymentIntentNextActionUpiHandleRedirectOrDisplayQrCode {
-    init(hostedInstructionsUrl: String, qrCode: PaymentIntentNextActionUpiqrCode) throws {
+extension PaymentIntentNextActionUpiHandleRedirectOrDisplayQrCode {
+    public init(hostedInstructionsUrl: String, qrCode: PaymentIntentNextActionUpiqrCode) throws {
         (self.hostedInstructionsUrl, self.qrCode) = (hostedInstructionsUrl, qrCode)
-        try validateLength("hosted_instructions_url", self.hostedInstructionsUrl, min: nil, max: 5000)
+            try validateLength("hosted_instructions_url", self.hostedInstructionsUrl, min: nil, max: 5000)
     }
 }
 
@@ -373,49 +315,35 @@ public struct PaymentIntentNextActionUpiqrCode: Codable {
         case imageUrlSvg = "image_url_svg"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PaymentIntentNextActionUpiqrCode {
-    init(from decoder: Decoder) throws {
+extension PaymentIntentNextActionUpiqrCode {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.expiresAt) else {
-            throw SdkValidationError(
-                field: "expires_at",
-                code: "required",
-                message: "Validation failed for 'expires_at': value is required"
-            )
+            throw SdkValidationError(field: "expires_at", code: "required", message: "Validation failed for 'expires_at': value is required")
         }
         guard container.contains(.imageUrlPng) else {
-            throw SdkValidationError(
-                field: "image_url_png",
-                code: "required",
-                message: "Validation failed for 'image_url_png': value is required"
-            )
+            throw SdkValidationError(field: "image_url_png", code: "required", message: "Validation failed for 'image_url_png': value is required")
         }
         guard container.contains(.imageUrlSvg) else {
-            throw SdkValidationError(
-                field: "image_url_svg",
-                code: "required",
-                message: "Validation failed for 'image_url_svg': value is required"
-            )
+            throw SdkValidationError(field: "image_url_svg", code: "required", message: "Validation failed for 'image_url_svg': value is required")
         }
-        expiresAt = try container.sdkDecodeRequired(.expiresAt)
-        imageUrlPng = try container.sdkDecodeRequired(.imageUrlPng)
-        imageUrlSvg = try container.sdkDecodeRequired(.imageUrlSvg)
-        try validateLength("image_url_png", imageUrlPng, min: nil, max: 5000)
-        try validateLength("image_url_svg", imageUrlSvg, min: nil, max: 5000)
+        self.expiresAt = try container.sdkDecodeRequired(.expiresAt)
+        self.imageUrlPng = try container.sdkDecodeRequired(.imageUrlPng)
+        self.imageUrlSvg = try container.sdkDecodeRequired(.imageUrlSvg)
+            try validateLength("image_url_png", self.imageUrlPng, min: nil, max: 5000)
+            try validateLength("image_url_svg", self.imageUrlSvg, min: nil, max: 5000)
     }
 }
 
-public extension PaymentIntentNextActionUpiqrCode {
-    init(expiresAt: Int, imageUrlPng: String, imageUrlSvg: String) throws {
+extension PaymentIntentNextActionUpiqrCode {
+    public init(expiresAt: Int, imageUrlPng: String, imageUrlSvg: String) throws {
         (self.expiresAt, self.imageUrlPng) = (expiresAt, imageUrlPng)
         self.imageUrlSvg = imageUrlSvg
-        try validateLength("image_url_png", self.imageUrlPng, min: nil, max: 5000)
-        try validateLength("image_url_svg", self.imageUrlSvg, min: nil, max: 5000)
+            try validateLength("image_url_png", self.imageUrlPng, min: nil, max: 5000)
+            try validateLength("image_url_svg", self.imageUrlSvg, min: nil, max: 5000)
     }
 }
 
@@ -435,44 +363,30 @@ public struct PaymentIntentNextActionVerifyWithMicrodeposits: Codable {
         case microdepositType = "microdeposit_type"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PaymentIntentNextActionVerifyWithMicrodeposits {
-    init(from decoder: Decoder) throws {
+extension PaymentIntentNextActionVerifyWithMicrodeposits {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.arrivalDate) else {
-            throw SdkValidationError(
-                field: "arrival_date",
-                code: "required",
-                message: "Validation failed for 'arrival_date': value is required"
-            )
+            throw SdkValidationError(field: "arrival_date", code: "required", message: "Validation failed for 'arrival_date': value is required")
         }
         guard container.contains(.hostedVerificationUrl) else {
-            throw SdkValidationError(
-                field: "hosted_verification_url",
-                code: "required",
-                message: "Validation failed for 'hosted_verification_url': value is required"
-            )
+            throw SdkValidationError(field: "hosted_verification_url", code: "required", message: "Validation failed for 'hosted_verification_url': value is required")
         }
-        arrivalDate = try container.sdkDecodeRequired(.arrivalDate)
-        hostedVerificationUrl = try container.sdkDecodeRequired(.hostedVerificationUrl)
-        microdepositType = try container.sdkDecodeIfPresent(.microdepositType)
-        try validateLength("hosted_verification_url", hostedVerificationUrl, min: nil, max: 5000)
+        self.arrivalDate = try container.sdkDecodeRequired(.arrivalDate)
+        self.hostedVerificationUrl = try container.sdkDecodeRequired(.hostedVerificationUrl)
+        self.microdepositType = try container.sdkDecodeIfPresent(.microdepositType)
+            try validateLength("hosted_verification_url", self.hostedVerificationUrl, min: nil, max: 5000)
     }
 }
 
-public extension PaymentIntentNextActionVerifyWithMicrodeposits {
-    init(
-        arrivalDate: Int,
-        hostedVerificationUrl: String,
-        microdepositType: PaymentIntentNextActionVerifyWithMicrodepositsMicrodepositType? = nil
-    ) throws {
+extension PaymentIntentNextActionVerifyWithMicrodeposits {
+    public init(arrivalDate: Int, hostedVerificationUrl: String, microdepositType: PaymentIntentNextActionVerifyWithMicrodepositsMicrodepositType? = nil) throws {
         (self.arrivalDate, self.hostedVerificationUrl) = (arrivalDate, hostedVerificationUrl)
         self.microdepositType = microdepositType
-        try validateLength("hosted_verification_url", self.hostedVerificationUrl, min: nil, max: 5000)
+            try validateLength("hosted_verification_url", self.hostedVerificationUrl, min: nil, max: 5000)
     }
 }
 
@@ -497,78 +411,50 @@ public struct PaymentIntentNextActionWechatPayDisplayQrCode: Codable {
         case imageUrlSvg = "image_url_svg"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PaymentIntentNextActionWechatPayDisplayQrCode {
-    init(from decoder: Decoder) throws {
+extension PaymentIntentNextActionWechatPayDisplayQrCode {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.data) else {
-            throw SdkValidationError(
-                field: "data",
-                code: "required",
-                message: "Validation failed for 'data': value is required"
-            )
+            throw SdkValidationError(field: "data", code: "required", message: "Validation failed for 'data': value is required")
         }
         guard container.contains(.hostedInstructionsUrl) else {
-            throw SdkValidationError(
-                field: "hosted_instructions_url",
-                code: "required",
-                message: "Validation failed for 'hosted_instructions_url': value is required"
-            )
+            throw SdkValidationError(field: "hosted_instructions_url", code: "required", message: "Validation failed for 'hosted_instructions_url': value is required")
         }
         guard container.contains(.imageDataUrl) else {
-            throw SdkValidationError(
-                field: "image_data_url",
-                code: "required",
-                message: "Validation failed for 'image_data_url': value is required"
-            )
+            throw SdkValidationError(field: "image_data_url", code: "required", message: "Validation failed for 'image_data_url': value is required")
         }
         guard container.contains(.imageUrlPng) else {
-            throw SdkValidationError(
-                field: "image_url_png",
-                code: "required",
-                message: "Validation failed for 'image_url_png': value is required"
-            )
+            throw SdkValidationError(field: "image_url_png", code: "required", message: "Validation failed for 'image_url_png': value is required")
         }
         guard container.contains(.imageUrlSvg) else {
-            throw SdkValidationError(
-                field: "image_url_svg",
-                code: "required",
-                message: "Validation failed for 'image_url_svg': value is required"
-            )
+            throw SdkValidationError(field: "image_url_svg", code: "required", message: "Validation failed for 'image_url_svg': value is required")
         }
-        data = try container.sdkDecodeRequired(.data)
-        hostedInstructionsUrl = try container.sdkDecodeRequired(.hostedInstructionsUrl)
-        imageDataUrl = try container.sdkDecodeRequired(.imageDataUrl)
-        imageUrlPng = try container.sdkDecodeRequired(.imageUrlPng)
-        imageUrlSvg = try container.sdkDecodeRequired(.imageUrlSvg)
-        try validateLength("data", data, min: nil, max: 5000)
-        try validateLength("hosted_instructions_url", hostedInstructionsUrl, min: nil, max: 5000)
-        try validateLength("image_data_url", imageDataUrl, min: nil, max: 5000)
-        try validateLength("image_url_png", imageUrlPng, min: nil, max: 5000)
-        try validateLength("image_url_svg", imageUrlSvg, min: nil, max: 5000)
+        self.data = try container.sdkDecodeRequired(.data)
+        self.hostedInstructionsUrl = try container.sdkDecodeRequired(.hostedInstructionsUrl)
+        self.imageDataUrl = try container.sdkDecodeRequired(.imageDataUrl)
+        self.imageUrlPng = try container.sdkDecodeRequired(.imageUrlPng)
+        self.imageUrlSvg = try container.sdkDecodeRequired(.imageUrlSvg)
+            try validateLength("data", self.data, min: nil, max: 5000)
+            try validateLength("hosted_instructions_url", self.hostedInstructionsUrl, min: nil, max: 5000)
+            try validateLength("image_data_url", self.imageDataUrl, min: nil, max: 5000)
+            try validateLength("image_url_png", self.imageUrlPng, min: nil, max: 5000)
+            try validateLength("image_url_svg", self.imageUrlSvg, min: nil, max: 5000)
     }
 }
 
-public extension PaymentIntentNextActionWechatPayDisplayQrCode {
-    init(
-        data: String,
-        hostedInstructionsUrl: String,
-        imageDataUrl: String,
-        imageUrlPng: String,
-        imageUrlSvg: String
-    ) throws {
+extension PaymentIntentNextActionWechatPayDisplayQrCode {
+    public init(data: String, hostedInstructionsUrl: String, imageDataUrl: String, imageUrlPng: String, imageUrlSvg: String) throws {
         (self.data, self.hostedInstructionsUrl) = (data, hostedInstructionsUrl)
         (self.imageDataUrl, self.imageUrlPng) = (imageDataUrl, imageUrlPng)
         self.imageUrlSvg = imageUrlSvg
-        try validateLength("data", self.data, min: nil, max: 5000)
-        try validateLength("hosted_instructions_url", self.hostedInstructionsUrl, min: nil, max: 5000)
-        try validateLength("image_data_url", self.imageDataUrl, min: nil, max: 5000)
-        try validateLength("image_url_png", self.imageUrlPng, min: nil, max: 5000)
-        try validateLength("image_url_svg", self.imageUrlSvg, min: nil, max: 5000)
+            try validateLength("data", self.data, min: nil, max: 5000)
+            try validateLength("hosted_instructions_url", self.hostedInstructionsUrl, min: nil, max: 5000)
+            try validateLength("image_data_url", self.imageDataUrl, min: nil, max: 5000)
+            try validateLength("image_url_png", self.imageUrlPng, min: nil, max: 5000)
+            try validateLength("image_url_svg", self.imageUrlSvg, min: nil, max: 5000)
     }
 }
 
@@ -599,7 +485,5 @@ public struct PaymentIntentNextActionWechatPayRedirectToAndroidApp: Codable {
         case timestamp
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }

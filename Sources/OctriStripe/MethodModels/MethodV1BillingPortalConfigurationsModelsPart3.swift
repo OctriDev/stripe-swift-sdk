@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1BillingPortalConfigurations operation model declarations
+// Canonical v1BillingPortalConfigurations operation model declarations
 public struct PostBillingPortalConfigurationsRequestBodyFeaturesSubscriptioX880516c882: Codable {
     public var prices: [String]
     public var product: String
@@ -20,44 +20,30 @@ public struct PostBillingPortalConfigurationsRequestBodyFeaturesSubscriptioX8805
         case adjustableQuantity = "adjustable_quantity"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostBillingPortalConfigurationsRequestBodyFeaturesSubscriptioX880516c882 {
-    init(from decoder: Decoder) throws {
+extension PostBillingPortalConfigurationsRequestBodyFeaturesSubscriptioX880516c882 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.prices) else {
-            throw SdkValidationError(
-                field: "prices",
-                code: "required",
-                message: "Validation failed for 'prices': value is required"
-            )
+            throw SdkValidationError(field: "prices", code: "required", message: "Validation failed for 'prices': value is required")
         }
         guard container.contains(.product) else {
-            throw SdkValidationError(
-                field: "product",
-                code: "required",
-                message: "Validation failed for 'product': value is required"
-            )
+            throw SdkValidationError(field: "product", code: "required", message: "Validation failed for 'product': value is required")
         }
-        prices = try container.sdkDecodeRequired(.prices)
-        product = try container.sdkDecodeRequired(.product)
-        adjustableQuantity = try container.sdkDecodeIfPresent(.adjustableQuantity)
-        try validateLength("product", product, min: nil, max: 5000)
+        self.prices = try container.sdkDecodeRequired(.prices)
+        self.product = try container.sdkDecodeRequired(.product)
+        self.adjustableQuantity = try container.sdkDecodeIfPresent(.adjustableQuantity)
+            try validateLength("product", self.product, min: nil, max: 5000)
     }
 }
 
-public extension PostBillingPortalConfigurationsRequestBodyFeaturesSubscriptioX880516c882 {
-    init(
-        prices: [String],
-        product: String,
-        adjustableQuantity: PostBillingPortalConfigurationsRequestBodyFeaturesSubscriptioXf21e9fe445? = nil
-    ) throws {
+extension PostBillingPortalConfigurationsRequestBodyFeaturesSubscriptioX880516c882 {
+    public init(prices: [String], product: String, adjustableQuantity: PostBillingPortalConfigurationsRequestBodyFeaturesSubscriptioXf21e9fe445? = nil) throws {
         (self.prices, self.product) = (prices, product)
         self.adjustableQuantity = adjustableQuantity
-        try validateLength("product", self.product, min: nil, max: 5000)
+            try validateLength("product", self.product, min: nil, max: 5000)
     }
 }
 
@@ -72,40 +58,26 @@ public struct PostBillingPortalConfigurationsRequestBodyFeaturesSubscriptioX88f5
         case feedbackOptions = "feedback_options"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostBillingPortalConfigurationsRequestBodyFeaturesSubscriptioX88f5bd2f8d {
-    init(from decoder: Decoder) throws {
+extension PostBillingPortalConfigurationsRequestBodyFeaturesSubscriptioX88f5bd2f8d {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.enabled) else {
-            throw SdkValidationError(
-                field: "enabled",
-                code: "required",
-                message: "Validation failed for 'enabled': value is required"
-            )
+            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
         }
         guard container.contains(.options) else {
-            throw SdkValidationError(
-                field: "options",
-                code: "required",
-                message: "Validation failed for 'options': value is required"
-            )
+            throw SdkValidationError(field: "options", code: "required", message: "Validation failed for 'options': value is required")
         }
-        enabled = try container.sdkDecodeRequired(.enabled)
-        options = try container.sdkDecodeRequired(.options)
-        feedbackOptions = try container.sdkDecodeIfPresent(.feedbackOptions)
+        self.enabled = try container.sdkDecodeRequired(.enabled)
+        self.options = try container.sdkDecodeRequired(.options)
+        self.feedbackOptions = try container.sdkDecodeIfPresent(.feedbackOptions)
     }
 }
 
-public extension PostBillingPortalConfigurationsRequestBodyFeaturesSubscriptioX88f5bd2f8d {
-    init(
-        enabled: Bool,
-        options: PostBillingPortalConfigurationsRequestBodyFeaturesSubscriptioX63baaa74f9,
-        feedbackOptions: PostBillingPortalConfigurationsRequestBodyFeaturesSubscriptioX2ee92a9b2f? = nil
-    ) {
+extension PostBillingPortalConfigurationsRequestBodyFeaturesSubscriptioX88f5bd2f8d {
+    public init(enabled: Bool, options: PostBillingPortalConfigurationsRequestBodyFeaturesSubscriptioX63baaa74f9, feedbackOptions: PostBillingPortalConfigurationsRequestBodyFeaturesSubscriptioX2ee92a9b2f? = nil) {
         (self.enabled, self.options) = (enabled, options)
         self.feedbackOptions = feedbackOptions
     }
@@ -120,31 +92,22 @@ public struct PostBillingPortalConfigurationsRequestBodyFeaturesPaymentMethodUpd
         case paymentMethodConfiguration = "payment_method_configuration"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostBillingPortalConfigurationsRequestBodyFeaturesPaymentMethodUpdate {
-    init(from decoder: Decoder) throws {
+extension PostBillingPortalConfigurationsRequestBodyFeaturesPaymentMethodUpdate {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.enabled) else {
-            throw SdkValidationError(
-                field: "enabled",
-                code: "required",
-                message: "Validation failed for 'enabled': value is required"
-            )
+            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
         }
-        enabled = try container.sdkDecodeRequired(.enabled)
-        paymentMethodConfiguration = try container.sdkDecodeIfPresent(.paymentMethodConfiguration)
+        self.enabled = try container.sdkDecodeRequired(.enabled)
+        self.paymentMethodConfiguration = try container.sdkDecodeIfPresent(.paymentMethodConfiguration)
     }
 }
 
-public extension PostBillingPortalConfigurationsRequestBodyFeaturesPaymentMethodUpdate {
-    init(
-        enabled: Bool,
-        paymentMethodConfiguration: PostBillingPortalConfigurationsRequestBodyFeaturesPaymentMethX212596210d? = nil
-    ) {
+extension PostBillingPortalConfigurationsRequestBodyFeaturesPaymentMethodUpdate {
+    public init(enabled: Bool, paymentMethodConfiguration: PostBillingPortalConfigurationsRequestBodyFeaturesPaymentMethX212596210d? = nil) {
         (self.enabled, self.paymentMethodConfiguration) = (enabled, paymentMethodConfiguration)
     }
 }
@@ -157,43 +120,35 @@ public enum PostBillingPortalConfigurationsConfigurationRequestBodyFeaturXd2edb5
 }
 
 extension PostBillingPortalConfigurationsConfigurationRequestBodyFeaturXd2edb57157: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostBillingPortalConfigurationsConfigurationRequestBodyFeaturXd2edb57157"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostBillingPortalConfigurationsConfigurationRequestBodyFeaturXd2edb57157")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             [PostBillingPortalConfigurationsConfigurationRequestBodyFeaturX74ccff15c8].self
         ) {
-            return .postBillingPortalConfigurationsConfigurationRequestBodyFeaturX57c8b694a3(value)
+            return             .postBillingPortalConfigurationsConfigurationRequestBodyFeaturX57c8b694a3(value)
         }
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .postBillingPortalConfigurationsConfigurationRequestBodyFeaturX57c8b694a3(value): try container
-            .encode(value); return true
+        case let .postBillingPortalConfigurationsConfigurationRequestBodyFeaturX57c8b694a3(value): try container.encode(value); return true
         case let .stringValue(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum PostBillingPortalConfigurationsConfigurationRequestBodyFeaturX71276e1691 {
@@ -202,31 +157,21 @@ public enum PostBillingPortalConfigurationsConfigurationRequestBodyFeaturX71276e
 }
 
 extension PostBillingPortalConfigurationsConfigurationRequestBodyFeaturX71276e1691: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostBillingPortalConfigurationsConfigurationRequestBodyFeaturX71276e1691"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostBillingPortalConfigurationsConfigurationRequestBodyFeaturX71276e1691")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode([String].self) {
-            return .stringList(value)
-        }
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
+        if let value = try? container.decode([String].self) { return .stringList(value) }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -236,6 +181,7 @@ extension PostBillingPortalConfigurationsConfigurationRequestBodyFeaturX71276e16
         case let .stringValue(value): try container.encode(value); return true
         }
     }
+
 }
 
 public struct PostBillingPortalConfigurationsConfigurationRequestBodyFeaturX742b8d0fc9: Codable {
@@ -253,27 +199,22 @@ public struct PostBillingPortalConfigurationsConfigurationRequestBodyFeaturX742b
     }
 
     init() {
-        (cancellationReason, enabled, mode, prorationBehavior) = (nil, nil, nil, nil)
+        (self.cancellationReason, self.enabled, self.mode, self.prorationBehavior) = (nil, nil, nil, nil)
     }
 }
 
-public extension PostBillingPortalConfigurationsConfigurationRequestBodyFeaturX742b8d0fc9 {
-    init(from decoder: Decoder) throws {
+extension PostBillingPortalConfigurationsConfigurationRequestBodyFeaturX742b8d0fc9 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        cancellationReason = try container.sdkDecodeIfPresent(.cancellationReason)
-        enabled = try container.sdkDecodeIfPresent(.enabled)
-        mode = try container.sdkDecodeIfPresent(.mode)
-        prorationBehavior = try container.sdkDecodeIfPresent(.prorationBehavior)
+        self.cancellationReason = try container.sdkDecodeIfPresent(.cancellationReason)
+        self.enabled = try container.sdkDecodeIfPresent(.enabled)
+        self.mode = try container.sdkDecodeIfPresent(.mode)
+        self.prorationBehavior = try container.sdkDecodeIfPresent(.prorationBehavior)
     }
 }
 
-public extension PostBillingPortalConfigurationsConfigurationRequestBodyFeaturX742b8d0fc9 {
-    init(
-        cancellationReason: PostBillingPortalConfigurationsConfigurationRequestBodyFeaturXa36793aaa4? = nil,
-        enabled: Bool? = nil,
-        mode: PostBillingPortalConfigurationsConfigurationRequestBodyFeaturX9c2a4292d5? = nil,
-        prorationBehavior: PostBillingPortalConfigurationsConfigurationRequestBodyFeaturX5a31c25243? = nil
-    ) {
+extension PostBillingPortalConfigurationsConfigurationRequestBodyFeaturX742b8d0fc9 {
+    public init(cancellationReason: PostBillingPortalConfigurationsConfigurationRequestBodyFeaturXa36793aaa4? = nil, enabled: Bool? = nil, mode: PostBillingPortalConfigurationsConfigurationRequestBodyFeaturX9c2a4292d5? = nil, prorationBehavior: PostBillingPortalConfigurationsConfigurationRequestBodyFeaturX5a31c25243? = nil) {
         self.init()
         (self.cancellationReason, self.enabled) = (cancellationReason, enabled)
         (self.mode, self.prorationBehavior) = (mode, prorationBehavior)
@@ -286,31 +227,21 @@ public enum PostBillingPortalConfigurationsRequestBodyFeaturesPaymentMethX212596
 }
 
 extension PostBillingPortalConfigurationsRequestBodyFeaturesPaymentMethX212596210d: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostBillingPortalConfigurationsRequestBodyFeaturesPaymentMethX212596210d"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostBillingPortalConfigurationsRequestBodyFeaturesPaymentMethX212596210d")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(String.self) {
-            return .stringValue1(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(String.self) { return .stringValue1(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -320,6 +251,7 @@ extension PostBillingPortalConfigurationsRequestBodyFeaturesPaymentMethX21259621
         case let .stringValue1(value): try container.encode(value); return true
         }
     }
+
 }
 
 public struct PostBillingPortalConfigurationsConfigurationRequestBodyFeaturXa36793aaa4: Codable {
@@ -333,33 +265,23 @@ public struct PostBillingPortalConfigurationsConfigurationRequestBodyFeaturXa367
         case options
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostBillingPortalConfigurationsConfigurationRequestBodyFeaturXa36793aaa4 {
-    init(from decoder: Decoder) throws {
+extension PostBillingPortalConfigurationsConfigurationRequestBodyFeaturXa36793aaa4 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.enabled) else {
-            throw SdkValidationError(
-                field: "enabled",
-                code: "required",
-                message: "Validation failed for 'enabled': value is required"
-            )
+            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
         }
-        enabled = try container.sdkDecodeRequired(.enabled)
-        feedbackOptions = try container.sdkDecodeIfPresent(.feedbackOptions)
-        options = try container.sdkDecodeIfPresent(.options)
+        self.enabled = try container.sdkDecodeRequired(.enabled)
+        self.feedbackOptions = try container.sdkDecodeIfPresent(.feedbackOptions)
+        self.options = try container.sdkDecodeIfPresent(.options)
     }
 }
 
-public extension PostBillingPortalConfigurationsConfigurationRequestBodyFeaturXa36793aaa4 {
-    init(
-        enabled: Bool,
-        feedbackOptions: PostBillingPortalConfigurationsConfigurationRequestBodyFeaturX71276e1691? = nil,
-        options: PostBillingPortalConfigurationsConfigurationRequestBodyFeaturX5a4ad5a1cf? = nil
-    ) {
+extension PostBillingPortalConfigurationsConfigurationRequestBodyFeaturXa36793aaa4 {
+    public init(enabled: Bool, feedbackOptions: PostBillingPortalConfigurationsConfigurationRequestBodyFeaturX71276e1691? = nil, options: PostBillingPortalConfigurationsConfigurationRequestBodyFeaturX5a4ad5a1cf? = nil) {
         (self.enabled, self.feedbackOptions) = (enabled, feedbackOptions)
         self.options = options
     }
@@ -371,31 +293,21 @@ public enum PostBillingPortalConfigurationsConfigurationRequestBodyFeaturXcb51aa
 }
 
 extension PostBillingPortalConfigurationsConfigurationRequestBodyFeaturXcb51aa04a4: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostBillingPortalConfigurationsConfigurationRequestBodyFeaturXcb51aa04a4"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostBillingPortalConfigurationsConfigurationRequestBodyFeaturXcb51aa04a4")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode([String].self) {
-            return .stringList(value)
-        }
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
+        if let value = try? container.decode([String].self) { return .stringList(value) }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -405,6 +317,7 @@ extension PostBillingPortalConfigurationsConfigurationRequestBodyFeaturXcb51aa04
         case let .stringValue(value): try container.encode(value); return true
         }
     }
+
 }
 
 public struct PostBillingPortalConfigurationsRequestBodyFeaturesCustomerUpdate: Codable {
@@ -416,37 +329,27 @@ public struct PostBillingPortalConfigurationsRequestBodyFeaturesCustomerUpdate: 
         case allowedUpdates = "allowed_updates"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostBillingPortalConfigurationsRequestBodyFeaturesCustomerUpdate {
-    init(from decoder: Decoder) throws {
+extension PostBillingPortalConfigurationsRequestBodyFeaturesCustomerUpdate {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.enabled) else {
-            throw SdkValidationError(
-                field: "enabled",
-                code: "required",
-                message: "Validation failed for 'enabled': value is required"
-            )
+            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
         }
-        enabled = try container.sdkDecodeRequired(.enabled)
-        allowedUpdates = try container.sdkDecodeIfPresent(.allowedUpdates)
+        self.enabled = try container.sdkDecodeRequired(.enabled)
+        self.allowedUpdates = try container.sdkDecodeIfPresent(.allowedUpdates)
     }
 }
 
-public extension PostBillingPortalConfigurationsRequestBodyFeaturesCustomerUpdate {
-    init(
-        enabled: Bool,
-        allowedUpdates: PostBillingPortalConfigurationsRequestBodyFeaturesCustomerUpdXebda737538? = nil
-    ) {
+extension PostBillingPortalConfigurationsRequestBodyFeaturesCustomerUpdate {
+    public init(enabled: Bool, allowedUpdates: PostBillingPortalConfigurationsRequestBodyFeaturesCustomerUpdXebda737538? = nil) {
         (self.enabled, self.allowedUpdates) = (enabled, allowedUpdates)
     }
 }
 
-public typealias PostBillingPortalConfigurationsRequestBodyFeaturesSubscriptioX819222383e =
-    [PostBillingPortalConfigurationsRequestBodyFeaturesSubscriptioX0818c6203e]
+public typealias PostBillingPortalConfigurationsRequestBodyFeaturesSubscriptioX819222383e = [PostBillingPortalConfigurationsRequestBodyFeaturesSubscriptioX0818c6203e]
 
 public struct PostBillingPortalConfigurationsRequestBodyFeaturesSubscriptioXe92651c9a9: Codable {
     public var conditions: PostBillingPortalConfigurationsRequestBodyFeaturesSubscriptioX819222383e?
@@ -456,19 +359,19 @@ public struct PostBillingPortalConfigurationsRequestBodyFeaturesSubscriptioXe926
     }
 
     init() {
-        conditions = nil
+        self.conditions = nil
     }
 }
 
-public extension PostBillingPortalConfigurationsRequestBodyFeaturesSubscriptioXe92651c9a9 {
-    init(from decoder: Decoder) throws {
+extension PostBillingPortalConfigurationsRequestBodyFeaturesSubscriptioXe92651c9a9 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        conditions = try container.sdkDecodeIfPresent(.conditions)
+        self.conditions = try container.sdkDecodeIfPresent(.conditions)
     }
 }
 
-public extension PostBillingPortalConfigurationsRequestBodyFeaturesSubscriptioXe92651c9a9 {
-    init(conditions: PostBillingPortalConfigurationsRequestBodyFeaturesSubscriptioX819222383e? = nil) {
+extension PostBillingPortalConfigurationsRequestBodyFeaturesSubscriptioXe92651c9a9 {
+    public init(conditions: PostBillingPortalConfigurationsRequestBodyFeaturesSubscriptioX819222383e? = nil) {
         self.init()
         self.conditions = conditions
     }
@@ -487,25 +390,21 @@ public struct PostBillingPortalConfigurationsRequestBodyBusinessProfile: Codable
     }
 
     init() {
-        (headline, privacyPolicyUrl, termsOfServiceUrl) = (nil, nil, nil)
+        (self.headline, self.privacyPolicyUrl, self.termsOfServiceUrl) = (nil, nil, nil)
     }
 }
 
-public extension PostBillingPortalConfigurationsRequestBodyBusinessProfile {
-    init(from decoder: Decoder) throws {
+extension PostBillingPortalConfigurationsRequestBodyBusinessProfile {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        headline = try container.sdkDecodeIfPresent(.headline)
-        privacyPolicyUrl = try container.sdkDecodeIfPresent(.privacyPolicyUrl)
-        termsOfServiceUrl = try container.sdkDecodeIfPresent(.termsOfServiceUrl)
+        self.headline = try container.sdkDecodeIfPresent(.headline)
+        self.privacyPolicyUrl = try container.sdkDecodeIfPresent(.privacyPolicyUrl)
+        self.termsOfServiceUrl = try container.sdkDecodeIfPresent(.termsOfServiceUrl)
     }
 }
 
-public extension PostBillingPortalConfigurationsRequestBodyBusinessProfile {
-    init(
-        headline: PostBillingPortalConfigurationsRequestBodyBusinessProfileHeadline? = nil,
-        privacyPolicyUrl: String? = nil,
-        termsOfServiceUrl: String? = nil
-    ) {
+extension PostBillingPortalConfigurationsRequestBodyBusinessProfile {
+    public init(headline: PostBillingPortalConfigurationsRequestBodyBusinessProfileHeadline? = nil, privacyPolicyUrl: String? = nil, termsOfServiceUrl: String? = nil) {
         self.init()
         (self.headline, self.privacyPolicyUrl) = (headline, privacyPolicyUrl)
         self.termsOfServiceUrl = termsOfServiceUrl
@@ -520,27 +419,21 @@ public struct PostBillingPortalConfigurationsConfigurationRequestBodyLoginPage: 
         case enabled
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostBillingPortalConfigurationsConfigurationRequestBodyLoginPage {
-    init(from decoder: Decoder) throws {
+extension PostBillingPortalConfigurationsConfigurationRequestBodyLoginPage {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.enabled) else {
-            throw SdkValidationError(
-                field: "enabled",
-                code: "required",
-                message: "Validation failed for 'enabled': value is required"
-            )
+            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
         }
-        enabled = try container.sdkDecodeRequired(.enabled)
+        self.enabled = try container.sdkDecodeRequired(.enabled)
     }
 }
 
-public extension PostBillingPortalConfigurationsConfigurationRequestBodyLoginPage {
-    init(enabled: Bool) {
+extension PostBillingPortalConfigurationsConfigurationRequestBodyLoginPage {
+    public init(enabled: Bool) {
         self.enabled = enabled
     }
 }
@@ -565,41 +458,27 @@ public struct PostBillingPortalConfigurationsRequestBodyFeaturesSubscriptionUpda
         case trialUpdateBehavior = "trial_update_behavior"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostBillingPortalConfigurationsRequestBodyFeaturesSubscriptionUpdate {
-    init(from decoder: Decoder) throws {
+extension PostBillingPortalConfigurationsRequestBodyFeaturesSubscriptionUpdate {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.enabled) else {
-            throw SdkValidationError(
-                field: "enabled",
-                code: "required",
-                message: "Validation failed for 'enabled': value is required"
-            )
+            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
         }
-        enabled = try container.sdkDecodeRequired(.enabled)
-        billingCycleAnchor = try container.sdkDecodeIfPresent(.billingCycleAnchor)
-        defaultAllowedUpdates = try container.sdkDecodeIfPresent(.defaultAllowedUpdates)
-        products = try container.sdkDecodeIfPresent(.products)
-        prorationBehavior = try container.sdkDecodeIfPresent(.prorationBehavior)
-        scheduleAtPeriodEnd = try container.sdkDecodeIfPresent(.scheduleAtPeriodEnd)
-        trialUpdateBehavior = try container.sdkDecodeIfPresent(.trialUpdateBehavior)
+        self.enabled = try container.sdkDecodeRequired(.enabled)
+        self.billingCycleAnchor = try container.sdkDecodeIfPresent(.billingCycleAnchor)
+        self.defaultAllowedUpdates = try container.sdkDecodeIfPresent(.defaultAllowedUpdates)
+        self.products = try container.sdkDecodeIfPresent(.products)
+        self.prorationBehavior = try container.sdkDecodeIfPresent(.prorationBehavior)
+        self.scheduleAtPeriodEnd = try container.sdkDecodeIfPresent(.scheduleAtPeriodEnd)
+        self.trialUpdateBehavior = try container.sdkDecodeIfPresent(.trialUpdateBehavior)
     }
 }
 
-public extension PostBillingPortalConfigurationsRequestBodyFeaturesSubscriptionUpdate {
-    init(
-        enabled: Bool,
-        billingCycleAnchor: PostBillingPortalConfigurationsRequestBodyFeaturesSubscriptioX703d7963ed? = nil,
-        defaultAllowedUpdates: PostBillingPortalConfigurationsRequestBodyFeaturesSubscriptioX33991cc232? = nil,
-        products: PostBillingPortalConfigurationsRequestBodyFeaturesSubscriptioX8b211c6fbd? = nil,
-        prorationBehavior: PostBillingPortalConfigurationsRequestBodyFeaturesSubscriptioXcbcde0bfc5? = nil,
-        scheduleAtPeriodEnd: PostBillingPortalConfigurationsRequestBodyFeaturesSubscriptioXe92651c9a9? = nil,
-        trialUpdateBehavior: PostBillingPortalConfigurationsRequestBodyFeaturesSubscriptioXe92100e068? = nil
-    ) {
+extension PostBillingPortalConfigurationsRequestBodyFeaturesSubscriptionUpdate {
+    public init(enabled: Bool, billingCycleAnchor: PostBillingPortalConfigurationsRequestBodyFeaturesSubscriptioX703d7963ed? = nil, defaultAllowedUpdates: PostBillingPortalConfigurationsRequestBodyFeaturesSubscriptioX33991cc232? = nil, products: PostBillingPortalConfigurationsRequestBodyFeaturesSubscriptioX8b211c6fbd? = nil, prorationBehavior: PostBillingPortalConfigurationsRequestBodyFeaturesSubscriptioXcbcde0bfc5? = nil, scheduleAtPeriodEnd: PostBillingPortalConfigurationsRequestBodyFeaturesSubscriptioXe92651c9a9? = nil, trialUpdateBehavior: PostBillingPortalConfigurationsRequestBodyFeaturesSubscriptioXe92100e068? = nil) {
         (self.enabled, self.billingCycleAnchor) = (enabled, billingCycleAnchor)
         (self.defaultAllowedUpdates, self.products) = (defaultAllowedUpdates, products)
         (self.prorationBehavior, self.scheduleAtPeriodEnd) = (prorationBehavior, scheduleAtPeriodEnd)
@@ -615,41 +494,33 @@ public enum PostBillingPortalConfigurationsConfigurationRequestBodyFeaturX5d5af3
 }
 
 extension PostBillingPortalConfigurationsConfigurationRequestBodyFeaturX5d5af377db: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostBillingPortalConfigurationsConfigurationRequestBodyFeaturX5d5af377db"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostBillingPortalConfigurationsConfigurationRequestBodyFeaturX5d5af377db")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             [PostBillingPortalConfigurationsConfigurationRequestBodyFeaturX8127f0452c].self
         ) {
-            return .postBillingPortalConfigurationsConfigurationRequestBodyFeaturX75741f49cf(value)
+            return             .postBillingPortalConfigurationsConfigurationRequestBodyFeaturX75741f49cf(value)
         }
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .postBillingPortalConfigurationsConfigurationRequestBodyFeaturX75741f49cf(value): try container
-            .encode(value); return true
+        case let .postBillingPortalConfigurationsConfigurationRequestBodyFeaturX75741f49cf(value): try container.encode(value); return true
         case let .stringValue(value): try container.encode(value); return true
         }
     }
+
 }

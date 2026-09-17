@@ -7,9 +7,8 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1TerminalReadersCollectInputs operation model declarations
-public typealias PostTerminalReadersReaderCollectInputsRequestBodyInputsItemTogglesList =
-    [PostTerminalReadersReaderCollectInputsRequestBodyInputsItemTogglesItem]
+// Canonical v1TerminalReadersCollectInputs operation model declarations
+public typealias PostTerminalReadersReaderCollectInputsRequestBodyInputsItemTogglesList = [PostTerminalReadersReaderCollectInputsRequestBodyInputsItemTogglesItem]
 
 public struct PostTerminalReadersReaderCollectInputsRequestBodyInputsItem: Codable {
     /// custom_text_params
@@ -28,52 +27,35 @@ public struct PostTerminalReadersReaderCollectInputsRequestBodyInputsItem: Codab
         case toggles
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostTerminalReadersReaderCollectInputsRequestBodyInputsItem {
-    init(from decoder: Decoder) throws {
+extension PostTerminalReadersReaderCollectInputsRequestBodyInputsItem {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.customText) else {
-            throw SdkValidationError(
-                field: "custom_text",
-                code: "required",
-                message: "Validation failed for 'custom_text': value is required"
-            )
+            throw SdkValidationError(field: "custom_text", code: "required", message: "Validation failed for 'custom_text': value is required")
         }
         guard container.contains(.type) else {
-            throw SdkValidationError(
-                field: "type",
-                code: "required",
-                message: "Validation failed for 'type': value is required"
-            )
+            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
         }
-        customText = try container.sdkDecodeRequired(.customText)
-        type = try container.sdkDecodeRequired(.type)
-        required = try container.sdkDecodeIfPresent(.required)
-        selection = try container.sdkDecodeIfPresent(.selection)
-        toggles = try container.sdkDecodeIfPresent(.toggles)
+        self.customText = try container.sdkDecodeRequired(.customText)
+        self.type = try container.sdkDecodeRequired(.type)
+        self.required = try container.sdkDecodeIfPresent(.required)
+        self.selection = try container.sdkDecodeIfPresent(.selection)
+        self.toggles = try container.sdkDecodeIfPresent(.toggles)
     }
 }
 
-public extension PostTerminalReadersReaderCollectInputsRequestBodyInputsItem {
-    init(
-        customText: PostTerminalReadersReaderCollectInputsRequestBodyInputsItemCustomText,
-        type: PostTerminalReadersReaderCollectInputsRequestBodyInputsItemType,
-        required: Bool? = nil,
-        selection: PostTerminalReadersReaderCollectInputsRequestBodyInputsItemSelection? = nil,
-        toggles: PostTerminalReadersReaderCollectInputsRequestBodyInputsItemTogglesList? = nil
-    ) {
+extension PostTerminalReadersReaderCollectInputsRequestBodyInputsItem {
+    public init(customText: PostTerminalReadersReaderCollectInputsRequestBodyInputsItemCustomText, type: PostTerminalReadersReaderCollectInputsRequestBodyInputsItemType, required: Bool? = nil, selection: PostTerminalReadersReaderCollectInputsRequestBodyInputsItemSelection? = nil, toggles: PostTerminalReadersReaderCollectInputsRequestBodyInputsItemTogglesList? = nil) {
         (self.customText, self.type) = (customText, type)
         (self.required, self.selection) = (required, selection)
         self.toggles = toggles
     }
 }
 
-public typealias PostTerminalReadersReaderCollectInputsRequestBodyInputsItemSeXb3dc0333de =
-    [PostTerminalReadersReaderCollectInputsRequestBodyInputsItemSeXa4a7527978]
+public typealias PostTerminalReadersReaderCollectInputsRequestBodyInputsItemSeXb3dc0333de = [PostTerminalReadersReaderCollectInputsRequestBodyInputsItemSeXa4a7527978]
 
 public struct PostTerminalReadersReaderCollectInputsRequestBodyInputsItemSelection: Codable {
     public var choices: PostTerminalReadersReaderCollectInputsRequestBodyInputsItemSeXb3dc0333de
@@ -82,27 +64,21 @@ public struct PostTerminalReadersReaderCollectInputsRequestBodyInputsItemSelecti
         case choices
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostTerminalReadersReaderCollectInputsRequestBodyInputsItemSelection {
-    init(from decoder: Decoder) throws {
+extension PostTerminalReadersReaderCollectInputsRequestBodyInputsItemSelection {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.choices) else {
-            throw SdkValidationError(
-                field: "choices",
-                code: "required",
-                message: "Validation failed for 'choices': value is required"
-            )
+            throw SdkValidationError(field: "choices", code: "required", message: "Validation failed for 'choices': value is required")
         }
-        choices = try container.sdkDecodeRequired(.choices)
+        self.choices = try container.sdkDecodeRequired(.choices)
     }
 }
 
-public extension PostTerminalReadersReaderCollectInputsRequestBodyInputsItemSelection {
-    init(choices: PostTerminalReadersReaderCollectInputsRequestBodyInputsItemSeXb3dc0333de) {
+extension PostTerminalReadersReaderCollectInputsRequestBodyInputsItemSelection {
+    public init(choices: PostTerminalReadersReaderCollectInputsRequestBodyInputsItemSeXb3dc0333de) {
         self.choices = choices
     }
 }
@@ -118,46 +94,32 @@ public struct PostTerminalReadersReaderCollectInputsRequestBodyInputsItemSeXa4a7
         case style
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostTerminalReadersReaderCollectInputsRequestBodyInputsItemSeXa4a7527978 {
-    init(from decoder: Decoder) throws {
+extension PostTerminalReadersReaderCollectInputsRequestBodyInputsItemSeXa4a7527978 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.id) else {
-            throw SdkValidationError(
-                field: "id",
-                code: "required",
-                message: "Validation failed for 'id': value is required"
-            )
+            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
         }
         guard container.contains(.text) else {
-            throw SdkValidationError(
-                field: "text",
-                code: "required",
-                message: "Validation failed for 'text': value is required"
-            )
+            throw SdkValidationError(field: "text", code: "required", message: "Validation failed for 'text': value is required")
         }
-        id = try container.sdkDecodeRequired(.id)
-        text = try container.sdkDecodeRequired(.text)
-        style = try container.sdkDecodeIfPresent(.style)
-        try validateLength("id", id, min: nil, max: 50)
-        try validateLength("text", text, min: nil, max: 30)
+        self.id = try container.sdkDecodeRequired(.id)
+        self.text = try container.sdkDecodeRequired(.text)
+        self.style = try container.sdkDecodeIfPresent(.style)
+            try validateLength("id", self.id, min: nil, max: 50)
+            try validateLength("text", self.text, min: nil, max: 30)
     }
 }
 
-public extension PostTerminalReadersReaderCollectInputsRequestBodyInputsItemSeXa4a7527978 {
-    init(
-        id: String,
-        text: String,
-        style: PostTerminalReadersReaderCollectInputsRequestBodyInputsItemSeXedba7f48cb? = nil
-    ) throws {
+extension PostTerminalReadersReaderCollectInputsRequestBodyInputsItemSeXa4a7527978 {
+    public init(id: String, text: String, style: PostTerminalReadersReaderCollectInputsRequestBodyInputsItemSeXedba7f48cb? = nil) throws {
         (self.id, self.text) = (id, text)
         self.style = style
-        try validateLength("id", self.id, min: nil, max: 50)
-        try validateLength("text", self.text, min: nil, max: 30)
+            try validateLength("id", self.id, min: nil, max: 50)
+            try validateLength("text", self.text, min: nil, max: 30)
     }
 }
 
@@ -174,43 +136,37 @@ public struct PostTerminalReadersReaderCollectInputsRequestBodyInputsItemCustomT
         case submitButton = "submit_button"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostTerminalReadersReaderCollectInputsRequestBodyInputsItemCustomText {
-    init(from decoder: Decoder) throws {
+extension PostTerminalReadersReaderCollectInputsRequestBodyInputsItemCustomText {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.title) else {
-            throw SdkValidationError(
-                field: "title",
-                code: "required",
-                message: "Validation failed for 'title': value is required"
-            )
+            throw SdkValidationError(field: "title", code: "required", message: "Validation failed for 'title': value is required")
         }
-        title = try container.sdkDecodeRequired(.title)
-        description = try container.sdkDecodeIfPresent(.description)
-        skipButton = try container.sdkDecodeIfPresent(.skipButton)
-        submitButton = try container.sdkDecodeIfPresent(.submitButton)
-        try validateLength("title", title, min: nil, max: 40)
-        if let value = description {
+        self.title = try container.sdkDecodeRequired(.title)
+        self.description = try container.sdkDecodeIfPresent(.description)
+        self.skipButton = try container.sdkDecodeIfPresent(.skipButton)
+        self.submitButton = try container.sdkDecodeIfPresent(.submitButton)
+            try validateLength("title", self.title, min: nil, max: 40)
+        if let value = self.description {
             try validateLength("description", value, min: nil, max: 500)
         }
-        if let value = skipButton {
+        if let value = self.skipButton {
             try validateLength("skip_button", value, min: nil, max: 14)
         }
-        if let value = submitButton {
+        if let value = self.submitButton {
             try validateLength("submit_button", value, min: nil, max: 30)
         }
     }
 }
 
-public extension PostTerminalReadersReaderCollectInputsRequestBodyInputsItemCustomText {
-    init(title: String, description: String? = nil, skipButton: String? = nil, submitButton: String? = nil) throws {
+extension PostTerminalReadersReaderCollectInputsRequestBodyInputsItemCustomText {
+    public init(title: String, description: String? = nil, skipButton: String? = nil, submitButton: String? = nil) throws {
         (self.title, self.description) = (title, description)
         (self.skipButton, self.submitButton) = (skipButton, submitButton)
-        try validateLength("title", self.title, min: nil, max: 40)
+            try validateLength("title", self.title, min: nil, max: 40)
         if let value = self.description {
             try validateLength("description", value, min: nil, max: 500)
         }
@@ -235,31 +191,27 @@ public struct PostTerminalReadersReaderCollectInputsRequestBodyInputsItemToggles
     }
 
     init() {
-        (defaultValue, description, title) = (nil, nil, nil)
+        (self.defaultValue, self.description, self.title) = (nil, nil, nil)
     }
 }
 
-public extension PostTerminalReadersReaderCollectInputsRequestBodyInputsItemTogglesItem {
-    init(from decoder: Decoder) throws {
+extension PostTerminalReadersReaderCollectInputsRequestBodyInputsItemTogglesItem {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        defaultValue = try container.sdkDecodeIfPresent(.defaultValue)
-        description = try container.sdkDecodeIfPresent(.description)
-        title = try container.sdkDecodeIfPresent(.title)
-        if let value = description {
+        self.defaultValue = try container.sdkDecodeIfPresent(.defaultValue)
+        self.description = try container.sdkDecodeIfPresent(.description)
+        self.title = try container.sdkDecodeIfPresent(.title)
+        if let value = self.description {
             try validateLength("description", value, min: nil, max: 50)
         }
-        if let value = title {
+        if let value = self.title {
             try validateLength("title", value, min: nil, max: 50)
         }
     }
 }
 
-public extension PostTerminalReadersReaderCollectInputsRequestBodyInputsItemTogglesItem {
-    init(
-        defaultValue: PostTerminalReadersReaderCollectInputsRequestBodyInputsItemToXda4ed27e98? = nil,
-        description: String? = nil,
-        title: String? = nil
-    ) throws {
+extension PostTerminalReadersReaderCollectInputsRequestBodyInputsItemTogglesItem {
+    public init(defaultValue: PostTerminalReadersReaderCollectInputsRequestBodyInputsItemToXda4ed27e98? = nil, description: String? = nil, title: String? = nil) throws {
         self.init()
         (self.defaultValue, self.description) = (defaultValue, description)
         self.title = title

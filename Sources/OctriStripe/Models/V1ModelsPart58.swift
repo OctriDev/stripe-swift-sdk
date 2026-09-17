@@ -3,25 +3,21 @@
 
 import Foundation
 
-/// V1 domain models
+// V1 domain models
 /// Possible values are `phase_start` or `automatic`. If `phase_start` then billing cycle anchor of the
 /// subscription is set to the start of the phase when entering the phase. If `automatic` then the billing cycle
 /// anchor is automatically modified as needed when entering the phase. For more information, see the billing
 /// cycle documentation.
-public struct SubscriptionSchedulePhaseConfigurationBillingCycleAnchor: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct SubscriptionSchedulePhaseConfigurationBillingCycleAnchor: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let automatic = SubscriptionSchedulePhaseConfigurationBillingCycleAnchor(rawValue: "automatic")
     public static let phaseStart = SubscriptionSchedulePhaseConfigurationBillingCycleAnchor(rawValue: "phase_start")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -34,16 +30,13 @@ public struct SubscriptionSchedulePhaseConfigurationBillingCycleAnchor: RawRepre
 public struct SecretServiceResourceScopeType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let account = SecretServiceResourceScopeType(rawValue: "account")
     public static let user = SecretServiceResourceScopeType(rawValue: "user")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -56,16 +49,13 @@ public struct SecretServiceResourceScopeType: RawRepresentable, Hashable, Codabl
 public struct PlatformEarningFeeSourceType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let charge = PlatformEarningFeeSourceType(rawValue: "charge")
     public static let payout = PlatformEarningFeeSourceType(rawValue: "payout")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -76,15 +66,10 @@ public struct PlatformEarningFeeSourceType: RawRepresentable, Hashable, Codable,
 
 /// Preferred language of the Bancontact authorization page that the customer is redirected to. Can be one of
 /// `en`, `de`, `fr`, or `nl`
-public struct SetupAttemptPaymentMethodDetailsBancontactPreferredLanguage: RawRepresentable, Hashable, Codable,
-    Sendable,
-    SdkWireConvertible {
+public struct SetupAttemptPaymentMethodDetailsBancontactPreferredLanguage: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let de = SetupAttemptPaymentMethodDetailsBancontactPreferredLanguage(rawValue: "de")
     public static let en = SetupAttemptPaymentMethodDetailsBancontactPreferredLanguage(rawValue: "en")
     public static let fr = SetupAttemptPaymentMethodDetailsBancontactPreferredLanguage(rawValue: "fr")
@@ -92,7 +77,7 @@ public struct SetupAttemptPaymentMethodDetailsBancontactPreferredLanguage: RawRe
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

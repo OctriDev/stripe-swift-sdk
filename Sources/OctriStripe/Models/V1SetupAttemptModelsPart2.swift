@@ -3,25 +3,21 @@
 
 import Foundation
 
-/// V1SetupAttempt domain models
+// V1SetupAttempt domain models
 /// The type of the card wallet, one of `apple_pay`, `google_pay`, or `link`. An additional hash is included on
 /// the Wallet subhash with a name matching this value. It contains additional information specific to the card
 /// wallet type.
-public struct SetupAttemptPaymentMethodDetailsCardWalletType: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct SetupAttemptPaymentMethodDetailsCardWalletType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let applePay = SetupAttemptPaymentMethodDetailsCardWalletType(rawValue: "apple_pay")
     public static let googlePay = SetupAttemptPaymentMethodDetailsCardWalletType(rawValue: "google_pay")
     public static let link = SetupAttemptPaymentMethodDetailsCardWalletType(rawValue: "link")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

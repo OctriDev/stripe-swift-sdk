@@ -6,7 +6,7 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1TreasuryDebitReversalsMethods {
+extension V1TreasuryDebitReversalsMethods {
     /// Reverses a ReceivedDebit and creates a DebitReversal object.
     ///
     /// - Parameters:
@@ -17,54 +17,25 @@ public extension V1TreasuryDebitReversalsMethods {
     ///   information about the object in a structured format. Individual keys can be
     ///   unset by posting an empty value to them. All keys can be unset by posting an
     ///   empty value to `metadata`.
-    static func postTreasuryDebitReversals(
-        config: ClientConfig,
-        receivedDebit: String,
-        expand: [String]?,
-        metadata: [String: String]?
-    ) async throws -> TreasuryDebitReversal {
+    public static func postTreasuryDebitReversals(config: ClientConfig, receivedDebit: String, expand: [String]?, metadata: [String: String]?) async throws -> TreasuryDebitReversal {
         try validateLength("received_debit", receivedDebit, max: 5000)
 
-        let requestBody = PostTreasuryDebitReversalsRequestBody(
-            receivedDebit: receivedDebit,
-            expand: expand,
-            metadata: metadata
-        )
+        let requestBody = PostTreasuryDebitReversalsRequestBody(receivedDebit: receivedDebit, expand: expand, metadata: metadata)
 
-        return try await (sdkRequest(
-            "POST",
-            "/v1/treasury/debit_reversals",
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostTreasuryDebitReversals"
-        )).data
+        return try (await sdkRequest("POST", "/v1/treasury/debit_reversals", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTreasuryDebitReversals")).data
     }
 
-    /// Retrieves a specific DebitReversal object. Use `debit_reversal` to identify the reversal and `expand` to request
-    /// additional response fields when needed.
+    /// Retrieves a specific DebitReversal object. Use `debit_reversal` to identify the reversal and `expand` to request additional response fields when needed.
     ///
     /// Retrieves a DebitReversal object.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    static func getTreasuryDebitReversalsDebitReversal(
-        config: ClientConfig,
-        debitReversal: String,
-        expand: [String]?
-    ) async throws -> TreasuryDebitReversal {
+    public static func getTreasuryDebitReversalsDebitReversal(config: ClientConfig, debitReversal: String, expand: [String]?) async throws -> TreasuryDebitReversal {
         try validateLength("debit_reversal", debitReversal, max: 5000)
 
-        return try await (sdkRequest(
-            "GET",
-            ["/v1/treasury/debit_reversals/", sdkEncodePathSegment(sdkWireString(debitReversal))].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .json,
-            operationId: "GetTreasuryDebitReversalsDebitReversal"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/treasury/debit_reversals/", sdkEncodePathSegment(sdkWireString(debitReversal))].joined(), config: config, query: [
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .json, operationId: "GetTreasuryDebitReversalsDebitReversal")).data
     }
 }

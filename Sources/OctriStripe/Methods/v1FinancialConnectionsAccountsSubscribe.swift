@@ -7,39 +7,19 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1FinancialConnectionsAccountsSubscribeMethods {
-    /// Triggers periodic refreshes for selected data associated with a Financial Connections account. Supply `features`
-    /// to subscribe to recurring refreshes, which typically occur once a day while the account is active. The response
-    /// contains the account and its current refresh configuration.
+    /// Triggers periodic refreshes for selected data associated with a Financial Connections account. Supply `features` to subscribe to recurring refreshes, which typically occur once a day while the account is active. The response contains the account and its current refresh configuration.
     ///
-    /// Subscribes to periodic refreshes of data associated with a Financial Connections Account . When the account
-    /// status is active, data is typically refreshed once a day.
+    /// Subscribes to periodic refreshes of data associated with a Financial Connections Account . When the account status is active, data is typically refreshed once a day.
     ///
     /// - Parameters:
     /// - features: The list of account features to which you would like to
     ///   subscribe.
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postFinancialConnectionsAccountsAccountSubscribe(
-        config: ClientConfig,
-        account: String,
-        features: [PostFinancialConnectionsAccountsAccountSubscribeRequestBodyFeaturesItem],
-        expand: [String]?
-    ) async throws -> FinancialConnectionsAccount {
+    public static func postFinancialConnectionsAccountsAccountSubscribe(config: ClientConfig, account: String, features: [PostFinancialConnectionsAccountsAccountSubscribeRequestBodyFeaturesItem], expand: [String]?) async throws -> FinancialConnectionsAccount {
         try validateLength("account", account, max: 5000)
 
-        let requestBody = PostFinancialConnectionsAccountsAccountSubscribeRequestBody(
-            features: features,
-            expand: expand
-        )
+        let requestBody = PostFinancialConnectionsAccountsAccountSubscribeRequestBody(features: features, expand: expand)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/financial_connections/accounts/", sdkEncodePathSegment(sdkWireString(account)), "/subscribe"]
-                .joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostFinancialConnectionsAccountsAccountSubscribe"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/financial_connections/accounts/", sdkEncodePathSegment(sdkWireString(account)), "/subscribe"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostFinancialConnectionsAccountsAccountSubscribe")).data
     }
 }

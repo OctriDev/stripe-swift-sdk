@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1Card domain models
+// V1Card domain models
 /// Typed representation of the `CardGeneratedFromPaymentMethodDetails` API schema.
 public struct CardGeneratedFromPaymentMethodDetails: Codable {
     /// The type of payment method transaction-specific details from the transaction that generated this `card`
@@ -17,31 +17,25 @@ public struct CardGeneratedFromPaymentMethodDetails: Codable {
         case cardPresent = "card_present"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension CardGeneratedFromPaymentMethodDetails {
-    init(from decoder: Decoder) throws {
+extension CardGeneratedFromPaymentMethodDetails {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.type) else {
-            throw SdkValidationError(
-                field: "type",
-                code: "required",
-                message: "Validation failed for 'type': value is required"
-            )
+            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
         }
-        type = try container.sdkDecodeRequired(.type)
-        cardPresent = try container.sdkDecodeIfPresent(.cardPresent)
-        try validateLength("type", type, min: nil, max: 5000)
+        self.type = try container.sdkDecodeRequired(.type)
+        self.cardPresent = try container.sdkDecodeIfPresent(.cardPresent)
+            try validateLength("type", self.type, min: nil, max: 5000)
     }
 }
 
-public extension CardGeneratedFromPaymentMethodDetails {
-    init(type: String, cardPresent: PaymentMethodDetailsCardPresent? = nil) throws {
+extension CardGeneratedFromPaymentMethodDetails {
+    public init(type: String, cardPresent: PaymentMethodDetailsCardPresent? = nil) throws {
         (self.type, self.cardPresent) = (type, cardPresent)
-        try validateLength("type", self.type, min: nil, max: 5000)
+            try validateLength("type", self.type, min: nil, max: 5000)
     }
 }
 
@@ -61,27 +55,27 @@ public struct CardIssuingAccountTermsOfService: Codable {
     }
 
     init() {
-        (date, ip, userAgent) = (nil, nil, nil)
+        (self.date, self.ip, self.userAgent) = (nil, nil, nil)
     }
 }
 
-public extension CardIssuingAccountTermsOfService {
-    init(from decoder: Decoder) throws {
+extension CardIssuingAccountTermsOfService {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        date = try container.sdkDecodeIfPresent(.date)
-        ip = try container.sdkDecodeIfPresent(.ip)
-        userAgent = try container.sdkDecodeIfPresent(.userAgent)
-        if let value = ip {
+        self.date = try container.sdkDecodeIfPresent(.date)
+        self.ip = try container.sdkDecodeIfPresent(.ip)
+        self.userAgent = try container.sdkDecodeIfPresent(.userAgent)
+        if let value = self.ip {
             try validateLength("ip", value, min: nil, max: 5000)
         }
-        if let value = userAgent {
+        if let value = self.userAgent {
             try validateLength("user_agent", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension CardIssuingAccountTermsOfService {
-    init(date: Int? = nil, ip: String? = nil, userAgent: String? = nil) throws {
+extension CardIssuingAccountTermsOfService {
+    public init(date: Int? = nil, ip: String? = nil, userAgent: String? = nil) throws {
         self.init()
         (self.date, self.ip) = (date, ip)
         self.userAgent = userAgent
@@ -96,11 +90,11 @@ public extension CardIssuingAccountTermsOfService {
 
 /// Typed representation of the `CardMandatePaymentMethodDetails` API schema.
 public struct CardMandatePaymentMethodDetails: Codable {
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension CardMandatePaymentMethodDetails {
-    init() {}
+extension CardMandatePaymentMethodDetails {
+    public init() {
+    }
 }

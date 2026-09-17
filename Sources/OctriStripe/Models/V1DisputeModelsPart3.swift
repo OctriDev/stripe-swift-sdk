@@ -3,23 +3,23 @@
 
 import Foundation
 
-/// V1Dispute domain models
-public extension DisputePaymentMethodDetailsPaypal {
-    init(from decoder: Decoder) throws {
+// V1Dispute domain models
+extension DisputePaymentMethodDetailsPaypal {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        caseId = try container.sdkDecodeIfPresent(.caseId)
-        reasonCode = try container.sdkDecodeIfPresent(.reasonCode)
-        if let value = caseId {
+        self.caseId = try container.sdkDecodeIfPresent(.caseId)
+        self.reasonCode = try container.sdkDecodeIfPresent(.reasonCode)
+        if let value = self.caseId {
             try validateLength("case_id", value, min: nil, max: 5000)
         }
-        if let value = reasonCode {
+        if let value = self.reasonCode {
             try validateLength("reason_code", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension DisputePaymentMethodDetailsPaypal {
-    init(caseId: String? = nil, reasonCode: String? = nil) throws {
+extension DisputePaymentMethodDetailsPaypal {
+    public init(caseId: String? = nil, reasonCode: String? = nil) throws {
         self.init()
         (self.caseId, self.reasonCode) = (caseId, reasonCode)
         if let value = self.caseId {
@@ -56,50 +56,43 @@ public struct DisputeTransactionShippingAddress: Codable {
     }
 
     init() {
-        (city, country, line1, line2, postalCode) = (nil, nil, nil, nil, nil)
-        state = nil
+        (self.city, self.country, self.line1, self.line2, self.postalCode) = (nil, nil, nil, nil, nil)
+        self.state = nil
     }
 }
 
-public extension DisputeTransactionShippingAddress {
-    init(from decoder: Decoder) throws {
+extension DisputeTransactionShippingAddress {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        city = try container.sdkDecodeIfPresent(.city)
-        country = try container.sdkDecodeIfPresent(.country)
-        line1 = try container.sdkDecodeIfPresent(.line1)
-        line2 = try container.sdkDecodeIfPresent(.line2)
-        postalCode = try container.sdkDecodeIfPresent(.postalCode)
-        state = try container.sdkDecodeIfPresent(.state)
-        if let value = city {
+        self.city = try container.sdkDecodeIfPresent(.city)
+        self.country = try container.sdkDecodeIfPresent(.country)
+        self.line1 = try container.sdkDecodeIfPresent(.line1)
+        self.line2 = try container.sdkDecodeIfPresent(.line2)
+        self.postalCode = try container.sdkDecodeIfPresent(.postalCode)
+        self.state = try container.sdkDecodeIfPresent(.state)
+        if let value = self.city {
             try validateLength("city", value, min: nil, max: 5000)
         }
-        if let value = country {
+        if let value = self.country {
             try validateLength("country", value, min: nil, max: 5000)
         }
-        if let value = line1 {
+        if let value = self.line1 {
             try validateLength("line1", value, min: nil, max: 5000)
         }
-        if let value = line2 {
+        if let value = self.line2 {
             try validateLength("line2", value, min: nil, max: 5000)
         }
-        if let value = postalCode {
+        if let value = self.postalCode {
             try validateLength("postal_code", value, min: nil, max: 5000)
         }
-        if let value = state {
+        if let value = self.state {
             try validateLength("state", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension DisputeTransactionShippingAddress {
-    init(
-        city: String? = nil,
-        country: String? = nil,
-        line1: String? = nil,
-        line2: String? = nil,
-        postalCode: String? = nil,
-        state: String? = nil
-    ) throws {
+extension DisputeTransactionShippingAddress {
+    public init(city: String? = nil, country: String? = nil, line1: String? = nil, line2: String? = nil, postalCode: String? = nil, state: String? = nil) throws {
         self.init()
         (self.city, self.country) = (city, country)
         (self.line1, self.line2) = (line1, line2)
@@ -159,60 +152,45 @@ public struct DisputeVisaCompellingEvidence3DisputedTransaction: Codable {
     }
 
     init() {
-        (customerAccountId, customerDeviceFingerprint, customerDeviceId, customerEmailAddress, customerPurchaseIp) = (
-            nil,
-            nil,
-            nil,
-            nil,
-            nil
-        )
-        (merchandiseOrServices, productDescription, shippingAddress) = (nil, nil, nil)
+        (self.customerAccountId, self.customerDeviceFingerprint, self.customerDeviceId, self.customerEmailAddress, self.customerPurchaseIp) = (nil, nil, nil, nil, nil)
+        (self.merchandiseOrServices, self.productDescription, self.shippingAddress) = (nil, nil, nil)
     }
 }
 
-public extension DisputeVisaCompellingEvidence3DisputedTransaction {
-    init(from decoder: Decoder) throws {
+extension DisputeVisaCompellingEvidence3DisputedTransaction {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        customerAccountId = try container.sdkDecodeIfPresent(.customerAccountId)
-        customerDeviceFingerprint = try container.sdkDecodeIfPresent(.customerDeviceFingerprint)
-        customerDeviceId = try container.sdkDecodeIfPresent(.customerDeviceId)
-        customerEmailAddress = try container.sdkDecodeIfPresent(.customerEmailAddress)
-        customerPurchaseIp = try container.sdkDecodeIfPresent(.customerPurchaseIp)
-        merchandiseOrServices = try container.sdkDecodeIfPresent(.merchandiseOrServices)
-        productDescription = try container.sdkDecodeIfPresent(.productDescription)
-        shippingAddress = try container.sdkDecodeIfPresent(.shippingAddress)
-        if let value = customerAccountId {
+        self.customerAccountId = try container.sdkDecodeIfPresent(.customerAccountId)
+        self.customerDeviceFingerprint = try container.sdkDecodeIfPresent(.customerDeviceFingerprint)
+        self.customerDeviceId = try container.sdkDecodeIfPresent(.customerDeviceId)
+        self.customerEmailAddress = try container.sdkDecodeIfPresent(.customerEmailAddress)
+        self.customerPurchaseIp = try container.sdkDecodeIfPresent(.customerPurchaseIp)
+        self.merchandiseOrServices = try container.sdkDecodeIfPresent(.merchandiseOrServices)
+        self.productDescription = try container.sdkDecodeIfPresent(.productDescription)
+        self.shippingAddress = try container.sdkDecodeIfPresent(.shippingAddress)
+        if let value = self.customerAccountId {
             try validateLength("customer_account_id", value, min: nil, max: 5000)
         }
-        if let value = customerDeviceFingerprint {
+        if let value = self.customerDeviceFingerprint {
             try validateLength("customer_device_fingerprint", value, min: nil, max: 5000)
         }
-        if let value = customerDeviceId {
+        if let value = self.customerDeviceId {
             try validateLength("customer_device_id", value, min: nil, max: 5000)
         }
-        if let value = customerEmailAddress {
+        if let value = self.customerEmailAddress {
             try validateLength("customer_email_address", value, min: nil, max: 5000)
         }
-        if let value = customerPurchaseIp {
+        if let value = self.customerPurchaseIp {
             try validateLength("customer_purchase_ip", value, min: nil, max: 5000)
         }
-        if let value = productDescription {
-            try validateLength("product_description", value, min: nil, max: 150_000)
+        if let value = self.productDescription {
+            try validateLength("product_description", value, min: nil, max: 150000)
         }
     }
 }
 
-public extension DisputeVisaCompellingEvidence3DisputedTransaction {
-    init(
-        customerAccountId: String? = nil,
-        customerDeviceFingerprint: String? = nil,
-        customerDeviceId: String? = nil,
-        customerEmailAddress: String? = nil,
-        customerPurchaseIp: String? = nil,
-        merchandiseOrServices: DisputeVisaCompellingEvidence3DisputedTransactionMerchandiseOrServices? = nil,
-        productDescription: String? = nil,
-        shippingAddress: DisputeVisaCompellingEvidence3DisputedTransactionShippingAddress? = nil
-    ) throws {
+extension DisputeVisaCompellingEvidence3DisputedTransaction {
+    public init(customerAccountId: String? = nil, customerDeviceFingerprint: String? = nil, customerDeviceId: String? = nil, customerEmailAddress: String? = nil, customerPurchaseIp: String? = nil, merchandiseOrServices: DisputeVisaCompellingEvidence3DisputedTransactionMerchandiseOrServices? = nil, productDescription: String? = nil, shippingAddress: DisputeVisaCompellingEvidence3DisputedTransactionShippingAddress? = nil) throws {
         self.init()
         self.customerAccountId = customerAccountId
         self.customerDeviceFingerprint = customerDeviceFingerprint
@@ -235,7 +213,7 @@ public extension DisputeVisaCompellingEvidence3DisputedTransaction {
             try validateLength("customer_purchase_ip", value, min: nil, max: 5000)
         }
         if let value = self.productDescription {
-            try validateLength("product_description", value, min: nil, max: 150_000)
+            try validateLength("product_description", value, min: nil, max: 150000)
         }
     }
 }
@@ -245,29 +223,20 @@ public enum DisputeVisaCompellingEvidence3DisputedTransactionShippingAddress {
 }
 
 extension DisputeVisaCompellingEvidence3DisputedTransactionShippingAddress: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for DisputeVisaCompellingEvidence3DisputedTransactionShippingAddress"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for DisputeVisaCompellingEvidence3DisputedTransactionShippingAddress")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container
-            .decode(DisputeTransactionShippingAddress.self) {
-            return .disputeTransactionShippingAddress(value)
-        }
+        if let value = try? container.decode(DisputeTransactionShippingAddress.self) { return .disputeTransactionShippingAddress(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -276,6 +245,7 @@ extension DisputeVisaCompellingEvidence3DisputedTransactionShippingAddress: Coda
         case let .disputeTransactionShippingAddress(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// Typed representation of the `DisputeVisaCompellingEvidence3PriorUndisputedTransaction` API schema.
@@ -311,44 +281,29 @@ public struct DisputeVisaCompellingEvidence3PriorUndisputedTransaction: Codable 
         case shippingAddress = "shipping_address"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension DisputeVisaCompellingEvidence3PriorUndisputedTransaction {
-    init(from decoder: Decoder) throws {
+extension DisputeVisaCompellingEvidence3PriorUndisputedTransaction {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.charge) else {
-            throw SdkValidationError(
-                field: "charge",
-                code: "required",
-                message: "Validation failed for 'charge': value is required"
-            )
+            throw SdkValidationError(field: "charge", code: "required", message: "Validation failed for 'charge': value is required")
         }
-        charge = try container.sdkDecodeRequired(.charge)
-        customerAccountId = try container.sdkDecodeIfPresent(.customerAccountId)
-        customerDeviceFingerprint = try container.sdkDecodeIfPresent(.customerDeviceFingerprint)
-        customerDeviceId = try container.sdkDecodeIfPresent(.customerDeviceId)
-        customerEmailAddress = try container.sdkDecodeIfPresent(.customerEmailAddress)
-        customerPurchaseIp = try container.sdkDecodeIfPresent(.customerPurchaseIp)
-        productDescription = try container.sdkDecodeIfPresent(.productDescription)
-        shippingAddress = try container.sdkDecodeIfPresent(.shippingAddress)
+        self.charge = try container.sdkDecodeRequired(.charge)
+        self.customerAccountId = try container.sdkDecodeIfPresent(.customerAccountId)
+        self.customerDeviceFingerprint = try container.sdkDecodeIfPresent(.customerDeviceFingerprint)
+        self.customerDeviceId = try container.sdkDecodeIfPresent(.customerDeviceId)
+        self.customerEmailAddress = try container.sdkDecodeIfPresent(.customerEmailAddress)
+        self.customerPurchaseIp = try container.sdkDecodeIfPresent(.customerPurchaseIp)
+        self.productDescription = try container.sdkDecodeIfPresent(.productDescription)
+        self.shippingAddress = try container.sdkDecodeIfPresent(.shippingAddress)
         try sdkValidateConstraints()
     }
 }
 
-public extension DisputeVisaCompellingEvidence3PriorUndisputedTransaction {
-    init(
-        charge: String,
-        customerAccountId: String? = nil,
-        customerDeviceFingerprint: String? = nil,
-        customerDeviceId: String? = nil,
-        customerEmailAddress: String? = nil,
-        customerPurchaseIp: String? = nil,
-        productDescription: String? = nil,
-        shippingAddress: DisputeVisaCompellingEvidence3PriorUndisputedTransactionShippingAddress? = nil
-    ) throws {
+extension DisputeVisaCompellingEvidence3PriorUndisputedTransaction {
+    public init(charge: String, customerAccountId: String? = nil, customerDeviceFingerprint: String? = nil, customerDeviceId: String? = nil, customerEmailAddress: String? = nil, customerPurchaseIp: String? = nil, productDescription: String? = nil, shippingAddress: DisputeVisaCompellingEvidence3PriorUndisputedTransactionShippingAddress? = nil) throws {
         (self.charge, self.customerAccountId) = (charge, customerAccountId)
         self.customerDeviceFingerprint = customerDeviceFingerprint
         (self.customerDeviceId, self.customerEmailAddress) = (customerDeviceId, customerEmailAddress)
@@ -360,24 +315,24 @@ public extension DisputeVisaCompellingEvidence3PriorUndisputedTransaction {
 
 extension DisputeVisaCompellingEvidence3PriorUndisputedTransaction {
     func sdkValidateConstraints() throws {
-        try validateLength("charge", charge, min: nil, max: 5000)
-        if let value = customerAccountId {
+            try validateLength("charge", self.charge, min: nil, max: 5000)
+        if let value = self.customerAccountId {
             try validateLength("customer_account_id", value, min: nil, max: 5000)
         }
-        if let value = customerDeviceFingerprint {
+        if let value = self.customerDeviceFingerprint {
             try validateLength("customer_device_fingerprint", value, min: nil, max: 5000)
         }
-        if let value = customerDeviceId {
+        if let value = self.customerDeviceId {
             try validateLength("customer_device_id", value, min: nil, max: 5000)
         }
-        if let value = customerEmailAddress {
+        if let value = self.customerEmailAddress {
             try validateLength("customer_email_address", value, min: nil, max: 5000)
         }
-        if let value = customerPurchaseIp {
+        if let value = self.customerPurchaseIp {
             try validateLength("customer_purchase_ip", value, min: nil, max: 5000)
         }
-        if let value = productDescription {
-            try validateLength("product_description", value, min: nil, max: 150_000)
+        if let value = self.productDescription {
+            try validateLength("product_description", value, min: nil, max: 150000)
         }
     }
 }
@@ -387,29 +342,20 @@ public enum DisputeVisaCompellingEvidence3PriorUndisputedTransactionShippingAddr
 }
 
 extension DisputeVisaCompellingEvidence3PriorUndisputedTransactionShippingAddress: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for DisputeVisaCompellingEvidence3PriorUndisputedTransactionShippingAddress"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for DisputeVisaCompellingEvidence3PriorUndisputedTransactionShippingAddress")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container
-            .decode(DisputeTransactionShippingAddress.self) {
-            return .disputeTransactionShippingAddress(value)
-        }
+        if let value = try? container.decode(DisputeTransactionShippingAddress.self) { return .disputeTransactionShippingAddress(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -418,16 +364,14 @@ extension DisputeVisaCompellingEvidence3PriorUndisputedTransactionShippingAddres
         case let .disputeTransactionShippingAddress(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// Payment method type.
 public struct DisputePaymentMethodDetailsType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let amazonPay = DisputePaymentMethodDetailsType(rawValue: "amazon_pay")
     public static let card = DisputePaymentMethodDetailsType(rawValue: "card")
     public static let klarna = DisputePaymentMethodDetailsType(rawValue: "klarna")
@@ -435,7 +379,7 @@ public struct DisputePaymentMethodDetailsType: RawRepresentable, Hashable, Codab
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -445,22 +389,16 @@ public struct DisputePaymentMethodDetailsType: RawRepresentable, Hashable, Codab
 }
 
 /// Mastercard compliance eligibility status.
-public struct DisputeEnhancedEligibilityPrimarycardComplianceStatus: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct DisputeEnhancedEligibilityPrimarycardComplianceStatus: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let feeAcknowledged =
-        DisputeEnhancedEligibilityPrimarycardComplianceStatus(rawValue: "fee_acknowledged")
-    public static let requiresFeeAcknowledgement =
-        DisputeEnhancedEligibilityPrimarycardComplianceStatus(rawValue: "requires_fee_acknowledgement")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let feeAcknowledged = DisputeEnhancedEligibilityPrimarycardComplianceStatus(rawValue: "fee_acknowledged")
+    public static let requiresFeeAcknowledgement = DisputeEnhancedEligibilityPrimarycardComplianceStatus(rawValue: "requires_fee_acknowledgement")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -470,20 +408,16 @@ public struct DisputeEnhancedEligibilityPrimarycardComplianceStatus: RawRepresen
 }
 
 /// The AmazonPay dispute type, chargeback or claim
-public struct DisputePaymentMethodDetailsAmazonPayDisputeType: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct DisputePaymentMethodDetailsAmazonPayDisputeType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let chargeback = DisputePaymentMethodDetailsAmazonPayDisputeType(rawValue: "chargeback")
     public static let claim = DisputePaymentMethodDetailsAmazonPayDisputeType(rawValue: "claim")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -493,22 +427,17 @@ public struct DisputePaymentMethodDetailsAmazonPayDisputeType: RawRepresentable,
 }
 
 /// Visa Compelling Evidence 3.0 eligibility status.
-public struct DisputeEnhancedEligibilityVisaCompellingEvidence3Status: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct DisputeEnhancedEligibilityVisaCompellingEvidence3Status: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let notQualified = DisputeEnhancedEligibilityVisaCompellingEvidence3Status(rawValue: "not_qualified")
     public static let qualified = DisputeEnhancedEligibilityVisaCompellingEvidence3Status(rawValue: "qualified")
-    public static let requiresAction =
-        DisputeEnhancedEligibilityVisaCompellingEvidence3Status(rawValue: "requires_action")
+    public static let requiresAction = DisputeEnhancedEligibilityVisaCompellingEvidence3Status(rawValue: "requires_action")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -518,36 +447,19 @@ public struct DisputeEnhancedEligibilityVisaCompellingEvidence3Status: RawRepres
 }
 
 /// Required enumerated value serialized in the `required_actions[]` wire field.
-public struct DisputeEnhancedEligibilityVisaCompellingEvidence3RequiredActionsItem: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct DisputeEnhancedEligibilityVisaCompellingEvidence3RequiredActionsItem: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let missingCustomerIdentifiers =
-        DisputeEnhancedEligibilityVisaCompellingEvidence3RequiredActionsItem(rawValue: "missing_customer_identifiers")
-    public static let missingDisputedTransactionDescription =
-        DisputeEnhancedEligibilityVisaCompellingEvidence3RequiredActionsItem(
-            rawValue: "missing_disputed_transaction_description"
-        )
-    public static let missingMerchandiseOrServices =
-        DisputeEnhancedEligibilityVisaCompellingEvidence3RequiredActionsItem(
-            rawValue: "missing_merchandise_or_services"
-        )
-    public static let missingPriorUndisputedTransactionDescription =
-        DisputeEnhancedEligibilityVisaCompellingEvidence3RequiredActionsItem(
-            rawValue: "missing_prior_undisputed_transaction_description"
-        )
-    public static let missingPriorUndisputedTransactions =
-        DisputeEnhancedEligibilityVisaCompellingEvidence3RequiredActionsItem(
-            rawValue: "missing_prior_undisputed_transactions"
-        )
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let missingCustomerIdentifiers = DisputeEnhancedEligibilityVisaCompellingEvidence3RequiredActionsItem(rawValue: "missing_customer_identifiers")
+    public static let missingDisputedTransactionDescription = DisputeEnhancedEligibilityVisaCompellingEvidence3RequiredActionsItem(rawValue: "missing_disputed_transaction_description")
+    public static let missingMerchandiseOrServices = DisputeEnhancedEligibilityVisaCompellingEvidence3RequiredActionsItem(rawValue: "missing_merchandise_or_services")
+    public static let missingPriorUndisputedTransactionDescription = DisputeEnhancedEligibilityVisaCompellingEvidence3RequiredActionsItem(rawValue: "missing_prior_undisputed_transaction_description")
+    public static let missingPriorUndisputedTransactions = DisputeEnhancedEligibilityVisaCompellingEvidence3RequiredActionsItem(rawValue: "missing_prior_undisputed_transactions")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -557,21 +469,16 @@ public struct DisputeEnhancedEligibilityVisaCompellingEvidence3RequiredActionsIt
 }
 
 /// Visa compliance eligibility status.
-public struct DisputeEnhancedEligibilityVisaComplianceStatus: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct DisputeEnhancedEligibilityVisaComplianceStatus: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let feeAcknowledged = DisputeEnhancedEligibilityVisaComplianceStatus(rawValue: "fee_acknowledged")
-    public static let requiresFeeAcknowledgement =
-        DisputeEnhancedEligibilityVisaComplianceStatus(rawValue: "requires_fee_acknowledgement")
+    public static let requiresFeeAcknowledgement = DisputeEnhancedEligibilityVisaComplianceStatus(rawValue: "requires_fee_acknowledgement")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

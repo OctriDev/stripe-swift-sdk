@@ -6,29 +6,18 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1ChargesMethods {
-    /// Retrieves a previously created charge by its unique identifier. Supply `charge` to retrieve the charge details
-    /// and use `expand` when related response fields are needed inline. The response contains the same charge
-    /// information available from charge creation and refund operations.
+extension V1ChargesMethods {
+    /// Retrieves a previously created charge by its unique identifier. Supply `charge` to retrieve the charge details and use `expand` when related response fields are needed inline. The response contains the same charge information available from charge creation and refund operations.
     ///
-    /// Retrieves the details of a charge that has previously been created. Supply the unique charge ID that was
-    /// returned from your previous request, and Stripe will return the corresponding charge information. The same
-    /// information is returned when creating or refunding the charge.
+    /// Retrieves the details of a charge that has previously been created. Supply the unique charge ID that was returned from your previous request, and Stripe will return the corresponding charge information. The same information is returned when creating or refunding the charge.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    static func getChargesCharge(config: ClientConfig, charge: String, expand: [String]?) async throws -> Charge {
+    public static func getChargesCharge(config: ClientConfig, charge: String, expand: [String]?) async throws -> Charge {
         try validateLength("charge", charge, max: 5000)
 
-        return try await (sdkRequest(
-            "GET",
-            ["/v1/charges/", sdkEncodePathSegment(sdkWireString(charge))].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .json,
-            operationId: "GetChargesCharge"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/charges/", sdkEncodePathSegment(sdkWireString(charge))].joined(), config: config, query: [
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .json, operationId: "GetChargesCharge")).data
     }
 }

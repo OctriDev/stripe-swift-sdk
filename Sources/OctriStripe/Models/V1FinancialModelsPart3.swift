@@ -3,22 +3,17 @@
 
 import Foundation
 
-/// V1Financial domain models
+// V1Financial domain models
 /// String representing the object's type. Objects of the same type share the same value.
-public struct FinancialConnectionsAccountOwnerObject: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct FinancialConnectionsAccountOwnerObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let financialConnectionsAccountOwner =
-        FinancialConnectionsAccountOwnerObject(rawValue: "financial_connections.account_owner")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let financialConnectionsAccountOwner = FinancialConnectionsAccountOwnerObject(rawValue: "financial_connections.account_owner")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -31,10 +26,7 @@ public struct FinancialConnectionsAccountOwnerObject: RawRepresentable, Hashable
 public struct FinancialConnectionsAccountCategory: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let cash = FinancialConnectionsAccountCategory(rawValue: "cash")
     public static let credit = FinancialConnectionsAccountCategory(rawValue: "credit")
     public static let investment = FinancialConnectionsAccountCategory(rawValue: "investment")
@@ -42,7 +34,7 @@ public struct FinancialConnectionsAccountCategory: RawRepresentable, Hashable, C
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -52,14 +44,10 @@ public struct FinancialConnectionsAccountCategory: RawRepresentable, Hashable, C
 }
 
 /// Required enumerated value serialized in the `permissions[]` wire field.
-public struct FinancialConnectionsSessionPermissionsItem: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct FinancialConnectionsSessionPermissionsItem: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let balances = FinancialConnectionsSessionPermissionsItem(rawValue: "balances")
     public static let ownership = FinancialConnectionsSessionPermissionsItem(rawValue: "ownership")
     public static let paymentMethod = FinancialConnectionsSessionPermissionsItem(rawValue: "payment_method")
@@ -67,7 +55,7 @@ public struct FinancialConnectionsSessionPermissionsItem: RawRepresentable, Hash
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -78,19 +66,15 @@ public struct FinancialConnectionsSessionPermissionsItem: RawRepresentable, Hash
 
 /// String representing the object's type. Objects of the same type share the same value. Always has the value
 /// `list`.
-public struct FinancialConnectionsSessionAccountsObject: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct FinancialConnectionsSessionAccountsObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let list = FinancialConnectionsSessionAccountsObject(rawValue: "list")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -103,16 +87,12 @@ public struct FinancialConnectionsSessionAccountsObject: RawRepresentable, Hasha
 public struct FinancialConnectionsAccountObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let financialConnectionsAccount =
-        FinancialConnectionsAccountObject(rawValue: "financial_connections.account")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let financialConnectionsAccount = FinancialConnectionsAccountObject(rawValue: "financial_connections.account")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -123,19 +103,15 @@ public struct FinancialConnectionsAccountObject: RawRepresentable, Hashable, Cod
 
 /// String representing the object's type. Objects of the same type share the same value. Always has the value
 /// `list`.
-public struct FinancialConnectionsAccountOwnershipOwnersObject: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct FinancialConnectionsAccountOwnershipOwnersObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let list = FinancialConnectionsAccountOwnershipOwnersObject(rawValue: "list")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -148,17 +124,14 @@ public struct FinancialConnectionsAccountOwnershipOwnersObject: RawRepresentable
 public struct FinancialConnectionsAccountStatus: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let active = FinancialConnectionsAccountStatus(rawValue: "active")
     public static let disconnected = FinancialConnectionsAccountStatus(rawValue: "disconnected")
     public static let inactive = FinancialConnectionsAccountStatus(rawValue: "inactive")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -171,16 +144,12 @@ public struct FinancialConnectionsAccountStatus: RawRepresentable, Hashable, Cod
 public struct FinancialConnectionsSessionObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let financialConnectionsSession =
-        FinancialConnectionsSessionObject(rawValue: "financial_connections.session")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let financialConnectionsSession = FinancialConnectionsSessionObject(rawValue: "financial_connections.session")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -190,14 +159,10 @@ public struct FinancialConnectionsSessionObject: RawRepresentable, Hashable, Cod
 }
 
 /// Required enumerated value serialized in the `permissions[]` wire field.
-public struct FinancialConnectionsAccountPermissionsItem: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct FinancialConnectionsAccountPermissionsItem: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let balances = FinancialConnectionsAccountPermissionsItem(rawValue: "balances")
     public static let ownership = FinancialConnectionsAccountPermissionsItem(rawValue: "ownership")
     public static let paymentMethod = FinancialConnectionsAccountPermissionsItem(rawValue: "payment_method")
@@ -205,7 +170,7 @@ public struct FinancialConnectionsAccountPermissionsItem: RawRepresentable, Hash
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -217,14 +182,10 @@ public struct FinancialConnectionsAccountPermissionsItem: RawRepresentable, Hash
 /// If `category` is `cash`, one of: - `checking` - `savings` - `other` If `category` is `credit`, one of: -
 /// `mortgage` - `line_of_credit` - `credit_card` - `other` If `category` is `investment` or `other`, this will
 /// be `other`.
-public struct FinancialConnectionsAccountSubcategory: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct FinancialConnectionsAccountSubcategory: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let checking = FinancialConnectionsAccountSubcategory(rawValue: "checking")
     public static let creditCard = FinancialConnectionsAccountSubcategory(rawValue: "credit_card")
     public static let lineOfCredit = FinancialConnectionsAccountSubcategory(rawValue: "line_of_credit")
@@ -234,7 +195,7 @@ public struct FinancialConnectionsAccountSubcategory: RawRepresentable, Hashable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -247,17 +208,14 @@ public struct FinancialConnectionsAccountSubcategory: RawRepresentable, Hashable
 public struct FinancialConnectionsTransactionStatus: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let pending = FinancialConnectionsTransactionStatus(rawValue: "pending")
     public static let posted = FinancialConnectionsTransactionStatus(rawValue: "posted")
     public static let void = FinancialConnectionsTransactionStatus(rawValue: "void")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -267,21 +225,16 @@ public struct FinancialConnectionsTransactionStatus: RawRepresentable, Hashable,
 }
 
 /// Required enumerated value serialized in the `supported_payment_method_types[]` wire field.
-public struct FinancialConnectionsAccountSupportedPaymentMethodTypesItem: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct FinancialConnectionsAccountSupportedPaymentMethodTypesItem: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let link = FinancialConnectionsAccountSupportedPaymentMethodTypesItem(rawValue: "link")
-    public static let usBankAccount =
-        FinancialConnectionsAccountSupportedPaymentMethodTypesItem(rawValue: "us_bank_account")
+    public static let usBankAccount = FinancialConnectionsAccountSupportedPaymentMethodTypesItem(rawValue: "us_bank_account")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

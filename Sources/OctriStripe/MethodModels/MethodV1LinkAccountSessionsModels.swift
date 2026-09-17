@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1LinkAccountSessions operation model declarations
+// Canonical v1LinkAccountSessions operation model declarations
 /// The account holder to link accounts for.
 public struct PostLinkAccountSessionsRequestBodyAccountHolder: Codable {
     public var type: PostLinkAccountSessionsRequestBodyAccountHolderType
@@ -22,44 +22,33 @@ public struct PostLinkAccountSessionsRequestBodyAccountHolder: Codable {
         case customerAccount = "customer_account"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostLinkAccountSessionsRequestBodyAccountHolder {
-    init(from decoder: Decoder) throws {
+extension PostLinkAccountSessionsRequestBodyAccountHolder {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.type) else {
-            throw SdkValidationError(
-                field: "type",
-                code: "required",
-                message: "Validation failed for 'type': value is required"
-            )
+            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
         }
-        type = try container.sdkDecodeRequired(.type)
-        account = try container.sdkDecodeIfPresent(.account)
-        customer = try container.sdkDecodeIfPresent(.customer)
-        customerAccount = try container.sdkDecodeIfPresent(.customerAccount)
-        if let value = account {
+        self.type = try container.sdkDecodeRequired(.type)
+        self.account = try container.sdkDecodeIfPresent(.account)
+        self.customer = try container.sdkDecodeIfPresent(.customer)
+        self.customerAccount = try container.sdkDecodeIfPresent(.customerAccount)
+        if let value = self.account {
             try validateLength("account", value, min: nil, max: 5000)
         }
-        if let value = customer {
+        if let value = self.customer {
             try validateLength("customer", value, min: nil, max: 5000)
         }
-        if let value = customerAccount {
+        if let value = self.customerAccount {
             try validateLength("customer_account", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PostLinkAccountSessionsRequestBodyAccountHolder {
-    init(
-        type: PostLinkAccountSessionsRequestBodyAccountHolderType,
-        account: String? = nil,
-        customer: String? = nil,
-        customerAccount: String? = nil
-    ) throws {
+extension PostLinkAccountSessionsRequestBodyAccountHolder {
+    public init(type: PostLinkAccountSessionsRequestBodyAccountHolderType, account: String? = nil, customer: String? = nil, customerAccount: String? = nil) throws {
         (self.type, self.account) = (type, account)
         (self.customer, self.customerAccount) = (customer, customerAccount)
         if let value = self.account {
@@ -83,26 +72,29 @@ public struct PostLinkAccountSessionsRequestBodyManualEntry: Codable {
     }
 
     init() {
-        mode = nil
+        self.mode = nil
     }
 }
 
-public extension PostLinkAccountSessionsRequestBodyManualEntry {
-    init(from decoder: Decoder) throws {
+extension PostLinkAccountSessionsRequestBodyManualEntry {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        mode = try container.sdkDecodeIfPresent(.mode)
+        self.mode = try container.sdkDecodeIfPresent(.mode)
     }
 }
 
-public extension PostLinkAccountSessionsRequestBodyManualEntry {
-    init(mode: PostLinkAccountSessionsRequestBodyManualEntryMode? = nil) {
+extension PostLinkAccountSessionsRequestBodyManualEntry {
+    public init(mode: PostLinkAccountSessionsRequestBodyManualEntryMode? = nil) {
         self.init()
         self.mode = mode
     }
 }
 
-public typealias PostLinkAccountSessionsRequestBodyFiltersAccountSubcategoriesList =
-    [PostLinkAccountSessionsRequestBodyFiltersAccountSubcategoriesItem]
+
+
+public typealias PostLinkAccountSessionsRequestBodyFiltersAccountSubcategoriesList = [PostLinkAccountSessionsRequestBodyFiltersAccountSubcategoriesItem]
+
+
 
 /// Filters to restrict the kinds of accounts to collect.
 public struct PostLinkAccountSessionsRequestBodyFilters: Codable {
@@ -117,25 +109,21 @@ public struct PostLinkAccountSessionsRequestBodyFilters: Codable {
     }
 
     init() {
-        (accountSubcategories, countries, requirePaymentMethodSupport) = (nil, nil, nil)
+        (self.accountSubcategories, self.countries, self.requirePaymentMethodSupport) = (nil, nil, nil)
     }
 }
 
-public extension PostLinkAccountSessionsRequestBodyFilters {
-    init(from decoder: Decoder) throws {
+extension PostLinkAccountSessionsRequestBodyFilters {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        accountSubcategories = try container.sdkDecodeIfPresent(.accountSubcategories)
-        countries = try container.sdkDecodeIfPresent(.countries)
-        requirePaymentMethodSupport = try container.sdkDecodeIfPresent(.requirePaymentMethodSupport)
+        self.accountSubcategories = try container.sdkDecodeIfPresent(.accountSubcategories)
+        self.countries = try container.sdkDecodeIfPresent(.countries)
+        self.requirePaymentMethodSupport = try container.sdkDecodeIfPresent(.requirePaymentMethodSupport)
     }
 }
 
-public extension PostLinkAccountSessionsRequestBodyFilters {
-    init(
-        accountSubcategories: PostLinkAccountSessionsRequestBodyFiltersAccountSubcategoriesList? = nil,
-        countries: [String]? = nil,
-        requirePaymentMethodSupport: PostLinkAccountSessionsRequestBodyFiltersRequirePaymentMethodSupport? = nil
-    ) {
+extension PostLinkAccountSessionsRequestBodyFilters {
+    public init(accountSubcategories: PostLinkAccountSessionsRequestBodyFiltersAccountSubcategoriesList? = nil, countries: [String]? = nil, requirePaymentMethodSupport: PostLinkAccountSessionsRequestBodyFiltersRequirePaymentMethodSupport? = nil) {
         self.init()
         (self.accountSubcategories, self.countries) = (accountSubcategories, countries)
         self.requirePaymentMethodSupport = requirePaymentMethodSupport
@@ -148,31 +136,21 @@ public enum PostLinkAccountSessionsRequestBodyLimitsAccounts {
 }
 
 extension PostLinkAccountSessionsRequestBodyLimitsAccounts: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostLinkAccountSessionsRequestBodyLimitsAccounts"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostLinkAccountSessionsRequestBodyLimitsAccounts")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(Int.self) {
-            return .intValue(value)
-        }
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
+        if let value = try? container.decode(Int.self) { return .intValue(value) }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -182,6 +160,7 @@ extension PostLinkAccountSessionsRequestBodyLimitsAccounts: Codable {
         case let .stringValue(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// Settings for configuring Session-specific limits.
@@ -192,27 +171,21 @@ public struct PostLinkAccountSessionsRequestBodyLimits: Codable {
         case accounts
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostLinkAccountSessionsRequestBodyLimits {
-    init(from decoder: Decoder) throws {
+extension PostLinkAccountSessionsRequestBodyLimits {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.accounts) else {
-            throw SdkValidationError(
-                field: "accounts",
-                code: "required",
-                message: "Validation failed for 'accounts': value is required"
-            )
+            throw SdkValidationError(field: "accounts", code: "required", message: "Validation failed for 'accounts': value is required")
         }
-        accounts = try container.sdkDecodeRequired(.accounts)
+        self.accounts = try container.sdkDecodeRequired(.accounts)
     }
 }
 
-public extension PostLinkAccountSessionsRequestBodyLimits {
-    init(accounts: PostLinkAccountSessionsRequestBodyLimitsAccounts) {
+extension PostLinkAccountSessionsRequestBodyLimits {
+    public init(accounts: PostLinkAccountSessionsRequestBodyLimitsAccounts) {
         self.accounts = accounts
     }
 }

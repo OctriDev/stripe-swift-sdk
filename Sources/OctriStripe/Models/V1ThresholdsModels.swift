@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1Thresholds domain models
+// V1Thresholds domain models
 /// Typed representation of the `ThresholdsResourceUsageAlertFilter` API schema.
 public struct ThresholdsResourceUsageAlertFilter: Codable {
     /// Required enumerated value serialized in the `type` wire field.
@@ -16,28 +16,22 @@ public struct ThresholdsResourceUsageAlertFilter: Codable {
         case customer
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension ThresholdsResourceUsageAlertFilter {
-    init(from decoder: Decoder) throws {
+extension ThresholdsResourceUsageAlertFilter {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.type) else {
-            throw SdkValidationError(
-                field: "type",
-                code: "required",
-                message: "Validation failed for 'type': value is required"
-            )
+            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
         }
-        type = try container.sdkDecodeRequired(.type)
-        customer = try container.sdkDecodeIfPresent(.customer)
+        self.type = try container.sdkDecodeRequired(.type)
+        self.customer = try container.sdkDecodeIfPresent(.customer)
     }
 }
 
-public extension ThresholdsResourceUsageAlertFilter {
-    init(type: ThresholdsResourceUsageAlertFilterType, customer: ThresholdsResourceUsageAlertFilterCustomer? = nil) {
+extension ThresholdsResourceUsageAlertFilter {
+    public init(type: ThresholdsResourceUsageAlertFilterType, customer: ThresholdsResourceUsageAlertFilterCustomer? = nil) {
         (self.type, self.customer) = (type, customer)
     }
 }
@@ -48,31 +42,21 @@ public enum ThresholdsResourceUsageAlertFilterCustomer {
 }
 
 extension ThresholdsResourceUsageAlertFilterCustomer: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for ThresholdsResourceUsageAlertFilterCustomer"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for ThresholdsResourceUsageAlertFilterCustomer")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(Customer.self) {
-            return .customer(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(Customer.self) { return .customer(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -82,6 +66,7 @@ extension ThresholdsResourceUsageAlertFilterCustomer: Codable {
         case let .customer(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// The usage threshold alert configuration enables setting up alerts for when a certain usage threshold on a
@@ -104,49 +89,30 @@ public struct ThresholdsResourceUsageThresholdConfig: Codable {
         case filters
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension ThresholdsResourceUsageThresholdConfig {
-    init(from decoder: Decoder) throws {
+extension ThresholdsResourceUsageThresholdConfig {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.gte) else {
-            throw SdkValidationError(
-                field: "gte",
-                code: "required",
-                message: "Validation failed for 'gte': value is required"
-            )
+            throw SdkValidationError(field: "gte", code: "required", message: "Validation failed for 'gte': value is required")
         }
         guard container.contains(.meter) else {
-            throw SdkValidationError(
-                field: "meter",
-                code: "required",
-                message: "Validation failed for 'meter': value is required"
-            )
+            throw SdkValidationError(field: "meter", code: "required", message: "Validation failed for 'meter': value is required")
         }
         guard container.contains(.recurrence) else {
-            throw SdkValidationError(
-                field: "recurrence",
-                code: "required",
-                message: "Validation failed for 'recurrence': value is required"
-            )
+            throw SdkValidationError(field: "recurrence", code: "required", message: "Validation failed for 'recurrence': value is required")
         }
-        gte = try container.sdkDecodeRequired(.gte)
-        meter = try container.sdkDecodeRequired(.meter)
-        recurrence = try container.sdkDecodeRequired(.recurrence)
-        filters = try container.sdkDecodeIfPresent(.filters)
+        self.gte = try container.sdkDecodeRequired(.gte)
+        self.meter = try container.sdkDecodeRequired(.meter)
+        self.recurrence = try container.sdkDecodeRequired(.recurrence)
+        self.filters = try container.sdkDecodeIfPresent(.filters)
     }
 }
 
-public extension ThresholdsResourceUsageThresholdConfig {
-    init(
-        gte: Int,
-        meter: ThresholdsResourceUsageThresholdConfigMeter,
-        recurrence: ThresholdsResourceUsageThresholdConfigRecurrence,
-        filters: [ThresholdsResourceUsageAlertFilter]? = nil
-    ) {
+extension ThresholdsResourceUsageThresholdConfig {
+    public init(gte: Int, meter: ThresholdsResourceUsageThresholdConfigMeter, recurrence: ThresholdsResourceUsageThresholdConfigRecurrence, filters: [ThresholdsResourceUsageAlertFilter]? = nil) {
         (self.gte, self.meter) = (gte, meter)
         (self.recurrence, self.filters) = (recurrence, filters)
     }
@@ -158,31 +124,21 @@ public enum ThresholdsResourceUsageThresholdConfigMeter {
 }
 
 extension ThresholdsResourceUsageThresholdConfigMeter: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for ThresholdsResourceUsageThresholdConfigMeter"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for ThresholdsResourceUsageThresholdConfigMeter")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(BillingMeter.self) {
-            return .billingMeter(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(BillingMeter.self) { return .billingMeter(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -192,22 +148,19 @@ extension ThresholdsResourceUsageThresholdConfigMeter: Codable {
         case let .billingMeter(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// Required enumerated value serialized in the `type` wire field.
-public struct ThresholdsResourceUsageAlertFilterType: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct ThresholdsResourceUsageAlertFilterType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let customer = ThresholdsResourceUsageAlertFilterType(rawValue: "customer")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -217,19 +170,15 @@ public struct ThresholdsResourceUsageAlertFilterType: RawRepresentable, Hashable
 }
 
 /// Defines how the alert will behave.
-public struct ThresholdsResourceUsageThresholdConfigRecurrence: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct ThresholdsResourceUsageThresholdConfigRecurrence: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let oneTime = ThresholdsResourceUsageThresholdConfigRecurrence(rawValue: "one_time")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

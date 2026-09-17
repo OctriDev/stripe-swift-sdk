@@ -7,33 +7,17 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1FinancialConnectionsAccountsDisconnectMethods {
-    /// Disconnects a Financial Connections account and disables access to its associated data. After disconnection, the
-    /// authenticated user can no longer access data such as balances or transactions for that account. Use `expand` to
-    /// control related fields included in the response.
+    /// Disconnects a Financial Connections account and disables access to its associated data. After disconnection, the authenticated user can no longer access data such as balances or transactions for that account. Use `expand` to control related fields included in the response.
     ///
-    /// Disables your access to a Financial Connections Account . You will no longer be able to access data associated
-    /// with the account (e.g. balances, transactions).
+    /// Disables your access to a Financial Connections Account . You will no longer be able to access data associated with the account (e.g. balances, transactions).
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postFinancialConnectionsAccountsAccountDisconnect(
-        config: ClientConfig,
-        account: String,
-        expand: [String]?
-    ) async throws -> FinancialConnectionsAccount {
+    public static func postFinancialConnectionsAccountsAccountDisconnect(config: ClientConfig, account: String, expand: [String]?) async throws -> FinancialConnectionsAccount {
         try validateLength("account", account, max: 5000)
 
         let requestBody = PostFinancialConnectionsAccountsAccountDisconnectRequestBody(expand: expand)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/financial_connections/accounts/", sdkEncodePathSegment(sdkWireString(account)), "/disconnect"]
-                .joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostFinancialConnectionsAccountsAccountDisconnect"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/financial_connections/accounts/", sdkEncodePathSegment(sdkWireString(account)), "/disconnect"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostFinancialConnectionsAccountsAccountDisconnect")).data
     }
 }

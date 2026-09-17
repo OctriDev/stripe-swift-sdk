@@ -6,45 +6,27 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1ProductsMethods {
-    /// Deletes a product. Use this operation only when the product has no associated prices and, for a product with
-    /// `type=good`, no associated SKUs.
+extension V1ProductsMethods {
+    /// Deletes a product. Use this operation only when the product has no associated prices and, for a product with `type=good`, no associated SKUs.
     ///
-    /// Delete a product. Deleting a product is only possible if it has no prices associated with it. Additionally,
-    /// deleting a product with type=good is only possible if it has no SKUs associated with it.
-    static func deleteProductsId(config: ClientConfig, id: String) async throws -> DeletedProduct {
+    /// Delete a product. Deleting a product is only possible if it has no prices associated with it. Additionally, deleting a product with type=good is only possible if it has no SKUs associated with it.
+    public static func deleteProductsId(config: ClientConfig, id: String) async throws -> DeletedProduct {
         try validateLength("id", id, max: 5000)
 
-        return try await (sdkRequest(
-            "DELETE",
-            ["/v1/products/", sdkEncodePathSegment(sdkWireString(id))].joined(),
-            config: config,
-            decoder: .json,
-            operationId: "DeleteProductsId"
-        )).data
+        return try (await sdkRequest("DELETE", ["/v1/products/", sdkEncodePathSegment(sdkWireString(id))].joined(), config: config, decoder: .json, operationId: "DeleteProductsId")).data
     }
 
-    /// Retrieves the details of an existing product by its unique identifier. Use the product ID from a product
-    /// creation response or product list to retrieve its name, availability, default price, images, and other product
-    /// information.
+    /// Retrieves the details of an existing product by its unique identifier. Use the product ID from a product creation response or product list to retrieve its name, availability, default price, images, and other product information.
     ///
-    /// Retrieves the details of an existing product. Supply the unique product ID from either a product creation
-    /// request or the product list, and Stripe will return the corresponding product information.
+    /// Retrieves the details of an existing product. Supply the unique product ID from either a product creation request or the product list, and Stripe will return the corresponding product information.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    static func getProductsId(config: ClientConfig, id: String, expand: [String]?) async throws -> Product {
+    public static func getProductsId(config: ClientConfig, id: String, expand: [String]?) async throws -> Product {
         try validateLength("id", id, max: 5000)
 
-        return try await (sdkRequest(
-            "GET",
-            ["/v1/products/", sdkEncodePathSegment(sdkWireString(id))].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .json,
-            operationId: "GetProductsId"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/products/", sdkEncodePathSegment(sdkWireString(id))].joined(), config: config, query: [
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .json, operationId: "GetProductsId")).data
     }
 }

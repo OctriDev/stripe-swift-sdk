@@ -6,30 +6,18 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1TreasuryTransactionEntriesMethods {
-    /// Retrieves a specific transaction entry by its unique identifier. Use `expand` when you need selected fields
-    /// returned in expanded form.
+extension V1TreasuryTransactionEntriesMethods {
+    /// Retrieves a specific transaction entry by its unique identifier. Use `expand` when you need selected fields returned in expanded form.
     ///
     /// Retrieves a TransactionEntry object.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    static func getTreasuryTransactionEntriesId(
-        config: ClientConfig,
-        id: String,
-        expand: [String]?
-    ) async throws -> TreasuryTransactionEntry {
+    public static func getTreasuryTransactionEntriesId(config: ClientConfig, id: String, expand: [String]?) async throws -> TreasuryTransactionEntry {
         try validateLength("id", id, max: 5000)
 
-        return try await (sdkRequest(
-            "GET",
-            ["/v1/treasury/transaction_entries/", sdkEncodePathSegment(sdkWireString(id))].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .json,
-            operationId: "GetTreasuryTransactionEntriesId"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/treasury/transaction_entries/", sdkEncodePathSegment(sdkWireString(id))].joined(), config: config, query: [
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .json, operationId: "GetTreasuryTransactionEntriesId")).data
     }
 }

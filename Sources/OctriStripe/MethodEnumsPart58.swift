@@ -6,24 +6,17 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public struct PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPX10542e7095: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPX10542e7095: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let balances =
-        PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPX10542e7095(rawValue: "balances")
-    public static let ownership =
-        PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPX10542e7095(rawValue: "ownership")
-    public static let transactions =
-        PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPX10542e7095(rawValue: "transactions")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let balances = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPX10542e7095(rawValue: "balances")
+    public static let ownership = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPX10542e7095(rawValue: "ownership")
+    public static let transactions = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPX10542e7095(rawValue: "transactions")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -32,24 +25,17 @@ public struct PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPX1054
     }
 }
 
-public struct PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXbfdbaf846c: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXbfdbaf846c: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let automatic =
-        PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXbfdbaf846c(rawValue: "automatic")
-    public static let instant =
-        PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXbfdbaf846c(rawValue: "instant")
-    public static let microdeposits =
-        PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXbfdbaf846c(rawValue: "microdeposits")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let automatic = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXbfdbaf846c(rawValue: "automatic")
+    public static let instant = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXbfdbaf846c(rawValue: "instant")
+    public static let microdeposits = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXbfdbaf846c(rawValue: "microdeposits")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -58,19 +44,15 @@ public struct PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXbfdb
     }
 }
 
-public struct PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPX6db9aed338: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPX6db9aed338: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPX6db9aed338(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -79,109 +61,63 @@ public struct PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPX6db9
     }
 }
 
-public struct PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let achCreditTransfer =
-        PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "ach_credit_transfer")
-    public static let achDebit =
-        PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "ach_debit")
-    public static let acssDebit =
-        PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "acss_debit")
-    public static let affirm =
-        PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "affirm")
-    public static let alipay =
-        PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "alipay")
-    public static let amazonPay =
-        PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "amazon_pay")
-    public static let auBecsDebit =
-        PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "au_becs_debit")
-    public static let bacsDebit =
-        PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "bacs_debit")
-    public static let bancontact =
-        PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "bancontact")
-    public static let billie =
-        PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "billie")
-    public static let boleto =
-        PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "boleto")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let achCreditTransfer = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "ach_credit_transfer")
+    public static let achDebit = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "ach_debit")
+    public static let acssDebit = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "acss_debit")
+    public static let affirm = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "affirm")
+    public static let alipay = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "alipay")
+    public static let amazonPay = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "amazon_pay")
+    public static let auBecsDebit = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "au_becs_debit")
+    public static let bacsDebit = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "bacs_debit")
+    public static let bancontact = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "bancontact")
+    public static let billie = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "billie")
+    public static let boleto = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "boleto")
     public static let card = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "card")
-    public static let cashapp =
-        PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "cashapp")
-    public static let crypto =
-        PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "crypto")
-    public static let custom =
-        PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "custom")
-    public static let customerBalance =
-        PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "customer_balance")
+    public static let cashapp = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "cashapp")
+    public static let crypto = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "crypto")
+    public static let custom = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "custom")
+    public static let customerBalance = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "customer_balance")
     public static let eps = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "eps")
     public static let fpx = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "fpx")
-    public static let giropay =
-        PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "giropay")
-    public static let grabpay =
-        PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "grabpay")
-    public static let ideal =
-        PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "ideal")
-    public static let jpCreditTransfer =
-        PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "jp_credit_transfer")
-    public static let kakaoPay =
-        PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "kakao_pay")
-    public static let klarna =
-        PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "klarna")
-    public static let konbini =
-        PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "konbini")
-    public static let krCard =
-        PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "kr_card")
+    public static let giropay = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "giropay")
+    public static let grabpay = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "grabpay")
+    public static let ideal = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "ideal")
+    public static let jpCreditTransfer = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "jp_credit_transfer")
+    public static let kakaoPay = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "kakao_pay")
+    public static let klarna = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "klarna")
+    public static let konbini = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "konbini")
+    public static let krCard = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "kr_card")
     public static let link = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "link")
-    public static let mbWay =
-        PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "mb_way")
-    public static let multibanco =
-        PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "multibanco")
-    public static let naverPay =
-        PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "naver_pay")
-    public static let nzBankAccount =
-        PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "nz_bank_account")
+    public static let mbWay = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "mb_way")
+    public static let multibanco = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "multibanco")
+    public static let naverPay = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "naver_pay")
+    public static let nzBankAccount = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "nz_bank_account")
     public static let p24 = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "p24")
-    public static let payByBank =
-        PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "pay_by_bank")
-    public static let payco =
-        PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "payco")
-    public static let paynow =
-        PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "paynow")
-    public static let paypal =
-        PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "paypal")
-    public static let payto =
-        PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "payto")
+    public static let payByBank = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "pay_by_bank")
+    public static let payco = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "payco")
+    public static let paynow = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "paynow")
+    public static let paypal = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "paypal")
+    public static let payto = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "payto")
     public static let pix = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "pix")
-    public static let promptpay =
-        PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "promptpay")
-    public static let revolutPay =
-        PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "revolut_pay")
-    public static let satispay =
-        PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "satispay")
-    public static let sepaCreditTransfer =
-        PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "sepa_credit_transfer")
-    public static let sepaDebit =
-        PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "sepa_debit")
-    public static let sofort =
-        PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "sofort")
-    public static let swish =
-        PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "swish")
-    public static let twint =
-        PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "twint")
+    public static let promptpay = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "promptpay")
+    public static let revolutPay = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "revolut_pay")
+    public static let satispay = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "satispay")
+    public static let sepaCreditTransfer = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "sepa_credit_transfer")
+    public static let sepaDebit = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "sepa_debit")
+    public static let sofort = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "sofort")
+    public static let swish = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "swish")
+    public static let twint = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "twint")
     public static let upi = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "upi")
-    public static let usBankAccount =
-        PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "us_bank_account")
-    public static let wechatPay =
-        PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "wechat_pay")
+    public static let usBankAccount = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "us_bank_account")
+    public static let wechatPay = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde5607c0e7(rawValue: "wechat_pay")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -190,19 +126,15 @@ public struct PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXde56
     }
 }
 
-public struct PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXb27028423c: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXb27028423c: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXb27028423c(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -211,21 +143,16 @@ public struct PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsPXb270
     }
 }
 
-public struct PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsSX0b4287ddae: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsSX0b4287ddae: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let off = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsSX0b4287ddae(rawValue: "off")
-    public static let onSubscription =
-        PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsSX0b4287ddae(rawValue: "on_subscription")
+    public static let onSubscription = PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsSX0b4287ddae(rawValue: "on_subscription")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -234,23 +161,18 @@ public struct PostCustomersCustomerSubscriptionsRequestBodyPaymentSettingsSX0b42
     }
 }
 
-public struct PostCustomersCustomerSubscriptionsRequestBodyPendingInvoiceItX3d65e5fdf8: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostCustomersCustomerSubscriptionsRequestBodyPendingInvoiceItX3d65e5fdf8: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let day = PostCustomersCustomerSubscriptionsRequestBodyPendingInvoiceItX3d65e5fdf8(rawValue: "day")
-    public static let month =
-        PostCustomersCustomerSubscriptionsRequestBodyPendingInvoiceItX3d65e5fdf8(rawValue: "month")
+    public static let month = PostCustomersCustomerSubscriptionsRequestBodyPendingInvoiceItX3d65e5fdf8(rawValue: "month")
     public static let week = PostCustomersCustomerSubscriptionsRequestBodyPendingInvoiceItX3d65e5fdf8(rawValue: "week")
     public static let year = PostCustomersCustomerSubscriptionsRequestBodyPendingInvoiceItX3d65e5fdf8(rawValue: "year")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -259,19 +181,15 @@ public struct PostCustomersCustomerSubscriptionsRequestBodyPendingInvoiceItX3d65
     }
 }
 
-public struct PostCustomersCustomerSubscriptionsRequestBodyPendingInvoiceItXdb8f46e8e5: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostCustomersCustomerSubscriptionsRequestBodyPendingInvoiceItXdb8f46e8e5: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostCustomersCustomerSubscriptionsRequestBodyPendingInvoiceItXdb8f46e8e5(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -282,23 +200,17 @@ public struct PostCustomersCustomerSubscriptionsRequestBodyPendingInvoiceItXdb8f
 
 /// Determines how to handle prorations resulting from the `billing_cycle_anchor`. If no value is passed, the
 /// default is `create_prorations`.
-public struct PostCustomersCustomerSubscriptionsRequestBodyProrationBehavior: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct PostCustomersCustomerSubscriptionsRequestBodyProrationBehavior: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let alwaysInvoice =
-        PostCustomersCustomerSubscriptionsRequestBodyProrationBehavior(rawValue: "always_invoice")
-    public static let createProrations =
-        PostCustomersCustomerSubscriptionsRequestBodyProrationBehavior(rawValue: "create_prorations")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let alwaysInvoice = PostCustomersCustomerSubscriptionsRequestBodyProrationBehavior(rawValue: "always_invoice")
+    public static let createProrations = PostCustomersCustomerSubscriptionsRequestBodyProrationBehavior(rawValue: "create_prorations")
     public static let none = PostCustomersCustomerSubscriptionsRequestBodyProrationBehavior(rawValue: "none")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

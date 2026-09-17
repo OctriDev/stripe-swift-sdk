@@ -11,8 +11,7 @@ extension SdkMethodTests {
             return
         }
         _ = client
-        var options = try V1TreasuryTransactionsMethods
-            .GetTreasuryTransactionsOptions(financialAccount: decoded("\"financial_account\""))
+        var options = try V1TreasuryTransactionsMethods.GetTreasuryTransactionsOptions(financialAccount: decoded("\"financial_account\""))
         options.created = try decoded("{\"gt\":1,\"gte\":1,\"lt\":1,\"lte\":1}")
         options.endingBefore = try decoded("\"ending_before\"")
         options.expand = try decoded("[\"expand\"]")
@@ -77,8 +76,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testGetWebhookEndpointsWebhookEndpointGetWebhookEndpointsWebhookEndpointReachesMockAndDecodesResponse(
-    ) async throws {
+    func testGetWebhookEndpointsWebhookEndpointGetWebhookEndpointsWebhookEndpointReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -210,16 +208,12 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostAccountsAccountBankAccountsIdPostAccountsAccountBankAccountsIdReachesMockAndDecodesResponse(
-    ) async throws {
+    func testPostAccountsAccountBankAccountsIdPostAccountsAccountBankAccountsIdReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        var options = try V1AccountsBankAccountsMethods.PostAccountsAccountBankAccountsIdOptions(
-            account: decoded("\"account\""),
-            id: decoded("\"id-1\"")
-        )
+        var options = try V1AccountsBankAccountsMethods.PostAccountsAccountBankAccountsIdOptions(account: decoded("\"account\""), id: decoded("\"id-1\""))
         options.accountHolderName = try decoded("\"Example Name\"")
         options.accountHolderType = try decoded("\"\"")
         options.accountType = try decoded("\"checking\"")
@@ -250,8 +244,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostAccountsAccountCapabilitiesCapabilityPostAccountsAccountCX950edbf102ReachesMockAndDecodesResponse(
-    ) async throws {
+    func testPostAccountsAccountCapabilitiesCapabilityPostAccountsAccountCX950edbf102ReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -273,8 +266,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostAccountsAccountExternalAccountsPostAccountsAccountExternalAccountsReachesMockAndDecodesResponse(
-    ) async throws {
+    func testPostAccountsAccountExternalAccountsPostAccountsAccountExternalAccountsReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -298,16 +290,12 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostAccountsAccountExternalAccountsIdPostAccountsAccountExterX26c22b08aeReachesMockAndDecodesResponse(
-    ) async throws {
+    func testPostAccountsAccountExternalAccountsIdPostAccountsAccountExterX26c22b08aeReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        var options = try V1AccountsExternalAccountsMethods.PostAccountsAccountExternalAccountsIdOptions(
-            account: decoded("\"account\""),
-            id: decoded("\"id-1\"")
-        )
+        var options = try V1AccountsExternalAccountsMethods.PostAccountsAccountExternalAccountsIdOptions(account: decoded("\"account\""), id: decoded("\"id-1\""))
         options.accountHolderName = try decoded("\"Example Name\"")
         options.accountHolderType = try decoded("\"\"")
         options.accountType = try decoded("\"checking\"")
@@ -364,9 +352,7 @@ extension SdkMethodTests {
         }
         _ = client
         var options = try V1AccountsPeopleMethods.PostAccountsAccountPeopleOptions(account: decoded("\"account\""))
-        options
-            .additionalTosAcceptances =
-            try decoded("{\"account\":{\"date\":1,\"ip\":\"ip\",\"user_agent\":\"user_agent\"}}")
+        options.additionalTosAcceptances = try decoded("{\"account\":{\"date\":1,\"ip\":\"ip\",\"user_agent\":\"user_agent\"}}")
         options.address = try decoded(sdkMethodFixture307Value1)
         options.addressKana = try decoded(sdkMethodFixture307Value2)
         options.addressKanji = try decoded(sdkMethodFixture307Value3)
@@ -414,13 +400,8 @@ extension SdkMethodTests {
             return
         }
         _ = client
-        var options = try V1AccountsPeopleMethods.PostAccountsAccountPeoplePersonOptions(
-            account: decoded("\"account\""),
-            person: decoded("\"person\"")
-        )
-        options
-            .additionalTosAcceptances =
-            try decoded("{\"account\":{\"date\":1,\"ip\":\"ip\",\"user_agent\":\"user_agent\"}}")
+        var options = try V1AccountsPeopleMethods.PostAccountsAccountPeoplePersonOptions(account: decoded("\"account\""), person: decoded("\"person\""))
+        options.additionalTosAcceptances = try decoded("{\"account\":{\"date\":1,\"ip\":\"ip\",\"user_agent\":\"user_agent\"}}")
         options.address = try decoded(sdkMethodFixture308Value1)
         options.addressKana = try decoded(sdkMethodFixture308Value2)
         options.addressKanji = try decoded(sdkMethodFixture308Value3)
@@ -469,9 +450,7 @@ extension SdkMethodTests {
         }
         _ = client
         var options = try V1AccountsPersonsMethods.PostAccountsAccountPersonsOptions(account: decoded("\"account\""))
-        options
-            .additionalTosAcceptances =
-            try decoded("{\"account\":{\"date\":1,\"ip\":\"ip\",\"user_agent\":\"user_agent\"}}")
+        options.additionalTosAcceptances = try decoded("{\"account\":{\"date\":1,\"ip\":\"ip\",\"user_agent\":\"user_agent\"}}")
         options.address = try decoded(sdkMethodFixture309Value1)
         options.addressKana = try decoded(sdkMethodFixture309Value2)
         options.addressKanji = try decoded(sdkMethodFixture309Value3)
@@ -514,19 +493,13 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostAccountsAccountPersonsPersonPostAccountsAccountPersonsPersonReachesMockAndDecodesResponse(
-    ) async throws {
+    func testPostAccountsAccountPersonsPersonPostAccountsAccountPersonsPersonReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        var options = try V1AccountsPersonsMethods.PostAccountsAccountPersonsPersonOptions(
-            account: decoded("\"account\""),
-            person: decoded("\"person\"")
-        )
-        options
-            .additionalTosAcceptances =
-            try decoded("{\"account\":{\"date\":1,\"ip\":\"ip\",\"user_agent\":\"user_agent\"}}")
+        var options = try V1AccountsPersonsMethods.PostAccountsAccountPersonsPersonOptions(account: decoded("\"account\""), person: decoded("\"person\""))
+        options.additionalTosAcceptances = try decoded("{\"account\":{\"date\":1,\"ip\":\"ip\",\"user_agent\":\"user_agent\"}}")
         options.address = try decoded(sdkMethodFixture310Value1)
         options.addressKana = try decoded(sdkMethodFixture310Value2)
         options.addressKanji = try decoded(sdkMethodFixture310Value3)

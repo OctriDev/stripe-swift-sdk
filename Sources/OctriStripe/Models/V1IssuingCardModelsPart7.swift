@@ -3,274 +3,146 @@
 
 import Foundation
 
-/// V1IssuingCard domain models
+// V1IssuingCard domain models
 public extension IssuingCardAuthorizationControlsAllowedCategoriesItem {
-    static let jewelryStoresWatchesClocksAndSilverwareStores =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(
-            rawValue: "jewelry_stores_watches_clocks_and_silverware_stores"
-        )
-    static let landscapingServices =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "landscaping_services")
+    static let jewelryStoresWatchesClocksAndSilverwareStores = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "jewelry_stores_watches_clocks_and_silverware_stores")
+    static let landscapingServices = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "landscaping_services")
     static let laundries = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "laundries")
-    static let laundryCleaningServices =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "laundry_cleaning_services")
-    static let legalServicesAttorneys =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "legal_services_attorneys")
-    static let luggageAndLeatherGoodsStores =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "luggage_and_leather_goods_stores")
-    static let lumberBuildingMaterialsStores =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "lumber_building_materials_stores")
-    static let manualCashDisburse =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "manual_cash_disburse")
-    static let marinasServiceAndSupplies =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "marinas_service_and_supplies")
+    static let laundryCleaningServices = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "laundry_cleaning_services")
+    static let legalServicesAttorneys = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "legal_services_attorneys")
+    static let luggageAndLeatherGoodsStores = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "luggage_and_leather_goods_stores")
+    static let lumberBuildingMaterialsStores = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "lumber_building_materials_stores")
+    static let manualCashDisburse = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "manual_cash_disburse")
+    static let marinasServiceAndSupplies = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "marinas_service_and_supplies")
     static let marketplaces = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "marketplaces")
-    static let masonryStoneworkAndPlaster =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "masonry_stonework_and_plaster")
+    static let masonryStoneworkAndPlaster = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "masonry_stonework_and_plaster")
     static let massageParlors = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "massage_parlors")
-    static let medicalAndDentalLabs =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "medical_and_dental_labs")
-    static let medicalDentalOphthalmicAndHospitalEquipmentAndSupplies =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(
-            rawValue: "medical_dental_ophthalmic_and_hospital_equipment_and_supplies"
-        )
+    static let medicalAndDentalLabs = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "medical_and_dental_labs")
+    static let medicalDentalOphthalmicAndHospitalEquipmentAndSupplies = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "medical_dental_ophthalmic_and_hospital_equipment_and_supplies")
     static let medicalServices = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "medical_services")
-    static let membershipOrganizations =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "membership_organizations")
-    static let mensAndBoysClothingAndAccessoriesStores =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "mens_and_boys_clothing_and_accessories_stores")
-    static let mensWomensClothingStores =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "mens_womens_clothing_stores")
-    static let metalServiceCenters =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "metal_service_centers")
+    static let membershipOrganizations = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "membership_organizations")
+    static let mensAndBoysClothingAndAccessoriesStores = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "mens_and_boys_clothing_and_accessories_stores")
+    static let mensWomensClothingStores = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "mens_womens_clothing_stores")
+    static let metalServiceCenters = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "metal_service_centers")
     static let miscellaneous = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "miscellaneous")
-    static let miscellaneousApparelAndAccessoryShops =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "miscellaneous_apparel_and_accessory_shops")
-    static let miscellaneousAutoDealers =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "miscellaneous_auto_dealers")
-    static let miscellaneousBusinessServices =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "miscellaneous_business_services")
-    static let miscellaneousFoodStores =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "miscellaneous_food_stores")
-    static let miscellaneousGeneralMerchandise =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "miscellaneous_general_merchandise")
-    static let miscellaneousGeneralServices =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "miscellaneous_general_services")
-    static let miscellaneousHomeFurnishingSpecialtyStores =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(
-            rawValue: "miscellaneous_home_furnishing_specialty_stores"
-        )
-    static let miscellaneousPublishingAndPrinting =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "miscellaneous_publishing_and_printing")
-    static let miscellaneousRecreationServices =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "miscellaneous_recreation_services")
-    static let miscellaneousRepairShops =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "miscellaneous_repair_shops")
-    static let miscellaneousSpecialtyRetail =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "miscellaneous_specialty_retail")
-    static let mobileHomeDealers =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "mobile_home_dealers")
-    static let motionPictureTheaters =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "motion_picture_theaters")
-    static let motorFreightCarriersAndTrucking =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "motor_freight_carriers_and_trucking")
-    static let motorHomesDealers =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "motor_homes_dealers")
-    static let motorVehicleSuppliesAndNewParts =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "motor_vehicle_supplies_and_new_parts")
-    static let motorcycleShopsAndDealers =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "motorcycle_shops_and_dealers")
-    static let motorcycleShopsDealers =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "motorcycle_shops_dealers")
-    static let musicStoresMusicalInstrumentsPianosAndSheetMusic =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(
-            rawValue: "music_stores_musical_instruments_pianos_and_sheet_music"
-        )
-    static let newsDealersAndNewsstands =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "news_dealers_and_newsstands")
+    static let miscellaneousApparelAndAccessoryShops = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "miscellaneous_apparel_and_accessory_shops")
+    static let miscellaneousAutoDealers = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "miscellaneous_auto_dealers")
+    static let miscellaneousBusinessServices = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "miscellaneous_business_services")
+    static let miscellaneousFoodStores = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "miscellaneous_food_stores")
+    static let miscellaneousGeneralMerchandise = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "miscellaneous_general_merchandise")
+    static let miscellaneousGeneralServices = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "miscellaneous_general_services")
+    static let miscellaneousHomeFurnishingSpecialtyStores = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "miscellaneous_home_furnishing_specialty_stores")
+    static let miscellaneousPublishingAndPrinting = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "miscellaneous_publishing_and_printing")
+    static let miscellaneousRecreationServices = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "miscellaneous_recreation_services")
+    static let miscellaneousRepairShops = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "miscellaneous_repair_shops")
+    static let miscellaneousSpecialtyRetail = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "miscellaneous_specialty_retail")
+    static let mobileHomeDealers = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "mobile_home_dealers")
+    static let motionPictureTheaters = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "motion_picture_theaters")
+    static let motorFreightCarriersAndTrucking = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "motor_freight_carriers_and_trucking")
+    static let motorHomesDealers = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "motor_homes_dealers")
+    static let motorVehicleSuppliesAndNewParts = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "motor_vehicle_supplies_and_new_parts")
+    static let motorcycleShopsAndDealers = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "motorcycle_shops_and_dealers")
+    static let motorcycleShopsDealers = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "motorcycle_shops_dealers")
+    static let musicStoresMusicalInstrumentsPianosAndSheetMusic = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "music_stores_musical_instruments_pianos_and_sheet_music")
+    static let newsDealersAndNewsstands = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "news_dealers_and_newsstands")
     static let nonFiMoneyOrders = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "non_fi_money_orders")
-    static let nonFiStoredValueCardPurchaseLoad =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "non_fi_stored_value_card_purchase_load")
+    static let nonFiStoredValueCardPurchaseLoad = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "non_fi_stored_value_card_purchase_load")
     static let nondurableGoods = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "nondurable_goods")
-    static let nurseriesLawnAndGardenSupplyStores =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "nurseries_lawn_and_garden_supply_stores")
-    static let nursingPersonalCare =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "nursing_personal_care")
-    static let officeAndCommercialFurniture =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "office_and_commercial_furniture")
-    static let opticiansEyeglasses =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "opticians_eyeglasses")
-    static let optometristsOphthalmologist =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "optometrists_ophthalmologist")
-    static let orthopedicGoodsProstheticDevices =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "orthopedic_goods_prosthetic_devices")
+    static let nurseriesLawnAndGardenSupplyStores = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "nurseries_lawn_and_garden_supply_stores")
+    static let nursingPersonalCare = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "nursing_personal_care")
+    static let officeAndCommercialFurniture = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "office_and_commercial_furniture")
+    static let opticiansEyeglasses = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "opticians_eyeglasses")
+    static let optometristsOphthalmologist = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "optometrists_ophthalmologist")
+    static let orthopedicGoodsProstheticDevices = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "orthopedic_goods_prosthetic_devices")
     static let osteopaths = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "osteopaths")
-    static let packageStoresBeerWineAndLiquor =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "package_stores_beer_wine_and_liquor")
-    static let paintsVarnishesAndSupplies =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "paints_varnishes_and_supplies")
-    static let parkingLotsGarages =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "parking_lots_garages")
+    static let packageStoresBeerWineAndLiquor = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "package_stores_beer_wine_and_liquor")
+    static let paintsVarnishesAndSupplies = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "paints_varnishes_and_supplies")
+    static let parkingLotsGarages = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "parking_lots_garages")
     static let passengerRailways = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "passenger_railways")
     static let pawnShops = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "pawn_shops")
-    static let petShopsPetFoodAndSupplies =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "pet_shops_pet_food_and_supplies")
-    static let petroleumAndPetroleumProducts =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "petroleum_and_petroleum_products")
+    static let petShopsPetFoodAndSupplies = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "pet_shops_pet_food_and_supplies")
+    static let petroleumAndPetroleumProducts = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "petroleum_and_petroleum_products")
     static let photoDeveloping = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "photo_developing")
-    static let photographicPhotocopyMicrofilmEquipmentAndSupplies =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(
-            rawValue: "photographic_photocopy_microfilm_equipment_and_supplies"
-        )
-    static let photographicStudios =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "photographic_studios")
-    static let pictureVideoProduction =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "picture_video_production")
-    static let pieceGoodsNotionsAndOtherDryGoods =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "piece_goods_notions_and_other_dry_goods")
-    static let plumbingHeatingEquipmentAndSupplies =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "plumbing_heating_equipment_and_supplies")
-    static let politicalOrganizations =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "political_organizations")
-    static let postalServicesGovernmentOnly =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "postal_services_government_only")
-    static let preciousStonesAndMetalsWatchesAndJewelry =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(
-            rawValue: "precious_stones_and_metals_watches_and_jewelry"
-        )
-    static let professionalServices =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "professional_services")
-    static let publicWarehousingAndStorage =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "public_warehousing_and_storage")
-    static let quickCopyReproAndBlueprint =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "quick_copy_repro_and_blueprint")
+    static let photographicPhotocopyMicrofilmEquipmentAndSupplies = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "photographic_photocopy_microfilm_equipment_and_supplies")
+    static let photographicStudios = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "photographic_studios")
+    static let pictureVideoProduction = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "picture_video_production")
+    static let pieceGoodsNotionsAndOtherDryGoods = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "piece_goods_notions_and_other_dry_goods")
+    static let plumbingHeatingEquipmentAndSupplies = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "plumbing_heating_equipment_and_supplies")
+    static let politicalOrganizations = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "political_organizations")
+    static let postalServicesGovernmentOnly = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "postal_services_government_only")
+    static let preciousStonesAndMetalsWatchesAndJewelry = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "precious_stones_and_metals_watches_and_jewelry")
+    static let professionalServices = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "professional_services")
+    static let publicWarehousingAndStorage = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "public_warehousing_and_storage")
+    static let quickCopyReproAndBlueprint = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "quick_copy_repro_and_blueprint")
     static let railroads = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "railroads")
-    static let realEstateAgentsAndManagersRentals =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "real_estate_agents_and_managers_rentals")
+    static let realEstateAgentsAndManagersRentals = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "real_estate_agents_and_managers_rentals")
     static let recordStores = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "record_stores")
-    static let recreationalVehicleRentals =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "recreational_vehicle_rentals")
-    static let religiousGoodsStores =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "religious_goods_stores")
-    static let religiousOrganizations =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "religious_organizations")
-    static let roofingSidingSheetMetal =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "roofing_siding_sheet_metal")
-    static let secretarialSupportServices =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "secretarial_support_services")
-    static let securityBrokersDealers =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "security_brokers_dealers")
+    static let recreationalVehicleRentals = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "recreational_vehicle_rentals")
+    static let religiousGoodsStores = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "religious_goods_stores")
+    static let religiousOrganizations = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "religious_organizations")
+    static let roofingSidingSheetMetal = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "roofing_siding_sheet_metal")
+    static let secretarialSupportServices = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "secretarial_support_services")
+    static let securityBrokersDealers = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "security_brokers_dealers")
     static let serviceStations = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "service_stations")
-    static let sewingNeedleworkFabricAndPieceGoodsStores =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(
-            rawValue: "sewing_needlework_fabric_and_piece_goods_stores"
-        )
+    static let sewingNeedleworkFabricAndPieceGoodsStores = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "sewing_needlework_fabric_and_piece_goods_stores")
 }
 
 public extension IssuingCardAuthorizationControlsAllowedCategoriesItem {
-    static let shoeRepairHatCleaning =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "shoe_repair_hat_cleaning")
+    static let shoeRepairHatCleaning = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "shoe_repair_hat_cleaning")
     static let shoeStores = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "shoe_stores")
-    static let smallApplianceRepair =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "small_appliance_repair")
+    static let smallApplianceRepair = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "small_appliance_repair")
     static let snowmobileDealers = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "snowmobile_dealers")
-    static let specialTradeServices =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "special_trade_services")
+    static let specialTradeServices = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "special_trade_services")
     static let specialtyCleaning = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "specialty_cleaning")
-    static let sportingGoodsStores =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "sporting_goods_stores")
-    static let sportingRecreationCamps =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "sporting_recreation_camps")
-    static let sportsAndRidingApparelStores =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "sports_and_riding_apparel_stores")
-    static let sportsClubsFields =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "sports_clubs_fields")
-    static let stampAndCoinStores =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "stamp_and_coin_stores")
-    static let stationaryOfficeSuppliesPrintingAndWritingPaper =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(
-            rawValue: "stationary_office_supplies_printing_and_writing_paper"
-        )
-    static let stationeryStoresOfficeAndSchoolSupplyStores =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(
-            rawValue: "stationery_stores_office_and_school_supply_stores"
-        )
-    static let swimmingPoolsSales =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "swimming_pools_sales")
+    static let sportingGoodsStores = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "sporting_goods_stores")
+    static let sportingRecreationCamps = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "sporting_recreation_camps")
+    static let sportsAndRidingApparelStores = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "sports_and_riding_apparel_stores")
+    static let sportsClubsFields = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "sports_clubs_fields")
+    static let stampAndCoinStores = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "stamp_and_coin_stores")
+    static let stationaryOfficeSuppliesPrintingAndWritingPaper = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "stationary_office_supplies_printing_and_writing_paper")
+    static let stationeryStoresOfficeAndSchoolSupplyStores = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "stationery_stores_office_and_school_supply_stores")
+    static let swimmingPoolsSales = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "swimming_pools_sales")
     static let tUiTravelGermany = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "t_ui_travel_germany")
-    static let tailorsAlterations =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "tailors_alterations")
-    static let taxPaymentsGovernmentAgencies =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "tax_payments_government_agencies")
-    static let taxPreparationServices =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "tax_preparation_services")
-    static let taxicabsLimousines =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "taxicabs_limousines")
-    static let telecommunicationEquipmentAndTelephoneSales =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(
-            rawValue: "telecommunication_equipment_and_telephone_sales"
-        )
-    static let telecommunicationServices =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "telecommunication_services")
+    static let tailorsAlterations = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "tailors_alterations")
+    static let taxPaymentsGovernmentAgencies = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "tax_payments_government_agencies")
+    static let taxPreparationServices = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "tax_preparation_services")
+    static let taxicabsLimousines = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "taxicabs_limousines")
+    static let telecommunicationEquipmentAndTelephoneSales = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "telecommunication_equipment_and_telephone_sales")
+    static let telecommunicationServices = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "telecommunication_services")
     static let telegraphServices = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "telegraph_services")
-    static let tentAndAwningShops =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "tent_and_awning_shops")
-    static let testingLaboratories =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "testing_laboratories")
-    static let theatricalTicketAgencies =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "theatrical_ticket_agencies")
+    static let tentAndAwningShops = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "tent_and_awning_shops")
+    static let testingLaboratories = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "testing_laboratories")
+    static let theatricalTicketAgencies = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "theatrical_ticket_agencies")
     static let timeshares = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "timeshares")
-    static let tireRetreadingAndRepair =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "tire_retreading_and_repair")
+    static let tireRetreadingAndRepair = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "tire_retreading_and_repair")
     static let tollsBridgeFees = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "tolls_bridge_fees")
-    static let touristAttractionsAndExhibits =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "tourist_attractions_and_exhibits")
+    static let touristAttractionsAndExhibits = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "tourist_attractions_and_exhibits")
     static let towingServices = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "towing_services")
-    static let trailerParksCampgrounds =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "trailer_parks_campgrounds")
-    static let transportationServices =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "transportation_services")
-    static let travelAgenciesTourOperators =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "travel_agencies_tour_operators")
-    static let truckStopIteration =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "truck_stop_iteration")
-    static let truckUtilityTrailerRentals =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "truck_utility_trailer_rentals")
-    static let typesettingPlateMakingAndRelatedServices =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "typesetting_plate_making_and_related_services")
+    static let trailerParksCampgrounds = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "trailer_parks_campgrounds")
+    static let transportationServices = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "transportation_services")
+    static let travelAgenciesTourOperators = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "travel_agencies_tour_operators")
+    static let truckStopIteration = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "truck_stop_iteration")
+    static let truckUtilityTrailerRentals = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "truck_utility_trailer_rentals")
+    static let typesettingPlateMakingAndRelatedServices = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "typesetting_plate_making_and_related_services")
     static let typewriterStores = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "typewriter_stores")
-    static let uSFederalGovernmentAgenciesOrDepartments =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(
-            rawValue: "u_s_federal_government_agencies_or_departments"
-        )
-    static let uniformsCommercialClothing =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "uniforms_commercial_clothing")
-    static let usedMerchandiseAndSecondhandStores =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "used_merchandise_and_secondhand_stores")
+    static let uSFederalGovernmentAgenciesOrDepartments = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "u_s_federal_government_agencies_or_departments")
+    static let uniformsCommercialClothing = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "uniforms_commercial_clothing")
+    static let usedMerchandiseAndSecondhandStores = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "used_merchandise_and_secondhand_stores")
     static let utilities = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "utilities")
     static let varietyStores = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "variety_stores")
-    static let veterinaryServices =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "veterinary_services")
-    static let videoAmusementGameSupplies =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "video_amusement_game_supplies")
+    static let veterinaryServices = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "veterinary_services")
+    static let videoAmusementGameSupplies = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "video_amusement_game_supplies")
     static let videoGameArcades = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "video_game_arcades")
-    static let videoTapeRentalStores =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "video_tape_rental_stores")
-    static let vocationalTradeSchools =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "vocational_trade_schools")
-    static let watchJewelryRepair =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "watch_jewelry_repair")
+    static let videoTapeRentalStores = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "video_tape_rental_stores")
+    static let vocationalTradeSchools = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "vocational_trade_schools")
+    static let watchJewelryRepair = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "watch_jewelry_repair")
     static let weldingRepair = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "welding_repair")
     static let wholesaleClubs = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "wholesale_clubs")
-    static let wigAndToupeeStores =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "wig_and_toupee_stores")
+    static let wigAndToupeeStores = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "wig_and_toupee_stores")
     static let wiresMoneyOrders = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "wires_money_orders")
-    static let womensAccessoryAndSpecialtyShops =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "womens_accessory_and_specialty_shops")
-    static let womensReadyToWearStores =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "womens_ready_to_wear_stores")
-    static let wreckingAndSalvageYards =
-        IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "wrecking_and_salvage_yards")
+    static let womensAccessoryAndSpecialtyShops = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "womens_accessory_and_specialty_shops")
+    static let womensReadyToWearStores = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "womens_ready_to_wear_stores")
+    static let wreckingAndSalvageYards = IssuingCardAuthorizationControlsAllowedCategoriesItem(rawValue: "wrecking_and_salvage_yards")
 }
 
 extension IssuingCardAuthorizationControlsAllowedCategoriesItem {

@@ -7,38 +7,28 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1CustomersSources operation model declarations
+// Canonical v1CustomersSources operation model declarations
 public enum PostCustomersCustomerSourcesIdRequestBodyMetadata {
     case dictionary([String: String])
     case stringValue(String)
 }
 
 extension PostCustomersCustomerSourcesIdRequestBodyMetadata: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostCustomersCustomerSourcesIdRequestBodyMetadata"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostCustomersCustomerSourcesIdRequestBodyMetadata")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode([String: String].self) {
-            return .dictionary(value)
-        }
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
+        if let value = try? container.decode([String: String].self) { return .dictionary(value) }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -48,6 +38,7 @@ extension PostCustomersCustomerSourcesIdRequestBodyMetadata: Codable {
         case let .stringValue(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum DeleteCustomersCustomerSourcesIdResponse {
@@ -56,31 +47,21 @@ public enum DeleteCustomersCustomerSourcesIdResponse {
 }
 
 extension DeleteCustomersCustomerSourcesIdResponse: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for DeleteCustomersCustomerSourcesIdResponse"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for DeleteCustomersCustomerSourcesIdResponse")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(PaymentSource.self) {
-            return .paymentSource(value)
-        }
-        if let value = try? container.decode(DeletedPaymentSource.self) {
-            return .deletedPaymentSource(value)
-        }
+        if let value = try? container.decode(PaymentSource.self) { return .paymentSource(value) }
+        if let value = try? container.decode(DeletedPaymentSource.self) { return .deletedPaymentSource(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -90,6 +71,7 @@ extension DeleteCustomersCustomerSourcesIdResponse: Codable {
         case let .deletedPaymentSource(value): try container.encode(value); return true
         }
     }
+
 }
 
 public struct PostCustomersCustomerSourcesIdRequestBodyOwner: Codable {
@@ -107,33 +89,28 @@ public struct PostCustomersCustomerSourcesIdRequestBodyOwner: Codable {
     }
 
     init() {
-        (address, email, name, phone) = (nil, nil, nil, nil)
+        (self.address, self.email, self.name, self.phone) = (nil, nil, nil, nil)
     }
 }
 
-public extension PostCustomersCustomerSourcesIdRequestBodyOwner {
-    init(from decoder: Decoder) throws {
+extension PostCustomersCustomerSourcesIdRequestBodyOwner {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        address = try container.sdkDecodeIfPresent(.address)
-        email = try container.sdkDecodeIfPresent(.email)
-        name = try container.sdkDecodeIfPresent(.name)
-        phone = try container.sdkDecodeIfPresent(.phone)
-        if let value = name {
+        self.address = try container.sdkDecodeIfPresent(.address)
+        self.email = try container.sdkDecodeIfPresent(.email)
+        self.name = try container.sdkDecodeIfPresent(.name)
+        self.phone = try container.sdkDecodeIfPresent(.phone)
+        if let value = self.name {
             try validateLength("name", value, min: nil, max: 5000)
         }
-        if let value = phone {
+        if let value = self.phone {
             try validateLength("phone", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PostCustomersCustomerSourcesIdRequestBodyOwner {
-    init(
-        address: PostCustomersCustomerSourcesIdRequestBodyOwnerAddress? = nil,
-        email: String? = nil,
-        name: String? = nil,
-        phone: String? = nil
-    ) throws {
+extension PostCustomersCustomerSourcesIdRequestBodyOwner {
+    public init(address: PostCustomersCustomerSourcesIdRequestBodyOwnerAddress? = nil, email: String? = nil, name: String? = nil, phone: String? = nil) throws {
         self.init()
         (self.address, self.email) = (address, email)
         (self.name, self.phone) = (name, phone)
@@ -184,74 +161,43 @@ public struct PostCustomersCustomerSourcesRequestBodyCardVariant0: Codable {
         case swipeData = "swipe_data"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostCustomersCustomerSourcesRequestBodyCardVariant0 {
-    init(from decoder: Decoder) throws {
+extension PostCustomersCustomerSourcesRequestBodyCardVariant0 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.expMonth) else {
-            throw SdkValidationError(
-                field: "exp_month",
-                code: "required",
-                message: "Validation failed for 'exp_month': value is required"
-            )
+            throw SdkValidationError(field: "exp_month", code: "required", message: "Validation failed for 'exp_month': value is required")
         }
         guard container.contains(.expYear) else {
-            throw SdkValidationError(
-                field: "exp_year",
-                code: "required",
-                message: "Validation failed for 'exp_year': value is required"
-            )
+            throw SdkValidationError(field: "exp_year", code: "required", message: "Validation failed for 'exp_year': value is required")
         }
         guard container.contains(.number) else {
-            throw SdkValidationError(
-                field: "number",
-                code: "required",
-                message: "Validation failed for 'number': value is required"
-            )
+            throw SdkValidationError(field: "number", code: "required", message: "Validation failed for 'number': value is required")
         }
-        expMonth = try container.sdkDecodeRequired(.expMonth)
-        expYear = try container.sdkDecodeRequired(.expYear)
-        number = try container.sdkDecodeRequired(.number)
-        addressCity = try container.sdkDecodeIfPresent(.addressCity)
-        addressCountry = try container.sdkDecodeIfPresent(.addressCountry)
-        addressLine1 = try container.sdkDecodeIfPresent(.addressLine1)
-        addressLine2 = try container.sdkDecodeIfPresent(.addressLine2)
-        addressState = try container.sdkDecodeIfPresent(.addressState)
-        addressZip = try container.sdkDecodeIfPresent(.addressZip)
-        cvc = try container.sdkDecodeIfPresent(.cvc)
-        encrypted = try container.sdkDecodeIfPresent(.encrypted)
-        metadata = try container.sdkDecodeIfPresent(.metadata)
-        name = try container.sdkDecodeIfPresent(.name)
-        networkToken = try container.sdkDecodeIfPresent(.networkToken)
-        object = try container.sdkDecodeIfPresent(.object)
-        swipeData = try container.sdkDecodeIfPresent(.swipeData)
+        self.expMonth = try container.sdkDecodeRequired(.expMonth)
+        self.expYear = try container.sdkDecodeRequired(.expYear)
+        self.number = try container.sdkDecodeRequired(.number)
+        self.addressCity = try container.sdkDecodeIfPresent(.addressCity)
+        self.addressCountry = try container.sdkDecodeIfPresent(.addressCountry)
+        self.addressLine1 = try container.sdkDecodeIfPresent(.addressLine1)
+        self.addressLine2 = try container.sdkDecodeIfPresent(.addressLine2)
+        self.addressState = try container.sdkDecodeIfPresent(.addressState)
+        self.addressZip = try container.sdkDecodeIfPresent(.addressZip)
+        self.cvc = try container.sdkDecodeIfPresent(.cvc)
+        self.encrypted = try container.sdkDecodeIfPresent(.encrypted)
+        self.metadata = try container.sdkDecodeIfPresent(.metadata)
+        self.name = try container.sdkDecodeIfPresent(.name)
+        self.networkToken = try container.sdkDecodeIfPresent(.networkToken)
+        self.object = try container.sdkDecodeIfPresent(.object)
+        self.swipeData = try container.sdkDecodeIfPresent(.swipeData)
         try sdkValidateConstraints()
     }
 }
 
-public extension PostCustomersCustomerSourcesRequestBodyCardVariant0 {
-    init(
-        expMonth: Int,
-        expYear: Int,
-        number: String,
-        addressCity: String? = nil,
-        addressCountry: String? = nil,
-        addressLine1: String? = nil,
-        addressLine2: String? = nil,
-        addressState: String? = nil,
-        addressZip: String? = nil,
-        cvc: String? = nil,
-        encrypted: String? = nil,
-        metadata: [String: String]? = nil,
-        name: String? = nil,
-        networkToken: PostCustomersCustomerSourcesRequestBodyCardVariant0NetworkToken? = nil,
-        object: PostCustomersCustomerSourcesRequestBodyCardVariant0Object? = nil,
-        swipeData: String? = nil
-    ) throws {
+extension PostCustomersCustomerSourcesRequestBodyCardVariant0 {
+    public init(expMonth: Int, expYear: Int, number: String, addressCity: String? = nil, addressCountry: String? = nil, addressLine1: String? = nil, addressLine2: String? = nil, addressState: String? = nil, addressZip: String? = nil, cvc: String? = nil, encrypted: String? = nil, metadata: [String: String]? = nil, name: String? = nil, networkToken: PostCustomersCustomerSourcesRequestBodyCardVariant0NetworkToken? = nil, object: PostCustomersCustomerSourcesRequestBodyCardVariant0Object? = nil, swipeData: String? = nil) throws {
         (self.expMonth, self.expYear) = (expMonth, expYear)
         (self.number, self.addressCity) = (number, addressCity)
         (self.addressCountry, self.addressLine1) = (addressCountry, addressLine1)
@@ -266,38 +212,38 @@ public extension PostCustomersCustomerSourcesRequestBodyCardVariant0 {
 
 extension PostCustomersCustomerSourcesRequestBodyCardVariant0 {
     func sdkValidateConstraints() throws {
-        try validateLength("number", number, min: nil, max: 5000)
-        if let value = addressCity {
+            try validateLength("number", self.number, min: nil, max: 5000)
+        if let value = self.addressCity {
             try validateLength("address_city", value, min: nil, max: 5000)
         }
-        if let value = addressCountry {
+        if let value = self.addressCountry {
             try validateLength("address_country", value, min: nil, max: 5000)
         }
-        if let value = addressLine1 {
+        if let value = self.addressLine1 {
             try validateLength("address_line1", value, min: nil, max: 5000)
         }
-        if let value = addressLine2 {
+        if let value = self.addressLine2 {
             try validateLength("address_line2", value, min: nil, max: 5000)
         }
-        if let value = addressState {
+        if let value = self.addressState {
             try validateLength("address_state", value, min: nil, max: 5000)
         }
-        if let value = addressZip {
+        if let value = self.addressZip {
             try validateLength("address_zip", value, min: nil, max: 5000)
         }
-        if let value = cvc {
+        if let value = self.cvc {
             try validateLength("cvc", value, min: nil, max: 5000)
         }
-        if let value = encrypted {
+        if let value = self.encrypted {
             try validateLength("encrypted", value, min: nil, max: 5000)
         }
-        if let value = name {
+        if let value = self.name {
             try validateLength("name", value, min: nil, max: 5000)
         }
-        if let value = object {
+        if let value = self.object {
             try validateLength("object", sdkWireString(value), min: nil, max: 5000)
         }
-        if let value = swipeData {
+        if let value = self.swipeData {
             try validateLength("swipe_data", value, min: nil, max: 5000)
         }
     }
@@ -321,103 +267,75 @@ public struct GetCustomersCustomerSourcesResponse: Codable {
         case url
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension GetCustomersCustomerSourcesResponse {
-    init(from decoder: Decoder) throws {
+extension GetCustomersCustomerSourcesResponse {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.data) else {
-            throw SdkValidationError(
-                field: "data",
-                code: "required",
-                message: "Validation failed for 'data': value is required"
-            )
+            throw SdkValidationError(field: "data", code: "required", message: "Validation failed for 'data': value is required")
         }
         guard container.contains(.hasMore) else {
-            throw SdkValidationError(
-                field: "has_more",
-                code: "required",
-                message: "Validation failed for 'has_more': value is required"
-            )
+            throw SdkValidationError(field: "has_more", code: "required", message: "Validation failed for 'has_more': value is required")
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(
-                field: "object",
-                code: "required",
-                message: "Validation failed for 'object': value is required"
-            )
+            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
         }
         guard container.contains(.url) else {
-            throw SdkValidationError(
-                field: "url",
-                code: "required",
-                message: "Validation failed for 'url': value is required"
-            )
+            throw SdkValidationError(field: "url", code: "required", message: "Validation failed for 'url': value is required")
         }
-        data = try container.sdkDecodeRequired(.data)
-        hasMore = try container.sdkDecodeRequired(.hasMore)
-        object = try container.sdkDecodeRequired(.object)
-        url = try container.sdkDecodeRequired(.url)
-        try validateLength("url", url, min: nil, max: 5000)
+        self.data = try container.sdkDecodeRequired(.data)
+        self.hasMore = try container.sdkDecodeRequired(.hasMore)
+        self.object = try container.sdkDecodeRequired(.object)
+        self.url = try container.sdkDecodeRequired(.url)
+            try validateLength("url", self.url, min: nil, max: 5000)
     }
 }
 
-public extension GetCustomersCustomerSourcesResponse {
-    init(data: [DataItem2], hasMore: Bool, object: GetCustomersCustomerSourcesResponseObject, url: String) throws {
+extension GetCustomersCustomerSourcesResponse {
+    public init(data: [DataItem2], hasMore: Bool, object: GetCustomersCustomerSourcesResponseObject, url: String) throws {
         (self.data, self.hasMore) = (data, hasMore)
         (self.object, self.url) = (object, url)
-        try validateLength("url", self.url, min: nil, max: 5000)
+            try validateLength("url", self.url, min: nil, max: 5000)
     }
 }
 
 public enum PostCustomersCustomerSourcesRequestBodyBankAccount {
-    case postCustomersCustomerSourcesRequestBodyBankAccountVariant0(
-        PostCustomersCustomerSourcesRequestBodyBankAccountVariant0
-    )
+    case postCustomersCustomerSourcesRequestBodyBankAccountVariant0(PostCustomersCustomerSourcesRequestBodyBankAccountVariant0)
     case stringValue(String)
 }
 
 extension PostCustomersCustomerSourcesRequestBodyBankAccount: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostCustomersCustomerSourcesRequestBodyBankAccount"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostCustomersCustomerSourcesRequestBodyBankAccount")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PostCustomersCustomerSourcesRequestBodyBankAccountVariant0.self
         ) {
-            return .postCustomersCustomerSourcesRequestBodyBankAccountVariant0(value)
+            return             .postCustomersCustomerSourcesRequestBodyBankAccountVariant0(value)
         }
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .postCustomersCustomerSourcesRequestBodyBankAccountVariant0(value): try container
-            .encode(value); return true
+        case let .postCustomersCustomerSourcesRequestBodyBankAccountVariant0(value): try container.encode(value); return true
         case let .stringValue(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum PostCustomersCustomerSourcesIdResponse {
@@ -427,6 +345,7 @@ public enum PostCustomersCustomerSourcesIdResponse {
 }
 
 extension PostCustomersCustomerSourcesIdResponse: Codable {
+
     private enum CodingKeys: String, CodingKey {
         case discriminator = "object"
     }
@@ -434,29 +353,21 @@ extension PostCustomersCustomerSourcesIdResponse: Codable {
     public init(from decoder: Decoder) throws {
         let tagged = try decoder.container(keyedBy: CodingKeys.self)
         let discriminator = try tagged.decode(String.self, forKey: .discriminator)
-        if let value = try Self.decodeGroup1(discriminator, from: decoder) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            forKey: .discriminator,
-            in: tagged,
-            debugDescription: "Unknown discriminator for PostCustomersCustomerSourcesIdResponse"
-        )
+        if let value = try Self.decodeGroup1(discriminator, from: decoder) { self = value; return }
+        throw DecodingError.dataCorruptedError(forKey: .discriminator, in: tagged, debugDescription: "Unknown discriminator for PostCustomersCustomerSourcesIdResponse")
     }
 
     private static func decodeGroup1(_ discriminator: String, from decoder: Decoder) throws -> Self? {
         switch discriminator {
-        case "card": try .card(Card(from: decoder))
-        case "bank_account": try .bankAccount(BankAccount(from: decoder))
-        case "source": try .source(Source(from: decoder))
-        default: nil
+        case "card": return .card(try Card(from: decoder))
+        case "bank_account": return .bankAccount(try BankAccount(from: decoder))
+        case "source": return .source(try Source(from: decoder))
+        default: return nil
         }
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -467,6 +378,7 @@ extension PostCustomersCustomerSourcesIdResponse: Codable {
         case let .source(value): try container.encode(value); return true
         }
     }
+
 }
 
 public struct PostCustomersCustomerSourcesIdRequestBodyOwnerAddress: Codable {
@@ -487,50 +399,43 @@ public struct PostCustomersCustomerSourcesIdRequestBodyOwnerAddress: Codable {
     }
 
     init() {
-        (city, country, line1, line2, postalCode) = (nil, nil, nil, nil, nil)
-        state = nil
+        (self.city, self.country, self.line1, self.line2, self.postalCode) = (nil, nil, nil, nil, nil)
+        self.state = nil
     }
 }
 
-public extension PostCustomersCustomerSourcesIdRequestBodyOwnerAddress {
-    init(from decoder: Decoder) throws {
+extension PostCustomersCustomerSourcesIdRequestBodyOwnerAddress {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        city = try container.sdkDecodeIfPresent(.city)
-        country = try container.sdkDecodeIfPresent(.country)
-        line1 = try container.sdkDecodeIfPresent(.line1)
-        line2 = try container.sdkDecodeIfPresent(.line2)
-        postalCode = try container.sdkDecodeIfPresent(.postalCode)
-        state = try container.sdkDecodeIfPresent(.state)
-        if let value = city {
+        self.city = try container.sdkDecodeIfPresent(.city)
+        self.country = try container.sdkDecodeIfPresent(.country)
+        self.line1 = try container.sdkDecodeIfPresent(.line1)
+        self.line2 = try container.sdkDecodeIfPresent(.line2)
+        self.postalCode = try container.sdkDecodeIfPresent(.postalCode)
+        self.state = try container.sdkDecodeIfPresent(.state)
+        if let value = self.city {
             try validateLength("city", value, min: nil, max: 5000)
         }
-        if let value = country {
+        if let value = self.country {
             try validateLength("country", value, min: nil, max: 5000)
         }
-        if let value = line1 {
+        if let value = self.line1 {
             try validateLength("line1", value, min: nil, max: 5000)
         }
-        if let value = line2 {
+        if let value = self.line2 {
             try validateLength("line2", value, min: nil, max: 5000)
         }
-        if let value = postalCode {
+        if let value = self.postalCode {
             try validateLength("postal_code", value, min: nil, max: 5000)
         }
-        if let value = state {
+        if let value = self.state {
             try validateLength("state", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PostCustomersCustomerSourcesIdRequestBodyOwnerAddress {
-    init(
-        city: String? = nil,
-        country: String? = nil,
-        line1: String? = nil,
-        line2: String? = nil,
-        postalCode: String? = nil,
-        state: String? = nil
-    ) throws {
+extension PostCustomersCustomerSourcesIdRequestBodyOwnerAddress {
+    public init(city: String? = nil, country: String? = nil, line1: String? = nil, line2: String? = nil, postalCode: String? = nil, state: String? = nil) throws {
         self.init()
         (self.city, self.country) = (city, country)
         (self.line1, self.line2) = (line1, line2)
@@ -564,22 +469,22 @@ public struct PostCustomersCustomerSourcesRequestBodyCardVariant0NetworkToken: C
     }
 
     init() {
-        number = nil
+        self.number = nil
     }
 }
 
-public extension PostCustomersCustomerSourcesRequestBodyCardVariant0NetworkToken {
-    init(from decoder: Decoder) throws {
+extension PostCustomersCustomerSourcesRequestBodyCardVariant0NetworkToken {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        number = try container.sdkDecodeIfPresent(.number)
-        if let value = number {
+        self.number = try container.sdkDecodeIfPresent(.number)
+        if let value = self.number {
             try validateLength("number", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PostCustomersCustomerSourcesRequestBodyCardVariant0NetworkToken {
-    init(number: String? = nil) throws {
+extension PostCustomersCustomerSourcesRequestBodyCardVariant0NetworkToken {
+    public init(number: String? = nil) throws {
         self.init()
         self.number = number
         if let value = self.number {
@@ -594,33 +499,25 @@ public enum PostCustomersCustomerSourcesRequestBodyCard {
 }
 
 extension PostCustomersCustomerSourcesRequestBodyCard: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostCustomersCustomerSourcesRequestBodyCard"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostCustomersCustomerSourcesRequestBodyCard")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PostCustomersCustomerSourcesRequestBodyCardVariant0.self
         ) {
-            return .postCustomersCustomerSourcesRequestBodyCardVariant0(value)
+            return             .postCustomersCustomerSourcesRequestBodyCardVariant0(value)
         }
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -630,4 +527,5 @@ extension PostCustomersCustomerSourcesRequestBodyCard: Codable {
         case let .stringValue(value): try container.encode(value); return true
         }
     }
+
 }

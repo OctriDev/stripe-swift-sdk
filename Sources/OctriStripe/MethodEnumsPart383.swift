@@ -21,31 +21,31 @@ struct PostChargesChargeRefundsRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(amount, forKey: SdkCodingKey("amount"))
-        try keyedContainer.encodeIfPresent(currency, forKey: SdkCodingKey("currency"))
-        try keyedContainer.encodeIfPresent(customer, forKey: SdkCodingKey("customer"))
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(instructionsEmail, forKey: SdkCodingKey("instructions_email"))
-        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
-        try keyedContainer.encodeIfPresent(origin, forKey: SdkCodingKey("origin"))
-        try keyedContainer.encodeIfPresent(paymentIntent, forKey: SdkCodingKey("payment_intent"))
-        try keyedContainer.encodeIfPresent(reason, forKey: SdkCodingKey("reason"))
-        try keyedContainer.encodeIfPresent(refundApplicationFee, forKey: SdkCodingKey("refund_application_fee"))
-        try keyedContainer.encodeIfPresent(reverseTransfer, forKey: SdkCodingKey("reverse_transfer"))
+        try keyedContainer.encodeIfPresent(self.amount, forKey: SdkCodingKey("amount"))
+        try keyedContainer.encodeIfPresent(self.currency, forKey: SdkCodingKey("currency"))
+        try keyedContainer.encodeIfPresent(self.customer, forKey: SdkCodingKey("customer"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.instructionsEmail, forKey: SdkCodingKey("instructions_email"))
+        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encodeIfPresent(self.origin, forKey: SdkCodingKey("origin"))
+        try keyedContainer.encodeIfPresent(self.paymentIntent, forKey: SdkCodingKey("payment_intent"))
+        try keyedContainer.encodeIfPresent(self.reason, forKey: SdkCodingKey("reason"))
+        try keyedContainer.encodeIfPresent(self.refundApplicationFee, forKey: SdkCodingKey("refund_application_fee"))
+        try keyedContainer.encodeIfPresent(self.reverseTransfer, forKey: SdkCodingKey("reverse_transfer"))
     }
 
     init(options: V1ChargesRefundsMethods.PostChargesChargeRefundsOptions) {
-        amount = options.amount
-        currency = options.currency
-        customer = options.customer
-        expand = options.expand
-        instructionsEmail = options.instructionsEmail
-        metadata = options.metadata
-        origin = options.origin
-        paymentIntent = options.paymentIntent
-        reason = options.reason
-        refundApplicationFee = options.refundApplicationFee
-        reverseTransfer = options.reverseTransfer
+        self.amount = options.amount
+        self.currency = options.currency
+        self.customer = options.customer
+        self.expand = options.expand
+        self.instructionsEmail = options.instructionsEmail
+        self.metadata = options.metadata
+        self.origin = options.origin
+        self.paymentIntent = options.paymentIntent
+        self.reason = options.reason
+        self.refundApplicationFee = options.refundApplicationFee
+        self.reverseTransfer = options.reverseTransfer
     }
 }
 
@@ -55,8 +55,8 @@ struct PostChargesChargeRefundsRefundRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
     }
 }
 
@@ -115,122 +115,110 @@ struct PostCheckoutSessionsRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(adaptivePricing, forKey: SdkCodingKey("adaptive_pricing"))
-        try keyedContainer.encodeIfPresent(afterExpiration, forKey: SdkCodingKey("after_expiration"))
-        try keyedContainer.encodeIfPresent(allowPromotionCodes, forKey: SdkCodingKey("allow_promotion_codes"))
-        try keyedContainer.encodeIfPresent(automaticTax, forKey: SdkCodingKey("automatic_tax"))
-        try keyedContainer.encodeIfPresent(billingAddressCollection, forKey: SdkCodingKey("billing_address_collection"))
-        try keyedContainer.encodeIfPresent(brandingSettings, forKey: SdkCodingKey("branding_settings"))
-        try keyedContainer.encodeIfPresent(cancelUrl, forKey: SdkCodingKey("cancel_url"))
-        try keyedContainer.encodeIfPresent(clientReferenceId, forKey: SdkCodingKey("client_reference_id"))
-        try keyedContainer.encodeIfPresent(consentCollection, forKey: SdkCodingKey("consent_collection"))
-        try keyedContainer.encodeIfPresent(currency, forKey: SdkCodingKey("currency"))
-        try keyedContainer.encodeIfPresent(customFields, forKey: SdkCodingKey("custom_fields"))
-        try keyedContainer.encodeIfPresent(customText, forKey: SdkCodingKey("custom_text"))
-        try keyedContainer.encodeIfPresent(customer, forKey: SdkCodingKey("customer"))
-        try keyedContainer.encodeIfPresent(customerAccount, forKey: SdkCodingKey("customer_account"))
-        try keyedContainer.encodeIfPresent(customerCreation, forKey: SdkCodingKey("customer_creation"))
-        try keyedContainer.encodeIfPresent(customerEmail, forKey: SdkCodingKey("customer_email"))
-        try keyedContainer.encodeIfPresent(customerUpdate, forKey: SdkCodingKey("customer_update"))
-        try keyedContainer.encodeIfPresent(discounts, forKey: SdkCodingKey("discounts"))
-        try keyedContainer.encodeIfPresent(
-            excludedPaymentMethodTypes,
-            forKey: SdkCodingKey("excluded_payment_method_types")
-        )
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(expiresAt, forKey: SdkCodingKey("expires_at"))
-        try keyedContainer.encodeIfPresent(integrationIdentifier, forKey: SdkCodingKey("integration_identifier"))
-        try keyedContainer.encodeIfPresent(invoiceCreation, forKey: SdkCodingKey("invoice_creation"))
-        try keyedContainer.encodeIfPresent(lineItems, forKey: SdkCodingKey("line_items"))
-        try keyedContainer.encodeIfPresent(locale, forKey: SdkCodingKey("locale"))
-        try keyedContainer.encodeIfPresent(managedPayments, forKey: SdkCodingKey("managed_payments"))
-        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
-        try keyedContainer.encodeIfPresent(mode, forKey: SdkCodingKey("mode"))
-        try keyedContainer.encodeIfPresent(nameCollection, forKey: SdkCodingKey("name_collection"))
-        try keyedContainer.encodeIfPresent(optionalItems, forKey: SdkCodingKey("optional_items"))
-        try keyedContainer.encodeIfPresent(originContext, forKey: SdkCodingKey("origin_context"))
-        try keyedContainer.encodeIfPresent(paymentIntentData, forKey: SdkCodingKey("payment_intent_data"))
-        try keyedContainer.encodeIfPresent(paymentMethodCollection, forKey: SdkCodingKey("payment_method_collection"))
-        try keyedContainer.encodeIfPresent(
-            paymentMethodConfiguration,
-            forKey: SdkCodingKey("payment_method_configuration")
-        )
-        try keyedContainer.encodeIfPresent(paymentMethodData, forKey: SdkCodingKey("payment_method_data"))
-        try keyedContainer.encodeIfPresent(paymentMethodOptions, forKey: SdkCodingKey("payment_method_options"))
-        try keyedContainer.encodeIfPresent(paymentMethodTypes, forKey: SdkCodingKey("payment_method_types"))
-        try keyedContainer.encodeIfPresent(permissions, forKey: SdkCodingKey("permissions"))
-        try keyedContainer.encodeIfPresent(phoneNumberCollection, forKey: SdkCodingKey("phone_number_collection"))
-        try keyedContainer.encodeIfPresent(redirectOnCompletion, forKey: SdkCodingKey("redirect_on_completion"))
-        try keyedContainer.encodeIfPresent(returnUrl, forKey: SdkCodingKey("return_url"))
-        try keyedContainer.encodeIfPresent(
-            savedPaymentMethodOptions,
-            forKey: SdkCodingKey("saved_payment_method_options")
-        )
-        try keyedContainer.encodeIfPresent(setupIntentData, forKey: SdkCodingKey("setup_intent_data"))
-        try keyedContainer.encodeIfPresent(
-            shippingAddressCollection,
-            forKey: SdkCodingKey("shipping_address_collection")
-        )
-        try keyedContainer.encodeIfPresent(shippingOptions, forKey: SdkCodingKey("shipping_options"))
-        try keyedContainer.encodeIfPresent(submitType, forKey: SdkCodingKey("submit_type"))
-        try keyedContainer.encodeIfPresent(subscriptionData, forKey: SdkCodingKey("subscription_data"))
-        try keyedContainer.encodeIfPresent(successUrl, forKey: SdkCodingKey("success_url"))
-        try keyedContainer.encodeIfPresent(taxIdCollection, forKey: SdkCodingKey("tax_id_collection"))
-        try keyedContainer.encodeIfPresent(uiMode, forKey: SdkCodingKey("ui_mode"))
-        try keyedContainer.encodeIfPresent(walletOptions, forKey: SdkCodingKey("wallet_options"))
+        try keyedContainer.encodeIfPresent(self.adaptivePricing, forKey: SdkCodingKey("adaptive_pricing"))
+        try keyedContainer.encodeIfPresent(self.afterExpiration, forKey: SdkCodingKey("after_expiration"))
+        try keyedContainer.encodeIfPresent(self.allowPromotionCodes, forKey: SdkCodingKey("allow_promotion_codes"))
+        try keyedContainer.encodeIfPresent(self.automaticTax, forKey: SdkCodingKey("automatic_tax"))
+        try keyedContainer.encodeIfPresent(self.billingAddressCollection, forKey: SdkCodingKey("billing_address_collection"))
+        try keyedContainer.encodeIfPresent(self.brandingSettings, forKey: SdkCodingKey("branding_settings"))
+        try keyedContainer.encodeIfPresent(self.cancelUrl, forKey: SdkCodingKey("cancel_url"))
+        try keyedContainer.encodeIfPresent(self.clientReferenceId, forKey: SdkCodingKey("client_reference_id"))
+        try keyedContainer.encodeIfPresent(self.consentCollection, forKey: SdkCodingKey("consent_collection"))
+        try keyedContainer.encodeIfPresent(self.currency, forKey: SdkCodingKey("currency"))
+        try keyedContainer.encodeIfPresent(self.customFields, forKey: SdkCodingKey("custom_fields"))
+        try keyedContainer.encodeIfPresent(self.customText, forKey: SdkCodingKey("custom_text"))
+        try keyedContainer.encodeIfPresent(self.customer, forKey: SdkCodingKey("customer"))
+        try keyedContainer.encodeIfPresent(self.customerAccount, forKey: SdkCodingKey("customer_account"))
+        try keyedContainer.encodeIfPresent(self.customerCreation, forKey: SdkCodingKey("customer_creation"))
+        try keyedContainer.encodeIfPresent(self.customerEmail, forKey: SdkCodingKey("customer_email"))
+        try keyedContainer.encodeIfPresent(self.customerUpdate, forKey: SdkCodingKey("customer_update"))
+        try keyedContainer.encodeIfPresent(self.discounts, forKey: SdkCodingKey("discounts"))
+        try keyedContainer.encodeIfPresent(self.excludedPaymentMethodTypes, forKey: SdkCodingKey("excluded_payment_method_types"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.expiresAt, forKey: SdkCodingKey("expires_at"))
+        try keyedContainer.encodeIfPresent(self.integrationIdentifier, forKey: SdkCodingKey("integration_identifier"))
+        try keyedContainer.encodeIfPresent(self.invoiceCreation, forKey: SdkCodingKey("invoice_creation"))
+        try keyedContainer.encodeIfPresent(self.lineItems, forKey: SdkCodingKey("line_items"))
+        try keyedContainer.encodeIfPresent(self.locale, forKey: SdkCodingKey("locale"))
+        try keyedContainer.encodeIfPresent(self.managedPayments, forKey: SdkCodingKey("managed_payments"))
+        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encodeIfPresent(self.mode, forKey: SdkCodingKey("mode"))
+        try keyedContainer.encodeIfPresent(self.nameCollection, forKey: SdkCodingKey("name_collection"))
+        try keyedContainer.encodeIfPresent(self.optionalItems, forKey: SdkCodingKey("optional_items"))
+        try keyedContainer.encodeIfPresent(self.originContext, forKey: SdkCodingKey("origin_context"))
+        try keyedContainer.encodeIfPresent(self.paymentIntentData, forKey: SdkCodingKey("payment_intent_data"))
+        try keyedContainer.encodeIfPresent(self.paymentMethodCollection, forKey: SdkCodingKey("payment_method_collection"))
+        try keyedContainer.encodeIfPresent(self.paymentMethodConfiguration, forKey: SdkCodingKey("payment_method_configuration"))
+        try keyedContainer.encodeIfPresent(self.paymentMethodData, forKey: SdkCodingKey("payment_method_data"))
+        try keyedContainer.encodeIfPresent(self.paymentMethodOptions, forKey: SdkCodingKey("payment_method_options"))
+        try keyedContainer.encodeIfPresent(self.paymentMethodTypes, forKey: SdkCodingKey("payment_method_types"))
+        try keyedContainer.encodeIfPresent(self.permissions, forKey: SdkCodingKey("permissions"))
+        try keyedContainer.encodeIfPresent(self.phoneNumberCollection, forKey: SdkCodingKey("phone_number_collection"))
+        try keyedContainer.encodeIfPresent(self.redirectOnCompletion, forKey: SdkCodingKey("redirect_on_completion"))
+        try keyedContainer.encodeIfPresent(self.returnUrl, forKey: SdkCodingKey("return_url"))
+        try keyedContainer.encodeIfPresent(self.savedPaymentMethodOptions, forKey: SdkCodingKey("saved_payment_method_options"))
+        try keyedContainer.encodeIfPresent(self.setupIntentData, forKey: SdkCodingKey("setup_intent_data"))
+        try keyedContainer.encodeIfPresent(self.shippingAddressCollection, forKey: SdkCodingKey("shipping_address_collection"))
+        try keyedContainer.encodeIfPresent(self.shippingOptions, forKey: SdkCodingKey("shipping_options"))
+        try keyedContainer.encodeIfPresent(self.submitType, forKey: SdkCodingKey("submit_type"))
+        try keyedContainer.encodeIfPresent(self.subscriptionData, forKey: SdkCodingKey("subscription_data"))
+        try keyedContainer.encodeIfPresent(self.successUrl, forKey: SdkCodingKey("success_url"))
+        try keyedContainer.encodeIfPresent(self.taxIdCollection, forKey: SdkCodingKey("tax_id_collection"))
+        try keyedContainer.encodeIfPresent(self.uiMode, forKey: SdkCodingKey("ui_mode"))
+        try keyedContainer.encodeIfPresent(self.walletOptions, forKey: SdkCodingKey("wallet_options"))
     }
 
     init(options: V1CheckoutSessionsMethods.PostCheckoutSessionsOptions) {
-        adaptivePricing = options.adaptivePricing
-        afterExpiration = options.afterExpiration
-        allowPromotionCodes = options.allowPromotionCodes
-        automaticTax = options.automaticTax
-        billingAddressCollection = options.billingAddressCollection
-        brandingSettings = options.brandingSettings
-        cancelUrl = options.cancelUrl
-        clientReferenceId = options.clientReferenceId
-        consentCollection = options.consentCollection
-        currency = options.currency
-        customFields = options.customFields
-        customText = options.customText
-        customer = options.customer
-        customerAccount = options.customerAccount
-        customerCreation = options.customerCreation
-        customerEmail = options.customerEmail
-        customerUpdate = options.customerUpdate
-        discounts = options.discounts
-        excludedPaymentMethodTypes = options.excludedPaymentMethodTypes
-        expand = options.expand
-        expiresAt = options.expiresAt
-        integrationIdentifier = options.integrationIdentifier
-        invoiceCreation = options.invoiceCreation
-        lineItems = options.lineItems
-        locale = options.locale
-        managedPayments = options.managedPayments
-        metadata = options.metadata
-        mode = options.mode
-        nameCollection = options.nameCollection
-        optionalItems = options.optionalItems
-        originContext = options.originContext
-        paymentIntentData = options.paymentIntentData
-        paymentMethodCollection = options.paymentMethodCollection
-        paymentMethodConfiguration = options.paymentMethodConfiguration
-        paymentMethodData = options.paymentMethodData
-        paymentMethodOptions = options.paymentMethodOptions
-        paymentMethodTypes = options.paymentMethodTypes
-        permissions = options.permissions
-        phoneNumberCollection = options.phoneNumberCollection
-        redirectOnCompletion = options.redirectOnCompletion
-        returnUrl = options.returnUrl
-        savedPaymentMethodOptions = options.savedPaymentMethodOptions
-        setupIntentData = options.setupIntentData
-        shippingAddressCollection = options.shippingAddressCollection
-        shippingOptions = options.shippingOptions
-        submitType = options.submitType
-        subscriptionData = options.subscriptionData
-        successUrl = options.successUrl
-        taxIdCollection = options.taxIdCollection
-        uiMode = options.uiMode
-        walletOptions = options.walletOptions
+        self.adaptivePricing = options.adaptivePricing
+        self.afterExpiration = options.afterExpiration
+        self.allowPromotionCodes = options.allowPromotionCodes
+        self.automaticTax = options.automaticTax
+        self.billingAddressCollection = options.billingAddressCollection
+        self.brandingSettings = options.brandingSettings
+        self.cancelUrl = options.cancelUrl
+        self.clientReferenceId = options.clientReferenceId
+        self.consentCollection = options.consentCollection
+        self.currency = options.currency
+        self.customFields = options.customFields
+        self.customText = options.customText
+        self.customer = options.customer
+        self.customerAccount = options.customerAccount
+        self.customerCreation = options.customerCreation
+        self.customerEmail = options.customerEmail
+        self.customerUpdate = options.customerUpdate
+        self.discounts = options.discounts
+        self.excludedPaymentMethodTypes = options.excludedPaymentMethodTypes
+        self.expand = options.expand
+        self.expiresAt = options.expiresAt
+        self.integrationIdentifier = options.integrationIdentifier
+        self.invoiceCreation = options.invoiceCreation
+        self.lineItems = options.lineItems
+        self.locale = options.locale
+        self.managedPayments = options.managedPayments
+        self.metadata = options.metadata
+        self.mode = options.mode
+        self.nameCollection = options.nameCollection
+        self.optionalItems = options.optionalItems
+        self.originContext = options.originContext
+        self.paymentIntentData = options.paymentIntentData
+        self.paymentMethodCollection = options.paymentMethodCollection
+        self.paymentMethodConfiguration = options.paymentMethodConfiguration
+        self.paymentMethodData = options.paymentMethodData
+        self.paymentMethodOptions = options.paymentMethodOptions
+        self.paymentMethodTypes = options.paymentMethodTypes
+        self.permissions = options.permissions
+        self.phoneNumberCollection = options.phoneNumberCollection
+        self.redirectOnCompletion = options.redirectOnCompletion
+        self.returnUrl = options.returnUrl
+        self.savedPaymentMethodOptions = options.savedPaymentMethodOptions
+        self.setupIntentData = options.setupIntentData
+        self.shippingAddressCollection = options.shippingAddressCollection
+        self.shippingOptions = options.shippingOptions
+        self.submitType = options.submitType
+        self.subscriptionData = options.subscriptionData
+        self.successUrl = options.successUrl
+        self.taxIdCollection = options.taxIdCollection
+        self.uiMode = options.uiMode
+        self.walletOptions = options.walletOptions
     }
 }

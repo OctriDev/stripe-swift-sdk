@@ -7,15 +7,9 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1TaxRegistrations operation model declarations
+// Canonical v1TaxRegistrations operation model declarations
 extension PostTaxRegistrationsRequestBodyCountryOptions {
-    mutating func sdkSet11(
-        _ kg: PostTaxRegistrationsRequestBodyCountryOptionsKg?,
-        _ kh: PostTaxRegistrationsRequestBodyCountryOptionsKh?,
-        _ kr: PostTaxRegistrationsRequestBodyCountryOptionsKr?,
-        _ kz: PostTaxRegistrationsRequestBodyCountryOptionsKz?,
-        _ la: PostTaxRegistrationsRequestBodyCountryOptionsLa?
-    ) {
+    mutating func sdkSet11(_ kg: PostTaxRegistrationsRequestBodyCountryOptionsKg?, _ kh: PostTaxRegistrationsRequestBodyCountryOptionsKh?, _ kr: PostTaxRegistrationsRequestBodyCountryOptionsKr?, _ kz: PostTaxRegistrationsRequestBodyCountryOptionsKz?, _ la: PostTaxRegistrationsRequestBodyCountryOptionsLa?) {
         self.kg = kg
         self.kh = kh
         self.kr = kr
@@ -25,13 +19,7 @@ extension PostTaxRegistrationsRequestBodyCountryOptions {
 }
 
 extension PostTaxRegistrationsRequestBodyCountryOptions {
-    mutating func sdkSet12(
-        _ lk: PostTaxRegistrationsRequestBodyCountryOptionsLk?,
-        _ lt: PostTaxRegistrationsRequestBodyCountryOptionsLt?,
-        _ lu: PostTaxRegistrationsRequestBodyCountryOptionsLu?,
-        _ lv: PostTaxRegistrationsRequestBodyCountryOptionsLv?,
-        _ ma: PostTaxRegistrationsRequestBodyCountryOptionsMa?
-    ) {
+    mutating func sdkSet12(_ lk: PostTaxRegistrationsRequestBodyCountryOptionsLk?, _ lt: PostTaxRegistrationsRequestBodyCountryOptionsLt?, _ lu: PostTaxRegistrationsRequestBodyCountryOptionsLu?, _ lv: PostTaxRegistrationsRequestBodyCountryOptionsLv?, _ ma: PostTaxRegistrationsRequestBodyCountryOptionsMa?) {
         self.lk = lk
         self.lt = lt
         self.lu = lu
@@ -41,13 +29,7 @@ extension PostTaxRegistrationsRequestBodyCountryOptions {
 }
 
 extension PostTaxRegistrationsRequestBodyCountryOptions {
-    mutating func sdkSet13(
-        _ md: PostTaxRegistrationsRequestBodyCountryOptionsMd?,
-        _ me: PostTaxRegistrationsRequestBodyCountryOptionsMe?,
-        _ mk: PostTaxRegistrationsRequestBodyCountryOptionsMk?,
-        _ mr: PostTaxRegistrationsRequestBodyCountryOptionsMr?,
-        _ mt: PostTaxRegistrationsRequestBodyCountryOptionsMt?
-    ) {
+    mutating func sdkSet13(_ md: PostTaxRegistrationsRequestBodyCountryOptionsMd?, _ me: PostTaxRegistrationsRequestBodyCountryOptionsMe?, _ mk: PostTaxRegistrationsRequestBodyCountryOptionsMk?, _ mr: PostTaxRegistrationsRequestBodyCountryOptionsMr?, _ mt: PostTaxRegistrationsRequestBodyCountryOptionsMt?) {
         self.md = md
         self.me = me
         self.mk = mk
@@ -57,13 +39,7 @@ extension PostTaxRegistrationsRequestBodyCountryOptions {
 }
 
 extension PostTaxRegistrationsRequestBodyCountryOptions {
-    mutating func sdkSet14(
-        _ mx: PostTaxRegistrationsRequestBodyCountryOptionsMx?,
-        _ my: PostTaxRegistrationsRequestBodyCountryOptionsMy?,
-        _ ng: PostTaxRegistrationsRequestBodyCountryOptionsNg?,
-        _ nl: PostTaxRegistrationsRequestBodyCountryOptionsNl?,
-        _ no: PostTaxRegistrationsRequestBodyCountryOptionsNo?
-    ) {
+    mutating func sdkSet14(_ mx: PostTaxRegistrationsRequestBodyCountryOptionsMx?, _ my: PostTaxRegistrationsRequestBodyCountryOptionsMy?, _ ng: PostTaxRegistrationsRequestBodyCountryOptionsNg?, _ nl: PostTaxRegistrationsRequestBodyCountryOptionsNl?, _ no: PostTaxRegistrationsRequestBodyCountryOptionsNo?) {
         self.mx = mx
         self.my = my
         self.ng = ng
@@ -73,13 +49,7 @@ extension PostTaxRegistrationsRequestBodyCountryOptions {
 }
 
 extension PostTaxRegistrationsRequestBodyCountryOptions {
-    mutating func sdkSet15(
-        _ np: PostTaxRegistrationsRequestBodyCountryOptionsNp?,
-        _ nz: PostTaxRegistrationsRequestBodyCountryOptionsNz?,
-        _ om: PostTaxRegistrationsRequestBodyCountryOptionsOm?,
-        _ pe: PostTaxRegistrationsRequestBodyCountryOptionsPe?,
-        _ ph: PostTaxRegistrationsRequestBodyCountryOptionsPh?
-    ) {
+    mutating func sdkSet15(_ np: PostTaxRegistrationsRequestBodyCountryOptionsNp?, _ nz: PostTaxRegistrationsRequestBodyCountryOptionsNz?, _ om: PostTaxRegistrationsRequestBodyCountryOptionsOm?, _ pe: PostTaxRegistrationsRequestBodyCountryOptionsPe?, _ ph: PostTaxRegistrationsRequestBodyCountryOptionsPh?) {
         self.np = np
         self.nz = nz
         self.om = om
@@ -89,13 +59,7 @@ extension PostTaxRegistrationsRequestBodyCountryOptions {
 }
 
 extension PostTaxRegistrationsRequestBodyCountryOptions {
-    mutating func sdkSet16(
-        _ pl: PostTaxRegistrationsRequestBodyCountryOptionsPl?,
-        _ pt: PostTaxRegistrationsRequestBodyCountryOptionsPt?,
-        _ ro: PostTaxRegistrationsRequestBodyCountryOptionsRo?,
-        _ rs: PostTaxRegistrationsRequestBodyCountryOptionsRs?,
-        _ ru: PostTaxRegistrationsRequestBodyCountryOptionsRu?
-    ) {
+    mutating func sdkSet16(_ pl: PostTaxRegistrationsRequestBodyCountryOptionsPl?, _ pt: PostTaxRegistrationsRequestBodyCountryOptionsPt?, _ ro: PostTaxRegistrationsRequestBodyCountryOptionsRo?, _ rs: PostTaxRegistrationsRequestBodyCountryOptionsRs?, _ ru: PostTaxRegistrationsRequestBodyCountryOptionsRu?) {
         self.pl = pl
         self.pt = pt
         self.ro = ro
@@ -105,13 +69,7 @@ extension PostTaxRegistrationsRequestBodyCountryOptions {
 }
 
 extension PostTaxRegistrationsRequestBodyCountryOptions {
-    mutating func sdkSet17(
-        _ sa: PostTaxRegistrationsRequestBodyCountryOptionsSa?,
-        _ se: PostTaxRegistrationsRequestBodyCountryOptionsSe?,
-        _ sg: PostTaxRegistrationsRequestBodyCountryOptionsSg?,
-        _ si: PostTaxRegistrationsRequestBodyCountryOptionsSi?,
-        _ sk: PostTaxRegistrationsRequestBodyCountryOptionsSk?
-    ) {
+    mutating func sdkSet17(_ sa: PostTaxRegistrationsRequestBodyCountryOptionsSa?, _ se: PostTaxRegistrationsRequestBodyCountryOptionsSe?, _ sg: PostTaxRegistrationsRequestBodyCountryOptionsSg?, _ si: PostTaxRegistrationsRequestBodyCountryOptionsSi?, _ sk: PostTaxRegistrationsRequestBodyCountryOptionsSk?) {
         self.sa = sa
         self.se = se
         self.sg = sg
@@ -121,13 +79,7 @@ extension PostTaxRegistrationsRequestBodyCountryOptions {
 }
 
 extension PostTaxRegistrationsRequestBodyCountryOptions {
-    mutating func sdkSet18(
-        _ sn: PostTaxRegistrationsRequestBodyCountryOptionsSn?,
-        _ sr: PostTaxRegistrationsRequestBodyCountryOptionsSr?,
-        _ th: PostTaxRegistrationsRequestBodyCountryOptionsTh?,
-        _ tj: PostTaxRegistrationsRequestBodyCountryOptionsTj?,
-        _ tr: PostTaxRegistrationsRequestBodyCountryOptionsTr?
-    ) {
+    mutating func sdkSet18(_ sn: PostTaxRegistrationsRequestBodyCountryOptionsSn?, _ sr: PostTaxRegistrationsRequestBodyCountryOptionsSr?, _ th: PostTaxRegistrationsRequestBodyCountryOptionsTh?, _ tj: PostTaxRegistrationsRequestBodyCountryOptionsTj?, _ tr: PostTaxRegistrationsRequestBodyCountryOptionsTr?) {
         self.sn = sn
         self.sr = sr
         self.th = th
@@ -137,13 +89,7 @@ extension PostTaxRegistrationsRequestBodyCountryOptions {
 }
 
 extension PostTaxRegistrationsRequestBodyCountryOptions {
-    mutating func sdkSet19(
-        _ tw: PostTaxRegistrationsRequestBodyCountryOptionsTw?,
-        _ tz: PostTaxRegistrationsRequestBodyCountryOptionsTz?,
-        _ ua: PostTaxRegistrationsRequestBodyCountryOptionsUa?,
-        _ ug: PostTaxRegistrationsRequestBodyCountryOptionsUg?,
-        _ us: PostTaxRegistrationsRequestBodyCountryOptionsUs?
-    ) {
+    mutating func sdkSet19(_ tw: PostTaxRegistrationsRequestBodyCountryOptionsTw?, _ tz: PostTaxRegistrationsRequestBodyCountryOptionsTz?, _ ua: PostTaxRegistrationsRequestBodyCountryOptionsUa?, _ ug: PostTaxRegistrationsRequestBodyCountryOptionsUg?, _ us: PostTaxRegistrationsRequestBodyCountryOptionsUs?) {
         self.tw = tw
         self.tz = tz
         self.ua = ua
@@ -153,13 +99,7 @@ extension PostTaxRegistrationsRequestBodyCountryOptions {
 }
 
 extension PostTaxRegistrationsRequestBodyCountryOptions {
-    mutating func sdkSet20(
-        _ uy: PostTaxRegistrationsRequestBodyCountryOptionsUy?,
-        _ uz: PostTaxRegistrationsRequestBodyCountryOptionsUz?,
-        _ vn: PostTaxRegistrationsRequestBodyCountryOptionsVn?,
-        _ za: PostTaxRegistrationsRequestBodyCountryOptionsZa?,
-        _ zm: PostTaxRegistrationsRequestBodyCountryOptionsZm?
-    ) {
+    mutating func sdkSet20(_ uy: PostTaxRegistrationsRequestBodyCountryOptionsUy?, _ uz: PostTaxRegistrationsRequestBodyCountryOptionsUz?, _ vn: PostTaxRegistrationsRequestBodyCountryOptionsVn?, _ za: PostTaxRegistrationsRequestBodyCountryOptionsZa?, _ zm: PostTaxRegistrationsRequestBodyCountryOptionsZm?) {
         self.uy = uy
         self.uz = uz
         self.vn = vn
@@ -176,147 +116,147 @@ extension PostTaxRegistrationsRequestBodyCountryOptions {
 
 extension PostTaxRegistrationsRequestBodyCountryOptions {
     mutating func sdkDecodeFieldsPart1(_ container: KeyedDecodingContainer<CodingKeys>) throws {
-        ae = try container.sdkDecodeIfPresent(.ae)
-        al = try container.sdkDecodeIfPresent(.al)
-        am = try container.sdkDecodeIfPresent(.am)
-        ao = try container.sdkDecodeIfPresent(.ao)
-        at = try container.sdkDecodeIfPresent(.at)
-        au = try container.sdkDecodeIfPresent(.au)
-        aw = try container.sdkDecodeIfPresent(.aw)
-        az = try container.sdkDecodeIfPresent(.az)
-        ba = try container.sdkDecodeIfPresent(.ba)
-        bb = try container.sdkDecodeIfPresent(.bb)
-        bd = try container.sdkDecodeIfPresent(.bd)
-        be = try container.sdkDecodeIfPresent(.be)
+        self.ae = try container.sdkDecodeIfPresent(.ae)
+        self.al = try container.sdkDecodeIfPresent(.al)
+        self.am = try container.sdkDecodeIfPresent(.am)
+        self.ao = try container.sdkDecodeIfPresent(.ao)
+        self.at = try container.sdkDecodeIfPresent(.at)
+        self.au = try container.sdkDecodeIfPresent(.au)
+        self.aw = try container.sdkDecodeIfPresent(.aw)
+        self.az = try container.sdkDecodeIfPresent(.az)
+        self.ba = try container.sdkDecodeIfPresent(.ba)
+        self.bb = try container.sdkDecodeIfPresent(.bb)
+        self.bd = try container.sdkDecodeIfPresent(.bd)
+        self.be = try container.sdkDecodeIfPresent(.be)
     }
 }
 
 extension PostTaxRegistrationsRequestBodyCountryOptions {
     mutating func sdkDecodeFieldsPart2(_ container: KeyedDecodingContainer<CodingKeys>) throws {
-        bf = try container.sdkDecodeIfPresent(.bf)
-        bg = try container.sdkDecodeIfPresent(.bg)
-        bh = try container.sdkDecodeIfPresent(.bh)
-        bj = try container.sdkDecodeIfPresent(.bj)
-        bs = try container.sdkDecodeIfPresent(.bs)
-        by = try container.sdkDecodeIfPresent(.by)
-        ca = try container.sdkDecodeIfPresent(.ca)
-        cd = try container.sdkDecodeIfPresent(.cd)
-        ch = try container.sdkDecodeIfPresent(.ch)
-        cl = try container.sdkDecodeIfPresent(.cl)
-        cm = try container.sdkDecodeIfPresent(.cm)
-        co = try container.sdkDecodeIfPresent(.co)
+        self.bf = try container.sdkDecodeIfPresent(.bf)
+        self.bg = try container.sdkDecodeIfPresent(.bg)
+        self.bh = try container.sdkDecodeIfPresent(.bh)
+        self.bj = try container.sdkDecodeIfPresent(.bj)
+        self.bs = try container.sdkDecodeIfPresent(.bs)
+        self.by = try container.sdkDecodeIfPresent(.by)
+        self.ca = try container.sdkDecodeIfPresent(.ca)
+        self.cd = try container.sdkDecodeIfPresent(.cd)
+        self.ch = try container.sdkDecodeIfPresent(.ch)
+        self.cl = try container.sdkDecodeIfPresent(.cl)
+        self.cm = try container.sdkDecodeIfPresent(.cm)
+        self.co = try container.sdkDecodeIfPresent(.co)
     }
 }
 
 extension PostTaxRegistrationsRequestBodyCountryOptions {
     mutating func sdkDecodeFieldsPart3(_ container: KeyedDecodingContainer<CodingKeys>) throws {
-        cr = try container.sdkDecodeIfPresent(.cr)
-        cv = try container.sdkDecodeIfPresent(.cv)
-        cy = try container.sdkDecodeIfPresent(.cy)
-        cz = try container.sdkDecodeIfPresent(.cz)
-        de = try container.sdkDecodeIfPresent(.de)
-        dk = try container.sdkDecodeIfPresent(.dk)
-        ec = try container.sdkDecodeIfPresent(.ec)
-        ee = try container.sdkDecodeIfPresent(.ee)
-        eg = try container.sdkDecodeIfPresent(.eg)
-        es = try container.sdkDecodeIfPresent(.es)
-        et = try container.sdkDecodeIfPresent(.et)
-        fi = try container.sdkDecodeIfPresent(.fi)
+        self.cr = try container.sdkDecodeIfPresent(.cr)
+        self.cv = try container.sdkDecodeIfPresent(.cv)
+        self.cy = try container.sdkDecodeIfPresent(.cy)
+        self.cz = try container.sdkDecodeIfPresent(.cz)
+        self.de = try container.sdkDecodeIfPresent(.de)
+        self.dk = try container.sdkDecodeIfPresent(.dk)
+        self.ec = try container.sdkDecodeIfPresent(.ec)
+        self.ee = try container.sdkDecodeIfPresent(.ee)
+        self.eg = try container.sdkDecodeIfPresent(.eg)
+        self.es = try container.sdkDecodeIfPresent(.es)
+        self.et = try container.sdkDecodeIfPresent(.et)
+        self.fi = try container.sdkDecodeIfPresent(.fi)
     }
 }
 
 extension PostTaxRegistrationsRequestBodyCountryOptions {
     mutating func sdkDecodeFieldsPart4(_ container: KeyedDecodingContainer<CodingKeys>) throws {
-        fr = try container.sdkDecodeIfPresent(.fr)
-        gb = try container.sdkDecodeIfPresent(.gb)
-        ge = try container.sdkDecodeIfPresent(.ge)
-        gn = try container.sdkDecodeIfPresent(.gn)
-        gr = try container.sdkDecodeIfPresent(.gr)
-        hr = try container.sdkDecodeIfPresent(.hr)
-        hu = try container.sdkDecodeIfPresent(.hu)
-        id = try container.sdkDecodeIfPresent(.id)
-        ie = try container.sdkDecodeIfPresent(.ie)
-        self.in = try container.sdkDecodeIfPresent(.in)
-        self.is = try container.sdkDecodeIfPresent(.is)
-        it = try container.sdkDecodeIfPresent(.it)
+        self.fr = try container.sdkDecodeIfPresent(.fr)
+        self.gb = try container.sdkDecodeIfPresent(.gb)
+        self.ge = try container.sdkDecodeIfPresent(.ge)
+        self.gn = try container.sdkDecodeIfPresent(.gn)
+        self.gr = try container.sdkDecodeIfPresent(.gr)
+        self.hr = try container.sdkDecodeIfPresent(.hr)
+        self.hu = try container.sdkDecodeIfPresent(.hu)
+        self.id = try container.sdkDecodeIfPresent(.id)
+        self.ie = try container.sdkDecodeIfPresent(.ie)
+        self.`in` = try container.sdkDecodeIfPresent(.`in`)
+        self.`is` = try container.sdkDecodeIfPresent(.`is`)
+        self.it = try container.sdkDecodeIfPresent(.it)
     }
 }
 
 extension PostTaxRegistrationsRequestBodyCountryOptions {
     mutating func sdkDecodeFieldsPart5(_ container: KeyedDecodingContainer<CodingKeys>) throws {
-        jp = try container.sdkDecodeIfPresent(.jp)
-        ke = try container.sdkDecodeIfPresent(.ke)
-        kg = try container.sdkDecodeIfPresent(.kg)
-        kh = try container.sdkDecodeIfPresent(.kh)
-        kr = try container.sdkDecodeIfPresent(.kr)
-        kz = try container.sdkDecodeIfPresent(.kz)
-        la = try container.sdkDecodeIfPresent(.la)
-        lk = try container.sdkDecodeIfPresent(.lk)
-        lt = try container.sdkDecodeIfPresent(.lt)
-        lu = try container.sdkDecodeIfPresent(.lu)
-        lv = try container.sdkDecodeIfPresent(.lv)
-        ma = try container.sdkDecodeIfPresent(.ma)
+        self.jp = try container.sdkDecodeIfPresent(.jp)
+        self.ke = try container.sdkDecodeIfPresent(.ke)
+        self.kg = try container.sdkDecodeIfPresent(.kg)
+        self.kh = try container.sdkDecodeIfPresent(.kh)
+        self.kr = try container.sdkDecodeIfPresent(.kr)
+        self.kz = try container.sdkDecodeIfPresent(.kz)
+        self.la = try container.sdkDecodeIfPresent(.la)
+        self.lk = try container.sdkDecodeIfPresent(.lk)
+        self.lt = try container.sdkDecodeIfPresent(.lt)
+        self.lu = try container.sdkDecodeIfPresent(.lu)
+        self.lv = try container.sdkDecodeIfPresent(.lv)
+        self.ma = try container.sdkDecodeIfPresent(.ma)
     }
 }
 
 extension PostTaxRegistrationsRequestBodyCountryOptions {
     mutating func sdkDecodeFieldsPart6(_ container: KeyedDecodingContainer<CodingKeys>) throws {
-        md = try container.sdkDecodeIfPresent(.md)
-        me = try container.sdkDecodeIfPresent(.me)
-        mk = try container.sdkDecodeIfPresent(.mk)
-        mr = try container.sdkDecodeIfPresent(.mr)
-        mt = try container.sdkDecodeIfPresent(.mt)
-        mx = try container.sdkDecodeIfPresent(.mx)
-        my = try container.sdkDecodeIfPresent(.my)
-        ng = try container.sdkDecodeIfPresent(.ng)
-        nl = try container.sdkDecodeIfPresent(.nl)
-        no = try container.sdkDecodeIfPresent(.no)
-        np = try container.sdkDecodeIfPresent(.np)
-        nz = try container.sdkDecodeIfPresent(.nz)
+        self.md = try container.sdkDecodeIfPresent(.md)
+        self.me = try container.sdkDecodeIfPresent(.me)
+        self.mk = try container.sdkDecodeIfPresent(.mk)
+        self.mr = try container.sdkDecodeIfPresent(.mr)
+        self.mt = try container.sdkDecodeIfPresent(.mt)
+        self.mx = try container.sdkDecodeIfPresent(.mx)
+        self.my = try container.sdkDecodeIfPresent(.my)
+        self.ng = try container.sdkDecodeIfPresent(.ng)
+        self.nl = try container.sdkDecodeIfPresent(.nl)
+        self.no = try container.sdkDecodeIfPresent(.no)
+        self.np = try container.sdkDecodeIfPresent(.np)
+        self.nz = try container.sdkDecodeIfPresent(.nz)
     }
 }
 
 extension PostTaxRegistrationsRequestBodyCountryOptions {
     mutating func sdkDecodeFieldsPart7(_ container: KeyedDecodingContainer<CodingKeys>) throws {
-        om = try container.sdkDecodeIfPresent(.om)
-        pe = try container.sdkDecodeIfPresent(.pe)
-        ph = try container.sdkDecodeIfPresent(.ph)
-        pl = try container.sdkDecodeIfPresent(.pl)
-        pt = try container.sdkDecodeIfPresent(.pt)
-        ro = try container.sdkDecodeIfPresent(.ro)
-        rs = try container.sdkDecodeIfPresent(.rs)
-        ru = try container.sdkDecodeIfPresent(.ru)
-        sa = try container.sdkDecodeIfPresent(.sa)
-        se = try container.sdkDecodeIfPresent(.se)
-        sg = try container.sdkDecodeIfPresent(.sg)
-        si = try container.sdkDecodeIfPresent(.si)
+        self.om = try container.sdkDecodeIfPresent(.om)
+        self.pe = try container.sdkDecodeIfPresent(.pe)
+        self.ph = try container.sdkDecodeIfPresent(.ph)
+        self.pl = try container.sdkDecodeIfPresent(.pl)
+        self.pt = try container.sdkDecodeIfPresent(.pt)
+        self.ro = try container.sdkDecodeIfPresent(.ro)
+        self.rs = try container.sdkDecodeIfPresent(.rs)
+        self.ru = try container.sdkDecodeIfPresent(.ru)
+        self.sa = try container.sdkDecodeIfPresent(.sa)
+        self.se = try container.sdkDecodeIfPresent(.se)
+        self.sg = try container.sdkDecodeIfPresent(.sg)
+        self.si = try container.sdkDecodeIfPresent(.si)
     }
 }
 
 extension PostTaxRegistrationsRequestBodyCountryOptions {
     mutating func sdkDecodeFieldsPart8(_ container: KeyedDecodingContainer<CodingKeys>) throws {
-        sk = try container.sdkDecodeIfPresent(.sk)
-        sn = try container.sdkDecodeIfPresent(.sn)
-        sr = try container.sdkDecodeIfPresent(.sr)
-        th = try container.sdkDecodeIfPresent(.th)
-        tj = try container.sdkDecodeIfPresent(.tj)
-        tr = try container.sdkDecodeIfPresent(.tr)
-        tw = try container.sdkDecodeIfPresent(.tw)
-        tz = try container.sdkDecodeIfPresent(.tz)
-        ua = try container.sdkDecodeIfPresent(.ua)
-        ug = try container.sdkDecodeIfPresent(.ug)
-        us = try container.sdkDecodeIfPresent(.us)
-        uy = try container.sdkDecodeIfPresent(.uy)
+        self.sk = try container.sdkDecodeIfPresent(.sk)
+        self.sn = try container.sdkDecodeIfPresent(.sn)
+        self.sr = try container.sdkDecodeIfPresent(.sr)
+        self.th = try container.sdkDecodeIfPresent(.th)
+        self.tj = try container.sdkDecodeIfPresent(.tj)
+        self.tr = try container.sdkDecodeIfPresent(.tr)
+        self.tw = try container.sdkDecodeIfPresent(.tw)
+        self.tz = try container.sdkDecodeIfPresent(.tz)
+        self.ua = try container.sdkDecodeIfPresent(.ua)
+        self.ug = try container.sdkDecodeIfPresent(.ug)
+        self.us = try container.sdkDecodeIfPresent(.us)
+        self.uy = try container.sdkDecodeIfPresent(.uy)
     }
 }
 
 extension PostTaxRegistrationsRequestBodyCountryOptions {
     mutating func sdkDecodeFieldsPart9(_ container: KeyedDecodingContainer<CodingKeys>) throws {
-        uz = try container.sdkDecodeIfPresent(.uz)
-        vn = try container.sdkDecodeIfPresent(.vn)
-        za = try container.sdkDecodeIfPresent(.za)
-        zm = try container.sdkDecodeIfPresent(.zm)
-        zw = try container.sdkDecodeIfPresent(.zw)
+        self.uz = try container.sdkDecodeIfPresent(.uz)
+        self.vn = try container.sdkDecodeIfPresent(.vn)
+        self.za = try container.sdkDecodeIfPresent(.za)
+        self.zm = try container.sdkDecodeIfPresent(.zm)
+        self.zw = try container.sdkDecodeIfPresent(.zw)
     }
 }
 
@@ -327,27 +267,21 @@ public struct PostTaxRegistrationsRequestBodyCountryOptionsNp: Codable {
         case type
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostTaxRegistrationsRequestBodyCountryOptionsNp {
-    init(from decoder: Decoder) throws {
+extension PostTaxRegistrationsRequestBodyCountryOptionsNp {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.type) else {
-            throw SdkValidationError(
-                field: "type",
-                code: "required",
-                message: "Validation failed for 'type': value is required"
-            )
+            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
         }
-        type = try container.sdkDecodeRequired(.type)
+        self.type = try container.sdkDecodeRequired(.type)
     }
 }
 
-public extension PostTaxRegistrationsRequestBodyCountryOptionsNp {
-    init(type: PostTaxRegistrationsRequestBodyCountryOptionsNpType) {
+extension PostTaxRegistrationsRequestBodyCountryOptionsNp {
+    public init(type: PostTaxRegistrationsRequestBodyCountryOptionsNpType) {
         self.type = type
     }
 }
@@ -359,27 +293,21 @@ public struct PostTaxRegistrationsRequestBodyCountryOptionsId: Codable {
         case type
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostTaxRegistrationsRequestBodyCountryOptionsId {
-    init(from decoder: Decoder) throws {
+extension PostTaxRegistrationsRequestBodyCountryOptionsId {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.type) else {
-            throw SdkValidationError(
-                field: "type",
-                code: "required",
-                message: "Validation failed for 'type': value is required"
-            )
+            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
         }
-        type = try container.sdkDecodeRequired(.type)
+        self.type = try container.sdkDecodeRequired(.type)
     }
 }
 
-public extension PostTaxRegistrationsRequestBodyCountryOptionsId {
-    init(type: PostTaxRegistrationsRequestBodyCountryOptionsIdType) {
+extension PostTaxRegistrationsRequestBodyCountryOptionsId {
+    public init(type: PostTaxRegistrationsRequestBodyCountryOptionsIdType) {
         self.type = type
     }
 }
@@ -392,19 +320,19 @@ public struct PostTaxRegistrationsRequestBodyCountryOptionsSrStandard: Codable {
     }
 
     init() {
-        placeOfSupplyScheme = nil
+        self.placeOfSupplyScheme = nil
     }
 }
 
-public extension PostTaxRegistrationsRequestBodyCountryOptionsSrStandard {
-    init(from decoder: Decoder) throws {
+extension PostTaxRegistrationsRequestBodyCountryOptionsSrStandard {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        placeOfSupplyScheme = try container.sdkDecodeIfPresent(.placeOfSupplyScheme)
+        self.placeOfSupplyScheme = try container.sdkDecodeIfPresent(.placeOfSupplyScheme)
     }
 }
 
-public extension PostTaxRegistrationsRequestBodyCountryOptionsSrStandard {
-    init(placeOfSupplyScheme: PostTaxRegistrationsRequestBodyCountryOptionsSrStandardPlaceOXf39fd27abc? = nil) {
+extension PostTaxRegistrationsRequestBodyCountryOptionsSrStandard {
+    public init(placeOfSupplyScheme: PostTaxRegistrationsRequestBodyCountryOptionsSrStandardPlaceOXf39fd27abc? = nil) {
         self.init()
         self.placeOfSupplyScheme = placeOfSupplyScheme
     }
@@ -417,27 +345,21 @@ public struct PostTaxRegistrationsRequestBodyCountryOptionsEsIgic: Codable {
         case placeOfSupplyScheme = "place_of_supply_scheme"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostTaxRegistrationsRequestBodyCountryOptionsEsIgic {
-    init(from decoder: Decoder) throws {
+extension PostTaxRegistrationsRequestBodyCountryOptionsEsIgic {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.placeOfSupplyScheme) else {
-            throw SdkValidationError(
-                field: "place_of_supply_scheme",
-                code: "required",
-                message: "Validation failed for 'place_of_supply_scheme': value is required"
-            )
+            throw SdkValidationError(field: "place_of_supply_scheme", code: "required", message: "Validation failed for 'place_of_supply_scheme': value is required")
         }
-        placeOfSupplyScheme = try container.sdkDecodeRequired(.placeOfSupplyScheme)
+        self.placeOfSupplyScheme = try container.sdkDecodeRequired(.placeOfSupplyScheme)
     }
 }
 
-public extension PostTaxRegistrationsRequestBodyCountryOptionsEsIgic {
-    init(placeOfSupplyScheme: PostTaxRegistrationsRequestBodyCountryOptionsEsIgicPlaceOfSupplyScheme) {
+extension PostTaxRegistrationsRequestBodyCountryOptionsEsIgic {
+    public init(placeOfSupplyScheme: PostTaxRegistrationsRequestBodyCountryOptionsEsIgicPlaceOfSupplyScheme) {
         self.placeOfSupplyScheme = placeOfSupplyScheme
     }
 }
@@ -455,33 +377,23 @@ public struct PostTaxRegistrationsRequestBodyCountryOptionsFr: Codable {
         case standard
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostTaxRegistrationsRequestBodyCountryOptionsFr {
-    init(from decoder: Decoder) throws {
+extension PostTaxRegistrationsRequestBodyCountryOptionsFr {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.type) else {
-            throw SdkValidationError(
-                field: "type",
-                code: "required",
-                message: "Validation failed for 'type': value is required"
-            )
+            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
         }
-        type = try container.sdkDecodeRequired(.type)
-        igic = try container.sdkDecodeIfPresent(.igic)
-        standard = try container.sdkDecodeIfPresent(.standard)
+        self.type = try container.sdkDecodeRequired(.type)
+        self.igic = try container.sdkDecodeIfPresent(.igic)
+        self.standard = try container.sdkDecodeIfPresent(.standard)
     }
 }
 
-public extension PostTaxRegistrationsRequestBodyCountryOptionsFr {
-    init(
-        type: PostTaxRegistrationsRequestBodyCountryOptionsFrType,
-        igic: PostTaxRegistrationsRequestBodyCountryOptionsFrIgic? = nil,
-        standard: PostTaxRegistrationsRequestBodyCountryOptionsFrStandard? = nil
-    ) {
+extension PostTaxRegistrationsRequestBodyCountryOptionsFr {
+    public init(type: PostTaxRegistrationsRequestBodyCountryOptionsFrType, igic: PostTaxRegistrationsRequestBodyCountryOptionsFrIgic? = nil, standard: PostTaxRegistrationsRequestBodyCountryOptionsFrStandard? = nil) {
         (self.type, self.igic) = (type, igic)
         self.standard = standard
     }
@@ -497,31 +409,22 @@ public struct PostTaxRegistrationsRequestBodyCountryOptionsMe: Codable {
         case standard
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostTaxRegistrationsRequestBodyCountryOptionsMe {
-    init(from decoder: Decoder) throws {
+extension PostTaxRegistrationsRequestBodyCountryOptionsMe {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.type) else {
-            throw SdkValidationError(
-                field: "type",
-                code: "required",
-                message: "Validation failed for 'type': value is required"
-            )
+            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
         }
-        type = try container.sdkDecodeRequired(.type)
-        standard = try container.sdkDecodeIfPresent(.standard)
+        self.type = try container.sdkDecodeRequired(.type)
+        self.standard = try container.sdkDecodeIfPresent(.standard)
     }
 }
 
-public extension PostTaxRegistrationsRequestBodyCountryOptionsMe {
-    init(
-        type: PostTaxRegistrationsRequestBodyCountryOptionsMeType,
-        standard: PostTaxRegistrationsRequestBodyCountryOptionsMeStandard? = nil
-    ) {
+extension PostTaxRegistrationsRequestBodyCountryOptionsMe {
+    public init(type: PostTaxRegistrationsRequestBodyCountryOptionsMeType, standard: PostTaxRegistrationsRequestBodyCountryOptionsMeStandard? = nil) {
         (self.type, self.standard) = (type, standard)
     }
 }
@@ -533,27 +436,21 @@ public struct PostTaxRegistrationsRequestBodyCountryOptionsCzIgic: Codable {
         case placeOfSupplyScheme = "place_of_supply_scheme"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostTaxRegistrationsRequestBodyCountryOptionsCzIgic {
-    init(from decoder: Decoder) throws {
+extension PostTaxRegistrationsRequestBodyCountryOptionsCzIgic {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.placeOfSupplyScheme) else {
-            throw SdkValidationError(
-                field: "place_of_supply_scheme",
-                code: "required",
-                message: "Validation failed for 'place_of_supply_scheme': value is required"
-            )
+            throw SdkValidationError(field: "place_of_supply_scheme", code: "required", message: "Validation failed for 'place_of_supply_scheme': value is required")
         }
-        placeOfSupplyScheme = try container.sdkDecodeRequired(.placeOfSupplyScheme)
+        self.placeOfSupplyScheme = try container.sdkDecodeRequired(.placeOfSupplyScheme)
     }
 }
 
-public extension PostTaxRegistrationsRequestBodyCountryOptionsCzIgic {
-    init(placeOfSupplyScheme: PostTaxRegistrationsRequestBodyCountryOptionsCzIgicPlaceOfSupplyScheme) {
+extension PostTaxRegistrationsRequestBodyCountryOptionsCzIgic {
+    public init(placeOfSupplyScheme: PostTaxRegistrationsRequestBodyCountryOptionsCzIgicPlaceOfSupplyScheme) {
         self.placeOfSupplyScheme = placeOfSupplyScheme
     }
 }
@@ -571,33 +468,23 @@ public struct PostTaxRegistrationsRequestBodyCountryOptionsFi: Codable {
         case standard
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostTaxRegistrationsRequestBodyCountryOptionsFi {
-    init(from decoder: Decoder) throws {
+extension PostTaxRegistrationsRequestBodyCountryOptionsFi {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.type) else {
-            throw SdkValidationError(
-                field: "type",
-                code: "required",
-                message: "Validation failed for 'type': value is required"
-            )
+            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
         }
-        type = try container.sdkDecodeRequired(.type)
-        igic = try container.sdkDecodeIfPresent(.igic)
-        standard = try container.sdkDecodeIfPresent(.standard)
+        self.type = try container.sdkDecodeRequired(.type)
+        self.igic = try container.sdkDecodeIfPresent(.igic)
+        self.standard = try container.sdkDecodeIfPresent(.standard)
     }
 }
 
-public extension PostTaxRegistrationsRequestBodyCountryOptionsFi {
-    init(
-        type: PostTaxRegistrationsRequestBodyCountryOptionsFiType,
-        igic: PostTaxRegistrationsRequestBodyCountryOptionsFiIgic? = nil,
-        standard: PostTaxRegistrationsRequestBodyCountryOptionsFiStandard? = nil
-    ) {
+extension PostTaxRegistrationsRequestBodyCountryOptionsFi {
+    public init(type: PostTaxRegistrationsRequestBodyCountryOptionsFiType, igic: PostTaxRegistrationsRequestBodyCountryOptionsFiIgic? = nil, standard: PostTaxRegistrationsRequestBodyCountryOptionsFiStandard? = nil) {
         (self.type, self.igic) = (type, igic)
         self.standard = standard
     }
@@ -610,27 +497,21 @@ public struct PostTaxRegistrationsRequestBodyCountryOptionsUg: Codable {
         case type
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostTaxRegistrationsRequestBodyCountryOptionsUg {
-    init(from decoder: Decoder) throws {
+extension PostTaxRegistrationsRequestBodyCountryOptionsUg {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.type) else {
-            throw SdkValidationError(
-                field: "type",
-                code: "required",
-                message: "Validation failed for 'type': value is required"
-            )
+            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
         }
-        type = try container.sdkDecodeRequired(.type)
+        self.type = try container.sdkDecodeRequired(.type)
     }
 }
 
-public extension PostTaxRegistrationsRequestBodyCountryOptionsUg {
-    init(type: PostTaxRegistrationsRequestBodyCountryOptionsUgType) {
+extension PostTaxRegistrationsRequestBodyCountryOptionsUg {
+    public init(type: PostTaxRegistrationsRequestBodyCountryOptionsUgType) {
         self.type = type
     }
 }

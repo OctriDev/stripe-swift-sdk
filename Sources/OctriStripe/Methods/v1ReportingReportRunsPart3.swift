@@ -6,7 +6,7 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1ReportingReportRunsMethods {
+extension V1ReportingReportRunsMethods {
     /// Creates a new object and begin running the report. (Certain report types require a live-mode API key.)
     ///
     /// - Parameters:
@@ -18,52 +18,23 @@ public extension V1ReportingReportRunsMethods {
     ///   Report Types have different required and optional parameters, listed in the
     ///   [API Access to Reports](https://docs.stripe.com/reporting/statements/api)
     ///   documentation.
-    static func postReportingReportRuns(
-        config: ClientConfig,
-        reportType: String,
-        expand: [String]?,
-        parameters: PostReportingReportRunsRequestBodyParameters?
-    ) async throws -> ReportingReportRun {
-        let requestBody = PostReportingReportRunsRequestBody(
-            reportType: reportType,
-            expand: expand,
-            parameters: parameters
-        )
+    public static func postReportingReportRuns(config: ClientConfig, reportType: String, expand: [String]?, parameters: PostReportingReportRunsRequestBodyParameters?) async throws -> ReportingReportRun {
+        let requestBody = PostReportingReportRunsRequestBody(reportType: reportType, expand: expand, parameters: parameters)
 
-        return try await (sdkRequest(
-            "POST",
-            "/v1/reporting/report_runs",
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostReportingReportRuns"
-        )).data
+        return try (await sdkRequest("POST", "/v1/reporting/report_runs", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostReportingReportRuns")).data
     }
 
-    /// Retrieves the details of an existing Report Run. Use the returned `status` to determine whether processing is
-    /// pending, succeeded, or failed, and inspect `result` or `error` when available.
+    /// Retrieves the details of an existing Report Run. Use the returned `status` to determine whether processing is pending, succeeded, or failed, and inspect `result` or `error` when available.
     ///
     /// Retrieves the details of an existing Report Run.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    static func getReportingReportRunsReportRun(
-        config: ClientConfig,
-        reportRun: String,
-        expand: [String]?
-    ) async throws -> ReportingReportRun {
+    public static func getReportingReportRunsReportRun(config: ClientConfig, reportRun: String, expand: [String]?) async throws -> ReportingReportRun {
         try validateLength("report_run", reportRun, max: 5000)
 
-        return try await (sdkRequest(
-            "GET",
-            ["/v1/reporting/report_runs/", sdkEncodePathSegment(sdkWireString(reportRun))].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .json,
-            operationId: "GetReportingReportRunsReportRun"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/reporting/report_runs/", sdkEncodePathSegment(sdkWireString(reportRun))].joined(), config: config, query: [
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .json, operationId: "GetReportingReportRunsReportRun")).data
     }
 }

@@ -6,19 +6,15 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public struct PostTopupsTopupRequestBodyMetadataVariant1: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostTopupsTopupRequestBodyMetadataVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostTopupsTopupRequestBodyMetadataVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -32,15 +28,12 @@ public struct PostTopupsTopupRequestBodyMetadataVariant1: RawRepresentable, Hash
 public struct GetTransfersResponseObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let list = GetTransfersResponseObject(rawValue: "list")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -54,17 +47,14 @@ public struct GetTransfersResponseObject: RawRepresentable, Hashable, Codable, S
 public struct PostTransfersRequestBodySourceType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let bankAccount = PostTransfersRequestBodySourceType(rawValue: "bank_account")
     public static let card = PostTransfersRequestBodySourceType(rawValue: "card")
     public static let fpx = PostTransfersRequestBodySourceType(rawValue: "fpx")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -78,15 +68,12 @@ public struct PostTransfersRequestBodySourceType: RawRepresentable, Hashable, Co
 public struct GetTransfersIdReversalsResponseObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let list = GetTransfersIdReversalsResponseObject(rawValue: "list")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -95,19 +82,15 @@ public struct GetTransfersIdReversalsResponseObject: RawRepresentable, Hashable,
     }
 }
 
-public struct PostTransfersIdReversalsRequestBodyMetadataVariant1: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostTransfersIdReversalsRequestBodyMetadataVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostTransfersIdReversalsRequestBodyMetadataVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -116,19 +99,15 @@ public struct PostTransfersIdReversalsRequestBodyMetadataVariant1: RawRepresenta
     }
 }
 
-public struct PostTransfersTransferRequestBodyMetadataVariant1: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostTransfersTransferRequestBodyMetadataVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostTransfersTransferRequestBodyMetadataVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -137,20 +116,15 @@ public struct PostTransfersTransferRequestBodyMetadataVariant1: RawRepresentable
     }
 }
 
-public struct PostTransfersTransferReversalsIdRequestBodyMetadataVariant1: RawRepresentable, Hashable, Codable,
-    Sendable,
-    SdkWireConvertible {
+public struct PostTransfersTransferReversalsIdRequestBodyMetadataVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostTransfersTransferReversalsIdRequestBodyMetadataVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -162,17 +136,14 @@ public struct PostTransfersTransferReversalsIdRequestBodyMetadataVariant1: RawRe
 public struct GetTreasuryCreditReversalsParameter: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let canceled = GetTreasuryCreditReversalsParameter(rawValue: "canceled")
     public static let posted = GetTreasuryCreditReversalsParameter(rawValue: "posted")
     public static let processing = GetTreasuryCreditReversalsParameter(rawValue: "processing")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -183,19 +154,15 @@ public struct GetTreasuryCreditReversalsParameter: RawRepresentable, Hashable, C
 
 /// String representing the object's type. Objects of the same type share the same value. Always has the value
 /// `list`.
-public struct GetTreasuryCreditReversalsResponseObject: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct GetTreasuryCreditReversalsResponseObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let list = GetTreasuryCreditReversalsResponseObject(rawValue: "list")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -207,16 +174,13 @@ public struct GetTreasuryCreditReversalsResponseObject: RawRepresentable, Hashab
 public struct GetTreasuryDebitReversalsParameter: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let lost = GetTreasuryDebitReversalsParameter(rawValue: "lost")
     public static let won = GetTreasuryDebitReversalsParameter(rawValue: "won")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -225,21 +189,17 @@ public struct GetTreasuryDebitReversalsParameter: RawRepresentable, Hashable, Co
     }
 }
 
-public struct GetTreasuryDebitReversalsParameterXdae3efd0: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct GetTreasuryDebitReversalsParameterXdae3efd0: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let canceled = GetTreasuryDebitReversalsParameterXdae3efd0(rawValue: "canceled")
     public static let completed = GetTreasuryDebitReversalsParameterXdae3efd0(rawValue: "completed")
     public static let processing = GetTreasuryDebitReversalsParameterXdae3efd0(rawValue: "processing")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

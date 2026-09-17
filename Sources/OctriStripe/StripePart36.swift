@@ -8,7 +8,7 @@ public class Stripe {
     public private(set) var v1: V1Namespace
     public init(config: ClientConfig) {
         self.config = config
-        v1 = Self.sdkMakeNamespacesPart1(config)
+        self.v1 = Self.sdkMakeNamespacesPart1(config)
     }
 
     /// Turns SDK logging on and configures it. Logging is OFF by default — this
@@ -20,24 +20,12 @@ public class Stripe {
     public func setLoggingConfig(_ logging: LoggingConfig? = nil) -> LoggingConfig {
         var current = config.logging ?? LoggingConfig()
         if let overrides = logging {
-            if let endpoint = overrides.endpoint {
-                current.endpoint = endpoint
-            }
-            if let apiKey = overrides.apiKey {
-                current.apiKey = apiKey
-            }
-            if let environment = overrides.environment {
-                current.environment = environment
-            }
-            if let release = overrides.release {
-                current.release = release
-            }
-            if let user = overrides.user {
-                current.user = user
-            }
-            if let tags = overrides.tags {
-                current.tags = tags
-            }
+            if let endpoint = overrides.endpoint { current.endpoint = endpoint }
+            if let apiKey = overrides.apiKey { current.apiKey = apiKey }
+            if let environment = overrides.environment { current.environment = environment }
+            if let release = overrides.release { current.release = release }
+            if let user = overrides.user { current.user = user }
+            if let tags = overrides.tags { current.tags = tags }
             current.filterPii = overrides.filterPii
         }
         // Opting in IS the point of this call, so enabled flips to true unless the
@@ -49,6 +37,6 @@ public class Stripe {
     }
 
     private func sdkRebuildNamespaces() {
-        v1 = Self.sdkMakeNamespacesPart1(config)
+        self.v1 = Self.sdkMakeNamespacesPart1(self.config)
     }
 }

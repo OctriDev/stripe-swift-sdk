@@ -6,71 +6,34 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1CustomersSourcesMethods {
-    /// Deletes a payment source attached to a customer. Provide `customer` and `id` to identify the source, and use
-    /// `expand` if the deleted source response should include expanded fields.
+extension V1CustomersSourcesMethods {
+    /// Deletes a payment source attached to a customer. Provide `customer` and `id` to identify the source, and use `expand` if the deleted source response should include expanded fields.
     ///
     /// Delete a specified source for a given customer.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    static func deleteCustomersCustomerSourcesId(
-        config: ClientConfig,
-        customer: String,
-        id: String,
-        expand: [String]?
-    ) async throws -> DeleteCustomersCustomerSourcesIdResponse {
+    public static func deleteCustomersCustomerSourcesId(config: ClientConfig, customer: String, id: String, expand: [String]?) async throws -> DeleteCustomersCustomerSourcesIdResponse {
         try validateLength("customer", customer, max: 5000)
 
         let requestBody = DeleteCustomersCustomerSourcesIdRequestBody(expand: expand)
 
-        return try await (sdkRequest(
-            "DELETE",
-            [
-                "/v1/customers/",
-                sdkEncodePathSegment(sdkWireString(customer)),
-                "/sources/",
-                sdkEncodePathSegment(sdkWireString(id)),
-            ].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "DeleteCustomersCustomerSourcesId"
-        )).data
+        return try (await sdkRequest("DELETE", ["/v1/customers/", sdkEncodePathSegment(sdkWireString(customer)), "/sources/", sdkEncodePathSegment(sdkWireString(id))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "DeleteCustomersCustomerSourcesId")).data
     }
 
-    /// Retrieves a specific payment source attached to a customer. Supply `customer` and `id` to identify the source,
-    /// and use `expand` to include additional response fields when needed.
+    /// Retrieves a specific payment source attached to a customer. Supply `customer` and `id` to identify the source, and use `expand` to include additional response fields when needed.
     ///
     /// Retrieve a specified source for a given customer.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    static func getCustomersCustomerSourcesId(
-        config: ClientConfig,
-        customer: String,
-        id: String,
-        expand: [String]?
-    ) async throws -> PaymentSource {
+    public static func getCustomersCustomerSourcesId(config: ClientConfig, customer: String, id: String, expand: [String]?) async throws -> PaymentSource {
         try validateLength("customer", customer, max: 5000)
 
         try validateLength("id", id, max: 500)
 
-        return try await (sdkRequest(
-            "GET",
-            [
-                "/v1/customers/",
-                sdkEncodePathSegment(sdkWireString(customer)),
-                "/sources/",
-                sdkEncodePathSegment(sdkWireString(id)),
-            ].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .json,
-            operationId: "GetCustomersCustomerSourcesId"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/customers/", sdkEncodePathSegment(sdkWireString(customer)), "/sources/", sdkEncodePathSegment(sdkWireString(id))].joined(), config: config, query: [
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .json, operationId: "GetCustomersCustomerSourcesId")).data
     }
 }

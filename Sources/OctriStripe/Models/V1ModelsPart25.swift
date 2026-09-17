@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1 domain models
+// V1 domain models
 /// A PaymentIntent guides you through the process of collecting a payment from your customer. We recommend that you
 /// create exactly one PaymentIntent for each order or customer session in your system. You can reference the
 /// PaymentIntent later to see the history of payment attempts for a particular session. A PaymentIntent transitions
@@ -191,111 +191,63 @@ public struct PaymentIntent: Codable {
         case transferGroup = "transfer_group"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PaymentIntent {
-    init(from decoder: Decoder) throws {
+extension PaymentIntent {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        created = try container.sdkDecodeRequired(.created)
-        id = try container.sdkDecodeRequired(.id)
-        livemode = try container.sdkDecodeRequired(.livemode)
-        object = try container.sdkDecodeRequired(.object)
-        status = try container.sdkDecodeRequired(.status)
-        allowedPaymentMethodTypes = try container.sdkDecodeIfPresent(.allowedPaymentMethodTypes)
-        amount = try container.sdkDecodeIfPresent(.amount)
-        amountCapturable = try container.sdkDecodeIfPresent(.amountCapturable)
-        amountDetails = try container.sdkDecodeIfPresent(.amountDetails)
-        amountReceived = try container.sdkDecodeIfPresent(.amountReceived)
-        application = try container.sdkDecodeIfPresent(.application)
-        applicationFeeAmount = try container.sdkDecodeIfPresent(.applicationFeeAmount)
-        automaticPaymentMethods = try container.sdkDecodeIfPresent(.automaticPaymentMethods)
-        canceledAt = try container.sdkDecodeIfPresent(.canceledAt)
-        cancellationReason = try container.sdkDecodeIfPresent(.cancellationReason)
-        captureMethod = try container.sdkDecodeIfPresent(.captureMethod)
-        clientSecret = try container.sdkDecodeIfPresent(.clientSecret)
-        confirmationMethod = try container.sdkDecodeIfPresent(.confirmationMethod)
-        currency = try container.sdkDecodeIfPresent(.currency)
-        customer = try container.sdkDecodeIfPresent(.customer)
-        customerAccount = try container.sdkDecodeIfPresent(.customerAccount)
-        description = try container.sdkDecodeIfPresent(.description)
-        excludedPaymentMethodTypes = try container.sdkDecodeIfPresent(.excludedPaymentMethodTypes)
-        hooks = try container.sdkDecodeIfPresent(.hooks)
-        lastPaymentError = try container.sdkDecodeIfPresent(.lastPaymentError)
-        latestCharge = try container.sdkDecodeIfPresent(.latestCharge)
-        managedPayments = try container.sdkDecodeIfPresent(.managedPayments)
-        metadata = try container.sdkDecodeIfPresent(.metadata)
-        nextAction = try container.sdkDecodeIfPresent(.nextAction)
-        onBehalfOf = try container.sdkDecodeIfPresent(.onBehalfOf)
-        paymentDetails = try container.sdkDecodeIfPresent(.paymentDetails)
-        paymentMethod = try container.sdkDecodeIfPresent(.paymentMethod)
-        paymentMethodConfigurationDetails = try container.sdkDecodeIfPresent(.paymentMethodConfigurationDetails)
-        paymentMethodOptions = try container.sdkDecodeIfPresent(.paymentMethodOptions)
-        paymentMethodTypes = try container.sdkDecodeIfPresent(.paymentMethodTypes)
-        presentmentDetails = try container.sdkDecodeIfPresent(.presentmentDetails)
-        processing = try container.sdkDecodeIfPresent(.processing)
-        receiptEmail = try container.sdkDecodeIfPresent(.receiptEmail)
-        review = try container.sdkDecodeIfPresent(.review)
-        setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
-        shipping = try container.sdkDecodeIfPresent(.shipping)
-        statementDescriptor = try container.sdkDecodeIfPresent(.statementDescriptor)
-        statementDescriptorSuffix = try container.sdkDecodeIfPresent(.statementDescriptorSuffix)
-        transferData = try container.sdkDecodeIfPresent(.transferData)
-        transferGroup = try container.sdkDecodeIfPresent(.transferGroup)
+        self.created = try container.sdkDecodeRequired(.created)
+        self.id = try container.sdkDecodeRequired(.id)
+        self.livemode = try container.sdkDecodeRequired(.livemode)
+        self.object = try container.sdkDecodeRequired(.object)
+        self.status = try container.sdkDecodeRequired(.status)
+        self.allowedPaymentMethodTypes = try container.sdkDecodeIfPresent(.allowedPaymentMethodTypes)
+        self.amount = try container.sdkDecodeIfPresent(.amount)
+        self.amountCapturable = try container.sdkDecodeIfPresent(.amountCapturable)
+        self.amountDetails = try container.sdkDecodeIfPresent(.amountDetails)
+        self.amountReceived = try container.sdkDecodeIfPresent(.amountReceived)
+        self.application = try container.sdkDecodeIfPresent(.application)
+        self.applicationFeeAmount = try container.sdkDecodeIfPresent(.applicationFeeAmount)
+        self.automaticPaymentMethods = try container.sdkDecodeIfPresent(.automaticPaymentMethods)
+        self.canceledAt = try container.sdkDecodeIfPresent(.canceledAt)
+        self.cancellationReason = try container.sdkDecodeIfPresent(.cancellationReason)
+        self.captureMethod = try container.sdkDecodeIfPresent(.captureMethod)
+        self.clientSecret = try container.sdkDecodeIfPresent(.clientSecret)
+        self.confirmationMethod = try container.sdkDecodeIfPresent(.confirmationMethod)
+        self.currency = try container.sdkDecodeIfPresent(.currency)
+        self.customer = try container.sdkDecodeIfPresent(.customer)
+        self.customerAccount = try container.sdkDecodeIfPresent(.customerAccount)
+        self.description = try container.sdkDecodeIfPresent(.description)
+        self.excludedPaymentMethodTypes = try container.sdkDecodeIfPresent(.excludedPaymentMethodTypes)
+        self.hooks = try container.sdkDecodeIfPresent(.hooks)
+        self.lastPaymentError = try container.sdkDecodeIfPresent(.lastPaymentError)
+        self.latestCharge = try container.sdkDecodeIfPresent(.latestCharge)
+        self.managedPayments = try container.sdkDecodeIfPresent(.managedPayments)
+        self.metadata = try container.sdkDecodeIfPresent(.metadata)
+        self.nextAction = try container.sdkDecodeIfPresent(.nextAction)
+        self.onBehalfOf = try container.sdkDecodeIfPresent(.onBehalfOf)
+        self.paymentDetails = try container.sdkDecodeIfPresent(.paymentDetails)
+        self.paymentMethod = try container.sdkDecodeIfPresent(.paymentMethod)
+        self.paymentMethodConfigurationDetails = try container.sdkDecodeIfPresent(.paymentMethodConfigurationDetails)
+        self.paymentMethodOptions = try container.sdkDecodeIfPresent(.paymentMethodOptions)
+        self.paymentMethodTypes = try container.sdkDecodeIfPresent(.paymentMethodTypes)
+        self.presentmentDetails = try container.sdkDecodeIfPresent(.presentmentDetails)
+        self.processing = try container.sdkDecodeIfPresent(.processing)
+        self.receiptEmail = try container.sdkDecodeIfPresent(.receiptEmail)
+        self.review = try container.sdkDecodeIfPresent(.review)
+        self.setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
+        self.shipping = try container.sdkDecodeIfPresent(.shipping)
+        self.statementDescriptor = try container.sdkDecodeIfPresent(.statementDescriptor)
+        self.statementDescriptorSuffix = try container.sdkDecodeIfPresent(.statementDescriptorSuffix)
+        self.transferData = try container.sdkDecodeIfPresent(.transferData)
+        self.transferGroup = try container.sdkDecodeIfPresent(.transferGroup)
         try sdkValidateConstraints()
     }
 }
 
-public extension PaymentIntent {
-    init(
-        created: Int,
-        id: String,
-        livemode: Bool,
-        object: PaymentIntentObject,
-        status: PaymentIntentStatus,
-        allowedPaymentMethodTypes: [PaymentIntentAllowedPaymentMethodTypesItem]? = nil,
-        amount: Int? = nil,
-        amountCapturable: Int? = nil,
-        amountDetails: PaymentIntentAmountDetails? = nil,
-        amountReceived: Int? = nil,
-        application: PaymentIntentApplication? = nil,
-        applicationFeeAmount: Int? = nil,
-        automaticPaymentMethods: PaymentIntentAutomaticPaymentMethods? = nil,
-        canceledAt: Int? = nil,
-        cancellationReason: PaymentIntentCancellationReason? = nil,
-        captureMethod: PaymentIntentCaptureMethod? = nil,
-        clientSecret: String? = nil,
-        confirmationMethod: PaymentIntentConfirmationMethod? = nil,
-        currency: String? = nil,
-        customer: PaymentIntentCustomer? = nil,
-        customerAccount: String? = nil,
-        description: String? = nil,
-        excludedPaymentMethodTypes: [PaymentIntentExcludedPaymentMethodTypesItem]? = nil,
-        hooks: PaymentFlowsPaymentIntentAsyncWorkflows? = nil,
-        lastPaymentError: PaymentIntentLastPaymentError? = nil,
-        latestCharge: PaymentIntentLatestCharge? = nil,
-        managedPayments: PaymentIntentManagedPayments? = nil,
-        metadata: [String: String]? = nil,
-        nextAction: PaymentIntentNextActionX0c8110a4? = nil,
-        onBehalfOf: PaymentIntentOnBehalfOf? = nil,
-        paymentDetails: PaymentFlowsPaymentDetails? = nil,
-        paymentMethod: PaymentIntentPaymentMethod? = nil,
-        paymentMethodConfigurationDetails: PaymentIntentPaymentMethodConfigurationDetails? = nil,
-        paymentMethodOptions: PaymentIntentPaymentMethodOptionsX1044c2b1? = nil,
-        paymentMethodTypes: [String]? = nil,
-        presentmentDetails: PaymentFlowsPaymentIntentPresentmentDetails? = nil,
-        processing: PaymentIntentProcessingXd55a13eb? = nil,
-        receiptEmail: String? = nil,
-        review: PaymentIntentReview? = nil,
-        setupFutureUsage: PaymentIntentSetupFutureUsage? = nil,
-        shipping: PaymentIntentShipping? = nil,
-        statementDescriptor: String? = nil,
-        statementDescriptorSuffix: String? = nil,
-        transferData: PaymentIntentTransferData? = nil,
-        transferGroup: String? = nil
-    ) throws {
+extension PaymentIntent {
+    public init(created: Int, id: String, livemode: Bool, object: PaymentIntentObject, status: PaymentIntentStatus, allowedPaymentMethodTypes: [PaymentIntentAllowedPaymentMethodTypesItem]? = nil, amount: Int? = nil, amountCapturable: Int? = nil, amountDetails: PaymentIntentAmountDetails? = nil, amountReceived: Int? = nil, application: PaymentIntentApplication? = nil, applicationFeeAmount: Int? = nil, automaticPaymentMethods: PaymentIntentAutomaticPaymentMethods? = nil, canceledAt: Int? = nil, cancellationReason: PaymentIntentCancellationReason? = nil, captureMethod: PaymentIntentCaptureMethod? = nil, clientSecret: String? = nil, confirmationMethod: PaymentIntentConfirmationMethod? = nil, currency: String? = nil, customer: PaymentIntentCustomer? = nil, customerAccount: String? = nil, description: String? = nil, excludedPaymentMethodTypes: [PaymentIntentExcludedPaymentMethodTypesItem]? = nil, hooks: PaymentFlowsPaymentIntentAsyncWorkflows? = nil, lastPaymentError: PaymentIntentLastPaymentError? = nil, latestCharge: PaymentIntentLatestCharge? = nil, managedPayments: PaymentIntentManagedPayments? = nil, metadata: [String: String]? = nil, nextAction: PaymentIntentNextActionX0c8110a4? = nil, onBehalfOf: PaymentIntentOnBehalfOf? = nil, paymentDetails: PaymentFlowsPaymentDetails? = nil, paymentMethod: PaymentIntentPaymentMethod? = nil, paymentMethodConfigurationDetails: PaymentIntentPaymentMethodConfigurationDetails? = nil, paymentMethodOptions: PaymentIntentPaymentMethodOptionsX1044c2b1? = nil, paymentMethodTypes: [String]? = nil, presentmentDetails: PaymentFlowsPaymentIntentPresentmentDetails? = nil, processing: PaymentIntentProcessingXd55a13eb? = nil, receiptEmail: String? = nil, review: PaymentIntentReview? = nil, setupFutureUsage: PaymentIntentSetupFutureUsage? = nil, shipping: PaymentIntentShipping? = nil, statementDescriptor: String? = nil, statementDescriptorSuffix: String? = nil, transferData: PaymentIntentTransferData? = nil, transferGroup: String? = nil) throws {
         (self.created, self.id) = (created, id)
         (self.livemode, self.object) = (livemode, object)
         (self.status, self.allowedPaymentMethodTypes) = (status, allowedPaymentMethodTypes)
@@ -326,26 +278,26 @@ public extension PaymentIntent {
 
 extension PaymentIntent {
     func sdkValidateConstraints() throws {
-        try validateLength("id", id, min: nil, max: 5000)
-        if let value = clientSecret {
+            try validateLength("id", self.id, min: nil, max: 5000)
+        if let value = self.clientSecret {
             try validateLength("client_secret", value, min: nil, max: 5000)
         }
-        if let value = customerAccount {
+        if let value = self.customerAccount {
             try validateLength("customer_account", value, min: nil, max: 5000)
         }
-        if let value = description {
+        if let value = self.description {
             try validateLength("description", value, min: nil, max: 5000)
         }
-        if let value = receiptEmail {
+        if let value = self.receiptEmail {
             try validateLength("receipt_email", value, min: nil, max: 5000)
         }
-        if let value = statementDescriptor {
+        if let value = self.statementDescriptor {
             try validateLength("statement_descriptor", value, min: nil, max: 5000)
         }
-        if let value = statementDescriptorSuffix {
+        if let value = self.statementDescriptorSuffix {
             try validateLength("statement_descriptor_suffix", value, min: nil, max: 5000)
         }
-        if let value = transferGroup {
+        if let value = self.transferGroup {
             try validateLength("transfer_group", value, min: nil, max: 5000)
         }
     }
@@ -357,33 +309,21 @@ public enum PaymentIntentAmountDetails {
 }
 
 extension PaymentIntentAmountDetails: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PaymentIntentAmountDetails"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentIntentAmountDetails")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container
-            .decode(PaymentFlowsAmountDetails.self) {
-            return .paymentFlowsAmountDetails(value)
-        }
-        if let value = try? container
-            .decode(PaymentFlowsAmountDetailsClient.self) {
-            return .paymentFlowsAmountDetailsClient(value)
-        }
+        if let value = try? container.decode(PaymentFlowsAmountDetails.self) { return .paymentFlowsAmountDetails(value) }
+        if let value = try? container.decode(PaymentFlowsAmountDetailsClient.self) { return .paymentFlowsAmountDetailsClient(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -393,6 +333,7 @@ extension PaymentIntentAmountDetails: Codable {
         case let .paymentFlowsAmountDetailsClient(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum PaymentIntentApplication {
@@ -401,31 +342,21 @@ public enum PaymentIntentApplication {
 }
 
 extension PaymentIntentApplication: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PaymentIntentApplication"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentIntentApplication")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(Application.self) {
-            return .application(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(Application.self) { return .application(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -435,6 +366,7 @@ extension PaymentIntentApplication: Codable {
         case let .application(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum PaymentIntentAutomaticPaymentMethods {
@@ -442,30 +374,24 @@ public enum PaymentIntentAutomaticPaymentMethods {
 }
 
 extension PaymentIntentAutomaticPaymentMethods: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PaymentIntentAutomaticPaymentMethods"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentIntentAutomaticPaymentMethods")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PaymentFlowsAutomaticPaymentMethodsPaymentIntent.self
         ) {
-            return .paymentFlowsAutomaticPaymentMethodsPaymentIntent(value)
+            return             .paymentFlowsAutomaticPaymentMethodsPaymentIntent(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -474,43 +400,32 @@ extension PaymentIntentAutomaticPaymentMethods: Codable {
         case let .paymentFlowsAutomaticPaymentMethodsPaymentIntent(value): try container.encode(value); return true
         }
     }
+
 }
 
-public enum PaymentIntentCustomer {
+public indirect enum PaymentIntentCustomer {
     case stringValue(String)
     case customer(Customer)
     case deletedCustomer(DeletedCustomer)
 }
 
 extension PaymentIntentCustomer: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PaymentIntentCustomer"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentIntentCustomer")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(Customer.self) {
-            return .customer(value)
-        }
-        if let value = try? container.decode(DeletedCustomer.self) {
-            return .deletedCustomer(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(Customer.self) { return .customer(value) }
+        if let value = try? container.decode(DeletedCustomer.self) { return .deletedCustomer(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -521,6 +436,7 @@ extension PaymentIntentCustomer: Codable {
         case let .deletedCustomer(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum PaymentIntentLastPaymentError {
@@ -528,28 +444,20 @@ public enum PaymentIntentLastPaymentError {
 }
 
 extension PaymentIntentLastPaymentError: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PaymentIntentLastPaymentError"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentIntentLastPaymentError")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(ApiErrors.self) {
-            return .apiErrors(value)
-        }
+        if let value = try? container.decode(ApiErrors.self) { return .apiErrors(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -558,39 +466,30 @@ extension PaymentIntentLastPaymentError: Codable {
         case let .apiErrors(value): try container.encode(value); return true
         }
     }
+
 }
 
-public enum PaymentIntentLatestCharge {
+public indirect enum PaymentIntentLatestCharge {
     case stringValue(String)
     case charge(Charge)
 }
 
 extension PaymentIntentLatestCharge: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PaymentIntentLatestCharge"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentIntentLatestCharge")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(Charge.self) {
-            return .charge(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(Charge.self) { return .charge(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -600,6 +499,7 @@ extension PaymentIntentLatestCharge: Codable {
         case let .charge(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum PaymentIntentManagedPayments {
@@ -607,29 +507,20 @@ public enum PaymentIntentManagedPayments {
 }
 
 extension PaymentIntentManagedPayments: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PaymentIntentManagedPayments"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentIntentManagedPayments")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container
-            .decode(SmorResourceManagedPayments.self) {
-            return .smorResourceManagedPayments(value)
-        }
+        if let value = try? container.decode(SmorResourceManagedPayments.self) { return .smorResourceManagedPayments(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -638,6 +529,7 @@ extension PaymentIntentManagedPayments: Codable {
         case let .smorResourceManagedPayments(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum PaymentIntentNextActionX0c8110a4 {

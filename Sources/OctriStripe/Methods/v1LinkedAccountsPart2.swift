@@ -6,10 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1LinkedAccountsMethods {
-    /// Lists Financial Connections Account objects available to the authenticated user. Filter by account holder or
-    /// session, and use cursor parameters to navigate the results; `limit` controls the number of accounts returned per
-    /// page.
+extension V1LinkedAccountsMethods {
+    /// Lists Financial Connections Account objects available to the authenticated user. Filter by account holder or session, and use cursor parameters to navigate the results; `limit` controls the number of accounts returned per page.
     ///
     /// Returns a list of Financial Connections Account objects.
     ///
@@ -32,28 +30,20 @@ public extension V1LinkedAccountsMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    static func getLinkedAccounts(
-        config: ClientConfig,
-        accountHolder: GetLinkedAccountsParameter?,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        session: String?,
-        startingAfter: String?
-    ) async throws -> GetLinkedAccountsResponse {
-        if let endingBefore {
+    public static func getLinkedAccounts(config: ClientConfig, accountHolder: GetLinkedAccountsParameter?, endingBefore: String?, expand: [String]?, limit: Int?, session: String?, startingAfter: String?) async throws -> GetLinkedAccountsResponse {
+        if let endingBefore = endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let session {
+        if let session = session {
             try validateLength("session", session, max: 5000)
         }
 
-        if let startingAfter {
+        if let startingAfter = startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try await (sdkRequest("GET", "/v1/linked_accounts", config: config, query: [
+        return try (await sdkRequest("GET", "/v1/linked_accounts", config: config, query: [
             SdkQueryParameter("account_holder", value: accountHolder),
             SdkQueryParameter("ending_before", value: endingBefore),
             SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),

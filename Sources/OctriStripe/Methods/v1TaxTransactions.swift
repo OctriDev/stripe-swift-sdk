@@ -7,29 +7,17 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1TaxTransactionsMethods {
-    /// Retrieves a Tax Transaction object by its identifier. Use `expand` to request expanded response fields, and use
-    /// the transaction details to inspect tax collected or refunded for the customer.
+    /// Retrieves a Tax Transaction object by its identifier. Use `expand` to request expanded response fields, and use the transaction details to inspect tax collected or refunded for the customer.
     ///
     /// Retrieves a Tax Transaction object.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func getTaxTransactionsTransaction(
-        config: ClientConfig,
-        transaction: String,
-        expand: [String]?
-    ) async throws -> TaxTransaction {
+    public static func getTaxTransactionsTransaction(config: ClientConfig, transaction: String, expand: [String]?) async throws -> TaxTransaction {
         try validateLength("transaction", transaction, max: 5000)
 
-        return try await (sdkRequest(
-            "GET",
-            ["/v1/tax/transactions/", sdkEncodePathSegment(sdkWireString(transaction))].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .json,
-            operationId: "GetTaxTransactionsTransaction"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/tax/transactions/", sdkEncodePathSegment(sdkWireString(transaction))].joined(), config: config, query: [
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .json, operationId: "GetTaxTransactionsTransaction")).data
     }
 }

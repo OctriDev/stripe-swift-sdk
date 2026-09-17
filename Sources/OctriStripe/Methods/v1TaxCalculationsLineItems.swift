@@ -7,9 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1TaxCalculationsLineItemsMethods {
-    /// Lists the line items associated with a tax calculation while the calculation remains active. Use `ending_before`
-    /// or `starting_after` with `limit` to navigate the collection, and use `expand` to request expanded response
-    /// fields.
+    /// Lists the line items associated with a tax calculation while the calculation remains active. Use `ending_before` or `starting_after` with `limit` to navigate the collection, and use `expand` to request expanded response fields.
     ///
     /// Retrieves the line items of a tax calculation as a collection, if the calculation hasn’t expired.
     ///
@@ -27,36 +25,22 @@ public enum V1TaxCalculationsLineItemsMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    public static func getTaxCalculationsCalculationLineItems(
-        config: ClientConfig,
-        calculation: String,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        startingAfter: String?
-    ) async throws -> GetTaxCalculationsCalculationLineItemsResponse {
+    public static func getTaxCalculationsCalculationLineItems(config: ClientConfig, calculation: String, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetTaxCalculationsCalculationLineItemsResponse {
         try validateLength("calculation", calculation, max: 5000)
 
-        if let endingBefore {
+        if let endingBefore = endingBefore {
             try validateLength("ending_before", endingBefore, max: 500)
         }
 
-        if let startingAfter {
+        if let startingAfter = startingAfter {
             try validateLength("starting_after", startingAfter, max: 500)
         }
 
-        return try await (sdkRequest(
-            "GET",
-            ["/v1/tax/calculations/", sdkEncodePathSegment(sdkWireString(calculation)), "/line_items"].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("ending_before", value: endingBefore),
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-                SdkQueryParameter("limit", value: limit),
-                SdkQueryParameter("starting_after", value: startingAfter),
-            ],
-            decoder: .json,
-            operationId: "GetTaxCalculationsCalculationLineItems"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/tax/calculations/", sdkEncodePathSegment(sdkWireString(calculation)), "/line_items"].joined(), config: config, query: [
+            SdkQueryParameter("ending_before", value: endingBefore),
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+            SdkQueryParameter("limit", value: limit),
+            SdkQueryParameter("starting_after", value: startingAfter),
+        ], decoder: .json, operationId: "GetTaxCalculationsCalculationLineItems")).data
     }
 }

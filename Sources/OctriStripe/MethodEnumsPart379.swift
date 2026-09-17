@@ -39,67 +39,67 @@ struct PostAccountsAccountPersonsRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(additionalTosAcceptances, forKey: SdkCodingKey("additional_tos_acceptances"))
-        try keyedContainer.encodeIfPresent(address, forKey: SdkCodingKey("address"))
-        try keyedContainer.encodeIfPresent(addressKana, forKey: SdkCodingKey("address_kana"))
-        try keyedContainer.encodeIfPresent(addressKanji, forKey: SdkCodingKey("address_kanji"))
-        try keyedContainer.encodeIfPresent(dob, forKey: SdkCodingKey("dob"))
-        try keyedContainer.encodeIfPresent(documents, forKey: SdkCodingKey("documents"))
-        try keyedContainer.encodeIfPresent(email, forKey: SdkCodingKey("email"))
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(firstName, forKey: SdkCodingKey("first_name"))
-        try keyedContainer.encodeIfPresent(firstNameKana, forKey: SdkCodingKey("first_name_kana"))
-        try keyedContainer.encodeIfPresent(firstNameKanji, forKey: SdkCodingKey("first_name_kanji"))
-        try keyedContainer.encodeIfPresent(fullNameAliases, forKey: SdkCodingKey("full_name_aliases"))
-        try keyedContainer.encodeIfPresent(gender, forKey: SdkCodingKey("gender"))
-        try keyedContainer.encodeIfPresent(idNumber, forKey: SdkCodingKey("id_number"))
-        try keyedContainer.encodeIfPresent(idNumberSecondary, forKey: SdkCodingKey("id_number_secondary"))
-        try keyedContainer.encodeIfPresent(lastName, forKey: SdkCodingKey("last_name"))
-        try keyedContainer.encodeIfPresent(lastNameKana, forKey: SdkCodingKey("last_name_kana"))
-        try keyedContainer.encodeIfPresent(lastNameKanji, forKey: SdkCodingKey("last_name_kanji"))
-        try keyedContainer.encodeIfPresent(maidenName, forKey: SdkCodingKey("maiden_name"))
-        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
-        try keyedContainer.encodeIfPresent(nationality, forKey: SdkCodingKey("nationality"))
-        try keyedContainer.encodeIfPresent(personToken, forKey: SdkCodingKey("person_token"))
-        try keyedContainer.encodeIfPresent(phone, forKey: SdkCodingKey("phone"))
-        try keyedContainer.encodeIfPresent(politicalExposure, forKey: SdkCodingKey("political_exposure"))
-        try keyedContainer.encodeIfPresent(registeredAddress, forKey: SdkCodingKey("registered_address"))
-        try keyedContainer.encodeIfPresent(relationship, forKey: SdkCodingKey("relationship"))
-        try keyedContainer.encodeIfPresent(ssnLast4, forKey: SdkCodingKey("ssn_last_4"))
-        try keyedContainer.encodeIfPresent(usCfpbData, forKey: SdkCodingKey("us_cfpb_data"))
-        try keyedContainer.encodeIfPresent(verification, forKey: SdkCodingKey("verification"))
+        try keyedContainer.encodeIfPresent(self.additionalTosAcceptances, forKey: SdkCodingKey("additional_tos_acceptances"))
+        try keyedContainer.encodeIfPresent(self.address, forKey: SdkCodingKey("address"))
+        try keyedContainer.encodeIfPresent(self.addressKana, forKey: SdkCodingKey("address_kana"))
+        try keyedContainer.encodeIfPresent(self.addressKanji, forKey: SdkCodingKey("address_kanji"))
+        try keyedContainer.encodeIfPresent(self.dob, forKey: SdkCodingKey("dob"))
+        try keyedContainer.encodeIfPresent(self.documents, forKey: SdkCodingKey("documents"))
+        try keyedContainer.encodeIfPresent(self.email, forKey: SdkCodingKey("email"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.firstName, forKey: SdkCodingKey("first_name"))
+        try keyedContainer.encodeIfPresent(self.firstNameKana, forKey: SdkCodingKey("first_name_kana"))
+        try keyedContainer.encodeIfPresent(self.firstNameKanji, forKey: SdkCodingKey("first_name_kanji"))
+        try keyedContainer.encodeIfPresent(self.fullNameAliases, forKey: SdkCodingKey("full_name_aliases"))
+        try keyedContainer.encodeIfPresent(self.gender, forKey: SdkCodingKey("gender"))
+        try keyedContainer.encodeIfPresent(self.idNumber, forKey: SdkCodingKey("id_number"))
+        try keyedContainer.encodeIfPresent(self.idNumberSecondary, forKey: SdkCodingKey("id_number_secondary"))
+        try keyedContainer.encodeIfPresent(self.lastName, forKey: SdkCodingKey("last_name"))
+        try keyedContainer.encodeIfPresent(self.lastNameKana, forKey: SdkCodingKey("last_name_kana"))
+        try keyedContainer.encodeIfPresent(self.lastNameKanji, forKey: SdkCodingKey("last_name_kanji"))
+        try keyedContainer.encodeIfPresent(self.maidenName, forKey: SdkCodingKey("maiden_name"))
+        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encodeIfPresent(self.nationality, forKey: SdkCodingKey("nationality"))
+        try keyedContainer.encodeIfPresent(self.personToken, forKey: SdkCodingKey("person_token"))
+        try keyedContainer.encodeIfPresent(self.phone, forKey: SdkCodingKey("phone"))
+        try keyedContainer.encodeIfPresent(self.politicalExposure, forKey: SdkCodingKey("political_exposure"))
+        try keyedContainer.encodeIfPresent(self.registeredAddress, forKey: SdkCodingKey("registered_address"))
+        try keyedContainer.encodeIfPresent(self.relationship, forKey: SdkCodingKey("relationship"))
+        try keyedContainer.encodeIfPresent(self.ssnLast4, forKey: SdkCodingKey("ssn_last_4"))
+        try keyedContainer.encodeIfPresent(self.usCfpbData, forKey: SdkCodingKey("us_cfpb_data"))
+        try keyedContainer.encodeIfPresent(self.verification, forKey: SdkCodingKey("verification"))
     }
 
     init(options: V1AccountsPersonsMethods.PostAccountsAccountPersonsOptions) {
-        additionalTosAcceptances = options.additionalTosAcceptances
-        address = options.address
-        addressKana = options.addressKana
-        addressKanji = options.addressKanji
-        dob = options.dob
-        documents = options.documents
-        email = options.email
-        expand = options.expand
-        firstName = options.firstName
-        firstNameKana = options.firstNameKana
-        firstNameKanji = options.firstNameKanji
-        fullNameAliases = options.fullNameAliases
-        gender = options.gender
-        idNumber = options.idNumber
-        idNumberSecondary = options.idNumberSecondary
-        lastName = options.lastName
-        lastNameKana = options.lastNameKana
-        lastNameKanji = options.lastNameKanji
-        maidenName = options.maidenName
-        metadata = options.metadata
-        nationality = options.nationality
-        personToken = options.personToken
-        phone = options.phone
-        politicalExposure = options.politicalExposure
-        registeredAddress = options.registeredAddress
-        relationship = options.relationship
-        ssnLast4 = options.ssnLast4
-        usCfpbData = options.usCfpbData
-        verification = options.verification
+        self.additionalTosAcceptances = options.additionalTosAcceptances
+        self.address = options.address
+        self.addressKana = options.addressKana
+        self.addressKanji = options.addressKanji
+        self.dob = options.dob
+        self.documents = options.documents
+        self.email = options.email
+        self.expand = options.expand
+        self.firstName = options.firstName
+        self.firstNameKana = options.firstNameKana
+        self.firstNameKanji = options.firstNameKanji
+        self.fullNameAliases = options.fullNameAliases
+        self.gender = options.gender
+        self.idNumber = options.idNumber
+        self.idNumberSecondary = options.idNumberSecondary
+        self.lastName = options.lastName
+        self.lastNameKana = options.lastNameKana
+        self.lastNameKanji = options.lastNameKanji
+        self.maidenName = options.maidenName
+        self.metadata = options.metadata
+        self.nationality = options.nationality
+        self.personToken = options.personToken
+        self.phone = options.phone
+        self.politicalExposure = options.politicalExposure
+        self.registeredAddress = options.registeredAddress
+        self.relationship = options.relationship
+        self.ssnLast4 = options.ssnLast4
+        self.usCfpbData = options.usCfpbData
+        self.verification = options.verification
     }
 }
 
@@ -136,67 +136,67 @@ struct PostAccountsAccountPersonsPersonRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(additionalTosAcceptances, forKey: SdkCodingKey("additional_tos_acceptances"))
-        try keyedContainer.encodeIfPresent(address, forKey: SdkCodingKey("address"))
-        try keyedContainer.encodeIfPresent(addressKana, forKey: SdkCodingKey("address_kana"))
-        try keyedContainer.encodeIfPresent(addressKanji, forKey: SdkCodingKey("address_kanji"))
-        try keyedContainer.encodeIfPresent(dob, forKey: SdkCodingKey("dob"))
-        try keyedContainer.encodeIfPresent(documents, forKey: SdkCodingKey("documents"))
-        try keyedContainer.encodeIfPresent(email, forKey: SdkCodingKey("email"))
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(firstName, forKey: SdkCodingKey("first_name"))
-        try keyedContainer.encodeIfPresent(firstNameKana, forKey: SdkCodingKey("first_name_kana"))
-        try keyedContainer.encodeIfPresent(firstNameKanji, forKey: SdkCodingKey("first_name_kanji"))
-        try keyedContainer.encodeIfPresent(fullNameAliases, forKey: SdkCodingKey("full_name_aliases"))
-        try keyedContainer.encodeIfPresent(gender, forKey: SdkCodingKey("gender"))
-        try keyedContainer.encodeIfPresent(idNumber, forKey: SdkCodingKey("id_number"))
-        try keyedContainer.encodeIfPresent(idNumberSecondary, forKey: SdkCodingKey("id_number_secondary"))
-        try keyedContainer.encodeIfPresent(lastName, forKey: SdkCodingKey("last_name"))
-        try keyedContainer.encodeIfPresent(lastNameKana, forKey: SdkCodingKey("last_name_kana"))
-        try keyedContainer.encodeIfPresent(lastNameKanji, forKey: SdkCodingKey("last_name_kanji"))
-        try keyedContainer.encodeIfPresent(maidenName, forKey: SdkCodingKey("maiden_name"))
-        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
-        try keyedContainer.encodeIfPresent(nationality, forKey: SdkCodingKey("nationality"))
-        try keyedContainer.encodeIfPresent(personToken, forKey: SdkCodingKey("person_token"))
-        try keyedContainer.encodeIfPresent(phone, forKey: SdkCodingKey("phone"))
-        try keyedContainer.encodeIfPresent(politicalExposure, forKey: SdkCodingKey("political_exposure"))
-        try keyedContainer.encodeIfPresent(registeredAddress, forKey: SdkCodingKey("registered_address"))
-        try keyedContainer.encodeIfPresent(relationship, forKey: SdkCodingKey("relationship"))
-        try keyedContainer.encodeIfPresent(ssnLast4, forKey: SdkCodingKey("ssn_last_4"))
-        try keyedContainer.encodeIfPresent(usCfpbData, forKey: SdkCodingKey("us_cfpb_data"))
-        try keyedContainer.encodeIfPresent(verification, forKey: SdkCodingKey("verification"))
+        try keyedContainer.encodeIfPresent(self.additionalTosAcceptances, forKey: SdkCodingKey("additional_tos_acceptances"))
+        try keyedContainer.encodeIfPresent(self.address, forKey: SdkCodingKey("address"))
+        try keyedContainer.encodeIfPresent(self.addressKana, forKey: SdkCodingKey("address_kana"))
+        try keyedContainer.encodeIfPresent(self.addressKanji, forKey: SdkCodingKey("address_kanji"))
+        try keyedContainer.encodeIfPresent(self.dob, forKey: SdkCodingKey("dob"))
+        try keyedContainer.encodeIfPresent(self.documents, forKey: SdkCodingKey("documents"))
+        try keyedContainer.encodeIfPresent(self.email, forKey: SdkCodingKey("email"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.firstName, forKey: SdkCodingKey("first_name"))
+        try keyedContainer.encodeIfPresent(self.firstNameKana, forKey: SdkCodingKey("first_name_kana"))
+        try keyedContainer.encodeIfPresent(self.firstNameKanji, forKey: SdkCodingKey("first_name_kanji"))
+        try keyedContainer.encodeIfPresent(self.fullNameAliases, forKey: SdkCodingKey("full_name_aliases"))
+        try keyedContainer.encodeIfPresent(self.gender, forKey: SdkCodingKey("gender"))
+        try keyedContainer.encodeIfPresent(self.idNumber, forKey: SdkCodingKey("id_number"))
+        try keyedContainer.encodeIfPresent(self.idNumberSecondary, forKey: SdkCodingKey("id_number_secondary"))
+        try keyedContainer.encodeIfPresent(self.lastName, forKey: SdkCodingKey("last_name"))
+        try keyedContainer.encodeIfPresent(self.lastNameKana, forKey: SdkCodingKey("last_name_kana"))
+        try keyedContainer.encodeIfPresent(self.lastNameKanji, forKey: SdkCodingKey("last_name_kanji"))
+        try keyedContainer.encodeIfPresent(self.maidenName, forKey: SdkCodingKey("maiden_name"))
+        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encodeIfPresent(self.nationality, forKey: SdkCodingKey("nationality"))
+        try keyedContainer.encodeIfPresent(self.personToken, forKey: SdkCodingKey("person_token"))
+        try keyedContainer.encodeIfPresent(self.phone, forKey: SdkCodingKey("phone"))
+        try keyedContainer.encodeIfPresent(self.politicalExposure, forKey: SdkCodingKey("political_exposure"))
+        try keyedContainer.encodeIfPresent(self.registeredAddress, forKey: SdkCodingKey("registered_address"))
+        try keyedContainer.encodeIfPresent(self.relationship, forKey: SdkCodingKey("relationship"))
+        try keyedContainer.encodeIfPresent(self.ssnLast4, forKey: SdkCodingKey("ssn_last_4"))
+        try keyedContainer.encodeIfPresent(self.usCfpbData, forKey: SdkCodingKey("us_cfpb_data"))
+        try keyedContainer.encodeIfPresent(self.verification, forKey: SdkCodingKey("verification"))
     }
 
     init(options: V1AccountsPersonsMethods.PostAccountsAccountPersonsPersonOptions) {
-        additionalTosAcceptances = options.additionalTosAcceptances
-        address = options.address
-        addressKana = options.addressKana
-        addressKanji = options.addressKanji
-        dob = options.dob
-        documents = options.documents
-        email = options.email
-        expand = options.expand
-        firstName = options.firstName
-        firstNameKana = options.firstNameKana
-        firstNameKanji = options.firstNameKanji
-        fullNameAliases = options.fullNameAliases
-        gender = options.gender
-        idNumber = options.idNumber
-        idNumberSecondary = options.idNumberSecondary
-        lastName = options.lastName
-        lastNameKana = options.lastNameKana
-        lastNameKanji = options.lastNameKanji
-        maidenName = options.maidenName
-        metadata = options.metadata
-        nationality = options.nationality
-        personToken = options.personToken
-        phone = options.phone
-        politicalExposure = options.politicalExposure
-        registeredAddress = options.registeredAddress
-        relationship = options.relationship
-        ssnLast4 = options.ssnLast4
-        usCfpbData = options.usCfpbData
-        verification = options.verification
+        self.additionalTosAcceptances = options.additionalTosAcceptances
+        self.address = options.address
+        self.addressKana = options.addressKana
+        self.addressKanji = options.addressKanji
+        self.dob = options.dob
+        self.documents = options.documents
+        self.email = options.email
+        self.expand = options.expand
+        self.firstName = options.firstName
+        self.firstNameKana = options.firstNameKana
+        self.firstNameKanji = options.firstNameKanji
+        self.fullNameAliases = options.fullNameAliases
+        self.gender = options.gender
+        self.idNumber = options.idNumber
+        self.idNumberSecondary = options.idNumberSecondary
+        self.lastName = options.lastName
+        self.lastNameKana = options.lastNameKana
+        self.lastNameKanji = options.lastNameKanji
+        self.maidenName = options.maidenName
+        self.metadata = options.metadata
+        self.nationality = options.nationality
+        self.personToken = options.personToken
+        self.phone = options.phone
+        self.politicalExposure = options.politicalExposure
+        self.registeredAddress = options.registeredAddress
+        self.relationship = options.relationship
+        self.ssnLast4 = options.ssnLast4
+        self.usCfpbData = options.usCfpbData
+        self.verification = options.verification
     }
 }
 
@@ -207,9 +207,9 @@ struct PostAccountsAccountRejectRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encode(reason, forKey: SdkCodingKey("reason"))
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(payoutsAction, forKey: SdkCodingKey("payouts_action"))
+        try keyedContainer.encode(self.reason, forKey: SdkCodingKey("reason"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.payoutsAction, forKey: SdkCodingKey("payouts_action"))
     }
 }
 
@@ -218,6 +218,6 @@ struct PostAccountsAccountUnrejectRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
     }
 }

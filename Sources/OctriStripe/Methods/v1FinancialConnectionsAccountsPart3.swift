@@ -6,31 +6,18 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1FinancialConnectionsAccountsMethods {
-    /// Retrieves a Financial Connections account by its identifier. Use `expand` to include selected related fields in
-    /// expanded form. The response includes account category, institution, ownership, permissions, balance information,
-    /// and account status.
+extension V1FinancialConnectionsAccountsMethods {
+    /// Retrieves a Financial Connections account by its identifier. Use `expand` to include selected related fields in expanded form. The response includes account category, institution, ownership, permissions, balance information, and account status.
     ///
     /// Retrieves the details of an Financial Connections Account .
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    static func getFinancialConnectionsAccountsAccount(
-        config: ClientConfig,
-        account: String,
-        expand: [String]?
-    ) async throws -> FinancialConnectionsAccount {
+    public static func getFinancialConnectionsAccountsAccount(config: ClientConfig, account: String, expand: [String]?) async throws -> FinancialConnectionsAccount {
         try validateLength("account", account, max: 5000)
 
-        return try await (sdkRequest(
-            "GET",
-            ["/v1/financial_connections/accounts/", sdkEncodePathSegment(sdkWireString(account))].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .json,
-            operationId: "GetFinancialConnectionsAccountsAccount"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/financial_connections/accounts/", sdkEncodePathSegment(sdkWireString(account))].joined(), config: config, query: [
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .json, operationId: "GetFinancialConnectionsAccountsAccount")).data
     }
 }

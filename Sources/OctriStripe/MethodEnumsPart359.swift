@@ -153,30 +153,23 @@ extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f
 extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a: CaseIterable {
     public static var allCases: [PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a] {
         allCasesPart1
-            + allCasesPart2
-            + allCasesPart3
-            + allCasesPart4
+        +         allCasesPart2
+        +         allCasesPart3
+        +         allCasesPart4
     }
 }
 
-public struct PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX2e9bfeaa99: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX2e9bfeaa99: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let fuelAndNonFuelPurchase =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX2e9bfeaa99(rawValue: "fuel_and_non_fuel_purchase")
-    public static let fuelPurchase =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX2e9bfeaa99(rawValue: "fuel_purchase")
-    public static let nonFuelPurchase =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX2e9bfeaa99(rawValue: "non_fuel_purchase")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let fuelAndNonFuelPurchase = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX2e9bfeaa99(rawValue: "fuel_and_non_fuel_purchase")
+    public static let fuelPurchase = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX2e9bfeaa99(rawValue: "fuel_purchase")
+    public static let nonFuelPurchase = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX2e9bfeaa99(rawValue: "non_fuel_purchase")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -185,24 +178,17 @@ public struct PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX2e9b
     }
 }
 
-public struct PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX873a65d4f1: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX873a65d4f1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let fullService =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX873a65d4f1(rawValue: "full_service")
-    public static let nonFuelTransaction =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX873a65d4f1(rawValue: "non_fuel_transaction")
-    public static let selfService =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX873a65d4f1(rawValue: "self_service")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let fullService = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX873a65d4f1(rawValue: "full_service")
+    public static let nonFuelTransaction = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX873a65d4f1(rawValue: "non_fuel_transaction")
+    public static let selfService = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX873a65d4f1(rawValue: "self_service")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -211,28 +197,19 @@ public struct PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX873a
     }
 }
 
-public struct PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestXb3dfbd5c84: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestXb3dfbd5c84: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let diesel =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestXb3dfbd5c84(rawValue: "diesel")
-    public static let other =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestXb3dfbd5c84(rawValue: "other")
-    public static let unleadedPlus =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestXb3dfbd5c84(rawValue: "unleaded_plus")
-    public static let unleadedRegular =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestXb3dfbd5c84(rawValue: "unleaded_regular")
-    public static let unleadedSuper =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestXb3dfbd5c84(rawValue: "unleaded_super")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let diesel = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestXb3dfbd5c84(rawValue: "diesel")
+    public static let other = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestXb3dfbd5c84(rawValue: "other")
+    public static let unleadedPlus = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestXb3dfbd5c84(rawValue: "unleaded_plus")
+    public static let unleadedRegular = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestXb3dfbd5c84(rawValue: "unleaded_regular")
+    public static let unleadedSuper = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestXb3dfbd5c84(rawValue: "unleaded_super")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

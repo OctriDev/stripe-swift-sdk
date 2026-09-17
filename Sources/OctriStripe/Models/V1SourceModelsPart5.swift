@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1Source domain models
+// V1Source domain models
 /// Typed representation of the `SourceTypeKlarna` API schema.
 public struct SourceTypeKlarna: Codable {
     /// Optional `string` value serialized in the `background_image_url` wire field.
@@ -89,35 +89,17 @@ public struct SourceTypeKlarna: Codable {
     }
 
     init() {
-        (backgroundImageUrl, clientToken, firstName, lastName, locale) = (nil, nil, nil, nil, nil)
-        (logoUrl, pageTitle, payLaterAssetUrlsDescriptive, payLaterAssetUrlsStandard, payLaterName) = (
-            nil,
-            nil,
-            nil,
-            nil,
-            nil
-        )
-        (payLaterRedirectUrl, payNowAssetUrlsDescriptive, payNowAssetUrlsStandard, payNowName, payNowRedirectUrl) = (
-            nil,
-            nil,
-            nil,
-            nil,
-            nil
-        )
-        (
-            payOverTimeAssetUrlsDescriptive,
-            payOverTimeAssetUrlsStandard,
-            payOverTimeName,
-            payOverTimeRedirectUrl,
-            paymentMethodCategories
-        ) = (nil, nil, nil, nil, nil)
-        (purchaseCountry, purchaseType, redirectUrl, shippingDelay, shippingFirstName) = (nil, nil, nil, nil, nil)
-        shippingLastName = nil
+        (self.backgroundImageUrl, self.clientToken, self.firstName, self.lastName, self.locale) = (nil, nil, nil, nil, nil)
+        (self.logoUrl, self.pageTitle, self.payLaterAssetUrlsDescriptive, self.payLaterAssetUrlsStandard, self.payLaterName) = (nil, nil, nil, nil, nil)
+        (self.payLaterRedirectUrl, self.payNowAssetUrlsDescriptive, self.payNowAssetUrlsStandard, self.payNowName, self.payNowRedirectUrl) = (nil, nil, nil, nil, nil)
+        (self.payOverTimeAssetUrlsDescriptive, self.payOverTimeAssetUrlsStandard, self.payOverTimeName, self.payOverTimeRedirectUrl, self.paymentMethodCategories) = (nil, nil, nil, nil, nil)
+        (self.purchaseCountry, self.purchaseType, self.redirectUrl, self.shippingDelay, self.shippingFirstName) = (nil, nil, nil, nil, nil)
+        self.shippingLastName = nil
     }
 }
 
-public extension SourceTypeKlarna {
-    init(from decoder: Decoder) throws {
+extension SourceTypeKlarna {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.init()
         try sdkDecodeFieldsPart1(container)
@@ -126,35 +108,8 @@ public extension SourceTypeKlarna {
     }
 }
 
-public extension SourceTypeKlarna {
-    init(
-        backgroundImageUrl: String? = nil,
-        clientToken: String? = nil,
-        firstName: String? = nil,
-        lastName: String? = nil,
-        locale: String? = nil,
-        logoUrl: String? = nil,
-        pageTitle: String? = nil,
-        payLaterAssetUrlsDescriptive: String? = nil,
-        payLaterAssetUrlsStandard: String? = nil,
-        payLaterName: String? = nil,
-        payLaterRedirectUrl: String? = nil,
-        payNowAssetUrlsDescriptive: String? = nil,
-        payNowAssetUrlsStandard: String? = nil,
-        payNowName: String? = nil,
-        payNowRedirectUrl: String? = nil,
-        payOverTimeAssetUrlsDescriptive: String? = nil,
-        payOverTimeAssetUrlsStandard: String? = nil,
-        payOverTimeName: String? = nil,
-        payOverTimeRedirectUrl: String? = nil,
-        paymentMethodCategories: String? = nil,
-        purchaseCountry: String? = nil,
-        purchaseType: String? = nil,
-        redirectUrl: String? = nil,
-        shippingDelay: Int? = nil,
-        shippingFirstName: String? = nil,
-        shippingLastName: String? = nil
-    ) {
+extension SourceTypeKlarna {
+    public init(backgroundImageUrl: String? = nil, clientToken: String? = nil, firstName: String? = nil, lastName: String? = nil, locale: String? = nil, logoUrl: String? = nil, pageTitle: String? = nil, payLaterAssetUrlsDescriptive: String? = nil, payLaterAssetUrlsStandard: String? = nil, payLaterName: String? = nil, payLaterRedirectUrl: String? = nil, payNowAssetUrlsDescriptive: String? = nil, payNowAssetUrlsStandard: String? = nil, payNowName: String? = nil, payNowRedirectUrl: String? = nil, payOverTimeAssetUrlsDescriptive: String? = nil, payOverTimeAssetUrlsStandard: String? = nil, payOverTimeName: String? = nil, payOverTimeRedirectUrl: String? = nil, paymentMethodCategories: String? = nil, purchaseCountry: String? = nil, purchaseType: String? = nil, redirectUrl: String? = nil, shippingDelay: Int? = nil, shippingFirstName: String? = nil, shippingLastName: String? = nil) {
         self.init()
         (self.backgroundImageUrl, self.clientToken) = (backgroundImageUrl, clientToken)
         (self.firstName, self.lastName) = (firstName, lastName)
@@ -177,42 +132,42 @@ public extension SourceTypeKlarna {
 
 extension SourceTypeKlarna {
     mutating func sdkDecodeFieldsPart1(_ container: KeyedDecodingContainer<CodingKeys>) throws {
-        backgroundImageUrl = try container.sdkDecodeIfPresent(.backgroundImageUrl)
-        clientToken = try container.sdkDecodeIfPresent(.clientToken)
-        firstName = try container.sdkDecodeIfPresent(.firstName)
-        lastName = try container.sdkDecodeIfPresent(.lastName)
-        locale = try container.sdkDecodeIfPresent(.locale)
-        logoUrl = try container.sdkDecodeIfPresent(.logoUrl)
-        pageTitle = try container.sdkDecodeIfPresent(.pageTitle)
-        payLaterAssetUrlsDescriptive = try container.sdkDecodeIfPresent(.payLaterAssetUrlsDescriptive)
-        payLaterAssetUrlsStandard = try container.sdkDecodeIfPresent(.payLaterAssetUrlsStandard)
-        payLaterName = try container.sdkDecodeIfPresent(.payLaterName)
-        payLaterRedirectUrl = try container.sdkDecodeIfPresent(.payLaterRedirectUrl)
-        payNowAssetUrlsDescriptive = try container.sdkDecodeIfPresent(.payNowAssetUrlsDescriptive)
+        self.backgroundImageUrl = try container.sdkDecodeIfPresent(.backgroundImageUrl)
+        self.clientToken = try container.sdkDecodeIfPresent(.clientToken)
+        self.firstName = try container.sdkDecodeIfPresent(.firstName)
+        self.lastName = try container.sdkDecodeIfPresent(.lastName)
+        self.locale = try container.sdkDecodeIfPresent(.locale)
+        self.logoUrl = try container.sdkDecodeIfPresent(.logoUrl)
+        self.pageTitle = try container.sdkDecodeIfPresent(.pageTitle)
+        self.payLaterAssetUrlsDescriptive = try container.sdkDecodeIfPresent(.payLaterAssetUrlsDescriptive)
+        self.payLaterAssetUrlsStandard = try container.sdkDecodeIfPresent(.payLaterAssetUrlsStandard)
+        self.payLaterName = try container.sdkDecodeIfPresent(.payLaterName)
+        self.payLaterRedirectUrl = try container.sdkDecodeIfPresent(.payLaterRedirectUrl)
+        self.payNowAssetUrlsDescriptive = try container.sdkDecodeIfPresent(.payNowAssetUrlsDescriptive)
     }
 }
 
 extension SourceTypeKlarna {
     mutating func sdkDecodeFieldsPart2(_ container: KeyedDecodingContainer<CodingKeys>) throws {
-        payNowAssetUrlsStandard = try container.sdkDecodeIfPresent(.payNowAssetUrlsStandard)
-        payNowName = try container.sdkDecodeIfPresent(.payNowName)
-        payNowRedirectUrl = try container.sdkDecodeIfPresent(.payNowRedirectUrl)
-        payOverTimeAssetUrlsDescriptive = try container.sdkDecodeIfPresent(.payOverTimeAssetUrlsDescriptive)
-        payOverTimeAssetUrlsStandard = try container.sdkDecodeIfPresent(.payOverTimeAssetUrlsStandard)
-        payOverTimeName = try container.sdkDecodeIfPresent(.payOverTimeName)
-        payOverTimeRedirectUrl = try container.sdkDecodeIfPresent(.payOverTimeRedirectUrl)
-        paymentMethodCategories = try container.sdkDecodeIfPresent(.paymentMethodCategories)
-        purchaseCountry = try container.sdkDecodeIfPresent(.purchaseCountry)
-        purchaseType = try container.sdkDecodeIfPresent(.purchaseType)
-        redirectUrl = try container.sdkDecodeIfPresent(.redirectUrl)
-        shippingDelay = try container.sdkDecodeIfPresent(.shippingDelay)
+        self.payNowAssetUrlsStandard = try container.sdkDecodeIfPresent(.payNowAssetUrlsStandard)
+        self.payNowName = try container.sdkDecodeIfPresent(.payNowName)
+        self.payNowRedirectUrl = try container.sdkDecodeIfPresent(.payNowRedirectUrl)
+        self.payOverTimeAssetUrlsDescriptive = try container.sdkDecodeIfPresent(.payOverTimeAssetUrlsDescriptive)
+        self.payOverTimeAssetUrlsStandard = try container.sdkDecodeIfPresent(.payOverTimeAssetUrlsStandard)
+        self.payOverTimeName = try container.sdkDecodeIfPresent(.payOverTimeName)
+        self.payOverTimeRedirectUrl = try container.sdkDecodeIfPresent(.payOverTimeRedirectUrl)
+        self.paymentMethodCategories = try container.sdkDecodeIfPresent(.paymentMethodCategories)
+        self.purchaseCountry = try container.sdkDecodeIfPresent(.purchaseCountry)
+        self.purchaseType = try container.sdkDecodeIfPresent(.purchaseType)
+        self.redirectUrl = try container.sdkDecodeIfPresent(.redirectUrl)
+        self.shippingDelay = try container.sdkDecodeIfPresent(.shippingDelay)
     }
 }
 
 extension SourceTypeKlarna {
     mutating func sdkDecodeFieldsPart3(_ container: KeyedDecodingContainer<CodingKeys>) throws {
-        shippingFirstName = try container.sdkDecodeIfPresent(.shippingFirstName)
-        shippingLastName = try container.sdkDecodeIfPresent(.shippingLastName)
+        self.shippingFirstName = try container.sdkDecodeIfPresent(.shippingFirstName)
+        self.shippingLastName = try container.sdkDecodeIfPresent(.shippingLastName)
     }
 }
 
@@ -253,52 +208,29 @@ public struct SourceTypeMultibanco: Codable {
     }
 
     init() {
-        (
-            entity,
-            reference,
-            refundAccountHolderAddressCity,
-            refundAccountHolderAddressCountry,
-            refundAccountHolderAddressLine1
-        ) = (nil, nil, nil, nil, nil)
-        (
-            refundAccountHolderAddressLine2,
-            refundAccountHolderAddressPostalCode,
-            refundAccountHolderAddressState,
-            refundAccountHolderName,
-            refundIban
-        ) = (nil, nil, nil, nil, nil)
+        (self.entity, self.reference, self.refundAccountHolderAddressCity, self.refundAccountHolderAddressCountry, self.refundAccountHolderAddressLine1) = (nil, nil, nil, nil, nil)
+        (self.refundAccountHolderAddressLine2, self.refundAccountHolderAddressPostalCode, self.refundAccountHolderAddressState, self.refundAccountHolderName, self.refundIban) = (nil, nil, nil, nil, nil)
     }
 }
 
-public extension SourceTypeMultibanco {
-    init(from decoder: Decoder) throws {
+extension SourceTypeMultibanco {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        entity = try container.sdkDecodeIfPresent(.entity)
-        reference = try container.sdkDecodeIfPresent(.reference)
-        refundAccountHolderAddressCity = try container.sdkDecodeIfPresent(.refundAccountHolderAddressCity)
-        refundAccountHolderAddressCountry = try container.sdkDecodeIfPresent(.refundAccountHolderAddressCountry)
-        refundAccountHolderAddressLine1 = try container.sdkDecodeIfPresent(.refundAccountHolderAddressLine1)
-        refundAccountHolderAddressLine2 = try container.sdkDecodeIfPresent(.refundAccountHolderAddressLine2)
-        refundAccountHolderAddressPostalCode = try container.sdkDecodeIfPresent(.refundAccountHolderAddressPostalCode)
-        refundAccountHolderAddressState = try container.sdkDecodeIfPresent(.refundAccountHolderAddressState)
-        refundAccountHolderName = try container.sdkDecodeIfPresent(.refundAccountHolderName)
-        refundIban = try container.sdkDecodeIfPresent(.refundIban)
+        self.entity = try container.sdkDecodeIfPresent(.entity)
+        self.reference = try container.sdkDecodeIfPresent(.reference)
+        self.refundAccountHolderAddressCity = try container.sdkDecodeIfPresent(.refundAccountHolderAddressCity)
+        self.refundAccountHolderAddressCountry = try container.sdkDecodeIfPresent(.refundAccountHolderAddressCountry)
+        self.refundAccountHolderAddressLine1 = try container.sdkDecodeIfPresent(.refundAccountHolderAddressLine1)
+        self.refundAccountHolderAddressLine2 = try container.sdkDecodeIfPresent(.refundAccountHolderAddressLine2)
+        self.refundAccountHolderAddressPostalCode = try container.sdkDecodeIfPresent(.refundAccountHolderAddressPostalCode)
+        self.refundAccountHolderAddressState = try container.sdkDecodeIfPresent(.refundAccountHolderAddressState)
+        self.refundAccountHolderName = try container.sdkDecodeIfPresent(.refundAccountHolderName)
+        self.refundIban = try container.sdkDecodeIfPresent(.refundIban)
     }
 }
 
-public extension SourceTypeMultibanco {
-    init(
-        entity: String? = nil,
-        reference: String? = nil,
-        refundAccountHolderAddressCity: String? = nil,
-        refundAccountHolderAddressCountry: String? = nil,
-        refundAccountHolderAddressLine1: String? = nil,
-        refundAccountHolderAddressLine2: String? = nil,
-        refundAccountHolderAddressPostalCode: String? = nil,
-        refundAccountHolderAddressState: String? = nil,
-        refundAccountHolderName: String? = nil,
-        refundIban: String? = nil
-    ) {
+extension SourceTypeMultibanco {
+    public init(entity: String? = nil, reference: String? = nil, refundAccountHolderAddressCity: String? = nil, refundAccountHolderAddressCountry: String? = nil, refundAccountHolderAddressLine1: String? = nil, refundAccountHolderAddressLine2: String? = nil, refundAccountHolderAddressPostalCode: String? = nil, refundAccountHolderAddressState: String? = nil, refundAccountHolderName: String? = nil, refundIban: String? = nil) {
         self.init()
         (self.entity, self.reference) = (entity, reference)
         self.refundAccountHolderAddressCity = refundAccountHolderAddressCity
@@ -321,19 +253,19 @@ public struct SourceTypeP24: Codable {
     }
 
     init() {
-        reference = nil
+        self.reference = nil
     }
 }
 
-public extension SourceTypeP24 {
-    init(from decoder: Decoder) throws {
+extension SourceTypeP24 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        reference = try container.sdkDecodeIfPresent(.reference)
+        self.reference = try container.sdkDecodeIfPresent(.reference)
     }
 }
 
-public extension SourceTypeP24 {
-    init(reference: String? = nil) {
+extension SourceTypeP24 {
+    public init(reference: String? = nil) {
         self.init()
         self.reference = reference
     }
@@ -367,34 +299,26 @@ public struct SourceTypeSepaDebit: Codable {
     }
 
     init() {
-        (bankCode, branchCode, country, fingerprint, last4) = (nil, nil, nil, nil, nil)
-        (mandateReference, mandateUrl) = (nil, nil)
+        (self.bankCode, self.branchCode, self.country, self.fingerprint, self.last4) = (nil, nil, nil, nil, nil)
+        (self.mandateReference, self.mandateUrl) = (nil, nil)
     }
 }
 
-public extension SourceTypeSepaDebit {
-    init(from decoder: Decoder) throws {
+extension SourceTypeSepaDebit {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        bankCode = try container.sdkDecodeIfPresent(.bankCode)
-        branchCode = try container.sdkDecodeIfPresent(.branchCode)
-        country = try container.sdkDecodeIfPresent(.country)
-        fingerprint = try container.sdkDecodeIfPresent(.fingerprint)
-        last4 = try container.sdkDecodeIfPresent(.last4)
-        mandateReference = try container.sdkDecodeIfPresent(.mandateReference)
-        mandateUrl = try container.sdkDecodeIfPresent(.mandateUrl)
+        self.bankCode = try container.sdkDecodeIfPresent(.bankCode)
+        self.branchCode = try container.sdkDecodeIfPresent(.branchCode)
+        self.country = try container.sdkDecodeIfPresent(.country)
+        self.fingerprint = try container.sdkDecodeIfPresent(.fingerprint)
+        self.last4 = try container.sdkDecodeIfPresent(.last4)
+        self.mandateReference = try container.sdkDecodeIfPresent(.mandateReference)
+        self.mandateUrl = try container.sdkDecodeIfPresent(.mandateUrl)
     }
 }
 
-public extension SourceTypeSepaDebit {
-    init(
-        bankCode: String? = nil,
-        branchCode: String? = nil,
-        country: String? = nil,
-        fingerprint: String? = nil,
-        last4: String? = nil,
-        mandateReference: String? = nil,
-        mandateUrl: String? = nil
-    ) {
+extension SourceTypeSepaDebit {
+    public init(bankCode: String? = nil, branchCode: String? = nil, country: String? = nil, fingerprint: String? = nil, last4: String? = nil, mandateReference: String? = nil, mandateUrl: String? = nil) {
         self.init()
         (self.bankCode, self.branchCode) = (bankCode, branchCode)
         (self.country, self.fingerprint) = (country, fingerprint)
@@ -431,34 +355,26 @@ public struct SourceTypeSofort: Codable {
     }
 
     init() {
-        (bankCode, bankName, bic, country, ibanLast4) = (nil, nil, nil, nil, nil)
-        (preferredLanguage, statementDescriptor) = (nil, nil)
+        (self.bankCode, self.bankName, self.bic, self.country, self.ibanLast4) = (nil, nil, nil, nil, nil)
+        (self.preferredLanguage, self.statementDescriptor) = (nil, nil)
     }
 }
 
-public extension SourceTypeSofort {
-    init(from decoder: Decoder) throws {
+extension SourceTypeSofort {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        bankCode = try container.sdkDecodeIfPresent(.bankCode)
-        bankName = try container.sdkDecodeIfPresent(.bankName)
-        bic = try container.sdkDecodeIfPresent(.bic)
-        country = try container.sdkDecodeIfPresent(.country)
-        ibanLast4 = try container.sdkDecodeIfPresent(.ibanLast4)
-        preferredLanguage = try container.sdkDecodeIfPresent(.preferredLanguage)
-        statementDescriptor = try container.sdkDecodeIfPresent(.statementDescriptor)
+        self.bankCode = try container.sdkDecodeIfPresent(.bankCode)
+        self.bankName = try container.sdkDecodeIfPresent(.bankName)
+        self.bic = try container.sdkDecodeIfPresent(.bic)
+        self.country = try container.sdkDecodeIfPresent(.country)
+        self.ibanLast4 = try container.sdkDecodeIfPresent(.ibanLast4)
+        self.preferredLanguage = try container.sdkDecodeIfPresent(.preferredLanguage)
+        self.statementDescriptor = try container.sdkDecodeIfPresent(.statementDescriptor)
     }
 }
 
-public extension SourceTypeSofort {
-    init(
-        bankCode: String? = nil,
-        bankName: String? = nil,
-        bic: String? = nil,
-        country: String? = nil,
-        ibanLast4: String? = nil,
-        preferredLanguage: String? = nil,
-        statementDescriptor: String? = nil
-    ) {
+extension SourceTypeSofort {
+    public init(bankCode: String? = nil, bankName: String? = nil, bic: String? = nil, country: String? = nil, ibanLast4: String? = nil, preferredLanguage: String? = nil, statementDescriptor: String? = nil) {
         self.init()
         (self.bankCode, self.bankName) = (bankCode, bankName)
         (self.bic, self.country) = (bic, country)
@@ -525,32 +441,32 @@ public struct SourceTypeThreeDSecure: Codable {
     }
 
     init() {
-        (addressLine1Check, addressZipCheck, authenticated, brand, card) = (nil, nil, nil, nil, nil)
-        (country, customer, cvcCheck, dynamicLast4, expMonth) = (nil, nil, nil, nil, nil)
-        (expYear, fingerprint, funding, last4, name) = (nil, nil, nil, nil, nil)
-        (threeDSecure, tokenizationMethod) = (nil, nil)
+        (self.addressLine1Check, self.addressZipCheck, self.authenticated, self.brand, self.card) = (nil, nil, nil, nil, nil)
+        (self.country, self.customer, self.cvcCheck, self.dynamicLast4, self.expMonth) = (nil, nil, nil, nil, nil)
+        (self.expYear, self.fingerprint, self.funding, self.last4, self.name) = (nil, nil, nil, nil, nil)
+        (self.threeDSecure, self.tokenizationMethod) = (nil, nil)
     }
 }
 
-public extension SourceTypeThreeDSecure {
-    init(from decoder: Decoder) throws {
+extension SourceTypeThreeDSecure {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        addressLine1Check = try container.sdkDecodeIfPresent(.addressLine1Check)
-        addressZipCheck = try container.sdkDecodeIfPresent(.addressZipCheck)
-        authenticated = try container.sdkDecodeIfPresent(.authenticated)
-        brand = try container.sdkDecodeIfPresent(.brand)
-        card = try container.sdkDecodeIfPresent(.card)
-        country = try container.sdkDecodeIfPresent(.country)
-        customer = try container.sdkDecodeIfPresent(.customer)
-        cvcCheck = try container.sdkDecodeIfPresent(.cvcCheck)
-        dynamicLast4 = try container.sdkDecodeIfPresent(.dynamicLast4)
-        expMonth = try container.sdkDecodeIfPresent(.expMonth)
-        expYear = try container.sdkDecodeIfPresent(.expYear)
-        fingerprint = try container.sdkDecodeIfPresent(.fingerprint)
-        funding = try container.sdkDecodeIfPresent(.funding)
-        last4 = try container.sdkDecodeIfPresent(.last4)
-        name = try container.sdkDecodeIfPresent(.name)
-        threeDSecure = try container.sdkDecodeIfPresent(.threeDSecure)
-        tokenizationMethod = try container.sdkDecodeIfPresent(.tokenizationMethod)
+        self.addressLine1Check = try container.sdkDecodeIfPresent(.addressLine1Check)
+        self.addressZipCheck = try container.sdkDecodeIfPresent(.addressZipCheck)
+        self.authenticated = try container.sdkDecodeIfPresent(.authenticated)
+        self.brand = try container.sdkDecodeIfPresent(.brand)
+        self.card = try container.sdkDecodeIfPresent(.card)
+        self.country = try container.sdkDecodeIfPresent(.country)
+        self.customer = try container.sdkDecodeIfPresent(.customer)
+        self.cvcCheck = try container.sdkDecodeIfPresent(.cvcCheck)
+        self.dynamicLast4 = try container.sdkDecodeIfPresent(.dynamicLast4)
+        self.expMonth = try container.sdkDecodeIfPresent(.expMonth)
+        self.expYear = try container.sdkDecodeIfPresent(.expYear)
+        self.fingerprint = try container.sdkDecodeIfPresent(.fingerprint)
+        self.funding = try container.sdkDecodeIfPresent(.funding)
+        self.last4 = try container.sdkDecodeIfPresent(.last4)
+        self.name = try container.sdkDecodeIfPresent(.name)
+        self.threeDSecure = try container.sdkDecodeIfPresent(.threeDSecure)
+        self.tokenizationMethod = try container.sdkDecodeIfPresent(.tokenizationMethod)
     }
 }

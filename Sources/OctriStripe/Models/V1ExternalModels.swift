@@ -3,13 +3,14 @@
 
 import Foundation
 
-/// V1External domain models
+// V1External domain models
 public enum ExternalAccount {
     case bankAccount(BankAccount)
     case card(Card)
 }
 
 extension ExternalAccount: Codable {
+
     private enum CodingKeys: String, CodingKey {
         case discriminator = "object"
     }
@@ -17,28 +18,20 @@ extension ExternalAccount: Codable {
     public init(from decoder: Decoder) throws {
         let tagged = try decoder.container(keyedBy: CodingKeys.self)
         let discriminator = try tagged.decode(String.self, forKey: .discriminator)
-        if let value = try Self.decodeGroup1(discriminator, from: decoder) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            forKey: .discriminator,
-            in: tagged,
-            debugDescription: "Unknown discriminator for ExternalAccount"
-        )
+        if let value = try Self.decodeGroup1(discriminator, from: decoder) { self = value; return }
+        throw DecodingError.dataCorruptedError(forKey: .discriminator, in: tagged, debugDescription: "Unknown discriminator for ExternalAccount")
     }
 
     private static func decodeGroup1(_ discriminator: String, from decoder: Decoder) throws -> Self? {
         switch discriminator {
-        case "bank_account": try .bankAccount(BankAccount(from: decoder))
-        case "card": try .card(Card(from: decoder))
-        default: nil
+        case "bank_account": return .bankAccount(try BankAccount(from: decoder))
+        case "card": return .card(try Card(from: decoder))
+        default: return nil
         }
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -48,6 +41,7 @@ extension ExternalAccount: Codable {
         case let .card(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// Typed representation of the `ExternalAccountRequirements` API schema.
@@ -74,27 +68,22 @@ public struct ExternalAccountRequirements: Codable {
     }
 
     init() {
-        (currentlyDue, errors, pastDue, pendingVerification) = (nil, nil, nil, nil)
+        (self.currentlyDue, self.errors, self.pastDue, self.pendingVerification) = (nil, nil, nil, nil)
     }
 }
 
-public extension ExternalAccountRequirements {
-    init(from decoder: Decoder) throws {
+extension ExternalAccountRequirements {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        currentlyDue = try container.sdkDecodeIfPresent(.currentlyDue)
-        errors = try container.sdkDecodeIfPresent(.errors)
-        pastDue = try container.sdkDecodeIfPresent(.pastDue)
-        pendingVerification = try container.sdkDecodeIfPresent(.pendingVerification)
+        self.currentlyDue = try container.sdkDecodeIfPresent(.currentlyDue)
+        self.errors = try container.sdkDecodeIfPresent(.errors)
+        self.pastDue = try container.sdkDecodeIfPresent(.pastDue)
+        self.pendingVerification = try container.sdkDecodeIfPresent(.pendingVerification)
     }
 }
 
-public extension ExternalAccountRequirements {
-    init(
-        currentlyDue: [String]? = nil,
-        errors: [AccountRequirementsError]? = nil,
-        pastDue: [String]? = nil,
-        pendingVerification: [String]? = nil
-    ) {
+extension ExternalAccountRequirements {
+    public init(currentlyDue: [String]? = nil, errors: [AccountRequirementsError]? = nil, pastDue: [String]? = nil, pendingVerification: [String]? = nil) {
         self.init()
         (self.currentlyDue, self.errors) = (currentlyDue, errors)
         (self.pastDue, self.pendingVerification) = (pastDue, pendingVerification)

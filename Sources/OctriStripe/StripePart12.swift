@@ -9,21 +9,11 @@ public class V1FinancialConnectionsAccountsDisconnectNamespace {
         self.config = config
     }
 
-    /// Disconnects a Financial Connections account and disables access to its associated data. After disconnection, the
-    /// authenticated user can no longer access data such as balances or transactions for that account. Use `expand` to
-    /// control related fields included in the response.
+/// Disconnects a Financial Connections account and disables access to its associated data. After disconnection, the authenticated user can no longer access data such as balances or transactions for that account. Use `expand` to control related fields included in the response.
     ///
-    /// Disables your access to a Financial Connections Account . You will no longer be able to access data associated
-    /// with the account (e.g. balances, transactions).
-    public func postFinancialConnectionsAccountsAccount(
-        account: String,
-        expand: [String]?
-    ) async throws -> FinancialConnectionsAccount {
-        try await V1FinancialConnectionsAccountsDisconnectMethods.postFinancialConnectionsAccountsAccountDisconnect(
-            config: config,
-            account: account,
-            expand: expand
-        )
+    /// Disables your access to a Financial Connections Account . You will no longer be able to access data associated with the account (e.g. balances, transactions).
+    public func postFinancialConnectionsAccountsAccount(account: String, expand: [String]?) async throws -> FinancialConnectionsAccount {
+        return try await V1FinancialConnectionsAccountsDisconnectMethods.postFinancialConnectionsAccountsAccountDisconnect(config: config, account: account, expand: expand)
     }
 }
 
@@ -33,28 +23,11 @@ public class V1FinancialConnectionsAccountsOwnersNamespace {
         self.config = config
     }
 
-    /// Lists the owners associated with a Financial Connections account's ownership object. Supply `ownership` to
-    /// select the ownership record, and use cursor parameters with `limit` to paginate the owners. Each result can
-    /// include the owner's name, contact details, ownership reference, and refresh timestamp.
+/// Lists the owners associated with a Financial Connections account's ownership object. Supply `ownership` to select the ownership record, and use cursor parameters with `limit` to paginate the owners. Each result can include the owner's name, contact details, ownership reference, and refresh timestamp.
     ///
     /// Lists all owners for a given Account
-    public func getFinancialConnectionsAccountsAccount(
-        account: String,
-        ownership: String,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        startingAfter: String?
-    ) async throws -> GetFinancialConnectionsAccountsAccountOwnersResponse {
-        try await V1FinancialConnectionsAccountsOwnersMethods.getFinancialConnectionsAccountsAccountOwners(
-            config: config,
-            account: account,
-            ownership: ownership,
-            endingBefore: endingBefore,
-            expand: expand,
-            limit: limit,
-            startingAfter: startingAfter
-        )
+    public func getFinancialConnectionsAccountsAccount(account: String, ownership: String, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetFinancialConnectionsAccountsAccountOwnersResponse {
+        return try await V1FinancialConnectionsAccountsOwnersMethods.getFinancialConnectionsAccountsAccountOwners(config: config, account: account, ownership: ownership, endingBefore: endingBefore, expand: expand, limit: limit, startingAfter: startingAfter)
     }
 }
 
@@ -64,22 +37,11 @@ public class V1FinancialConnectionsAccountsRefreshNamespace {
         self.config = config
     }
 
-    /// Triggers a refresh of selected data for a Financial Connections account. Supply `features` to specify which
-    /// account data to refresh, and use `expand` to request expanded response fields. The response includes the account
-    /// and the state of the latest refresh operations.
+/// Triggers a refresh of selected data for a Financial Connections account. Supply `features` to specify which account data to refresh, and use `expand` to request expanded response fields. The response includes the account and the state of the latest refresh operations.
     ///
     /// Refreshes the data associated with a Financial Connections Account .
-    public func postFinancialConnectionsAccountsAccount(
-        account: String,
-        features: [PostFinancialConnectionsAccountsAccountRefreshRequestBodyFeaturesItem],
-        expand: [String]?
-    ) async throws -> FinancialConnectionsAccount {
-        try await V1FinancialConnectionsAccountsRefreshMethods.postFinancialConnectionsAccountsAccountRefresh(
-            config: config,
-            account: account,
-            features: features,
-            expand: expand
-        )
+    public func postFinancialConnectionsAccountsAccount(account: String, features: [PostFinancialConnectionsAccountsAccountRefreshRequestBodyFeaturesItem], expand: [String]?) async throws -> FinancialConnectionsAccount {
+        return try await V1FinancialConnectionsAccountsRefreshMethods.postFinancialConnectionsAccountsAccountRefresh(config: config, account: account, features: features, expand: expand)
     }
 }
 
@@ -89,23 +51,11 @@ public class V1FinancialConnectionsAccountsSubscribeNamespace {
         self.config = config
     }
 
-    /// Triggers periodic refreshes for selected data associated with a Financial Connections account. Supply `features`
-    /// to subscribe to recurring refreshes, which typically occur once a day while the account is active. The response
-    /// contains the account and its current refresh configuration.
+/// Triggers periodic refreshes for selected data associated with a Financial Connections account. Supply `features` to subscribe to recurring refreshes, which typically occur once a day while the account is active. The response contains the account and its current refresh configuration.
     ///
-    /// Subscribes to periodic refreshes of data associated with a Financial Connections Account . When the account
-    /// status is active, data is typically refreshed once a day.
-    public func postFinancialConnectionsAccountsAccount(
-        account: String,
-        features: [PostFinancialConnectionsAccountsAccountSubscribeRequestBodyFeaturesItem],
-        expand: [String]?
-    ) async throws -> FinancialConnectionsAccount {
-        try await V1FinancialConnectionsAccountsSubscribeMethods.postFinancialConnectionsAccountsAccountSubscribe(
-            config: config,
-            account: account,
-            features: features,
-            expand: expand
-        )
+    /// Subscribes to periodic refreshes of data associated with a Financial Connections Account . When the account status is active, data is typically refreshed once a day.
+    public func postFinancialConnectionsAccountsAccount(account: String, features: [PostFinancialConnectionsAccountsAccountSubscribeRequestBodyFeaturesItem], expand: [String]?) async throws -> FinancialConnectionsAccount {
+        return try await V1FinancialConnectionsAccountsSubscribeMethods.postFinancialConnectionsAccountsAccountSubscribe(config: config, account: account, features: features, expand: expand)
     }
 }
 
@@ -115,22 +65,11 @@ public class V1FinancialConnectionsAccountsUnsubscribeNamespace {
         self.config = config
     }
 
-    /// Stops periodic refreshes for selected data associated with a Financial Connections account. Supply `features` to
-    /// identify the account data from which to unsubscribe. The response contains the account with the requested
-    /// refresh subscription removed.
+/// Stops periodic refreshes for selected data associated with a Financial Connections account. Supply `features` to identify the account data from which to unsubscribe. The response contains the account with the requested refresh subscription removed.
     ///
     /// Unsubscribes from periodic refreshes of data associated with a Financial Connections Account .
-    public func postFinancialConnectionsAccountsAccount(
-        account: String,
-        features: [PostFinancialConnectionsAccountsAccountUnsubscribeRequestBodyXe4e4ae677c],
-        expand: [String]?
-    ) async throws -> FinancialConnectionsAccount {
-        try await V1FinancialConnectionsAccountsUnsubscribeMethods.postFinancialConnectionsAccountsAccountUnsubscribe(
-            config: config,
-            account: account,
-            features: features,
-            expand: expand
-        )
+    public func postFinancialConnectionsAccountsAccount(account: String, features: [PostFinancialConnectionsAccountsAccountUnsubscribeRequestBodyXe4e4ae677c], expand: [String]?) async throws -> FinancialConnectionsAccount {
+        return try await V1FinancialConnectionsAccountsUnsubscribeMethods.postFinancialConnectionsAccountsAccountUnsubscribe(config: config, account: account, features: features, expand: expand)
     }
 }
 
@@ -150,44 +89,18 @@ public class V1FinancialConnectionsAccountsNamespace {
         unsubscribe = V1FinancialConnectionsAccountsUnsubscribeNamespace(config: config)
     }
 
-    /// Lists Financial Connections accounts. Filter the results by account holder or session, and use cursor parameters
-    /// with `limit` to paginate the returned accounts. Each result describes an account held outside the payment
-    /// platform.
+/// Lists Financial Connections accounts. Filter the results by account holder or session, and use cursor parameters with `limit` to paginate the returned accounts. Each result describes an account held outside the payment platform.
     ///
     /// Returns a list of Financial Connections Account objects.
-    public func getFinancialConnections(
-        accountHolder: GetFinancialConnectionsAccountsParameter?,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        session: String?,
-        startingAfter: String?
-    ) async throws -> GetFinancialConnectionsAccountsResponse {
-        try await V1FinancialConnectionsAccountsMethods.getFinancialConnectionsAccounts(
-            config: config,
-            accountHolder: accountHolder,
-            endingBefore: endingBefore,
-            expand: expand,
-            limit: limit,
-            session: session,
-            startingAfter: startingAfter
-        )
+    public func getFinancialConnections(accountHolder: GetFinancialConnectionsAccountsParameter?, endingBefore: String?, expand: [String]?, limit: Int?, session: String?, startingAfter: String?) async throws -> GetFinancialConnectionsAccountsResponse {
+        return try await V1FinancialConnectionsAccountsMethods.getFinancialConnectionsAccounts(config: config, accountHolder: accountHolder, endingBefore: endingBefore, expand: expand, limit: limit, session: session, startingAfter: startingAfter)
     }
 
-    /// Retrieves a Financial Connections account by its identifier. Use `expand` to include selected related fields in
-    /// expanded form. The response includes account category, institution, ownership, permissions, balance information,
-    /// and account status.
+/// Retrieves a Financial Connections account by its identifier. Use `expand` to include selected related fields in expanded form. The response includes account category, institution, ownership, permissions, balance information, and account status.
     ///
     /// Retrieves the details of an Financial Connections Account .
-    public func getFinancialConnectionsAccount(
-        account: String,
-        expand: [String]?
-    ) async throws -> FinancialConnectionsAccount {
-        try await V1FinancialConnectionsAccountsMethods.getFinancialConnectionsAccountsAccount(
-            config: config,
-            account: account,
-            expand: expand
-        )
+    public func getFinancialConnectionsAccount(account: String, expand: [String]?) async throws -> FinancialConnectionsAccount {
+        return try await V1FinancialConnectionsAccountsMethods.getFinancialConnectionsAccountsAccount(config: config, account: account, expand: expand)
     }
 }
 
@@ -197,30 +110,16 @@ public class V1FinancialConnectionsSessionsNamespace {
         self.config = config
     }
 
-    /// To launch the Financial Connections authorization flow, create a Session . The session’s client_secret can be
-    /// used to launch the flow using Stripe.js.
-    public func postFinancialConnections(options: V1FinancialConnectionsSessionsMethods
-        .PostFinancialConnectionsSessionsOptions) async throws -> FinancialConnectionsSession {
-        try await V1FinancialConnectionsSessionsMethods.postFinancialConnectionsSessions(
-            config: config,
-            options: options
-        )
+/// To launch the Financial Connections authorization flow, create a Session . The session’s client_secret can be used to launch the flow using Stripe.js.
+    public func postFinancialConnections(options: V1FinancialConnectionsSessionsMethods.PostFinancialConnectionsSessionsOptions) async throws -> FinancialConnectionsSession {
+        return try await V1FinancialConnectionsSessionsMethods.postFinancialConnectionsSessions(config: config, options: options)
     }
 
-    /// Retrieves a Financial Connections session by its identifier. Use `expand` to request expanded fields in the
-    /// returned session object. The session includes collected accounts, requested permissions, and the client secret
-    /// used to launch the client-side authentication flow.
+/// Retrieves a Financial Connections session by its identifier. Use `expand` to request expanded fields in the returned session object. The session includes collected accounts, requested permissions, and the client secret used to launch the client-side authentication flow.
     ///
     /// Retrieves the details of a Financial Connections Session
-    public func getFinancialConnectionsSession(
-        session: String,
-        expand: [String]?
-    ) async throws -> FinancialConnectionsSession {
-        try await V1FinancialConnectionsSessionsMethods.getFinancialConnectionsSessionsSession(
-            config: config,
-            session: session,
-            expand: expand
-        )
+    public func getFinancialConnectionsSession(session: String, expand: [String]?) async throws -> FinancialConnectionsSession {
+        return try await V1FinancialConnectionsSessionsMethods.getFinancialConnectionsSessionsSession(config: config, session: session, expand: expand)
     }
 }
 
@@ -230,46 +129,18 @@ public class V1FinancialConnectionsTransactionsNamespace {
         self.config = config
     }
 
-    /// Lists transactions associated with a Financial Connections account. Use `account` to select the account and the
-    /// cursor parameters to navigate through results, and filter by transaction time or refresh token when needed. The
-    /// response is a list containing transaction objects and pagination metadata.
+/// Lists transactions associated with a Financial Connections account. Use `account` to select the account and the cursor parameters to navigate through results, and filter by transaction time or refresh token when needed. The response is a list containing transaction objects and pagination metadata.
     ///
     /// Returns a list of Financial Connections Transaction objects.
-    public func getFinancialConnections(
-        account: String,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        startingAfter: String?,
-        transactedAt: GetFinancialConnectionsTransactionsParameter?,
-        transactionRefresh: GetFinancialConnectionsTransactionsParameterXf4fdae2d?
-    ) async throws -> GetFinancialConnectionsTransactionsResponse {
-        try await V1FinancialConnectionsTransactionsMethods.getFinancialConnectionsTransactions(
-            config: config,
-            account: account,
-            endingBefore: endingBefore,
-            expand: expand,
-            limit: limit,
-            startingAfter: startingAfter,
-            transactedAt: transactedAt,
-            transactionRefresh: transactionRefresh
-        )
+    public func getFinancialConnections(account: String, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?, transactedAt: GetFinancialConnectionsTransactionsParameter?, transactionRefresh: GetFinancialConnectionsTransactionsParameterXf4fdae2d?) async throws -> GetFinancialConnectionsTransactionsResponse {
+        return try await V1FinancialConnectionsTransactionsMethods.getFinancialConnectionsTransactions(config: config, account: account, endingBefore: endingBefore, expand: expand, limit: limit, startingAfter: startingAfter, transactedAt: transactedAt, transactionRefresh: transactionRefresh)
     }
 
-    /// Retrieves a Financial Connections transaction by its identifier. Use `expand` to request expanded fields in the
-    /// transaction response. The returned transaction includes its account, amount, currency, status, transaction time,
-    /// and refresh metadata.
+/// Retrieves a Financial Connections transaction by its identifier. Use `expand` to request expanded fields in the transaction response. The returned transaction includes its account, amount, currency, status, transaction time, and refresh metadata.
     ///
     /// Retrieves the details of a Financial Connections Transaction
-    public func getFinancialConnectionsTransaction(
-        transaction: String,
-        expand: [String]?
-    ) async throws -> FinancialConnectionsTransaction {
-        try await V1FinancialConnectionsTransactionsMethods.getFinancialConnectionsTransactionsTransaction(
-            config: config,
-            transaction: transaction,
-            expand: expand
-        )
+    public func getFinancialConnectionsTransaction(transaction: String, expand: [String]?) async throws -> FinancialConnectionsTransaction {
+        return try await V1FinancialConnectionsTransactionsMethods.getFinancialConnectionsTransactionsTransaction(config: config, transaction: transaction, expand: expand)
     }
 }
 
@@ -290,60 +161,25 @@ public class V1ForwardingRequestsNamespace {
         self.config = config
     }
 
-    /// Lists ForwardingRequest objects. Use `created` to filter by creation timestamp and the cursor parameters to
-    /// navigate through the list, and use `expand` to request expanded fields. The response contains forwarding
-    /// requests and pagination metadata.
+/// Lists ForwardingRequest objects. Use `created` to filter by creation timestamp and the cursor parameters to navigate through the list, and use `expand` to request expanded fields. The response contains forwarding requests and pagination metadata.
     ///
     /// Lists all ForwardingRequest objects.
-    public func getForwarding(
-        created: GetForwardingRequestsParameter?,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        startingAfter: String?
-    ) async throws -> GetForwardingRequestsResponse {
-        try await V1ForwardingRequestsMethods.getForwardingRequests(
-            config: config,
-            created: created,
-            endingBefore: endingBefore,
-            expand: expand,
-            limit: limit,
-            startingAfter: startingAfter
-        )
+    public func getForwarding(created: GetForwardingRequestsParameter?, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetForwardingRequestsResponse {
+        return try await V1ForwardingRequestsMethods.getForwardingRequests(config: config, created: created, endingBefore: endingBefore, expand: expand, limit: limit, startingAfter: startingAfter)
     }
 
-    /// Creates a ForwardingRequest that sends a request to a configured destination URL on your behalf. Supply
-    /// `payment_method`, `replacements`, and `url`, and optionally provide request headers, a body, metadata, or
-    /// response expansions. The forwarding request inserts the payment method into the destination request and replaces
-    /// the selected sensitive field kinds.
+/// Creates a ForwardingRequest that sends a request to a configured destination URL on your behalf. Supply `payment_method`, `replacements`, and `url`, and optionally provide request headers, a body, metadata, or response expansions. The forwarding request inserts the payment method into the destination request and replaces the selected sensitive field kinds.
     ///
     /// Creates a ForwardingRequest object.
-    public func postForwarding(
-        paymentMethod: String,
-        replacements: [PostForwardingRequestsRequestBodyReplacementsItem],
-        url: String,
-        expand: [String]?,
-        metadata: [String: String]?,
-        request: PostForwardingRequestsRequestBodyRequest?
-    ) async throws -> ForwardingRequest {
-        try await V1ForwardingRequestsMethods.postForwardingRequests(
-            config: config,
-            paymentMethod: paymentMethod,
-            replacements: replacements,
-            url: url,
-            expand: expand,
-            metadata: metadata,
-            request: request
-        )
+    public func postForwarding(paymentMethod: String, replacements: [PostForwardingRequestsRequestBodyReplacementsItem], url: String, expand: [String]?, metadata: [String: String]?, request: PostForwardingRequestsRequestBodyRequest?) async throws -> ForwardingRequest {
+        return try await V1ForwardingRequestsMethods.postForwardingRequests(config: config, paymentMethod: paymentMethod, replacements: replacements, url: url, expand: expand, metadata: metadata, request: request)
     }
 
-    /// Retrieves a ForwardingRequest by its identifier. Use `expand` to request expanded fields in the returned object.
-    /// The response includes the destination URL, payment method, replacement configuration, and redacted request and
-    /// response details.
+/// Retrieves a ForwardingRequest by its identifier. Use `expand` to request expanded fields in the returned object. The response includes the destination URL, payment method, replacement configuration, and redacted request and response details.
     ///
     /// Retrieves a ForwardingRequest object.
     public func getForwardingId(id: String, expand: [String]?) async throws -> ForwardingRequest {
-        try await V1ForwardingRequestsMethods.getForwardingRequestsId(config: config, id: id, expand: expand)
+        return try await V1ForwardingRequestsMethods.getForwardingRequestsId(config: config, id: id, expand: expand)
     }
 }
 
@@ -360,25 +196,17 @@ public class V1IdentityVerificationReportsNamespace {
         self.config = config
     }
 
-    /// Lists verification reports generated from identity verification attempts. Use `client_reference_id`,
-    /// `verification_session`, and `type` to filter results, and use cursor parameters with `limit` to control
-    /// pagination.
+/// Lists verification reports generated from identity verification attempts. Use `client_reference_id`, `verification_session`, and `type` to filter results, and use cursor parameters with `limit` to control pagination.
     ///
     /// List all verification reports.
-    public func getIdentity(options: V1IdentityVerificationReportsMethods
-        .GetIdentityVerificationReportsOptions) async throws -> GetIdentityVerificationReportsResponse {
-        try await V1IdentityVerificationReportsMethods.getIdentityVerificationReports(config: config, options: options)
+    public func getIdentity(options: V1IdentityVerificationReportsMethods.GetIdentityVerificationReportsOptions) async throws -> GetIdentityVerificationReportsResponse {
+        return try await V1IdentityVerificationReportsMethods.getIdentityVerificationReports(config: config, options: options)
     }
 
-    /// Retrieves one verification report by its identifier. Use `expand` when you need selected fields included
-    /// directly in the response instead of returned as references.
+/// Retrieves one verification report by its identifier. Use `expand` when you need selected fields included directly in the response instead of returned as references.
     ///
     /// Retrieves an existing VerificationReport
     public func getIdentityReport(report: String, expand: [String]?) async throws -> IdentityVerificationReport {
-        try await V1IdentityVerificationReportsMethods.getIdentityVerificationReportsReport(
-            config: config,
-            report: report,
-            expand: expand
-        )
+        return try await V1IdentityVerificationReportsMethods.getIdentityVerificationReportsReport(config: config, report: report, expand: expand)
     }
 }

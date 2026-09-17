@@ -3,79 +3,43 @@
 
 import Foundation
 
-/// V1Customer domain models
-public extension CustomerSessionResourceComponents {
-    init(from decoder: Decoder) throws {
+// V1Customer domain models
+extension CustomerSessionResourceComponents {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.activeEntitlements) else {
-            throw SdkValidationError(
-                field: "active_entitlements",
-                code: "required",
-                message: "Validation failed for 'active_entitlements': value is required"
-            )
+            throw SdkValidationError(field: "active_entitlements", code: "required", message: "Validation failed for 'active_entitlements': value is required")
         }
         guard container.contains(.buyButton) else {
-            throw SdkValidationError(
-                field: "buy_button",
-                code: "required",
-                message: "Validation failed for 'buy_button': value is required"
-            )
+            throw SdkValidationError(field: "buy_button", code: "required", message: "Validation failed for 'buy_button': value is required")
         }
         guard container.contains(.customerPortal) else {
-            throw SdkValidationError(
-                field: "customer_portal",
-                code: "required",
-                message: "Validation failed for 'customer_portal': value is required"
-            )
+            throw SdkValidationError(field: "customer_portal", code: "required", message: "Validation failed for 'customer_portal': value is required")
         }
         guard container.contains(.customerSheet) else {
-            throw SdkValidationError(
-                field: "customer_sheet",
-                code: "required",
-                message: "Validation failed for 'customer_sheet': value is required"
-            )
+            throw SdkValidationError(field: "customer_sheet", code: "required", message: "Validation failed for 'customer_sheet': value is required")
         }
         guard container.contains(.mobilePaymentElement) else {
-            throw SdkValidationError(
-                field: "mobile_payment_element",
-                code: "required",
-                message: "Validation failed for 'mobile_payment_element': value is required"
-            )
+            throw SdkValidationError(field: "mobile_payment_element", code: "required", message: "Validation failed for 'mobile_payment_element': value is required")
         }
         guard container.contains(.paymentElement) else {
-            throw SdkValidationError(
-                field: "payment_element",
-                code: "required",
-                message: "Validation failed for 'payment_element': value is required"
-            )
+            throw SdkValidationError(field: "payment_element", code: "required", message: "Validation failed for 'payment_element': value is required")
         }
         guard container.contains(.pricingTable) else {
-            throw SdkValidationError(
-                field: "pricing_table",
-                code: "required",
-                message: "Validation failed for 'pricing_table': value is required"
-            )
+            throw SdkValidationError(field: "pricing_table", code: "required", message: "Validation failed for 'pricing_table': value is required")
         }
-        activeEntitlements = try container.sdkDecodeRequired(.activeEntitlements)
-        buyButton = try container.sdkDecodeRequired(.buyButton)
-        customerPortal = try container.sdkDecodeRequired(.customerPortal)
-        customerSheet = try container.sdkDecodeRequired(.customerSheet)
-        mobilePaymentElement = try container.sdkDecodeRequired(.mobilePaymentElement)
-        paymentElement = try container.sdkDecodeRequired(.paymentElement)
-        pricingTable = try container.sdkDecodeRequired(.pricingTable)
+        self.activeEntitlements = try container.sdkDecodeRequired(.activeEntitlements)
+        self.buyButton = try container.sdkDecodeRequired(.buyButton)
+        self.customerPortal = try container.sdkDecodeRequired(.customerPortal)
+        self.customerSheet = try container.sdkDecodeRequired(.customerSheet)
+        self.mobilePaymentElement = try container.sdkDecodeRequired(.mobilePaymentElement)
+        self.paymentElement = try container.sdkDecodeRequired(.paymentElement)
+        self.pricingTable = try container.sdkDecodeRequired(.pricingTable)
     }
 }
 
-public extension CustomerSessionResourceComponents {
-    init(
-        activeEntitlements: CustomerSessionResourceComponentsResourceActiveEntitlements,
-        buyButton: CustomerSessionResourceComponentsResourceBuyButton,
-        customerPortal: CustomerSessionResourceComponentsResourceCustomerPortal,
-        customerSheet: CustomerSessionResourceComponentsResourceCustomerSheet,
-        mobilePaymentElement: CustomerSessionResourceComponentsResourceMobilePaymentElement,
-        paymentElement: CustomerSessionResourceComponentsResourcePaymentElement,
-        pricingTable: CustomerSessionResourceComponentsResourcePricingTable
-    ) {
+extension CustomerSessionResourceComponents {
+    public init(activeEntitlements: CustomerSessionResourceComponentsResourceActiveEntitlements, buyButton: CustomerSessionResourceComponentsResourceBuyButton, customerPortal: CustomerSessionResourceComponentsResourceCustomerPortal, customerSheet: CustomerSessionResourceComponentsResourceCustomerSheet, mobilePaymentElement: CustomerSessionResourceComponentsResourceMobilePaymentElement, paymentElement: CustomerSessionResourceComponentsResourcePaymentElement, pricingTable: CustomerSessionResourceComponentsResourcePricingTable) {
         (self.activeEntitlements, self.buyButton) = (activeEntitlements, buyButton)
         (self.customerPortal, self.customerSheet) = (customerPortal, customerSheet)
         (self.mobilePaymentElement, self.paymentElement) = (mobilePaymentElement, paymentElement)
@@ -92,27 +56,21 @@ public struct CustomerSessionResourceComponentsResourceActiveEntitlements: Codab
         case enabled
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension CustomerSessionResourceComponentsResourceActiveEntitlements {
-    init(from decoder: Decoder) throws {
+extension CustomerSessionResourceComponentsResourceActiveEntitlements {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.enabled) else {
-            throw SdkValidationError(
-                field: "enabled",
-                code: "required",
-                message: "Validation failed for 'enabled': value is required"
-            )
+            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
         }
-        enabled = try container.sdkDecodeRequired(.enabled)
+        self.enabled = try container.sdkDecodeRequired(.enabled)
     }
 }
 
-public extension CustomerSessionResourceComponentsResourceActiveEntitlements {
-    init(enabled: Bool) {
+extension CustomerSessionResourceComponentsResourceActiveEntitlements {
+    public init(enabled: Bool) {
         self.enabled = enabled
     }
 }
@@ -126,27 +84,21 @@ public struct CustomerSessionResourceComponentsResourceBuyButton: Codable {
         case enabled
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension CustomerSessionResourceComponentsResourceBuyButton {
-    init(from decoder: Decoder) throws {
+extension CustomerSessionResourceComponentsResourceBuyButton {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.enabled) else {
-            throw SdkValidationError(
-                field: "enabled",
-                code: "required",
-                message: "Validation failed for 'enabled': value is required"
-            )
+            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
         }
-        enabled = try container.sdkDecodeRequired(.enabled)
+        self.enabled = try container.sdkDecodeRequired(.enabled)
     }
 }
 
-public extension CustomerSessionResourceComponentsResourceBuyButton {
-    init(enabled: Bool) {
+extension CustomerSessionResourceComponentsResourceBuyButton {
+    public init(enabled: Bool) {
         self.enabled = enabled
     }
 }
@@ -160,27 +112,21 @@ public struct CustomerSessionResourceComponentsResourceCustomerPortal: Codable {
         case enabled
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension CustomerSessionResourceComponentsResourceCustomerPortal {
-    init(from decoder: Decoder) throws {
+extension CustomerSessionResourceComponentsResourceCustomerPortal {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.enabled) else {
-            throw SdkValidationError(
-                field: "enabled",
-                code: "required",
-                message: "Validation failed for 'enabled': value is required"
-            )
+            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
         }
-        enabled = try container.sdkDecodeRequired(.enabled)
+        self.enabled = try container.sdkDecodeRequired(.enabled)
     }
 }
 
-public extension CustomerSessionResourceComponentsResourceCustomerPortal {
-    init(enabled: Bool) {
+extension CustomerSessionResourceComponentsResourceCustomerPortal {
+    public init(enabled: Bool) {
         self.enabled = enabled
     }
 }
@@ -197,28 +143,22 @@ public struct CustomerSessionResourceComponentsResourceCustomerSheet: Codable {
         case features
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension CustomerSessionResourceComponentsResourceCustomerSheet {
-    init(from decoder: Decoder) throws {
+extension CustomerSessionResourceComponentsResourceCustomerSheet {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.enabled) else {
-            throw SdkValidationError(
-                field: "enabled",
-                code: "required",
-                message: "Validation failed for 'enabled': value is required"
-            )
+            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
         }
-        enabled = try container.sdkDecodeRequired(.enabled)
-        features = try container.sdkDecodeIfPresent(.features)
+        self.enabled = try container.sdkDecodeRequired(.enabled)
+        self.features = try container.sdkDecodeIfPresent(.features)
     }
 }
 
-public extension CustomerSessionResourceComponentsResourceCustomerSheet {
-    init(enabled: Bool, features: CustomerSessionResourceComponentsResourceCustomerSheetFeatures? = nil) {
+extension CustomerSessionResourceComponentsResourceCustomerSheet {
+    public init(enabled: Bool, features: CustomerSessionResourceComponentsResourceCustomerSheetFeatures? = nil) {
         (self.enabled, self.features) = (enabled, features)
     }
 }
@@ -230,43 +170,36 @@ public enum CustomerSessionResourceComponentsResourceCustomerSheetFeatures {
 }
 
 extension CustomerSessionResourceComponentsResourceCustomerSheetFeatures: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for CustomerSessionResourceComponentsResourceCustomerSheetFeatures"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for CustomerSessionResourceComponentsResourceCustomerSheetFeatures")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             CustomerSessionResourceComponentsResourceCustomerSheetResourceFeatures.self
         ) {
-            return .customerSessionResourceComponentsResourceCustomerSheetResourceFeatures(value)
+            return             .customerSessionResourceComponentsResourceCustomerSheetResourceFeatures(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .customerSessionResourceComponentsResourceCustomerSheetResourceFeatures(value): try container
-            .encode(value); return true
+        case let .customerSessionResourceComponentsResourceCustomerSheetResourceFeatures(value): try container.encode(value); return true
         }
     }
+
 }
 
-public typealias CustomerSessionResourceComponentsResourceCustomerSheetResourcX620c89c80b =
-    [CustomerSessionResourceComponentsResourceCustomerSheetResourcXfe5bb14688]
+public typealias CustomerSessionResourceComponentsResourceCustomerSheetResourcX620c89c80b = [CustomerSessionResourceComponentsResourceCustomerSheetResourcXfe5bb14688]
 
 /// This hash contains the features the customer sheet supports.
 public struct CustomerSessionResourceComponentsResourceCustomerSheetResourceFeatures: Codable {
@@ -287,24 +220,20 @@ public struct CustomerSessionResourceComponentsResourceCustomerSheetResourceFeat
     }
 
     init() {
-        (paymentMethodAllowRedisplayFilters, paymentMethodRemove) = (nil, nil)
+        (self.paymentMethodAllowRedisplayFilters, self.paymentMethodRemove) = (nil, nil)
     }
 }
 
-public extension CustomerSessionResourceComponentsResourceCustomerSheetResourceFeatures {
-    init(from decoder: Decoder) throws {
+extension CustomerSessionResourceComponentsResourceCustomerSheetResourceFeatures {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        paymentMethodAllowRedisplayFilters = try container.sdkDecodeIfPresent(.paymentMethodAllowRedisplayFilters)
-        paymentMethodRemove = try container.sdkDecodeIfPresent(.paymentMethodRemove)
+        self.paymentMethodAllowRedisplayFilters = try container.sdkDecodeIfPresent(.paymentMethodAllowRedisplayFilters)
+        self.paymentMethodRemove = try container.sdkDecodeIfPresent(.paymentMethodRemove)
     }
 }
 
-public extension CustomerSessionResourceComponentsResourceCustomerSheetResourceFeatures {
-    init(
-        paymentMethodAllowRedisplayFilters: CustomerSessionResourceComponentsResourceCustomerSheetResourcX620c89c80b? =
-            nil,
-        paymentMethodRemove: CustomerSessionResourceComponentsResourceCustomerSheetResourcX0b6bb25794? = nil
-    ) {
+extension CustomerSessionResourceComponentsResourceCustomerSheetResourceFeatures {
+    public init(paymentMethodAllowRedisplayFilters: CustomerSessionResourceComponentsResourceCustomerSheetResourcX620c89c80b? = nil, paymentMethodRemove: CustomerSessionResourceComponentsResourceCustomerSheetResourcX0b6bb25794? = nil) {
         self.init()
         self.paymentMethodAllowRedisplayFilters = paymentMethodAllowRedisplayFilters
         self.paymentMethodRemove = paymentMethodRemove
@@ -323,28 +252,22 @@ public struct CustomerSessionResourceComponentsResourceMobilePaymentElement: Cod
         case features
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension CustomerSessionResourceComponentsResourceMobilePaymentElement {
-    init(from decoder: Decoder) throws {
+extension CustomerSessionResourceComponentsResourceMobilePaymentElement {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.enabled) else {
-            throw SdkValidationError(
-                field: "enabled",
-                code: "required",
-                message: "Validation failed for 'enabled': value is required"
-            )
+            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
         }
-        enabled = try container.sdkDecodeRequired(.enabled)
-        features = try container.sdkDecodeIfPresent(.features)
+        self.enabled = try container.sdkDecodeRequired(.enabled)
+        self.features = try container.sdkDecodeIfPresent(.features)
     }
 }
 
-public extension CustomerSessionResourceComponentsResourceMobilePaymentElement {
-    init(enabled: Bool, features: CustomerSessionResourceComponentsResourceMobilePaymentElementFeatures? = nil) {
+extension CustomerSessionResourceComponentsResourceMobilePaymentElement {
+    public init(enabled: Bool, features: CustomerSessionResourceComponentsResourceMobilePaymentElementFeatures? = nil) {
         (self.enabled, self.features) = (enabled, features)
     }
 }
@@ -356,43 +279,36 @@ public enum CustomerSessionResourceComponentsResourceMobilePaymentElementFeature
 }
 
 extension CustomerSessionResourceComponentsResourceMobilePaymentElementFeatures: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for CustomerSessionResourceComponentsResourceMobilePaymentElementFeatures"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for CustomerSessionResourceComponentsResourceMobilePaymentElementFeatures")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             CustomerSessionResourceComponentsResourceMobilePaymentElementX7afd8cf13d.self
         ) {
-            return .customerSessionResourceComponentsResourceMobilePaymentElementX7afd8cf13d(value)
+            return             .customerSessionResourceComponentsResourceMobilePaymentElementX7afd8cf13d(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .customerSessionResourceComponentsResourceMobilePaymentElementX7afd8cf13d(value): try container
-            .encode(value); return true
+        case let .customerSessionResourceComponentsResourceMobilePaymentElementX7afd8cf13d(value): try container.encode(value); return true
         }
     }
+
 }
 
-public typealias CustomerSessionResourceComponentsResourceMobilePaymentElementX0ae1f6c2b1 =
-    [CustomerSessionResourceComponentsResourceMobilePaymentElementXf5c1824c07]
+public typealias CustomerSessionResourceComponentsResourceMobilePaymentElementX0ae1f6c2b1 = [CustomerSessionResourceComponentsResourceMobilePaymentElementXf5c1824c07]
 
 /// This hash contains the features the mobile payment element supports.
 public struct CustomerSessionResourceComponentsResourceMobilePaymentElementX7afd8cf13d: Codable {
@@ -428,38 +344,23 @@ public struct CustomerSessionResourceComponentsResourceMobilePaymentElementX7afd
     }
 
     init() {
-        (
-            paymentMethodAllowRedisplayFilters,
-            paymentMethodRedisplay,
-            paymentMethodRemove,
-            paymentMethodSave,
-            paymentMethodSaveAllowRedisplayOverride
-        ) = (nil, nil, nil, nil, nil)
+        (self.paymentMethodAllowRedisplayFilters, self.paymentMethodRedisplay, self.paymentMethodRemove, self.paymentMethodSave, self.paymentMethodSaveAllowRedisplayOverride) = (nil, nil, nil, nil, nil)
     }
 }
 
-public extension CustomerSessionResourceComponentsResourceMobilePaymentElementX7afd8cf13d {
-    init(from decoder: Decoder) throws {
+extension CustomerSessionResourceComponentsResourceMobilePaymentElementX7afd8cf13d {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        paymentMethodAllowRedisplayFilters = try container.sdkDecodeIfPresent(.paymentMethodAllowRedisplayFilters)
-        paymentMethodRedisplay = try container.sdkDecodeIfPresent(.paymentMethodRedisplay)
-        paymentMethodRemove = try container.sdkDecodeIfPresent(.paymentMethodRemove)
-        paymentMethodSave = try container.sdkDecodeIfPresent(.paymentMethodSave)
-        paymentMethodSaveAllowRedisplayOverride = try container
-            .sdkDecodeIfPresent(.paymentMethodSaveAllowRedisplayOverride)
+        self.paymentMethodAllowRedisplayFilters = try container.sdkDecodeIfPresent(.paymentMethodAllowRedisplayFilters)
+        self.paymentMethodRedisplay = try container.sdkDecodeIfPresent(.paymentMethodRedisplay)
+        self.paymentMethodRemove = try container.sdkDecodeIfPresent(.paymentMethodRemove)
+        self.paymentMethodSave = try container.sdkDecodeIfPresent(.paymentMethodSave)
+        self.paymentMethodSaveAllowRedisplayOverride = try container.sdkDecodeIfPresent(.paymentMethodSaveAllowRedisplayOverride)
     }
 }
 
-public extension CustomerSessionResourceComponentsResourceMobilePaymentElementX7afd8cf13d {
-    init(
-        paymentMethodAllowRedisplayFilters: CustomerSessionResourceComponentsResourceMobilePaymentElementX0ae1f6c2b1? =
-            nil,
-        paymentMethodRedisplay: CustomerSessionResourceComponentsResourceMobilePaymentElementX0b0a098aaa? = nil,
-        paymentMethodRemove: CustomerSessionResourceComponentsResourceMobilePaymentElementX9ff2037268? = nil,
-        paymentMethodSave: CustomerSessionResourceComponentsResourceMobilePaymentElementXc6ad2b1eb6? = nil,
-        paymentMethodSaveAllowRedisplayOverride: CustomerSessionResourceComponentsResourceMobilePaymentElementX0131f1b8d4? =
-            nil
-    ) {
+extension CustomerSessionResourceComponentsResourceMobilePaymentElementX7afd8cf13d {
+    public init(paymentMethodAllowRedisplayFilters: CustomerSessionResourceComponentsResourceMobilePaymentElementX0ae1f6c2b1? = nil, paymentMethodRedisplay: CustomerSessionResourceComponentsResourceMobilePaymentElementX0b0a098aaa? = nil, paymentMethodRemove: CustomerSessionResourceComponentsResourceMobilePaymentElementX9ff2037268? = nil, paymentMethodSave: CustomerSessionResourceComponentsResourceMobilePaymentElementXc6ad2b1eb6? = nil, paymentMethodSaveAllowRedisplayOverride: CustomerSessionResourceComponentsResourceMobilePaymentElementX0131f1b8d4? = nil) {
         self.init()
         self.paymentMethodAllowRedisplayFilters = paymentMethodAllowRedisplayFilters
         self.paymentMethodRedisplay = paymentMethodRedisplay
@@ -480,28 +381,22 @@ public struct CustomerSessionResourceComponentsResourcePaymentElement: Codable {
         case features
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension CustomerSessionResourceComponentsResourcePaymentElement {
-    init(from decoder: Decoder) throws {
+extension CustomerSessionResourceComponentsResourcePaymentElement {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.enabled) else {
-            throw SdkValidationError(
-                field: "enabled",
-                code: "required",
-                message: "Validation failed for 'enabled': value is required"
-            )
+            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
         }
-        enabled = try container.sdkDecodeRequired(.enabled)
-        features = try container.sdkDecodeIfPresent(.features)
+        self.enabled = try container.sdkDecodeRequired(.enabled)
+        self.features = try container.sdkDecodeIfPresent(.features)
     }
 }
 
-public extension CustomerSessionResourceComponentsResourcePaymentElement {
-    init(enabled: Bool, features: CustomerSessionResourceComponentsResourcePaymentElementFeatures? = nil) {
+extension CustomerSessionResourceComponentsResourcePaymentElement {
+    public init(enabled: Bool, features: CustomerSessionResourceComponentsResourcePaymentElementFeatures? = nil) {
         (self.enabled, self.features) = (enabled, features)
     }
 }
@@ -513,43 +408,36 @@ public enum CustomerSessionResourceComponentsResourcePaymentElementFeatures {
 }
 
 extension CustomerSessionResourceComponentsResourcePaymentElementFeatures: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for CustomerSessionResourceComponentsResourcePaymentElementFeatures"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for CustomerSessionResourceComponentsResourcePaymentElementFeatures")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             CustomerSessionResourceComponentsResourcePaymentElementResourceFeatures.self
         ) {
-            return .customerSessionResourceComponentsResourcePaymentElementResourceFeatures(value)
+            return             .customerSessionResourceComponentsResourcePaymentElementResourceFeatures(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .customerSessionResourceComponentsResourcePaymentElementResourceFeatures(value): try container
-            .encode(value); return true
+        case let .customerSessionResourceComponentsResourcePaymentElementResourceFeatures(value): try container.encode(value); return true
         }
     }
+
 }
 
-public typealias CustomerSessionResourceComponentsResourcePaymentElementResourXacdce82b74 =
-    [CustomerSessionResourceComponentsResourcePaymentElementResourX755ad738ee]
+public typealias CustomerSessionResourceComponentsResourcePaymentElementResourXacdce82b74 = [CustomerSessionResourceComponentsResourcePaymentElementResourX755ad738ee]
 
 /// This hash contains the features the Payment Element supports.
 public struct CustomerSessionResourceComponentsResourcePaymentElementResourceFeatures: Codable {
@@ -589,7 +477,5 @@ public struct CustomerSessionResourceComponentsResourcePaymentElementResourceFea
         case paymentMethodSaveUsage = "payment_method_save_usage"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }

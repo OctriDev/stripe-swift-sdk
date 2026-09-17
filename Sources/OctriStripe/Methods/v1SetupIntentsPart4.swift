@@ -6,42 +6,25 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1SetupIntentsMethods {
-    /// Retrieves the details of a previously created SetupIntent. Provide `intent` to identify it, and provide
-    /// `client_secret` when using a publishable key for client-side retrieval; publishable-key responses contain only a
-    /// subset of SetupIntent properties.
+extension V1SetupIntentsMethods {
+    /// Retrieves the details of a previously created SetupIntent. Provide `intent` to identify it, and provide `client_secret` when using a publishable key for client-side retrieval; publishable-key responses contain only a subset of SetupIntent properties.
     ///
-    /// Retrieves the details of a SetupIntent that has previously been created. Client-side retrieval using a
-    /// publishable key is allowed when the client_secret is provided in the query string. When retrieved with a
-    /// publishable key, only a subset of properties will be returned. Please refer to the SetupIntent object reference
-    /// for more details.
+    /// Retrieves the details of a SetupIntent that has previously been created. Client-side retrieval using a publishable key is allowed when the client_secret is provided in the query string. When retrieved with a publishable key, only a subset of properties will be returned. Please refer to the SetupIntent object reference for more details.
     ///
     /// - Parameters:
     /// - clientSecret: The client secret of the SetupIntent. We require this string
     ///   if you use a publishable key to retrieve the SetupIntent.
     /// - expand: Specifies which fields in the response should be expanded.
-    static func getSetupIntentsIntent(
-        config: ClientConfig,
-        intent: String,
-        clientSecret: String?,
-        expand: [String]?
-    ) async throws -> SetupIntent {
+    public static func getSetupIntentsIntent(config: ClientConfig, intent: String, clientSecret: String?, expand: [String]?) async throws -> SetupIntent {
         try validateLength("intent", intent, max: 5000)
 
-        if let clientSecret {
+        if let clientSecret = clientSecret {
             try validateLength("client_secret", clientSecret, max: 5000)
         }
 
-        return try await (sdkRequest(
-            "GET",
-            ["/v1/setup_intents/", sdkEncodePathSegment(sdkWireString(intent))].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("client_secret", value: clientSecret),
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .json,
-            operationId: "GetSetupIntentsIntent"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/setup_intents/", sdkEncodePathSegment(sdkWireString(intent))].joined(), config: config, query: [
+            SdkQueryParameter("client_secret", value: clientSecret),
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .json, operationId: "GetSetupIntentsIntent")).data
     }
 }

@@ -7,44 +7,23 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1SetupIntentsCancelMethods {
-    /// Cancels a SetupIntent and abandons its setup process. Use `cancellation_reason` to record whether the
-    /// cancellation was abandoned, requested by the customer, or caused by a duplicate. You cannot cancel a SetupIntent
-    /// created for a Checkout Session; expire the Checkout Session instead.
+    /// Cancels a SetupIntent and abandons its setup process. Use `cancellation_reason` to record whether the cancellation was abandoned, requested by the customer, or caused by a duplicate. You cannot cancel a SetupIntent created for a Checkout Session; expire the Checkout Session instead.
     ///
-    /// You can cancel a SetupIntent object when it’s in one of these statuses: requires_payment_method ,
-    /// requires_confirmation , or requires_action . After you cancel it, setup is abandoned and any operations on the
-    /// SetupIntent fail with an error. You can’t cancel the SetupIntent for a Checkout Session. Expire the Checkout
-    /// Session instead.
+    /// You can cancel a SetupIntent object when it’s in one of these statuses: requires_payment_method , requires_confirmation , or requires_action . After you cancel it, setup is abandoned and any operations on the SetupIntent fail with an error. You can’t cancel the SetupIntent for a Checkout Session. Expire the Checkout Session instead.
     ///
     /// - Parameters:
     /// - cancellationReason: Reason for canceling this SetupIntent. Possible values
     ///   are: `abandoned`, `requested_by_customer`, or `duplicate`
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postSetupIntentsIntentCancel(
-        config: ClientConfig,
-        intent: String,
-        cancellationReason: PostSetupIntentsIntentCancelRequestBodyCancellationReason?,
-        expand: [String]?
-    ) async throws -> SetupIntent {
+    public static func postSetupIntentsIntentCancel(config: ClientConfig, intent: String, cancellationReason: PostSetupIntentsIntentCancelRequestBodyCancellationReason?, expand: [String]?) async throws -> SetupIntent {
         try validateLength("intent", intent, max: 5000)
 
-        if let cancellationReason {
+        if let cancellationReason = cancellationReason {
             try validateLength("cancellation_reason", cancellationReason.rawValue, max: 5000)
         }
 
-        let requestBody = PostSetupIntentsIntentCancelRequestBody(
-            cancellationReason: cancellationReason,
-            expand: expand
-        )
+        let requestBody = PostSetupIntentsIntentCancelRequestBody(cancellationReason: cancellationReason, expand: expand)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/setup_intents/", sdkEncodePathSegment(sdkWireString(intent)), "/cancel"].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostSetupIntentsIntentCancel"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/setup_intents/", sdkEncodePathSegment(sdkWireString(intent)), "/cancel"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostSetupIntentsIntentCancel")).data
     }
 }

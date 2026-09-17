@@ -7,9 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1TestHelpersCustomersFundCashBalanceMethods {
-    /// Creates a test-mode cash balance transaction that simulates an incoming bank transfer for a customer. Supply
-    /// `amount` and `currency`, and optionally provide a free-text `reference` for reconciliation testing. The response
-    /// identifies the resulting customer cash balance transaction and its ending balance.
+    /// Creates a test-mode cash balance transaction that simulates an incoming bank transfer for a customer. Supply `amount` and `currency`, and optionally provide a free-text `reference` for reconciliation testing. The response identifies the resulting customer cash balance transaction and its ending balance.
     ///
     /// Create an incoming testmode bank transfer
     ///
@@ -27,36 +25,15 @@ public enum V1TestHelpersCustomersFundCashBalanceMethods {
     ///   balance. You can use this to test how Stripe's [reconciliation
     ///   algorithm](https://docs.stripe.com/payments/customer-balance/reconciliation)
     ///   applies to different user inputs.
-    public static func postTestHelpersCustomersCustomerFundCashBalance(
-        config: ClientConfig,
-        customer: String,
-        amount: Int,
-        currency: String,
-        expand: [String]?,
-        reference: String?
-    ) async throws -> CustomerCashBalanceTransaction {
+    public static func postTestHelpersCustomersCustomerFundCashBalance(config: ClientConfig, customer: String, amount: Int, currency: String, expand: [String]?, reference: String?) async throws -> CustomerCashBalanceTransaction {
         try validateLength("customer", customer, max: 5000)
 
-        if let reference {
+        if let reference = reference {
             try validateLength("reference", reference, max: 5000)
         }
 
-        let requestBody = PostTestHelpersCustomersCustomerFundCashBalanceRequestBody(
-            amount: amount,
-            currency: currency,
-            expand: expand,
-            reference: reference
-        )
+        let requestBody = PostTestHelpersCustomersCustomerFundCashBalanceRequestBody(amount: amount, currency: currency, expand: expand, reference: reference)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/test_helpers/customers/", sdkEncodePathSegment(sdkWireString(customer)), "/fund_cash_balance"]
-                .joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostTestHelpersCustomersCustomerFundCashBalance"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/test_helpers/customers/", sdkEncodePathSegment(sdkWireString(customer)), "/fund_cash_balance"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTestHelpersCustomersCustomerFundCashBalance")).data
     }
 }

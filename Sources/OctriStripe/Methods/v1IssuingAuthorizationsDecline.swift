@@ -7,13 +7,9 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1IssuingAuthorizationsDeclineMethods {
-    /// Declines a pending Issuing authorization for a purchase. Use `authorization` within the real-time authorization
-    /// timeout window when the purchase must not be approved. This operation is deprecated; respond directly to the
-    /// authorization webhook instead.
+    /// Declines a pending Issuing authorization for a purchase. Use `authorization` within the real-time authorization timeout window when the purchase must not be approved. This operation is deprecated; respond directly to the authorization webhook instead.
     ///
-    /// [Deprecated] Declines a pending Issuing Authorization object. This request should be made within the timeout
-    /// window of the real time authorization flow. This method is deprecated. Instead, respond directly to the webhook
-    /// request to decline an authorization.
+    /// [Deprecated] Declines a pending Issuing Authorization object. This request should be made within the timeout window of the real time authorization flow. This method is deprecated. Instead, respond directly to the webhook request to decline an authorization.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
@@ -24,24 +20,11 @@ public enum V1IssuingAuthorizationsDeclineMethods {
     ///   empty value to `metadata`.
     ///
     /// - Warning: This operation is deprecated and may be removed in a future release.
-    public static func postIssuingAuthorizationsAuthorizationDecline(
-        config: ClientConfig,
-        authorization: String,
-        expand: [String]?,
-        metadata: PostIssuingAuthorizationsAuthorizationDeclineRequestBodyMetadata?
-    ) async throws -> IssuingAuthorization {
+    public static func postIssuingAuthorizationsAuthorizationDecline(config: ClientConfig, authorization: String, expand: [String]?, metadata: PostIssuingAuthorizationsAuthorizationDeclineRequestBodyMetadata?) async throws -> IssuingAuthorization {
         try validateLength("authorization", authorization, max: 5000)
 
         let requestBody = PostIssuingAuthorizationsAuthorizationDeclineRequestBody(expand: expand, metadata: metadata)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/issuing/authorizations/", sdkEncodePathSegment(sdkWireString(authorization)), "/decline"].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostIssuingAuthorizationsAuthorizationDecline"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/issuing/authorizations/", sdkEncodePathSegment(sdkWireString(authorization)), "/decline"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostIssuingAuthorizationsAuthorizationDecline")).data
     }
 }

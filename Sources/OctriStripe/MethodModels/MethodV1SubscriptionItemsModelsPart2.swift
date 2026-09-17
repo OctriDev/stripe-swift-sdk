@@ -7,54 +7,35 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1SubscriptionItems operation model declarations
-public extension PostSubscriptionItemsRequestBodyPriceData {
-    init(from decoder: Decoder) throws {
+// Canonical v1SubscriptionItems operation model declarations
+extension PostSubscriptionItemsRequestBodyPriceData {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.currency) else {
-            throw SdkValidationError(
-                field: "currency",
-                code: "required",
-                message: "Validation failed for 'currency': value is required"
-            )
+            throw SdkValidationError(field: "currency", code: "required", message: "Validation failed for 'currency': value is required")
         }
         guard container.contains(.product) else {
-            throw SdkValidationError(
-                field: "product",
-                code: "required",
-                message: "Validation failed for 'product': value is required"
-            )
+            throw SdkValidationError(field: "product", code: "required", message: "Validation failed for 'product': value is required")
         }
         guard container.contains(.recurring) else {
-            throw SdkValidationError(
-                field: "recurring",
-                code: "required",
-                message: "Validation failed for 'recurring': value is required"
-            )
+            throw SdkValidationError(field: "recurring", code: "required", message: "Validation failed for 'recurring': value is required")
         }
-        currency = try container.sdkDecodeRequired(.currency)
-        product = try container.sdkDecodeRequired(.product)
-        recurring = try container.sdkDecodeRequired(.recurring)
-        taxBehavior = try container.sdkDecodeIfPresent(.taxBehavior)
-        unitAmount = try container.sdkDecodeIfPresent(.unitAmount)
-        unitAmountDecimal = try container.sdkDecodeIfPresent(.unitAmountDecimal)
-        try validateLength("product", product, min: nil, max: 5000)
+        self.currency = try container.sdkDecodeRequired(.currency)
+        self.product = try container.sdkDecodeRequired(.product)
+        self.recurring = try container.sdkDecodeRequired(.recurring)
+        self.taxBehavior = try container.sdkDecodeIfPresent(.taxBehavior)
+        self.unitAmount = try container.sdkDecodeIfPresent(.unitAmount)
+        self.unitAmountDecimal = try container.sdkDecodeIfPresent(.unitAmountDecimal)
+            try validateLength("product", self.product, min: nil, max: 5000)
     }
 }
 
-public extension PostSubscriptionItemsRequestBodyPriceData {
-    init(
-        currency: String,
-        product: String,
-        recurring: PostSubscriptionItemsRequestBodyPriceDataRecurring,
-        taxBehavior: PostSubscriptionItemsRequestBodyPriceDataTaxBehavior? = nil,
-        unitAmount: Int? = nil,
-        unitAmountDecimal: String? = nil
-    ) throws {
+extension PostSubscriptionItemsRequestBodyPriceData {
+    public init(currency: String, product: String, recurring: PostSubscriptionItemsRequestBodyPriceDataRecurring, taxBehavior: PostSubscriptionItemsRequestBodyPriceDataTaxBehavior? = nil, unitAmount: Int? = nil, unitAmountDecimal: String? = nil) throws {
         (self.currency, self.product) = (currency, product)
         (self.recurring, self.taxBehavior) = (recurring, taxBehavior)
         (self.unitAmount, self.unitAmountDecimal) = (unitAmount, unitAmountDecimal)
-        try validateLength("product", self.product, min: nil, max: 5000)
+            try validateLength("product", self.product, min: nil, max: 5000)
     }
 }
 
@@ -70,30 +51,30 @@ public struct PostSubscriptionItemsItemRequestBodyDiscountsVariant0Item: Codable
     }
 
     init() {
-        (coupon, discount, promotionCode) = (nil, nil, nil)
+        (self.coupon, self.discount, self.promotionCode) = (nil, nil, nil)
     }
 }
 
-public extension PostSubscriptionItemsItemRequestBodyDiscountsVariant0Item {
-    init(from decoder: Decoder) throws {
+extension PostSubscriptionItemsItemRequestBodyDiscountsVariant0Item {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        coupon = try container.sdkDecodeIfPresent(.coupon)
-        discount = try container.sdkDecodeIfPresent(.discount)
-        promotionCode = try container.sdkDecodeIfPresent(.promotionCode)
-        if let value = coupon {
+        self.coupon = try container.sdkDecodeIfPresent(.coupon)
+        self.discount = try container.sdkDecodeIfPresent(.discount)
+        self.promotionCode = try container.sdkDecodeIfPresent(.promotionCode)
+        if let value = self.coupon {
             try validateLength("coupon", value, min: nil, max: 5000)
         }
-        if let value = discount {
+        if let value = self.discount {
             try validateLength("discount", value, min: nil, max: 5000)
         }
-        if let value = promotionCode {
+        if let value = self.promotionCode {
             try validateLength("promotion_code", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PostSubscriptionItemsItemRequestBodyDiscountsVariant0Item {
-    init(coupon: String? = nil, discount: String? = nil, promotionCode: String? = nil) throws {
+extension PostSubscriptionItemsItemRequestBodyDiscountsVariant0Item {
+    public init(coupon: String? = nil, discount: String? = nil, promotionCode: String? = nil) throws {
         self.init()
         (self.coupon, self.discount) = (coupon, discount)
         self.promotionCode = promotionCode
@@ -110,48 +91,38 @@ public extension PostSubscriptionItemsItemRequestBodyDiscountsVariant0Item {
 }
 
 public enum PostSubscriptionItemsRequestBodyBillingThresholds {
-    case postSubscriptionItemsRequestBodyBillingThresholdsVariant0(
-        PostSubscriptionItemsRequestBodyBillingThresholdsVariant0
-    )
+    case postSubscriptionItemsRequestBodyBillingThresholdsVariant0(PostSubscriptionItemsRequestBodyBillingThresholdsVariant0)
     case stringValue(String)
 }
 
 extension PostSubscriptionItemsRequestBodyBillingThresholds: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostSubscriptionItemsRequestBodyBillingThresholds"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostSubscriptionItemsRequestBodyBillingThresholds")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PostSubscriptionItemsRequestBodyBillingThresholdsVariant0.self
         ) {
-            return .postSubscriptionItemsRequestBodyBillingThresholdsVariant0(value)
+            return             .postSubscriptionItemsRequestBodyBillingThresholdsVariant0(value)
         }
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .postSubscriptionItemsRequestBodyBillingThresholdsVariant0(value): try container
-            .encode(value); return true
+        case let .postSubscriptionItemsRequestBodyBillingThresholdsVariant0(value): try container.encode(value); return true
         case let .stringValue(value): try container.encode(value); return true
         }
     }
+
 }

@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1TreasuryOutboundPaymentsMethods {
-    struct GetTreasuryOutboundPaymentsOptions: Codable {
+extension V1TreasuryOutboundPaymentsMethods {
+    public struct GetTreasuryOutboundPaymentsOptions: Codable {
         public var financialAccount: String
         public var created: GetTreasuryOutboundPaymentsParameter?
         public var customer: String?
@@ -22,8 +22,7 @@ public extension V1TreasuryOutboundPaymentsMethods {
         }
     }
 
-    /// Lists OutboundPayments sent from a specified FinancialAccount. Use `financial_account` to scope the results,
-    /// apply filters such as `status` or `created`, and use cursor parameters to paginate the list.
+    /// Lists OutboundPayments sent from a specified FinancialAccount. Use `financial_account` to scope the results, apply filters such as `status` or `created`, and use cursor parameters to paginate the list.
     ///
     /// Returns a list of OutboundPayments sent from the specified FinancialAccount.
     ///
@@ -47,10 +46,7 @@ public extension V1TreasuryOutboundPaymentsMethods {
     ///   the list.
     /// - status: Only return OutboundPayments that have the given status:
     ///   `processing`, `failed`, `posted`, `returned`, or `canceled`.
-    static func getTreasuryOutboundPayments(
-        config: ClientConfig,
-        options: GetTreasuryOutboundPaymentsOptions
-    ) async throws -> GetTreasuryOutboundPaymentsResponse {
+    public static func getTreasuryOutboundPayments(config: ClientConfig, options: GetTreasuryOutboundPaymentsOptions) async throws -> GetTreasuryOutboundPaymentsResponse {
         if let customer = options.customer {
             try validateLength("customer", customer, max: 5000)
         }
@@ -63,7 +59,7 @@ public extension V1TreasuryOutboundPaymentsMethods {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try await (sdkRequest("GET", "/v1/treasury/outbound_payments", config: config, query: [
+        return try (await sdkRequest("GET", "/v1/treasury/outbound_payments", config: config, query: [
             SdkQueryParameter("financial_account", value: options.financialAccount),
             SdkQueryParameter("created", value: options.created),
             SdkQueryParameter("customer", value: options.customer),

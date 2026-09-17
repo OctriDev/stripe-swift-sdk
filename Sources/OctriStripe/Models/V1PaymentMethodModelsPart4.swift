@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1PaymentMethod domain models
+// V1PaymentMethod domain models
 /// Typed representation of the `PaymentMethodPaypal` API schema.
 public struct PaymentMethodPaypal: Codable {
     /// Two-letter ISO code representing the buyer's country. Values are provided by PayPal directly (if supported)
@@ -22,30 +22,30 @@ public struct PaymentMethodPaypal: Codable {
     }
 
     init() {
-        (country, payerEmail, payerId) = (nil, nil, nil)
+        (self.country, self.payerEmail, self.payerId) = (nil, nil, nil)
     }
 }
 
-public extension PaymentMethodPaypal {
-    init(from decoder: Decoder) throws {
+extension PaymentMethodPaypal {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        country = try container.sdkDecodeIfPresent(.country)
-        payerEmail = try container.sdkDecodeIfPresent(.payerEmail)
-        payerId = try container.sdkDecodeIfPresent(.payerId)
-        if let value = country {
+        self.country = try container.sdkDecodeIfPresent(.country)
+        self.payerEmail = try container.sdkDecodeIfPresent(.payerEmail)
+        self.payerId = try container.sdkDecodeIfPresent(.payerId)
+        if let value = self.country {
             try validateLength("country", value, min: nil, max: 5000)
         }
-        if let value = payerEmail {
+        if let value = self.payerEmail {
             try validateLength("payer_email", value, min: nil, max: 5000)
         }
-        if let value = payerId {
+        if let value = self.payerId {
             try validateLength("payer_id", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PaymentMethodPaypal {
-    init(country: String? = nil, payerEmail: String? = nil, payerId: String? = nil) throws {
+extension PaymentMethodPaypal {
+    public init(country: String? = nil, payerEmail: String? = nil, payerId: String? = nil) throws {
         self.init()
         (self.country, self.payerEmail) = (country, payerEmail)
         self.payerId = payerId
@@ -77,30 +77,30 @@ public struct PaymentMethodPayto: Codable {
     }
 
     init() {
-        (bsbNumber, last4, payId) = (nil, nil, nil)
+        (self.bsbNumber, self.last4, self.payId) = (nil, nil, nil)
     }
 }
 
-public extension PaymentMethodPayto {
-    init(from decoder: Decoder) throws {
+extension PaymentMethodPayto {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        bsbNumber = try container.sdkDecodeIfPresent(.bsbNumber)
-        last4 = try container.sdkDecodeIfPresent(.last4)
-        payId = try container.sdkDecodeIfPresent(.payId)
-        if let value = bsbNumber {
+        self.bsbNumber = try container.sdkDecodeIfPresent(.bsbNumber)
+        self.last4 = try container.sdkDecodeIfPresent(.last4)
+        self.payId = try container.sdkDecodeIfPresent(.payId)
+        if let value = self.bsbNumber {
             try validateLength("bsb_number", value, min: nil, max: 5000)
         }
-        if let value = last4 {
+        if let value = self.last4 {
             try validateLength("last4", value, min: nil, max: 5000)
         }
-        if let value = payId {
+        if let value = self.payId {
             try validateLength("pay_id", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PaymentMethodPayto {
-    init(bsbNumber: String? = nil, last4: String? = nil, payId: String? = nil) throws {
+extension PaymentMethodPayto {
+    public init(bsbNumber: String? = nil, last4: String? = nil, payId: String? = nil) throws {
         self.init()
         (self.bsbNumber, self.last4) = (bsbNumber, last4)
         self.payId = payId
@@ -127,22 +127,22 @@ public struct PaymentMethodPix: Codable {
     }
 
     init() {
-        fingerprint = nil
+        self.fingerprint = nil
     }
 }
 
-public extension PaymentMethodPix {
-    init(from decoder: Decoder) throws {
+extension PaymentMethodPix {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        fingerprint = try container.sdkDecodeIfPresent(.fingerprint)
-        if let value = fingerprint {
+        self.fingerprint = try container.sdkDecodeIfPresent(.fingerprint)
+        if let value = self.fingerprint {
             try validateLength("fingerprint", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PaymentMethodPix {
-    init(fingerprint: String? = nil) throws {
+extension PaymentMethodPix {
+    public init(fingerprint: String? = nil) throws {
         self.init()
         self.fingerprint = fingerprint
         if let value = self.fingerprint {
@@ -153,57 +153,57 @@ public extension PaymentMethodPix {
 
 /// Typed representation of the `PaymentMethodPromptpay` API schema.
 public struct PaymentMethodPromptpay: Codable {
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PaymentMethodPromptpay {
-    init() {}
+extension PaymentMethodPromptpay {
+    public init() {
+    }
 }
 
 /// Typed representation of the `PaymentMethodRevolutPay` API schema.
 public struct PaymentMethodRevolutPay: Codable {
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PaymentMethodRevolutPay {
-    init() {}
+extension PaymentMethodRevolutPay {
+    public init() {
+    }
 }
 
 /// Typed representation of the `PaymentMethodSamsungPay` API schema.
 public struct PaymentMethodSamsungPay: Codable {
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PaymentMethodSamsungPay {
-    init() {}
+extension PaymentMethodSamsungPay {
+    public init() {
+    }
 }
 
 /// Typed representation of the `PaymentMethodSatispay` API schema.
 public struct PaymentMethodSatispay: Codable {
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PaymentMethodSatispay {
-    init() {}
+extension PaymentMethodSatispay {
+    public init() {
+    }
 }
 
 /// Typed representation of the `PaymentMethodScalapay` API schema.
 public struct PaymentMethodScalapay: Codable {
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PaymentMethodScalapay {
-    init() {}
+extension PaymentMethodScalapay {
+    public init() {
+    }
 }
 
 /// Typed representation of the `PaymentMethodSofort` API schema.
@@ -216,22 +216,22 @@ public struct PaymentMethodSofort: Codable {
     }
 
     init() {
-        country = nil
+        self.country = nil
     }
 }
 
-public extension PaymentMethodSofort {
-    init(from decoder: Decoder) throws {
+extension PaymentMethodSofort {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        country = try container.sdkDecodeIfPresent(.country)
-        if let value = country {
+        self.country = try container.sdkDecodeIfPresent(.country)
+        if let value = self.country {
             try validateLength("country", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PaymentMethodSofort {
-    init(country: String? = nil) throws {
+extension PaymentMethodSofort {
+    public init(country: String? = nil) throws {
         self.init()
         self.country = country
         if let value = self.country {
@@ -242,35 +242,35 @@ public extension PaymentMethodSofort {
 
 /// Typed representation of the `PaymentMethodSunbit` API schema.
 public struct PaymentMethodSunbit: Codable {
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PaymentMethodSunbit {
-    init() {}
+extension PaymentMethodSunbit {
+    public init() {
+    }
 }
 
 /// Typed representation of the `PaymentMethodSwish` API schema.
 public struct PaymentMethodSwish: Codable {
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PaymentMethodSwish {
-    init() {}
+extension PaymentMethodSwish {
+    public init() {
+    }
 }
 
 /// Typed representation of the `PaymentMethodTwint` API schema.
 public struct PaymentMethodTwint: Codable {
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PaymentMethodTwint {
-    init() {}
+extension PaymentMethodTwint {
+    public init() {
+    }
 }
 
 /// Typed representation of the `PaymentMethodUpi` API schema.
@@ -283,22 +283,22 @@ public struct PaymentMethodUpi: Codable {
     }
 
     init() {
-        vpa = nil
+        self.vpa = nil
     }
 }
 
-public extension PaymentMethodUpi {
-    init(from decoder: Decoder) throws {
+extension PaymentMethodUpi {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        vpa = try container.sdkDecodeIfPresent(.vpa)
-        if let value = vpa {
+        self.vpa = try container.sdkDecodeIfPresent(.vpa)
+        if let value = self.vpa {
             try validateLength("vpa", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PaymentMethodUpi {
-    init(vpa: String? = nil) throws {
+extension PaymentMethodUpi {
+    public init(vpa: String? = nil) throws {
         self.init()
         self.vpa = vpa
         if let value = self.vpa {
@@ -309,34 +309,31 @@ public extension PaymentMethodUpi {
 
 /// Typed representation of the `PaymentMethodWechatPay` API schema.
 public struct PaymentMethodWechatPay: Codable {
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PaymentMethodWechatPay {
-    init() {}
+extension PaymentMethodWechatPay {
+    public init() {
+    }
 }
 
 /// Typed representation of the `PaymentMethodZip` API schema.
 public struct PaymentMethodZip: Codable {
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PaymentMethodZip {
-    init() {}
+extension PaymentMethodZip {
+    public init() {
+    }
 }
 
 /// The Bank Identifier Code of the customer's bank, if the bank was provided.
 public struct PaymentMethodIdealBic: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let abnanl2a = PaymentMethodIdealBic(rawValue: "ABNANL2A")
     public static let adybnl2a = PaymentMethodIdealBic(rawValue: "ADYBNL2A")
     public static let asnbnl21 = PaymentMethodIdealBic(rawValue: "ASNBNL21")
@@ -361,7 +358,7 @@ public struct PaymentMethodIdealBic: RawRepresentable, Hashable, Codable, Sendab
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -374,16 +371,12 @@ public struct PaymentMethodIdealBic: RawRepresentable, Hashable, Codable, Sendab
 public struct PaymentMethodConfigurationObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let paymentMethodConfiguration =
-        PaymentMethodConfigurationObject(rawValue: "payment_method_configuration")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let paymentMethodConfiguration = PaymentMethodConfigurationObject(rawValue: "payment_method_configuration")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -396,21 +389,16 @@ public struct PaymentMethodConfigurationObject: RawRepresentable, Hashable, Coda
 public struct PaymentMethodInteracPresentReadMethod: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let contactEmv = PaymentMethodInteracPresentReadMethod(rawValue: "contact_emv")
     public static let contactlessEmv = PaymentMethodInteracPresentReadMethod(rawValue: "contactless_emv")
-    public static let contactlessMagstripeMode =
-        PaymentMethodInteracPresentReadMethod(rawValue: "contactless_magstripe_mode")
-    public static let magneticStripeFallback =
-        PaymentMethodInteracPresentReadMethod(rawValue: "magnetic_stripe_fallback")
+    public static let contactlessMagstripeMode = PaymentMethodInteracPresentReadMethod(rawValue: "contactless_magstripe_mode")
+    public static let magneticStripeFallback = PaymentMethodInteracPresentReadMethod(rawValue: "magnetic_stripe_fallback")
     public static let magneticStripeTrack2 = PaymentMethodInteracPresentReadMethod(rawValue: "magnetic_stripe_track2")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -423,10 +411,7 @@ public struct PaymentMethodInteracPresentReadMethod: RawRepresentable, Hashable,
 public struct PaymentMethodP24Bank: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let aliorBank = PaymentMethodP24Bank(rawValue: "alior_bank")
     public static let bankMillennium = PaymentMethodP24Bank(rawValue: "bank_millennium")
     public static let bankNowyBfgSa = PaymentMethodP24Bank(rawValue: "bank_nowy_bfg_sa")
@@ -456,7 +441,7 @@ public struct PaymentMethodP24Bank: RawRepresentable, Hashable, Codable, Sendabl
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -473,16 +458,12 @@ public struct PaymentMethodP24Bank: RawRepresentable, Hashable, Codable, Sendabl
 public struct PaymentMethodEpsBank: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let arzteUndApothekerBank = PaymentMethodEpsBank(rawValue: "arzte_und_apotheker_bank")
     public static let austrianAnadiBankAg = PaymentMethodEpsBank(rawValue: "austrian_anadi_bank_ag")
     public static let bankAustria = PaymentMethodEpsBank(rawValue: "bank_austria")
     public static let bankhausCarlSpangler = PaymentMethodEpsBank(rawValue: "bankhaus_carl_spangler")
-    public static let bankhausSchelhammerUndSchatteraAg =
-        PaymentMethodEpsBank(rawValue: "bankhaus_schelhammer_und_schattera_ag")
+    public static let bankhausSchelhammerUndSchatteraAg = PaymentMethodEpsBank(rawValue: "bankhaus_schelhammer_und_schattera_ag")
     public static let bawagPskAg = PaymentMethodEpsBank(rawValue: "bawag_psk_ag")
     public static let bksBankAg = PaymentMethodEpsBank(rawValue: "bks_bank_ag")
     public static let brullKallmusBankAg = PaymentMethodEpsBank(rawValue: "brull_kallmus_bank_ag")
@@ -492,20 +473,15 @@ public struct PaymentMethodEpsBank: RawRepresentable, Hashable, Codable, Sendabl
     public static let dolomitenbank = PaymentMethodEpsBank(rawValue: "dolomitenbank")
     public static let easybankAg = PaymentMethodEpsBank(rawValue: "easybank_ag")
     public static let ersteBankUndSparkassen = PaymentMethodEpsBank(rawValue: "erste_bank_und_sparkassen")
-    public static let hypoAlpeadriabankInternationalAg =
-        PaymentMethodEpsBank(rawValue: "hypo_alpeadriabank_international_ag")
-    public static let hypoBankBurgenlandAktiengesellschaft =
-        PaymentMethodEpsBank(rawValue: "hypo_bank_burgenland_aktiengesellschaft")
-    public static let hypoNoeLbFurNiederosterreichUWien =
-        PaymentMethodEpsBank(rawValue: "hypo_noe_lb_fur_niederosterreich_u_wien")
-    public static let hypoOberosterreichSalzburgSteiermark =
-        PaymentMethodEpsBank(rawValue: "hypo_oberosterreich_salzburg_steiermark")
+    public static let hypoAlpeadriabankInternationalAg = PaymentMethodEpsBank(rawValue: "hypo_alpeadriabank_international_ag")
+    public static let hypoBankBurgenlandAktiengesellschaft = PaymentMethodEpsBank(rawValue: "hypo_bank_burgenland_aktiengesellschaft")
+    public static let hypoNoeLbFurNiederosterreichUWien = PaymentMethodEpsBank(rawValue: "hypo_noe_lb_fur_niederosterreich_u_wien")
+    public static let hypoOberosterreichSalzburgSteiermark = PaymentMethodEpsBank(rawValue: "hypo_oberosterreich_salzburg_steiermark")
     public static let hypoTirolBankAg = PaymentMethodEpsBank(rawValue: "hypo_tirol_bank_ag")
     public static let hypoVorarlbergBankAg = PaymentMethodEpsBank(rawValue: "hypo_vorarlberg_bank_ag")
     public static let marchfelderBank = PaymentMethodEpsBank(rawValue: "marchfelder_bank")
     public static let oberbankAg = PaymentMethodEpsBank(rawValue: "oberbank_ag")
-    public static let raiffeisenBankengruppeOsterreich =
-        PaymentMethodEpsBank(rawValue: "raiffeisen_bankengruppe_osterreich")
+    public static let raiffeisenBankengruppeOsterreich = PaymentMethodEpsBank(rawValue: "raiffeisen_bankengruppe_osterreich")
     public static let schoellerbankAg = PaymentMethodEpsBank(rawValue: "schoellerbank_ag")
     public static let spardaBankWien = PaymentMethodEpsBank(rawValue: "sparda_bank_wien")
     public static let volksbankGruppe = PaymentMethodEpsBank(rawValue: "volksbank_gruppe")
@@ -514,7 +490,7 @@ public struct PaymentMethodEpsBank: RawRepresentable, Hashable, Codable, Sendabl
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -527,16 +503,13 @@ public struct PaymentMethodEpsBank: RawRepresentable, Hashable, Codable, Sendabl
 public struct PaymentMethodNaverPayFunding: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let card = PaymentMethodNaverPayFunding(rawValue: "card")
     public static let points = PaymentMethodNaverPayFunding(rawValue: "points")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -551,10 +524,7 @@ public struct PaymentMethodNaverPayFunding: RawRepresentable, Hashable, Codable,
 public struct PaymentMethodIdealBank: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let abnAmro = PaymentMethodIdealBank(rawValue: "abn_amro")
     public static let adyen = PaymentMethodIdealBank(rawValue: "adyen")
     public static let asnBank = PaymentMethodIdealBank(rawValue: "asn_bank")
@@ -578,7 +548,7 @@ public struct PaymentMethodIdealBank: RawRepresentable, Hashable, Codable, Senda
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

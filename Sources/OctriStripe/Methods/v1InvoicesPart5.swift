@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1InvoicesMethods {
-    struct PostInvoicesInvoiceOptions: Codable {
+extension V1InvoicesMethods {
+    public struct PostInvoicesInvoiceOptions: Codable {
         public var invoice: String
         public var accountTaxIds: PostInvoicesInvoiceRequestBodyAccountTaxIds?
         public var applicationFeeAmount: Int?
@@ -42,14 +42,9 @@ public extension V1InvoicesMethods {
         }
     }
 
-    /// Updates an existing invoice with editable invoice attributes. Draft invoices are fully editable, while finalized
-    /// invoices cannot change monetary values or `collection_method`; set `auto_advance` to false to stop automatic
-    /// invoice advancement and collection behaviour.
+    /// Updates an existing invoice with editable invoice attributes. Draft invoices are fully editable, while finalized invoices cannot change monetary values or `collection_method`; set `auto_advance` to false to stop automatic invoice advancement and collection behaviour.
     ///
-    /// Draft invoices are fully editable. Once an invoice is finalized, monetary values, as well as collection_method ,
-    /// become uneditable. If you would like to stop the Stripe Billing engine from automatically finalizing,
-    /// reattempting payments on, sending reminders for, or automatically reconciling invoices, pass auto_advance=false
-    /// .
+    /// Draft invoices are fully editable. Once an invoice is finalized, monetary values, as well as collection_method , become uneditable. If you would like to stop the Stripe Billing engine from automatically finalizing, reattempting payments on, sending reminders for, or automatically reconciling invoices, pass auto_advance=false .
     ///
     /// - Parameters:
     /// - accountTaxIds: The account tax IDs associated with the invoice. Only
@@ -138,7 +133,7 @@ public extension V1InvoicesMethods {
     /// - transferData: If specified, the funds from the invoice will be transferred
     ///   to the destination and the ID of the resulting transfer will be found on the
     ///   invoice's charge. This will be unset if you POST an empty value.
-    static func postInvoicesInvoice(config: ClientConfig, options: PostInvoicesInvoiceOptions) async throws -> Invoice {
+    public static func postInvoicesInvoice(config: ClientConfig, options: PostInvoicesInvoiceOptions) async throws -> Invoice {
         try validateLength("invoice", options.invoice, max: 5000)
 
         if let defaultPaymentMethod = options.defaultPaymentMethod {
@@ -159,14 +154,6 @@ public extension V1InvoicesMethods {
 
         let requestBody = PostInvoicesInvoiceRequestBody(options: options)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/invoices/", sdkEncodePathSegment(sdkWireString(options.invoice))].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostInvoicesInvoice"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/invoices/", sdkEncodePathSegment(sdkWireString(options.invoice))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostInvoicesInvoice")).data
     }
 }

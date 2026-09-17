@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1ChargesRefundMethods {
-    struct PostChargesChargeRefundOptions: Codable {
+extension V1ChargesRefundMethods {
+    public struct PostChargesChargeRefundOptions: Codable {
         public var charge: String
         public var amount: Int?
         public var expand: [String]?
@@ -23,11 +23,7 @@ public extension V1ChargesRefundMethods {
         }
     }
 
-    /// When you create a new refund, you must specify either a Charge or a PaymentIntent object. This action refunds a
-    /// previously created charge that’s not refunded yet. Funds are refunded to the credit or debit card that’s
-    /// originally charged. You can optionally refund only part of a charge. You can repeat this until the entire charge
-    /// is refunded. After you entirely refund a charge, you can’t refund it again. This method raises an error when
-    /// it’s called on an already-refunded charge, or when you attempt to refund more money than is left on a charge.
+    /// When you create a new refund, you must specify either a Charge or a PaymentIntent object. This action refunds a previously created charge that’s not refunded yet. Funds are refunded to the credit or debit card that’s originally charged. You can optionally refund only part of a charge. You can repeat this until the entire charge is refunded. After you entirely refund a charge, you can’t refund it again. This method raises an error when it’s called on an already-refunded charge, or when you attempt to refund more money than is left on a charge.
     ///
     /// - Parameters:
     /// - charge: The identifier of the charge to refund.
@@ -62,10 +58,7 @@ public extension V1ChargesRefundMethods {
     ///   proportionally to the amount being refunded (either the entire or partial
     ///   amount). A transfer can be reversed only by the application that created the
     ///   charge.
-    static func postChargesChargeRefund(
-        config: ClientConfig,
-        options: PostChargesChargeRefundOptions
-    ) async throws -> Charge {
+    public static func postChargesChargeRefund(config: ClientConfig, options: PostChargesChargeRefundOptions) async throws -> Charge {
         try validateLength("charge", options.charge, max: 5000)
 
         if let paymentIntent = options.paymentIntent {
@@ -78,14 +71,6 @@ public extension V1ChargesRefundMethods {
 
         let requestBody = PostChargesChargeRefundRequestBody(options: options)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/charges/", sdkEncodePathSegment(sdkWireString(options.charge)), "/refund"].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostChargesChargeRefund"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/charges/", sdkEncodePathSegment(sdkWireString(options.charge)), "/refund"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostChargesChargeRefund")).data
     }
 }

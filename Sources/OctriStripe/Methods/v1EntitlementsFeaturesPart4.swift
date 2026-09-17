@@ -6,9 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1EntitlementsFeaturesMethods {
-    /// Updates a feature's metadata or activation state. Use `active` to deactivate the feature, or provide `metadata`
-    /// and `name` to change its stored information; deactivated features cannot be attached to new products.
+extension V1EntitlementsFeaturesMethods {
+    /// Updates a feature's metadata or activation state. Use `active` to deactivate the feature, or provide `metadata` and `name` to change its stored information; deactivated features cannot be attached to new products.
     ///
     /// Update a feature’s metadata or permanently deactivate it.
     ///
@@ -21,35 +20,15 @@ public extension V1EntitlementsFeaturesMethods {
     ///   structured format.
     /// - name: The feature's name, for your own purpose, not meant to be
     ///   displayable to the customer.
-    static func postEntitlementsFeaturesId(
-        config: ClientConfig,
-        id: String,
-        active: Bool?,
-        expand: [String]?,
-        metadata: PostEntitlementsFeaturesIdRequestBodyMetadata?,
-        name: String?
-    ) async throws -> EntitlementsFeature {
+    public static func postEntitlementsFeaturesId(config: ClientConfig, id: String, active: Bool?, expand: [String]?, metadata: PostEntitlementsFeaturesIdRequestBodyMetadata?, name: String?) async throws -> EntitlementsFeature {
         try validateLength("id", id, max: 5000)
 
-        if let name {
+        if let name = name {
             try validateLength("name", name, max: 80)
         }
 
-        let requestBody = PostEntitlementsFeaturesIdRequestBody(
-            active: active,
-            expand: expand,
-            metadata: metadata,
-            name: name
-        )
+        let requestBody = PostEntitlementsFeaturesIdRequestBody(active: active, expand: expand, metadata: metadata, name: name)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/entitlements/features/", sdkEncodePathSegment(sdkWireString(id))].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostEntitlementsFeaturesId"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/entitlements/features/", sdkEncodePathSegment(sdkWireString(id))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostEntitlementsFeaturesId")).data
     }
 }

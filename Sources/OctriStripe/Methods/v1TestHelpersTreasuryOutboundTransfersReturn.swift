@@ -7,42 +7,19 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1TestHelpersTreasuryOutboundTransfersReturnMethods {
-    /// Triggers a test-mode OutboundTransfer transition to the returned status. Supply the `outbound_transfer`
-    /// identifier for an OutboundTransfer that is currently processing, and optionally provide a return code through
-    /// `returned_details`.
+    /// Triggers a test-mode OutboundTransfer transition to the returned status. Supply the `outbound_transfer` identifier for an OutboundTransfer that is currently processing, and optionally provide a return code through `returned_details`.
     ///
-    /// Transitions a test mode created OutboundTransfer to the returned status. The OutboundTransfer must already be in
-    /// the processing state.
+    /// Transitions a test mode created OutboundTransfer to the returned status. The OutboundTransfer must already be in the processing state.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
     /// - returnedDetails: Details about a returned OutboundTransfer.
-    public static func postTestHelpersTreasuryOutboundTransfersOutboundTransferReturn(
-        config: ClientConfig,
-        outboundTransfer: String,
-        expand: [String]?,
-        returnedDetails: PostTestHelpersTreasuryOutboundTransfersOutboundTransferReturXbc4f70dfa3?
-    ) async throws -> TreasuryOutboundTransfer {
+    public static func postTestHelpersTreasuryOutboundTransfersOutboundTransferReturn(config: ClientConfig, outboundTransfer: String, expand: [String]?, returnedDetails: PostTestHelpersTreasuryOutboundTransfersOutboundTransferReturXbc4f70dfa3?) async throws -> TreasuryOutboundTransfer {
         try validateLength("outbound_transfer", outboundTransfer, max: 5000)
 
-        let requestBody = PostTestHelpersTreasuryOutboundTransfersOutboundTransferReturXe0b3cac626(
-            expand: expand,
-            returnedDetails: returnedDetails
-        )
+        let requestBody = PostTestHelpersTreasuryOutboundTransfersOutboundTransferReturXe0b3cac626(expand: expand, returnedDetails: returnedDetails)
 
-        return try await (sdkRequest(
-            "POST",
-            [
-                "/v1/test_helpers/treasury/outbound_transfers/",
-                sdkEncodePathSegment(sdkWireString(outboundTransfer)),
-                "/return",
-            ].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostTestHelpersTreasuryOutboundTransfersOutboundTransferReturn"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/test_helpers/treasury/outbound_transfers/", sdkEncodePathSegment(sdkWireString(outboundTransfer)), "/return"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTestHelpersTreasuryOutboundTransfersOutboundTransferReturn")).data
     }
 
     private struct PostTestHelpersTreasuryOutboundTransfersOutboundTransferReturXe0b3cac626: Encodable {
@@ -51,8 +28,8 @@ public enum V1TestHelpersTreasuryOutboundTransfersReturnMethods {
 
         func encode(to encoder: Encoder) throws {
             var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-            try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-            try keyedContainer.encodeIfPresent(returnedDetails, forKey: SdkCodingKey("returned_details"))
+            try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+            try keyedContainer.encodeIfPresent(self.returnedDetails, forKey: SdkCodingKey("returned_details"))
         }
     }
 }

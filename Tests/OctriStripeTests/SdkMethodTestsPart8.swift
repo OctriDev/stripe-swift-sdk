@@ -205,8 +205,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testGetPaymentIntentsIntentAmountDetailsLineItemsGetPaymentIntentX17441cfc9cReachesMockAndDecodesResponse(
-    ) async throws {
+    func testGetPaymentIntentsIntentAmountDetailsLineItemsGetPaymentIntentX17441cfc9cReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -297,8 +296,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testGetPaymentLinksPaymentLinkLineItemsGetPaymentLinksPaymentLinkLineItemsReachesMockAndDecodesResponse(
-    ) async throws {
+    func testGetPaymentLinksPaymentLinkLineItemsGetPaymentLinksPaymentLinkLineItemsReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -345,8 +343,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testGetPaymentMethodConfigurationsConfigurationGetPaymentMethodCoX9ea8107661ReachesMockAndDecodesResponse(
-    ) async throws {
+    func testGetPaymentMethodConfigurationsConfigurationGetPaymentMethodCoX9ea8107661ReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -390,8 +387,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testGetPaymentMethodDomainsPaymentMethodDomainGetPaymentMethodDomXb99efbc81dReachesMockAndDecodesResponse(
-    ) async throws {
+    func testGetPaymentMethodDomainsPaymentMethodDomainGetPaymentMethodDomXb99efbc81dReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }

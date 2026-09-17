@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1Coupons operation model declarations
+// Canonical v1Coupons operation model declarations
 public struct GetCouponsParameterVariant0: Codable {
     public var gt: Int?
     public var gte: Int?
@@ -22,22 +22,22 @@ public struct GetCouponsParameterVariant0: Codable {
     }
 
     init() {
-        (gt, gte, lt, lte) = (nil, nil, nil, nil)
+        (self.gt, self.gte, self.lt, self.lte) = (nil, nil, nil, nil)
     }
 }
 
-public extension GetCouponsParameterVariant0 {
-    init(from decoder: Decoder) throws {
+extension GetCouponsParameterVariant0 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        gt = try container.sdkDecodeIfPresent(.gt)
-        gte = try container.sdkDecodeIfPresent(.gte)
-        lt = try container.sdkDecodeIfPresent(.lt)
-        lte = try container.sdkDecodeIfPresent(.lte)
+        self.gt = try container.sdkDecodeIfPresent(.gt)
+        self.gte = try container.sdkDecodeIfPresent(.gte)
+        self.lt = try container.sdkDecodeIfPresent(.lt)
+        self.lte = try container.sdkDecodeIfPresent(.lte)
     }
 }
 
-public extension GetCouponsParameterVariant0 {
-    init(gt: Int? = nil, gte: Int? = nil, lt: Int? = nil, lte: Int? = nil) {
+extension GetCouponsParameterVariant0 {
+    public init(gt: Int? = nil, gte: Int? = nil, lt: Int? = nil, lte: Int? = nil) {
         self.init()
         (self.gt, self.gte) = (gt, gte)
         (self.lt, self.lte) = (lt, lte)
@@ -50,31 +50,21 @@ public enum PostCouponsCouponRequestBodyMetadata {
 }
 
 extension PostCouponsCouponRequestBodyMetadata: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostCouponsCouponRequestBodyMetadata"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostCouponsCouponRequestBodyMetadata")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode([String: String].self) {
-            return .dictionary(value)
-        }
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
+        if let value = try? container.decode([String: String].self) { return .dictionary(value) }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -84,6 +74,7 @@ extension PostCouponsCouponRequestBodyMetadata: Codable {
         case let .stringValue(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// A hash containing directions for what this Coupon will apply discounts to.
@@ -95,19 +86,19 @@ public struct PostCouponsRequestBodyAppliesTo: Codable {
     }
 
     init() {
-        products = nil
+        self.products = nil
     }
 }
 
-public extension PostCouponsRequestBodyAppliesTo {
-    init(from decoder: Decoder) throws {
+extension PostCouponsRequestBodyAppliesTo {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        products = try container.sdkDecodeIfPresent(.products)
+        self.products = try container.sdkDecodeIfPresent(.products)
     }
 }
 
-public extension PostCouponsRequestBodyAppliesTo {
-    init(products: [String]? = nil) {
+extension PostCouponsRequestBodyAppliesTo {
+    public init(products: [String]? = nil) {
         self.init()
         self.products = products
     }
@@ -120,27 +111,21 @@ public struct PostCouponsCouponRequestBodyCurrencyOptionsValue: Codable {
         case amountOff = "amount_off"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostCouponsCouponRequestBodyCurrencyOptionsValue {
-    init(from decoder: Decoder) throws {
+extension PostCouponsCouponRequestBodyCurrencyOptionsValue {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.amountOff) else {
-            throw SdkValidationError(
-                field: "amount_off",
-                code: "required",
-                message: "Validation failed for 'amount_off': value is required"
-            )
+            throw SdkValidationError(field: "amount_off", code: "required", message: "Validation failed for 'amount_off': value is required")
         }
-        amountOff = try container.sdkDecodeRequired(.amountOff)
+        self.amountOff = try container.sdkDecodeRequired(.amountOff)
     }
 }
 
-public extension PostCouponsCouponRequestBodyCurrencyOptionsValue {
-    init(amountOff: Int) {
+extension PostCouponsCouponRequestBodyCurrencyOptionsValue {
+    public init(amountOff: Int) {
         self.amountOff = amountOff
     }
 }
@@ -152,27 +137,21 @@ public struct PostCouponsRequestBodyCurrencyOptionsValue: Codable {
         case amountOff = "amount_off"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostCouponsRequestBodyCurrencyOptionsValue {
-    init(from decoder: Decoder) throws {
+extension PostCouponsRequestBodyCurrencyOptionsValue {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.amountOff) else {
-            throw SdkValidationError(
-                field: "amount_off",
-                code: "required",
-                message: "Validation failed for 'amount_off': value is required"
-            )
+            throw SdkValidationError(field: "amount_off", code: "required", message: "Validation failed for 'amount_off': value is required")
         }
-        amountOff = try container.sdkDecodeRequired(.amountOff)
+        self.amountOff = try container.sdkDecodeRequired(.amountOff)
     }
 }
 
-public extension PostCouponsRequestBodyCurrencyOptionsValue {
-    init(amountOff: Int) {
+extension PostCouponsRequestBodyCurrencyOptionsValue {
+    public init(amountOff: Int) {
         self.amountOff = amountOff
     }
 }
@@ -194,57 +173,39 @@ public struct GetCouponsResponse: Codable {
         case url
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension GetCouponsResponse {
-    init(from decoder: Decoder) throws {
+extension GetCouponsResponse {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.data) else {
-            throw SdkValidationError(
-                field: "data",
-                code: "required",
-                message: "Validation failed for 'data': value is required"
-            )
+            throw SdkValidationError(field: "data", code: "required", message: "Validation failed for 'data': value is required")
         }
         guard container.contains(.hasMore) else {
-            throw SdkValidationError(
-                field: "has_more",
-                code: "required",
-                message: "Validation failed for 'has_more': value is required"
-            )
+            throw SdkValidationError(field: "has_more", code: "required", message: "Validation failed for 'has_more': value is required")
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(
-                field: "object",
-                code: "required",
-                message: "Validation failed for 'object': value is required"
-            )
+            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
         }
         guard container.contains(.url) else {
-            throw SdkValidationError(
-                field: "url",
-                code: "required",
-                message: "Validation failed for 'url': value is required"
-            )
+            throw SdkValidationError(field: "url", code: "required", message: "Validation failed for 'url': value is required")
         }
-        data = try container.sdkDecodeRequired(.data)
-        hasMore = try container.sdkDecodeRequired(.hasMore)
-        object = try container.sdkDecodeRequired(.object)
-        url = try container.sdkDecodeRequired(.url)
-        try validateLength("url", url, min: nil, max: 5000)
-        try sdkValidatePattern("url", url, sdkPattern5967faebea53)
+        self.data = try container.sdkDecodeRequired(.data)
+        self.hasMore = try container.sdkDecodeRequired(.hasMore)
+        self.object = try container.sdkDecodeRequired(.object)
+        self.url = try container.sdkDecodeRequired(.url)
+            try validateLength("url", self.url, min: nil, max: 5000)
+            try sdkValidatePattern("url", self.url, sdkPattern5967faebea53)
     }
 }
 
-public extension GetCouponsResponse {
-    init(data: [Coupon], hasMore: Bool, object: GetCouponsResponseObject, url: String) throws {
+extension GetCouponsResponse {
+    public init(data: [Coupon], hasMore: Bool, object: GetCouponsResponseObject, url: String) throws {
         (self.data, self.hasMore) = (data, hasMore)
         (self.object, self.url) = (object, url)
-        try validateLength("url", self.url, min: nil, max: 5000)
-        try sdkValidatePattern("url", self.url, sdkPattern5967faebea53)
+            try validateLength("url", self.url, min: nil, max: 5000)
+            try sdkValidatePattern("url", self.url, sdkPattern5967faebea53)
     }
 }
 
@@ -254,32 +215,21 @@ public enum GetCouponsParameter {
 }
 
 extension GetCouponsParameter: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for GetCouponsParameter"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for GetCouponsParameter")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container
-            .decode(GetCouponsParameterVariant0.self) {
-            return .getCouponsParameterVariant0(value)
-        }
-        if let value = try? container.decode(Int.self) {
-            return .intValue(value)
-        }
+        if let value = try? container.decode(GetCouponsParameterVariant0.self) { return .getCouponsParameterVariant0(value) }
+        if let value = try? container.decode(Int.self) { return .intValue(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -289,6 +239,7 @@ extension GetCouponsParameter: Codable {
         case let .intValue(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum PostCouponsRequestBodyMetadata {
@@ -297,31 +248,21 @@ public enum PostCouponsRequestBodyMetadata {
 }
 
 extension PostCouponsRequestBodyMetadata: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostCouponsRequestBodyMetadata"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostCouponsRequestBodyMetadata")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode([String: String].self) {
-            return .dictionary(value)
-        }
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
+        if let value = try? container.decode([String: String].self) { return .dictionary(value) }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -331,4 +272,5 @@ extension PostCouponsRequestBodyMetadata: Codable {
         case let .stringValue(value): try container.encode(value); return true
         }
     }
+
 }

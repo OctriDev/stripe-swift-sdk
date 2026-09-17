@@ -9,10 +9,7 @@ import Foundation
 public struct GetCreditNotesPreviewParameter: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let duplicate = GetCreditNotesPreviewParameter(rawValue: "duplicate")
     public static let fraudulent = GetCreditNotesPreviewParameter(rawValue: "fraudulent")
     public static let orderChange = GetCreditNotesPreviewParameter(rawValue: "order_change")
@@ -20,7 +17,7 @@ public struct GetCreditNotesPreviewParameter: RawRepresentable, Hashable, Codabl
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -29,20 +26,16 @@ public struct GetCreditNotesPreviewParameter: RawRepresentable, Hashable, Codabl
     }
 }
 
-public struct GetCreditNotesPreviewParameterItemType: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct GetCreditNotesPreviewParameterItemType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let paymentRecordRefund = GetCreditNotesPreviewParameterItemType(rawValue: "payment_record_refund")
     public static let refund = GetCreditNotesPreviewParameterItemType(rawValue: "refund")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -51,20 +44,16 @@ public struct GetCreditNotesPreviewParameterItemType: RawRepresentable, Hashable
     }
 }
 
-public struct GetCreditNotesPreviewParameterXa2df2870: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct GetCreditNotesPreviewParameterXa2df2870: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let creditNote = GetCreditNotesPreviewParameterXa2df2870(rawValue: "credit_note")
     public static let none = GetCreditNotesPreviewParameterXa2df2870(rawValue: "none")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -73,19 +62,15 @@ public struct GetCreditNotesPreviewParameterXa2df2870: RawRepresentable, Hashabl
     }
 }
 
-public struct GetCreditNotesPreviewParameterItemTaxAmountsVariant1: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct GetCreditNotesPreviewParameterItemTaxAmountsVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = GetCreditNotesPreviewParameterItemTaxAmountsVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -94,19 +79,15 @@ public struct GetCreditNotesPreviewParameterItemTaxAmountsVariant1: RawRepresent
     }
 }
 
-public struct GetCreditNotesPreviewParameterItemTaxRatesVariant1: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct GetCreditNotesPreviewParameterItemTaxRatesVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = GetCreditNotesPreviewParameterItemTaxRatesVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -115,20 +96,16 @@ public struct GetCreditNotesPreviewParameterItemTaxRatesVariant1: RawRepresentab
     }
 }
 
-public struct GetCreditNotesPreviewParameterItemTypeX6aa2f7fa: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct GetCreditNotesPreviewParameterItemTypeX6aa2f7fa: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let customLineItem = GetCreditNotesPreviewParameterItemTypeX6aa2f7fa(rawValue: "custom_line_item")
     public static let invoiceLineItem = GetCreditNotesPreviewParameterItemTypeX6aa2f7fa(rawValue: "invoice_line_item")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -137,23 +114,18 @@ public struct GetCreditNotesPreviewParameterItemTypeX6aa2f7fa: RawRepresentable,
     }
 }
 
-public struct GetCreditNotesPreviewLinesParameterX84cb545f: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct GetCreditNotesPreviewLinesParameterX84cb545f: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let duplicate = GetCreditNotesPreviewLinesParameterX84cb545f(rawValue: "duplicate")
     public static let fraudulent = GetCreditNotesPreviewLinesParameterX84cb545f(rawValue: "fraudulent")
     public static let orderChange = GetCreditNotesPreviewLinesParameterX84cb545f(rawValue: "order_change")
-    public static let productUnsatisfactory =
-        GetCreditNotesPreviewLinesParameterX84cb545f(rawValue: "product_unsatisfactory")
+    public static let productUnsatisfactory = GetCreditNotesPreviewLinesParameterX84cb545f(rawValue: "product_unsatisfactory")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -162,21 +134,16 @@ public struct GetCreditNotesPreviewLinesParameterX84cb545f: RawRepresentable, Ha
     }
 }
 
-public struct GetCreditNotesPreviewLinesParameterItemType: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct GetCreditNotesPreviewLinesParameterItemType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let paymentRecordRefund =
-        GetCreditNotesPreviewLinesParameterItemType(rawValue: "payment_record_refund")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let paymentRecordRefund = GetCreditNotesPreviewLinesParameterItemType(rawValue: "payment_record_refund")
     public static let refund = GetCreditNotesPreviewLinesParameterItemType(rawValue: "refund")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -185,20 +152,16 @@ public struct GetCreditNotesPreviewLinesParameterItemType: RawRepresentable, Has
     }
 }
 
-public struct GetCreditNotesPreviewLinesParameterX096fa297: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct GetCreditNotesPreviewLinesParameterX096fa297: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let creditNote = GetCreditNotesPreviewLinesParameterX096fa297(rawValue: "credit_note")
     public static let none = GetCreditNotesPreviewLinesParameterX096fa297(rawValue: "none")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -207,19 +170,15 @@ public struct GetCreditNotesPreviewLinesParameterX096fa297: RawRepresentable, Ha
     }
 }
 
-public struct GetCreditNotesPreviewLinesParameterItemTaxAmountsVariant1: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct GetCreditNotesPreviewLinesParameterItemTaxAmountsVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = GetCreditNotesPreviewLinesParameterItemTaxAmountsVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -228,19 +187,15 @@ public struct GetCreditNotesPreviewLinesParameterItemTaxAmountsVariant1: RawRepr
     }
 }
 
-public struct GetCreditNotesPreviewLinesParameterItemTaxRatesVariant1: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct GetCreditNotesPreviewLinesParameterItemTaxRatesVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = GetCreditNotesPreviewLinesParameterItemTaxRatesVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

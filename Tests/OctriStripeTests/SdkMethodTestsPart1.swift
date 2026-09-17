@@ -25,8 +25,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testDeleteAccountsAccountBankAccountsIdDeleteAccountsAccountBankAccountsIdReachesMockAndDecodesResponse(
-    ) async throws {
+    func testDeleteAccountsAccountBankAccountsIdDeleteAccountsAccountBankAccountsIdReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -46,8 +45,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testDeleteAccountsAccountExternalAccountsIdDeleteAccountsAccountEX546ea69430ReachesMockAndDecodesResponse(
-    ) async throws {
+    func testDeleteAccountsAccountExternalAccountsIdDeleteAccountsAccountEX546ea69430ReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -67,8 +65,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testDeleteAccountsAccountPeoplePersonDeleteAccountsAccountPeoplePersonReachesMockAndDecodesResponse(
-    ) async throws {
+    func testDeleteAccountsAccountPeoplePersonDeleteAccountsAccountPeoplePersonReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -88,8 +85,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testDeleteAccountsAccountPersonsPersonDeleteAccountsAccountPersonsPersonReachesMockAndDecodesResponse(
-    ) async throws {
+    func testDeleteAccountsAccountPersonsPersonDeleteAccountsAccountPersonsPersonReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -166,8 +162,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testDeleteCustomersCustomerBankAccountsIdDeleteCustomersCustomerBX0f9aadf7ceReachesMockAndDecodesResponse(
-    ) async throws {
+    func testDeleteCustomersCustomerBankAccountsIdDeleteCustomersCustomerBX0f9aadf7ceReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -228,8 +223,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testDeleteCustomersCustomerSourcesIdDeleteCustomersCustomerSourcesIdReachesMockAndDecodesResponse(
-    ) async throws {
+    func testDeleteCustomersCustomerSourcesIdDeleteCustomersCustomerSourcesIdReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -250,17 +244,15 @@ extension SdkMethodTests {
         )
     }
 
-    func testDeleteCustomersCustomerSubscriptionsSubscriptionExposedIdDeleX21f3f9ce0eReachesMockAndDecodesResponse(
-    ) async throws {
+    func testDeleteCustomersCustomerSubscriptionsSubscriptionExposedIdDeleX21f3f9ce0eReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        let actual = try await client.v1.customers.subscriptions.discount
-            .deleteCustomersCustomerSubscriptionsSubscriptionExposedId(
-                customer: decoded("\"customer\""),
-                subscriptionExposedId: decoded("\"subscription_exposed_-1\"")
-            )
+        let actual = try await client.v1.customers.subscriptions.discount.deleteCustomersCustomerSubscriptionsSubscriptionExposedId(
+            customer: decoded("\"customer\""),
+            subscriptionExposedId: decoded("\"subscription_exposed_-1\"")
+        )
         let expected = try JSONSerialization.jsonObject(
             with: Data(sdkMethodFixture13Expected.utf8),
             options: [.fragmentsAllowed]
@@ -272,17 +264,15 @@ extension SdkMethodTests {
         )
     }
 
-    func testDeleteCustomersCustomerSubscriptionsSubscriptionExposedIdDiscXd110b2f829ReachesMockAndDecodesResponse(
-    ) async throws {
+    func testDeleteCustomersCustomerSubscriptionsSubscriptionExposedIdDiscXd110b2f829ReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        let actual = try await client.v1.customers.subscriptions.discount
-            .deleteCustomersCustomerSubscriptionsSubscriptionExposedId(
-                customer: decoded("\"customer\""),
-                subscriptionExposedId: decoded("\"subscription_exposed_-1\"")
-            )
+        let actual = try await client.v1.customers.subscriptions.discount.deleteCustomersCustomerSubscriptionsSubscriptionExposedId(
+            customer: decoded("\"customer\""),
+            subscriptionExposedId: decoded("\"subscription_exposed_-1\"")
+        )
         let expected = try JSONSerialization.jsonObject(
             with: Data(sdkMethodFixture14Expected.utf8),
             options: [.fragmentsAllowed]
@@ -491,8 +481,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testDeleteSubscriptionsSubscriptionExposedIdDeleteSubscriptionsSuXe9dad48ebfReachesMockAndDecodesResponse(
-    ) async throws {
+    func testDeleteSubscriptionsSubscriptionExposedIdDeleteSubscriptionsSuXe9dad48ebfReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -511,8 +500,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testDeleteSubscriptionsSubscriptionExposedIdDiscountDeleteSubscriXf5722f3461ReachesMockAndDecodesResponse(
-    ) async throws {
+    func testDeleteSubscriptionsSubscriptionExposedIdDiscountDeleteSubscriXf5722f3461ReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }

@@ -6,7 +6,7 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1RadarValueListsMethods {
+extension V1RadarValueListsMethods {
     /// Creates a new ValueList object, which can then be referenced in rules.
     ///
     /// - Parameters:
@@ -23,58 +23,26 @@ public extension V1RadarValueListsMethods {
     ///   information about the object in a structured format. Individual keys can be
     ///   unset by posting an empty value to them. All keys can be unset by posting an
     ///   empty value to `metadata`.
-    static func postRadarValueLists(
-        config: ClientConfig,
-        alias: String,
-        name: String,
-        expand: [String]?,
-        itemType: PostRadarValueListsRequestBodyItemType?,
-        metadata: [String: String]?
-    ) async throws -> RadarValueList {
+    public static func postRadarValueLists(config: ClientConfig, alias: String, name: String, expand: [String]?, itemType: PostRadarValueListsRequestBodyItemType?, metadata: [String: String]?) async throws -> RadarValueList {
         try validateLength("alias", alias, max: 100)
 
         try validateLength("name", name, max: 100)
 
-        if let itemType {
+        if let itemType = itemType {
             try validateLength("item_type", itemType.rawValue, max: 5000)
         }
 
-        let requestBody = PostRadarValueListsRequestBody(
-            alias: alias,
-            name: name,
-            expand: expand,
-            itemType: itemType,
-            metadata: metadata
-        )
+        let requestBody = PostRadarValueListsRequestBody(alias: alias, name: name, expand: expand, itemType: itemType, metadata: metadata)
 
-        return try await (sdkRequest(
-            "POST",
-            "/v1/radar/value_lists",
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostRadarValueLists"
-        )).data
+        return try (await sdkRequest("POST", "/v1/radar/value_lists", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostRadarValueLists")).data
     }
 
-    /// Deletes a Radar value list and all items contained in it. The value list must not be referenced by any rules
-    /// before you delete it.
+    /// Deletes a Radar value list and all items contained in it. The value list must not be referenced by any rules before you delete it.
     ///
-    /// Deletes a ValueList object, also deleting any items contained within the value list. To be deleted, a value list
-    /// must not be referenced in any rules.
-    static func deleteRadarValueListsValueList(
-        config: ClientConfig,
-        valueList: String
-    ) async throws -> DeletedRadarValueList {
+    /// Deletes a ValueList object, also deleting any items contained within the value list. To be deleted, a value list must not be referenced in any rules.
+    public static func deleteRadarValueListsValueList(config: ClientConfig, valueList: String) async throws -> DeletedRadarValueList {
         try validateLength("value_list", valueList, max: 5000)
 
-        return try await (sdkRequest(
-            "DELETE",
-            ["/v1/radar/value_lists/", sdkEncodePathSegment(sdkWireString(valueList))].joined(),
-            config: config,
-            decoder: .json,
-            operationId: "DeleteRadarValueListsValueList"
-        )).data
+        return try (await sdkRequest("DELETE", ["/v1/radar/value_lists/", sdkEncodePathSegment(sdkWireString(valueList))].joined(), config: config, decoder: .json, operationId: "DeleteRadarValueListsValueList")).data
     }
 }

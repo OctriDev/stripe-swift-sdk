@@ -27,8 +27,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostIssuingDisputesDisputeSubmitPostIssuingDisputesDisputeSubmitReachesMockAndDecodesResponse(
-    ) async throws {
+    func testPostIssuingDisputesDisputeSubmitPostIssuingDisputesDisputeSubmitReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -49,14 +48,12 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostIssuingPersonalizationDesignsPostIssuingPersonalizationDesignsReachesMockAndDecodesResponse(
-    ) async throws {
+    func testPostIssuingPersonalizationDesignsPostIssuingPersonalizationDesignsReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        var options = try V1IssuingPersonalizationDesignsMethods
-            .PostIssuingPersonalizationDesignsOptions(physicalBundle: decoded("\"physical_bundle\""))
+        var options = try V1IssuingPersonalizationDesignsMethods.PostIssuingPersonalizationDesignsOptions(physicalBundle: decoded("\"physical_bundle\""))
         options.cardLogo = try decoded("\"card_logo\"")
         options.carrierText = try decoded(sdkMethodFixture424Value1)
         options.expand = try decoded("[\"expand\"]")
@@ -79,16 +76,12 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostIssuingPersonalizationDesignsPersonalizationDesignPostIssX903375cca0ReachesMockAndDecodesResponse(
-    ) async throws {
+    func testPostIssuingPersonalizationDesignsPersonalizationDesignPostIssX903375cca0ReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        var options = try V1IssuingPersonalizationDesignsMethods
-            .PostIssuingPersonalizationDesignsPersonalizationDesignOptions(
-                personalizationDesign: decoded("\"personalization_design\"")
-            )
+        var options = try V1IssuingPersonalizationDesignsMethods.PostIssuingPersonalizationDesignsPersonalizationDesignOptions(personalizationDesign: decoded("\"personalization_design\""))
         options.cardLogo = try decoded("\"card_logo\"")
         options.carrierText = try decoded(sdkMethodFixture425Value1)
         options.expand = try decoded("[\"expand\"]")
@@ -112,8 +105,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostIssuingSettlementsSettlementPostIssuingSettlementsSettlementReachesMockAndDecodesResponse(
-    ) async throws {
+    func testPostIssuingSettlementsSettlementPostIssuingSettlementsSettlementReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -155,8 +147,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostIssuingTransactionsTransactionPostIssuingTransactionsTransactionReachesMockAndDecodesResponse(
-    ) async throws {
+    func testPostIssuingTransactionsTransactionPostIssuingTransactionsTransactionReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -182,10 +173,7 @@ extension SdkMethodTests {
             return
         }
         _ = client
-        var options = try V1LinkAccountSessionsMethods.PostLinkAccountSessionsOptions(
-            accountHolder: decoded(sdkMethodFixture429Value1),
-            permissions: decoded("[\"balances\"]")
-        )
+        var options = try V1LinkAccountSessionsMethods.PostLinkAccountSessionsOptions(accountHolder: decoded(sdkMethodFixture429Value1), permissions: decoded("[\"balances\"]"))
         options.expand = try decoded("[\"expand\"]")
         options.filters = try decoded(sdkMethodFixture429Value2)
         options.limits = try decoded("{\"accounts\":1}")
@@ -206,8 +194,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostLinkedAccountsAccountDisconnectPostLinkedAccountsAccountDisconnectReachesMockAndDecodesResponse(
-    ) async throws {
+    func testPostLinkedAccountsAccountDisconnectPostLinkedAccountsAccountDisconnectReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -227,8 +214,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostLinkedAccountsAccountRefreshPostLinkedAccountsAccountRefreshReachesMockAndDecodesResponse(
-    ) async throws {
+    func testPostLinkedAccountsAccountRefreshPostLinkedAccountsAccountRefreshReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -254,10 +240,7 @@ extension SdkMethodTests {
             return
         }
         _ = client
-        var options = try V1PaymentIntentsMethods.PostPaymentIntentsOptions(
-            amount: decoded("100"),
-            currency: decoded("\"currency\"")
-        )
+        var options = try V1PaymentIntentsMethods.PostPaymentIntentsOptions(amount: decoded("100"), currency: decoded("\"currency\""))
         options.allowedPaymentMethodTypes = try decoded("[\"acss_debit\"]")
         options.amountDetails = try decoded(sdkMethodFixture432Value1)
         options.applicationFeeAmount = try decoded("100")
@@ -330,8 +313,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostPaymentIntentsIntentApplyCustomerBalancePostPaymentIntentXf6fe986c2cReachesMockAndDecodesResponse(
-    ) async throws {
+    func testPostPaymentIntentsIntentApplyCustomerBalancePostPaymentIntentXf6fe986c2cReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -379,8 +361,7 @@ extension SdkMethodTests {
             return
         }
         _ = client
-        var options = try V1PaymentIntentsCaptureMethods
-            .PostPaymentIntentsIntentCaptureOptions(intent: decoded("\"intent\""))
+        var options = try V1PaymentIntentsCaptureMethods.PostPaymentIntentsIntentCaptureOptions(intent: decoded("\"intent\""))
         options.amountDetails = try decoded(sdkMethodFixture436Value1)
         options.amountToCapture = try decoded("100")
         options.applicationFeeAmount = try decoded("100")
@@ -411,8 +392,7 @@ extension SdkMethodTests {
             return
         }
         _ = client
-        var options = try V1PaymentIntentsConfirmMethods
-            .PostPaymentIntentsIntentConfirmOptions(intent: decoded("\"intent\""))
+        var options = try V1PaymentIntentsConfirmMethods.PostPaymentIntentsIntentConfirmOptions(intent: decoded("\"intent\""))
         options.allowedPaymentMethodTypes = try decoded("[\"acss_debit\"]")
         options.amountDetails = try decoded(sdkMethodFixture437Value1)
         options.amountToConfirm = try decoded("100")
@@ -451,17 +431,12 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostPaymentIntentsIntentIncrementAuthorizationPostPaymentInteX088dcf4270ReachesMockAndDecodesResponse(
-    ) async throws {
+    func testPostPaymentIntentsIntentIncrementAuthorizationPostPaymentInteX088dcf4270ReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        var options = try V1PaymentIntentsIncrementAuthorizationMethods
-            .PostPaymentIntentsIntentIncrementAuthorizationOptions(
-                intent: decoded("\"intent\""),
-                amount: decoded("100")
-            )
+        var options = try V1PaymentIntentsIncrementAuthorizationMethods.PostPaymentIntentsIntentIncrementAuthorizationOptions(intent: decoded("\"intent\""), amount: decoded("100"))
         options.amountDetails = try decoded(sdkMethodFixture438Value1)
         options.applicationFeeAmount = try decoded("100")
         options.description = try decoded("\"example text\"")
@@ -485,8 +460,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostPaymentIntentsIntentVerifyMicrodepositsPostPaymentIntentsX62d22d6210ReachesMockAndDecodesResponse(
-    ) async throws {
+    func testPostPaymentIntentsIntentVerifyMicrodepositsPostPaymentIntentsX62d22d6210ReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }

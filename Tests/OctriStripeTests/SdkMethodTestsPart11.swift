@@ -49,8 +49,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testGetTaxCalculationsCalculationLineItemsGetTaxCalculationsCalcuXbbeaa65aabReachesMockAndDecodesResponse(
-    ) async throws {
+    func testGetTaxCalculationsCalculationLineItemsGetTaxCalculationsCalcuXbbeaa65aabReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -288,8 +287,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testGetTaxTransactionsTransactionLineItemsGetTaxTransactionsTransXde98af769eReachesMockAndDecodesResponse(
-    ) async throws {
+    func testGetTaxTransactionsTransactionLineItemsGetTaxTransactionsTransXde98af769eReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -335,8 +333,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testGetTerminalConfigurationsConfigurationGetTerminalConfiguratioX96a16b044dReachesMockAndDecodesResponse(
-    ) async throws {
+    func testGetTerminalConfigurationsConfigurationGetTerminalConfiguratioX96a16b044dReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -468,8 +465,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testGetTestHelpersTestClocksTestClockGetTestHelpersTestClocksTestClockReachesMockAndDecodesResponse(
-    ) async throws {
+    func testGetTestHelpersTestClocksTestClockGetTestHelpersTestClocksTestClockReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }

@@ -7,32 +7,17 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1DisputesCloseMethods {
-    /// Closes a dispute and accepts the dispute outcome on behalf of the account. Use this action when you have no
-    /// evidence to submit; closing changes the dispute from `needs_response` to `lost` and cannot be reversed.
+    /// Closes a dispute and accepts the dispute outcome on behalf of the account. Use this action when you have no evidence to submit; closing changes the dispute from `needs_response` to `lost` and cannot be reversed.
     ///
-    /// Closing the dispute for a charge indicates that you do not have any evidence to submit and are essentially
-    /// dismissing the dispute (accepting it), acknowledging it as lost. The status of the dispute will change from
-    /// needs_response to lost . Closing a dispute is irreversible .
+    /// Closing the dispute for a charge indicates that you do not have any evidence to submit and are essentially dismissing the dispute (accepting it), acknowledging it as lost. The status of the dispute will change from needs_response to lost . Closing a dispute is irreversible .
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postDisputesDisputeClose(
-        config: ClientConfig,
-        dispute: String,
-        expand: [String]?
-    ) async throws -> Dispute {
+    public static func postDisputesDisputeClose(config: ClientConfig, dispute: String, expand: [String]?) async throws -> Dispute {
         try validateLength("dispute", dispute, max: 5000)
 
         let requestBody = PostDisputesDisputeCloseRequestBody(expand: expand)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/disputes/", sdkEncodePathSegment(sdkWireString(dispute)), "/close"].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostDisputesDisputeClose"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/disputes/", sdkEncodePathSegment(sdkWireString(dispute)), "/close"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostDisputesDisputeClose")).data
     }
 }

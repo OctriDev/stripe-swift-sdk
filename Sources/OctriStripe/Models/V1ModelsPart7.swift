@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1 domain models
+// V1 domain models
 /// You can store multiple cards on a customer in order to charge the customer later. You can also store multiple
 /// debit cards on a recipient in order to transfer to those cards later. Related guide: Card payments with Sources
 public struct Card: Codable {
@@ -124,133 +124,71 @@ public struct Card: Codable {
         case tokenizationMethod = "tokenization_method"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension Card {
-    init(from decoder: Decoder) throws {
+extension Card {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.brand) else {
-            throw SdkValidationError(
-                field: "brand",
-                code: "required",
-                message: "Validation failed for 'brand': value is required"
-            )
+            throw SdkValidationError(field: "brand", code: "required", message: "Validation failed for 'brand': value is required")
         }
         guard container.contains(.expMonth) else {
-            throw SdkValidationError(
-                field: "exp_month",
-                code: "required",
-                message: "Validation failed for 'exp_month': value is required"
-            )
+            throw SdkValidationError(field: "exp_month", code: "required", message: "Validation failed for 'exp_month': value is required")
         }
         guard container.contains(.expYear) else {
-            throw SdkValidationError(
-                field: "exp_year",
-                code: "required",
-                message: "Validation failed for 'exp_year': value is required"
-            )
+            throw SdkValidationError(field: "exp_year", code: "required", message: "Validation failed for 'exp_year': value is required")
         }
         guard container.contains(.funding) else {
-            throw SdkValidationError(
-                field: "funding",
-                code: "required",
-                message: "Validation failed for 'funding': value is required"
-            )
+            throw SdkValidationError(field: "funding", code: "required", message: "Validation failed for 'funding': value is required")
         }
         guard container.contains(.id) else {
-            throw SdkValidationError(
-                field: "id",
-                code: "required",
-                message: "Validation failed for 'id': value is required"
-            )
+            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
         }
         guard container.contains(.last4) else {
-            throw SdkValidationError(
-                field: "last4",
-                code: "required",
-                message: "Validation failed for 'last4': value is required"
-            )
+            throw SdkValidationError(field: "last4", code: "required", message: "Validation failed for 'last4': value is required")
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(
-                field: "object",
-                code: "required",
-                message: "Validation failed for 'object': value is required"
-            )
+            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
         }
-        brand = try container.sdkDecodeRequired(.brand)
-        expMonth = try container.sdkDecodeRequired(.expMonth)
-        expYear = try container.sdkDecodeRequired(.expYear)
-        funding = try container.sdkDecodeRequired(.funding)
-        id = try container.sdkDecodeRequired(.id)
-        last4 = try container.sdkDecodeRequired(.last4)
-        object = try container.sdkDecodeRequired(.object)
-        account = try container.sdkDecodeIfPresent(.account)
-        addressCity = try container.sdkDecodeIfPresent(.addressCity)
-        addressCountry = try container.sdkDecodeIfPresent(.addressCountry)
-        addressLine1 = try container.sdkDecodeIfPresent(.addressLine1)
-        addressLine1Check = try container.sdkDecodeIfPresent(.addressLine1Check)
-        addressLine2 = try container.sdkDecodeIfPresent(.addressLine2)
-        addressState = try container.sdkDecodeIfPresent(.addressState)
-        addressZip = try container.sdkDecodeIfPresent(.addressZip)
-        addressZipCheck = try container.sdkDecodeIfPresent(.addressZipCheck)
-        allowRedisplay = try container.sdkDecodeIfPresent(.allowRedisplay)
-        availablePayoutMethods = try container.sdkDecodeIfPresent(.availablePayoutMethods)
-        country = try container.sdkDecodeIfPresent(.country)
-        currency = try container.sdkDecodeIfPresent(.currency)
-        customer = try container.sdkDecodeIfPresent(.customer)
-        cvcCheck = try container.sdkDecodeIfPresent(.cvcCheck)
-        defaultForCurrency = try container.sdkDecodeIfPresent(.defaultForCurrency)
-        dynamicLast4 = try container.sdkDecodeIfPresent(.dynamicLast4)
-        fingerprint = try container.sdkDecodeIfPresent(.fingerprint)
-        metadata = try container.sdkDecodeIfPresent(.metadata)
-        name = try container.sdkDecodeIfPresent(.name)
-        networks = try container.sdkDecodeIfPresent(.networks)
-        regulatedStatus = try container.sdkDecodeIfPresent(.regulatedStatus)
-        status = try container.sdkDecodeIfPresent(.status)
-        tokenizationMethod = try container.sdkDecodeIfPresent(.tokenizationMethod)
+        self.brand = try container.sdkDecodeRequired(.brand)
+        self.expMonth = try container.sdkDecodeRequired(.expMonth)
+        self.expYear = try container.sdkDecodeRequired(.expYear)
+        self.funding = try container.sdkDecodeRequired(.funding)
+        self.id = try container.sdkDecodeRequired(.id)
+        self.last4 = try container.sdkDecodeRequired(.last4)
+        self.object = try container.sdkDecodeRequired(.object)
+        self.account = try container.sdkDecodeIfPresent(.account)
+        self.addressCity = try container.sdkDecodeIfPresent(.addressCity)
+        self.addressCountry = try container.sdkDecodeIfPresent(.addressCountry)
+        self.addressLine1 = try container.sdkDecodeIfPresent(.addressLine1)
+        self.addressLine1Check = try container.sdkDecodeIfPresent(.addressLine1Check)
+        self.addressLine2 = try container.sdkDecodeIfPresent(.addressLine2)
+        self.addressState = try container.sdkDecodeIfPresent(.addressState)
+        self.addressZip = try container.sdkDecodeIfPresent(.addressZip)
+        self.addressZipCheck = try container.sdkDecodeIfPresent(.addressZipCheck)
+        self.allowRedisplay = try container.sdkDecodeIfPresent(.allowRedisplay)
+        self.availablePayoutMethods = try container.sdkDecodeIfPresent(.availablePayoutMethods)
+        self.country = try container.sdkDecodeIfPresent(.country)
+        self.currency = try container.sdkDecodeIfPresent(.currency)
+        self.customer = try container.sdkDecodeIfPresent(.customer)
+        self.cvcCheck = try container.sdkDecodeIfPresent(.cvcCheck)
+        self.defaultForCurrency = try container.sdkDecodeIfPresent(.defaultForCurrency)
+        self.dynamicLast4 = try container.sdkDecodeIfPresent(.dynamicLast4)
+        self.fingerprint = try container.sdkDecodeIfPresent(.fingerprint)
+        self.metadata = try container.sdkDecodeIfPresent(.metadata)
+        self.name = try container.sdkDecodeIfPresent(.name)
+        self.networks = try container.sdkDecodeIfPresent(.networks)
+        self.regulatedStatus = try container.sdkDecodeIfPresent(.regulatedStatus)
+        self.status = try container.sdkDecodeIfPresent(.status)
+        self.tokenizationMethod = try container.sdkDecodeIfPresent(.tokenizationMethod)
         try sdkValidateConstraintsPart1()
         try sdkValidateConstraintsPart2()
     }
 }
 
-public extension Card {
-    init(
-        brand: String,
-        expMonth: Int,
-        expYear: Int,
-        funding: String,
-        id: String,
-        last4: String,
-        object: CardObject,
-        account: CardAccount? = nil,
-        addressCity: String? = nil,
-        addressCountry: String? = nil,
-        addressLine1: String? = nil,
-        addressLine1Check: String? = nil,
-        addressLine2: String? = nil,
-        addressState: String? = nil,
-        addressZip: String? = nil,
-        addressZipCheck: String? = nil,
-        allowRedisplay: CardAllowRedisplay? = nil,
-        availablePayoutMethods: [CardAvailablePayoutMethodsItem]? = nil,
-        country: String? = nil,
-        currency: String? = nil,
-        customer: CardCustomer? = nil,
-        cvcCheck: String? = nil,
-        defaultForCurrency: Bool? = nil,
-        dynamicLast4: String? = nil,
-        fingerprint: String? = nil,
-        metadata: [String: String]? = nil,
-        name: String? = nil,
-        networks: TokenCardNetworks? = nil,
-        regulatedStatus: CardRegulatedStatus? = nil,
-        status: String? = nil,
-        tokenizationMethod: String? = nil
-    ) throws {
+extension Card {
+    public init(brand: String, expMonth: Int, expYear: Int, funding: String, id: String, last4: String, object: CardObject, account: CardAccount? = nil, addressCity: String? = nil, addressCountry: String? = nil, addressLine1: String? = nil, addressLine1Check: String? = nil, addressLine2: String? = nil, addressState: String? = nil, addressZip: String? = nil, addressZipCheck: String? = nil, allowRedisplay: CardAllowRedisplay? = nil, availablePayoutMethods: [CardAvailablePayoutMethodsItem]? = nil, country: String? = nil, currency: String? = nil, customer: CardCustomer? = nil, cvcCheck: String? = nil, defaultForCurrency: Bool? = nil, dynamicLast4: String? = nil, fingerprint: String? = nil, metadata: [String: String]? = nil, name: String? = nil, networks: TokenCardNetworks? = nil, regulatedStatus: CardRegulatedStatus? = nil, status: String? = nil, tokenizationMethod: String? = nil) throws {
         (self.brand, self.expMonth) = (brand, expMonth)
         (self.expYear, self.funding) = (expYear, funding)
         (self.id, self.last4) = (id, last4)
@@ -274,32 +212,32 @@ public extension Card {
 
 extension Card {
     func sdkValidateConstraintsPart1() throws {
-        try validateLength("brand", brand, min: nil, max: 5000)
-        try validateLength("funding", funding, min: nil, max: 5000)
-        try validateLength("id", id, min: nil, max: 5000)
-        try validateLength("last4", last4, min: nil, max: 5000)
-        if let value = addressCity {
+            try validateLength("brand", self.brand, min: nil, max: 5000)
+            try validateLength("funding", self.funding, min: nil, max: 5000)
+            try validateLength("id", self.id, min: nil, max: 5000)
+            try validateLength("last4", self.last4, min: nil, max: 5000)
+        if let value = self.addressCity {
             try validateLength("address_city", value, min: nil, max: 5000)
         }
-        if let value = addressCountry {
+        if let value = self.addressCountry {
             try validateLength("address_country", value, min: nil, max: 5000)
         }
-        if let value = addressLine1 {
+        if let value = self.addressLine1 {
             try validateLength("address_line1", value, min: nil, max: 5000)
         }
-        if let value = addressLine1Check {
+        if let value = self.addressLine1Check {
             try validateLength("address_line1_check", value, min: nil, max: 5000)
         }
-        if let value = addressLine2 {
+        if let value = self.addressLine2 {
             try validateLength("address_line2", value, min: nil, max: 5000)
         }
-        if let value = addressState {
+        if let value = self.addressState {
             try validateLength("address_state", value, min: nil, max: 5000)
         }
-        if let value = addressZip {
+        if let value = self.addressZip {
             try validateLength("address_zip", value, min: nil, max: 5000)
         }
-        if let value = addressZipCheck {
+        if let value = self.addressZipCheck {
             try validateLength("address_zip_check", value, min: nil, max: 5000)
         }
     }
@@ -307,25 +245,25 @@ extension Card {
 
 extension Card {
     func sdkValidateConstraintsPart2() throws {
-        if let value = country {
+        if let value = self.country {
             try validateLength("country", value, min: nil, max: 5000)
         }
-        if let value = cvcCheck {
+        if let value = self.cvcCheck {
             try validateLength("cvc_check", value, min: nil, max: 5000)
         }
-        if let value = dynamicLast4 {
+        if let value = self.dynamicLast4 {
             try validateLength("dynamic_last4", value, min: nil, max: 5000)
         }
-        if let value = fingerprint {
+        if let value = self.fingerprint {
             try validateLength("fingerprint", value, min: nil, max: 5000)
         }
-        if let value = name {
+        if let value = self.name {
             try validateLength("name", value, min: nil, max: 5000)
         }
-        if let value = status {
+        if let value = self.status {
             try validateLength("status", value, min: nil, max: 5000)
         }
-        if let value = tokenizationMethod {
+        if let value = self.tokenizationMethod {
             try validateLength("tokenization_method", value, min: nil, max: 5000)
         }
     }
@@ -337,28 +275,21 @@ public enum CardAccount {
 }
 
 extension CardAccount: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
         throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for CardAccount")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(Account.self) {
-            return .account(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(Account.self) { return .account(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -368,40 +299,32 @@ extension CardAccount: Codable {
         case let .account(value): try container.encode(value); return true
         }
     }
+
 }
 
-public enum CardCustomer {
+public indirect enum CardCustomer {
     case stringValue(String)
     case customer(Customer)
     case deletedCustomer(DeletedCustomer)
 }
 
 extension CardCustomer: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
         throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for CardCustomer")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(Customer.self) {
-            return .customer(value)
-        }
-        if let value = try? container.decode(DeletedCustomer.self) {
-            return .deletedCustomer(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(Customer.self) { return .customer(value) }
+        if let value = try? container.decode(DeletedCustomer.self) { return .deletedCustomer(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -412,6 +335,7 @@ extension CardCustomer: Codable {
         case let .deletedCustomer(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// A customer's `Cash balance` represents real funds. Customers can add funds to their cash balance by sending a
@@ -441,68 +365,43 @@ public struct CashBalance: Codable {
         case customerAccount = "customer_account"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension CashBalance {
-    init(from decoder: Decoder) throws {
+extension CashBalance {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.customer) else {
-            throw SdkValidationError(
-                field: "customer",
-                code: "required",
-                message: "Validation failed for 'customer': value is required"
-            )
+            throw SdkValidationError(field: "customer", code: "required", message: "Validation failed for 'customer': value is required")
         }
         guard container.contains(.livemode) else {
-            throw SdkValidationError(
-                field: "livemode",
-                code: "required",
-                message: "Validation failed for 'livemode': value is required"
-            )
+            throw SdkValidationError(field: "livemode", code: "required", message: "Validation failed for 'livemode': value is required")
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(
-                field: "object",
-                code: "required",
-                message: "Validation failed for 'object': value is required"
-            )
+            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
         }
         guard container.contains(.settings) else {
-            throw SdkValidationError(
-                field: "settings",
-                code: "required",
-                message: "Validation failed for 'settings': value is required"
-            )
+            throw SdkValidationError(field: "settings", code: "required", message: "Validation failed for 'settings': value is required")
         }
-        customer = try container.sdkDecodeRequired(.customer)
-        livemode = try container.sdkDecodeRequired(.livemode)
-        object = try container.sdkDecodeRequired(.object)
-        settings = try container.sdkDecodeRequired(.settings)
-        available = try container.sdkDecodeIfPresent(.available)
-        customerAccount = try container.sdkDecodeIfPresent(.customerAccount)
-        try validateLength("customer", customer, min: nil, max: 5000)
-        if let value = customerAccount {
+        self.customer = try container.sdkDecodeRequired(.customer)
+        self.livemode = try container.sdkDecodeRequired(.livemode)
+        self.object = try container.sdkDecodeRequired(.object)
+        self.settings = try container.sdkDecodeRequired(.settings)
+        self.available = try container.sdkDecodeIfPresent(.available)
+        self.customerAccount = try container.sdkDecodeIfPresent(.customerAccount)
+            try validateLength("customer", self.customer, min: nil, max: 5000)
+        if let value = self.customerAccount {
             try validateLength("customer_account", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension CashBalance {
-    init(
-        customer: String,
-        livemode: Bool,
-        object: CashBalanceObject,
-        settings: CustomerBalanceCustomerBalanceSettings,
-        available: [String: Int]? = nil,
-        customerAccount: String? = nil
-    ) throws {
+extension CashBalance {
+    public init(customer: String, livemode: Bool, object: CashBalanceObject, settings: CustomerBalanceCustomerBalanceSettings, available: [String: Int]? = nil, customerAccount: String? = nil) throws {
         (self.customer, self.livemode) = (customer, livemode)
         (self.object, self.settings) = (object, settings)
         (self.available, self.customerAccount) = (available, customerAccount)
-        try validateLength("customer", self.customer, min: nil, max: 5000)
+            try validateLength("customer", self.customer, min: nil, max: 5000)
         if let value = self.customerAccount {
             try validateLength("customer_account", value, min: nil, max: 5000)
         }

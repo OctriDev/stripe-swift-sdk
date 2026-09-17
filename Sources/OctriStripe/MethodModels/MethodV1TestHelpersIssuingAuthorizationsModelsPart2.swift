@@ -7,34 +7,23 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1TestHelpersIssuingAuthorizations operation model declarations
-public extension PostTestHelpersIssuingAuthorizationsRequestBodyVerificationDaX62b6f19733 {
-    init(from decoder: Decoder) throws {
+// Canonical v1TestHelpersIssuingAuthorizations operation model declarations
+extension PostTestHelpersIssuingAuthorizationsRequestBodyVerificationDaX62b6f19733 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.claimedBy) else {
-            throw SdkValidationError(
-                field: "claimed_by",
-                code: "required",
-                message: "Validation failed for 'claimed_by': value is required"
-            )
+            throw SdkValidationError(field: "claimed_by", code: "required", message: "Validation failed for 'claimed_by': value is required")
         }
         guard container.contains(.type) else {
-            throw SdkValidationError(
-                field: "type",
-                code: "required",
-                message: "Validation failed for 'type': value is required"
-            )
+            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
         }
-        claimedBy = try container.sdkDecodeRequired(.claimedBy)
-        type = try container.sdkDecodeRequired(.type)
+        self.claimedBy = try container.sdkDecodeRequired(.claimedBy)
+        self.type = try container.sdkDecodeRequired(.type)
     }
 }
 
-public extension PostTestHelpersIssuingAuthorizationsRequestBodyVerificationDaX62b6f19733 {
-    init(
-        claimedBy: PostTestHelpersIssuingAuthorizationsRequestBodyVerificationDaX46766342c0,
-        type: PostTestHelpersIssuingAuthorizationsRequestBodyVerificationDaXc802a2b49d
-    ) {
+extension PostTestHelpersIssuingAuthorizationsRequestBodyVerificationDaX62b6f19733 {
+    public init(claimedBy: PostTestHelpersIssuingAuthorizationsRequestBodyVerificationDaX46766342c0, type: PostTestHelpersIssuingAuthorizationsRequestBodyVerificationDaXc802a2b49d) {
         (self.claimedBy, self.type) = (claimedBy, type)
     }
 }
@@ -48,28 +37,22 @@ public struct PostTestHelpersIssuingAuthorizationsRequestBodyRiskAssessmentFraud
         case score
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostTestHelpersIssuingAuthorizationsRequestBodyRiskAssessmentFraudRisk {
-    init(from decoder: Decoder) throws {
+extension PostTestHelpersIssuingAuthorizationsRequestBodyRiskAssessmentFraudRisk {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.level) else {
-            throw SdkValidationError(
-                field: "level",
-                code: "required",
-                message: "Validation failed for 'level': value is required"
-            )
+            throw SdkValidationError(field: "level", code: "required", message: "Validation failed for 'level': value is required")
         }
-        level = try container.sdkDecodeRequired(.level)
-        score = try container.sdkDecodeIfPresent(.score)
+        self.level = try container.sdkDecodeRequired(.level)
+        self.score = try container.sdkDecodeIfPresent(.score)
     }
 }
 
-public extension PostTestHelpersIssuingAuthorizationsRequestBodyRiskAssessmentFraudRisk {
-    init(level: PostTestHelpersIssuingAuthorizationsRequestBodyRiskAssessmentX9bb4514d96, score: Double? = nil) {
+extension PostTestHelpersIssuingAuthorizationsRequestBodyRiskAssessmentFraudRisk {
+    public init(level: PostTestHelpersIssuingAuthorizationsRequestBodyRiskAssessmentX9bb4514d96, score: Double? = nil) {
         (self.level, self.score) = (level, score)
     }
 }
@@ -95,38 +78,25 @@ public struct PostTestHelpersIssuingAuthorizationsRequestBodyVerificationData: C
     }
 
     init() {
-        (addressLine1Check, addressPostalCodeCheck, authenticationExemption, cvcCheck, expiryCheck) = (
-            nil,
-            nil,
-            nil,
-            nil,
-            nil
-        )
-        threeDSecure = nil
+        (self.addressLine1Check, self.addressPostalCodeCheck, self.authenticationExemption, self.cvcCheck, self.expiryCheck) = (nil, nil, nil, nil, nil)
+        self.threeDSecure = nil
     }
 }
 
-public extension PostTestHelpersIssuingAuthorizationsRequestBodyVerificationData {
-    init(from decoder: Decoder) throws {
+extension PostTestHelpersIssuingAuthorizationsRequestBodyVerificationData {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        addressLine1Check = try container.sdkDecodeIfPresent(.addressLine1Check)
-        addressPostalCodeCheck = try container.sdkDecodeIfPresent(.addressPostalCodeCheck)
-        authenticationExemption = try container.sdkDecodeIfPresent(.authenticationExemption)
-        cvcCheck = try container.sdkDecodeIfPresent(.cvcCheck)
-        expiryCheck = try container.sdkDecodeIfPresent(.expiryCheck)
-        threeDSecure = try container.sdkDecodeIfPresent(.threeDSecure)
+        self.addressLine1Check = try container.sdkDecodeIfPresent(.addressLine1Check)
+        self.addressPostalCodeCheck = try container.sdkDecodeIfPresent(.addressPostalCodeCheck)
+        self.authenticationExemption = try container.sdkDecodeIfPresent(.authenticationExemption)
+        self.cvcCheck = try container.sdkDecodeIfPresent(.cvcCheck)
+        self.expiryCheck = try container.sdkDecodeIfPresent(.expiryCheck)
+        self.threeDSecure = try container.sdkDecodeIfPresent(.threeDSecure)
     }
 }
 
-public extension PostTestHelpersIssuingAuthorizationsRequestBodyVerificationData {
-    init(
-        addressLine1Check: PostTestHelpersIssuingAuthorizationsRequestBodyVerificationDaX12f148526a? = nil,
-        addressPostalCodeCheck: PostTestHelpersIssuingAuthorizationsRequestBodyVerificationDaX5ac2314000? = nil,
-        authenticationExemption: PostTestHelpersIssuingAuthorizationsRequestBodyVerificationDaX62b6f19733? = nil,
-        cvcCheck: PostTestHelpersIssuingAuthorizationsRequestBodyVerificationDataCvcCheck? = nil,
-        expiryCheck: PostTestHelpersIssuingAuthorizationsRequestBodyVerificationDaXe9c04a7551? = nil,
-        threeDSecure: PostTestHelpersIssuingAuthorizationsRequestBodyVerificationDaX028764078c? = nil
-    ) {
+extension PostTestHelpersIssuingAuthorizationsRequestBodyVerificationData {
+    public init(addressLine1Check: PostTestHelpersIssuingAuthorizationsRequestBodyVerificationDaX12f148526a? = nil, addressPostalCodeCheck: PostTestHelpersIssuingAuthorizationsRequestBodyVerificationDaX5ac2314000? = nil, authenticationExemption: PostTestHelpersIssuingAuthorizationsRequestBodyVerificationDaX62b6f19733? = nil, cvcCheck: PostTestHelpersIssuingAuthorizationsRequestBodyVerificationDataCvcCheck? = nil, expiryCheck: PostTestHelpersIssuingAuthorizationsRequestBodyVerificationDaXe9c04a7551? = nil, threeDSecure: PostTestHelpersIssuingAuthorizationsRequestBodyVerificationDaX028764078c? = nil) {
         self.init()
         (self.addressLine1Check, self.addressPostalCodeCheck) = (addressLine1Check, addressPostalCodeCheck)
         (self.authenticationExemption, self.cvcCheck) = (authenticationExemption, cvcCheck)
@@ -143,28 +113,22 @@ public struct PostTestHelpersIssuingAuthorizationsRequestBodyRiskAssessmentXdb5e
         case disputeRate = "dispute_rate"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostTestHelpersIssuingAuthorizationsRequestBodyRiskAssessmentXdb5e860316 {
-    init(from decoder: Decoder) throws {
+extension PostTestHelpersIssuingAuthorizationsRequestBodyRiskAssessmentXdb5e860316 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.level) else {
-            throw SdkValidationError(
-                field: "level",
-                code: "required",
-                message: "Validation failed for 'level': value is required"
-            )
+            throw SdkValidationError(field: "level", code: "required", message: "Validation failed for 'level': value is required")
         }
-        level = try container.sdkDecodeRequired(.level)
-        disputeRate = try container.sdkDecodeIfPresent(.disputeRate)
+        self.level = try container.sdkDecodeRequired(.level)
+        self.disputeRate = try container.sdkDecodeIfPresent(.disputeRate)
     }
 }
 
-public extension PostTestHelpersIssuingAuthorizationsRequestBodyRiskAssessmentXdb5e860316 {
-    init(level: PostTestHelpersIssuingAuthorizationsRequestBodyRiskAssessmentXfed940fa43, disputeRate: Int? = nil) {
+extension PostTestHelpersIssuingAuthorizationsRequestBodyRiskAssessmentXdb5e860316 {
+    public init(level: PostTestHelpersIssuingAuthorizationsRequestBodyRiskAssessmentXfed940fa43, disputeRate: Int? = nil) {
         (self.level, self.disputeRate) = (level, disputeRate)
     }
 }

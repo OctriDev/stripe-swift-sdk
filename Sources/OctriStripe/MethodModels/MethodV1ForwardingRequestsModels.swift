@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1ForwardingRequests operation model declarations
+// Canonical v1ForwardingRequests operation model declarations
 /// The request body and headers to be sent to the destination endpoint.
 public struct PostForwardingRequestsRequestBodyRequest: Codable {
     public var body: String?
@@ -19,23 +19,23 @@ public struct PostForwardingRequestsRequestBodyRequest: Codable {
     }
 
     init() {
-        (body, headers) = (nil, nil)
+        (self.body, self.headers) = (nil, nil)
     }
 }
 
-public extension PostForwardingRequestsRequestBodyRequest {
-    init(from decoder: Decoder) throws {
+extension PostForwardingRequestsRequestBodyRequest {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        body = try container.sdkDecodeIfPresent(.body)
-        headers = try container.sdkDecodeIfPresent(.headers)
-        if let value = body {
+        self.body = try container.sdkDecodeIfPresent(.body)
+        self.headers = try container.sdkDecodeIfPresent(.headers)
+        if let value = self.body {
             try validateLength("body", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PostForwardingRequestsRequestBodyRequest {
-    init(body: String? = nil, headers: [PostForwardingRequestsRequestBodyRequestHeadersItem]? = nil) throws {
+extension PostForwardingRequestsRequestBodyRequest {
+    public init(body: String? = nil, headers: [PostForwardingRequestsRequestBodyRequestHeadersItem]? = nil) throws {
         self.init()
         (self.body, self.headers) = (body, headers)
         if let value = self.body {
@@ -62,55 +62,37 @@ public struct GetForwardingRequestsResponse: Codable {
         case url
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension GetForwardingRequestsResponse {
-    init(from decoder: Decoder) throws {
+extension GetForwardingRequestsResponse {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.data) else {
-            throw SdkValidationError(
-                field: "data",
-                code: "required",
-                message: "Validation failed for 'data': value is required"
-            )
+            throw SdkValidationError(field: "data", code: "required", message: "Validation failed for 'data': value is required")
         }
         guard container.contains(.hasMore) else {
-            throw SdkValidationError(
-                field: "has_more",
-                code: "required",
-                message: "Validation failed for 'has_more': value is required"
-            )
+            throw SdkValidationError(field: "has_more", code: "required", message: "Validation failed for 'has_more': value is required")
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(
-                field: "object",
-                code: "required",
-                message: "Validation failed for 'object': value is required"
-            )
+            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
         }
         guard container.contains(.url) else {
-            throw SdkValidationError(
-                field: "url",
-                code: "required",
-                message: "Validation failed for 'url': value is required"
-            )
+            throw SdkValidationError(field: "url", code: "required", message: "Validation failed for 'url': value is required")
         }
-        data = try container.sdkDecodeRequired(.data)
-        hasMore = try container.sdkDecodeRequired(.hasMore)
-        object = try container.sdkDecodeRequired(.object)
-        url = try container.sdkDecodeRequired(.url)
-        try validateLength("url", url, min: nil, max: 5000)
+        self.data = try container.sdkDecodeRequired(.data)
+        self.hasMore = try container.sdkDecodeRequired(.hasMore)
+        self.object = try container.sdkDecodeRequired(.object)
+        self.url = try container.sdkDecodeRequired(.url)
+            try validateLength("url", self.url, min: nil, max: 5000)
     }
 }
 
-public extension GetForwardingRequestsResponse {
-    init(data: [ForwardingRequest], hasMore: Bool, object: GetForwardingRequestsResponseObject, url: String) throws {
+extension GetForwardingRequestsResponse {
+    public init(data: [ForwardingRequest], hasMore: Bool, object: GetForwardingRequestsResponseObject, url: String) throws {
         (self.data, self.hasMore) = (data, hasMore)
         (self.object, self.url) = (object, url)
-        try validateLength("url", self.url, min: nil, max: 5000)
+            try validateLength("url", self.url, min: nil, max: 5000)
     }
 }
 
@@ -123,40 +105,30 @@ public struct PostForwardingRequestsRequestBodyRequestHeadersItem: Codable {
         case value
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostForwardingRequestsRequestBodyRequestHeadersItem {
-    init(from decoder: Decoder) throws {
+extension PostForwardingRequestsRequestBodyRequestHeadersItem {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.name) else {
-            throw SdkValidationError(
-                field: "name",
-                code: "required",
-                message: "Validation failed for 'name': value is required"
-            )
+            throw SdkValidationError(field: "name", code: "required", message: "Validation failed for 'name': value is required")
         }
         guard container.contains(.value) else {
-            throw SdkValidationError(
-                field: "value",
-                code: "required",
-                message: "Validation failed for 'value': value is required"
-            )
+            throw SdkValidationError(field: "value", code: "required", message: "Validation failed for 'value': value is required")
         }
-        name = try container.sdkDecodeRequired(.name)
-        value = try container.sdkDecodeRequired(.value)
-        try validateLength("name", name, min: nil, max: 5000)
-        try validateLength("value", value, min: nil, max: 5000)
+        self.name = try container.sdkDecodeRequired(.name)
+        self.value = try container.sdkDecodeRequired(.value)
+            try validateLength("name", self.name, min: nil, max: 5000)
+            try validateLength("value", self.value, min: nil, max: 5000)
     }
 }
 
-public extension PostForwardingRequestsRequestBodyRequestHeadersItem {
-    init(name: String, value: String) throws {
+extension PostForwardingRequestsRequestBodyRequestHeadersItem {
+    public init(name: String, value: String) throws {
         (self.name, self.value) = (name, value)
-        try validateLength("name", self.name, min: nil, max: 5000)
-        try validateLength("value", self.value, min: nil, max: 5000)
+            try validateLength("name", self.name, min: nil, max: 5000)
+            try validateLength("value", self.value, min: nil, max: 5000)
     }
 }
 
@@ -174,22 +146,22 @@ public struct GetForwardingRequestsParameter: Codable {
     }
 
     init() {
-        (gt, gte, lt, lte) = (nil, nil, nil, nil)
+        (self.gt, self.gte, self.lt, self.lte) = (nil, nil, nil, nil)
     }
 }
 
-public extension GetForwardingRequestsParameter {
-    init(from decoder: Decoder) throws {
+extension GetForwardingRequestsParameter {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        gt = try container.sdkDecodeIfPresent(.gt)
-        gte = try container.sdkDecodeIfPresent(.gte)
-        lt = try container.sdkDecodeIfPresent(.lt)
-        lte = try container.sdkDecodeIfPresent(.lte)
+        self.gt = try container.sdkDecodeIfPresent(.gt)
+        self.gte = try container.sdkDecodeIfPresent(.gte)
+        self.lt = try container.sdkDecodeIfPresent(.lt)
+        self.lte = try container.sdkDecodeIfPresent(.lte)
     }
 }
 
-public extension GetForwardingRequestsParameter {
-    init(gt: Int? = nil, gte: Int? = nil, lt: Int? = nil, lte: Int? = nil) {
+extension GetForwardingRequestsParameter {
+    public init(gt: Int? = nil, gte: Int? = nil, lt: Int? = nil, lte: Int? = nil) {
         self.init()
         (self.gt, self.gte) = (gt, gte)
         (self.lt, self.lte) = (lt, lte)

@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1TestHelpersIssuingTransactionsCreateForceCapture operation model declarations
+// Canonical v1TestHelpersIssuingTransactionsCreateForceCapture operation model declarations
 public struct PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoX979ec7a70d: Codable {
     /// fleet_cardholder_prompt_data_specs
     public var cardholderPromptData: PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoX7a014ed580?
@@ -24,33 +24,28 @@ public struct PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoX979e
     }
 
     init() {
-        (cardholderPromptData, purchaseType, reportedBreakdown, serviceType) = (nil, nil, nil, nil)
+        (self.cardholderPromptData, self.purchaseType, self.reportedBreakdown, self.serviceType) = (nil, nil, nil, nil)
     }
 }
 
-public extension PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoX979ec7a70d {
-    init(from decoder: Decoder) throws {
+extension PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoX979ec7a70d {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        cardholderPromptData = try container.sdkDecodeIfPresent(.cardholderPromptData)
-        purchaseType = try container.sdkDecodeIfPresent(.purchaseType)
-        reportedBreakdown = try container.sdkDecodeIfPresent(.reportedBreakdown)
-        serviceType = try container.sdkDecodeIfPresent(.serviceType)
-        if let value = purchaseType {
+        self.cardholderPromptData = try container.sdkDecodeIfPresent(.cardholderPromptData)
+        self.purchaseType = try container.sdkDecodeIfPresent(.purchaseType)
+        self.reportedBreakdown = try container.sdkDecodeIfPresent(.reportedBreakdown)
+        self.serviceType = try container.sdkDecodeIfPresent(.serviceType)
+        if let value = self.purchaseType {
             try validateLength("purchase_type", sdkWireString(value), min: nil, max: 5000)
         }
-        if let value = serviceType {
+        if let value = self.serviceType {
             try validateLength("service_type", sdkWireString(value), min: nil, max: 5000)
         }
     }
 }
 
-public extension PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoX979ec7a70d {
-    init(
-        cardholderPromptData: PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoX7a014ed580? = nil,
-        purchaseType: PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXb7c14269fd? = nil,
-        reportedBreakdown: PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXb7af448620? = nil,
-        serviceType: PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoX79f8f87593? = nil
-    ) throws {
+extension PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoX979ec7a70d {
+    public init(cardholderPromptData: PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoX7a014ed580? = nil, purchaseType: PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXb7c14269fd? = nil, reportedBreakdown: PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXb7af448620? = nil, serviceType: PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoX79f8f87593? = nil) throws {
         self.init()
         (self.cardholderPromptData, self.purchaseType) = (cardholderPromptData, purchaseType)
         (self.reportedBreakdown, self.serviceType) = (reportedBreakdown, serviceType)
@@ -63,8 +58,7 @@ public extension PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoX9
     }
 }
 
-public typealias PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoX6512502b22 =
-    [PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXf9fb3a841b]
+public typealias PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoX6512502b22 = [PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXf9fb3a841b]
 
 public struct PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoX5e80227292: Codable {
     public var departureAt: Int?
@@ -82,35 +76,29 @@ public struct PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoX5e80
     }
 
     init() {
-        (departureAt, passengerName, refundable, segments, travelAgency) = (nil, nil, nil, nil, nil)
+        (self.departureAt, self.passengerName, self.refundable, self.segments, self.travelAgency) = (nil, nil, nil, nil, nil)
     }
 }
 
-public extension PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoX5e80227292 {
-    init(from decoder: Decoder) throws {
+extension PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoX5e80227292 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        departureAt = try container.sdkDecodeIfPresent(.departureAt)
-        passengerName = try container.sdkDecodeIfPresent(.passengerName)
-        refundable = try container.sdkDecodeIfPresent(.refundable)
-        segments = try container.sdkDecodeIfPresent(.segments)
-        travelAgency = try container.sdkDecodeIfPresent(.travelAgency)
-        if let value = passengerName {
+        self.departureAt = try container.sdkDecodeIfPresent(.departureAt)
+        self.passengerName = try container.sdkDecodeIfPresent(.passengerName)
+        self.refundable = try container.sdkDecodeIfPresent(.refundable)
+        self.segments = try container.sdkDecodeIfPresent(.segments)
+        self.travelAgency = try container.sdkDecodeIfPresent(.travelAgency)
+        if let value = self.passengerName {
             try validateLength("passenger_name", value, min: nil, max: 5000)
         }
-        if let value = travelAgency {
+        if let value = self.travelAgency {
             try validateLength("travel_agency", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoX5e80227292 {
-    init(
-        departureAt: Int? = nil,
-        passengerName: String? = nil,
-        refundable: Bool? = nil,
-        segments: PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoX6512502b22? = nil,
-        travelAgency: String? = nil
-    ) throws {
+extension PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoX5e80227292 {
+    public init(departureAt: Int? = nil, passengerName: String? = nil, refundable: Bool? = nil, segments: PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoX6512502b22? = nil, travelAgency: String? = nil) throws {
         self.init()
         (self.departureAt, self.passengerName) = (departureAt, passengerName)
         (self.refundable, self.segments) = (refundable, segments)
@@ -140,41 +128,35 @@ public struct PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoX7a01
     }
 
     init() {
-        (driverId, odometer, unspecifiedId, userId, vehicleNumber) = (nil, nil, nil, nil, nil)
+        (self.driverId, self.odometer, self.unspecifiedId, self.userId, self.vehicleNumber) = (nil, nil, nil, nil, nil)
     }
 }
 
-public extension PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoX7a014ed580 {
-    init(from decoder: Decoder) throws {
+extension PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoX7a014ed580 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        driverId = try container.sdkDecodeIfPresent(.driverId)
-        odometer = try container.sdkDecodeIfPresent(.odometer)
-        unspecifiedId = try container.sdkDecodeIfPresent(.unspecifiedId)
-        userId = try container.sdkDecodeIfPresent(.userId)
-        vehicleNumber = try container.sdkDecodeIfPresent(.vehicleNumber)
-        if let value = driverId {
+        self.driverId = try container.sdkDecodeIfPresent(.driverId)
+        self.odometer = try container.sdkDecodeIfPresent(.odometer)
+        self.unspecifiedId = try container.sdkDecodeIfPresent(.unspecifiedId)
+        self.userId = try container.sdkDecodeIfPresent(.userId)
+        self.vehicleNumber = try container.sdkDecodeIfPresent(.vehicleNumber)
+        if let value = self.driverId {
             try validateLength("driver_id", value, min: nil, max: 5000)
         }
-        if let value = unspecifiedId {
+        if let value = self.unspecifiedId {
             try validateLength("unspecified_id", value, min: nil, max: 5000)
         }
-        if let value = userId {
+        if let value = self.userId {
             try validateLength("user_id", value, min: nil, max: 5000)
         }
-        if let value = vehicleNumber {
+        if let value = self.vehicleNumber {
             try validateLength("vehicle_number", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoX7a014ed580 {
-    init(
-        driverId: String? = nil,
-        odometer: Int? = nil,
-        unspecifiedId: String? = nil,
-        userId: String? = nil,
-        vehicleNumber: String? = nil
-    ) throws {
+extension PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoX7a014ed580 {
+    public init(driverId: String? = nil, odometer: Int? = nil, unspecifiedId: String? = nil, userId: String? = nil, vehicleNumber: String? = nil) throws {
         self.init()
         (self.driverId, self.odometer) = (driverId, odometer)
         (self.unspecifiedId, self.userId) = (unspecifiedId, userId)
@@ -204,20 +186,20 @@ public struct PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd70e
     }
 
     init() {
-        (localAmountDecimal, nationalAmountDecimal) = (nil, nil)
+        (self.localAmountDecimal, self.nationalAmountDecimal) = (nil, nil)
     }
 }
 
-public extension PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd70eae7377 {
-    init(from decoder: Decoder) throws {
+extension PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd70eae7377 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        localAmountDecimal = try container.sdkDecodeIfPresent(.localAmountDecimal)
-        nationalAmountDecimal = try container.sdkDecodeIfPresent(.nationalAmountDecimal)
+        self.localAmountDecimal = try container.sdkDecodeIfPresent(.localAmountDecimal)
+        self.nationalAmountDecimal = try container.sdkDecodeIfPresent(.nationalAmountDecimal)
     }
 }
 
-public extension PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd70eae7377 {
-    init(localAmountDecimal: String? = nil, nationalAmountDecimal: String? = nil) {
+extension PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd70eae7377 {
+    public init(localAmountDecimal: String? = nil, nationalAmountDecimal: String? = nil) {
         self.init()
         (self.localAmountDecimal, self.nationalAmountDecimal) = (localAmountDecimal, nationalAmountDecimal)
     }
@@ -231,19 +213,19 @@ public struct PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXeb7a
     }
 
     init() {
-        grossAmountDecimal = nil
+        self.grossAmountDecimal = nil
     }
 }
 
-public extension PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXeb7ac432a3 {
-    init(from decoder: Decoder) throws {
+extension PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXeb7ac432a3 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        grossAmountDecimal = try container.sdkDecodeIfPresent(.grossAmountDecimal)
+        self.grossAmountDecimal = try container.sdkDecodeIfPresent(.grossAmountDecimal)
     }
 }
 
-public extension PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXeb7ac432a3 {
-    init(grossAmountDecimal: String? = nil) {
+extension PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXeb7ac432a3 {
+    public init(grossAmountDecimal: String? = nil) {
         self.init()
         self.grossAmountDecimal = grossAmountDecimal
     }
@@ -264,33 +246,28 @@ public struct PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXb7af
     }
 
     init() {
-        (fuel, nonFuel, tax) = (nil, nil, nil)
+        (self.fuel, self.nonFuel, self.tax) = (nil, nil, nil)
     }
 }
 
-public extension PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXb7af448620 {
-    init(from decoder: Decoder) throws {
+extension PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXb7af448620 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        fuel = try container.sdkDecodeIfPresent(.fuel)
-        nonFuel = try container.sdkDecodeIfPresent(.nonFuel)
-        tax = try container.sdkDecodeIfPresent(.tax)
+        self.fuel = try container.sdkDecodeIfPresent(.fuel)
+        self.nonFuel = try container.sdkDecodeIfPresent(.nonFuel)
+        self.tax = try container.sdkDecodeIfPresent(.tax)
     }
 }
 
-public extension PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXb7af448620 {
-    init(
-        fuel: PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXeb7ac432a3? = nil,
-        nonFuel: PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoX21dc64a5c8? = nil,
-        tax: PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd70eae7377? = nil
-    ) {
+extension PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXb7af448620 {
+    public init(fuel: PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXeb7ac432a3? = nil, nonFuel: PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoX21dc64a5c8? = nil, tax: PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd70eae7377? = nil) {
         self.init()
         (self.fuel, self.nonFuel) = (fuel, nonFuel)
         self.tax = tax
     }
 }
 
-public typealias PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoX10c3e4bc7c =
-    [PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXcaf7a0dedd]
+public typealias PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoX10c3e4bc7c = [PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXcaf7a0dedd]
 
 /// Additional purchase information that is optionally provided by the merchant.
 public struct PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXf0b3163d09: Codable {
@@ -315,35 +292,28 @@ public struct PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXf0b3
     }
 
     init() {
-        (fleet, flight, fuel, lodging, receipt) = (nil, nil, nil, nil, nil)
-        reference = nil
+        (self.fleet, self.flight, self.fuel, self.lodging, self.receipt) = (nil, nil, nil, nil, nil)
+        self.reference = nil
     }
 }
 
-public extension PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXf0b3163d09 {
-    init(from decoder: Decoder) throws {
+extension PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXf0b3163d09 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        fleet = try container.sdkDecodeIfPresent(.fleet)
-        flight = try container.sdkDecodeIfPresent(.flight)
-        fuel = try container.sdkDecodeIfPresent(.fuel)
-        lodging = try container.sdkDecodeIfPresent(.lodging)
-        receipt = try container.sdkDecodeIfPresent(.receipt)
-        reference = try container.sdkDecodeIfPresent(.reference)
-        if let value = reference {
+        self.fleet = try container.sdkDecodeIfPresent(.fleet)
+        self.flight = try container.sdkDecodeIfPresent(.flight)
+        self.fuel = try container.sdkDecodeIfPresent(.fuel)
+        self.lodging = try container.sdkDecodeIfPresent(.lodging)
+        self.receipt = try container.sdkDecodeIfPresent(.receipt)
+        self.reference = try container.sdkDecodeIfPresent(.reference)
+        if let value = self.reference {
             try validateLength("reference", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXf0b3163d09 {
-    init(
-        fleet: PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoX979ec7a70d? = nil,
-        flight: PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoX5e80227292? = nil,
-        fuel: PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXf4cc2bd277? = nil,
-        lodging: PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXe5e9e1d18c? = nil,
-        receipt: PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoX10c3e4bc7c? = nil,
-        reference: String? = nil
-    ) throws {
+extension PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXf0b3163d09 {
+    public init(fleet: PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoX979ec7a70d? = nil, flight: PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoX5e80227292? = nil, fuel: PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXf4cc2bd277? = nil, lodging: PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXe5e9e1d18c? = nil, receipt: PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoX10c3e4bc7c? = nil, reference: String? = nil) throws {
         self.init()
         (self.fleet, self.flight) = (fleet, flight)
         (self.fuel, self.lodging) = (fuel, lodging)
@@ -372,47 +342,40 @@ public struct PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXf9fb
     }
 
     init() {
-        (arrivalAirportCode, carrier, departureAirportCode, flightNumber, serviceClass) = (nil, nil, nil, nil, nil)
-        stopoverAllowed = nil
+        (self.arrivalAirportCode, self.carrier, self.departureAirportCode, self.flightNumber, self.serviceClass) = (nil, nil, nil, nil, nil)
+        self.stopoverAllowed = nil
     }
 }
 
-public extension PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXf9fb3a841b {
-    init(from decoder: Decoder) throws {
+extension PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXf9fb3a841b {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        arrivalAirportCode = try container.sdkDecodeIfPresent(.arrivalAirportCode)
-        carrier = try container.sdkDecodeIfPresent(.carrier)
-        departureAirportCode = try container.sdkDecodeIfPresent(.departureAirportCode)
-        flightNumber = try container.sdkDecodeIfPresent(.flightNumber)
-        serviceClass = try container.sdkDecodeIfPresent(.serviceClass)
-        stopoverAllowed = try container.sdkDecodeIfPresent(.stopoverAllowed)
-        if let value = arrivalAirportCode {
+        self.arrivalAirportCode = try container.sdkDecodeIfPresent(.arrivalAirportCode)
+        self.carrier = try container.sdkDecodeIfPresent(.carrier)
+        self.departureAirportCode = try container.sdkDecodeIfPresent(.departureAirportCode)
+        self.flightNumber = try container.sdkDecodeIfPresent(.flightNumber)
+        self.serviceClass = try container.sdkDecodeIfPresent(.serviceClass)
+        self.stopoverAllowed = try container.sdkDecodeIfPresent(.stopoverAllowed)
+        if let value = self.arrivalAirportCode {
             try validateLength("arrival_airport_code", value, min: nil, max: 3)
         }
-        if let value = carrier {
+        if let value = self.carrier {
             try validateLength("carrier", value, min: nil, max: 5000)
         }
-        if let value = departureAirportCode {
+        if let value = self.departureAirportCode {
             try validateLength("departure_airport_code", value, min: nil, max: 3)
         }
-        if let value = flightNumber {
+        if let value = self.flightNumber {
             try validateLength("flight_number", value, min: nil, max: 5000)
         }
-        if let value = serviceClass {
+        if let value = self.serviceClass {
             try validateLength("service_class", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXf9fb3a841b {
-    init(
-        arrivalAirportCode: String? = nil,
-        carrier: String? = nil,
-        departureAirportCode: String? = nil,
-        flightNumber: String? = nil,
-        serviceClass: String? = nil,
-        stopoverAllowed: Bool? = nil
-    ) throws {
+extension PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXf9fb3a841b {
+    public init(arrivalAirportCode: String? = nil, carrier: String? = nil, departureAirportCode: String? = nil, flightNumber: String? = nil, serviceClass: String? = nil, stopoverAllowed: Bool? = nil) throws {
         self.init()
         (self.arrivalAirportCode, self.carrier) = (arrivalAirportCode, carrier)
         (self.departureAirportCode, self.flightNumber) = (departureAirportCode, flightNumber)
@@ -449,25 +412,25 @@ public struct PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXcaf7
     }
 
     init() {
-        (description, quantity, total, unitCost) = (nil, nil, nil, nil)
+        (self.description, self.quantity, self.total, self.unitCost) = (nil, nil, nil, nil)
     }
 }
 
-public extension PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXcaf7a0dedd {
-    init(from decoder: Decoder) throws {
+extension PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXcaf7a0dedd {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        description = try container.sdkDecodeIfPresent(.description)
-        quantity = try container.sdkDecodeIfPresent(.quantity)
-        total = try container.sdkDecodeIfPresent(.total)
-        unitCost = try container.sdkDecodeIfPresent(.unitCost)
-        if let value = description {
+        self.description = try container.sdkDecodeIfPresent(.description)
+        self.quantity = try container.sdkDecodeIfPresent(.quantity)
+        self.total = try container.sdkDecodeIfPresent(.total)
+        self.unitCost = try container.sdkDecodeIfPresent(.unitCost)
+        if let value = self.description {
             try validateLength("description", value, min: nil, max: 26)
         }
     }
 }
 
-public extension PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXcaf7a0dedd {
-    init(description: String? = nil, quantity: String? = nil, total: Int? = nil, unitCost: Int? = nil) throws {
+extension PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXcaf7a0dedd {
+    public init(description: String? = nil, quantity: String? = nil, total: Int? = nil, unitCost: Int? = nil) throws {
         self.init()
         (self.description, self.quantity) = (description, quantity)
         (self.total, self.unitCost) = (total, unitCost)
@@ -502,39 +465,29 @@ public struct PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXb221
     }
 
     init() {
-        (category, city, country, name, networkId) = (nil, nil, nil, nil, nil)
-        (postalCode, state, terminalId, url) = (nil, nil, nil, nil)
+        (self.category, self.city, self.country, self.name, self.networkId) = (nil, nil, nil, nil, nil)
+        (self.postalCode, self.state, self.terminalId, self.url) = (nil, nil, nil, nil)
     }
 }
 
-public extension PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXb2216bfa73 {
-    init(from decoder: Decoder) throws {
+extension PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXb2216bfa73 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        category = try container.sdkDecodeIfPresent(.category)
-        city = try container.sdkDecodeIfPresent(.city)
-        country = try container.sdkDecodeIfPresent(.country)
-        name = try container.sdkDecodeIfPresent(.name)
-        networkId = try container.sdkDecodeIfPresent(.networkId)
-        postalCode = try container.sdkDecodeIfPresent(.postalCode)
-        state = try container.sdkDecodeIfPresent(.state)
-        terminalId = try container.sdkDecodeIfPresent(.terminalId)
-        url = try container.sdkDecodeIfPresent(.url)
+        self.category = try container.sdkDecodeIfPresent(.category)
+        self.city = try container.sdkDecodeIfPresent(.city)
+        self.country = try container.sdkDecodeIfPresent(.country)
+        self.name = try container.sdkDecodeIfPresent(.name)
+        self.networkId = try container.sdkDecodeIfPresent(.networkId)
+        self.postalCode = try container.sdkDecodeIfPresent(.postalCode)
+        self.state = try container.sdkDecodeIfPresent(.state)
+        self.terminalId = try container.sdkDecodeIfPresent(.terminalId)
+        self.url = try container.sdkDecodeIfPresent(.url)
         try sdkValidateConstraints()
     }
 }
 
-public extension PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXb2216bfa73 {
-    init(
-        category: PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc? = nil,
-        city: String? = nil,
-        country: String? = nil,
-        name: String? = nil,
-        networkId: String? = nil,
-        postalCode: String? = nil,
-        state: String? = nil,
-        terminalId: String? = nil,
-        url: String? = nil
-    ) throws {
+extension PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXb2216bfa73 {
+    public init(category: PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc? = nil, city: String? = nil, country: String? = nil, name: String? = nil, networkId: String? = nil, postalCode: String? = nil, state: String? = nil, terminalId: String? = nil, url: String? = nil) throws {
         self.init()
         (self.category, self.city) = (category, city)
         (self.country, self.name) = (country, name)
@@ -547,31 +500,31 @@ public extension PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXb
 
 extension PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXb2216bfa73 {
     func sdkValidateConstraints() throws {
-        if let value = category {
+        if let value = self.category {
             try validateLength("category", sdkWireString(value), min: nil, max: 5000)
         }
-        if let value = city {
+        if let value = self.city {
             try validateLength("city", value, min: nil, max: 5000)
         }
-        if let value = country {
+        if let value = self.country {
             try validateLength("country", value, min: nil, max: 5000)
         }
-        if let value = name {
+        if let value = self.name {
             try validateLength("name", value, min: nil, max: 5000)
         }
-        if let value = networkId {
+        if let value = self.networkId {
             try validateLength("network_id", value, min: nil, max: 5000)
         }
-        if let value = postalCode {
+        if let value = self.postalCode {
             try validateLength("postal_code", value, min: nil, max: 5000)
         }
-        if let value = state {
+        if let value = self.state {
             try validateLength("state", value, min: nil, max: 5000)
         }
-        if let value = terminalId {
+        if let value = self.terminalId {
             try validateLength("terminal_id", value, min: nil, max: 5000)
         }
-        if let value = url {
+        if let value = self.url {
             try validateLength("url", value, min: nil, max: 5000)
         }
     }
@@ -587,14 +540,14 @@ public struct PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXe5e9
     }
 
     init() {
-        (checkInAt, nights) = (nil, nil)
+        (self.checkInAt, self.nights) = (nil, nil)
     }
 }
 
-public extension PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXe5e9e1d18c {
-    init(from decoder: Decoder) throws {
+extension PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXe5e9e1d18c {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        checkInAt = try container.sdkDecodeIfPresent(.checkInAt)
-        nights = try container.sdkDecodeIfPresent(.nights)
+        self.checkInAt = try container.sdkDecodeIfPresent(.checkInAt)
+        self.nights = try container.sdkDecodeIfPresent(.nights)
     }
 }

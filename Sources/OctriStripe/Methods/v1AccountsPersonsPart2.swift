@@ -6,13 +6,10 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1AccountsPersonsMethods {
-    /// Lists people associated with an account's legal entity. Use `relationship` to filter people and `starting_after`
-    /// or `ending_before` to navigate the results; results are sorted with the most recently created people first. Use
-    /// `limit` to control the page size.
+extension V1AccountsPersonsMethods {
+    /// Lists people associated with an account's legal entity. Use `relationship` to filter people and `starting_after` or `ending_before` to navigate the results; results are sorted with the most recently created people first. Use `limit` to control the page size.
     ///
-    /// Returns a list of people associated with the account’s legal entity. The people are returned sorted by creation
-    /// date, with the most recent people appearing first.
+    /// Returns a list of people associated with the account’s legal entity. The people are returned sorted by creation date, with the most recent people appearing first.
     ///
     /// - Parameters:
     /// - endingBefore: A cursor for use in pagination. `ending_before` is an object
@@ -30,38 +27,23 @@ public extension V1AccountsPersonsMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    static func getAccountsAccountPersons(
-        config: ClientConfig,
-        account: String,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        relationship: GetAccountsAccountPersonsParameter?,
-        startingAfter: String?
-    ) async throws -> GetAccountsAccountPersonsResponse {
+    public static func getAccountsAccountPersons(config: ClientConfig, account: String, endingBefore: String?, expand: [String]?, limit: Int?, relationship: GetAccountsAccountPersonsParameter?, startingAfter: String?) async throws -> GetAccountsAccountPersonsResponse {
         try validateLength("account", account, max: 5000)
 
-        if let endingBefore {
+        if let endingBefore = endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let startingAfter {
+        if let startingAfter = startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try await (sdkRequest(
-            "GET",
-            ["/v1/accounts/", sdkEncodePathSegment(sdkWireString(account)), "/persons"].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("ending_before", value: endingBefore),
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-                SdkQueryParameter("limit", value: limit),
-                SdkQueryParameter("relationship", value: relationship),
-                SdkQueryParameter("starting_after", value: startingAfter),
-            ],
-            decoder: .json,
-            operationId: "GetAccountsAccountPersons"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/accounts/", sdkEncodePathSegment(sdkWireString(account)), "/persons"].joined(), config: config, query: [
+            SdkQueryParameter("ending_before", value: endingBefore),
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+            SdkQueryParameter("limit", value: limit),
+            SdkQueryParameter("relationship", value: relationship),
+            SdkQueryParameter("starting_after", value: startingAfter),
+        ], decoder: .json, operationId: "GetAccountsAccountPersons")).data
     }
 }

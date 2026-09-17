@@ -6,31 +6,22 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1RefundsMethods {
+extension V1RefundsMethods {
     /// Retrieves the details of a specific refund. Use `expand` to request additional response fields when needed.
     ///
     /// Retrieves the details of an existing refund.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    static func getRefundsRefund(config: ClientConfig, refund: String, expand: [String]?) async throws -> Refund {
-        try await (sdkRequest(
-            "GET",
-            ["/v1/refunds/", sdkEncodePathSegment(sdkWireString(refund))].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .json,
-            operationId: "GetRefundsRefund"
-        )).data
+    public static func getRefundsRefund(config: ClientConfig, refund: String, expand: [String]?) async throws -> Refund {
+        return try (await sdkRequest("GET", ["/v1/refunds/", sdkEncodePathSegment(sdkWireString(refund))].joined(), config: config, query: [
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .json, operationId: "GetRefundsRefund")).data
     }
 
-    /// Updates the metadata of a specific refund without changing its payment or amount details. Supply only the
-    /// metadata changes you want to apply; omitted values remain unchanged.
+    /// Updates the metadata of a specific refund without changing its payment or amount details. Supply only the metadata changes you want to apply; omitted values remain unchanged.
     ///
-    /// Updates the refund that you specify by setting the values of the passed parameters. Any parameters that you
-    /// don’t provide remain unchanged. This request only accepts metadata as an argument.
+    /// Updates the refund that you specify by setting the values of the passed parameters. Any parameters that you don’t provide remain unchanged. This request only accepts metadata as an argument.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
@@ -39,22 +30,9 @@ public extension V1RefundsMethods {
     ///   information about the object in a structured format. Individual keys can be
     ///   unset by posting an empty value to them. All keys can be unset by posting an
     ///   empty value to `metadata`.
-    static func postRefundsRefund(
-        config: ClientConfig,
-        refund: String,
-        expand: [String]?,
-        metadata: PostRefundsRefundRequestBodyMetadata?
-    ) async throws -> Refund {
+    public static func postRefundsRefund(config: ClientConfig, refund: String, expand: [String]?, metadata: PostRefundsRefundRequestBodyMetadata?) async throws -> Refund {
         let requestBody = PostRefundsRefundRequestBody(expand: expand, metadata: metadata)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/refunds/", sdkEncodePathSegment(sdkWireString(refund))].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostRefundsRefund"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/refunds/", sdkEncodePathSegment(sdkWireString(refund))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostRefundsRefund")).data
     }
 }

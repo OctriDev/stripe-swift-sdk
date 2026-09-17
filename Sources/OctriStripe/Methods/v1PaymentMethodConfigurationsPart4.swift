@@ -6,31 +6,18 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1PaymentMethodConfigurationsMethods {
-    /// Retrieves a payment method configuration by its identifier. Use `expand` to include selected related fields
-    /// directly in the response. The response contains the configuration's active state, default state, associated
-    /// application, and payment method settings.
+extension V1PaymentMethodConfigurationsMethods {
+    /// Retrieves a payment method configuration by its identifier. Use `expand` to include selected related fields directly in the response. The response contains the configuration's active state, default state, associated application, and payment method settings.
     ///
     /// Retrieve payment method configuration
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    static func getPaymentMethodConfigurationsConfiguration(
-        config: ClientConfig,
-        configuration: String,
-        expand: [String]?
-    ) async throws -> PaymentMethodConfiguration {
+    public static func getPaymentMethodConfigurationsConfiguration(config: ClientConfig, configuration: String, expand: [String]?) async throws -> PaymentMethodConfiguration {
         try validateLength("configuration", configuration, max: 5000)
 
-        return try await (sdkRequest(
-            "GET",
-            ["/v1/payment_method_configurations/", sdkEncodePathSegment(sdkWireString(configuration))].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .json,
-            operationId: "GetPaymentMethodConfigurationsConfiguration"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/payment_method_configurations/", sdkEncodePathSegment(sdkWireString(configuration))].joined(), config: config, query: [
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .json, operationId: "GetPaymentMethodConfigurationsConfiguration")).data
     }
 }

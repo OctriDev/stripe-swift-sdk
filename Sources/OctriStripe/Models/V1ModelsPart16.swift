@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1 domain models
+// V1 domain models
 /// This object represents files hosted on Stripe's servers. You can upload files with the create file request (for
 /// example, when uploading dispute evidence). Stripe also creates files independently (for example, the results of
 /// a Sigma scheduled query). Related guide: File upload guide
@@ -45,97 +45,63 @@ public struct File2: Codable {
         case url
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension File2 {
-    init(from decoder: Decoder) throws {
+extension File2 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.created) else {
-            throw SdkValidationError(
-                field: "created",
-                code: "required",
-                message: "Validation failed for 'created': value is required"
-            )
+            throw SdkValidationError(field: "created", code: "required", message: "Validation failed for 'created': value is required")
         }
         guard container.contains(.id) else {
-            throw SdkValidationError(
-                field: "id",
-                code: "required",
-                message: "Validation failed for 'id': value is required"
-            )
+            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(
-                field: "object",
-                code: "required",
-                message: "Validation failed for 'object': value is required"
-            )
+            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
         }
         guard container.contains(.purpose) else {
-            throw SdkValidationError(
-                field: "purpose",
-                code: "required",
-                message: "Validation failed for 'purpose': value is required"
-            )
+            throw SdkValidationError(field: "purpose", code: "required", message: "Validation failed for 'purpose': value is required")
         }
         guard container.contains(.size) else {
-            throw SdkValidationError(
-                field: "size",
-                code: "required",
-                message: "Validation failed for 'size': value is required"
-            )
+            throw SdkValidationError(field: "size", code: "required", message: "Validation failed for 'size': value is required")
         }
-        created = try container.sdkDecodeRequired(.created)
-        id = try container.sdkDecodeRequired(.id)
-        object = try container.sdkDecodeRequired(.object)
-        purpose = try container.sdkDecodeRequired(.purpose)
-        size = try container.sdkDecodeRequired(.size)
-        expiresAt = try container.sdkDecodeIfPresent(.expiresAt)
-        filename = try container.sdkDecodeIfPresent(.filename)
-        links = try container.sdkDecodeIfPresent(.links)
-        title = try container.sdkDecodeIfPresent(.title)
-        type = try container.sdkDecodeIfPresent(.type)
-        url = try container.sdkDecodeIfPresent(.url)
-        try validateLength("id", id, min: nil, max: 5000)
-        if let value = filename {
+        self.created = try container.sdkDecodeRequired(.created)
+        self.id = try container.sdkDecodeRequired(.id)
+        self.object = try container.sdkDecodeRequired(.object)
+        self.purpose = try container.sdkDecodeRequired(.purpose)
+        self.size = try container.sdkDecodeRequired(.size)
+        self.expiresAt = try container.sdkDecodeIfPresent(.expiresAt)
+        self.filename = try container.sdkDecodeIfPresent(.filename)
+        self.links = try container.sdkDecodeIfPresent(.links)
+        self.title = try container.sdkDecodeIfPresent(.title)
+        self.type = try container.sdkDecodeIfPresent(.type)
+        self.url = try container.sdkDecodeIfPresent(.url)
+            try validateLength("id", self.id, min: nil, max: 5000)
+        if let value = self.filename {
             try validateLength("filename", value, min: nil, max: 5000)
         }
-        if let value = title {
+        if let value = self.title {
             try validateLength("title", value, min: nil, max: 5000)
         }
-        if let value = type {
+        if let value = self.type {
             try validateLength("type", value, min: nil, max: 5000)
         }
-        if let value = url {
+        if let value = self.url {
             try validateLength("url", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension File2 {
-    init(
-        created: Int,
-        id: String,
-        object: File2Object,
-        purpose: File2Purpose,
-        size: Int,
-        expiresAt: Int? = nil,
-        filename: String? = nil,
-        links: File2Links? = nil,
-        title: String? = nil,
-        type: String? = nil,
-        url: String? = nil
-    ) throws {
+extension File2 {
+    public init(created: Int, id: String, object: File2Object, purpose: File2Purpose, size: Int, expiresAt: Int? = nil, filename: String? = nil, links: File2Links? = nil, title: String? = nil, type: String? = nil, url: String? = nil) throws {
         (self.created, self.id) = (created, id)
         (self.object, self.purpose) = (object, purpose)
         (self.size, self.expiresAt) = (size, expiresAt)
         (self.filename, self.links) = (filename, links)
         (self.title, self.type) = (title, type)
         self.url = url
-        try validateLength("id", self.id, min: nil, max: 5000)
+            try validateLength("id", self.id, min: nil, max: 5000)
         if let value = self.filename {
             try validateLength("filename", value, min: nil, max: 5000)
         }
@@ -170,57 +136,39 @@ public struct File2Links: Codable {
         case url
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension File2Links {
-    init(from decoder: Decoder) throws {
+extension File2Links {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.data) else {
-            throw SdkValidationError(
-                field: "data",
-                code: "required",
-                message: "Validation failed for 'data': value is required"
-            )
+            throw SdkValidationError(field: "data", code: "required", message: "Validation failed for 'data': value is required")
         }
         guard container.contains(.hasMore) else {
-            throw SdkValidationError(
-                field: "has_more",
-                code: "required",
-                message: "Validation failed for 'has_more': value is required"
-            )
+            throw SdkValidationError(field: "has_more", code: "required", message: "Validation failed for 'has_more': value is required")
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(
-                field: "object",
-                code: "required",
-                message: "Validation failed for 'object': value is required"
-            )
+            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
         }
         guard container.contains(.url) else {
-            throw SdkValidationError(
-                field: "url",
-                code: "required",
-                message: "Validation failed for 'url': value is required"
-            )
+            throw SdkValidationError(field: "url", code: "required", message: "Validation failed for 'url': value is required")
         }
-        data = try container.sdkDecodeRequired(.data)
-        hasMore = try container.sdkDecodeRequired(.hasMore)
-        object = try container.sdkDecodeRequired(.object)
-        url = try container.sdkDecodeRequired(.url)
-        try validateLength("url", url, min: nil, max: 5000)
-        try sdkValidatePattern("url", url, sdkPatternd94044a7ad4b)
+        self.data = try container.sdkDecodeRequired(.data)
+        self.hasMore = try container.sdkDecodeRequired(.hasMore)
+        self.object = try container.sdkDecodeRequired(.object)
+        self.url = try container.sdkDecodeRequired(.url)
+            try validateLength("url", self.url, min: nil, max: 5000)
+            try sdkValidatePattern("url", self.url, sdkPatternd94044a7ad4b)
     }
 }
 
-public extension File2Links {
-    init(data: [FileLink], hasMore: Bool, object: File2LinksObject, url: String) throws {
+extension File2Links {
+    public init(data: [FileLink], hasMore: Bool, object: File2LinksObject, url: String) throws {
         (self.data, self.hasMore) = (data, hasMore)
         (self.object, self.url) = (object, url)
-        try validateLength("url", self.url, min: nil, max: 5000)
-        try sdkValidatePattern("url", self.url, sdkPatternd94044a7ad4b)
+            try validateLength("url", self.url, min: nil, max: 5000)
+            try sdkValidatePattern("url", self.url, sdkPatternd94044a7ad4b)
     }
 }
 
@@ -260,97 +208,57 @@ public struct FileLink: Codable {
         case url
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension FileLink {
-    init(from decoder: Decoder) throws {
+extension FileLink {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.created) else {
-            throw SdkValidationError(
-                field: "created",
-                code: "required",
-                message: "Validation failed for 'created': value is required"
-            )
+            throw SdkValidationError(field: "created", code: "required", message: "Validation failed for 'created': value is required")
         }
         guard container.contains(.expired) else {
-            throw SdkValidationError(
-                field: "expired",
-                code: "required",
-                message: "Validation failed for 'expired': value is required"
-            )
+            throw SdkValidationError(field: "expired", code: "required", message: "Validation failed for 'expired': value is required")
         }
         guard container.contains(.file) else {
-            throw SdkValidationError(
-                field: "file",
-                code: "required",
-                message: "Validation failed for 'file': value is required"
-            )
+            throw SdkValidationError(field: "file", code: "required", message: "Validation failed for 'file': value is required")
         }
         guard container.contains(.id) else {
-            throw SdkValidationError(
-                field: "id",
-                code: "required",
-                message: "Validation failed for 'id': value is required"
-            )
+            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
         }
         guard container.contains(.livemode) else {
-            throw SdkValidationError(
-                field: "livemode",
-                code: "required",
-                message: "Validation failed for 'livemode': value is required"
-            )
+            throw SdkValidationError(field: "livemode", code: "required", message: "Validation failed for 'livemode': value is required")
         }
         guard container.contains(.metadata) else {
-            throw SdkValidationError(
-                field: "metadata",
-                code: "required",
-                message: "Validation failed for 'metadata': value is required"
-            )
+            throw SdkValidationError(field: "metadata", code: "required", message: "Validation failed for 'metadata': value is required")
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(
-                field: "object",
-                code: "required",
-                message: "Validation failed for 'object': value is required"
-            )
+            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
         }
-        created = try container.sdkDecodeRequired(.created)
-        expired = try container.sdkDecodeRequired(.expired)
-        file = try container.sdkDecodeRequired(.file)
-        id = try container.sdkDecodeRequired(.id)
-        livemode = try container.sdkDecodeRequired(.livemode)
-        metadata = try container.sdkDecodeRequired(.metadata)
-        object = try container.sdkDecodeRequired(.object)
-        expiresAt = try container.sdkDecodeIfPresent(.expiresAt)
-        url = try container.sdkDecodeIfPresent(.url)
-        try validateLength("id", id, min: nil, max: 5000)
-        if let value = url {
+        self.created = try container.sdkDecodeRequired(.created)
+        self.expired = try container.sdkDecodeRequired(.expired)
+        self.file = try container.sdkDecodeRequired(.file)
+        self.id = try container.sdkDecodeRequired(.id)
+        self.livemode = try container.sdkDecodeRequired(.livemode)
+        self.metadata = try container.sdkDecodeRequired(.metadata)
+        self.object = try container.sdkDecodeRequired(.object)
+        self.expiresAt = try container.sdkDecodeIfPresent(.expiresAt)
+        self.url = try container.sdkDecodeIfPresent(.url)
+            try validateLength("id", self.id, min: nil, max: 5000)
+        if let value = self.url {
             try validateLength("url", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension FileLink {
-    init(
-        created: Int,
-        expired: Bool,
-        file: FileLinkFile,
-        id: String,
-        livemode: Bool,
-        metadata: [String: String],
-        object: FileLinkObject,
-        expiresAt: Int? = nil,
-        url: String? = nil
-    ) throws {
+extension FileLink {
+    public init(created: Int, expired: Bool, file: FileLinkFile, id: String, livemode: Bool, metadata: [String: String], object: FileLinkObject, expiresAt: Int? = nil, url: String? = nil) throws {
         (self.created, self.expired) = (created, expired)
         (self.file, self.id) = (file, id)
         (self.livemode, self.metadata) = (livemode, metadata)
         (self.object, self.expiresAt) = (object, expiresAt)
         self.url = url
-        try validateLength("id", self.id, min: nil, max: 5000)
+            try validateLength("id", self.id, min: nil, max: 5000)
         if let value = self.url {
             try validateLength("url", value, min: nil, max: 5000)
         }
@@ -363,28 +271,21 @@ public enum FileLinkFile {
 }
 
 extension FileLinkFile: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
         throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for FileLinkFile")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(File2.self) {
-            return .file2(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(File2.self) { return .file2(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -394,6 +295,7 @@ extension FileLinkFile: Codable {
         case let .file2(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// Instructs Stripe to make a request on your behalf using the destination URL. The destination URL is activated by
@@ -442,97 +344,59 @@ public struct ForwardingRequest: Codable {
         case url
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension ForwardingRequest {
-    init(from decoder: Decoder) throws {
+extension ForwardingRequest {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.created) else {
-            throw SdkValidationError(
-                field: "created",
-                code: "required",
-                message: "Validation failed for 'created': value is required"
-            )
+            throw SdkValidationError(field: "created", code: "required", message: "Validation failed for 'created': value is required")
         }
         guard container.contains(.id) else {
-            throw SdkValidationError(
-                field: "id",
-                code: "required",
-                message: "Validation failed for 'id': value is required"
-            )
+            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
         }
         guard container.contains(.livemode) else {
-            throw SdkValidationError(
-                field: "livemode",
-                code: "required",
-                message: "Validation failed for 'livemode': value is required"
-            )
+            throw SdkValidationError(field: "livemode", code: "required", message: "Validation failed for 'livemode': value is required")
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(
-                field: "object",
-                code: "required",
-                message: "Validation failed for 'object': value is required"
-            )
+            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
         }
         guard container.contains(.paymentMethod) else {
-            throw SdkValidationError(
-                field: "payment_method",
-                code: "required",
-                message: "Validation failed for 'payment_method': value is required"
-            )
+            throw SdkValidationError(field: "payment_method", code: "required", message: "Validation failed for 'payment_method': value is required")
         }
         guard container.contains(.replacements) else {
-            throw SdkValidationError(
-                field: "replacements",
-                code: "required",
-                message: "Validation failed for 'replacements': value is required"
-            )
+            throw SdkValidationError(field: "replacements", code: "required", message: "Validation failed for 'replacements': value is required")
         }
-        created = try container.sdkDecodeRequired(.created)
-        id = try container.sdkDecodeRequired(.id)
-        livemode = try container.sdkDecodeRequired(.livemode)
-        object = try container.sdkDecodeRequired(.object)
-        paymentMethod = try container.sdkDecodeRequired(.paymentMethod)
-        replacements = try container.sdkDecodeRequired(.replacements)
-        metadata = try container.sdkDecodeIfPresent(.metadata)
-        requestContext = try container.sdkDecodeIfPresent(.requestContext)
-        requestDetails = try container.sdkDecodeIfPresent(.requestDetails)
-        responseDetails = try container.sdkDecodeIfPresent(.responseDetails)
-        url = try container.sdkDecodeIfPresent(.url)
-        try validateLength("id", id, min: nil, max: 5000)
-        try validateLength("payment_method", paymentMethod, min: nil, max: 5000)
-        if let value = url {
+        self.created = try container.sdkDecodeRequired(.created)
+        self.id = try container.sdkDecodeRequired(.id)
+        self.livemode = try container.sdkDecodeRequired(.livemode)
+        self.object = try container.sdkDecodeRequired(.object)
+        self.paymentMethod = try container.sdkDecodeRequired(.paymentMethod)
+        self.replacements = try container.sdkDecodeRequired(.replacements)
+        self.metadata = try container.sdkDecodeIfPresent(.metadata)
+        self.requestContext = try container.sdkDecodeIfPresent(.requestContext)
+        self.requestDetails = try container.sdkDecodeIfPresent(.requestDetails)
+        self.responseDetails = try container.sdkDecodeIfPresent(.responseDetails)
+        self.url = try container.sdkDecodeIfPresent(.url)
+            try validateLength("id", self.id, min: nil, max: 5000)
+            try validateLength("payment_method", self.paymentMethod, min: nil, max: 5000)
+        if let value = self.url {
             try validateLength("url", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension ForwardingRequest {
-    init(
-        created: Int,
-        id: String,
-        livemode: Bool,
-        object: ForwardingRequestObject,
-        paymentMethod: String,
-        replacements: [ForwardingRequestReplacementsItem],
-        metadata: [String: String]? = nil,
-        requestContext: ForwardingRequestRequestContext? = nil,
-        requestDetails: ForwardingRequestRequestDetails? = nil,
-        responseDetails: ForwardingRequestResponseDetails? = nil,
-        url: String? = nil
-    ) throws {
+extension ForwardingRequest {
+    public init(created: Int, id: String, livemode: Bool, object: ForwardingRequestObject, paymentMethod: String, replacements: [ForwardingRequestReplacementsItem], metadata: [String: String]? = nil, requestContext: ForwardingRequestRequestContext? = nil, requestDetails: ForwardingRequestRequestDetails? = nil, responseDetails: ForwardingRequestResponseDetails? = nil, url: String? = nil) throws {
         (self.created, self.id) = (created, id)
         (self.livemode, self.object) = (livemode, object)
         (self.paymentMethod, self.replacements) = (paymentMethod, replacements)
         (self.metadata, self.requestContext) = (metadata, requestContext)
         (self.requestDetails, self.responseDetails) = (requestDetails, responseDetails)
         self.url = url
-        try validateLength("id", self.id, min: nil, max: 5000)
-        try validateLength("payment_method", self.paymentMethod, min: nil, max: 5000)
+            try validateLength("id", self.id, min: nil, max: 5000)
+            try validateLength("payment_method", self.paymentMethod, min: nil, max: 5000)
         if let value = self.url {
             try validateLength("url", value, min: nil, max: 5000)
         }
@@ -544,28 +408,20 @@ public enum ForwardingRequestRequestContext {
 }
 
 extension ForwardingRequestRequestContext: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for ForwardingRequestRequestContext"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for ForwardingRequestRequestContext")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(ForwardedRequestContext.self) {
-            return .forwardedRequestContext(value)
-        }
+        if let value = try? container.decode(ForwardedRequestContext.self) { return .forwardedRequestContext(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -574,6 +430,7 @@ extension ForwardingRequestRequestContext: Codable {
         case let .forwardedRequestContext(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum ForwardingRequestRequestDetails {
@@ -581,28 +438,20 @@ public enum ForwardingRequestRequestDetails {
 }
 
 extension ForwardingRequestRequestDetails: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for ForwardingRequestRequestDetails"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for ForwardingRequestRequestDetails")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(ForwardedRequestDetails.self) {
-            return .forwardedRequestDetails(value)
-        }
+        if let value = try? container.decode(ForwardedRequestDetails.self) { return .forwardedRequestDetails(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -611,6 +460,7 @@ extension ForwardingRequestRequestDetails: Codable {
         case let .forwardedRequestDetails(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum ForwardingRequestResponseDetails {
@@ -618,28 +468,20 @@ public enum ForwardingRequestResponseDetails {
 }
 
 extension ForwardingRequestResponseDetails: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for ForwardingRequestResponseDetails"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for ForwardingRequestResponseDetails")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(ForwardedResponseDetails.self) {
-            return .forwardedResponseDetails(value)
-        }
+        if let value = try? container.decode(ForwardedResponseDetails.self) { return .forwardedResponseDetails(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -648,4 +490,5 @@ extension ForwardingRequestResponseDetails: Codable {
         case let .forwardedResponseDetails(value): try container.encode(value); return true
         }
     }
+
 }

@@ -7,17 +7,9 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1SetupIntents operation model declarations
-public extension PostSetupIntentsIntentRequestBodyPaymentMethodOptionsPaytoMandateOptions {
-    init(
-        amount: PostSetupIntentsIntentRequestBodyPaymentMethodOptionsPaytoManX7de6d1e24c? = nil,
-        amountType: PostSetupIntentsIntentRequestBodyPaymentMethodOptionsPaytoManXc6dead6b23? = nil,
-        endDate: PostSetupIntentsIntentRequestBodyPaymentMethodOptionsPaytoManXa85b19cf3b? = nil,
-        paymentSchedule: PostSetupIntentsIntentRequestBodyPaymentMethodOptionsPaytoManXc41184312a? = nil,
-        paymentsPerPeriod: PostSetupIntentsIntentRequestBodyPaymentMethodOptionsPaytoManX3aed8d3514? = nil,
-        purpose: PostSetupIntentsIntentRequestBodyPaymentMethodOptionsPaytoManX45029a8a78? = nil,
-        startDate: PostSetupIntentsIntentRequestBodyPaymentMethodOptionsPaytoManX38e26f33b9? = nil
-    ) {
+// Canonical v1SetupIntents operation model declarations
+extension PostSetupIntentsIntentRequestBodyPaymentMethodOptionsPaytoMandateOptions {
+    public init(amount: PostSetupIntentsIntentRequestBodyPaymentMethodOptionsPaytoManX7de6d1e24c? = nil, amountType: PostSetupIntentsIntentRequestBodyPaymentMethodOptionsPaytoManXc6dead6b23? = nil, endDate: PostSetupIntentsIntentRequestBodyPaymentMethodOptionsPaytoManXa85b19cf3b? = nil, paymentSchedule: PostSetupIntentsIntentRequestBodyPaymentMethodOptionsPaytoManXc41184312a? = nil, paymentsPerPeriod: PostSetupIntentsIntentRequestBodyPaymentMethodOptionsPaytoManX3aed8d3514? = nil, purpose: PostSetupIntentsIntentRequestBodyPaymentMethodOptionsPaytoManX45029a8a78? = nil, startDate: PostSetupIntentsIntentRequestBodyPaymentMethodOptionsPaytoManX38e26f33b9? = nil) {
         self.init()
         (self.amount, self.amountType) = (amount, amountType)
         (self.endDate, self.paymentSchedule) = (endDate, paymentSchedule)
@@ -27,13 +19,13 @@ public extension PostSetupIntentsIntentRequestBodyPaymentMethodOptionsPaytoManda
 }
 
 public struct PostSetupIntentsRequestBodyPaymentMethodDataRevolutPay: Codable {
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostSetupIntentsRequestBodyPaymentMethodDataRevolutPay {
-    init() {}
+extension PostSetupIntentsRequestBodyPaymentMethodDataRevolutPay {
+    public init() {
+    }
 }
 
 /// When you enable this parameter, this SetupIntent accepts payment methods that you enable in the Dashboard and
@@ -47,37 +39,29 @@ public struct PostSetupIntentsRequestBodyAutomaticPaymentMethods: Codable {
         case allowRedirects = "allow_redirects"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostSetupIntentsRequestBodyAutomaticPaymentMethods {
-    init(from decoder: Decoder) throws {
+extension PostSetupIntentsRequestBodyAutomaticPaymentMethods {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.enabled) else {
-            throw SdkValidationError(
-                field: "enabled",
-                code: "required",
-                message: "Validation failed for 'enabled': value is required"
-            )
+            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
         }
-        enabled = try container.sdkDecodeRequired(.enabled)
-        allowRedirects = try container.sdkDecodeIfPresent(.allowRedirects)
+        self.enabled = try container.sdkDecodeRequired(.enabled)
+        self.allowRedirects = try container.sdkDecodeIfPresent(.allowRedirects)
     }
 }
 
-public extension PostSetupIntentsRequestBodyAutomaticPaymentMethods {
-    init(enabled: Bool, allowRedirects: PostSetupIntentsRequestBodyAutomaticPaymentMethodsAllowRedirects? = nil) {
+extension PostSetupIntentsRequestBodyAutomaticPaymentMethods {
+    public init(enabled: Bool, allowRedirects: PostSetupIntentsRequestBodyAutomaticPaymentMethodsAllowRedirects? = nil) {
         (self.enabled, self.allowRedirects) = (enabled, allowRedirects)
     }
 }
 
-public typealias PostSetupIntentsIntentRequestBodyPaymentMethodOptionsUsBankAcXbc22102893 =
-    [PostSetupIntentsIntentRequestBodyPaymentMethodOptionsUsBankAcX4782c7abb3]
+public typealias PostSetupIntentsIntentRequestBodyPaymentMethodOptionsUsBankAcXbc22102893 = [PostSetupIntentsIntentRequestBodyPaymentMethodOptionsUsBankAcX4782c7abb3]
 
-public typealias PostSetupIntentsIntentRequestBodyPaymentMethodOptionsUsBankAcX8f93c7b553 =
-    [PostSetupIntentsIntentRequestBodyPaymentMethodOptionsUsBankAcXd1165738b4]
+public typealias PostSetupIntentsIntentRequestBodyPaymentMethodOptionsUsBankAcX8f93c7b553 = [PostSetupIntentsIntentRequestBodyPaymentMethodOptionsUsBankAcXd1165738b4]
 
 public struct PostSetupIntentsIntentRequestBodyPaymentMethodOptionsUsBankAcX7298c04eb0: Codable {
     /// linked_account_options_filters_param
@@ -94,30 +78,25 @@ public struct PostSetupIntentsIntentRequestBodyPaymentMethodOptionsUsBankAcX7298
     }
 
     init() {
-        (filters, permissions, prefetch, returnUrl) = (nil, nil, nil, nil)
+        (self.filters, self.permissions, self.prefetch, self.returnUrl) = (nil, nil, nil, nil)
     }
 }
 
-public extension PostSetupIntentsIntentRequestBodyPaymentMethodOptionsUsBankAcX7298c04eb0 {
-    init(from decoder: Decoder) throws {
+extension PostSetupIntentsIntentRequestBodyPaymentMethodOptionsUsBankAcX7298c04eb0 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        filters = try container.sdkDecodeIfPresent(.filters)
-        permissions = try container.sdkDecodeIfPresent(.permissions)
-        prefetch = try container.sdkDecodeIfPresent(.prefetch)
-        returnUrl = try container.sdkDecodeIfPresent(.returnUrl)
-        if let value = returnUrl {
+        self.filters = try container.sdkDecodeIfPresent(.filters)
+        self.permissions = try container.sdkDecodeIfPresent(.permissions)
+        self.prefetch = try container.sdkDecodeIfPresent(.prefetch)
+        self.returnUrl = try container.sdkDecodeIfPresent(.returnUrl)
+        if let value = self.returnUrl {
             try validateLength("return_url", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PostSetupIntentsIntentRequestBodyPaymentMethodOptionsUsBankAcX7298c04eb0 {
-    init(
-        filters: PostSetupIntentsIntentRequestBodyPaymentMethodOptionsUsBankAcXa4b03af0ff? = nil,
-        permissions: PostSetupIntentsIntentRequestBodyPaymentMethodOptionsUsBankAcXbc22102893? = nil,
-        prefetch: PostSetupIntentsIntentRequestBodyPaymentMethodOptionsUsBankAcX8f93c7b553? = nil,
-        returnUrl: String? = nil
-    ) throws {
+extension PostSetupIntentsIntentRequestBodyPaymentMethodOptionsUsBankAcX7298c04eb0 {
+    public init(filters: PostSetupIntentsIntentRequestBodyPaymentMethodOptionsUsBankAcXa4b03af0ff? = nil, permissions: PostSetupIntentsIntentRequestBodyPaymentMethodOptionsUsBankAcXbc22102893? = nil, prefetch: PostSetupIntentsIntentRequestBodyPaymentMethodOptionsUsBankAcX8f93c7b553? = nil, returnUrl: String? = nil) throws {
         self.init()
         (self.filters, self.permissions) = (filters, permissions)
         (self.prefetch, self.returnUrl) = (prefetch, returnUrl)
@@ -138,36 +117,26 @@ public struct PostSetupIntentsIntentRequestBodyPaymentMethodOptionsCardThreX4fdb
         case cbScore = "cb_score"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostSetupIntentsIntentRequestBodyPaymentMethodOptionsCardThreX4fdb196014 {
-    init(from decoder: Decoder) throws {
+extension PostSetupIntentsIntentRequestBodyPaymentMethodOptionsCardThreX4fdb196014 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.cbAvalgo) else {
-            throw SdkValidationError(
-                field: "cb_avalgo",
-                code: "required",
-                message: "Validation failed for 'cb_avalgo': value is required"
-            )
+            throw SdkValidationError(field: "cb_avalgo", code: "required", message: "Validation failed for 'cb_avalgo': value is required")
         }
-        cbAvalgo = try container.sdkDecodeRequired(.cbAvalgo)
-        cbExemption = try container.sdkDecodeIfPresent(.cbExemption)
-        cbScore = try container.sdkDecodeIfPresent(.cbScore)
-        if let value = cbExemption {
+        self.cbAvalgo = try container.sdkDecodeRequired(.cbAvalgo)
+        self.cbExemption = try container.sdkDecodeIfPresent(.cbExemption)
+        self.cbScore = try container.sdkDecodeIfPresent(.cbScore)
+        if let value = self.cbExemption {
             try validateLength("cb_exemption", value, min: nil, max: 4)
         }
     }
 }
 
-public extension PostSetupIntentsIntentRequestBodyPaymentMethodOptionsCardThreX4fdb196014 {
-    init(
-        cbAvalgo: PostSetupIntentsIntentRequestBodyPaymentMethodOptionsCardThreXf0b1531a85,
-        cbExemption: String? = nil,
-        cbScore: Int? = nil
-    ) throws {
+extension PostSetupIntentsIntentRequestBodyPaymentMethodOptionsCardThreX4fdb196014 {
+    public init(cbAvalgo: PostSetupIntentsIntentRequestBodyPaymentMethodOptionsCardThreXf0b1531a85, cbExemption: String? = nil, cbScore: Int? = nil) throws {
         (self.cbAvalgo, self.cbExemption) = (cbAvalgo, cbExemption)
         self.cbScore = cbScore
         if let value = self.cbExemption {
@@ -184,32 +153,32 @@ public struct PostSetupIntentsIntentRequestBodyPaymentMethodOptionsBacsDebiX2298
     }
 
     init() {
-        referencePrefix = nil
+        self.referencePrefix = nil
     }
 }
 
-public extension PostSetupIntentsIntentRequestBodyPaymentMethodOptionsBacsDebiX22983c1f79 {
-    init(from decoder: Decoder) throws {
+extension PostSetupIntentsIntentRequestBodyPaymentMethodOptionsBacsDebiX22983c1f79 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        referencePrefix = try container.sdkDecodeIfPresent(.referencePrefix)
+        self.referencePrefix = try container.sdkDecodeIfPresent(.referencePrefix)
     }
 }
 
-public extension PostSetupIntentsIntentRequestBodyPaymentMethodOptionsBacsDebiX22983c1f79 {
-    init(referencePrefix: PostSetupIntentsIntentRequestBodyPaymentMethodOptionsBacsDebiX8e0d1ec17d? = nil) {
+extension PostSetupIntentsIntentRequestBodyPaymentMethodOptionsBacsDebiX22983c1f79 {
+    public init(referencePrefix: PostSetupIntentsIntentRequestBodyPaymentMethodOptionsBacsDebiX8e0d1ec17d? = nil) {
         self.init()
         self.referencePrefix = referencePrefix
     }
 }
 
 public struct PostSetupIntentsIntentRequestBodyPaymentMethodDataPaypal: Codable {
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostSetupIntentsIntentRequestBodyPaymentMethodDataPaypal {
-    init() {}
+extension PostSetupIntentsIntentRequestBodyPaymentMethodDataPaypal {
+    public init() {
+    }
 }
 
 public struct PostSetupIntentsRequestBodyPaymentMethodOptionsUpi: Codable {
@@ -223,23 +192,20 @@ public struct PostSetupIntentsRequestBodyPaymentMethodOptionsUpi: Codable {
     }
 
     init() {
-        (mandateOptions, setupFutureUsage) = (nil, nil)
+        (self.mandateOptions, self.setupFutureUsage) = (nil, nil)
     }
 }
 
-public extension PostSetupIntentsRequestBodyPaymentMethodOptionsUpi {
-    init(from decoder: Decoder) throws {
+extension PostSetupIntentsRequestBodyPaymentMethodOptionsUpi {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        mandateOptions = try container.sdkDecodeIfPresent(.mandateOptions)
-        setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
+        self.mandateOptions = try container.sdkDecodeIfPresent(.mandateOptions)
+        self.setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
     }
 }
 
-public extension PostSetupIntentsRequestBodyPaymentMethodOptionsUpi {
-    init(
-        mandateOptions: PostSetupIntentsRequestBodyPaymentMethodOptionsUpiMandateOptions? = nil,
-        setupFutureUsage: PostSetupIntentsRequestBodyPaymentMethodOptionsUpiSetupFutureUsage? = nil
-    ) {
+extension PostSetupIntentsRequestBodyPaymentMethodOptionsUpi {
+    public init(mandateOptions: PostSetupIntentsRequestBodyPaymentMethodOptionsUpiMandateOptions? = nil, setupFutureUsage: PostSetupIntentsRequestBodyPaymentMethodOptionsUpiSetupFutureUsage? = nil) {
         self.init()
         (self.mandateOptions, self.setupFutureUsage) = (mandateOptions, setupFutureUsage)
     }
@@ -254,19 +220,19 @@ public struct PostSetupIntentsRequestBodyPaymentMethodOptionsPayto: Codable {
     }
 
     init() {
-        mandateOptions = nil
+        self.mandateOptions = nil
     }
 }
 
-public extension PostSetupIntentsRequestBodyPaymentMethodOptionsPayto {
-    init(from decoder: Decoder) throws {
+extension PostSetupIntentsRequestBodyPaymentMethodOptionsPayto {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        mandateOptions = try container.sdkDecodeIfPresent(.mandateOptions)
+        self.mandateOptions = try container.sdkDecodeIfPresent(.mandateOptions)
     }
 }
 
-public extension PostSetupIntentsRequestBodyPaymentMethodOptionsPayto {
-    init(mandateOptions: PostSetupIntentsRequestBodyPaymentMethodOptionsPaytoMandateOptions? = nil) {
+extension PostSetupIntentsRequestBodyPaymentMethodOptionsPayto {
+    public init(mandateOptions: PostSetupIntentsRequestBodyPaymentMethodOptionsPaytoMandateOptions? = nil) {
         self.init()
         self.mandateOptions = mandateOptions
     }
@@ -280,19 +246,19 @@ public struct PostSetupIntentsRequestBodyPaymentMethodOptionsUsBankAccountMX5129
     }
 
     init() {
-        collectionMethod = nil
+        self.collectionMethod = nil
     }
 }
 
-public extension PostSetupIntentsRequestBodyPaymentMethodOptionsUsBankAccountMX51297f2185 {
-    init(from decoder: Decoder) throws {
+extension PostSetupIntentsRequestBodyPaymentMethodOptionsUsBankAccountMX51297f2185 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        collectionMethod = try container.sdkDecodeIfPresent(.collectionMethod)
+        self.collectionMethod = try container.sdkDecodeIfPresent(.collectionMethod)
     }
 }
 
-public extension PostSetupIntentsRequestBodyPaymentMethodOptionsUsBankAccountMX51297f2185 {
-    init(collectionMethod: PostSetupIntentsRequestBodyPaymentMethodOptionsUsBankAccountMXaecbf42a6c? = nil) {
+extension PostSetupIntentsRequestBodyPaymentMethodOptionsUsBankAccountMX51297f2185 {
+    public init(collectionMethod: PostSetupIntentsRequestBodyPaymentMethodOptionsUsBankAccountMXaecbf42a6c? = nil) {
         self.init()
         self.collectionMethod = collectionMethod
     }
@@ -307,62 +273,62 @@ public struct PostSetupIntentsIntentRequestBodyPaymentMethodOptionsSepaDebit: Co
     }
 
     init() {
-        mandateOptions = nil
+        self.mandateOptions = nil
     }
 }
 
-public extension PostSetupIntentsIntentRequestBodyPaymentMethodOptionsSepaDebit {
-    init(from decoder: Decoder) throws {
+extension PostSetupIntentsIntentRequestBodyPaymentMethodOptionsSepaDebit {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        mandateOptions = try container.sdkDecodeIfPresent(.mandateOptions)
+        self.mandateOptions = try container.sdkDecodeIfPresent(.mandateOptions)
     }
 }
 
-public extension PostSetupIntentsIntentRequestBodyPaymentMethodOptionsSepaDebit {
-    init(mandateOptions: PostSetupIntentsIntentRequestBodyPaymentMethodOptionsSepaDebiX1df03420d8? = nil) {
+extension PostSetupIntentsIntentRequestBodyPaymentMethodOptionsSepaDebit {
+    public init(mandateOptions: PostSetupIntentsIntentRequestBodyPaymentMethodOptionsSepaDebiX1df03420d8? = nil) {
         self.init()
         self.mandateOptions = mandateOptions
     }
 }
 
 public struct PostSetupIntentsRequestBodyPaymentMethodDataPaynow: Codable {
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostSetupIntentsRequestBodyPaymentMethodDataPaynow {
-    init() {}
+extension PostSetupIntentsRequestBodyPaymentMethodDataPaynow {
+    public init() {
+    }
 }
 
 public struct PostSetupIntentsRequestBodyMandateDataVariant0CustomerAcceptanceOffline: Codable {
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostSetupIntentsRequestBodyMandateDataVariant0CustomerAcceptanceOffline {
-    init() {}
+extension PostSetupIntentsRequestBodyMandateDataVariant0CustomerAcceptanceOffline {
+    public init() {
+    }
 }
 
 public struct PostSetupIntentsRequestBodyPaymentMethodDataBlik: Codable {
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostSetupIntentsRequestBodyPaymentMethodDataBlik {
-    init() {}
+extension PostSetupIntentsRequestBodyPaymentMethodDataBlik {
+    public init() {
+    }
 }
 
 public struct PostSetupIntentsRequestBodyPaymentMethodDataMobilepay: Codable {
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostSetupIntentsRequestBodyPaymentMethodDataMobilepay {
-    init() {}
+extension PostSetupIntentsRequestBodyPaymentMethodDataMobilepay {
+    public init() {
+    }
 }
 
 public struct PostSetupIntentsIntentRequestBodyPaymentMethodDataPayto: Codable {
@@ -377,30 +343,30 @@ public struct PostSetupIntentsIntentRequestBodyPaymentMethodDataPayto: Codable {
     }
 
     init() {
-        (accountNumber, bsbNumber, payId) = (nil, nil, nil)
+        (self.accountNumber, self.bsbNumber, self.payId) = (nil, nil, nil)
     }
 }
 
-public extension PostSetupIntentsIntentRequestBodyPaymentMethodDataPayto {
-    init(from decoder: Decoder) throws {
+extension PostSetupIntentsIntentRequestBodyPaymentMethodDataPayto {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        accountNumber = try container.sdkDecodeIfPresent(.accountNumber)
-        bsbNumber = try container.sdkDecodeIfPresent(.bsbNumber)
-        payId = try container.sdkDecodeIfPresent(.payId)
-        if let value = accountNumber {
+        self.accountNumber = try container.sdkDecodeIfPresent(.accountNumber)
+        self.bsbNumber = try container.sdkDecodeIfPresent(.bsbNumber)
+        self.payId = try container.sdkDecodeIfPresent(.payId)
+        if let value = self.accountNumber {
             try validateLength("account_number", value, min: nil, max: 5000)
         }
-        if let value = bsbNumber {
+        if let value = self.bsbNumber {
             try validateLength("bsb_number", value, min: nil, max: 5000)
         }
-        if let value = payId {
+        if let value = self.payId {
             try validateLength("pay_id", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PostSetupIntentsIntentRequestBodyPaymentMethodDataPayto {
-    init(accountNumber: String? = nil, bsbNumber: String? = nil, payId: String? = nil) throws {
+extension PostSetupIntentsIntentRequestBodyPaymentMethodDataPayto {
+    public init(accountNumber: String? = nil, bsbNumber: String? = nil, payId: String? = nil) throws {
         self.init()
         (self.accountNumber, self.bsbNumber) = (accountNumber, bsbNumber)
         self.payId = payId
@@ -417,13 +383,13 @@ public extension PostSetupIntentsIntentRequestBodyPaymentMethodDataPayto {
 }
 
 public struct PostSetupIntentsIntentRequestBodyPaymentMethodDataBillie: Codable {
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostSetupIntentsIntentRequestBodyPaymentMethodDataBillie {
-    init() {}
+extension PostSetupIntentsIntentRequestBodyPaymentMethodDataBillie {
+    public init() {
+    }
 }
 
 public struct PostSetupIntentsRequestBodyPaymentMethodDataKlarnaDob: Codable {
@@ -437,43 +403,29 @@ public struct PostSetupIntentsRequestBodyPaymentMethodDataKlarnaDob: Codable {
         case year
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostSetupIntentsRequestBodyPaymentMethodDataKlarnaDob {
-    init(from decoder: Decoder) throws {
+extension PostSetupIntentsRequestBodyPaymentMethodDataKlarnaDob {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.day) else {
-            throw SdkValidationError(
-                field: "day",
-                code: "required",
-                message: "Validation failed for 'day': value is required"
-            )
+            throw SdkValidationError(field: "day", code: "required", message: "Validation failed for 'day': value is required")
         }
         guard container.contains(.month) else {
-            throw SdkValidationError(
-                field: "month",
-                code: "required",
-                message: "Validation failed for 'month': value is required"
-            )
+            throw SdkValidationError(field: "month", code: "required", message: "Validation failed for 'month': value is required")
         }
         guard container.contains(.year) else {
-            throw SdkValidationError(
-                field: "year",
-                code: "required",
-                message: "Validation failed for 'year': value is required"
-            )
+            throw SdkValidationError(field: "year", code: "required", message: "Validation failed for 'year': value is required")
         }
-        day = try container.sdkDecodeRequired(.day)
-        month = try container.sdkDecodeRequired(.month)
-        year = try container.sdkDecodeRequired(.year)
+        self.day = try container.sdkDecodeRequired(.day)
+        self.month = try container.sdkDecodeRequired(.month)
+        self.year = try container.sdkDecodeRequired(.year)
     }
 }
 
-public extension PostSetupIntentsRequestBodyPaymentMethodDataKlarnaDob {
-    init(day: Int, month: Int, year: Int) {
+extension PostSetupIntentsRequestBodyPaymentMethodDataKlarnaDob {
+    public init(day: Int, month: Int, year: Int) {
         (self.day, self.month) = (day, month)
         self.year = year
     }
@@ -492,25 +444,21 @@ public struct PostSetupIntentsRequestBodyPaymentMethodOptionsAcssDebit: Codable 
     }
 
     init() {
-        (currency, mandateOptions, verificationMethod) = (nil, nil, nil)
+        (self.currency, self.mandateOptions, self.verificationMethod) = (nil, nil, nil)
     }
 }
 
-public extension PostSetupIntentsRequestBodyPaymentMethodOptionsAcssDebit {
-    init(from decoder: Decoder) throws {
+extension PostSetupIntentsRequestBodyPaymentMethodOptionsAcssDebit {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        currency = try container.sdkDecodeIfPresent(.currency)
-        mandateOptions = try container.sdkDecodeIfPresent(.mandateOptions)
-        verificationMethod = try container.sdkDecodeIfPresent(.verificationMethod)
+        self.currency = try container.sdkDecodeIfPresent(.currency)
+        self.mandateOptions = try container.sdkDecodeIfPresent(.mandateOptions)
+        self.verificationMethod = try container.sdkDecodeIfPresent(.verificationMethod)
     }
 }
 
-public extension PostSetupIntentsRequestBodyPaymentMethodOptionsAcssDebit {
-    init(
-        currency: PostSetupIntentsRequestBodyPaymentMethodOptionsAcssDebitCurrency? = nil,
-        mandateOptions: PostSetupIntentsRequestBodyPaymentMethodOptionsAcssDebitMandateOptions? = nil,
-        verificationMethod: PostSetupIntentsRequestBodyPaymentMethodOptionsAcssDebitVerifX45bfcf9897? = nil
-    ) {
+extension PostSetupIntentsRequestBodyPaymentMethodOptionsAcssDebit {
+    public init(currency: PostSetupIntentsRequestBodyPaymentMethodOptionsAcssDebitCurrency? = nil, mandateOptions: PostSetupIntentsRequestBodyPaymentMethodOptionsAcssDebitMandateOptions? = nil, verificationMethod: PostSetupIntentsRequestBodyPaymentMethodOptionsAcssDebitVerifX45bfcf9897? = nil) {
         self.init()
         (self.currency, self.mandateOptions) = (currency, mandateOptions)
         self.verificationMethod = verificationMethod
@@ -533,44 +481,32 @@ public struct PostSetupIntentsIntentRequestBodyPaymentMethodDataUsBankAccount: C
     }
 
     init() {
-        (accountHolderType, accountNumber, accountType, financialConnectionsAccount, routingNumber) = (
-            nil,
-            nil,
-            nil,
-            nil,
-            nil
-        )
+        (self.accountHolderType, self.accountNumber, self.accountType, self.financialConnectionsAccount, self.routingNumber) = (nil, nil, nil, nil, nil)
     }
 }
 
-public extension PostSetupIntentsIntentRequestBodyPaymentMethodDataUsBankAccount {
-    init(from decoder: Decoder) throws {
+extension PostSetupIntentsIntentRequestBodyPaymentMethodDataUsBankAccount {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        accountHolderType = try container.sdkDecodeIfPresent(.accountHolderType)
-        accountNumber = try container.sdkDecodeIfPresent(.accountNumber)
-        accountType = try container.sdkDecodeIfPresent(.accountType)
-        financialConnectionsAccount = try container.sdkDecodeIfPresent(.financialConnectionsAccount)
-        routingNumber = try container.sdkDecodeIfPresent(.routingNumber)
-        if let value = accountNumber {
+        self.accountHolderType = try container.sdkDecodeIfPresent(.accountHolderType)
+        self.accountNumber = try container.sdkDecodeIfPresent(.accountNumber)
+        self.accountType = try container.sdkDecodeIfPresent(.accountType)
+        self.financialConnectionsAccount = try container.sdkDecodeIfPresent(.financialConnectionsAccount)
+        self.routingNumber = try container.sdkDecodeIfPresent(.routingNumber)
+        if let value = self.accountNumber {
             try validateLength("account_number", value, min: nil, max: 5000)
         }
-        if let value = financialConnectionsAccount {
+        if let value = self.financialConnectionsAccount {
             try validateLength("financial_connections_account", value, min: nil, max: 5000)
         }
-        if let value = routingNumber {
+        if let value = self.routingNumber {
             try validateLength("routing_number", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PostSetupIntentsIntentRequestBodyPaymentMethodDataUsBankAccount {
-    init(
-        accountHolderType: PostSetupIntentsIntentRequestBodyPaymentMethodDataUsBankAccouXebc8f7095e? = nil,
-        accountNumber: String? = nil,
-        accountType: PostSetupIntentsIntentRequestBodyPaymentMethodDataUsBankAccouXcca23167e8? = nil,
-        financialConnectionsAccount: String? = nil,
-        routingNumber: String? = nil
-    ) throws {
+extension PostSetupIntentsIntentRequestBodyPaymentMethodDataUsBankAccount {
+    public init(accountHolderType: PostSetupIntentsIntentRequestBodyPaymentMethodDataUsBankAccouXebc8f7095e? = nil, accountNumber: String? = nil, accountType: PostSetupIntentsIntentRequestBodyPaymentMethodDataUsBankAccouXcca23167e8? = nil, financialConnectionsAccount: String? = nil, routingNumber: String? = nil) throws {
         self.init()
         (self.accountHolderType, self.accountNumber) = (accountHolderType, accountNumber)
         (self.accountType, self.financialConnectionsAccount) = (accountType, financialConnectionsAccount)
@@ -597,19 +533,19 @@ public struct PostSetupIntentsRequestBodyPaymentMethodDataBacsDebit: Codable {
     }
 
     init() {
-        (accountNumber, sortCode) = (nil, nil)
+        (self.accountNumber, self.sortCode) = (nil, nil)
     }
 }
 
-public extension PostSetupIntentsRequestBodyPaymentMethodDataBacsDebit {
-    init(from decoder: Decoder) throws {
+extension PostSetupIntentsRequestBodyPaymentMethodDataBacsDebit {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        accountNumber = try container.sdkDecodeIfPresent(.accountNumber)
-        sortCode = try container.sdkDecodeIfPresent(.sortCode)
-        if let value = accountNumber {
+        self.accountNumber = try container.sdkDecodeIfPresent(.accountNumber)
+        self.sortCode = try container.sdkDecodeIfPresent(.sortCode)
+        if let value = self.accountNumber {
             try validateLength("account_number", value, min: nil, max: 5000)
         }
-        if let value = sortCode {
+        if let value = self.sortCode {
             try validateLength("sort_code", value, min: nil, max: 5000)
         }
     }

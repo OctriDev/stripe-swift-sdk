@@ -138,13 +138,13 @@ extension PostReportingReportRunsRequestBodyParametersTimezone {
 extension PostReportingReportRunsRequestBodyParametersTimezone: CaseIterable {
     public static var allCases: [PostReportingReportRunsRequestBodyParametersTimezone] {
         allCasesPart1
-            + allCasesPart2
-            + allCasesPart3
-            + allCasesPart4
-            + allCasesPart5
-            + allCasesPart6
-            + allCasesPart7
-            + allCasesPart8
+        +         allCasesPart2
+        +         allCasesPart3
+        +         allCasesPart4
+        +         allCasesPart5
+        +         allCasesPart6
+        +         allCasesPart7
+        +         allCasesPart8
     }
 }
 
@@ -153,15 +153,12 @@ extension PostReportingReportRunsRequestBodyParametersTimezone: CaseIterable {
 public struct GetReportingReportTypesResponseObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let list = GetReportingReportTypesResponseObject(rawValue: "list")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -175,15 +172,12 @@ public struct GetReportingReportTypesResponseObject: RawRepresentable, Hashable,
 public struct GetReviewsResponseObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let list = GetReviewsResponseObject(rawValue: "list")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -197,15 +191,12 @@ public struct GetReviewsResponseObject: RawRepresentable, Hashable, Codable, Sen
 public struct GetSetupAttemptsResponseObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let list = GetSetupAttemptsResponseObject(rawValue: "list")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

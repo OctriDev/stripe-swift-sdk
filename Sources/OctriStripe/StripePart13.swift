@@ -9,20 +9,11 @@ public class V1IdentityVerificationSessionsCancelNamespace {
         self.config = config
     }
 
-    /// Cancels a verification session that is awaiting user input. Cancellation disables future submission attempts and
-    /// cannot be undone.
+/// Cancels a verification session that is awaiting user input. Cancellation disables future submission attempts and cannot be undone.
     ///
-    /// A VerificationSession object can be canceled when it is in requires_input status. Once canceled, future
-    /// submission attempts are disabled. This cannot be undone. Learn more.
-    public func postIdentityVerificationSessionsSession(
-        session: String,
-        expand: [String]?
-    ) async throws -> IdentityVerificationSession {
-        try await V1IdentityVerificationSessionsCancelMethods.postIdentityVerificationSessionsSessionCancel(
-            config: config,
-            session: session,
-            expand: expand
-        )
+    /// A VerificationSession object can be canceled when it is in requires_input status. Once canceled, future submission attempts are disabled. This cannot be undone. Learn more.
+    public func postIdentityVerificationSessionsSession(session: String, expand: [String]?) async throws -> IdentityVerificationSession {
+        return try await V1IdentityVerificationSessionsCancelMethods.postIdentityVerificationSessionsSessionCancel(config: config, session: session, expand: expand)
     }
 }
 
@@ -32,29 +23,11 @@ public class V1IdentityVerificationSessionsRedactNamespace {
         self.config = config
     }
 
-    /// Redacts a verification session and the personal information collected for it, including related reports, events,
-    /// and request logs. The redaction process can take up to four days, and the session becomes unusable after
-    /// redaction completes.
+/// Redacts a verification session and the personal information collected for it, including related reports, events, and request logs. The redaction process can take up to four days, and the session becomes unusable after redaction completes.
     ///
-    /// Redact a VerificationSession to remove all collected information from Stripe. This will redact the
-    /// VerificationSession and all objects related to it, including VerificationReports, Events, request logs, etc. A
-    /// VerificationSession object can be redacted when it is in requires_input or verified status. Redacting a
-    /// VerificationSession in requires_action state will automatically cancel it. The redaction process may take up to
-    /// four days. When the redaction process is in progress, the VerificationSession’s redaction.status field will be
-    /// set to processing ; when the process is finished, it will change to redacted and an
-    /// identity.verification_session.redacted event will be emitted. Redaction is irreversible. Redacted objects are
-    /// still accessible in the Stripe API, but all the fields that contain personal data will be replaced by the string
-    /// [redacted] or a similar placeholder. The metadata field will also be erased. Redacted objects cannot be updated
-    /// or used for any purpose. Learn more.
-    public func postIdentityVerificationSessionsSession(
-        session: String,
-        expand: [String]?
-    ) async throws -> IdentityVerificationSession {
-        try await V1IdentityVerificationSessionsRedactMethods.postIdentityVerificationSessionsSessionRedact(
-            config: config,
-            session: session,
-            expand: expand
-        )
+    /// Redact a VerificationSession to remove all collected information from Stripe. This will redact the VerificationSession and all objects related to it, including VerificationReports, Events, request logs, etc. A VerificationSession object can be redacted when it is in requires_input or verified status. Redacting a VerificationSession in requires_action state will automatically cancel it. The redaction process may take up to four days. When the redaction process is in progress, the VerificationSession’s redaction.status field will be set to processing ; when the process is finished, it will change to redacted and an identity.verification_session.redacted event will be emitted. Redaction is irreversible. Redacted objects are still accessible in the Stripe API, but all the fields that contain personal data will be replaced by the string [redacted] or a similar placeholder. The metadata field will also be erased. Redacted objects cannot be updated or used for any purpose. Learn more.
+    public func postIdentityVerificationSessionsSession(session: String, expand: [String]?) async throws -> IdentityVerificationSession {
+        return try await V1IdentityVerificationSessionsRedactMethods.postIdentityVerificationSessionsSessionRedact(config: config, session: session, expand: expand)
     }
 }
 
@@ -68,65 +41,30 @@ public class V1IdentityVerificationSessionsNamespace {
         redact = V1IdentityVerificationSessionsRedactNamespace(config: config)
     }
 
-    /// Lists verification sessions created for identity checks. Filter by customer, creation time, or session `status`,
-    /// and use cursor parameters with `limit` to paginate the results.
+/// Lists verification sessions created for identity checks. Filter by customer, creation time, or session `status`, and use cursor parameters with `limit` to paginate the results.
     ///
     /// Returns a list of VerificationSessions
-    public func getIdentity(options: V1IdentityVerificationSessionsMethods
-        .GetIdentityVerificationSessionsOptions) async throws -> GetIdentityVerificationSessionsResponse {
-        try await V1IdentityVerificationSessionsMethods.getIdentityVerificationSessions(
-            config: config,
-            options: options
-        )
+    public func getIdentity(options: V1IdentityVerificationSessionsMethods.GetIdentityVerificationSessionsOptions) async throws -> GetIdentityVerificationSessionsResponse {
+        return try await V1IdentityVerificationSessionsMethods.getIdentityVerificationSessions(config: config, options: options)
     }
 
-    /// Creates a VerificationSession object. After the VerificationSession is created, display a verification modal
-    /// using the session client_secret or send your users to the session’s url . If your API key is in test mode,
-    /// verification checks won’t actually process, though everything else will occur as if in live mode. Related guide:
-    /// Verify your users’ identity documents
-    public func postIdentity(options: V1IdentityVerificationSessionsMethods
-        .PostIdentityVerificationSessionsOptions) async throws -> IdentityVerificationSession {
-        try await V1IdentityVerificationSessionsMethods.postIdentityVerificationSessions(
-            config: config,
-            options: options
-        )
+/// Creates a VerificationSession object. After the VerificationSession is created, display a verification modal using the session client_secret or send your users to the session’s url . If your API key is in test mode, verification checks won’t actually process, though everything else will occur as if in live mode. Related guide: Verify your users’ identity documents
+    public func postIdentity(options: V1IdentityVerificationSessionsMethods.PostIdentityVerificationSessionsOptions) async throws -> IdentityVerificationSession {
+        return try await V1IdentityVerificationSessionsMethods.postIdentityVerificationSessions(config: config, options: options)
     }
 
-    /// Retrieves a previously created verification session by its identifier. When the session has `requires_input`
-    /// status, use the response to obtain a valid `client_secret` or `url` for resubmission.
+/// Retrieves a previously created verification session by its identifier. When the session has `requires_input` status, use the response to obtain a valid `client_secret` or `url` for resubmission.
     ///
-    /// Retrieves the details of a VerificationSession that was previously created. When the session status is
-    /// requires_input , you can use this method to retrieve a valid client_secret or url to allow re-submission.
+    /// Retrieves the details of a VerificationSession that was previously created. When the session status is requires_input , you can use this method to retrieve a valid client_secret or url to allow re-submission.
     public func getIdentitySession(session: String, expand: [String]?) async throws -> IdentityVerificationSession {
-        try await V1IdentityVerificationSessionsMethods.getIdentityVerificationSessionsSession(
-            config: config,
-            session: session,
-            expand: expand
-        )
+        return try await V1IdentityVerificationSessionsMethods.getIdentityVerificationSessionsSession(config: config, session: session, expand: expand)
     }
 
-    /// Updates a verification session's verification check and options. Use this operation when the session has
-    /// `requires_input` status, and supply only the fields you want to change.
+/// Updates a verification session's verification check and options. Use this operation when the session has `requires_input` status, and supply only the fields you want to change.
     ///
-    /// Updates a VerificationSession object. When the session status is requires_input , you can use this method to
-    /// update the verification check and options.
-    public func postIdentitySession(
-        session: String,
-        expand: [String]?,
-        metadata: [String: String]?,
-        options: PostIdentityVerificationSessionsSessionRequestBodyOptions?,
-        providedDetails: PostIdentityVerificationSessionsSessionRequestBodyProvidedDetails?,
-        type: PostIdentityVerificationSessionsSessionRequestBodyType?
-    ) async throws -> IdentityVerificationSession {
-        try await V1IdentityVerificationSessionsMethods.postIdentityVerificationSessionsSession(
-            config: config,
-            session: session,
-            expand: expand,
-            metadata: metadata,
-            options: options,
-            providedDetails: providedDetails,
-            type: type
-        )
+    /// Updates a VerificationSession object. When the session status is requires_input , you can use this method to update the verification check and options.
+    public func postIdentitySession(session: String, expand: [String]?, metadata: [String: String]?, options: PostIdentityVerificationSessionsSessionRequestBodyOptions?, providedDetails: PostIdentityVerificationSessionsSessionRequestBodyProvidedDetails?, type: PostIdentityVerificationSessionsSessionRequestBodyType?) async throws -> IdentityVerificationSession {
+        return try await V1IdentityVerificationSessionsMethods.postIdentityVerificationSessionsSession(config: config, session: session, expand: expand, metadata: metadata, options: options, providedDetails: providedDetails, type: type)
     }
 }
 
@@ -145,26 +83,18 @@ public class V1InvoicePaymentsNamespace {
         self.config = config
     }
 
-    /// Lists payments associated with invoices. Filter by invoice, payment type, payment status, or creation time, and
-    /// use cursor parameters with `limit` to retrieve the full paginated payment history.
+/// Lists payments associated with invoices. Filter by invoice, payment type, payment status, or creation time, and use cursor parameters with `limit` to retrieve the full paginated payment history.
     ///
-    /// When retrieving an invoice, there is an includable payments property containing the first handful of those
-    /// items. There is also a URL where you can retrieve the full (paginated) list of payments.
-    public func get(options: V1InvoicePaymentsMethods
-        .GetInvoicePaymentsOptions) async throws -> GetInvoicePaymentsResponse {
-        try await V1InvoicePaymentsMethods.getInvoicePayments(config: config, options: options)
+    /// When retrieving an invoice, there is an includable payments property containing the first handful of those items. There is also a URL where you can retrieve the full (paginated) list of payments.
+    public func get(options: V1InvoicePaymentsMethods.GetInvoicePaymentsOptions) async throws -> GetInvoicePaymentsResponse {
+        return try await V1InvoicePaymentsMethods.getInvoicePayments(config: config, options: options)
     }
 
-    /// Retrieves an invoice payment by its identifier. Use `expand` to include selected related invoice or payment
-    /// resources directly in the response.
+/// Retrieves an invoice payment by its identifier. Use `expand` to include selected related invoice or payment resources directly in the response.
     ///
     /// Retrieves the invoice payment with the given ID.
     public func getInvoicePayment(invoicePayment: String, expand: [String]?) async throws -> InvoicePayment {
-        try await V1InvoicePaymentsMethods.getInvoicePaymentsInvoicePayment(
-            config: config,
-            invoicePayment: invoicePayment,
-            expand: expand
-        )
+        return try await V1InvoicePaymentsMethods.getInvoicePaymentsInvoicePayment(config: config, invoicePayment: invoicePayment, expand: expand)
     }
 }
 
@@ -174,21 +104,11 @@ public class V1InvoiceRenderingTemplatesArchiveNamespace {
         self.config = config
     }
 
-    /// Archives an invoice rendering template so new objects cannot reference it and the template can no longer be
-    /// updated. Existing objects that already use the template continue applying it to generated invoices.
+/// Archives an invoice rendering template so new objects cannot reference it and the template can no longer be updated. Existing objects that already use the template continue applying it to generated invoices.
     ///
-    /// Updates the status of an invoice rendering template to ‘archived’ so no new Stripe objects (customers, invoices,
-    /// etc.) can reference it. The template can also no longer be updated. However, if the template is already set on a
-    /// Stripe object, it will continue to be applied on invoices generated by it.
-    public func postInvoiceRenderingTemplatesTemplate(
-        template: String,
-        expand: [String]?
-    ) async throws -> InvoiceRenderingTemplate {
-        try await V1InvoiceRenderingTemplatesArchiveMethods.postInvoiceRenderingTemplatesTemplateArchive(
-            config: config,
-            template: template,
-            expand: expand
-        )
+    /// Updates the status of an invoice rendering template to ‘archived’ so no new Stripe objects (customers, invoices, etc.) can reference it. The template can also no longer be updated. However, if the template is already set on a Stripe object, it will continue to be applied on invoices generated by it.
+    public func postInvoiceRenderingTemplatesTemplate(template: String, expand: [String]?) async throws -> InvoiceRenderingTemplate {
+        return try await V1InvoiceRenderingTemplatesArchiveMethods.postInvoiceRenderingTemplatesTemplateArchive(config: config, template: template, expand: expand)
     }
 }
 
@@ -198,19 +118,11 @@ public class V1InvoiceRenderingTemplatesUnarchiveNamespace {
         self.config = config
     }
 
-    /// Unarchives an invoice rendering template so it can be used on new objects again. Supply the template identifier
-    /// and optionally use `expand` to include selected response fields in expanded form.
+/// Unarchives an invoice rendering template so it can be used on new objects again. Supply the template identifier and optionally use `expand` to include selected response fields in expanded form.
     ///
     /// Unarchive an invoice rendering template so it can be used on new Stripe objects again.
-    public func postInvoiceRenderingTemplatesTemplate(
-        template: String,
-        expand: [String]?
-    ) async throws -> InvoiceRenderingTemplate {
-        try await V1InvoiceRenderingTemplatesUnarchiveMethods.postInvoiceRenderingTemplatesTemplateUnarchive(
-            config: config,
-            template: template,
-            expand: expand
-        )
+    public func postInvoiceRenderingTemplatesTemplate(template: String, expand: [String]?) async throws -> InvoiceRenderingTemplate {
+        return try await V1InvoiceRenderingTemplatesUnarchiveMethods.postInvoiceRenderingTemplatesTemplateUnarchive(config: config, template: template, expand: expand)
     }
 }
 
@@ -224,44 +136,18 @@ public class V1InvoiceRenderingTemplatesNamespace {
         unarchive = V1InvoiceRenderingTemplatesUnarchiveNamespace(config: config)
     }
 
-    /// Lists invoice rendering templates ordered by creation date, with the newest template first. Use `starting_after`
-    /// or `ending_before` to paginate the results, `limit` to control page size, and `status` to filter active or
-    /// archived templates.
+/// Lists invoice rendering templates ordered by creation date, with the newest template first. Use `starting_after` or `ending_before` to paginate the results, `limit` to control page size, and `status` to filter active or archived templates.
     ///
     /// List all templates, ordered by creation date, with the most recently created template appearing first.
-    public func get(
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        startingAfter: String?,
-        status: GetInvoiceRenderingTemplatesParameter?
-    ) async throws -> GetInvoiceRenderingTemplatesResponse {
-        try await V1InvoiceRenderingTemplatesMethods.getInvoiceRenderingTemplates(
-            config: config,
-            endingBefore: endingBefore,
-            expand: expand,
-            limit: limit,
-            startingAfter: startingAfter,
-            status: status
-        )
+    public func get(endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?, status: GetInvoiceRenderingTemplatesParameter?) async throws -> GetInvoiceRenderingTemplatesResponse {
+        return try await V1InvoiceRenderingTemplatesMethods.getInvoiceRenderingTemplates(config: config, endingBefore: endingBefore, expand: expand, limit: limit, startingAfter: startingAfter, status: status)
     }
 
-    /// Retrieves an invoice rendering template by ID and returns its latest version by default. Supply `version` to
-    /// retrieve a previous version, and use `expand` when you need selected response fields expanded.
+/// Retrieves an invoice rendering template by ID and returns its latest version by default. Supply `version` to retrieve a previous version, and use `expand` when you need selected response fields expanded.
     ///
-    /// Retrieves an invoice rendering template with the given ID. It by default returns the latest version of the
-    /// template. Optionally, specify a version to see previous versions.
-    public func getTemplate(
-        template: String,
-        expand: [String]?,
-        version: Int?
-    ) async throws -> InvoiceRenderingTemplate {
-        try await V1InvoiceRenderingTemplatesMethods.getInvoiceRenderingTemplatesTemplate(
-            config: config,
-            template: template,
-            expand: expand,
-            version: version
-        )
+    /// Retrieves an invoice rendering template with the given ID. It by default returns the latest version of the template. Optionally, specify a version to see previous versions.
+    public func getTemplate(template: String, expand: [String]?, version: Int?) async throws -> InvoiceRenderingTemplate {
+        return try await V1InvoiceRenderingTemplatesMethods.getInvoiceRenderingTemplatesTemplate(config: config, template: template, expand: expand, version: version)
     }
 }
 
@@ -271,52 +157,37 @@ public class V1InvoiceitemsNamespace {
         self.config = config
     }
 
-    /// Lists invoice items ordered by creation date, with the newest items first. Filter by `customer`,
-    /// `customer_account`, `invoice`, `pending`, or `created`, and use `starting_after` or `ending_before` to paginate
-    /// the results.
+/// Lists invoice items ordered by creation date, with the newest items first. Filter by `customer`, `customer_account`, `invoice`, `pending`, or `created`, and use `starting_after` or `ending_before` to paginate the results.
     ///
-    /// Returns a list of your invoice items. Invoice items are returned sorted by creation date, with the most recently
-    /// created invoice items appearing first.
+    /// Returns a list of your invoice items. Invoice items are returned sorted by creation date, with the most recently created invoice items appearing first.
     public func get(options: V1InvoiceitemsMethods.GetInvoiceitemsOptions) async throws -> GetInvoiceitemsResponse {
-        try await V1InvoiceitemsMethods.getInvoiceitems(config: config, options: options)
+        return try await V1InvoiceitemsMethods.getInvoiceitems(config: config, options: options)
     }
 
-    /// Creates an item to be added to a draft invoice (up to 250 items per invoice). If no invoice is specified, the
-    /// item will be on the next invoice created for the customer specified.
+/// Creates an item to be added to a draft invoice (up to 250 items per invoice). If no invoice is specified, the item will be on the next invoice created for the customer specified.
     public func post(options: V1InvoiceitemsMethods.PostInvoiceitemsOptions) async throws -> Invoiceitem {
-        try await V1InvoiceitemsMethods.postInvoiceitems(config: config, options: options)
+        return try await V1InvoiceitemsMethods.postInvoiceitems(config: config, options: options)
     }
 
-    /// Deletes an invoice item and removes it from its invoice association. You can delete the item only when it is not
-    /// attached to an invoice or when it is attached to a draft invoice.
+/// Deletes an invoice item and removes it from its invoice association. You can delete the item only when it is not attached to an invoice or when it is attached to a draft invoice.
     ///
-    /// Deletes an invoice item, removing it from an invoice. Deleting invoice items is only possible when they’re not
-    /// attached to invoices, or if it’s attached to a draft invoice.
+    /// Deletes an invoice item, removing it from an invoice. Deleting invoice items is only possible when they’re not attached to invoices, or if it’s attached to a draft invoice.
     public func deleteInvoiceitem(invoiceitem: String) async throws -> DeletedInvoiceitem {
-        try await V1InvoiceitemsMethods.deleteInvoiceitemsInvoiceitem(config: config, invoiceitem: invoiceitem)
+        return try await V1InvoiceitemsMethods.deleteInvoiceitemsInvoiceitem(config: config, invoiceitem: invoiceitem)
     }
 
-    /// Retrieves an invoice item by its identifier. Use `expand` to request selected fields in expanded form when the
-    /// returned invoice item references related objects.
+/// Retrieves an invoice item by its identifier. Use `expand` to request selected fields in expanded form when the returned invoice item references related objects.
     ///
     /// Retrieves the invoice item with the given ID.
     public func getInvoiceitem(invoiceitem: String, expand: [String]?) async throws -> Invoiceitem {
-        try await V1InvoiceitemsMethods.getInvoiceitemsInvoiceitem(
-            config: config,
-            invoiceitem: invoiceitem,
-            expand: expand
-        )
+        return try await V1InvoiceitemsMethods.getInvoiceitemsInvoiceitem(config: config, invoiceitem: invoiceitem, expand: expand)
     }
 
-    /// Updates the amount, description, pricing, discounts, tax settings, or other supported fields of an invoice item
-    /// on an upcoming invoice. You can update the item only before the invoice it is attached to is closed; use
-    /// `expand` to expand selected response fields.
+/// Updates the amount, description, pricing, discounts, tax settings, or other supported fields of an invoice item on an upcoming invoice. You can update the item only before the invoice it is attached to is closed; use `expand` to expand selected response fields.
     ///
-    /// Updates the amount or description of an invoice item on an upcoming invoice. Updating an invoice item is only
-    /// possible before the invoice it’s attached to is closed.
-    public func postInvoiceitem(options: V1InvoiceitemsMethods
-        .PostInvoiceitemsInvoiceitemOptions) async throws -> Invoiceitem {
-        try await V1InvoiceitemsMethods.postInvoiceitemsInvoiceitem(config: config, options: options)
+    /// Updates the amount or description of an invoice item on an upcoming invoice. Updating an invoice item is only possible before the invoice it’s attached to is closed.
+    public func postInvoiceitem(options: V1InvoiceitemsMethods.PostInvoiceitemsInvoiceitemOptions) async throws -> Invoiceitem {
+        return try await V1InvoiceitemsMethods.postInvoiceitemsInvoiceitem(config: config, options: options)
     }
 }
 
@@ -326,21 +197,8 @@ public class V1InvoicesCreatePreviewNamespace {
         self.config = config
     }
 
-    /// At any time, you can preview the upcoming invoice for a subscription or subscription schedule. This will show
-    /// you all the charges that are pending, including subscription renewal charges, invoice item charges, etc. It will
-    /// also show you any discounts that are applicable to the invoice. You can also preview the effects of creating or
-    /// updating a subscription or subscription schedule, including a preview of any prorations that will take place. To
-    /// ensure that the actual proration is calculated exactly the same as the previewed proration, you should pass the
-    /// subscription_details.proration_date parameter when doing the actual subscription update. The recommended way to
-    /// get only the prorations being previewed on the invoice is to consider line items where
-    /// parent.subscription_item_details.proration is true . Note that when you are viewing an upcoming invoice, you are
-    /// simply viewing a preview – the invoice has not yet been created. As such, the upcoming invoice will not show up
-    /// in invoice listing calls, and you cannot use the API to pay or edit the invoice. If you want to change the
-    /// amount that your customer will be billed, you can add, remove, or update pending invoice items, or update the
-    /// customer’s discount. Note: Currency conversion calculations use the latest exchange rates. Exchange rates may
-    /// vary between the time of the preview and the time of the actual invoice creation. Learn more
-    public func postInvoices(options: V1InvoicesCreatePreviewMethods
-        .PostInvoicesCreatePreviewOptions) async throws -> Invoice {
-        try await V1InvoicesCreatePreviewMethods.postInvoicesCreatePreview(config: config, options: options)
+/// At any time, you can preview the upcoming invoice for a subscription or subscription schedule. This will show you all the charges that are pending, including subscription renewal charges, invoice item charges, etc. It will also show you any discounts that are applicable to the invoice. You can also preview the effects of creating or updating a subscription or subscription schedule, including a preview of any prorations that will take place. To ensure that the actual proration is calculated exactly the same as the previewed proration, you should pass the subscription_details.proration_date parameter when doing the actual subscription update. The recommended way to get only the prorations being previewed on the invoice is to consider line items where parent.subscription_item_details.proration is true . Note that when you are viewing an upcoming invoice, you are simply viewing a preview – the invoice has not yet been created. As such, the upcoming invoice will not show up in invoice listing calls, and you cannot use the API to pay or edit the invoice. If you want to change the amount that your customer will be billed, you can add, remove, or update pending invoice items, or update the customer’s discount. Note: Currency conversion calculations use the latest exchange rates. Exchange rates may vary between the time of the preview and the time of the actual invoice creation. Learn more
+    public func postInvoices(options: V1InvoicesCreatePreviewMethods.PostInvoicesCreatePreviewOptions) async throws -> Invoice {
+        return try await V1InvoicesCreatePreviewMethods.postInvoicesCreatePreview(config: config, options: options)
     }
 }

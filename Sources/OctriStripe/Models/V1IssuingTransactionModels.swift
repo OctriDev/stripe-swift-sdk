@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1IssuingTransaction domain models
+// V1IssuingTransaction domain models
 /// Typed representation of the `IssuingTransactionAmountDetails` API schema.
 public struct IssuingTransactionAmountDetails: Codable {
     /// The fee charged by the ATM for the cash withdrawal.
@@ -17,20 +17,20 @@ public struct IssuingTransactionAmountDetails: Codable {
     }
 
     init() {
-        (atmFee, cashbackAmount) = (nil, nil)
+        (self.atmFee, self.cashbackAmount) = (nil, nil)
     }
 }
 
-public extension IssuingTransactionAmountDetails {
-    init(from decoder: Decoder) throws {
+extension IssuingTransactionAmountDetails {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        atmFee = try container.sdkDecodeIfPresent(.atmFee)
-        cashbackAmount = try container.sdkDecodeIfPresent(.cashbackAmount)
+        self.atmFee = try container.sdkDecodeIfPresent(.atmFee)
+        self.cashbackAmount = try container.sdkDecodeIfPresent(.cashbackAmount)
     }
 }
 
-public extension IssuingTransactionAmountDetails {
-    init(atmFee: Int? = nil, cashbackAmount: Int? = nil) {
+extension IssuingTransactionAmountDetails {
+    public init(atmFee: Int? = nil, cashbackAmount: Int? = nil) {
         self.init()
         (self.atmFee, self.cashbackAmount) = (atmFee, cashbackAmount)
     }
@@ -59,41 +59,35 @@ public struct IssuingTransactionFleetCardholderPromptData: Codable {
     }
 
     init() {
-        (driverId, odometer, unspecifiedId, userId, vehicleNumber) = (nil, nil, nil, nil, nil)
+        (self.driverId, self.odometer, self.unspecifiedId, self.userId, self.vehicleNumber) = (nil, nil, nil, nil, nil)
     }
 }
 
-public extension IssuingTransactionFleetCardholderPromptData {
-    init(from decoder: Decoder) throws {
+extension IssuingTransactionFleetCardholderPromptData {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        driverId = try container.sdkDecodeIfPresent(.driverId)
-        odometer = try container.sdkDecodeIfPresent(.odometer)
-        unspecifiedId = try container.sdkDecodeIfPresent(.unspecifiedId)
-        userId = try container.sdkDecodeIfPresent(.userId)
-        vehicleNumber = try container.sdkDecodeIfPresent(.vehicleNumber)
-        if let value = driverId {
+        self.driverId = try container.sdkDecodeIfPresent(.driverId)
+        self.odometer = try container.sdkDecodeIfPresent(.odometer)
+        self.unspecifiedId = try container.sdkDecodeIfPresent(.unspecifiedId)
+        self.userId = try container.sdkDecodeIfPresent(.userId)
+        self.vehicleNumber = try container.sdkDecodeIfPresent(.vehicleNumber)
+        if let value = self.driverId {
             try validateLength("driver_id", value, min: nil, max: 5000)
         }
-        if let value = unspecifiedId {
+        if let value = self.unspecifiedId {
             try validateLength("unspecified_id", value, min: nil, max: 5000)
         }
-        if let value = userId {
+        if let value = self.userId {
             try validateLength("user_id", value, min: nil, max: 5000)
         }
-        if let value = vehicleNumber {
+        if let value = self.vehicleNumber {
             try validateLength("vehicle_number", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension IssuingTransactionFleetCardholderPromptData {
-    init(
-        driverId: String? = nil,
-        odometer: Int? = nil,
-        unspecifiedId: String? = nil,
-        userId: String? = nil,
-        vehicleNumber: String? = nil
-    ) throws {
+extension IssuingTransactionFleetCardholderPromptData {
+    public init(driverId: String? = nil, odometer: Int? = nil, unspecifiedId: String? = nil, userId: String? = nil, vehicleNumber: String? = nil) throws {
         self.init()
         (self.driverId, self.odometer) = (driverId, odometer)
         (self.unspecifiedId, self.userId) = (unspecifiedId, userId)
@@ -133,33 +127,28 @@ public struct IssuingTransactionFleetData: Codable {
     }
 
     init() {
-        (cardholderPromptData, purchaseType, reportedBreakdown, serviceType) = (nil, nil, nil, nil)
+        (self.cardholderPromptData, self.purchaseType, self.reportedBreakdown, self.serviceType) = (nil, nil, nil, nil)
     }
 }
 
-public extension IssuingTransactionFleetData {
-    init(from decoder: Decoder) throws {
+extension IssuingTransactionFleetData {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        cardholderPromptData = try container.sdkDecodeIfPresent(.cardholderPromptData)
-        purchaseType = try container.sdkDecodeIfPresent(.purchaseType)
-        reportedBreakdown = try container.sdkDecodeIfPresent(.reportedBreakdown)
-        serviceType = try container.sdkDecodeIfPresent(.serviceType)
-        if let value = purchaseType {
+        self.cardholderPromptData = try container.sdkDecodeIfPresent(.cardholderPromptData)
+        self.purchaseType = try container.sdkDecodeIfPresent(.purchaseType)
+        self.reportedBreakdown = try container.sdkDecodeIfPresent(.reportedBreakdown)
+        self.serviceType = try container.sdkDecodeIfPresent(.serviceType)
+        if let value = self.purchaseType {
             try validateLength("purchase_type", value, min: nil, max: 5000)
         }
-        if let value = serviceType {
+        if let value = self.serviceType {
             try validateLength("service_type", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension IssuingTransactionFleetData {
-    init(
-        cardholderPromptData: IssuingTransactionFleetDataCardholderPromptData? = nil,
-        purchaseType: String? = nil,
-        reportedBreakdown: IssuingTransactionFleetDataReportedBreakdown? = nil,
-        serviceType: String? = nil
-    ) throws {
+extension IssuingTransactionFleetData {
+    public init(cardholderPromptData: IssuingTransactionFleetDataCardholderPromptData? = nil, purchaseType: String? = nil, reportedBreakdown: IssuingTransactionFleetDataReportedBreakdown? = nil, serviceType: String? = nil) throws {
         self.init()
         (self.cardholderPromptData, self.purchaseType) = (cardholderPromptData, purchaseType)
         (self.reportedBreakdown, self.serviceType) = (reportedBreakdown, serviceType)
@@ -177,30 +166,24 @@ public enum IssuingTransactionFleetDataCardholderPromptData {
 }
 
 extension IssuingTransactionFleetDataCardholderPromptData: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for IssuingTransactionFleetDataCardholderPromptData"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for IssuingTransactionFleetDataCardholderPromptData")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             IssuingTransactionFleetCardholderPromptData.self
         ) {
-            return .issuingTransactionFleetCardholderPromptData(value)
+            return             .issuingTransactionFleetCardholderPromptData(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -209,6 +192,7 @@ extension IssuingTransactionFleetDataCardholderPromptData: Codable {
         case let .issuingTransactionFleetCardholderPromptData(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum IssuingTransactionFleetDataReportedBreakdown {
@@ -216,30 +200,24 @@ public enum IssuingTransactionFleetDataReportedBreakdown {
 }
 
 extension IssuingTransactionFleetDataReportedBreakdown: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for IssuingTransactionFleetDataReportedBreakdown"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for IssuingTransactionFleetDataReportedBreakdown")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             IssuingTransactionFleetReportedBreakdown.self
         ) {
-            return .issuingTransactionFleetReportedBreakdown(value)
+            return             .issuingTransactionFleetReportedBreakdown(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -248,6 +226,7 @@ extension IssuingTransactionFleetDataReportedBreakdown: Codable {
         case let .issuingTransactionFleetReportedBreakdown(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// Typed representation of the `IssuingTransactionFleetFuelPriceData` API schema.
@@ -260,19 +239,19 @@ public struct IssuingTransactionFleetFuelPriceData: Codable {
     }
 
     init() {
-        grossAmountDecimal = nil
+        self.grossAmountDecimal = nil
     }
 }
 
-public extension IssuingTransactionFleetFuelPriceData {
-    init(from decoder: Decoder) throws {
+extension IssuingTransactionFleetFuelPriceData {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        grossAmountDecimal = try container.sdkDecodeIfPresent(.grossAmountDecimal)
+        self.grossAmountDecimal = try container.sdkDecodeIfPresent(.grossAmountDecimal)
     }
 }
 
-public extension IssuingTransactionFleetFuelPriceData {
-    init(grossAmountDecimal: String? = nil) {
+extension IssuingTransactionFleetFuelPriceData {
+    public init(grossAmountDecimal: String? = nil) {
         self.init()
         self.grossAmountDecimal = grossAmountDecimal
     }
@@ -288,19 +267,19 @@ public struct IssuingTransactionFleetNonFuelPriceData: Codable {
     }
 
     init() {
-        grossAmountDecimal = nil
+        self.grossAmountDecimal = nil
     }
 }
 
-public extension IssuingTransactionFleetNonFuelPriceData {
-    init(from decoder: Decoder) throws {
+extension IssuingTransactionFleetNonFuelPriceData {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        grossAmountDecimal = try container.sdkDecodeIfPresent(.grossAmountDecimal)
+        self.grossAmountDecimal = try container.sdkDecodeIfPresent(.grossAmountDecimal)
     }
 }
 
-public extension IssuingTransactionFleetNonFuelPriceData {
-    init(grossAmountDecimal: String? = nil) {
+extension IssuingTransactionFleetNonFuelPriceData {
+    public init(grossAmountDecimal: String? = nil) {
         self.init()
         self.grossAmountDecimal = grossAmountDecimal
     }
@@ -322,25 +301,21 @@ public struct IssuingTransactionFleetReportedBreakdown: Codable {
     }
 
     init() {
-        (fuel, nonFuel, tax) = (nil, nil, nil)
+        (self.fuel, self.nonFuel, self.tax) = (nil, nil, nil)
     }
 }
 
-public extension IssuingTransactionFleetReportedBreakdown {
-    init(from decoder: Decoder) throws {
+extension IssuingTransactionFleetReportedBreakdown {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        fuel = try container.sdkDecodeIfPresent(.fuel)
-        nonFuel = try container.sdkDecodeIfPresent(.nonFuel)
-        tax = try container.sdkDecodeIfPresent(.tax)
+        self.fuel = try container.sdkDecodeIfPresent(.fuel)
+        self.nonFuel = try container.sdkDecodeIfPresent(.nonFuel)
+        self.tax = try container.sdkDecodeIfPresent(.tax)
     }
 }
 
-public extension IssuingTransactionFleetReportedBreakdown {
-    init(
-        fuel: IssuingTransactionFleetReportedBreakdownFuel? = nil,
-        nonFuel: IssuingTransactionFleetReportedBreakdownNonFuel? = nil,
-        tax: IssuingTransactionFleetReportedBreakdownTax? = nil
-    ) {
+extension IssuingTransactionFleetReportedBreakdown {
+    public init(fuel: IssuingTransactionFleetReportedBreakdownFuel? = nil, nonFuel: IssuingTransactionFleetReportedBreakdownNonFuel? = nil, tax: IssuingTransactionFleetReportedBreakdownTax? = nil) {
         self.init()
         (self.fuel, self.nonFuel) = (fuel, nonFuel)
         self.tax = tax
@@ -352,30 +327,24 @@ public enum IssuingTransactionFleetReportedBreakdownFuel {
 }
 
 extension IssuingTransactionFleetReportedBreakdownFuel: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for IssuingTransactionFleetReportedBreakdownFuel"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for IssuingTransactionFleetReportedBreakdownFuel")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             IssuingTransactionFleetFuelPriceData.self
         ) {
-            return .issuingTransactionFleetFuelPriceData(value)
+            return             .issuingTransactionFleetFuelPriceData(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -384,6 +353,7 @@ extension IssuingTransactionFleetReportedBreakdownFuel: Codable {
         case let .issuingTransactionFleetFuelPriceData(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum IssuingTransactionFleetReportedBreakdownNonFuel {
@@ -391,30 +361,24 @@ public enum IssuingTransactionFleetReportedBreakdownNonFuel {
 }
 
 extension IssuingTransactionFleetReportedBreakdownNonFuel: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for IssuingTransactionFleetReportedBreakdownNonFuel"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for IssuingTransactionFleetReportedBreakdownNonFuel")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             IssuingTransactionFleetNonFuelPriceData.self
         ) {
-            return .issuingTransactionFleetNonFuelPriceData(value)
+            return             .issuingTransactionFleetNonFuelPriceData(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -423,6 +387,7 @@ extension IssuingTransactionFleetReportedBreakdownNonFuel: Codable {
         case let .issuingTransactionFleetNonFuelPriceData(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum IssuingTransactionFleetReportedBreakdownTax {
@@ -430,29 +395,20 @@ public enum IssuingTransactionFleetReportedBreakdownTax {
 }
 
 extension IssuingTransactionFleetReportedBreakdownTax: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for IssuingTransactionFleetReportedBreakdownTax"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for IssuingTransactionFleetReportedBreakdownTax")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container
-            .decode(IssuingTransactionFleetTaxData.self) {
-            return .issuingTransactionFleetTaxData(value)
-        }
+        if let value = try? container.decode(IssuingTransactionFleetTaxData.self) { return .issuingTransactionFleetTaxData(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -461,6 +417,7 @@ extension IssuingTransactionFleetReportedBreakdownTax: Codable {
         case let .issuingTransactionFleetTaxData(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// Typed representation of the `IssuingTransactionFleetTaxData` API schema.
@@ -478,20 +435,20 @@ public struct IssuingTransactionFleetTaxData: Codable {
     }
 
     init() {
-        (localAmountDecimal, nationalAmountDecimal) = (nil, nil)
+        (self.localAmountDecimal, self.nationalAmountDecimal) = (nil, nil)
     }
 }
 
-public extension IssuingTransactionFleetTaxData {
-    init(from decoder: Decoder) throws {
+extension IssuingTransactionFleetTaxData {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        localAmountDecimal = try container.sdkDecodeIfPresent(.localAmountDecimal)
-        nationalAmountDecimal = try container.sdkDecodeIfPresent(.nationalAmountDecimal)
+        self.localAmountDecimal = try container.sdkDecodeIfPresent(.localAmountDecimal)
+        self.nationalAmountDecimal = try container.sdkDecodeIfPresent(.nationalAmountDecimal)
     }
 }
 
-public extension IssuingTransactionFleetTaxData {
-    init(localAmountDecimal: String? = nil, nationalAmountDecimal: String? = nil) {
+extension IssuingTransactionFleetTaxData {
+    public init(localAmountDecimal: String? = nil, nationalAmountDecimal: String? = nil) {
         self.init()
         (self.localAmountDecimal, self.nationalAmountDecimal) = (localAmountDecimal, nationalAmountDecimal)
     }
@@ -519,35 +476,29 @@ public struct IssuingTransactionFlightData: Codable {
     }
 
     init() {
-        (departureAt, passengerName, refundable, segments, travelAgency) = (nil, nil, nil, nil, nil)
+        (self.departureAt, self.passengerName, self.refundable, self.segments, self.travelAgency) = (nil, nil, nil, nil, nil)
     }
 }
 
-public extension IssuingTransactionFlightData {
-    init(from decoder: Decoder) throws {
+extension IssuingTransactionFlightData {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        departureAt = try container.sdkDecodeIfPresent(.departureAt)
-        passengerName = try container.sdkDecodeIfPresent(.passengerName)
-        refundable = try container.sdkDecodeIfPresent(.refundable)
-        segments = try container.sdkDecodeIfPresent(.segments)
-        travelAgency = try container.sdkDecodeIfPresent(.travelAgency)
-        if let value = passengerName {
+        self.departureAt = try container.sdkDecodeIfPresent(.departureAt)
+        self.passengerName = try container.sdkDecodeIfPresent(.passengerName)
+        self.refundable = try container.sdkDecodeIfPresent(.refundable)
+        self.segments = try container.sdkDecodeIfPresent(.segments)
+        self.travelAgency = try container.sdkDecodeIfPresent(.travelAgency)
+        if let value = self.passengerName {
             try validateLength("passenger_name", value, min: nil, max: 5000)
         }
-        if let value = travelAgency {
+        if let value = self.travelAgency {
             try validateLength("travel_agency", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension IssuingTransactionFlightData {
-    init(
-        departureAt: Int? = nil,
-        passengerName: String? = nil,
-        refundable: Bool? = nil,
-        segments: [IssuingTransactionFlightDataLeg]? = nil,
-        travelAgency: String? = nil
-    ) throws {
+extension IssuingTransactionFlightData {
+    public init(departureAt: Int? = nil, passengerName: String? = nil, refundable: Bool? = nil, segments: [IssuingTransactionFlightDataLeg]? = nil, travelAgency: String? = nil) throws {
         self.init()
         (self.departureAt, self.passengerName) = (departureAt, passengerName)
         (self.refundable, self.segments) = (refundable, segments)
@@ -586,7 +537,7 @@ public struct IssuingTransactionFlightDataLeg: Codable {
     }
 
     init() {
-        (arrivalAirportCode, carrier, departureAirportCode, flightNumber, serviceClass) = (nil, nil, nil, nil, nil)
-        stopoverAllowed = nil
+        (self.arrivalAirportCode, self.carrier, self.departureAirportCode, self.flightNumber, self.serviceClass) = (nil, nil, nil, nil, nil)
+        self.stopoverAllowed = nil
     }
 }

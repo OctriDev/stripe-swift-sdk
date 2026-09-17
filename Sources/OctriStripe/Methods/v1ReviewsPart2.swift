@@ -6,12 +6,10 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1ReviewsMethods {
-    /// Lists open reviews sorted by creation date, with the most recently created review first. Use `created` to filter
-    /// by creation time, `limit` to control page size, and `starting_after` or `ending_before` to navigate the results.
+extension V1ReviewsMethods {
+    /// Lists open reviews sorted by creation date, with the most recently created review first. Use `created` to filter by creation time, `limit` to control page size, and `starting_after` or `ending_before` to navigate the results.
     ///
-    /// Returns a list of Review objects that have open set to true . The objects are sorted in descending order by
-    /// creation date, with the most recently created object appearing first.
+    /// Returns a list of Review objects that have open set to true . The objects are sorted in descending order by creation date, with the most recently created object appearing first.
     ///
     /// - Parameters:
     /// - created: Only return reviews that were created during the given date
@@ -29,23 +27,16 @@ public extension V1ReviewsMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    static func getReviews(
-        config: ClientConfig,
-        created: GetReviewsParameter?,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        startingAfter: String?
-    ) async throws -> GetReviewsResponse {
-        if let endingBefore {
+    public static func getReviews(config: ClientConfig, created: GetReviewsParameter?, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetReviewsResponse {
+        if let endingBefore = endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let startingAfter {
+        if let startingAfter = startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try await (sdkRequest("GET", "/v1/reviews", config: config, query: [
+        return try (await sdkRequest("GET", "/v1/reviews", config: config, query: [
             SdkQueryParameter("created", value: created),
             SdkQueryParameter("ending_before", value: endingBefore),
             SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),

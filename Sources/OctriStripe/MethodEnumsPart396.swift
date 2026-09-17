@@ -48,97 +48,85 @@ struct PostPaymentIntentsRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encode(amount, forKey: SdkCodingKey("amount"))
-        try keyedContainer.encode(currency, forKey: SdkCodingKey("currency"))
-        try keyedContainer.encodeIfPresent(
-            allowedPaymentMethodTypes,
-            forKey: SdkCodingKey("allowed_payment_method_types")
-        )
-        try keyedContainer.encodeIfPresent(amountDetails, forKey: SdkCodingKey("amount_details"))
-        try keyedContainer.encodeIfPresent(applicationFeeAmount, forKey: SdkCodingKey("application_fee_amount"))
-        try keyedContainer.encodeIfPresent(automaticPaymentMethods, forKey: SdkCodingKey("automatic_payment_methods"))
-        try keyedContainer.encodeIfPresent(captureMethod, forKey: SdkCodingKey("capture_method"))
-        try keyedContainer.encodeIfPresent(confirm, forKey: SdkCodingKey("confirm"))
-        try keyedContainer.encodeIfPresent(confirmationMethod, forKey: SdkCodingKey("confirmation_method"))
-        try keyedContainer.encodeIfPresent(confirmationToken, forKey: SdkCodingKey("confirmation_token"))
-        try keyedContainer.encodeIfPresent(customer, forKey: SdkCodingKey("customer"))
-        try keyedContainer.encodeIfPresent(customerAccount, forKey: SdkCodingKey("customer_account"))
-        try keyedContainer.encodeIfPresent(description, forKey: SdkCodingKey("description"))
-        try keyedContainer.encodeIfPresent(errorOnRequiresAction, forKey: SdkCodingKey("error_on_requires_action"))
-        try keyedContainer.encodeIfPresent(
-            excludedPaymentMethodTypes,
-            forKey: SdkCodingKey("excluded_payment_method_types")
-        )
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(hooks, forKey: SdkCodingKey("hooks"))
-        try keyedContainer.encodeIfPresent(mandate, forKey: SdkCodingKey("mandate"))
-        try keyedContainer.encodeIfPresent(mandateData, forKey: SdkCodingKey("mandate_data"))
-        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
-        try keyedContainer.encodeIfPresent(offSession, forKey: SdkCodingKey("off_session"))
-        try keyedContainer.encodeIfPresent(onBehalfOf, forKey: SdkCodingKey("on_behalf_of"))
-        try keyedContainer.encodeIfPresent(paymentDetails, forKey: SdkCodingKey("payment_details"))
-        try keyedContainer.encodeIfPresent(paymentMethod, forKey: SdkCodingKey("payment_method"))
-        try keyedContainer.encodeIfPresent(
-            paymentMethodConfiguration,
-            forKey: SdkCodingKey("payment_method_configuration")
-        )
-        try keyedContainer.encodeIfPresent(paymentMethodData, forKey: SdkCodingKey("payment_method_data"))
-        try keyedContainer.encodeIfPresent(paymentMethodOptions, forKey: SdkCodingKey("payment_method_options"))
-        try keyedContainer.encodeIfPresent(paymentMethodTypes, forKey: SdkCodingKey("payment_method_types"))
-        try keyedContainer.encodeIfPresent(radarOptions, forKey: SdkCodingKey("radar_options"))
-        try keyedContainer.encodeIfPresent(receiptEmail, forKey: SdkCodingKey("receipt_email"))
-        try keyedContainer.encodeIfPresent(returnUrl, forKey: SdkCodingKey("return_url"))
-        try keyedContainer.encodeIfPresent(setupFutureUsage, forKey: SdkCodingKey("setup_future_usage"))
-        try keyedContainer.encodeIfPresent(shipping, forKey: SdkCodingKey("shipping"))
-        try keyedContainer.encodeIfPresent(statementDescriptor, forKey: SdkCodingKey("statement_descriptor"))
-        try keyedContainer.encodeIfPresent(
-            statementDescriptorSuffix,
-            forKey: SdkCodingKey("statement_descriptor_suffix")
-        )
-        try keyedContainer.encodeIfPresent(transferData, forKey: SdkCodingKey("transfer_data"))
-        try keyedContainer.encodeIfPresent(transferGroup, forKey: SdkCodingKey("transfer_group"))
-        try keyedContainer.encodeIfPresent(useStripeSdk, forKey: SdkCodingKey("use_stripe_sdk"))
+        try keyedContainer.encode(self.amount, forKey: SdkCodingKey("amount"))
+        try keyedContainer.encode(self.currency, forKey: SdkCodingKey("currency"))
+        try keyedContainer.encodeIfPresent(self.allowedPaymentMethodTypes, forKey: SdkCodingKey("allowed_payment_method_types"))
+        try keyedContainer.encodeIfPresent(self.amountDetails, forKey: SdkCodingKey("amount_details"))
+        try keyedContainer.encodeIfPresent(self.applicationFeeAmount, forKey: SdkCodingKey("application_fee_amount"))
+        try keyedContainer.encodeIfPresent(self.automaticPaymentMethods, forKey: SdkCodingKey("automatic_payment_methods"))
+        try keyedContainer.encodeIfPresent(self.captureMethod, forKey: SdkCodingKey("capture_method"))
+        try keyedContainer.encodeIfPresent(self.confirm, forKey: SdkCodingKey("confirm"))
+        try keyedContainer.encodeIfPresent(self.confirmationMethod, forKey: SdkCodingKey("confirmation_method"))
+        try keyedContainer.encodeIfPresent(self.confirmationToken, forKey: SdkCodingKey("confirmation_token"))
+        try keyedContainer.encodeIfPresent(self.customer, forKey: SdkCodingKey("customer"))
+        try keyedContainer.encodeIfPresent(self.customerAccount, forKey: SdkCodingKey("customer_account"))
+        try keyedContainer.encodeIfPresent(self.description, forKey: SdkCodingKey("description"))
+        try keyedContainer.encodeIfPresent(self.errorOnRequiresAction, forKey: SdkCodingKey("error_on_requires_action"))
+        try keyedContainer.encodeIfPresent(self.excludedPaymentMethodTypes, forKey: SdkCodingKey("excluded_payment_method_types"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.hooks, forKey: SdkCodingKey("hooks"))
+        try keyedContainer.encodeIfPresent(self.mandate, forKey: SdkCodingKey("mandate"))
+        try keyedContainer.encodeIfPresent(self.mandateData, forKey: SdkCodingKey("mandate_data"))
+        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encodeIfPresent(self.offSession, forKey: SdkCodingKey("off_session"))
+        try keyedContainer.encodeIfPresent(self.onBehalfOf, forKey: SdkCodingKey("on_behalf_of"))
+        try keyedContainer.encodeIfPresent(self.paymentDetails, forKey: SdkCodingKey("payment_details"))
+        try keyedContainer.encodeIfPresent(self.paymentMethod, forKey: SdkCodingKey("payment_method"))
+        try keyedContainer.encodeIfPresent(self.paymentMethodConfiguration, forKey: SdkCodingKey("payment_method_configuration"))
+        try keyedContainer.encodeIfPresent(self.paymentMethodData, forKey: SdkCodingKey("payment_method_data"))
+        try keyedContainer.encodeIfPresent(self.paymentMethodOptions, forKey: SdkCodingKey("payment_method_options"))
+        try keyedContainer.encodeIfPresent(self.paymentMethodTypes, forKey: SdkCodingKey("payment_method_types"))
+        try keyedContainer.encodeIfPresent(self.radarOptions, forKey: SdkCodingKey("radar_options"))
+        try keyedContainer.encodeIfPresent(self.receiptEmail, forKey: SdkCodingKey("receipt_email"))
+        try keyedContainer.encodeIfPresent(self.returnUrl, forKey: SdkCodingKey("return_url"))
+        try keyedContainer.encodeIfPresent(self.setupFutureUsage, forKey: SdkCodingKey("setup_future_usage"))
+        try keyedContainer.encodeIfPresent(self.shipping, forKey: SdkCodingKey("shipping"))
+        try keyedContainer.encodeIfPresent(self.statementDescriptor, forKey: SdkCodingKey("statement_descriptor"))
+        try keyedContainer.encodeIfPresent(self.statementDescriptorSuffix, forKey: SdkCodingKey("statement_descriptor_suffix"))
+        try keyedContainer.encodeIfPresent(self.transferData, forKey: SdkCodingKey("transfer_data"))
+        try keyedContainer.encodeIfPresent(self.transferGroup, forKey: SdkCodingKey("transfer_group"))
+        try keyedContainer.encodeIfPresent(self.useStripeSdk, forKey: SdkCodingKey("use_stripe_sdk"))
     }
 
     init(options: V1PaymentIntentsMethods.PostPaymentIntentsOptions) {
-        amount = options.amount
-        currency = options.currency
-        allowedPaymentMethodTypes = options.allowedPaymentMethodTypes
-        amountDetails = options.amountDetails
-        applicationFeeAmount = options.applicationFeeAmount
-        automaticPaymentMethods = options.automaticPaymentMethods
-        captureMethod = options.captureMethod
-        confirm = options.confirm
-        confirmationMethod = options.confirmationMethod
-        confirmationToken = options.confirmationToken
-        customer = options.customer
-        customerAccount = options.customerAccount
-        description = options.description
-        errorOnRequiresAction = options.errorOnRequiresAction
-        excludedPaymentMethodTypes = options.excludedPaymentMethodTypes
-        expand = options.expand
-        hooks = options.hooks
-        mandate = options.mandate
-        mandateData = options.mandateData
-        metadata = options.metadata
-        offSession = options.offSession
-        onBehalfOf = options.onBehalfOf
-        paymentDetails = options.paymentDetails
-        paymentMethod = options.paymentMethod
-        paymentMethodConfiguration = options.paymentMethodConfiguration
-        paymentMethodData = options.paymentMethodData
-        paymentMethodOptions = options.paymentMethodOptions
-        paymentMethodTypes = options.paymentMethodTypes
-        radarOptions = options.radarOptions
-        receiptEmail = options.receiptEmail
-        returnUrl = options.returnUrl
-        setupFutureUsage = options.setupFutureUsage
-        shipping = options.shipping
-        statementDescriptor = options.statementDescriptor
-        statementDescriptorSuffix = options.statementDescriptorSuffix
-        transferData = options.transferData
-        transferGroup = options.transferGroup
-        useStripeSdk = options.useStripeSdk
+        self.amount = options.amount
+        self.currency = options.currency
+        self.allowedPaymentMethodTypes = options.allowedPaymentMethodTypes
+        self.amountDetails = options.amountDetails
+        self.applicationFeeAmount = options.applicationFeeAmount
+        self.automaticPaymentMethods = options.automaticPaymentMethods
+        self.captureMethod = options.captureMethod
+        self.confirm = options.confirm
+        self.confirmationMethod = options.confirmationMethod
+        self.confirmationToken = options.confirmationToken
+        self.customer = options.customer
+        self.customerAccount = options.customerAccount
+        self.description = options.description
+        self.errorOnRequiresAction = options.errorOnRequiresAction
+        self.excludedPaymentMethodTypes = options.excludedPaymentMethodTypes
+        self.expand = options.expand
+        self.hooks = options.hooks
+        self.mandate = options.mandate
+        self.mandateData = options.mandateData
+        self.metadata = options.metadata
+        self.offSession = options.offSession
+        self.onBehalfOf = options.onBehalfOf
+        self.paymentDetails = options.paymentDetails
+        self.paymentMethod = options.paymentMethod
+        self.paymentMethodConfiguration = options.paymentMethodConfiguration
+        self.paymentMethodData = options.paymentMethodData
+        self.paymentMethodOptions = options.paymentMethodOptions
+        self.paymentMethodTypes = options.paymentMethodTypes
+        self.radarOptions = options.radarOptions
+        self.receiptEmail = options.receiptEmail
+        self.returnUrl = options.returnUrl
+        self.setupFutureUsage = options.setupFutureUsage
+        self.shipping = options.shipping
+        self.statementDescriptor = options.statementDescriptor
+        self.statementDescriptorSuffix = options.statementDescriptorSuffix
+        self.transferData = options.transferData
+        self.transferGroup = options.transferGroup
+        self.useStripeSdk = options.useStripeSdk
     }
 }
 
@@ -172,72 +160,60 @@ struct PostPaymentIntentsIntentRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(
-            allowedPaymentMethodTypes,
-            forKey: SdkCodingKey("allowed_payment_method_types")
-        )
-        try keyedContainer.encodeIfPresent(amount, forKey: SdkCodingKey("amount"))
-        try keyedContainer.encodeIfPresent(amountDetails, forKey: SdkCodingKey("amount_details"))
-        try keyedContainer.encodeIfPresent(applicationFeeAmount, forKey: SdkCodingKey("application_fee_amount"))
-        try keyedContainer.encodeIfPresent(captureMethod, forKey: SdkCodingKey("capture_method"))
-        try keyedContainer.encodeIfPresent(currency, forKey: SdkCodingKey("currency"))
-        try keyedContainer.encodeIfPresent(customer, forKey: SdkCodingKey("customer"))
-        try keyedContainer.encodeIfPresent(customerAccount, forKey: SdkCodingKey("customer_account"))
-        try keyedContainer.encodeIfPresent(description, forKey: SdkCodingKey("description"))
-        try keyedContainer.encodeIfPresent(
-            excludedPaymentMethodTypes,
-            forKey: SdkCodingKey("excluded_payment_method_types")
-        )
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(hooks, forKey: SdkCodingKey("hooks"))
-        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
-        try keyedContainer.encodeIfPresent(paymentDetails, forKey: SdkCodingKey("payment_details"))
-        try keyedContainer.encodeIfPresent(paymentMethod, forKey: SdkCodingKey("payment_method"))
-        try keyedContainer.encodeIfPresent(
-            paymentMethodConfiguration,
-            forKey: SdkCodingKey("payment_method_configuration")
-        )
-        try keyedContainer.encodeIfPresent(paymentMethodData, forKey: SdkCodingKey("payment_method_data"))
-        try keyedContainer.encodeIfPresent(paymentMethodOptions, forKey: SdkCodingKey("payment_method_options"))
-        try keyedContainer.encodeIfPresent(paymentMethodTypes, forKey: SdkCodingKey("payment_method_types"))
-        try keyedContainer.encodeIfPresent(receiptEmail, forKey: SdkCodingKey("receipt_email"))
-        try keyedContainer.encodeIfPresent(setupFutureUsage, forKey: SdkCodingKey("setup_future_usage"))
-        try keyedContainer.encodeIfPresent(shipping, forKey: SdkCodingKey("shipping"))
-        try keyedContainer.encodeIfPresent(statementDescriptor, forKey: SdkCodingKey("statement_descriptor"))
-        try keyedContainer.encodeIfPresent(
-            statementDescriptorSuffix,
-            forKey: SdkCodingKey("statement_descriptor_suffix")
-        )
-        try keyedContainer.encodeIfPresent(transferData, forKey: SdkCodingKey("transfer_data"))
-        try keyedContainer.encodeIfPresent(transferGroup, forKey: SdkCodingKey("transfer_group"))
+        try keyedContainer.encodeIfPresent(self.allowedPaymentMethodTypes, forKey: SdkCodingKey("allowed_payment_method_types"))
+        try keyedContainer.encodeIfPresent(self.amount, forKey: SdkCodingKey("amount"))
+        try keyedContainer.encodeIfPresent(self.amountDetails, forKey: SdkCodingKey("amount_details"))
+        try keyedContainer.encodeIfPresent(self.applicationFeeAmount, forKey: SdkCodingKey("application_fee_amount"))
+        try keyedContainer.encodeIfPresent(self.captureMethod, forKey: SdkCodingKey("capture_method"))
+        try keyedContainer.encodeIfPresent(self.currency, forKey: SdkCodingKey("currency"))
+        try keyedContainer.encodeIfPresent(self.customer, forKey: SdkCodingKey("customer"))
+        try keyedContainer.encodeIfPresent(self.customerAccount, forKey: SdkCodingKey("customer_account"))
+        try keyedContainer.encodeIfPresent(self.description, forKey: SdkCodingKey("description"))
+        try keyedContainer.encodeIfPresent(self.excludedPaymentMethodTypes, forKey: SdkCodingKey("excluded_payment_method_types"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.hooks, forKey: SdkCodingKey("hooks"))
+        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encodeIfPresent(self.paymentDetails, forKey: SdkCodingKey("payment_details"))
+        try keyedContainer.encodeIfPresent(self.paymentMethod, forKey: SdkCodingKey("payment_method"))
+        try keyedContainer.encodeIfPresent(self.paymentMethodConfiguration, forKey: SdkCodingKey("payment_method_configuration"))
+        try keyedContainer.encodeIfPresent(self.paymentMethodData, forKey: SdkCodingKey("payment_method_data"))
+        try keyedContainer.encodeIfPresent(self.paymentMethodOptions, forKey: SdkCodingKey("payment_method_options"))
+        try keyedContainer.encodeIfPresent(self.paymentMethodTypes, forKey: SdkCodingKey("payment_method_types"))
+        try keyedContainer.encodeIfPresent(self.receiptEmail, forKey: SdkCodingKey("receipt_email"))
+        try keyedContainer.encodeIfPresent(self.setupFutureUsage, forKey: SdkCodingKey("setup_future_usage"))
+        try keyedContainer.encodeIfPresent(self.shipping, forKey: SdkCodingKey("shipping"))
+        try keyedContainer.encodeIfPresent(self.statementDescriptor, forKey: SdkCodingKey("statement_descriptor"))
+        try keyedContainer.encodeIfPresent(self.statementDescriptorSuffix, forKey: SdkCodingKey("statement_descriptor_suffix"))
+        try keyedContainer.encodeIfPresent(self.transferData, forKey: SdkCodingKey("transfer_data"))
+        try keyedContainer.encodeIfPresent(self.transferGroup, forKey: SdkCodingKey("transfer_group"))
     }
 
     init(options: V1PaymentIntentsMethods.PostPaymentIntentsIntentOptions) {
-        allowedPaymentMethodTypes = options.allowedPaymentMethodTypes
-        amount = options.amount
-        amountDetails = options.amountDetails
-        applicationFeeAmount = options.applicationFeeAmount
-        captureMethod = options.captureMethod
-        currency = options.currency
-        customer = options.customer
-        customerAccount = options.customerAccount
-        description = options.description
-        excludedPaymentMethodTypes = options.excludedPaymentMethodTypes
-        expand = options.expand
-        hooks = options.hooks
-        metadata = options.metadata
-        paymentDetails = options.paymentDetails
-        paymentMethod = options.paymentMethod
-        paymentMethodConfiguration = options.paymentMethodConfiguration
-        paymentMethodData = options.paymentMethodData
-        paymentMethodOptions = options.paymentMethodOptions
-        paymentMethodTypes = options.paymentMethodTypes
-        receiptEmail = options.receiptEmail
-        setupFutureUsage = options.setupFutureUsage
-        shipping = options.shipping
-        statementDescriptor = options.statementDescriptor
-        statementDescriptorSuffix = options.statementDescriptorSuffix
-        transferData = options.transferData
-        transferGroup = options.transferGroup
+        self.allowedPaymentMethodTypes = options.allowedPaymentMethodTypes
+        self.amount = options.amount
+        self.amountDetails = options.amountDetails
+        self.applicationFeeAmount = options.applicationFeeAmount
+        self.captureMethod = options.captureMethod
+        self.currency = options.currency
+        self.customer = options.customer
+        self.customerAccount = options.customerAccount
+        self.description = options.description
+        self.excludedPaymentMethodTypes = options.excludedPaymentMethodTypes
+        self.expand = options.expand
+        self.hooks = options.hooks
+        self.metadata = options.metadata
+        self.paymentDetails = options.paymentDetails
+        self.paymentMethod = options.paymentMethod
+        self.paymentMethodConfiguration = options.paymentMethodConfiguration
+        self.paymentMethodData = options.paymentMethodData
+        self.paymentMethodOptions = options.paymentMethodOptions
+        self.paymentMethodTypes = options.paymentMethodTypes
+        self.receiptEmail = options.receiptEmail
+        self.setupFutureUsage = options.setupFutureUsage
+        self.shipping = options.shipping
+        self.statementDescriptor = options.statementDescriptor
+        self.statementDescriptorSuffix = options.statementDescriptorSuffix
+        self.transferData = options.transferData
+        self.transferGroup = options.transferGroup
     }
 }

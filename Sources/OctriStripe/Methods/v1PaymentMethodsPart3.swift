@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1PaymentMethodsMethods {
-    struct PostPaymentMethodsOptions: Codable {
+extension V1PaymentMethodsMethods {
+    public struct PostPaymentMethodsOptions: Codable {
         public var acssDebit: PostPaymentMethodsRequestBodyAcssDebit?
         public var affirm: PostPaymentMethodsRequestBodyAffirm?
         public var afterpayClearpay: PostPaymentMethodsRequestBodyAfterpayClearpay?
@@ -76,9 +76,7 @@ public extension V1PaymentMethodsMethods {
         public init() {}
     }
 
-    /// Creates a PaymentMethod object. Read the Stripe.js reference to learn how to create PaymentMethods via
-    /// Stripe.js. Instead of creating a PaymentMethod directly, we recommend using the PaymentIntents API to accept a
-    /// payment immediately or the SetupIntent API to collect payment method details ahead of a future payment.
+    /// Creates a PaymentMethod object. Read the Stripe.js reference to learn how to create PaymentMethods via Stripe.js. Instead of creating a PaymentMethod directly, we recommend using the PaymentIntents API to accept a payment immediately or the SetupIntent API to collect payment method details ahead of a future payment.
     ///
     /// - Parameters:
     /// - acssDebit: If this is an `acss_debit` PaymentMethod, this hash contains
@@ -219,10 +217,7 @@ public extension V1PaymentMethodsMethods {
     ///   details about the wechat_pay payment method.
     /// - zip: If this is a `zip` PaymentMethod, this hash contains details about
     ///   the Zip payment method.
-    static func postPaymentMethods(
-        config: ClientConfig,
-        options: PostPaymentMethodsOptions
-    ) async throws -> PaymentMethod {
+    public static func postPaymentMethods(config: ClientConfig, options: PostPaymentMethodsOptions) async throws -> PaymentMethod {
         if let customer = options.customer {
             try validateLength("customer", customer, max: 5000)
         }
@@ -233,14 +228,6 @@ public extension V1PaymentMethodsMethods {
 
         let requestBody = PostPaymentMethodsRequestBody(options: options)
 
-        return try await (sdkRequest(
-            "POST",
-            "/v1/payment_methods",
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostPaymentMethods"
-        )).data
+        return try (await sdkRequest("POST", "/v1/payment_methods", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostPaymentMethods")).data
     }
 }

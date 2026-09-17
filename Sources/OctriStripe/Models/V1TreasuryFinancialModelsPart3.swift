@@ -3,24 +3,18 @@
 
 import Foundation
 
-/// V1TreasuryFinancial domain models
+// V1TreasuryFinancial domain models
 /// Restricts all inbound money movement.
-public struct TreasuryFinancialAccountsResourcePlatformRestrictionsInboundFlows: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct TreasuryFinancialAccountsResourcePlatformRestrictionsInboundFlows: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let restricted =
-        TreasuryFinancialAccountsResourcePlatformRestrictionsInboundFlows(rawValue: "restricted")
-    public static let unrestricted =
-        TreasuryFinancialAccountsResourcePlatformRestrictionsInboundFlows(rawValue: "unrestricted")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let restricted = TreasuryFinancialAccountsResourcePlatformRestrictionsInboundFlows(rawValue: "restricted")
+    public static let unrestricted = TreasuryFinancialAccountsResourcePlatformRestrictionsInboundFlows(rawValue: "unrestricted")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -30,37 +24,25 @@ public struct TreasuryFinancialAccountsResourcePlatformRestrictionsInboundFlows:
 }
 
 /// Required enumerated value serialized in the `pending_features[]` wire field.
-public struct TreasuryFinancialAccountPendingFeaturesItem: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct TreasuryFinancialAccountPendingFeaturesItem: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let cardIssuing = TreasuryFinancialAccountPendingFeaturesItem(rawValue: "card_issuing")
     public static let depositInsurance = TreasuryFinancialAccountPendingFeaturesItem(rawValue: "deposit_insurance")
-    public static let financialAddressesAba =
-        TreasuryFinancialAccountPendingFeaturesItem(rawValue: "financial_addresses.aba")
-    public static let financialAddressesAbaForwarding =
-        TreasuryFinancialAccountPendingFeaturesItem(rawValue: "financial_addresses.aba.forwarding")
-    public static let inboundTransfersAch =
-        TreasuryFinancialAccountPendingFeaturesItem(rawValue: "inbound_transfers.ach")
+    public static let financialAddressesAba = TreasuryFinancialAccountPendingFeaturesItem(rawValue: "financial_addresses.aba")
+    public static let financialAddressesAbaForwarding = TreasuryFinancialAccountPendingFeaturesItem(rawValue: "financial_addresses.aba.forwarding")
+    public static let inboundTransfersAch = TreasuryFinancialAccountPendingFeaturesItem(rawValue: "inbound_transfers.ach")
     public static let intraStripeFlows = TreasuryFinancialAccountPendingFeaturesItem(rawValue: "intra_stripe_flows")
-    public static let outboundPaymentsAch =
-        TreasuryFinancialAccountPendingFeaturesItem(rawValue: "outbound_payments.ach")
-    public static let outboundPaymentsUsDomesticWire =
-        TreasuryFinancialAccountPendingFeaturesItem(rawValue: "outbound_payments.us_domestic_wire")
-    public static let outboundTransfersAch =
-        TreasuryFinancialAccountPendingFeaturesItem(rawValue: "outbound_transfers.ach")
-    public static let outboundTransfersUsDomesticWire =
-        TreasuryFinancialAccountPendingFeaturesItem(rawValue: "outbound_transfers.us_domestic_wire")
-    public static let remoteDepositCapture =
-        TreasuryFinancialAccountPendingFeaturesItem(rawValue: "remote_deposit_capture")
+    public static let outboundPaymentsAch = TreasuryFinancialAccountPendingFeaturesItem(rawValue: "outbound_payments.ach")
+    public static let outboundPaymentsUsDomesticWire = TreasuryFinancialAccountPendingFeaturesItem(rawValue: "outbound_payments.us_domestic_wire")
+    public static let outboundTransfersAch = TreasuryFinancialAccountPendingFeaturesItem(rawValue: "outbound_transfers.ach")
+    public static let outboundTransfersUsDomesticWire = TreasuryFinancialAccountPendingFeaturesItem(rawValue: "outbound_transfers.us_domestic_wire")
+    public static let remoteDepositCapture = TreasuryFinancialAccountPendingFeaturesItem(rawValue: "remote_deposit_capture")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -70,21 +52,17 @@ public struct TreasuryFinancialAccountPendingFeaturesItem: RawRepresentable, Has
 }
 
 /// Whether the Feature is operational.
-public struct TreasuryFinancialAccountsResourceAbaToggleSettingsStatus: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct TreasuryFinancialAccountsResourceAbaToggleSettingsStatus: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let active = TreasuryFinancialAccountsResourceAbaToggleSettingsStatus(rawValue: "active")
     public static let pending = TreasuryFinancialAccountsResourceAbaToggleSettingsStatus(rawValue: "pending")
     public static let restricted = TreasuryFinancialAccountsResourceAbaToggleSettingsStatus(rawValue: "restricted")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -94,20 +72,15 @@ public struct TreasuryFinancialAccountsResourceAbaToggleSettingsStatus: RawRepre
 }
 
 /// String representing the object's type. Objects of the same type share the same value.
-public struct TreasuryFinancialAccountFeaturesObject: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct TreasuryFinancialAccountFeaturesObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let treasuryFinancialAccountFeatures =
-        TreasuryFinancialAccountFeaturesObject(rawValue: "treasury.financial_account_features")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let treasuryFinancialAccountFeatures = TreasuryFinancialAccountFeaturesObject(rawValue: "treasury.financial_account_features")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -117,21 +90,16 @@ public struct TreasuryFinancialAccountFeaturesObject: RawRepresentable, Hashable
 }
 
 /// Required enumerated value serialized in the `supported_networks[]` wire field.
-public struct TreasuryFinancialAccountsResourceFinancialAddressSupportedNetworksItem: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct TreasuryFinancialAccountsResourceFinancialAddressSupportedNetworksItem: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let ach = TreasuryFinancialAccountsResourceFinancialAddressSupportedNetworksItem(rawValue: "ach")
-    public static let usDomesticWire =
-        TreasuryFinancialAccountsResourceFinancialAddressSupportedNetworksItem(rawValue: "us_domestic_wire")
+    public static let usDomesticWire = TreasuryFinancialAccountsResourceFinancialAddressSupportedNetworksItem(rawValue: "us_domestic_wire")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -141,24 +109,17 @@ public struct TreasuryFinancialAccountsResourceFinancialAddressSupportedNetworks
 }
 
 /// Represents what the user should do, if anything, to activate the Feature.
-public struct TreasuryFinancialAccountsResourceTogglesSettingStatusDetailsResolution: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct TreasuryFinancialAccountsResourceTogglesSettingStatusDetailsResolution: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let contactStripe =
-        TreasuryFinancialAccountsResourceTogglesSettingStatusDetailsResolution(rawValue: "contact_stripe")
-    public static let provideInformation =
-        TreasuryFinancialAccountsResourceTogglesSettingStatusDetailsResolution(rawValue: "provide_information")
-    public static let removeRestriction =
-        TreasuryFinancialAccountsResourceTogglesSettingStatusDetailsResolution(rawValue: "remove_restriction")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let contactStripe = TreasuryFinancialAccountsResourceTogglesSettingStatusDetailsResolution(rawValue: "contact_stripe")
+    public static let provideInformation = TreasuryFinancialAccountsResourceTogglesSettingStatusDetailsResolution(rawValue: "provide_information")
+    public static let removeRestriction = TreasuryFinancialAccountsResourceTogglesSettingStatusDetailsResolution(rawValue: "remove_restriction")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -168,22 +129,17 @@ public struct TreasuryFinancialAccountsResourceTogglesSettingStatusDetailsResolu
 }
 
 /// Whether the Feature is operational.
-public struct TreasuryFinancialAccountsResourceInboundAchToggleSettingsStatus: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct TreasuryFinancialAccountsResourceInboundAchToggleSettingsStatus: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let active = TreasuryFinancialAccountsResourceInboundAchToggleSettingsStatus(rawValue: "active")
     public static let pending = TreasuryFinancialAccountsResourceInboundAchToggleSettingsStatus(rawValue: "pending")
-    public static let restricted =
-        TreasuryFinancialAccountsResourceInboundAchToggleSettingsStatus(rawValue: "restricted")
+    public static let restricted = TreasuryFinancialAccountsResourceInboundAchToggleSettingsStatus(rawValue: "restricted")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -193,36 +149,23 @@ public struct TreasuryFinancialAccountsResourceInboundAchToggleSettingsStatus: R
 }
 
 /// Represents the reason why the status is `pending` or `restricted`.
-public struct TreasuryFinancialAccountsResourceTogglesSettingStatusDetailsCode: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct TreasuryFinancialAccountsResourceTogglesSettingStatusDetailsCode: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let activating =
-        TreasuryFinancialAccountsResourceTogglesSettingStatusDetailsCode(rawValue: "activating")
-    public static let capabilityNotRequested =
-        TreasuryFinancialAccountsResourceTogglesSettingStatusDetailsCode(rawValue: "capability_not_requested")
-    public static let financialAccountClosed =
-        TreasuryFinancialAccountsResourceTogglesSettingStatusDetailsCode(rawValue: "financial_account_closed")
-    public static let rejectedOther =
-        TreasuryFinancialAccountsResourceTogglesSettingStatusDetailsCode(rawValue: "rejected_other")
-    public static let rejectedUnsupportedBusiness =
-        TreasuryFinancialAccountsResourceTogglesSettingStatusDetailsCode(rawValue: "rejected_unsupported_business")
-    public static let requirementsPastDue =
-        TreasuryFinancialAccountsResourceTogglesSettingStatusDetailsCode(rawValue: "requirements_past_due")
-    public static let requirementsPendingVerification =
-        TreasuryFinancialAccountsResourceTogglesSettingStatusDetailsCode(rawValue: "requirements_pending_verification")
-    public static let restrictedByPlatform =
-        TreasuryFinancialAccountsResourceTogglesSettingStatusDetailsCode(rawValue: "restricted_by_platform")
-    public static let restrictedOther =
-        TreasuryFinancialAccountsResourceTogglesSettingStatusDetailsCode(rawValue: "restricted_other")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let activating = TreasuryFinancialAccountsResourceTogglesSettingStatusDetailsCode(rawValue: "activating")
+    public static let capabilityNotRequested = TreasuryFinancialAccountsResourceTogglesSettingStatusDetailsCode(rawValue: "capability_not_requested")
+    public static let financialAccountClosed = TreasuryFinancialAccountsResourceTogglesSettingStatusDetailsCode(rawValue: "financial_account_closed")
+    public static let rejectedOther = TreasuryFinancialAccountsResourceTogglesSettingStatusDetailsCode(rawValue: "rejected_other")
+    public static let rejectedUnsupportedBusiness = TreasuryFinancialAccountsResourceTogglesSettingStatusDetailsCode(rawValue: "rejected_unsupported_business")
+    public static let requirementsPastDue = TreasuryFinancialAccountsResourceTogglesSettingStatusDetailsCode(rawValue: "requirements_past_due")
+    public static let requirementsPendingVerification = TreasuryFinancialAccountsResourceTogglesSettingStatusDetailsCode(rawValue: "requirements_pending_verification")
+    public static let restrictedByPlatform = TreasuryFinancialAccountsResourceTogglesSettingStatusDetailsCode(rawValue: "restricted_by_platform")
+    public static let restrictedOther = TreasuryFinancialAccountsResourceTogglesSettingStatusDetailsCode(rawValue: "restricted_other")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -232,23 +175,17 @@ public struct TreasuryFinancialAccountsResourceTogglesSettingStatusDetailsCode: 
 }
 
 /// Required enumerated value serialized in the `reasons[]` wire field.
-public struct TreasuryFinancialAccountsResourceClosedStatusDetailsReasonsItem: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct TreasuryFinancialAccountsResourceClosedStatusDetailsReasonsItem: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let accountRejected =
-        TreasuryFinancialAccountsResourceClosedStatusDetailsReasonsItem(rawValue: "account_rejected")
-    public static let closedByPlatform =
-        TreasuryFinancialAccountsResourceClosedStatusDetailsReasonsItem(rawValue: "closed_by_platform")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let accountRejected = TreasuryFinancialAccountsResourceClosedStatusDetailsReasonsItem(rawValue: "account_rejected")
+    public static let closedByPlatform = TreasuryFinancialAccountsResourceClosedStatusDetailsReasonsItem(rawValue: "closed_by_platform")
     public static let other = TreasuryFinancialAccountsResourceClosedStatusDetailsReasonsItem(rawValue: "other")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -258,22 +195,16 @@ public struct TreasuryFinancialAccountsResourceClosedStatusDetailsReasonsItem: R
 }
 
 /// The `platform_restrictions` that are restricting this Feature.
-public struct TreasuryFinancialAccountsResourceTogglesSettingStatusDetailsRestriction: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct TreasuryFinancialAccountsResourceTogglesSettingStatusDetailsRestriction: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let inboundFlows =
-        TreasuryFinancialAccountsResourceTogglesSettingStatusDetailsRestriction(rawValue: "inbound_flows")
-    public static let outboundFlows =
-        TreasuryFinancialAccountsResourceTogglesSettingStatusDetailsRestriction(rawValue: "outbound_flows")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let inboundFlows = TreasuryFinancialAccountsResourceTogglesSettingStatusDetailsRestriction(rawValue: "inbound_flows")
+    public static let outboundFlows = TreasuryFinancialAccountsResourceTogglesSettingStatusDetailsRestriction(rawValue: "outbound_flows")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -286,15 +217,12 @@ public struct TreasuryFinancialAccountsResourceTogglesSettingStatusDetailsRestri
 public struct TreasuryFinancialAccountObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let treasuryFinancialAccount = TreasuryFinancialAccountObject(rawValue: "treasury.financial_account")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -304,19 +232,15 @@ public struct TreasuryFinancialAccountObject: RawRepresentable, Hashable, Codabl
 }
 
 /// The type of financial address
-public struct TreasuryFinancialAccountsResourceFinancialAddressType: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct TreasuryFinancialAccountsResourceFinancialAddressType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let aba = TreasuryFinancialAccountsResourceFinancialAddressType(rawValue: "aba")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

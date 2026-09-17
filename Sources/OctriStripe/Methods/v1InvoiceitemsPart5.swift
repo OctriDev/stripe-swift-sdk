@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1InvoiceitemsMethods {
-    struct PostInvoiceitemsInvoiceitemOptions: Codable {
+extension V1InvoiceitemsMethods {
+    public struct PostInvoiceitemsInvoiceitemOptions: Codable {
         public var invoiceitem: String
         public var amount: Int?
         public var description: String?
@@ -30,12 +30,9 @@ public extension V1InvoiceitemsMethods {
         }
     }
 
-    /// Updates the amount, description, pricing, discounts, tax settings, or other supported fields of an invoice item
-    /// on an upcoming invoice. You can update the item only before the invoice it is attached to is closed; use
-    /// `expand` to expand selected response fields.
+    /// Updates the amount, description, pricing, discounts, tax settings, or other supported fields of an invoice item on an upcoming invoice. You can update the item only before the invoice it is attached to is closed; use `expand` to expand selected response fields.
     ///
-    /// Updates the amount or description of an invoice item on an upcoming invoice. Updating an invoice item is only
-    /// possible before the invoice it’s attached to is closed.
+    /// Updates the amount or description of an invoice item on an upcoming invoice. Updating an invoice item is only possible before the invoice it’s attached to is closed.
     ///
     /// - Parameters:
     /// - amount: The integer amount in cents (or local equivalent) of the charge to
@@ -87,10 +84,7 @@ public extension V1InvoiceitemsMethods {
     ///   `unit_amount_decimal` will be multiplied by the quantity to get the full
     ///   amount. Passing in a negative `unit_amount_decimal` will reduce the
     ///   `amount_due` on the invoice. Accepts at most 12 decimal places.
-    static func postInvoiceitemsInvoiceitem(
-        config: ClientConfig,
-        options: PostInvoiceitemsInvoiceitemOptions
-    ) async throws -> Invoiceitem {
+    public static func postInvoiceitemsInvoiceitem(config: ClientConfig, options: PostInvoiceitemsInvoiceitemOptions) async throws -> Invoiceitem {
         try validateLength("invoiceitem", options.invoiceitem, max: 5000)
 
         if let description = options.description {
@@ -99,14 +93,6 @@ public extension V1InvoiceitemsMethods {
 
         let requestBody = PostInvoiceitemsInvoiceitemRequestBody(options: options)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/invoiceitems/", sdkEncodePathSegment(sdkWireString(options.invoiceitem))].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostInvoiceitemsInvoiceitem"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/invoiceitems/", sdkEncodePathSegment(sdkWireString(options.invoiceitem))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostInvoiceitemsInvoiceitem")).data
     }
 }

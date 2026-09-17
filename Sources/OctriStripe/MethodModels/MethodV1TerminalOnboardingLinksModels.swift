@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1TerminalOnboardingLinks operation model declarations
+// Canonical v1TerminalOnboardingLinks operation model declarations
 public struct PostTerminalOnboardingLinksRequestBodyLinkOptionsAppleTermsAndConditions: Codable {
     public var merchantDisplayName: String
     public var allowRelinking: Bool?
@@ -17,31 +17,25 @@ public struct PostTerminalOnboardingLinksRequestBodyLinkOptionsAppleTermsAndCond
         case allowRelinking = "allow_relinking"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostTerminalOnboardingLinksRequestBodyLinkOptionsAppleTermsAndConditions {
-    init(from decoder: Decoder) throws {
+extension PostTerminalOnboardingLinksRequestBodyLinkOptionsAppleTermsAndConditions {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.merchantDisplayName) else {
-            throw SdkValidationError(
-                field: "merchant_display_name",
-                code: "required",
-                message: "Validation failed for 'merchant_display_name': value is required"
-            )
+            throw SdkValidationError(field: "merchant_display_name", code: "required", message: "Validation failed for 'merchant_display_name': value is required")
         }
-        merchantDisplayName = try container.sdkDecodeRequired(.merchantDisplayName)
-        allowRelinking = try container.sdkDecodeIfPresent(.allowRelinking)
-        try validateLength("merchant_display_name", merchantDisplayName, min: nil, max: 5000)
+        self.merchantDisplayName = try container.sdkDecodeRequired(.merchantDisplayName)
+        self.allowRelinking = try container.sdkDecodeIfPresent(.allowRelinking)
+            try validateLength("merchant_display_name", self.merchantDisplayName, min: nil, max: 5000)
     }
 }
 
-public extension PostTerminalOnboardingLinksRequestBodyLinkOptionsAppleTermsAndConditions {
-    init(merchantDisplayName: String, allowRelinking: Bool? = nil) throws {
+extension PostTerminalOnboardingLinksRequestBodyLinkOptionsAppleTermsAndConditions {
+    public init(merchantDisplayName: String, allowRelinking: Bool? = nil) throws {
         (self.merchantDisplayName, self.allowRelinking) = (merchantDisplayName, allowRelinking)
-        try validateLength("merchant_display_name", self.merchantDisplayName, min: nil, max: 5000)
+            try validateLength("merchant_display_name", self.merchantDisplayName, min: nil, max: 5000)
     }
 }
 
@@ -55,19 +49,19 @@ public struct PostTerminalOnboardingLinksRequestBodyLinkOptions: Codable {
     }
 
     init() {
-        appleTermsAndConditions = nil
+        self.appleTermsAndConditions = nil
     }
 }
 
-public extension PostTerminalOnboardingLinksRequestBodyLinkOptions {
-    init(from decoder: Decoder) throws {
+extension PostTerminalOnboardingLinksRequestBodyLinkOptions {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        appleTermsAndConditions = try container.sdkDecodeIfPresent(.appleTermsAndConditions)
+        self.appleTermsAndConditions = try container.sdkDecodeIfPresent(.appleTermsAndConditions)
     }
 }
 
-public extension PostTerminalOnboardingLinksRequestBodyLinkOptions {
-    init(appleTermsAndConditions: PostTerminalOnboardingLinksRequestBodyLinkOptionsAppleTermsAndConditions? = nil) {
+extension PostTerminalOnboardingLinksRequestBodyLinkOptions {
+    public init(appleTermsAndConditions: PostTerminalOnboardingLinksRequestBodyLinkOptionsAppleTermsAndConditions? = nil) {
         self.init()
         self.appleTermsAndConditions = appleTermsAndConditions
     }

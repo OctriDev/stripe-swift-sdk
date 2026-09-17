@@ -6,9 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1AppsSecretsMethods {
-    /// Lists secrets stored in the specified Secret Store scope. Supply `scope` to select account-level or user-level
-    /// secrets, and use cursor parameters to retrieve additional pages of results.
+extension V1AppsSecretsMethods {
+    /// Lists secrets stored in the specified Secret Store scope. Supply `scope` to select account-level or user-level secrets, and use cursor parameters to retrieve additional pages of results.
     ///
     /// List all secrets stored on the given scope.
     ///
@@ -29,23 +28,16 @@ public extension V1AppsSecretsMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    static func getAppsSecrets(
-        config: ClientConfig,
-        scope: GetAppsSecretsParameter,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        startingAfter: String?
-    ) async throws -> GetAppsSecretsResponse {
-        if let endingBefore {
+    public static func getAppsSecrets(config: ClientConfig, scope: GetAppsSecretsParameter, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetAppsSecretsResponse {
+        if let endingBefore = endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let startingAfter {
+        if let startingAfter = startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try await (sdkRequest("GET", "/v1/apps/secrets", config: config, query: [
+        return try (await sdkRequest("GET", "/v1/apps/secrets", config: config, query: [
             SdkQueryParameter("scope", value: scope),
             SdkQueryParameter("ending_before", value: endingBefore),
             SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),

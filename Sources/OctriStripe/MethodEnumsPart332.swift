@@ -6,24 +6,17 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public struct PostTaxRegistrationsRequestBodyCountryOptionsLvStandardPlaceOX06efe545f7: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostTaxRegistrationsRequestBodyCountryOptionsLvStandardPlaceOX06efe545f7: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let inboundGoods =
-        PostTaxRegistrationsRequestBodyCountryOptionsLvStandardPlaceOX06efe545f7(rawValue: "inbound_goods")
-    public static let smallSeller =
-        PostTaxRegistrationsRequestBodyCountryOptionsLvStandardPlaceOX06efe545f7(rawValue: "small_seller")
-    public static let standard =
-        PostTaxRegistrationsRequestBodyCountryOptionsLvStandardPlaceOX06efe545f7(rawValue: "standard")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let inboundGoods = PostTaxRegistrationsRequestBodyCountryOptionsLvStandardPlaceOX06efe545f7(rawValue: "inbound_goods")
+    public static let smallSeller = PostTaxRegistrationsRequestBodyCountryOptionsLvStandardPlaceOX06efe545f7(rawValue: "small_seller")
+    public static let standard = PostTaxRegistrationsRequestBodyCountryOptionsLvStandardPlaceOX06efe545f7(rawValue: "standard")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -32,14 +25,10 @@ public struct PostTaxRegistrationsRequestBodyCountryOptionsLvStandardPlaceOX06ef
     }
 }
 
-public struct PostTaxRegistrationsRequestBodyCountryOptionsLvType: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostTaxRegistrationsRequestBodyCountryOptionsLvType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let ioss = PostTaxRegistrationsRequestBodyCountryOptionsLvType(rawValue: "ioss")
     public static let ossNonUnion = PostTaxRegistrationsRequestBodyCountryOptionsLvType(rawValue: "oss_non_union")
     public static let ossUnion = PostTaxRegistrationsRequestBodyCountryOptionsLvType(rawValue: "oss_union")
@@ -47,7 +36,7 @@ public struct PostTaxRegistrationsRequestBodyCountryOptionsLvType: RawRepresenta
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -56,19 +45,15 @@ public struct PostTaxRegistrationsRequestBodyCountryOptionsLvType: RawRepresenta
     }
 }
 
-public struct PostTaxRegistrationsRequestBodyCountryOptionsMaType: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostTaxRegistrationsRequestBodyCountryOptionsMaType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let simplified = PostTaxRegistrationsRequestBodyCountryOptionsMaType(rawValue: "simplified")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -77,19 +62,15 @@ public struct PostTaxRegistrationsRequestBodyCountryOptionsMaType: RawRepresenta
     }
 }
 
-public struct PostTaxRegistrationsRequestBodyCountryOptionsMdType: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostTaxRegistrationsRequestBodyCountryOptionsMdType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let simplified = PostTaxRegistrationsRequestBodyCountryOptionsMdType(rawValue: "simplified")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -98,22 +79,16 @@ public struct PostTaxRegistrationsRequestBodyCountryOptionsMdType: RawRepresenta
     }
 }
 
-public struct PostTaxRegistrationsRequestBodyCountryOptionsMeStandardPlaceOX3b7939e96e: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostTaxRegistrationsRequestBodyCountryOptionsMeStandardPlaceOX3b7939e96e: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let inboundGoods =
-        PostTaxRegistrationsRequestBodyCountryOptionsMeStandardPlaceOX3b7939e96e(rawValue: "inbound_goods")
-    public static let standard =
-        PostTaxRegistrationsRequestBodyCountryOptionsMeStandardPlaceOX3b7939e96e(rawValue: "standard")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let inboundGoods = PostTaxRegistrationsRequestBodyCountryOptionsMeStandardPlaceOX3b7939e96e(rawValue: "inbound_goods")
+    public static let standard = PostTaxRegistrationsRequestBodyCountryOptionsMeStandardPlaceOX3b7939e96e(rawValue: "standard")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -122,19 +97,15 @@ public struct PostTaxRegistrationsRequestBodyCountryOptionsMeStandardPlaceOX3b79
     }
 }
 
-public struct PostTaxRegistrationsRequestBodyCountryOptionsMeType: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostTaxRegistrationsRequestBodyCountryOptionsMeType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let standard = PostTaxRegistrationsRequestBodyCountryOptionsMeType(rawValue: "standard")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -143,22 +114,16 @@ public struct PostTaxRegistrationsRequestBodyCountryOptionsMeType: RawRepresenta
     }
 }
 
-public struct PostTaxRegistrationsRequestBodyCountryOptionsMkStandardPlaceOX33d91e0c8d: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostTaxRegistrationsRequestBodyCountryOptionsMkStandardPlaceOX33d91e0c8d: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let inboundGoods =
-        PostTaxRegistrationsRequestBodyCountryOptionsMkStandardPlaceOX33d91e0c8d(rawValue: "inbound_goods")
-    public static let standard =
-        PostTaxRegistrationsRequestBodyCountryOptionsMkStandardPlaceOX33d91e0c8d(rawValue: "standard")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let inboundGoods = PostTaxRegistrationsRequestBodyCountryOptionsMkStandardPlaceOX33d91e0c8d(rawValue: "inbound_goods")
+    public static let standard = PostTaxRegistrationsRequestBodyCountryOptionsMkStandardPlaceOX33d91e0c8d(rawValue: "standard")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -167,19 +132,15 @@ public struct PostTaxRegistrationsRequestBodyCountryOptionsMkStandardPlaceOX33d9
     }
 }
 
-public struct PostTaxRegistrationsRequestBodyCountryOptionsMkType: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostTaxRegistrationsRequestBodyCountryOptionsMkType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let standard = PostTaxRegistrationsRequestBodyCountryOptionsMkType(rawValue: "standard")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -188,22 +149,16 @@ public struct PostTaxRegistrationsRequestBodyCountryOptionsMkType: RawRepresenta
     }
 }
 
-public struct PostTaxRegistrationsRequestBodyCountryOptionsMrStandardPlaceOXc77e1ecf73: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostTaxRegistrationsRequestBodyCountryOptionsMrStandardPlaceOXc77e1ecf73: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let inboundGoods =
-        PostTaxRegistrationsRequestBodyCountryOptionsMrStandardPlaceOXc77e1ecf73(rawValue: "inbound_goods")
-    public static let standard =
-        PostTaxRegistrationsRequestBodyCountryOptionsMrStandardPlaceOXc77e1ecf73(rawValue: "standard")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let inboundGoods = PostTaxRegistrationsRequestBodyCountryOptionsMrStandardPlaceOXc77e1ecf73(rawValue: "inbound_goods")
+    public static let standard = PostTaxRegistrationsRequestBodyCountryOptionsMrStandardPlaceOXc77e1ecf73(rawValue: "standard")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -212,19 +167,15 @@ public struct PostTaxRegistrationsRequestBodyCountryOptionsMrStandardPlaceOXc77e
     }
 }
 
-public struct PostTaxRegistrationsRequestBodyCountryOptionsMrType: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostTaxRegistrationsRequestBodyCountryOptionsMrType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let standard = PostTaxRegistrationsRequestBodyCountryOptionsMrType(rawValue: "standard")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -233,22 +184,16 @@ public struct PostTaxRegistrationsRequestBodyCountryOptionsMrType: RawRepresenta
     }
 }
 
-public struct PostTaxRegistrationsRequestBodyCountryOptionsMtIgicPlaceOfSupplyScheme: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostTaxRegistrationsRequestBodyCountryOptionsMtIgicPlaceOfSupplyScheme: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let inboundGoods =
-        PostTaxRegistrationsRequestBodyCountryOptionsMtIgicPlaceOfSupplyScheme(rawValue: "inbound_goods")
-    public static let standard =
-        PostTaxRegistrationsRequestBodyCountryOptionsMtIgicPlaceOfSupplyScheme(rawValue: "standard")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let inboundGoods = PostTaxRegistrationsRequestBodyCountryOptionsMtIgicPlaceOfSupplyScheme(rawValue: "inbound_goods")
+    public static let standard = PostTaxRegistrationsRequestBodyCountryOptionsMtIgicPlaceOfSupplyScheme(rawValue: "standard")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

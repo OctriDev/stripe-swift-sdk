@@ -7,38 +7,28 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1Products operation model declarations
+// Canonical v1Products operation model declarations
 public enum PostProductsIdRequestBodyUnitLabel {
     case stringValue(String)
     case stringValue1(String)
 }
 
 extension PostProductsIdRequestBodyUnitLabel: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostProductsIdRequestBodyUnitLabel"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostProductsIdRequestBodyUnitLabel")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(String.self) {
-            return .stringValue1(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(String.self) { return .stringValue1(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -48,6 +38,7 @@ extension PostProductsIdRequestBodyUnitLabel: Codable {
         case let .stringValue1(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// The dimensions of this product for shipping purposes.
@@ -64,51 +55,33 @@ public struct PostProductsRequestBodyPackageDimensions: Codable {
         case width
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostProductsRequestBodyPackageDimensions {
-    init(from decoder: Decoder) throws {
+extension PostProductsRequestBodyPackageDimensions {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.height) else {
-            throw SdkValidationError(
-                field: "height",
-                code: "required",
-                message: "Validation failed for 'height': value is required"
-            )
+            throw SdkValidationError(field: "height", code: "required", message: "Validation failed for 'height': value is required")
         }
         guard container.contains(.length) else {
-            throw SdkValidationError(
-                field: "length",
-                code: "required",
-                message: "Validation failed for 'length': value is required"
-            )
+            throw SdkValidationError(field: "length", code: "required", message: "Validation failed for 'length': value is required")
         }
         guard container.contains(.weight) else {
-            throw SdkValidationError(
-                field: "weight",
-                code: "required",
-                message: "Validation failed for 'weight': value is required"
-            )
+            throw SdkValidationError(field: "weight", code: "required", message: "Validation failed for 'weight': value is required")
         }
         guard container.contains(.width) else {
-            throw SdkValidationError(
-                field: "width",
-                code: "required",
-                message: "Validation failed for 'width': value is required"
-            )
+            throw SdkValidationError(field: "width", code: "required", message: "Validation failed for 'width': value is required")
         }
-        height = try container.sdkDecodeRequired(.height)
-        length = try container.sdkDecodeRequired(.length)
-        weight = try container.sdkDecodeRequired(.weight)
-        width = try container.sdkDecodeRequired(.width)
+        self.height = try container.sdkDecodeRequired(.height)
+        self.length = try container.sdkDecodeRequired(.length)
+        self.weight = try container.sdkDecodeRequired(.weight)
+        self.width = try container.sdkDecodeRequired(.width)
     }
 }
 
-public extension PostProductsRequestBodyPackageDimensions {
-    init(height: Double, length: Double, weight: Double, width: Double) {
+extension PostProductsRequestBodyPackageDimensions {
+    public init(height: Double, length: Double, weight: Double, width: Double) {
         (self.height, self.length) = (height, length)
         (self.weight, self.width) = (weight, width)
     }
@@ -132,57 +105,39 @@ public struct GetProductsResponse: Codable {
         case url
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension GetProductsResponse {
-    init(from decoder: Decoder) throws {
+extension GetProductsResponse {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.data) else {
-            throw SdkValidationError(
-                field: "data",
-                code: "required",
-                message: "Validation failed for 'data': value is required"
-            )
+            throw SdkValidationError(field: "data", code: "required", message: "Validation failed for 'data': value is required")
         }
         guard container.contains(.hasMore) else {
-            throw SdkValidationError(
-                field: "has_more",
-                code: "required",
-                message: "Validation failed for 'has_more': value is required"
-            )
+            throw SdkValidationError(field: "has_more", code: "required", message: "Validation failed for 'has_more': value is required")
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(
-                field: "object",
-                code: "required",
-                message: "Validation failed for 'object': value is required"
-            )
+            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
         }
         guard container.contains(.url) else {
-            throw SdkValidationError(
-                field: "url",
-                code: "required",
-                message: "Validation failed for 'url': value is required"
-            )
+            throw SdkValidationError(field: "url", code: "required", message: "Validation failed for 'url': value is required")
         }
-        data = try container.sdkDecodeRequired(.data)
-        hasMore = try container.sdkDecodeRequired(.hasMore)
-        object = try container.sdkDecodeRequired(.object)
-        url = try container.sdkDecodeRequired(.url)
-        try validateLength("url", url, min: nil, max: 5000)
-        try sdkValidatePattern("url", url, sdkPattern14f87432aff4)
+        self.data = try container.sdkDecodeRequired(.data)
+        self.hasMore = try container.sdkDecodeRequired(.hasMore)
+        self.object = try container.sdkDecodeRequired(.object)
+        self.url = try container.sdkDecodeRequired(.url)
+            try validateLength("url", self.url, min: nil, max: 5000)
+            try sdkValidatePattern("url", self.url, sdkPattern14f87432aff4)
     }
 }
 
-public extension GetProductsResponse {
-    init(data: [Product], hasMore: Bool, object: GetProductsResponseObject, url: String) throws {
+extension GetProductsResponse {
+    public init(data: [Product], hasMore: Bool, object: GetProductsResponseObject, url: String) throws {
         (self.data, self.hasMore) = (data, hasMore)
         (self.object, self.url) = (object, url)
-        try validateLength("url", self.url, min: nil, max: 5000)
-        try sdkValidatePattern("url", self.url, sdkPattern14f87432aff4)
+            try validateLength("url", self.url, min: nil, max: 5000)
+            try sdkValidatePattern("url", self.url, sdkPattern14f87432aff4)
     }
 }
 
@@ -192,31 +147,21 @@ public enum PostProductsIdRequestBodyDescription {
 }
 
 extension PostProductsIdRequestBodyDescription: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostProductsIdRequestBodyDescription"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostProductsIdRequestBodyDescription")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(String.self) {
-            return .stringValue1(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(String.self) { return .stringValue1(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -226,6 +171,7 @@ extension PostProductsIdRequestBodyDescription: Codable {
         case let .stringValue1(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum PostProductsIdRequestBodyPackageDimensions {
@@ -234,33 +180,25 @@ public enum PostProductsIdRequestBodyPackageDimensions {
 }
 
 extension PostProductsIdRequestBodyPackageDimensions: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostProductsIdRequestBodyPackageDimensions"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostProductsIdRequestBodyPackageDimensions")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PostProductsIdRequestBodyPackageDimensionsVariant0.self
         ) {
-            return .postProductsIdRequestBodyPackageDimensionsVariant0(value)
+            return             .postProductsIdRequestBodyPackageDimensionsVariant0(value)
         }
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -270,53 +208,44 @@ extension PostProductsIdRequestBodyPackageDimensions: Codable {
         case let .stringValue(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum PostProductsIdRequestBodyMarketingFeatures {
-    case postProductsIdRequestBodyMarketingFeaturesVariant0ItemList(
-        [PostProductsIdRequestBodyMarketingFeaturesVariant0Item]
-    )
+    case postProductsIdRequestBodyMarketingFeaturesVariant0ItemList([PostProductsIdRequestBodyMarketingFeaturesVariant0Item])
     case stringValue(String)
 }
 
 extension PostProductsIdRequestBodyMarketingFeatures: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostProductsIdRequestBodyMarketingFeatures"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostProductsIdRequestBodyMarketingFeatures")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             [PostProductsIdRequestBodyMarketingFeaturesVariant0Item].self
         ) {
-            return .postProductsIdRequestBodyMarketingFeaturesVariant0ItemList(value)
+            return             .postProductsIdRequestBodyMarketingFeaturesVariant0ItemList(value)
         }
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .postProductsIdRequestBodyMarketingFeaturesVariant0ItemList(value): try container
-            .encode(value); return true
+        case let .postProductsIdRequestBodyMarketingFeaturesVariant0ItemList(value): try container.encode(value); return true
         case let .stringValue(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum PostProductsIdRequestBodyMetadata {
@@ -325,31 +254,21 @@ public enum PostProductsIdRequestBodyMetadata {
 }
 
 extension PostProductsIdRequestBodyMetadata: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostProductsIdRequestBodyMetadata"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostProductsIdRequestBodyMetadata")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode([String: String].self) {
-            return .dictionary(value)
-        }
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
+        if let value = try? container.decode([String: String].self) { return .dictionary(value) }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -359,6 +278,7 @@ extension PostProductsIdRequestBodyMetadata: Codable {
         case let .stringValue(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum PostProductsRequestBodyDefaultPriceDataCurrencyOptionsValueTiersItemUpTo {
@@ -367,31 +287,21 @@ public enum PostProductsRequestBodyDefaultPriceDataCurrencyOptionsValueTiersItem
 }
 
 extension PostProductsRequestBodyDefaultPriceDataCurrencyOptionsValueTiersItemUpTo: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostProductsRequestBodyDefaultPriceDataCurrencyOptionsValueTiersItemUpTo"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostProductsRequestBodyDefaultPriceDataCurrencyOptionsValueTiersItemUpTo")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(Int.self) {
-            return .intValue(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(Int.self) { return .intValue(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -401,6 +311,7 @@ extension PostProductsRequestBodyDefaultPriceDataCurrencyOptionsValueTiersItemUp
         case let .intValue(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// Data used to generate a new Price object. This Price will be set as the default price for this product.
@@ -427,43 +338,28 @@ public struct PostProductsRequestBodyDefaultPriceData: Codable {
         case unitAmountDecimal = "unit_amount_decimal"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostProductsRequestBodyDefaultPriceData {
-    init(from decoder: Decoder) throws {
+extension PostProductsRequestBodyDefaultPriceData {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.currency) else {
-            throw SdkValidationError(
-                field: "currency",
-                code: "required",
-                message: "Validation failed for 'currency': value is required"
-            )
+            throw SdkValidationError(field: "currency", code: "required", message: "Validation failed for 'currency': value is required")
         }
-        currency = try container.sdkDecodeRequired(.currency)
-        currencyOptions = try container.sdkDecodeIfPresent(.currencyOptions)
-        customUnitAmount = try container.sdkDecodeIfPresent(.customUnitAmount)
-        metadata = try container.sdkDecodeIfPresent(.metadata)
-        recurring = try container.sdkDecodeIfPresent(.recurring)
-        taxBehavior = try container.sdkDecodeIfPresent(.taxBehavior)
-        unitAmount = try container.sdkDecodeIfPresent(.unitAmount)
-        unitAmountDecimal = try container.sdkDecodeIfPresent(.unitAmountDecimal)
+        self.currency = try container.sdkDecodeRequired(.currency)
+        self.currencyOptions = try container.sdkDecodeIfPresent(.currencyOptions)
+        self.customUnitAmount = try container.sdkDecodeIfPresent(.customUnitAmount)
+        self.metadata = try container.sdkDecodeIfPresent(.metadata)
+        self.recurring = try container.sdkDecodeIfPresent(.recurring)
+        self.taxBehavior = try container.sdkDecodeIfPresent(.taxBehavior)
+        self.unitAmount = try container.sdkDecodeIfPresent(.unitAmount)
+        self.unitAmountDecimal = try container.sdkDecodeIfPresent(.unitAmountDecimal)
     }
 }
 
-public extension PostProductsRequestBodyDefaultPriceData {
-    init(
-        currency: String,
-        currencyOptions: [String: PostProductsRequestBodyDefaultPriceDataCurrencyOptionsValue]? = nil,
-        customUnitAmount: PostProductsRequestBodyDefaultPriceDataCustomUnitAmount? = nil,
-        metadata: [String: String]? = nil,
-        recurring: PostProductsRequestBodyDefaultPriceDataRecurring? = nil,
-        taxBehavior: PostProductsRequestBodyDefaultPriceDataTaxBehavior? = nil,
-        unitAmount: Int? = nil,
-        unitAmountDecimal: String? = nil
-    ) {
+extension PostProductsRequestBodyDefaultPriceData {
+    public init(currency: String, currencyOptions: [String: PostProductsRequestBodyDefaultPriceDataCurrencyOptionsValue]? = nil, customUnitAmount: PostProductsRequestBodyDefaultPriceDataCustomUnitAmount? = nil, metadata: [String: String]? = nil, recurring: PostProductsRequestBodyDefaultPriceDataRecurring? = nil, taxBehavior: PostProductsRequestBodyDefaultPriceDataTaxBehavior? = nil, unitAmount: Int? = nil, unitAmountDecimal: String? = nil) {
         (self.currency, self.currencyOptions) = (currency, currencyOptions)
         (self.customUnitAmount, self.metadata) = (customUnitAmount, metadata)
         (self.recurring, self.taxBehavior) = (recurring, taxBehavior)
@@ -484,30 +380,24 @@ public struct PostProductsRequestBodyDefaultPriceDataCustomUnitAmount: Codable {
         case preset
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostProductsRequestBodyDefaultPriceDataCustomUnitAmount {
-    init(from decoder: Decoder) throws {
+extension PostProductsRequestBodyDefaultPriceDataCustomUnitAmount {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.enabled) else {
-            throw SdkValidationError(
-                field: "enabled",
-                code: "required",
-                message: "Validation failed for 'enabled': value is required"
-            )
+            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
         }
-        enabled = try container.sdkDecodeRequired(.enabled)
-        maximum = try container.sdkDecodeIfPresent(.maximum)
-        minimum = try container.sdkDecodeIfPresent(.minimum)
-        preset = try container.sdkDecodeIfPresent(.preset)
+        self.enabled = try container.sdkDecodeRequired(.enabled)
+        self.maximum = try container.sdkDecodeIfPresent(.maximum)
+        self.minimum = try container.sdkDecodeIfPresent(.minimum)
+        self.preset = try container.sdkDecodeIfPresent(.preset)
     }
 }
 
-public extension PostProductsRequestBodyDefaultPriceDataCustomUnitAmount {
-    init(enabled: Bool, maximum: Int? = nil, minimum: Int? = nil, preset: Int? = nil) {
+extension PostProductsRequestBodyDefaultPriceDataCustomUnitAmount {
+    public init(enabled: Bool, maximum: Int? = nil, minimum: Int? = nil, preset: Int? = nil) {
         (self.enabled, self.maximum) = (enabled, maximum)
         (self.minimum, self.preset) = (minimum, preset)
     }
@@ -522,28 +412,22 @@ public struct PostProductsRequestBodyDefaultPriceDataRecurring: Codable {
         case intervalCount = "interval_count"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostProductsRequestBodyDefaultPriceDataRecurring {
-    init(from decoder: Decoder) throws {
+extension PostProductsRequestBodyDefaultPriceDataRecurring {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.interval) else {
-            throw SdkValidationError(
-                field: "interval",
-                code: "required",
-                message: "Validation failed for 'interval': value is required"
-            )
+            throw SdkValidationError(field: "interval", code: "required", message: "Validation failed for 'interval': value is required")
         }
-        interval = try container.sdkDecodeRequired(.interval)
-        intervalCount = try container.sdkDecodeIfPresent(.intervalCount)
+        self.interval = try container.sdkDecodeRequired(.interval)
+        self.intervalCount = try container.sdkDecodeIfPresent(.intervalCount)
     }
 }
 
-public extension PostProductsRequestBodyDefaultPriceDataRecurring {
-    init(interval: PostProductsRequestBodyDefaultPriceDataRecurringInterval, intervalCount: Int? = nil) {
+extension PostProductsRequestBodyDefaultPriceDataRecurring {
+    public init(interval: PostProductsRequestBodyDefaultPriceDataRecurringInterval, intervalCount: Int? = nil) {
         (self.interval, self.intervalCount) = (interval, intervalCount)
     }
 }
@@ -554,31 +438,21 @@ public enum PostProductsIdRequestBodyImages {
 }
 
 extension PostProductsIdRequestBodyImages: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostProductsIdRequestBodyImages"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostProductsIdRequestBodyImages")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode([String].self) {
-            return .stringList(value)
-        }
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
+        if let value = try? container.decode([String].self) { return .stringList(value) }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -588,6 +462,7 @@ extension PostProductsIdRequestBodyImages: Codable {
         case let .stringValue(value): try container.encode(value); return true
         }
     }
+
 }
 
 public struct GetProductsParameterVariant0: Codable {
@@ -604,22 +479,22 @@ public struct GetProductsParameterVariant0: Codable {
     }
 
     init() {
-        (gt, gte, lt, lte) = (nil, nil, nil, nil)
+        (self.gt, self.gte, self.lt, self.lte) = (nil, nil, nil, nil)
     }
 }
 
-public extension GetProductsParameterVariant0 {
-    init(from decoder: Decoder) throws {
+extension GetProductsParameterVariant0 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        gt = try container.sdkDecodeIfPresent(.gt)
-        gte = try container.sdkDecodeIfPresent(.gte)
-        lt = try container.sdkDecodeIfPresent(.lt)
-        lte = try container.sdkDecodeIfPresent(.lte)
+        self.gt = try container.sdkDecodeIfPresent(.gt)
+        self.gte = try container.sdkDecodeIfPresent(.gte)
+        self.lt = try container.sdkDecodeIfPresent(.lt)
+        self.lte = try container.sdkDecodeIfPresent(.lte)
     }
 }
 
-public extension GetProductsParameterVariant0 {
-    init(gt: Int? = nil, gte: Int? = nil, lt: Int? = nil, lte: Int? = nil) {
+extension GetProductsParameterVariant0 {
+    public init(gt: Int? = nil, gte: Int? = nil, lt: Int? = nil, lte: Int? = nil) {
         self.init()
         (self.gt, self.gte) = (gt, gte)
         (self.lt, self.lte) = (lt, lte)
@@ -633,30 +508,24 @@ public struct PostProductsRequestBodyMarketingFeaturesItem: Codable {
         case name
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostProductsRequestBodyMarketingFeaturesItem {
-    init(from decoder: Decoder) throws {
+extension PostProductsRequestBodyMarketingFeaturesItem {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.name) else {
-            throw SdkValidationError(
-                field: "name",
-                code: "required",
-                message: "Validation failed for 'name': value is required"
-            )
+            throw SdkValidationError(field: "name", code: "required", message: "Validation failed for 'name': value is required")
         }
-        name = try container.sdkDecodeRequired(.name)
-        try validateLength("name", name, min: nil, max: 5000)
+        self.name = try container.sdkDecodeRequired(.name)
+            try validateLength("name", self.name, min: nil, max: 5000)
     }
 }
 
-public extension PostProductsRequestBodyMarketingFeaturesItem {
-    init(name: String) throws {
+extension PostProductsRequestBodyMarketingFeaturesItem {
+    public init(name: String) throws {
         self.name = name
-        try validateLength("name", self.name, min: nil, max: 5000)
+            try validateLength("name", self.name, min: nil, max: 5000)
     }
 }
 

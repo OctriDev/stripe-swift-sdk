@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1IssuingPersonalizationDesignsMethods {
-    struct PostIssuingPersonalizationDesignsOptions: Codable {
+extension V1IssuingPersonalizationDesignsMethods {
+    public struct PostIssuingPersonalizationDesignsOptions: Codable {
         public var physicalBundle: String
         public var cardLogo: String?
         public var carrierText: PostIssuingPersonalizationDesignsRequestBodyCarrierText?
@@ -23,10 +23,7 @@ public extension V1IssuingPersonalizationDesignsMethods {
         }
     }
 
-    /// Creates a personalization design that groups a physical bundle with optional card logo and carrier text
-    /// settings. Supply `physical_bundle` and optionally set `card_logo`, `carrier_text`, `lookup_key`, `name`,
-    /// `metadata`, or `preferences`. A 200 response returns the created personalization design with its generated
-    /// identifier and current status.
+    /// Creates a personalization design that groups a physical bundle with optional card logo and carrier text settings. Supply `physical_bundle` and optionally set `card_logo`, `carrier_text`, `lookup_key`, `name`, `metadata`, or `preferences`. A 200 response returns the created personalization design with its generated identifier and current status.
     ///
     /// Creates a personalization design object.
     ///
@@ -51,10 +48,7 @@ public extension V1IssuingPersonalizationDesignsMethods {
     /// - transferLookupKey: If set to true, will atomically remove the lookup key
     ///   from the existing personalization design, and assign it to this
     ///   personalization design.
-    static func postIssuingPersonalizationDesigns(
-        config: ClientConfig,
-        options: PostIssuingPersonalizationDesignsOptions
-    ) async throws -> IssuingPersonalizationDesign {
+    public static func postIssuingPersonalizationDesigns(config: ClientConfig, options: PostIssuingPersonalizationDesignsOptions) async throws -> IssuingPersonalizationDesign {
         try validateLength("physical_bundle", options.physicalBundle, max: 5000)
 
         if let lookupKey = options.lookupKey {
@@ -67,14 +61,6 @@ public extension V1IssuingPersonalizationDesignsMethods {
 
         let requestBody = PostIssuingPersonalizationDesignsRequestBody(options: options)
 
-        return try await (sdkRequest(
-            "POST",
-            "/v1/issuing/personalization_designs",
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostIssuingPersonalizationDesigns"
-        )).data
+        return try (await sdkRequest("POST", "/v1/issuing/personalization_designs", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostIssuingPersonalizationDesigns")).data
     }
 }

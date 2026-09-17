@@ -6,9 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1EntitlementsFeaturesMethods {
-    /// Lists entitlement features. Filter the results by archive status or `lookup_key`, and use cursor parameters to
-    /// paginate through the available features.
+extension V1EntitlementsFeaturesMethods {
+    /// Lists entitlement features. Filter the results by archive status or `lookup_key`, and use cursor parameters to paginate through the available features.
     ///
     /// Retrieve a list of features
     ///
@@ -30,28 +29,20 @@ public extension V1EntitlementsFeaturesMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    static func getEntitlementsFeatures(
-        config: ClientConfig,
-        archived: Bool?,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        lookupKey: String?,
-        startingAfter: String?
-    ) async throws -> GetEntitlementsFeaturesResponse {
-        if let endingBefore {
+    public static func getEntitlementsFeatures(config: ClientConfig, archived: Bool?, endingBefore: String?, expand: [String]?, limit: Int?, lookupKey: String?, startingAfter: String?) async throws -> GetEntitlementsFeaturesResponse {
+        if let endingBefore = endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let lookupKey {
+        if let lookupKey = lookupKey {
             try validateLength("lookup_key", lookupKey, max: 5000)
         }
 
-        if let startingAfter {
+        if let startingAfter = startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try await (sdkRequest("GET", "/v1/entitlements/features", config: config, query: [
+        return try (await sdkRequest("GET", "/v1/entitlements/features", config: config, query: [
             SdkQueryParameter("archived", value: archived),
             SdkQueryParameter("ending_before", value: endingBefore),
             SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),

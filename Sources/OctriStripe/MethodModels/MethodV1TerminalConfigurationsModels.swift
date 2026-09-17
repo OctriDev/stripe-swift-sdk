@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1TerminalConfigurations operation model declarations
+// Canonical v1TerminalConfigurations operation model declarations
 public enum PostTerminalConfigurationsConfigurationRequestBodyVerifoneM425 {
     case postTerminalConfigurationsConfigurationRequestBodyVerifoneM425Variant0(
         PostTerminalConfigurationsConfigurationRequestBodyVerifoneM425Variant0
@@ -16,43 +16,35 @@ public enum PostTerminalConfigurationsConfigurationRequestBodyVerifoneM425 {
 }
 
 extension PostTerminalConfigurationsConfigurationRequestBodyVerifoneM425: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostTerminalConfigurationsConfigurationRequestBodyVerifoneM425"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostTerminalConfigurationsConfigurationRequestBodyVerifoneM425")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PostTerminalConfigurationsConfigurationRequestBodyVerifoneM425Variant0.self
         ) {
-            return .postTerminalConfigurationsConfigurationRequestBodyVerifoneM425Variant0(value)
+            return             .postTerminalConfigurationsConfigurationRequestBodyVerifoneM425Variant0(value)
         }
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .postTerminalConfigurationsConfigurationRequestBodyVerifoneM425Variant0(value): try container
-            .encode(value); return true
+        case let .postTerminalConfigurationsConfigurationRequestBodyVerifoneM425Variant0(value): try container.encode(value); return true
         case let .stringValue(value): try container.encode(value); return true
         }
     }
+
 }
 
 public struct PostTerminalConfigurationsConfigurationRequestBodyCellularVariant0: Codable {
@@ -62,27 +54,21 @@ public struct PostTerminalConfigurationsConfigurationRequestBodyCellularVariant0
         case enabled
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostTerminalConfigurationsConfigurationRequestBodyCellularVariant0 {
-    init(from decoder: Decoder) throws {
+extension PostTerminalConfigurationsConfigurationRequestBodyCellularVariant0 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.enabled) else {
-            throw SdkValidationError(
-                field: "enabled",
-                code: "required",
-                message: "Validation failed for 'enabled': value is required"
-            )
+            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
         }
-        enabled = try container.sdkDecodeRequired(.enabled)
+        self.enabled = try container.sdkDecodeRequired(.enabled)
     }
 }
 
-public extension PostTerminalConfigurationsConfigurationRequestBodyCellularVariant0 {
-    init(enabled: Bool) {
+extension PostTerminalConfigurationsConfigurationRequestBodyCellularVariant0 {
+    public init(enabled: Bool) {
         self.enabled = enabled
     }
 }
@@ -95,43 +81,35 @@ public enum PostTerminalConfigurationsConfigurationRequestBodyBbposWisepad3 {
 }
 
 extension PostTerminalConfigurationsConfigurationRequestBodyBbposWisepad3: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostTerminalConfigurationsConfigurationRequestBodyBbposWisepad3"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostTerminalConfigurationsConfigurationRequestBodyBbposWisepad3")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PostTerminalConfigurationsConfigurationRequestBodyBbposWisepad3Variant0.self
         ) {
-            return .postTerminalConfigurationsConfigurationRequestBodyBbposWisepad3Variant0(value)
+            return             .postTerminalConfigurationsConfigurationRequestBodyBbposWisepad3Variant0(value)
         }
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .postTerminalConfigurationsConfigurationRequestBodyBbposWisepad3Variant0(value): try container
-            .encode(value); return true
+        case let .postTerminalConfigurationsConfigurationRequestBodyBbposWisepad3Variant0(value): try container.encode(value); return true
         case let .stringValue(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// An object containing device type specific settings for Verifone UX700 readers.
@@ -143,19 +121,19 @@ public struct PostTerminalConfigurationsRequestBodyVerifoneUx700: Codable {
     }
 
     init() {
-        splashscreen = nil
+        self.splashscreen = nil
     }
 }
 
-public extension PostTerminalConfigurationsRequestBodyVerifoneUx700 {
-    init(from decoder: Decoder) throws {
+extension PostTerminalConfigurationsRequestBodyVerifoneUx700 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        splashscreen = try container.sdkDecodeIfPresent(.splashscreen)
+        self.splashscreen = try container.sdkDecodeIfPresent(.splashscreen)
     }
 }
 
-public extension PostTerminalConfigurationsRequestBodyVerifoneUx700 {
-    init(splashscreen: String? = nil) {
+extension PostTerminalConfigurationsRequestBodyVerifoneUx700 {
+    public init(splashscreen: String? = nil) {
         self.init()
         self.splashscreen = splashscreen
     }
@@ -169,43 +147,35 @@ public enum PostTerminalConfigurationsConfigurationRequestBodyVerifoneUx700 {
 }
 
 extension PostTerminalConfigurationsConfigurationRequestBodyVerifoneUx700: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostTerminalConfigurationsConfigurationRequestBodyVerifoneUx700"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostTerminalConfigurationsConfigurationRequestBodyVerifoneUx700")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PostTerminalConfigurationsConfigurationRequestBodyVerifoneUx700Variant0.self
         ) {
-            return .postTerminalConfigurationsConfigurationRequestBodyVerifoneUx700Variant0(value)
+            return             .postTerminalConfigurationsConfigurationRequestBodyVerifoneUx700Variant0(value)
         }
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .postTerminalConfigurationsConfigurationRequestBodyVerifoneUx700Variant0(value): try container
-            .encode(value); return true
+        case let .postTerminalConfigurationsConfigurationRequestBodyVerifoneUx700Variant0(value): try container.encode(value); return true
         case let .stringValue(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum PostTerminalConfigurationsConfigurationRequestBodyOffline {
@@ -216,43 +186,35 @@ public enum PostTerminalConfigurationsConfigurationRequestBodyOffline {
 }
 
 extension PostTerminalConfigurationsConfigurationRequestBodyOffline: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostTerminalConfigurationsConfigurationRequestBodyOffline"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostTerminalConfigurationsConfigurationRequestBodyOffline")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PostTerminalConfigurationsConfigurationRequestBodyOfflineVariant0.self
         ) {
-            return .postTerminalConfigurationsConfigurationRequestBodyOfflineVariant0(value)
+            return             .postTerminalConfigurationsConfigurationRequestBodyOfflineVariant0(value)
         }
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .postTerminalConfigurationsConfigurationRequestBodyOfflineVariant0(value): try container
-            .encode(value); return true
+        case let .postTerminalConfigurationsConfigurationRequestBodyOfflineVariant0(value): try container.encode(value); return true
         case let .stringValue(value): try container.encode(value); return true
         }
     }
+
 }
 
 public struct PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Cad: Codable {
@@ -267,21 +229,21 @@ public struct PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0C
     }
 
     init() {
-        (fixedAmounts, percentages, smartTipThreshold) = (nil, nil, nil)
+        (self.fixedAmounts, self.percentages, self.smartTipThreshold) = (nil, nil, nil)
     }
 }
 
-public extension PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Cad {
-    init(from decoder: Decoder) throws {
+extension PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Cad {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        fixedAmounts = try container.sdkDecodeIfPresent(.fixedAmounts)
-        percentages = try container.sdkDecodeIfPresent(.percentages)
-        smartTipThreshold = try container.sdkDecodeIfPresent(.smartTipThreshold)
+        self.fixedAmounts = try container.sdkDecodeIfPresent(.fixedAmounts)
+        self.percentages = try container.sdkDecodeIfPresent(.percentages)
+        self.smartTipThreshold = try container.sdkDecodeIfPresent(.smartTipThreshold)
     }
 }
 
-public extension PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Cad {
-    init(fixedAmounts: [Int]? = nil, percentages: [Int]? = nil, smartTipThreshold: Int? = nil) {
+extension PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Cad {
+    public init(fixedAmounts: [Int]? = nil, percentages: [Int]? = nil, smartTipThreshold: Int? = nil) {
         self.init()
         (self.fixedAmounts, self.percentages) = (fixedAmounts, percentages)
         self.smartTipThreshold = smartTipThreshold
@@ -297,19 +259,19 @@ public struct PostTerminalConfigurationsRequestBodyVerifoneM425: Codable {
     }
 
     init() {
-        splashscreen = nil
+        self.splashscreen = nil
     }
 }
 
-public extension PostTerminalConfigurationsRequestBodyVerifoneM425 {
-    init(from decoder: Decoder) throws {
+extension PostTerminalConfigurationsRequestBodyVerifoneM425 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        splashscreen = try container.sdkDecodeIfPresent(.splashscreen)
+        self.splashscreen = try container.sdkDecodeIfPresent(.splashscreen)
     }
 }
 
-public extension PostTerminalConfigurationsRequestBodyVerifoneM425 {
-    init(splashscreen: String? = nil) {
+extension PostTerminalConfigurationsRequestBodyVerifoneM425 {
+    public init(splashscreen: String? = nil) {
         self.init()
         self.splashscreen = splashscreen
     }
@@ -327,21 +289,21 @@ public struct PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0C
     }
 
     init() {
-        (fixedAmounts, percentages, smartTipThreshold) = (nil, nil, nil)
+        (self.fixedAmounts, self.percentages, self.smartTipThreshold) = (nil, nil, nil)
     }
 }
 
-public extension PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Chf {
-    init(from decoder: Decoder) throws {
+extension PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Chf {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        fixedAmounts = try container.sdkDecodeIfPresent(.fixedAmounts)
-        percentages = try container.sdkDecodeIfPresent(.percentages)
-        smartTipThreshold = try container.sdkDecodeIfPresent(.smartTipThreshold)
+        self.fixedAmounts = try container.sdkDecodeIfPresent(.fixedAmounts)
+        self.percentages = try container.sdkDecodeIfPresent(.percentages)
+        self.smartTipThreshold = try container.sdkDecodeIfPresent(.smartTipThreshold)
     }
 }
 
-public extension PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Chf {
-    init(fixedAmounts: [Int]? = nil, percentages: [Int]? = nil, smartTipThreshold: Int? = nil) {
+extension PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Chf {
+    public init(fixedAmounts: [Int]? = nil, percentages: [Int]? = nil, smartTipThreshold: Int? = nil) {
         self.init()
         (self.fixedAmounts, self.percentages) = (fixedAmounts, percentages)
         self.smartTipThreshold = smartTipThreshold
@@ -356,19 +318,19 @@ public struct PostTerminalConfigurationsConfigurationRequestBodyVerifoneV660pVar
     }
 
     init() {
-        splashscreen = nil
+        self.splashscreen = nil
     }
 }
 
-public extension PostTerminalConfigurationsConfigurationRequestBodyVerifoneV660pVariant0 {
-    init(from decoder: Decoder) throws {
+extension PostTerminalConfigurationsConfigurationRequestBodyVerifoneV660pVariant0 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        splashscreen = try container.sdkDecodeIfPresent(.splashscreen)
+        self.splashscreen = try container.sdkDecodeIfPresent(.splashscreen)
     }
 }
 
-public extension PostTerminalConfigurationsConfigurationRequestBodyVerifoneV660pVariant0 {
-    init(splashscreen: String? = nil) {
+extension PostTerminalConfigurationsConfigurationRequestBodyVerifoneV660pVariant0 {
+    public init(splashscreen: String? = nil) {
         self.init()
         self.splashscreen = splashscreen
     }
@@ -386,21 +348,21 @@ public struct PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0N
     }
 
     init() {
-        (fixedAmounts, percentages, smartTipThreshold) = (nil, nil, nil)
+        (self.fixedAmounts, self.percentages, self.smartTipThreshold) = (nil, nil, nil)
     }
 }
 
-public extension PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Nzd {
-    init(from decoder: Decoder) throws {
+extension PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Nzd {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        fixedAmounts = try container.sdkDecodeIfPresent(.fixedAmounts)
-        percentages = try container.sdkDecodeIfPresent(.percentages)
-        smartTipThreshold = try container.sdkDecodeIfPresent(.smartTipThreshold)
+        self.fixedAmounts = try container.sdkDecodeIfPresent(.fixedAmounts)
+        self.percentages = try container.sdkDecodeIfPresent(.percentages)
+        self.smartTipThreshold = try container.sdkDecodeIfPresent(.smartTipThreshold)
     }
 }
 
-public extension PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Nzd {
-    init(fixedAmounts: [Int]? = nil, percentages: [Int]? = nil, smartTipThreshold: Int? = nil) {
+extension PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Nzd {
+    public init(fixedAmounts: [Int]? = nil, percentages: [Int]? = nil, smartTipThreshold: Int? = nil) {
         self.init()
         (self.fixedAmounts, self.percentages) = (fixedAmounts, percentages)
         self.smartTipThreshold = smartTipThreshold
@@ -416,19 +378,19 @@ public struct PostTerminalConfigurationsRequestBodyStripeS700: Codable {
     }
 
     init() {
-        splashscreen = nil
+        self.splashscreen = nil
     }
 }
 
-public extension PostTerminalConfigurationsRequestBodyStripeS700 {
-    init(from decoder: Decoder) throws {
+extension PostTerminalConfigurationsRequestBodyStripeS700 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        splashscreen = try container.sdkDecodeIfPresent(.splashscreen)
+        self.splashscreen = try container.sdkDecodeIfPresent(.splashscreen)
     }
 }
 
-public extension PostTerminalConfigurationsRequestBodyStripeS700 {
-    init(splashscreen: String? = nil) {
+extension PostTerminalConfigurationsRequestBodyStripeS700 {
+    public init(splashscreen: String? = nil) {
         self.init()
         self.splashscreen = splashscreen
     }
@@ -446,21 +408,21 @@ public struct PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0M
     }
 
     init() {
-        (fixedAmounts, percentages, smartTipThreshold) = (nil, nil, nil)
+        (self.fixedAmounts, self.percentages, self.smartTipThreshold) = (nil, nil, nil)
     }
 }
 
-public extension PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Myr {
-    init(from decoder: Decoder) throws {
+extension PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Myr {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        fixedAmounts = try container.sdkDecodeIfPresent(.fixedAmounts)
-        percentages = try container.sdkDecodeIfPresent(.percentages)
-        smartTipThreshold = try container.sdkDecodeIfPresent(.smartTipThreshold)
+        self.fixedAmounts = try container.sdkDecodeIfPresent(.fixedAmounts)
+        self.percentages = try container.sdkDecodeIfPresent(.percentages)
+        self.smartTipThreshold = try container.sdkDecodeIfPresent(.smartTipThreshold)
     }
 }
 
-public extension PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Myr {
-    init(fixedAmounts: [Int]? = nil, percentages: [Int]? = nil, smartTipThreshold: Int? = nil) {
+extension PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Myr {
+    public init(fixedAmounts: [Int]? = nil, percentages: [Int]? = nil, smartTipThreshold: Int? = nil) {
         self.init()
         (self.fixedAmounts, self.percentages) = (fixedAmounts, percentages)
         self.smartTipThreshold = smartTipThreshold
@@ -479,21 +441,21 @@ public struct PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0S
     }
 
     init() {
-        (fixedAmounts, percentages, smartTipThreshold) = (nil, nil, nil)
+        (self.fixedAmounts, self.percentages, self.smartTipThreshold) = (nil, nil, nil)
     }
 }
 
-public extension PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Sgd {
-    init(from decoder: Decoder) throws {
+extension PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Sgd {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        fixedAmounts = try container.sdkDecodeIfPresent(.fixedAmounts)
-        percentages = try container.sdkDecodeIfPresent(.percentages)
-        smartTipThreshold = try container.sdkDecodeIfPresent(.smartTipThreshold)
+        self.fixedAmounts = try container.sdkDecodeIfPresent(.fixedAmounts)
+        self.percentages = try container.sdkDecodeIfPresent(.percentages)
+        self.smartTipThreshold = try container.sdkDecodeIfPresent(.smartTipThreshold)
     }
 }
 
-public extension PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Sgd {
-    init(fixedAmounts: [Int]? = nil, percentages: [Int]? = nil, smartTipThreshold: Int? = nil) {
+extension PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Sgd {
+    public init(fixedAmounts: [Int]? = nil, percentages: [Int]? = nil, smartTipThreshold: Int? = nil) {
         self.init()
         (self.fixedAmounts, self.percentages) = (fixedAmounts, percentages)
         self.smartTipThreshold = smartTipThreshold
@@ -512,21 +474,21 @@ public struct PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0E
     }
 
     init() {
-        (fixedAmounts, percentages, smartTipThreshold) = (nil, nil, nil)
+        (self.fixedAmounts, self.percentages, self.smartTipThreshold) = (nil, nil, nil)
     }
 }
 
-public extension PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Eur {
-    init(from decoder: Decoder) throws {
+extension PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Eur {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        fixedAmounts = try container.sdkDecodeIfPresent(.fixedAmounts)
-        percentages = try container.sdkDecodeIfPresent(.percentages)
-        smartTipThreshold = try container.sdkDecodeIfPresent(.smartTipThreshold)
+        self.fixedAmounts = try container.sdkDecodeIfPresent(.fixedAmounts)
+        self.percentages = try container.sdkDecodeIfPresent(.percentages)
+        self.smartTipThreshold = try container.sdkDecodeIfPresent(.smartTipThreshold)
     }
 }
 
-public extension PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Eur {
-    init(fixedAmounts: [Int]? = nil, percentages: [Int]? = nil, smartTipThreshold: Int? = nil) {
+extension PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Eur {
+    public init(fixedAmounts: [Int]? = nil, percentages: [Int]? = nil, smartTipThreshold: Int? = nil) {
         self.init()
         (self.fixedAmounts, self.percentages) = (fixedAmounts, percentages)
         self.smartTipThreshold = smartTipThreshold
@@ -539,32 +501,21 @@ public enum GetTerminalConfigurationsConfigurationResponse {
 }
 
 extension GetTerminalConfigurationsConfigurationResponse: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for GetTerminalConfigurationsConfigurationResponse"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for GetTerminalConfigurationsConfigurationResponse")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(TerminalConfiguration.self) {
-            return .terminalConfiguration(value)
-        }
-        if let value = try? container
-            .decode(DeletedTerminalConfiguration.self) {
-            return .deletedTerminalConfiguration(value)
-        }
+        if let value = try? container.decode(TerminalConfiguration.self) { return .terminalConfiguration(value) }
+        if let value = try? container.decode(DeletedTerminalConfiguration.self) { return .deletedTerminalConfiguration(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -574,6 +525,7 @@ extension GetTerminalConfigurationsConfigurationResponse: Codable {
         case let .deletedTerminalConfiguration(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum PostTerminalConfigurationsConfigurationRequestBodyVerifoneV660p {
@@ -584,43 +536,35 @@ public enum PostTerminalConfigurationsConfigurationRequestBodyVerifoneV660p {
 }
 
 extension PostTerminalConfigurationsConfigurationRequestBodyVerifoneV660p: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostTerminalConfigurationsConfigurationRequestBodyVerifoneV660p"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostTerminalConfigurationsConfigurationRequestBodyVerifoneV660p")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PostTerminalConfigurationsConfigurationRequestBodyVerifoneV660pVariant0.self
         ) {
-            return .postTerminalConfigurationsConfigurationRequestBodyVerifoneV660pVariant0(value)
+            return             .postTerminalConfigurationsConfigurationRequestBodyVerifoneV660pVariant0(value)
         }
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .postTerminalConfigurationsConfigurationRequestBodyVerifoneV660pVariant0(value): try container
-            .encode(value); return true
+        case let .postTerminalConfigurationsConfigurationRequestBodyVerifoneV660pVariant0(value): try container.encode(value); return true
         case let .stringValue(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum PostTerminalConfigurationsRequestBodyWifi {

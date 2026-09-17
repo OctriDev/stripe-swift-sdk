@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1SetupIntentsMethods {
-    struct PostSetupIntentsOptions: Codable {
+extension V1SetupIntentsMethods {
+    public struct PostSetupIntentsOptions: Codable {
         public var allowedPaymentMethodTypes: [PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem]?
         public var attachToSelf: Bool?
         public var automaticPaymentMethods: PostSetupIntentsRequestBodyAutomaticPaymentMethods?
@@ -35,8 +35,7 @@ public extension V1SetupIntentsMethods {
         public init() {}
     }
 
-    /// Creates a SetupIntent object. After you create the SetupIntent, attach a payment method and confirm it to
-    /// collect any required permissions to charge the payment method later.
+    /// Creates a SetupIntent object. After you create the SetupIntent, attach a payment method and confirm it to collect any required permissions to charge the payment method later.
     ///
     /// - Parameters:
     /// - allowedPaymentMethodTypes: The list of payment method types to allow for
@@ -124,7 +123,7 @@ public extension V1SetupIntentsMethods {
     ///   future. If not provided, this value defaults to `off_session`.
     /// - useStripeSdk: Set to `true` when confirming server-side and using
     ///   Stripe.js, iOS, or Android client-side SDKs to handle the next actions.
-    static func postSetupIntents(config: ClientConfig, options: PostSetupIntentsOptions) async throws -> SetupIntent {
+    public static func postSetupIntents(config: ClientConfig, options: PostSetupIntentsOptions) async throws -> SetupIntent {
         if let confirmationToken = options.confirmationToken {
             try validateLength("confirmation_token", confirmationToken, max: 5000)
         }
@@ -151,14 +150,6 @@ public extension V1SetupIntentsMethods {
 
         let requestBody = PostSetupIntentsRequestBody(options: options)
 
-        return try await (sdkRequest(
-            "POST",
-            "/v1/setup_intents",
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostSetupIntents"
-        )).data
+        return try (await sdkRequest("POST", "/v1/setup_intents", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostSetupIntents")).data
     }
 }

@@ -6,24 +6,19 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public struct PostForwardingRequestsRequestBodyReplacementsItem: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostForwardingRequestsRequestBodyReplacementsItem: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let cardCvc = PostForwardingRequestsRequestBodyReplacementsItem(rawValue: "card_cvc")
     public static let cardExpiry = PostForwardingRequestsRequestBodyReplacementsItem(rawValue: "card_expiry")
     public static let cardNumber = PostForwardingRequestsRequestBodyReplacementsItem(rawValue: "card_number")
     public static let cardholderName = PostForwardingRequestsRequestBodyReplacementsItem(rawValue: "cardholder_name")
-    public static let requestSignature =
-        PostForwardingRequestsRequestBodyReplacementsItem(rawValue: "request_signature")
+    public static let requestSignature = PostForwardingRequestsRequestBodyReplacementsItem(rawValue: "request_signature")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -32,20 +27,16 @@ public struct PostForwardingRequestsRequestBodyReplacementsItem: RawRepresentabl
     }
 }
 
-public struct GetIdentityVerificationReportsParameterX2bed7a6a: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct GetIdentityVerificationReportsParameterX2bed7a6a: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let document = GetIdentityVerificationReportsParameterX2bed7a6a(rawValue: "document")
     public static let idNumber = GetIdentityVerificationReportsParameterX2bed7a6a(rawValue: "id_number")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -56,19 +47,15 @@ public struct GetIdentityVerificationReportsParameterX2bed7a6a: RawRepresentable
 
 /// String representing the object's type. Objects of the same type share the same value. Always has the value
 /// `list`.
-public struct GetIdentityVerificationReportsResponseObject: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct GetIdentityVerificationReportsResponseObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let list = GetIdentityVerificationReportsResponseObject(rawValue: "list")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -77,14 +64,10 @@ public struct GetIdentityVerificationReportsResponseObject: RawRepresentable, Ha
     }
 }
 
-public struct GetIdentityVerificationSessionsParameterX26f8c442: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct GetIdentityVerificationSessionsParameterX26f8c442: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let canceled = GetIdentityVerificationSessionsParameterX26f8c442(rawValue: "canceled")
     public static let processing = GetIdentityVerificationSessionsParameterX26f8c442(rawValue: "processing")
     public static let requiresInput = GetIdentityVerificationSessionsParameterX26f8c442(rawValue: "requires_input")
@@ -92,7 +75,7 @@ public struct GetIdentityVerificationSessionsParameterX26f8c442: RawRepresentabl
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -103,19 +86,15 @@ public struct GetIdentityVerificationSessionsParameterX26f8c442: RawRepresentabl
 
 /// String representing the object's type. Objects of the same type share the same value. Always has the value
 /// `list`.
-public struct GetIdentityVerificationSessionsResponseObject: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct GetIdentityVerificationSessionsResponseObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let list = GetIdentityVerificationSessionsResponseObject(rawValue: "list")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -124,24 +103,17 @@ public struct GetIdentityVerificationSessionsResponseObject: RawRepresentable, H
     }
 }
 
-public struct PostIdentityVerificationSessionsRequestBodyOptionsDocumentVarX1c5894459e: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostIdentityVerificationSessionsRequestBodyOptionsDocumentVarX1c5894459e: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let drivingLicense =
-        PostIdentityVerificationSessionsRequestBodyOptionsDocumentVarX1c5894459e(rawValue: "driving_license")
-    public static let idCard =
-        PostIdentityVerificationSessionsRequestBodyOptionsDocumentVarX1c5894459e(rawValue: "id_card")
-    public static let passport =
-        PostIdentityVerificationSessionsRequestBodyOptionsDocumentVarX1c5894459e(rawValue: "passport")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let drivingLicense = PostIdentityVerificationSessionsRequestBodyOptionsDocumentVarX1c5894459e(rawValue: "driving_license")
+    public static let idCard = PostIdentityVerificationSessionsRequestBodyOptionsDocumentVarX1c5894459e(rawValue: "id_card")
+    public static let passport = PostIdentityVerificationSessionsRequestBodyOptionsDocumentVarX1c5894459e(rawValue: "passport")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -150,19 +122,15 @@ public struct PostIdentityVerificationSessionsRequestBodyOptionsDocumentVarX1c58
     }
 }
 
-public struct PostIdentityVerificationSessionsRequestBodyOptionsDocumentVariant1: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct PostIdentityVerificationSessionsRequestBodyOptionsDocumentVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostIdentityVerificationSessionsRequestBodyOptionsDocumentVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -173,20 +141,16 @@ public struct PostIdentityVerificationSessionsRequestBodyOptionsDocumentVariant1
 
 /// The type of verification check to be performed. You must provide a `type` if not passing
 /// `verification_flow`.
-public struct PostIdentityVerificationSessionsRequestBodyType: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostIdentityVerificationSessionsRequestBodyType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let document = PostIdentityVerificationSessionsRequestBodyType(rawValue: "document")
     public static let idNumber = PostIdentityVerificationSessionsRequestBodyType(rawValue: "id_number")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -195,24 +159,17 @@ public struct PostIdentityVerificationSessionsRequestBodyType: RawRepresentable,
     }
 }
 
-public struct PostIdentityVerificationSessionsSessionRequestBodyOptionsDocuXccec8f98d6: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostIdentityVerificationSessionsSessionRequestBodyOptionsDocuXccec8f98d6: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let drivingLicense =
-        PostIdentityVerificationSessionsSessionRequestBodyOptionsDocuXccec8f98d6(rawValue: "driving_license")
-    public static let idCard =
-        PostIdentityVerificationSessionsSessionRequestBodyOptionsDocuXccec8f98d6(rawValue: "id_card")
-    public static let passport =
-        PostIdentityVerificationSessionsSessionRequestBodyOptionsDocuXccec8f98d6(rawValue: "passport")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let drivingLicense = PostIdentityVerificationSessionsSessionRequestBodyOptionsDocuXccec8f98d6(rawValue: "driving_license")
+    public static let idCard = PostIdentityVerificationSessionsSessionRequestBodyOptionsDocuXccec8f98d6(rawValue: "id_card")
+    public static let passport = PostIdentityVerificationSessionsSessionRequestBodyOptionsDocuXccec8f98d6(rawValue: "passport")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -221,19 +178,15 @@ public struct PostIdentityVerificationSessionsSessionRequestBodyOptionsDocuXccec
     }
 }
 
-public struct PostIdentityVerificationSessionsSessionRequestBodyOptionsDocuXfe3b1fbba6: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostIdentityVerificationSessionsSessionRequestBodyOptionsDocuXfe3b1fbba6: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostIdentityVerificationSessionsSessionRequestBodyOptionsDocuXfe3b1fbba6(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -243,20 +196,16 @@ public struct PostIdentityVerificationSessionsSessionRequestBodyOptionsDocuXfe3b
 }
 
 /// The type of verification check to be performed.
-public struct PostIdentityVerificationSessionsSessionRequestBodyType: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostIdentityVerificationSessionsSessionRequestBodyType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let document = PostIdentityVerificationSessionsSessionRequestBodyType(rawValue: "document")
     public static let idNumber = PostIdentityVerificationSessionsSessionRequestBodyType(rawValue: "id_number")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

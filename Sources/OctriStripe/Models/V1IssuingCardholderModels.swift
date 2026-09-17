@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1IssuingCardholder domain models
+// V1IssuingCardholder domain models
 /// An Issuing `Cardholder` object represents an individual or business entity who is issued cards. Related guide:
 /// How to create a cardholder
 public struct IssuingCardholder: Codable {
@@ -64,60 +64,41 @@ public struct IssuingCardholder: Codable {
         case spendingControls = "spending_controls"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension IssuingCardholder {
-    init(from decoder: Decoder) throws {
+extension IssuingCardholder {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        billing = try container.sdkDecodeRequired(.billing)
-        created = try container.sdkDecodeRequired(.created)
-        id = try container.sdkDecodeRequired(.id)
-        livemode = try container.sdkDecodeRequired(.livemode)
-        metadata = try container.sdkDecodeRequired(.metadata)
-        name = try container.sdkDecodeRequired(.name)
-        object = try container.sdkDecodeRequired(.object)
-        requirements = try container.sdkDecodeRequired(.requirements)
-        status = try container.sdkDecodeRequired(.status)
-        type = try container.sdkDecodeRequired(.type)
-        company = try container.sdkDecodeIfPresent(.company)
-        email = try container.sdkDecodeIfPresent(.email)
-        individual = try container.sdkDecodeIfPresent(.individual)
-        phoneNumber = try container.sdkDecodeIfPresent(.phoneNumber)
-        preferredLocales = try container.sdkDecodeIfPresent(.preferredLocales)
-        spendingControls = try container.sdkDecodeIfPresent(.spendingControls)
-        try validateLength("id", id, min: nil, max: 5000)
-        try validateLength("name", name, min: nil, max: 5000)
-        if let value = email {
+        self.billing = try container.sdkDecodeRequired(.billing)
+        self.created = try container.sdkDecodeRequired(.created)
+        self.id = try container.sdkDecodeRequired(.id)
+        self.livemode = try container.sdkDecodeRequired(.livemode)
+        self.metadata = try container.sdkDecodeRequired(.metadata)
+        self.name = try container.sdkDecodeRequired(.name)
+        self.object = try container.sdkDecodeRequired(.object)
+        self.requirements = try container.sdkDecodeRequired(.requirements)
+        self.status = try container.sdkDecodeRequired(.status)
+        self.type = try container.sdkDecodeRequired(.type)
+        self.company = try container.sdkDecodeIfPresent(.company)
+        self.email = try container.sdkDecodeIfPresent(.email)
+        self.individual = try container.sdkDecodeIfPresent(.individual)
+        self.phoneNumber = try container.sdkDecodeIfPresent(.phoneNumber)
+        self.preferredLocales = try container.sdkDecodeIfPresent(.preferredLocales)
+        self.spendingControls = try container.sdkDecodeIfPresent(.spendingControls)
+            try validateLength("id", self.id, min: nil, max: 5000)
+            try validateLength("name", self.name, min: nil, max: 5000)
+        if let value = self.email {
             try validateLength("email", value, min: nil, max: 5000)
         }
-        if let value = phoneNumber {
+        if let value = self.phoneNumber {
             try validateLength("phone_number", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension IssuingCardholder {
-    init(
-        billing: IssuingCardholderAddress,
-        created: Int,
-        id: String,
-        livemode: Bool,
-        metadata: [String: String],
-        name: String,
-        object: IssuingCardholderObject,
-        requirements: IssuingCardholderRequirements,
-        status: IssuingCardholderStatus,
-        type: IssuingCardholderType,
-        company: IssuingCardholderCompanyXd9f47066? = nil,
-        email: String? = nil,
-        individual: IssuingCardholderIndividualXe868dc8e? = nil,
-        phoneNumber: String? = nil,
-        preferredLocales: [IssuingCardholderPreferredLocalesItem]? = nil,
-        spendingControls: IssuingCardholderSpendingControls? = nil
-    ) throws {
+extension IssuingCardholder {
+    public init(billing: IssuingCardholderAddress, created: Int, id: String, livemode: Bool, metadata: [String: String], name: String, object: IssuingCardholderObject, requirements: IssuingCardholderRequirements, status: IssuingCardholderStatus, type: IssuingCardholderType, company: IssuingCardholderCompanyXd9f47066? = nil, email: String? = nil, individual: IssuingCardholderIndividualXe868dc8e? = nil, phoneNumber: String? = nil, preferredLocales: [IssuingCardholderPreferredLocalesItem]? = nil, spendingControls: IssuingCardholderSpendingControls? = nil) throws {
         (self.billing, self.created) = (billing, created)
         (self.id, self.livemode) = (id, livemode)
         (self.metadata, self.name) = (metadata, name)
@@ -126,8 +107,8 @@ public extension IssuingCardholder {
         (self.company, self.email) = (company, email)
         (self.individual, self.phoneNumber) = (individual, phoneNumber)
         (self.preferredLocales, self.spendingControls) = (preferredLocales, spendingControls)
-        try validateLength("id", self.id, min: nil, max: 5000)
-        try validateLength("name", self.name, min: nil, max: 5000)
+            try validateLength("id", self.id, min: nil, max: 5000)
+            try validateLength("name", self.name, min: nil, max: 5000)
         if let value = self.email {
             try validateLength("email", value, min: nil, max: 5000)
         }
@@ -142,28 +123,20 @@ public enum IssuingCardholderCompanyXd9f47066 {
 }
 
 extension IssuingCardholderCompanyXd9f47066: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for IssuingCardholderCompanyXd9f47066"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for IssuingCardholderCompanyXd9f47066")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(IssuingCardholderCompany.self) {
-            return .issuingCardholderCompany(value)
-        }
+        if let value = try? container.decode(IssuingCardholderCompany.self) { return .issuingCardholderCompany(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -172,6 +145,7 @@ extension IssuingCardholderCompanyXd9f47066: Codable {
         case let .issuingCardholderCompany(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum IssuingCardholderIndividualXe868dc8e {
@@ -179,29 +153,20 @@ public enum IssuingCardholderIndividualXe868dc8e {
 }
 
 extension IssuingCardholderIndividualXe868dc8e: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for IssuingCardholderIndividualXe868dc8e"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for IssuingCardholderIndividualXe868dc8e")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container
-            .decode(IssuingCardholderIndividual.self) {
-            return .issuingCardholderIndividual(value)
-        }
+        if let value = try? container.decode(IssuingCardholderIndividual.self) { return .issuingCardholderIndividual(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -210,6 +175,7 @@ extension IssuingCardholderIndividualXe868dc8e: Codable {
         case let .issuingCardholderIndividual(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum IssuingCardholderSpendingControls {
@@ -217,30 +183,24 @@ public enum IssuingCardholderSpendingControls {
 }
 
 extension IssuingCardholderSpendingControls: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for IssuingCardholderSpendingControls"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for IssuingCardholderSpendingControls")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             IssuingCardholderAuthorizationControls.self
         ) {
-            return .issuingCardholderAuthorizationControls(value)
+            return             .issuingCardholderAuthorizationControls(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -249,6 +209,7 @@ extension IssuingCardholderSpendingControls: Codable {
         case let .issuingCardholderAuthorizationControls(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// Typed representation of the `IssuingCardholderAddress` API schema.
@@ -260,36 +221,28 @@ public struct IssuingCardholderAddress: Codable {
         case address
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension IssuingCardholderAddress {
-    init(from decoder: Decoder) throws {
+extension IssuingCardholderAddress {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.address) else {
-            throw SdkValidationError(
-                field: "address",
-                code: "required",
-                message: "Validation failed for 'address': value is required"
-            )
+            throw SdkValidationError(field: "address", code: "required", message: "Validation failed for 'address': value is required")
         }
-        address = try container.sdkDecodeRequired(.address)
+        self.address = try container.sdkDecodeRequired(.address)
     }
 }
 
-public extension IssuingCardholderAddress {
-    init(address: Address) {
+extension IssuingCardholderAddress {
+    public init(address: Address) {
         self.address = address
     }
 }
 
-public typealias IssuingCardholderAuthorizationControlsAllowedCardPresencesList =
-    [IssuingCardholderAuthorizationControlsAllowedCardPresencesItem]
+public typealias IssuingCardholderAuthorizationControlsAllowedCardPresencesList = [IssuingCardholderAuthorizationControlsAllowedCardPresencesItem]
 
-public typealias IssuingCardholderAuthorizationControlsBlockedCardPresencesList =
-    [IssuingCardholderAuthorizationControlsBlockedCardPresencesItem]
+public typealias IssuingCardholderAuthorizationControlsBlockedCardPresencesList = [IssuingCardholderAuthorizationControlsBlockedCardPresencesItem]
 
 /// Typed representation of the `IssuingCardholderAuthorizationControls` API schema.
 public struct IssuingCardholderAuthorizationControls: Codable {
@@ -332,42 +285,27 @@ public struct IssuingCardholderAuthorizationControls: Codable {
     }
 
     init() {
-        (allowedCardPresences, allowedCategories, allowedMerchantCountries, blockedCardPresences, blockedCategories) = (
-            nil,
-            nil,
-            nil,
-            nil,
-            nil
-        )
-        (blockedMerchantCountries, spendingLimits, spendingLimitsCurrency) = (nil, nil, nil)
+        (self.allowedCardPresences, self.allowedCategories, self.allowedMerchantCountries, self.blockedCardPresences, self.blockedCategories) = (nil, nil, nil, nil, nil)
+        (self.blockedMerchantCountries, self.spendingLimits, self.spendingLimitsCurrency) = (nil, nil, nil)
     }
 }
 
-public extension IssuingCardholderAuthorizationControls {
-    init(from decoder: Decoder) throws {
+extension IssuingCardholderAuthorizationControls {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        allowedCardPresences = try container.sdkDecodeIfPresent(.allowedCardPresences)
-        allowedCategories = try container.sdkDecodeIfPresent(.allowedCategories)
-        allowedMerchantCountries = try container.sdkDecodeIfPresent(.allowedMerchantCountries)
-        blockedCardPresences = try container.sdkDecodeIfPresent(.blockedCardPresences)
-        blockedCategories = try container.sdkDecodeIfPresent(.blockedCategories)
-        blockedMerchantCountries = try container.sdkDecodeIfPresent(.blockedMerchantCountries)
-        spendingLimits = try container.sdkDecodeIfPresent(.spendingLimits)
-        spendingLimitsCurrency = try container.sdkDecodeIfPresent(.spendingLimitsCurrency)
+        self.allowedCardPresences = try container.sdkDecodeIfPresent(.allowedCardPresences)
+        self.allowedCategories = try container.sdkDecodeIfPresent(.allowedCategories)
+        self.allowedMerchantCountries = try container.sdkDecodeIfPresent(.allowedMerchantCountries)
+        self.blockedCardPresences = try container.sdkDecodeIfPresent(.blockedCardPresences)
+        self.blockedCategories = try container.sdkDecodeIfPresent(.blockedCategories)
+        self.blockedMerchantCountries = try container.sdkDecodeIfPresent(.blockedMerchantCountries)
+        self.spendingLimits = try container.sdkDecodeIfPresent(.spendingLimits)
+        self.spendingLimitsCurrency = try container.sdkDecodeIfPresent(.spendingLimitsCurrency)
     }
 }
 
-public extension IssuingCardholderAuthorizationControls {
-    init(
-        allowedCardPresences: IssuingCardholderAuthorizationControlsAllowedCardPresencesList? = nil,
-        allowedCategories: [IssuingCardholderAuthorizationControlsAllowedCategoriesItem]? = nil,
-        allowedMerchantCountries: [String]? = nil,
-        blockedCardPresences: IssuingCardholderAuthorizationControlsBlockedCardPresencesList? = nil,
-        blockedCategories: [IssuingCardholderAuthorizationControlsBlockedCategoriesItem]? = nil,
-        blockedMerchantCountries: [String]? = nil,
-        spendingLimits: [IssuingCardholderSpendingLimit]? = nil,
-        spendingLimitsCurrency: String? = nil
-    ) {
+extension IssuingCardholderAuthorizationControls {
+    public init(allowedCardPresences: IssuingCardholderAuthorizationControlsAllowedCardPresencesList? = nil, allowedCategories: [IssuingCardholderAuthorizationControlsAllowedCategoriesItem]? = nil, allowedMerchantCountries: [String]? = nil, blockedCardPresences: IssuingCardholderAuthorizationControlsBlockedCardPresencesList? = nil, blockedCategories: [IssuingCardholderAuthorizationControlsBlockedCategoriesItem]? = nil, blockedMerchantCountries: [String]? = nil, spendingLimits: [IssuingCardholderSpendingLimit]? = nil, spendingLimitsCurrency: String? = nil) {
         self.init()
         (self.allowedCardPresences, self.allowedCategories) = (allowedCardPresences, allowedCategories)
         self.allowedMerchantCountries = allowedMerchantCountries
@@ -388,19 +326,19 @@ public struct IssuingCardholderCardIssuing: Codable {
     }
 
     init() {
-        userTermsAcceptance = nil
+        self.userTermsAcceptance = nil
     }
 }
 
-public extension IssuingCardholderCardIssuing {
-    init(from decoder: Decoder) throws {
+extension IssuingCardholderCardIssuing {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        userTermsAcceptance = try container.sdkDecodeIfPresent(.userTermsAcceptance)
+        self.userTermsAcceptance = try container.sdkDecodeIfPresent(.userTermsAcceptance)
     }
 }
 
-public extension IssuingCardholderCardIssuing {
-    init(userTermsAcceptance: IssuingCardholderCardIssuingUserTermsAcceptance? = nil) {
+extension IssuingCardholderCardIssuing {
+    public init(userTermsAcceptance: IssuingCardholderCardIssuingUserTermsAcceptance? = nil) {
         self.init()
         self.userTermsAcceptance = userTermsAcceptance
     }
@@ -411,30 +349,24 @@ public enum IssuingCardholderCardIssuingUserTermsAcceptance {
 }
 
 extension IssuingCardholderCardIssuingUserTermsAcceptance: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for IssuingCardholderCardIssuingUserTermsAcceptance"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for IssuingCardholderCardIssuingUserTermsAcceptance")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             IssuingCardholderUserTermsAcceptance.self
         ) {
-            return .issuingCardholderUserTermsAcceptance(value)
+            return             .issuingCardholderUserTermsAcceptance(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -443,6 +375,7 @@ extension IssuingCardholderCardIssuingUserTermsAcceptance: Codable {
         case let .issuingCardholderUserTermsAcceptance(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// Typed representation of the `IssuingCardholderCompany` API schema.
@@ -454,27 +387,21 @@ public struct IssuingCardholderCompany: Codable {
         case taxIdProvided = "tax_id_provided"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension IssuingCardholderCompany {
-    init(from decoder: Decoder) throws {
+extension IssuingCardholderCompany {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.taxIdProvided) else {
-            throw SdkValidationError(
-                field: "tax_id_provided",
-                code: "required",
-                message: "Validation failed for 'tax_id_provided': value is required"
-            )
+            throw SdkValidationError(field: "tax_id_provided", code: "required", message: "Validation failed for 'tax_id_provided': value is required")
         }
-        taxIdProvided = try container.sdkDecodeRequired(.taxIdProvided)
+        self.taxIdProvided = try container.sdkDecodeRequired(.taxIdProvided)
     }
 }
 
-public extension IssuingCardholderCompany {
-    init(taxIdProvided: Bool) {
+extension IssuingCardholderCompany {
+    public init(taxIdProvided: Bool) {
         self.taxIdProvided = taxIdProvided
     }
 }
@@ -492,20 +419,20 @@ public struct IssuingCardholderIdDocument: Codable {
     }
 
     init() {
-        (back, front) = (nil, nil)
+        (self.back, self.front) = (nil, nil)
     }
 }
 
-public extension IssuingCardholderIdDocument {
-    init(from decoder: Decoder) throws {
+extension IssuingCardholderIdDocument {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        back = try container.sdkDecodeIfPresent(.back)
-        front = try container.sdkDecodeIfPresent(.front)
+        self.back = try container.sdkDecodeIfPresent(.back)
+        self.front = try container.sdkDecodeIfPresent(.front)
     }
 }
 
-public extension IssuingCardholderIdDocument {
-    init(back: IssuingCardholderIdDocumentBack? = nil, front: IssuingCardholderIdDocumentFront? = nil) {
+extension IssuingCardholderIdDocument {
+    public init(back: IssuingCardholderIdDocumentBack? = nil, front: IssuingCardholderIdDocumentFront? = nil) {
         self.init()
         (self.back, self.front) = (back, front)
     }
@@ -517,31 +444,21 @@ public enum IssuingCardholderIdDocumentBack {
 }
 
 extension IssuingCardholderIdDocumentBack: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for IssuingCardholderIdDocumentBack"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for IssuingCardholderIdDocumentBack")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(File2.self) {
-            return .file2(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(File2.self) { return .file2(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -551,6 +468,7 @@ extension IssuingCardholderIdDocumentBack: Codable {
         case let .file2(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum IssuingCardholderIdDocumentFront {
@@ -559,31 +477,21 @@ public enum IssuingCardholderIdDocumentFront {
 }
 
 extension IssuingCardholderIdDocumentFront: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for IssuingCardholderIdDocumentFront"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for IssuingCardholderIdDocumentFront")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(File2.self) {
-            return .file2(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(File2.self) { return .file2(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -593,6 +501,7 @@ extension IssuingCardholderIdDocumentFront: Codable {
         case let .file2(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// Typed representation of the `IssuingCardholderIndividual` API schema.
@@ -619,22 +528,22 @@ public struct IssuingCardholderIndividual: Codable {
     }
 
     init() {
-        (cardIssuing, dob, firstName, lastName, verification) = (nil, nil, nil, nil, nil)
+        (self.cardIssuing, self.dob, self.firstName, self.lastName, self.verification) = (nil, nil, nil, nil, nil)
     }
 }
 
-public extension IssuingCardholderIndividual {
-    init(from decoder: Decoder) throws {
+extension IssuingCardholderIndividual {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        cardIssuing = try container.sdkDecodeIfPresent(.cardIssuing)
-        dob = try container.sdkDecodeIfPresent(.dob)
-        firstName = try container.sdkDecodeIfPresent(.firstName)
-        lastName = try container.sdkDecodeIfPresent(.lastName)
-        verification = try container.sdkDecodeIfPresent(.verification)
-        if let value = firstName {
+        self.cardIssuing = try container.sdkDecodeIfPresent(.cardIssuing)
+        self.dob = try container.sdkDecodeIfPresent(.dob)
+        self.firstName = try container.sdkDecodeIfPresent(.firstName)
+        self.lastName = try container.sdkDecodeIfPresent(.lastName)
+        self.verification = try container.sdkDecodeIfPresent(.verification)
+        if let value = self.firstName {
             try validateLength("first_name", value, min: nil, max: 5000)
         }
-        if let value = lastName {
+        if let value = self.lastName {
             try validateLength("last_name", value, min: nil, max: 5000)
         }
     }

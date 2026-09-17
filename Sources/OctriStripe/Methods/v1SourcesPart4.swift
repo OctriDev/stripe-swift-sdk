@@ -6,14 +6,10 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1SourcesMethods {
-    /// Updates an existing source payment instrument without changing fields that you omit. Use the body to change
-    /// source metadata, owner information, mandate details, source amount, or source-order information. Supply only the
-    /// fields that you want to modify.
+extension V1SourcesMethods {
+    /// Updates an existing source payment instrument without changing fields that you omit. Use the body to change source metadata, owner information, mandate details, source amount, or source-order information. Supply only the fields that you want to modify.
     ///
-    /// Updates the specified source by setting the values of the parameters passed. Any parameters not provided will be
-    /// left unchanged. This request accepts the metadata and owner as arguments. It is also possible to update type
-    /// specific information for selected payment methods. Please refer to our payment method guides for more detail.
+    /// Updates the specified source by setting the values of the parameters passed. Any parameters not provided will be left unchanged. This request accepts the metadata and owner as arguments. It is also possible to update type specific information for selected payment methods. Please refer to our payment method guides for more detail.
     ///
     /// - Parameters:
     /// - amount: Amount associated with the source.
@@ -30,35 +26,11 @@ public extension V1SourcesMethods {
     /// - sourceOrder: Information about the items and shipping associated with the
     ///   source. Required for transactional credit (for example Klarna) sources
     ///   before you can charge it.
-    static func postSourcesSource(
-        config: ClientConfig,
-        source: String,
-        amount: Int?,
-        expand: [String]?,
-        mandate: PostSourcesSourceRequestBodyMandate?,
-        metadata: PostSourcesSourceRequestBodyMetadata?,
-        owner: PostSourcesSourceRequestBodyOwner?,
-        sourceOrder: PostSourcesSourceRequestBodySourceOrder?
-    ) async throws -> Source {
+    public static func postSourcesSource(config: ClientConfig, source: String, amount: Int?, expand: [String]?, mandate: PostSourcesSourceRequestBodyMandate?, metadata: PostSourcesSourceRequestBodyMetadata?, owner: PostSourcesSourceRequestBodyOwner?, sourceOrder: PostSourcesSourceRequestBodySourceOrder?) async throws -> Source {
         try validateLength("source", source, max: 5000)
 
-        let requestBody = PostSourcesSourceRequestBody(
-            amount: amount,
-            expand: expand,
-            mandate: mandate,
-            metadata: metadata,
-            owner: owner,
-            sourceOrder: sourceOrder
-        )
+        let requestBody = PostSourcesSourceRequestBody(amount: amount, expand: expand, mandate: mandate, metadata: metadata, owner: owner, sourceOrder: sourceOrder)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/sources/", sdkEncodePathSegment(sdkWireString(source))].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostSourcesSource"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/sources/", sdkEncodePathSegment(sdkWireString(source))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostSourcesSource")).data
     }
 }

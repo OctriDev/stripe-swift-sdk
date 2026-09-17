@@ -7,14 +7,9 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1PayoutsReverseMethods {
-    /// Reverses a payout by debiting the destination bank account. Use this action only for payouts to connected
-    /// accounts with US or Canadian bank accounts; use the cancel action instead for a manual pending payout.
+    /// Reverses a payout by debiting the destination bank account. Use this action only for payouts to connected accounts with US or Canadian bank accounts; use the cancel action instead for a manual pending payout.
     ///
-    /// Reverses a payout by debiting the destination bank account. At this time, you can only reverse payouts for
-    /// connected accounts to US and Canadian bank accounts. If the payout is manual and in the pending status, use
-    /// /v1/payouts/:id/cancel instead. By requesting a reversal through /v1/payouts/:id/reverse , you confirm that the
-    /// authorized signatory of the selected bank account authorizes the debit on the bank account and that no other
-    /// authorization is required.
+    /// Reverses a payout by debiting the destination bank account. At this time, you can only reverse payouts for connected accounts to US and Canadian bank accounts. If the payout is manual and in the pending status, use /v1/payouts/:id/cancel instead. By requesting a reversal through /v1/payouts/:id/reverse , you confirm that the authorized signatory of the selected bank account authorizes the debit on the bank account and that no other authorization is required.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
@@ -23,24 +18,11 @@ public enum V1PayoutsReverseMethods {
     ///   information about the object in a structured format. Individual keys can be
     ///   unset by posting an empty value to them. All keys can be unset by posting an
     ///   empty value to `metadata`.
-    public static func postPayoutsPayoutReverse(
-        config: ClientConfig,
-        payout: String,
-        expand: [String]?,
-        metadata: [String: String]?
-    ) async throws -> Payout {
+    public static func postPayoutsPayoutReverse(config: ClientConfig, payout: String, expand: [String]?, metadata: [String: String]?) async throws -> Payout {
         try validateLength("payout", payout, max: 5000)
 
         let requestBody = PostPayoutsPayoutReverseRequestBody(expand: expand, metadata: metadata)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/payouts/", sdkEncodePathSegment(sdkWireString(payout)), "/reverse"].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostPayoutsPayoutReverse"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/payouts/", sdkEncodePathSegment(sdkWireString(payout)), "/reverse"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostPayoutsPayoutReverse")).data
     }
 }

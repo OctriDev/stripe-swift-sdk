@@ -7,14 +7,9 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1TestHelpersIssuingTransactionsCreateUnlinkedRefund operation model declarations
-public extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX435dcbb545 {
-    init(
-        cardholderPromptData: PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX073948ab52? = nil,
-        purchaseType: PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX2e9bfeaa99? = nil,
-        reportedBreakdown: PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX86369463c8? = nil,
-        serviceType: PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX873a65d4f1? = nil
-    ) throws {
+// Canonical v1TestHelpersIssuingTransactionsCreateUnlinkedRefund operation model declarations
+extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX435dcbb545 {
+    public init(cardholderPromptData: PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX073948ab52? = nil, purchaseType: PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX2e9bfeaa99? = nil, reportedBreakdown: PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX86369463c8? = nil, serviceType: PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX873a65d4f1? = nil) throws {
         self.init()
         (self.cardholderPromptData, self.purchaseType) = (cardholderPromptData, purchaseType)
         (self.reportedBreakdown, self.serviceType) = (reportedBreakdown, serviceType)
@@ -52,39 +47,29 @@ public struct PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestXa21a
     }
 
     init() {
-        (category, city, country, name, networkId) = (nil, nil, nil, nil, nil)
-        (postalCode, state, terminalId, url) = (nil, nil, nil, nil)
+        (self.category, self.city, self.country, self.name, self.networkId) = (nil, nil, nil, nil, nil)
+        (self.postalCode, self.state, self.terminalId, self.url) = (nil, nil, nil, nil)
     }
 }
 
-public extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestXa21a1acd5b {
-    init(from decoder: Decoder) throws {
+extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestXa21a1acd5b {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        category = try container.sdkDecodeIfPresent(.category)
-        city = try container.sdkDecodeIfPresent(.city)
-        country = try container.sdkDecodeIfPresent(.country)
-        name = try container.sdkDecodeIfPresent(.name)
-        networkId = try container.sdkDecodeIfPresent(.networkId)
-        postalCode = try container.sdkDecodeIfPresent(.postalCode)
-        state = try container.sdkDecodeIfPresent(.state)
-        terminalId = try container.sdkDecodeIfPresent(.terminalId)
-        url = try container.sdkDecodeIfPresent(.url)
+        self.category = try container.sdkDecodeIfPresent(.category)
+        self.city = try container.sdkDecodeIfPresent(.city)
+        self.country = try container.sdkDecodeIfPresent(.country)
+        self.name = try container.sdkDecodeIfPresent(.name)
+        self.networkId = try container.sdkDecodeIfPresent(.networkId)
+        self.postalCode = try container.sdkDecodeIfPresent(.postalCode)
+        self.state = try container.sdkDecodeIfPresent(.state)
+        self.terminalId = try container.sdkDecodeIfPresent(.terminalId)
+        self.url = try container.sdkDecodeIfPresent(.url)
         try sdkValidateConstraints()
     }
 }
 
-public extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestXa21a1acd5b {
-    init(
-        category: PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a? = nil,
-        city: String? = nil,
-        country: String? = nil,
-        name: String? = nil,
-        networkId: String? = nil,
-        postalCode: String? = nil,
-        state: String? = nil,
-        terminalId: String? = nil,
-        url: String? = nil
-    ) throws {
+extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestXa21a1acd5b {
+    public init(category: PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a? = nil, city: String? = nil, country: String? = nil, name: String? = nil, networkId: String? = nil, postalCode: String? = nil, state: String? = nil, terminalId: String? = nil, url: String? = nil) throws {
         self.init()
         (self.category, self.city) = (category, city)
         (self.country, self.name) = (country, name)
@@ -97,31 +82,31 @@ public extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestXa
 
 extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestXa21a1acd5b {
     func sdkValidateConstraints() throws {
-        if let value = category {
+        if let value = self.category {
             try validateLength("category", sdkWireString(value), min: nil, max: 5000)
         }
-        if let value = city {
+        if let value = self.city {
             try validateLength("city", value, min: nil, max: 5000)
         }
-        if let value = country {
+        if let value = self.country {
             try validateLength("country", value, min: nil, max: 5000)
         }
-        if let value = name {
+        if let value = self.name {
             try validateLength("name", value, min: nil, max: 5000)
         }
-        if let value = networkId {
+        if let value = self.networkId {
             try validateLength("network_id", value, min: nil, max: 5000)
         }
-        if let value = postalCode {
+        if let value = self.postalCode {
             try validateLength("postal_code", value, min: nil, max: 5000)
         }
-        if let value = state {
+        if let value = self.state {
             try validateLength("state", value, min: nil, max: 5000)
         }
-        if let value = terminalId {
+        if let value = self.terminalId {
             try validateLength("terminal_id", value, min: nil, max: 5000)
         }
-        if let value = url {
+        if let value = self.url {
             try validateLength("url", value, min: nil, max: 5000)
         }
     }

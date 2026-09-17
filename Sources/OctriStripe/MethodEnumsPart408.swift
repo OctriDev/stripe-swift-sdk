@@ -33,64 +33,55 @@ struct PostSetupIntentsRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(
-            allowedPaymentMethodTypes,
-            forKey: SdkCodingKey("allowed_payment_method_types")
-        )
-        try keyedContainer.encodeIfPresent(attachToSelf, forKey: SdkCodingKey("attach_to_self"))
-        try keyedContainer.encodeIfPresent(automaticPaymentMethods, forKey: SdkCodingKey("automatic_payment_methods"))
-        try keyedContainer.encodeIfPresent(confirm, forKey: SdkCodingKey("confirm"))
-        try keyedContainer.encodeIfPresent(confirmationToken, forKey: SdkCodingKey("confirmation_token"))
-        try keyedContainer.encodeIfPresent(customer, forKey: SdkCodingKey("customer"))
-        try keyedContainer.encodeIfPresent(customerAccount, forKey: SdkCodingKey("customer_account"))
-        try keyedContainer.encodeIfPresent(description, forKey: SdkCodingKey("description"))
-        try keyedContainer.encodeIfPresent(
-            excludedPaymentMethodTypes,
-            forKey: SdkCodingKey("excluded_payment_method_types")
-        )
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(flowDirections, forKey: SdkCodingKey("flow_directions"))
-        try keyedContainer.encodeIfPresent(mandateData, forKey: SdkCodingKey("mandate_data"))
-        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
-        try keyedContainer.encodeIfPresent(onBehalfOf, forKey: SdkCodingKey("on_behalf_of"))
-        try keyedContainer.encodeIfPresent(paymentMethod, forKey: SdkCodingKey("payment_method"))
-        try keyedContainer.encodeIfPresent(
-            paymentMethodConfiguration,
-            forKey: SdkCodingKey("payment_method_configuration")
-        )
-        try keyedContainer.encodeIfPresent(paymentMethodData, forKey: SdkCodingKey("payment_method_data"))
-        try keyedContainer.encodeIfPresent(paymentMethodOptions, forKey: SdkCodingKey("payment_method_options"))
-        try keyedContainer.encodeIfPresent(paymentMethodTypes, forKey: SdkCodingKey("payment_method_types"))
-        try keyedContainer.encodeIfPresent(returnUrl, forKey: SdkCodingKey("return_url"))
-        try keyedContainer.encodeIfPresent(singleUse, forKey: SdkCodingKey("single_use"))
-        try keyedContainer.encodeIfPresent(usage, forKey: SdkCodingKey("usage"))
-        try keyedContainer.encodeIfPresent(useStripeSdk, forKey: SdkCodingKey("use_stripe_sdk"))
+        try keyedContainer.encodeIfPresent(self.allowedPaymentMethodTypes, forKey: SdkCodingKey("allowed_payment_method_types"))
+        try keyedContainer.encodeIfPresent(self.attachToSelf, forKey: SdkCodingKey("attach_to_self"))
+        try keyedContainer.encodeIfPresent(self.automaticPaymentMethods, forKey: SdkCodingKey("automatic_payment_methods"))
+        try keyedContainer.encodeIfPresent(self.confirm, forKey: SdkCodingKey("confirm"))
+        try keyedContainer.encodeIfPresent(self.confirmationToken, forKey: SdkCodingKey("confirmation_token"))
+        try keyedContainer.encodeIfPresent(self.customer, forKey: SdkCodingKey("customer"))
+        try keyedContainer.encodeIfPresent(self.customerAccount, forKey: SdkCodingKey("customer_account"))
+        try keyedContainer.encodeIfPresent(self.description, forKey: SdkCodingKey("description"))
+        try keyedContainer.encodeIfPresent(self.excludedPaymentMethodTypes, forKey: SdkCodingKey("excluded_payment_method_types"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.flowDirections, forKey: SdkCodingKey("flow_directions"))
+        try keyedContainer.encodeIfPresent(self.mandateData, forKey: SdkCodingKey("mandate_data"))
+        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encodeIfPresent(self.onBehalfOf, forKey: SdkCodingKey("on_behalf_of"))
+        try keyedContainer.encodeIfPresent(self.paymentMethod, forKey: SdkCodingKey("payment_method"))
+        try keyedContainer.encodeIfPresent(self.paymentMethodConfiguration, forKey: SdkCodingKey("payment_method_configuration"))
+        try keyedContainer.encodeIfPresent(self.paymentMethodData, forKey: SdkCodingKey("payment_method_data"))
+        try keyedContainer.encodeIfPresent(self.paymentMethodOptions, forKey: SdkCodingKey("payment_method_options"))
+        try keyedContainer.encodeIfPresent(self.paymentMethodTypes, forKey: SdkCodingKey("payment_method_types"))
+        try keyedContainer.encodeIfPresent(self.returnUrl, forKey: SdkCodingKey("return_url"))
+        try keyedContainer.encodeIfPresent(self.singleUse, forKey: SdkCodingKey("single_use"))
+        try keyedContainer.encodeIfPresent(self.usage, forKey: SdkCodingKey("usage"))
+        try keyedContainer.encodeIfPresent(self.useStripeSdk, forKey: SdkCodingKey("use_stripe_sdk"))
     }
 
     init(options: V1SetupIntentsMethods.PostSetupIntentsOptions) {
-        allowedPaymentMethodTypes = options.allowedPaymentMethodTypes
-        attachToSelf = options.attachToSelf
-        automaticPaymentMethods = options.automaticPaymentMethods
-        confirm = options.confirm
-        confirmationToken = options.confirmationToken
-        customer = options.customer
-        customerAccount = options.customerAccount
-        description = options.description
-        excludedPaymentMethodTypes = options.excludedPaymentMethodTypes
-        expand = options.expand
-        flowDirections = options.flowDirections
-        mandateData = options.mandateData
-        metadata = options.metadata
-        onBehalfOf = options.onBehalfOf
-        paymentMethod = options.paymentMethod
-        paymentMethodConfiguration = options.paymentMethodConfiguration
-        paymentMethodData = options.paymentMethodData
-        paymentMethodOptions = options.paymentMethodOptions
-        paymentMethodTypes = options.paymentMethodTypes
-        returnUrl = options.returnUrl
-        singleUse = options.singleUse
-        usage = options.usage
-        useStripeSdk = options.useStripeSdk
+        self.allowedPaymentMethodTypes = options.allowedPaymentMethodTypes
+        self.attachToSelf = options.attachToSelf
+        self.automaticPaymentMethods = options.automaticPaymentMethods
+        self.confirm = options.confirm
+        self.confirmationToken = options.confirmationToken
+        self.customer = options.customer
+        self.customerAccount = options.customerAccount
+        self.description = options.description
+        self.excludedPaymentMethodTypes = options.excludedPaymentMethodTypes
+        self.expand = options.expand
+        self.flowDirections = options.flowDirections
+        self.mandateData = options.mandateData
+        self.metadata = options.metadata
+        self.onBehalfOf = options.onBehalfOf
+        self.paymentMethod = options.paymentMethod
+        self.paymentMethodConfiguration = options.paymentMethodConfiguration
+        self.paymentMethodData = options.paymentMethodData
+        self.paymentMethodOptions = options.paymentMethodOptions
+        self.paymentMethodTypes = options.paymentMethodTypes
+        self.returnUrl = options.returnUrl
+        self.singleUse = options.singleUse
+        self.usage = options.usage
+        self.useStripeSdk = options.useStripeSdk
     }
 }
 
@@ -112,46 +103,37 @@ struct PostSetupIntentsIntentRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(
-            allowedPaymentMethodTypes,
-            forKey: SdkCodingKey("allowed_payment_method_types")
-        )
-        try keyedContainer.encodeIfPresent(attachToSelf, forKey: SdkCodingKey("attach_to_self"))
-        try keyedContainer.encodeIfPresent(customer, forKey: SdkCodingKey("customer"))
-        try keyedContainer.encodeIfPresent(customerAccount, forKey: SdkCodingKey("customer_account"))
-        try keyedContainer.encodeIfPresent(description, forKey: SdkCodingKey("description"))
-        try keyedContainer.encodeIfPresent(
-            excludedPaymentMethodTypes,
-            forKey: SdkCodingKey("excluded_payment_method_types")
-        )
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(flowDirections, forKey: SdkCodingKey("flow_directions"))
-        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
-        try keyedContainer.encodeIfPresent(paymentMethod, forKey: SdkCodingKey("payment_method"))
-        try keyedContainer.encodeIfPresent(
-            paymentMethodConfiguration,
-            forKey: SdkCodingKey("payment_method_configuration")
-        )
-        try keyedContainer.encodeIfPresent(paymentMethodData, forKey: SdkCodingKey("payment_method_data"))
-        try keyedContainer.encodeIfPresent(paymentMethodOptions, forKey: SdkCodingKey("payment_method_options"))
-        try keyedContainer.encodeIfPresent(paymentMethodTypes, forKey: SdkCodingKey("payment_method_types"))
+        try keyedContainer.encodeIfPresent(self.allowedPaymentMethodTypes, forKey: SdkCodingKey("allowed_payment_method_types"))
+        try keyedContainer.encodeIfPresent(self.attachToSelf, forKey: SdkCodingKey("attach_to_self"))
+        try keyedContainer.encodeIfPresent(self.customer, forKey: SdkCodingKey("customer"))
+        try keyedContainer.encodeIfPresent(self.customerAccount, forKey: SdkCodingKey("customer_account"))
+        try keyedContainer.encodeIfPresent(self.description, forKey: SdkCodingKey("description"))
+        try keyedContainer.encodeIfPresent(self.excludedPaymentMethodTypes, forKey: SdkCodingKey("excluded_payment_method_types"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.flowDirections, forKey: SdkCodingKey("flow_directions"))
+        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encodeIfPresent(self.paymentMethod, forKey: SdkCodingKey("payment_method"))
+        try keyedContainer.encodeIfPresent(self.paymentMethodConfiguration, forKey: SdkCodingKey("payment_method_configuration"))
+        try keyedContainer.encodeIfPresent(self.paymentMethodData, forKey: SdkCodingKey("payment_method_data"))
+        try keyedContainer.encodeIfPresent(self.paymentMethodOptions, forKey: SdkCodingKey("payment_method_options"))
+        try keyedContainer.encodeIfPresent(self.paymentMethodTypes, forKey: SdkCodingKey("payment_method_types"))
     }
 
     init(options: V1SetupIntentsMethods.PostSetupIntentsIntentOptions) {
-        allowedPaymentMethodTypes = options.allowedPaymentMethodTypes
-        attachToSelf = options.attachToSelf
-        customer = options.customer
-        customerAccount = options.customerAccount
-        description = options.description
-        excludedPaymentMethodTypes = options.excludedPaymentMethodTypes
-        expand = options.expand
-        flowDirections = options.flowDirections
-        metadata = options.metadata
-        paymentMethod = options.paymentMethod
-        paymentMethodConfiguration = options.paymentMethodConfiguration
-        paymentMethodData = options.paymentMethodData
-        paymentMethodOptions = options.paymentMethodOptions
-        paymentMethodTypes = options.paymentMethodTypes
+        self.allowedPaymentMethodTypes = options.allowedPaymentMethodTypes
+        self.attachToSelf = options.attachToSelf
+        self.customer = options.customer
+        self.customerAccount = options.customerAccount
+        self.description = options.description
+        self.excludedPaymentMethodTypes = options.excludedPaymentMethodTypes
+        self.expand = options.expand
+        self.flowDirections = options.flowDirections
+        self.metadata = options.metadata
+        self.paymentMethod = options.paymentMethod
+        self.paymentMethodConfiguration = options.paymentMethodConfiguration
+        self.paymentMethodData = options.paymentMethodData
+        self.paymentMethodOptions = options.paymentMethodOptions
+        self.paymentMethodTypes = options.paymentMethodTypes
     }
 }
 
@@ -161,8 +143,8 @@ struct PostSetupIntentsIntentCancelRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(cancellationReason, forKey: SdkCodingKey("cancellation_reason"))
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.cancellationReason, forKey: SdkCodingKey("cancellation_reason"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
     }
 }
 
@@ -180,32 +162,29 @@ struct PostSetupIntentsIntentConfirmRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(
-            allowedPaymentMethodTypes,
-            forKey: SdkCodingKey("allowed_payment_method_types")
-        )
-        try keyedContainer.encodeIfPresent(clientSecret, forKey: SdkCodingKey("client_secret"))
-        try keyedContainer.encodeIfPresent(confirmationToken, forKey: SdkCodingKey("confirmation_token"))
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(mandateData, forKey: SdkCodingKey("mandate_data"))
-        try keyedContainer.encodeIfPresent(paymentMethod, forKey: SdkCodingKey("payment_method"))
-        try keyedContainer.encodeIfPresent(paymentMethodData, forKey: SdkCodingKey("payment_method_data"))
-        try keyedContainer.encodeIfPresent(paymentMethodOptions, forKey: SdkCodingKey("payment_method_options"))
-        try keyedContainer.encodeIfPresent(returnUrl, forKey: SdkCodingKey("return_url"))
-        try keyedContainer.encodeIfPresent(useStripeSdk, forKey: SdkCodingKey("use_stripe_sdk"))
+        try keyedContainer.encodeIfPresent(self.allowedPaymentMethodTypes, forKey: SdkCodingKey("allowed_payment_method_types"))
+        try keyedContainer.encodeIfPresent(self.clientSecret, forKey: SdkCodingKey("client_secret"))
+        try keyedContainer.encodeIfPresent(self.confirmationToken, forKey: SdkCodingKey("confirmation_token"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.mandateData, forKey: SdkCodingKey("mandate_data"))
+        try keyedContainer.encodeIfPresent(self.paymentMethod, forKey: SdkCodingKey("payment_method"))
+        try keyedContainer.encodeIfPresent(self.paymentMethodData, forKey: SdkCodingKey("payment_method_data"))
+        try keyedContainer.encodeIfPresent(self.paymentMethodOptions, forKey: SdkCodingKey("payment_method_options"))
+        try keyedContainer.encodeIfPresent(self.returnUrl, forKey: SdkCodingKey("return_url"))
+        try keyedContainer.encodeIfPresent(self.useStripeSdk, forKey: SdkCodingKey("use_stripe_sdk"))
     }
 
     init(options: V1SetupIntentsConfirmMethods.PostSetupIntentsIntentConfirmOptions) {
-        allowedPaymentMethodTypes = options.allowedPaymentMethodTypes
-        clientSecret = options.clientSecret
-        confirmationToken = options.confirmationToken
-        expand = options.expand
-        mandateData = options.mandateData
-        paymentMethod = options.paymentMethod
-        paymentMethodData = options.paymentMethodData
-        paymentMethodOptions = options.paymentMethodOptions
-        returnUrl = options.returnUrl
-        useStripeSdk = options.useStripeSdk
+        self.allowedPaymentMethodTypes = options.allowedPaymentMethodTypes
+        self.clientSecret = options.clientSecret
+        self.confirmationToken = options.confirmationToken
+        self.expand = options.expand
+        self.mandateData = options.mandateData
+        self.paymentMethod = options.paymentMethod
+        self.paymentMethodData = options.paymentMethodData
+        self.paymentMethodOptions = options.paymentMethodOptions
+        self.returnUrl = options.returnUrl
+        self.useStripeSdk = options.useStripeSdk
     }
 }
 
@@ -217,9 +196,9 @@ struct PostSetupIntentsIntentVerifyMicrodepositsRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(amounts, forKey: SdkCodingKey("amounts"))
-        try keyedContainer.encodeIfPresent(clientSecret, forKey: SdkCodingKey("client_secret"))
-        try keyedContainer.encodeIfPresent(descriptorCode, forKey: SdkCodingKey("descriptor_code"))
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.amounts, forKey: SdkCodingKey("amounts"))
+        try keyedContainer.encodeIfPresent(self.clientSecret, forKey: SdkCodingKey("client_secret"))
+        try keyedContainer.encodeIfPresent(self.descriptorCode, forKey: SdkCodingKey("descriptor_code"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
     }
 }

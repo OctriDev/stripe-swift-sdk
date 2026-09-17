@@ -6,13 +6,10 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1WebhookEndpointsMethods {
-    /// Updates the configuration of an existing webhook endpoint. Use `url`, `enabled_events`, `disabled`,
-    /// `description`, or `metadata` to change the endpoint, and use `expand` to include additional response fields. The
-    /// response contains the updated webhook endpoint.
+extension V1WebhookEndpointsMethods {
+    /// Updates the configuration of an existing webhook endpoint. Use `url`, `enabled_events`, `disabled`, `description`, or `metadata` to change the endpoint, and use `expand` to include additional response fields. The response contains the updated webhook endpoint.
     ///
-    /// Updates the webhook endpoint. You may edit the url , the list of enabled_events , and the status of your
-    /// endpoint.
+    /// Updates the webhook endpoint. You may edit the url , the list of enabled_events , and the status of your endpoint.
     ///
     /// - Parameters:
     /// - description: An optional description of what the webhook is used for.
@@ -27,35 +24,11 @@ public extension V1WebhookEndpointsMethods {
     ///   unset by posting an empty value to them. All keys can be unset by posting an
     ///   empty value to `metadata`.
     /// - url: The URL of the webhook endpoint.
-    static func postWebhookEndpointsWebhookEndpoint(
-        config: ClientConfig,
-        webhookEndpoint: String,
-        description: PostWebhookEndpointsWebhookEndpointRequestBodyDescriptionVariant1?,
-        disabled: Bool?,
-        enabledEvents: [PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem]?,
-        expand: [String]?,
-        metadata: PostWebhookEndpointsWebhookEndpointRequestBodyMetadata?,
-        url: String?
-    ) async throws -> WebhookEndpoint {
+    public static func postWebhookEndpointsWebhookEndpoint(config: ClientConfig, webhookEndpoint: String, description: PostWebhookEndpointsWebhookEndpointRequestBodyDescriptionVariant1?, disabled: Bool?, enabledEvents: [PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem]?, expand: [String]?, metadata: PostWebhookEndpointsWebhookEndpointRequestBodyMetadata?, url: String?) async throws -> WebhookEndpoint {
         try validateLength("webhook_endpoint", webhookEndpoint, max: 5000)
 
-        let requestBody = PostWebhookEndpointsWebhookEndpointRequestBody(
-            description: description,
-            disabled: disabled,
-            enabledEvents: enabledEvents,
-            expand: expand,
-            metadata: metadata,
-            url: url
-        )
+        let requestBody = PostWebhookEndpointsWebhookEndpointRequestBody(description: description, disabled: disabled, enabledEvents: enabledEvents, expand: expand, metadata: metadata, url: url)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/webhook_endpoints/", sdkEncodePathSegment(sdkWireString(webhookEndpoint))].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostWebhookEndpointsWebhookEndpoint"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/webhook_endpoints/", sdkEncodePathSegment(sdkWireString(webhookEndpoint))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostWebhookEndpointsWebhookEndpoint")).data
     }
 }

@@ -3,80 +3,44 @@
 
 import Foundation
 
-/// V1PaymentIntentNext domain models
-public extension PaymentIntentNextActionWechatPayRedirectToAndroidApp {
-    init(from decoder: Decoder) throws {
+// V1PaymentIntentNext domain models
+extension PaymentIntentNextActionWechatPayRedirectToAndroidApp {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.appId) else {
-            throw SdkValidationError(
-                field: "app_id",
-                code: "required",
-                message: "Validation failed for 'app_id': value is required"
-            )
+            throw SdkValidationError(field: "app_id", code: "required", message: "Validation failed for 'app_id': value is required")
         }
         guard container.contains(.nonceStr) else {
-            throw SdkValidationError(
-                field: "nonce_str",
-                code: "required",
-                message: "Validation failed for 'nonce_str': value is required"
-            )
+            throw SdkValidationError(field: "nonce_str", code: "required", message: "Validation failed for 'nonce_str': value is required")
         }
         guard container.contains(.package) else {
-            throw SdkValidationError(
-                field: "package",
-                code: "required",
-                message: "Validation failed for 'package': value is required"
-            )
+            throw SdkValidationError(field: "package", code: "required", message: "Validation failed for 'package': value is required")
         }
         guard container.contains(.partnerId) else {
-            throw SdkValidationError(
-                field: "partner_id",
-                code: "required",
-                message: "Validation failed for 'partner_id': value is required"
-            )
+            throw SdkValidationError(field: "partner_id", code: "required", message: "Validation failed for 'partner_id': value is required")
         }
         guard container.contains(.prepayId) else {
-            throw SdkValidationError(
-                field: "prepay_id",
-                code: "required",
-                message: "Validation failed for 'prepay_id': value is required"
-            )
+            throw SdkValidationError(field: "prepay_id", code: "required", message: "Validation failed for 'prepay_id': value is required")
         }
         guard container.contains(.sign) else {
-            throw SdkValidationError(
-                field: "sign",
-                code: "required",
-                message: "Validation failed for 'sign': value is required"
-            )
+            throw SdkValidationError(field: "sign", code: "required", message: "Validation failed for 'sign': value is required")
         }
         guard container.contains(.timestamp) else {
-            throw SdkValidationError(
-                field: "timestamp",
-                code: "required",
-                message: "Validation failed for 'timestamp': value is required"
-            )
+            throw SdkValidationError(field: "timestamp", code: "required", message: "Validation failed for 'timestamp': value is required")
         }
-        appId = try container.sdkDecodeRequired(.appId)
-        nonceStr = try container.sdkDecodeRequired(.nonceStr)
-        package = try container.sdkDecodeRequired(.package)
-        partnerId = try container.sdkDecodeRequired(.partnerId)
-        prepayId = try container.sdkDecodeRequired(.prepayId)
-        sign = try container.sdkDecodeRequired(.sign)
-        timestamp = try container.sdkDecodeRequired(.timestamp)
+        self.appId = try container.sdkDecodeRequired(.appId)
+        self.nonceStr = try container.sdkDecodeRequired(.nonceStr)
+        self.package = try container.sdkDecodeRequired(.package)
+        self.partnerId = try container.sdkDecodeRequired(.partnerId)
+        self.prepayId = try container.sdkDecodeRequired(.prepayId)
+        self.sign = try container.sdkDecodeRequired(.sign)
+        self.timestamp = try container.sdkDecodeRequired(.timestamp)
         try sdkValidateConstraints()
     }
 }
 
-public extension PaymentIntentNextActionWechatPayRedirectToAndroidApp {
-    init(
-        appId: String,
-        nonceStr: String,
-        package: String,
-        partnerId: String,
-        prepayId: String,
-        sign: String,
-        timestamp: String
-    ) throws {
+extension PaymentIntentNextActionWechatPayRedirectToAndroidApp {
+    public init(appId: String, nonceStr: String, package: String, partnerId: String, prepayId: String, sign: String, timestamp: String) throws {
         (self.appId, self.nonceStr) = (appId, nonceStr)
         (self.package, self.partnerId) = (package, partnerId)
         (self.prepayId, self.sign) = (prepayId, sign)
@@ -87,13 +51,13 @@ public extension PaymentIntentNextActionWechatPayRedirectToAndroidApp {
 
 extension PaymentIntentNextActionWechatPayRedirectToAndroidApp {
     func sdkValidateConstraints() throws {
-        try validateLength("app_id", appId, min: nil, max: 5000)
-        try validateLength("nonce_str", nonceStr, min: nil, max: 5000)
-        try validateLength("package", package, min: nil, max: 5000)
-        try validateLength("partner_id", partnerId, min: nil, max: 5000)
-        try validateLength("prepay_id", prepayId, min: nil, max: 5000)
-        try validateLength("sign", sign, min: nil, max: 5000)
-        try validateLength("timestamp", timestamp, min: nil, max: 5000)
+            try validateLength("app_id", self.appId, min: nil, max: 5000)
+            try validateLength("nonce_str", self.nonceStr, min: nil, max: 5000)
+            try validateLength("package", self.package, min: nil, max: 5000)
+            try validateLength("partner_id", self.partnerId, min: nil, max: 5000)
+            try validateLength("prepay_id", self.prepayId, min: nil, max: 5000)
+            try validateLength("sign", self.sign, min: nil, max: 5000)
+            try validateLength("timestamp", self.timestamp, min: nil, max: 5000)
     }
 }
 
@@ -106,56 +70,41 @@ public struct PaymentIntentNextActionWechatPayRedirectToIosApp: Codable {
         case nativeUrl = "native_url"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PaymentIntentNextActionWechatPayRedirectToIosApp {
-    init(from decoder: Decoder) throws {
+extension PaymentIntentNextActionWechatPayRedirectToIosApp {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.nativeUrl) else {
-            throw SdkValidationError(
-                field: "native_url",
-                code: "required",
-                message: "Validation failed for 'native_url': value is required"
-            )
+            throw SdkValidationError(field: "native_url", code: "required", message: "Validation failed for 'native_url': value is required")
         }
-        nativeUrl = try container.sdkDecodeRequired(.nativeUrl)
-        try validateLength("native_url", nativeUrl, min: nil, max: 5000)
+        self.nativeUrl = try container.sdkDecodeRequired(.nativeUrl)
+            try validateLength("native_url", self.nativeUrl, min: nil, max: 5000)
     }
 }
 
-public extension PaymentIntentNextActionWechatPayRedirectToIosApp {
-    init(nativeUrl: String) throws {
+extension PaymentIntentNextActionWechatPayRedirectToIosApp {
+    public init(nativeUrl: String) throws {
         self.nativeUrl = nativeUrl
-        try validateLength("native_url", self.nativeUrl, min: nil, max: 5000)
+            try validateLength("native_url", self.nativeUrl, min: nil, max: 5000)
     }
 }
 
 /// Type of bank transfer
-public struct PaymentIntentNextActionDisplayBankTransferInstructionsType: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PaymentIntentNextActionDisplayBankTransferInstructionsType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let euBankTransfer =
-        PaymentIntentNextActionDisplayBankTransferInstructionsType(rawValue: "eu_bank_transfer")
-    public static let gbBankTransfer =
-        PaymentIntentNextActionDisplayBankTransferInstructionsType(rawValue: "gb_bank_transfer")
-    public static let jpBankTransfer =
-        PaymentIntentNextActionDisplayBankTransferInstructionsType(rawValue: "jp_bank_transfer")
-    public static let mxBankTransfer =
-        PaymentIntentNextActionDisplayBankTransferInstructionsType(rawValue: "mx_bank_transfer")
-    public static let usBankTransfer =
-        PaymentIntentNextActionDisplayBankTransferInstructionsType(rawValue: "us_bank_transfer")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let euBankTransfer = PaymentIntentNextActionDisplayBankTransferInstructionsType(rawValue: "eu_bank_transfer")
+    public static let gbBankTransfer = PaymentIntentNextActionDisplayBankTransferInstructionsType(rawValue: "gb_bank_transfer")
+    public static let jpBankTransfer = PaymentIntentNextActionDisplayBankTransferInstructionsType(rawValue: "jp_bank_transfer")
+    public static let mxBankTransfer = PaymentIntentNextActionDisplayBankTransferInstructionsType(rawValue: "mx_bank_transfer")
+    public static let usBankTransfer = PaymentIntentNextActionDisplayBankTransferInstructionsType(rawValue: "us_bank_transfer")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -166,21 +115,16 @@ public struct PaymentIntentNextActionDisplayBankTransferInstructionsType: RawRep
 
 /// The type of the microdeposit sent to the customer. Used to distinguish between different verification
 /// methods.
-public struct PaymentIntentNextActionVerifyWithMicrodepositsMicrodepositType: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct PaymentIntentNextActionVerifyWithMicrodepositsMicrodepositType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let amounts = PaymentIntentNextActionVerifyWithMicrodepositsMicrodepositType(rawValue: "amounts")
-    public static let descriptorCode =
-        PaymentIntentNextActionVerifyWithMicrodepositsMicrodepositType(rawValue: "descriptor_code")
+    public static let descriptorCode = PaymentIntentNextActionVerifyWithMicrodepositsMicrodepositType(rawValue: "descriptor_code")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

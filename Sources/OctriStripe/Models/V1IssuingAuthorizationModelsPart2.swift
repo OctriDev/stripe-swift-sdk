@@ -3,29 +3,23 @@
 
 import Foundation
 
-/// V1IssuingAuthorization domain models
-public extension IssuingAuthorizationFuelData {
-    init(from decoder: Decoder) throws {
+// V1IssuingAuthorization domain models
+extension IssuingAuthorizationFuelData {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        industryProductCode = try container.sdkDecodeIfPresent(.industryProductCode)
-        quantityDecimal = try container.sdkDecodeIfPresent(.quantityDecimal)
-        type = try container.sdkDecodeIfPresent(.type)
-        unit = try container.sdkDecodeIfPresent(.unit)
-        unitCostDecimal = try container.sdkDecodeIfPresent(.unitCostDecimal)
-        if let value = industryProductCode {
+        self.industryProductCode = try container.sdkDecodeIfPresent(.industryProductCode)
+        self.quantityDecimal = try container.sdkDecodeIfPresent(.quantityDecimal)
+        self.type = try container.sdkDecodeIfPresent(.type)
+        self.unit = try container.sdkDecodeIfPresent(.unit)
+        self.unitCostDecimal = try container.sdkDecodeIfPresent(.unitCostDecimal)
+        if let value = self.industryProductCode {
             try validateLength("industry_product_code", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension IssuingAuthorizationFuelData {
-    init(
-        industryProductCode: String? = nil,
-        quantityDecimal: String? = nil,
-        type: IssuingAuthorizationFuelDataType? = nil,
-        unit: IssuingAuthorizationFuelDataUnit? = nil,
-        unitCostDecimal: String? = nil
-    ) throws {
+extension IssuingAuthorizationFuelData {
+    public init(industryProductCode: String? = nil, quantityDecimal: String? = nil, type: IssuingAuthorizationFuelDataType? = nil, unit: IssuingAuthorizationFuelDataUnit? = nil, unitCostDecimal: String? = nil) throws {
         self.init()
         (self.industryProductCode, self.quantityDecimal) = (industryProductCode, quantityDecimal)
         (self.type, self.unit) = (type, unit)
@@ -77,64 +71,38 @@ public struct IssuingAuthorizationMerchantData: Codable {
         case url
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension IssuingAuthorizationMerchantData {
-    init(from decoder: Decoder) throws {
+extension IssuingAuthorizationMerchantData {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.category) else {
-            throw SdkValidationError(
-                field: "category",
-                code: "required",
-                message: "Validation failed for 'category': value is required"
-            )
+            throw SdkValidationError(field: "category", code: "required", message: "Validation failed for 'category': value is required")
         }
         guard container.contains(.categoryCode) else {
-            throw SdkValidationError(
-                field: "category_code",
-                code: "required",
-                message: "Validation failed for 'category_code': value is required"
-            )
+            throw SdkValidationError(field: "category_code", code: "required", message: "Validation failed for 'category_code': value is required")
         }
         guard container.contains(.networkId) else {
-            throw SdkValidationError(
-                field: "network_id",
-                code: "required",
-                message: "Validation failed for 'network_id': value is required"
-            )
+            throw SdkValidationError(field: "network_id", code: "required", message: "Validation failed for 'network_id': value is required")
         }
-        category = try container.sdkDecodeRequired(.category)
-        categoryCode = try container.sdkDecodeRequired(.categoryCode)
-        networkId = try container.sdkDecodeRequired(.networkId)
-        city = try container.sdkDecodeIfPresent(.city)
-        country = try container.sdkDecodeIfPresent(.country)
-        name = try container.sdkDecodeIfPresent(.name)
-        postalCode = try container.sdkDecodeIfPresent(.postalCode)
-        state = try container.sdkDecodeIfPresent(.state)
-        taxId = try container.sdkDecodeIfPresent(.taxId)
-        terminalId = try container.sdkDecodeIfPresent(.terminalId)
-        url = try container.sdkDecodeIfPresent(.url)
+        self.category = try container.sdkDecodeRequired(.category)
+        self.categoryCode = try container.sdkDecodeRequired(.categoryCode)
+        self.networkId = try container.sdkDecodeRequired(.networkId)
+        self.city = try container.sdkDecodeIfPresent(.city)
+        self.country = try container.sdkDecodeIfPresent(.country)
+        self.name = try container.sdkDecodeIfPresent(.name)
+        self.postalCode = try container.sdkDecodeIfPresent(.postalCode)
+        self.state = try container.sdkDecodeIfPresent(.state)
+        self.taxId = try container.sdkDecodeIfPresent(.taxId)
+        self.terminalId = try container.sdkDecodeIfPresent(.terminalId)
+        self.url = try container.sdkDecodeIfPresent(.url)
         try sdkValidateConstraints()
     }
 }
 
-public extension IssuingAuthorizationMerchantData {
-    init(
-        category: String,
-        categoryCode: String,
-        networkId: String,
-        city: String? = nil,
-        country: String? = nil,
-        name: String? = nil,
-        postalCode: String? = nil,
-        state: String? = nil,
-        taxId: String? = nil,
-        terminalId: String? = nil,
-        url: String? = nil
-    ) throws {
+extension IssuingAuthorizationMerchantData {
+    public init(category: String, categoryCode: String, networkId: String, city: String? = nil, country: String? = nil, name: String? = nil, postalCode: String? = nil, state: String? = nil, taxId: String? = nil, terminalId: String? = nil, url: String? = nil) throws {
         (self.category, self.categoryCode) = (category, categoryCode)
         (self.networkId, self.city) = (networkId, city)
         (self.country, self.name) = (country, name)
@@ -147,31 +115,31 @@ public extension IssuingAuthorizationMerchantData {
 
 extension IssuingAuthorizationMerchantData {
     func sdkValidateConstraints() throws {
-        try validateLength("category", category, min: nil, max: 5000)
-        try validateLength("category_code", categoryCode, min: nil, max: 5000)
-        try validateLength("network_id", networkId, min: nil, max: 5000)
-        if let value = city {
+            try validateLength("category", self.category, min: nil, max: 5000)
+            try validateLength("category_code", self.categoryCode, min: nil, max: 5000)
+            try validateLength("network_id", self.networkId, min: nil, max: 5000)
+        if let value = self.city {
             try validateLength("city", value, min: nil, max: 5000)
         }
-        if let value = country {
+        if let value = self.country {
             try validateLength("country", value, min: nil, max: 5000)
         }
-        if let value = name {
+        if let value = self.name {
             try validateLength("name", value, min: nil, max: 5000)
         }
-        if let value = postalCode {
+        if let value = self.postalCode {
             try validateLength("postal_code", value, min: nil, max: 5000)
         }
-        if let value = state {
+        if let value = self.state {
             try validateLength("state", value, min: nil, max: 5000)
         }
-        if let value = taxId {
+        if let value = self.taxId {
             try validateLength("tax_id", value, min: nil, max: 5000)
         }
-        if let value = terminalId {
+        if let value = self.terminalId {
             try validateLength("terminal_id", value, min: nil, max: 5000)
         }
-        if let value = url {
+        if let value = self.url {
             try validateLength("url", value, min: nil, max: 5000)
         }
     }
@@ -196,34 +164,30 @@ public struct IssuingAuthorizationNetworkData: Codable {
     }
 
     init() {
-        (acquiringInstitutionId, systemTraceAuditNumber, transactionId) = (nil, nil, nil)
+        (self.acquiringInstitutionId, self.systemTraceAuditNumber, self.transactionId) = (nil, nil, nil)
     }
 }
 
-public extension IssuingAuthorizationNetworkData {
-    init(from decoder: Decoder) throws {
+extension IssuingAuthorizationNetworkData {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        acquiringInstitutionId = try container.sdkDecodeIfPresent(.acquiringInstitutionId)
-        systemTraceAuditNumber = try container.sdkDecodeIfPresent(.systemTraceAuditNumber)
-        transactionId = try container.sdkDecodeIfPresent(.transactionId)
-        if let value = acquiringInstitutionId {
+        self.acquiringInstitutionId = try container.sdkDecodeIfPresent(.acquiringInstitutionId)
+        self.systemTraceAuditNumber = try container.sdkDecodeIfPresent(.systemTraceAuditNumber)
+        self.transactionId = try container.sdkDecodeIfPresent(.transactionId)
+        if let value = self.acquiringInstitutionId {
             try validateLength("acquiring_institution_id", value, min: nil, max: 5000)
         }
-        if let value = systemTraceAuditNumber {
+        if let value = self.systemTraceAuditNumber {
             try validateLength("system_trace_audit_number", value, min: nil, max: 5000)
         }
-        if let value = transactionId {
+        if let value = self.transactionId {
             try validateLength("transaction_id", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension IssuingAuthorizationNetworkData {
-    init(
-        acquiringInstitutionId: String? = nil,
-        systemTraceAuditNumber: String? = nil,
-        transactionId: String? = nil
-    ) throws {
+extension IssuingAuthorizationNetworkData {
+    public init(acquiringInstitutionId: String? = nil, systemTraceAuditNumber: String? = nil, transactionId: String? = nil) throws {
         self.init()
         self.acquiringInstitutionId = acquiringInstitutionId
         (self.systemTraceAuditNumber, self.transactionId) = (systemTraceAuditNumber, transactionId)
@@ -270,69 +234,39 @@ public struct IssuingAuthorizationPendingRequest: Codable {
         case networkRiskScore = "network_risk_score"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension IssuingAuthorizationPendingRequest {
-    init(from decoder: Decoder) throws {
+extension IssuingAuthorizationPendingRequest {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.amount) else {
-            throw SdkValidationError(
-                field: "amount",
-                code: "required",
-                message: "Validation failed for 'amount': value is required"
-            )
+            throw SdkValidationError(field: "amount", code: "required", message: "Validation failed for 'amount': value is required")
         }
         guard container.contains(.currency) else {
-            throw SdkValidationError(
-                field: "currency",
-                code: "required",
-                message: "Validation failed for 'currency': value is required"
-            )
+            throw SdkValidationError(field: "currency", code: "required", message: "Validation failed for 'currency': value is required")
         }
         guard container.contains(.isAmountControllable) else {
-            throw SdkValidationError(
-                field: "is_amount_controllable",
-                code: "required",
-                message: "Validation failed for 'is_amount_controllable': value is required"
-            )
+            throw SdkValidationError(field: "is_amount_controllable", code: "required", message: "Validation failed for 'is_amount_controllable': value is required")
         }
         guard container.contains(.merchantAmount) else {
-            throw SdkValidationError(
-                field: "merchant_amount",
-                code: "required",
-                message: "Validation failed for 'merchant_amount': value is required"
-            )
+            throw SdkValidationError(field: "merchant_amount", code: "required", message: "Validation failed for 'merchant_amount': value is required")
         }
         guard container.contains(.merchantCurrency) else {
-            throw SdkValidationError(
-                field: "merchant_currency",
-                code: "required",
-                message: "Validation failed for 'merchant_currency': value is required"
-            )
+            throw SdkValidationError(field: "merchant_currency", code: "required", message: "Validation failed for 'merchant_currency': value is required")
         }
-        amount = try container.sdkDecodeRequired(.amount)
-        currency = try container.sdkDecodeRequired(.currency)
-        isAmountControllable = try container.sdkDecodeRequired(.isAmountControllable)
-        merchantAmount = try container.sdkDecodeRequired(.merchantAmount)
-        merchantCurrency = try container.sdkDecodeRequired(.merchantCurrency)
-        amountDetails = try container.sdkDecodeIfPresent(.amountDetails)
-        networkRiskScore = try container.sdkDecodeIfPresent(.networkRiskScore)
+        self.amount = try container.sdkDecodeRequired(.amount)
+        self.currency = try container.sdkDecodeRequired(.currency)
+        self.isAmountControllable = try container.sdkDecodeRequired(.isAmountControllable)
+        self.merchantAmount = try container.sdkDecodeRequired(.merchantAmount)
+        self.merchantCurrency = try container.sdkDecodeRequired(.merchantCurrency)
+        self.amountDetails = try container.sdkDecodeIfPresent(.amountDetails)
+        self.networkRiskScore = try container.sdkDecodeIfPresent(.networkRiskScore)
     }
 }
 
-public extension IssuingAuthorizationPendingRequest {
-    init(
-        amount: Int,
-        currency: String,
-        isAmountControllable: Bool,
-        merchantAmount: Int,
-        merchantCurrency: String,
-        amountDetails: IssuingAuthorizationPendingRequestAmountDetails? = nil,
-        networkRiskScore: Int? = nil
-    ) {
+extension IssuingAuthorizationPendingRequest {
+    public init(amount: Int, currency: String, isAmountControllable: Bool, merchantAmount: Int, merchantCurrency: String, amountDetails: IssuingAuthorizationPendingRequestAmountDetails? = nil, networkRiskScore: Int? = nil) {
         (self.amount, self.currency) = (amount, currency)
         (self.isAmountControllable, self.merchantAmount) = (isAmountControllable, merchantAmount)
         (self.merchantCurrency, self.amountDetails) = (merchantCurrency, amountDetails)
@@ -345,29 +279,20 @@ public enum IssuingAuthorizationPendingRequestAmountDetails {
 }
 
 extension IssuingAuthorizationPendingRequestAmountDetails: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for IssuingAuthorizationPendingRequestAmountDetails"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for IssuingAuthorizationPendingRequestAmountDetails")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container
-            .decode(IssuingAuthorizationAmountDetails.self) {
-            return .issuingAuthorizationAmountDetails(value)
-        }
+        if let value = try? container.decode(IssuingAuthorizationAmountDetails.self) { return .issuingAuthorizationAmountDetails(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -376,6 +301,7 @@ extension IssuingAuthorizationPendingRequestAmountDetails: Codable {
         case let .issuingAuthorizationAmountDetails(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// Typed representation of the `IssuingAuthorizationRequest` API schema.
@@ -432,109 +358,66 @@ public struct IssuingAuthorizationRequest: Codable {
         case requestedAt = "requested_at"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension IssuingAuthorizationRequest {
-    init(from decoder: Decoder) throws {
+extension IssuingAuthorizationRequest {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.amount) else {
-            throw SdkValidationError(
-                field: "amount",
-                code: "required",
-                message: "Validation failed for 'amount': value is required"
-            )
+            throw SdkValidationError(field: "amount", code: "required", message: "Validation failed for 'amount': value is required")
         }
         guard container.contains(.approved) else {
-            throw SdkValidationError(
-                field: "approved",
-                code: "required",
-                message: "Validation failed for 'approved': value is required"
-            )
+            throw SdkValidationError(field: "approved", code: "required", message: "Validation failed for 'approved': value is required")
         }
         guard container.contains(.created) else {
-            throw SdkValidationError(
-                field: "created",
-                code: "required",
-                message: "Validation failed for 'created': value is required"
-            )
+            throw SdkValidationError(field: "created", code: "required", message: "Validation failed for 'created': value is required")
         }
         guard container.contains(.currency) else {
-            throw SdkValidationError(
-                field: "currency",
-                code: "required",
-                message: "Validation failed for 'currency': value is required"
-            )
+            throw SdkValidationError(field: "currency", code: "required", message: "Validation failed for 'currency': value is required")
         }
         guard container.contains(.merchantAmount) else {
-            throw SdkValidationError(
-                field: "merchant_amount",
-                code: "required",
-                message: "Validation failed for 'merchant_amount': value is required"
-            )
+            throw SdkValidationError(field: "merchant_amount", code: "required", message: "Validation failed for 'merchant_amount': value is required")
         }
         guard container.contains(.merchantCurrency) else {
-            throw SdkValidationError(
-                field: "merchant_currency",
-                code: "required",
-                message: "Validation failed for 'merchant_currency': value is required"
-            )
+            throw SdkValidationError(field: "merchant_currency", code: "required", message: "Validation failed for 'merchant_currency': value is required")
         }
         guard container.contains(.reason) else {
-            throw SdkValidationError(
-                field: "reason",
-                code: "required",
-                message: "Validation failed for 'reason': value is required"
-            )
+            throw SdkValidationError(field: "reason", code: "required", message: "Validation failed for 'reason': value is required")
         }
-        amount = try container.sdkDecodeRequired(.amount)
-        approved = try container.sdkDecodeRequired(.approved)
-        created = try container.sdkDecodeRequired(.created)
-        currency = try container.sdkDecodeRequired(.currency)
-        merchantAmount = try container.sdkDecodeRequired(.merchantAmount)
-        merchantCurrency = try container.sdkDecodeRequired(.merchantCurrency)
-        reason = try container.sdkDecodeRequired(.reason)
-        amountDetails = try container.sdkDecodeIfPresent(.amountDetails)
-        authorizationCode = try container.sdkDecodeIfPresent(.authorizationCode)
-        networkRiskScore = try container.sdkDecodeIfPresent(.networkRiskScore)
-        reasonMessage = try container.sdkDecodeIfPresent(.reasonMessage)
-        requestedAt = try container.sdkDecodeIfPresent(.requestedAt)
-        try validateLength("currency", currency, min: nil, max: 5000)
-        try validateLength("merchant_currency", merchantCurrency, min: nil, max: 5000)
-        if let value = authorizationCode {
+        self.amount = try container.sdkDecodeRequired(.amount)
+        self.approved = try container.sdkDecodeRequired(.approved)
+        self.created = try container.sdkDecodeRequired(.created)
+        self.currency = try container.sdkDecodeRequired(.currency)
+        self.merchantAmount = try container.sdkDecodeRequired(.merchantAmount)
+        self.merchantCurrency = try container.sdkDecodeRequired(.merchantCurrency)
+        self.reason = try container.sdkDecodeRequired(.reason)
+        self.amountDetails = try container.sdkDecodeIfPresent(.amountDetails)
+        self.authorizationCode = try container.sdkDecodeIfPresent(.authorizationCode)
+        self.networkRiskScore = try container.sdkDecodeIfPresent(.networkRiskScore)
+        self.reasonMessage = try container.sdkDecodeIfPresent(.reasonMessage)
+        self.requestedAt = try container.sdkDecodeIfPresent(.requestedAt)
+            try validateLength("currency", self.currency, min: nil, max: 5000)
+            try validateLength("merchant_currency", self.merchantCurrency, min: nil, max: 5000)
+        if let value = self.authorizationCode {
             try validateLength("authorization_code", value, min: nil, max: 5000)
         }
-        if let value = reasonMessage {
+        if let value = self.reasonMessage {
             try validateLength("reason_message", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension IssuingAuthorizationRequest {
-    init(
-        amount: Int,
-        approved: Bool,
-        created: Int,
-        currency: String,
-        merchantAmount: Int,
-        merchantCurrency: String,
-        reason: IssuingAuthorizationRequestReason,
-        amountDetails: IssuingAuthorizationRequestAmountDetails? = nil,
-        authorizationCode: String? = nil,
-        networkRiskScore: Int? = nil,
-        reasonMessage: String? = nil,
-        requestedAt: Int? = nil
-    ) throws {
+extension IssuingAuthorizationRequest {
+    public init(amount: Int, approved: Bool, created: Int, currency: String, merchantAmount: Int, merchantCurrency: String, reason: IssuingAuthorizationRequestReason, amountDetails: IssuingAuthorizationRequestAmountDetails? = nil, authorizationCode: String? = nil, networkRiskScore: Int? = nil, reasonMessage: String? = nil, requestedAt: Int? = nil) throws {
         (self.amount, self.approved) = (amount, approved)
         (self.created, self.currency) = (created, currency)
         (self.merchantAmount, self.merchantCurrency) = (merchantAmount, merchantCurrency)
         (self.reason, self.amountDetails) = (reason, amountDetails)
         (self.authorizationCode, self.networkRiskScore) = (authorizationCode, networkRiskScore)
         (self.reasonMessage, self.requestedAt) = (reasonMessage, requestedAt)
-        try validateLength("currency", self.currency, min: nil, max: 5000)
-        try validateLength("merchant_currency", self.merchantCurrency, min: nil, max: 5000)
+            try validateLength("currency", self.currency, min: nil, max: 5000)
+            try validateLength("merchant_currency", self.merchantCurrency, min: nil, max: 5000)
         if let value = self.authorizationCode {
             try validateLength("authorization_code", value, min: nil, max: 5000)
         }
@@ -549,29 +432,20 @@ public enum IssuingAuthorizationRequestAmountDetails {
 }
 
 extension IssuingAuthorizationRequestAmountDetails: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for IssuingAuthorizationRequestAmountDetails"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for IssuingAuthorizationRequestAmountDetails")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container
-            .decode(IssuingAuthorizationAmountDetails.self) {
-            return .issuingAuthorizationAmountDetails(value)
-        }
+        if let value = try? container.decode(IssuingAuthorizationAmountDetails.self) { return .issuingAuthorizationAmountDetails(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -580,6 +454,7 @@ extension IssuingAuthorizationRequestAmountDetails: Codable {
         case let .issuingAuthorizationAmountDetails(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// Typed representation of the `IssuingAuthorizationThreeDSecure` API schema.
@@ -591,27 +466,21 @@ public struct IssuingAuthorizationThreeDSecure: Codable {
         case result
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension IssuingAuthorizationThreeDSecure {
-    init(from decoder: Decoder) throws {
+extension IssuingAuthorizationThreeDSecure {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.result) else {
-            throw SdkValidationError(
-                field: "result",
-                code: "required",
-                message: "Validation failed for 'result': value is required"
-            )
+            throw SdkValidationError(field: "result", code: "required", message: "Validation failed for 'result': value is required")
         }
-        result = try container.sdkDecodeRequired(.result)
+        self.result = try container.sdkDecodeRequired(.result)
     }
 }
 
-public extension IssuingAuthorizationThreeDSecure {
-    init(result: IssuingAuthorizationThreeDSecureResult) {
+extension IssuingAuthorizationThreeDSecure {
+    public init(result: IssuingAuthorizationThreeDSecureResult) {
         self.result = result
     }
 }
@@ -631,7 +500,5 @@ public struct IssuingAuthorizationTreasury: Codable {
         case transaction
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }

@@ -6,9 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1TaxRegistrationsMethods {
-    /// Lists Tax Registration objects for the merchant. Use `status` to filter registrations and `ending_before` or
-    /// `starting_after` with `limit` to paginate the collection.
+extension V1TaxRegistrationsMethods {
+    /// Lists Tax Registration objects for the merchant. Use `status` to filter registrations and `ending_before` or `starting_after` with `limit` to paginate the collection.
     ///
     /// Returns a list of Tax Registration objects.
     ///
@@ -27,23 +26,16 @@ public extension V1TaxRegistrationsMethods {
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
     /// - status: The status of the Tax Registration.
-    static func getTaxRegistrations(
-        config: ClientConfig,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        startingAfter: String?,
-        status: GetTaxRegistrationsParameter?
-    ) async throws -> GetTaxRegistrationsResponse {
-        if let endingBefore {
+    public static func getTaxRegistrations(config: ClientConfig, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?, status: GetTaxRegistrationsParameter?) async throws -> GetTaxRegistrationsResponse {
+        if let endingBefore = endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let startingAfter {
+        if let startingAfter = startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try await (sdkRequest("GET", "/v1/tax/registrations", config: config, query: [
+        return try (await sdkRequest("GET", "/v1/tax/registrations", config: config, query: [
             SdkQueryParameter("ending_before", value: endingBefore),
             SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
             SdkQueryParameter("limit", value: limit),

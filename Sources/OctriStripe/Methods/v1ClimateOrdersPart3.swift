@@ -6,9 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1ClimateOrdersMethods {
-    /// Creates a Climate order object for a given Climate product. The order will be processed immediately after
-    /// creation and payment will be deducted your Stripe balance.
+extension V1ClimateOrdersMethods {
+    /// Creates a Climate order object for a given Climate product. The order will be processed immediately after creation and payment will be deducted your Stripe balance.
     ///
     /// - Parameters:
     /// - product: Unique identifier of the Climate product.
@@ -29,40 +28,15 @@ public extension V1ClimateOrdersMethods {
     ///   empty value to `metadata`.
     /// - metricTons: Requested number of tons for the order. Either this or
     ///   `amount` must be specified.
-    static func postClimateOrders(
-        config: ClientConfig,
-        product: String,
-        amount: Int?,
-        beneficiary: PostClimateOrdersRequestBodyBeneficiary?,
-        currency: String?,
-        expand: [String]?,
-        metadata: [String: String]?,
-        metricTons: String?
-    ) async throws -> ClimateOrder {
+    public static func postClimateOrders(config: ClientConfig, product: String, amount: Int?, beneficiary: PostClimateOrdersRequestBodyBeneficiary?, currency: String?, expand: [String]?, metadata: [String: String]?, metricTons: String?) async throws -> ClimateOrder {
         try validateLength("product", product, max: 5000)
 
-        if let currency {
+        if let currency = currency {
             try validateLength("currency", currency, max: 5000)
         }
 
-        let requestBody = PostClimateOrdersRequestBody(
-            product: product,
-            amount: amount,
-            beneficiary: beneficiary,
-            currency: currency,
-            expand: expand,
-            metadata: metadata,
-            metricTons: metricTons
-        )
+        let requestBody = PostClimateOrdersRequestBody(product: product, amount: amount, beneficiary: beneficiary, currency: currency, expand: expand, metadata: metadata, metricTons: metricTons)
 
-        return try await (sdkRequest(
-            "POST",
-            "/v1/climate/orders",
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostClimateOrders"
-        )).data
+        return try (await sdkRequest("POST", "/v1/climate/orders", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostClimateOrders")).data
     }
 }

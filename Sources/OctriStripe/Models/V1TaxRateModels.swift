@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1TaxRate domain models
+// V1TaxRate domain models
 /// Tax rates can be applied to invoices, subscriptions and Checkout Sessions to collect tax. Related guide: Tax
 /// rates
 public struct TaxRate: Codable {
@@ -77,70 +77,49 @@ public struct TaxRate: Codable {
         case taxType = "tax_type"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension TaxRate {
-    init(from decoder: Decoder) throws {
+extension TaxRate {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        active = try container.sdkDecodeRequired(.active)
-        created = try container.sdkDecodeRequired(.created)
-        displayName = try container.sdkDecodeRequired(.displayName)
-        id = try container.sdkDecodeRequired(.id)
-        inclusive = try container.sdkDecodeRequired(.inclusive)
-        livemode = try container.sdkDecodeRequired(.livemode)
-        object = try container.sdkDecodeRequired(.object)
-        percentage = try container.sdkDecodeRequired(.percentage)
-        country = try container.sdkDecodeIfPresent(.country)
-        description = try container.sdkDecodeIfPresent(.description)
-        effectivePercentage = try container.sdkDecodeIfPresent(.effectivePercentage)
-        flatAmount = try container.sdkDecodeIfPresent(.flatAmount)
-        jurisdiction = try container.sdkDecodeIfPresent(.jurisdiction)
-        jurisdictionLevel = try container.sdkDecodeIfPresent(.jurisdictionLevel)
-        metadata = try container.sdkDecodeIfPresent(.metadata)
-        rateType = try container.sdkDecodeIfPresent(.rateType)
-        state = try container.sdkDecodeIfPresent(.state)
-        taxType = try container.sdkDecodeIfPresent(.taxType)
-        try validateLength("display_name", displayName, min: nil, max: 5000)
-        try validateLength("id", id, min: nil, max: 5000)
-        if let value = country {
+        self.active = try container.sdkDecodeRequired(.active)
+        self.created = try container.sdkDecodeRequired(.created)
+        self.displayName = try container.sdkDecodeRequired(.displayName)
+        self.id = try container.sdkDecodeRequired(.id)
+        self.inclusive = try container.sdkDecodeRequired(.inclusive)
+        self.livemode = try container.sdkDecodeRequired(.livemode)
+        self.object = try container.sdkDecodeRequired(.object)
+        self.percentage = try container.sdkDecodeRequired(.percentage)
+        self.country = try container.sdkDecodeIfPresent(.country)
+        self.description = try container.sdkDecodeIfPresent(.description)
+        self.effectivePercentage = try container.sdkDecodeIfPresent(.effectivePercentage)
+        self.flatAmount = try container.sdkDecodeIfPresent(.flatAmount)
+        self.jurisdiction = try container.sdkDecodeIfPresent(.jurisdiction)
+        self.jurisdictionLevel = try container.sdkDecodeIfPresent(.jurisdictionLevel)
+        self.metadata = try container.sdkDecodeIfPresent(.metadata)
+        self.rateType = try container.sdkDecodeIfPresent(.rateType)
+        self.state = try container.sdkDecodeIfPresent(.state)
+        self.taxType = try container.sdkDecodeIfPresent(.taxType)
+            try validateLength("display_name", self.displayName, min: nil, max: 5000)
+            try validateLength("id", self.id, min: nil, max: 5000)
+        if let value = self.country {
             try validateLength("country", value, min: nil, max: 5000)
         }
-        if let value = description {
+        if let value = self.description {
             try validateLength("description", value, min: nil, max: 5000)
         }
-        if let value = jurisdiction {
+        if let value = self.jurisdiction {
             try validateLength("jurisdiction", value, min: nil, max: 5000)
         }
-        if let value = state {
+        if let value = self.state {
             try validateLength("state", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension TaxRate {
-    init(
-        active: Bool,
-        created: Int,
-        displayName: String,
-        id: String,
-        inclusive: Bool,
-        livemode: Bool,
-        object: TaxRateObject,
-        percentage: Double,
-        country: String? = nil,
-        description: String? = nil,
-        effectivePercentage: Double? = nil,
-        flatAmount: TaxRateFlatAmountX8c668128? = nil,
-        jurisdiction: String? = nil,
-        jurisdictionLevel: TaxRateJurisdictionLevel? = nil,
-        metadata: [String: String]? = nil,
-        rateType: TaxRateRateType? = nil,
-        state: String? = nil,
-        taxType: TaxRateTaxType? = nil
-    ) throws {
+extension TaxRate {
+    public init(active: Bool, created: Int, displayName: String, id: String, inclusive: Bool, livemode: Bool, object: TaxRateObject, percentage: Double, country: String? = nil, description: String? = nil, effectivePercentage: Double? = nil, flatAmount: TaxRateFlatAmountX8c668128? = nil, jurisdiction: String? = nil, jurisdictionLevel: TaxRateJurisdictionLevel? = nil, metadata: [String: String]? = nil, rateType: TaxRateRateType? = nil, state: String? = nil, taxType: TaxRateTaxType? = nil) throws {
         (self.active, self.created) = (active, created)
         (self.displayName, self.id) = (displayName, id)
         (self.inclusive, self.livemode) = (inclusive, livemode)
@@ -150,8 +129,8 @@ public extension TaxRate {
         (self.jurisdiction, self.jurisdictionLevel) = (jurisdiction, jurisdictionLevel)
         (self.metadata, self.rateType) = (metadata, rateType)
         (self.state, self.taxType) = (state, taxType)
-        try validateLength("display_name", self.displayName, min: nil, max: 5000)
-        try validateLength("id", self.id, min: nil, max: 5000)
+            try validateLength("display_name", self.displayName, min: nil, max: 5000)
+            try validateLength("id", self.id, min: nil, max: 5000)
         if let value = self.country {
             try validateLength("country", value, min: nil, max: 5000)
         }
@@ -172,28 +151,20 @@ public enum TaxRateFlatAmountX8c668128 {
 }
 
 extension TaxRateFlatAmountX8c668128: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for TaxRateFlatAmountX8c668128"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for TaxRateFlatAmountX8c668128")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(TaxRateFlatAmount.self) {
-            return .taxRateFlatAmount(value)
-        }
+        if let value = try? container.decode(TaxRateFlatAmount.self) { return .taxRateFlatAmount(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -202,6 +173,7 @@ extension TaxRateFlatAmountX8c668128: Codable {
         case let .taxRateFlatAmount(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// The amount of the tax rate when the `rate_type`` is `flat_amount`. Tax rates with `rate_type` `percentage` can
@@ -221,38 +193,28 @@ public struct TaxRateFlatAmount: Codable {
         case currency
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension TaxRateFlatAmount {
-    init(from decoder: Decoder) throws {
+extension TaxRateFlatAmount {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.amount) else {
-            throw SdkValidationError(
-                field: "amount",
-                code: "required",
-                message: "Validation failed for 'amount': value is required"
-            )
+            throw SdkValidationError(field: "amount", code: "required", message: "Validation failed for 'amount': value is required")
         }
         guard container.contains(.currency) else {
-            throw SdkValidationError(
-                field: "currency",
-                code: "required",
-                message: "Validation failed for 'currency': value is required"
-            )
+            throw SdkValidationError(field: "currency", code: "required", message: "Validation failed for 'currency': value is required")
         }
-        amount = try container.sdkDecodeRequired(.amount)
-        currency = try container.sdkDecodeRequired(.currency)
-        try validateLength("currency", currency, min: nil, max: 5000)
+        self.amount = try container.sdkDecodeRequired(.amount)
+        self.currency = try container.sdkDecodeRequired(.currency)
+            try validateLength("currency", self.currency, min: nil, max: 5000)
     }
 }
 
-public extension TaxRateFlatAmount {
-    init(amount: Int, currency: String) throws {
+extension TaxRateFlatAmount {
+    public init(amount: Int, currency: String) throws {
         (self.amount, self.currency) = (amount, currency)
-        try validateLength("currency", self.currency, min: nil, max: 5000)
+            try validateLength("currency", self.currency, min: nil, max: 5000)
     }
 }
 
@@ -260,10 +222,7 @@ public extension TaxRateFlatAmount {
 public struct TaxRateTaxType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let amusementTax = TaxRateTaxType(rawValue: "amusement_tax")
     public static let communicationsTax = TaxRateTaxType(rawValue: "communications_tax")
     public static let gst = TaxRateTaxType(rawValue: "gst")
@@ -283,7 +242,7 @@ public struct TaxRateTaxType: RawRepresentable, Hashable, Codable, Sendable, Sdk
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -297,16 +256,13 @@ public struct TaxRateTaxType: RawRepresentable, Hashable, Codable, Sendable, Sdk
 public struct TaxRateRateType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let flatAmount = TaxRateRateType(rawValue: "flat_amount")
     public static let percentage = TaxRateRateType(rawValue: "percentage")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -319,10 +275,7 @@ public struct TaxRateRateType: RawRepresentable, Hashable, Codable, Sendable, Sd
 public struct TaxRateJurisdictionLevel: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let city = TaxRateJurisdictionLevel(rawValue: "city")
     public static let country = TaxRateJurisdictionLevel(rawValue: "country")
     public static let county = TaxRateJurisdictionLevel(rawValue: "county")
@@ -332,7 +285,7 @@ public struct TaxRateJurisdictionLevel: RawRepresentable, Hashable, Codable, Sen
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -345,15 +298,12 @@ public struct TaxRateJurisdictionLevel: RawRepresentable, Hashable, Codable, Sen
 public struct TaxRateObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let taxRate = TaxRateObject(rawValue: "tax_rate")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

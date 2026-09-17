@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1PaymentMethod domain models
+// V1PaymentMethod domain models
 /// The customer's bank, if provided. Can be one of `affin_bank`, `agrobank`, `alliance_bank`, `ambank`,
 /// `bank_islam`, `bank_muamalat`, `bnp_paribas`, `bank_rakyat`, `bsn`, `cimb`, `citibank`, `hong_leong_bank`,
 /// `hsbc`, `kfh`, `maybank2u`, `ocbc`, `public_bank`, `rhb`, `standard_chartered`, `uob`, `deutsche_bank`,
@@ -11,10 +11,7 @@ import Foundation
 public struct PaymentMethodFpxBank: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let affinBank = PaymentMethodFpxBank(rawValue: "affin_bank")
     public static let agrobank = PaymentMethodFpxBank(rawValue: "agrobank")
     public static let allianceBank = PaymentMethodFpxBank(rawValue: "alliance_bank")
@@ -43,7 +40,7 @@ public struct PaymentMethodFpxBank: RawRepresentable, Hashable, Codable, Sendabl
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -56,10 +53,7 @@ public struct PaymentMethodFpxBank: RawRepresentable, Hashable, Codable, Sendabl
 public struct PaymentMethodKrCardBrand: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let bc = PaymentMethodKrCardBrand(rawValue: "bc")
     public static let citi = PaymentMethodKrCardBrand(rawValue: "citi")
     public static let hana = PaymentMethodKrCardBrand(rawValue: "hana")
@@ -85,7 +79,7 @@ public struct PaymentMethodKrCardBrand: RawRepresentable, Hashable, Codable, Sen
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

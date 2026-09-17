@@ -9,24 +9,11 @@ public class V1BillingMeterEventAdjustmentsNamespace {
         self.config = config
     }
 
-    /// Creates a billing meter event adjustment that cancels a meter event. Supply `event_name` and set `type` to
-    /// `cancel`; use `cancel.identifier` to identify the event when applicable. Time-period cancellation is not
-    /// supported by the declared schema.
+/// Creates a billing meter event adjustment that cancels a meter event. Supply `event_name` and set `type` to `cancel`; use `cancel.identifier` to identify the event when applicable. Time-period cancellation is not supported by the declared schema.
     ///
     /// Creates a billing meter event adjustment.
-    public func postBilling(
-        eventName: String,
-        type: PostBillingMeterEventAdjustmentsRequestBodyType,
-        cancel: PostBillingMeterEventAdjustmentsRequestBodyCancel?,
-        expand: [String]?
-    ) async throws -> BillingMeterEventAdjustment {
-        try await V1BillingMeterEventAdjustmentsMethods.postBillingMeterEventAdjustments(
-            config: config,
-            eventName: eventName,
-            type: type,
-            cancel: cancel,
-            expand: expand
-        )
+    public func postBilling(eventName: String, type: PostBillingMeterEventAdjustmentsRequestBodyType, cancel: PostBillingMeterEventAdjustmentsRequestBodyCancel?, expand: [String]?) async throws -> BillingMeterEventAdjustment {
+        return try await V1BillingMeterEventAdjustmentsMethods.postBillingMeterEventAdjustments(config: config, eventName: eventName, type: type, cancel: cancel, expand: expand)
     }
 }
 
@@ -36,26 +23,11 @@ public class V1BillingMeterEventsNamespace {
         self.config = config
     }
 
-    /// Creates a billing meter event for recording customer usage. Supply `event_name` and a `payload` containing the
-    /// customer mapping and measured value fields expected by the meter. You can provide an `identifier` for retry-safe
-    /// uniqueness and a Unix timestamp within the permitted event window.
+/// Creates a billing meter event for recording customer usage. Supply `event_name` and a `payload` containing the customer mapping and measured value fields expected by the meter. You can provide an `identifier` for retry-safe uniqueness and a Unix timestamp within the permitted event window.
     ///
     /// Creates a billing meter event.
-    public func postBilling(
-        eventName: String,
-        payload: [String: String],
-        expand: [String]?,
-        identifier: String?,
-        timestamp: Int?
-    ) async throws -> BillingMeterEvent {
-        try await V1BillingMeterEventsMethods.postBillingMeterEvents(
-            config: config,
-            eventName: eventName,
-            payload: payload,
-            expand: expand,
-            identifier: identifier,
-            timestamp: timestamp
-        )
+    public func postBilling(eventName: String, payload: [String: String], expand: [String]?, identifier: String?, timestamp: Int?) async throws -> BillingMeterEvent {
+        return try await V1BillingMeterEventsMethods.postBillingMeterEvents(config: config, eventName: eventName, payload: payload, expand: expand, identifier: identifier, timestamp: timestamp)
     }
 }
 
@@ -65,13 +37,11 @@ public class V1BillingMetersDeactivateNamespace {
         self.config = config
     }
 
-    /// Deactivates a billing meter so that it no longer accepts meter events. You also cannot attach a deactivated
-    /// meter to a price; use `expand` when the response should include expanded fields.
+/// Deactivates a billing meter so that it no longer accepts meter events. You also cannot attach a deactivated meter to a price; use `expand` when the response should include expanded fields.
     ///
-    /// When a meter is deactivated, no more meter events will be accepted for this meter. You can’t attach a
-    /// deactivated meter to a price.
+    /// When a meter is deactivated, no more meter events will be accepted for this meter. You can’t attach a deactivated meter to a price.
     public func postBillingMetersId(id: String, expand: [String]?) async throws -> BillingMeter {
-        try await V1BillingMetersDeactivateMethods.postBillingMetersIdDeactivate(config: config, id: id, expand: expand)
+        return try await V1BillingMetersDeactivateMethods.postBillingMetersIdDeactivate(config: config, id: id, expand: expand)
     }
 }
 
@@ -81,17 +51,11 @@ public class V1BillingMetersEventSummariesNamespace {
         self.config = config
     }
 
-    /// Lists aggregated event summaries for a billing meter and customer over a specified time range. Supply
-    /// `start_time` and `end_time` on minute boundaries, and use `value_grouping_window` to request hourly or daily
-    /// aggregation; summaries are generated asynchronously.
+/// Lists aggregated event summaries for a billing meter and customer over a specified time range. Supply `start_time` and `end_time` on minute boundaries, and use `value_grouping_window` to request hourly or daily aggregation; summaries are generated asynchronously.
     ///
     /// Retrieve a list of billing meter event summaries.
-    public func getBillingMetersId(options: V1BillingMetersEventSummariesMethods
-        .GetBillingMetersIdEventSummariesOptions) async throws -> GetBillingMetersIdEventSummariesResponse {
-        try await V1BillingMetersEventSummariesMethods.getBillingMetersIdEventSummaries(
-            config: config,
-            options: options
-        )
+    public func getBillingMetersId(options: V1BillingMetersEventSummariesMethods.GetBillingMetersIdEventSummariesOptions) async throws -> GetBillingMetersIdEventSummariesResponse {
+        return try await V1BillingMetersEventSummariesMethods.getBillingMetersIdEventSummaries(config: config, options: options)
     }
 }
 
@@ -101,12 +65,11 @@ public class V1BillingMetersReactivateNamespace {
         self.config = config
     }
 
-    /// Reactivates a billing meter so that it can accept meter events again. You can also attach the reactivated meter
-    /// to a price; use `expand` when the response should include expanded fields.
+/// Reactivates a billing meter so that it can accept meter events again. You can also attach the reactivated meter to a price; use `expand` when the response should include expanded fields.
     ///
     /// When a meter is reactivated, events for this meter can be accepted and you can attach the meter to a price.
     public func postBillingMetersId(id: String, expand: [String]?) async throws -> BillingMeter {
-        try await V1BillingMetersReactivateMethods.postBillingMetersIdReactivate(config: config, id: id, expand: expand)
+        return try await V1BillingMetersReactivateMethods.postBillingMetersIdReactivate(config: config, id: id, expand: expand)
     }
 }
 
@@ -122,74 +85,32 @@ public class V1BillingMetersNamespace {
         reactivate = V1BillingMetersReactivateNamespace(config: config)
     }
 
-    /// Lists billing meters that define how meter events are aggregated over a billing period. Use `status` to filter
-    /// active or inactive meters and cursor parameters to navigate the results. The response includes meter records and
-    /// list pagination metadata.
+/// Lists billing meters that define how meter events are aggregated over a billing period. Use `status` to filter active or inactive meters and cursor parameters to navigate the results. The response includes meter records and list pagination metadata.
     ///
     /// Retrieve a list of billing meters.
-    public func getBilling(
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        startingAfter: String?,
-        status: GetBillingMetersParameter?
-    ) async throws -> GetBillingMetersResponse {
-        try await V1BillingMetersMethods.getBillingMeters(
-            config: config,
-            endingBefore: endingBefore,
-            expand: expand,
-            limit: limit,
-            startingAfter: startingAfter,
-            status: status
-        )
+    public func getBilling(endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?, status: GetBillingMetersParameter?) async throws -> GetBillingMetersResponse {
+        return try await V1BillingMetersMethods.getBillingMeters(config: config, endingBefore: endingBefore, expand: expand, limit: limit, startingAfter: startingAfter, status: status)
     }
 
-    /// Creates a billing meter that defines how usage events are aggregated for billing. Supply `display_name`,
-    /// `event_name`, and `default_aggregation`, and configure customer mapping or value extraction when those settings
-    /// are needed. The created meter includes its lifecycle status and aggregation configuration.
+/// Creates a billing meter that defines how usage events are aggregated for billing. Supply `display_name`, `event_name`, and `default_aggregation`, and configure customer mapping or value extraction when those settings are needed. The created meter includes its lifecycle status and aggregation configuration.
     ///
     /// Creates a billing meter.
-    public func postBilling(
-        defaultAggregation: PostBillingMetersRequestBodyDefaultAggregation,
-        displayName: String,
-        eventName: String,
-        customerMapping: PostBillingMetersRequestBodyCustomerMapping?,
-        eventTimeWindow: PostBillingMetersRequestBodyEventTimeWindow?,
-        expand: [String]?,
-        valueSettings: PostBillingMetersRequestBodyValueSettings?
-    ) async throws -> BillingMeter {
-        try await V1BillingMetersMethods.postBillingMeters(
-            config: config,
-            defaultAggregation: defaultAggregation,
-            displayName: displayName,
-            eventName: eventName,
-            customerMapping: customerMapping,
-            eventTimeWindow: eventTimeWindow,
-            expand: expand,
-            valueSettings: valueSettings
-        )
+    public func postBilling(defaultAggregation: PostBillingMetersRequestBodyDefaultAggregation, displayName: String, eventName: String, customerMapping: PostBillingMetersRequestBodyCustomerMapping?, eventTimeWindow: PostBillingMetersRequestBodyEventTimeWindow?, expand: [String]?, valueSettings: PostBillingMetersRequestBodyValueSettings?) async throws -> BillingMeter {
+        return try await V1BillingMetersMethods.postBillingMeters(config: config, defaultAggregation: defaultAggregation, displayName: displayName, eventName: eventName, customerMapping: customerMapping, eventTimeWindow: eventTimeWindow, expand: expand, valueSettings: valueSettings)
     }
 
-    /// Retrieves a billing meter by its unique identifier. Use `id` to select the meter and `expand` to include
-    /// expanded response fields. The response contains the meter's event configuration, aggregation settings, lifecycle
-    /// status, and timestamps.
+/// Retrieves a billing meter by its unique identifier. Use `id` to select the meter and `expand` to include expanded response fields. The response contains the meter's event configuration, aggregation settings, lifecycle status, and timestamps.
     ///
     /// Retrieves a billing meter given an ID.
     public func getBillingId(id: String, expand: [String]?) async throws -> BillingMeter {
-        try await V1BillingMetersMethods.getBillingMetersId(config: config, id: id, expand: expand)
+        return try await V1BillingMetersMethods.getBillingMetersId(config: config, id: id, expand: expand)
     }
 
-    /// Updates an existing billing meter. Supply `display_name` to change the meter name and `expand` to request
-    /// expanded response fields; the meter continues to define how usage events are aggregated for billing.
+/// Updates an existing billing meter. Supply `display_name` to change the meter name and `expand` to request expanded response fields; the meter continues to define how usage events are aggregated for billing.
     ///
     /// Updates a billing meter.
     public func postBillingId(id: String, displayName: String?, expand: [String]?) async throws -> BillingMeter {
-        try await V1BillingMetersMethods.postBillingMetersId(
-            config: config,
-            id: id,
-            displayName: displayName,
-            expand: expand
-        )
+        return try await V1BillingMetersMethods.postBillingMetersId(config: config, id: id, displayName: displayName, expand: expand)
     }
 }
 
@@ -220,77 +141,30 @@ public class V1BillingPortalConfigurationsNamespace {
         self.config = config
     }
 
-    /// Lists customer portal configurations. Filter the results by `active` or `is_default`, and use `starting_after`
-    /// or `ending_before` with `limit` to paginate the configurations.
+/// Lists customer portal configurations. Filter the results by `active` or `is_default`, and use `starting_after` or `ending_before` with `limit` to paginate the configurations.
     ///
     /// Returns a list of configurations that describe the functionality of the customer portal.
-    public func getBillingPortal(
-        active: Bool?,
-        endingBefore: String?,
-        expand: [String]?,
-        isDefault: Bool?,
-        limit: Int?,
-        startingAfter: String?
-    ) async throws -> GetBillingPortalConfigurationsResponse {
-        try await V1BillingPortalConfigurationsMethods.getBillingPortalConfigurations(
-            config: config,
-            active: active,
-            endingBefore: endingBefore,
-            expand: expand,
-            isDefault: isDefault,
-            limit: limit,
-            startingAfter: startingAfter
-        )
+    public func getBillingPortal(active: Bool?, endingBefore: String?, expand: [String]?, isDefault: Bool?, limit: Int?, startingAfter: String?) async throws -> GetBillingPortalConfigurationsResponse {
+        return try await V1BillingPortalConfigurationsMethods.getBillingPortalConfigurations(config: config, active: active, endingBefore: endingBefore, expand: expand, isDefault: isDefault, limit: limit, startingAfter: startingAfter)
     }
 
-    /// Creates a configuration that describes the functionality and behavior of a PortalSession
-    public func postBillingPortal(
-        features: PostBillingPortalConfigurationsRequestBodyFeatures,
-        businessProfile: PostBillingPortalConfigurationsRequestBodyBusinessProfile?,
-        defaultReturnUrl: String?,
-        expand: [String]?,
-        loginPage: PostBillingPortalConfigurationsRequestBodyLoginPage?,
-        metadata: [String: String]?,
-        name: PostBillingPortalConfigurationsRequestBodyNameVariant1?
-    ) async throws -> BillingPortalConfiguration {
-        try await V1BillingPortalConfigurationsMethods.postBillingPortalConfigurations(
-            config: config,
-            features: features,
-            businessProfile: businessProfile,
-            defaultReturnUrl: defaultReturnUrl,
-            expand: expand,
-            loginPage: loginPage,
-            metadata: metadata,
-            name: name
-        )
+/// Creates a configuration that describes the functionality and behavior of a PortalSession
+    public func postBillingPortal(features: PostBillingPortalConfigurationsRequestBodyFeatures, businessProfile: PostBillingPortalConfigurationsRequestBodyBusinessProfile?, defaultReturnUrl: String?, expand: [String]?, loginPage: PostBillingPortalConfigurationsRequestBodyLoginPage?, metadata: [String: String]?, name: PostBillingPortalConfigurationsRequestBodyNameVariant1?) async throws -> BillingPortalConfiguration {
+        return try await V1BillingPortalConfigurationsMethods.postBillingPortalConfigurations(config: config, features: features, businessProfile: businessProfile, defaultReturnUrl: defaultReturnUrl, expand: expand, loginPage: loginPage, metadata: metadata, name: name)
     }
 
-    /// Retrieves a customer portal configuration by its identifier. Use `expand` to include expanded fields in the
-    /// returned configuration, which describes the portal features and behavior available to customers.
+/// Retrieves a customer portal configuration by its identifier. Use `expand` to include expanded fields in the returned configuration, which describes the portal features and behavior available to customers.
     ///
     /// Retrieves a configuration that describes the functionality of the customer portal.
-    public func getBillingPortalConfiguration(
-        configuration: String,
-        expand: [String]?
-    ) async throws -> BillingPortalConfiguration {
-        try await V1BillingPortalConfigurationsMethods.getBillingPortalConfigurationsConfiguration(
-            config: config,
-            configuration: configuration,
-            expand: expand
-        )
+    public func getBillingPortalConfiguration(configuration: String, expand: [String]?) async throws -> BillingPortalConfiguration {
+        return try await V1BillingPortalConfigurationsMethods.getBillingPortalConfigurationsConfiguration(config: config, configuration: configuration, expand: expand)
     }
 
-    /// Updates a customer portal configuration. Supply only the configuration properties you want to change, such as
-    /// `active`, `features`, `login_page`, `name`, or `default_return_url`; use `expand` to request expanded response
-    /// fields.
+/// Updates a customer portal configuration. Supply only the configuration properties you want to change, such as `active`, `features`, `login_page`, `name`, or `default_return_url`; use `expand` to request expanded response fields.
     ///
     /// Updates a configuration that describes the functionality of the customer portal.
-    public func postBillingPortalConfiguration(options: V1BillingPortalConfigurationsMethods
-        .PostBillingPortalConfigurationsConfigurationOptions) async throws -> BillingPortalConfiguration {
-        try await V1BillingPortalConfigurationsMethods.postBillingPortalConfigurationsConfiguration(
-            config: config,
-            options: options
-        )
+    public func postBillingPortalConfiguration(options: V1BillingPortalConfigurationsMethods.PostBillingPortalConfigurationsConfigurationOptions) async throws -> BillingPortalConfiguration {
+        return try await V1BillingPortalConfigurationsMethods.postBillingPortalConfigurationsConfiguration(config: config, options: options)
     }
 }
 
@@ -300,14 +174,11 @@ public class V1BillingPortalSessionsNamespace {
         self.config = config
     }
 
-    /// Creates a customer portal session for an existing customer or account. Supply `customer` or `customer_account`,
-    /// optionally select a `configuration`, and use `flow_data` to direct the customer through a specific portal flow;
-    /// the response includes a short-lived portal URL.
+/// Creates a customer portal session for an existing customer or account. Supply `customer` or `customer_account`, optionally select a `configuration`, and use `flow_data` to direct the customer through a specific portal flow; the response includes a short-lived portal URL.
     ///
     /// Creates a session of the customer portal.
-    public func postBillingPortal(options: V1BillingPortalSessionsMethods
-        .PostBillingPortalSessionsOptions) async throws -> BillingPortalSession {
-        try await V1BillingPortalSessionsMethods.postBillingPortalSessions(config: config, options: options)
+    public func postBillingPortal(options: V1BillingPortalSessionsMethods.PostBillingPortalSessionsOptions) async throws -> BillingPortalSession {
+        return try await V1BillingPortalSessionsMethods.postBillingPortalSessions(config: config, options: options)
     }
 }
 
@@ -326,49 +197,17 @@ public class V1ChargesSearchNamespace {
         self.config = config
     }
 
-    /// Searches previously created charges using the charge Search Query Language. Supply `query` to define the search
-    /// and use `limit` and `page` to retrieve additional result pages. Search results may lag behind recent charge
-    /// changes.
+/// Searches previously created charges using the charge Search Query Language. Supply `query` to define the search and use `limit` and `page` to retrieve additional result pages. Search results may lag behind recent charge changes.
     ///
-    /// Search for charges you’ve previously created using Stripe’s Search Query Language. Don’t use search in
-    /// read-after-write flows where strict consistency is necessary. Under normal operating conditions, data is
-    /// searchable in less than a minute. Occasionally, propagation of new or updated data can be up to an hour behind
-    /// during outages. Search functionality is not available to merchants in India.
-    public func getCharges(
-        query: String,
-        expand: [String]?,
-        limit: Int?,
-        page: String?
-    ) async throws -> GetChargesSearchResponse {
-        try await V1ChargesSearchMethods.getChargesSearch(
-            config: config,
-            query: query,
-            expand: expand,
-            limit: limit,
-            page: page
-        )
+    /// Search for charges you’ve previously created using Stripe’s Search Query Language. Don’t use search in read-after-write flows where strict consistency is necessary. Under normal operating conditions, data is searchable in less than a minute. Occasionally, propagation of new or updated data can be up to an hour behind during outages. Search functionality is not available to merchants in India.
+    public func getCharges(query: String, expand: [String]?, limit: Int?, page: String?) async throws -> GetChargesSearchResponse {
+        return try await V1ChargesSearchMethods.getChargesSearch(config: config, query: query, expand: expand, limit: limit, page: page)
     }
 
-    /// Searches previously created charges using the charge Search Query Language. Supply `query` to define the search
-    /// and use `limit` and `page` to retrieve additional result pages. Search results may lag behind recent charge
-    /// changes.
+/// Searches previously created charges using the charge Search Query Language. Supply `query` to define the search and use `limit` and `page` to retrieve additional result pages. Search results may lag behind recent charge changes.
     ///
-    /// Search for charges you’ve previously created using Stripe’s Search Query Language. Don’t use search in
-    /// read-after-write flows where strict consistency is necessary. Under normal operating conditions, data is
-    /// searchable in less than a minute. Occasionally, propagation of new or updated data can be up to an hour behind
-    /// during outages. Search functionality is not available to merchants in India.
-    public func getChargesPaginated(
-        query: String,
-        expand: [String]?,
-        limit: Int?,
-        page: String?
-    ) -> AsyncThrowingStream<Charge, Swift.Error> {
-        V1ChargesSearchMethods.getChargesSearchPaginated(
-            config: config,
-            query: query,
-            expand: expand,
-            limit: limit,
-            page: page
-        )
+    /// Search for charges you’ve previously created using Stripe’s Search Query Language. Don’t use search in read-after-write flows where strict consistency is necessary. Under normal operating conditions, data is searchable in less than a minute. Occasionally, propagation of new or updated data can be up to an hour behind during outages. Search functionality is not available to merchants in India.
+    public func getChargesPaginated(query: String, expand: [String]?, limit: Int?, page: String?) -> AsyncThrowingStream<Charge, Swift.Error> {
+        return V1ChargesSearchMethods.getChargesSearchPaginated(config: config, query: query, expand: expand, limit: limit, page: page)
     }
 }

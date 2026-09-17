@@ -6,31 +6,18 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1PromotionCodesMethods {
-    /// Retrieves a promotion code by its identifier. Use the promotion code ID in `promotion_code`; to find a code by
-    /// its customer-facing value, list promotion codes with the `code` filter instead.
+extension V1PromotionCodesMethods {
+    /// Retrieves a promotion code by its identifier. Use the promotion code ID in `promotion_code`; to find a code by its customer-facing value, list promotion codes with the `code` filter instead.
     ///
-    /// Retrieves the promotion code with the given ID. In order to retrieve a promotion code by the customer-facing
-    /// code use list with the desired code .
+    /// Retrieves the promotion code with the given ID. In order to retrieve a promotion code by the customer-facing code use list with the desired code .
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    static func getPromotionCodesPromotionCode(
-        config: ClientConfig,
-        promotionCode: String,
-        expand: [String]?
-    ) async throws -> PromotionCode {
+    public static func getPromotionCodesPromotionCode(config: ClientConfig, promotionCode: String, expand: [String]?) async throws -> PromotionCode {
         try validateLength("promotion_code", promotionCode, max: 5000)
 
-        return try await (sdkRequest(
-            "GET",
-            ["/v1/promotion_codes/", sdkEncodePathSegment(sdkWireString(promotionCode))].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .json,
-            operationId: "GetPromotionCodesPromotionCode"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/promotion_codes/", sdkEncodePathSegment(sdkWireString(promotionCode))].joined(), config: config, query: [
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .json, operationId: "GetPromotionCodesPromotionCode")).data
     }
 }

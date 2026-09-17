@@ -7,9 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1TerminalReadersProcessPaymentIntentMethods {
-    /// Triggers immediate processing of a PaymentIntent on a Reader. Supply `payment_intent` and optionally use
-    /// `process_config` to control tipping, customer cancellation, or the return URL. The Reader returns its current
-    /// state after the payment flow is initiated.
+    /// Triggers immediate processing of a PaymentIntent on a Reader. Supply `payment_intent` and optionally use `process_config` to control tipping, customer cancellation, or the return URL. The Reader returns its current state after the payment flow is initiated.
     ///
     /// Initiates a payment flow on a Reader. See process the payment for more details.
     ///
@@ -18,31 +16,13 @@ public enum V1TerminalReadersProcessPaymentIntentMethods {
     /// - expand: Specifies which fields in the response should be expanded.
     /// - processConfig: Configuration overrides for this transaction, such as
     ///   tipping and customer cancellation settings.
-    public static func postTerminalReadersReaderProcessPaymentIntent(
-        config: ClientConfig,
-        reader: String,
-        paymentIntent: String,
-        expand: [String]?,
-        processConfig: PostTerminalReadersReaderProcessPaymentIntentRequestBodyProcessConfig?
-    ) async throws -> TerminalReader {
+    public static func postTerminalReadersReaderProcessPaymentIntent(config: ClientConfig, reader: String, paymentIntent: String, expand: [String]?, processConfig: PostTerminalReadersReaderProcessPaymentIntentRequestBodyProcessConfig?) async throws -> TerminalReader {
         try validateLength("reader", reader, max: 5000)
 
         try validateLength("payment_intent", paymentIntent, max: 5000)
 
-        let requestBody = PostTerminalReadersReaderProcessPaymentIntentRequestBody(
-            paymentIntent: paymentIntent,
-            expand: expand,
-            processConfig: processConfig
-        )
+        let requestBody = PostTerminalReadersReaderProcessPaymentIntentRequestBody(paymentIntent: paymentIntent, expand: expand, processConfig: processConfig)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/terminal/readers/", sdkEncodePathSegment(sdkWireString(reader)), "/process_payment_intent"].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostTerminalReadersReaderProcessPaymentIntent"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/terminal/readers/", sdkEncodePathSegment(sdkWireString(reader)), "/process_payment_intent"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTerminalReadersReaderProcessPaymentIntent")).data
     }
 }

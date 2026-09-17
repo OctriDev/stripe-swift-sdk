@@ -14,10 +14,10 @@ struct PostCustomerSessionsRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encode(components, forKey: SdkCodingKey("components"))
-        try keyedContainer.encodeIfPresent(customer, forKey: SdkCodingKey("customer"))
-        try keyedContainer.encodeIfPresent(customerAccount, forKey: SdkCodingKey("customer_account"))
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encode(self.components, forKey: SdkCodingKey("components"))
+        try keyedContainer.encodeIfPresent(self.customer, forKey: SdkCodingKey("customer"))
+        try keyedContainer.encodeIfPresent(self.customerAccount, forKey: SdkCodingKey("customer_account"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
     }
 }
 
@@ -47,53 +47,53 @@ struct PostCustomersRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(address, forKey: SdkCodingKey("address"))
-        try keyedContainer.encodeIfPresent(balance, forKey: SdkCodingKey("balance"))
-        try keyedContainer.encodeIfPresent(businessName, forKey: SdkCodingKey("business_name"))
-        try keyedContainer.encodeIfPresent(cashBalance, forKey: SdkCodingKey("cash_balance"))
-        try keyedContainer.encodeIfPresent(description, forKey: SdkCodingKey("description"))
-        try keyedContainer.encodeIfPresent(email, forKey: SdkCodingKey("email"))
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(individualName, forKey: SdkCodingKey("individual_name"))
-        try keyedContainer.encodeIfPresent(invoicePrefix, forKey: SdkCodingKey("invoice_prefix"))
-        try keyedContainer.encodeIfPresent(invoiceSettings, forKey: SdkCodingKey("invoice_settings"))
-        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
-        try keyedContainer.encodeIfPresent(name, forKey: SdkCodingKey("name"))
-        try keyedContainer.encodeIfPresent(nextInvoiceSequence, forKey: SdkCodingKey("next_invoice_sequence"))
-        try keyedContainer.encodeIfPresent(paymentMethod, forKey: SdkCodingKey("payment_method"))
-        try keyedContainer.encodeIfPresent(phone, forKey: SdkCodingKey("phone"))
-        try keyedContainer.encodeIfPresent(preferredLocales, forKey: SdkCodingKey("preferred_locales"))
-        try keyedContainer.encodeIfPresent(shipping, forKey: SdkCodingKey("shipping"))
-        try keyedContainer.encodeIfPresent(source, forKey: SdkCodingKey("source"))
-        try keyedContainer.encodeIfPresent(tax, forKey: SdkCodingKey("tax"))
-        try keyedContainer.encodeIfPresent(taxExempt, forKey: SdkCodingKey("tax_exempt"))
-        try keyedContainer.encodeIfPresent(taxIdData, forKey: SdkCodingKey("tax_id_data"))
-        try keyedContainer.encodeIfPresent(testClock, forKey: SdkCodingKey("test_clock"))
+        try keyedContainer.encodeIfPresent(self.address, forKey: SdkCodingKey("address"))
+        try keyedContainer.encodeIfPresent(self.balance, forKey: SdkCodingKey("balance"))
+        try keyedContainer.encodeIfPresent(self.businessName, forKey: SdkCodingKey("business_name"))
+        try keyedContainer.encodeIfPresent(self.cashBalance, forKey: SdkCodingKey("cash_balance"))
+        try keyedContainer.encodeIfPresent(self.description, forKey: SdkCodingKey("description"))
+        try keyedContainer.encodeIfPresent(self.email, forKey: SdkCodingKey("email"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.individualName, forKey: SdkCodingKey("individual_name"))
+        try keyedContainer.encodeIfPresent(self.invoicePrefix, forKey: SdkCodingKey("invoice_prefix"))
+        try keyedContainer.encodeIfPresent(self.invoiceSettings, forKey: SdkCodingKey("invoice_settings"))
+        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encodeIfPresent(self.name, forKey: SdkCodingKey("name"))
+        try keyedContainer.encodeIfPresent(self.nextInvoiceSequence, forKey: SdkCodingKey("next_invoice_sequence"))
+        try keyedContainer.encodeIfPresent(self.paymentMethod, forKey: SdkCodingKey("payment_method"))
+        try keyedContainer.encodeIfPresent(self.phone, forKey: SdkCodingKey("phone"))
+        try keyedContainer.encodeIfPresent(self.preferredLocales, forKey: SdkCodingKey("preferred_locales"))
+        try keyedContainer.encodeIfPresent(self.shipping, forKey: SdkCodingKey("shipping"))
+        try keyedContainer.encodeIfPresent(self.source, forKey: SdkCodingKey("source"))
+        try keyedContainer.encodeIfPresent(self.tax, forKey: SdkCodingKey("tax"))
+        try keyedContainer.encodeIfPresent(self.taxExempt, forKey: SdkCodingKey("tax_exempt"))
+        try keyedContainer.encodeIfPresent(self.taxIdData, forKey: SdkCodingKey("tax_id_data"))
+        try keyedContainer.encodeIfPresent(self.testClock, forKey: SdkCodingKey("test_clock"))
     }
 
     init(options: V1CustomersMethods.PostCustomersOptions) {
-        address = options.address
-        balance = options.balance
-        businessName = options.businessName
-        cashBalance = options.cashBalance
-        description = options.description
-        email = options.email
-        expand = options.expand
-        individualName = options.individualName
-        invoicePrefix = options.invoicePrefix
-        invoiceSettings = options.invoiceSettings
-        metadata = options.metadata
-        name = options.name
-        nextInvoiceSequence = options.nextInvoiceSequence
-        paymentMethod = options.paymentMethod
-        phone = options.phone
-        preferredLocales = options.preferredLocales
-        shipping = options.shipping
-        source = options.source
-        tax = options.tax
-        taxExempt = options.taxExempt
-        taxIdData = options.taxIdData
-        testClock = options.testClock
+        self.address = options.address
+        self.balance = options.balance
+        self.businessName = options.businessName
+        self.cashBalance = options.cashBalance
+        self.description = options.description
+        self.email = options.email
+        self.expand = options.expand
+        self.individualName = options.individualName
+        self.invoicePrefix = options.invoicePrefix
+        self.invoiceSettings = options.invoiceSettings
+        self.metadata = options.metadata
+        self.name = options.name
+        self.nextInvoiceSequence = options.nextInvoiceSequence
+        self.paymentMethod = options.paymentMethod
+        self.phone = options.phone
+        self.preferredLocales = options.preferredLocales
+        self.shipping = options.shipping
+        self.source = options.source
+        self.tax = options.tax
+        self.taxExempt = options.taxExempt
+        self.taxIdData = options.taxIdData
+        self.testClock = options.testClock
     }
 }
 
@@ -126,59 +126,59 @@ struct PostCustomersCustomerRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(address, forKey: SdkCodingKey("address"))
-        try keyedContainer.encodeIfPresent(balance, forKey: SdkCodingKey("balance"))
-        try keyedContainer.encodeIfPresent(bankAccount, forKey: SdkCodingKey("bank_account"))
-        try keyedContainer.encodeIfPresent(businessName, forKey: SdkCodingKey("business_name"))
-        try keyedContainer.encodeIfPresent(card, forKey: SdkCodingKey("card"))
-        try keyedContainer.encodeIfPresent(cashBalance, forKey: SdkCodingKey("cash_balance"))
-        try keyedContainer.encodeIfPresent(defaultAlipayAccount, forKey: SdkCodingKey("default_alipay_account"))
-        try keyedContainer.encodeIfPresent(defaultBankAccount, forKey: SdkCodingKey("default_bank_account"))
-        try keyedContainer.encodeIfPresent(defaultCard, forKey: SdkCodingKey("default_card"))
-        try keyedContainer.encodeIfPresent(defaultSource, forKey: SdkCodingKey("default_source"))
-        try keyedContainer.encodeIfPresent(description, forKey: SdkCodingKey("description"))
-        try keyedContainer.encodeIfPresent(email, forKey: SdkCodingKey("email"))
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(individualName, forKey: SdkCodingKey("individual_name"))
-        try keyedContainer.encodeIfPresent(invoicePrefix, forKey: SdkCodingKey("invoice_prefix"))
-        try keyedContainer.encodeIfPresent(invoiceSettings, forKey: SdkCodingKey("invoice_settings"))
-        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
-        try keyedContainer.encodeIfPresent(name, forKey: SdkCodingKey("name"))
-        try keyedContainer.encodeIfPresent(nextInvoiceSequence, forKey: SdkCodingKey("next_invoice_sequence"))
-        try keyedContainer.encodeIfPresent(phone, forKey: SdkCodingKey("phone"))
-        try keyedContainer.encodeIfPresent(preferredLocales, forKey: SdkCodingKey("preferred_locales"))
-        try keyedContainer.encodeIfPresent(shipping, forKey: SdkCodingKey("shipping"))
-        try keyedContainer.encodeIfPresent(source, forKey: SdkCodingKey("source"))
-        try keyedContainer.encodeIfPresent(tax, forKey: SdkCodingKey("tax"))
-        try keyedContainer.encodeIfPresent(taxExempt, forKey: SdkCodingKey("tax_exempt"))
+        try keyedContainer.encodeIfPresent(self.address, forKey: SdkCodingKey("address"))
+        try keyedContainer.encodeIfPresent(self.balance, forKey: SdkCodingKey("balance"))
+        try keyedContainer.encodeIfPresent(self.bankAccount, forKey: SdkCodingKey("bank_account"))
+        try keyedContainer.encodeIfPresent(self.businessName, forKey: SdkCodingKey("business_name"))
+        try keyedContainer.encodeIfPresent(self.card, forKey: SdkCodingKey("card"))
+        try keyedContainer.encodeIfPresent(self.cashBalance, forKey: SdkCodingKey("cash_balance"))
+        try keyedContainer.encodeIfPresent(self.defaultAlipayAccount, forKey: SdkCodingKey("default_alipay_account"))
+        try keyedContainer.encodeIfPresent(self.defaultBankAccount, forKey: SdkCodingKey("default_bank_account"))
+        try keyedContainer.encodeIfPresent(self.defaultCard, forKey: SdkCodingKey("default_card"))
+        try keyedContainer.encodeIfPresent(self.defaultSource, forKey: SdkCodingKey("default_source"))
+        try keyedContainer.encodeIfPresent(self.description, forKey: SdkCodingKey("description"))
+        try keyedContainer.encodeIfPresent(self.email, forKey: SdkCodingKey("email"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.individualName, forKey: SdkCodingKey("individual_name"))
+        try keyedContainer.encodeIfPresent(self.invoicePrefix, forKey: SdkCodingKey("invoice_prefix"))
+        try keyedContainer.encodeIfPresent(self.invoiceSettings, forKey: SdkCodingKey("invoice_settings"))
+        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encodeIfPresent(self.name, forKey: SdkCodingKey("name"))
+        try keyedContainer.encodeIfPresent(self.nextInvoiceSequence, forKey: SdkCodingKey("next_invoice_sequence"))
+        try keyedContainer.encodeIfPresent(self.phone, forKey: SdkCodingKey("phone"))
+        try keyedContainer.encodeIfPresent(self.preferredLocales, forKey: SdkCodingKey("preferred_locales"))
+        try keyedContainer.encodeIfPresent(self.shipping, forKey: SdkCodingKey("shipping"))
+        try keyedContainer.encodeIfPresent(self.source, forKey: SdkCodingKey("source"))
+        try keyedContainer.encodeIfPresent(self.tax, forKey: SdkCodingKey("tax"))
+        try keyedContainer.encodeIfPresent(self.taxExempt, forKey: SdkCodingKey("tax_exempt"))
     }
 
     init(options: V1CustomersMethods.PostCustomersCustomerOptions) {
-        address = options.address
-        balance = options.balance
-        bankAccount = options.bankAccount
-        businessName = options.businessName
-        card = options.card
-        cashBalance = options.cashBalance
-        defaultAlipayAccount = options.defaultAlipayAccount
-        defaultBankAccount = options.defaultBankAccount
-        defaultCard = options.defaultCard
-        defaultSource = options.defaultSource
-        description = options.description
-        email = options.email
-        expand = options.expand
-        individualName = options.individualName
-        invoicePrefix = options.invoicePrefix
-        invoiceSettings = options.invoiceSettings
-        metadata = options.metadata
-        name = options.name
-        nextInvoiceSequence = options.nextInvoiceSequence
-        phone = options.phone
-        preferredLocales = options.preferredLocales
-        shipping = options.shipping
-        source = options.source
-        tax = options.tax
-        taxExempt = options.taxExempt
+        self.address = options.address
+        self.balance = options.balance
+        self.bankAccount = options.bankAccount
+        self.businessName = options.businessName
+        self.card = options.card
+        self.cashBalance = options.cashBalance
+        self.defaultAlipayAccount = options.defaultAlipayAccount
+        self.defaultBankAccount = options.defaultBankAccount
+        self.defaultCard = options.defaultCard
+        self.defaultSource = options.defaultSource
+        self.description = options.description
+        self.email = options.email
+        self.expand = options.expand
+        self.individualName = options.individualName
+        self.invoicePrefix = options.invoicePrefix
+        self.invoiceSettings = options.invoiceSettings
+        self.metadata = options.metadata
+        self.name = options.name
+        self.nextInvoiceSequence = options.nextInvoiceSequence
+        self.phone = options.phone
+        self.preferredLocales = options.preferredLocales
+        self.shipping = options.shipping
+        self.source = options.source
+        self.tax = options.tax
+        self.taxExempt = options.taxExempt
     }
 }
 
@@ -191,11 +191,11 @@ struct PostCustomersCustomerBalanceTransactionsRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encode(amount, forKey: SdkCodingKey("amount"))
-        try keyedContainer.encode(currency, forKey: SdkCodingKey("currency"))
-        try keyedContainer.encodeIfPresent(description, forKey: SdkCodingKey("description"))
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encode(self.amount, forKey: SdkCodingKey("amount"))
+        try keyedContainer.encode(self.currency, forKey: SdkCodingKey("currency"))
+        try keyedContainer.encodeIfPresent(self.description, forKey: SdkCodingKey("description"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
     }
 }
 
@@ -206,8 +206,8 @@ struct PostCustomersCustomerBalanceTransactionsTransactionRequestBody: Encodable
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(description, forKey: SdkCodingKey("description"))
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encodeIfPresent(self.description, forKey: SdkCodingKey("description"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
     }
 }

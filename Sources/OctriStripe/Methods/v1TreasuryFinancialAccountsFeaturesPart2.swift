@@ -6,31 +6,18 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1TreasuryFinancialAccountsFeaturesMethods {
-    /// Retrieves feature access information for a FinancialAccount. Use `financial_account` to identify the account and
-    /// `expand` to request additional response fields when inspecting feature settings.
+extension V1TreasuryFinancialAccountsFeaturesMethods {
+    /// Retrieves feature access information for a FinancialAccount. Use `financial_account` to identify the account and `expand` to request additional response fields when inspecting feature settings.
     ///
     /// Retrieves Features information associated with the FinancialAccount.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    static func getTreasuryFinancialAccountsFinancialAccountFeatures(
-        config: ClientConfig,
-        financialAccount: String,
-        expand: [String]?
-    ) async throws -> TreasuryFinancialAccountFeatures {
+    public static func getTreasuryFinancialAccountsFinancialAccountFeatures(config: ClientConfig, financialAccount: String, expand: [String]?) async throws -> TreasuryFinancialAccountFeatures {
         try validateLength("financial_account", financialAccount, max: 5000)
 
-        return try await (sdkRequest(
-            "GET",
-            ["/v1/treasury/financial_accounts/", sdkEncodePathSegment(sdkWireString(financialAccount)), "/features"]
-                .joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .json,
-            operationId: "GetTreasuryFinancialAccountsFinancialAccountFeatures"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/treasury/financial_accounts/", sdkEncodePathSegment(sdkWireString(financialAccount)), "/features"].joined(), config: config, query: [
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .json, operationId: "GetTreasuryFinancialAccountsFinancialAccountFeatures")).data
     }
 }

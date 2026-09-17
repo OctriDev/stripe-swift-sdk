@@ -7,35 +7,27 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1Invoiceitems operation model declarations
+// Canonical v1Invoiceitems operation model declarations
 extension PostInvoiceitemsRequestBodyDiscounts: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostInvoiceitemsRequestBodyDiscounts"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostInvoiceitemsRequestBodyDiscounts")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             [PostInvoiceitemsRequestBodyDiscountsVariant0Item].self
         ) {
-            return .postInvoiceitemsRequestBodyDiscountsVariant0ItemList(value)
+            return             .postInvoiceitemsRequestBodyDiscountsVariant0ItemList(value)
         }
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -45,6 +37,7 @@ extension PostInvoiceitemsRequestBodyDiscounts: Codable {
         case let .stringValue(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// The pricing information for the invoice item.
@@ -56,22 +49,22 @@ public struct PostInvoiceitemsInvoiceitemRequestBodyPricing: Codable {
     }
 
     init() {
-        price = nil
+        self.price = nil
     }
 }
 
-public extension PostInvoiceitemsInvoiceitemRequestBodyPricing {
-    init(from decoder: Decoder) throws {
+extension PostInvoiceitemsInvoiceitemRequestBodyPricing {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        price = try container.sdkDecodeIfPresent(.price)
-        if let value = price {
+        self.price = try container.sdkDecodeIfPresent(.price)
+        if let value = self.price {
             try validateLength("price", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PostInvoiceitemsInvoiceitemRequestBodyPricing {
-    init(price: String? = nil) throws {
+extension PostInvoiceitemsInvoiceitemRequestBodyPricing {
+    public init(price: String? = nil) throws {
         self.init()
         self.price = price
         if let value = self.price {
@@ -86,31 +79,21 @@ public enum PostInvoiceitemsInvoiceitemRequestBodyTaxRates {
 }
 
 extension PostInvoiceitemsInvoiceitemRequestBodyTaxRates: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostInvoiceitemsInvoiceitemRequestBodyTaxRates"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostInvoiceitemsInvoiceitemRequestBodyTaxRates")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode([String].self) {
-            return .stringList(value)
-        }
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
+        if let value = try? container.decode([String].self) { return .stringList(value) }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -120,4 +103,5 @@ extension PostInvoiceitemsInvoiceitemRequestBodyTaxRates: Codable {
         case let .stringValue(value): try container.encode(value); return true
         }
     }
+
 }

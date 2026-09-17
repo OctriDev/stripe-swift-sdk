@@ -21,34 +21,11 @@ public enum V1PaymentRecordsReportPaymentAttemptInformationalMethods {
     ///   unset by posting an empty value to them. All keys can be unset by posting an
     ///   empty value to `metadata`.
     /// - shippingDetails: Shipping information for this payment.
-    public static func postPaymentRecordsIdReportPaymentAttemptInformational(
-        config: ClientConfig,
-        id: String,
-        customerDetails: PostPaymentRecordsIdReportPaymentAttemptInformationalRequestBX31778bbcec?,
-        description: PostPaymentRecordsIdReportPaymentAttemptInformationalRequestBXa6376a5ecf?,
-        expand: [String]?,
-        metadata: PostPaymentRecordsIdReportPaymentAttemptInformationalRequestBodyMetadata?,
-        shippingDetails: PostPaymentRecordsIdReportPaymentAttemptInformationalRequestBXcb3b5d6439?
-    ) async throws -> PaymentRecord {
+    public static func postPaymentRecordsIdReportPaymentAttemptInformational(config: ClientConfig, id: String, customerDetails: PostPaymentRecordsIdReportPaymentAttemptInformationalRequestBX31778bbcec?, description: PostPaymentRecordsIdReportPaymentAttemptInformationalRequestBXa6376a5ecf?, expand: [String]?, metadata: PostPaymentRecordsIdReportPaymentAttemptInformationalRequestBodyMetadata?, shippingDetails: PostPaymentRecordsIdReportPaymentAttemptInformationalRequestBXcb3b5d6439?) async throws -> PaymentRecord {
         try validateLength("id", id, max: 5000)
 
-        let requestBody = PostPaymentRecordsIdReportPaymentAttemptInformationalRequestBody(
-            customerDetails: customerDetails,
-            description: description,
-            expand: expand,
-            metadata: metadata,
-            shippingDetails: shippingDetails
-        )
+        let requestBody = PostPaymentRecordsIdReportPaymentAttemptInformationalRequestBody(customerDetails: customerDetails, description: description, expand: expand, metadata: metadata, shippingDetails: shippingDetails)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/payment_records/", sdkEncodePathSegment(sdkWireString(id)), "/report_payment_attempt_informational"]
-                .joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostPaymentRecordsIdReportPaymentAttemptInformational"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/payment_records/", sdkEncodePathSegment(sdkWireString(id)), "/report_payment_attempt_informational"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostPaymentRecordsIdReportPaymentAttemptInformational")).data
     }
 }

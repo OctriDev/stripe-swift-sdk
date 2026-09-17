@@ -6,9 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1ClimateProductsMethods {
-    /// Lists all available Climate products. Use `starting_after` and `ending_before` to navigate between result pages,
-    /// and `limit` to control the number of products returned.
+extension V1ClimateProductsMethods {
+    /// Lists all available Climate products. Use `starting_after` and `ending_before` to navigate between result pages, and `limit` to control the number of products returned.
     ///
     /// Lists all available Climate product objects.
     ///
@@ -26,22 +25,16 @@ public extension V1ClimateProductsMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    static func getClimateProducts(
-        config: ClientConfig,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        startingAfter: String?
-    ) async throws -> GetClimateProductsResponse {
-        if let endingBefore {
+    public static func getClimateProducts(config: ClientConfig, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetClimateProductsResponse {
+        if let endingBefore = endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let startingAfter {
+        if let startingAfter = startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try await (sdkRequest("GET", "/v1/climate/products", config: config, query: [
+        return try (await sdkRequest("GET", "/v1/climate/products", config: config, query: [
             SdkQueryParameter("ending_before", value: endingBefore),
             SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
             SdkQueryParameter("limit", value: limit),

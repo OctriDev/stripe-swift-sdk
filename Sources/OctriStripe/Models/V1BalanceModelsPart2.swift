@@ -3,36 +3,26 @@
 
 import Foundation
 
-/// V1Balance domain models
-public extension BalanceSettingsResourcePayouts {
-    init(from decoder: Decoder) throws {
+// V1Balance domain models
+extension BalanceSettingsResourcePayouts {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.status) else {
-            throw SdkValidationError(
-                field: "status",
-                code: "required",
-                message: "Validation failed for 'status': value is required"
-            )
+            throw SdkValidationError(field: "status", code: "required", message: "Validation failed for 'status': value is required")
         }
-        status = try container.sdkDecodeRequired(.status)
-        automaticTransferRulesByCurrency = try container.sdkDecodeIfPresent(.automaticTransferRulesByCurrency)
-        minimumBalanceByCurrency = try container.sdkDecodeIfPresent(.minimumBalanceByCurrency)
-        schedule = try container.sdkDecodeIfPresent(.schedule)
-        statementDescriptor = try container.sdkDecodeIfPresent(.statementDescriptor)
-        if let value = statementDescriptor {
+        self.status = try container.sdkDecodeRequired(.status)
+        self.automaticTransferRulesByCurrency = try container.sdkDecodeIfPresent(.automaticTransferRulesByCurrency)
+        self.minimumBalanceByCurrency = try container.sdkDecodeIfPresent(.minimumBalanceByCurrency)
+        self.schedule = try container.sdkDecodeIfPresent(.schedule)
+        self.statementDescriptor = try container.sdkDecodeIfPresent(.statementDescriptor)
+        if let value = self.statementDescriptor {
             try validateLength("statement_descriptor", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension BalanceSettingsResourcePayouts {
-    init(
-        status: BalanceSettingsResourcePayoutsStatus,
-        automaticTransferRulesByCurrency: [String: [BalanceSettingsResourceAutomaticTransferRule]]? = nil,
-        minimumBalanceByCurrency: [String: Int]? = nil,
-        schedule: BalanceSettingsResourcePayoutsSchedule? = nil,
-        statementDescriptor: String? = nil
-    ) throws {
+extension BalanceSettingsResourcePayouts {
+    public init(status: BalanceSettingsResourcePayoutsStatus, automaticTransferRulesByCurrency: [String: [BalanceSettingsResourceAutomaticTransferRule]]? = nil, minimumBalanceByCurrency: [String: Int]? = nil, schedule: BalanceSettingsResourcePayoutsSchedule? = nil, statementDescriptor: String? = nil) throws {
         (self.status, self.automaticTransferRulesByCurrency) = (status, automaticTransferRulesByCurrency)
         (self.minimumBalanceByCurrency, self.schedule) = (minimumBalanceByCurrency, schedule)
         self.statementDescriptor = statementDescriptor
@@ -47,30 +37,24 @@ public enum BalanceSettingsResourcePayoutsSchedule {
 }
 
 extension BalanceSettingsResourcePayoutsSchedule: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for BalanceSettingsResourcePayoutsSchedule"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for BalanceSettingsResourcePayoutsSchedule")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             BalanceSettingsResourcePayoutSchedule.self
         ) {
-            return .balanceSettingsResourcePayoutSchedule(value)
+            return             .balanceSettingsResourcePayoutSchedule(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -79,6 +63,7 @@ extension BalanceSettingsResourcePayoutsSchedule: Codable {
         case let .balanceSettingsResourcePayoutSchedule(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// Typed representation of the `BalanceSettingsResourceSettlementTiming` API schema.
@@ -98,33 +83,23 @@ public struct BalanceSettingsResourceSettlementTiming: Codable {
         case startOfDay = "start_of_day"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension BalanceSettingsResourceSettlementTiming {
-    init(from decoder: Decoder) throws {
+extension BalanceSettingsResourceSettlementTiming {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.delayDays) else {
-            throw SdkValidationError(
-                field: "delay_days",
-                code: "required",
-                message: "Validation failed for 'delay_days': value is required"
-            )
+            throw SdkValidationError(field: "delay_days", code: "required", message: "Validation failed for 'delay_days': value is required")
         }
-        delayDays = try container.sdkDecodeRequired(.delayDays)
-        delayDaysOverride = try container.sdkDecodeIfPresent(.delayDaysOverride)
-        startOfDay = try container.sdkDecodeIfPresent(.startOfDay)
+        self.delayDays = try container.sdkDecodeRequired(.delayDays)
+        self.delayDaysOverride = try container.sdkDecodeIfPresent(.delayDaysOverride)
+        self.startOfDay = try container.sdkDecodeIfPresent(.startOfDay)
     }
 }
 
-public extension BalanceSettingsResourceSettlementTiming {
-    init(
-        delayDays: Int,
-        delayDaysOverride: Int? = nil,
-        startOfDay: BalanceSettingsResourceSettlementTimingStartOfDay? = nil
-    ) {
+extension BalanceSettingsResourceSettlementTiming {
+    public init(delayDays: Int, delayDaysOverride: Int? = nil, startOfDay: BalanceSettingsResourceSettlementTimingStartOfDay? = nil) {
         (self.delayDays, self.delayDaysOverride) = (delayDays, delayDaysOverride)
         self.startOfDay = startOfDay
     }
@@ -135,29 +110,20 @@ public enum BalanceSettingsResourceSettlementTimingStartOfDay {
 }
 
 extension BalanceSettingsResourceSettlementTimingStartOfDay: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for BalanceSettingsResourceSettlementTimingStartOfDay"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for BalanceSettingsResourceSettlementTimingStartOfDay")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container
-            .decode(BalanceSettingsResourceStartOfDay.self) {
-            return .balanceSettingsResourceStartOfDay(value)
-        }
+        if let value = try? container.decode(BalanceSettingsResourceStartOfDay.self) { return .balanceSettingsResourceStartOfDay(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -166,6 +132,7 @@ extension BalanceSettingsResourceSettlementTimingStartOfDay: Codable {
         case let .balanceSettingsResourceStartOfDay(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// Typed representation of the `BalanceSettingsResourceStartOfDay` API schema.
@@ -184,59 +151,41 @@ public struct BalanceSettingsResourceStartOfDay: Codable {
         case timezone
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension BalanceSettingsResourceStartOfDay {
-    init(from decoder: Decoder) throws {
+extension BalanceSettingsResourceStartOfDay {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.hour) else {
-            throw SdkValidationError(
-                field: "hour",
-                code: "required",
-                message: "Validation failed for 'hour': value is required"
-            )
+            throw SdkValidationError(field: "hour", code: "required", message: "Validation failed for 'hour': value is required")
         }
         guard container.contains(.minutes) else {
-            throw SdkValidationError(
-                field: "minutes",
-                code: "required",
-                message: "Validation failed for 'minutes': value is required"
-            )
+            throw SdkValidationError(field: "minutes", code: "required", message: "Validation failed for 'minutes': value is required")
         }
         guard container.contains(.timezone) else {
-            throw SdkValidationError(
-                field: "timezone",
-                code: "required",
-                message: "Validation failed for 'timezone': value is required"
-            )
+            throw SdkValidationError(field: "timezone", code: "required", message: "Validation failed for 'timezone': value is required")
         }
-        hour = try container.sdkDecodeRequired(.hour)
-        minutes = try container.sdkDecodeRequired(.minutes)
-        timezone = try container.sdkDecodeRequired(.timezone)
-        try validateLength("timezone", timezone, min: nil, max: 5000)
+        self.hour = try container.sdkDecodeRequired(.hour)
+        self.minutes = try container.sdkDecodeRequired(.minutes)
+        self.timezone = try container.sdkDecodeRequired(.timezone)
+            try validateLength("timezone", self.timezone, min: nil, max: 5000)
     }
 }
 
-public extension BalanceSettingsResourceStartOfDay {
-    init(hour: Int, minutes: Int, timezone: String) throws {
+extension BalanceSettingsResourceStartOfDay {
+    public init(hour: Int, minutes: Int, timezone: String) throws {
         (self.hour, self.minutes) = (hour, minutes)
         self.timezone = timezone
-        try validateLength("timezone", self.timezone, min: nil, max: 5000)
+            try validateLength("timezone", self.timezone, min: nil, max: 5000)
     }
 }
 
 /// Required enumerated value serialized in the `weekly_payout_days[]` wire field.
-public struct BalanceSettingsResourcePayoutScheduleWeeklyPayoutDaysItem: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct BalanceSettingsResourcePayoutScheduleWeeklyPayoutDaysItem: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let friday = BalanceSettingsResourcePayoutScheduleWeeklyPayoutDaysItem(rawValue: "friday")
     public static let monday = BalanceSettingsResourcePayoutScheduleWeeklyPayoutDaysItem(rawValue: "monday")
     public static let thursday = BalanceSettingsResourcePayoutScheduleWeeklyPayoutDaysItem(rawValue: "thursday")
@@ -245,7 +194,7 @@ public struct BalanceSettingsResourcePayoutScheduleWeeklyPayoutDaysItem: RawRepr
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -258,15 +207,12 @@ public struct BalanceSettingsResourcePayoutScheduleWeeklyPayoutDaysItem: RawRepr
 public struct BalanceSettingsObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let balanceSettings = BalanceSettingsObject(rawValue: "balance_settings")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -276,21 +222,16 @@ public struct BalanceSettingsObject: RawRepresentable, Hashable, Codable, Sendab
 }
 
 /// The type of automatic transfer rule.
-public struct BalanceSettingsResourceAutomaticTransferRuleType: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct BalanceSettingsResourceAutomaticTransferRuleType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let transferAll = BalanceSettingsResourceAutomaticTransferRuleType(rawValue: "transfer_all")
-    public static let transferUpToAmount =
-        BalanceSettingsResourceAutomaticTransferRuleType(rawValue: "transfer_up_to_amount")
+    public static let transferUpToAmount = BalanceSettingsResourceAutomaticTransferRuleType(rawValue: "transfer_up_to_amount")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -301,14 +242,10 @@ public struct BalanceSettingsResourceAutomaticTransferRuleType: RawRepresentable
 
 /// How frequently funds will be paid out. One of `manual` (payouts only created via API call), `daily`,
 /// `weekly`, or `monthly`.
-public struct BalanceSettingsResourcePayoutScheduleInterval: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct BalanceSettingsResourcePayoutScheduleInterval: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let daily = BalanceSettingsResourcePayoutScheduleInterval(rawValue: "daily")
     public static let manual = BalanceSettingsResourcePayoutScheduleInterval(rawValue: "manual")
     public static let monthly = BalanceSettingsResourcePayoutScheduleInterval(rawValue: "monthly")
@@ -316,7 +253,7 @@ public struct BalanceSettingsResourcePayoutScheduleInterval: RawRepresentable, H
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -329,16 +266,13 @@ public struct BalanceSettingsResourcePayoutScheduleInterval: RawRepresentable, H
 public struct BalanceSettingsResourcePayoutsStatus: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let disabled = BalanceSettingsResourcePayoutsStatus(rawValue: "disabled")
     public static let enabled = BalanceSettingsResourcePayoutsStatus(rawValue: "enabled")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -351,15 +285,12 @@ public struct BalanceSettingsResourcePayoutsStatus: RawRepresentable, Hashable, 
 public struct BalanceObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let balance = BalanceObject(rawValue: "balance")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

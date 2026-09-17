@@ -7,31 +7,17 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1TreasuryInboundTransfersCancelMethods {
-    /// Cancels an existing InboundTransfer before its funds movement is completed. Supply `inbound_transfer` to
-    /// identify the transfer and optionally use `expand` to include additional response fields.
+    /// Cancels an existing InboundTransfer before its funds movement is completed. Supply `inbound_transfer` to identify the transfer and optionally use `expand` to include additional response fields.
     ///
     /// Cancels an InboundTransfer.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postTreasuryInboundTransfersInboundTransferCancel(
-        config: ClientConfig,
-        inboundTransfer: String,
-        expand: [String]?
-    ) async throws -> TreasuryInboundTransfer {
+    public static func postTreasuryInboundTransfersInboundTransferCancel(config: ClientConfig, inboundTransfer: String, expand: [String]?) async throws -> TreasuryInboundTransfer {
         try validateLength("inbound_transfer", inboundTransfer, max: 5000)
 
         let requestBody = PostTreasuryInboundTransfersInboundTransferCancelRequestBody(expand: expand)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/treasury/inbound_transfers/", sdkEncodePathSegment(sdkWireString(inboundTransfer)), "/cancel"]
-                .joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostTreasuryInboundTransfersInboundTransferCancel"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/treasury/inbound_transfers/", sdkEncodePathSegment(sdkWireString(inboundTransfer)), "/cancel"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTreasuryInboundTransfersInboundTransferCancel")).data
     }
 }

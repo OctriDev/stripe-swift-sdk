@@ -11,65 +11,30 @@ public class V1TransfersNamespace {
         reversals = V1TransfersReversalsNamespace(config: config)
     }
 
-    /// Lists transfers sent to connected accounts, ordered from newest to oldest. Filter by `destination`,
-    /// `transfer_group`, or `created`, and use cursor parameters with `limit` to paginate the results.
+/// Lists transfers sent to connected accounts, ordered from newest to oldest. Filter by `destination`, `transfer_group`, or `created`, and use cursor parameters with `limit` to paginate the results.
     ///
-    /// Returns a list of existing transfers sent to connected accounts. The transfers are returned in sorted order,
-    /// with the most recently created transfers appearing first.
-    public func get(
-        created: GetTransfersParameter?,
-        destination: String?,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        startingAfter: String?,
-        transferGroup: String?
-    ) async throws -> GetTransfersResponse {
-        try await V1TransfersMethods.getTransfers(
-            config: config,
-            created: created,
-            destination: destination,
-            endingBefore: endingBefore,
-            expand: expand,
-            limit: limit,
-            startingAfter: startingAfter,
-            transferGroup: transferGroup
-        )
+    /// Returns a list of existing transfers sent to connected accounts. The transfers are returned in sorted order, with the most recently created transfers appearing first.
+    public func get(created: GetTransfersParameter?, destination: String?, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?, transferGroup: String?) async throws -> GetTransfersResponse {
+        return try await V1TransfersMethods.getTransfers(config: config, created: created, destination: destination, endingBefore: endingBefore, expand: expand, limit: limit, startingAfter: startingAfter, transferGroup: transferGroup)
     }
 
-    /// To send funds from your Stripe account to a connected account, you create a new transfer object. Your Stripe
-    /// balance must be able to cover the transfer amount, or you’ll receive an “Insufficient Funds” error.
+/// To send funds from your Stripe account to a connected account, you create a new transfer object. Your Stripe balance must be able to cover the transfer amount, or you’ll receive an “Insufficient Funds” error.
     public func post(options: V1TransfersMethods.PostTransfersOptions) async throws -> Transfer {
-        try await V1TransfersMethods.postTransfers(config: config, options: options)
+        return try await V1TransfersMethods.postTransfers(config: config, options: options)
     }
 
-    /// Retrieves a specific transfer by its unique identifier. Use the transfer ID from a transfer creation response or
-    /// transfer list to obtain its amount, destination, reversal state, and related balance information.
+/// Retrieves a specific transfer by its unique identifier. Use the transfer ID from a transfer creation response or transfer list to obtain its amount, destination, reversal state, and related balance information.
     ///
-    /// Retrieves the details of an existing transfer. Supply the unique transfer ID from either a transfer creation
-    /// request or the transfer list, and Stripe will return the corresponding transfer information.
+    /// Retrieves the details of an existing transfer. Supply the unique transfer ID from either a transfer creation request or the transfer list, and Stripe will return the corresponding transfer information.
     public func getTransfer(transfer: String, expand: [String]?) async throws -> Transfer {
-        try await V1TransfersMethods.getTransfersTransfer(config: config, transfer: transfer, expand: expand)
+        return try await V1TransfersMethods.getTransfersTransfer(config: config, transfer: transfer, expand: expand)
     }
 
-    /// Updates an existing transfer without changing values that you omit. Use the request body to change the transfer
-    /// `description`, manage `metadata`, or request expanded response fields.
+/// Updates an existing transfer without changing values that you omit. Use the request body to change the transfer `description`, manage `metadata`, or request expanded response fields.
     ///
-    /// Updates the specified transfer by setting the values of the parameters passed. Any parameters not provided will
-    /// be left unchanged. This request accepts only metadata as an argument.
-    public func postTransfer(
-        transfer: String,
-        description: String?,
-        expand: [String]?,
-        metadata: PostTransfersTransferRequestBodyMetadata?
-    ) async throws -> Transfer {
-        try await V1TransfersMethods.postTransfersTransfer(
-            config: config,
-            transfer: transfer,
-            description: description,
-            expand: expand,
-            metadata: metadata
-        )
+    /// Updates the specified transfer by setting the values of the parameters passed. Any parameters not provided will be left unchanged. This request accepts only metadata as an argument.
+    public func postTransfer(transfer: String, description: String?, expand: [String]?, metadata: PostTransfersTransferRequestBodyMetadata?) async throws -> Transfer {
+        return try await V1TransfersMethods.postTransfersTransfer(config: config, transfer: transfer, description: description, expand: expand, metadata: metadata)
     }
 }
 
@@ -79,60 +44,23 @@ public class V1TreasuryCreditReversalsNamespace {
         self.config = config
     }
 
-    /// Lists credit reversals associated with a financial account. Use `received_credit` and `status` to filter the
-    /// results, and use cursor parameters to paginate through the account's credit reversals.
+/// Lists credit reversals associated with a financial account. Use `received_credit` and `status` to filter the results, and use cursor parameters to paginate through the account's credit reversals.
     ///
     /// Returns a list of CreditReversals.
-    public func getTreasury(
-        financialAccount: String,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        receivedCredit: String?,
-        startingAfter: String?,
-        status: GetTreasuryCreditReversalsParameter?
-    ) async throws -> GetTreasuryCreditReversalsResponse {
-        try await V1TreasuryCreditReversalsMethods.getTreasuryCreditReversals(
-            config: config,
-            financialAccount: financialAccount,
-            endingBefore: endingBefore,
-            expand: expand,
-            limit: limit,
-            receivedCredit: receivedCredit,
-            startingAfter: startingAfter,
-            status: status
-        )
+    public func getTreasury(financialAccount: String, endingBefore: String?, expand: [String]?, limit: Int?, receivedCredit: String?, startingAfter: String?, status: GetTreasuryCreditReversalsParameter?) async throws -> GetTreasuryCreditReversalsResponse {
+        return try await V1TreasuryCreditReversalsMethods.getTreasuryCreditReversals(config: config, financialAccount: financialAccount, endingBefore: endingBefore, expand: expand, limit: limit, receivedCredit: receivedCredit, startingAfter: startingAfter, status: status)
     }
 
-    /// Reverses a ReceivedCredit and creates a CreditReversal object.
-    public func postTreasury(
-        receivedCredit: String,
-        expand: [String]?,
-        metadata: [String: String]?
-    ) async throws -> TreasuryCreditReversal {
-        try await V1TreasuryCreditReversalsMethods.postTreasuryCreditReversals(
-            config: config,
-            receivedCredit: receivedCredit,
-            expand: expand,
-            metadata: metadata
-        )
+/// Reverses a ReceivedCredit and creates a CreditReversal object.
+    public func postTreasury(receivedCredit: String, expand: [String]?, metadata: [String: String]?) async throws -> TreasuryCreditReversal {
+        return try await V1TreasuryCreditReversalsMethods.postTreasuryCreditReversals(config: config, receivedCredit: receivedCredit, expand: expand, metadata: metadata)
     }
 
-    /// Retrieves a specific credit reversal by its unique identifier. Use the identifier from a credit reversal
-    /// creation response or list to view the reversed amount, financial account, received credit, network, and
-    /// processing status.
+/// Retrieves a specific credit reversal by its unique identifier. Use the identifier from a credit reversal creation response or list to view the reversed amount, financial account, received credit, network, and processing status.
     ///
-    /// Retrieves the details of an existing CreditReversal by passing the unique CreditReversal ID from either the
-    /// CreditReversal creation request or CreditReversal list
-    public func getTreasuryCreditReversal(
-        creditReversal: String,
-        expand: [String]?
-    ) async throws -> TreasuryCreditReversal {
-        try await V1TreasuryCreditReversalsMethods.getTreasuryCreditReversalsCreditReversal(
-            config: config,
-            creditReversal: creditReversal,
-            expand: expand
-        )
+    /// Retrieves the details of an existing CreditReversal by passing the unique CreditReversal ID from either the CreditReversal creation request or CreditReversal list
+    public func getTreasuryCreditReversal(creditReversal: String, expand: [String]?) async throws -> TreasuryCreditReversal {
+        return try await V1TreasuryCreditReversalsMethods.getTreasuryCreditReversalsCreditReversal(config: config, creditReversal: creditReversal, expand: expand)
     }
 }
 
@@ -142,42 +70,23 @@ public class V1TreasuryDebitReversalsNamespace {
         self.config = config
     }
 
-    /// Lists debit reversals associated with a financial account. Use `received_debit`, `resolution`, and `status` to
-    /// filter the results, and use cursor parameters to paginate through the account's debit reversals.
+/// Lists debit reversals associated with a financial account. Use `received_debit`, `resolution`, and `status` to filter the results, and use cursor parameters to paginate through the account's debit reversals.
     ///
     /// Returns a list of DebitReversals.
-    public func getTreasury(options: V1TreasuryDebitReversalsMethods
-        .GetTreasuryDebitReversalsOptions) async throws -> GetTreasuryDebitReversalsResponse {
-        try await V1TreasuryDebitReversalsMethods.getTreasuryDebitReversals(config: config, options: options)
+    public func getTreasury(options: V1TreasuryDebitReversalsMethods.GetTreasuryDebitReversalsOptions) async throws -> GetTreasuryDebitReversalsResponse {
+        return try await V1TreasuryDebitReversalsMethods.getTreasuryDebitReversals(config: config, options: options)
     }
 
-    /// Reverses a ReceivedDebit and creates a DebitReversal object.
-    public func postTreasury(
-        receivedDebit: String,
-        expand: [String]?,
-        metadata: [String: String]?
-    ) async throws -> TreasuryDebitReversal {
-        try await V1TreasuryDebitReversalsMethods.postTreasuryDebitReversals(
-            config: config,
-            receivedDebit: receivedDebit,
-            expand: expand,
-            metadata: metadata
-        )
+/// Reverses a ReceivedDebit and creates a DebitReversal object.
+    public func postTreasury(receivedDebit: String, expand: [String]?, metadata: [String: String]?) async throws -> TreasuryDebitReversal {
+        return try await V1TreasuryDebitReversalsMethods.postTreasuryDebitReversals(config: config, receivedDebit: receivedDebit, expand: expand, metadata: metadata)
     }
 
-    /// Retrieves a specific DebitReversal object. Use `debit_reversal` to identify the reversal and `expand` to request
-    /// additional response fields when needed.
+/// Retrieves a specific DebitReversal object. Use `debit_reversal` to identify the reversal and `expand` to request additional response fields when needed.
     ///
     /// Retrieves a DebitReversal object.
-    public func getTreasuryDebitReversal(
-        debitReversal: String,
-        expand: [String]?
-    ) async throws -> TreasuryDebitReversal {
-        try await V1TreasuryDebitReversalsMethods.getTreasuryDebitReversalsDebitReversal(
-            config: config,
-            debitReversal: debitReversal,
-            expand: expand
-        )
+    public func getTreasuryDebitReversal(debitReversal: String, expand: [String]?) async throws -> TreasuryDebitReversal {
+        return try await V1TreasuryDebitReversalsMethods.getTreasuryDebitReversalsDebitReversal(config: config, debitReversal: debitReversal, expand: expand)
     }
 }
 
@@ -187,23 +96,11 @@ public class V1TreasuryFinancialAccountsCloseNamespace {
         self.config = config
     }
 
-    /// Closes a FinancialAccount. The account must have a zero balance, no pending InboundTransfers, and no attached
-    /// Issuing cards that remain active; use `forwarding_settings` when funds must be routed to another destination
-    /// before closure.
+/// Closes a FinancialAccount. The account must have a zero balance, no pending InboundTransfers, and no attached Issuing cards that remain active; use `forwarding_settings` when funds must be routed to another destination before closure.
     ///
-    /// Closes a FinancialAccount. A FinancialAccount can only be closed if it has a zero balance, has no pending
-    /// InboundTransfers, and has canceled all attached Issuing cards.
-    public func postTreasuryFinancialAccountsFinancialAccount(
-        financialAccount: String,
-        expand: [String]?,
-        forwardingSettings: PostTreasuryFinancialAccountsFinancialAccountCloseRequestBodyXc3be678722?
-    ) async throws -> TreasuryFinancialAccount {
-        try await V1TreasuryFinancialAccountsCloseMethods.postTreasuryFinancialAccountsFinancialAccountClose(
-            config: config,
-            financialAccount: financialAccount,
-            expand: expand,
-            forwardingSettings: forwardingSettings
-        )
+    /// Closes a FinancialAccount. A FinancialAccount can only be closed if it has a zero balance, has no pending InboundTransfers, and has canceled all attached Issuing cards.
+    public func postTreasuryFinancialAccountsFinancialAccount(financialAccount: String, expand: [String]?, forwardingSettings: PostTreasuryFinancialAccountsFinancialAccountCloseRequestBodyXc3be678722?) async throws -> TreasuryFinancialAccount {
+        return try await V1TreasuryFinancialAccountsCloseMethods.postTreasuryFinancialAccountsFinancialAccountClose(config: config, financialAccount: financialAccount, expand: expand, forwardingSettings: forwardingSettings)
     }
 }
 
@@ -213,32 +110,18 @@ public class V1TreasuryFinancialAccountsFeaturesNamespace {
         self.config = config
     }
 
-    /// Retrieves feature access information for a FinancialAccount. Use `financial_account` to identify the account and
-    /// `expand` to request additional response fields when inspecting feature settings.
+/// Retrieves feature access information for a FinancialAccount. Use `financial_account` to identify the account and `expand` to request additional response fields when inspecting feature settings.
     ///
     /// Retrieves Features information associated with the FinancialAccount.
-    public func getTreasuryFinancialAccountsFinancialAccount(
-        financialAccount: String,
-        expand: [String]?
-    ) async throws -> TreasuryFinancialAccountFeatures {
-        try await V1TreasuryFinancialAccountsFeaturesMethods.getTreasuryFinancialAccountsFinancialAccountFeatures(
-            config: config,
-            financialAccount: financialAccount,
-            expand: expand
-        )
+    public func getTreasuryFinancialAccountsFinancialAccount(financialAccount: String, expand: [String]?) async throws -> TreasuryFinancialAccountFeatures {
+        return try await V1TreasuryFinancialAccountsFeaturesMethods.getTreasuryFinancialAccountsFinancialAccountFeatures(config: config, financialAccount: financialAccount, expand: expand)
     }
 
-    /// Updates feature access settings for a FinancialAccount. Submit the feature groups you want to change and set
-    /// each requested access value to control whether that capability is requested.
+/// Updates feature access settings for a FinancialAccount. Submit the feature groups you want to change and set each requested access value to control whether that capability is requested.
     ///
     /// Updates the Features associated with a FinancialAccount.
-    public func postTreasuryFinancialAccountsFinancialAccount(options: V1TreasuryFinancialAccountsFeaturesMethods
-        .PostTreasuryFinancialAccountsFinancialAccountFeaturesOptions) async throws
-        -> TreasuryFinancialAccountFeatures {
-        try await V1TreasuryFinancialAccountsFeaturesMethods.postTreasuryFinancialAccountsFinancialAccountFeatures(
-            config: config,
-            options: options
-        )
+    public func postTreasuryFinancialAccountsFinancialAccount(options: V1TreasuryFinancialAccountsFeaturesMethods.PostTreasuryFinancialAccountsFinancialAccountFeaturesOptions) async throws -> TreasuryFinancialAccountFeatures {
+        return try await V1TreasuryFinancialAccountsFeaturesMethods.postTreasuryFinancialAccountsFinancialAccountFeatures(config: config, options: options)
     }
 }
 
@@ -252,88 +135,30 @@ public class V1TreasuryFinancialAccountsNamespace {
         features = V1TreasuryFinancialAccountsFeaturesNamespace(config: config)
     }
 
-    /// Lists FinancialAccounts available to the authenticated user. Use `status` and `created` to filter results, and
-    /// use cursor parameters with `limit` to paginate the list.
+/// Lists FinancialAccounts available to the authenticated user. Use `status` and `created` to filter results, and use cursor parameters with `limit` to paginate the list.
     ///
     /// Returns a list of FinancialAccounts.
-    public func getTreasury(
-        created: GetTreasuryFinancialAccountsParameter?,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        startingAfter: String?,
-        status: GetTreasuryFinancialAccountsParameterXa3b321d7?
-    ) async throws -> GetTreasuryFinancialAccountsResponse {
-        try await V1TreasuryFinancialAccountsMethods.getTreasuryFinancialAccounts(
-            config: config,
-            created: created,
-            endingBefore: endingBefore,
-            expand: expand,
-            limit: limit,
-            startingAfter: startingAfter,
-            status: status
-        )
+    public func getTreasury(created: GetTreasuryFinancialAccountsParameter?, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?, status: GetTreasuryFinancialAccountsParameterXa3b321d7?) async throws -> GetTreasuryFinancialAccountsResponse {
+        return try await V1TreasuryFinancialAccountsMethods.getTreasuryFinancialAccounts(config: config, created: created, endingBefore: endingBefore, expand: expand, limit: limit, startingAfter: startingAfter, status: status)
     }
 
-    /// Creates a new FinancialAccount. Each connected account can have up to three FinancialAccounts by default.
-    public func postTreasury(
-        supportedCurrencies: [String],
-        expand: [String]?,
-        features: PostTreasuryFinancialAccountsRequestBodyFeatures?,
-        metadata: [String: String]?,
-        nickname: PostTreasuryFinancialAccountsRequestBodyNicknameVariant1?,
-        platformRestrictions: PostTreasuryFinancialAccountsRequestBodyPlatformRestrictions?
-    ) async throws -> TreasuryFinancialAccount {
-        try await V1TreasuryFinancialAccountsMethods.postTreasuryFinancialAccounts(
-            config: config,
-            supportedCurrencies: supportedCurrencies,
-            expand: expand,
-            features: features,
-            metadata: metadata,
-            nickname: nickname,
-            platformRestrictions: platformRestrictions
-        )
+/// Creates a new FinancialAccount. Each connected account can have up to three FinancialAccounts by default.
+    public func postTreasury(supportedCurrencies: [String], expand: [String]?, features: PostTreasuryFinancialAccountsRequestBodyFeatures?, metadata: [String: String]?, nickname: PostTreasuryFinancialAccountsRequestBodyNicknameVariant1?, platformRestrictions: PostTreasuryFinancialAccountsRequestBodyPlatformRestrictions?) async throws -> TreasuryFinancialAccount {
+        return try await V1TreasuryFinancialAccountsMethods.postTreasuryFinancialAccounts(config: config, supportedCurrencies: supportedCurrencies, expand: expand, features: features, metadata: metadata, nickname: nickname, platformRestrictions: platformRestrictions)
     }
 
-    /// Retrieves the details of a specific FinancialAccount. Use `financial_account` to identify the account and
-    /// `expand` to request additional response fields.
+/// Retrieves the details of a specific FinancialAccount. Use `financial_account` to identify the account and `expand` to request additional response fields.
     ///
     /// Retrieves the details of a FinancialAccount.
-    public func getTreasuryFinancialAccount(
-        financialAccount: String,
-        expand: [String]?
-    ) async throws -> TreasuryFinancialAccount {
-        try await V1TreasuryFinancialAccountsMethods.getTreasuryFinancialAccountsFinancialAccount(
-            config: config,
-            financialAccount: financialAccount,
-            expand: expand
-        )
+    public func getTreasuryFinancialAccount(financialAccount: String, expand: [String]?) async throws -> TreasuryFinancialAccount {
+        return try await V1TreasuryFinancialAccountsMethods.getTreasuryFinancialAccountsFinancialAccount(config: config, financialAccount: financialAccount, expand: expand)
     }
 
-    /// Updates the configurable details of a FinancialAccount. Supply only the account properties you want to change,
-    /// such as `nickname`, `metadata`, `features`, or `platform_restrictions`; use `forwarding_settings` when
-    /// closing-account funds must be routed elsewhere.
+/// Updates the configurable details of a FinancialAccount. Supply only the account properties you want to change, such as `nickname`, `metadata`, `features`, or `platform_restrictions`; use `forwarding_settings` when closing-account funds must be routed elsewhere.
     ///
     /// Updates the details of a FinancialAccount.
-    public func postTreasuryFinancialAccount(
-        financialAccount: String,
-        expand: [String]?,
-        features: PostTreasuryFinancialAccountsFinancialAccountRequestBodyFeatures?,
-        forwardingSettings: PostTreasuryFinancialAccountsFinancialAccountRequestBodyForwaXf6592c1c96?,
-        metadata: [String: String]?,
-        nickname: PostTreasuryFinancialAccountsFinancialAccountRequestBodyNicknameVariant1?,
-        platformRestrictions: PostTreasuryFinancialAccountsFinancialAccountRequestBodyPlatfXc3ed04ee46?
-    ) async throws -> TreasuryFinancialAccount {
-        try await V1TreasuryFinancialAccountsMethods.postTreasuryFinancialAccountsFinancialAccount(
-            config: config,
-            financialAccount: financialAccount,
-            expand: expand,
-            features: features,
-            forwardingSettings: forwardingSettings,
-            metadata: metadata,
-            nickname: nickname,
-            platformRestrictions: platformRestrictions
-        )
+    public func postTreasuryFinancialAccount(financialAccount: String, expand: [String]?, features: PostTreasuryFinancialAccountsFinancialAccountRequestBodyFeatures?, forwardingSettings: PostTreasuryFinancialAccountsFinancialAccountRequestBodyForwaXf6592c1c96?, metadata: [String: String]?, nickname: PostTreasuryFinancialAccountsFinancialAccountRequestBodyNicknameVariant1?, platformRestrictions: PostTreasuryFinancialAccountsFinancialAccountRequestBodyPlatfXc3ed04ee46?) async throws -> TreasuryFinancialAccount {
+        return try await V1TreasuryFinancialAccountsMethods.postTreasuryFinancialAccountsFinancialAccount(config: config, financialAccount: financialAccount, expand: expand, features: features, forwardingSettings: forwardingSettings, metadata: metadata, nickname: nickname, platformRestrictions: platformRestrictions)
     }
 }
 
@@ -343,19 +168,11 @@ public class V1TreasuryInboundTransfersCancelNamespace {
         self.config = config
     }
 
-    /// Cancels an existing InboundTransfer before its funds movement is completed. Supply `inbound_transfer` to
-    /// identify the transfer and optionally use `expand` to include additional response fields.
+/// Cancels an existing InboundTransfer before its funds movement is completed. Supply `inbound_transfer` to identify the transfer and optionally use `expand` to include additional response fields.
     ///
     /// Cancels an InboundTransfer.
-    public func postTreasuryInboundTransfersInboundTransfer(
-        inboundTransfer: String,
-        expand: [String]?
-    ) async throws -> TreasuryInboundTransfer {
-        try await V1TreasuryInboundTransfersCancelMethods.postTreasuryInboundTransfersInboundTransferCancel(
-            config: config,
-            inboundTransfer: inboundTransfer,
-            expand: expand
-        )
+    public func postTreasuryInboundTransfersInboundTransfer(inboundTransfer: String, expand: [String]?) async throws -> TreasuryInboundTransfer {
+        return try await V1TreasuryInboundTransfersCancelMethods.postTreasuryInboundTransfersInboundTransferCancel(config: config, inboundTransfer: inboundTransfer, expand: expand)
     }
 }
 
@@ -367,48 +184,24 @@ public class V1TreasuryInboundTransfersNamespace {
         cancel = V1TreasuryInboundTransfersCancelNamespace(config: config)
     }
 
-    /// Lists InboundTransfers associated with a specified FinancialAccount. Use `status` to filter transfer state and
-    /// use `starting_after`, `ending_before`, and `limit` to paginate the results.
+/// Lists InboundTransfers associated with a specified FinancialAccount. Use `status` to filter transfer state and use `starting_after`, `ending_before`, and `limit` to paginate the results.
     ///
     /// Returns a list of InboundTransfers sent from the specified FinancialAccount.
-    public func getTreasury(
-        financialAccount: String,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        startingAfter: String?,
-        status: GetTreasuryInboundTransfersParameter?
-    ) async throws -> GetTreasuryInboundTransfersResponse {
-        try await V1TreasuryInboundTransfersMethods.getTreasuryInboundTransfers(
-            config: config,
-            financialAccount: financialAccount,
-            endingBefore: endingBefore,
-            expand: expand,
-            limit: limit,
-            startingAfter: startingAfter,
-            status: status
-        )
+    public func getTreasury(financialAccount: String, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?, status: GetTreasuryInboundTransfersParameter?) async throws -> GetTreasuryInboundTransfersResponse {
+        return try await V1TreasuryInboundTransfersMethods.getTreasuryInboundTransfers(config: config, financialAccount: financialAccount, endingBefore: endingBefore, expand: expand, limit: limit, startingAfter: startingAfter, status: status)
     }
 
-    /// Creates a new InboundTransfer to add funds to a FinancialAccount through an ACH debit from an origin
-    /// PaymentMethod. Supply `amount`, `currency`, `financial_account`, and `origin_payment_method`, and optionally
-    /// include descriptive or response-expansion fields.
+/// Creates a new InboundTransfer to add funds to a FinancialAccount through an ACH debit from an origin PaymentMethod. Supply `amount`, `currency`, `financial_account`, and `origin_payment_method`, and optionally include descriptive or response-expansion fields.
     ///
     /// Creates an InboundTransfer.
-    public func postTreasury(options: V1TreasuryInboundTransfersMethods
-        .PostTreasuryInboundTransfersOptions) async throws -> TreasuryInboundTransfer {
-        try await V1TreasuryInboundTransfersMethods.postTreasuryInboundTransfers(config: config, options: options)
+    public func postTreasury(options: V1TreasuryInboundTransfersMethods.PostTreasuryInboundTransfersOptions) async throws -> TreasuryInboundTransfer {
+        return try await V1TreasuryInboundTransfersMethods.postTreasuryInboundTransfers(config: config, options: options)
     }
 
-    /// Retrieves the details of an existing InboundTransfer by its unique identifier. Pass `id` to select the transfer
-    /// and use `expand` when you need additional response fields included inline.
+/// Retrieves the details of an existing InboundTransfer by its unique identifier. Pass `id` to select the transfer and use `expand` when you need additional response fields included inline.
     ///
     /// Retrieves the details of an existing InboundTransfer.
     public func getTreasuryId(id: String, expand: [String]?) async throws -> TreasuryInboundTransfer {
-        try await V1TreasuryInboundTransfersMethods.getTreasuryInboundTransfersId(
-            config: config,
-            id: id,
-            expand: expand
-        )
+        return try await V1TreasuryInboundTransfersMethods.getTreasuryInboundTransfersId(config: config, id: id, expand: expand)
     }
 }

@@ -29,47 +29,47 @@ struct PostPricesRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encode(currency, forKey: SdkCodingKey("currency"))
-        try keyedContainer.encodeIfPresent(active, forKey: SdkCodingKey("active"))
-        try keyedContainer.encodeIfPresent(billingScheme, forKey: SdkCodingKey("billing_scheme"))
-        try keyedContainer.encodeIfPresent(currencyOptions, forKey: SdkCodingKey("currency_options"))
-        try keyedContainer.encodeIfPresent(customUnitAmount, forKey: SdkCodingKey("custom_unit_amount"))
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(lookupKey, forKey: SdkCodingKey("lookup_key"))
-        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
-        try keyedContainer.encodeIfPresent(nickname, forKey: SdkCodingKey("nickname"))
-        try keyedContainer.encodeIfPresent(product, forKey: SdkCodingKey("product"))
-        try keyedContainer.encodeIfPresent(productData, forKey: SdkCodingKey("product_data"))
-        try keyedContainer.encodeIfPresent(recurring, forKey: SdkCodingKey("recurring"))
-        try keyedContainer.encodeIfPresent(taxBehavior, forKey: SdkCodingKey("tax_behavior"))
-        try keyedContainer.encodeIfPresent(tiers, forKey: SdkCodingKey("tiers"))
-        try keyedContainer.encodeIfPresent(tiersMode, forKey: SdkCodingKey("tiers_mode"))
-        try keyedContainer.encodeIfPresent(transferLookupKey, forKey: SdkCodingKey("transfer_lookup_key"))
-        try keyedContainer.encodeIfPresent(transformQuantity, forKey: SdkCodingKey("transform_quantity"))
-        try keyedContainer.encodeIfPresent(unitAmount, forKey: SdkCodingKey("unit_amount"))
-        try keyedContainer.encodeIfPresent(unitAmountDecimal, forKey: SdkCodingKey("unit_amount_decimal"))
+        try keyedContainer.encode(self.currency, forKey: SdkCodingKey("currency"))
+        try keyedContainer.encodeIfPresent(self.active, forKey: SdkCodingKey("active"))
+        try keyedContainer.encodeIfPresent(self.billingScheme, forKey: SdkCodingKey("billing_scheme"))
+        try keyedContainer.encodeIfPresent(self.currencyOptions, forKey: SdkCodingKey("currency_options"))
+        try keyedContainer.encodeIfPresent(self.customUnitAmount, forKey: SdkCodingKey("custom_unit_amount"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.lookupKey, forKey: SdkCodingKey("lookup_key"))
+        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encodeIfPresent(self.nickname, forKey: SdkCodingKey("nickname"))
+        try keyedContainer.encodeIfPresent(self.product, forKey: SdkCodingKey("product"))
+        try keyedContainer.encodeIfPresent(self.productData, forKey: SdkCodingKey("product_data"))
+        try keyedContainer.encodeIfPresent(self.recurring, forKey: SdkCodingKey("recurring"))
+        try keyedContainer.encodeIfPresent(self.taxBehavior, forKey: SdkCodingKey("tax_behavior"))
+        try keyedContainer.encodeIfPresent(self.tiers, forKey: SdkCodingKey("tiers"))
+        try keyedContainer.encodeIfPresent(self.tiersMode, forKey: SdkCodingKey("tiers_mode"))
+        try keyedContainer.encodeIfPresent(self.transferLookupKey, forKey: SdkCodingKey("transfer_lookup_key"))
+        try keyedContainer.encodeIfPresent(self.transformQuantity, forKey: SdkCodingKey("transform_quantity"))
+        try keyedContainer.encodeIfPresent(self.unitAmount, forKey: SdkCodingKey("unit_amount"))
+        try keyedContainer.encodeIfPresent(self.unitAmountDecimal, forKey: SdkCodingKey("unit_amount_decimal"))
     }
 
     init(options: V1PricesMethods.PostPricesOptions) {
-        currency = options.currency
-        active = options.active
-        billingScheme = options.billingScheme
-        currencyOptions = options.currencyOptions
-        customUnitAmount = options.customUnitAmount
-        expand = options.expand
-        lookupKey = options.lookupKey
-        metadata = options.metadata
-        nickname = options.nickname
-        product = options.product
-        productData = options.productData
-        recurring = options.recurring
-        taxBehavior = options.taxBehavior
-        tiers = options.tiers
-        tiersMode = options.tiersMode
-        transferLookupKey = options.transferLookupKey
-        transformQuantity = options.transformQuantity
-        unitAmount = options.unitAmount
-        unitAmountDecimal = options.unitAmountDecimal
+        self.currency = options.currency
+        self.active = options.active
+        self.billingScheme = options.billingScheme
+        self.currencyOptions = options.currencyOptions
+        self.customUnitAmount = options.customUnitAmount
+        self.expand = options.expand
+        self.lookupKey = options.lookupKey
+        self.metadata = options.metadata
+        self.nickname = options.nickname
+        self.product = options.product
+        self.productData = options.productData
+        self.recurring = options.recurring
+        self.taxBehavior = options.taxBehavior
+        self.tiers = options.tiers
+        self.tiersMode = options.tiersMode
+        self.transferLookupKey = options.transferLookupKey
+        self.transformQuantity = options.transformQuantity
+        self.unitAmount = options.unitAmount
+        self.unitAmountDecimal = options.unitAmountDecimal
     }
 }
 
@@ -85,25 +85,25 @@ struct PostPricesPriceRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(active, forKey: SdkCodingKey("active"))
-        try keyedContainer.encodeIfPresent(currencyOptions, forKey: SdkCodingKey("currency_options"))
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(lookupKey, forKey: SdkCodingKey("lookup_key"))
-        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
-        try keyedContainer.encodeIfPresent(nickname, forKey: SdkCodingKey("nickname"))
-        try keyedContainer.encodeIfPresent(taxBehavior, forKey: SdkCodingKey("tax_behavior"))
-        try keyedContainer.encodeIfPresent(transferLookupKey, forKey: SdkCodingKey("transfer_lookup_key"))
+        try keyedContainer.encodeIfPresent(self.active, forKey: SdkCodingKey("active"))
+        try keyedContainer.encodeIfPresent(self.currencyOptions, forKey: SdkCodingKey("currency_options"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.lookupKey, forKey: SdkCodingKey("lookup_key"))
+        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encodeIfPresent(self.nickname, forKey: SdkCodingKey("nickname"))
+        try keyedContainer.encodeIfPresent(self.taxBehavior, forKey: SdkCodingKey("tax_behavior"))
+        try keyedContainer.encodeIfPresent(self.transferLookupKey, forKey: SdkCodingKey("transfer_lookup_key"))
     }
 
     init(options: V1PricesMethods.PostPricesPriceOptions) {
-        active = options.active
-        currencyOptions = options.currencyOptions
-        expand = options.expand
-        lookupKey = options.lookupKey
-        metadata = options.metadata
-        nickname = options.nickname
-        taxBehavior = options.taxBehavior
-        transferLookupKey = options.transferLookupKey
+        self.active = options.active
+        self.currencyOptions = options.currencyOptions
+        self.expand = options.expand
+        self.lookupKey = options.lookupKey
+        self.metadata = options.metadata
+        self.nickname = options.nickname
+        self.taxBehavior = options.taxBehavior
+        self.transferLookupKey = options.transferLookupKey
     }
 }
 
@@ -126,39 +126,39 @@ struct PostProductsRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encode(name, forKey: SdkCodingKey("name"))
-        try keyedContainer.encodeIfPresent(active, forKey: SdkCodingKey("active"))
-        try keyedContainer.encodeIfPresent(defaultPriceData, forKey: SdkCodingKey("default_price_data"))
-        try keyedContainer.encodeIfPresent(description, forKey: SdkCodingKey("description"))
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(id, forKey: SdkCodingKey("id"))
-        try keyedContainer.encodeIfPresent(images, forKey: SdkCodingKey("images"))
-        try keyedContainer.encodeIfPresent(marketingFeatures, forKey: SdkCodingKey("marketing_features"))
-        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
-        try keyedContainer.encodeIfPresent(packageDimensions, forKey: SdkCodingKey("package_dimensions"))
-        try keyedContainer.encodeIfPresent(shippable, forKey: SdkCodingKey("shippable"))
-        try keyedContainer.encodeIfPresent(statementDescriptor, forKey: SdkCodingKey("statement_descriptor"))
-        try keyedContainer.encodeIfPresent(taxCode, forKey: SdkCodingKey("tax_code"))
-        try keyedContainer.encodeIfPresent(unitLabel, forKey: SdkCodingKey("unit_label"))
-        try keyedContainer.encodeIfPresent(url, forKey: SdkCodingKey("url"))
+        try keyedContainer.encode(self.name, forKey: SdkCodingKey("name"))
+        try keyedContainer.encodeIfPresent(self.active, forKey: SdkCodingKey("active"))
+        try keyedContainer.encodeIfPresent(self.defaultPriceData, forKey: SdkCodingKey("default_price_data"))
+        try keyedContainer.encodeIfPresent(self.description, forKey: SdkCodingKey("description"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.id, forKey: SdkCodingKey("id"))
+        try keyedContainer.encodeIfPresent(self.images, forKey: SdkCodingKey("images"))
+        try keyedContainer.encodeIfPresent(self.marketingFeatures, forKey: SdkCodingKey("marketing_features"))
+        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encodeIfPresent(self.packageDimensions, forKey: SdkCodingKey("package_dimensions"))
+        try keyedContainer.encodeIfPresent(self.shippable, forKey: SdkCodingKey("shippable"))
+        try keyedContainer.encodeIfPresent(self.statementDescriptor, forKey: SdkCodingKey("statement_descriptor"))
+        try keyedContainer.encodeIfPresent(self.taxCode, forKey: SdkCodingKey("tax_code"))
+        try keyedContainer.encodeIfPresent(self.unitLabel, forKey: SdkCodingKey("unit_label"))
+        try keyedContainer.encodeIfPresent(self.url, forKey: SdkCodingKey("url"))
     }
 
     init(options: V1ProductsMethods.PostProductsOptions) {
-        name = options.name
-        active = options.active
-        defaultPriceData = options.defaultPriceData
-        description = options.description
-        expand = options.expand
-        id = options.id
-        images = options.images
-        marketingFeatures = options.marketingFeatures
-        metadata = options.metadata
-        packageDimensions = options.packageDimensions
-        shippable = options.shippable
-        statementDescriptor = options.statementDescriptor
-        taxCode = options.taxCode
-        unitLabel = options.unitLabel
-        url = options.url
+        self.name = options.name
+        self.active = options.active
+        self.defaultPriceData = options.defaultPriceData
+        self.description = options.description
+        self.expand = options.expand
+        self.id = options.id
+        self.images = options.images
+        self.marketingFeatures = options.marketingFeatures
+        self.metadata = options.metadata
+        self.packageDimensions = options.packageDimensions
+        self.shippable = options.shippable
+        self.statementDescriptor = options.statementDescriptor
+        self.taxCode = options.taxCode
+        self.unitLabel = options.unitLabel
+        self.url = options.url
     }
 }
 
@@ -180,36 +180,36 @@ struct PostProductsIdRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(active, forKey: SdkCodingKey("active"))
-        try keyedContainer.encodeIfPresent(defaultPrice, forKey: SdkCodingKey("default_price"))
-        try keyedContainer.encodeIfPresent(description, forKey: SdkCodingKey("description"))
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(images, forKey: SdkCodingKey("images"))
-        try keyedContainer.encodeIfPresent(marketingFeatures, forKey: SdkCodingKey("marketing_features"))
-        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
-        try keyedContainer.encodeIfPresent(name, forKey: SdkCodingKey("name"))
-        try keyedContainer.encodeIfPresent(packageDimensions, forKey: SdkCodingKey("package_dimensions"))
-        try keyedContainer.encodeIfPresent(shippable, forKey: SdkCodingKey("shippable"))
-        try keyedContainer.encodeIfPresent(statementDescriptor, forKey: SdkCodingKey("statement_descriptor"))
-        try keyedContainer.encodeIfPresent(taxCode, forKey: SdkCodingKey("tax_code"))
-        try keyedContainer.encodeIfPresent(unitLabel, forKey: SdkCodingKey("unit_label"))
-        try keyedContainer.encodeIfPresent(url, forKey: SdkCodingKey("url"))
+        try keyedContainer.encodeIfPresent(self.active, forKey: SdkCodingKey("active"))
+        try keyedContainer.encodeIfPresent(self.defaultPrice, forKey: SdkCodingKey("default_price"))
+        try keyedContainer.encodeIfPresent(self.description, forKey: SdkCodingKey("description"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.images, forKey: SdkCodingKey("images"))
+        try keyedContainer.encodeIfPresent(self.marketingFeatures, forKey: SdkCodingKey("marketing_features"))
+        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encodeIfPresent(self.name, forKey: SdkCodingKey("name"))
+        try keyedContainer.encodeIfPresent(self.packageDimensions, forKey: SdkCodingKey("package_dimensions"))
+        try keyedContainer.encodeIfPresent(self.shippable, forKey: SdkCodingKey("shippable"))
+        try keyedContainer.encodeIfPresent(self.statementDescriptor, forKey: SdkCodingKey("statement_descriptor"))
+        try keyedContainer.encodeIfPresent(self.taxCode, forKey: SdkCodingKey("tax_code"))
+        try keyedContainer.encodeIfPresent(self.unitLabel, forKey: SdkCodingKey("unit_label"))
+        try keyedContainer.encodeIfPresent(self.url, forKey: SdkCodingKey("url"))
     }
 
     init(options: V1ProductsMethods.PostProductsIdOptions) {
-        active = options.active
-        defaultPrice = options.defaultPrice
-        description = options.description
-        expand = options.expand
-        images = options.images
-        marketingFeatures = options.marketingFeatures
-        metadata = options.metadata
-        name = options.name
-        packageDimensions = options.packageDimensions
-        shippable = options.shippable
-        statementDescriptor = options.statementDescriptor
-        taxCode = options.taxCode
-        unitLabel = options.unitLabel
-        url = options.url
+        self.active = options.active
+        self.defaultPrice = options.defaultPrice
+        self.description = options.description
+        self.expand = options.expand
+        self.images = options.images
+        self.marketingFeatures = options.marketingFeatures
+        self.metadata = options.metadata
+        self.name = options.name
+        self.packageDimensions = options.packageDimensions
+        self.shippable = options.shippable
+        self.statementDescriptor = options.statementDescriptor
+        self.taxCode = options.taxCode
+        self.unitLabel = options.unitLabel
+        self.url = options.url
     }
 }

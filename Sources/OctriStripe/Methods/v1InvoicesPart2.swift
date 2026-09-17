@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1InvoicesMethods {
-    struct GetInvoicesOptions: Codable {
+extension V1InvoicesMethods {
+    public struct GetInvoicesOptions: Codable {
         public var collectionMethod: GetInvoicesParameter?
         public var created: GetInvoicesParameterX01e2042c?
         public var customer: String?
@@ -23,12 +23,9 @@ public extension V1InvoicesMethods {
         public init() {}
     }
 
-    /// Lists invoices ordered by creation date, with the newest invoices first. Filter by customer, subscription,
-    /// collection method, due date, creation date, or invoice `status`, and use `starting_after` or `ending_before` to
-    /// paginate the results.
+    /// Lists invoices ordered by creation date, with the newest invoices first. Filter by customer, subscription, collection method, due date, creation date, or invoice `status`, and use `starting_after` or `ending_before` to paginate the results.
     ///
-    /// You can list all invoices, or list the invoices for a specific customer. The invoices are returned sorted by
-    /// creation date, with the most recently created invoices appearing first.
+    /// You can list all invoices, or list the invoices for a specific customer. The invoices are returned sorted by creation date, with the most recently created invoices appearing first.
     ///
     /// - Parameters:
     /// - collectionMethod: The collection method of the invoice to retrieve. Either
@@ -57,7 +54,7 @@ public extension V1InvoicesMethods {
     ///   more](https://docs.stripe.com/billing/invoices/workflow#workflow-overview)
     /// - subscription: Only return invoices for the subscription specified by this
     ///   subscription ID.
-    static func getInvoices(config: ClientConfig, options: GetInvoicesOptions) async throws -> GetInvoicesResponse {
+    public static func getInvoices(config: ClientConfig, options: GetInvoicesOptions) async throws -> GetInvoicesResponse {
         if let customer = options.customer {
             try validateLength("customer", customer, max: 5000)
         }
@@ -78,7 +75,7 @@ public extension V1InvoicesMethods {
             try validateLength("subscription", subscription, max: 5000)
         }
 
-        return try await (sdkRequest("GET", "/v1/invoices", config: config, query: [
+        return try (await sdkRequest("GET", "/v1/invoices", config: config, query: [
             SdkQueryParameter("collection_method", value: options.collectionMethod),
             SdkQueryParameter("created", value: options.created),
             SdkQueryParameter("customer", value: options.customer),

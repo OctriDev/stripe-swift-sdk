@@ -7,18 +7,9 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1SubscriptionsResumeMethods {
-    /// Triggers resumption of a paused subscription. Use `billing_cycle_anchor` to preserve or reset the billing cycle
-    /// and `proration_behavior` to control adjustments when the anchor remains unchanged. Resumption can generate and
-    /// finalize an invoice before the subscription becomes active; if payment does not complete within the documented
-    /// window, the subscription remains paused.
+    /// Triggers resumption of a paused subscription. Use `billing_cycle_anchor` to preserve or reset the billing cycle and `proration_behavior` to control adjustments when the anchor remains unchanged. Resumption can generate and finalize an invoice before the subscription becomes active; if payment does not complete within the documented window, the subscription remains paused.
     ///
-    /// Initiates resumption of a paused subscription, optionally resetting the billing cycle anchor and creating
-    /// prorations. Resume is only available for subscriptions that use charge_automatically collection. If Stripe
-    /// doesn’t generate a resumption invoice, the subscription becomes active immediately. When a resumption invoice is
-    /// generated, Stripe finalizes it immediately. If the invoice is paid or marked uncollectible, the subscription
-    /// becomes active . If the invoice is manually voided, the subscription stays paused . If there is no payment
-    /// attempt within 23 hours, Stripe voids the invoice and the subscription stays paused . Learn more about resuming
-    /// subscriptions.
+    /// Initiates resumption of a paused subscription, optionally resetting the billing cycle anchor and creating prorations. Resume is only available for subscriptions that use charge_automatically collection. If Stripe doesn’t generate a resumption invoice, the subscription becomes active immediately. When a resumption invoice is generated, Stripe finalizes it immediately. If the invoice is paid or marked uncollectible, the subscription becomes active . If the invoice is manually voided, the subscription stays paused . If there is no payment attempt within 23 hours, Stripe voids the invoice and the subscription stays paused . Learn more about resuming subscriptions.
     ///
     /// - Parameters:
     /// - billingCycleAnchor: The billing cycle anchor that applies when the
@@ -36,31 +27,11 @@ public enum V1SubscriptionsResumeMethods {
     ///   subscription was resumed at the given time. This can be used to apply
     ///   exactly the same prorations that were previewed with the [create
     ///   preview](https://stripe.com/docs/api/invoices/create_preview) endpoint.
-    public static func postSubscriptionsSubscriptionResume(
-        config: ClientConfig,
-        subscription: String,
-        billingCycleAnchor: PostSubscriptionsSubscriptionResumeRequestBodyBillingCycleAnchor?,
-        expand: [String]?,
-        prorationBehavior: PostSubscriptionsSubscriptionResumeRequestBodyProrationBehavior?,
-        prorationDate: Int?
-    ) async throws -> Subscription {
+    public static func postSubscriptionsSubscriptionResume(config: ClientConfig, subscription: String, billingCycleAnchor: PostSubscriptionsSubscriptionResumeRequestBodyBillingCycleAnchor?, expand: [String]?, prorationBehavior: PostSubscriptionsSubscriptionResumeRequestBodyProrationBehavior?, prorationDate: Int?) async throws -> Subscription {
         try validateLength("subscription", subscription, max: 5000)
 
-        let requestBody = PostSubscriptionsSubscriptionResumeRequestBody(
-            billingCycleAnchor: billingCycleAnchor,
-            expand: expand,
-            prorationBehavior: prorationBehavior,
-            prorationDate: prorationDate
-        )
+        let requestBody = PostSubscriptionsSubscriptionResumeRequestBody(billingCycleAnchor: billingCycleAnchor, expand: expand, prorationBehavior: prorationBehavior, prorationDate: prorationDate)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/subscriptions/", sdkEncodePathSegment(sdkWireString(subscription)), "/resume"].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostSubscriptionsSubscriptionResume"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/subscriptions/", sdkEncodePathSegment(sdkWireString(subscription)), "/resume"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostSubscriptionsSubscriptionResume")).data
     }
 }

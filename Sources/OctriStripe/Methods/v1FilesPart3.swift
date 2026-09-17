@@ -6,10 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1FilesMethods {
-    /// To upload a file to Stripe, you need to send a request of type multipart/form-data . Include the file you want
-    /// to upload in the request, and the parameters for creating a file. All of Stripe’s officially supported Client
-    /// libraries support sending multipart/form-data .
+extension V1FilesMethods {
+    /// To upload a file to Stripe, you need to send a request of type multipart/form-data . Include the file you want to upload in the request, and the parameters for creating a file. All of Stripe’s officially supported Client libraries support sending multipart/form-data .
     ///
     /// - Parameters:
     /// - file: A file to upload. Make sure that the specifications follow RFC 2388,
@@ -20,57 +18,34 @@ public extension V1FilesMethods {
     /// - expand: Specifies which fields in the response should be expanded.
     /// - fileLinkData: Optional parameters that automatically create a [file
     ///   link](https://api.stripe.com#file_links) for the newly created file.
-    static func postFiles(
-        config: ClientConfig,
-        file: SdkUploadFile,
-        purpose: PostFilesRequestBodyPurpose,
-        expand: [String]?,
-        fileLinkData: PostFilesRequestBodyFileLinkData?
-    ) async throws -> File2 {
+    public static func postFiles(config: ClientConfig, file: SdkUploadFile, purpose: PostFilesRequestBodyPurpose, expand: [String]?, fileLinkData: PostFilesRequestBodyFileLinkData?) async throws -> File2 {
         var multipartParts: [SdkMultipartField] = []
         multipartParts.append(.file("file", file))
         multipartParts.append(.scalar("purpose", purpose))
-        if let expand {
+        if let expand = expand {
             for item in expand {
                 multipartParts.append(.scalar("expand", item))
             }
         }
-        if let fileLinkData {
-            try multipartParts.append(.json("file_link_data", fileLinkData, contentType: "application/json"))
+        if let fileLinkData = fileLinkData {
+            multipartParts.append(try .json("file_link_data", fileLinkData, contentType: "application/json"))
         }
         let multipart = sdkEncodeMultipart(multipartParts)
 
-        return try await (sdkRequest(
-            "POST",
-            "/v1/files",
-            config: config,
-            rawBody: multipart.data,
-            contentType: multipart.contentType,
-            decoder: .json,
-            operationId: "PostFiles"
-        )).data
+        return try (await sdkRequest("POST", "/v1/files", config: config, rawBody: multipart.data, contentType: multipart.contentType, decoder: .json, operationId: "PostFiles")).data
     }
 
-    /// Retrieves the details of a file by its identifier. Use `expand` when you need selected fields expanded in the
-    /// response. The returned file includes its purpose, size, timestamps, type, and download URL when available.
+    /// Retrieves the details of a file by its identifier. Use `expand` when you need selected fields expanded in the response. The returned file includes its purpose, size, timestamps, type, and download URL when available.
     ///
-    /// Retrieves the details of an existing file object. After you supply a unique file ID, Stripe returns the
-    /// corresponding file object. Learn how to access file contents.
+    /// Retrieves the details of an existing file object. After you supply a unique file ID, Stripe returns the corresponding file object. Learn how to access file contents.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    static func getFilesFile(config: ClientConfig, file: String, expand: [String]?) async throws -> File2 {
+    public static func getFilesFile(config: ClientConfig, file: String, expand: [String]?) async throws -> File2 {
         try validateLength("file", file, max: 5000)
 
-        return try await (sdkRequest(
-            "GET",
-            ["/v1/files/", sdkEncodePathSegment(sdkWireString(file))].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .json,
-            operationId: "GetFilesFile"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/files/", sdkEncodePathSegment(sdkWireString(file))].joined(), config: config, query: [
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .json, operationId: "GetFilesFile")).data
     }
 }

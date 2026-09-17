@@ -3,30 +3,22 @@
 
 import Foundation
 
-/// V1Gelato domain models
+// V1Gelato domain models
 extension GelatoSelfieReportErrorX93efd3b5: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for GelatoSelfieReportErrorX93efd3b5"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for GelatoSelfieReportErrorX93efd3b5")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(GelatoSelfieReportError.self) {
-            return .gelatoSelfieReportError(value)
-        }
+        if let value = try? container.decode(GelatoSelfieReportError.self) { return .gelatoSelfieReportError(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -35,6 +27,7 @@ extension GelatoSelfieReportErrorX93efd3b5: Codable {
         case let .gelatoSelfieReportError(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// Typed representation of the `GelatoSelfieReportError` API schema.
@@ -50,23 +43,23 @@ public struct GelatoSelfieReportError: Codable {
     }
 
     init() {
-        (code, reason) = (nil, nil)
+        (self.code, self.reason) = (nil, nil)
     }
 }
 
-public extension GelatoSelfieReportError {
-    init(from decoder: Decoder) throws {
+extension GelatoSelfieReportError {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        code = try container.sdkDecodeIfPresent(.code)
-        reason = try container.sdkDecodeIfPresent(.reason)
-        if let value = reason {
+        self.code = try container.sdkDecodeIfPresent(.code)
+        self.reason = try container.sdkDecodeIfPresent(.reason)
+        if let value = self.reason {
             try validateLength("reason", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension GelatoSelfieReportError {
-    init(code: GelatoSelfieReportErrorCode? = nil, reason: String? = nil) throws {
+extension GelatoSelfieReportError {
+    public init(code: GelatoSelfieReportErrorCode? = nil, reason: String? = nil) throws {
         self.init()
         (self.code, self.reason) = (code, reason)
         if let value = self.reason {
@@ -96,27 +89,22 @@ public struct GelatoSessionDocumentOptions: Codable {
     }
 
     init() {
-        (allowedTypes, requireIdNumber, requireLiveCapture, requireMatchingSelfie) = (nil, nil, nil, nil)
+        (self.allowedTypes, self.requireIdNumber, self.requireLiveCapture, self.requireMatchingSelfie) = (nil, nil, nil, nil)
     }
 }
 
-public extension GelatoSessionDocumentOptions {
-    init(from decoder: Decoder) throws {
+extension GelatoSessionDocumentOptions {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        allowedTypes = try container.sdkDecodeIfPresent(.allowedTypes)
-        requireIdNumber = try container.sdkDecodeIfPresent(.requireIdNumber)
-        requireLiveCapture = try container.sdkDecodeIfPresent(.requireLiveCapture)
-        requireMatchingSelfie = try container.sdkDecodeIfPresent(.requireMatchingSelfie)
+        self.allowedTypes = try container.sdkDecodeIfPresent(.allowedTypes)
+        self.requireIdNumber = try container.sdkDecodeIfPresent(.requireIdNumber)
+        self.requireLiveCapture = try container.sdkDecodeIfPresent(.requireLiveCapture)
+        self.requireMatchingSelfie = try container.sdkDecodeIfPresent(.requireMatchingSelfie)
     }
 }
 
-public extension GelatoSessionDocumentOptions {
-    init(
-        allowedTypes: [GelatoSessionDocumentOptionsAllowedTypesItem]? = nil,
-        requireIdNumber: Bool? = nil,
-        requireLiveCapture: Bool? = nil,
-        requireMatchingSelfie: Bool? = nil
-    ) {
+extension GelatoSessionDocumentOptions {
+    public init(allowedTypes: [GelatoSessionDocumentOptionsAllowedTypesItem]? = nil, requireIdNumber: Bool? = nil, requireLiveCapture: Bool? = nil, requireMatchingSelfie: Bool? = nil) {
         self.init()
         (self.allowedTypes, self.requireIdNumber) = (allowedTypes, requireIdNumber)
         (self.requireLiveCapture, self.requireMatchingSelfie) = (requireLiveCapture, requireMatchingSelfie)
@@ -133,19 +121,19 @@ public struct GelatoSessionEmailOptions: Codable {
     }
 
     init() {
-        requireVerification = nil
+        self.requireVerification = nil
     }
 }
 
-public extension GelatoSessionEmailOptions {
-    init(from decoder: Decoder) throws {
+extension GelatoSessionEmailOptions {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        requireVerification = try container.sdkDecodeIfPresent(.requireVerification)
+        self.requireVerification = try container.sdkDecodeIfPresent(.requireVerification)
     }
 }
 
-public extension GelatoSessionEmailOptions {
-    init(requireVerification: Bool? = nil) {
+extension GelatoSessionEmailOptions {
+    public init(requireVerification: Bool? = nil) {
         self.init()
         self.requireVerification = requireVerification
     }
@@ -153,13 +141,13 @@ public extension GelatoSessionEmailOptions {
 
 /// Typed representation of the `GelatoSessionIdNumberOptions` API schema.
 public struct GelatoSessionIdNumberOptions: Codable {
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension GelatoSessionIdNumberOptions {
-    init() {}
+extension GelatoSessionIdNumberOptions {
+    public init() {
+    }
 }
 
 /// Shows last VerificationSession error
@@ -175,23 +163,23 @@ public struct GelatoSessionLastError: Codable {
     }
 
     init() {
-        (code, reason) = (nil, nil)
+        (self.code, self.reason) = (nil, nil)
     }
 }
 
-public extension GelatoSessionLastError {
-    init(from decoder: Decoder) throws {
+extension GelatoSessionLastError {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        code = try container.sdkDecodeIfPresent(.code)
-        reason = try container.sdkDecodeIfPresent(.reason)
-        if let value = reason {
+        self.code = try container.sdkDecodeIfPresent(.code)
+        self.reason = try container.sdkDecodeIfPresent(.reason)
+        if let value = self.reason {
             try validateLength("reason", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension GelatoSessionLastError {
-    init(code: GelatoSessionLastErrorCode? = nil, reason: String? = nil) throws {
+extension GelatoSessionLastError {
+    public init(code: GelatoSessionLastErrorCode? = nil, reason: String? = nil) throws {
         self.init()
         (self.code, self.reason) = (code, reason)
         if let value = self.reason {
@@ -213,20 +201,20 @@ public struct GelatoSessionMatchingOptions: Codable {
     }
 
     init() {
-        (dob, name) = (nil, nil)
+        (self.dob, self.name) = (nil, nil)
     }
 }
 
-public extension GelatoSessionMatchingOptions {
-    init(from decoder: Decoder) throws {
+extension GelatoSessionMatchingOptions {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        dob = try container.sdkDecodeIfPresent(.dob)
-        name = try container.sdkDecodeIfPresent(.name)
+        self.dob = try container.sdkDecodeIfPresent(.dob)
+        self.name = try container.sdkDecodeIfPresent(.name)
     }
 }
 
-public extension GelatoSessionMatchingOptions {
-    init(dob: GelatoSessionMatchingOptionsDob? = nil, name: GelatoSessionMatchingOptionsName? = nil) {
+extension GelatoSessionMatchingOptions {
+    public init(dob: GelatoSessionMatchingOptionsDob? = nil, name: GelatoSessionMatchingOptionsName? = nil) {
         self.init()
         (self.dob, self.name) = (dob, name)
     }
@@ -242,19 +230,19 @@ public struct GelatoSessionPhoneOptions: Codable {
     }
 
     init() {
-        requireVerification = nil
+        self.requireVerification = nil
     }
 }
 
-public extension GelatoSessionPhoneOptions {
-    init(from decoder: Decoder) throws {
+extension GelatoSessionPhoneOptions {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        requireVerification = try container.sdkDecodeIfPresent(.requireVerification)
+        self.requireVerification = try container.sdkDecodeIfPresent(.requireVerification)
     }
 }
 
-public extension GelatoSessionPhoneOptions {
-    init(requireVerification: Bool? = nil) {
+extension GelatoSessionPhoneOptions {
+    public init(requireVerification: Bool? = nil) {
         self.init()
         self.requireVerification = requireVerification
     }
@@ -273,20 +261,20 @@ public struct GelatoVerificationReportOptions: Codable {
     }
 
     init() {
-        (document, idNumber) = (nil, nil)
+        (self.document, self.idNumber) = (nil, nil)
     }
 }
 
-public extension GelatoVerificationReportOptions {
-    init(from decoder: Decoder) throws {
+extension GelatoVerificationReportOptions {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        document = try container.sdkDecodeIfPresent(.document)
-        idNumber = try container.sdkDecodeIfPresent(.idNumber)
+        self.document = try container.sdkDecodeIfPresent(.document)
+        self.idNumber = try container.sdkDecodeIfPresent(.idNumber)
     }
 }
 
-public extension GelatoVerificationReportOptions {
-    init(document: GelatoReportDocumentOptions? = nil, idNumber: GelatoReportIdNumberOptions? = nil) {
+extension GelatoVerificationReportOptions {
+    public init(document: GelatoReportDocumentOptions? = nil, idNumber: GelatoReportIdNumberOptions? = nil) {
         self.init()
         (self.document, self.idNumber) = (document, idNumber)
     }
@@ -314,29 +302,23 @@ public struct GelatoVerificationSessionOptions: Codable {
     }
 
     init() {
-        (document, email, idNumber, matching, phone) = (nil, nil, nil, nil, nil)
+        (self.document, self.email, self.idNumber, self.matching, self.phone) = (nil, nil, nil, nil, nil)
     }
 }
 
-public extension GelatoVerificationSessionOptions {
-    init(from decoder: Decoder) throws {
+extension GelatoVerificationSessionOptions {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        document = try container.sdkDecodeIfPresent(.document)
-        email = try container.sdkDecodeIfPresent(.email)
-        idNumber = try container.sdkDecodeIfPresent(.idNumber)
-        matching = try container.sdkDecodeIfPresent(.matching)
-        phone = try container.sdkDecodeIfPresent(.phone)
+        self.document = try container.sdkDecodeIfPresent(.document)
+        self.email = try container.sdkDecodeIfPresent(.email)
+        self.idNumber = try container.sdkDecodeIfPresent(.idNumber)
+        self.matching = try container.sdkDecodeIfPresent(.matching)
+        self.phone = try container.sdkDecodeIfPresent(.phone)
     }
 }
 
-public extension GelatoVerificationSessionOptions {
-    init(
-        document: GelatoSessionDocumentOptions? = nil,
-        email: GelatoSessionEmailOptions? = nil,
-        idNumber: GelatoSessionIdNumberOptions? = nil,
-        matching: GelatoSessionMatchingOptions? = nil,
-        phone: GelatoSessionPhoneOptions? = nil
-    ) {
+extension GelatoVerificationSessionOptions {
+    public init(document: GelatoSessionDocumentOptions? = nil, email: GelatoSessionEmailOptions? = nil, idNumber: GelatoSessionIdNumberOptions? = nil, matching: GelatoSessionMatchingOptions? = nil, phone: GelatoSessionPhoneOptions? = nil) {
         self.init()
         (self.document, self.email) = (document, email)
         (self.idNumber, self.matching) = (idNumber, matching)
@@ -384,44 +366,32 @@ public struct GelatoVerifiedOutputs: Codable {
     }
 
     init() {
-        (address, dob, email, firstName, idNumber) = (nil, nil, nil, nil, nil)
-        (idNumberType, lastName, phone, sex, unparsedPlaceOfBirth) = (nil, nil, nil, nil, nil)
-        unparsedSex = nil
+        (self.address, self.dob, self.email, self.firstName, self.idNumber) = (nil, nil, nil, nil, nil)
+        (self.idNumberType, self.lastName, self.phone, self.sex, self.unparsedPlaceOfBirth) = (nil, nil, nil, nil, nil)
+        self.unparsedSex = nil
     }
 }
 
-public extension GelatoVerifiedOutputs {
-    init(from decoder: Decoder) throws {
+extension GelatoVerifiedOutputs {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        address = try container.sdkDecodeIfPresent(.address)
-        dob = try container.sdkDecodeIfPresent(.dob)
-        email = try container.sdkDecodeIfPresent(.email)
-        firstName = try container.sdkDecodeIfPresent(.firstName)
-        idNumber = try container.sdkDecodeIfPresent(.idNumber)
-        idNumberType = try container.sdkDecodeIfPresent(.idNumberType)
-        lastName = try container.sdkDecodeIfPresent(.lastName)
-        phone = try container.sdkDecodeIfPresent(.phone)
-        sex = try container.sdkDecodeIfPresent(.sex)
-        unparsedPlaceOfBirth = try container.sdkDecodeIfPresent(.unparsedPlaceOfBirth)
-        unparsedSex = try container.sdkDecodeIfPresent(.unparsedSex)
+        self.address = try container.sdkDecodeIfPresent(.address)
+        self.dob = try container.sdkDecodeIfPresent(.dob)
+        self.email = try container.sdkDecodeIfPresent(.email)
+        self.firstName = try container.sdkDecodeIfPresent(.firstName)
+        self.idNumber = try container.sdkDecodeIfPresent(.idNumber)
+        self.idNumberType = try container.sdkDecodeIfPresent(.idNumberType)
+        self.lastName = try container.sdkDecodeIfPresent(.lastName)
+        self.phone = try container.sdkDecodeIfPresent(.phone)
+        self.sex = try container.sdkDecodeIfPresent(.sex)
+        self.unparsedPlaceOfBirth = try container.sdkDecodeIfPresent(.unparsedPlaceOfBirth)
+        self.unparsedSex = try container.sdkDecodeIfPresent(.unparsedSex)
         try sdkValidateConstraints()
     }
 }
 
-public extension GelatoVerifiedOutputs {
-    init(
-        address: GelatoVerifiedOutputsAddress? = nil,
-        dob: GelatoVerifiedOutputsDob? = nil,
-        email: String? = nil,
-        firstName: String? = nil,
-        idNumber: String? = nil,
-        idNumberType: GelatoVerifiedOutputsIdNumberType? = nil,
-        lastName: String? = nil,
-        phone: String? = nil,
-        sex: GelatoVerifiedOutputsSex? = nil,
-        unparsedPlaceOfBirth: String? = nil,
-        unparsedSex: String? = nil
-    ) throws {
+extension GelatoVerifiedOutputs {
+    public init(address: GelatoVerifiedOutputsAddress? = nil, dob: GelatoVerifiedOutputsDob? = nil, email: String? = nil, firstName: String? = nil, idNumber: String? = nil, idNumberType: GelatoVerifiedOutputsIdNumberType? = nil, lastName: String? = nil, phone: String? = nil, sex: GelatoVerifiedOutputsSex? = nil, unparsedPlaceOfBirth: String? = nil, unparsedSex: String? = nil) throws {
         self.init()
         (self.address, self.dob) = (address, dob)
         (self.email, self.firstName) = (email, firstName)
@@ -435,25 +405,25 @@ public extension GelatoVerifiedOutputs {
 
 extension GelatoVerifiedOutputs {
     func sdkValidateConstraints() throws {
-        if let value = email {
+        if let value = self.email {
             try validateLength("email", value, min: nil, max: 5000)
         }
-        if let value = firstName {
+        if let value = self.firstName {
             try validateLength("first_name", value, min: nil, max: 5000)
         }
-        if let value = idNumber {
+        if let value = self.idNumber {
             try validateLength("id_number", value, min: nil, max: 5000)
         }
-        if let value = lastName {
+        if let value = self.lastName {
             try validateLength("last_name", value, min: nil, max: 5000)
         }
-        if let value = phone {
+        if let value = self.phone {
             try validateLength("phone", value, min: nil, max: 5000)
         }
-        if let value = unparsedPlaceOfBirth {
+        if let value = self.unparsedPlaceOfBirth {
             try validateLength("unparsed_place_of_birth", value, min: nil, max: 5000)
         }
-        if let value = unparsedSex {
+        if let value = self.unparsedSex {
             try validateLength("unparsed_sex", value, min: nil, max: 5000)
         }
     }
@@ -464,28 +434,20 @@ public enum GelatoVerifiedOutputsAddress {
 }
 
 extension GelatoVerifiedOutputsAddress: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for GelatoVerifiedOutputsAddress"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for GelatoVerifiedOutputsAddress")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(Address.self) {
-            return .address(value)
-        }
+        if let value = try? container.decode(Address.self) { return .address(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -494,6 +456,7 @@ extension GelatoVerifiedOutputsAddress: Codable {
         case let .address(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum GelatoVerifiedOutputsDob {
@@ -501,29 +464,20 @@ public enum GelatoVerifiedOutputsDob {
 }
 
 extension GelatoVerifiedOutputsDob: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for GelatoVerifiedOutputsDob"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for GelatoVerifiedOutputsDob")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container
-            .decode(GelatoDataVerifiedOutputsDate.self) {
-            return .gelatoDataVerifiedOutputsDate(value)
-        }
+        if let value = try? container.decode(GelatoDataVerifiedOutputsDate.self) { return .gelatoDataVerifiedOutputsDate(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -532,22 +486,20 @@ extension GelatoVerifiedOutputsDob: Codable {
         case let .gelatoDataVerifiedOutputsDate(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// Status of this `id_number` check.
 public struct GelatoIdNumberReportStatus: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unverified = GelatoIdNumberReportStatus(rawValue: "unverified")
     public static let verified = GelatoIdNumberReportStatus(rawValue: "verified")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -560,16 +512,13 @@ public struct GelatoIdNumberReportStatus: RawRepresentable, Hashable, Codable, S
 public struct GelatoEmailReportErrorCode: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let emailUnverifiedOther = GelatoEmailReportErrorCode(rawValue: "email_unverified_other")
     public static let emailVerificationDeclined = GelatoEmailReportErrorCode(rawValue: "email_verification_declined")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -582,16 +531,13 @@ public struct GelatoEmailReportErrorCode: RawRepresentable, Hashable, Codable, S
 public struct GelatoPhoneReportErrorCode: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let phoneUnverifiedOther = GelatoPhoneReportErrorCode(rawValue: "phone_unverified_other")
     public static let phoneVerificationDeclined = GelatoPhoneReportErrorCode(rawValue: "phone_verification_declined")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -604,17 +550,14 @@ public struct GelatoPhoneReportErrorCode: RawRepresentable, Hashable, Codable, S
 public struct GelatoDocumentReportType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let drivingLicense = GelatoDocumentReportType(rawValue: "driving_license")
     public static let idCard = GelatoDocumentReportType(rawValue: "id_card")
     public static let passport = GelatoDocumentReportType(rawValue: "passport")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1TestHelpersTreasuryInboundTransfersFail operation model declarations
+// Canonical v1TestHelpersTreasuryInboundTransfersFail operation model declarations
 /// Details about a failed InboundTransfer.
 public struct PostTestHelpersTreasuryInboundTransfersIdFailRequestBodyFailureDetails: Codable {
     public var code: PostTestHelpersTreasuryInboundTransfersIdFailRequestBodyFailuX98fd65beb8?
@@ -17,19 +17,19 @@ public struct PostTestHelpersTreasuryInboundTransfersIdFailRequestBodyFailureDet
     }
 
     init() {
-        code = nil
+        self.code = nil
     }
 }
 
-public extension PostTestHelpersTreasuryInboundTransfersIdFailRequestBodyFailureDetails {
-    init(from decoder: Decoder) throws {
+extension PostTestHelpersTreasuryInboundTransfersIdFailRequestBodyFailureDetails {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        code = try container.sdkDecodeIfPresent(.code)
+        self.code = try container.sdkDecodeIfPresent(.code)
     }
 }
 
-public extension PostTestHelpersTreasuryInboundTransfersIdFailRequestBodyFailureDetails {
-    init(code: PostTestHelpersTreasuryInboundTransfersIdFailRequestBodyFailuX98fd65beb8? = nil) {
+extension PostTestHelpersTreasuryInboundTransfersIdFailRequestBodyFailureDetails {
+    public init(code: PostTestHelpersTreasuryInboundTransfersIdFailRequestBodyFailuX98fd65beb8? = nil) {
         self.init()
         self.code = code
     }

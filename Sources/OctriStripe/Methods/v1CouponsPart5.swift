@@ -6,13 +6,10 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1CouponsMethods {
-    /// Updates the metadata and display name of an existing coupon. Supply only editable fields such as `name`,
-    /// `metadata`, or amount-based `currency_options`; coupon currency, duration, and discount amount details cannot be
-    /// changed.
+extension V1CouponsMethods {
+    /// Updates the metadata and display name of an existing coupon. Supply only editable fields such as `name`, `metadata`, or amount-based `currency_options`; coupon currency, duration, and discount amount details cannot be changed.
     ///
-    /// Updates the metadata of a coupon. Other coupon details (currency, duration, amount_off) are, by design, not
-    /// editable.
+    /// Updates the metadata of a coupon. Other coupon details (currency, duration, amount_off) are, by design, not editable.
     ///
     /// - Parameters:
     /// - currencyOptions: Coupons defined in each available currency option (only
@@ -27,35 +24,15 @@ public extension V1CouponsMethods {
     ///   empty value to `metadata`.
     /// - name: Name of the coupon displayed to customers on, for instance invoices,
     ///   or receipts. By default the `id` is shown if `name` is not set.
-    static func postCouponsCoupon(
-        config: ClientConfig,
-        coupon: String,
-        currencyOptions: [String: PostCouponsCouponRequestBodyCurrencyOptionsValue]?,
-        expand: [String]?,
-        metadata: PostCouponsCouponRequestBodyMetadata?,
-        name: String?
-    ) async throws -> Coupon {
+    public static func postCouponsCoupon(config: ClientConfig, coupon: String, currencyOptions: [String: PostCouponsCouponRequestBodyCurrencyOptionsValue]?, expand: [String]?, metadata: PostCouponsCouponRequestBodyMetadata?, name: String?) async throws -> Coupon {
         try validateLength("coupon", coupon, max: 5000)
 
-        if let name {
+        if let name = name {
             try validateLength("name", name, max: 40)
         }
 
-        let requestBody = PostCouponsCouponRequestBody(
-            currencyOptions: currencyOptions,
-            expand: expand,
-            metadata: metadata,
-            name: name
-        )
+        let requestBody = PostCouponsCouponRequestBody(currencyOptions: currencyOptions, expand: expand, metadata: metadata, name: name)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/coupons/", sdkEncodePathSegment(sdkWireString(coupon))].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostCouponsCoupon"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/coupons/", sdkEncodePathSegment(sdkWireString(coupon))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostCouponsCoupon")).data
     }
 }

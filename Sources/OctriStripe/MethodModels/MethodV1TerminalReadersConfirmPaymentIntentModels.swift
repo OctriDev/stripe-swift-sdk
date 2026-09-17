@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1TerminalReadersConfirmPaymentIntent operation model declarations
+// Canonical v1TerminalReadersConfirmPaymentIntent operation model declarations
 /// Configuration overrides for this confirmation, such as surcharge settings and return URL.
 public struct PostTerminalReadersReaderConfirmPaymentIntentRequestBodyConfirmConfig: Codable {
     public var returnUrl: String?
@@ -17,19 +17,19 @@ public struct PostTerminalReadersReaderConfirmPaymentIntentRequestBodyConfirmCon
     }
 
     init() {
-        returnUrl = nil
+        self.returnUrl = nil
     }
 }
 
-public extension PostTerminalReadersReaderConfirmPaymentIntentRequestBodyConfirmConfig {
-    init(from decoder: Decoder) throws {
+extension PostTerminalReadersReaderConfirmPaymentIntentRequestBodyConfirmConfig {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        returnUrl = try container.sdkDecodeIfPresent(.returnUrl)
+        self.returnUrl = try container.sdkDecodeIfPresent(.returnUrl)
     }
 }
 
-public extension PostTerminalReadersReaderConfirmPaymentIntentRequestBodyConfirmConfig {
-    init(returnUrl: String? = nil) {
+extension PostTerminalReadersReaderConfirmPaymentIntentRequestBodyConfirmConfig {
+    public init(returnUrl: String? = nil) {
         self.init()
         self.returnUrl = returnUrl
     }

@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1PaymentMethodsMethods {
-    struct GetPaymentMethodsOptions: Codable {
+extension V1PaymentMethodsMethods {
+    public struct GetPaymentMethodsOptions: Codable {
         public var allowRedisplay: GetPaymentMethodsParameter?
         public var customer: String?
         public var customerAccount: String?
@@ -20,9 +20,7 @@ public extension V1PaymentMethodsMethods {
         public init() {}
     }
 
-    /// Lists payment methods available for retrieval, optionally filtered by customer, account, redisplay setting, or
-    /// payment-method type. Use `starting_after` or `ending_before` to paginate the results and `limit` to control page
-    /// size. Unfiltered results include all payment method types except `custom`.
+    /// Lists payment methods available for retrieval, optionally filtered by customer, account, redisplay setting, or payment-method type. Use `starting_after` or `ending_before` to paginate the results and `limit` to control page size. Unfiltered results include all payment method types except `custom`.
     ///
     /// Returns a list of all PaymentMethods.
     ///
@@ -51,10 +49,7 @@ public extension V1PaymentMethodsMethods {
     ///   returns all payment method types except `custom`. If your integration
     ///   expects only one type of payment method in the response, specify that type
     ///   value in the request to reduce your payload.
-    static func getPaymentMethods(
-        config: ClientConfig,
-        options: GetPaymentMethodsOptions
-    ) async throws -> GetPaymentMethodsResponse {
+    public static func getPaymentMethods(config: ClientConfig, options: GetPaymentMethodsOptions) async throws -> GetPaymentMethodsResponse {
         if let customer = options.customer {
             try validateLength("customer", customer, max: 5000)
         }
@@ -71,7 +66,7 @@ public extension V1PaymentMethodsMethods {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try await (sdkRequest("GET", "/v1/payment_methods", config: config, query: [
+        return try (await sdkRequest("GET", "/v1/payment_methods", config: config, query: [
             SdkQueryParameter("allow_redisplay", value: options.allowRedisplay),
             SdkQueryParameter("customer", value: options.customer),
             SdkQueryParameter("customer_account", value: options.customerAccount),

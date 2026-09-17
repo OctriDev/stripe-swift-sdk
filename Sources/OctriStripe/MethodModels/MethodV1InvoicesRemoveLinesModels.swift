@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1InvoicesRemoveLines operation model declarations
+// Canonical v1InvoicesRemoveLines operation model declarations
 public struct PostInvoicesInvoiceRemoveLinesRequestBodyLinesItem: Codable {
     public var behavior: PostInvoicesInvoiceRemoveLinesRequestBodyLinesItemBehavior
     public var id: String
@@ -17,38 +17,28 @@ public struct PostInvoicesInvoiceRemoveLinesRequestBodyLinesItem: Codable {
         case id
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostInvoicesInvoiceRemoveLinesRequestBodyLinesItem {
-    init(from decoder: Decoder) throws {
+extension PostInvoicesInvoiceRemoveLinesRequestBodyLinesItem {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.behavior) else {
-            throw SdkValidationError(
-                field: "behavior",
-                code: "required",
-                message: "Validation failed for 'behavior': value is required"
-            )
+            throw SdkValidationError(field: "behavior", code: "required", message: "Validation failed for 'behavior': value is required")
         }
         guard container.contains(.id) else {
-            throw SdkValidationError(
-                field: "id",
-                code: "required",
-                message: "Validation failed for 'id': value is required"
-            )
+            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
         }
-        behavior = try container.sdkDecodeRequired(.behavior)
-        id = try container.sdkDecodeRequired(.id)
-        try validateLength("id", id, min: nil, max: 5000)
+        self.behavior = try container.sdkDecodeRequired(.behavior)
+        self.id = try container.sdkDecodeRequired(.id)
+            try validateLength("id", self.id, min: nil, max: 5000)
     }
 }
 
-public extension PostInvoicesInvoiceRemoveLinesRequestBodyLinesItem {
-    init(behavior: PostInvoicesInvoiceRemoveLinesRequestBodyLinesItemBehavior, id: String) throws {
+extension PostInvoicesInvoiceRemoveLinesRequestBodyLinesItem {
+    public init(behavior: PostInvoicesInvoiceRemoveLinesRequestBodyLinesItemBehavior, id: String) throws {
         (self.behavior, self.id) = (behavior, id)
-        try validateLength("id", self.id, min: nil, max: 5000)
+            try validateLength("id", self.id, min: nil, max: 5000)
     }
 }
 
@@ -58,31 +48,21 @@ public enum PostInvoicesInvoiceRemoveLinesRequestBodyInvoiceMetadata {
 }
 
 extension PostInvoicesInvoiceRemoveLinesRequestBodyInvoiceMetadata: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostInvoicesInvoiceRemoveLinesRequestBodyInvoiceMetadata"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostInvoicesInvoiceRemoveLinesRequestBodyInvoiceMetadata")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode([String: String].self) {
-            return .dictionary(value)
-        }
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
+        if let value = try? container.decode([String: String].self) { return .dictionary(value) }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -92,4 +72,5 @@ extension PostInvoicesInvoiceRemoveLinesRequestBodyInvoiceMetadata: Codable {
         case let .stringValue(value): try container.encode(value); return true
         }
     }
+
 }

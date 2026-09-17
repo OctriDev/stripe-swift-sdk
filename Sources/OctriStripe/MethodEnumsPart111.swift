@@ -7,469 +7,167 @@ import Foundation
     import FoundationNetworking
 #endif
 public extension PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744 {
-    static let danceHallStudiosSchools =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "dance_hall_studios_schools")
-    static let datingEscortServices =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "dating_escort_services")
-    static let dentistsOrthodontists =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "dentists_orthodontists")
-    static let departmentStores =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "department_stores")
-    static let detectiveAgencies =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "detective_agencies")
-    static let digitalGoodsApplications =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "digital_goods_applications")
-    static let digitalGoodsGames =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "digital_goods_games")
-    static let digitalGoodsLargeVolume =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "digital_goods_large_volume")
-    static let digitalGoodsMedia =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "digital_goods_media")
-    static let directMarketingCatalogMerchant =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "direct_marketing_catalog_merchant"
-        )
-    static let directMarketingCombinationCatalogAndRetailMerchant =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "direct_marketing_combination_catalog_and_retail_merchant"
-        )
-    static let directMarketingInboundTelemarketing =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "direct_marketing_inbound_telemarketing"
-        )
-    static let directMarketingInsuranceServices =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "direct_marketing_insurance_services"
-        )
-    static let directMarketingOther =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "direct_marketing_other")
-    static let directMarketingOutboundTelemarketing =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "direct_marketing_outbound_telemarketing"
-        )
-    static let directMarketingSubscription =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "direct_marketing_subscription"
-        )
-    static let directMarketingTravel =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "direct_marketing_travel")
-    static let discountStores =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "discount_stores")
+    static let danceHallStudiosSchools = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "dance_hall_studios_schools")
+    static let datingEscortServices = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "dating_escort_services")
+    static let dentistsOrthodontists = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "dentists_orthodontists")
+    static let departmentStores = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "department_stores")
+    static let detectiveAgencies = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "detective_agencies")
+    static let digitalGoodsApplications = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "digital_goods_applications")
+    static let digitalGoodsGames = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "digital_goods_games")
+    static let digitalGoodsLargeVolume = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "digital_goods_large_volume")
+    static let digitalGoodsMedia = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "digital_goods_media")
+    static let directMarketingCatalogMerchant = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "direct_marketing_catalog_merchant")
+    static let directMarketingCombinationCatalogAndRetailMerchant = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "direct_marketing_combination_catalog_and_retail_merchant")
+    static let directMarketingInboundTelemarketing = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "direct_marketing_inbound_telemarketing")
+    static let directMarketingInsuranceServices = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "direct_marketing_insurance_services")
+    static let directMarketingOther = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "direct_marketing_other")
+    static let directMarketingOutboundTelemarketing = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "direct_marketing_outbound_telemarketing")
+    static let directMarketingSubscription = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "direct_marketing_subscription")
+    static let directMarketingTravel = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "direct_marketing_travel")
+    static let discountStores = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "discount_stores")
     static let doctors = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "doctors")
-    static let doorToDoorSales =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "door_to_door_sales")
-    static let draperyWindowCoveringAndUpholsteryStores =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "drapery_window_covering_and_upholstery_stores"
-        )
-    static let drinkingPlaces =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "drinking_places")
-    static let drugStoresAndPharmacies =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "drug_stores_and_pharmacies")
-    static let drugsDrugProprietariesAndDruggistSundries =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "drugs_drug_proprietaries_and_druggist_sundries"
-        )
-    static let dryCleaners =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "dry_cleaners")
-    static let durableGoods =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "durable_goods")
-    static let dutyFreeStores =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "duty_free_stores")
-    static let eatingPlacesRestaurants =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "eating_places_restaurants")
-    static let educationalServices =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "educational_services")
-    static let electricRazorStores =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "electric_razor_stores")
-    static let electricVehicleCharging =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "electric_vehicle_charging")
-    static let electricalPartsAndEquipment =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "electrical_parts_and_equipment"
-        )
-    static let electricalServices =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "electrical_services")
-    static let electronicsRepairShops =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "electronics_repair_shops")
-    static let electronicsStores =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "electronics_stores")
-    static let elementarySecondarySchools =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "elementary_secondary_schools"
-        )
-    static let emergencyServicesGcasVisaUseOnly =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "emergency_services_gcas_visa_use_only"
-        )
-    static let employmentTempAgencies =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "employment_temp_agencies")
-    static let equipmentRental =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "equipment_rental")
-    static let exterminatingServices =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "exterminating_services")
-    static let familyClothingStores =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "family_clothing_stores")
-    static let fastFoodRestaurants =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "fast_food_restaurants")
-    static let financialInstitutions =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "financial_institutions")
-    static let finesGovernmentAdministrativeEntities =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "fines_government_administrative_entities"
-        )
-    static let fireplaceFireplaceScreensAndAccessoriesStores =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "fireplace_fireplace_screens_and_accessories_stores"
-        )
-    static let floorCoveringStores =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "floor_covering_stores")
+    static let doorToDoorSales = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "door_to_door_sales")
+    static let draperyWindowCoveringAndUpholsteryStores = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "drapery_window_covering_and_upholstery_stores")
+    static let drinkingPlaces = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "drinking_places")
+    static let drugStoresAndPharmacies = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "drug_stores_and_pharmacies")
+    static let drugsDrugProprietariesAndDruggistSundries = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "drugs_drug_proprietaries_and_druggist_sundries")
+    static let dryCleaners = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "dry_cleaners")
+    static let durableGoods = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "durable_goods")
+    static let dutyFreeStores = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "duty_free_stores")
+    static let eatingPlacesRestaurants = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "eating_places_restaurants")
+    static let educationalServices = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "educational_services")
+    static let electricRazorStores = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "electric_razor_stores")
+    static let electricVehicleCharging = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "electric_vehicle_charging")
+    static let electricalPartsAndEquipment = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "electrical_parts_and_equipment")
+    static let electricalServices = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "electrical_services")
+    static let electronicsRepairShops = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "electronics_repair_shops")
+    static let electronicsStores = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "electronics_stores")
+    static let elementarySecondarySchools = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "elementary_secondary_schools")
+    static let emergencyServicesGcasVisaUseOnly = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "emergency_services_gcas_visa_use_only")
+    static let employmentTempAgencies = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "employment_temp_agencies")
+    static let equipmentRental = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "equipment_rental")
+    static let exterminatingServices = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "exterminating_services")
+    static let familyClothingStores = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "family_clothing_stores")
+    static let fastFoodRestaurants = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "fast_food_restaurants")
+    static let financialInstitutions = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "financial_institutions")
+    static let finesGovernmentAdministrativeEntities = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "fines_government_administrative_entities")
+    static let fireplaceFireplaceScreensAndAccessoriesStores = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "fireplace_fireplace_screens_and_accessories_stores")
+    static let floorCoveringStores = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "floor_covering_stores")
     static let florists = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "florists")
-    static let floristsSuppliesNurseryStockAndFlowers =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "florists_supplies_nursery_stock_and_flowers"
-        )
-    static let freezerAndLockerMeatProvisioners =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "freezer_and_locker_meat_provisioners"
-        )
-    static let fuelDealersNonAutomotive =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "fuel_dealers_non_automotive"
-        )
-    static let funeralServicesCrematories =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "funeral_services_crematories"
-        )
-    static let furnitureHomeFurnishingsAndEquipmentStoresExceptAppliances =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "furniture_home_furnishings_and_equipment_stores_except_appliances"
-        )
-    static let furnitureRepairRefinishing =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "furniture_repair_refinishing"
-        )
-    static let furriersAndFurShops =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "furriers_and_fur_shops")
-    static let generalServices =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "general_services")
-    static let giftCardNoveltyAndSouvenirShops =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "gift_card_novelty_and_souvenir_shops"
-        )
-    static let glassPaintAndWallpaperStores =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "glass_paint_and_wallpaper_stores"
-        )
-    static let glasswareCrystalStores =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "glassware_crystal_stores")
-    static let golfCoursesPublic =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "golf_courses_public")
-    static let governmentLicensedHorseDogRacingUsRegionOnly =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "government_licensed_horse_dog_racing_us_region_only"
-        )
-    static let governmentLicensedOnlineCasionsOnlineGamblingUsRegionOnly =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "government_licensed_online_casions_online_gambling_us_region_only"
-        )
-    static let governmentOwnedLotteriesNonUsRegion =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "government_owned_lotteries_non_us_region"
-        )
-    static let governmentOwnedLotteriesUsRegionOnly =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "government_owned_lotteries_us_region_only"
-        )
-    static let governmentServices =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "government_services")
-    static let groceryStoresSupermarkets =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "grocery_stores_supermarkets"
-        )
-    static let hardwareEquipmentAndSupplies =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "hardware_equipment_and_supplies"
-        )
-    static let hardwareStores =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "hardware_stores")
-    static let healthAndBeautySpas =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "health_and_beauty_spas")
-    static let hearingAidsSalesAndSupplies =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "hearing_aids_sales_and_supplies"
-        )
-    static let heatingPlumbingAC =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "heating_plumbing_a_c")
-    static let hobbyToyAndGameShops =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "hobby_toy_and_game_shops")
-    static let homeSupplyWarehouseStores =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "home_supply_warehouse_stores"
-        )
-    static let hospitals =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "hospitals")
-    static let hotelsMotelsAndResorts =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "hotels_motels_and_resorts")
-    static let householdApplianceStores =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "household_appliance_stores")
-    static let industrialSupplies =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "industrial_supplies")
-    static let informationRetrievalServices =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "information_retrieval_services"
-        )
-    static let insuranceDefault =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "insurance_default")
-    static let insuranceUnderwritingPremiums =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "insurance_underwriting_premiums"
-        )
-    static let intraCompanyPurchases =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "intra_company_purchases")
+    static let floristsSuppliesNurseryStockAndFlowers = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "florists_supplies_nursery_stock_and_flowers")
+    static let freezerAndLockerMeatProvisioners = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "freezer_and_locker_meat_provisioners")
+    static let fuelDealersNonAutomotive = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "fuel_dealers_non_automotive")
+    static let funeralServicesCrematories = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "funeral_services_crematories")
+    static let furnitureHomeFurnishingsAndEquipmentStoresExceptAppliances = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "furniture_home_furnishings_and_equipment_stores_except_appliances")
+    static let furnitureRepairRefinishing = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "furniture_repair_refinishing")
+    static let furriersAndFurShops = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "furriers_and_fur_shops")
+    static let generalServices = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "general_services")
+    static let giftCardNoveltyAndSouvenirShops = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "gift_card_novelty_and_souvenir_shops")
+    static let glassPaintAndWallpaperStores = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "glass_paint_and_wallpaper_stores")
+    static let glasswareCrystalStores = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "glassware_crystal_stores")
+    static let golfCoursesPublic = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "golf_courses_public")
+    static let governmentLicensedHorseDogRacingUsRegionOnly = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "government_licensed_horse_dog_racing_us_region_only")
+    static let governmentLicensedOnlineCasionsOnlineGamblingUsRegionOnly = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "government_licensed_online_casions_online_gambling_us_region_only")
+    static let governmentOwnedLotteriesNonUsRegion = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "government_owned_lotteries_non_us_region")
+    static let governmentOwnedLotteriesUsRegionOnly = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "government_owned_lotteries_us_region_only")
+    static let governmentServices = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "government_services")
+    static let groceryStoresSupermarkets = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "grocery_stores_supermarkets")
+    static let hardwareEquipmentAndSupplies = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "hardware_equipment_and_supplies")
+    static let hardwareStores = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "hardware_stores")
+    static let healthAndBeautySpas = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "health_and_beauty_spas")
+    static let hearingAidsSalesAndSupplies = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "hearing_aids_sales_and_supplies")
+    static let heatingPlumbingAC = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "heating_plumbing_a_c")
+    static let hobbyToyAndGameShops = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "hobby_toy_and_game_shops")
+    static let homeSupplyWarehouseStores = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "home_supply_warehouse_stores")
+    static let hospitals = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "hospitals")
+    static let hotelsMotelsAndResorts = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "hotels_motels_and_resorts")
+    static let householdApplianceStores = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "household_appliance_stores")
+    static let industrialSupplies = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "industrial_supplies")
+    static let informationRetrievalServices = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "information_retrieval_services")
+    static let insuranceDefault = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "insurance_default")
+    static let insuranceUnderwritingPremiums = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "insurance_underwriting_premiums")
+    static let intraCompanyPurchases = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "intra_company_purchases")
 }
 
 public extension PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744 {
-    static let jewelryStoresWatchesClocksAndSilverwareStores =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "jewelry_stores_watches_clocks_and_silverware_stores"
-        )
-    static let landscapingServices =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "landscaping_services")
-    static let laundries =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "laundries")
-    static let laundryCleaningServices =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "laundry_cleaning_services")
-    static let legalServicesAttorneys =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "legal_services_attorneys")
-    static let luggageAndLeatherGoodsStores =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "luggage_and_leather_goods_stores"
-        )
-    static let lumberBuildingMaterialsStores =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "lumber_building_materials_stores"
-        )
-    static let manualCashDisburse =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "manual_cash_disburse")
-    static let marinasServiceAndSupplies =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "marinas_service_and_supplies"
-        )
-    static let marketplaces =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "marketplaces")
-    static let masonryStoneworkAndPlaster =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "masonry_stonework_and_plaster"
-        )
-    static let massageParlors =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "massage_parlors")
-    static let medicalAndDentalLabs =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "medical_and_dental_labs")
-    static let medicalDentalOphthalmicAndHospitalEquipmentAndSupplies =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "medical_dental_ophthalmic_and_hospital_equipment_and_supplies"
-        )
-    static let medicalServices =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "medical_services")
-    static let membershipOrganizations =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "membership_organizations")
-    static let mensAndBoysClothingAndAccessoriesStores =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "mens_and_boys_clothing_and_accessories_stores"
-        )
-    static let mensWomensClothingStores =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "mens_womens_clothing_stores"
-        )
-    static let metalServiceCenters =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "metal_service_centers")
-    static let miscellaneous =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "miscellaneous")
-    static let miscellaneousApparelAndAccessoryShops =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "miscellaneous_apparel_and_accessory_shops"
-        )
-    static let miscellaneousAutoDealers =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "miscellaneous_auto_dealers")
-    static let miscellaneousBusinessServices =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "miscellaneous_business_services"
-        )
-    static let miscellaneousFoodStores =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "miscellaneous_food_stores")
-    static let miscellaneousGeneralMerchandise =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "miscellaneous_general_merchandise"
-        )
-    static let miscellaneousGeneralServices =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "miscellaneous_general_services"
-        )
-    static let miscellaneousHomeFurnishingSpecialtyStores =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "miscellaneous_home_furnishing_specialty_stores"
-        )
-    static let miscellaneousPublishingAndPrinting =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "miscellaneous_publishing_and_printing"
-        )
-    static let miscellaneousRecreationServices =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "miscellaneous_recreation_services"
-        )
-    static let miscellaneousRepairShops =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "miscellaneous_repair_shops")
-    static let miscellaneousSpecialtyRetail =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "miscellaneous_specialty_retail"
-        )
-    static let mobileHomeDealers =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "mobile_home_dealers")
-    static let motionPictureTheaters =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "motion_picture_theaters")
-    static let motorFreightCarriersAndTrucking =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "motor_freight_carriers_and_trucking"
-        )
-    static let motorHomesDealers =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "motor_homes_dealers")
-    static let motorVehicleSuppliesAndNewParts =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "motor_vehicle_supplies_and_new_parts"
-        )
-    static let motorcycleShopsAndDealers =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "motorcycle_shops_and_dealers"
-        )
-    static let motorcycleShopsDealers =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "motorcycle_shops_dealers")
-    static let musicStoresMusicalInstrumentsPianosAndSheetMusic =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "music_stores_musical_instruments_pianos_and_sheet_music"
-        )
-    static let newsDealersAndNewsstands =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "news_dealers_and_newsstands"
-        )
-    static let nonFiMoneyOrders =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "non_fi_money_orders")
-    static let nonFiStoredValueCardPurchaseLoad =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "non_fi_stored_value_card_purchase_load"
-        )
-    static let nondurableGoods =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "nondurable_goods")
-    static let nurseriesLawnAndGardenSupplyStores =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "nurseries_lawn_and_garden_supply_stores"
-        )
-    static let nursingPersonalCare =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "nursing_personal_care")
-    static let officeAndCommercialFurniture =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "office_and_commercial_furniture"
-        )
-    static let opticiansEyeglasses =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "opticians_eyeglasses")
-    static let optometristsOphthalmologist =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "optometrists_ophthalmologist"
-        )
-    static let orthopedicGoodsProstheticDevices =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "orthopedic_goods_prosthetic_devices"
-        )
-    static let osteopaths =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "osteopaths")
-    static let packageStoresBeerWineAndLiquor =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "package_stores_beer_wine_and_liquor"
-        )
-    static let paintsVarnishesAndSupplies =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "paints_varnishes_and_supplies"
-        )
-    static let parkingLotsGarages =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "parking_lots_garages")
-    static let passengerRailways =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "passenger_railways")
-    static let pawnShops =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "pawn_shops")
-    static let petShopsPetFoodAndSupplies =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "pet_shops_pet_food_and_supplies"
-        )
-    static let petroleumAndPetroleumProducts =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "petroleum_and_petroleum_products"
-        )
-    static let photoDeveloping =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "photo_developing")
-    static let photographicPhotocopyMicrofilmEquipmentAndSupplies =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "photographic_photocopy_microfilm_equipment_and_supplies"
-        )
-    static let photographicStudios =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "photographic_studios")
-    static let pictureVideoProduction =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "picture_video_production")
-    static let pieceGoodsNotionsAndOtherDryGoods =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "piece_goods_notions_and_other_dry_goods"
-        )
-    static let plumbingHeatingEquipmentAndSupplies =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "plumbing_heating_equipment_and_supplies"
-        )
-    static let politicalOrganizations =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "political_organizations")
-    static let postalServicesGovernmentOnly =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "postal_services_government_only"
-        )
-    static let preciousStonesAndMetalsWatchesAndJewelry =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "precious_stones_and_metals_watches_and_jewelry"
-        )
-    static let professionalServices =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "professional_services")
-    static let publicWarehousingAndStorage =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "public_warehousing_and_storage"
-        )
-    static let quickCopyReproAndBlueprint =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "quick_copy_repro_and_blueprint"
-        )
-    static let railroads =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "railroads")
-    static let realEstateAgentsAndManagersRentals =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "real_estate_agents_and_managers_rentals"
-        )
-    static let recordStores =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "record_stores")
-    static let recreationalVehicleRentals =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "recreational_vehicle_rentals"
-        )
-    static let religiousGoodsStores =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "religious_goods_stores")
-    static let religiousOrganizations =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "religious_organizations")
-    static let roofingSidingSheetMetal =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "roofing_siding_sheet_metal")
-    static let secretarialSupportServices =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "secretarial_support_services"
-        )
-    static let securityBrokersDealers =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "security_brokers_dealers")
-    static let serviceStations =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "service_stations")
-    static let sewingNeedleworkFabricAndPieceGoodsStores =
-        PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(
-            rawValue: "sewing_needlework_fabric_and_piece_goods_stores"
-        )
+    static let jewelryStoresWatchesClocksAndSilverwareStores = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "jewelry_stores_watches_clocks_and_silverware_stores")
+    static let landscapingServices = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "landscaping_services")
+    static let laundries = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "laundries")
+    static let laundryCleaningServices = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "laundry_cleaning_services")
+    static let legalServicesAttorneys = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "legal_services_attorneys")
+    static let luggageAndLeatherGoodsStores = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "luggage_and_leather_goods_stores")
+    static let lumberBuildingMaterialsStores = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "lumber_building_materials_stores")
+    static let manualCashDisburse = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "manual_cash_disburse")
+    static let marinasServiceAndSupplies = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "marinas_service_and_supplies")
+    static let marketplaces = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "marketplaces")
+    static let masonryStoneworkAndPlaster = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "masonry_stonework_and_plaster")
+    static let massageParlors = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "massage_parlors")
+    static let medicalAndDentalLabs = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "medical_and_dental_labs")
+    static let medicalDentalOphthalmicAndHospitalEquipmentAndSupplies = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "medical_dental_ophthalmic_and_hospital_equipment_and_supplies")
+    static let medicalServices = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "medical_services")
+    static let membershipOrganizations = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "membership_organizations")
+    static let mensAndBoysClothingAndAccessoriesStores = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "mens_and_boys_clothing_and_accessories_stores")
+    static let mensWomensClothingStores = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "mens_womens_clothing_stores")
+    static let metalServiceCenters = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "metal_service_centers")
+    static let miscellaneous = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "miscellaneous")
+    static let miscellaneousApparelAndAccessoryShops = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "miscellaneous_apparel_and_accessory_shops")
+    static let miscellaneousAutoDealers = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "miscellaneous_auto_dealers")
+    static let miscellaneousBusinessServices = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "miscellaneous_business_services")
+    static let miscellaneousFoodStores = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "miscellaneous_food_stores")
+    static let miscellaneousGeneralMerchandise = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "miscellaneous_general_merchandise")
+    static let miscellaneousGeneralServices = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "miscellaneous_general_services")
+    static let miscellaneousHomeFurnishingSpecialtyStores = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "miscellaneous_home_furnishing_specialty_stores")
+    static let miscellaneousPublishingAndPrinting = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "miscellaneous_publishing_and_printing")
+    static let miscellaneousRecreationServices = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "miscellaneous_recreation_services")
+    static let miscellaneousRepairShops = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "miscellaneous_repair_shops")
+    static let miscellaneousSpecialtyRetail = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "miscellaneous_specialty_retail")
+    static let mobileHomeDealers = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "mobile_home_dealers")
+    static let motionPictureTheaters = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "motion_picture_theaters")
+    static let motorFreightCarriersAndTrucking = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "motor_freight_carriers_and_trucking")
+    static let motorHomesDealers = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "motor_homes_dealers")
+    static let motorVehicleSuppliesAndNewParts = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "motor_vehicle_supplies_and_new_parts")
+    static let motorcycleShopsAndDealers = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "motorcycle_shops_and_dealers")
+    static let motorcycleShopsDealers = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "motorcycle_shops_dealers")
+    static let musicStoresMusicalInstrumentsPianosAndSheetMusic = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "music_stores_musical_instruments_pianos_and_sheet_music")
+    static let newsDealersAndNewsstands = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "news_dealers_and_newsstands")
+    static let nonFiMoneyOrders = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "non_fi_money_orders")
+    static let nonFiStoredValueCardPurchaseLoad = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "non_fi_stored_value_card_purchase_load")
+    static let nondurableGoods = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "nondurable_goods")
+    static let nurseriesLawnAndGardenSupplyStores = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "nurseries_lawn_and_garden_supply_stores")
+    static let nursingPersonalCare = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "nursing_personal_care")
+    static let officeAndCommercialFurniture = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "office_and_commercial_furniture")
+    static let opticiansEyeglasses = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "opticians_eyeglasses")
+    static let optometristsOphthalmologist = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "optometrists_ophthalmologist")
+    static let orthopedicGoodsProstheticDevices = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "orthopedic_goods_prosthetic_devices")
+    static let osteopaths = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "osteopaths")
+    static let packageStoresBeerWineAndLiquor = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "package_stores_beer_wine_and_liquor")
+    static let paintsVarnishesAndSupplies = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "paints_varnishes_and_supplies")
+    static let parkingLotsGarages = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "parking_lots_garages")
+    static let passengerRailways = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "passenger_railways")
+    static let pawnShops = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "pawn_shops")
+    static let petShopsPetFoodAndSupplies = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "pet_shops_pet_food_and_supplies")
+    static let petroleumAndPetroleumProducts = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "petroleum_and_petroleum_products")
+    static let photoDeveloping = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "photo_developing")
+    static let photographicPhotocopyMicrofilmEquipmentAndSupplies = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "photographic_photocopy_microfilm_equipment_and_supplies")
+    static let photographicStudios = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "photographic_studios")
+    static let pictureVideoProduction = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "picture_video_production")
+    static let pieceGoodsNotionsAndOtherDryGoods = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "piece_goods_notions_and_other_dry_goods")
+    static let plumbingHeatingEquipmentAndSupplies = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "plumbing_heating_equipment_and_supplies")
+    static let politicalOrganizations = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "political_organizations")
+    static let postalServicesGovernmentOnly = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "postal_services_government_only")
+    static let preciousStonesAndMetalsWatchesAndJewelry = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "precious_stones_and_metals_watches_and_jewelry")
+    static let professionalServices = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "professional_services")
+    static let publicWarehousingAndStorage = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "public_warehousing_and_storage")
+    static let quickCopyReproAndBlueprint = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "quick_copy_repro_and_blueprint")
+    static let railroads = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "railroads")
+    static let realEstateAgentsAndManagersRentals = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "real_estate_agents_and_managers_rentals")
+    static let recordStores = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "record_stores")
+    static let recreationalVehicleRentals = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "recreational_vehicle_rentals")
+    static let religiousGoodsStores = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "religious_goods_stores")
+    static let religiousOrganizations = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "religious_organizations")
+    static let roofingSidingSheetMetal = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "roofing_siding_sheet_metal")
+    static let secretarialSupportServices = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "secretarial_support_services")
+    static let securityBrokersDealers = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "security_brokers_dealers")
+    static let serviceStations = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "service_stations")
+    static let sewingNeedleworkFabricAndPieceGoodsStores = PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744(rawValue: "sewing_needlework_fabric_and_piece_goods_stores")
 }

@@ -6,19 +6,15 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public struct PostWebhookEndpointsWebhookEndpointRequestBodyMetadataVariant1: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct PostWebhookEndpointsWebhookEndpointRequestBodyMetadataVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostWebhookEndpointsWebhookEndpointRequestBodyMetadataVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -27,45 +23,13 @@ public struct PostWebhookEndpointsWebhookEndpointRequestBodyMetadataVariant1: Ra
     }
 }
 
-public struct PostCustomersCustomerSubscriptionsAddInvoiceItemsList: Codable {
-    private init(sdkCopy value: Self) {
-        self = value
-    }
-}
+public typealias PostCustomersCustomerSubscriptionsAddInvoiceItemsList = [PostCustomersCustomerSubscriptionsRequestBodyAddInvoiceItemsItem]
 
-public extension PostCustomersCustomerSubscriptionsAddInvoiceItemsList {
-    init() {}
-}
+public typealias PostCustomersCustomerSubscriptionsSubscriptionExposedIdAddInvXce4d386374 = [PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesXb3c74899b2]
 
-public struct PostCustomersCustomerSubscriptionsSubscriptionExposedIdAddInvXce4d386374: Codable {
-    private init(sdkCopy value: Self) {
-        self = value
-    }
-}
+public typealias PostCustomersCustomerSubscriptionsSubscriptionExposedIdItemsList = [PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX20876157b2]
 
-public extension PostCustomersCustomerSubscriptionsSubscriptionExposedIdAddInvXce4d386374 {
-    init() {}
-}
-
-public struct PostCustomersCustomerSubscriptionsSubscriptionExposedIdItemsList: Codable {
-    private init(sdkCopy value: Self) {
-        self = value
-    }
-}
-
-public extension PostCustomersCustomerSubscriptionsSubscriptionExposedIdItemsList {
-    init() {}
-}
-
-public struct PostSubscriptionsSubscriptionExposedIdAddInvoiceItemsList: Codable {
-    private init(sdkCopy value: Self) {
-        self = value
-    }
-}
-
-public extension PostSubscriptionsSubscriptionExposedIdAddInvoiceItemsList {
-    init() {}
-}
+public typealias PostSubscriptionsSubscriptionExposedIdAddInvoiceItemsList = [PostSubscriptionsSubscriptionExposedIdRequestBodyAddInvoiceItemsItem]
 
 struct PostAccountLinksRequestBody: Encodable {
     let account: String
@@ -78,13 +42,13 @@ struct PostAccountLinksRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encode(account, forKey: SdkCodingKey("account"))
-        try keyedContainer.encode(type, forKey: SdkCodingKey("type"))
-        try keyedContainer.encodeIfPresent(collect, forKey: SdkCodingKey("collect"))
-        try keyedContainer.encodeIfPresent(collectionOptions, forKey: SdkCodingKey("collection_options"))
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(refreshUrl, forKey: SdkCodingKey("refresh_url"))
-        try keyedContainer.encodeIfPresent(returnUrl, forKey: SdkCodingKey("return_url"))
+        try keyedContainer.encode(self.account, forKey: SdkCodingKey("account"))
+        try keyedContainer.encode(self.type, forKey: SdkCodingKey("type"))
+        try keyedContainer.encodeIfPresent(self.collect, forKey: SdkCodingKey("collect"))
+        try keyedContainer.encodeIfPresent(self.collectionOptions, forKey: SdkCodingKey("collection_options"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.refreshUrl, forKey: SdkCodingKey("refresh_url"))
+        try keyedContainer.encodeIfPresent(self.returnUrl, forKey: SdkCodingKey("return_url"))
     }
 }
 
@@ -95,9 +59,9 @@ struct PostAccountSessionsRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encode(account, forKey: SdkCodingKey("account"))
-        try keyedContainer.encode(components, forKey: SdkCodingKey("components"))
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encode(self.account, forKey: SdkCodingKey("account"))
+        try keyedContainer.encode(self.components, forKey: SdkCodingKey("components"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
     }
 }
 
@@ -124,46 +88,118 @@ struct PostAccountsRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(accountToken, forKey: SdkCodingKey("account_token"))
-        try keyedContainer.encodeIfPresent(bankAccount, forKey: SdkCodingKey("bank_account"))
-        try keyedContainer.encodeIfPresent(businessProfile, forKey: SdkCodingKey("business_profile"))
-        try keyedContainer.encodeIfPresent(businessType, forKey: SdkCodingKey("business_type"))
-        try keyedContainer.encodeIfPresent(capabilities, forKey: SdkCodingKey("capabilities"))
-        try keyedContainer.encodeIfPresent(company, forKey: SdkCodingKey("company"))
-        try keyedContainer.encodeIfPresent(controller, forKey: SdkCodingKey("controller"))
-        try keyedContainer.encodeIfPresent(country, forKey: SdkCodingKey("country"))
-        try keyedContainer.encodeIfPresent(defaultCurrency, forKey: SdkCodingKey("default_currency"))
-        try keyedContainer.encodeIfPresent(documents, forKey: SdkCodingKey("documents"))
-        try keyedContainer.encodeIfPresent(email, forKey: SdkCodingKey("email"))
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(externalAccount, forKey: SdkCodingKey("external_account"))
-        try keyedContainer.encodeIfPresent(groups, forKey: SdkCodingKey("groups"))
-        try keyedContainer.encodeIfPresent(individual, forKey: SdkCodingKey("individual"))
-        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
-        try keyedContainer.encodeIfPresent(settings, forKey: SdkCodingKey("settings"))
-        try keyedContainer.encodeIfPresent(tosAcceptance, forKey: SdkCodingKey("tos_acceptance"))
-        try keyedContainer.encodeIfPresent(type, forKey: SdkCodingKey("type"))
+        try keyedContainer.encodeIfPresent(self.accountToken, forKey: SdkCodingKey("account_token"))
+        try keyedContainer.encodeIfPresent(self.bankAccount, forKey: SdkCodingKey("bank_account"))
+        try keyedContainer.encodeIfPresent(self.businessProfile, forKey: SdkCodingKey("business_profile"))
+        try keyedContainer.encodeIfPresent(self.businessType, forKey: SdkCodingKey("business_type"))
+        try keyedContainer.encodeIfPresent(self.capabilities, forKey: SdkCodingKey("capabilities"))
+        try keyedContainer.encodeIfPresent(self.company, forKey: SdkCodingKey("company"))
+        try keyedContainer.encodeIfPresent(self.controller, forKey: SdkCodingKey("controller"))
+        try keyedContainer.encodeIfPresent(self.country, forKey: SdkCodingKey("country"))
+        try keyedContainer.encodeIfPresent(self.defaultCurrency, forKey: SdkCodingKey("default_currency"))
+        try keyedContainer.encodeIfPresent(self.documents, forKey: SdkCodingKey("documents"))
+        try keyedContainer.encodeIfPresent(self.email, forKey: SdkCodingKey("email"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.externalAccount, forKey: SdkCodingKey("external_account"))
+        try keyedContainer.encodeIfPresent(self.groups, forKey: SdkCodingKey("groups"))
+        try keyedContainer.encodeIfPresent(self.individual, forKey: SdkCodingKey("individual"))
+        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encodeIfPresent(self.settings, forKey: SdkCodingKey("settings"))
+        try keyedContainer.encodeIfPresent(self.tosAcceptance, forKey: SdkCodingKey("tos_acceptance"))
+        try keyedContainer.encodeIfPresent(self.type, forKey: SdkCodingKey("type"))
     }
 
     init(options: V1AccountsMethods.PostAccountsOptions) {
-        accountToken = options.accountToken
-        bankAccount = options.bankAccount
-        businessProfile = options.businessProfile
-        businessType = options.businessType
-        capabilities = options.capabilities
-        company = options.company
-        controller = options.controller
-        country = options.country
-        defaultCurrency = options.defaultCurrency
-        documents = options.documents
-        email = options.email
-        expand = options.expand
-        externalAccount = options.externalAccount
-        groups = options.groups
-        individual = options.individual
-        metadata = options.metadata
-        settings = options.settings
-        tosAcceptance = options.tosAcceptance
-        type = options.type
+        self.accountToken = options.accountToken
+        self.bankAccount = options.bankAccount
+        self.businessProfile = options.businessProfile
+        self.businessType = options.businessType
+        self.capabilities = options.capabilities
+        self.company = options.company
+        self.controller = options.controller
+        self.country = options.country
+        self.defaultCurrency = options.defaultCurrency
+        self.documents = options.documents
+        self.email = options.email
+        self.expand = options.expand
+        self.externalAccount = options.externalAccount
+        self.groups = options.groups
+        self.individual = options.individual
+        self.metadata = options.metadata
+        self.settings = options.settings
+        self.tosAcceptance = options.tosAcceptance
+        self.type = options.type
+    }
+}
+
+struct PostAccountsAccountRequestBody: Encodable {
+    var accountToken: String?
+    var businessProfile: PostAccountsAccountRequestBodyBusinessProfile?
+    var businessType: PostAccountsAccountRequestBodyBusinessType?
+    var capabilities: PostAccountsAccountRequestBodyCapabilities?
+    var company: PostAccountsAccountRequestBodyCompany?
+    var defaultCurrency: String?
+    var documents: PostAccountsAccountRequestBodyDocuments?
+    var email: String?
+    var expand: [String]?
+    var externalAccount: String?
+    var groups: PostAccountsAccountRequestBodyGroups?
+    var individual: PostAccountsAccountRequestBodyIndividual?
+    var metadata: PostAccountsAccountRequestBodyMetadata?
+    var settings: PostAccountsAccountRequestBodySettings?
+    var tosAcceptance: PostAccountsAccountRequestBodyTosAcceptance?
+
+    func encode(to encoder: Encoder) throws {
+        var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
+        try keyedContainer.encodeIfPresent(self.accountToken, forKey: SdkCodingKey("account_token"))
+        try keyedContainer.encodeIfPresent(self.businessProfile, forKey: SdkCodingKey("business_profile"))
+        try keyedContainer.encodeIfPresent(self.businessType, forKey: SdkCodingKey("business_type"))
+        try keyedContainer.encodeIfPresent(self.capabilities, forKey: SdkCodingKey("capabilities"))
+        try keyedContainer.encodeIfPresent(self.company, forKey: SdkCodingKey("company"))
+        try keyedContainer.encodeIfPresent(self.defaultCurrency, forKey: SdkCodingKey("default_currency"))
+        try keyedContainer.encodeIfPresent(self.documents, forKey: SdkCodingKey("documents"))
+        try keyedContainer.encodeIfPresent(self.email, forKey: SdkCodingKey("email"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.externalAccount, forKey: SdkCodingKey("external_account"))
+        try keyedContainer.encodeIfPresent(self.groups, forKey: SdkCodingKey("groups"))
+        try keyedContainer.encodeIfPresent(self.individual, forKey: SdkCodingKey("individual"))
+        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encodeIfPresent(self.settings, forKey: SdkCodingKey("settings"))
+        try keyedContainer.encodeIfPresent(self.tosAcceptance, forKey: SdkCodingKey("tos_acceptance"))
+    }
+
+    init(options: V1AccountsMethods.PostAccountsAccountOptions) {
+        self.accountToken = options.accountToken
+        self.businessProfile = options.businessProfile
+        self.businessType = options.businessType
+        self.capabilities = options.capabilities
+        self.company = options.company
+        self.defaultCurrency = options.defaultCurrency
+        self.documents = options.documents
+        self.email = options.email
+        self.expand = options.expand
+        self.externalAccount = options.externalAccount
+        self.groups = options.groups
+        self.individual = options.individual
+        self.metadata = options.metadata
+        self.settings = options.settings
+        self.tosAcceptance = options.tosAcceptance
+    }
+}
+
+struct PostAccountsAccountBankAccountsRequestBody: Encodable {
+    var bankAccount: PostAccountsAccountBankAccountsRequestBodyBankAccount?
+    var defaultForCurrency: Bool?
+    var expand: [String]?
+    var externalAccount: String?
+    var metadata: [String: String]?
+
+    func encode(to encoder: Encoder) throws {
+        var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
+        try keyedContainer.encodeIfPresent(self.bankAccount, forKey: SdkCodingKey("bank_account"))
+        try keyedContainer.encodeIfPresent(self.defaultForCurrency, forKey: SdkCodingKey("default_for_currency"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.externalAccount, forKey: SdkCodingKey("external_account"))
+        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
     }
 }

@@ -7,46 +7,39 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1Tokens operation model declarations
-public extension PostTokensRequestBodyAccountIndividualAddress {
-    init(from decoder: Decoder) throws {
+// Canonical v1Tokens operation model declarations
+extension PostTokensRequestBodyAccountIndividualAddress {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        city = try container.sdkDecodeIfPresent(.city)
-        country = try container.sdkDecodeIfPresent(.country)
-        line1 = try container.sdkDecodeIfPresent(.line1)
-        line2 = try container.sdkDecodeIfPresent(.line2)
-        postalCode = try container.sdkDecodeIfPresent(.postalCode)
-        state = try container.sdkDecodeIfPresent(.state)
-        if let value = city {
+        self.city = try container.sdkDecodeIfPresent(.city)
+        self.country = try container.sdkDecodeIfPresent(.country)
+        self.line1 = try container.sdkDecodeIfPresent(.line1)
+        self.line2 = try container.sdkDecodeIfPresent(.line2)
+        self.postalCode = try container.sdkDecodeIfPresent(.postalCode)
+        self.state = try container.sdkDecodeIfPresent(.state)
+        if let value = self.city {
             try validateLength("city", value, min: nil, max: 100)
         }
-        if let value = country {
+        if let value = self.country {
             try validateLength("country", value, min: nil, max: 5000)
         }
-        if let value = line1 {
+        if let value = self.line1 {
             try validateLength("line1", value, min: nil, max: 200)
         }
-        if let value = line2 {
+        if let value = self.line2 {
             try validateLength("line2", value, min: nil, max: 200)
         }
-        if let value = postalCode {
+        if let value = self.postalCode {
             try validateLength("postal_code", value, min: nil, max: 5000)
         }
-        if let value = state {
+        if let value = self.state {
             try validateLength("state", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PostTokensRequestBodyAccountIndividualAddress {
-    init(
-        city: String? = nil,
-        country: String? = nil,
-        line1: String? = nil,
-        line2: String? = nil,
-        postalCode: String? = nil,
-        state: String? = nil
-    ) throws {
+extension PostTokensRequestBodyAccountIndividualAddress {
+    public init(city: String? = nil, country: String? = nil, line1: String? = nil, line2: String? = nil, postalCode: String? = nil, state: String? = nil) throws {
         self.init()
         (self.city, self.country) = (city, country)
         (self.line1, self.line2) = (line1, line2)
@@ -90,50 +83,43 @@ public struct PostTokensRequestBodyPersonRegisteredAddress: Codable {
     }
 
     init() {
-        (city, country, line1, line2, postalCode) = (nil, nil, nil, nil, nil)
-        state = nil
+        (self.city, self.country, self.line1, self.line2, self.postalCode) = (nil, nil, nil, nil, nil)
+        self.state = nil
     }
 }
 
-public extension PostTokensRequestBodyPersonRegisteredAddress {
-    init(from decoder: Decoder) throws {
+extension PostTokensRequestBodyPersonRegisteredAddress {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        city = try container.sdkDecodeIfPresent(.city)
-        country = try container.sdkDecodeIfPresent(.country)
-        line1 = try container.sdkDecodeIfPresent(.line1)
-        line2 = try container.sdkDecodeIfPresent(.line2)
-        postalCode = try container.sdkDecodeIfPresent(.postalCode)
-        state = try container.sdkDecodeIfPresent(.state)
-        if let value = city {
+        self.city = try container.sdkDecodeIfPresent(.city)
+        self.country = try container.sdkDecodeIfPresent(.country)
+        self.line1 = try container.sdkDecodeIfPresent(.line1)
+        self.line2 = try container.sdkDecodeIfPresent(.line2)
+        self.postalCode = try container.sdkDecodeIfPresent(.postalCode)
+        self.state = try container.sdkDecodeIfPresent(.state)
+        if let value = self.city {
             try validateLength("city", value, min: nil, max: 100)
         }
-        if let value = country {
+        if let value = self.country {
             try validateLength("country", value, min: nil, max: 5000)
         }
-        if let value = line1 {
+        if let value = self.line1 {
             try validateLength("line1", value, min: nil, max: 200)
         }
-        if let value = line2 {
+        if let value = self.line2 {
             try validateLength("line2", value, min: nil, max: 200)
         }
-        if let value = postalCode {
+        if let value = self.postalCode {
             try validateLength("postal_code", value, min: nil, max: 5000)
         }
-        if let value = state {
+        if let value = self.state {
             try validateLength("state", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PostTokensRequestBodyPersonRegisteredAddress {
-    init(
-        city: String? = nil,
-        country: String? = nil,
-        line1: String? = nil,
-        line2: String? = nil,
-        postalCode: String? = nil,
-        state: String? = nil
-    ) throws {
+extension PostTokensRequestBodyPersonRegisteredAddress {
+    public init(city: String? = nil, country: String? = nil, line1: String? = nil, line2: String? = nil, postalCode: String? = nil, state: String? = nil) throws {
         self.init()
         (self.city, self.country) = (city, country)
         (self.line1, self.line2) = (line1, line2)
@@ -176,27 +162,22 @@ public struct PostTokensRequestBodyAccount: Codable {
     }
 
     init() {
-        (businessType, company, individual, tosShownAndAccepted) = (nil, nil, nil, nil)
+        (self.businessType, self.company, self.individual, self.tosShownAndAccepted) = (nil, nil, nil, nil)
     }
 }
 
-public extension PostTokensRequestBodyAccount {
-    init(from decoder: Decoder) throws {
+extension PostTokensRequestBodyAccount {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        businessType = try container.sdkDecodeIfPresent(.businessType)
-        company = try container.sdkDecodeIfPresent(.company)
-        individual = try container.sdkDecodeIfPresent(.individual)
-        tosShownAndAccepted = try container.sdkDecodeIfPresent(.tosShownAndAccepted)
+        self.businessType = try container.sdkDecodeIfPresent(.businessType)
+        self.company = try container.sdkDecodeIfPresent(.company)
+        self.individual = try container.sdkDecodeIfPresent(.individual)
+        self.tosShownAndAccepted = try container.sdkDecodeIfPresent(.tosShownAndAccepted)
     }
 }
 
-public extension PostTokensRequestBodyAccount {
-    init(
-        businessType: PostTokensRequestBodyAccountBusinessType? = nil,
-        company: PostTokensRequestBodyAccountCompany? = nil,
-        individual: PostTokensRequestBodyAccountIndividual? = nil,
-        tosShownAndAccepted: Bool? = nil
-    ) {
+extension PostTokensRequestBodyAccount {
+    public init(businessType: PostTokensRequestBodyAccountBusinessType? = nil, company: PostTokensRequestBodyAccountCompany? = nil, individual: PostTokensRequestBodyAccountIndividual? = nil, tosShownAndAccepted: Bool? = nil) {
         self.init()
         (self.businessType, self.company) = (businessType, company)
         (self.individual, self.tosShownAndAccepted) = (individual, tosShownAndAccepted)
@@ -215,24 +196,24 @@ public struct PostTokensRequestBodyAccountCompanyDirectorshipDeclaration: Codabl
     }
 
     init() {
-        (date, ip, userAgent) = (nil, nil, nil)
+        (self.date, self.ip, self.userAgent) = (nil, nil, nil)
     }
 }
 
-public extension PostTokensRequestBodyAccountCompanyDirectorshipDeclaration {
-    init(from decoder: Decoder) throws {
+extension PostTokensRequestBodyAccountCompanyDirectorshipDeclaration {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        date = try container.sdkDecodeIfPresent(.date)
-        ip = try container.sdkDecodeIfPresent(.ip)
-        userAgent = try container.sdkDecodeIfPresent(.userAgent)
-        if let value = userAgent {
+        self.date = try container.sdkDecodeIfPresent(.date)
+        self.ip = try container.sdkDecodeIfPresent(.ip)
+        self.userAgent = try container.sdkDecodeIfPresent(.userAgent)
+        if let value = self.userAgent {
             try validateLength("user_agent", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PostTokensRequestBodyAccountCompanyDirectorshipDeclaration {
-    init(date: Int? = nil, ip: String? = nil, userAgent: String? = nil) throws {
+extension PostTokensRequestBodyAccountCompanyDirectorshipDeclaration {
+    public init(date: Int? = nil, ip: String? = nil, userAgent: String? = nil) throws {
         self.init()
         (self.date, self.ip) = (date, ip)
         self.userAgent = userAgent
@@ -250,19 +231,19 @@ public struct PostTokensRequestBodyPersonDocumentsVisa: Codable {
     }
 
     init() {
-        files = nil
+        self.files = nil
     }
 }
 
-public extension PostTokensRequestBodyPersonDocumentsVisa {
-    init(from decoder: Decoder) throws {
+extension PostTokensRequestBodyPersonDocumentsVisa {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        files = try container.sdkDecodeIfPresent(.files)
+        self.files = try container.sdkDecodeIfPresent(.files)
     }
 }
 
-public extension PostTokensRequestBodyPersonDocumentsVisa {
-    init(files: [PostTokensRequestBodyPersonDocumentsVisaFilesItem]? = nil) {
+extension PostTokensRequestBodyPersonDocumentsVisa {
+    public init(files: [PostTokensRequestBodyPersonDocumentsVisaFilesItem]? = nil) {
         self.init()
         self.files = files
     }
@@ -279,43 +260,29 @@ public struct PostTokensRequestBodyAccountCompanyRegistrationDateVariant0: Codab
         case year
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostTokensRequestBodyAccountCompanyRegistrationDateVariant0 {
-    init(from decoder: Decoder) throws {
+extension PostTokensRequestBodyAccountCompanyRegistrationDateVariant0 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.day) else {
-            throw SdkValidationError(
-                field: "day",
-                code: "required",
-                message: "Validation failed for 'day': value is required"
-            )
+            throw SdkValidationError(field: "day", code: "required", message: "Validation failed for 'day': value is required")
         }
         guard container.contains(.month) else {
-            throw SdkValidationError(
-                field: "month",
-                code: "required",
-                message: "Validation failed for 'month': value is required"
-            )
+            throw SdkValidationError(field: "month", code: "required", message: "Validation failed for 'month': value is required")
         }
         guard container.contains(.year) else {
-            throw SdkValidationError(
-                field: "year",
-                code: "required",
-                message: "Validation failed for 'year': value is required"
-            )
+            throw SdkValidationError(field: "year", code: "required", message: "Validation failed for 'year': value is required")
         }
-        day = try container.sdkDecodeRequired(.day)
-        month = try container.sdkDecodeRequired(.month)
-        year = try container.sdkDecodeRequired(.year)
+        self.day = try container.sdkDecodeRequired(.day)
+        self.month = try container.sdkDecodeRequired(.month)
+        self.year = try container.sdkDecodeRequired(.year)
     }
 }
 
-public extension PostTokensRequestBodyAccountCompanyRegistrationDateVariant0 {
-    init(day: Int, month: Int, year: Int) {
+extension PostTokensRequestBodyAccountCompanyRegistrationDateVariant0 {
+    public init(day: Int, month: Int, year: Int) {
         (self.day, self.month) = (day, month)
         self.year = year
     }
@@ -331,26 +298,26 @@ public struct PostTokensRequestBodyAccountCompanyVerificationDocument: Codable {
     }
 
     init() {
-        (back, front) = (nil, nil)
+        (self.back, self.front) = (nil, nil)
     }
 }
 
-public extension PostTokensRequestBodyAccountCompanyVerificationDocument {
-    init(from decoder: Decoder) throws {
+extension PostTokensRequestBodyAccountCompanyVerificationDocument {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        back = try container.sdkDecodeIfPresent(.back)
-        front = try container.sdkDecodeIfPresent(.front)
-        if let value = back {
+        self.back = try container.sdkDecodeIfPresent(.back)
+        self.front = try container.sdkDecodeIfPresent(.front)
+        if let value = self.back {
             try validateLength("back", value, min: nil, max: 500)
         }
-        if let value = front {
+        if let value = self.front {
             try validateLength("front", value, min: nil, max: 500)
         }
     }
 }
 
-public extension PostTokensRequestBodyAccountCompanyVerificationDocument {
-    init(back: String? = nil, front: String? = nil) throws {
+extension PostTokensRequestBodyAccountCompanyVerificationDocument {
+    public init(back: String? = nil, front: String? = nil) throws {
         self.init()
         (self.back, self.front) = (back, front)
         if let value = self.back {
@@ -370,30 +337,24 @@ public struct PostTokensRequestBodyCvcUpdate: Codable {
         case cvc
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostTokensRequestBodyCvcUpdate {
-    init(from decoder: Decoder) throws {
+extension PostTokensRequestBodyCvcUpdate {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.cvc) else {
-            throw SdkValidationError(
-                field: "cvc",
-                code: "required",
-                message: "Validation failed for 'cvc': value is required"
-            )
+            throw SdkValidationError(field: "cvc", code: "required", message: "Validation failed for 'cvc': value is required")
         }
-        cvc = try container.sdkDecodeRequired(.cvc)
-        try validateLength("cvc", cvc, min: nil, max: 5000)
+        self.cvc = try container.sdkDecodeRequired(.cvc)
+            try validateLength("cvc", self.cvc, min: nil, max: 5000)
     }
 }
 
-public extension PostTokensRequestBodyCvcUpdate {
-    init(cvc: String) throws {
+extension PostTokensRequestBodyCvcUpdate {
+    public init(cvc: String) throws {
         self.cvc = cvc
-        try validateLength("cvc", self.cvc, min: nil, max: 5000)
+            try validateLength("cvc", self.cvc, min: nil, max: 5000)
     }
 }
 
@@ -417,35 +378,27 @@ public struct PostTokensRequestBodyAccountCompanyAddressKana: Codable {
     }
 
     init() {
-        (city, country, line1, line2, postalCode) = (nil, nil, nil, nil, nil)
-        (state, town) = (nil, nil)
+        (self.city, self.country, self.line1, self.line2, self.postalCode) = (nil, nil, nil, nil, nil)
+        (self.state, self.town) = (nil, nil)
     }
 }
 
-public extension PostTokensRequestBodyAccountCompanyAddressKana {
-    init(from decoder: Decoder) throws {
+extension PostTokensRequestBodyAccountCompanyAddressKana {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        city = try container.sdkDecodeIfPresent(.city)
-        country = try container.sdkDecodeIfPresent(.country)
-        line1 = try container.sdkDecodeIfPresent(.line1)
-        line2 = try container.sdkDecodeIfPresent(.line2)
-        postalCode = try container.sdkDecodeIfPresent(.postalCode)
-        state = try container.sdkDecodeIfPresent(.state)
-        town = try container.sdkDecodeIfPresent(.town)
+        self.city = try container.sdkDecodeIfPresent(.city)
+        self.country = try container.sdkDecodeIfPresent(.country)
+        self.line1 = try container.sdkDecodeIfPresent(.line1)
+        self.line2 = try container.sdkDecodeIfPresent(.line2)
+        self.postalCode = try container.sdkDecodeIfPresent(.postalCode)
+        self.state = try container.sdkDecodeIfPresent(.state)
+        self.town = try container.sdkDecodeIfPresent(.town)
         try sdkValidateConstraints()
     }
 }
 
-public extension PostTokensRequestBodyAccountCompanyAddressKana {
-    init(
-        city: String? = nil,
-        country: String? = nil,
-        line1: String? = nil,
-        line2: String? = nil,
-        postalCode: String? = nil,
-        state: String? = nil,
-        town: String? = nil
-    ) throws {
+extension PostTokensRequestBodyAccountCompanyAddressKana {
+    public init(city: String? = nil, country: String? = nil, line1: String? = nil, line2: String? = nil, postalCode: String? = nil, state: String? = nil, town: String? = nil) throws {
         self.init()
         (self.city, self.country) = (city, country)
         (self.line1, self.line2) = (line1, line2)
@@ -457,25 +410,25 @@ public extension PostTokensRequestBodyAccountCompanyAddressKana {
 
 extension PostTokensRequestBodyAccountCompanyAddressKana {
     func sdkValidateConstraints() throws {
-        if let value = city {
+        if let value = self.city {
             try validateLength("city", value, min: nil, max: 5000)
         }
-        if let value = country {
+        if let value = self.country {
             try validateLength("country", value, min: nil, max: 5000)
         }
-        if let value = line1 {
+        if let value = self.line1 {
             try validateLength("line1", value, min: nil, max: 5000)
         }
-        if let value = line2 {
+        if let value = self.line2 {
             try validateLength("line2", value, min: nil, max: 5000)
         }
-        if let value = postalCode {
+        if let value = self.postalCode {
             try validateLength("postal_code", value, min: nil, max: 5000)
         }
-        if let value = state {
+        if let value = self.state {
             try validateLength("state", value, min: nil, max: 5000)
         }
-        if let value = town {
+        if let value = self.town {
             try validateLength("town", value, min: nil, max: 5000)
         }
     }
@@ -499,50 +452,43 @@ public struct PostTokensRequestBodyPersonAddress: Codable {
     }
 
     init() {
-        (city, country, line1, line2, postalCode) = (nil, nil, nil, nil, nil)
-        state = nil
+        (self.city, self.country, self.line1, self.line2, self.postalCode) = (nil, nil, nil, nil, nil)
+        self.state = nil
     }
 }
 
-public extension PostTokensRequestBodyPersonAddress {
-    init(from decoder: Decoder) throws {
+extension PostTokensRequestBodyPersonAddress {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        city = try container.sdkDecodeIfPresent(.city)
-        country = try container.sdkDecodeIfPresent(.country)
-        line1 = try container.sdkDecodeIfPresent(.line1)
-        line2 = try container.sdkDecodeIfPresent(.line2)
-        postalCode = try container.sdkDecodeIfPresent(.postalCode)
-        state = try container.sdkDecodeIfPresent(.state)
-        if let value = city {
+        self.city = try container.sdkDecodeIfPresent(.city)
+        self.country = try container.sdkDecodeIfPresent(.country)
+        self.line1 = try container.sdkDecodeIfPresent(.line1)
+        self.line2 = try container.sdkDecodeIfPresent(.line2)
+        self.postalCode = try container.sdkDecodeIfPresent(.postalCode)
+        self.state = try container.sdkDecodeIfPresent(.state)
+        if let value = self.city {
             try validateLength("city", value, min: nil, max: 100)
         }
-        if let value = country {
+        if let value = self.country {
             try validateLength("country", value, min: nil, max: 5000)
         }
-        if let value = line1 {
+        if let value = self.line1 {
             try validateLength("line1", value, min: nil, max: 200)
         }
-        if let value = line2 {
+        if let value = self.line2 {
             try validateLength("line2", value, min: nil, max: 200)
         }
-        if let value = postalCode {
+        if let value = self.postalCode {
             try validateLength("postal_code", value, min: nil, max: 5000)
         }
-        if let value = state {
+        if let value = self.state {
             try validateLength("state", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PostTokensRequestBodyPersonAddress {
-    init(
-        city: String? = nil,
-        country: String? = nil,
-        line1: String? = nil,
-        line2: String? = nil,
-        postalCode: String? = nil,
-        state: String? = nil
-    ) throws {
+extension PostTokensRequestBodyPersonAddress {
+    public init(city: String? = nil, country: String? = nil, line1: String? = nil, line2: String? = nil, postalCode: String? = nil, state: String? = nil) throws {
         self.init()
         (self.city, self.country) = (city, country)
         (self.line1, self.line2) = (line1, line2)
@@ -568,8 +514,7 @@ public extension PostTokensRequestBodyPersonAddress {
     }
 }
 
-public typealias PostTokensRequestBodyPersonUsCfpbDataEthnicityDetailsEthnicityList =
-    [PostTokensRequestBodyPersonUsCfpbDataEthnicityDetailsEthnicityItem]
+public typealias PostTokensRequestBodyPersonUsCfpbDataEthnicityDetailsEthnicityList = [PostTokensRequestBodyPersonUsCfpbDataEthnicityDetailsEthnicityItem]
 
 public struct PostTokensRequestBodyPersonUsCfpbDataEthnicityDetails: Codable {
     public var ethnicity: PostTokensRequestBodyPersonUsCfpbDataEthnicityDetailsEthnicityList?
@@ -581,26 +526,23 @@ public struct PostTokensRequestBodyPersonUsCfpbDataEthnicityDetails: Codable {
     }
 
     init() {
-        (ethnicity, ethnicityOther) = (nil, nil)
+        (self.ethnicity, self.ethnicityOther) = (nil, nil)
     }
 }
 
-public extension PostTokensRequestBodyPersonUsCfpbDataEthnicityDetails {
-    init(from decoder: Decoder) throws {
+extension PostTokensRequestBodyPersonUsCfpbDataEthnicityDetails {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        ethnicity = try container.sdkDecodeIfPresent(.ethnicity)
-        ethnicityOther = try container.sdkDecodeIfPresent(.ethnicityOther)
-        if let value = ethnicityOther {
+        self.ethnicity = try container.sdkDecodeIfPresent(.ethnicity)
+        self.ethnicityOther = try container.sdkDecodeIfPresent(.ethnicityOther)
+        if let value = self.ethnicityOther {
             try validateLength("ethnicity_other", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PostTokensRequestBodyPersonUsCfpbDataEthnicityDetails {
-    init(
-        ethnicity: PostTokensRequestBodyPersonUsCfpbDataEthnicityDetailsEthnicityList? = nil,
-        ethnicityOther: String? = nil
-    ) throws {
+extension PostTokensRequestBodyPersonUsCfpbDataEthnicityDetails {
+    public init(ethnicity: PostTokensRequestBodyPersonUsCfpbDataEthnicityDetailsEthnicityList? = nil, ethnicityOther: String? = nil) throws {
         self.init()
         (self.ethnicity, self.ethnicityOther) = (ethnicity, ethnicityOther)
         if let value = self.ethnicityOther {

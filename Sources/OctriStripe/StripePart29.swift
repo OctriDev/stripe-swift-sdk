@@ -9,23 +9,11 @@ public class V1TestHelpersIssuingAuthorizationsFraudChallengesRespondNamespace {
         self.config = config
     }
 
-    /// Responds to a fraud challenge on a test-mode Issuing authorization. Set `confirmed` to indicate whether the
-    /// simulated cardholder confirms the transaction was legitimate or reports it as fraudulent.
+/// Responds to a fraud challenge on a test-mode Issuing authorization. Set `confirmed` to indicate whether the simulated cardholder confirms the transaction was legitimate or reports it as fraudulent.
     ///
-    /// Respond to a fraud challenge on a testmode Issuing authorization, simulating either a confirmation of fraud or a
-    /// correction of legitimacy.
-    public func postTestHelpersIssuingAuthorizationsAuthorizationFraudChallenges(
-        authorization: String,
-        confirmed: Bool,
-        expand: [String]?
-    ) async throws -> IssuingAuthorization {
-        try await V1TestHelpersIssuingAuthorizationsFraudChallengesRespondMethods
-            .postTestHelpersIssuingAuthorizationsAuthorizationFraudChallengesRespond(
-                config: config,
-                authorization: authorization,
-                confirmed: confirmed,
-                expand: expand
-            )
+    /// Respond to a fraud challenge on a testmode Issuing authorization, simulating either a confirmation of fraud or a correction of legitimacy.
+    public func postTestHelpersIssuingAuthorizationsAuthorizationFraudChallenges(authorization: String, confirmed: Bool, expand: [String]?) async throws -> IssuingAuthorization {
+        return try await V1TestHelpersIssuingAuthorizationsFraudChallengesRespondMethods.postTestHelpersIssuingAuthorizationsAuthorizationFraudChallengesRespond(config: config, authorization: authorization, confirmed: confirmed, expand: expand)
     }
 }
 
@@ -42,25 +30,11 @@ public class V1TestHelpersIssuingAuthorizationsIncrementNamespace {
         self.config = config
     }
 
-    /// Increments the amount of a test-mode Issuing authorization. Supply `increment_amount` in the authorization
-    /// currency's smallest unit, and optionally set `is_amount_controllable` when the held amount should remain
-    /// controllable.
+/// Increments the amount of a test-mode Issuing authorization. Supply `increment_amount` in the authorization currency's smallest unit, and optionally set `is_amount_controllable` when the held amount should remain controllable.
     ///
     /// Increment a test-mode Authorization.
-    public func postTestHelpersIssuingAuthorizationsAuthorization(
-        authorization: String,
-        incrementAmount: Int,
-        expand: [String]?,
-        isAmountControllable: Bool?
-    ) async throws -> IssuingAuthorization {
-        try await V1TestHelpersIssuingAuthorizationsIncrementMethods
-            .postTestHelpersIssuingAuthorizationsAuthorizationIncrement(
-                config: config,
-                authorization: authorization,
-                incrementAmount: incrementAmount,
-                expand: expand,
-                isAmountControllable: isAmountControllable
-            )
+    public func postTestHelpersIssuingAuthorizationsAuthorization(authorization: String, incrementAmount: Int, expand: [String]?, isAmountControllable: Bool?) async throws -> IssuingAuthorization {
+        return try await V1TestHelpersIssuingAuthorizationsIncrementMethods.postTestHelpersIssuingAuthorizationsAuthorizationIncrement(config: config, authorization: authorization, incrementAmount: incrementAmount, expand: expand, isAmountControllable: isAmountControllable)
     }
 }
 
@@ -70,22 +44,11 @@ public class V1TestHelpersIssuingAuthorizationsReverseNamespace {
         self.config = config
     }
 
-    /// Reverses an Issuing authorization in test mode. Use `reverse_amount` to reverse a partial amount or omit it to
-    /// reverse the full authorization amount, and optionally expand fields in the response.
+/// Reverses an Issuing authorization in test mode. Use `reverse_amount` to reverse a partial amount or omit it to reverse the full authorization amount, and optionally expand fields in the response.
     ///
     /// Reverse a test-mode Authorization.
-    public func postTestHelpersIssuingAuthorizationsAuthorization(
-        authorization: String,
-        expand: [String]?,
-        reverseAmount: Int?
-    ) async throws -> IssuingAuthorization {
-        try await V1TestHelpersIssuingAuthorizationsReverseMethods
-            .postTestHelpersIssuingAuthorizationsAuthorizationReverse(
-                config: config,
-                authorization: authorization,
-                expand: expand,
-                reverseAmount: reverseAmount
-            )
+    public func postTestHelpersIssuingAuthorizationsAuthorization(authorization: String, expand: [String]?, reverseAmount: Int?) async throws -> IssuingAuthorization {
+        return try await V1TestHelpersIssuingAuthorizationsReverseMethods.postTestHelpersIssuingAuthorizationsAuthorizationReverse(config: config, authorization: authorization, expand: expand, reverseAmount: reverseAmount)
     }
 }
 
@@ -107,17 +70,11 @@ public class V1TestHelpersIssuingAuthorizationsNamespace {
         reverse = V1TestHelpersIssuingAuthorizationsReverseNamespace(config: config)
     }
 
-    /// Creates a test-mode Issuing authorization for an issued card purchase. Supply `card` and optionally provide
-    /// amount, currency, authorization method, merchant, fleet, fuel, network, and risk details to model the
-    /// authorization scenario. The response contains the resulting authorization and its approval state.
+/// Creates a test-mode Issuing authorization for an issued card purchase. Supply `card` and optionally provide amount, currency, authorization method, merchant, fleet, fuel, network, and risk details to model the authorization scenario. The response contains the resulting authorization and its approval state.
     ///
     /// Create a test-mode authorization.
-    public func postTestHelpersIssuing(options: V1TestHelpersIssuingAuthorizationsMethods
-        .PostTestHelpersIssuingAuthorizationsOptions) async throws -> IssuingAuthorization {
-        try await V1TestHelpersIssuingAuthorizationsMethods.postTestHelpersIssuingAuthorizations(
-            config: config,
-            options: options
-        )
+    public func postTestHelpersIssuing(options: V1TestHelpersIssuingAuthorizationsMethods.PostTestHelpersIssuingAuthorizationsOptions) async throws -> IssuingAuthorization {
+        return try await V1TestHelpersIssuingAuthorizationsMethods.postTestHelpersIssuingAuthorizations(config: config, options: options)
     }
 }
 
@@ -127,16 +84,11 @@ public class V1TestHelpersIssuingCardsShippingDeliverNamespace {
         self.config = config
     }
 
-    /// Updates the shipping status of a test-mode Issuing card to delivered. Use the card identifier to apply the
-    /// simulated delivery event, and optionally expand fields in the returned card object.
+/// Updates the shipping status of a test-mode Issuing card to delivered. Use the card identifier to apply the simulated delivery event, and optionally expand fields in the returned card object.
     ///
     /// Updates the shipping status of the specified Issuing Card object to delivered .
     public func postTestHelpersIssuingCardsCardShipping(card: String, expand: [String]?) async throws -> IssuingCard {
-        try await V1TestHelpersIssuingCardsShippingDeliverMethods.postTestHelpersIssuingCardsCardShippingDeliver(
-            config: config,
-            card: card,
-            expand: expand
-        )
+        return try await V1TestHelpersIssuingCardsShippingDeliverMethods.postTestHelpersIssuingCardsCardShippingDeliver(config: config, card: card, expand: expand)
     }
 }
 
@@ -146,16 +98,11 @@ public class V1TestHelpersIssuingCardsShippingFailNamespace {
         self.config = config
     }
 
-    /// Updates the shipping status of a test-mode Issuing card to failure. Use the card identifier to simulate a failed
-    /// delivery event, and optionally expand fields in the returned card object.
+/// Updates the shipping status of a test-mode Issuing card to failure. Use the card identifier to simulate a failed delivery event, and optionally expand fields in the returned card object.
     ///
     /// Updates the shipping status of the specified Issuing Card object to failure .
     public func postTestHelpersIssuingCardsCardShipping(card: String, expand: [String]?) async throws -> IssuingCard {
-        try await V1TestHelpersIssuingCardsShippingFailMethods.postTestHelpersIssuingCardsCardShippingFail(
-            config: config,
-            card: card,
-            expand: expand
-        )
+        return try await V1TestHelpersIssuingCardsShippingFailMethods.postTestHelpersIssuingCardsCardShippingFail(config: config, card: card, expand: expand)
     }
 }
 
@@ -165,16 +112,11 @@ public class V1TestHelpersIssuingCardsShippingReturnNamespace {
         self.config = config
     }
 
-    /// Updates the shipping status of a test-mode Issuing card to returned. Use the card identifier to simulate a
-    /// returned delivery event, and optionally expand fields in the returned card object.
+/// Updates the shipping status of a test-mode Issuing card to returned. Use the card identifier to simulate a returned delivery event, and optionally expand fields in the returned card object.
     ///
     /// Updates the shipping status of the specified Issuing Card object to returned .
     public func postTestHelpersIssuingCardsCardShipping(card: String, expand: [String]?) async throws -> IssuingCard {
-        try await V1TestHelpersIssuingCardsShippingReturnMethods.postTestHelpersIssuingCardsCardShippingReturn(
-            config: config,
-            card: card,
-            expand: expand
-        )
+        return try await V1TestHelpersIssuingCardsShippingReturnMethods.postTestHelpersIssuingCardsCardShippingReturn(config: config, card: card, expand: expand)
     }
 }
 
@@ -184,16 +126,11 @@ public class V1TestHelpersIssuingCardsShippingShipNamespace {
         self.config = config
     }
 
-    /// Updates the shipping status of a test-mode Issuing card to shipped. Use the card identifier to simulate a
-    /// shipment event, and optionally expand fields in the returned card object.
+/// Updates the shipping status of a test-mode Issuing card to shipped. Use the card identifier to simulate a shipment event, and optionally expand fields in the returned card object.
     ///
     /// Updates the shipping status of the specified Issuing Card object to shipped .
     public func postTestHelpersIssuingCardsCardShipping(card: String, expand: [String]?) async throws -> IssuingCard {
-        try await V1TestHelpersIssuingCardsShippingShipMethods.postTestHelpersIssuingCardsCardShippingShip(
-            config: config,
-            card: card,
-            expand: expand
-        )
+        return try await V1TestHelpersIssuingCardsShippingShipMethods.postTestHelpersIssuingCardsCardShippingShip(config: config, card: card, expand: expand)
     }
 }
 
@@ -203,18 +140,11 @@ public class V1TestHelpersIssuingCardsShippingSubmitNamespace {
         self.config = config
     }
 
-    /// Submits a test-mode Issuing card for shipping by changing its shipping status to `submitted`. Provide the `card`
-    /// identifier and use Stripe Version `2024-09-30.acacia` or later. You can use `expand` to include additional
-    /// response fields.
+/// Submits a test-mode Issuing card for shipping by changing its shipping status to `submitted`. Provide the `card` identifier and use Stripe Version `2024-09-30.acacia` or later. You can use `expand` to include additional response fields.
     ///
-    /// Updates the shipping status of the specified Issuing Card object to submitted . This method requires Stripe
-    /// Version ‘2024-09-30.acacia’ or later.
+    /// Updates the shipping status of the specified Issuing Card object to submitted . This method requires Stripe Version ‘2024-09-30.acacia’ or later.
     public func postTestHelpersIssuingCardsCardShipping(card: String, expand: [String]?) async throws -> IssuingCard {
-        try await V1TestHelpersIssuingCardsShippingSubmitMethods.postTestHelpersIssuingCardsCardShippingSubmit(
-            config: config,
-            card: card,
-            expand: expand
-        )
+        return try await V1TestHelpersIssuingCardsShippingSubmitMethods.postTestHelpersIssuingCardsCardShippingSubmit(config: config, card: card, expand: expand)
     }
 }
 
@@ -246,21 +176,11 @@ public class V1TestHelpersIssuingPersonalizationDesignsActivateNamespace {
         self.config = config
     }
 
-    /// Activates a test-mode personalization design by changing its status to `active`. Provide the
-    /// `personalization_design` identifier for the design to activate. You can use `expand` to include additional
-    /// response fields.
+/// Activates a test-mode personalization design by changing its status to `active`. Provide the `personalization_design` identifier for the design to activate. You can use `expand` to include additional response fields.
     ///
     /// Updates the status of the specified testmode personalization design object to active .
-    public func postTestHelpersIssuingPersonalizationDesignsPersonalizationDesign(
-        personalizationDesign: String,
-        expand: [String]?
-    ) async throws -> IssuingPersonalizationDesign {
-        try await V1TestHelpersIssuingPersonalizationDesignsActivateMethods
-            .postTestHelpersIssuingPersonalizationDesignsPersonalizationDeX6317a7bebe(
-                config: config,
-                personalizationDesign: personalizationDesign,
-                expand: expand
-            )
+    public func postTestHelpersIssuingPersonalizationDesignsPersonalizationDesign(personalizationDesign: String, expand: [String]?) async throws -> IssuingPersonalizationDesign {
+        return try await V1TestHelpersIssuingPersonalizationDesignsActivateMethods.postTestHelpersIssuingPersonalizationDesignsPersonalizationDeX6317a7bebe(config: config, personalizationDesign: personalizationDesign, expand: expand)
     }
 }
 
@@ -270,20 +190,10 @@ public class V1TestHelpersIssuingPersonalizationDesignsDeactivateNamespace {
         self.config = config
     }
 
-    /// Deactivates a test-mode personalization design by changing its status to `inactive`. Provide the
-    /// `personalization_design` identifier for the design to deactivate. You can use `expand` to include additional
-    /// response fields.
+/// Deactivates a test-mode personalization design by changing its status to `inactive`. Provide the `personalization_design` identifier for the design to deactivate. You can use `expand` to include additional response fields.
     ///
     /// Updates the status of the specified testmode personalization design object to inactive .
-    public func postTestHelpersIssuingPersonalizationDesignsPersonalizationDesign(
-        personalizationDesign: String,
-        expand: [String]?
-    ) async throws -> IssuingPersonalizationDesign {
-        try await V1TestHelpersIssuingPersonalizationDesignsDeactivateMethods
-            .postTestHelpersIssuingPersonalizationDesignsPersonalizationDeXe71bb26efc(
-                config: config,
-                personalizationDesign: personalizationDesign,
-                expand: expand
-            )
+    public func postTestHelpersIssuingPersonalizationDesignsPersonalizationDesign(personalizationDesign: String, expand: [String]?) async throws -> IssuingPersonalizationDesign {
+        return try await V1TestHelpersIssuingPersonalizationDesignsDeactivateMethods.postTestHelpersIssuingPersonalizationDesignsPersonalizationDeXe71bb26efc(config: config, personalizationDesign: personalizationDesign, expand: expand)
     }
 }

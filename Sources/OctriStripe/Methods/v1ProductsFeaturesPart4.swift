@@ -6,9 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1ProductsFeaturesMethods {
-    /// Retrieves a feature attachment from a product. Provide both `product` and `id` to identify the product feature
-    /// relationship, and use `expand` for selected expanded response fields.
+extension V1ProductsFeaturesMethods {
+    /// Retrieves a feature attachment from a product. Provide both `product` and `id` to identify the product feature relationship, and use `expand` for selected expanded response fields.
     ///
     /// Retrieves a product_feature, which represents a feature attachment to a product
     ///
@@ -16,30 +15,13 @@ public extension V1ProductsFeaturesMethods {
     /// - id: The ID of the product_feature.
     /// - product: The ID of the product.
     /// - expand: Specifies which fields in the response should be expanded.
-    static func getProductsProductFeaturesId(
-        config: ClientConfig,
-        id: String,
-        product: String,
-        expand: [String]?
-    ) async throws -> ProductFeature {
+    public static func getProductsProductFeaturesId(config: ClientConfig, id: String, product: String, expand: [String]?) async throws -> ProductFeature {
         try validateLength("id", id, max: 5000)
 
         try validateLength("product", product, max: 5000)
 
-        return try await (sdkRequest(
-            "GET",
-            [
-                "/v1/products/",
-                sdkEncodePathSegment(sdkWireString(product)),
-                "/features/",
-                sdkEncodePathSegment(sdkWireString(id)),
-            ].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .json,
-            operationId: "GetProductsProductFeaturesId"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/products/", sdkEncodePathSegment(sdkWireString(product)), "/features/", sdkEncodePathSegment(sdkWireString(id))].joined(), config: config, query: [
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .json, operationId: "GetProductsProductFeaturesId")).data
     }
 }

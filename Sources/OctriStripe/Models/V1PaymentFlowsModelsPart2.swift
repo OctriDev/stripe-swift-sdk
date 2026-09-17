@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1PaymentFlows domain models
+// V1PaymentFlows domain models
 /// Typed representation of the `PaymentFlowsPaymentIntentAsyncWorkflowsResourceInputsResourceTax` API schema.
 public struct PaymentFlowsPaymentIntentAsyncWorkflowsResourceInputsResourceTax: Codable {
     /// The TaxCalculation id
@@ -13,30 +13,24 @@ public struct PaymentFlowsPaymentIntentAsyncWorkflowsResourceInputsResourceTax: 
         case calculation
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PaymentFlowsPaymentIntentAsyncWorkflowsResourceInputsResourceTax {
-    init(from decoder: Decoder) throws {
+extension PaymentFlowsPaymentIntentAsyncWorkflowsResourceInputsResourceTax {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.calculation) else {
-            throw SdkValidationError(
-                field: "calculation",
-                code: "required",
-                message: "Validation failed for 'calculation': value is required"
-            )
+            throw SdkValidationError(field: "calculation", code: "required", message: "Validation failed for 'calculation': value is required")
         }
-        calculation = try container.sdkDecodeRequired(.calculation)
-        try validateLength("calculation", calculation, min: nil, max: 5000)
+        self.calculation = try container.sdkDecodeRequired(.calculation)
+            try validateLength("calculation", self.calculation, min: nil, max: 5000)
     }
 }
 
-public extension PaymentFlowsPaymentIntentAsyncWorkflowsResourceInputsResourceTax {
-    init(calculation: String) throws {
+extension PaymentFlowsPaymentIntentAsyncWorkflowsResourceInputsResourceTax {
+    public init(calculation: String) throws {
         self.calculation = calculation
-        try validateLength("calculation", self.calculation, min: nil, max: 5000)
+            try validateLength("calculation", self.calculation, min: nil, max: 5000)
     }
 }
 
@@ -52,50 +46,40 @@ public struct PaymentFlowsPaymentIntentPresentmentDetails: Codable {
         case presentmentCurrency = "presentment_currency"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PaymentFlowsPaymentIntentPresentmentDetails {
-    init(from decoder: Decoder) throws {
+extension PaymentFlowsPaymentIntentPresentmentDetails {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.presentmentAmount) else {
-            throw SdkValidationError(
-                field: "presentment_amount",
-                code: "required",
-                message: "Validation failed for 'presentment_amount': value is required"
-            )
+            throw SdkValidationError(field: "presentment_amount", code: "required", message: "Validation failed for 'presentment_amount': value is required")
         }
         guard container.contains(.presentmentCurrency) else {
-            throw SdkValidationError(
-                field: "presentment_currency",
-                code: "required",
-                message: "Validation failed for 'presentment_currency': value is required"
-            )
+            throw SdkValidationError(field: "presentment_currency", code: "required", message: "Validation failed for 'presentment_currency': value is required")
         }
-        presentmentAmount = try container.sdkDecodeRequired(.presentmentAmount)
-        presentmentCurrency = try container.sdkDecodeRequired(.presentmentCurrency)
-        try validateLength("presentment_currency", presentmentCurrency, min: nil, max: 5000)
+        self.presentmentAmount = try container.sdkDecodeRequired(.presentmentAmount)
+        self.presentmentCurrency = try container.sdkDecodeRequired(.presentmentCurrency)
+            try validateLength("presentment_currency", self.presentmentCurrency, min: nil, max: 5000)
     }
 }
 
-public extension PaymentFlowsPaymentIntentPresentmentDetails {
-    init(presentmentAmount: Int, presentmentCurrency: String) throws {
+extension PaymentFlowsPaymentIntentPresentmentDetails {
+    public init(presentmentAmount: Int, presentmentCurrency: String) throws {
         (self.presentmentAmount, self.presentmentCurrency) = (presentmentAmount, presentmentCurrency)
-        try validateLength("presentment_currency", self.presentmentCurrency, min: nil, max: 5000)
+            try validateLength("presentment_currency", self.presentmentCurrency, min: nil, max: 5000)
     }
 }
 
 /// Typed representation of the `PaymentFlowsPrivatePaymentMethodsAlipay` API schema.
 public struct PaymentFlowsPrivatePaymentMethodsAlipay: Codable {
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PaymentFlowsPrivatePaymentMethodsAlipay {
-    init() {}
+extension PaymentFlowsPrivatePaymentMethodsAlipay {
+    public init() {
+    }
 }
 
 /// Typed representation of the `PaymentFlowsPrivatePaymentMethodsAlmaDetailsResourceInstallments` API schema.
@@ -107,27 +91,21 @@ public struct PaymentFlowsPrivatePaymentMethodsAlmaDetailsResourceInstallments: 
         case count
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PaymentFlowsPrivatePaymentMethodsAlmaDetailsResourceInstallments {
-    init(from decoder: Decoder) throws {
+extension PaymentFlowsPrivatePaymentMethodsAlmaDetailsResourceInstallments {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.count) else {
-            throw SdkValidationError(
-                field: "count",
-                code: "required",
-                message: "Validation failed for 'count': value is required"
-            )
+            throw SdkValidationError(field: "count", code: "required", message: "Validation failed for 'count': value is required")
         }
-        count = try container.sdkDecodeRequired(.count)
+        self.count = try container.sdkDecodeRequired(.count)
     }
 }
 
-public extension PaymentFlowsPrivatePaymentMethodsAlmaDetailsResourceInstallments {
-    init(count: Int) {
+extension PaymentFlowsPrivatePaymentMethodsAlmaDetailsResourceInstallments {
+    public init(count: Int) {
         self.count = count
     }
 }
@@ -143,27 +121,21 @@ public struct PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceEnterpX2858
         case status
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceEnterpX285899a76a {
-    init(from decoder: Decoder) throws {
+extension PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceEnterpX285899a76a {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.status) else {
-            throw SdkValidationError(
-                field: "status",
-                code: "required",
-                message: "Validation failed for 'status': value is required"
-            )
+            throw SdkValidationError(field: "status", code: "required", message: "Validation failed for 'status': value is required")
         }
-        status = try container.sdkDecodeRequired(.status)
+        self.status = try container.sdkDecodeRequired(.status)
     }
 }
 
-public extension PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceEnterpX285899a76a {
-    init(status: PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceEnterpXd47fc88667) {
+extension PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceEnterpX285899a76a {
+    public init(status: PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceEnterpXd47fc88667) {
         self.status = status
     }
 }
@@ -179,27 +151,21 @@ public struct PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceEnterpXa6ad
         case status
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceEnterpXa6add8e874 {
-    init(from decoder: Decoder) throws {
+extension PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceEnterpXa6add8e874 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.status) else {
-            throw SdkValidationError(
-                field: "status",
-                code: "required",
-                message: "Validation failed for 'status': value is required"
-            )
+            throw SdkValidationError(field: "status", code: "required", message: "Validation failed for 'status': value is required")
         }
-        status = try container.sdkDecodeRequired(.status)
+        self.status = try container.sdkDecodeRequired(.status)
     }
 }
 
-public extension PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceEnterpXa6add8e874 {
-    init(status: PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceEnterpX053d114e20) {
+extension PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceEnterpXa6add8e874 {
+    public init(status: PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceEnterpX053d114e20) {
         self.status = status
     }
 }
@@ -217,38 +183,25 @@ public struct PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceEnterpX67a2
         case status
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceEnterpX67a260e761 {
-    init(from decoder: Decoder) throws {
+extension PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceEnterpX67a260e761 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.maximumAmountCapturable) else {
-            throw SdkValidationError(
-                field: "maximum_amount_capturable",
-                code: "required",
-                message: "Validation failed for 'maximum_amount_capturable': value is required"
-            )
+            throw SdkValidationError(field: "maximum_amount_capturable", code: "required", message: "Validation failed for 'maximum_amount_capturable': value is required")
         }
         guard container.contains(.status) else {
-            throw SdkValidationError(
-                field: "status",
-                code: "required",
-                message: "Validation failed for 'status': value is required"
-            )
+            throw SdkValidationError(field: "status", code: "required", message: "Validation failed for 'status': value is required")
         }
-        maximumAmountCapturable = try container.sdkDecodeRequired(.maximumAmountCapturable)
-        status = try container.sdkDecodeRequired(.status)
+        self.maximumAmountCapturable = try container.sdkDecodeRequired(.maximumAmountCapturable)
+        self.status = try container.sdkDecodeRequired(.status)
     }
 }
 
-public extension PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceEnterpX67a260e761 {
-    init(
-        maximumAmountCapturable: Int,
-        status: PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceEnterpX1218ffb63a
-    ) {
+extension PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceEnterpX67a260e761 {
+    public init(maximumAmountCapturable: Int, status: PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceEnterpX1218ffb63a) {
         (self.maximumAmountCapturable, self.status) = (maximumAmountCapturable, status)
     }
 }
@@ -262,27 +215,21 @@ public struct PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceMulticaptur
         case status
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceMulticapture {
-    init(from decoder: Decoder) throws {
+extension PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceMulticapture {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.status) else {
-            throw SdkValidationError(
-                field: "status",
-                code: "required",
-                message: "Validation failed for 'status': value is required"
-            )
+            throw SdkValidationError(field: "status", code: "required", message: "Validation failed for 'status': value is required")
         }
-        status = try container.sdkDecodeRequired(.status)
+        self.status = try container.sdkDecodeRequired(.status)
     }
 }
 
-public extension PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceMulticapture {
-    init(status: PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceMulticX03a63769d7) {
+extension PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceMulticapture {
+    public init(status: PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceMulticX03a63769d7) {
         self.status = status
     }
 }
@@ -298,22 +245,22 @@ public struct PaymentFlowsPrivatePaymentMethodsCardPaymentIntentAmountDetaiX7f98
     }
 
     init() {
-        commodityCode = nil
+        self.commodityCode = nil
     }
 }
 
-public extension PaymentFlowsPrivatePaymentMethodsCardPaymentIntentAmountDetaiX7f988d235b {
-    init(from decoder: Decoder) throws {
+extension PaymentFlowsPrivatePaymentMethodsCardPaymentIntentAmountDetaiX7f988d235b {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        commodityCode = try container.sdkDecodeIfPresent(.commodityCode)
-        if let value = commodityCode {
+        self.commodityCode = try container.sdkDecodeIfPresent(.commodityCode)
+        if let value = self.commodityCode {
             try validateLength("commodity_code", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PaymentFlowsPrivatePaymentMethodsCardPaymentIntentAmountDetaiX7f988d235b {
-    init(commodityCode: String? = nil) throws {
+extension PaymentFlowsPrivatePaymentMethodsCardPaymentIntentAmountDetaiX7f988d235b {
+    public init(commodityCode: String? = nil) throws {
         self.init()
         self.commodityCode = commodityCode
         if let value = self.commodityCode {
@@ -333,22 +280,22 @@ public struct PaymentFlowsPrivatePaymentMethodsCardPresentAmountDetailsLineX6a4e
     }
 
     init() {
-        commodityCode = nil
+        self.commodityCode = nil
     }
 }
 
-public extension PaymentFlowsPrivatePaymentMethodsCardPresentAmountDetailsLineX6a4e57089d {
-    init(from decoder: Decoder) throws {
+extension PaymentFlowsPrivatePaymentMethodsCardPresentAmountDetailsLineX6a4e57089d {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        commodityCode = try container.sdkDecodeIfPresent(.commodityCode)
-        if let value = commodityCode {
+        self.commodityCode = try container.sdkDecodeIfPresent(.commodityCode)
+        if let value = self.commodityCode {
             try validateLength("commodity_code", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PaymentFlowsPrivatePaymentMethodsCardPresentAmountDetailsLineX6a4e57089d {
-    init(commodityCode: String? = nil) throws {
+extension PaymentFlowsPrivatePaymentMethodsCardPresentAmountDetailsLineX6a4e57089d {
+    public init(commodityCode: String? = nil) throws {
         self.init()
         self.commodityCode = commodityCode
         if let value = self.commodityCode {
@@ -366,33 +313,26 @@ public struct PaymentFlowsPrivatePaymentMethodsCardPresentCommonWallet: Codable 
         case type
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PaymentFlowsPrivatePaymentMethodsCardPresentCommonWallet {
-    init(from decoder: Decoder) throws {
+extension PaymentFlowsPrivatePaymentMethodsCardPresentCommonWallet {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.type) else {
-            throw SdkValidationError(
-                field: "type",
-                code: "required",
-                message: "Validation failed for 'type': value is required"
-            )
+            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
         }
-        type = try container.sdkDecodeRequired(.type)
+        self.type = try container.sdkDecodeRequired(.type)
     }
 }
 
-public extension PaymentFlowsPrivatePaymentMethodsCardPresentCommonWallet {
-    init(type: PaymentFlowsPrivatePaymentMethodsCardPresentCommonWalletType) {
+extension PaymentFlowsPrivatePaymentMethodsCardPresentCommonWallet {
+    public init(type: PaymentFlowsPrivatePaymentMethodsCardPresentCommonWalletType) {
         self.type = type
     }
 }
 
-public typealias PaymentFlowsPrivatePaymentMethodsFinancialConnectionsCommonLiXed48cf66ad =
-    [PaymentFlowsPrivatePaymentMethodsFinancialConnectionsCommonLiXf2da5c0e61]
+public typealias PaymentFlowsPrivatePaymentMethodsFinancialConnectionsCommonLiXed48cf66ad = [PaymentFlowsPrivatePaymentMethodsFinancialConnectionsCommonLiXf2da5c0e61]
 
 /// Typed representation of the
 /// `PaymentFlowsPrivatePaymentMethodsFinancialConnectionsCommonLinkedAccountOptionsFilters` API schema.
@@ -406,19 +346,19 @@ public struct PaymentFlowsPrivatePaymentMethodsFinancialConnectionsCommonLiX360b
     }
 
     init() {
-        accountSubcategories = nil
+        self.accountSubcategories = nil
     }
 }
 
-public extension PaymentFlowsPrivatePaymentMethodsFinancialConnectionsCommonLiX360b484f6c {
-    init(from decoder: Decoder) throws {
+extension PaymentFlowsPrivatePaymentMethodsFinancialConnectionsCommonLiX360b484f6c {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        accountSubcategories = try container.sdkDecodeIfPresent(.accountSubcategories)
+        self.accountSubcategories = try container.sdkDecodeIfPresent(.accountSubcategories)
     }
 }
 
-public extension PaymentFlowsPrivatePaymentMethodsFinancialConnectionsCommonLiX360b484f6c {
-    init(accountSubcategories: PaymentFlowsPrivatePaymentMethodsFinancialConnectionsCommonLiXed48cf66ad? = nil) {
+extension PaymentFlowsPrivatePaymentMethodsFinancialConnectionsCommonLiX360b484f6c {
+    public init(accountSubcategories: PaymentFlowsPrivatePaymentMethodsFinancialConnectionsCommonLiXed48cf66ad? = nil) {
         self.init()
         self.accountSubcategories = accountSubcategories
     }
@@ -441,23 +381,20 @@ public struct PaymentFlowsPrivatePaymentMethodsKakaoPayPaymentMethodOptions: Cod
     }
 
     init() {
-        (captureMethod, setupFutureUsage) = (nil, nil)
+        (self.captureMethod, self.setupFutureUsage) = (nil, nil)
     }
 }
 
-public extension PaymentFlowsPrivatePaymentMethodsKakaoPayPaymentMethodOptions {
-    init(from decoder: Decoder) throws {
+extension PaymentFlowsPrivatePaymentMethodsKakaoPayPaymentMethodOptions {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        captureMethod = try container.sdkDecodeIfPresent(.captureMethod)
-        setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
+        self.captureMethod = try container.sdkDecodeIfPresent(.captureMethod)
+        self.setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
     }
 }
 
-public extension PaymentFlowsPrivatePaymentMethodsKakaoPayPaymentMethodOptions {
-    init(
-        captureMethod: PaymentFlowsPrivatePaymentMethodsKakaoPayPaymentMethodOptionsX0ff570c2db? = nil,
-        setupFutureUsage: PaymentFlowsPrivatePaymentMethodsKakaoPayPaymentMethodOptionsX4bc91a870c? = nil
-    ) {
+extension PaymentFlowsPrivatePaymentMethodsKakaoPayPaymentMethodOptions {
+    public init(captureMethod: PaymentFlowsPrivatePaymentMethodsKakaoPayPaymentMethodOptionsX0ff570c2db? = nil, setupFutureUsage: PaymentFlowsPrivatePaymentMethodsKakaoPayPaymentMethodOptionsX4bc91a870c? = nil) {
         self.init()
         (self.captureMethod, self.setupFutureUsage) = (captureMethod, setupFutureUsage)
     }
@@ -479,21 +416,21 @@ public struct PaymentFlowsPrivatePaymentMethodsKlarnaDob: Codable {
     }
 
     init() {
-        (day, month, year) = (nil, nil, nil)
+        (self.day, self.month, self.year) = (nil, nil, nil)
     }
 }
 
-public extension PaymentFlowsPrivatePaymentMethodsKlarnaDob {
-    init(from decoder: Decoder) throws {
+extension PaymentFlowsPrivatePaymentMethodsKlarnaDob {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        day = try container.sdkDecodeIfPresent(.day)
-        month = try container.sdkDecodeIfPresent(.month)
-        year = try container.sdkDecodeIfPresent(.year)
+        self.day = try container.sdkDecodeIfPresent(.day)
+        self.month = try container.sdkDecodeIfPresent(.month)
+        self.year = try container.sdkDecodeIfPresent(.year)
     }
 }
 
-public extension PaymentFlowsPrivatePaymentMethodsKlarnaDob {
-    init(day: Int? = nil, month: Int? = nil, year: Int? = nil) {
+extension PaymentFlowsPrivatePaymentMethodsKlarnaDob {
+    public init(day: Int? = nil, month: Int? = nil, year: Int? = nil) {
         self.init()
         (self.day, self.month) = (day, month)
         self.year = year
@@ -520,39 +457,34 @@ public struct PaymentFlowsPrivatePaymentMethodsKlarnaPaymentIntentAmountDetXc7e3
     }
 
     init() {
-        (imageUrl, productUrl, reference, subscriptionReference) = (nil, nil, nil, nil)
+        (self.imageUrl, self.productUrl, self.reference, self.subscriptionReference) = (nil, nil, nil, nil)
     }
 }
 
-public extension PaymentFlowsPrivatePaymentMethodsKlarnaPaymentIntentAmountDetXc7e39e34a8 {
-    init(from decoder: Decoder) throws {
+extension PaymentFlowsPrivatePaymentMethodsKlarnaPaymentIntentAmountDetXc7e39e34a8 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        imageUrl = try container.sdkDecodeIfPresent(.imageUrl)
-        productUrl = try container.sdkDecodeIfPresent(.productUrl)
-        reference = try container.sdkDecodeIfPresent(.reference)
-        subscriptionReference = try container.sdkDecodeIfPresent(.subscriptionReference)
-        if let value = imageUrl {
+        self.imageUrl = try container.sdkDecodeIfPresent(.imageUrl)
+        self.productUrl = try container.sdkDecodeIfPresent(.productUrl)
+        self.reference = try container.sdkDecodeIfPresent(.reference)
+        self.subscriptionReference = try container.sdkDecodeIfPresent(.subscriptionReference)
+        if let value = self.imageUrl {
             try validateLength("image_url", value, min: nil, max: 2048)
         }
-        if let value = productUrl {
+        if let value = self.productUrl {
             try validateLength("product_url", value, min: nil, max: 2048)
         }
-        if let value = reference {
+        if let value = self.reference {
             try validateLength("reference", value, min: nil, max: 255)
         }
-        if let value = subscriptionReference {
+        if let value = self.subscriptionReference {
             try validateLength("subscription_reference", value, min: nil, max: 2048)
         }
     }
 }
 
-public extension PaymentFlowsPrivatePaymentMethodsKlarnaPaymentIntentAmountDetXc7e39e34a8 {
-    init(
-        imageUrl: String? = nil,
-        productUrl: String? = nil,
-        reference: String? = nil,
-        subscriptionReference: String? = nil
-    ) throws {
+extension PaymentFlowsPrivatePaymentMethodsKlarnaPaymentIntentAmountDetXc7e39e34a8 {
+    public init(imageUrl: String? = nil, productUrl: String? = nil, reference: String? = nil, subscriptionReference: String? = nil) throws {
         self.init()
         (self.imageUrl, self.productUrl) = (imageUrl, productUrl)
         (self.reference, self.subscriptionReference) = (reference, subscriptionReference)
@@ -581,19 +513,19 @@ public struct PaymentFlowsPrivatePaymentMethodsKonbiniDetailsResourceStore: Coda
     }
 
     init() {
-        chain = nil
+        self.chain = nil
     }
 }
 
-public extension PaymentFlowsPrivatePaymentMethodsKonbiniDetailsResourceStore {
-    init(from decoder: Decoder) throws {
+extension PaymentFlowsPrivatePaymentMethodsKonbiniDetailsResourceStore {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        chain = try container.sdkDecodeIfPresent(.chain)
+        self.chain = try container.sdkDecodeIfPresent(.chain)
     }
 }
 
-public extension PaymentFlowsPrivatePaymentMethodsKonbiniDetailsResourceStore {
-    init(chain: PaymentFlowsPrivatePaymentMethodsKonbiniDetailsResourceStoreChain? = nil) {
+extension PaymentFlowsPrivatePaymentMethodsKonbiniDetailsResourceStore {
+    public init(chain: PaymentFlowsPrivatePaymentMethodsKonbiniDetailsResourceStoreChain? = nil) {
         self.init()
         self.chain = chain
     }
@@ -616,23 +548,20 @@ public struct PaymentFlowsPrivatePaymentMethodsNaverPayPaymentMethodOptions: Cod
     }
 
     init() {
-        (captureMethod, setupFutureUsage) = (nil, nil)
+        (self.captureMethod, self.setupFutureUsage) = (nil, nil)
     }
 }
 
-public extension PaymentFlowsPrivatePaymentMethodsNaverPayPaymentMethodOptions {
-    init(from decoder: Decoder) throws {
+extension PaymentFlowsPrivatePaymentMethodsNaverPayPaymentMethodOptions {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        captureMethod = try container.sdkDecodeIfPresent(.captureMethod)
-        setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
+        self.captureMethod = try container.sdkDecodeIfPresent(.captureMethod)
+        self.setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
     }
 }
 
-public extension PaymentFlowsPrivatePaymentMethodsNaverPayPaymentMethodOptions {
-    init(
-        captureMethod: PaymentFlowsPrivatePaymentMethodsNaverPayPaymentMethodOptionsX126208408f? = nil,
-        setupFutureUsage: PaymentFlowsPrivatePaymentMethodsNaverPayPaymentMethodOptionsXfd6dd5d1c1? = nil
-    ) {
+extension PaymentFlowsPrivatePaymentMethodsNaverPayPaymentMethodOptions {
+    public init(captureMethod: PaymentFlowsPrivatePaymentMethodsNaverPayPaymentMethodOptionsX126208408f? = nil, setupFutureUsage: PaymentFlowsPrivatePaymentMethodsNaverPayPaymentMethodOptionsXfd6dd5d1c1? = nil) {
         self.init()
         (self.captureMethod, self.setupFutureUsage) = (captureMethod, setupFutureUsage)
     }

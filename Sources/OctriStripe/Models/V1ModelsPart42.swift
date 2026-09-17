@@ -3,33 +3,23 @@
 
 import Foundation
 
-/// V1 domain models
+// V1 domain models
 extension StackableDiscountWithDiscountSettingsAndDiscountEndDiscount: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for StackableDiscountWithDiscountSettingsAndDiscountEndDiscount"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for StackableDiscountWithDiscountSettingsAndDiscountEndDiscount")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(Discount.self) {
-            return .discount(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(Discount.self) { return .discount(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -39,6 +29,7 @@ extension StackableDiscountWithDiscountSettingsAndDiscountEndDiscount: Codable {
         case let .discount(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum StackableDiscountWithDiscountSettingsAndDiscountEndPromotionCode {
@@ -47,31 +38,21 @@ public enum StackableDiscountWithDiscountSettingsAndDiscountEndPromotionCode {
 }
 
 extension StackableDiscountWithDiscountSettingsAndDiscountEndPromotionCode: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for StackableDiscountWithDiscountSettingsAndDiscountEndPromotionCode"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for StackableDiscountWithDiscountSettingsAndDiscountEndPromotionCode")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(PromotionCode.self) {
-            return .promotionCode(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(PromotionCode.self) { return .promotionCode(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -81,6 +62,7 @@ extension StackableDiscountWithDiscountSettingsAndDiscountEndPromotionCode: Coda
         case let .promotionCode(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// Subscriptions allow you to charge a customer on a recurring basis. Related guide: Creating subscriptions
@@ -267,123 +249,72 @@ public struct Subscription: Codable {
         case trialStart = "trial_start"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension Subscription {
-    init(from decoder: Decoder) throws {
+extension Subscription {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        automaticTax = try container.sdkDecodeRequired(.automaticTax)
-        billingCycleAnchor = try container.sdkDecodeRequired(.billingCycleAnchor)
-        billingMode = try container.sdkDecodeRequired(.billingMode)
-        billingSchedules = try container.sdkDecodeRequired(.billingSchedules)
-        cancelAtPeriodEnd = try container.sdkDecodeRequired(.cancelAtPeriodEnd)
-        collectionMethod = try container.sdkDecodeRequired(.collectionMethod)
-        created = try container.sdkDecodeRequired(.created)
-        currency = try container.sdkDecodeRequired(.currency)
-        customer = try container.sdkDecodeRequired(.customer)
-        discounts = try container.sdkDecodeRequired(.discounts)
-        id = try container.sdkDecodeRequired(.id)
-        invoiceSettings = try container.sdkDecodeRequired(.invoiceSettings)
-        items = try container.sdkDecodeRequired(.items)
-        livemode = try container.sdkDecodeRequired(.livemode)
-        metadata = try container.sdkDecodeRequired(.metadata)
-        object = try container.sdkDecodeRequired(.object)
-        startDate = try container.sdkDecodeRequired(.startDate)
-        status = try container.sdkDecodeRequired(.status)
-        application = try container.sdkDecodeIfPresent(.application)
-        applicationFeePercent = try container.sdkDecodeIfPresent(.applicationFeePercent)
-        billingCycleAnchorConfig = try container.sdkDecodeIfPresent(.billingCycleAnchorConfig)
-        billingThresholds = try container.sdkDecodeIfPresent(.billingThresholds)
-        cancelAt = try container.sdkDecodeIfPresent(.cancelAt)
-        canceledAt = try container.sdkDecodeIfPresent(.canceledAt)
-        cancellationDetails = try container.sdkDecodeIfPresent(.cancellationDetails)
-        customerAccount = try container.sdkDecodeIfPresent(.customerAccount)
-        daysUntilDue = try container.sdkDecodeIfPresent(.daysUntilDue)
-        defaultPaymentMethod = try container.sdkDecodeIfPresent(.defaultPaymentMethod)
-        defaultSource = try container.sdkDecodeIfPresent(.defaultSource)
-        defaultTaxRates = try container.sdkDecodeIfPresent(.defaultTaxRates)
-        description = try container.sdkDecodeIfPresent(.description)
-        endedAt = try container.sdkDecodeIfPresent(.endedAt)
-        latestInvoice = try container.sdkDecodeIfPresent(.latestInvoice)
-        managedPayments = try container.sdkDecodeIfPresent(.managedPayments)
-        nextPendingInvoiceItemInvoice = try container.sdkDecodeIfPresent(.nextPendingInvoiceItemInvoice)
-        onBehalfOf = try container.sdkDecodeIfPresent(.onBehalfOf)
-        pauseCollection = try container.sdkDecodeIfPresent(.pauseCollection)
-        paymentSettings = try container.sdkDecodeIfPresent(.paymentSettings)
-        pendingInvoiceItemInterval = try container.sdkDecodeIfPresent(.pendingInvoiceItemInterval)
-        pendingSetupIntent = try container.sdkDecodeIfPresent(.pendingSetupIntent)
-        pendingUpdate = try container.sdkDecodeIfPresent(.pendingUpdate)
-        presentmentDetails = try container.sdkDecodeIfPresent(.presentmentDetails)
-        schedule = try container.sdkDecodeIfPresent(.schedule)
-        testClock = try container.sdkDecodeIfPresent(.testClock)
-        transferData = try container.sdkDecodeIfPresent(.transferData)
-        trialEnd = try container.sdkDecodeIfPresent(.trialEnd)
-        trialSettings = try container.sdkDecodeIfPresent(.trialSettings)
-        trialStart = try container.sdkDecodeIfPresent(.trialStart)
-        try validateLength("id", id, min: nil, max: 5000)
-        if let value = customerAccount {
+        self.automaticTax = try container.sdkDecodeRequired(.automaticTax)
+        self.billingCycleAnchor = try container.sdkDecodeRequired(.billingCycleAnchor)
+        self.billingMode = try container.sdkDecodeRequired(.billingMode)
+        self.billingSchedules = try container.sdkDecodeRequired(.billingSchedules)
+        self.cancelAtPeriodEnd = try container.sdkDecodeRequired(.cancelAtPeriodEnd)
+        self.collectionMethod = try container.sdkDecodeRequired(.collectionMethod)
+        self.created = try container.sdkDecodeRequired(.created)
+        self.currency = try container.sdkDecodeRequired(.currency)
+        self.customer = try container.sdkDecodeRequired(.customer)
+        self.discounts = try container.sdkDecodeRequired(.discounts)
+        self.id = try container.sdkDecodeRequired(.id)
+        self.invoiceSettings = try container.sdkDecodeRequired(.invoiceSettings)
+        self.items = try container.sdkDecodeRequired(.items)
+        self.livemode = try container.sdkDecodeRequired(.livemode)
+        self.metadata = try container.sdkDecodeRequired(.metadata)
+        self.object = try container.sdkDecodeRequired(.object)
+        self.startDate = try container.sdkDecodeRequired(.startDate)
+        self.status = try container.sdkDecodeRequired(.status)
+        self.application = try container.sdkDecodeIfPresent(.application)
+        self.applicationFeePercent = try container.sdkDecodeIfPresent(.applicationFeePercent)
+        self.billingCycleAnchorConfig = try container.sdkDecodeIfPresent(.billingCycleAnchorConfig)
+        self.billingThresholds = try container.sdkDecodeIfPresent(.billingThresholds)
+        self.cancelAt = try container.sdkDecodeIfPresent(.cancelAt)
+        self.canceledAt = try container.sdkDecodeIfPresent(.canceledAt)
+        self.cancellationDetails = try container.sdkDecodeIfPresent(.cancellationDetails)
+        self.customerAccount = try container.sdkDecodeIfPresent(.customerAccount)
+        self.daysUntilDue = try container.sdkDecodeIfPresent(.daysUntilDue)
+        self.defaultPaymentMethod = try container.sdkDecodeIfPresent(.defaultPaymentMethod)
+        self.defaultSource = try container.sdkDecodeIfPresent(.defaultSource)
+        self.defaultTaxRates = try container.sdkDecodeIfPresent(.defaultTaxRates)
+        self.description = try container.sdkDecodeIfPresent(.description)
+        self.endedAt = try container.sdkDecodeIfPresent(.endedAt)
+        self.latestInvoice = try container.sdkDecodeIfPresent(.latestInvoice)
+        self.managedPayments = try container.sdkDecodeIfPresent(.managedPayments)
+        self.nextPendingInvoiceItemInvoice = try container.sdkDecodeIfPresent(.nextPendingInvoiceItemInvoice)
+        self.onBehalfOf = try container.sdkDecodeIfPresent(.onBehalfOf)
+        self.pauseCollection = try container.sdkDecodeIfPresent(.pauseCollection)
+        self.paymentSettings = try container.sdkDecodeIfPresent(.paymentSettings)
+        self.pendingInvoiceItemInterval = try container.sdkDecodeIfPresent(.pendingInvoiceItemInterval)
+        self.pendingSetupIntent = try container.sdkDecodeIfPresent(.pendingSetupIntent)
+        self.pendingUpdate = try container.sdkDecodeIfPresent(.pendingUpdate)
+        self.presentmentDetails = try container.sdkDecodeIfPresent(.presentmentDetails)
+        self.schedule = try container.sdkDecodeIfPresent(.schedule)
+        self.testClock = try container.sdkDecodeIfPresent(.testClock)
+        self.transferData = try container.sdkDecodeIfPresent(.transferData)
+        self.trialEnd = try container.sdkDecodeIfPresent(.trialEnd)
+        self.trialSettings = try container.sdkDecodeIfPresent(.trialSettings)
+        self.trialStart = try container.sdkDecodeIfPresent(.trialStart)
+            try validateLength("id", self.id, min: nil, max: 5000)
+        if let value = self.customerAccount {
             try validateLength("customer_account", value, min: nil, max: 5000)
         }
-        if let value = description {
+        if let value = self.description {
             try validateLength("description", value, min: nil, max: 500)
         }
     }
 }
 
-public extension Subscription {
-    init(
-        automaticTax: SubscriptionAutomaticTax,
-        billingCycleAnchor: Int,
-        billingMode: SubscriptionsResourceBillingMode,
-        billingSchedules: [SubscriptionsResourceBillingSchedules],
-        cancelAtPeriodEnd: Bool,
-        collectionMethod: SubscriptionCollectionMethod,
-        created: Int,
-        currency: String,
-        customer: SubscriptionCustomer,
-        discounts: [SubscriptionDiscountsItem],
-        id: String,
-        invoiceSettings: SubscriptionsResourceSubscriptionInvoiceSettings,
-        items: SubscriptionItems,
-        livemode: Bool,
-        metadata: [String: String],
-        object: SubscriptionObject,
-        startDate: Int,
-        status: SubscriptionStatus,
-        application: SubscriptionApplication? = nil,
-        applicationFeePercent: Double? = nil,
-        billingCycleAnchorConfig: SubscriptionBillingCycleAnchorConfig? = nil,
-        billingThresholds: SubscriptionBillingThresholdsXbcbf318f? = nil,
-        cancelAt: Int? = nil,
-        canceledAt: Int? = nil,
-        cancellationDetails: SubscriptionCancellationDetails? = nil,
-        customerAccount: String? = nil,
-        daysUntilDue: Int? = nil,
-        defaultPaymentMethod: SubscriptionDefaultPaymentMethod? = nil,
-        defaultSource: SubscriptionDefaultSource? = nil,
-        defaultTaxRates: [TaxRate]? = nil,
-        description: String? = nil,
-        endedAt: Int? = nil,
-        latestInvoice: SubscriptionLatestInvoice? = nil,
-        managedPayments: SubscriptionManagedPayments? = nil,
-        nextPendingInvoiceItemInvoice: Int? = nil,
-        onBehalfOf: SubscriptionOnBehalfOf? = nil,
-        pauseCollection: SubscriptionPauseCollection? = nil,
-        paymentSettings: SubscriptionPaymentSettings? = nil,
-        pendingInvoiceItemInterval: SubscriptionPendingInvoiceItemIntervalXcd8113f6? = nil,
-        pendingSetupIntent: SubscriptionPendingSetupIntent? = nil,
-        pendingUpdate: SubscriptionPendingUpdate? = nil,
-        presentmentDetails: SubscriptionsResourceSubscriptionPresentmentDetails? = nil,
-        schedule: SubscriptionScheduleX6e2c9ef2? = nil,
-        testClock: SubscriptionTestClock? = nil,
-        transferData: SubscriptionTransferDataX6e0ac08e? = nil,
-        trialEnd: Int? = nil,
-        trialSettings: SubscriptionTrialSettings? = nil,
-        trialStart: Int? = nil
-    ) throws {
+extension Subscription {
+    public init(automaticTax: SubscriptionAutomaticTax, billingCycleAnchor: Int, billingMode: SubscriptionsResourceBillingMode, billingSchedules: [SubscriptionsResourceBillingSchedules], cancelAtPeriodEnd: Bool, collectionMethod: SubscriptionCollectionMethod, created: Int, currency: String, customer: SubscriptionCustomer, discounts: [SubscriptionDiscountsItem], id: String, invoiceSettings: SubscriptionsResourceSubscriptionInvoiceSettings, items: SubscriptionItems, livemode: Bool, metadata: [String: String], object: SubscriptionObject, startDate: Int, status: SubscriptionStatus, application: SubscriptionApplication? = nil, applicationFeePercent: Double? = nil, billingCycleAnchorConfig: SubscriptionBillingCycleAnchorConfig? = nil, billingThresholds: SubscriptionBillingThresholdsXbcbf318f? = nil, cancelAt: Int? = nil, canceledAt: Int? = nil, cancellationDetails: SubscriptionCancellationDetails? = nil, customerAccount: String? = nil, daysUntilDue: Int? = nil, defaultPaymentMethod: SubscriptionDefaultPaymentMethod? = nil, defaultSource: SubscriptionDefaultSource? = nil, defaultTaxRates: [TaxRate]? = nil, description: String? = nil, endedAt: Int? = nil, latestInvoice: SubscriptionLatestInvoice? = nil, managedPayments: SubscriptionManagedPayments? = nil, nextPendingInvoiceItemInvoice: Int? = nil, onBehalfOf: SubscriptionOnBehalfOf? = nil, pauseCollection: SubscriptionPauseCollection? = nil, paymentSettings: SubscriptionPaymentSettings? = nil, pendingInvoiceItemInterval: SubscriptionPendingInvoiceItemIntervalXcd8113f6? = nil, pendingSetupIntent: SubscriptionPendingSetupIntent? = nil, pendingUpdate: SubscriptionPendingUpdate? = nil, presentmentDetails: SubscriptionsResourceSubscriptionPresentmentDetails? = nil, schedule: SubscriptionScheduleX6e2c9ef2? = nil, testClock: SubscriptionTestClock? = nil, transferData: SubscriptionTransferDataX6e0ac08e? = nil, trialEnd: Int? = nil, trialSettings: SubscriptionTrialSettings? = nil, trialStart: Int? = nil) throws {
         (self.automaticTax, self.billingCycleAnchor) = (automaticTax, billingCycleAnchor)
         (self.billingMode, self.billingSchedules) = (billingMode, billingSchedules)
         (self.cancelAtPeriodEnd, self.collectionMethod) = (cancelAtPeriodEnd, collectionMethod)
@@ -410,7 +341,7 @@ public extension Subscription {
         (self.testClock, self.transferData) = (testClock, transferData)
         (self.trialEnd, self.trialSettings) = (trialEnd, trialSettings)
         self.trialStart = trialStart
-        try validateLength("id", self.id, min: nil, max: 5000)
+            try validateLength("id", self.id, min: nil, max: 5000)
         if let value = self.customerAccount {
             try validateLength("customer_account", value, min: nil, max: 5000)
         }
@@ -427,34 +358,22 @@ public enum SubscriptionApplication {
 }
 
 extension SubscriptionApplication: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for SubscriptionApplication"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for SubscriptionApplication")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(Application.self) {
-            return .application(value)
-        }
-        if let value = try? container.decode(DeletedApplication.self) {
-            return .deletedApplication(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(Application.self) { return .application(value) }
+        if let value = try? container.decode(DeletedApplication.self) { return .deletedApplication(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -465,6 +384,7 @@ extension SubscriptionApplication: Codable {
         case let .deletedApplication(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum SubscriptionBillingCycleAnchorConfig {
@@ -472,30 +392,24 @@ public enum SubscriptionBillingCycleAnchorConfig {
 }
 
 extension SubscriptionBillingCycleAnchorConfig: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for SubscriptionBillingCycleAnchorConfig"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for SubscriptionBillingCycleAnchorConfig")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             SubscriptionsResourceBillingCycleAnchorConfig.self
         ) {
-            return .subscriptionsResourceBillingCycleAnchorConfig(value)
+            return             .subscriptionsResourceBillingCycleAnchorConfig(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -504,6 +418,7 @@ extension SubscriptionBillingCycleAnchorConfig: Codable {
         case let .subscriptionsResourceBillingCycleAnchorConfig(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum SubscriptionBillingThresholdsXbcbf318f {
@@ -511,29 +426,20 @@ public enum SubscriptionBillingThresholdsXbcbf318f {
 }
 
 extension SubscriptionBillingThresholdsXbcbf318f: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for SubscriptionBillingThresholdsXbcbf318f"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for SubscriptionBillingThresholdsXbcbf318f")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container
-            .decode(SubscriptionBillingThresholds.self) {
-            return .subscriptionBillingThresholds(value)
-        }
+        if let value = try? container.decode(SubscriptionBillingThresholds.self) { return .subscriptionBillingThresholds(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -542,6 +448,7 @@ extension SubscriptionBillingThresholdsXbcbf318f: Codable {
         case let .subscriptionBillingThresholds(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum SubscriptionCancellationDetails {
@@ -549,28 +456,20 @@ public enum SubscriptionCancellationDetails {
 }
 
 extension SubscriptionCancellationDetails: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for SubscriptionCancellationDetails"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for SubscriptionCancellationDetails")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(CancellationDetails.self) {
-            return .cancellationDetails(value)
-        }
+        if let value = try? container.decode(CancellationDetails.self) { return .cancellationDetails(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -579,6 +478,7 @@ extension SubscriptionCancellationDetails: Codable {
         case let .cancellationDetails(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum SubscriptionCustomer {
@@ -588,34 +488,22 @@ public enum SubscriptionCustomer {
 }
 
 extension SubscriptionCustomer: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for SubscriptionCustomer"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for SubscriptionCustomer")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(Customer.self) {
-            return .customer(value)
-        }
-        if let value = try? container.decode(DeletedCustomer.self) {
-            return .deletedCustomer(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(Customer.self) { return .customer(value) }
+        if let value = try? container.decode(DeletedCustomer.self) { return .deletedCustomer(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -626,6 +514,7 @@ extension SubscriptionCustomer: Codable {
         case let .deletedCustomer(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum SubscriptionDefaultPaymentMethod {

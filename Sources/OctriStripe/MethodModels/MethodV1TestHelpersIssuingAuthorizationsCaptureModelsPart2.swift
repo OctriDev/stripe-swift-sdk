@@ -7,9 +7,9 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1TestHelpersIssuingAuthorizationsCapture operation model declarations
-public extension PostTestHelpersIssuingAuthorizationsAuthorizationCaptureRequeX698427d56d {
-    init(checkInAt: Int? = nil, nights: Int? = nil) {
+// Canonical v1TestHelpersIssuingAuthorizationsCapture operation model declarations
+extension PostTestHelpersIssuingAuthorizationsAuthorizationCaptureRequeX698427d56d {
+    public init(checkInAt: Int? = nil, nights: Int? = nil) {
         self.init()
         (self.checkInAt, self.nights) = (checkInAt, nights)
     }

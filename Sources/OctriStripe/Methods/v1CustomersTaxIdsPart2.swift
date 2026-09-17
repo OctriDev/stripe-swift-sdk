@@ -6,10 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1CustomersTaxIdsMethods {
-    /// Lists all tax IDs associated with a customer. Use cursor parameters to page through results and `limit` to
-    /// control the number of tax IDs returned per request. You can also use `expand` to request expanded response
-    /// fields.
+extension V1CustomersTaxIdsMethods {
+    /// Lists all tax IDs associated with a customer. Use cursor parameters to page through results and `limit` to control the number of tax IDs returned per request. You can also use `expand` to request expanded response fields.
     ///
     /// Returns a list of tax IDs for a customer.
     ///
@@ -27,36 +25,22 @@ public extension V1CustomersTaxIdsMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    static func getCustomersCustomerTaxIds(
-        config: ClientConfig,
-        customer: String,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        startingAfter: String?
-    ) async throws -> GetCustomersCustomerTaxIdsResponse {
+    public static func getCustomersCustomerTaxIds(config: ClientConfig, customer: String, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetCustomersCustomerTaxIdsResponse {
         try validateLength("customer", customer, max: 5000)
 
-        if let endingBefore {
+        if let endingBefore = endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let startingAfter {
+        if let startingAfter = startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try await (sdkRequest(
-            "GET",
-            ["/v1/customers/", sdkEncodePathSegment(sdkWireString(customer)), "/tax_ids"].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("ending_before", value: endingBefore),
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-                SdkQueryParameter("limit", value: limit),
-                SdkQueryParameter("starting_after", value: startingAfter),
-            ],
-            decoder: .json,
-            operationId: "GetCustomersCustomerTaxIds"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/customers/", sdkEncodePathSegment(sdkWireString(customer)), "/tax_ids"].joined(), config: config, query: [
+            SdkQueryParameter("ending_before", value: endingBefore),
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+            SdkQueryParameter("limit", value: limit),
+            SdkQueryParameter("starting_after", value: startingAfter),
+        ], decoder: .json, operationId: "GetCustomersCustomerTaxIds")).data
     }
 }

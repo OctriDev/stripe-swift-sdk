@@ -6,33 +6,19 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1InvoiceRenderingTemplatesMethods {
-    /// Retrieves an invoice rendering template by ID and returns its latest version by default. Supply `version` to
-    /// retrieve a previous version, and use `expand` when you need selected response fields expanded.
+extension V1InvoiceRenderingTemplatesMethods {
+    /// Retrieves an invoice rendering template by ID and returns its latest version by default. Supply `version` to retrieve a previous version, and use `expand` when you need selected response fields expanded.
     ///
-    /// Retrieves an invoice rendering template with the given ID. It by default returns the latest version of the
-    /// template. Optionally, specify a version to see previous versions.
+    /// Retrieves an invoice rendering template with the given ID. It by default returns the latest version of the template. Optionally, specify a version to see previous versions.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    static func getInvoiceRenderingTemplatesTemplate(
-        config: ClientConfig,
-        template: String,
-        expand: [String]?,
-        version: Int?
-    ) async throws -> InvoiceRenderingTemplate {
+    public static func getInvoiceRenderingTemplatesTemplate(config: ClientConfig, template: String, expand: [String]?, version: Int?) async throws -> InvoiceRenderingTemplate {
         try validateLength("template", template, max: 5000)
 
-        return try await (sdkRequest(
-            "GET",
-            ["/v1/invoice_rendering_templates/", sdkEncodePathSegment(sdkWireString(template))].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-                SdkQueryParameter("version", value: version),
-            ],
-            decoder: .json,
-            operationId: "GetInvoiceRenderingTemplatesTemplate"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/invoice_rendering_templates/", sdkEncodePathSegment(sdkWireString(template))].joined(), config: config, query: [
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+            SdkQueryParameter("version", value: version),
+        ], decoder: .json, operationId: "GetInvoiceRenderingTemplatesTemplate")).data
     }
 }

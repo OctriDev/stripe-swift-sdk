@@ -7,36 +7,17 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1TestHelpersTreasuryOutboundTransfersPostMethods {
-    /// Triggers a test-mode OutboundTransfer transition to the posted status. Supply the `outbound_transfer` identifier
-    /// for an OutboundTransfer that is currently processing, and use `expand` to request expanded response fields when
-    /// needed.
+    /// Triggers a test-mode OutboundTransfer transition to the posted status. Supply the `outbound_transfer` identifier for an OutboundTransfer that is currently processing, and use `expand` to request expanded response fields when needed.
     ///
-    /// Transitions a test mode created OutboundTransfer to the posted status. The OutboundTransfer must already be in
-    /// the processing state.
+    /// Transitions a test mode created OutboundTransfer to the posted status. The OutboundTransfer must already be in the processing state.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postTestHelpersTreasuryOutboundTransfersOutboundTransferPost(
-        config: ClientConfig,
-        outboundTransfer: String,
-        expand: [String]?
-    ) async throws -> TreasuryOutboundTransfer {
+    public static func postTestHelpersTreasuryOutboundTransfersOutboundTransferPost(config: ClientConfig, outboundTransfer: String, expand: [String]?) async throws -> TreasuryOutboundTransfer {
         try validateLength("outbound_transfer", outboundTransfer, max: 5000)
 
         let requestBody = PostTestHelpersTreasuryOutboundTransfersOutboundTransferPostRequestBody(expand: expand)
 
-        return try await (sdkRequest(
-            "POST",
-            [
-                "/v1/test_helpers/treasury/outbound_transfers/",
-                sdkEncodePathSegment(sdkWireString(outboundTransfer)),
-                "/post",
-            ].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostTestHelpersTreasuryOutboundTransfersOutboundTransferPost"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/test_helpers/treasury/outbound_transfers/", sdkEncodePathSegment(sdkWireString(outboundTransfer)), "/post"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTestHelpersTreasuryOutboundTransfersOutboundTransferPost")).data
     }
 }

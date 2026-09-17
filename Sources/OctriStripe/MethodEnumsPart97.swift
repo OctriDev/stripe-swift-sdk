@@ -154,28 +154,22 @@ extension PostIssuingCardholdersRequestBodySpendingControlsAllowedCategoriesItem
 extension PostIssuingCardholdersRequestBodySpendingControlsAllowedCategoriesItem: CaseIterable {
     public static var allCases: [PostIssuingCardholdersRequestBodySpendingControlsAllowedCategoriesItem] {
         allCasesPart1
-            + allCasesPart2
-            + allCasesPart3
-            + allCasesPart4
+        +         allCasesPart2
+        +         allCasesPart3
+        +         allCasesPart4
     }
 }
 
-public struct PostIssuingCardholdersRequestBodySpendingControlsBlockedCardPXfe3e8ce0ff: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostIssuingCardholdersRequestBodySpendingControlsBlockedCardPXfe3e8ce0ff: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let notPresent =
-        PostIssuingCardholdersRequestBodySpendingControlsBlockedCardPXfe3e8ce0ff(rawValue: "not_present")
-    public static let present =
-        PostIssuingCardholdersRequestBodySpendingControlsBlockedCardPXfe3e8ce0ff(rawValue: "present")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let notPresent = PostIssuingCardholdersRequestBodySpendingControlsBlockedCardPXfe3e8ce0ff(rawValue: "not_present")
+    public static let present = PostIssuingCardholdersRequestBodySpendingControlsBlockedCardPXfe3e8ce0ff(rawValue: "present")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -184,17 +178,14 @@ public struct PostIssuingCardholdersRequestBodySpendingControlsBlockedCardPXfe3e
     }
 }
 
-public struct PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
+    public init(rawValue: String) { self.rawValue = rawValue }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

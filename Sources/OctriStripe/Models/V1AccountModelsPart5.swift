@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1Account domain models
+// V1Account domain models
 /// Typed representation of the `AccountTosAcceptance` API schema.
 public struct AccountTosAcceptance: Codable {
     /// The Unix timestamp marking when the account representative accepted their service agreement
@@ -23,31 +23,31 @@ public struct AccountTosAcceptance: Codable {
     }
 
     init() {
-        (date, ip, serviceAgreement, userAgent) = (nil, nil, nil, nil)
+        (self.date, self.ip, self.serviceAgreement, self.userAgent) = (nil, nil, nil, nil)
     }
 }
 
-public extension AccountTosAcceptance {
-    init(from decoder: Decoder) throws {
+extension AccountTosAcceptance {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        date = try container.sdkDecodeIfPresent(.date)
-        ip = try container.sdkDecodeIfPresent(.ip)
-        serviceAgreement = try container.sdkDecodeIfPresent(.serviceAgreement)
-        userAgent = try container.sdkDecodeIfPresent(.userAgent)
-        if let value = ip {
+        self.date = try container.sdkDecodeIfPresent(.date)
+        self.ip = try container.sdkDecodeIfPresent(.ip)
+        self.serviceAgreement = try container.sdkDecodeIfPresent(.serviceAgreement)
+        self.userAgent = try container.sdkDecodeIfPresent(.userAgent)
+        if let value = self.ip {
             try validateLength("ip", value, min: nil, max: 5000)
         }
-        if let value = serviceAgreement {
+        if let value = self.serviceAgreement {
             try validateLength("service_agreement", value, min: nil, max: 5000)
         }
-        if let value = userAgent {
+        if let value = self.userAgent {
             try validateLength("user_agent", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension AccountTosAcceptance {
-    init(date: Int? = nil, ip: String? = nil, serviceAgreement: String? = nil, userAgent: String? = nil) throws {
+extension AccountTosAcceptance {
+    public init(date: Int? = nil, ip: String? = nil, serviceAgreement: String? = nil, userAgent: String? = nil) throws {
         self.init()
         (self.date, self.ip) = (date, ip)
         (self.serviceAgreement, self.userAgent) = (serviceAgreement, userAgent)
@@ -73,19 +73,19 @@ public struct AccountTreasurySettings: Codable {
     }
 
     init() {
-        tosAcceptance = nil
+        self.tosAcceptance = nil
     }
 }
 
-public extension AccountTreasurySettings {
-    init(from decoder: Decoder) throws {
+extension AccountTreasurySettings {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        tosAcceptance = try container.sdkDecodeIfPresent(.tosAcceptance)
+        self.tosAcceptance = try container.sdkDecodeIfPresent(.tosAcceptance)
     }
 }
 
-public extension AccountTreasurySettings {
-    init(tosAcceptance: AccountTermsOfService? = nil) {
+extension AccountTreasurySettings {
+    public init(tosAcceptance: AccountTermsOfService? = nil) {
         self.init()
         self.tosAcceptance = tosAcceptance
     }
@@ -118,39 +118,26 @@ public struct AccountUnificationAccountController: Codable {
         case stripeDashboard = "stripe_dashboard"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension AccountUnificationAccountController {
-    init(from decoder: Decoder) throws {
+extension AccountUnificationAccountController {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.type) else {
-            throw SdkValidationError(
-                field: "type",
-                code: "required",
-                message: "Validation failed for 'type': value is required"
-            )
+            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
         }
-        type = try container.sdkDecodeRequired(.type)
-        fees = try container.sdkDecodeIfPresent(.fees)
-        isController = try container.sdkDecodeIfPresent(.isController)
-        losses = try container.sdkDecodeIfPresent(.losses)
-        requirementCollection = try container.sdkDecodeIfPresent(.requirementCollection)
-        stripeDashboard = try container.sdkDecodeIfPresent(.stripeDashboard)
+        self.type = try container.sdkDecodeRequired(.type)
+        self.fees = try container.sdkDecodeIfPresent(.fees)
+        self.isController = try container.sdkDecodeIfPresent(.isController)
+        self.losses = try container.sdkDecodeIfPresent(.losses)
+        self.requirementCollection = try container.sdkDecodeIfPresent(.requirementCollection)
+        self.stripeDashboard = try container.sdkDecodeIfPresent(.stripeDashboard)
     }
 }
 
-public extension AccountUnificationAccountController {
-    init(
-        type: AccountUnificationAccountControllerType,
-        fees: AccountUnificationAccountControllerFees? = nil,
-        isController: Bool? = nil,
-        losses: AccountUnificationAccountControllerLosses? = nil,
-        requirementCollection: AccountUnificationAccountControllerRequirementCollection? = nil,
-        stripeDashboard: AccountUnificationAccountControllerStripeDashboard? = nil
-    ) {
+extension AccountUnificationAccountController {
+    public init(type: AccountUnificationAccountControllerType, fees: AccountUnificationAccountControllerFees? = nil, isController: Bool? = nil, losses: AccountUnificationAccountControllerLosses? = nil, requirementCollection: AccountUnificationAccountControllerRequirementCollection? = nil, stripeDashboard: AccountUnificationAccountControllerStripeDashboard? = nil) {
         (self.type, self.fees) = (type, fees)
         (self.isController, self.losses) = (isController, losses)
         (self.requirementCollection, self.stripeDashboard) = (requirementCollection, stripeDashboard)
@@ -167,27 +154,21 @@ public struct AccountUnificationAccountControllerFees: Codable {
         case payer
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension AccountUnificationAccountControllerFees {
-    init(from decoder: Decoder) throws {
+extension AccountUnificationAccountControllerFees {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.payer) else {
-            throw SdkValidationError(
-                field: "payer",
-                code: "required",
-                message: "Validation failed for 'payer': value is required"
-            )
+            throw SdkValidationError(field: "payer", code: "required", message: "Validation failed for 'payer': value is required")
         }
-        payer = try container.sdkDecodeRequired(.payer)
+        self.payer = try container.sdkDecodeRequired(.payer)
     }
 }
 
-public extension AccountUnificationAccountControllerFees {
-    init(payer: AccountUnificationAccountControllerFeesPayer) {
+extension AccountUnificationAccountControllerFees {
+    public init(payer: AccountUnificationAccountControllerFeesPayer) {
         self.payer = payer
     }
 }
@@ -201,27 +182,21 @@ public struct AccountUnificationAccountControllerLosses: Codable {
         case payments
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension AccountUnificationAccountControllerLosses {
-    init(from decoder: Decoder) throws {
+extension AccountUnificationAccountControllerLosses {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.payments) else {
-            throw SdkValidationError(
-                field: "payments",
-                code: "required",
-                message: "Validation failed for 'payments': value is required"
-            )
+            throw SdkValidationError(field: "payments", code: "required", message: "Validation failed for 'payments': value is required")
         }
-        payments = try container.sdkDecodeRequired(.payments)
+        self.payments = try container.sdkDecodeRequired(.payments)
     }
 }
 
-public extension AccountUnificationAccountControllerLosses {
-    init(payments: AccountUnificationAccountControllerLossesPayments) {
+extension AccountUnificationAccountControllerLosses {
+    public init(payments: AccountUnificationAccountControllerLossesPayments) {
         self.payments = payments
     }
 }
@@ -235,41 +210,31 @@ public struct AccountUnificationAccountControllerStripeDashboard: Codable {
         case type
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension AccountUnificationAccountControllerStripeDashboard {
-    init(from decoder: Decoder) throws {
+extension AccountUnificationAccountControllerStripeDashboard {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.type) else {
-            throw SdkValidationError(
-                field: "type",
-                code: "required",
-                message: "Validation failed for 'type': value is required"
-            )
+            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
         }
-        type = try container.sdkDecodeRequired(.type)
+        self.type = try container.sdkDecodeRequired(.type)
     }
 }
 
-public extension AccountUnificationAccountControllerStripeDashboard {
-    init(type: AccountUnificationAccountControllerStripeDashboardType) {
+extension AccountUnificationAccountControllerStripeDashboard {
+    public init(type: AccountUnificationAccountControllerStripeDashboardType) {
         self.type = type
     }
 }
 
 /// A value indicating the responsible payer of a bundle of Stripe fees for pricing-control eligible products on
 /// this account. Learn more about fee behavior on connected accounts.
-public struct AccountUnificationAccountControllerFeesPayer: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct AccountUnificationAccountControllerFeesPayer: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let account = AccountUnificationAccountControllerFeesPayer(rawValue: "account")
     public static let application = AccountUnificationAccountControllerFeesPayer(rawValue: "application")
     public static let applicationCustom = AccountUnificationAccountControllerFeesPayer(rawValue: "application_custom")
@@ -277,7 +242,7 @@ public struct AccountUnificationAccountControllerFeesPayer: RawRepresentable, Ha
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -287,28 +252,19 @@ public struct AccountUnificationAccountControllerFeesPayer: RawRepresentable, Ha
 }
 
 /// Required enumerated value serialized in the `minority_owned_business_designation[]` wire field.
-public struct AccountBusinessProfileMinorityOwnedBusinessDesignationItem: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct AccountBusinessProfileMinorityOwnedBusinessDesignationItem: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let lgbtqiOwnedBusiness =
-        AccountBusinessProfileMinorityOwnedBusinessDesignationItem(rawValue: "lgbtqi_owned_business")
-    public static let minorityOwnedBusiness =
-        AccountBusinessProfileMinorityOwnedBusinessDesignationItem(rawValue: "minority_owned_business")
-    public static let noneOfTheseApply =
-        AccountBusinessProfileMinorityOwnedBusinessDesignationItem(rawValue: "none_of_these_apply")
-    public static let preferNotToAnswer =
-        AccountBusinessProfileMinorityOwnedBusinessDesignationItem(rawValue: "prefer_not_to_answer")
-    public static let womenOwnedBusiness =
-        AccountBusinessProfileMinorityOwnedBusinessDesignationItem(rawValue: "women_owned_business")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let lgbtqiOwnedBusiness = AccountBusinessProfileMinorityOwnedBusinessDesignationItem(rawValue: "lgbtqi_owned_business")
+    public static let minorityOwnedBusiness = AccountBusinessProfileMinorityOwnedBusinessDesignationItem(rawValue: "minority_owned_business")
+    public static let noneOfTheseApply = AccountBusinessProfileMinorityOwnedBusinessDesignationItem(rawValue: "none_of_these_apply")
+    public static let preferNotToAnswer = AccountBusinessProfileMinorityOwnedBusinessDesignationItem(rawValue: "prefer_not_to_answer")
+    public static let womenOwnedBusiness = AccountBusinessProfileMinorityOwnedBusinessDesignationItem(rawValue: "women_owned_business")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -322,17 +278,14 @@ public struct AccountBusinessProfileMinorityOwnedBusinessDesignationItem: RawRep
 public struct AccountCapabilitiesJcbPayments: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let active = AccountCapabilitiesJcbPayments(rawValue: "active")
     public static let inactive = AccountCapabilitiesJcbPayments(rawValue: "inactive")
     public static let pending = AccountCapabilitiesJcbPayments(rawValue: "pending")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -342,14 +295,10 @@ public struct AccountCapabilitiesJcbPayments: RawRepresentable, Hashable, Codabl
 }
 
 /// Description of why the capability is disabled. Learn more about handling verification issues.
-public struct AccountCapabilityRequirementsDisabledReason: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct AccountCapabilityRequirementsDisabledReason: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let other = AccountCapabilityRequirementsDisabledReason(rawValue: "other")
     public static let pausedInactivity = AccountCapabilityRequirementsDisabledReason(rawValue: "paused.inactivity")
     public static let pendingOnboarding = AccountCapabilityRequirementsDisabledReason(rawValue: "pending.onboarding")
@@ -358,14 +307,12 @@ public struct AccountCapabilityRequirementsDisabledReason: RawRepresentable, Has
     public static let platformPaused = AccountCapabilityRequirementsDisabledReason(rawValue: "platform_paused")
     public static let rejectedInactivity = AccountCapabilityRequirementsDisabledReason(rawValue: "rejected.inactivity")
     public static let rejectedOther = AccountCapabilityRequirementsDisabledReason(rawValue: "rejected.other")
-    public static let rejectedUnsupportedBusiness =
-        AccountCapabilityRequirementsDisabledReason(rawValue: "rejected.unsupported_business")
-    public static let requirementsFieldsNeeded =
-        AccountCapabilityRequirementsDisabledReason(rawValue: "requirements.fields_needed")
+    public static let rejectedUnsupportedBusiness = AccountCapabilityRequirementsDisabledReason(rawValue: "rejected.unsupported_business")
+    public static let requirementsFieldsNeeded = AccountCapabilityRequirementsDisabledReason(rawValue: "requirements.fields_needed")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -379,17 +326,14 @@ public struct AccountCapabilityRequirementsDisabledReason: RawRepresentable, Has
 public struct AccountCapabilitiesIdealPayments: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let active = AccountCapabilitiesIdealPayments(rawValue: "active")
     public static let inactive = AccountCapabilitiesIdealPayments(rawValue: "inactive")
     public static let pending = AccountCapabilitiesIdealPayments(rawValue: "pending")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -403,17 +347,14 @@ public struct AccountCapabilitiesIdealPayments: RawRepresentable, Hashable, Coda
 public struct AccountCapabilitiesMbWayPayments: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let active = AccountCapabilitiesMbWayPayments(rawValue: "active")
     public static let inactive = AccountCapabilitiesMbWayPayments(rawValue: "inactive")
     public static let pending = AccountCapabilitiesMbWayPayments(rawValue: "pending")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -427,17 +368,14 @@ public struct AccountCapabilitiesMbWayPayments: RawRepresentable, Hashable, Coda
 public struct AccountCapabilitiesAcssDebitPayments: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let active = AccountCapabilitiesAcssDebitPayments(rawValue: "active")
     public static let inactive = AccountCapabilitiesAcssDebitPayments(rawValue: "inactive")
     public static let pending = AccountCapabilitiesAcssDebitPayments(rawValue: "pending")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -447,21 +385,17 @@ public struct AccountCapabilitiesAcssDebitPayments: RawRepresentable, Hashable, 
 }
 
 /// The status of the tax reporting 1099-MISC (US) capability of the account.
-public struct AccountCapabilitiesTaxReportingUs1099Misc: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct AccountCapabilitiesTaxReportingUs1099Misc: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let active = AccountCapabilitiesTaxReportingUs1099Misc(rawValue: "active")
     public static let inactive = AccountCapabilitiesTaxReportingUs1099Misc(rawValue: "inactive")
     public static let pending = AccountCapabilitiesTaxReportingUs1099Misc(rawValue: "pending")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -475,17 +409,14 @@ public struct AccountCapabilitiesTaxReportingUs1099Misc: RawRepresentable, Hasha
 public struct AccountCapabilitiesSamsungPayPayments: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let active = AccountCapabilitiesSamsungPayPayments(rawValue: "active")
     public static let inactive = AccountCapabilitiesSamsungPayPayments(rawValue: "inactive")
     public static let pending = AccountCapabilitiesSamsungPayPayments(rawValue: "pending")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -499,17 +430,14 @@ public struct AccountCapabilitiesSamsungPayPayments: RawRepresentable, Hashable,
 public struct AccountCapabilitiesGiropayPayments: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let active = AccountCapabilitiesGiropayPayments(rawValue: "active")
     public static let inactive = AccountCapabilitiesGiropayPayments(rawValue: "inactive")
     public static let pending = AccountCapabilitiesGiropayPayments(rawValue: "pending")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -523,17 +451,14 @@ public struct AccountCapabilitiesGiropayPayments: RawRepresentable, Hashable, Co
 public struct AccountCapabilitiesUpiPayments: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let active = AccountCapabilitiesUpiPayments(rawValue: "active")
     public static let inactive = AccountCapabilitiesUpiPayments(rawValue: "inactive")
     public static let pending = AccountCapabilitiesUpiPayments(rawValue: "pending")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -544,21 +469,17 @@ public struct AccountCapabilitiesUpiPayments: RawRepresentable, Hashable, Codabl
 
 /// The status of the BECS Direct Debit (AU) payments capability of the account, or whether the account can
 /// directly process BECS Direct Debit (AU) charges.
-public struct AccountCapabilitiesAuBecsDebitPayments: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct AccountCapabilitiesAuBecsDebitPayments: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let active = AccountCapabilitiesAuBecsDebitPayments(rawValue: "active")
     public static let inactive = AccountCapabilitiesAuBecsDebitPayments(rawValue: "inactive")
     public static let pending = AccountCapabilitiesAuBecsDebitPayments(rawValue: "pending")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -572,17 +493,14 @@ public struct AccountCapabilitiesAuBecsDebitPayments: RawRepresentable, Hashable
 public struct AccountCapabilitiesOxxoPayments: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let active = AccountCapabilitiesOxxoPayments(rawValue: "active")
     public static let inactive = AccountCapabilitiesOxxoPayments(rawValue: "inactive")
     public static let pending = AccountCapabilitiesOxxoPayments(rawValue: "pending")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

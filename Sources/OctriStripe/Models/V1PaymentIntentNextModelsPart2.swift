@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1PaymentIntentNext domain models
+// V1PaymentIntentNext domain models
 /// Typed representation of the `PaymentIntentNextActionDisplayOxxoDetails` API schema.
 public struct PaymentIntentNextActionDisplayOxxoDetails: Codable {
     /// The timestamp after which the OXXO voucher expires.
@@ -20,27 +20,27 @@ public struct PaymentIntentNextActionDisplayOxxoDetails: Codable {
     }
 
     init() {
-        (expiresAfter, hostedVoucherUrl, number) = (nil, nil, nil)
+        (self.expiresAfter, self.hostedVoucherUrl, self.number) = (nil, nil, nil)
     }
 }
 
-public extension PaymentIntentNextActionDisplayOxxoDetails {
-    init(from decoder: Decoder) throws {
+extension PaymentIntentNextActionDisplayOxxoDetails {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        expiresAfter = try container.sdkDecodeIfPresent(.expiresAfter)
-        hostedVoucherUrl = try container.sdkDecodeIfPresent(.hostedVoucherUrl)
-        number = try container.sdkDecodeIfPresent(.number)
-        if let value = hostedVoucherUrl {
+        self.expiresAfter = try container.sdkDecodeIfPresent(.expiresAfter)
+        self.hostedVoucherUrl = try container.sdkDecodeIfPresent(.hostedVoucherUrl)
+        self.number = try container.sdkDecodeIfPresent(.number)
+        if let value = self.hostedVoucherUrl {
             try validateLength("hosted_voucher_url", value, min: nil, max: 5000)
         }
-        if let value = number {
+        if let value = self.number {
             try validateLength("number", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PaymentIntentNextActionDisplayOxxoDetails {
-    init(expiresAfter: Int? = nil, hostedVoucherUrl: String? = nil, number: String? = nil) throws {
+extension PaymentIntentNextActionDisplayOxxoDetails {
+    public init(expiresAfter: Int? = nil, hostedVoucherUrl: String? = nil, number: String? = nil) throws {
         self.init()
         (self.expiresAfter, self.hostedVoucherUrl) = (expiresAfter, hostedVoucherUrl)
         self.number = number
@@ -71,52 +71,38 @@ public struct PaymentIntentNextActionKlarnaDisplayQrCode: Codable {
         case expiresAt = "expires_at"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PaymentIntentNextActionKlarnaDisplayQrCode {
-    init(from decoder: Decoder) throws {
+extension PaymentIntentNextActionKlarnaDisplayQrCode {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.data) else {
-            throw SdkValidationError(
-                field: "data",
-                code: "required",
-                message: "Validation failed for 'data': value is required"
-            )
+            throw SdkValidationError(field: "data", code: "required", message: "Validation failed for 'data': value is required")
         }
         guard container.contains(.imageUrlPng) else {
-            throw SdkValidationError(
-                field: "image_url_png",
-                code: "required",
-                message: "Validation failed for 'image_url_png': value is required"
-            )
+            throw SdkValidationError(field: "image_url_png", code: "required", message: "Validation failed for 'image_url_png': value is required")
         }
         guard container.contains(.imageUrlSvg) else {
-            throw SdkValidationError(
-                field: "image_url_svg",
-                code: "required",
-                message: "Validation failed for 'image_url_svg': value is required"
-            )
+            throw SdkValidationError(field: "image_url_svg", code: "required", message: "Validation failed for 'image_url_svg': value is required")
         }
-        data = try container.sdkDecodeRequired(.data)
-        imageUrlPng = try container.sdkDecodeRequired(.imageUrlPng)
-        imageUrlSvg = try container.sdkDecodeRequired(.imageUrlSvg)
-        expiresAt = try container.sdkDecodeIfPresent(.expiresAt)
-        try validateLength("data", data, min: nil, max: 5000)
-        try validateLength("image_url_png", imageUrlPng, min: nil, max: 5000)
-        try validateLength("image_url_svg", imageUrlSvg, min: nil, max: 5000)
+        self.data = try container.sdkDecodeRequired(.data)
+        self.imageUrlPng = try container.sdkDecodeRequired(.imageUrlPng)
+        self.imageUrlSvg = try container.sdkDecodeRequired(.imageUrlSvg)
+        self.expiresAt = try container.sdkDecodeIfPresent(.expiresAt)
+            try validateLength("data", self.data, min: nil, max: 5000)
+            try validateLength("image_url_png", self.imageUrlPng, min: nil, max: 5000)
+            try validateLength("image_url_svg", self.imageUrlSvg, min: nil, max: 5000)
     }
 }
 
-public extension PaymentIntentNextActionKlarnaDisplayQrCode {
-    init(data: String, imageUrlPng: String, imageUrlSvg: String, expiresAt: Int? = nil) throws {
+extension PaymentIntentNextActionKlarnaDisplayQrCode {
+    public init(data: String, imageUrlPng: String, imageUrlSvg: String, expiresAt: Int? = nil) throws {
         (self.data, self.imageUrlPng) = (data, imageUrlPng)
         (self.imageUrlSvg, self.expiresAt) = (imageUrlSvg, expiresAt)
-        try validateLength("data", self.data, min: nil, max: 5000)
-        try validateLength("image_url_png", self.imageUrlPng, min: nil, max: 5000)
-        try validateLength("image_url_svg", self.imageUrlSvg, min: nil, max: 5000)
+            try validateLength("data", self.data, min: nil, max: 5000)
+            try validateLength("image_url_png", self.imageUrlPng, min: nil, max: 5000)
+            try validateLength("image_url_svg", self.imageUrlSvg, min: nil, max: 5000)
     }
 }
 
@@ -136,39 +122,29 @@ public struct PaymentIntentNextActionKonbini: Codable {
         case hostedVoucherUrl = "hosted_voucher_url"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PaymentIntentNextActionKonbini {
-    init(from decoder: Decoder) throws {
+extension PaymentIntentNextActionKonbini {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.expiresAt) else {
-            throw SdkValidationError(
-                field: "expires_at",
-                code: "required",
-                message: "Validation failed for 'expires_at': value is required"
-            )
+            throw SdkValidationError(field: "expires_at", code: "required", message: "Validation failed for 'expires_at': value is required")
         }
         guard container.contains(.stores) else {
-            throw SdkValidationError(
-                field: "stores",
-                code: "required",
-                message: "Validation failed for 'stores': value is required"
-            )
+            throw SdkValidationError(field: "stores", code: "required", message: "Validation failed for 'stores': value is required")
         }
-        expiresAt = try container.sdkDecodeRequired(.expiresAt)
-        stores = try container.sdkDecodeRequired(.stores)
-        hostedVoucherUrl = try container.sdkDecodeIfPresent(.hostedVoucherUrl)
-        if let value = hostedVoucherUrl {
+        self.expiresAt = try container.sdkDecodeRequired(.expiresAt)
+        self.stores = try container.sdkDecodeRequired(.stores)
+        self.hostedVoucherUrl = try container.sdkDecodeIfPresent(.hostedVoucherUrl)
+        if let value = self.hostedVoucherUrl {
             try validateLength("hosted_voucher_url", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PaymentIntentNextActionKonbini {
-    init(expiresAt: Int, stores: PaymentIntentNextActionKonbiniStores, hostedVoucherUrl: String? = nil) throws {
+extension PaymentIntentNextActionKonbini {
+    public init(expiresAt: Int, stores: PaymentIntentNextActionKonbiniStores, hostedVoucherUrl: String? = nil) throws {
         (self.expiresAt, self.stores) = (expiresAt, stores)
         self.hostedVoucherUrl = hostedVoucherUrl
         if let value = self.hostedVoucherUrl {
@@ -189,34 +165,28 @@ public struct PaymentIntentNextActionKonbiniFamilymart: Codable {
         case confirmationNumber = "confirmation_number"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PaymentIntentNextActionKonbiniFamilymart {
-    init(from decoder: Decoder) throws {
+extension PaymentIntentNextActionKonbiniFamilymart {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.paymentCode) else {
-            throw SdkValidationError(
-                field: "payment_code",
-                code: "required",
-                message: "Validation failed for 'payment_code': value is required"
-            )
+            throw SdkValidationError(field: "payment_code", code: "required", message: "Validation failed for 'payment_code': value is required")
         }
-        paymentCode = try container.sdkDecodeRequired(.paymentCode)
-        confirmationNumber = try container.sdkDecodeIfPresent(.confirmationNumber)
-        try validateLength("payment_code", paymentCode, min: nil, max: 5000)
-        if let value = confirmationNumber {
+        self.paymentCode = try container.sdkDecodeRequired(.paymentCode)
+        self.confirmationNumber = try container.sdkDecodeIfPresent(.confirmationNumber)
+            try validateLength("payment_code", self.paymentCode, min: nil, max: 5000)
+        if let value = self.confirmationNumber {
             try validateLength("confirmation_number", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PaymentIntentNextActionKonbiniFamilymart {
-    init(paymentCode: String, confirmationNumber: String? = nil) throws {
+extension PaymentIntentNextActionKonbiniFamilymart {
+    public init(paymentCode: String, confirmationNumber: String? = nil) throws {
         (self.paymentCode, self.confirmationNumber) = (paymentCode, confirmationNumber)
-        try validateLength("payment_code", self.paymentCode, min: nil, max: 5000)
+            try validateLength("payment_code", self.paymentCode, min: nil, max: 5000)
         if let value = self.confirmationNumber {
             try validateLength("confirmation_number", value, min: nil, max: 5000)
         }
@@ -235,34 +205,28 @@ public struct PaymentIntentNextActionKonbiniLawson: Codable {
         case confirmationNumber = "confirmation_number"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PaymentIntentNextActionKonbiniLawson {
-    init(from decoder: Decoder) throws {
+extension PaymentIntentNextActionKonbiniLawson {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.paymentCode) else {
-            throw SdkValidationError(
-                field: "payment_code",
-                code: "required",
-                message: "Validation failed for 'payment_code': value is required"
-            )
+            throw SdkValidationError(field: "payment_code", code: "required", message: "Validation failed for 'payment_code': value is required")
         }
-        paymentCode = try container.sdkDecodeRequired(.paymentCode)
-        confirmationNumber = try container.sdkDecodeIfPresent(.confirmationNumber)
-        try validateLength("payment_code", paymentCode, min: nil, max: 5000)
-        if let value = confirmationNumber {
+        self.paymentCode = try container.sdkDecodeRequired(.paymentCode)
+        self.confirmationNumber = try container.sdkDecodeIfPresent(.confirmationNumber)
+            try validateLength("payment_code", self.paymentCode, min: nil, max: 5000)
+        if let value = self.confirmationNumber {
             try validateLength("confirmation_number", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PaymentIntentNextActionKonbiniLawson {
-    init(paymentCode: String, confirmationNumber: String? = nil) throws {
+extension PaymentIntentNextActionKonbiniLawson {
+    public init(paymentCode: String, confirmationNumber: String? = nil) throws {
         (self.paymentCode, self.confirmationNumber) = (paymentCode, confirmationNumber)
-        try validateLength("payment_code", self.paymentCode, min: nil, max: 5000)
+            try validateLength("payment_code", self.paymentCode, min: nil, max: 5000)
         if let value = self.confirmationNumber {
             try validateLength("confirmation_number", value, min: nil, max: 5000)
         }
@@ -281,34 +245,28 @@ public struct PaymentIntentNextActionKonbiniMinistop: Codable {
         case confirmationNumber = "confirmation_number"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PaymentIntentNextActionKonbiniMinistop {
-    init(from decoder: Decoder) throws {
+extension PaymentIntentNextActionKonbiniMinistop {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.paymentCode) else {
-            throw SdkValidationError(
-                field: "payment_code",
-                code: "required",
-                message: "Validation failed for 'payment_code': value is required"
-            )
+            throw SdkValidationError(field: "payment_code", code: "required", message: "Validation failed for 'payment_code': value is required")
         }
-        paymentCode = try container.sdkDecodeRequired(.paymentCode)
-        confirmationNumber = try container.sdkDecodeIfPresent(.confirmationNumber)
-        try validateLength("payment_code", paymentCode, min: nil, max: 5000)
-        if let value = confirmationNumber {
+        self.paymentCode = try container.sdkDecodeRequired(.paymentCode)
+        self.confirmationNumber = try container.sdkDecodeIfPresent(.confirmationNumber)
+            try validateLength("payment_code", self.paymentCode, min: nil, max: 5000)
+        if let value = self.confirmationNumber {
             try validateLength("confirmation_number", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PaymentIntentNextActionKonbiniMinistop {
-    init(paymentCode: String, confirmationNumber: String? = nil) throws {
+extension PaymentIntentNextActionKonbiniMinistop {
+    public init(paymentCode: String, confirmationNumber: String? = nil) throws {
         (self.paymentCode, self.confirmationNumber) = (paymentCode, confirmationNumber)
-        try validateLength("payment_code", self.paymentCode, min: nil, max: 5000)
+            try validateLength("payment_code", self.paymentCode, min: nil, max: 5000)
         if let value = self.confirmationNumber {
             try validateLength("confirmation_number", value, min: nil, max: 5000)
         }
@@ -327,34 +285,28 @@ public struct PaymentIntentNextActionKonbiniSeicomart: Codable {
         case confirmationNumber = "confirmation_number"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PaymentIntentNextActionKonbiniSeicomart {
-    init(from decoder: Decoder) throws {
+extension PaymentIntentNextActionKonbiniSeicomart {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.paymentCode) else {
-            throw SdkValidationError(
-                field: "payment_code",
-                code: "required",
-                message: "Validation failed for 'payment_code': value is required"
-            )
+            throw SdkValidationError(field: "payment_code", code: "required", message: "Validation failed for 'payment_code': value is required")
         }
-        paymentCode = try container.sdkDecodeRequired(.paymentCode)
-        confirmationNumber = try container.sdkDecodeIfPresent(.confirmationNumber)
-        try validateLength("payment_code", paymentCode, min: nil, max: 5000)
-        if let value = confirmationNumber {
+        self.paymentCode = try container.sdkDecodeRequired(.paymentCode)
+        self.confirmationNumber = try container.sdkDecodeIfPresent(.confirmationNumber)
+            try validateLength("payment_code", self.paymentCode, min: nil, max: 5000)
+        if let value = self.confirmationNumber {
             try validateLength("confirmation_number", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PaymentIntentNextActionKonbiniSeicomart {
-    init(paymentCode: String, confirmationNumber: String? = nil) throws {
+extension PaymentIntentNextActionKonbiniSeicomart {
+    public init(paymentCode: String, confirmationNumber: String? = nil) throws {
         (self.paymentCode, self.confirmationNumber) = (paymentCode, confirmationNumber)
-        try validateLength("payment_code", self.paymentCode, min: nil, max: 5000)
+            try validateLength("payment_code", self.paymentCode, min: nil, max: 5000)
         if let value = self.confirmationNumber {
             try validateLength("confirmation_number", value, min: nil, max: 5000)
         }
@@ -380,27 +332,22 @@ public struct PaymentIntentNextActionKonbiniStores: Codable {
     }
 
     init() {
-        (familymart, lawson, ministop, seicomart) = (nil, nil, nil, nil)
+        (self.familymart, self.lawson, self.ministop, self.seicomart) = (nil, nil, nil, nil)
     }
 }
 
-public extension PaymentIntentNextActionKonbiniStores {
-    init(from decoder: Decoder) throws {
+extension PaymentIntentNextActionKonbiniStores {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        familymart = try container.sdkDecodeIfPresent(.familymart)
-        lawson = try container.sdkDecodeIfPresent(.lawson)
-        ministop = try container.sdkDecodeIfPresent(.ministop)
-        seicomart = try container.sdkDecodeIfPresent(.seicomart)
+        self.familymart = try container.sdkDecodeIfPresent(.familymart)
+        self.lawson = try container.sdkDecodeIfPresent(.lawson)
+        self.ministop = try container.sdkDecodeIfPresent(.ministop)
+        self.seicomart = try container.sdkDecodeIfPresent(.seicomart)
     }
 }
 
-public extension PaymentIntentNextActionKonbiniStores {
-    init(
-        familymart: PaymentIntentNextActionKonbiniStoresFamilymart? = nil,
-        lawson: PaymentIntentNextActionKonbiniStoresLawson? = nil,
-        ministop: PaymentIntentNextActionKonbiniStoresMinistop? = nil,
-        seicomart: PaymentIntentNextActionKonbiniStoresSeicomart? = nil
-    ) {
+extension PaymentIntentNextActionKonbiniStores {
+    public init(familymart: PaymentIntentNextActionKonbiniStoresFamilymart? = nil, lawson: PaymentIntentNextActionKonbiniStoresLawson? = nil, ministop: PaymentIntentNextActionKonbiniStoresMinistop? = nil, seicomart: PaymentIntentNextActionKonbiniStoresSeicomart? = nil) {
         self.init()
         (self.familymart, self.lawson) = (familymart, lawson)
         (self.ministop, self.seicomart) = (ministop, seicomart)
@@ -412,30 +359,24 @@ public enum PaymentIntentNextActionKonbiniStoresFamilymart {
 }
 
 extension PaymentIntentNextActionKonbiniStoresFamilymart: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PaymentIntentNextActionKonbiniStoresFamilymart"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentIntentNextActionKonbiniStoresFamilymart")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PaymentIntentNextActionKonbiniFamilymart.self
         ) {
-            return .paymentIntentNextActionKonbiniFamilymart(value)
+            return             .paymentIntentNextActionKonbiniFamilymart(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -444,6 +385,7 @@ extension PaymentIntentNextActionKonbiniStoresFamilymart: Codable {
         case let .paymentIntentNextActionKonbiniFamilymart(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum PaymentIntentNextActionKonbiniStoresLawson {
@@ -451,30 +393,24 @@ public enum PaymentIntentNextActionKonbiniStoresLawson {
 }
 
 extension PaymentIntentNextActionKonbiniStoresLawson: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PaymentIntentNextActionKonbiniStoresLawson"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentIntentNextActionKonbiniStoresLawson")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PaymentIntentNextActionKonbiniLawson.self
         ) {
-            return .paymentIntentNextActionKonbiniLawson(value)
+            return             .paymentIntentNextActionKonbiniLawson(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -483,6 +419,7 @@ extension PaymentIntentNextActionKonbiniStoresLawson: Codable {
         case let .paymentIntentNextActionKonbiniLawson(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum PaymentIntentNextActionKonbiniStoresMinistop {
@@ -490,30 +427,24 @@ public enum PaymentIntentNextActionKonbiniStoresMinistop {
 }
 
 extension PaymentIntentNextActionKonbiniStoresMinistop: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PaymentIntentNextActionKonbiniStoresMinistop"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentIntentNextActionKonbiniStoresMinistop")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PaymentIntentNextActionKonbiniMinistop.self
         ) {
-            return .paymentIntentNextActionKonbiniMinistop(value)
+            return             .paymentIntentNextActionKonbiniMinistop(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -522,6 +453,7 @@ extension PaymentIntentNextActionKonbiniStoresMinistop: Codable {
         case let .paymentIntentNextActionKonbiniMinistop(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum PaymentIntentNextActionKonbiniStoresSeicomart {
@@ -529,30 +461,24 @@ public enum PaymentIntentNextActionKonbiniStoresSeicomart {
 }
 
 extension PaymentIntentNextActionKonbiniStoresSeicomart: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PaymentIntentNextActionKonbiniStoresSeicomart"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentIntentNextActionKonbiniStoresSeicomart")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PaymentIntentNextActionKonbiniSeicomart.self
         ) {
-            return .paymentIntentNextActionKonbiniSeicomart(value)
+            return             .paymentIntentNextActionKonbiniSeicomart(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -561,6 +487,7 @@ extension PaymentIntentNextActionKonbiniStoresSeicomart: Codable {
         case let .paymentIntentNextActionKonbiniSeicomart(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// Typed representation of the `PaymentIntentNextActionPaynowDisplayQrCode` API schema.
@@ -581,55 +508,41 @@ public struct PaymentIntentNextActionPaynowDisplayQrCode: Codable {
         case hostedInstructionsUrl = "hosted_instructions_url"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PaymentIntentNextActionPaynowDisplayQrCode {
-    init(from decoder: Decoder) throws {
+extension PaymentIntentNextActionPaynowDisplayQrCode {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.data) else {
-            throw SdkValidationError(
-                field: "data",
-                code: "required",
-                message: "Validation failed for 'data': value is required"
-            )
+            throw SdkValidationError(field: "data", code: "required", message: "Validation failed for 'data': value is required")
         }
         guard container.contains(.imageUrlPng) else {
-            throw SdkValidationError(
-                field: "image_url_png",
-                code: "required",
-                message: "Validation failed for 'image_url_png': value is required"
-            )
+            throw SdkValidationError(field: "image_url_png", code: "required", message: "Validation failed for 'image_url_png': value is required")
         }
         guard container.contains(.imageUrlSvg) else {
-            throw SdkValidationError(
-                field: "image_url_svg",
-                code: "required",
-                message: "Validation failed for 'image_url_svg': value is required"
-            )
+            throw SdkValidationError(field: "image_url_svg", code: "required", message: "Validation failed for 'image_url_svg': value is required")
         }
-        data = try container.sdkDecodeRequired(.data)
-        imageUrlPng = try container.sdkDecodeRequired(.imageUrlPng)
-        imageUrlSvg = try container.sdkDecodeRequired(.imageUrlSvg)
-        hostedInstructionsUrl = try container.sdkDecodeIfPresent(.hostedInstructionsUrl)
-        try validateLength("data", data, min: nil, max: 5000)
-        try validateLength("image_url_png", imageUrlPng, min: nil, max: 5000)
-        try validateLength("image_url_svg", imageUrlSvg, min: nil, max: 5000)
-        if let value = hostedInstructionsUrl {
+        self.data = try container.sdkDecodeRequired(.data)
+        self.imageUrlPng = try container.sdkDecodeRequired(.imageUrlPng)
+        self.imageUrlSvg = try container.sdkDecodeRequired(.imageUrlSvg)
+        self.hostedInstructionsUrl = try container.sdkDecodeIfPresent(.hostedInstructionsUrl)
+            try validateLength("data", self.data, min: nil, max: 5000)
+            try validateLength("image_url_png", self.imageUrlPng, min: nil, max: 5000)
+            try validateLength("image_url_svg", self.imageUrlSvg, min: nil, max: 5000)
+        if let value = self.hostedInstructionsUrl {
             try validateLength("hosted_instructions_url", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PaymentIntentNextActionPaynowDisplayQrCode {
-    init(data: String, imageUrlPng: String, imageUrlSvg: String, hostedInstructionsUrl: String? = nil) throws {
+extension PaymentIntentNextActionPaynowDisplayQrCode {
+    public init(data: String, imageUrlPng: String, imageUrlSvg: String, hostedInstructionsUrl: String? = nil) throws {
         (self.data, self.imageUrlPng) = (data, imageUrlPng)
         (self.imageUrlSvg, self.hostedInstructionsUrl) = (imageUrlSvg, hostedInstructionsUrl)
-        try validateLength("data", self.data, min: nil, max: 5000)
-        try validateLength("image_url_png", self.imageUrlPng, min: nil, max: 5000)
-        try validateLength("image_url_svg", self.imageUrlSvg, min: nil, max: 5000)
+            try validateLength("data", self.data, min: nil, max: 5000)
+            try validateLength("image_url_png", self.imageUrlPng, min: nil, max: 5000)
+            try validateLength("image_url_svg", self.imageUrlSvg, min: nil, max: 5000)
         if let value = self.hostedInstructionsUrl {
             try validateLength("hosted_instructions_url", value, min: nil, max: 5000)
         }

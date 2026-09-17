@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1PaymentIntentsCaptureMethods {
-    struct PostPaymentIntentsIntentCaptureOptions: Codable {
+extension V1PaymentIntentsCaptureMethods {
+    public struct PostPaymentIntentsIntentCaptureOptions: Codable {
         public var intent: String
         public var amountDetails: PostPaymentIntentsIntentCaptureRequestBodyAmountDetails?
         public var amountToCapture: Int?
@@ -26,13 +26,9 @@ public extension V1PaymentIntentsCaptureMethods {
         }
     }
 
-    /// Captures funds from an uncaptured PaymentIntent whose status is `requires_capture`. Use `amount_to_capture` to
-    /// capture less than the available amount; uncaptured PaymentIntents are automatically canceled after a set period,
-    /// seven days by default.
+    /// Captures funds from an uncaptured PaymentIntent whose status is `requires_capture`. Use `amount_to_capture` to capture less than the available amount; uncaptured PaymentIntents are automatically canceled after a set period, seven days by default.
     ///
-    /// Capture the funds of an existing uncaptured PaymentIntent when its status is requires_capture . Uncaptured
-    /// PaymentIntents are cancelled a set number of days (7 by default) after their creation. Learn more about separate
-    /// authorization and capture.
+    /// Capture the funds of an existing uncaptured PaymentIntent when its status is requires_capture . Uncaptured PaymentIntents are cancelled a set number of days (7 by default) after their creation. Learn more about separate authorization and capture.
     ///
     /// - Parameters:
     /// - amountDetails: Provides industry-specific information about the amount.
@@ -76,10 +72,7 @@ public extension V1PaymentIntentsCaptureMethods {
     /// - transferData: The parameters that you can use to automatically create a
     ///   transfer after the payment is captured. Learn more about the [use case for
     ///   connected accounts](https://docs.stripe.com/payments/connected-accounts).
-    static func postPaymentIntentsIntentCapture(
-        config: ClientConfig,
-        options: PostPaymentIntentsIntentCaptureOptions
-    ) async throws -> PaymentIntent {
+    public static func postPaymentIntentsIntentCapture(config: ClientConfig, options: PostPaymentIntentsIntentCaptureOptions) async throws -> PaymentIntent {
         try validateLength("intent", options.intent, max: 5000)
 
         if let statementDescriptor = options.statementDescriptor {
@@ -92,14 +85,6 @@ public extension V1PaymentIntentsCaptureMethods {
 
         let requestBody = PostPaymentIntentsIntentCaptureRequestBody(options: options)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/payment_intents/", sdkEncodePathSegment(sdkWireString(options.intent)), "/capture"].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostPaymentIntentsIntentCapture"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/payment_intents/", sdkEncodePathSegment(sdkWireString(options.intent)), "/capture"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostPaymentIntentsIntentCapture")).data
     }
 }

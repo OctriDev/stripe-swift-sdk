@@ -7,31 +7,17 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1QuotesAcceptMethods {
-    /// Accepts a specified quote and changes its lifecycle state. The accepted quote can automatically create an
-    /// invoice, subscription, or subscription schedule. Use `expand` when the response should include additional
-    /// related fields.
+    /// Accepts a specified quote and changes its lifecycle state. The accepted quote can automatically create an invoice, subscription, or subscription schedule. Use `expand` when the response should include additional related fields.
     ///
     /// Accepts the specified quote.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postQuotesQuoteAccept(
-        config: ClientConfig,
-        quote: String,
-        expand: [String]?
-    ) async throws -> Quote {
+    public static func postQuotesQuoteAccept(config: ClientConfig, quote: String, expand: [String]?) async throws -> Quote {
         try validateLength("quote", quote, max: 5000)
 
         let requestBody = PostQuotesQuoteAcceptRequestBody(expand: expand)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/quotes/", sdkEncodePathSegment(sdkWireString(quote)), "/accept"].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostQuotesQuoteAccept"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/quotes/", sdkEncodePathSegment(sdkWireString(quote)), "/accept"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostQuotesQuoteAccept")).data
     }
 }

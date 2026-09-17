@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1BillingClocks domain models
+// V1BillingClocks domain models
 /// Typed representation of the `BillingClocksResourceStatusDetailsAdvancingStatusDetails` API schema.
 public struct BillingClocksResourceStatusDetailsAdvancingStatusDetails: Codable {
     /// The `frozen_time` that the Test Clock is advancing towards.
@@ -13,27 +13,21 @@ public struct BillingClocksResourceStatusDetailsAdvancingStatusDetails: Codable 
         case targetFrozenTime = "target_frozen_time"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension BillingClocksResourceStatusDetailsAdvancingStatusDetails {
-    init(from decoder: Decoder) throws {
+extension BillingClocksResourceStatusDetailsAdvancingStatusDetails {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.targetFrozenTime) else {
-            throw SdkValidationError(
-                field: "target_frozen_time",
-                code: "required",
-                message: "Validation failed for 'target_frozen_time': value is required"
-            )
+            throw SdkValidationError(field: "target_frozen_time", code: "required", message: "Validation failed for 'target_frozen_time': value is required")
         }
-        targetFrozenTime = try container.sdkDecodeRequired(.targetFrozenTime)
+        self.targetFrozenTime = try container.sdkDecodeRequired(.targetFrozenTime)
     }
 }
 
-public extension BillingClocksResourceStatusDetailsAdvancingStatusDetails {
-    init(targetFrozenTime: Int) {
+extension BillingClocksResourceStatusDetailsAdvancingStatusDetails {
+    public init(targetFrozenTime: Int) {
         self.targetFrozenTime = targetFrozenTime
     }
 }
@@ -48,19 +42,19 @@ public struct BillingClocksResourceStatusDetailsStatusDetails: Codable {
     }
 
     init() {
-        advancing = nil
+        self.advancing = nil
     }
 }
 
-public extension BillingClocksResourceStatusDetailsStatusDetails {
-    init(from decoder: Decoder) throws {
+extension BillingClocksResourceStatusDetailsStatusDetails {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        advancing = try container.sdkDecodeIfPresent(.advancing)
+        self.advancing = try container.sdkDecodeIfPresent(.advancing)
     }
 }
 
-public extension BillingClocksResourceStatusDetailsStatusDetails {
-    init(advancing: BillingClocksResourceStatusDetailsAdvancingStatusDetails? = nil) {
+extension BillingClocksResourceStatusDetailsStatusDetails {
+    public init(advancing: BillingClocksResourceStatusDetailsAdvancingStatusDetails? = nil) {
         self.init()
         self.advancing = advancing
     }

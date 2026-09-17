@@ -6,34 +6,22 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public struct PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX9748c61296: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX9748c61296: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let chargingMinute =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX9748c61296(rawValue: "charging_minute")
-    public static let imperialGallon =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX9748c61296(rawValue: "imperial_gallon")
-    public static let kilogram =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX9748c61296(rawValue: "kilogram")
-    public static let kilowattHour =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX9748c61296(rawValue: "kilowatt_hour")
-    public static let liter =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX9748c61296(rawValue: "liter")
-    public static let other =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX9748c61296(rawValue: "other")
-    public static let pound =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX9748c61296(rawValue: "pound")
-    public static let usGallon =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX9748c61296(rawValue: "us_gallon")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let chargingMinute = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX9748c61296(rawValue: "charging_minute")
+    public static let imperialGallon = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX9748c61296(rawValue: "imperial_gallon")
+    public static let kilogram = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX9748c61296(rawValue: "kilogram")
+    public static let kilowattHour = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX9748c61296(rawValue: "kilowatt_hour")
+    public static let liter = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX9748c61296(rawValue: "liter")
+    public static let other = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX9748c61296(rawValue: "other")
+    public static let pound = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX9748c61296(rawValue: "pound")
+    public static let usGallon = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX9748c61296(rawValue: "us_gallon")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -43,23 +31,17 @@ public struct PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX9748
 }
 
 /// Simulated payment type.
-public struct PostTestHelpersTerminalReadersReaderPresentPaymentMethodRequestBodyType: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostTestHelpersTerminalReadersReaderPresentPaymentMethodRequestBodyType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let card = PostTestHelpersTerminalReadersReaderPresentPaymentMethodRequestBodyType(rawValue: "card")
-    public static let cardPresent =
-        PostTestHelpersTerminalReadersReaderPresentPaymentMethodRequestBodyType(rawValue: "card_present")
-    public static let interacPresent =
-        PostTestHelpersTerminalReadersReaderPresentPaymentMethodRequestBodyType(rawValue: "interac_present")
+    public static let cardPresent = PostTestHelpersTerminalReadersReaderPresentPaymentMethodRequestBodyType(rawValue: "card_present")
+    public static let interacPresent = PostTestHelpersTerminalReadersReaderPresentPaymentMethodRequestBodyType(rawValue: "interac_present")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -69,20 +51,16 @@ public struct PostTestHelpersTerminalReadersReaderPresentPaymentMethodRequestBod
 }
 
 /// This parameter defines the skip behavior for input collection.
-public struct PostTestHelpersTerminalReadersReaderSucceedInputCollectionReqX8ca3114b86: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostTestHelpersTerminalReadersReaderSucceedInputCollectionReqX8ca3114b86: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let all = PostTestHelpersTerminalReadersReaderSucceedInputCollectionReqX8ca3114b86(rawValue: "all")
     public static let none = PostTestHelpersTerminalReadersReaderSucceedInputCollectionReqX8ca3114b86(rawValue: "none")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -93,19 +71,15 @@ public struct PostTestHelpersTerminalReadersReaderSucceedInputCollectionReqX8ca3
 
 /// String representing the object's type. Objects of the same type share the same value. Always has the value
 /// `list`.
-public struct GetTestHelpersTestClocksResponseObject: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct GetTestHelpersTestClocksResponseObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let list = GetTestHelpersTestClocksResponseObject(rawValue: "list")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -114,50 +88,27 @@ public struct GetTestHelpersTestClocksResponseObject: RawRepresentable, Hashable
     }
 }
 
-public struct PostTestHelpersTreasuryInboundTransfersIdFailRequestBodyFailuX98fd65beb8: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostTestHelpersTreasuryInboundTransfersIdFailRequestBodyFailuX98fd65beb8: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let accountClosed =
-        PostTestHelpersTreasuryInboundTransfersIdFailRequestBodyFailuX98fd65beb8(rawValue: "account_closed")
-    public static let accountFrozen =
-        PostTestHelpersTreasuryInboundTransfersIdFailRequestBodyFailuX98fd65beb8(rawValue: "account_frozen")
-    public static let bankAccountRestricted =
-        PostTestHelpersTreasuryInboundTransfersIdFailRequestBodyFailuX98fd65beb8(rawValue: "bank_account_restricted")
-    public static let bankOwnershipChanged =
-        PostTestHelpersTreasuryInboundTransfersIdFailRequestBodyFailuX98fd65beb8(rawValue: "bank_ownership_changed")
-    public static let debitNotAuthorized =
-        PostTestHelpersTreasuryInboundTransfersIdFailRequestBodyFailuX98fd65beb8(rawValue: "debit_not_authorized")
-    public static let incorrectAccountHolderAddress =
-        PostTestHelpersTreasuryInboundTransfersIdFailRequestBodyFailuX98fd65beb8(
-            rawValue: "incorrect_account_holder_address"
-        )
-    public static let incorrectAccountHolderName =
-        PostTestHelpersTreasuryInboundTransfersIdFailRequestBodyFailuX98fd65beb8(
-            rawValue: "incorrect_account_holder_name"
-        )
-    public static let incorrectAccountHolderTaxId =
-        PostTestHelpersTreasuryInboundTransfersIdFailRequestBodyFailuX98fd65beb8(
-            rawValue: "incorrect_account_holder_tax_id"
-        )
-    public static let insufficientFunds =
-        PostTestHelpersTreasuryInboundTransfersIdFailRequestBodyFailuX98fd65beb8(rawValue: "insufficient_funds")
-    public static let invalidAccountNumber =
-        PostTestHelpersTreasuryInboundTransfersIdFailRequestBodyFailuX98fd65beb8(rawValue: "invalid_account_number")
-    public static let invalidCurrency =
-        PostTestHelpersTreasuryInboundTransfersIdFailRequestBodyFailuX98fd65beb8(rawValue: "invalid_currency")
-    public static let noAccount =
-        PostTestHelpersTreasuryInboundTransfersIdFailRequestBodyFailuX98fd65beb8(rawValue: "no_account")
-    public static let other =
-        PostTestHelpersTreasuryInboundTransfersIdFailRequestBodyFailuX98fd65beb8(rawValue: "other")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let accountClosed = PostTestHelpersTreasuryInboundTransfersIdFailRequestBodyFailuX98fd65beb8(rawValue: "account_closed")
+    public static let accountFrozen = PostTestHelpersTreasuryInboundTransfersIdFailRequestBodyFailuX98fd65beb8(rawValue: "account_frozen")
+    public static let bankAccountRestricted = PostTestHelpersTreasuryInboundTransfersIdFailRequestBodyFailuX98fd65beb8(rawValue: "bank_account_restricted")
+    public static let bankOwnershipChanged = PostTestHelpersTreasuryInboundTransfersIdFailRequestBodyFailuX98fd65beb8(rawValue: "bank_ownership_changed")
+    public static let debitNotAuthorized = PostTestHelpersTreasuryInboundTransfersIdFailRequestBodyFailuX98fd65beb8(rawValue: "debit_not_authorized")
+    public static let incorrectAccountHolderAddress = PostTestHelpersTreasuryInboundTransfersIdFailRequestBodyFailuX98fd65beb8(rawValue: "incorrect_account_holder_address")
+    public static let incorrectAccountHolderName = PostTestHelpersTreasuryInboundTransfersIdFailRequestBodyFailuX98fd65beb8(rawValue: "incorrect_account_holder_name")
+    public static let incorrectAccountHolderTaxId = PostTestHelpersTreasuryInboundTransfersIdFailRequestBodyFailuX98fd65beb8(rawValue: "incorrect_account_holder_tax_id")
+    public static let insufficientFunds = PostTestHelpersTreasuryInboundTransfersIdFailRequestBodyFailuX98fd65beb8(rawValue: "insufficient_funds")
+    public static let invalidAccountNumber = PostTestHelpersTreasuryInboundTransfersIdFailRequestBodyFailuX98fd65beb8(rawValue: "invalid_account_number")
+    public static let invalidCurrency = PostTestHelpersTreasuryInboundTransfersIdFailRequestBodyFailuX98fd65beb8(rawValue: "invalid_currency")
+    public static let noAccount = PostTestHelpersTreasuryInboundTransfersIdFailRequestBodyFailuX98fd65beb8(rawValue: "no_account")
+    public static let other = PostTestHelpersTreasuryInboundTransfersIdFailRequestBodyFailuX98fd65beb8(rawValue: "other")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -166,21 +117,16 @@ public struct PostTestHelpersTreasuryInboundTransfersIdFailRequestBodyFailuX98fd
     }
 }
 
-public struct PostTestHelpersTreasuryOutboundPaymentsIdRequestBodyTrackingDetailsType: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostTestHelpersTreasuryOutboundPaymentsIdRequestBodyTrackingDetailsType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let ach = PostTestHelpersTreasuryOutboundPaymentsIdRequestBodyTrackingDetailsType(rawValue: "ach")
-    public static let usDomesticWire =
-        PostTestHelpersTreasuryOutboundPaymentsIdRequestBodyTrackingDetailsType(rawValue: "us_domestic_wire")
+    public static let usDomesticWire = PostTestHelpersTreasuryOutboundPaymentsIdRequestBodyTrackingDetailsType(rawValue: "us_domestic_wire")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -189,40 +135,24 @@ public struct PostTestHelpersTreasuryOutboundPaymentsIdRequestBodyTrackingDetail
     }
 }
 
-public struct PostTestHelpersTreasuryOutboundPaymentsIdReturnRequestBodyRetXb03a57b1fc: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostTestHelpersTreasuryOutboundPaymentsIdReturnRequestBodyRetXb03a57b1fc: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let accountClosed =
-        PostTestHelpersTreasuryOutboundPaymentsIdReturnRequestBodyRetXb03a57b1fc(rawValue: "account_closed")
-    public static let accountFrozen =
-        PostTestHelpersTreasuryOutboundPaymentsIdReturnRequestBodyRetXb03a57b1fc(rawValue: "account_frozen")
-    public static let bankAccountRestricted =
-        PostTestHelpersTreasuryOutboundPaymentsIdReturnRequestBodyRetXb03a57b1fc(rawValue: "bank_account_restricted")
-    public static let bankOwnershipChanged =
-        PostTestHelpersTreasuryOutboundPaymentsIdReturnRequestBodyRetXb03a57b1fc(rawValue: "bank_ownership_changed")
-    public static let declined =
-        PostTestHelpersTreasuryOutboundPaymentsIdReturnRequestBodyRetXb03a57b1fc(rawValue: "declined")
-    public static let incorrectAccountHolderName =
-        PostTestHelpersTreasuryOutboundPaymentsIdReturnRequestBodyRetXb03a57b1fc(
-            rawValue: "incorrect_account_holder_name"
-        )
-    public static let invalidAccountNumber =
-        PostTestHelpersTreasuryOutboundPaymentsIdReturnRequestBodyRetXb03a57b1fc(rawValue: "invalid_account_number")
-    public static let invalidCurrency =
-        PostTestHelpersTreasuryOutboundPaymentsIdReturnRequestBodyRetXb03a57b1fc(rawValue: "invalid_currency")
-    public static let noAccount =
-        PostTestHelpersTreasuryOutboundPaymentsIdReturnRequestBodyRetXb03a57b1fc(rawValue: "no_account")
-    public static let other =
-        PostTestHelpersTreasuryOutboundPaymentsIdReturnRequestBodyRetXb03a57b1fc(rawValue: "other")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let accountClosed = PostTestHelpersTreasuryOutboundPaymentsIdReturnRequestBodyRetXb03a57b1fc(rawValue: "account_closed")
+    public static let accountFrozen = PostTestHelpersTreasuryOutboundPaymentsIdReturnRequestBodyRetXb03a57b1fc(rawValue: "account_frozen")
+    public static let bankAccountRestricted = PostTestHelpersTreasuryOutboundPaymentsIdReturnRequestBodyRetXb03a57b1fc(rawValue: "bank_account_restricted")
+    public static let bankOwnershipChanged = PostTestHelpersTreasuryOutboundPaymentsIdReturnRequestBodyRetXb03a57b1fc(rawValue: "bank_ownership_changed")
+    public static let declined = PostTestHelpersTreasuryOutboundPaymentsIdReturnRequestBodyRetXb03a57b1fc(rawValue: "declined")
+    public static let incorrectAccountHolderName = PostTestHelpersTreasuryOutboundPaymentsIdReturnRequestBodyRetXb03a57b1fc(rawValue: "incorrect_account_holder_name")
+    public static let invalidAccountNumber = PostTestHelpersTreasuryOutboundPaymentsIdReturnRequestBodyRetXb03a57b1fc(rawValue: "invalid_account_number")
+    public static let invalidCurrency = PostTestHelpersTreasuryOutboundPaymentsIdReturnRequestBodyRetXb03a57b1fc(rawValue: "invalid_currency")
+    public static let noAccount = PostTestHelpersTreasuryOutboundPaymentsIdReturnRequestBodyRetXb03a57b1fc(rawValue: "no_account")
+    public static let other = PostTestHelpersTreasuryOutboundPaymentsIdReturnRequestBodyRetXb03a57b1fc(rawValue: "other")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -231,21 +161,16 @@ public struct PostTestHelpersTreasuryOutboundPaymentsIdReturnRequestBodyRetXb03a
     }
 }
 
-public struct PostTestHelpersTreasuryOutboundTransfersOutboundTransferRequeX29fb0926f9: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostTestHelpersTreasuryOutboundTransfersOutboundTransferRequeX29fb0926f9: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let ach = PostTestHelpersTreasuryOutboundTransfersOutboundTransferRequeX29fb0926f9(rawValue: "ach")
-    public static let usDomesticWire =
-        PostTestHelpersTreasuryOutboundTransfersOutboundTransferRequeX29fb0926f9(rawValue: "us_domestic_wire")
+    public static let usDomesticWire = PostTestHelpersTreasuryOutboundTransfersOutboundTransferRequeX29fb0926f9(rawValue: "us_domestic_wire")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -254,40 +179,24 @@ public struct PostTestHelpersTreasuryOutboundTransfersOutboundTransferRequeX29fb
     }
 }
 
-public struct PostTestHelpersTreasuryOutboundTransfersOutboundTransferReturX9fdf278b20: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostTestHelpersTreasuryOutboundTransfersOutboundTransferReturX9fdf278b20: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let accountClosed =
-        PostTestHelpersTreasuryOutboundTransfersOutboundTransferReturX9fdf278b20(rawValue: "account_closed")
-    public static let accountFrozen =
-        PostTestHelpersTreasuryOutboundTransfersOutboundTransferReturX9fdf278b20(rawValue: "account_frozen")
-    public static let bankAccountRestricted =
-        PostTestHelpersTreasuryOutboundTransfersOutboundTransferReturX9fdf278b20(rawValue: "bank_account_restricted")
-    public static let bankOwnershipChanged =
-        PostTestHelpersTreasuryOutboundTransfersOutboundTransferReturX9fdf278b20(rawValue: "bank_ownership_changed")
-    public static let declined =
-        PostTestHelpersTreasuryOutboundTransfersOutboundTransferReturX9fdf278b20(rawValue: "declined")
-    public static let incorrectAccountHolderName =
-        PostTestHelpersTreasuryOutboundTransfersOutboundTransferReturX9fdf278b20(
-            rawValue: "incorrect_account_holder_name"
-        )
-    public static let invalidAccountNumber =
-        PostTestHelpersTreasuryOutboundTransfersOutboundTransferReturX9fdf278b20(rawValue: "invalid_account_number")
-    public static let invalidCurrency =
-        PostTestHelpersTreasuryOutboundTransfersOutboundTransferReturX9fdf278b20(rawValue: "invalid_currency")
-    public static let noAccount =
-        PostTestHelpersTreasuryOutboundTransfersOutboundTransferReturX9fdf278b20(rawValue: "no_account")
-    public static let other =
-        PostTestHelpersTreasuryOutboundTransfersOutboundTransferReturX9fdf278b20(rawValue: "other")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let accountClosed = PostTestHelpersTreasuryOutboundTransfersOutboundTransferReturX9fdf278b20(rawValue: "account_closed")
+    public static let accountFrozen = PostTestHelpersTreasuryOutboundTransfersOutboundTransferReturX9fdf278b20(rawValue: "account_frozen")
+    public static let bankAccountRestricted = PostTestHelpersTreasuryOutboundTransfersOutboundTransferReturX9fdf278b20(rawValue: "bank_account_restricted")
+    public static let bankOwnershipChanged = PostTestHelpersTreasuryOutboundTransfersOutboundTransferReturX9fdf278b20(rawValue: "bank_ownership_changed")
+    public static let declined = PostTestHelpersTreasuryOutboundTransfersOutboundTransferReturX9fdf278b20(rawValue: "declined")
+    public static let incorrectAccountHolderName = PostTestHelpersTreasuryOutboundTransfersOutboundTransferReturX9fdf278b20(rawValue: "incorrect_account_holder_name")
+    public static let invalidAccountNumber = PostTestHelpersTreasuryOutboundTransfersOutboundTransferReturX9fdf278b20(rawValue: "invalid_account_number")
+    public static let invalidCurrency = PostTestHelpersTreasuryOutboundTransfersOutboundTransferReturX9fdf278b20(rawValue: "invalid_currency")
+    public static let noAccount = PostTestHelpersTreasuryOutboundTransfersOutboundTransferReturX9fdf278b20(rawValue: "no_account")
+    public static let other = PostTestHelpersTreasuryOutboundTransfersOutboundTransferReturX9fdf278b20(rawValue: "other")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

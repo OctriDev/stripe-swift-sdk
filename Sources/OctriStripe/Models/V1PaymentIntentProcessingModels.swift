@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1PaymentIntentProcessing domain models
+// V1PaymentIntentProcessing domain models
 /// Typed representation of the `PaymentIntentProcessing` API schema.
 public struct PaymentIntentProcessing: Codable {
     /// Type of the payment method for which payment is in `processing` state, one of `card`.
@@ -16,28 +16,22 @@ public struct PaymentIntentProcessing: Codable {
         case card
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PaymentIntentProcessing {
-    init(from decoder: Decoder) throws {
+extension PaymentIntentProcessing {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.type) else {
-            throw SdkValidationError(
-                field: "type",
-                code: "required",
-                message: "Validation failed for 'type': value is required"
-            )
+            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
         }
-        type = try container.sdkDecodeRequired(.type)
-        card = try container.sdkDecodeIfPresent(.card)
+        self.type = try container.sdkDecodeRequired(.type)
+        self.card = try container.sdkDecodeIfPresent(.card)
     }
 }
 
-public extension PaymentIntentProcessing {
-    init(type: PaymentIntentProcessingType, card: PaymentIntentCardProcessing? = nil) {
+extension PaymentIntentProcessing {
+    public init(type: PaymentIntentProcessingType, card: PaymentIntentCardProcessing? = nil) {
         (self.type, self.card) = (type, card)
     }
 }
@@ -56,20 +50,20 @@ public struct PaymentIntentProcessingCustomerNotification: Codable {
     }
 
     init() {
-        (approvalRequested, completesAt) = (nil, nil)
+        (self.approvalRequested, self.completesAt) = (nil, nil)
     }
 }
 
-public extension PaymentIntentProcessingCustomerNotification {
-    init(from decoder: Decoder) throws {
+extension PaymentIntentProcessingCustomerNotification {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        approvalRequested = try container.sdkDecodeIfPresent(.approvalRequested)
-        completesAt = try container.sdkDecodeIfPresent(.completesAt)
+        self.approvalRequested = try container.sdkDecodeIfPresent(.approvalRequested)
+        self.completesAt = try container.sdkDecodeIfPresent(.completesAt)
     }
 }
 
-public extension PaymentIntentProcessingCustomerNotification {
-    init(approvalRequested: Bool? = nil, completesAt: Int? = nil) {
+extension PaymentIntentProcessingCustomerNotification {
+    public init(approvalRequested: Bool? = nil, completesAt: Int? = nil) {
         self.init()
         (self.approvalRequested, self.completesAt) = (approvalRequested, completesAt)
     }
@@ -79,15 +73,12 @@ public extension PaymentIntentProcessingCustomerNotification {
 public struct PaymentIntentProcessingType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let card = PaymentIntentProcessingType(rawValue: "card")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

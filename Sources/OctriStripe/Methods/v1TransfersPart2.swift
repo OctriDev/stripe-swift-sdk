@@ -6,12 +6,10 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1TransfersMethods {
-    /// Lists transfers sent to connected accounts, ordered from newest to oldest. Filter by `destination`,
-    /// `transfer_group`, or `created`, and use cursor parameters with `limit` to paginate the results.
+extension V1TransfersMethods {
+    /// Lists transfers sent to connected accounts, ordered from newest to oldest. Filter by `destination`, `transfer_group`, or `created`, and use cursor parameters with `limit` to paginate the results.
     ///
-    /// Returns a list of existing transfers sent to connected accounts. The transfers are returned in sorted order,
-    /// with the most recently created transfers appearing first.
+    /// Returns a list of existing transfers sent to connected accounts. The transfers are returned in sorted order, with the most recently created transfers appearing first.
     ///
     /// - Parameters:
     /// - created: Only return transfers that were created during the given date
@@ -32,33 +30,24 @@ public extension V1TransfersMethods {
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
     /// - transferGroup: Only return transfers with the specified transfer group.
-    static func getTransfers(
-        config: ClientConfig,
-        created: GetTransfersParameter?,
-        destination: String?,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        startingAfter: String?,
-        transferGroup: String?
-    ) async throws -> GetTransfersResponse {
-        if let destination {
+    public static func getTransfers(config: ClientConfig, created: GetTransfersParameter?, destination: String?, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?, transferGroup: String?) async throws -> GetTransfersResponse {
+        if let destination = destination {
             try validateLength("destination", destination, max: 5000)
         }
 
-        if let endingBefore {
+        if let endingBefore = endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let startingAfter {
+        if let startingAfter = startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        if let transferGroup {
+        if let transferGroup = transferGroup {
             try validateLength("transfer_group", transferGroup, max: 5000)
         }
 
-        return try await (sdkRequest("GET", "/v1/transfers", config: config, query: [
+        return try (await sdkRequest("GET", "/v1/transfers", config: config, query: [
             SdkQueryParameter("created", value: created),
             SdkQueryParameter("destination", value: destination),
             SdkQueryParameter("ending_before", value: endingBefore),

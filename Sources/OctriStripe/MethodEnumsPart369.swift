@@ -8,14 +8,10 @@ import Foundation
 #endif
 /// Events sent to this endpoint will be generated with this Stripe Version instead of your account's default
 /// Stripe Version.
-public struct PostWebhookEndpointsRequestBodyApiVersion: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostWebhookEndpointsRequestBodyApiVersion: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let value20110101 = PostWebhookEndpointsRequestBodyApiVersion(rawValue: "2011-01-01")
     public static let value20110621 = PostWebhookEndpointsRequestBodyApiVersion(rawValue: "2011-06-21")
     public static let value20110628 = PostWebhookEndpointsRequestBodyApiVersion(rawValue: "2011-06-28")
@@ -124,8 +120,7 @@ public struct PostWebhookEndpointsRequestBodyApiVersion: RawRepresentable, Hasha
     public static let value20241218Acacia = PostWebhookEndpointsRequestBodyApiVersion(rawValue: "2024-12-18.acacia")
     public static let value20250127Acacia = PostWebhookEndpointsRequestBodyApiVersion(rawValue: "2025-01-27.acacia")
     public static let value20250224Acacia = PostWebhookEndpointsRequestBodyApiVersion(rawValue: "2025-02-24.acacia")
-    public static let value20250301Dashboard =
-        PostWebhookEndpointsRequestBodyApiVersion(rawValue: "2025-03-01.dashboard")
+    public static let value20250301Dashboard = PostWebhookEndpointsRequestBodyApiVersion(rawValue: "2025-03-01.dashboard")
     public static let value20250331Basil = PostWebhookEndpointsRequestBodyApiVersion(rawValue: "2025-03-31.basil")
     public static let value20250430Basil = PostWebhookEndpointsRequestBodyApiVersion(rawValue: "2025-04-30.basil")
     public static let value20250528Basil = PostWebhookEndpointsRequestBodyApiVersion(rawValue: "2025-05-28.basil")
@@ -147,7 +142,7 @@ public struct PostWebhookEndpointsRequestBodyApiVersion: RawRepresentable, Hasha
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -156,19 +151,15 @@ public struct PostWebhookEndpointsRequestBodyApiVersion: RawRepresentable, Hasha
     }
 }
 
-public struct PostWebhookEndpointsRequestBodyDescriptionVariant1: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostWebhookEndpointsRequestBodyDescriptionVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostWebhookEndpointsRequestBodyDescriptionVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -177,17 +168,14 @@ public struct PostWebhookEndpointsRequestBodyDescriptionVariant1: RawRepresentab
     }
 }
 
-public struct PostWebhookEndpointsRequestBodyEnabledEventsItem: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostWebhookEndpointsRequestBodyEnabledEventsItem: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
+    public init(rawValue: String) { self.rawValue = rawValue }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

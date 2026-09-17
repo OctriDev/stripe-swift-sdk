@@ -6,9 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1TerminalReadersMethods {
-    /// Creates a new Terminal reader and optionally assigns it to a location. Provide the reader's `registration_code`,
-    /// then use `label`, `location`, and `metadata` to configure the reader during creation.
+extension V1TerminalReadersMethods {
+    /// Creates a new Terminal reader and optionally assigns it to a location. Provide the reader's `registration_code`, then use `label`, `location`, and `metadata` to configure the reader during creation.
     ///
     /// Creates a new Reader object.
     ///
@@ -24,59 +23,28 @@ public extension V1TerminalReadersMethods {
     ///   information about the object in a structured format. Individual keys can be
     ///   unset by posting an empty value to them. All keys can be unset by posting an
     ///   empty value to `metadata`.
-    static func postTerminalReaders(
-        config: ClientConfig,
-        registrationCode: String,
-        expand: [String]?,
-        label: String?,
-        location: String?,
-        metadata: PostTerminalReadersRequestBodyMetadata?
-    ) async throws -> TerminalReader {
+    public static func postTerminalReaders(config: ClientConfig, registrationCode: String, expand: [String]?, label: String?, location: String?, metadata: PostTerminalReadersRequestBodyMetadata?) async throws -> TerminalReader {
         try validateLength("registration_code", registrationCode, max: 5000)
 
-        if let label {
+        if let label = label {
             try validateLength("label", label, max: 5000)
         }
 
-        if let location {
+        if let location = location {
             try validateLength("location", location, max: 5000)
         }
 
-        let requestBody = PostTerminalReadersRequestBody(
-            registrationCode: registrationCode,
-            expand: expand,
-            label: label,
-            location: location,
-            metadata: metadata
-        )
+        let requestBody = PostTerminalReadersRequestBody(registrationCode: registrationCode, expand: expand, label: label, location: location, metadata: metadata)
 
-        return try await (sdkRequest(
-            "POST",
-            "/v1/terminal/readers",
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostTerminalReaders"
-        )).data
+        return try (await sdkRequest("POST", "/v1/terminal/readers", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTerminalReaders")).data
     }
 
-    /// Deletes a Terminal reader and removes it from the active reader inventory. Supply the reader identifier for the
-    /// device you want to delete; the request body has no fields.
+    /// Deletes a Terminal reader and removes it from the active reader inventory. Supply the reader identifier for the device you want to delete; the request body has no fields.
     ///
     /// Deletes a Reader object.
-    static func deleteTerminalReadersReader(
-        config: ClientConfig,
-        reader: String
-    ) async throws -> DeletedTerminalReader {
+    public static func deleteTerminalReadersReader(config: ClientConfig, reader: String) async throws -> DeletedTerminalReader {
         try validateLength("reader", reader, max: 5000)
 
-        return try await (sdkRequest(
-            "DELETE",
-            ["/v1/terminal/readers/", sdkEncodePathSegment(sdkWireString(reader))].joined(),
-            config: config,
-            decoder: .json,
-            operationId: "DeleteTerminalReadersReader"
-        )).data
+        return try (await sdkRequest("DELETE", ["/v1/terminal/readers/", sdkEncodePathSegment(sdkWireString(reader))].joined(), config: config, decoder: .json, operationId: "DeleteTerminalReadersReader")).data
     }
 }

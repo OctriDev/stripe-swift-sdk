@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1IssuingNetwork domain models
+// V1IssuingNetwork domain models
 /// Typed representation of the `IssuingNetworkTokenAddress` API schema.
 public struct IssuingNetworkTokenAddress: Codable {
     /// The street address of the cardholder tokenizing the card.
@@ -16,40 +16,30 @@ public struct IssuingNetworkTokenAddress: Codable {
         case postalCode = "postal_code"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension IssuingNetworkTokenAddress {
-    init(from decoder: Decoder) throws {
+extension IssuingNetworkTokenAddress {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.line1) else {
-            throw SdkValidationError(
-                field: "line1",
-                code: "required",
-                message: "Validation failed for 'line1': value is required"
-            )
+            throw SdkValidationError(field: "line1", code: "required", message: "Validation failed for 'line1': value is required")
         }
         guard container.contains(.postalCode) else {
-            throw SdkValidationError(
-                field: "postal_code",
-                code: "required",
-                message: "Validation failed for 'postal_code': value is required"
-            )
+            throw SdkValidationError(field: "postal_code", code: "required", message: "Validation failed for 'postal_code': value is required")
         }
-        line1 = try container.sdkDecodeRequired(.line1)
-        postalCode = try container.sdkDecodeRequired(.postalCode)
-        try validateLength("line1", line1, min: nil, max: 5000)
-        try validateLength("postal_code", postalCode, min: nil, max: 5000)
+        self.line1 = try container.sdkDecodeRequired(.line1)
+        self.postalCode = try container.sdkDecodeRequired(.postalCode)
+            try validateLength("line1", self.line1, min: nil, max: 5000)
+            try validateLength("postal_code", self.postalCode, min: nil, max: 5000)
     }
 }
 
-public extension IssuingNetworkTokenAddress {
-    init(line1: String, postalCode: String) throws {
+extension IssuingNetworkTokenAddress {
+    public init(line1: String, postalCode: String) throws {
         (self.line1, self.postalCode) = (line1, postalCode)
-        try validateLength("line1", self.line1, min: nil, max: 5000)
-        try validateLength("postal_code", self.postalCode, min: nil, max: 5000)
+            try validateLength("line1", self.line1, min: nil, max: 5000)
+            try validateLength("postal_code", self.postalCode, min: nil, max: 5000)
     }
 }
 
@@ -79,47 +69,40 @@ public struct IssuingNetworkTokenDevice: Codable {
     }
 
     init() {
-        (deviceFingerprint, ipAddress, location, name, phoneNumber) = (nil, nil, nil, nil, nil)
-        type = nil
+        (self.deviceFingerprint, self.ipAddress, self.location, self.name, self.phoneNumber) = (nil, nil, nil, nil, nil)
+        self.type = nil
     }
 }
 
-public extension IssuingNetworkTokenDevice {
-    init(from decoder: Decoder) throws {
+extension IssuingNetworkTokenDevice {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        deviceFingerprint = try container.sdkDecodeIfPresent(.deviceFingerprint)
-        ipAddress = try container.sdkDecodeIfPresent(.ipAddress)
-        location = try container.sdkDecodeIfPresent(.location)
-        name = try container.sdkDecodeIfPresent(.name)
-        phoneNumber = try container.sdkDecodeIfPresent(.phoneNumber)
-        type = try container.sdkDecodeIfPresent(.type)
-        if let value = deviceFingerprint {
+        self.deviceFingerprint = try container.sdkDecodeIfPresent(.deviceFingerprint)
+        self.ipAddress = try container.sdkDecodeIfPresent(.ipAddress)
+        self.location = try container.sdkDecodeIfPresent(.location)
+        self.name = try container.sdkDecodeIfPresent(.name)
+        self.phoneNumber = try container.sdkDecodeIfPresent(.phoneNumber)
+        self.type = try container.sdkDecodeIfPresent(.type)
+        if let value = self.deviceFingerprint {
             try validateLength("device_fingerprint", value, min: nil, max: 5000)
         }
-        if let value = ipAddress {
+        if let value = self.ipAddress {
             try validateLength("ip_address", value, min: nil, max: 5000)
         }
-        if let value = location {
+        if let value = self.location {
             try validateLength("location", value, min: nil, max: 5000)
         }
-        if let value = name {
+        if let value = self.name {
             try validateLength("name", value, min: nil, max: 5000)
         }
-        if let value = phoneNumber {
+        if let value = self.phoneNumber {
             try validateLength("phone_number", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension IssuingNetworkTokenDevice {
-    init(
-        deviceFingerprint: String? = nil,
-        ipAddress: String? = nil,
-        location: String? = nil,
-        name: String? = nil,
-        phoneNumber: String? = nil,
-        type: IssuingNetworkTokenDeviceType? = nil
-    ) throws {
+extension IssuingNetworkTokenDevice {
+    public init(deviceFingerprint: String? = nil, ipAddress: String? = nil, location: String? = nil, name: String? = nil, phoneNumber: String? = nil, type: IssuingNetworkTokenDeviceType? = nil) throws {
         self.init()
         (self.deviceFingerprint, self.ipAddress) = (deviceFingerprint, ipAddress)
         (self.location, self.name) = (location, name)
@@ -160,54 +143,39 @@ public struct IssuingNetworkTokenPrimarycard: Codable {
         case tokenRequestorName = "token_requestor_name"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension IssuingNetworkTokenPrimarycard {
-    init(from decoder: Decoder) throws {
+extension IssuingNetworkTokenPrimarycard {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.tokenReferenceId) else {
-            throw SdkValidationError(
-                field: "token_reference_id",
-                code: "required",
-                message: "Validation failed for 'token_reference_id': value is required"
-            )
+            throw SdkValidationError(field: "token_reference_id", code: "required", message: "Validation failed for 'token_reference_id': value is required")
         }
         guard container.contains(.tokenRequestorId) else {
-            throw SdkValidationError(
-                field: "token_requestor_id",
-                code: "required",
-                message: "Validation failed for 'token_requestor_id': value is required"
-            )
+            throw SdkValidationError(field: "token_requestor_id", code: "required", message: "Validation failed for 'token_requestor_id': value is required")
         }
-        tokenReferenceId = try container.sdkDecodeRequired(.tokenReferenceId)
-        tokenRequestorId = try container.sdkDecodeRequired(.tokenRequestorId)
-        cardReferenceId = try container.sdkDecodeIfPresent(.cardReferenceId)
-        tokenRequestorName = try container.sdkDecodeIfPresent(.tokenRequestorName)
-        try validateLength("token_reference_id", tokenReferenceId, min: nil, max: 5000)
-        try validateLength("token_requestor_id", tokenRequestorId, min: nil, max: 5000)
-        if let value = cardReferenceId {
+        self.tokenReferenceId = try container.sdkDecodeRequired(.tokenReferenceId)
+        self.tokenRequestorId = try container.sdkDecodeRequired(.tokenRequestorId)
+        self.cardReferenceId = try container.sdkDecodeIfPresent(.cardReferenceId)
+        self.tokenRequestorName = try container.sdkDecodeIfPresent(.tokenRequestorName)
+            try validateLength("token_reference_id", self.tokenReferenceId, min: nil, max: 5000)
+            try validateLength("token_requestor_id", self.tokenRequestorId, min: nil, max: 5000)
+        if let value = self.cardReferenceId {
             try validateLength("card_reference_id", value, min: nil, max: 5000)
         }
-        if let value = tokenRequestorName {
+        if let value = self.tokenRequestorName {
             try validateLength("token_requestor_name", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension IssuingNetworkTokenPrimarycard {
-    init(
-        tokenReferenceId: String,
-        tokenRequestorId: String,
-        cardReferenceId: String? = nil,
-        tokenRequestorName: String? = nil
-    ) throws {
+extension IssuingNetworkTokenPrimarycard {
+    public init(tokenReferenceId: String, tokenRequestorId: String, cardReferenceId: String? = nil, tokenRequestorName: String? = nil) throws {
         (self.tokenReferenceId, self.tokenRequestorId) = (tokenReferenceId, tokenRequestorId)
         (self.cardReferenceId, self.tokenRequestorName) = (cardReferenceId, tokenRequestorName)
-        try validateLength("token_reference_id", self.tokenReferenceId, min: nil, max: 5000)
-        try validateLength("token_requestor_id", self.tokenRequestorId, min: nil, max: 5000)
+            try validateLength("token_reference_id", self.tokenReferenceId, min: nil, max: 5000)
+            try validateLength("token_requestor_id", self.tokenRequestorId, min: nil, max: 5000)
         if let value = self.cardReferenceId {
             try validateLength("card_reference_id", value, min: nil, max: 5000)
         }
@@ -239,37 +207,25 @@ public struct IssuingNetworkTokenNetworkData: Codable {
         case walletProvider = "wallet_provider"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension IssuingNetworkTokenNetworkData {
-    init(from decoder: Decoder) throws {
+extension IssuingNetworkTokenNetworkData {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.type) else {
-            throw SdkValidationError(
-                field: "type",
-                code: "required",
-                message: "Validation failed for 'type': value is required"
-            )
+            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
         }
-        type = try container.sdkDecodeRequired(.type)
-        device = try container.sdkDecodeIfPresent(.device)
-        primarycard = try container.sdkDecodeIfPresent(.primarycard)
-        visa = try container.sdkDecodeIfPresent(.visa)
-        walletProvider = try container.sdkDecodeIfPresent(.walletProvider)
+        self.type = try container.sdkDecodeRequired(.type)
+        self.device = try container.sdkDecodeIfPresent(.device)
+        self.primarycard = try container.sdkDecodeIfPresent(.primarycard)
+        self.visa = try container.sdkDecodeIfPresent(.visa)
+        self.walletProvider = try container.sdkDecodeIfPresent(.walletProvider)
     }
 }
 
-public extension IssuingNetworkTokenNetworkData {
-    init(
-        type: IssuingNetworkTokenNetworkDataType,
-        device: IssuingNetworkTokenDevice? = nil,
-        primarycard: IssuingNetworkTokenPrimarycard? = nil,
-        visa: IssuingNetworkTokenVisa? = nil,
-        walletProvider: IssuingNetworkTokenWalletProvider? = nil
-    ) {
+extension IssuingNetworkTokenNetworkData {
+    public init(type: IssuingNetworkTokenNetworkDataType, device: IssuingNetworkTokenDevice? = nil, primarycard: IssuingNetworkTokenPrimarycard? = nil, visa: IssuingNetworkTokenVisa? = nil, walletProvider: IssuingNetworkTokenWalletProvider? = nil) {
         (self.type, self.device) = (type, device)
         (self.primarycard, self.visa) = (primarycard, visa)
         self.walletProvider = walletProvider
@@ -295,54 +251,39 @@ public struct IssuingNetworkTokenVisa: Codable {
         case tokenRiskScore = "token_risk_score"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension IssuingNetworkTokenVisa {
-    init(from decoder: Decoder) throws {
+extension IssuingNetworkTokenVisa {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.tokenReferenceId) else {
-            throw SdkValidationError(
-                field: "token_reference_id",
-                code: "required",
-                message: "Validation failed for 'token_reference_id': value is required"
-            )
+            throw SdkValidationError(field: "token_reference_id", code: "required", message: "Validation failed for 'token_reference_id': value is required")
         }
         guard container.contains(.tokenRequestorId) else {
-            throw SdkValidationError(
-                field: "token_requestor_id",
-                code: "required",
-                message: "Validation failed for 'token_requestor_id': value is required"
-            )
+            throw SdkValidationError(field: "token_requestor_id", code: "required", message: "Validation failed for 'token_requestor_id': value is required")
         }
-        tokenReferenceId = try container.sdkDecodeRequired(.tokenReferenceId)
-        tokenRequestorId = try container.sdkDecodeRequired(.tokenRequestorId)
-        cardReferenceId = try container.sdkDecodeIfPresent(.cardReferenceId)
-        tokenRiskScore = try container.sdkDecodeIfPresent(.tokenRiskScore)
-        try validateLength("token_reference_id", tokenReferenceId, min: nil, max: 5000)
-        try validateLength("token_requestor_id", tokenRequestorId, min: nil, max: 5000)
-        if let value = cardReferenceId {
+        self.tokenReferenceId = try container.sdkDecodeRequired(.tokenReferenceId)
+        self.tokenRequestorId = try container.sdkDecodeRequired(.tokenRequestorId)
+        self.cardReferenceId = try container.sdkDecodeIfPresent(.cardReferenceId)
+        self.tokenRiskScore = try container.sdkDecodeIfPresent(.tokenRiskScore)
+            try validateLength("token_reference_id", self.tokenReferenceId, min: nil, max: 5000)
+            try validateLength("token_requestor_id", self.tokenRequestorId, min: nil, max: 5000)
+        if let value = self.cardReferenceId {
             try validateLength("card_reference_id", value, min: nil, max: 5000)
         }
-        if let value = tokenRiskScore {
+        if let value = self.tokenRiskScore {
             try validateLength("token_risk_score", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension IssuingNetworkTokenVisa {
-    init(
-        tokenReferenceId: String,
-        tokenRequestorId: String,
-        cardReferenceId: String? = nil,
-        tokenRiskScore: String? = nil
-    ) throws {
+extension IssuingNetworkTokenVisa {
+    public init(tokenReferenceId: String, tokenRequestorId: String, cardReferenceId: String? = nil, tokenRiskScore: String? = nil) throws {
         (self.tokenReferenceId, self.tokenRequestorId) = (tokenReferenceId, tokenRequestorId)
         (self.cardReferenceId, self.tokenRiskScore) = (cardReferenceId, tokenRiskScore)
-        try validateLength("token_reference_id", self.tokenReferenceId, min: nil, max: 5000)
-        try validateLength("token_requestor_id", self.tokenRequestorId, min: nil, max: 5000)
+            try validateLength("token_reference_id", self.tokenReferenceId, min: nil, max: 5000)
+            try validateLength("token_requestor_id", self.tokenRequestorId, min: nil, max: 5000)
         if let value = self.cardReferenceId {
             try validateLength("card_reference_id", value, min: nil, max: 5000)
         }
@@ -390,58 +331,41 @@ public struct IssuingNetworkTokenWalletProvider: Codable {
     }
 
     init() {
-        (accountId, accountTrustScore, cardNumberSource, cardholderAddress, cardholderName) = (nil, nil, nil, nil, nil)
-        (deviceTrustScore, hashedAccountEmailAddress, reasonCodes, suggestedDecision, suggestedDecisionVersion) = (
-            nil,
-            nil,
-            nil,
-            nil,
-            nil
-        )
+        (self.accountId, self.accountTrustScore, self.cardNumberSource, self.cardholderAddress, self.cardholderName) = (nil, nil, nil, nil, nil)
+        (self.deviceTrustScore, self.hashedAccountEmailAddress, self.reasonCodes, self.suggestedDecision, self.suggestedDecisionVersion) = (nil, nil, nil, nil, nil)
     }
 }
 
-public extension IssuingNetworkTokenWalletProvider {
-    init(from decoder: Decoder) throws {
+extension IssuingNetworkTokenWalletProvider {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        accountId = try container.sdkDecodeIfPresent(.accountId)
-        accountTrustScore = try container.sdkDecodeIfPresent(.accountTrustScore)
-        cardNumberSource = try container.sdkDecodeIfPresent(.cardNumberSource)
-        cardholderAddress = try container.sdkDecodeIfPresent(.cardholderAddress)
-        cardholderName = try container.sdkDecodeIfPresent(.cardholderName)
-        deviceTrustScore = try container.sdkDecodeIfPresent(.deviceTrustScore)
-        hashedAccountEmailAddress = try container.sdkDecodeIfPresent(.hashedAccountEmailAddress)
-        reasonCodes = try container.sdkDecodeIfPresent(.reasonCodes)
-        suggestedDecision = try container.sdkDecodeIfPresent(.suggestedDecision)
-        suggestedDecisionVersion = try container.sdkDecodeIfPresent(.suggestedDecisionVersion)
-        if let value = accountId {
+        self.accountId = try container.sdkDecodeIfPresent(.accountId)
+        self.accountTrustScore = try container.sdkDecodeIfPresent(.accountTrustScore)
+        self.cardNumberSource = try container.sdkDecodeIfPresent(.cardNumberSource)
+        self.cardholderAddress = try container.sdkDecodeIfPresent(.cardholderAddress)
+        self.cardholderName = try container.sdkDecodeIfPresent(.cardholderName)
+        self.deviceTrustScore = try container.sdkDecodeIfPresent(.deviceTrustScore)
+        self.hashedAccountEmailAddress = try container.sdkDecodeIfPresent(.hashedAccountEmailAddress)
+        self.reasonCodes = try container.sdkDecodeIfPresent(.reasonCodes)
+        self.suggestedDecision = try container.sdkDecodeIfPresent(.suggestedDecision)
+        self.suggestedDecisionVersion = try container.sdkDecodeIfPresent(.suggestedDecisionVersion)
+        if let value = self.accountId {
             try validateLength("account_id", value, min: nil, max: 5000)
         }
-        if let value = cardholderName {
+        if let value = self.cardholderName {
             try validateLength("cardholder_name", value, min: nil, max: 5000)
         }
-        if let value = hashedAccountEmailAddress {
+        if let value = self.hashedAccountEmailAddress {
             try validateLength("hashed_account_email_address", value, min: nil, max: 5000)
         }
-        if let value = suggestedDecisionVersion {
+        if let value = self.suggestedDecisionVersion {
             try validateLength("suggested_decision_version", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension IssuingNetworkTokenWalletProvider {
-    init(
-        accountId: String? = nil,
-        accountTrustScore: Int? = nil,
-        cardNumberSource: IssuingNetworkTokenWalletProviderCardNumberSource? = nil,
-        cardholderAddress: IssuingNetworkTokenAddress? = nil,
-        cardholderName: String? = nil,
-        deviceTrustScore: Int? = nil,
-        hashedAccountEmailAddress: String? = nil,
-        reasonCodes: [IssuingNetworkTokenWalletProviderReasonCodesItem]? = nil,
-        suggestedDecision: IssuingNetworkTokenWalletProviderSuggestedDecision? = nil,
-        suggestedDecisionVersion: String? = nil
-    ) throws {
+extension IssuingNetworkTokenWalletProvider {
+    public init(accountId: String? = nil, accountTrustScore: Int? = nil, cardNumberSource: IssuingNetworkTokenWalletProviderCardNumberSource? = nil, cardholderAddress: IssuingNetworkTokenAddress? = nil, cardholderName: String? = nil, deviceTrustScore: Int? = nil, hashedAccountEmailAddress: String? = nil, reasonCodes: [IssuingNetworkTokenWalletProviderReasonCodesItem]? = nil, suggestedDecision: IssuingNetworkTokenWalletProviderSuggestedDecision? = nil, suggestedDecisionVersion: String? = nil) throws {
         self.init()
         (self.accountId, self.accountTrustScore) = (accountId, accountTrustScore)
         (self.cardNumberSource, self.cardholderAddress) = (cardNumberSource, cardholderAddress)
@@ -465,14 +389,10 @@ public extension IssuingNetworkTokenWalletProvider {
 }
 
 /// The method used for tokenizing a card.
-public struct IssuingNetworkTokenWalletProviderCardNumberSource: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct IssuingNetworkTokenWalletProviderCardNumberSource: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let app = IssuingNetworkTokenWalletProviderCardNumberSource(rawValue: "app")
     public static let manual = IssuingNetworkTokenWalletProviderCardNumberSource(rawValue: "manual")
     public static let onFile = IssuingNetworkTokenWalletProviderCardNumberSource(rawValue: "on_file")
@@ -480,7 +400,7 @@ public struct IssuingNetworkTokenWalletProviderCardNumberSource: RawRepresentabl
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -490,21 +410,17 @@ public struct IssuingNetworkTokenWalletProviderCardNumberSource: RawRepresentabl
 }
 
 /// The recommendation on responding to the tokenization request.
-public struct IssuingNetworkTokenWalletProviderSuggestedDecision: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct IssuingNetworkTokenWalletProviderSuggestedDecision: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let approve = IssuingNetworkTokenWalletProviderSuggestedDecision(rawValue: "approve")
     public static let decline = IssuingNetworkTokenWalletProviderSuggestedDecision(rawValue: "decline")
     public static let requireAuth = IssuingNetworkTokenWalletProviderSuggestedDecision(rawValue: "require_auth")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -518,16 +434,13 @@ public struct IssuingNetworkTokenWalletProviderSuggestedDecision: RawRepresentab
 public struct IssuingNetworkTokenNetworkDataType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let primarycard = IssuingNetworkTokenNetworkDataType(rawValue: "mastercard")
     public static let visa = IssuingNetworkTokenNetworkDataType(rawValue: "visa")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -540,17 +453,14 @@ public struct IssuingNetworkTokenNetworkDataType: RawRepresentable, Hashable, Co
 public struct IssuingNetworkTokenDeviceType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let other = IssuingNetworkTokenDeviceType(rawValue: "other")
     public static let phone = IssuingNetworkTokenDeviceType(rawValue: "phone")
     public static let watch = IssuingNetworkTokenDeviceType(rawValue: "watch")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

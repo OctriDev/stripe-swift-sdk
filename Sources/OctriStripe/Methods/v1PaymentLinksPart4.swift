@@ -6,30 +6,18 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1PaymentLinksMethods {
-    /// Retrieves a payment link by its identifier. Use `expand` when you need selected related fields included directly
-    /// in the response. The response contains the payment link configuration and current activation state.
+extension V1PaymentLinksMethods {
+    /// Retrieves a payment link by its identifier. Use `expand` when you need selected related fields included directly in the response. The response contains the payment link configuration and current activation state.
     ///
     /// Retrieve a payment link.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    static func getPaymentLinksPaymentLink(
-        config: ClientConfig,
-        paymentLink: String,
-        expand: [String]?
-    ) async throws -> PaymentLink {
+    public static func getPaymentLinksPaymentLink(config: ClientConfig, paymentLink: String, expand: [String]?) async throws -> PaymentLink {
         try validateLength("payment_link", paymentLink, max: 5000)
 
-        return try await (sdkRequest(
-            "GET",
-            ["/v1/payment_links/", sdkEncodePathSegment(sdkWireString(paymentLink))].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .json,
-            operationId: "GetPaymentLinksPaymentLink"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/payment_links/", sdkEncodePathSegment(sdkWireString(paymentLink))].joined(), config: config, query: [
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .json, operationId: "GetPaymentLinksPaymentLink")).data
     }
 }

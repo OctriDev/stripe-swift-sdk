@@ -3,62 +3,40 @@
 
 import Foundation
 
-/// V1 domain models
-public extension ReserveTransaction {
-    init(from decoder: Decoder) throws {
+// V1 domain models
+extension ReserveTransaction {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.amount) else {
-            throw SdkValidationError(
-                field: "amount",
-                code: "required",
-                message: "Validation failed for 'amount': value is required"
-            )
+            throw SdkValidationError(field: "amount", code: "required", message: "Validation failed for 'amount': value is required")
         }
         guard container.contains(.currency) else {
-            throw SdkValidationError(
-                field: "currency",
-                code: "required",
-                message: "Validation failed for 'currency': value is required"
-            )
+            throw SdkValidationError(field: "currency", code: "required", message: "Validation failed for 'currency': value is required")
         }
         guard container.contains(.id) else {
-            throw SdkValidationError(
-                field: "id",
-                code: "required",
-                message: "Validation failed for 'id': value is required"
-            )
+            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(
-                field: "object",
-                code: "required",
-                message: "Validation failed for 'object': value is required"
-            )
+            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
         }
-        amount = try container.sdkDecodeRequired(.amount)
-        currency = try container.sdkDecodeRequired(.currency)
-        id = try container.sdkDecodeRequired(.id)
-        object = try container.sdkDecodeRequired(.object)
-        description = try container.sdkDecodeIfPresent(.description)
-        try validateLength("id", id, min: nil, max: 5000)
-        if let value = description {
+        self.amount = try container.sdkDecodeRequired(.amount)
+        self.currency = try container.sdkDecodeRequired(.currency)
+        self.id = try container.sdkDecodeRequired(.id)
+        self.object = try container.sdkDecodeRequired(.object)
+        self.description = try container.sdkDecodeIfPresent(.description)
+            try validateLength("id", self.id, min: nil, max: 5000)
+        if let value = self.description {
             try validateLength("description", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension ReserveTransaction {
-    init(
-        amount: Int,
-        currency: String,
-        id: String,
-        object: ReserveTransactionObject,
-        description: String? = nil
-    ) throws {
+extension ReserveTransaction {
+    public init(amount: Int, currency: String, id: String, object: ReserveTransactionObject, description: String? = nil) throws {
         (self.amount, self.currency) = (amount, currency)
         (self.id, self.object) = (id, object)
         self.description = description
-        try validateLength("id", self.id, min: nil, max: 5000)
+            try validateLength("id", self.id, min: nil, max: 5000)
         if let value = self.description {
             try validateLength("description", value, min: nil, max: 5000)
         }
@@ -118,114 +96,49 @@ public struct Review: Codable {
         case session
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension Review {
-    init(from decoder: Decoder) throws {
+extension Review {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.created) else {
-            throw SdkValidationError(
-                field: "created",
-                code: "required",
-                message: "Validation failed for 'created': value is required"
-            )
+            throw SdkValidationError(field: "created", code: "required", message: "Validation failed for 'created': value is required")
         }
         guard container.contains(.id) else {
-            throw SdkValidationError(
-                field: "id",
-                code: "required",
-                message: "Validation failed for 'id': value is required"
-            )
+            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
         }
         guard container.contains(.livemode) else {
-            throw SdkValidationError(
-                field: "livemode",
-                code: "required",
-                message: "Validation failed for 'livemode': value is required"
-            )
+            throw SdkValidationError(field: "livemode", code: "required", message: "Validation failed for 'livemode': value is required")
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(
-                field: "object",
-                code: "required",
-                message: "Validation failed for 'object': value is required"
-            )
+            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
         }
         guard container.contains(.open) else {
-            throw SdkValidationError(
-                field: "open",
-                code: "required",
-                message: "Validation failed for 'open': value is required"
-            )
+            throw SdkValidationError(field: "open", code: "required", message: "Validation failed for 'open': value is required")
         }
         guard container.contains(.openedReason) else {
-            throw SdkValidationError(
-                field: "opened_reason",
-                code: "required",
-                message: "Validation failed for 'opened_reason': value is required"
-            )
+            throw SdkValidationError(field: "opened_reason", code: "required", message: "Validation failed for 'opened_reason': value is required")
         }
         guard container.contains(.reason) else {
-            throw SdkValidationError(
-                field: "reason",
-                code: "required",
-                message: "Validation failed for 'reason': value is required"
-            )
+            throw SdkValidationError(field: "reason", code: "required", message: "Validation failed for 'reason': value is required")
         }
-        created = try container.sdkDecodeRequired(.created)
-        id = try container.sdkDecodeRequired(.id)
-        livemode = try container.sdkDecodeRequired(.livemode)
-        object = try container.sdkDecodeRequired(.object)
-        open = try container.sdkDecodeRequired(.open)
-        openedReason = try container.sdkDecodeRequired(.openedReason)
-        reason = try container.sdkDecodeRequired(.reason)
-        billingZip = try container.sdkDecodeIfPresent(.billingZip)
-        charge = try container.sdkDecodeIfPresent(.charge)
-        closedReason = try container.sdkDecodeIfPresent(.closedReason)
-        ipAddress = try container.sdkDecodeIfPresent(.ipAddress)
-        ipAddressLocation = try container.sdkDecodeIfPresent(.ipAddressLocation)
-        paymentIntent = try container.sdkDecodeIfPresent(.paymentIntent)
-        session = try container.sdkDecodeIfPresent(.session)
-        try validateLength("id", id, min: nil, max: 5000)
-        try validateLength("reason", reason, min: nil, max: 5000)
-        if let value = billingZip {
-            try validateLength("billing_zip", value, min: nil, max: 5000)
-        }
-        if let value = ipAddress {
-            try validateLength("ip_address", value, min: nil, max: 5000)
-        }
-    }
-}
-
-public extension Review {
-    init(
-        created: Int,
-        id: String,
-        livemode: Bool,
-        object: ReviewObject,
-        open: Bool,
-        openedReason: ReviewOpenedReason,
-        reason: String,
-        billingZip: String? = nil,
-        charge: ReviewCharge? = nil,
-        closedReason: ReviewClosedReason? = nil,
-        ipAddress: String? = nil,
-        ipAddressLocation: ReviewIpAddressLocation? = nil,
-        paymentIntent: ReviewPaymentIntent? = nil,
-        session: ReviewSession? = nil
-    ) throws {
-        (self.created, self.id) = (created, id)
-        (self.livemode, self.object) = (livemode, object)
-        (self.open, self.openedReason) = (open, openedReason)
-        (self.reason, self.billingZip) = (reason, billingZip)
-        (self.charge, self.closedReason) = (charge, closedReason)
-        (self.ipAddress, self.ipAddressLocation) = (ipAddress, ipAddressLocation)
-        (self.paymentIntent, self.session) = (paymentIntent, session)
-        try validateLength("id", self.id, min: nil, max: 5000)
-        try validateLength("reason", self.reason, min: nil, max: 5000)
+        self.created = try container.sdkDecodeRequired(.created)
+        self.id = try container.sdkDecodeRequired(.id)
+        self.livemode = try container.sdkDecodeRequired(.livemode)
+        self.object = try container.sdkDecodeRequired(.object)
+        self.open = try container.sdkDecodeRequired(.open)
+        self.openedReason = try container.sdkDecodeRequired(.openedReason)
+        self.reason = try container.sdkDecodeRequired(.reason)
+        self.billingZip = try container.sdkDecodeIfPresent(.billingZip)
+        self.charge = try container.sdkDecodeIfPresent(.charge)
+        self.closedReason = try container.sdkDecodeIfPresent(.closedReason)
+        self.ipAddress = try container.sdkDecodeIfPresent(.ipAddress)
+        self.ipAddressLocation = try container.sdkDecodeIfPresent(.ipAddressLocation)
+        self.paymentIntent = try container.sdkDecodeIfPresent(.paymentIntent)
+        self.session = try container.sdkDecodeIfPresent(.session)
+            try validateLength("id", self.id, min: nil, max: 5000)
+            try validateLength("reason", self.reason, min: nil, max: 5000)
         if let value = self.billingZip {
             try validateLength("billing_zip", value, min: nil, max: 5000)
         }
@@ -235,34 +148,47 @@ public extension Review {
     }
 }
 
-public enum ReviewCharge {
+extension Review {
+    public init(created: Int, id: String, livemode: Bool, object: ReviewObject, open: Bool, openedReason: ReviewOpenedReason, reason: String, billingZip: String? = nil, charge: ReviewCharge? = nil, closedReason: ReviewClosedReason? = nil, ipAddress: String? = nil, ipAddressLocation: ReviewIpAddressLocation? = nil, paymentIntent: ReviewPaymentIntent? = nil, session: ReviewSession? = nil) throws {
+        (self.created, self.id) = (created, id)
+        (self.livemode, self.object) = (livemode, object)
+        (self.open, self.openedReason) = (open, openedReason)
+        (self.reason, self.billingZip) = (reason, billingZip)
+        (self.charge, self.closedReason) = (charge, closedReason)
+        (self.ipAddress, self.ipAddressLocation) = (ipAddress, ipAddressLocation)
+        (self.paymentIntent, self.session) = (paymentIntent, session)
+            try validateLength("id", self.id, min: nil, max: 5000)
+            try validateLength("reason", self.reason, min: nil, max: 5000)
+        if let value = self.billingZip {
+            try validateLength("billing_zip", value, min: nil, max: 5000)
+        }
+        if let value = self.ipAddress {
+            try validateLength("ip_address", value, min: nil, max: 5000)
+        }
+    }
+}
+
+public indirect enum ReviewCharge {
     case stringValue(String)
     case charge(Charge)
 }
 
 extension ReviewCharge: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
         throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for ReviewCharge")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(Charge.self) {
-            return .charge(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(Charge.self) { return .charge(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -272,6 +198,7 @@ extension ReviewCharge: Codable {
         case let .charge(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum ReviewIpAddressLocation {
@@ -279,29 +206,20 @@ public enum ReviewIpAddressLocation {
 }
 
 extension ReviewIpAddressLocation: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for ReviewIpAddressLocation"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for ReviewIpAddressLocation")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container
-            .decode(RadarReviewResourceLocation.self) {
-            return .radarReviewResourceLocation(value)
-        }
+        if let value = try? container.decode(RadarReviewResourceLocation.self) { return .radarReviewResourceLocation(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -310,39 +228,30 @@ extension ReviewIpAddressLocation: Codable {
         case let .radarReviewResourceLocation(value): try container.encode(value); return true
         }
     }
+
 }
 
-public enum ReviewPaymentIntent {
+public indirect enum ReviewPaymentIntent {
     case stringValue(String)
     case paymentIntent(PaymentIntent)
 }
 
 extension ReviewPaymentIntent: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for ReviewPaymentIntent"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for ReviewPaymentIntent")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(PaymentIntent.self) {
-            return .paymentIntent(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(PaymentIntent.self) { return .paymentIntent(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -352,6 +261,7 @@ extension ReviewPaymentIntent: Codable {
         case let .paymentIntent(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum ReviewSession {
@@ -359,26 +269,20 @@ public enum ReviewSession {
 }
 
 extension ReviewSession: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
         throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for ReviewSession")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container
-            .decode(RadarReviewResourceSession.self) {
-            return .radarReviewResourceSession(value)
-        }
+        if let value = try? container.decode(RadarReviewResourceSession.self) { return .radarReviewResourceSession(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -387,6 +291,7 @@ extension ReviewSession: Codable {
         case let .radarReviewResourceSession(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// Typed representation of the `RevolutPayUnderlyingPaymentMethodFundingDetails` API schema.
@@ -402,23 +307,20 @@ public struct RevolutPayUnderlyingPaymentMethodFundingDetails: Codable {
     }
 
     init() {
-        (card, type) = (nil, nil)
+        (self.card, self.type) = (nil, nil)
     }
 }
 
-public extension RevolutPayUnderlyingPaymentMethodFundingDetails {
-    init(from decoder: Decoder) throws {
+extension RevolutPayUnderlyingPaymentMethodFundingDetails {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        card = try container.sdkDecodeIfPresent(.card)
-        type = try container.sdkDecodeIfPresent(.type)
+        self.card = try container.sdkDecodeIfPresent(.card)
+        self.type = try container.sdkDecodeIfPresent(.type)
     }
 }
 
-public extension RevolutPayUnderlyingPaymentMethodFundingDetails {
-    init(
-        card: PaymentMethodDetailsPassthroughCard? = nil,
-        type: RevolutPayUnderlyingPaymentMethodFundingDetailsType? = nil
-    ) {
+extension RevolutPayUnderlyingPaymentMethodFundingDetails {
+    public init(card: PaymentMethodDetailsPassthroughCard? = nil, type: RevolutPayUnderlyingPaymentMethodFundingDetailsType? = nil) {
         self.init()
         (self.card, self.type) = (card, type)
     }
@@ -439,51 +341,37 @@ public struct Rule: Codable {
         case predicate
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension Rule {
-    init(from decoder: Decoder) throws {
+extension Rule {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.action) else {
-            throw SdkValidationError(
-                field: "action",
-                code: "required",
-                message: "Validation failed for 'action': value is required"
-            )
+            throw SdkValidationError(field: "action", code: "required", message: "Validation failed for 'action': value is required")
         }
         guard container.contains(.id) else {
-            throw SdkValidationError(
-                field: "id",
-                code: "required",
-                message: "Validation failed for 'id': value is required"
-            )
+            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
         }
         guard container.contains(.predicate) else {
-            throw SdkValidationError(
-                field: "predicate",
-                code: "required",
-                message: "Validation failed for 'predicate': value is required"
-            )
+            throw SdkValidationError(field: "predicate", code: "required", message: "Validation failed for 'predicate': value is required")
         }
-        action = try container.sdkDecodeRequired(.action)
-        id = try container.sdkDecodeRequired(.id)
-        predicate = try container.sdkDecodeRequired(.predicate)
-        try validateLength("action", action, min: nil, max: 5000)
-        try validateLength("id", id, min: nil, max: 5000)
-        try validateLength("predicate", predicate, min: nil, max: 5000)
+        self.action = try container.sdkDecodeRequired(.action)
+        self.id = try container.sdkDecodeRequired(.id)
+        self.predicate = try container.sdkDecodeRequired(.predicate)
+            try validateLength("action", self.action, min: nil, max: 5000)
+            try validateLength("id", self.id, min: nil, max: 5000)
+            try validateLength("predicate", self.predicate, min: nil, max: 5000)
     }
 }
 
-public extension Rule {
-    init(action: String, id: String, predicate: String) throws {
+extension Rule {
+    public init(action: String, id: String, predicate: String) throws {
         (self.action, self.id) = (action, id)
         self.predicate = predicate
-        try validateLength("action", self.action, min: nil, max: 5000)
-        try validateLength("id", self.id, min: nil, max: 5000)
-        try validateLength("predicate", self.predicate, min: nil, max: 5000)
+            try validateLength("action", self.action, min: nil, max: 5000)
+            try validateLength("id", self.id, min: nil, max: 5000)
+            try validateLength("predicate", self.predicate, min: nil, max: 5000)
     }
 }
 
@@ -529,56 +417,42 @@ public struct ScheduledQueryRun: Codable {
         case file
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension ScheduledQueryRun {
-    init(from decoder: Decoder) throws {
+extension ScheduledQueryRun {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        created = try container.sdkDecodeRequired(.created)
-        dataLoadTime = try container.sdkDecodeRequired(.dataLoadTime)
-        id = try container.sdkDecodeRequired(.id)
-        livemode = try container.sdkDecodeRequired(.livemode)
-        object = try container.sdkDecodeRequired(.object)
-        resultAvailableUntil = try container.sdkDecodeRequired(.resultAvailableUntil)
-        sql = try container.sdkDecodeRequired(.sql)
-        status = try container.sdkDecodeRequired(.status)
-        title = try container.sdkDecodeRequired(.title)
-        error = try container.sdkDecodeIfPresent(.error)
-        file = try container.sdkDecodeIfPresent(.file)
-        try validateLength("id", id, min: nil, max: 5000)
-        try validateLength("sql", sql, min: nil, max: 100_000)
-        try validateLength("status", status, min: nil, max: 5000)
-        try validateLength("title", title, min: nil, max: 5000)
+        self.created = try container.sdkDecodeRequired(.created)
+        self.dataLoadTime = try container.sdkDecodeRequired(.dataLoadTime)
+        self.id = try container.sdkDecodeRequired(.id)
+        self.livemode = try container.sdkDecodeRequired(.livemode)
+        self.object = try container.sdkDecodeRequired(.object)
+        self.resultAvailableUntil = try container.sdkDecodeRequired(.resultAvailableUntil)
+        self.sql = try container.sdkDecodeRequired(.sql)
+        self.status = try container.sdkDecodeRequired(.status)
+        self.title = try container.sdkDecodeRequired(.title)
+        self.error = try container.sdkDecodeIfPresent(.error)
+        self.file = try container.sdkDecodeIfPresent(.file)
+            try validateLength("id", self.id, min: nil, max: 5000)
+            try validateLength("sql", self.sql, min: nil, max: 100000)
+            try validateLength("status", self.status, min: nil, max: 5000)
+            try validateLength("title", self.title, min: nil, max: 5000)
     }
 }
 
-public extension ScheduledQueryRun {
-    init(
-        created: Int,
-        dataLoadTime: Int,
-        id: String,
-        livemode: Bool,
-        object: ScheduledQueryRunObject,
-        resultAvailableUntil: Int,
-        sql: String,
-        status: String,
-        title: String,
-        error: SigmaScheduledQueryRunError? = nil,
-        file: ScheduledQueryRunFile? = nil
-    ) throws {
+extension ScheduledQueryRun {
+    public init(created: Int, dataLoadTime: Int, id: String, livemode: Bool, object: ScheduledQueryRunObject, resultAvailableUntil: Int, sql: String, status: String, title: String, error: SigmaScheduledQueryRunError? = nil, file: ScheduledQueryRunFile? = nil) throws {
         (self.created, self.dataLoadTime) = (created, dataLoadTime)
         (self.id, self.livemode) = (id, livemode)
         (self.object, self.resultAvailableUntil) = (object, resultAvailableUntil)
         (self.sql, self.status) = (sql, status)
         (self.title, self.error) = (title, error)
         self.file = file
-        try validateLength("id", self.id, min: nil, max: 5000)
-        try validateLength("sql", self.sql, min: nil, max: 100_000)
-        try validateLength("status", self.status, min: nil, max: 5000)
-        try validateLength("title", self.title, min: nil, max: 5000)
+            try validateLength("id", self.id, min: nil, max: 5000)
+            try validateLength("sql", self.sql, min: nil, max: 100000)
+            try validateLength("status", self.status, min: nil, max: 5000)
+            try validateLength("title", self.title, min: nil, max: 5000)
     }
 }
 
@@ -587,28 +461,20 @@ public enum ScheduledQueryRunFile {
 }
 
 extension ScheduledQueryRunFile: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for ScheduledQueryRunFile"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for ScheduledQueryRunFile")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(File2.self) {
-            return .file2(value)
-        }
+        if let value = try? container.decode(File2.self) { return .file2(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -617,6 +483,7 @@ extension ScheduledQueryRunFile: Codable {
         case let .file2(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// Typed representation of the `SchedulesPhaseAutomaticTax` API schema.
@@ -636,7 +503,5 @@ public struct SchedulesPhaseAutomaticTax: Codable {
         case liability
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }

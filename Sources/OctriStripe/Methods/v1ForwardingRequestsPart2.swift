@@ -6,10 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1ForwardingRequestsMethods {
-    /// Lists ForwardingRequest objects. Use `created` to filter by creation timestamp and the cursor parameters to
-    /// navigate through the list, and use `expand` to request expanded fields. The response contains forwarding
-    /// requests and pagination metadata.
+extension V1ForwardingRequestsMethods {
+    /// Lists ForwardingRequest objects. Use `created` to filter by creation timestamp and the cursor parameters to navigate through the list, and use `expand` to request expanded fields. The response contains forwarding requests and pagination metadata.
     ///
     /// Lists all ForwardingRequest objects.
     ///
@@ -23,23 +21,16 @@ public extension V1ForwardingRequestsMethods {
     ///   between 1 and 100, and the default is 10.
     /// - startingAfter: A pagination cursor to fetch the next page of the list. The
     ///   value must be a ForwardingRequest ID.
-    static func getForwardingRequests(
-        config: ClientConfig,
-        created: GetForwardingRequestsParameter?,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        startingAfter: String?
-    ) async throws -> GetForwardingRequestsResponse {
-        if let endingBefore {
+    public static func getForwardingRequests(config: ClientConfig, created: GetForwardingRequestsParameter?, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetForwardingRequestsResponse {
+        if let endingBefore = endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let startingAfter {
+        if let startingAfter = startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try await (sdkRequest("GET", "/v1/forwarding/requests", config: config, query: [
+        return try (await sdkRequest("GET", "/v1/forwarding/requests", config: config, query: [
             SdkQueryParameter("created", value: created),
             SdkQueryParameter("ending_before", value: endingBefore),
             SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),

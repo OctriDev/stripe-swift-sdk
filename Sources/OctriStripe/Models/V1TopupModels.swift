@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1Topup domain models
+// V1Topup domain models
 /// Typed representation of the `TopupResourcePaymentMethodOptions` API schema.
 public struct TopupResourcePaymentMethodOptions: Codable {
     /// If this top-up is to be used with a `us_bank_account` payment method, this sub-hash contains configuration
@@ -15,19 +15,19 @@ public struct TopupResourcePaymentMethodOptions: Codable {
     }
 
     init() {
-        usBankAccount = nil
+        self.usBankAccount = nil
     }
 }
 
-public extension TopupResourcePaymentMethodOptions {
-    init(from decoder: Decoder) throws {
+extension TopupResourcePaymentMethodOptions {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        usBankAccount = try container.sdkDecodeIfPresent(.usBankAccount)
+        self.usBankAccount = try container.sdkDecodeIfPresent(.usBankAccount)
     }
 }
 
-public extension TopupResourcePaymentMethodOptions {
-    init(usBankAccount: TopupResourcePaymentMethodOptionsUsBankAccount? = nil) {
+extension TopupResourcePaymentMethodOptions {
+    public init(usBankAccount: TopupResourcePaymentMethodOptionsUsBankAccount? = nil) {
         self.init()
         self.usBankAccount = usBankAccount
     }
@@ -38,29 +38,20 @@ public enum TopupResourcePaymentMethodOptionsUsBankAccount {
 }
 
 extension TopupResourcePaymentMethodOptionsUsBankAccount: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for TopupResourcePaymentMethodOptionsUsBankAccount"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for TopupResourcePaymentMethodOptionsUsBankAccount")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container
-            .decode(TopupResourceUsBankAccount.self) {
-            return .topupResourceUsBankAccount(value)
-        }
+        if let value = try? container.decode(TopupResourceUsBankAccount.self) { return .topupResourceUsBankAccount(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -69,6 +60,7 @@ extension TopupResourcePaymentMethodOptionsUsBankAccount: Codable {
         case let .topupResourceUsBankAccount(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// Typed representation of the `TopupResourceUsBankAccount` API schema.
@@ -80,27 +72,21 @@ public struct TopupResourceUsBankAccount: Codable {
         case network
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension TopupResourceUsBankAccount {
-    init(from decoder: Decoder) throws {
+extension TopupResourceUsBankAccount {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.network) else {
-            throw SdkValidationError(
-                field: "network",
-                code: "required",
-                message: "Validation failed for 'network': value is required"
-            )
+            throw SdkValidationError(field: "network", code: "required", message: "Validation failed for 'network': value is required")
         }
-        network = try container.sdkDecodeRequired(.network)
+        self.network = try container.sdkDecodeRequired(.network)
     }
 }
 
-public extension TopupResourceUsBankAccount {
-    init(network: TopupResourceUsBankAccountNetwork) {
+extension TopupResourceUsBankAccount {
+    public init(network: TopupResourceUsBankAccountNetwork) {
         self.network = network
     }
 }
@@ -109,15 +95,12 @@ public extension TopupResourceUsBankAccount {
 public struct TopupResourceUsBankAccountNetwork: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let ach = TopupResourceUsBankAccountNetwork(rawValue: "ach")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

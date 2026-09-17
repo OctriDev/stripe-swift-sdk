@@ -9,23 +9,17 @@ import Foundation
 /// Determines how to handle prorations resulting from the `billing_cycle_anchor` being `unchanged`. When the
 /// `billing_cycle_anchor` is set to `now` (default value), no prorations are generated. If no value is passed,
 /// the default is `create_prorations`.
-public struct PostSubscriptionsSubscriptionResumeRequestBodyProrationBehavior: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct PostSubscriptionsSubscriptionResumeRequestBodyProrationBehavior: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let alwaysInvoice =
-        PostSubscriptionsSubscriptionResumeRequestBodyProrationBehavior(rawValue: "always_invoice")
-    public static let createProrations =
-        PostSubscriptionsSubscriptionResumeRequestBodyProrationBehavior(rawValue: "create_prorations")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let alwaysInvoice = PostSubscriptionsSubscriptionResumeRequestBodyProrationBehavior(rawValue: "always_invoice")
+    public static let createProrations = PostSubscriptionsSubscriptionResumeRequestBodyProrationBehavior(rawValue: "create_prorations")
     public static let none = PostSubscriptionsSubscriptionResumeRequestBodyProrationBehavior(rawValue: "none")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -39,15 +33,12 @@ public struct PostSubscriptionsSubscriptionResumeRequestBodyProrationBehavior: R
 public struct GetTaxCodesResponseObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let list = GetTaxCodesResponseObject(rawValue: "list")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -59,10 +50,7 @@ public struct GetTaxCodesResponseObject: RawRepresentable, Hashable, Codable, Se
 public struct GetTaxIdsParameterType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let account = GetTaxIdsParameterType(rawValue: "account")
     public static let application = GetTaxIdsParameterType(rawValue: "application")
     public static let customer = GetTaxIdsParameterType(rawValue: "customer")
@@ -70,7 +58,7 @@ public struct GetTaxIdsParameterType: RawRepresentable, Hashable, Codable, Senda
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -84,15 +72,12 @@ public struct GetTaxIdsParameterType: RawRepresentable, Hashable, Codable, Senda
 public struct GetTaxIdsResponseObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let list = GetTaxIdsResponseObject(rawValue: "list")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -104,10 +89,7 @@ public struct GetTaxIdsResponseObject: RawRepresentable, Hashable, Codable, Send
 public struct PostTaxIdsRequestBodyOwnerType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let account = PostTaxIdsRequestBodyOwnerType(rawValue: "account")
     public static let application = PostTaxIdsRequestBodyOwnerType(rawValue: "application")
     public static let customer = PostTaxIdsRequestBodyOwnerType(rawValue: "customer")
@@ -115,7 +97,7 @@ public struct PostTaxIdsRequestBodyOwnerType: RawRepresentable, Hashable, Codabl
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

@@ -3,36 +3,30 @@
 
 import Foundation
 
-/// V1CheckoutSession domain models
+// V1CheckoutSession domain models
 public enum CheckoutSessionConsentCollection {
     case paymentPagesCheckoutSessionConsentCollection(PaymentPagesCheckoutSessionConsentCollection)
 }
 
 extension CheckoutSessionConsentCollection: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for CheckoutSessionConsentCollection"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for CheckoutSessionConsentCollection")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PaymentPagesCheckoutSessionConsentCollection.self
         ) {
-            return .paymentPagesCheckoutSessionConsentCollection(value)
+            return             .paymentPagesCheckoutSessionConsentCollection(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -41,6 +35,7 @@ extension CheckoutSessionConsentCollection: Codable {
         case let .paymentPagesCheckoutSessionConsentCollection(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum CheckoutSessionCurrencyConversion {
@@ -48,30 +43,24 @@ public enum CheckoutSessionCurrencyConversion {
 }
 
 extension CheckoutSessionCurrencyConversion: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for CheckoutSessionCurrencyConversion"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for CheckoutSessionCurrencyConversion")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PaymentPagesCheckoutSessionCurrencyConversion.self
         ) {
-            return .paymentPagesCheckoutSessionCurrencyConversion(value)
+            return             .paymentPagesCheckoutSessionCurrencyConversion(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -80,6 +69,7 @@ extension CheckoutSessionCurrencyConversion: Codable {
         case let .paymentPagesCheckoutSessionCurrencyConversion(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum CheckoutSessionCustomer {
@@ -89,34 +79,22 @@ public enum CheckoutSessionCustomer {
 }
 
 extension CheckoutSessionCustomer: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for CheckoutSessionCustomer"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for CheckoutSessionCustomer")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(Customer.self) {
-            return .customer(value)
-        }
-        if let value = try? container.decode(DeletedCustomer.self) {
-            return .deletedCustomer(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(Customer.self) { return .customer(value) }
+        if let value = try? container.decode(DeletedCustomer.self) { return .deletedCustomer(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -127,6 +105,7 @@ extension CheckoutSessionCustomer: Codable {
         case let .deletedCustomer(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum CheckoutSessionCustomerDetails {
@@ -134,30 +113,24 @@ public enum CheckoutSessionCustomerDetails {
 }
 
 extension CheckoutSessionCustomerDetails: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for CheckoutSessionCustomerDetails"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for CheckoutSessionCustomerDetails")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PaymentPagesCheckoutSessionCustomerDetails.self
         ) {
-            return .paymentPagesCheckoutSessionCustomerDetails(value)
+            return             .paymentPagesCheckoutSessionCustomerDetails(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -166,6 +139,7 @@ extension CheckoutSessionCustomerDetails: Codable {
         case let .paymentPagesCheckoutSessionCustomerDetails(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum CheckoutSessionInvoice {
@@ -174,31 +148,21 @@ public enum CheckoutSessionInvoice {
 }
 
 extension CheckoutSessionInvoice: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for CheckoutSessionInvoice"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for CheckoutSessionInvoice")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(Invoice.self) {
-            return .invoice(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(Invoice.self) { return .invoice(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -208,6 +172,7 @@ extension CheckoutSessionInvoice: Codable {
         case let .invoice(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum CheckoutSessionInvoiceCreation {
@@ -215,30 +180,24 @@ public enum CheckoutSessionInvoiceCreation {
 }
 
 extension CheckoutSessionInvoiceCreation: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for CheckoutSessionInvoiceCreation"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for CheckoutSessionInvoiceCreation")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PaymentPagesCheckoutSessionInvoiceCreation.self
         ) {
-            return .paymentPagesCheckoutSessionInvoiceCreation(value)
+            return             .paymentPagesCheckoutSessionInvoiceCreation(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -247,6 +206,7 @@ extension CheckoutSessionInvoiceCreation: Codable {
         case let .paymentPagesCheckoutSessionInvoiceCreation(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// The line items purchased by the customer.
@@ -268,55 +228,37 @@ public struct CheckoutSessionLineItems: Codable {
         case url
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension CheckoutSessionLineItems {
-    init(from decoder: Decoder) throws {
+extension CheckoutSessionLineItems {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.data) else {
-            throw SdkValidationError(
-                field: "data",
-                code: "required",
-                message: "Validation failed for 'data': value is required"
-            )
+            throw SdkValidationError(field: "data", code: "required", message: "Validation failed for 'data': value is required")
         }
         guard container.contains(.hasMore) else {
-            throw SdkValidationError(
-                field: "has_more",
-                code: "required",
-                message: "Validation failed for 'has_more': value is required"
-            )
+            throw SdkValidationError(field: "has_more", code: "required", message: "Validation failed for 'has_more': value is required")
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(
-                field: "object",
-                code: "required",
-                message: "Validation failed for 'object': value is required"
-            )
+            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
         }
         guard container.contains(.url) else {
-            throw SdkValidationError(
-                field: "url",
-                code: "required",
-                message: "Validation failed for 'url': value is required"
-            )
+            throw SdkValidationError(field: "url", code: "required", message: "Validation failed for 'url': value is required")
         }
-        data = try container.sdkDecodeRequired(.data)
-        hasMore = try container.sdkDecodeRequired(.hasMore)
-        object = try container.sdkDecodeRequired(.object)
-        url = try container.sdkDecodeRequired(.url)
-        try validateLength("url", url, min: nil, max: 5000)
+        self.data = try container.sdkDecodeRequired(.data)
+        self.hasMore = try container.sdkDecodeRequired(.hasMore)
+        self.object = try container.sdkDecodeRequired(.object)
+        self.url = try container.sdkDecodeRequired(.url)
+            try validateLength("url", self.url, min: nil, max: 5000)
     }
 }
 
-public extension CheckoutSessionLineItems {
-    init(data: [Item], hasMore: Bool, object: CheckoutSessionLineItemsObject, url: String) throws {
+extension CheckoutSessionLineItems {
+    public init(data: [Item], hasMore: Bool, object: CheckoutSessionLineItemsObject, url: String) throws {
         (self.data, self.hasMore) = (data, hasMore)
         (self.object, self.url) = (object, url)
-        try validateLength("url", self.url, min: nil, max: 5000)
+            try validateLength("url", self.url, min: nil, max: 5000)
     }
 }
 
@@ -325,30 +267,24 @@ public enum CheckoutSessionManagedPayments {
 }
 
 extension CheckoutSessionManagedPayments: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for CheckoutSessionManagedPayments"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for CheckoutSessionManagedPayments")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PaymentPagesCheckoutSessionManagedPayments.self
         ) {
-            return .paymentPagesCheckoutSessionManagedPayments(value)
+            return             .paymentPagesCheckoutSessionManagedPayments(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -357,6 +293,7 @@ extension CheckoutSessionManagedPayments: Codable {
         case let .paymentPagesCheckoutSessionManagedPayments(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum CheckoutSessionPaymentIntent {
@@ -365,31 +302,21 @@ public enum CheckoutSessionPaymentIntent {
 }
 
 extension CheckoutSessionPaymentIntent: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for CheckoutSessionPaymentIntent"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for CheckoutSessionPaymentIntent")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(PaymentIntent.self) {
-            return .paymentIntent(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(PaymentIntent.self) { return .paymentIntent(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -399,6 +326,7 @@ extension CheckoutSessionPaymentIntent: Codable {
         case let .paymentIntent(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum CheckoutSessionPaymentLink {
@@ -407,31 +335,21 @@ public enum CheckoutSessionPaymentLink {
 }
 
 extension CheckoutSessionPaymentLink: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for CheckoutSessionPaymentLink"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for CheckoutSessionPaymentLink")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(PaymentLink.self) {
-            return .paymentLink(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(PaymentLink.self) { return .paymentLink(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -441,48 +359,41 @@ extension CheckoutSessionPaymentLink: Codable {
         case let .paymentLink(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum CheckoutSessionPaymentMethodConfigurationDetails {
-    case paymentMethodConfigBizPaymentMethodConfigurationDetails(
-        PaymentMethodConfigBizPaymentMethodConfigurationDetails
-    )
+    case paymentMethodConfigBizPaymentMethodConfigurationDetails(PaymentMethodConfigBizPaymentMethodConfigurationDetails)
 }
 
 extension CheckoutSessionPaymentMethodConfigurationDetails: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for CheckoutSessionPaymentMethodConfigurationDetails"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for CheckoutSessionPaymentMethodConfigurationDetails")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PaymentMethodConfigBizPaymentMethodConfigurationDetails.self
         ) {
-            return .paymentMethodConfigBizPaymentMethodConfigurationDetails(value)
+            return             .paymentMethodConfigBizPaymentMethodConfigurationDetails(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .paymentMethodConfigBizPaymentMethodConfigurationDetails(value): try container
-            .encode(value); return true
+        case let .paymentMethodConfigBizPaymentMethodConfigurationDetails(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum CheckoutSessionPaymentMethodOptionsXb68e51da {
@@ -490,30 +401,24 @@ public enum CheckoutSessionPaymentMethodOptionsXb68e51da {
 }
 
 extension CheckoutSessionPaymentMethodOptionsXb68e51da: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for CheckoutSessionPaymentMethodOptionsXb68e51da"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for CheckoutSessionPaymentMethodOptionsXb68e51da")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             CheckoutSessionPaymentMethodOptions.self
         ) {
-            return .checkoutSessionPaymentMethodOptions(value)
+            return             .checkoutSessionPaymentMethodOptions(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -522,6 +427,7 @@ extension CheckoutSessionPaymentMethodOptionsXb68e51da: Codable {
         case let .checkoutSessionPaymentMethodOptions(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum CheckoutSessionPermissions {
@@ -529,30 +435,24 @@ public enum CheckoutSessionPermissions {
 }
 
 extension CheckoutSessionPermissions: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for CheckoutSessionPermissions"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for CheckoutSessionPermissions")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PaymentPagesCheckoutSessionPermissions.self
         ) {
-            return .paymentPagesCheckoutSessionPermissions(value)
+            return             .paymentPagesCheckoutSessionPermissions(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -561,6 +461,7 @@ extension CheckoutSessionPermissions: Codable {
         case let .paymentPagesCheckoutSessionPermissions(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum CheckoutSessionSavedPaymentMethodOptions {
@@ -568,30 +469,24 @@ public enum CheckoutSessionSavedPaymentMethodOptions {
 }
 
 extension CheckoutSessionSavedPaymentMethodOptions: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for CheckoutSessionSavedPaymentMethodOptions"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for CheckoutSessionSavedPaymentMethodOptions")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PaymentPagesCheckoutSessionSavedPaymentMethodOptions.self
         ) {
-            return .paymentPagesCheckoutSessionSavedPaymentMethodOptions(value)
+            return             .paymentPagesCheckoutSessionSavedPaymentMethodOptions(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -600,6 +495,7 @@ extension CheckoutSessionSavedPaymentMethodOptions: Codable {
         case let .paymentPagesCheckoutSessionSavedPaymentMethodOptions(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum CheckoutSessionSetupIntent {
@@ -608,31 +504,21 @@ public enum CheckoutSessionSetupIntent {
 }
 
 extension CheckoutSessionSetupIntent: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for CheckoutSessionSetupIntent"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for CheckoutSessionSetupIntent")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(SetupIntent.self) {
-            return .setupIntent(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(SetupIntent.self) { return .setupIntent(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -642,6 +528,7 @@ extension CheckoutSessionSetupIntent: Codable {
         case let .setupIntent(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum CheckoutSessionShippingAddressCollection {

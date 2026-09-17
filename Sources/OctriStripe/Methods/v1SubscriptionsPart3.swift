@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1SubscriptionsMethods {
-    struct PostSubscriptionsOptions: Codable {
+extension V1SubscriptionsMethods {
+    public struct PostSubscriptionsOptions: Codable {
         public var addInvoiceItems: [PostSubscriptionsRequestBodyAddInvoiceItemsItem]?
         public var applicationFeePercent: PostSubscriptionsRequestBodyApplicationFeePercent?
         public var automaticTax: PostSubscriptionsRequestBodyAutomaticTax?
@@ -48,12 +48,7 @@ public extension V1SubscriptionsMethods {
         public init() {}
     }
 
-    /// Creates a new subscription on an existing customer. Each customer can have up to 500 active or scheduled
-    /// subscriptions. When you create a subscription with collection_method=charge_automatically , the first invoice is
-    /// finalized as part of the request. The payment_behavior parameter determines the exact behavior of the initial
-    /// payment. To start subscriptions where the first invoice always begins in a draft status, use subscription
-    /// schedules instead. Schedules provide the flexibility to model more complex billing configurations that change
-    /// over time.
+    /// Creates a new subscription on an existing customer. Each customer can have up to 500 active or scheduled subscriptions. When you create a subscription with collection_method=charge_automatically , the first invoice is finalized as part of the request. The payment_behavior parameter determines the exact behavior of the initial payment. To start subscriptions where the first invoice always begins in a draft status, use subscription schedules instead. Schedules provide the flexibility to model more complex billing configurations that change over time.
     ///
     /// - Parameters:
     /// - addInvoiceItems: A list of prices and quantities that will generate
@@ -188,10 +183,7 @@ public extension V1SubscriptionsMethods {
     ///   subscriptions](https://docs.stripe.com/billing/subscriptions/trials) to
     ///   learn more.
     /// - trialSettings: Settings related to subscription trials.
-    static func postSubscriptions(
-        config: ClientConfig,
-        options: PostSubscriptionsOptions
-    ) async throws -> Subscription {
+    public static func postSubscriptions(config: ClientConfig, options: PostSubscriptionsOptions) async throws -> Subscription {
         if let customer = options.customer {
             try validateLength("customer", customer, max: 5000)
         }
@@ -214,14 +206,6 @@ public extension V1SubscriptionsMethods {
 
         let requestBody = PostSubscriptionsRequestBody(options: options)
 
-        return try await (sdkRequest(
-            "POST",
-            "/v1/subscriptions",
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostSubscriptions"
-        )).data
+        return try (await sdkRequest("POST", "/v1/subscriptions", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostSubscriptions")).data
     }
 }

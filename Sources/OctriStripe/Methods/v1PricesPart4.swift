@@ -6,26 +6,18 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1PricesMethods {
-    /// Retrieves a price by its unique identifier. Use the returned price details to inspect its currency, product
-    /// association, billing configuration, and availability for new purchases.
+extension V1PricesMethods {
+    /// Retrieves a price by its unique identifier. Use the returned price details to inspect its currency, product association, billing configuration, and availability for new purchases.
     ///
     /// Retrieves the price with the given ID.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    static func getPricesPrice(config: ClientConfig, price: String, expand: [String]?) async throws -> Price {
+    public static func getPricesPrice(config: ClientConfig, price: String, expand: [String]?) async throws -> Price {
         try validateLength("price", price, max: 5000)
 
-        return try await (sdkRequest(
-            "GET",
-            ["/v1/prices/", sdkEncodePathSegment(sdkWireString(price))].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .json,
-            operationId: "GetPricesPrice"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/prices/", sdkEncodePathSegment(sdkWireString(price))].joined(), config: config, query: [
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .json, operationId: "GetPricesPrice")).data
     }
 }

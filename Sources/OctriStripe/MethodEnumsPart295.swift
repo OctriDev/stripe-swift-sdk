@@ -11,15 +11,12 @@ import Foundation
 public struct GetSubscriptionItemsResponseObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let list = GetSubscriptionItemsResponseObject(rawValue: "list")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -28,19 +25,15 @@ public struct GetSubscriptionItemsResponseObject: RawRepresentable, Hashable, Co
     }
 }
 
-public struct PostSubscriptionItemsRequestBodyBillingThresholdsVariant1: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostSubscriptionItemsRequestBodyBillingThresholdsVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostSubscriptionItemsRequestBodyBillingThresholdsVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -49,19 +42,15 @@ public struct PostSubscriptionItemsRequestBodyBillingThresholdsVariant1: RawRepr
     }
 }
 
-public struct PostSubscriptionItemsRequestBodyDiscountsVariant1: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostSubscriptionItemsRequestBodyDiscountsVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostSubscriptionItemsRequestBodyDiscountsVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -72,25 +61,18 @@ public struct PostSubscriptionItemsRequestBodyDiscountsVariant1: RawRepresentabl
 
 /// Controls how Stripe handles payment when a subscription update requires payment and
 /// `collection_method=charge_automatically`.
-public struct PostSubscriptionItemsRequestBodyPaymentBehavior: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostSubscriptionItemsRequestBodyPaymentBehavior: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let allowIncomplete = PostSubscriptionItemsRequestBodyPaymentBehavior(rawValue: "allow_incomplete")
-    public static let defaultIncomplete =
-        PostSubscriptionItemsRequestBodyPaymentBehavior(rawValue: "default_incomplete")
-    public static let errorIfIncomplete =
-        PostSubscriptionItemsRequestBodyPaymentBehavior(rawValue: "error_if_incomplete")
-    public static let pendingIfIncomplete =
-        PostSubscriptionItemsRequestBodyPaymentBehavior(rawValue: "pending_if_incomplete")
+    public static let defaultIncomplete = PostSubscriptionItemsRequestBodyPaymentBehavior(rawValue: "default_incomplete")
+    public static let errorIfIncomplete = PostSubscriptionItemsRequestBodyPaymentBehavior(rawValue: "error_if_incomplete")
+    public static let pendingIfIncomplete = PostSubscriptionItemsRequestBodyPaymentBehavior(rawValue: "pending_if_incomplete")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -99,14 +81,10 @@ public struct PostSubscriptionItemsRequestBodyPaymentBehavior: RawRepresentable,
     }
 }
 
-public struct PostSubscriptionItemsRequestBodyPriceDataRecurringInterval: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostSubscriptionItemsRequestBodyPriceDataRecurringInterval: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let day = PostSubscriptionItemsRequestBodyPriceDataRecurringInterval(rawValue: "day")
     public static let month = PostSubscriptionItemsRequestBodyPriceDataRecurringInterval(rawValue: "month")
     public static let week = PostSubscriptionItemsRequestBodyPriceDataRecurringInterval(rawValue: "week")
@@ -114,7 +92,7 @@ public struct PostSubscriptionItemsRequestBodyPriceDataRecurringInterval: RawRep
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -123,21 +101,17 @@ public struct PostSubscriptionItemsRequestBodyPriceDataRecurringInterval: RawRep
     }
 }
 
-public struct PostSubscriptionItemsRequestBodyPriceDataTaxBehavior: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostSubscriptionItemsRequestBodyPriceDataTaxBehavior: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let exclusive = PostSubscriptionItemsRequestBodyPriceDataTaxBehavior(rawValue: "exclusive")
     public static let inclusive = PostSubscriptionItemsRequestBodyPriceDataTaxBehavior(rawValue: "inclusive")
     public static let unspecified = PostSubscriptionItemsRequestBodyPriceDataTaxBehavior(rawValue: "unspecified")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -149,22 +123,17 @@ public struct PostSubscriptionItemsRequestBodyPriceDataTaxBehavior: RawRepresent
 /// Determines how to handle prorations when the billing cycle changes (e.g., when switching plans, resetting
 /// `billing_cycle_anchor=now`, or starting a trial), or if an item's `quantity` changes. The default value is
 /// `create_prorations`.
-public struct PostSubscriptionItemsRequestBodyProrationBehavior: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostSubscriptionItemsRequestBodyProrationBehavior: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let alwaysInvoice = PostSubscriptionItemsRequestBodyProrationBehavior(rawValue: "always_invoice")
-    public static let createProrations =
-        PostSubscriptionItemsRequestBodyProrationBehavior(rawValue: "create_prorations")
+    public static let createProrations = PostSubscriptionItemsRequestBodyProrationBehavior(rawValue: "create_prorations")
     public static let none = PostSubscriptionItemsRequestBodyProrationBehavior(rawValue: "none")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -173,19 +142,15 @@ public struct PostSubscriptionItemsRequestBodyProrationBehavior: RawRepresentabl
     }
 }
 
-public struct PostSubscriptionItemsRequestBodyTaxRatesVariant1: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostSubscriptionItemsRequestBodyTaxRatesVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostSubscriptionItemsRequestBodyTaxRatesVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -196,26 +161,18 @@ public struct PostSubscriptionItemsRequestBodyTaxRatesVariant1: RawRepresentable
 
 /// Controls how Stripe handles payment when a subscription update requires payment and
 /// `collection_method=charge_automatically`.
-public struct DeleteSubscriptionItemsItemRequestBodyPaymentBehavior: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct DeleteSubscriptionItemsItemRequestBodyPaymentBehavior: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let allowIncomplete =
-        DeleteSubscriptionItemsItemRequestBodyPaymentBehavior(rawValue: "allow_incomplete")
-    public static let defaultIncomplete =
-        DeleteSubscriptionItemsItemRequestBodyPaymentBehavior(rawValue: "default_incomplete")
-    public static let errorIfIncomplete =
-        DeleteSubscriptionItemsItemRequestBodyPaymentBehavior(rawValue: "error_if_incomplete")
-    public static let pendingIfIncomplete =
-        DeleteSubscriptionItemsItemRequestBodyPaymentBehavior(rawValue: "pending_if_incomplete")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let allowIncomplete = DeleteSubscriptionItemsItemRequestBodyPaymentBehavior(rawValue: "allow_incomplete")
+    public static let defaultIncomplete = DeleteSubscriptionItemsItemRequestBodyPaymentBehavior(rawValue: "default_incomplete")
+    public static let errorIfIncomplete = DeleteSubscriptionItemsItemRequestBodyPaymentBehavior(rawValue: "error_if_incomplete")
+    public static let pendingIfIncomplete = DeleteSubscriptionItemsItemRequestBodyPaymentBehavior(rawValue: "pending_if_incomplete")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -227,23 +184,17 @@ public struct DeleteSubscriptionItemsItemRequestBodyPaymentBehavior: RawRepresen
 /// Determines how to handle prorations when the billing cycle changes (e.g., when switching plans, resetting
 /// `billing_cycle_anchor=now`, or starting a trial), or if an item's `quantity` changes. The default value is
 /// `create_prorations`.
-public struct DeleteSubscriptionItemsItemRequestBodyProrationBehavior: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct DeleteSubscriptionItemsItemRequestBodyProrationBehavior: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let alwaysInvoice =
-        DeleteSubscriptionItemsItemRequestBodyProrationBehavior(rawValue: "always_invoice")
-    public static let createProrations =
-        DeleteSubscriptionItemsItemRequestBodyProrationBehavior(rawValue: "create_prorations")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let alwaysInvoice = DeleteSubscriptionItemsItemRequestBodyProrationBehavior(rawValue: "always_invoice")
+    public static let createProrations = DeleteSubscriptionItemsItemRequestBodyProrationBehavior(rawValue: "create_prorations")
     public static let none = DeleteSubscriptionItemsItemRequestBodyProrationBehavior(rawValue: "none")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

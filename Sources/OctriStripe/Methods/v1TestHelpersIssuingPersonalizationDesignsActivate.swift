@@ -7,36 +7,18 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1TestHelpersIssuingPersonalizationDesignsActivateMethods {
-    /// Activates a test-mode personalization design by changing its status to `active`. Provide the
-    /// `personalization_design` identifier for the design to activate. You can use `expand` to include additional
-    /// response fields.
+    /// Activates a test-mode personalization design by changing its status to `active`. Provide the `personalization_design` identifier for the design to activate. You can use `expand` to include additional response fields.
     ///
     /// Updates the status of the specified testmode personalization design object to active .
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postTestHelpersIssuingPersonalizationDesignsPersonalizationDeX6317a7bebe(
-        config: ClientConfig,
-        personalizationDesign: String,
-        expand: [String]?
-    ) async throws -> IssuingPersonalizationDesign {
+    public static func postTestHelpersIssuingPersonalizationDesignsPersonalizationDeX6317a7bebe(config: ClientConfig, personalizationDesign: String, expand: [String]?) async throws -> IssuingPersonalizationDesign {
         try validateLength("personalization_design", personalizationDesign, max: 5000)
 
         let requestBody = PostTestHelpersIssuingPersonalizationDesignsPersonalizationDeX611aa8206d(expand: expand)
 
-        return try await (sdkRequest(
-            "POST",
-            [
-                "/v1/test_helpers/issuing/personalization_designs/",
-                sdkEncodePathSegment(sdkWireString(personalizationDesign)),
-                "/activate",
-            ].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostTestHelpersIssuingPersonalizationDesignsPersonalizationDesignActivate"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/test_helpers/issuing/personalization_designs/", sdkEncodePathSegment(sdkWireString(personalizationDesign)), "/activate"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTestHelpersIssuingPersonalizationDesignsPersonalizationDesignActivate")).data
     }
 
     private struct PostTestHelpersIssuingPersonalizationDesignsPersonalizationDeX611aa8206d: Encodable {
@@ -44,7 +26,7 @@ public enum V1TestHelpersIssuingPersonalizationDesignsActivateMethods {
 
         func encode(to encoder: Encoder) throws {
             var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-            try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
+            try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
         }
     }
 }

@@ -3,43 +3,36 @@
 
 import Foundation
 
-/// V1IssuingTransaction domain models
-public extension IssuingTransactionFlightDataLeg {
-    init(from decoder: Decoder) throws {
+// V1IssuingTransaction domain models
+extension IssuingTransactionFlightDataLeg {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        arrivalAirportCode = try container.sdkDecodeIfPresent(.arrivalAirportCode)
-        carrier = try container.sdkDecodeIfPresent(.carrier)
-        departureAirportCode = try container.sdkDecodeIfPresent(.departureAirportCode)
-        flightNumber = try container.sdkDecodeIfPresent(.flightNumber)
-        serviceClass = try container.sdkDecodeIfPresent(.serviceClass)
-        stopoverAllowed = try container.sdkDecodeIfPresent(.stopoverAllowed)
-        if let value = arrivalAirportCode {
+        self.arrivalAirportCode = try container.sdkDecodeIfPresent(.arrivalAirportCode)
+        self.carrier = try container.sdkDecodeIfPresent(.carrier)
+        self.departureAirportCode = try container.sdkDecodeIfPresent(.departureAirportCode)
+        self.flightNumber = try container.sdkDecodeIfPresent(.flightNumber)
+        self.serviceClass = try container.sdkDecodeIfPresent(.serviceClass)
+        self.stopoverAllowed = try container.sdkDecodeIfPresent(.stopoverAllowed)
+        if let value = self.arrivalAirportCode {
             try validateLength("arrival_airport_code", value, min: nil, max: 5000)
         }
-        if let value = carrier {
+        if let value = self.carrier {
             try validateLength("carrier", value, min: nil, max: 5000)
         }
-        if let value = departureAirportCode {
+        if let value = self.departureAirportCode {
             try validateLength("departure_airport_code", value, min: nil, max: 5000)
         }
-        if let value = flightNumber {
+        if let value = self.flightNumber {
             try validateLength("flight_number", value, min: nil, max: 5000)
         }
-        if let value = serviceClass {
+        if let value = self.serviceClass {
             try validateLength("service_class", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension IssuingTransactionFlightDataLeg {
-    init(
-        arrivalAirportCode: String? = nil,
-        carrier: String? = nil,
-        departureAirportCode: String? = nil,
-        flightNumber: String? = nil,
-        serviceClass: String? = nil,
-        stopoverAllowed: Bool? = nil
-    ) throws {
+extension IssuingTransactionFlightDataLeg {
+    public init(arrivalAirportCode: String? = nil, carrier: String? = nil, departureAirportCode: String? = nil, flightNumber: String? = nil, serviceClass: String? = nil, stopoverAllowed: Bool? = nil) throws {
         self.init()
         (self.arrivalAirportCode, self.carrier) = (arrivalAirportCode, carrier)
         (self.departureAirportCode, self.flightNumber) = (departureAirportCode, flightNumber)
@@ -86,61 +79,41 @@ public struct IssuingTransactionFuelData: Codable {
         case quantityDecimal = "quantity_decimal"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension IssuingTransactionFuelData {
-    init(from decoder: Decoder) throws {
+extension IssuingTransactionFuelData {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.type) else {
-            throw SdkValidationError(
-                field: "type",
-                code: "required",
-                message: "Validation failed for 'type': value is required"
-            )
+            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
         }
         guard container.contains(.unit) else {
-            throw SdkValidationError(
-                field: "unit",
-                code: "required",
-                message: "Validation failed for 'unit': value is required"
-            )
+            throw SdkValidationError(field: "unit", code: "required", message: "Validation failed for 'unit': value is required")
         }
         guard container.contains(.unitCostDecimal) else {
-            throw SdkValidationError(
-                field: "unit_cost_decimal",
-                code: "required",
-                message: "Validation failed for 'unit_cost_decimal': value is required"
-            )
+            throw SdkValidationError(field: "unit_cost_decimal", code: "required", message: "Validation failed for 'unit_cost_decimal': value is required")
         }
-        type = try container.sdkDecodeRequired(.type)
-        unit = try container.sdkDecodeRequired(.unit)
-        unitCostDecimal = try container.sdkDecodeRequired(.unitCostDecimal)
-        industryProductCode = try container.sdkDecodeIfPresent(.industryProductCode)
-        quantityDecimal = try container.sdkDecodeIfPresent(.quantityDecimal)
-        try validateLength("type", type, min: nil, max: 5000)
-        try validateLength("unit", unit, min: nil, max: 5000)
-        if let value = industryProductCode {
+        self.type = try container.sdkDecodeRequired(.type)
+        self.unit = try container.sdkDecodeRequired(.unit)
+        self.unitCostDecimal = try container.sdkDecodeRequired(.unitCostDecimal)
+        self.industryProductCode = try container.sdkDecodeIfPresent(.industryProductCode)
+        self.quantityDecimal = try container.sdkDecodeIfPresent(.quantityDecimal)
+            try validateLength("type", self.type, min: nil, max: 5000)
+            try validateLength("unit", self.unit, min: nil, max: 5000)
+        if let value = self.industryProductCode {
             try validateLength("industry_product_code", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension IssuingTransactionFuelData {
-    init(
-        type: String,
-        unit: String,
-        unitCostDecimal: String,
-        industryProductCode: String? = nil,
-        quantityDecimal: String? = nil
-    ) throws {
+extension IssuingTransactionFuelData {
+    public init(type: String, unit: String, unitCostDecimal: String, industryProductCode: String? = nil, quantityDecimal: String? = nil) throws {
         (self.type, self.unit) = (type, unit)
         (self.unitCostDecimal, self.industryProductCode) = (unitCostDecimal, industryProductCode)
         self.quantityDecimal = quantityDecimal
-        try validateLength("type", self.type, min: nil, max: 5000)
-        try validateLength("unit", self.unit, min: nil, max: 5000)
+            try validateLength("type", self.type, min: nil, max: 5000)
+            try validateLength("unit", self.unit, min: nil, max: 5000)
         if let value = self.industryProductCode {
             try validateLength("industry_product_code", value, min: nil, max: 5000)
         }
@@ -160,20 +133,20 @@ public struct IssuingTransactionLodgingData: Codable {
     }
 
     init() {
-        (checkInAt, nights) = (nil, nil)
+        (self.checkInAt, self.nights) = (nil, nil)
     }
 }
 
-public extension IssuingTransactionLodgingData {
-    init(from decoder: Decoder) throws {
+extension IssuingTransactionLodgingData {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        checkInAt = try container.sdkDecodeIfPresent(.checkInAt)
-        nights = try container.sdkDecodeIfPresent(.nights)
+        self.checkInAt = try container.sdkDecodeIfPresent(.checkInAt)
+        self.nights = try container.sdkDecodeIfPresent(.nights)
     }
 }
 
-public extension IssuingTransactionLodgingData {
-    init(checkInAt: Int? = nil, nights: Int? = nil) {
+extension IssuingTransactionLodgingData {
+    public init(checkInAt: Int? = nil, nights: Int? = nil) {
         self.init()
         (self.checkInAt, self.nights) = (checkInAt, nights)
     }
@@ -200,30 +173,30 @@ public struct IssuingTransactionNetworkData: Codable {
     }
 
     init() {
-        (authorizationCode, processingDate, transactionId) = (nil, nil, nil)
+        (self.authorizationCode, self.processingDate, self.transactionId) = (nil, nil, nil)
     }
 }
 
-public extension IssuingTransactionNetworkData {
-    init(from decoder: Decoder) throws {
+extension IssuingTransactionNetworkData {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        authorizationCode = try container.sdkDecodeIfPresent(.authorizationCode)
-        processingDate = try container.sdkDecodeIfPresent(.processingDate)
-        transactionId = try container.sdkDecodeIfPresent(.transactionId)
-        if let value = authorizationCode {
+        self.authorizationCode = try container.sdkDecodeIfPresent(.authorizationCode)
+        self.processingDate = try container.sdkDecodeIfPresent(.processingDate)
+        self.transactionId = try container.sdkDecodeIfPresent(.transactionId)
+        if let value = self.authorizationCode {
             try validateLength("authorization_code", value, min: nil, max: 5000)
         }
-        if let value = processingDate {
+        if let value = self.processingDate {
             try validateLength("processing_date", value, min: nil, max: 5000)
         }
-        if let value = transactionId {
+        if let value = self.transactionId {
             try validateLength("transaction_id", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension IssuingTransactionNetworkData {
-    init(authorizationCode: String? = nil, processingDate: String? = nil, transactionId: String? = nil) throws {
+extension IssuingTransactionNetworkData {
+    public init(authorizationCode: String? = nil, processingDate: String? = nil, transactionId: String? = nil) throws {
         self.init()
         (self.authorizationCode, self.processingDate) = (authorizationCode, processingDate)
         self.transactionId = transactionId
@@ -264,35 +237,28 @@ public struct IssuingTransactionPurchaseDetails: Codable {
     }
 
     init() {
-        (fleet, flight, fuel, lodging, receipt) = (nil, nil, nil, nil, nil)
-        reference = nil
+        (self.fleet, self.flight, self.fuel, self.lodging, self.receipt) = (nil, nil, nil, nil, nil)
+        self.reference = nil
     }
 }
 
-public extension IssuingTransactionPurchaseDetails {
-    init(from decoder: Decoder) throws {
+extension IssuingTransactionPurchaseDetails {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        fleet = try container.sdkDecodeIfPresent(.fleet)
-        flight = try container.sdkDecodeIfPresent(.flight)
-        fuel = try container.sdkDecodeIfPresent(.fuel)
-        lodging = try container.sdkDecodeIfPresent(.lodging)
-        receipt = try container.sdkDecodeIfPresent(.receipt)
-        reference = try container.sdkDecodeIfPresent(.reference)
-        if let value = reference {
+        self.fleet = try container.sdkDecodeIfPresent(.fleet)
+        self.flight = try container.sdkDecodeIfPresent(.flight)
+        self.fuel = try container.sdkDecodeIfPresent(.fuel)
+        self.lodging = try container.sdkDecodeIfPresent(.lodging)
+        self.receipt = try container.sdkDecodeIfPresent(.receipt)
+        self.reference = try container.sdkDecodeIfPresent(.reference)
+        if let value = self.reference {
             try validateLength("reference", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension IssuingTransactionPurchaseDetails {
-    init(
-        fleet: IssuingTransactionPurchaseDetailsFleet? = nil,
-        flight: IssuingTransactionPurchaseDetailsFlight? = nil,
-        fuel: IssuingTransactionPurchaseDetailsFuel? = nil,
-        lodging: IssuingTransactionPurchaseDetailsLodging? = nil,
-        receipt: [IssuingTransactionReceiptData]? = nil,
-        reference: String? = nil
-    ) throws {
+extension IssuingTransactionPurchaseDetails {
+    public init(fleet: IssuingTransactionPurchaseDetailsFleet? = nil, flight: IssuingTransactionPurchaseDetailsFlight? = nil, fuel: IssuingTransactionPurchaseDetailsFuel? = nil, lodging: IssuingTransactionPurchaseDetailsLodging? = nil, receipt: [IssuingTransactionReceiptData]? = nil, reference: String? = nil) throws {
         self.init()
         (self.fleet, self.flight) = (fleet, flight)
         (self.fuel, self.lodging) = (fuel, lodging)
@@ -308,29 +274,20 @@ public enum IssuingTransactionPurchaseDetailsFleet {
 }
 
 extension IssuingTransactionPurchaseDetailsFleet: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for IssuingTransactionPurchaseDetailsFleet"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for IssuingTransactionPurchaseDetailsFleet")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container
-            .decode(IssuingTransactionFleetData.self) {
-            return .issuingTransactionFleetData(value)
-        }
+        if let value = try? container.decode(IssuingTransactionFleetData.self) { return .issuingTransactionFleetData(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -339,6 +296,7 @@ extension IssuingTransactionPurchaseDetailsFleet: Codable {
         case let .issuingTransactionFleetData(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum IssuingTransactionPurchaseDetailsFlight {
@@ -346,29 +304,20 @@ public enum IssuingTransactionPurchaseDetailsFlight {
 }
 
 extension IssuingTransactionPurchaseDetailsFlight: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for IssuingTransactionPurchaseDetailsFlight"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for IssuingTransactionPurchaseDetailsFlight")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container
-            .decode(IssuingTransactionFlightData.self) {
-            return .issuingTransactionFlightData(value)
-        }
+        if let value = try? container.decode(IssuingTransactionFlightData.self) { return .issuingTransactionFlightData(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -377,6 +326,7 @@ extension IssuingTransactionPurchaseDetailsFlight: Codable {
         case let .issuingTransactionFlightData(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum IssuingTransactionPurchaseDetailsFuel {
@@ -384,29 +334,20 @@ public enum IssuingTransactionPurchaseDetailsFuel {
 }
 
 extension IssuingTransactionPurchaseDetailsFuel: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for IssuingTransactionPurchaseDetailsFuel"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for IssuingTransactionPurchaseDetailsFuel")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container
-            .decode(IssuingTransactionFuelData.self) {
-            return .issuingTransactionFuelData(value)
-        }
+        if let value = try? container.decode(IssuingTransactionFuelData.self) { return .issuingTransactionFuelData(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -415,6 +356,7 @@ extension IssuingTransactionPurchaseDetailsFuel: Codable {
         case let .issuingTransactionFuelData(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum IssuingTransactionPurchaseDetailsLodging {
@@ -422,29 +364,20 @@ public enum IssuingTransactionPurchaseDetailsLodging {
 }
 
 extension IssuingTransactionPurchaseDetailsLodging: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for IssuingTransactionPurchaseDetailsLodging"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for IssuingTransactionPurchaseDetailsLodging")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container
-            .decode(IssuingTransactionLodgingData.self) {
-            return .issuingTransactionLodgingData(value)
-        }
+        if let value = try? container.decode(IssuingTransactionLodgingData.self) { return .issuingTransactionLodgingData(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -453,6 +386,7 @@ extension IssuingTransactionPurchaseDetailsLodging: Codable {
         case let .issuingTransactionLodgingData(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// Typed representation of the `IssuingTransactionReceiptData` API schema.
@@ -474,25 +408,25 @@ public struct IssuingTransactionReceiptData: Codable {
     }
 
     init() {
-        (description, quantity, total, unitCost) = (nil, nil, nil, nil)
+        (self.description, self.quantity, self.total, self.unitCost) = (nil, nil, nil, nil)
     }
 }
 
-public extension IssuingTransactionReceiptData {
-    init(from decoder: Decoder) throws {
+extension IssuingTransactionReceiptData {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        description = try container.sdkDecodeIfPresent(.description)
-        quantity = try container.sdkDecodeIfPresent(.quantity)
-        total = try container.sdkDecodeIfPresent(.total)
-        unitCost = try container.sdkDecodeIfPresent(.unitCost)
-        if let value = description {
+        self.description = try container.sdkDecodeIfPresent(.description)
+        self.quantity = try container.sdkDecodeIfPresent(.quantity)
+        self.total = try container.sdkDecodeIfPresent(.total)
+        self.unitCost = try container.sdkDecodeIfPresent(.unitCost)
+        if let value = self.description {
             try validateLength("description", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension IssuingTransactionReceiptData {
-    init(description: String? = nil, quantity: Double? = nil, total: Int? = nil, unitCost: Int? = nil) throws {
+extension IssuingTransactionReceiptData {
+    public init(description: String? = nil, quantity: Double? = nil, total: Int? = nil, unitCost: Int? = nil) throws {
         self.init()
         (self.description, self.quantity) = (description, quantity)
         (self.total, self.unitCost) = (total, unitCost)
@@ -515,26 +449,26 @@ public struct IssuingTransactionTreasury: Codable {
     }
 
     init() {
-        (receivedCredit, receivedDebit) = (nil, nil)
+        (self.receivedCredit, self.receivedDebit) = (nil, nil)
     }
 }
 
-public extension IssuingTransactionTreasury {
-    init(from decoder: Decoder) throws {
+extension IssuingTransactionTreasury {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        receivedCredit = try container.sdkDecodeIfPresent(.receivedCredit)
-        receivedDebit = try container.sdkDecodeIfPresent(.receivedDebit)
-        if let value = receivedCredit {
+        self.receivedCredit = try container.sdkDecodeIfPresent(.receivedCredit)
+        self.receivedDebit = try container.sdkDecodeIfPresent(.receivedDebit)
+        if let value = self.receivedCredit {
             try validateLength("received_credit", value, min: nil, max: 5000)
         }
-        if let value = receivedDebit {
+        if let value = self.receivedDebit {
             try validateLength("received_debit", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension IssuingTransactionTreasury {
-    init(receivedCredit: String? = nil, receivedDebit: String? = nil) throws {
+extension IssuingTransactionTreasury {
+    public init(receivedCredit: String? = nil, receivedDebit: String? = nil) throws {
         self.init()
         (self.receivedCredit, self.receivedDebit) = (receivedCredit, receivedDebit)
         if let value = self.receivedCredit {

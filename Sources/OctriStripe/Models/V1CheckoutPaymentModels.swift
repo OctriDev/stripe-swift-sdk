@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1CheckoutPayment domain models
+// V1CheckoutPayment domain models
 /// Typed representation of the `CheckoutPaymentMethodOptionsMandateOptionsBacsDebit` API schema.
 public struct CheckoutPaymentMethodOptionsMandateOptionsBacsDebit: Codable {
     /// Prefix used to generate the Mandate reference. Must be at most 12 characters long. Must consist of only
@@ -16,22 +16,22 @@ public struct CheckoutPaymentMethodOptionsMandateOptionsBacsDebit: Codable {
     }
 
     init() {
-        referencePrefix = nil
+        self.referencePrefix = nil
     }
 }
 
-public extension CheckoutPaymentMethodOptionsMandateOptionsBacsDebit {
-    init(from decoder: Decoder) throws {
+extension CheckoutPaymentMethodOptionsMandateOptionsBacsDebit {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        referencePrefix = try container.sdkDecodeIfPresent(.referencePrefix)
-        if let value = referencePrefix {
+        self.referencePrefix = try container.sdkDecodeIfPresent(.referencePrefix)
+        if let value = self.referencePrefix {
             try validateLength("reference_prefix", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension CheckoutPaymentMethodOptionsMandateOptionsBacsDebit {
-    init(referencePrefix: String? = nil) throws {
+extension CheckoutPaymentMethodOptionsMandateOptionsBacsDebit {
+    public init(referencePrefix: String? = nil) throws {
         self.init()
         self.referencePrefix = referencePrefix
         if let value = self.referencePrefix {
@@ -52,22 +52,22 @@ public struct CheckoutPaymentMethodOptionsMandateOptionsSepaDebit: Codable {
     }
 
     init() {
-        referencePrefix = nil
+        self.referencePrefix = nil
     }
 }
 
-public extension CheckoutPaymentMethodOptionsMandateOptionsSepaDebit {
-    init(from decoder: Decoder) throws {
+extension CheckoutPaymentMethodOptionsMandateOptionsSepaDebit {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        referencePrefix = try container.sdkDecodeIfPresent(.referencePrefix)
-        if let value = referencePrefix {
+        self.referencePrefix = try container.sdkDecodeIfPresent(.referencePrefix)
+        if let value = self.referencePrefix {
             try validateLength("reference_prefix", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension CheckoutPaymentMethodOptionsMandateOptionsSepaDebit {
-    init(referencePrefix: String? = nil) throws {
+extension CheckoutPaymentMethodOptionsMandateOptionsSepaDebit {
+    public init(referencePrefix: String? = nil) throws {
         self.init()
         self.referencePrefix = referencePrefix
         if let value = self.referencePrefix {

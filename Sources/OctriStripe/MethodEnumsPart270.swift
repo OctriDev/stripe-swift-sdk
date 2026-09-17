@@ -11,15 +11,12 @@ import Foundation
 public struct GetSetupIntentsResponseObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let list = GetSetupIntentsResponseObject(rawValue: "list")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -28,18 +25,13 @@ public struct GetSetupIntentsResponseObject: RawRepresentable, Hashable, Codable
     }
 }
 
-public struct PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let acssDebit = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "acss_debit")
     public static let affirm = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "affirm")
-    public static let afterpayClearpay =
-        PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "afterpay_clearpay")
+    public static let afterpayClearpay = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "afterpay_clearpay")
     public static let alipay = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "alipay")
     public static let alma = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "alma")
     public static let amazonPay = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "amazon_pay")
@@ -49,8 +41,7 @@ public struct PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem: RawRepre
     public static let billie = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "billie")
     public static let bizum = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "bizum")
     public static let blik = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "blik")
-    public static let bokuPromptpay =
-        PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "boku_promptpay")
+    public static let bokuPromptpay = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "boku_promptpay")
     public static let boleto = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "boleto")
     public static let capchasePay = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "capchase_pay")
     public static let card = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "card")
@@ -58,14 +49,11 @@ public struct PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem: RawRepre
     public static let checkScan = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "check_scan")
     public static let clickToPay = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "click_to_pay")
     public static let crypto = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "crypto")
-    public static let customerBalance =
-        PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "customer_balance")
+    public static let customerBalance = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "customer_balance")
     public static let demoPay = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "demo_pay")
     public static let duitnow = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "duitnow")
-    public static let dummyAuthPush =
-        PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "dummy_auth_push")
-    public static let dummyPassthroughCard =
-        PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "dummy_passthrough_card")
+    public static let dummyAuthPush = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "dummy_auth_push")
+    public static let dummyPassthroughCard = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "dummy_passthrough_card")
     public static let edenred = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "edenred")
     public static let eps = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "eps")
     public static let fpx = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "fpx")
@@ -75,8 +63,7 @@ public struct PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem: RawRepre
     public static let giropay = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "giropay")
     public static let gopay = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "gopay")
     public static let grabpay = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "grabpay")
-    public static let idBankTransfer =
-        PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "id_bank_transfer")
+    public static let idBankTransfer = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "id_bank_transfer")
     public static let ideal = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "ideal")
     public static let kakaoPay = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "kakao_pay")
     public static let klarna = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "klarna")
@@ -94,14 +81,12 @@ public struct PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem: RawRepre
     public static let naverPay = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "naver_pay")
     public static let netbanking = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "netbanking")
     public static let ngBank = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "ng_bank")
-    public static let ngBankTransfer =
-        PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "ng_bank_transfer")
+    public static let ngBankTransfer = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "ng_bank_transfer")
     public static let ngCard = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "ng_card")
     public static let ngMarket = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "ng_market")
     public static let ngUssd = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "ng_ussd")
     public static let ngWallet = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "ng_wallet")
-    public static let nzBankAccount =
-        PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "nz_bank_account")
+    public static let nzBankAccount = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "nz_bank_account")
     public static let octopus = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "octopus")
     public static let oxxo = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "oxxo")
     public static let p24 = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "p24")
@@ -125,10 +110,8 @@ public struct PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem: RawRepre
     public static let shopPay = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "shop_pay")
     public static let shopeepay = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "shopeepay")
     public static let sofort = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "sofort")
-    public static let southKoreaMarket =
-        PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "south_korea_market")
-    public static let stripeBalance =
-        PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "stripe_balance")
+    public static let southKoreaMarket = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "south_korea_market")
+    public static let stripeBalance = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "stripe_balance")
     public static let sunbit = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "sunbit")
     public static let swish = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "swish")
     public static let tamara = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "tamara")
@@ -137,10 +120,8 @@ public struct PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem: RawRepre
     public static let truemoney = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "truemoney")
     public static let twint = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "twint")
     public static let upi = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "upi")
-    public static let usBankAccount =
-        PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "us_bank_account")
-    public static let usCashVoucher =
-        PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "us_cash_voucher")
+    public static let usBankAccount = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "us_bank_account")
+    public static let usCashVoucher = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "us_cash_voucher")
     public static let vipps = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "vipps")
     public static let wechatPay = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "wechat_pay")
     public static let wero = PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem(rawValue: "wero")
@@ -148,7 +129,7 @@ public struct PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem: RawRepre
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -157,20 +138,16 @@ public struct PostSetupIntentsRequestBodyAllowedPaymentMethodTypesItem: RawRepre
     }
 }
 
-public struct PostSetupIntentsRequestBodyAutomaticPaymentMethodsAllowRedirects: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct PostSetupIntentsRequestBodyAutomaticPaymentMethodsAllowRedirects: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let always = PostSetupIntentsRequestBodyAutomaticPaymentMethodsAllowRedirects(rawValue: "always")
     public static let never = PostSetupIntentsRequestBodyAutomaticPaymentMethodsAllowRedirects(rawValue: "never")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

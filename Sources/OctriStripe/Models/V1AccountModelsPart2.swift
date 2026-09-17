@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1Account domain models
+// V1Account domain models
 /// Typed representation of the `AccountCapabilities` API schema.
 public struct AccountCapabilities: Codable {
     /// The status of the Canadian pre-authorized debits payments capability of the account, or whether the account
@@ -273,8 +273,8 @@ extension AccountCapabilities {
     }
 }
 
-public extension AccountCapabilities {
-    init(from decoder: Decoder) throws {
+extension AccountCapabilities {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.init(sdkDefaults: ())
         try sdkDecodeFieldsPart1(container)
@@ -286,75 +286,8 @@ public extension AccountCapabilities {
     }
 }
 
-public extension AccountCapabilities {
-    init(
-        acssDebitPayments: AccountCapabilitiesAcssDebitPayments? = nil,
-        affirmPayments: AccountCapabilitiesAffirmPayments? = nil,
-        afterpayClearpayPayments: AccountCapabilitiesAfterpayClearpayPayments? = nil,
-        almaPayments: AccountCapabilitiesAlmaPayments? = nil,
-        amazonPayPayments: AccountCapabilitiesAmazonPayPayments? = nil,
-        appDistribution: AccountCapabilitiesAppDistribution? = nil,
-        auBecsDebitPayments: AccountCapabilitiesAuBecsDebitPayments? = nil,
-        bacsDebitPayments: AccountCapabilitiesBacsDebitPayments? = nil,
-        bancontactPayments: AccountCapabilitiesBancontactPayments? = nil,
-        bankTransferPayments: AccountCapabilitiesBankTransferPayments? = nil,
-        billiePayments: AccountCapabilitiesBilliePayments? = nil,
-        bizumPayments: AccountCapabilitiesBizumPayments? = nil,
-        blikPayments: AccountCapabilitiesBlikPayments? = nil,
-        boletoPayments: AccountCapabilitiesBoletoPayments? = nil,
-        cardIssuing: AccountCapabilitiesCardIssuing? = nil,
-        cardPayments: AccountCapabilitiesCardPayments? = nil,
-        cartesBancairesPayments: AccountCapabilitiesCartesBancairesPayments? = nil,
-        cashappPayments: AccountCapabilitiesCashappPayments? = nil,
-        cryptoPayments: AccountCapabilitiesCryptoPayments? = nil,
-        epsPayments: AccountCapabilitiesEpsPayments? = nil,
-        fpxPayments: AccountCapabilitiesFpxPayments? = nil,
-        gbBankTransferPayments: AccountCapabilitiesGbBankTransferPayments? = nil,
-        giropayPayments: AccountCapabilitiesGiropayPayments? = nil,
-        grabpayPayments: AccountCapabilitiesGrabpayPayments? = nil,
-        idealPayments: AccountCapabilitiesIdealPayments? = nil,
-        indiaInternationalPayments: AccountCapabilitiesIndiaInternationalPayments? = nil,
-        jcbPayments: AccountCapabilitiesJcbPayments? = nil,
-        jpBankTransferPayments: AccountCapabilitiesJpBankTransferPayments? = nil,
-        kakaoPayPayments: AccountCapabilitiesKakaoPayPayments? = nil,
-        klarnaPayments: AccountCapabilitiesKlarnaPayments? = nil,
-        konbiniPayments: AccountCapabilitiesKonbiniPayments? = nil,
-        krCardPayments: AccountCapabilitiesKrCardPayments? = nil,
-        legacyPayments: AccountCapabilitiesLegacyPayments? = nil,
-        linkPayments: AccountCapabilitiesLinkPayments? = nil,
-        mbWayPayments: AccountCapabilitiesMbWayPayments? = nil,
-        mobilepayPayments: AccountCapabilitiesMobilepayPayments? = nil,
-        multibancoPayments: AccountCapabilitiesMultibancoPayments? = nil,
-        mxBankTransferPayments: AccountCapabilitiesMxBankTransferPayments? = nil,
-        naverPayPayments: AccountCapabilitiesNaverPayPayments? = nil,
-        nzBankAccountBecsDebitPayments: AccountCapabilitiesNzBankAccountBecsDebitPayments? = nil,
-        oxxoPayments: AccountCapabilitiesOxxoPayments? = nil,
-        p24Payments: AccountCapabilitiesP24Payments? = nil,
-        payByBankPayments: AccountCapabilitiesPayByBankPayments? = nil,
-        paycoPayments: AccountCapabilitiesPaycoPayments? = nil,
-        paynowPayments: AccountCapabilitiesPaynowPayments? = nil,
-        paytoPayments: AccountCapabilitiesPaytoPayments? = nil,
-        pixPayments: AccountCapabilitiesPixPayments? = nil,
-        promptpayPayments: AccountCapabilitiesPromptpayPayments? = nil,
-        revolutPayPayments: AccountCapabilitiesRevolutPayPayments? = nil,
-        samsungPayPayments: AccountCapabilitiesSamsungPayPayments? = nil,
-        satispayPayments: AccountCapabilitiesSatispayPayments? = nil,
-        scalapayPayments: AccountCapabilitiesScalapayPayments? = nil,
-        sepaBankTransferPayments: AccountCapabilitiesSepaBankTransferPayments? = nil,
-        sepaDebitPayments: AccountCapabilitiesSepaDebitPayments? = nil,
-        sofortPayments: AccountCapabilitiesSofortPayments? = nil,
-        sunbitPayments: AccountCapabilitiesSunbitPayments? = nil,
-        swishPayments: AccountCapabilitiesSwishPayments? = nil,
-        taxReportingUs1099K: AccountCapabilitiesTaxReportingUs1099K? = nil,
-        taxReportingUs1099Misc: AccountCapabilitiesTaxReportingUs1099Misc? = nil,
-        transfers: AccountCapabilitiesTransfers? = nil,
-        treasury: AccountCapabilitiesTreasury? = nil,
-        twintPayments: AccountCapabilitiesTwintPayments? = nil,
-        upiPayments: AccountCapabilitiesUpiPayments? = nil,
-        usBankAccountAchPayments: AccountCapabilitiesUsBankAccountAchPayments? = nil,
-        usBankTransferPayments: AccountCapabilitiesUsBankTransferPayments? = nil,
-        zipPayments: AccountCapabilitiesZipPayments? = nil
-    ) {
+extension AccountCapabilities {
+    public init(acssDebitPayments: AccountCapabilitiesAcssDebitPayments? = nil, affirmPayments: AccountCapabilitiesAffirmPayments? = nil, afterpayClearpayPayments: AccountCapabilitiesAfterpayClearpayPayments? = nil, almaPayments: AccountCapabilitiesAlmaPayments? = nil, amazonPayPayments: AccountCapabilitiesAmazonPayPayments? = nil, appDistribution: AccountCapabilitiesAppDistribution? = nil, auBecsDebitPayments: AccountCapabilitiesAuBecsDebitPayments? = nil, bacsDebitPayments: AccountCapabilitiesBacsDebitPayments? = nil, bancontactPayments: AccountCapabilitiesBancontactPayments? = nil, bankTransferPayments: AccountCapabilitiesBankTransferPayments? = nil, billiePayments: AccountCapabilitiesBilliePayments? = nil, bizumPayments: AccountCapabilitiesBizumPayments? = nil, blikPayments: AccountCapabilitiesBlikPayments? = nil, boletoPayments: AccountCapabilitiesBoletoPayments? = nil, cardIssuing: AccountCapabilitiesCardIssuing? = nil, cardPayments: AccountCapabilitiesCardPayments? = nil, cartesBancairesPayments: AccountCapabilitiesCartesBancairesPayments? = nil, cashappPayments: AccountCapabilitiesCashappPayments? = nil, cryptoPayments: AccountCapabilitiesCryptoPayments? = nil, epsPayments: AccountCapabilitiesEpsPayments? = nil, fpxPayments: AccountCapabilitiesFpxPayments? = nil, gbBankTransferPayments: AccountCapabilitiesGbBankTransferPayments? = nil, giropayPayments: AccountCapabilitiesGiropayPayments? = nil, grabpayPayments: AccountCapabilitiesGrabpayPayments? = nil, idealPayments: AccountCapabilitiesIdealPayments? = nil, indiaInternationalPayments: AccountCapabilitiesIndiaInternationalPayments? = nil, jcbPayments: AccountCapabilitiesJcbPayments? = nil, jpBankTransferPayments: AccountCapabilitiesJpBankTransferPayments? = nil, kakaoPayPayments: AccountCapabilitiesKakaoPayPayments? = nil, klarnaPayments: AccountCapabilitiesKlarnaPayments? = nil, konbiniPayments: AccountCapabilitiesKonbiniPayments? = nil, krCardPayments: AccountCapabilitiesKrCardPayments? = nil, legacyPayments: AccountCapabilitiesLegacyPayments? = nil, linkPayments: AccountCapabilitiesLinkPayments? = nil, mbWayPayments: AccountCapabilitiesMbWayPayments? = nil, mobilepayPayments: AccountCapabilitiesMobilepayPayments? = nil, multibancoPayments: AccountCapabilitiesMultibancoPayments? = nil, mxBankTransferPayments: AccountCapabilitiesMxBankTransferPayments? = nil, naverPayPayments: AccountCapabilitiesNaverPayPayments? = nil, nzBankAccountBecsDebitPayments: AccountCapabilitiesNzBankAccountBecsDebitPayments? = nil, oxxoPayments: AccountCapabilitiesOxxoPayments? = nil, p24Payments: AccountCapabilitiesP24Payments? = nil, payByBankPayments: AccountCapabilitiesPayByBankPayments? = nil, paycoPayments: AccountCapabilitiesPaycoPayments? = nil, paynowPayments: AccountCapabilitiesPaynowPayments? = nil, paytoPayments: AccountCapabilitiesPaytoPayments? = nil, pixPayments: AccountCapabilitiesPixPayments? = nil, promptpayPayments: AccountCapabilitiesPromptpayPayments? = nil, revolutPayPayments: AccountCapabilitiesRevolutPayPayments? = nil, samsungPayPayments: AccountCapabilitiesSamsungPayPayments? = nil, satispayPayments: AccountCapabilitiesSatispayPayments? = nil, scalapayPayments: AccountCapabilitiesScalapayPayments? = nil, sepaBankTransferPayments: AccountCapabilitiesSepaBankTransferPayments? = nil, sepaDebitPayments: AccountCapabilitiesSepaDebitPayments? = nil, sofortPayments: AccountCapabilitiesSofortPayments? = nil, sunbitPayments: AccountCapabilitiesSunbitPayments? = nil, swishPayments: AccountCapabilitiesSwishPayments? = nil, taxReportingUs1099K: AccountCapabilitiesTaxReportingUs1099K? = nil, taxReportingUs1099Misc: AccountCapabilitiesTaxReportingUs1099Misc? = nil, transfers: AccountCapabilitiesTransfers? = nil, treasury: AccountCapabilitiesTreasury? = nil, twintPayments: AccountCapabilitiesTwintPayments? = nil, upiPayments: AccountCapabilitiesUpiPayments? = nil, usBankAccountAchPayments: AccountCapabilitiesUsBankAccountAchPayments? = nil, usBankTransferPayments: AccountCapabilitiesUsBankTransferPayments? = nil, zipPayments: AccountCapabilitiesZipPayments? = nil) {
         self.init(sdkDefaults: ())
         sdkSet1(acssDebitPayments, affirmPayments, afterpayClearpayPayments, almaPayments, amazonPayPayments)
         sdkSet2(appDistribution, auBecsDebitPayments, bacsDebitPayments, bancontactPayments, bankTransferPayments)
@@ -374,13 +307,7 @@ public extension AccountCapabilities {
 }
 
 extension AccountCapabilities {
-    mutating func sdkSet1(
-        _ acssDebitPayments: AccountCapabilitiesAcssDebitPayments?,
-        _ affirmPayments: AccountCapabilitiesAffirmPayments?,
-        _ afterpayClearpayPayments: AccountCapabilitiesAfterpayClearpayPayments?,
-        _ almaPayments: AccountCapabilitiesAlmaPayments?,
-        _ amazonPayPayments: AccountCapabilitiesAmazonPayPayments?
-    ) {
+    mutating func sdkSet1(_ acssDebitPayments: AccountCapabilitiesAcssDebitPayments?, _ affirmPayments: AccountCapabilitiesAffirmPayments?, _ afterpayClearpayPayments: AccountCapabilitiesAfterpayClearpayPayments?, _ almaPayments: AccountCapabilitiesAlmaPayments?, _ amazonPayPayments: AccountCapabilitiesAmazonPayPayments?) {
         self.acssDebitPayments = acssDebitPayments
         self.affirmPayments = affirmPayments
         self.afterpayClearpayPayments = afterpayClearpayPayments
@@ -390,13 +317,7 @@ extension AccountCapabilities {
 }
 
 extension AccountCapabilities {
-    mutating func sdkSet2(
-        _ appDistribution: AccountCapabilitiesAppDistribution?,
-        _ auBecsDebitPayments: AccountCapabilitiesAuBecsDebitPayments?,
-        _ bacsDebitPayments: AccountCapabilitiesBacsDebitPayments?,
-        _ bancontactPayments: AccountCapabilitiesBancontactPayments?,
-        _ bankTransferPayments: AccountCapabilitiesBankTransferPayments?
-    ) {
+    mutating func sdkSet2(_ appDistribution: AccountCapabilitiesAppDistribution?, _ auBecsDebitPayments: AccountCapabilitiesAuBecsDebitPayments?, _ bacsDebitPayments: AccountCapabilitiesBacsDebitPayments?, _ bancontactPayments: AccountCapabilitiesBancontactPayments?, _ bankTransferPayments: AccountCapabilitiesBankTransferPayments?) {
         self.appDistribution = appDistribution
         self.auBecsDebitPayments = auBecsDebitPayments
         self.bacsDebitPayments = bacsDebitPayments
@@ -406,13 +327,7 @@ extension AccountCapabilities {
 }
 
 extension AccountCapabilities {
-    mutating func sdkSet3(
-        _ billiePayments: AccountCapabilitiesBilliePayments?,
-        _ bizumPayments: AccountCapabilitiesBizumPayments?,
-        _ blikPayments: AccountCapabilitiesBlikPayments?,
-        _ boletoPayments: AccountCapabilitiesBoletoPayments?,
-        _ cardIssuing: AccountCapabilitiesCardIssuing?
-    ) {
+    mutating func sdkSet3(_ billiePayments: AccountCapabilitiesBilliePayments?, _ bizumPayments: AccountCapabilitiesBizumPayments?, _ blikPayments: AccountCapabilitiesBlikPayments?, _ boletoPayments: AccountCapabilitiesBoletoPayments?, _ cardIssuing: AccountCapabilitiesCardIssuing?) {
         self.billiePayments = billiePayments
         self.bizumPayments = bizumPayments
         self.blikPayments = blikPayments
@@ -422,13 +337,7 @@ extension AccountCapabilities {
 }
 
 extension AccountCapabilities {
-    mutating func sdkSet4(
-        _ cardPayments: AccountCapabilitiesCardPayments?,
-        _ cartesBancairesPayments: AccountCapabilitiesCartesBancairesPayments?,
-        _ cashappPayments: AccountCapabilitiesCashappPayments?,
-        _ cryptoPayments: AccountCapabilitiesCryptoPayments?,
-        _ epsPayments: AccountCapabilitiesEpsPayments?
-    ) {
+    mutating func sdkSet4(_ cardPayments: AccountCapabilitiesCardPayments?, _ cartesBancairesPayments: AccountCapabilitiesCartesBancairesPayments?, _ cashappPayments: AccountCapabilitiesCashappPayments?, _ cryptoPayments: AccountCapabilitiesCryptoPayments?, _ epsPayments: AccountCapabilitiesEpsPayments?) {
         self.cardPayments = cardPayments
         self.cartesBancairesPayments = cartesBancairesPayments
         self.cashappPayments = cashappPayments
@@ -438,13 +347,7 @@ extension AccountCapabilities {
 }
 
 extension AccountCapabilities {
-    mutating func sdkSet5(
-        _ fpxPayments: AccountCapabilitiesFpxPayments?,
-        _ gbBankTransferPayments: AccountCapabilitiesGbBankTransferPayments?,
-        _ giropayPayments: AccountCapabilitiesGiropayPayments?,
-        _ grabpayPayments: AccountCapabilitiesGrabpayPayments?,
-        _ idealPayments: AccountCapabilitiesIdealPayments?
-    ) {
+    mutating func sdkSet5(_ fpxPayments: AccountCapabilitiesFpxPayments?, _ gbBankTransferPayments: AccountCapabilitiesGbBankTransferPayments?, _ giropayPayments: AccountCapabilitiesGiropayPayments?, _ grabpayPayments: AccountCapabilitiesGrabpayPayments?, _ idealPayments: AccountCapabilitiesIdealPayments?) {
         self.fpxPayments = fpxPayments
         self.gbBankTransferPayments = gbBankTransferPayments
         self.giropayPayments = giropayPayments
@@ -454,13 +357,7 @@ extension AccountCapabilities {
 }
 
 extension AccountCapabilities {
-    mutating func sdkSet6(
-        _ indiaInternationalPayments: AccountCapabilitiesIndiaInternationalPayments?,
-        _ jcbPayments: AccountCapabilitiesJcbPayments?,
-        _ jpBankTransferPayments: AccountCapabilitiesJpBankTransferPayments?,
-        _ kakaoPayPayments: AccountCapabilitiesKakaoPayPayments?,
-        _ klarnaPayments: AccountCapabilitiesKlarnaPayments?
-    ) {
+    mutating func sdkSet6(_ indiaInternationalPayments: AccountCapabilitiesIndiaInternationalPayments?, _ jcbPayments: AccountCapabilitiesJcbPayments?, _ jpBankTransferPayments: AccountCapabilitiesJpBankTransferPayments?, _ kakaoPayPayments: AccountCapabilitiesKakaoPayPayments?, _ klarnaPayments: AccountCapabilitiesKlarnaPayments?) {
         self.indiaInternationalPayments = indiaInternationalPayments
         self.jcbPayments = jcbPayments
         self.jpBankTransferPayments = jpBankTransferPayments
@@ -470,13 +367,7 @@ extension AccountCapabilities {
 }
 
 extension AccountCapabilities {
-    mutating func sdkSet7(
-        _ konbiniPayments: AccountCapabilitiesKonbiniPayments?,
-        _ krCardPayments: AccountCapabilitiesKrCardPayments?,
-        _ legacyPayments: AccountCapabilitiesLegacyPayments?,
-        _ linkPayments: AccountCapabilitiesLinkPayments?,
-        _ mbWayPayments: AccountCapabilitiesMbWayPayments?
-    ) {
+    mutating func sdkSet7(_ konbiniPayments: AccountCapabilitiesKonbiniPayments?, _ krCardPayments: AccountCapabilitiesKrCardPayments?, _ legacyPayments: AccountCapabilitiesLegacyPayments?, _ linkPayments: AccountCapabilitiesLinkPayments?, _ mbWayPayments: AccountCapabilitiesMbWayPayments?) {
         self.konbiniPayments = konbiniPayments
         self.krCardPayments = krCardPayments
         self.legacyPayments = legacyPayments
@@ -486,12 +377,7 @@ extension AccountCapabilities {
 }
 
 extension AccountCapabilities {
-    mutating func sdkSet8(
-        _ mobilepayPayments: AccountCapabilitiesMobilepayPayments?,
-        _ multibancoPayments: AccountCapabilitiesMultibancoPayments?,
-        _ mxBankTransferPayments: AccountCapabilitiesMxBankTransferPayments?,
-        _ naverPayPayments: AccountCapabilitiesNaverPayPayments?
-    ) {
+    mutating func sdkSet8(_ mobilepayPayments: AccountCapabilitiesMobilepayPayments?, _ multibancoPayments: AccountCapabilitiesMultibancoPayments?, _ mxBankTransferPayments: AccountCapabilitiesMxBankTransferPayments?, _ naverPayPayments: AccountCapabilitiesNaverPayPayments?) {
         self.mobilepayPayments = mobilepayPayments
         self.multibancoPayments = multibancoPayments
         self.mxBankTransferPayments = mxBankTransferPayments
@@ -500,13 +386,7 @@ extension AccountCapabilities {
 }
 
 extension AccountCapabilities {
-    mutating func sdkSet9(
-        _ nzBankAccountBecsDebitPayments: AccountCapabilitiesNzBankAccountBecsDebitPayments?,
-        _ oxxoPayments: AccountCapabilitiesOxxoPayments?,
-        _ p24Payments: AccountCapabilitiesP24Payments?,
-        _ payByBankPayments: AccountCapabilitiesPayByBankPayments?,
-        _ paycoPayments: AccountCapabilitiesPaycoPayments?
-    ) {
+    mutating func sdkSet9(_ nzBankAccountBecsDebitPayments: AccountCapabilitiesNzBankAccountBecsDebitPayments?, _ oxxoPayments: AccountCapabilitiesOxxoPayments?, _ p24Payments: AccountCapabilitiesP24Payments?, _ payByBankPayments: AccountCapabilitiesPayByBankPayments?, _ paycoPayments: AccountCapabilitiesPaycoPayments?) {
         self.nzBankAccountBecsDebitPayments = nzBankAccountBecsDebitPayments
         self.oxxoPayments = oxxoPayments
         self.p24Payments = p24Payments
@@ -516,13 +396,7 @@ extension AccountCapabilities {
 }
 
 extension AccountCapabilities {
-    mutating func sdkSet10(
-        _ paynowPayments: AccountCapabilitiesPaynowPayments?,
-        _ paytoPayments: AccountCapabilitiesPaytoPayments?,
-        _ pixPayments: AccountCapabilitiesPixPayments?,
-        _ promptpayPayments: AccountCapabilitiesPromptpayPayments?,
-        _ revolutPayPayments: AccountCapabilitiesRevolutPayPayments?
-    ) {
+    mutating func sdkSet10(_ paynowPayments: AccountCapabilitiesPaynowPayments?, _ paytoPayments: AccountCapabilitiesPaytoPayments?, _ pixPayments: AccountCapabilitiesPixPayments?, _ promptpayPayments: AccountCapabilitiesPromptpayPayments?, _ revolutPayPayments: AccountCapabilitiesRevolutPayPayments?) {
         self.paynowPayments = paynowPayments
         self.paytoPayments = paytoPayments
         self.pixPayments = pixPayments
@@ -532,13 +406,7 @@ extension AccountCapabilities {
 }
 
 extension AccountCapabilities {
-    mutating func sdkSet11(
-        _ samsungPayPayments: AccountCapabilitiesSamsungPayPayments?,
-        _ satispayPayments: AccountCapabilitiesSatispayPayments?,
-        _ scalapayPayments: AccountCapabilitiesScalapayPayments?,
-        _ sepaBankTransferPayments: AccountCapabilitiesSepaBankTransferPayments?,
-        _ sepaDebitPayments: AccountCapabilitiesSepaDebitPayments?
-    ) {
+    mutating func sdkSet11(_ samsungPayPayments: AccountCapabilitiesSamsungPayPayments?, _ satispayPayments: AccountCapabilitiesSatispayPayments?, _ scalapayPayments: AccountCapabilitiesScalapayPayments?, _ sepaBankTransferPayments: AccountCapabilitiesSepaBankTransferPayments?, _ sepaDebitPayments: AccountCapabilitiesSepaDebitPayments?) {
         self.samsungPayPayments = samsungPayPayments
         self.satispayPayments = satispayPayments
         self.scalapayPayments = scalapayPayments
@@ -548,13 +416,7 @@ extension AccountCapabilities {
 }
 
 extension AccountCapabilities {
-    mutating func sdkSet12(
-        _ sofortPayments: AccountCapabilitiesSofortPayments?,
-        _ sunbitPayments: AccountCapabilitiesSunbitPayments?,
-        _ swishPayments: AccountCapabilitiesSwishPayments?,
-        _ taxReportingUs1099K: AccountCapabilitiesTaxReportingUs1099K?,
-        _ taxReportingUs1099Misc: AccountCapabilitiesTaxReportingUs1099Misc?
-    ) {
+    mutating func sdkSet12(_ sofortPayments: AccountCapabilitiesSofortPayments?, _ sunbitPayments: AccountCapabilitiesSunbitPayments?, _ swishPayments: AccountCapabilitiesSwishPayments?, _ taxReportingUs1099K: AccountCapabilitiesTaxReportingUs1099K?, _ taxReportingUs1099Misc: AccountCapabilitiesTaxReportingUs1099Misc?) {
         self.sofortPayments = sofortPayments
         self.sunbitPayments = sunbitPayments
         self.swishPayments = swishPayments
@@ -564,13 +426,7 @@ extension AccountCapabilities {
 }
 
 extension AccountCapabilities {
-    mutating func sdkSet13(
-        _ transfers: AccountCapabilitiesTransfers?,
-        _ treasury: AccountCapabilitiesTreasury?,
-        _ twintPayments: AccountCapabilitiesTwintPayments?,
-        _ upiPayments: AccountCapabilitiesUpiPayments?,
-        _ usBankAccountAchPayments: AccountCapabilitiesUsBankAccountAchPayments?
-    ) {
+    mutating func sdkSet13(_ transfers: AccountCapabilitiesTransfers?, _ treasury: AccountCapabilitiesTreasury?, _ twintPayments: AccountCapabilitiesTwintPayments?, _ upiPayments: AccountCapabilitiesUpiPayments?, _ usBankAccountAchPayments: AccountCapabilitiesUsBankAccountAchPayments?) {
         self.transfers = transfers
         self.treasury = treasury
         self.twintPayments = twintPayments
@@ -580,10 +436,7 @@ extension AccountCapabilities {
 }
 
 extension AccountCapabilities {
-    mutating func sdkSet14(
-        _ usBankTransferPayments: AccountCapabilitiesUsBankTransferPayments?,
-        _ zipPayments: AccountCapabilitiesZipPayments?
-    ) {
+    mutating func sdkSet14(_ usBankTransferPayments: AccountCapabilitiesUsBankTransferPayments?, _ zipPayments: AccountCapabilitiesZipPayments?) {
         self.usBankTransferPayments = usBankTransferPayments
         self.zipPayments = zipPayments
     }
@@ -591,34 +444,34 @@ extension AccountCapabilities {
 
 extension AccountCapabilities {
     mutating func sdkDecodeFieldsPart1(_ container: KeyedDecodingContainer<CodingKeys>) throws {
-        acssDebitPayments = try container.sdkDecodeIfPresent(.acssDebitPayments)
-        affirmPayments = try container.sdkDecodeIfPresent(.affirmPayments)
-        afterpayClearpayPayments = try container.sdkDecodeIfPresent(.afterpayClearpayPayments)
-        almaPayments = try container.sdkDecodeIfPresent(.almaPayments)
-        amazonPayPayments = try container.sdkDecodeIfPresent(.amazonPayPayments)
-        appDistribution = try container.sdkDecodeIfPresent(.appDistribution)
-        auBecsDebitPayments = try container.sdkDecodeIfPresent(.auBecsDebitPayments)
-        bacsDebitPayments = try container.sdkDecodeIfPresent(.bacsDebitPayments)
-        bancontactPayments = try container.sdkDecodeIfPresent(.bancontactPayments)
-        bankTransferPayments = try container.sdkDecodeIfPresent(.bankTransferPayments)
-        billiePayments = try container.sdkDecodeIfPresent(.billiePayments)
-        bizumPayments = try container.sdkDecodeIfPresent(.bizumPayments)
+        self.acssDebitPayments = try container.sdkDecodeIfPresent(.acssDebitPayments)
+        self.affirmPayments = try container.sdkDecodeIfPresent(.affirmPayments)
+        self.afterpayClearpayPayments = try container.sdkDecodeIfPresent(.afterpayClearpayPayments)
+        self.almaPayments = try container.sdkDecodeIfPresent(.almaPayments)
+        self.amazonPayPayments = try container.sdkDecodeIfPresent(.amazonPayPayments)
+        self.appDistribution = try container.sdkDecodeIfPresent(.appDistribution)
+        self.auBecsDebitPayments = try container.sdkDecodeIfPresent(.auBecsDebitPayments)
+        self.bacsDebitPayments = try container.sdkDecodeIfPresent(.bacsDebitPayments)
+        self.bancontactPayments = try container.sdkDecodeIfPresent(.bancontactPayments)
+        self.bankTransferPayments = try container.sdkDecodeIfPresent(.bankTransferPayments)
+        self.billiePayments = try container.sdkDecodeIfPresent(.billiePayments)
+        self.bizumPayments = try container.sdkDecodeIfPresent(.bizumPayments)
     }
 }
 
 extension AccountCapabilities {
     mutating func sdkDecodeFieldsPart2(_ container: KeyedDecodingContainer<CodingKeys>) throws {
-        blikPayments = try container.sdkDecodeIfPresent(.blikPayments)
-        boletoPayments = try container.sdkDecodeIfPresent(.boletoPayments)
-        cardIssuing = try container.sdkDecodeIfPresent(.cardIssuing)
-        cardPayments = try container.sdkDecodeIfPresent(.cardPayments)
-        cartesBancairesPayments = try container.sdkDecodeIfPresent(.cartesBancairesPayments)
-        cashappPayments = try container.sdkDecodeIfPresent(.cashappPayments)
-        cryptoPayments = try container.sdkDecodeIfPresent(.cryptoPayments)
-        epsPayments = try container.sdkDecodeIfPresent(.epsPayments)
-        fpxPayments = try container.sdkDecodeIfPresent(.fpxPayments)
-        gbBankTransferPayments = try container.sdkDecodeIfPresent(.gbBankTransferPayments)
-        giropayPayments = try container.sdkDecodeIfPresent(.giropayPayments)
-        grabpayPayments = try container.sdkDecodeIfPresent(.grabpayPayments)
+        self.blikPayments = try container.sdkDecodeIfPresent(.blikPayments)
+        self.boletoPayments = try container.sdkDecodeIfPresent(.boletoPayments)
+        self.cardIssuing = try container.sdkDecodeIfPresent(.cardIssuing)
+        self.cardPayments = try container.sdkDecodeIfPresent(.cardPayments)
+        self.cartesBancairesPayments = try container.sdkDecodeIfPresent(.cartesBancairesPayments)
+        self.cashappPayments = try container.sdkDecodeIfPresent(.cashappPayments)
+        self.cryptoPayments = try container.sdkDecodeIfPresent(.cryptoPayments)
+        self.epsPayments = try container.sdkDecodeIfPresent(.epsPayments)
+        self.fpxPayments = try container.sdkDecodeIfPresent(.fpxPayments)
+        self.gbBankTransferPayments = try container.sdkDecodeIfPresent(.gbBankTransferPayments)
+        self.giropayPayments = try container.sdkDecodeIfPresent(.giropayPayments)
+        self.grabpayPayments = try container.sdkDecodeIfPresent(.grabpayPayments)
     }
 }

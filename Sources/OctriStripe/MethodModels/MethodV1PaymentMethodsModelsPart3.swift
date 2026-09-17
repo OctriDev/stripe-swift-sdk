@@ -7,16 +7,16 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1PaymentMethods operation model declarations
+// Canonical v1PaymentMethods operation model declarations
 /// If this is a `paypal` PaymentMethod, this hash contains details about the PayPal payment method.
 public struct PostPaymentMethodsRequestBodyPaypal: Codable {
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostPaymentMethodsRequestBodyPaypal {
-    init() {}
+extension PostPaymentMethodsRequestBodyPaypal {
+    public init() {
+    }
 }
 
 /// If this is a `sepa_debit` PaymentMethod, this hash contains details about the SEPA debit bank account.
@@ -27,30 +27,24 @@ public struct PostPaymentMethodsRequestBodySepaDebit: Codable {
         case iban
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostPaymentMethodsRequestBodySepaDebit {
-    init(from decoder: Decoder) throws {
+extension PostPaymentMethodsRequestBodySepaDebit {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.iban) else {
-            throw SdkValidationError(
-                field: "iban",
-                code: "required",
-                message: "Validation failed for 'iban': value is required"
-            )
+            throw SdkValidationError(field: "iban", code: "required", message: "Validation failed for 'iban': value is required")
         }
-        iban = try container.sdkDecodeRequired(.iban)
-        try validateLength("iban", iban, min: nil, max: 5000)
+        self.iban = try container.sdkDecodeRequired(.iban)
+            try validateLength("iban", self.iban, min: nil, max: 5000)
     }
 }
 
-public extension PostPaymentMethodsRequestBodySepaDebit {
-    init(iban: String) throws {
+extension PostPaymentMethodsRequestBodySepaDebit {
+    public init(iban: String) throws {
         self.iban = iban
-        try validateLength("iban", self.iban, min: nil, max: 5000)
+            try validateLength("iban", self.iban, min: nil, max: 5000)
     }
 }
 
@@ -64,40 +58,30 @@ public struct PostPaymentMethodsRequestBodyAuBecsDebit: Codable {
         case bsbNumber = "bsb_number"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostPaymentMethodsRequestBodyAuBecsDebit {
-    init(from decoder: Decoder) throws {
+extension PostPaymentMethodsRequestBodyAuBecsDebit {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.accountNumber) else {
-            throw SdkValidationError(
-                field: "account_number",
-                code: "required",
-                message: "Validation failed for 'account_number': value is required"
-            )
+            throw SdkValidationError(field: "account_number", code: "required", message: "Validation failed for 'account_number': value is required")
         }
         guard container.contains(.bsbNumber) else {
-            throw SdkValidationError(
-                field: "bsb_number",
-                code: "required",
-                message: "Validation failed for 'bsb_number': value is required"
-            )
+            throw SdkValidationError(field: "bsb_number", code: "required", message: "Validation failed for 'bsb_number': value is required")
         }
-        accountNumber = try container.sdkDecodeRequired(.accountNumber)
-        bsbNumber = try container.sdkDecodeRequired(.bsbNumber)
-        try validateLength("account_number", accountNumber, min: nil, max: 5000)
-        try validateLength("bsb_number", bsbNumber, min: nil, max: 5000)
+        self.accountNumber = try container.sdkDecodeRequired(.accountNumber)
+        self.bsbNumber = try container.sdkDecodeRequired(.bsbNumber)
+            try validateLength("account_number", self.accountNumber, min: nil, max: 5000)
+            try validateLength("bsb_number", self.bsbNumber, min: nil, max: 5000)
     }
 }
 
-public extension PostPaymentMethodsRequestBodyAuBecsDebit {
-    init(accountNumber: String, bsbNumber: String) throws {
+extension PostPaymentMethodsRequestBodyAuBecsDebit {
+    public init(accountNumber: String, bsbNumber: String) throws {
         (self.accountNumber, self.bsbNumber) = (accountNumber, bsbNumber)
-        try validateLength("account_number", self.accountNumber, min: nil, max: 5000)
-        try validateLength("bsb_number", self.bsbNumber, min: nil, max: 5000)
+            try validateLength("account_number", self.accountNumber, min: nil, max: 5000)
+            try validateLength("bsb_number", self.bsbNumber, min: nil, max: 5000)
     }
 }
 
@@ -120,77 +104,52 @@ public struct PostPaymentMethodsRequestBodyNzBankAccount: Codable {
         case reference
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostPaymentMethodsRequestBodyNzBankAccount {
-    init(from decoder: Decoder) throws {
+extension PostPaymentMethodsRequestBodyNzBankAccount {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.accountNumber) else {
-            throw SdkValidationError(
-                field: "account_number",
-                code: "required",
-                message: "Validation failed for 'account_number': value is required"
-            )
+            throw SdkValidationError(field: "account_number", code: "required", message: "Validation failed for 'account_number': value is required")
         }
         guard container.contains(.bankCode) else {
-            throw SdkValidationError(
-                field: "bank_code",
-                code: "required",
-                message: "Validation failed for 'bank_code': value is required"
-            )
+            throw SdkValidationError(field: "bank_code", code: "required", message: "Validation failed for 'bank_code': value is required")
         }
         guard container.contains(.branchCode) else {
-            throw SdkValidationError(
-                field: "branch_code",
-                code: "required",
-                message: "Validation failed for 'branch_code': value is required"
-            )
+            throw SdkValidationError(field: "branch_code", code: "required", message: "Validation failed for 'branch_code': value is required")
         }
         guard container.contains(.suffix) else {
-            throw SdkValidationError(
-                field: "suffix",
-                code: "required",
-                message: "Validation failed for 'suffix': value is required"
-            )
+            throw SdkValidationError(field: "suffix", code: "required", message: "Validation failed for 'suffix': value is required")
         }
-        accountNumber = try container.sdkDecodeRequired(.accountNumber)
-        bankCode = try container.sdkDecodeRequired(.bankCode)
-        branchCode = try container.sdkDecodeRequired(.branchCode)
-        suffix = try container.sdkDecodeRequired(.suffix)
-        accountHolderName = try container.sdkDecodeIfPresent(.accountHolderName)
-        reference = try container.sdkDecodeIfPresent(.reference)
-        try validateLength("account_number", accountNumber, min: nil, max: 5000)
-        try validateLength("bank_code", bankCode, min: nil, max: 5000)
-        try validateLength("branch_code", branchCode, min: nil, max: 5000)
-        try validateLength("suffix", suffix, min: nil, max: 5000)
-        if let value = accountHolderName {
+        self.accountNumber = try container.sdkDecodeRequired(.accountNumber)
+        self.bankCode = try container.sdkDecodeRequired(.bankCode)
+        self.branchCode = try container.sdkDecodeRequired(.branchCode)
+        self.suffix = try container.sdkDecodeRequired(.suffix)
+        self.accountHolderName = try container.sdkDecodeIfPresent(.accountHolderName)
+        self.reference = try container.sdkDecodeIfPresent(.reference)
+            try validateLength("account_number", self.accountNumber, min: nil, max: 5000)
+            try validateLength("bank_code", self.bankCode, min: nil, max: 5000)
+            try validateLength("branch_code", self.branchCode, min: nil, max: 5000)
+            try validateLength("suffix", self.suffix, min: nil, max: 5000)
+        if let value = self.accountHolderName {
             try validateLength("account_holder_name", value, min: nil, max: 5000)
         }
-        if let value = reference {
+        if let value = self.reference {
             try validateLength("reference", value, min: nil, max: 128)
         }
     }
 }
 
-public extension PostPaymentMethodsRequestBodyNzBankAccount {
-    init(
-        accountNumber: String,
-        bankCode: String,
-        branchCode: String,
-        suffix: String,
-        accountHolderName: String? = nil,
-        reference: String? = nil
-    ) throws {
+extension PostPaymentMethodsRequestBodyNzBankAccount {
+    public init(accountNumber: String, bankCode: String, branchCode: String, suffix: String, accountHolderName: String? = nil, reference: String? = nil) throws {
         (self.accountNumber, self.bankCode) = (accountNumber, bankCode)
         (self.branchCode, self.suffix) = (branchCode, suffix)
         (self.accountHolderName, self.reference) = (accountHolderName, reference)
-        try validateLength("account_number", self.accountNumber, min: nil, max: 5000)
-        try validateLength("bank_code", self.bankCode, min: nil, max: 5000)
-        try validateLength("branch_code", self.branchCode, min: nil, max: 5000)
-        try validateLength("suffix", self.suffix, min: nil, max: 5000)
+            try validateLength("account_number", self.accountNumber, min: nil, max: 5000)
+            try validateLength("bank_code", self.bankCode, min: nil, max: 5000)
+            try validateLength("branch_code", self.branchCode, min: nil, max: 5000)
+            try validateLength("suffix", self.suffix, min: nil, max: 5000)
         if let value = self.accountHolderName {
             try validateLength("account_holder_name", value, min: nil, max: 5000)
         }
@@ -218,50 +177,43 @@ public struct PostPaymentMethodsRequestBodyBillingDetailsAddressVariant0: Codabl
     }
 
     init() {
-        (city, country, line1, line2, postalCode) = (nil, nil, nil, nil, nil)
-        state = nil
+        (self.city, self.country, self.line1, self.line2, self.postalCode) = (nil, nil, nil, nil, nil)
+        self.state = nil
     }
 }
 
-public extension PostPaymentMethodsRequestBodyBillingDetailsAddressVariant0 {
-    init(from decoder: Decoder) throws {
+extension PostPaymentMethodsRequestBodyBillingDetailsAddressVariant0 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        city = try container.sdkDecodeIfPresent(.city)
-        country = try container.sdkDecodeIfPresent(.country)
-        line1 = try container.sdkDecodeIfPresent(.line1)
-        line2 = try container.sdkDecodeIfPresent(.line2)
-        postalCode = try container.sdkDecodeIfPresent(.postalCode)
-        state = try container.sdkDecodeIfPresent(.state)
-        if let value = city {
+        self.city = try container.sdkDecodeIfPresent(.city)
+        self.country = try container.sdkDecodeIfPresent(.country)
+        self.line1 = try container.sdkDecodeIfPresent(.line1)
+        self.line2 = try container.sdkDecodeIfPresent(.line2)
+        self.postalCode = try container.sdkDecodeIfPresent(.postalCode)
+        self.state = try container.sdkDecodeIfPresent(.state)
+        if let value = self.city {
             try validateLength("city", value, min: nil, max: 5000)
         }
-        if let value = country {
+        if let value = self.country {
             try validateLength("country", value, min: nil, max: 5000)
         }
-        if let value = line1 {
+        if let value = self.line1 {
             try validateLength("line1", value, min: nil, max: 5000)
         }
-        if let value = line2 {
+        if let value = self.line2 {
             try validateLength("line2", value, min: nil, max: 5000)
         }
-        if let value = postalCode {
+        if let value = self.postalCode {
             try validateLength("postal_code", value, min: nil, max: 5000)
         }
-        if let value = state {
+        if let value = self.state {
             try validateLength("state", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PostPaymentMethodsRequestBodyBillingDetailsAddressVariant0 {
-    init(
-        city: String? = nil,
-        country: String? = nil,
-        line1: String? = nil,
-        line2: String? = nil,
-        postalCode: String? = nil,
-        state: String? = nil
-    ) throws {
+extension PostPaymentMethodsRequestBodyBillingDetailsAddressVariant0 {
+    public init(city: String? = nil, country: String? = nil, line1: String? = nil, line2: String? = nil, postalCode: String? = nil, state: String? = nil) throws {
         self.init()
         (self.city, self.country) = (city, country)
         (self.line1, self.line2) = (line1, line2)
@@ -289,24 +241,24 @@ public extension PostPaymentMethodsRequestBodyBillingDetailsAddressVariant0 {
 
 /// If this is a `konbini` PaymentMethod, this hash contains details about the Konbini payment method.
 public struct PostPaymentMethodsRequestBodyKonbini: Codable {
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostPaymentMethodsRequestBodyKonbini {
-    init() {}
+extension PostPaymentMethodsRequestBodyKonbini {
+    public init() {
+    }
 }
 
 /// If this is a `pay_by_bank` PaymentMethod, this hash contains details about the PayByBank payment method.
 public struct PostPaymentMethodsRequestBodyPayByBank: Codable {
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostPaymentMethodsRequestBodyPayByBank {
-    init() {}
+extension PostPaymentMethodsRequestBodyPayByBank {
+    public init() {
+    }
 }
 
 /// If this is a `boleto` PaymentMethod, this hash contains details about the Boleto payment method.
@@ -317,66 +269,60 @@ public struct PostPaymentMethodsRequestBodyBoleto: Codable {
         case taxId = "tax_id"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostPaymentMethodsRequestBodyBoleto {
-    init(from decoder: Decoder) throws {
+extension PostPaymentMethodsRequestBodyBoleto {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.taxId) else {
-            throw SdkValidationError(
-                field: "tax_id",
-                code: "required",
-                message: "Validation failed for 'tax_id': value is required"
-            )
+            throw SdkValidationError(field: "tax_id", code: "required", message: "Validation failed for 'tax_id': value is required")
         }
-        taxId = try container.sdkDecodeRequired(.taxId)
-        try validateLength("tax_id", taxId, min: nil, max: 5000)
+        self.taxId = try container.sdkDecodeRequired(.taxId)
+            try validateLength("tax_id", self.taxId, min: nil, max: 5000)
     }
 }
 
-public extension PostPaymentMethodsRequestBodyBoleto {
-    init(taxId: String) throws {
+extension PostPaymentMethodsRequestBodyBoleto {
+    public init(taxId: String) throws {
         self.taxId = taxId
-        try validateLength("tax_id", self.taxId, min: nil, max: 5000)
+            try validateLength("tax_id", self.taxId, min: nil, max: 5000)
     }
 }
 
 /// If this is an `Link` PaymentMethod, this hash contains details about the Link payment method (Link is also known
 /// as Onelink in the UK).
 public struct PostPaymentMethodsRequestBodyLink: Codable {
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostPaymentMethodsRequestBodyLink {
-    init() {}
+extension PostPaymentMethodsRequestBodyLink {
+    public init() {
+    }
 }
 
 /// If this is an `AfterpayClearpay` PaymentMethod, this hash contains details about the AfterpayClearpay payment
 /// method.
 public struct PostPaymentMethodsRequestBodyAfterpayClearpay: Codable {
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostPaymentMethodsRequestBodyAfterpayClearpay {
-    init() {}
+extension PostPaymentMethodsRequestBodyAfterpayClearpay {
+    public init() {
+    }
 }
 
 /// If this is an `affirm` PaymentMethod, this hash contains details about the Affirm payment method.
 public struct PostPaymentMethodsRequestBodyAffirm: Codable {
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostPaymentMethodsRequestBodyAffirm {
-    init() {}
+extension PostPaymentMethodsRequestBodyAffirm {
+    public init() {
+    }
 }
 
 /// If this is a `naver_pay` PaymentMethod, this hash contains details about the Naver Pay payment method.
@@ -388,19 +334,19 @@ public struct PostPaymentMethodsRequestBodyNaverPay: Codable {
     }
 
     init() {
-        funding = nil
+        self.funding = nil
     }
 }
 
-public extension PostPaymentMethodsRequestBodyNaverPay {
-    init(from decoder: Decoder) throws {
+extension PostPaymentMethodsRequestBodyNaverPay {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        funding = try container.sdkDecodeIfPresent(.funding)
+        self.funding = try container.sdkDecodeIfPresent(.funding)
     }
 }
 
-public extension PostPaymentMethodsRequestBodyNaverPay {
-    init(funding: PostPaymentMethodsRequestBodyNaverPayFunding? = nil) {
+extension PostPaymentMethodsRequestBodyNaverPay {
+    public init(funding: PostPaymentMethodsRequestBodyNaverPayFunding? = nil) {
         self.init()
         self.funding = funding
     }
@@ -408,13 +354,13 @@ public extension PostPaymentMethodsRequestBodyNaverPay {
 
 /// If this is a MB WAY PaymentMethod, this hash contains details about the MB WAY payment method.
 public struct PostPaymentMethodsRequestBodyMbWay: Codable {
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostPaymentMethodsRequestBodyMbWay {
-    init() {}
+extension PostPaymentMethodsRequestBodyMbWay {
+    public init() {
+    }
 }
 
 public enum PostPaymentMethodsRequestBodyBillingDetailsName {
@@ -423,31 +369,21 @@ public enum PostPaymentMethodsRequestBodyBillingDetailsName {
 }
 
 extension PostPaymentMethodsRequestBodyBillingDetailsName: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostPaymentMethodsRequestBodyBillingDetailsName"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostPaymentMethodsRequestBodyBillingDetailsName")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(String.self) {
-            return .stringValue1(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(String.self) { return .stringValue1(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -457,28 +393,29 @@ extension PostPaymentMethodsRequestBodyBillingDetailsName: Codable {
         case let .stringValue1(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// If this is a `zip` PaymentMethod, this hash contains details about the Zip payment method.
 public struct PostPaymentMethodsRequestBodyZip: Codable {
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostPaymentMethodsRequestBodyZip {
-    init() {}
+extension PostPaymentMethodsRequestBodyZip {
+    public init() {
+    }
 }
 
 /// If this is a `satispay` PaymentMethod, this hash contains details about the Satispay payment method.
 public struct PostPaymentMethodsRequestBodySatispay: Codable {
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostPaymentMethodsRequestBodySatispay {
-    init() {}
+extension PostPaymentMethodsRequestBodySatispay {
+    public init() {
+    }
 }
 
 /// If this is a `klarna` PaymentMethod, this hash contains details about the Klarna payment method.
@@ -491,19 +428,19 @@ public struct PostPaymentMethodsRequestBodyKlarna: Codable {
     }
 
     init() {
-        dob = nil
+        self.dob = nil
     }
 }
 
-public extension PostPaymentMethodsRequestBodyKlarna {
-    init(from decoder: Decoder) throws {
+extension PostPaymentMethodsRequestBodyKlarna {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        dob = try container.sdkDecodeIfPresent(.dob)
+        self.dob = try container.sdkDecodeIfPresent(.dob)
     }
 }
 
-public extension PostPaymentMethodsRequestBodyKlarna {
-    init(dob: PostPaymentMethodsRequestBodyKlarnaDob? = nil) {
+extension PostPaymentMethodsRequestBodyKlarna {
+    public init(dob: PostPaymentMethodsRequestBodyKlarnaDob? = nil) {
         self.init()
         self.dob = dob
     }
@@ -512,36 +449,36 @@ public extension PostPaymentMethodsRequestBodyKlarna {
 /// If this is an `interac_present` PaymentMethod, this hash contains details about the Interac Present payment
 /// method.
 public struct PostPaymentMethodsRequestBodyInteracPresent: Codable {
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostPaymentMethodsRequestBodyInteracPresent {
-    init() {}
+extension PostPaymentMethodsRequestBodyInteracPresent {
+    public init() {
+    }
 }
 
 /// If this is a `customer_balance` PaymentMethod, this hash contains details about the CustomerBalance payment
 /// method.
 public struct PostPaymentMethodsRequestBodyCustomerBalance: Codable {
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostPaymentMethodsRequestBodyCustomerBalance {
-    init() {}
+extension PostPaymentMethodsRequestBodyCustomerBalance {
+    public init() {
+    }
 }
 
 /// If this is an `oxxo` PaymentMethod, this hash contains details about the OXXO payment method.
 public struct PostPaymentMethodsRequestBodyOxxo: Codable {
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostPaymentMethodsRequestBodyOxxo {
-    init() {}
+extension PostPaymentMethodsRequestBodyOxxo {
+    public init() {
+    }
 }
 
 /// Billing information associated with the PaymentMethod that may be used or required by particular types of
@@ -562,32 +499,26 @@ public struct PostPaymentMethodsRequestBodyBillingDetails: Codable {
     }
 
     init() {
-        (address, email, name, phone, taxId) = (nil, nil, nil, nil, nil)
+        (self.address, self.email, self.name, self.phone, self.taxId) = (nil, nil, nil, nil, nil)
     }
 }
 
-public extension PostPaymentMethodsRequestBodyBillingDetails {
-    init(from decoder: Decoder) throws {
+extension PostPaymentMethodsRequestBodyBillingDetails {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        address = try container.sdkDecodeIfPresent(.address)
-        email = try container.sdkDecodeIfPresent(.email)
-        name = try container.sdkDecodeIfPresent(.name)
-        phone = try container.sdkDecodeIfPresent(.phone)
-        taxId = try container.sdkDecodeIfPresent(.taxId)
-        if let value = taxId {
+        self.address = try container.sdkDecodeIfPresent(.address)
+        self.email = try container.sdkDecodeIfPresent(.email)
+        self.name = try container.sdkDecodeIfPresent(.name)
+        self.phone = try container.sdkDecodeIfPresent(.phone)
+        self.taxId = try container.sdkDecodeIfPresent(.taxId)
+        if let value = self.taxId {
             try validateLength("tax_id", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PostPaymentMethodsRequestBodyBillingDetails {
-    init(
-        address: PostPaymentMethodsRequestBodyBillingDetailsAddress? = nil,
-        email: String? = nil,
-        name: PostPaymentMethodsRequestBodyBillingDetailsName? = nil,
-        phone: PostPaymentMethodsRequestBodyBillingDetailsPhone? = nil,
-        taxId: String? = nil
-    ) throws {
+extension PostPaymentMethodsRequestBodyBillingDetails {
+    public init(address: PostPaymentMethodsRequestBodyBillingDetailsAddress? = nil, email: String? = nil, name: PostPaymentMethodsRequestBodyBillingDetailsName? = nil, phone: PostPaymentMethodsRequestBodyBillingDetailsPhone? = nil, taxId: String? = nil) throws {
         self.init()
         (self.address, self.email) = (address, email)
         (self.name, self.phone) = (name, phone)
@@ -616,7 +547,7 @@ public struct PostPaymentMethodsPaymentMethodRequestBodyBillingDetailsAddressVar
     }
 
     init() {
-        (city, country, line1, line2, postalCode) = (nil, nil, nil, nil, nil)
-        state = nil
+        (self.city, self.country, self.line1, self.line2, self.postalCode) = (nil, nil, nil, nil, nil)
+        self.state = nil
     }
 }

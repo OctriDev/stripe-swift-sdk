@@ -7,47 +7,24 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1PaymentIntentsCancelMethods {
-    /// Cancels a PaymentIntent that has not completed payment. You can cancel it when its status is
-    /// `requires_payment_method`, `requires_capture`, `requires_confirmation`, `requires_action`, or, in rare cases,
-    /// `processing`; canceling a requires-capture PaymentIntent automatically refunds its remaining capturable amount.
+    /// Cancels a PaymentIntent that has not completed payment. You can cancel it when its status is `requires_payment_method`, `requires_capture`, `requires_confirmation`, `requires_action`, or, in rare cases, `processing`; canceling a requires-capture PaymentIntent automatically refunds its remaining capturable amount.
     ///
-    /// You can cancel a PaymentIntent object when it’s in one of these statuses: requires_payment_method ,
-    /// requires_capture , requires_confirmation , requires_action or, in rare cases, processing . After it’s canceled,
-    /// no additional charges are made by the PaymentIntent and any operations on the PaymentIntent fail with an error.
-    /// For PaymentIntents with a status of requires_capture , the remaining amount_capturable is automatically
-    /// refunded. You can directly cancel the PaymentIntent for a Checkout Session only when the PaymentIntent has a
-    /// status of requires_capture . Otherwise, you must expire the Checkout Session.
+    /// You can cancel a PaymentIntent object when it’s in one of these statuses: requires_payment_method , requires_capture , requires_confirmation , requires_action or, in rare cases, processing . After it’s canceled, no additional charges are made by the PaymentIntent and any operations on the PaymentIntent fail with an error. For PaymentIntents with a status of requires_capture , the remaining amount_capturable is automatically refunded. You can directly cancel the PaymentIntent for a Checkout Session only when the PaymentIntent has a status of requires_capture . Otherwise, you must expire the Checkout Session.
     ///
     /// - Parameters:
     /// - cancellationReason: Reason for canceling this PaymentIntent. Possible
     ///   values are: `duplicate`, `fraudulent`, `requested_by_customer`, or
     ///   `abandoned`
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postPaymentIntentsIntentCancel(
-        config: ClientConfig,
-        intent: String,
-        cancellationReason: PostPaymentIntentsIntentCancelRequestBodyCancellationReason?,
-        expand: [String]?
-    ) async throws -> PaymentIntent {
+    public static func postPaymentIntentsIntentCancel(config: ClientConfig, intent: String, cancellationReason: PostPaymentIntentsIntentCancelRequestBodyCancellationReason?, expand: [String]?) async throws -> PaymentIntent {
         try validateLength("intent", intent, max: 5000)
 
-        if let cancellationReason {
+        if let cancellationReason = cancellationReason {
             try validateLength("cancellation_reason", cancellationReason.rawValue, max: 5000)
         }
 
-        let requestBody = PostPaymentIntentsIntentCancelRequestBody(
-            cancellationReason: cancellationReason,
-            expand: expand
-        )
+        let requestBody = PostPaymentIntentsIntentCancelRequestBody(cancellationReason: cancellationReason, expand: expand)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/payment_intents/", sdkEncodePathSegment(sdkWireString(intent)), "/cancel"].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostPaymentIntentsIntentCancel"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/payment_intents/", sdkEncodePathSegment(sdkWireString(intent)), "/cancel"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostPaymentIntentsIntentCancel")).data
     }
 }

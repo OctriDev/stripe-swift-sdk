@@ -6,19 +6,15 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public struct PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemDiscountsVariant1: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemDiscountsVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemDiscountsVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -27,19 +23,15 @@ public struct PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemDiscountsVariant
     }
 }
 
-public struct PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemMetadataVariant1: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemMetadataVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemMetadataVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -48,24 +40,17 @@ public struct PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemMetadataVariant1
     }
 }
 
-public struct PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemPriceDataTaxBehavior: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemPriceDataTaxBehavior: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let exclusive =
-        PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemPriceDataTaxBehavior(rawValue: "exclusive")
-    public static let inclusive =
-        PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemPriceDataTaxBehavior(rawValue: "inclusive")
-    public static let unspecified =
-        PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemPriceDataTaxBehavior(rawValue: "unspecified")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let exclusive = PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemPriceDataTaxBehavior(rawValue: "exclusive")
+    public static let inclusive = PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemPriceDataTaxBehavior(rawValue: "inclusive")
+    public static let unspecified = PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemPriceDataTaxBehavior(rawValue: "unspecified")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -74,29 +59,20 @@ public struct PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemPriceDataTaxBeha
     }
 }
 
-public struct PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVX007123a51d: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVX007123a51d: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let city = PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVX007123a51d(rawValue: "city")
-    public static let country =
-        PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVX007123a51d(rawValue: "country")
-    public static let county =
-        PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVX007123a51d(rawValue: "county")
-    public static let district =
-        PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVX007123a51d(rawValue: "district")
-    public static let multiple =
-        PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVX007123a51d(rawValue: "multiple")
-    public static let state =
-        PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVX007123a51d(rawValue: "state")
+    public static let country = PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVX007123a51d(rawValue: "country")
+    public static let county = PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVX007123a51d(rawValue: "county")
+    public static let district = PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVX007123a51d(rawValue: "district")
+    public static let multiple = PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVX007123a51d(rawValue: "multiple")
+    public static let state = PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVX007123a51d(rawValue: "state")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -105,42 +81,30 @@ public struct PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVX0071
     }
 }
 
-public struct PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVX987ca8b51d: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVX987ca8b51d: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let amusementTax =
-        PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVX987ca8b51d(rawValue: "amusement_tax")
-    public static let communicationsTax =
-        PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVX987ca8b51d(rawValue: "communications_tax")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let amusementTax = PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVX987ca8b51d(rawValue: "amusement_tax")
+    public static let communicationsTax = PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVX987ca8b51d(rawValue: "communications_tax")
     public static let gst = PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVX987ca8b51d(rawValue: "gst")
     public static let hst = PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVX987ca8b51d(rawValue: "hst")
     public static let igst = PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVX987ca8b51d(rawValue: "igst")
     public static let jct = PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVX987ca8b51d(rawValue: "jct")
-    public static let leaseTax =
-        PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVX987ca8b51d(rawValue: "lease_tax")
-    public static let massTransitParkingTax =
-        PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVX987ca8b51d(rawValue: "mass_transit_parking_tax")
-    public static let parkingTax =
-        PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVX987ca8b51d(rawValue: "parking_tax")
+    public static let leaseTax = PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVX987ca8b51d(rawValue: "lease_tax")
+    public static let massTransitParkingTax = PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVX987ca8b51d(rawValue: "mass_transit_parking_tax")
+    public static let parkingTax = PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVX987ca8b51d(rawValue: "parking_tax")
     public static let pst = PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVX987ca8b51d(rawValue: "pst")
     public static let qst = PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVX987ca8b51d(rawValue: "qst")
-    public static let retailDeliveryFee =
-        PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVX987ca8b51d(rawValue: "retail_delivery_fee")
+    public static let retailDeliveryFee = PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVX987ca8b51d(rawValue: "retail_delivery_fee")
     public static let rst = PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVX987ca8b51d(rawValue: "rst")
-    public static let salesTax =
-        PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVX987ca8b51d(rawValue: "sales_tax")
-    public static let serviceTax =
-        PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVX987ca8b51d(rawValue: "service_tax")
+    public static let salesTax = PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVX987ca8b51d(rawValue: "sales_tax")
+    public static let serviceTax = PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVX987ca8b51d(rawValue: "service_tax")
     public static let vat = PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVX987ca8b51d(rawValue: "vat")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -149,48 +113,29 @@ public struct PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVX987c
     }
 }
 
-public struct PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVXb1f51ca287: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVXb1f51ca287: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let customerExempt =
-        PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVXb1f51ca287(rawValue: "customer_exempt")
-    public static let notCollecting =
-        PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVXb1f51ca287(rawValue: "not_collecting")
-    public static let notSubjectToTax =
-        PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVXb1f51ca287(rawValue: "not_subject_to_tax")
-    public static let notSupported =
-        PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVXb1f51ca287(rawValue: "not_supported")
-    public static let portionProductExempt =
-        PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVXb1f51ca287(rawValue: "portion_product_exempt")
-    public static let portionReducedRated =
-        PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVXb1f51ca287(rawValue: "portion_reduced_rated")
-    public static let portionStandardRated =
-        PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVXb1f51ca287(rawValue: "portion_standard_rated")
-    public static let productExempt =
-        PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVXb1f51ca287(rawValue: "product_exempt")
-    public static let productExemptHoliday =
-        PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVXb1f51ca287(rawValue: "product_exempt_holiday")
-    public static let proportionallyRated =
-        PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVXb1f51ca287(rawValue: "proportionally_rated")
-    public static let reducedRated =
-        PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVXb1f51ca287(rawValue: "reduced_rated")
-    public static let reverseCharge =
-        PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVXb1f51ca287(rawValue: "reverse_charge")
-    public static let standardRated =
-        PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVXb1f51ca287(rawValue: "standard_rated")
-    public static let taxableBasisReduced =
-        PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVXb1f51ca287(rawValue: "taxable_basis_reduced")
-    public static let zeroRated =
-        PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVXb1f51ca287(rawValue: "zero_rated")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let customerExempt = PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVXb1f51ca287(rawValue: "customer_exempt")
+    public static let notCollecting = PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVXb1f51ca287(rawValue: "not_collecting")
+    public static let notSubjectToTax = PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVXb1f51ca287(rawValue: "not_subject_to_tax")
+    public static let notSupported = PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVXb1f51ca287(rawValue: "not_supported")
+    public static let portionProductExempt = PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVXb1f51ca287(rawValue: "portion_product_exempt")
+    public static let portionReducedRated = PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVXb1f51ca287(rawValue: "portion_reduced_rated")
+    public static let portionStandardRated = PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVXb1f51ca287(rawValue: "portion_standard_rated")
+    public static let productExempt = PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVXb1f51ca287(rawValue: "product_exempt")
+    public static let productExemptHoliday = PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVXb1f51ca287(rawValue: "product_exempt_holiday")
+    public static let proportionallyRated = PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVXb1f51ca287(rawValue: "proportionally_rated")
+    public static let reducedRated = PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVXb1f51ca287(rawValue: "reduced_rated")
+    public static let reverseCharge = PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVXb1f51ca287(rawValue: "reverse_charge")
+    public static let standardRated = PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVXb1f51ca287(rawValue: "standard_rated")
+    public static let taxableBasisReduced = PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVXb1f51ca287(rawValue: "taxable_basis_reduced")
+    public static let zeroRated = PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVXb1f51ca287(rawValue: "zero_rated")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -199,19 +144,15 @@ public struct PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVXb1f5
     }
 }
 
-public struct PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVariant1: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -220,19 +161,15 @@ public struct PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxAmountsVarian
     }
 }
 
-public struct PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxRatesVariant1: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxRatesVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxRatesVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -241,14 +178,10 @@ public struct PostInvoicesInvoiceUpdateLinesRequestBodyLinesItemTaxRatesVariant1
     }
 }
 
-public struct GetIssuingAuthorizationsParameterX11a78393: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct GetIssuingAuthorizationsParameterX11a78393: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let closed = GetIssuingAuthorizationsParameterX11a78393(rawValue: "closed")
     public static let expired = GetIssuingAuthorizationsParameterX11a78393(rawValue: "expired")
     public static let pending = GetIssuingAuthorizationsParameterX11a78393(rawValue: "pending")
@@ -256,7 +189,7 @@ public struct GetIssuingAuthorizationsParameterX11a78393: RawRepresentable, Hash
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -267,19 +200,15 @@ public struct GetIssuingAuthorizationsParameterX11a78393: RawRepresentable, Hash
 
 /// String representing the object's type. Objects of the same type share the same value. Always has the value
 /// `list`.
-public struct GetIssuingAuthorizationsResponseObject: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct GetIssuingAuthorizationsResponseObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let list = GetIssuingAuthorizationsResponseObject(rawValue: "list")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

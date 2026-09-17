@@ -3,9 +3,9 @@
 
 import Foundation
 
-/// V1TerminalReader domain models
-public extension TerminalReaderReaderResourceSignature {
-    init(value: String? = nil) throws {
+// V1TerminalReader domain models
+extension TerminalReaderReaderResourceSignature {
+    public init(value: String? = nil) throws {
         self.init()
         self.value = value
         if let value = self.value {
@@ -24,22 +24,22 @@ public struct TerminalReaderReaderResourceText: Codable {
     }
 
     init() {
-        value = nil
+        self.value = nil
     }
 }
 
-public extension TerminalReaderReaderResourceText {
-    init(from decoder: Decoder) throws {
+extension TerminalReaderReaderResourceText {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        value = try container.sdkDecodeIfPresent(.value)
-        if let value {
+        self.value = try container.sdkDecodeIfPresent(.value)
+        if let value = self.value {
             try validateLength("value", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension TerminalReaderReaderResourceText {
-    init(value: String? = nil) throws {
+extension TerminalReaderReaderResourceText {
+    public init(value: String? = nil) throws {
         self.init()
         self.value = value
         if let value = self.value {
@@ -60,19 +60,19 @@ public struct TerminalReaderReaderResourceTippingConfig: Codable {
     }
 
     init() {
-        amountEligible = nil
+        self.amountEligible = nil
     }
 }
 
-public extension TerminalReaderReaderResourceTippingConfig {
-    init(from decoder: Decoder) throws {
+extension TerminalReaderReaderResourceTippingConfig {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        amountEligible = try container.sdkDecodeIfPresent(.amountEligible)
+        self.amountEligible = try container.sdkDecodeIfPresent(.amountEligible)
     }
 }
 
-public extension TerminalReaderReaderResourceTippingConfig {
-    init(amountEligible: Int? = nil) {
+extension TerminalReaderReaderResourceTippingConfig {
+    public init(amountEligible: Int? = nil) {
         self.init()
         self.amountEligible = amountEligible
     }
@@ -97,33 +97,28 @@ public struct TerminalReaderReaderResourceToggle: Codable {
     }
 
     init() {
-        (defaultValue, description, title, value) = (nil, nil, nil, nil)
+        (self.defaultValue, self.description, self.title, self.value) = (nil, nil, nil, nil)
     }
 }
 
-public extension TerminalReaderReaderResourceToggle {
-    init(from decoder: Decoder) throws {
+extension TerminalReaderReaderResourceToggle {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        defaultValue = try container.sdkDecodeIfPresent(.defaultValue)
-        description = try container.sdkDecodeIfPresent(.description)
-        title = try container.sdkDecodeIfPresent(.title)
-        value = try container.sdkDecodeIfPresent(.value)
-        if let value = description {
+        self.defaultValue = try container.sdkDecodeIfPresent(.defaultValue)
+        self.description = try container.sdkDecodeIfPresent(.description)
+        self.title = try container.sdkDecodeIfPresent(.title)
+        self.value = try container.sdkDecodeIfPresent(.value)
+        if let value = self.description {
             try validateLength("description", value, min: nil, max: 5000)
         }
-        if let value = title {
+        if let value = self.title {
             try validateLength("title", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension TerminalReaderReaderResourceToggle {
-    init(
-        defaultValue: TerminalReaderReaderResourceToggleDefaultValue? = nil,
-        description: String? = nil,
-        title: String? = nil,
-        value: TerminalReaderReaderResourceToggleValue? = nil
-    ) throws {
+extension TerminalReaderReaderResourceToggle {
+    public init(defaultValue: TerminalReaderReaderResourceToggleDefaultValue? = nil, description: String? = nil, title: String? = nil, value: TerminalReaderReaderResourceToggleValue? = nil) throws {
         self.init()
         (self.defaultValue, self.description) = (defaultValue, description)
         (self.title, self.value) = (title, value)
@@ -137,19 +132,15 @@ public extension TerminalReaderReaderResourceToggle {
 }
 
 /// The type of content to print. Currently supports `image`.
-public struct TerminalReaderReaderResourcePrintContentType: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct TerminalReaderReaderResourcePrintContentType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let image = TerminalReaderReaderResourcePrintContentType(rawValue: "image")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -162,10 +153,7 @@ public struct TerminalReaderReaderResourcePrintContentType: RawRepresentable, Ha
 public struct TerminalReaderReaderResourceInputType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let email = TerminalReaderReaderResourceInputType(rawValue: "email")
     public static let numeric = TerminalReaderReaderResourceInputType(rawValue: "numeric")
     public static let phone = TerminalReaderReaderResourceInputType(rawValue: "phone")
@@ -175,7 +163,7 @@ public struct TerminalReaderReaderResourceInputType: RawRepresentable, Hashable,
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -185,22 +173,17 @@ public struct TerminalReaderReaderResourceInputType: RawRepresentable, Hashable,
 }
 
 /// The reason for the refund.
-public struct TerminalReaderReaderResourceRefundPaymentActionReason: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct TerminalReaderReaderResourceRefundPaymentActionReason: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let duplicate = TerminalReaderReaderResourceRefundPaymentActionReason(rawValue: "duplicate")
     public static let fraudulent = TerminalReaderReaderResourceRefundPaymentActionReason(rawValue: "fraudulent")
-    public static let requestedByCustomer =
-        TerminalReaderReaderResourceRefundPaymentActionReason(rawValue: "requested_by_customer")
+    public static let requestedByCustomer = TerminalReaderReaderResourceRefundPaymentActionReason(rawValue: "requested_by_customer")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -210,20 +193,16 @@ public struct TerminalReaderReaderResourceRefundPaymentActionReason: RawRepresen
 }
 
 /// The toggle's default value. Can be `enabled` or `disabled`.
-public struct TerminalReaderReaderResourceToggleDefaultValue: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct TerminalReaderReaderResourceToggleDefaultValue: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let disabled = TerminalReaderReaderResourceToggleDefaultValue(rawValue: "disabled")
     public static let enabled = TerminalReaderReaderResourceToggleDefaultValue(rawValue: "enabled")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -233,21 +212,17 @@ public struct TerminalReaderReaderResourceToggleDefaultValue: RawRepresentable, 
 }
 
 /// Status of the action performed by the reader.
-public struct TerminalReaderReaderResourceReaderActionStatus: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct TerminalReaderReaderResourceReaderActionStatus: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let failed = TerminalReaderReaderResourceReaderActionStatus(rawValue: "failed")
     public static let inProgress = TerminalReaderReaderResourceReaderActionStatus(rawValue: "in_progress")
     public static let succeeded = TerminalReaderReaderResourceReaderActionStatus(rawValue: "succeeded")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -257,20 +232,16 @@ public struct TerminalReaderReaderResourceReaderActionStatus: RawRepresentable, 
 }
 
 /// The button style for the choice. Can be `primary` or `secondary`.
-public struct TerminalReaderReaderResourceChoiceStyle: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct TerminalReaderReaderResourceChoiceStyle: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let primary = TerminalReaderReaderResourceChoiceStyle(rawValue: "primary")
     public static let secondary = TerminalReaderReaderResourceChoiceStyle(rawValue: "secondary")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -280,20 +251,16 @@ public struct TerminalReaderReaderResourceChoiceStyle: RawRepresentable, Hashabl
 }
 
 /// The toggle's collected value. Can be `enabled` or `disabled`.
-public struct TerminalReaderReaderResourceToggleValue: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct TerminalReaderReaderResourceToggleValue: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let disabled = TerminalReaderReaderResourceToggleValue(rawValue: "disabled")
     public static let enabled = TerminalReaderReaderResourceToggleValue(rawValue: "enabled")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -303,19 +270,15 @@ public struct TerminalReaderReaderResourceToggleValue: RawRepresentable, Hashabl
 }
 
 /// Type of information to be displayed by the reader. Only `cart` is currently supported.
-public struct TerminalReaderReaderResourceSetReaderDisplayActionType: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct TerminalReaderReaderResourceSetReaderDisplayActionType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let cart = TerminalReaderReaderResourceSetReaderDisplayActionType(rawValue: "cart")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -325,30 +288,22 @@ public struct TerminalReaderReaderResourceSetReaderDisplayActionType: RawReprese
 }
 
 /// Type of action performed by the reader.
-public struct TerminalReaderReaderResourceReaderActionType: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct TerminalReaderReaderResourceReaderActionType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let collectInputs = TerminalReaderReaderResourceReaderActionType(rawValue: "collect_inputs")
-    public static let collectPaymentMethod =
-        TerminalReaderReaderResourceReaderActionType(rawValue: "collect_payment_method")
-    public static let confirmPaymentIntent =
-        TerminalReaderReaderResourceReaderActionType(rawValue: "confirm_payment_intent")
+    public static let collectPaymentMethod = TerminalReaderReaderResourceReaderActionType(rawValue: "collect_payment_method")
+    public static let confirmPaymentIntent = TerminalReaderReaderResourceReaderActionType(rawValue: "confirm_payment_intent")
     public static let printContent = TerminalReaderReaderResourceReaderActionType(rawValue: "print_content")
-    public static let processPaymentIntent =
-        TerminalReaderReaderResourceReaderActionType(rawValue: "process_payment_intent")
-    public static let processSetupIntent =
-        TerminalReaderReaderResourceReaderActionType(rawValue: "process_setup_intent")
+    public static let processPaymentIntent = TerminalReaderReaderResourceReaderActionType(rawValue: "process_payment_intent")
+    public static let processSetupIntent = TerminalReaderReaderResourceReaderActionType(rawValue: "process_setup_intent")
     public static let refundPayment = TerminalReaderReaderResourceReaderActionType(rawValue: "refund_payment")
     public static let setReaderDisplay = TerminalReaderReaderResourceReaderActionType(rawValue: "set_reader_display")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -361,10 +316,7 @@ public struct TerminalReaderReaderResourceReaderActionType: RawRepresentable, Ha
 public struct TerminalReaderDeviceType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let bbposChipper2x = TerminalReaderDeviceType(rawValue: "bbpos_chipper2x")
     public static let bbposWisepad3 = TerminalReaderDeviceType(rawValue: "bbpos_wisepad3")
     public static let bbposWiseposE = TerminalReaderDeviceType(rawValue: "bbpos_wisepos_e")
@@ -387,7 +339,7 @@ public struct TerminalReaderDeviceType: RawRepresentable, Hashable, Codable, Sen
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -401,16 +353,13 @@ public struct TerminalReaderDeviceType: RawRepresentable, Hashable, Codable, Sen
 public struct TerminalReaderStatus: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let offline = TerminalReaderStatus(rawValue: "offline")
     public static let online = TerminalReaderStatus(rawValue: "online")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -423,15 +372,12 @@ public struct TerminalReaderStatus: RawRepresentable, Hashable, Codable, Sendabl
 public struct TerminalReaderObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let terminalReader = TerminalReaderObject(rawValue: "terminal.reader")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

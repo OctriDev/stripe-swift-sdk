@@ -9,38 +9,16 @@ public class V1CustomersSubscriptionsDiscountNamespace {
         self.config = config
     }
 
-    /// Deletes the discount currently applied to a customer's subscription. Provide the customer and subscription
-    /// identifiers to select the subscription whose discount you want to remove. The response confirms deletion using
-    /// the deleted discount representation.
+/// Deletes the discount currently applied to a customer's subscription. Provide the customer and subscription identifiers to select the subscription whose discount you want to remove. The response confirms deletion using the deleted discount representation.
     ///
     /// Removes the currently applied discount on a customer.
-    public func deleteCustomersCustomerSubscriptionsSubscriptionExposedId(
-        customer: String,
-        subscriptionExposedId: String
-    ) async throws -> DeletedDiscount {
-        try await V1CustomersSubscriptionsDiscountMethods
-            .deleteCustomersCustomerSubscriptionsSubscriptionExposedIdDiscount(
-                config: config,
-                customer: customer,
-                subscriptionExposedId: subscriptionExposedId
-            )
+    public func deleteCustomersCustomerSubscriptionsSubscriptionExposedId(customer: String, subscriptionExposedId: String) async throws -> DeletedDiscount {
+        return try await V1CustomersSubscriptionsDiscountMethods.deleteCustomersCustomerSubscriptionsSubscriptionExposedIdDiscount(config: config, customer: customer, subscriptionExposedId: subscriptionExposedId)
     }
 
-    /// Retrieves the discount currently applied to a customer's subscription. Provide the customer and subscription
-    /// identifiers to select the discount associated with that subscription. Use `expand` to request expanded fields in
-    /// the response.
-    public func getCustomersCustomerSubscriptionsSubscriptionExposedId(
-        customer: String,
-        subscriptionExposedId: String,
-        expand: [String]?
-    ) async throws -> Discount {
-        try await V1CustomersSubscriptionsDiscountMethods
-            .getCustomersCustomerSubscriptionsSubscriptionExposedIdDiscount(
-                config: config,
-                customer: customer,
-                subscriptionExposedId: subscriptionExposedId,
-                expand: expand
-            )
+/// Retrieves the discount currently applied to a customer's subscription. Provide the customer and subscription identifiers to select the discount associated with that subscription. Use `expand` to request expanded fields in the response.
+    public func getCustomersCustomerSubscriptionsSubscriptionExposedId(customer: String, subscriptionExposedId: String, expand: [String]?) async throws -> Discount {
+        return try await V1CustomersSubscriptionsDiscountMethods.getCustomersCustomerSubscriptionsSubscriptionExposedIdDiscount(config: config, customer: customer, subscriptionExposedId: subscriptionExposedId, expand: expand)
     }
 }
 
@@ -52,102 +30,39 @@ public class V1CustomersSubscriptionsNamespace {
         discount = V1CustomersSubscriptionsDiscountNamespace(config: config)
     }
 
-    /// Lists the active subscriptions belonging to a customer. Use cursor parameters to page through subscriptions
-    /// beyond the 10 most recent items available on the customer object, and use `limit` to control page size.
+/// Lists the active subscriptions belonging to a customer. Use cursor parameters to page through subscriptions beyond the 10 most recent items available on the customer object, and use `limit` to control page size.
     ///
-    /// You can see a list of the customer’s active subscriptions. Note that the 10 most recent active subscriptions are
-    /// always available by default on the customer object. If you need more than those 10, you can use the limit and
-    /// starting_after parameters to page through additional subscriptions.
-    public func getCustomersCustomer(
-        customer: String,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        startingAfter: String?
-    ) async throws -> GetCustomersCustomerSubscriptionsResponse {
-        try await V1CustomersSubscriptionsMethods.getCustomersCustomerSubscriptions(
-            config: config,
-            customer: customer,
-            endingBefore: endingBefore,
-            expand: expand,
-            limit: limit,
-            startingAfter: startingAfter
-        )
+    /// You can see a list of the customer’s active subscriptions. Note that the 10 most recent active subscriptions are always available by default on the customer object. If you need more than those 10, you can use the limit and starting_after parameters to page through additional subscriptions.
+    public func getCustomersCustomer(customer: String, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetCustomersCustomerSubscriptionsResponse {
+        return try await V1CustomersSubscriptionsMethods.getCustomersCustomerSubscriptions(config: config, customer: customer, endingBefore: endingBefore, expand: expand, limit: limit, startingAfter: startingAfter)
     }
 
-    /// Creates a new subscription for an existing customer. Provide the subscription items and billing configuration
-    /// needed for recurring charges, including a supported lowercase `currency` when required. The subscription can
-    /// also include automatic tax, discounts, invoice items, payment settings, and cancellation settings.
+/// Creates a new subscription for an existing customer. Provide the subscription items and billing configuration needed for recurring charges, including a supported lowercase `currency` when required. The subscription can also include automatic tax, discounts, invoice items, payment settings, and cancellation settings.
     ///
     /// Creates a new subscription on an existing customer.
-    public func postCustomersCustomer(options: V1CustomersSubscriptionsMethods
-        .PostCustomersCustomerSubscriptionsOptions) async throws -> Subscription {
-        try await V1CustomersSubscriptionsMethods.postCustomersCustomerSubscriptions(config: config, options: options)
+    public func postCustomersCustomer(options: V1CustomersSubscriptionsMethods.PostCustomersCustomerSubscriptionsOptions) async throws -> Subscription {
+        return try await V1CustomersSubscriptionsMethods.postCustomersCustomerSubscriptions(config: config, options: options)
     }
 
-    /// Cancels a customer's subscription and prevents further subscription charges. By default, cancellation is
-    /// immediate; use the supported cancellation controls when you need to invoice usage or create prorations before
-    /// cancellation. A subscription configured to cancel at period end remains active until that period ends.
+/// Cancels a customer's subscription and prevents further subscription charges. By default, cancellation is immediate; use the supported cancellation controls when you need to invoice usage or create prorations before cancellation. A subscription configured to cancel at period end remains active until that period ends.
     ///
-    /// Cancels a customer’s subscription. If you set the at_period_end parameter to true , the subscription will remain
-    /// active until the end of the period, at which point it will be canceled and not renewed. Otherwise, with the
-    /// default false value, the subscription is terminated immediately. In either case, the customer will not be
-    /// charged again for the subscription. Note, however, that any pending invoice items that you’ve created will still
-    /// be charged for at the end of the period, unless manually deleted. If you’ve set the subscription to cancel at
-    /// the end of the period, any pending prorations will also be left in place and collected at the end of the period.
-    /// But if the subscription is set to cancel immediately, pending prorations will be removed. By default, upon
-    /// subscription cancellation, Stripe will stop automatic collection of all finalized invoices for the customer.
-    /// This is intended to prevent unexpected payment attempts after the customer has canceled a subscription. However,
-    /// you can resume automatic collection of the invoices manually after subscription cancellation to have us proceed.
-    /// Or, you could check for unpaid invoices before allowing the customer to cancel the subscription at all.
-    public func deleteCustomersCustomerSubscriptionExposedId(
-        customer: String,
-        subscriptionExposedId: String,
-        expand: [String]?,
-        invoiceNow: Bool?,
-        prorate: Bool?
-    ) async throws -> Subscription {
-        try await V1CustomersSubscriptionsMethods.deleteCustomersCustomerSubscriptionsSubscriptionExposedId(
-            config: config,
-            customer: customer,
-            subscriptionExposedId: subscriptionExposedId,
-            expand: expand,
-            invoiceNow: invoiceNow,
-            prorate: prorate
-        )
+    /// Cancels a customer’s subscription. If you set the at_period_end parameter to true , the subscription will remain active until the end of the period, at which point it will be canceled and not renewed. Otherwise, with the default false value, the subscription is terminated immediately. In either case, the customer will not be charged again for the subscription. Note, however, that any pending invoice items that you’ve created will still be charged for at the end of the period, unless manually deleted. If you’ve set the subscription to cancel at the end of the period, any pending prorations will also be left in place and collected at the end of the period. But if the subscription is set to cancel immediately, pending prorations will be removed. By default, upon subscription cancellation, Stripe will stop automatic collection of all finalized invoices for the customer. This is intended to prevent unexpected payment attempts after the customer has canceled a subscription. However, you can resume automatic collection of the invoices manually after subscription cancellation to have us proceed. Or, you could check for unpaid invoices before allowing the customer to cancel the subscription at all.
+    public func deleteCustomersCustomerSubscriptionExposedId(customer: String, subscriptionExposedId: String, expand: [String]?, invoiceNow: Bool?, prorate: Bool?) async throws -> Subscription {
+        return try await V1CustomersSubscriptionsMethods.deleteCustomersCustomerSubscriptionsSubscriptionExposedId(config: config, customer: customer, subscriptionExposedId: subscriptionExposedId, expand: expand, invoiceNow: invoiceNow, prorate: prorate)
     }
 
-    /// Retrieves a specific subscription belonging to a customer. Provide both the customer identifier and subscription
-    /// identifier to select the resource. Use `expand` when you need selected response fields expanded.
+/// Retrieves a specific subscription belonging to a customer. Provide both the customer identifier and subscription identifier to select the resource. Use `expand` when you need selected response fields expanded.
     ///
     /// Retrieves the subscription with the given ID.
-    public func getCustomersCustomerSubscriptionExposedId(
-        customer: String,
-        subscriptionExposedId: String,
-        expand: [String]?
-    ) async throws -> Subscription {
-        try await V1CustomersSubscriptionsMethods.getCustomersCustomerSubscriptionsSubscriptionExposedId(
-            config: config,
-            customer: customer,
-            subscriptionExposedId: subscriptionExposedId,
-            expand: expand
-        )
+    public func getCustomersCustomerSubscriptionExposedId(customer: String, subscriptionExposedId: String, expand: [String]?) async throws -> Subscription {
+        return try await V1CustomersSubscriptionsMethods.getCustomersCustomerSubscriptionsSubscriptionExposedId(config: config, customer: customer, subscriptionExposedId: subscriptionExposedId, expand: expand)
     }
 
-    /// Updates an existing subscription on a customer using the supplied configuration. Use the subscription
-    /// identifiers to select the resource and provide only the settings you want to change, such as items, billing
-    /// behavior, discounts, or cancellation details. Changes to plans or quantities can affect proration and the next
-    /// amount charged.
+/// Updates an existing subscription on a customer using the supplied configuration. Use the subscription identifiers to select the resource and provide only the settings you want to change, such as items, billing behavior, discounts, or cancellation details. Changes to plans or quantities can affect proration and the next amount charged.
     ///
-    /// Updates an existing subscription on a customer to match the specified parameters. When changing plans or
-    /// quantities, we will optionally prorate the price we charge next month to make up for any price changes. To
-    /// preview how the proration will be calculated, use the upcoming invoice endpoint.
-    public func postCustomersCustomerSubscriptionExposedId(options: V1CustomersSubscriptionsMethods
-        .PostCustomersCustomerSubscriptionsSubscriptionExposedIdOptions) async throws -> Subscription {
-        try await V1CustomersSubscriptionsMethods.postCustomersCustomerSubscriptionsSubscriptionExposedId(
-            config: config,
-            options: options
-        )
+    /// Updates an existing subscription on a customer to match the specified parameters. When changing plans or quantities, we will optionally prorate the price we charge next month to make up for any price changes. To preview how the proration will be calculated, use the upcoming invoice endpoint.
+    public func postCustomersCustomerSubscriptionExposedId(options: V1CustomersSubscriptionsMethods.PostCustomersCustomerSubscriptionsSubscriptionExposedIdOptions) async throws -> Subscription {
+        return try await V1CustomersSubscriptionsMethods.postCustomersCustomerSubscriptionsSubscriptionExposedId(config: config, options: options)
     }
 }
 
@@ -157,67 +72,32 @@ public class V1CustomersTaxIdsNamespace {
         self.config = config
     }
 
-    /// Lists all tax IDs associated with a customer. Use cursor parameters to page through results and `limit` to
-    /// control the number of tax IDs returned per request. You can also use `expand` to request expanded response
-    /// fields.
+/// Lists all tax IDs associated with a customer. Use cursor parameters to page through results and `limit` to control the number of tax IDs returned per request. You can also use `expand` to request expanded response fields.
     ///
     /// Returns a list of tax IDs for a customer.
-    public func getCustomersCustomer(
-        customer: String,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        startingAfter: String?
-    ) async throws -> GetCustomersCustomerTaxIdsResponse {
-        try await V1CustomersTaxIdsMethods.getCustomersCustomerTaxIds(
-            config: config,
-            customer: customer,
-            endingBefore: endingBefore,
-            expand: expand,
-            limit: limit,
-            startingAfter: startingAfter
-        )
+    public func getCustomersCustomer(customer: String, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetCustomersCustomerTaxIdsResponse {
+        return try await V1CustomersTaxIdsMethods.getCustomersCustomerTaxIds(config: config, customer: customer, endingBefore: endingBefore, expand: expand, limit: limit, startingAfter: startingAfter)
     }
 
-    /// Creates a tax ID for a customer. Supply the tax ID `type` and its corresponding `value`, then use `expand` if
-    /// you need selected response fields expanded. The tax ID is displayed on invoices and credit notes associated with
-    /// the customer.
+/// Creates a tax ID for a customer. Supply the tax ID `type` and its corresponding `value`, then use `expand` if you need selected response fields expanded. The tax ID is displayed on invoices and credit notes associated with the customer.
     ///
     /// Creates a new tax_id object for a customer.
-    public func postCustomersCustomer(
-        customer: String,
-        type: PostCustomersCustomerTaxIdsRequestBodyType,
-        value: String,
-        expand: [String]?
-    ) async throws -> TaxId {
-        try await V1CustomersTaxIdsMethods.postCustomersCustomerTaxIds(
-            config: config,
-            customer: customer,
-            type: type,
-            value: value,
-            expand: expand
-        )
+    public func postCustomersCustomer(customer: String, type: PostCustomersCustomerTaxIdsRequestBodyType, value: String, expand: [String]?) async throws -> TaxId {
+        return try await V1CustomersTaxIdsMethods.postCustomersCustomerTaxIds(config: config, customer: customer, type: type, value: value, expand: expand)
     }
 
-    /// Deletes an existing tax ID from a customer. Supply both the customer identifier and the tax ID identifier to
-    /// remove the specified tax ID object.
+/// Deletes an existing tax ID from a customer. Supply both the customer identifier and the tax ID identifier to remove the specified tax ID object.
     ///
     /// Deletes an existing tax_id object.
     public func deleteCustomersCustomerId(customer: String, id: String) async throws -> DeletedTaxId {
-        try await V1CustomersTaxIdsMethods.deleteCustomersCustomerTaxIdsId(config: config, customer: customer, id: id)
+        return try await V1CustomersTaxIdsMethods.deleteCustomersCustomerTaxIdsId(config: config, customer: customer, id: id)
     }
 
-    /// Retrieves a specific tax ID associated with a customer. Provide the customer identifier and tax ID identifier to
-    /// return the tax ID object, and use `expand` when you need selected nested fields expanded.
+/// Retrieves a specific tax ID associated with a customer. Provide the customer identifier and tax ID identifier to return the tax ID object, and use `expand` when you need selected nested fields expanded.
     ///
     /// Retrieves the tax_id object with the given identifier.
     public func getCustomersCustomerId(customer: String, id: String, expand: [String]?) async throws -> TaxId {
-        try await V1CustomersTaxIdsMethods.getCustomersCustomerTaxIdsId(
-            config: config,
-            customer: customer,
-            id: id,
-            expand: expand
-        )
+        return try await V1CustomersTaxIdsMethods.getCustomersCustomerTaxIdsId(config: config, customer: customer, id: id, expand: expand)
     }
 }
 
@@ -251,74 +131,39 @@ public class V1CustomersNamespace {
         taxIds = V1CustomersTaxIdsNamespace(config: config)
     }
 
-    /// Lists customers sorted by creation date, with the most recently created customers first. Filter results by
-    /// creation interval, email address, or test clock, and use cursor parameters to paginate through the collection.
-    /// The response includes customer objects and list pagination metadata.
+/// Lists customers sorted by creation date, with the most recently created customers first. Filter results by creation interval, email address, or test clock, and use cursor parameters to paginate through the collection. The response includes customer objects and list pagination metadata.
     ///
-    /// Returns a list of your customers. The customers are returned sorted by creation date, with the most recent
-    /// customers appearing first.
-    public func get(
-        created: GetCustomersParameter?,
-        email: String?,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        startingAfter: String?,
-        testClock: String?
-    ) async throws -> GetCustomersResponse {
-        try await V1CustomersMethods.getCustomers(
-            config: config,
-            created: created,
-            email: email,
-            endingBefore: endingBefore,
-            expand: expand,
-            limit: limit,
-            startingAfter: startingAfter,
-            testClock: testClock
-        )
+    /// Returns a list of your customers. The customers are returned sorted by creation date, with the most recent customers appearing first.
+    public func get(created: GetCustomersParameter?, email: String?, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?, testClock: String?) async throws -> GetCustomersResponse {
+        return try await V1CustomersMethods.getCustomers(config: config, created: created, email: email, endingBefore: endingBefore, expand: expand, limit: limit, startingAfter: startingAfter, testClock: testClock)
     }
 
-    /// Creates a new customer record. Supply customer identity, contact, billing, balance, payment, and invoice
-    /// settings as needed for the customer account. The response returns the created customer object with its generated
-    /// identifier and current configuration.
+/// Creates a new customer record. Supply customer identity, contact, billing, balance, payment, and invoice settings as needed for the customer account. The response returns the created customer object with its generated identifier and current configuration.
     ///
     /// Creates a new customer object.
     public func post(options: V1CustomersMethods.PostCustomersOptions) async throws -> Customer {
-        try await V1CustomersMethods.postCustomers(config: config, options: options)
+        return try await V1CustomersMethods.postCustomers(config: config, options: options)
     }
 
-    /// Deletes a customer and permanently removes the customer record. Active subscriptions for the customer are
-    /// cancelled immediately, and the deletion cannot be undone.
+/// Deletes a customer and permanently removes the customer record. Active subscriptions for the customer are cancelled immediately, and the deletion cannot be undone.
     ///
-    /// Permanently deletes a customer. It cannot be undone. Also immediately cancels any active subscriptions on the
-    /// customer.
+    /// Permanently deletes a customer. It cannot be undone. Also immediately cancels any active subscriptions on the customer.
     public func deleteCustomer(customer: String) async throws -> DeletedCustomer {
-        try await V1CustomersMethods.deleteCustomersCustomer(config: config, customer: customer)
+        return try await V1CustomersMethods.deleteCustomersCustomer(config: config, customer: customer)
     }
 
-    /// Retrieves a customer by its identifier. Use `expand` to include selected related fields in the response when
-    /// needed. The response contains the customer object or the representation used when a customer has been deleted.
+/// Retrieves a customer by its identifier. Use `expand` to include selected related fields in the response when needed. The response contains the customer object or the representation used when a customer has been deleted.
     ///
     /// Retrieves a Customer object.
     public func getCustomer(customer: String, expand: [String]?) async throws -> GetCustomersCustomerResponse {
-        try await V1CustomersMethods.getCustomersCustomer(config: config, customer: customer, expand: expand)
+        return try await V1CustomersMethods.getCustomersCustomer(config: config, customer: customer, expand: expand)
     }
 
-    /// Updates an existing customer using only the fields supplied in the request. Change contact, billing, payment
-    /// source, invoice, balance, or metadata settings as needed, while omitted fields remain unchanged. Supplying a new
-    /// `source` can retry eligible past-due subscription invoices, whereas changing `default_source` does not trigger
-    /// that retry behavior.
+/// Updates an existing customer using only the fields supplied in the request. Change contact, billing, payment source, invoice, balance, or metadata settings as needed, while omitted fields remain unchanged. Supplying a new `source` can retry eligible past-due subscription invoices, whereas changing `default_source` does not trigger that retry behavior.
     ///
-    /// Updates the specified customer by setting the values of the parameters passed. Any parameters not provided are
-    /// left unchanged. For example, if you pass the source parameter, that becomes the customer’s active source (such
-    /// as a card) to be used for all charges in the future. When you update a customer to a new valid card source by
-    /// passing the source parameter: for each of the customer’s current subscriptions, if the subscription bills
-    /// automatically and is in the past_due state, then the latest open invoice for the subscription with automatic
-    /// collection enabled is retried. This retry doesn’t count as an automatic retry, and doesn’t affect the next
-    /// regularly scheduled payment for the invoice. Changing the default_source for a customer doesn’t trigger this
-    /// behavior. This request accepts mostly the same arguments as the customer creation call.
+    /// Updates the specified customer by setting the values of the parameters passed. Any parameters not provided are left unchanged. For example, if you pass the source parameter, that becomes the customer’s active source (such as a card) to be used for all charges in the future. When you update a customer to a new valid card source by passing the source parameter: for each of the customer’s current subscriptions, if the subscription bills automatically and is in the past_due state, then the latest open invoice for the subscription with automatic collection enabled is retried. This retry doesn’t count as an automatic retry, and doesn’t affect the next regularly scheduled payment for the invoice. Changing the default_source for a customer doesn’t trigger this behavior. This request accepts mostly the same arguments as the customer creation call.
     public func postCustomer(options: V1CustomersMethods.PostCustomersCustomerOptions) async throws -> Customer {
-        try await V1CustomersMethods.postCustomersCustomer(config: config, options: options)
+        return try await V1CustomersMethods.postCustomersCustomer(config: config, options: options)
     }
 }
 
@@ -328,14 +173,11 @@ public class V1DisputesCloseNamespace {
         self.config = config
     }
 
-    /// Closes a dispute and accepts the dispute outcome on behalf of the account. Use this action when you have no
-    /// evidence to submit; closing changes the dispute from `needs_response` to `lost` and cannot be reversed.
+/// Closes a dispute and accepts the dispute outcome on behalf of the account. Use this action when you have no evidence to submit; closing changes the dispute from `needs_response` to `lost` and cannot be reversed.
     ///
-    /// Closing the dispute for a charge indicates that you do not have any evidence to submit and are essentially
-    /// dismissing the dispute (accepting it), acknowledging it as lost. The status of the dispute will change from
-    /// needs_response to lost . Closing a dispute is irreversible .
+    /// Closing the dispute for a charge indicates that you do not have any evidence to submit and are essentially dismissing the dispute (accepting it), acknowledging it as lost. The status of the dispute will change from needs_response to lost . Closing a dispute is irreversible .
     public func postDisputesDispute(dispute: String, expand: [String]?) async throws -> Dispute {
-        try await V1DisputesCloseMethods.postDisputesDisputeClose(config: config, dispute: dispute, expand: expand)
+        return try await V1DisputesCloseMethods.postDisputesDisputeClose(config: config, dispute: dispute, expand: expand)
     }
 }
 
@@ -347,61 +189,24 @@ public class V1DisputesNamespace {
         close = V1DisputesCloseNamespace(config: config)
     }
 
-    /// Lists disputes associated with your account. Use `charge` or `payment_intent` to filter the results, `created`
-    /// to constrain the creation interval, and cursor parameters to paginate through the list.
+/// Lists disputes associated with your account. Use `charge` or `payment_intent` to filter the results, `created` to constrain the creation interval, and cursor parameters to paginate through the list.
     ///
     /// Returns a list of your disputes.
-    public func get(
-        charge: String?,
-        created: GetDisputesParameter?,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        paymentIntent: String?,
-        startingAfter: String?
-    ) async throws -> GetDisputesResponse {
-        try await V1DisputesMethods.getDisputes(
-            config: config,
-            charge: charge,
-            created: created,
-            endingBefore: endingBefore,
-            expand: expand,
-            limit: limit,
-            paymentIntent: paymentIntent,
-            startingAfter: startingAfter
-        )
+    public func get(charge: String?, created: GetDisputesParameter?, endingBefore: String?, expand: [String]?, limit: Int?, paymentIntent: String?, startingAfter: String?) async throws -> GetDisputesResponse {
+        return try await V1DisputesMethods.getDisputes(config: config, charge: charge, created: created, endingBefore: endingBefore, expand: expand, limit: limit, paymentIntent: paymentIntent, startingAfter: startingAfter)
     }
 
-    /// Retrieves a specific dispute by its identifier. Use `expand` to request selected fields in expanded form when
-    /// retrieving the dispute details.
+/// Retrieves a specific dispute by its identifier. Use `expand` to request selected fields in expanded form when retrieving the dispute details.
     ///
     /// Retrieves the dispute with the given ID.
     public func getDispute(dispute: String, expand: [String]?) async throws -> Dispute {
-        try await V1DisputesMethods.getDisputesDispute(config: config, dispute: dispute, expand: expand)
+        return try await V1DisputesMethods.getDisputesDispute(config: config, dispute: dispute, expand: expand)
     }
 
-    /// Updates a dispute with evidence and related metadata. Supply evidence fields to respond to the dispute, and use
-    /// `submit` to choose whether the evidence is submitted immediately or staged for later submission.
+/// Updates a dispute with evidence and related metadata. Supply evidence fields to respond to the dispute, and use `submit` to choose whether the evidence is submitted immediately or staged for later submission.
     ///
-    /// When you get a dispute, contacting your customer is always the best first step. If that doesn’t work, you can
-    /// submit evidence to help us resolve the dispute in your favor. You can do this in your dashboard, but if you
-    /// prefer, you can use the API to submit evidence programmatically. Depending on your dispute type, different
-    /// evidence fields will give you a better chance of winning your dispute. To figure out which evidence fields to
-    /// provide, see our guide to dispute types.
-    public func postDispute(
-        dispute: String,
-        evidence: PostDisputesDisputeRequestBodyEvidence?,
-        expand: [String]?,
-        metadata: PostDisputesDisputeRequestBodyMetadata?,
-        submit: Bool?
-    ) async throws -> Dispute {
-        try await V1DisputesMethods.postDisputesDispute(
-            config: config,
-            dispute: dispute,
-            evidence: evidence,
-            expand: expand,
-            metadata: metadata,
-            submit: submit
-        )
+    /// When you get a dispute, contacting your customer is always the best first step. If that doesn’t work, you can submit evidence to help us resolve the dispute in your favor. You can do this in your dashboard, but if you prefer, you can use the API to submit evidence programmatically. Depending on your dispute type, different evidence fields will give you a better chance of winning your dispute. To figure out which evidence fields to provide, see our guide to dispute types.
+    public func postDispute(dispute: String, evidence: PostDisputesDisputeRequestBodyEvidence?, expand: [String]?, metadata: PostDisputesDisputeRequestBodyMetadata?, submit: Bool?) async throws -> Dispute {
+        return try await V1DisputesMethods.postDisputesDispute(config: config, dispute: dispute, evidence: evidence, expand: expand, metadata: metadata, submit: submit)
     }
 }

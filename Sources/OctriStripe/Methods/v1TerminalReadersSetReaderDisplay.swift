@@ -7,9 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1TerminalReadersSetReaderDisplayMethods {
-    /// Triggers a Reader display update that shows cart details to the customer. Set `type` to `cart` and provide the
-    /// cart's `currency`, `line_items`, and `total`; each line item must include `amount`, `description`, and
-    /// `quantity`. The Reader returns its current state after the display request is initiated.
+    /// Triggers a Reader display update that shows cart details to the customer. Set `type` to `cart` and provide the cart's `currency`, `line_items`, and `total`; each line item must include `amount`, `description`, and `quantity`. The Reader returns its current state after the display request is initiated.
     ///
     /// Sets the reader display to show cart details.
     ///
@@ -18,25 +16,11 @@ public enum V1TerminalReadersSetReaderDisplayMethods {
     /// - cart: Cart details to display on the reader screen, including line items,
     ///   amounts, and currency.
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postTerminalReadersReaderSetReaderDisplay(
-        config: ClientConfig,
-        reader: String,
-        type: PostTerminalReadersReaderSetReaderDisplayRequestBodyType,
-        cart: PostTerminalReadersReaderSetReaderDisplayRequestBodyCart?,
-        expand: [String]?
-    ) async throws -> TerminalReader {
+    public static func postTerminalReadersReaderSetReaderDisplay(config: ClientConfig, reader: String, type: PostTerminalReadersReaderSetReaderDisplayRequestBodyType, cart: PostTerminalReadersReaderSetReaderDisplayRequestBodyCart?, expand: [String]?) async throws -> TerminalReader {
         try validateLength("reader", reader, max: 5000)
 
         let requestBody = PostTerminalReadersReaderSetReaderDisplayRequestBody(type: type, cart: cart, expand: expand)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/terminal/readers/", sdkEncodePathSegment(sdkWireString(reader)), "/set_reader_display"].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostTerminalReadersReaderSetReaderDisplay"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/terminal/readers/", sdkEncodePathSegment(sdkWireString(reader)), "/set_reader_display"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTerminalReadersReaderSetReaderDisplay")).data
     }
 }

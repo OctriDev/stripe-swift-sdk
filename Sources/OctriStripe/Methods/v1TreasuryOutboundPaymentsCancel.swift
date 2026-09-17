@@ -7,30 +7,17 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1TreasuryOutboundPaymentsCancelMethods {
-    /// Cancels an existing OutboundPayment when it is still cancelable. Supply `id` to identify the payment and
-    /// optionally use `expand` to include additional response fields.
+    /// Cancels an existing OutboundPayment when it is still cancelable. Supply `id` to identify the payment and optionally use `expand` to include additional response fields.
     ///
     /// Cancel an OutboundPayment.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postTreasuryOutboundPaymentsIdCancel(
-        config: ClientConfig,
-        id: String,
-        expand: [String]?
-    ) async throws -> TreasuryOutboundPayment {
+    public static func postTreasuryOutboundPaymentsIdCancel(config: ClientConfig, id: String, expand: [String]?) async throws -> TreasuryOutboundPayment {
         try validateLength("id", id, max: 5000)
 
         let requestBody = PostTreasuryOutboundPaymentsIdCancelRequestBody(expand: expand)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/treasury/outbound_payments/", sdkEncodePathSegment(sdkWireString(id)), "/cancel"].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostTreasuryOutboundPaymentsIdCancel"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/treasury/outbound_payments/", sdkEncodePathSegment(sdkWireString(id)), "/cancel"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTreasuryOutboundPaymentsIdCancel")).data
     }
 }

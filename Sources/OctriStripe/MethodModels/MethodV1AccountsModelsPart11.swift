@@ -7,24 +7,24 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1Accounts operation model declarations
+// Canonical v1Accounts operation model declarations
 extension PostAccountsRequestBodyBankAccountVariant0 {
     func sdkValidateConstraints() throws {
-        try validateLength("account_number", accountNumber, min: nil, max: 5000)
-        try validateLength("country", country, min: nil, max: 5000)
-        if let value = accountHolderName {
+            try validateLength("account_number", self.accountNumber, min: nil, max: 5000)
+            try validateLength("country", self.country, min: nil, max: 5000)
+        if let value = self.accountHolderName {
             try validateLength("account_holder_name", value, min: nil, max: 5000)
         }
-        if let value = accountHolderType {
+        if let value = self.accountHolderType {
             try validateLength("account_holder_type", sdkWireString(value), min: nil, max: 5000)
         }
-        if let value = accountType {
+        if let value = self.accountType {
             try validateLength("account_type", sdkWireString(value), min: nil, max: 5000)
         }
-        if let value = object {
+        if let value = self.object {
             try validateLength("object", sdkWireString(value), min: nil, max: 5000)
         }
-        if let value = routingNumber {
+        if let value = self.routingNumber {
             try validateLength("routing_number", value, min: nil, max: 5000)
         }
     }
@@ -38,19 +38,19 @@ public struct PostAccountsAccountRequestBodyCapabilitiesPromptpayPayments: Codab
     }
 
     init() {
-        requested = nil
+        self.requested = nil
     }
 }
 
-public extension PostAccountsAccountRequestBodyCapabilitiesPromptpayPayments {
-    init(from decoder: Decoder) throws {
+extension PostAccountsAccountRequestBodyCapabilitiesPromptpayPayments {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        requested = try container.sdkDecodeIfPresent(.requested)
+        self.requested = try container.sdkDecodeIfPresent(.requested)
     }
 }
 
-public extension PostAccountsAccountRequestBodyCapabilitiesPromptpayPayments {
-    init(requested: Bool? = nil) {
+extension PostAccountsAccountRequestBodyCapabilitiesPromptpayPayments {
+    public init(requested: Bool? = nil) {
         self.init()
         self.requested = requested
     }
@@ -64,19 +64,19 @@ public struct PostAccountsRequestBodyCapabilitiesAcssDebitPayments: Codable {
     }
 
     init() {
-        requested = nil
+        self.requested = nil
     }
 }
 
-public extension PostAccountsRequestBodyCapabilitiesAcssDebitPayments {
-    init(from decoder: Decoder) throws {
+extension PostAccountsRequestBodyCapabilitiesAcssDebitPayments {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        requested = try container.sdkDecodeIfPresent(.requested)
+        self.requested = try container.sdkDecodeIfPresent(.requested)
     }
 }
 
-public extension PostAccountsRequestBodyCapabilitiesAcssDebitPayments {
-    init(requested: Bool? = nil) {
+extension PostAccountsRequestBodyCapabilitiesAcssDebitPayments {
+    public init(requested: Bool? = nil) {
         self.init()
         self.requested = requested
     }
@@ -90,19 +90,19 @@ public struct PostAccountsAccountRequestBodyCapabilitiesKonbiniPayments: Codable
     }
 
     init() {
-        requested = nil
+        self.requested = nil
     }
 }
 
-public extension PostAccountsAccountRequestBodyCapabilitiesKonbiniPayments {
-    init(from decoder: Decoder) throws {
+extension PostAccountsAccountRequestBodyCapabilitiesKonbiniPayments {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        requested = try container.sdkDecodeIfPresent(.requested)
+        self.requested = try container.sdkDecodeIfPresent(.requested)
     }
 }
 
-public extension PostAccountsAccountRequestBodyCapabilitiesKonbiniPayments {
-    init(requested: Bool? = nil) {
+extension PostAccountsAccountRequestBodyCapabilitiesKonbiniPayments {
+    public init(requested: Bool? = nil) {
         self.init()
         self.requested = requested
     }
@@ -116,19 +116,19 @@ public struct PostAccountsAccountRequestBodyCapabilitiesMultibancoPayments: Coda
     }
 
     init() {
-        requested = nil
+        self.requested = nil
     }
 }
 
-public extension PostAccountsAccountRequestBodyCapabilitiesMultibancoPayments {
-    init(from decoder: Decoder) throws {
+extension PostAccountsAccountRequestBodyCapabilitiesMultibancoPayments {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        requested = try container.sdkDecodeIfPresent(.requested)
+        self.requested = try container.sdkDecodeIfPresent(.requested)
     }
 }
 
-public extension PostAccountsAccountRequestBodyCapabilitiesMultibancoPayments {
-    init(requested: Bool? = nil) {
+extension PostAccountsAccountRequestBodyCapabilitiesMultibancoPayments {
+    public init(requested: Bool? = nil) {
         self.init()
         self.requested = requested
     }
@@ -142,19 +142,19 @@ public struct PostAccountsRequestBodyCapabilitiesPromptpayPayments: Codable {
     }
 
     init() {
-        requested = nil
+        self.requested = nil
     }
 }
 
-public extension PostAccountsRequestBodyCapabilitiesPromptpayPayments {
-    init(from decoder: Decoder) throws {
+extension PostAccountsRequestBodyCapabilitiesPromptpayPayments {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        requested = try container.sdkDecodeIfPresent(.requested)
+        self.requested = try container.sdkDecodeIfPresent(.requested)
     }
 }
 
-public extension PostAccountsRequestBodyCapabilitiesPromptpayPayments {
-    init(requested: Bool? = nil) {
+extension PostAccountsRequestBodyCapabilitiesPromptpayPayments {
+    public init(requested: Bool? = nil) {
         self.init()
         self.requested = requested
     }
@@ -168,19 +168,19 @@ public struct PostAccountsRequestBodyCapabilitiesUsBankAccountAchPayments: Codab
     }
 
     init() {
-        requested = nil
+        self.requested = nil
     }
 }
 
-public extension PostAccountsRequestBodyCapabilitiesUsBankAccountAchPayments {
-    init(from decoder: Decoder) throws {
+extension PostAccountsRequestBodyCapabilitiesUsBankAccountAchPayments {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        requested = try container.sdkDecodeIfPresent(.requested)
+        self.requested = try container.sdkDecodeIfPresent(.requested)
     }
 }
 
-public extension PostAccountsRequestBodyCapabilitiesUsBankAccountAchPayments {
-    init(requested: Bool? = nil) {
+extension PostAccountsRequestBodyCapabilitiesUsBankAccountAchPayments {
+    public init(requested: Bool? = nil) {
         self.init()
         self.requested = requested
     }
@@ -204,50 +204,43 @@ public struct PostAccountsRequestBodyIndividualRegisteredAddress: Codable {
     }
 
     init() {
-        (city, country, line1, line2, postalCode) = (nil, nil, nil, nil, nil)
-        state = nil
+        (self.city, self.country, self.line1, self.line2, self.postalCode) = (nil, nil, nil, nil, nil)
+        self.state = nil
     }
 }
 
-public extension PostAccountsRequestBodyIndividualRegisteredAddress {
-    init(from decoder: Decoder) throws {
+extension PostAccountsRequestBodyIndividualRegisteredAddress {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        city = try container.sdkDecodeIfPresent(.city)
-        country = try container.sdkDecodeIfPresent(.country)
-        line1 = try container.sdkDecodeIfPresent(.line1)
-        line2 = try container.sdkDecodeIfPresent(.line2)
-        postalCode = try container.sdkDecodeIfPresent(.postalCode)
-        state = try container.sdkDecodeIfPresent(.state)
-        if let value = city {
+        self.city = try container.sdkDecodeIfPresent(.city)
+        self.country = try container.sdkDecodeIfPresent(.country)
+        self.line1 = try container.sdkDecodeIfPresent(.line1)
+        self.line2 = try container.sdkDecodeIfPresent(.line2)
+        self.postalCode = try container.sdkDecodeIfPresent(.postalCode)
+        self.state = try container.sdkDecodeIfPresent(.state)
+        if let value = self.city {
             try validateLength("city", value, min: nil, max: 100)
         }
-        if let value = country {
+        if let value = self.country {
             try validateLength("country", value, min: nil, max: 5000)
         }
-        if let value = line1 {
+        if let value = self.line1 {
             try validateLength("line1", value, min: nil, max: 200)
         }
-        if let value = line2 {
+        if let value = self.line2 {
             try validateLength("line2", value, min: nil, max: 200)
         }
-        if let value = postalCode {
+        if let value = self.postalCode {
             try validateLength("postal_code", value, min: nil, max: 5000)
         }
-        if let value = state {
+        if let value = self.state {
             try validateLength("state", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PostAccountsRequestBodyIndividualRegisteredAddress {
-    init(
-        city: String? = nil,
-        country: String? = nil,
-        line1: String? = nil,
-        line2: String? = nil,
-        postalCode: String? = nil,
-        state: String? = nil
-    ) throws {
+extension PostAccountsRequestBodyIndividualRegisteredAddress {
+    public init(city: String? = nil, country: String? = nil, line1: String? = nil, line2: String? = nil, postalCode: String? = nil, state: String? = nil) throws {
         self.init()
         (self.city, self.country) = (city, country)
         (self.line1, self.line2) = (line1, line2)
@@ -281,19 +274,19 @@ public struct PostAccountsAccountRequestBodyCapabilitiesCartesBancairesPayments:
     }
 
     init() {
-        requested = nil
+        self.requested = nil
     }
 }
 
-public extension PostAccountsAccountRequestBodyCapabilitiesCartesBancairesPayments {
-    init(from decoder: Decoder) throws {
+extension PostAccountsAccountRequestBodyCapabilitiesCartesBancairesPayments {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        requested = try container.sdkDecodeIfPresent(.requested)
+        self.requested = try container.sdkDecodeIfPresent(.requested)
     }
 }
 
-public extension PostAccountsAccountRequestBodyCapabilitiesCartesBancairesPayments {
-    init(requested: Bool? = nil) {
+extension PostAccountsAccountRequestBodyCapabilitiesCartesBancairesPayments {
+    public init(requested: Bool? = nil) {
         self.init()
         self.requested = requested
     }
@@ -317,50 +310,43 @@ public struct PostAccountsAccountRequestBodyCompanyPrincipalPlaceOfBusiness: Cod
     }
 
     init() {
-        (city, country, line1, line2, postalCode) = (nil, nil, nil, nil, nil)
-        state = nil
+        (self.city, self.country, self.line1, self.line2, self.postalCode) = (nil, nil, nil, nil, nil)
+        self.state = nil
     }
 }
 
-public extension PostAccountsAccountRequestBodyCompanyPrincipalPlaceOfBusiness {
-    init(from decoder: Decoder) throws {
+extension PostAccountsAccountRequestBodyCompanyPrincipalPlaceOfBusiness {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        city = try container.sdkDecodeIfPresent(.city)
-        country = try container.sdkDecodeIfPresent(.country)
-        line1 = try container.sdkDecodeIfPresent(.line1)
-        line2 = try container.sdkDecodeIfPresent(.line2)
-        postalCode = try container.sdkDecodeIfPresent(.postalCode)
-        state = try container.sdkDecodeIfPresent(.state)
-        if let value = city {
+        self.city = try container.sdkDecodeIfPresent(.city)
+        self.country = try container.sdkDecodeIfPresent(.country)
+        self.line1 = try container.sdkDecodeIfPresent(.line1)
+        self.line2 = try container.sdkDecodeIfPresent(.line2)
+        self.postalCode = try container.sdkDecodeIfPresent(.postalCode)
+        self.state = try container.sdkDecodeIfPresent(.state)
+        if let value = self.city {
             try validateLength("city", value, min: nil, max: 100)
         }
-        if let value = country {
+        if let value = self.country {
             try validateLength("country", value, min: nil, max: 5000)
         }
-        if let value = line1 {
+        if let value = self.line1 {
             try validateLength("line1", value, min: nil, max: 200)
         }
-        if let value = line2 {
+        if let value = self.line2 {
             try validateLength("line2", value, min: nil, max: 200)
         }
-        if let value = postalCode {
+        if let value = self.postalCode {
             try validateLength("postal_code", value, min: nil, max: 5000)
         }
-        if let value = state {
+        if let value = self.state {
             try validateLength("state", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PostAccountsAccountRequestBodyCompanyPrincipalPlaceOfBusiness {
-    init(
-        city: String? = nil,
-        country: String? = nil,
-        line1: String? = nil,
-        line2: String? = nil,
-        postalCode: String? = nil,
-        state: String? = nil
-    ) throws {
+extension PostAccountsAccountRequestBodyCompanyPrincipalPlaceOfBusiness {
+    public init(city: String? = nil, country: String? = nil, line1: String? = nil, line2: String? = nil, postalCode: String? = nil, state: String? = nil) throws {
         self.init()
         (self.city, self.country) = (city, country)
         (self.line1, self.line2) = (line1, line2)
@@ -394,19 +380,19 @@ public struct PostAccountsAccountRequestBodyCapabilitiesScalapayPayments: Codabl
     }
 
     init() {
-        requested = nil
+        self.requested = nil
     }
 }
 
-public extension PostAccountsAccountRequestBodyCapabilitiesScalapayPayments {
-    init(from decoder: Decoder) throws {
+extension PostAccountsAccountRequestBodyCapabilitiesScalapayPayments {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        requested = try container.sdkDecodeIfPresent(.requested)
+        self.requested = try container.sdkDecodeIfPresent(.requested)
     }
 }
 
-public extension PostAccountsAccountRequestBodyCapabilitiesScalapayPayments {
-    init(requested: Bool? = nil) {
+extension PostAccountsAccountRequestBodyCapabilitiesScalapayPayments {
+    public init(requested: Bool? = nil) {
         self.init()
         self.requested = requested
     }
@@ -422,26 +408,26 @@ public struct PostAccountsAccountRequestBodyIndividualVerificationAdditionalDocu
     }
 
     init() {
-        (back, front) = (nil, nil)
+        (self.back, self.front) = (nil, nil)
     }
 }
 
-public extension PostAccountsAccountRequestBodyIndividualVerificationAdditionalDocument {
-    init(from decoder: Decoder) throws {
+extension PostAccountsAccountRequestBodyIndividualVerificationAdditionalDocument {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        back = try container.sdkDecodeIfPresent(.back)
-        front = try container.sdkDecodeIfPresent(.front)
-        if let value = back {
+        self.back = try container.sdkDecodeIfPresent(.back)
+        self.front = try container.sdkDecodeIfPresent(.front)
+        if let value = self.back {
             try validateLength("back", value, min: nil, max: 500)
         }
-        if let value = front {
+        if let value = self.front {
             try validateLength("front", value, min: nil, max: 500)
         }
     }
 }
 
-public extension PostAccountsAccountRequestBodyIndividualVerificationAdditionalDocument {
-    init(back: String? = nil, front: String? = nil) throws {
+extension PostAccountsAccountRequestBodyIndividualVerificationAdditionalDocument {
+    public init(back: String? = nil, front: String? = nil) throws {
         self.init()
         (self.back, self.front) = (back, front)
         if let value = self.back {
@@ -465,24 +451,24 @@ public struct PostAccountsAccountRequestBodyCompanyDirectorshipDeclaration: Coda
     }
 
     init() {
-        (date, ip, userAgent) = (nil, nil, nil)
+        (self.date, self.ip, self.userAgent) = (nil, nil, nil)
     }
 }
 
-public extension PostAccountsAccountRequestBodyCompanyDirectorshipDeclaration {
-    init(from decoder: Decoder) throws {
+extension PostAccountsAccountRequestBodyCompanyDirectorshipDeclaration {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        date = try container.sdkDecodeIfPresent(.date)
-        ip = try container.sdkDecodeIfPresent(.ip)
-        userAgent = try container.sdkDecodeIfPresent(.userAgent)
-        if let value = userAgent {
+        self.date = try container.sdkDecodeIfPresent(.date)
+        self.ip = try container.sdkDecodeIfPresent(.ip)
+        self.userAgent = try container.sdkDecodeIfPresent(.userAgent)
+        if let value = self.userAgent {
             try validateLength("user_agent", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PostAccountsAccountRequestBodyCompanyDirectorshipDeclaration {
-    init(date: Int? = nil, ip: String? = nil, userAgent: String? = nil) throws {
+extension PostAccountsAccountRequestBodyCompanyDirectorshipDeclaration {
+    public init(date: Int? = nil, ip: String? = nil, userAgent: String? = nil) throws {
         self.init()
         (self.date, self.ip) = (date, ip)
         self.userAgent = userAgent
@@ -512,35 +498,27 @@ public struct PostAccountsRequestBodyCompanyAddressKana: Codable {
     }
 
     init() {
-        (city, country, line1, line2, postalCode) = (nil, nil, nil, nil, nil)
-        (state, town) = (nil, nil)
+        (self.city, self.country, self.line1, self.line2, self.postalCode) = (nil, nil, nil, nil, nil)
+        (self.state, self.town) = (nil, nil)
     }
 }
 
-public extension PostAccountsRequestBodyCompanyAddressKana {
-    init(from decoder: Decoder) throws {
+extension PostAccountsRequestBodyCompanyAddressKana {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        city = try container.sdkDecodeIfPresent(.city)
-        country = try container.sdkDecodeIfPresent(.country)
-        line1 = try container.sdkDecodeIfPresent(.line1)
-        line2 = try container.sdkDecodeIfPresent(.line2)
-        postalCode = try container.sdkDecodeIfPresent(.postalCode)
-        state = try container.sdkDecodeIfPresent(.state)
-        town = try container.sdkDecodeIfPresent(.town)
+        self.city = try container.sdkDecodeIfPresent(.city)
+        self.country = try container.sdkDecodeIfPresent(.country)
+        self.line1 = try container.sdkDecodeIfPresent(.line1)
+        self.line2 = try container.sdkDecodeIfPresent(.line2)
+        self.postalCode = try container.sdkDecodeIfPresent(.postalCode)
+        self.state = try container.sdkDecodeIfPresent(.state)
+        self.town = try container.sdkDecodeIfPresent(.town)
         try sdkValidateConstraints()
     }
 }
 
-public extension PostAccountsRequestBodyCompanyAddressKana {
-    init(
-        city: String? = nil,
-        country: String? = nil,
-        line1: String? = nil,
-        line2: String? = nil,
-        postalCode: String? = nil,
-        state: String? = nil,
-        town: String? = nil
-    ) throws {
+extension PostAccountsRequestBodyCompanyAddressKana {
+    public init(city: String? = nil, country: String? = nil, line1: String? = nil, line2: String? = nil, postalCode: String? = nil, state: String? = nil, town: String? = nil) throws {
         self.init()
         (self.city, self.country) = (city, country)
         (self.line1, self.line2) = (line1, line2)
@@ -552,25 +530,25 @@ public extension PostAccountsRequestBodyCompanyAddressKana {
 
 extension PostAccountsRequestBodyCompanyAddressKana {
     func sdkValidateConstraints() throws {
-        if let value = city {
+        if let value = self.city {
             try validateLength("city", value, min: nil, max: 5000)
         }
-        if let value = country {
+        if let value = self.country {
             try validateLength("country", value, min: nil, max: 5000)
         }
-        if let value = line1 {
+        if let value = self.line1 {
             try validateLength("line1", value, min: nil, max: 5000)
         }
-        if let value = line2 {
+        if let value = self.line2 {
             try validateLength("line2", value, min: nil, max: 5000)
         }
-        if let value = postalCode {
+        if let value = self.postalCode {
             try validateLength("postal_code", value, min: nil, max: 5000)
         }
-        if let value = state {
+        if let value = self.state {
             try validateLength("state", value, min: nil, max: 5000)
         }
-        if let value = town {
+        if let value = self.town {
             try validateLength("town", value, min: nil, max: 5000)
         }
     }
@@ -584,19 +562,19 @@ public struct PostAccountsAccountRequestBodyCapabilitiesAlmaPayments: Codable {
     }
 
     init() {
-        requested = nil
+        self.requested = nil
     }
 }
 
-public extension PostAccountsAccountRequestBodyCapabilitiesAlmaPayments {
-    init(from decoder: Decoder) throws {
+extension PostAccountsAccountRequestBodyCapabilitiesAlmaPayments {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        requested = try container.sdkDecodeIfPresent(.requested)
+        self.requested = try container.sdkDecodeIfPresent(.requested)
     }
 }
 
-public extension PostAccountsAccountRequestBodyCapabilitiesAlmaPayments {
-    init(requested: Bool? = nil) {
+extension PostAccountsAccountRequestBodyCapabilitiesAlmaPayments {
+    public init(requested: Bool? = nil) {
         self.init()
         self.requested = requested
     }
@@ -612,6 +590,6 @@ public struct PostAccountsRequestBodyCompanyVerificationDocument: Codable {
     }
 
     init() {
-        (back, front) = (nil, nil)
+        (self.back, self.front) = (nil, nil)
     }
 }

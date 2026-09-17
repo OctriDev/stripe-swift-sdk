@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1CustomerSessions operation model declarations
+// Canonical v1CustomerSessions operation model declarations
 public struct PostCustomerSessionsRequestBodyComponentsActiveEntitlements: Codable {
     public var enabled: Bool
 
@@ -15,33 +15,36 @@ public struct PostCustomerSessionsRequestBodyComponentsActiveEntitlements: Codab
         case enabled
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostCustomerSessionsRequestBodyComponentsActiveEntitlements {
-    init(from decoder: Decoder) throws {
+extension PostCustomerSessionsRequestBodyComponentsActiveEntitlements {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.enabled) else {
-            throw SdkValidationError(
-                field: "enabled",
-                code: "required",
-                message: "Validation failed for 'enabled': value is required"
-            )
+            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
         }
-        enabled = try container.sdkDecodeRequired(.enabled)
+        self.enabled = try container.sdkDecodeRequired(.enabled)
     }
 }
 
-public extension PostCustomerSessionsRequestBodyComponentsActiveEntitlements {
-    init(enabled: Bool) {
+extension PostCustomerSessionsRequestBodyComponentsActiveEntitlements {
+    public init(enabled: Bool) {
         self.enabled = enabled
     }
 }
 
-public typealias PostCustomerSessionsRequestBodyComponentsPaymentElementFeaturX93f3569bb9 =
-    [PostCustomerSessionsRequestBodyComponentsPaymentElementFeaturX528705d7ea]
+
+
+public typealias PostCustomerSessionsRequestBodyComponentsPaymentElementFeaturX93f3569bb9 = [PostCustomerSessionsRequestBodyComponentsPaymentElementFeaturX528705d7ea]
+
+
+
+
+
+
+
+
 
 public struct PostCustomerSessionsRequestBodyComponentsPaymentElementFeatures: Codable {
     public var paymentMethodAllowRedisplayFilters:
@@ -62,39 +65,25 @@ public struct PostCustomerSessionsRequestBodyComponentsPaymentElementFeatures: C
     }
 
     init() {
-        (
-            paymentMethodAllowRedisplayFilters,
-            paymentMethodRedisplay,
-            paymentMethodRedisplayLimit,
-            paymentMethodRemove,
-            paymentMethodSave
-        ) = (nil, nil, nil, nil, nil)
-        paymentMethodSaveUsage = nil
+        (self.paymentMethodAllowRedisplayFilters, self.paymentMethodRedisplay, self.paymentMethodRedisplayLimit, self.paymentMethodRemove, self.paymentMethodSave) = (nil, nil, nil, nil, nil)
+        self.paymentMethodSaveUsage = nil
     }
 }
 
-public extension PostCustomerSessionsRequestBodyComponentsPaymentElementFeatures {
-    init(from decoder: Decoder) throws {
+extension PostCustomerSessionsRequestBodyComponentsPaymentElementFeatures {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        paymentMethodAllowRedisplayFilters = try container.sdkDecodeIfPresent(.paymentMethodAllowRedisplayFilters)
-        paymentMethodRedisplay = try container.sdkDecodeIfPresent(.paymentMethodRedisplay)
-        paymentMethodRedisplayLimit = try container.sdkDecodeIfPresent(.paymentMethodRedisplayLimit)
-        paymentMethodRemove = try container.sdkDecodeIfPresent(.paymentMethodRemove)
-        paymentMethodSave = try container.sdkDecodeIfPresent(.paymentMethodSave)
-        paymentMethodSaveUsage = try container.sdkDecodeIfPresent(.paymentMethodSaveUsage)
+        self.paymentMethodAllowRedisplayFilters = try container.sdkDecodeIfPresent(.paymentMethodAllowRedisplayFilters)
+        self.paymentMethodRedisplay = try container.sdkDecodeIfPresent(.paymentMethodRedisplay)
+        self.paymentMethodRedisplayLimit = try container.sdkDecodeIfPresent(.paymentMethodRedisplayLimit)
+        self.paymentMethodRemove = try container.sdkDecodeIfPresent(.paymentMethodRemove)
+        self.paymentMethodSave = try container.sdkDecodeIfPresent(.paymentMethodSave)
+        self.paymentMethodSaveUsage = try container.sdkDecodeIfPresent(.paymentMethodSaveUsage)
     }
 }
 
-public extension PostCustomerSessionsRequestBodyComponentsPaymentElementFeatures {
-    init(
-        paymentMethodAllowRedisplayFilters: PostCustomerSessionsRequestBodyComponentsPaymentElementFeaturX93f3569bb9? =
-            nil,
-        paymentMethodRedisplay: PostCustomerSessionsRequestBodyComponentsPaymentElementFeaturX60980f39fc? = nil,
-        paymentMethodRedisplayLimit: Int? = nil,
-        paymentMethodRemove: PostCustomerSessionsRequestBodyComponentsPaymentElementFeaturXa796752886? = nil,
-        paymentMethodSave: PostCustomerSessionsRequestBodyComponentsPaymentElementFeaturXe716cf7d04? = nil,
-        paymentMethodSaveUsage: PostCustomerSessionsRequestBodyComponentsPaymentElementFeaturXdd889477aa? = nil
-    ) {
+extension PostCustomerSessionsRequestBodyComponentsPaymentElementFeatures {
+    public init(paymentMethodAllowRedisplayFilters: PostCustomerSessionsRequestBodyComponentsPaymentElementFeaturX93f3569bb9? = nil, paymentMethodRedisplay: PostCustomerSessionsRequestBodyComponentsPaymentElementFeaturX60980f39fc? = nil, paymentMethodRedisplayLimit: Int? = nil, paymentMethodRemove: PostCustomerSessionsRequestBodyComponentsPaymentElementFeaturXa796752886? = nil, paymentMethodSave: PostCustomerSessionsRequestBodyComponentsPaymentElementFeaturXe716cf7d04? = nil, paymentMethodSaveUsage: PostCustomerSessionsRequestBodyComponentsPaymentElementFeaturXdd889477aa? = nil) {
         self.init()
         self.paymentMethodAllowRedisplayFilters = paymentMethodAllowRedisplayFilters
         self.paymentMethodRedisplay = paymentMethodRedisplay
@@ -114,28 +103,22 @@ public struct PostCustomerSessionsRequestBodyComponentsCustomerSheet: Codable {
         case features
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostCustomerSessionsRequestBodyComponentsCustomerSheet {
-    init(from decoder: Decoder) throws {
+extension PostCustomerSessionsRequestBodyComponentsCustomerSheet {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.enabled) else {
-            throw SdkValidationError(
-                field: "enabled",
-                code: "required",
-                message: "Validation failed for 'enabled': value is required"
-            )
+            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
         }
-        enabled = try container.sdkDecodeRequired(.enabled)
-        features = try container.sdkDecodeIfPresent(.features)
+        self.enabled = try container.sdkDecodeRequired(.enabled)
+        self.features = try container.sdkDecodeIfPresent(.features)
     }
 }
 
-public extension PostCustomerSessionsRequestBodyComponentsCustomerSheet {
-    init(enabled: Bool, features: PostCustomerSessionsRequestBodyComponentsCustomerSheetFeatures? = nil) {
+extension PostCustomerSessionsRequestBodyComponentsCustomerSheet {
+    public init(enabled: Bool, features: PostCustomerSessionsRequestBodyComponentsCustomerSheetFeatures? = nil) {
         (self.enabled, self.features) = (enabled, features)
     }
 }
@@ -147,27 +130,21 @@ public struct PostCustomerSessionsRequestBodyComponentsCustomerPortal: Codable {
         case enabled
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostCustomerSessionsRequestBodyComponentsCustomerPortal {
-    init(from decoder: Decoder) throws {
+extension PostCustomerSessionsRequestBodyComponentsCustomerPortal {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.enabled) else {
-            throw SdkValidationError(
-                field: "enabled",
-                code: "required",
-                message: "Validation failed for 'enabled': value is required"
-            )
+            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
         }
-        enabled = try container.sdkDecodeRequired(.enabled)
+        self.enabled = try container.sdkDecodeRequired(.enabled)
     }
 }
 
-public extension PostCustomerSessionsRequestBodyComponentsCustomerPortal {
-    init(enabled: Bool) {
+extension PostCustomerSessionsRequestBodyComponentsCustomerPortal {
+    public init(enabled: Bool) {
         self.enabled = enabled
     }
 }
@@ -182,28 +159,22 @@ public struct PostCustomerSessionsRequestBodyComponentsMobilePaymentElement: Cod
         case features
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostCustomerSessionsRequestBodyComponentsMobilePaymentElement {
-    init(from decoder: Decoder) throws {
+extension PostCustomerSessionsRequestBodyComponentsMobilePaymentElement {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.enabled) else {
-            throw SdkValidationError(
-                field: "enabled",
-                code: "required",
-                message: "Validation failed for 'enabled': value is required"
-            )
+            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
         }
-        enabled = try container.sdkDecodeRequired(.enabled)
-        features = try container.sdkDecodeIfPresent(.features)
+        self.enabled = try container.sdkDecodeRequired(.enabled)
+        self.features = try container.sdkDecodeIfPresent(.features)
     }
 }
 
-public extension PostCustomerSessionsRequestBodyComponentsMobilePaymentElement {
-    init(enabled: Bool, features: PostCustomerSessionsRequestBodyComponentsMobilePaymentElementFeatures? = nil) {
+extension PostCustomerSessionsRequestBodyComponentsMobilePaymentElement {
+    public init(enabled: Bool, features: PostCustomerSessionsRequestBodyComponentsMobilePaymentElementFeatures? = nil) {
         (self.enabled, self.features) = (enabled, features)
     }
 }
@@ -215,27 +186,21 @@ public struct PostCustomerSessionsRequestBodyComponentsPricingTable: Codable {
         case enabled
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostCustomerSessionsRequestBodyComponentsPricingTable {
-    init(from decoder: Decoder) throws {
+extension PostCustomerSessionsRequestBodyComponentsPricingTable {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.enabled) else {
-            throw SdkValidationError(
-                field: "enabled",
-                code: "required",
-                message: "Validation failed for 'enabled': value is required"
-            )
+            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
         }
-        enabled = try container.sdkDecodeRequired(.enabled)
+        self.enabled = try container.sdkDecodeRequired(.enabled)
     }
 }
 
-public extension PostCustomerSessionsRequestBodyComponentsPricingTable {
-    init(enabled: Bool) {
+extension PostCustomerSessionsRequestBodyComponentsPricingTable {
+    public init(enabled: Bool) {
         self.enabled = enabled
     }
 }
@@ -250,34 +215,37 @@ public struct PostCustomerSessionsRequestBodyComponentsPaymentElement: Codable {
         case features
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostCustomerSessionsRequestBodyComponentsPaymentElement {
-    init(from decoder: Decoder) throws {
+extension PostCustomerSessionsRequestBodyComponentsPaymentElement {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.enabled) else {
-            throw SdkValidationError(
-                field: "enabled",
-                code: "required",
-                message: "Validation failed for 'enabled': value is required"
-            )
+            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
         }
-        enabled = try container.sdkDecodeRequired(.enabled)
-        features = try container.sdkDecodeIfPresent(.features)
+        self.enabled = try container.sdkDecodeRequired(.enabled)
+        self.features = try container.sdkDecodeIfPresent(.features)
     }
 }
 
-public extension PostCustomerSessionsRequestBodyComponentsPaymentElement {
-    init(enabled: Bool, features: PostCustomerSessionsRequestBodyComponentsPaymentElementFeatures? = nil) {
+extension PostCustomerSessionsRequestBodyComponentsPaymentElement {
+    public init(enabled: Bool, features: PostCustomerSessionsRequestBodyComponentsPaymentElementFeatures? = nil) {
         (self.enabled, self.features) = (enabled, features)
     }
 }
 
-public typealias PostCustomerSessionsRequestBodyComponentsMobilePaymentElementX8ca88b6e09 =
-    [PostCustomerSessionsRequestBodyComponentsMobilePaymentElementX964d2da593]
+
+
+public typealias PostCustomerSessionsRequestBodyComponentsMobilePaymentElementX8ca88b6e09 = [PostCustomerSessionsRequestBodyComponentsMobilePaymentElementX964d2da593]
+
+
+
+
+
+
+
+
 
 public struct PostCustomerSessionsRequestBodyComponentsMobilePaymentElementFeatures: Codable {
     public var paymentMethodAllowRedisplayFilters:
@@ -297,38 +265,23 @@ public struct PostCustomerSessionsRequestBodyComponentsMobilePaymentElementFeatu
     }
 
     init() {
-        (
-            paymentMethodAllowRedisplayFilters,
-            paymentMethodRedisplay,
-            paymentMethodRemove,
-            paymentMethodSave,
-            paymentMethodSaveAllowRedisplayOverride
-        ) = (nil, nil, nil, nil, nil)
+        (self.paymentMethodAllowRedisplayFilters, self.paymentMethodRedisplay, self.paymentMethodRemove, self.paymentMethodSave, self.paymentMethodSaveAllowRedisplayOverride) = (nil, nil, nil, nil, nil)
     }
 }
 
-public extension PostCustomerSessionsRequestBodyComponentsMobilePaymentElementFeatures {
-    init(from decoder: Decoder) throws {
+extension PostCustomerSessionsRequestBodyComponentsMobilePaymentElementFeatures {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        paymentMethodAllowRedisplayFilters = try container.sdkDecodeIfPresent(.paymentMethodAllowRedisplayFilters)
-        paymentMethodRedisplay = try container.sdkDecodeIfPresent(.paymentMethodRedisplay)
-        paymentMethodRemove = try container.sdkDecodeIfPresent(.paymentMethodRemove)
-        paymentMethodSave = try container.sdkDecodeIfPresent(.paymentMethodSave)
-        paymentMethodSaveAllowRedisplayOverride = try container
-            .sdkDecodeIfPresent(.paymentMethodSaveAllowRedisplayOverride)
+        self.paymentMethodAllowRedisplayFilters = try container.sdkDecodeIfPresent(.paymentMethodAllowRedisplayFilters)
+        self.paymentMethodRedisplay = try container.sdkDecodeIfPresent(.paymentMethodRedisplay)
+        self.paymentMethodRemove = try container.sdkDecodeIfPresent(.paymentMethodRemove)
+        self.paymentMethodSave = try container.sdkDecodeIfPresent(.paymentMethodSave)
+        self.paymentMethodSaveAllowRedisplayOverride = try container.sdkDecodeIfPresent(.paymentMethodSaveAllowRedisplayOverride)
     }
 }
 
-public extension PostCustomerSessionsRequestBodyComponentsMobilePaymentElementFeatures {
-    init(
-        paymentMethodAllowRedisplayFilters: PostCustomerSessionsRequestBodyComponentsMobilePaymentElementX8ca88b6e09? =
-            nil,
-        paymentMethodRedisplay: PostCustomerSessionsRequestBodyComponentsMobilePaymentElementX5c924a32fd? = nil,
-        paymentMethodRemove: PostCustomerSessionsRequestBodyComponentsMobilePaymentElementXe92e7f71fb? = nil,
-        paymentMethodSave: PostCustomerSessionsRequestBodyComponentsMobilePaymentElementXac013c8e20? = nil,
-        paymentMethodSaveAllowRedisplayOverride: PostCustomerSessionsRequestBodyComponentsMobilePaymentElementX0d86d47258? =
-            nil
-    ) {
+extension PostCustomerSessionsRequestBodyComponentsMobilePaymentElementFeatures {
+    public init(paymentMethodAllowRedisplayFilters: PostCustomerSessionsRequestBodyComponentsMobilePaymentElementX8ca88b6e09? = nil, paymentMethodRedisplay: PostCustomerSessionsRequestBodyComponentsMobilePaymentElementX5c924a32fd? = nil, paymentMethodRemove: PostCustomerSessionsRequestBodyComponentsMobilePaymentElementXe92e7f71fb? = nil, paymentMethodSave: PostCustomerSessionsRequestBodyComponentsMobilePaymentElementXac013c8e20? = nil, paymentMethodSaveAllowRedisplayOverride: PostCustomerSessionsRequestBodyComponentsMobilePaymentElementX0d86d47258? = nil) {
         self.init()
         self.paymentMethodAllowRedisplayFilters = paymentMethodAllowRedisplayFilters
         self.paymentMethodRedisplay = paymentMethodRedisplay
@@ -365,34 +318,26 @@ public struct PostCustomerSessionsRequestBodyComponents: Codable {
     }
 
     init() {
-        (activeEntitlements, buyButton, customerPortal, customerSheet, mobilePaymentElement) = (nil, nil, nil, nil, nil)
-        (paymentElement, pricingTable) = (nil, nil)
+        (self.activeEntitlements, self.buyButton, self.customerPortal, self.customerSheet, self.mobilePaymentElement) = (nil, nil, nil, nil, nil)
+        (self.paymentElement, self.pricingTable) = (nil, nil)
     }
 }
 
-public extension PostCustomerSessionsRequestBodyComponents {
-    init(from decoder: Decoder) throws {
+extension PostCustomerSessionsRequestBodyComponents {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        activeEntitlements = try container.sdkDecodeIfPresent(.activeEntitlements)
-        buyButton = try container.sdkDecodeIfPresent(.buyButton)
-        customerPortal = try container.sdkDecodeIfPresent(.customerPortal)
-        customerSheet = try container.sdkDecodeIfPresent(.customerSheet)
-        mobilePaymentElement = try container.sdkDecodeIfPresent(.mobilePaymentElement)
-        paymentElement = try container.sdkDecodeIfPresent(.paymentElement)
-        pricingTable = try container.sdkDecodeIfPresent(.pricingTable)
+        self.activeEntitlements = try container.sdkDecodeIfPresent(.activeEntitlements)
+        self.buyButton = try container.sdkDecodeIfPresent(.buyButton)
+        self.customerPortal = try container.sdkDecodeIfPresent(.customerPortal)
+        self.customerSheet = try container.sdkDecodeIfPresent(.customerSheet)
+        self.mobilePaymentElement = try container.sdkDecodeIfPresent(.mobilePaymentElement)
+        self.paymentElement = try container.sdkDecodeIfPresent(.paymentElement)
+        self.pricingTable = try container.sdkDecodeIfPresent(.pricingTable)
     }
 }
 
-public extension PostCustomerSessionsRequestBodyComponents {
-    init(
-        activeEntitlements: PostCustomerSessionsRequestBodyComponentsActiveEntitlements? = nil,
-        buyButton: PostCustomerSessionsRequestBodyComponentsBuyButton? = nil,
-        customerPortal: PostCustomerSessionsRequestBodyComponentsCustomerPortal? = nil,
-        customerSheet: PostCustomerSessionsRequestBodyComponentsCustomerSheet? = nil,
-        mobilePaymentElement: PostCustomerSessionsRequestBodyComponentsMobilePaymentElement? = nil,
-        paymentElement: PostCustomerSessionsRequestBodyComponentsPaymentElement? = nil,
-        pricingTable: PostCustomerSessionsRequestBodyComponentsPricingTable? = nil
-    ) {
+extension PostCustomerSessionsRequestBodyComponents {
+    public init(activeEntitlements: PostCustomerSessionsRequestBodyComponentsActiveEntitlements? = nil, buyButton: PostCustomerSessionsRequestBodyComponentsBuyButton? = nil, customerPortal: PostCustomerSessionsRequestBodyComponentsCustomerPortal? = nil, customerSheet: PostCustomerSessionsRequestBodyComponentsCustomerSheet? = nil, mobilePaymentElement: PostCustomerSessionsRequestBodyComponentsMobilePaymentElement? = nil, paymentElement: PostCustomerSessionsRequestBodyComponentsPaymentElement? = nil, pricingTable: PostCustomerSessionsRequestBodyComponentsPricingTable? = nil) {
         self.init()
         (self.activeEntitlements, self.buyButton) = (activeEntitlements, buyButton)
         (self.customerPortal, self.customerSheet) = (customerPortal, customerSheet)
@@ -408,33 +353,30 @@ public struct PostCustomerSessionsRequestBodyComponentsBuyButton: Codable {
         case enabled
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostCustomerSessionsRequestBodyComponentsBuyButton {
-    init(from decoder: Decoder) throws {
+extension PostCustomerSessionsRequestBodyComponentsBuyButton {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.enabled) else {
-            throw SdkValidationError(
-                field: "enabled",
-                code: "required",
-                message: "Validation failed for 'enabled': value is required"
-            )
+            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
         }
-        enabled = try container.sdkDecodeRequired(.enabled)
+        self.enabled = try container.sdkDecodeRequired(.enabled)
     }
 }
 
-public extension PostCustomerSessionsRequestBodyComponentsBuyButton {
-    init(enabled: Bool) {
+extension PostCustomerSessionsRequestBodyComponentsBuyButton {
+    public init(enabled: Bool) {
         self.enabled = enabled
     }
 }
 
-public typealias PostCustomerSessionsRequestBodyComponentsCustomerSheetFeatureX919d207b0c =
-    [PostCustomerSessionsRequestBodyComponentsCustomerSheetFeatureX8614069c5b]
+
+
+public typealias PostCustomerSessionsRequestBodyComponentsCustomerSheetFeatureX919d207b0c = [PostCustomerSessionsRequestBodyComponentsCustomerSheetFeatureX8614069c5b]
+
+
 
 public struct PostCustomerSessionsRequestBodyComponentsCustomerSheetFeatures: Codable {
     public var paymentMethodAllowRedisplayFilters:
@@ -447,24 +389,20 @@ public struct PostCustomerSessionsRequestBodyComponentsCustomerSheetFeatures: Co
     }
 
     init() {
-        (paymentMethodAllowRedisplayFilters, paymentMethodRemove) = (nil, nil)
+        (self.paymentMethodAllowRedisplayFilters, self.paymentMethodRemove) = (nil, nil)
     }
 }
 
-public extension PostCustomerSessionsRequestBodyComponentsCustomerSheetFeatures {
-    init(from decoder: Decoder) throws {
+extension PostCustomerSessionsRequestBodyComponentsCustomerSheetFeatures {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        paymentMethodAllowRedisplayFilters = try container.sdkDecodeIfPresent(.paymentMethodAllowRedisplayFilters)
-        paymentMethodRemove = try container.sdkDecodeIfPresent(.paymentMethodRemove)
+        self.paymentMethodAllowRedisplayFilters = try container.sdkDecodeIfPresent(.paymentMethodAllowRedisplayFilters)
+        self.paymentMethodRemove = try container.sdkDecodeIfPresent(.paymentMethodRemove)
     }
 }
 
-public extension PostCustomerSessionsRequestBodyComponentsCustomerSheetFeatures {
-    init(
-        paymentMethodAllowRedisplayFilters: PostCustomerSessionsRequestBodyComponentsCustomerSheetFeatureX919d207b0c? =
-            nil,
-        paymentMethodRemove: PostCustomerSessionsRequestBodyComponentsCustomerSheetFeatureX2fb4e4cc42? = nil
-    ) {
+extension PostCustomerSessionsRequestBodyComponentsCustomerSheetFeatures {
+    public init(paymentMethodAllowRedisplayFilters: PostCustomerSessionsRequestBodyComponentsCustomerSheetFeatureX919d207b0c? = nil, paymentMethodRemove: PostCustomerSessionsRequestBodyComponentsCustomerSheetFeatureX2fb4e4cc42? = nil) {
         self.init()
         self.paymentMethodAllowRedisplayFilters = paymentMethodAllowRedisplayFilters
         self.paymentMethodRemove = paymentMethodRemove

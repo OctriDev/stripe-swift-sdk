@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1SetupIntent domain models
+// V1SetupIntent domain models
 /// Typed representation of the `SetupIntentNextAction` API schema.
 public struct SetupIntentNextAction: Codable {
     /// Type of the next action to perform. Refer to the other child attributes under `next_action` for available
@@ -38,50 +38,35 @@ public struct SetupIntentNextAction: Codable {
         case verifyWithMicrodeposits = "verify_with_microdeposits"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension SetupIntentNextAction {
-    init(from decoder: Decoder) throws {
+extension SetupIntentNextAction {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.type) else {
-            throw SdkValidationError(
-                field: "type",
-                code: "required",
-                message: "Validation failed for 'type': value is required"
-            )
+            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
         }
-        type = try container.sdkDecodeRequired(.type)
-        blikAuthorize = try container.sdkDecodeIfPresent(.blikAuthorize)
-        cashappHandleRedirectOrDisplayQrCode = try container.sdkDecodeIfPresent(.cashappHandleRedirectOrDisplayQrCode)
-        pixDisplayQrCode = try container.sdkDecodeIfPresent(.pixDisplayQrCode)
-        redirectToUrl = try container.sdkDecodeIfPresent(.redirectToUrl)
-        upiHandleRedirectOrDisplayQrCode = try container.sdkDecodeIfPresent(.upiHandleRedirectOrDisplayQrCode)
-        useStripeSdk = try container.sdkDecodeIfPresent(.useStripeSdk)
-        verifyWithMicrodeposits = try container.sdkDecodeIfPresent(.verifyWithMicrodeposits)
-        try validateLength("type", type, min: nil, max: 5000)
+        self.type = try container.sdkDecodeRequired(.type)
+        self.blikAuthorize = try container.sdkDecodeIfPresent(.blikAuthorize)
+        self.cashappHandleRedirectOrDisplayQrCode = try container.sdkDecodeIfPresent(.cashappHandleRedirectOrDisplayQrCode)
+        self.pixDisplayQrCode = try container.sdkDecodeIfPresent(.pixDisplayQrCode)
+        self.redirectToUrl = try container.sdkDecodeIfPresent(.redirectToUrl)
+        self.upiHandleRedirectOrDisplayQrCode = try container.sdkDecodeIfPresent(.upiHandleRedirectOrDisplayQrCode)
+        self.useStripeSdk = try container.sdkDecodeIfPresent(.useStripeSdk)
+        self.verifyWithMicrodeposits = try container.sdkDecodeIfPresent(.verifyWithMicrodeposits)
+            try validateLength("type", self.type, min: nil, max: 5000)
     }
 }
 
-public extension SetupIntentNextAction {
-    init(
-        type: String,
-        blikAuthorize: PaymentIntentNextActionBlikAuthorize? = nil,
-        cashappHandleRedirectOrDisplayQrCode: PaymentIntentNextActionCashappHandleRedirectOrDisplayQrCode? = nil,
-        pixDisplayQrCode: SetupIntentNextActionPixDisplayQrCode? = nil,
-        redirectToUrl: SetupIntentNextActionRedirectToUrl? = nil,
-        upiHandleRedirectOrDisplayQrCode: PaymentIntentNextActionUpiHandleRedirectOrDisplayQrCode? = nil,
-        useStripeSdk: [String: JSONValue]? = nil,
-        verifyWithMicrodeposits: SetupIntentNextActionVerifyWithMicrodeposits? = nil
-    ) throws {
+extension SetupIntentNextAction {
+    public init(type: String, blikAuthorize: PaymentIntentNextActionBlikAuthorize? = nil, cashappHandleRedirectOrDisplayQrCode: PaymentIntentNextActionCashappHandleRedirectOrDisplayQrCode? = nil, pixDisplayQrCode: SetupIntentNextActionPixDisplayQrCode? = nil, redirectToUrl: SetupIntentNextActionRedirectToUrl? = nil, upiHandleRedirectOrDisplayQrCode: PaymentIntentNextActionUpiHandleRedirectOrDisplayQrCode? = nil, useStripeSdk: [String: JSONValue]? = nil, verifyWithMicrodeposits: SetupIntentNextActionVerifyWithMicrodeposits? = nil) throws {
         (self.type, self.blikAuthorize) = (type, blikAuthorize)
         self.cashappHandleRedirectOrDisplayQrCode = cashappHandleRedirectOrDisplayQrCode
         (self.pixDisplayQrCode, self.redirectToUrl) = (pixDisplayQrCode, redirectToUrl)
         self.upiHandleRedirectOrDisplayQrCode = upiHandleRedirectOrDisplayQrCode
         (self.useStripeSdk, self.verifyWithMicrodeposits) = (useStripeSdk, verifyWithMicrodeposits)
-        try validateLength("type", self.type, min: nil, max: 5000)
+            try validateLength("type", self.type, min: nil, max: 5000)
     }
 }
 
@@ -106,70 +91,48 @@ public struct SetupIntentNextActionPixDisplayQrCode: Codable {
         case imageUrlSvg = "image_url_svg"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension SetupIntentNextActionPixDisplayQrCode {
-    init(from decoder: Decoder) throws {
+extension SetupIntentNextActionPixDisplayQrCode {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.data) else {
-            throw SdkValidationError(
-                field: "data",
-                code: "required",
-                message: "Validation failed for 'data': value is required"
-            )
+            throw SdkValidationError(field: "data", code: "required", message: "Validation failed for 'data': value is required")
         }
         guard container.contains(.expiresAt) else {
-            throw SdkValidationError(
-                field: "expires_at",
-                code: "required",
-                message: "Validation failed for 'expires_at': value is required"
-            )
+            throw SdkValidationError(field: "expires_at", code: "required", message: "Validation failed for 'expires_at': value is required")
         }
         guard container.contains(.hostedInstructionsUrl) else {
-            throw SdkValidationError(
-                field: "hosted_instructions_url",
-                code: "required",
-                message: "Validation failed for 'hosted_instructions_url': value is required"
-            )
+            throw SdkValidationError(field: "hosted_instructions_url", code: "required", message: "Validation failed for 'hosted_instructions_url': value is required")
         }
         guard container.contains(.imageUrlPng) else {
-            throw SdkValidationError(
-                field: "image_url_png",
-                code: "required",
-                message: "Validation failed for 'image_url_png': value is required"
-            )
+            throw SdkValidationError(field: "image_url_png", code: "required", message: "Validation failed for 'image_url_png': value is required")
         }
         guard container.contains(.imageUrlSvg) else {
-            throw SdkValidationError(
-                field: "image_url_svg",
-                code: "required",
-                message: "Validation failed for 'image_url_svg': value is required"
-            )
+            throw SdkValidationError(field: "image_url_svg", code: "required", message: "Validation failed for 'image_url_svg': value is required")
         }
-        data = try container.sdkDecodeRequired(.data)
-        expiresAt = try container.sdkDecodeRequired(.expiresAt)
-        hostedInstructionsUrl = try container.sdkDecodeRequired(.hostedInstructionsUrl)
-        imageUrlPng = try container.sdkDecodeRequired(.imageUrlPng)
-        imageUrlSvg = try container.sdkDecodeRequired(.imageUrlSvg)
-        try validateLength("data", data, min: nil, max: 5000)
-        try validateLength("hosted_instructions_url", hostedInstructionsUrl, min: nil, max: 5000)
-        try validateLength("image_url_png", imageUrlPng, min: nil, max: 5000)
-        try validateLength("image_url_svg", imageUrlSvg, min: nil, max: 5000)
+        self.data = try container.sdkDecodeRequired(.data)
+        self.expiresAt = try container.sdkDecodeRequired(.expiresAt)
+        self.hostedInstructionsUrl = try container.sdkDecodeRequired(.hostedInstructionsUrl)
+        self.imageUrlPng = try container.sdkDecodeRequired(.imageUrlPng)
+        self.imageUrlSvg = try container.sdkDecodeRequired(.imageUrlSvg)
+            try validateLength("data", self.data, min: nil, max: 5000)
+            try validateLength("hosted_instructions_url", self.hostedInstructionsUrl, min: nil, max: 5000)
+            try validateLength("image_url_png", self.imageUrlPng, min: nil, max: 5000)
+            try validateLength("image_url_svg", self.imageUrlSvg, min: nil, max: 5000)
     }
 }
 
-public extension SetupIntentNextActionPixDisplayQrCode {
-    init(data: String, expiresAt: Int, hostedInstructionsUrl: String, imageUrlPng: String, imageUrlSvg: String) throws {
+extension SetupIntentNextActionPixDisplayQrCode {
+    public init(data: String, expiresAt: Int, hostedInstructionsUrl: String, imageUrlPng: String, imageUrlSvg: String) throws {
         (self.data, self.expiresAt) = (data, expiresAt)
         (self.hostedInstructionsUrl, self.imageUrlPng) = (hostedInstructionsUrl, imageUrlPng)
         self.imageUrlSvg = imageUrlSvg
-        try validateLength("data", self.data, min: nil, max: 5000)
-        try validateLength("hosted_instructions_url", self.hostedInstructionsUrl, min: nil, max: 5000)
-        try validateLength("image_url_png", self.imageUrlPng, min: nil, max: 5000)
-        try validateLength("image_url_svg", self.imageUrlSvg, min: nil, max: 5000)
+            try validateLength("data", self.data, min: nil, max: 5000)
+            try validateLength("hosted_instructions_url", self.hostedInstructionsUrl, min: nil, max: 5000)
+            try validateLength("image_url_png", self.imageUrlPng, min: nil, max: 5000)
+            try validateLength("image_url_svg", self.imageUrlSvg, min: nil, max: 5000)
     }
 }
 
@@ -187,26 +150,26 @@ public struct SetupIntentNextActionRedirectToUrl: Codable {
     }
 
     init() {
-        (returnUrl, url) = (nil, nil)
+        (self.returnUrl, self.url) = (nil, nil)
     }
 }
 
-public extension SetupIntentNextActionRedirectToUrl {
-    init(from decoder: Decoder) throws {
+extension SetupIntentNextActionRedirectToUrl {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        returnUrl = try container.sdkDecodeIfPresent(.returnUrl)
-        url = try container.sdkDecodeIfPresent(.url)
-        if let value = returnUrl {
+        self.returnUrl = try container.sdkDecodeIfPresent(.returnUrl)
+        self.url = try container.sdkDecodeIfPresent(.url)
+        if let value = self.returnUrl {
             try validateLength("return_url", value, min: nil, max: 5000)
         }
-        if let value = url {
+        if let value = self.url {
             try validateLength("url", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension SetupIntentNextActionRedirectToUrl {
-    init(returnUrl: String? = nil, url: String? = nil) throws {
+extension SetupIntentNextActionRedirectToUrl {
+    public init(returnUrl: String? = nil, url: String? = nil) throws {
         self.init()
         (self.returnUrl, self.url) = (returnUrl, url)
         if let value = self.returnUrl {
@@ -234,44 +197,30 @@ public struct SetupIntentNextActionVerifyWithMicrodeposits: Codable {
         case microdepositType = "microdeposit_type"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension SetupIntentNextActionVerifyWithMicrodeposits {
-    init(from decoder: Decoder) throws {
+extension SetupIntentNextActionVerifyWithMicrodeposits {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.arrivalDate) else {
-            throw SdkValidationError(
-                field: "arrival_date",
-                code: "required",
-                message: "Validation failed for 'arrival_date': value is required"
-            )
+            throw SdkValidationError(field: "arrival_date", code: "required", message: "Validation failed for 'arrival_date': value is required")
         }
         guard container.contains(.hostedVerificationUrl) else {
-            throw SdkValidationError(
-                field: "hosted_verification_url",
-                code: "required",
-                message: "Validation failed for 'hosted_verification_url': value is required"
-            )
+            throw SdkValidationError(field: "hosted_verification_url", code: "required", message: "Validation failed for 'hosted_verification_url': value is required")
         }
-        arrivalDate = try container.sdkDecodeRequired(.arrivalDate)
-        hostedVerificationUrl = try container.sdkDecodeRequired(.hostedVerificationUrl)
-        microdepositType = try container.sdkDecodeIfPresent(.microdepositType)
-        try validateLength("hosted_verification_url", hostedVerificationUrl, min: nil, max: 5000)
+        self.arrivalDate = try container.sdkDecodeRequired(.arrivalDate)
+        self.hostedVerificationUrl = try container.sdkDecodeRequired(.hostedVerificationUrl)
+        self.microdepositType = try container.sdkDecodeIfPresent(.microdepositType)
+            try validateLength("hosted_verification_url", self.hostedVerificationUrl, min: nil, max: 5000)
     }
 }
 
-public extension SetupIntentNextActionVerifyWithMicrodeposits {
-    init(
-        arrivalDate: Int,
-        hostedVerificationUrl: String,
-        microdepositType: SetupIntentNextActionVerifyWithMicrodepositsMicrodepositType? = nil
-    ) throws {
+extension SetupIntentNextActionVerifyWithMicrodeposits {
+    public init(arrivalDate: Int, hostedVerificationUrl: String, microdepositType: SetupIntentNextActionVerifyWithMicrodepositsMicrodepositType? = nil) throws {
         (self.arrivalDate, self.hostedVerificationUrl) = (arrivalDate, hostedVerificationUrl)
         self.microdepositType = microdepositType
-        try validateLength("hosted_verification_url", self.hostedVerificationUrl, min: nil, max: 5000)
+            try validateLength("hosted_verification_url", self.hostedVerificationUrl, min: nil, max: 5000)
     }
 }
 
@@ -324,49 +273,34 @@ public struct SetupIntentPaymentMethodOptions: Codable {
     }
 
     init() {
-        (acssDebit, amazonPay, bacsDebit, bizum, card) = (nil, nil, nil, nil, nil)
-        (cardPresent, klarna, link, paypal, payto) = (nil, nil, nil, nil, nil)
-        (pix, sepaDebit, upi, usBankAccount) = (nil, nil, nil, nil)
+        (self.acssDebit, self.amazonPay, self.bacsDebit, self.bizum, self.card) = (nil, nil, nil, nil, nil)
+        (self.cardPresent, self.klarna, self.link, self.paypal, self.payto) = (nil, nil, nil, nil, nil)
+        (self.pix, self.sepaDebit, self.upi, self.usBankAccount) = (nil, nil, nil, nil)
     }
 }
 
-public extension SetupIntentPaymentMethodOptions {
-    init(from decoder: Decoder) throws {
+extension SetupIntentPaymentMethodOptions {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        acssDebit = try container.sdkDecodeIfPresent(.acssDebit)
-        amazonPay = try container.sdkDecodeIfPresent(.amazonPay)
-        bacsDebit = try container.sdkDecodeIfPresent(.bacsDebit)
-        bizum = try container.sdkDecodeIfPresent(.bizum)
-        card = try container.sdkDecodeIfPresent(.card)
-        cardPresent = try container.sdkDecodeIfPresent(.cardPresent)
-        klarna = try container.sdkDecodeIfPresent(.klarna)
-        link = try container.sdkDecodeIfPresent(.link)
-        paypal = try container.sdkDecodeIfPresent(.paypal)
-        payto = try container.sdkDecodeIfPresent(.payto)
-        pix = try container.sdkDecodeIfPresent(.pix)
-        sepaDebit = try container.sdkDecodeIfPresent(.sepaDebit)
-        upi = try container.sdkDecodeIfPresent(.upi)
-        usBankAccount = try container.sdkDecodeIfPresent(.usBankAccount)
+        self.acssDebit = try container.sdkDecodeIfPresent(.acssDebit)
+        self.amazonPay = try container.sdkDecodeIfPresent(.amazonPay)
+        self.bacsDebit = try container.sdkDecodeIfPresent(.bacsDebit)
+        self.bizum = try container.sdkDecodeIfPresent(.bizum)
+        self.card = try container.sdkDecodeIfPresent(.card)
+        self.cardPresent = try container.sdkDecodeIfPresent(.cardPresent)
+        self.klarna = try container.sdkDecodeIfPresent(.klarna)
+        self.link = try container.sdkDecodeIfPresent(.link)
+        self.paypal = try container.sdkDecodeIfPresent(.paypal)
+        self.payto = try container.sdkDecodeIfPresent(.payto)
+        self.pix = try container.sdkDecodeIfPresent(.pix)
+        self.sepaDebit = try container.sdkDecodeIfPresent(.sepaDebit)
+        self.upi = try container.sdkDecodeIfPresent(.upi)
+        self.usBankAccount = try container.sdkDecodeIfPresent(.usBankAccount)
     }
 }
 
-public extension SetupIntentPaymentMethodOptions {
-    init(
-        acssDebit: SetupIntentPaymentMethodOptionsAcssDebitX4df26883? = nil,
-        amazonPay: SetupIntentPaymentMethodOptionsAmazonPayX505b893c? = nil,
-        bacsDebit: SetupIntentPaymentMethodOptionsBacsDebitX6dc59b62? = nil,
-        bizum: SetupIntentPaymentMethodOptionsBizumXbe080d50? = nil,
-        card: SetupIntentPaymentMethodOptionsCardX95686155? = nil,
-        cardPresent: SetupIntentPaymentMethodOptionsCardPresentX18c12a9a? = nil,
-        klarna: SetupIntentPaymentMethodOptionsKlarnaX45df5f6d? = nil,
-        link: SetupIntentPaymentMethodOptionsLinkXb563ef32? = nil,
-        paypal: SetupIntentPaymentMethodOptionsPaypalX878d5d80? = nil,
-        payto: SetupIntentPaymentMethodOptionsPaytoX4a739a55? = nil,
-        pix: SetupIntentPaymentMethodOptionsPixX09779549? = nil,
-        sepaDebit: SetupIntentPaymentMethodOptionsSepaDebitX416f1e52? = nil,
-        upi: SetupIntentPaymentMethodOptionsUpiX9a554cb2? = nil,
-        usBankAccount: SetupIntentPaymentMethodOptionsUsBankAccountX9874a78f? = nil
-    ) {
+extension SetupIntentPaymentMethodOptions {
+    public init(acssDebit: SetupIntentPaymentMethodOptionsAcssDebitX4df26883? = nil, amazonPay: SetupIntentPaymentMethodOptionsAmazonPayX505b893c? = nil, bacsDebit: SetupIntentPaymentMethodOptionsBacsDebitX6dc59b62? = nil, bizum: SetupIntentPaymentMethodOptionsBizumXbe080d50? = nil, card: SetupIntentPaymentMethodOptionsCardX95686155? = nil, cardPresent: SetupIntentPaymentMethodOptionsCardPresentX18c12a9a? = nil, klarna: SetupIntentPaymentMethodOptionsKlarnaX45df5f6d? = nil, link: SetupIntentPaymentMethodOptionsLinkXb563ef32? = nil, paypal: SetupIntentPaymentMethodOptionsPaypalX878d5d80? = nil, payto: SetupIntentPaymentMethodOptionsPaytoX4a739a55? = nil, pix: SetupIntentPaymentMethodOptionsPixX09779549? = nil, sepaDebit: SetupIntentPaymentMethodOptionsSepaDebitX416f1e52? = nil, upi: SetupIntentPaymentMethodOptionsUpiX9a554cb2? = nil, usBankAccount: SetupIntentPaymentMethodOptionsUsBankAccountX9874a78f? = nil) {
         self.init()
         (self.acssDebit, self.amazonPay) = (acssDebit, amazonPay)
         (self.bacsDebit, self.bizum) = (bacsDebit, bizum)
@@ -384,35 +318,29 @@ public enum SetupIntentPaymentMethodOptionsAcssDebitX4df26883 {
 }
 
 extension SetupIntentPaymentMethodOptionsAcssDebitX4df26883: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for SetupIntentPaymentMethodOptionsAcssDebitX4df26883"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for SetupIntentPaymentMethodOptionsAcssDebitX4df26883")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             SetupIntentPaymentMethodOptionsAcssDebit.self
         ) {
-            return .setupIntentPaymentMethodOptionsAcssDebit(value)
+            return             .setupIntentPaymentMethodOptionsAcssDebit(value)
         }
         if let value = try? container.decode(
             SetupIntentTypeSpecificPaymentMethodOptionsClient.self
         ) {
-            return .setupIntentTypeSpecificPaymentMethodOptionsClient(value)
+            return             .setupIntentTypeSpecificPaymentMethodOptionsClient(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -422,6 +350,7 @@ extension SetupIntentPaymentMethodOptionsAcssDebitX4df26883: Codable {
         case let .setupIntentTypeSpecificPaymentMethodOptionsClient(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum SetupIntentPaymentMethodOptionsAmazonPayX505b893c {
@@ -430,35 +359,29 @@ public enum SetupIntentPaymentMethodOptionsAmazonPayX505b893c {
 }
 
 extension SetupIntentPaymentMethodOptionsAmazonPayX505b893c: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for SetupIntentPaymentMethodOptionsAmazonPayX505b893c"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for SetupIntentPaymentMethodOptionsAmazonPayX505b893c")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             SetupIntentPaymentMethodOptionsAmazonPay.self
         ) {
-            return .setupIntentPaymentMethodOptionsAmazonPay(value)
+            return             .setupIntentPaymentMethodOptionsAmazonPay(value)
         }
         if let value = try? container.decode(
             SetupIntentTypeSpecificPaymentMethodOptionsClient.self
         ) {
-            return .setupIntentTypeSpecificPaymentMethodOptionsClient(value)
+            return             .setupIntentTypeSpecificPaymentMethodOptionsClient(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -468,6 +391,7 @@ extension SetupIntentPaymentMethodOptionsAmazonPayX505b893c: Codable {
         case let .setupIntentTypeSpecificPaymentMethodOptionsClient(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum SetupIntentPaymentMethodOptionsBacsDebitX6dc59b62 {
@@ -476,35 +400,29 @@ public enum SetupIntentPaymentMethodOptionsBacsDebitX6dc59b62 {
 }
 
 extension SetupIntentPaymentMethodOptionsBacsDebitX6dc59b62: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for SetupIntentPaymentMethodOptionsBacsDebitX6dc59b62"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for SetupIntentPaymentMethodOptionsBacsDebitX6dc59b62")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             SetupIntentPaymentMethodOptionsBacsDebit.self
         ) {
-            return .setupIntentPaymentMethodOptionsBacsDebit(value)
+            return             .setupIntentPaymentMethodOptionsBacsDebit(value)
         }
         if let value = try? container.decode(
             SetupIntentTypeSpecificPaymentMethodOptionsClient.self
         ) {
-            return .setupIntentTypeSpecificPaymentMethodOptionsClient(value)
+            return             .setupIntentTypeSpecificPaymentMethodOptionsClient(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -514,6 +432,7 @@ extension SetupIntentPaymentMethodOptionsBacsDebitX6dc59b62: Codable {
         case let .setupIntentTypeSpecificPaymentMethodOptionsClient(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum SetupIntentPaymentMethodOptionsBizumXbe080d50 {
@@ -522,35 +441,29 @@ public enum SetupIntentPaymentMethodOptionsBizumXbe080d50 {
 }
 
 extension SetupIntentPaymentMethodOptionsBizumXbe080d50: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for SetupIntentPaymentMethodOptionsBizumXbe080d50"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for SetupIntentPaymentMethodOptionsBizumXbe080d50")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             SetupIntentPaymentMethodOptionsBizum.self
         ) {
-            return .setupIntentPaymentMethodOptionsBizum(value)
+            return             .setupIntentPaymentMethodOptionsBizum(value)
         }
         if let value = try? container.decode(
             SetupIntentTypeSpecificPaymentMethodOptionsClient.self
         ) {
-            return .setupIntentTypeSpecificPaymentMethodOptionsClient(value)
+            return             .setupIntentTypeSpecificPaymentMethodOptionsClient(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -560,6 +473,7 @@ extension SetupIntentPaymentMethodOptionsBizumXbe080d50: Codable {
         case let .setupIntentTypeSpecificPaymentMethodOptionsClient(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum SetupIntentPaymentMethodOptionsCardX95686155 {
@@ -568,35 +482,29 @@ public enum SetupIntentPaymentMethodOptionsCardX95686155 {
 }
 
 extension SetupIntentPaymentMethodOptionsCardX95686155: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for SetupIntentPaymentMethodOptionsCardX95686155"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for SetupIntentPaymentMethodOptionsCardX95686155")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             SetupIntentPaymentMethodOptionsCard.self
         ) {
-            return .setupIntentPaymentMethodOptionsCard(value)
+            return             .setupIntentPaymentMethodOptionsCard(value)
         }
         if let value = try? container.decode(
             SetupIntentTypeSpecificPaymentMethodOptionsClient.self
         ) {
-            return .setupIntentTypeSpecificPaymentMethodOptionsClient(value)
+            return             .setupIntentTypeSpecificPaymentMethodOptionsClient(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -606,6 +514,7 @@ extension SetupIntentPaymentMethodOptionsCardX95686155: Codable {
         case let .setupIntentTypeSpecificPaymentMethodOptionsClient(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum SetupIntentPaymentMethodOptionsCardPresentX18c12a9a {

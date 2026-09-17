@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1ChargesMethods {
-    struct PostChargesOptions: Codable {
+extension V1ChargesMethods {
+    public struct PostChargesOptions: Codable {
         public var amount: Int?
         public var applicationFee: Int?
         public var applicationFeeAmount: Int?
@@ -32,12 +32,9 @@ public extension V1ChargesMethods {
         public init() {}
     }
 
-    /// Creates a charge to move funds into your account using the legacy Charges API. Supply the payment amount and
-    /// currency, and use `capture` to choose immediate capture or authorization for later capture. Use the Payment
-    /// Intents API for new payment flows.
+    /// Creates a charge to move funds into your account using the legacy Charges API. Supply the payment amount and currency, and use `capture` to choose immediate capture or authorization for later capture. Use the Payment Intents API for new payment flows.
     ///
-    /// This method is no longer recommended—use the Payment Intents API to initiate a new payment instead. Confirmation
-    /// of the PaymentIntent creates the Charge object used to request payment.
+    /// This method is no longer recommended—use the Payment Intents API to initiate a new payment instead. Confirmation of the PaymentIntent creates the Charge object used to request payment.
     ///
     /// - Parameters:
     /// - amount: Amount intended to be collected by this payment. A positive
@@ -131,7 +128,7 @@ public extension V1ChargesMethods {
     ///   group. For details, see [Grouping
     ///   transactions](https://docs.stripe.com/connect/separate-charges-and-transfers
     ///   #transfer-options).
-    static func postCharges(config: ClientConfig, options: PostChargesOptions) async throws -> Charge {
+    public static func postCharges(config: ClientConfig, options: PostChargesOptions) async throws -> Charge {
         if let customer = options.customer {
             try validateLength("customer", customer, max: 500)
         }
@@ -158,14 +155,6 @@ public extension V1ChargesMethods {
 
         let requestBody = PostChargesRequestBody(options: options)
 
-        return try await (sdkRequest(
-            "POST",
-            "/v1/charges",
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostCharges"
-        )).data
+        return try (await sdkRequest("POST", "/v1/charges", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostCharges")).data
     }
 }

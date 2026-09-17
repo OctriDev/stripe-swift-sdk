@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1Sources operation model declarations
+// Canonical v1Sources operation model declarations
 public struct PostSourcesRequestBodySourceOrderShipping: Codable {
     /// address
     public var address: PostSourcesRequestBodySourceOrderShippingAddress
@@ -24,49 +24,37 @@ public struct PostSourcesRequestBodySourceOrderShipping: Codable {
         case trackingNumber = "tracking_number"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostSourcesRequestBodySourceOrderShipping {
-    init(from decoder: Decoder) throws {
+extension PostSourcesRequestBodySourceOrderShipping {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.address) else {
-            throw SdkValidationError(
-                field: "address",
-                code: "required",
-                message: "Validation failed for 'address': value is required"
-            )
+            throw SdkValidationError(field: "address", code: "required", message: "Validation failed for 'address': value is required")
         }
-        address = try container.sdkDecodeRequired(.address)
-        carrier = try container.sdkDecodeIfPresent(.carrier)
-        name = try container.sdkDecodeIfPresent(.name)
-        phone = try container.sdkDecodeIfPresent(.phone)
-        trackingNumber = try container.sdkDecodeIfPresent(.trackingNumber)
-        if let value = carrier {
+        self.address = try container.sdkDecodeRequired(.address)
+        self.carrier = try container.sdkDecodeIfPresent(.carrier)
+        self.name = try container.sdkDecodeIfPresent(.name)
+        self.phone = try container.sdkDecodeIfPresent(.phone)
+        self.trackingNumber = try container.sdkDecodeIfPresent(.trackingNumber)
+        if let value = self.carrier {
             try validateLength("carrier", value, min: nil, max: 5000)
         }
-        if let value = name {
+        if let value = self.name {
             try validateLength("name", value, min: nil, max: 5000)
         }
-        if let value = phone {
+        if let value = self.phone {
             try validateLength("phone", value, min: nil, max: 5000)
         }
-        if let value = trackingNumber {
+        if let value = self.trackingNumber {
             try validateLength("tracking_number", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PostSourcesRequestBodySourceOrderShipping {
-    init(
-        address: PostSourcesRequestBodySourceOrderShippingAddress,
-        carrier: String? = nil,
-        name: String? = nil,
-        phone: String? = nil,
-        trackingNumber: String? = nil
-    ) throws {
+extension PostSourcesRequestBodySourceOrderShipping {
+    public init(address: PostSourcesRequestBodySourceOrderShippingAddress, carrier: String? = nil, name: String? = nil, phone: String? = nil, trackingNumber: String? = nil) throws {
         (self.address, self.carrier) = (address, carrier)
         (self.name, self.phone) = (name, phone)
         self.trackingNumber = trackingNumber
@@ -103,41 +91,34 @@ public struct PostSourcesSourceRequestBodySourceOrderItemsItem: Codable {
     }
 
     init() {
-        (amount, currency, description, parent, quantity) = (nil, nil, nil, nil, nil)
-        type = nil
+        (self.amount, self.currency, self.description, self.parent, self.quantity) = (nil, nil, nil, nil, nil)
+        self.type = nil
     }
 }
 
-public extension PostSourcesSourceRequestBodySourceOrderItemsItem {
-    init(from decoder: Decoder) throws {
+extension PostSourcesSourceRequestBodySourceOrderItemsItem {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        amount = try container.sdkDecodeIfPresent(.amount)
-        currency = try container.sdkDecodeIfPresent(.currency)
-        description = try container.sdkDecodeIfPresent(.description)
-        parent = try container.sdkDecodeIfPresent(.parent)
-        quantity = try container.sdkDecodeIfPresent(.quantity)
-        type = try container.sdkDecodeIfPresent(.type)
-        if let value = description {
+        self.amount = try container.sdkDecodeIfPresent(.amount)
+        self.currency = try container.sdkDecodeIfPresent(.currency)
+        self.description = try container.sdkDecodeIfPresent(.description)
+        self.parent = try container.sdkDecodeIfPresent(.parent)
+        self.quantity = try container.sdkDecodeIfPresent(.quantity)
+        self.type = try container.sdkDecodeIfPresent(.type)
+        if let value = self.description {
             try validateLength("description", value, min: nil, max: 1000)
         }
-        if let value = parent {
+        if let value = self.parent {
             try validateLength("parent", value, min: nil, max: 5000)
         }
-        if let value = type {
+        if let value = self.type {
             try validateLength("type", sdkWireString(value), min: nil, max: 5000)
         }
     }
 }
 
-public extension PostSourcesSourceRequestBodySourceOrderItemsItem {
-    init(
-        amount: Int? = nil,
-        currency: String? = nil,
-        description: String? = nil,
-        parent: String? = nil,
-        quantity: Int? = nil,
-        type: PostSourcesSourceRequestBodySourceOrderItemsItemType? = nil
-    ) throws {
+extension PostSourcesSourceRequestBodySourceOrderItemsItem {
+    public init(amount: Int? = nil, currency: String? = nil, description: String? = nil, parent: String? = nil, quantity: Int? = nil, type: PostSourcesSourceRequestBodySourceOrderItemsItemType? = nil) throws {
         self.init()
         (self.amount, self.currency) = (amount, currency)
         (self.description, self.parent) = (description, parent)
@@ -170,33 +151,28 @@ public struct PostSourcesRequestBodyOwner: Codable {
     }
 
     init() {
-        (address, email, name, phone) = (nil, nil, nil, nil)
+        (self.address, self.email, self.name, self.phone) = (nil, nil, nil, nil)
     }
 }
 
-public extension PostSourcesRequestBodyOwner {
-    init(from decoder: Decoder) throws {
+extension PostSourcesRequestBodyOwner {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        address = try container.sdkDecodeIfPresent(.address)
-        email = try container.sdkDecodeIfPresent(.email)
-        name = try container.sdkDecodeIfPresent(.name)
-        phone = try container.sdkDecodeIfPresent(.phone)
-        if let value = name {
+        self.address = try container.sdkDecodeIfPresent(.address)
+        self.email = try container.sdkDecodeIfPresent(.email)
+        self.name = try container.sdkDecodeIfPresent(.name)
+        self.phone = try container.sdkDecodeIfPresent(.phone)
+        if let value = self.name {
             try validateLength("name", value, min: nil, max: 5000)
         }
-        if let value = phone {
+        if let value = self.phone {
             try validateLength("phone", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PostSourcesRequestBodyOwner {
-    init(
-        address: PostSourcesRequestBodyOwnerAddress? = nil,
-        email: String? = nil,
-        name: String? = nil,
-        phone: String? = nil
-    ) throws {
+extension PostSourcesRequestBodyOwner {
+    public init(address: PostSourcesRequestBodyOwnerAddress? = nil, email: String? = nil, name: String? = nil, phone: String? = nil) throws {
         self.init()
         (self.address, self.email) = (address, email)
         (self.name, self.phone) = (name, phone)

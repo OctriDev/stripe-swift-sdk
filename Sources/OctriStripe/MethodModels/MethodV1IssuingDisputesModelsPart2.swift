@@ -7,38 +7,28 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1IssuingDisputes operation model declarations
+// Canonical v1IssuingDisputes operation model declarations
 public enum PostIssuingDisputesRequestBodyEvidenceServiceNotAsDescribedVaX937e32e34d {
     case stringValue(String)
     case stringValue1(String)
 }
 
 extension PostIssuingDisputesRequestBodyEvidenceServiceNotAsDescribedVaX937e32e34d: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostIssuingDisputesRequestBodyEvidenceServiceNotAsDescribedVaX937e32e34d"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostIssuingDisputesRequestBodyEvidenceServiceNotAsDescribedVaX937e32e34d")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(String.self) {
-            return .stringValue1(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(String.self) { return .stringValue1(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -48,6 +38,7 @@ extension PostIssuingDisputesRequestBodyEvidenceServiceNotAsDescribedVaX937e32e3
         case let .stringValue1(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum PostIssuingDisputesDisputeRequestBodyEvidenceServiceNotAsDescXfc2f092be9 {
@@ -56,31 +47,21 @@ public enum PostIssuingDisputesDisputeRequestBodyEvidenceServiceNotAsDescXfc2f09
 }
 
 extension PostIssuingDisputesDisputeRequestBodyEvidenceServiceNotAsDescXfc2f092be9: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostIssuingDisputesDisputeRequestBodyEvidenceServiceNotAsDescXfc2f092be9"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostIssuingDisputesDisputeRequestBodyEvidenceServiceNotAsDescXfc2f092be9")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(Int.self) {
-            return .intValue(value)
-        }
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
+        if let value = try? container.decode(Int.self) { return .intValue(value) }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -90,6 +71,7 @@ extension PostIssuingDisputesDisputeRequestBodyEvidenceServiceNotAsDescXfc2f092b
         case let .stringValue(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum PostIssuingDisputesDisputeRequestBodyEvidenceNotReceivedVariaX384ed2afe3 {
@@ -98,31 +80,21 @@ public enum PostIssuingDisputesDisputeRequestBodyEvidenceNotReceivedVariaX384ed2
 }
 
 extension PostIssuingDisputesDisputeRequestBodyEvidenceNotReceivedVariaX384ed2afe3: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostIssuingDisputesDisputeRequestBodyEvidenceNotReceivedVariaX384ed2afe3"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostIssuingDisputesDisputeRequestBodyEvidenceNotReceivedVariaX384ed2afe3")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(String.self) {
-            return .stringValue1(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(String.self) { return .stringValue1(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -132,6 +104,7 @@ extension PostIssuingDisputesDisputeRequestBodyEvidenceNotReceivedVariaX384ed2af
         case let .stringValue1(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum PostIssuingDisputesDisputeRequestBodyEvidenceNoValidAuthorization {
@@ -142,43 +115,35 @@ public enum PostIssuingDisputesDisputeRequestBodyEvidenceNoValidAuthorization {
 }
 
 extension PostIssuingDisputesDisputeRequestBodyEvidenceNoValidAuthorization: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostIssuingDisputesDisputeRequestBodyEvidenceNoValidAuthorization"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostIssuingDisputesDisputeRequestBodyEvidenceNoValidAuthorization")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PostIssuingDisputesDisputeRequestBodyEvidenceNoValidAuthorizaX1b5b022667.self
         ) {
-            return .postIssuingDisputesDisputeRequestBodyEvidenceNoValidAuthorizaX1b5b022667(value)
+            return             .postIssuingDisputesDisputeRequestBodyEvidenceNoValidAuthorizaX1b5b022667(value)
         }
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .postIssuingDisputesDisputeRequestBodyEvidenceNoValidAuthorizaX1b5b022667(value): try container
-            .encode(value); return true
+        case let .postIssuingDisputesDisputeRequestBodyEvidenceNoValidAuthorizaX1b5b022667(value): try container.encode(value); return true
         case let .stringValue(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum PostIssuingDisputesRequestBodyEvidenceOtherVariant0Explanation {
@@ -187,31 +152,21 @@ public enum PostIssuingDisputesRequestBodyEvidenceOtherVariant0Explanation {
 }
 
 extension PostIssuingDisputesRequestBodyEvidenceOtherVariant0Explanation: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostIssuingDisputesRequestBodyEvidenceOtherVariant0Explanation"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostIssuingDisputesRequestBodyEvidenceOtherVariant0Explanation")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(String.self) {
-            return .stringValue1(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(String.self) { return .stringValue1(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -221,6 +176,7 @@ extension PostIssuingDisputesRequestBodyEvidenceOtherVariant0Explanation: Codabl
         case let .stringValue1(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum PostIssuingDisputesDisputeRequestBodyEvidenceMerchandiseNotAsX53c55ca838 {
@@ -229,31 +185,21 @@ public enum PostIssuingDisputesDisputeRequestBodyEvidenceMerchandiseNotAsX53c55c
 }
 
 extension PostIssuingDisputesDisputeRequestBodyEvidenceMerchandiseNotAsX53c55ca838: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostIssuingDisputesDisputeRequestBodyEvidenceMerchandiseNotAsX53c55ca838"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostIssuingDisputesDisputeRequestBodyEvidenceMerchandiseNotAsX53c55ca838")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(String.self) {
-            return .stringValue1(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(String.self) { return .stringValue1(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -263,6 +209,7 @@ extension PostIssuingDisputesDisputeRequestBodyEvidenceMerchandiseNotAsX53c55ca8
         case let .stringValue1(value): try container.encode(value); return true
         }
     }
+
 }
 
 public struct GetIssuingDisputesResponse: Codable {
@@ -282,57 +229,39 @@ public struct GetIssuingDisputesResponse: Codable {
         case url
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension GetIssuingDisputesResponse {
-    init(from decoder: Decoder) throws {
+extension GetIssuingDisputesResponse {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.data) else {
-            throw SdkValidationError(
-                field: "data",
-                code: "required",
-                message: "Validation failed for 'data': value is required"
-            )
+            throw SdkValidationError(field: "data", code: "required", message: "Validation failed for 'data': value is required")
         }
         guard container.contains(.hasMore) else {
-            throw SdkValidationError(
-                field: "has_more",
-                code: "required",
-                message: "Validation failed for 'has_more': value is required"
-            )
+            throw SdkValidationError(field: "has_more", code: "required", message: "Validation failed for 'has_more': value is required")
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(
-                field: "object",
-                code: "required",
-                message: "Validation failed for 'object': value is required"
-            )
+            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
         }
         guard container.contains(.url) else {
-            throw SdkValidationError(
-                field: "url",
-                code: "required",
-                message: "Validation failed for 'url': value is required"
-            )
+            throw SdkValidationError(field: "url", code: "required", message: "Validation failed for 'url': value is required")
         }
-        data = try container.sdkDecodeRequired(.data)
-        hasMore = try container.sdkDecodeRequired(.hasMore)
-        object = try container.sdkDecodeRequired(.object)
-        url = try container.sdkDecodeRequired(.url)
-        try validateLength("url", url, min: nil, max: 5000)
-        try sdkValidatePattern("url", url, sdkPattern8add6e59dd6b)
+        self.data = try container.sdkDecodeRequired(.data)
+        self.hasMore = try container.sdkDecodeRequired(.hasMore)
+        self.object = try container.sdkDecodeRequired(.object)
+        self.url = try container.sdkDecodeRequired(.url)
+            try validateLength("url", self.url, min: nil, max: 5000)
+            try sdkValidatePattern("url", self.url, sdkPattern8add6e59dd6b)
     }
 }
 
-public extension GetIssuingDisputesResponse {
-    init(data: [IssuingDispute], hasMore: Bool, object: GetIssuingDisputesResponseObject, url: String) throws {
+extension GetIssuingDisputesResponse {
+    public init(data: [IssuingDispute], hasMore: Bool, object: GetIssuingDisputesResponseObject, url: String) throws {
         (self.data, self.hasMore) = (data, hasMore)
         (self.object, self.url) = (object, url)
-        try validateLength("url", self.url, min: nil, max: 5000)
-        try sdkValidatePattern("url", self.url, sdkPattern8add6e59dd6b)
+            try validateLength("url", self.url, min: nil, max: 5000)
+            try sdkValidatePattern("url", self.url, sdkPattern8add6e59dd6b)
     }
 }
 
@@ -354,32 +283,25 @@ public struct PostIssuingDisputesDisputeRequestBodyEvidenceMerchandiseNotAsX7066
     }
 
     init() {
-        (additionalDocumentation, explanation, receivedAt, returnDescription, returnStatus) = (nil, nil, nil, nil, nil)
-        returnedAt = nil
+        (self.additionalDocumentation, self.explanation, self.receivedAt, self.returnDescription, self.returnStatus) = (nil, nil, nil, nil, nil)
+        self.returnedAt = nil
     }
 }
 
-public extension PostIssuingDisputesDisputeRequestBodyEvidenceMerchandiseNotAsX7066c328b0 {
-    init(from decoder: Decoder) throws {
+extension PostIssuingDisputesDisputeRequestBodyEvidenceMerchandiseNotAsX7066c328b0 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        additionalDocumentation = try container.sdkDecodeIfPresent(.additionalDocumentation)
-        explanation = try container.sdkDecodeIfPresent(.explanation)
-        receivedAt = try container.sdkDecodeIfPresent(.receivedAt)
-        returnDescription = try container.sdkDecodeIfPresent(.returnDescription)
-        returnStatus = try container.sdkDecodeIfPresent(.returnStatus)
-        returnedAt = try container.sdkDecodeIfPresent(.returnedAt)
+        self.additionalDocumentation = try container.sdkDecodeIfPresent(.additionalDocumentation)
+        self.explanation = try container.sdkDecodeIfPresent(.explanation)
+        self.receivedAt = try container.sdkDecodeIfPresent(.receivedAt)
+        self.returnDescription = try container.sdkDecodeIfPresent(.returnDescription)
+        self.returnStatus = try container.sdkDecodeIfPresent(.returnStatus)
+        self.returnedAt = try container.sdkDecodeIfPresent(.returnedAt)
     }
 }
 
-public extension PostIssuingDisputesDisputeRequestBodyEvidenceMerchandiseNotAsX7066c328b0 {
-    init(
-        additionalDocumentation: String? = nil,
-        explanation: PostIssuingDisputesDisputeRequestBodyEvidenceMerchandiseNotAsX53c55ca838? = nil,
-        receivedAt: PostIssuingDisputesDisputeRequestBodyEvidenceMerchandiseNotAsXff47a7443d? = nil,
-        returnDescription: PostIssuingDisputesDisputeRequestBodyEvidenceMerchandiseNotAsXba762c45c6? = nil,
-        returnStatus: PostIssuingDisputesDisputeRequestBodyEvidenceMerchandiseNotAsXec0022b4e6? = nil,
-        returnedAt: PostIssuingDisputesDisputeRequestBodyEvidenceMerchandiseNotAsX81f2f416af? = nil
-    ) {
+extension PostIssuingDisputesDisputeRequestBodyEvidenceMerchandiseNotAsX7066c328b0 {
+    public init(additionalDocumentation: String? = nil, explanation: PostIssuingDisputesDisputeRequestBodyEvidenceMerchandiseNotAsX53c55ca838? = nil, receivedAt: PostIssuingDisputesDisputeRequestBodyEvidenceMerchandiseNotAsXff47a7443d? = nil, returnDescription: PostIssuingDisputesDisputeRequestBodyEvidenceMerchandiseNotAsXba762c45c6? = nil, returnStatus: PostIssuingDisputesDisputeRequestBodyEvidenceMerchandiseNotAsXec0022b4e6? = nil, returnedAt: PostIssuingDisputesDisputeRequestBodyEvidenceMerchandiseNotAsX81f2f416af? = nil) {
         self.init()
         (self.additionalDocumentation, self.explanation) = (additionalDocumentation, explanation)
         (self.receivedAt, self.returnDescription) = (receivedAt, returnDescription)
@@ -393,31 +315,21 @@ public enum PostIssuingDisputesDisputeRequestBodyEvidenceNoValidAuthorizaX33af0c
 }
 
 extension PostIssuingDisputesDisputeRequestBodyEvidenceNoValidAuthorizaX33af0c5d99: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostIssuingDisputesDisputeRequestBodyEvidenceNoValidAuthorizaX33af0c5d99"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostIssuingDisputesDisputeRequestBodyEvidenceNoValidAuthorizaX33af0c5d99")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(String.self) {
-            return .stringValue1(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(String.self) { return .stringValue1(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -427,53 +339,44 @@ extension PostIssuingDisputesDisputeRequestBodyEvidenceNoValidAuthorizaX33af0c5d
         case let .stringValue1(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum PostIssuingDisputesDisputeRequestBodyEvidenceNotReceived {
-    case postIssuingDisputesDisputeRequestBodyEvidenceNotReceivedVariant0(
-        PostIssuingDisputesDisputeRequestBodyEvidenceNotReceivedVariant0
-    )
+    case postIssuingDisputesDisputeRequestBodyEvidenceNotReceivedVariant0(PostIssuingDisputesDisputeRequestBodyEvidenceNotReceivedVariant0)
     case stringValue(String)
 }
 
 extension PostIssuingDisputesDisputeRequestBodyEvidenceNotReceived: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostIssuingDisputesDisputeRequestBodyEvidenceNotReceived"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostIssuingDisputesDisputeRequestBodyEvidenceNotReceived")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PostIssuingDisputesDisputeRequestBodyEvidenceNotReceivedVariant0.self
         ) {
-            return .postIssuingDisputesDisputeRequestBodyEvidenceNotReceivedVariant0(value)
+            return             .postIssuingDisputesDisputeRequestBodyEvidenceNotReceivedVariant0(value)
         }
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .postIssuingDisputesDisputeRequestBodyEvidenceNotReceivedVariant0(value): try container
-            .encode(value); return true
+        case let .postIssuingDisputesDisputeRequestBodyEvidenceNotReceivedVariant0(value): try container.encode(value); return true
         case let .stringValue(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum PostIssuingDisputesDisputeRequestBodyEvidenceOtherVariant0ProX6c6a4b36db {
@@ -482,31 +385,21 @@ public enum PostIssuingDisputesDisputeRequestBodyEvidenceOtherVariant0ProX6c6a4b
 }
 
 extension PostIssuingDisputesDisputeRequestBodyEvidenceOtherVariant0ProX6c6a4b36db: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostIssuingDisputesDisputeRequestBodyEvidenceOtherVariant0ProX6c6a4b36db"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostIssuingDisputesDisputeRequestBodyEvidenceOtherVariant0ProX6c6a4b36db")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(String.self) {
-            return .stringValue1(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(String.self) { return .stringValue1(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -516,6 +409,7 @@ extension PostIssuingDisputesDisputeRequestBodyEvidenceOtherVariant0ProX6c6a4b36
         case let .stringValue1(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum PostIssuingDisputesRequestBodyEvidenceServiceNotAsDescribed {
@@ -526,43 +420,35 @@ public enum PostIssuingDisputesRequestBodyEvidenceServiceNotAsDescribed {
 }
 
 extension PostIssuingDisputesRequestBodyEvidenceServiceNotAsDescribed: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostIssuingDisputesRequestBodyEvidenceServiceNotAsDescribed"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostIssuingDisputesRequestBodyEvidenceServiceNotAsDescribed")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PostIssuingDisputesRequestBodyEvidenceServiceNotAsDescribedVariant0.self
         ) {
-            return .postIssuingDisputesRequestBodyEvidenceServiceNotAsDescribedVariant0(value)
+            return             .postIssuingDisputesRequestBodyEvidenceServiceNotAsDescribedVariant0(value)
         }
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .postIssuingDisputesRequestBodyEvidenceServiceNotAsDescribedVariant0(value): try container
-            .encode(value); return true
+        case let .postIssuingDisputesRequestBodyEvidenceServiceNotAsDescribedVariant0(value): try container.encode(value); return true
         case let .stringValue(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum PostIssuingDisputesRequestBodyEvidenceMerchandiseNotAsDescribX1cde075ae3 {
@@ -571,31 +457,21 @@ public enum PostIssuingDisputesRequestBodyEvidenceMerchandiseNotAsDescribX1cde07
 }
 
 extension PostIssuingDisputesRequestBodyEvidenceMerchandiseNotAsDescribX1cde075ae3: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostIssuingDisputesRequestBodyEvidenceMerchandiseNotAsDescribX1cde075ae3"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostIssuingDisputesRequestBodyEvidenceMerchandiseNotAsDescribX1cde075ae3")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(String.self) {
-            return .stringValue1(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(String.self) { return .stringValue1(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -605,6 +481,7 @@ extension PostIssuingDisputesRequestBodyEvidenceMerchandiseNotAsDescribX1cde075a
         case let .stringValue1(value): try container.encode(value); return true
         }
     }
+
 }
 
 public struct GetIssuingDisputesParameterVariant0: Codable {
@@ -621,22 +498,22 @@ public struct GetIssuingDisputesParameterVariant0: Codable {
     }
 
     init() {
-        (gt, gte, lt, lte) = (nil, nil, nil, nil)
+        (self.gt, self.gte, self.lt, self.lte) = (nil, nil, nil, nil)
     }
 }
 
-public extension GetIssuingDisputesParameterVariant0 {
-    init(from decoder: Decoder) throws {
+extension GetIssuingDisputesParameterVariant0 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        gt = try container.sdkDecodeIfPresent(.gt)
-        gte = try container.sdkDecodeIfPresent(.gte)
-        lt = try container.sdkDecodeIfPresent(.lt)
-        lte = try container.sdkDecodeIfPresent(.lte)
+        self.gt = try container.sdkDecodeIfPresent(.gt)
+        self.gte = try container.sdkDecodeIfPresent(.gte)
+        self.lt = try container.sdkDecodeIfPresent(.lt)
+        self.lte = try container.sdkDecodeIfPresent(.lte)
     }
 }
 
-public extension GetIssuingDisputesParameterVariant0 {
-    init(gt: Int? = nil, gte: Int? = nil, lt: Int? = nil, lte: Int? = nil) {
+extension GetIssuingDisputesParameterVariant0 {
+    public init(gt: Int? = nil, gte: Int? = nil, lt: Int? = nil, lte: Int? = nil) {
         self.init()
         (self.gt, self.gte) = (gt, gte)
         (self.lt, self.lte) = (lt, lte)

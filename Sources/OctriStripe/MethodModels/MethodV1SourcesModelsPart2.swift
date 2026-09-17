@@ -7,23 +7,19 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1Sources operation model declarations
-public extension PostSourcesSourceRequestBodyMandateAcceptanceOffline {
-    init(from decoder: Decoder) throws {
+// Canonical v1Sources operation model declarations
+extension PostSourcesSourceRequestBodyMandateAcceptanceOffline {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.contactEmail) else {
-            throw SdkValidationError(
-                field: "contact_email",
-                code: "required",
-                message: "Validation failed for 'contact_email': value is required"
-            )
+            throw SdkValidationError(field: "contact_email", code: "required", message: "Validation failed for 'contact_email': value is required")
         }
-        contactEmail = try container.sdkDecodeRequired(.contactEmail)
+        self.contactEmail = try container.sdkDecodeRequired(.contactEmail)
     }
 }
 
-public extension PostSourcesSourceRequestBodyMandateAcceptanceOffline {
-    init(contactEmail: String) {
+extension PostSourcesSourceRequestBodyMandateAcceptanceOffline {
+    public init(contactEmail: String) {
         self.contactEmail = contactEmail
     }
 }
@@ -40,24 +36,24 @@ public struct PostSourcesSourceRequestBodyMandateAcceptanceOnline: Codable {
     }
 
     init() {
-        (date, ip, userAgent) = (nil, nil, nil)
+        (self.date, self.ip, self.userAgent) = (nil, nil, nil)
     }
 }
 
-public extension PostSourcesSourceRequestBodyMandateAcceptanceOnline {
-    init(from decoder: Decoder) throws {
+extension PostSourcesSourceRequestBodyMandateAcceptanceOnline {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        date = try container.sdkDecodeIfPresent(.date)
-        ip = try container.sdkDecodeIfPresent(.ip)
-        userAgent = try container.sdkDecodeIfPresent(.userAgent)
-        if let value = userAgent {
+        self.date = try container.sdkDecodeIfPresent(.date)
+        self.ip = try container.sdkDecodeIfPresent(.ip)
+        self.userAgent = try container.sdkDecodeIfPresent(.userAgent)
+        if let value = self.userAgent {
             try validateLength("user_agent", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PostSourcesSourceRequestBodyMandateAcceptanceOnline {
-    init(date: Int? = nil, ip: String? = nil, userAgent: String? = nil) throws {
+extension PostSourcesSourceRequestBodyMandateAcceptanceOnline {
+    public init(date: Int? = nil, ip: String? = nil, userAgent: String? = nil) throws {
         self.init()
         (self.date, self.ip) = (date, ip)
         self.userAgent = userAgent
@@ -85,50 +81,43 @@ public struct PostSourcesSourceRequestBodyOwnerAddress: Codable {
     }
 
     init() {
-        (city, country, line1, line2, postalCode) = (nil, nil, nil, nil, nil)
-        state = nil
+        (self.city, self.country, self.line1, self.line2, self.postalCode) = (nil, nil, nil, nil, nil)
+        self.state = nil
     }
 }
 
-public extension PostSourcesSourceRequestBodyOwnerAddress {
-    init(from decoder: Decoder) throws {
+extension PostSourcesSourceRequestBodyOwnerAddress {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        city = try container.sdkDecodeIfPresent(.city)
-        country = try container.sdkDecodeIfPresent(.country)
-        line1 = try container.sdkDecodeIfPresent(.line1)
-        line2 = try container.sdkDecodeIfPresent(.line2)
-        postalCode = try container.sdkDecodeIfPresent(.postalCode)
-        state = try container.sdkDecodeIfPresent(.state)
-        if let value = city {
+        self.city = try container.sdkDecodeIfPresent(.city)
+        self.country = try container.sdkDecodeIfPresent(.country)
+        self.line1 = try container.sdkDecodeIfPresent(.line1)
+        self.line2 = try container.sdkDecodeIfPresent(.line2)
+        self.postalCode = try container.sdkDecodeIfPresent(.postalCode)
+        self.state = try container.sdkDecodeIfPresent(.state)
+        if let value = self.city {
             try validateLength("city", value, min: nil, max: 5000)
         }
-        if let value = country {
+        if let value = self.country {
             try validateLength("country", value, min: nil, max: 5000)
         }
-        if let value = line1 {
+        if let value = self.line1 {
             try validateLength("line1", value, min: nil, max: 5000)
         }
-        if let value = line2 {
+        if let value = self.line2 {
             try validateLength("line2", value, min: nil, max: 5000)
         }
-        if let value = postalCode {
+        if let value = self.postalCode {
             try validateLength("postal_code", value, min: nil, max: 5000)
         }
-        if let value = state {
+        if let value = self.state {
             try validateLength("state", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PostSourcesSourceRequestBodyOwnerAddress {
-    init(
-        city: String? = nil,
-        country: String? = nil,
-        line1: String? = nil,
-        line2: String? = nil,
-        postalCode: String? = nil,
-        state: String? = nil
-    ) throws {
+extension PostSourcesSourceRequestBodyOwnerAddress {
+    public init(city: String? = nil, country: String? = nil, line1: String? = nil, line2: String? = nil, postalCode: String? = nil, state: String? = nil) throws {
         self.init()
         (self.city, self.country) = (city, country)
         (self.line1, self.line2) = (line1, line2)
@@ -175,53 +164,39 @@ public struct PostSourcesRequestBodyMandateAcceptance: Codable {
         case userAgent = "user_agent"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostSourcesRequestBodyMandateAcceptance {
-    init(from decoder: Decoder) throws {
+extension PostSourcesRequestBodyMandateAcceptance {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.status) else {
-            throw SdkValidationError(
-                field: "status",
-                code: "required",
-                message: "Validation failed for 'status': value is required"
-            )
+            throw SdkValidationError(field: "status", code: "required", message: "Validation failed for 'status': value is required")
         }
-        status = try container.sdkDecodeRequired(.status)
-        date = try container.sdkDecodeIfPresent(.date)
-        ip = try container.sdkDecodeIfPresent(.ip)
-        offline = try container.sdkDecodeIfPresent(.offline)
-        online = try container.sdkDecodeIfPresent(.online)
-        type = try container.sdkDecodeIfPresent(.type)
-        userAgent = try container.sdkDecodeIfPresent(.userAgent)
-        try validateLength("status", sdkWireString(status), min: nil, max: 5000)
-        if let value = type {
+        self.status = try container.sdkDecodeRequired(.status)
+        self.date = try container.sdkDecodeIfPresent(.date)
+        self.ip = try container.sdkDecodeIfPresent(.ip)
+        self.offline = try container.sdkDecodeIfPresent(.offline)
+        self.online = try container.sdkDecodeIfPresent(.online)
+        self.type = try container.sdkDecodeIfPresent(.type)
+        self.userAgent = try container.sdkDecodeIfPresent(.userAgent)
+            try validateLength("status", sdkWireString(self.status), min: nil, max: 5000)
+        if let value = self.type {
             try validateLength("type", sdkWireString(value), min: nil, max: 5000)
         }
-        if let value = userAgent {
+        if let value = self.userAgent {
             try validateLength("user_agent", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PostSourcesRequestBodyMandateAcceptance {
-    init(
-        status: PostSourcesRequestBodyMandateAcceptanceStatus,
-        date: Int? = nil,
-        ip: String? = nil,
-        offline: PostSourcesRequestBodyMandateAcceptanceOffline? = nil,
-        online: PostSourcesRequestBodyMandateAcceptanceOnline? = nil,
-        type: PostSourcesRequestBodyMandateAcceptanceType? = nil,
-        userAgent: String? = nil
-    ) throws {
+extension PostSourcesRequestBodyMandateAcceptance {
+    public init(status: PostSourcesRequestBodyMandateAcceptanceStatus, date: Int? = nil, ip: String? = nil, offline: PostSourcesRequestBodyMandateAcceptanceOffline? = nil, online: PostSourcesRequestBodyMandateAcceptanceOnline? = nil, type: PostSourcesRequestBodyMandateAcceptanceType? = nil, userAgent: String? = nil) throws {
         (self.status, self.date) = (status, date)
         (self.ip, self.offline) = (ip, offline)
         (self.online, self.type) = (online, type)
         self.userAgent = userAgent
-        try validateLength("status", sdkWireString(self.status), min: nil, max: 5000)
+            try validateLength("status", sdkWireString(self.status), min: nil, max: 5000)
         if let value = self.type {
             try validateLength("type", sdkWireString(value), min: nil, max: 5000)
         }
@@ -249,41 +224,34 @@ public struct PostSourcesRequestBodySourceOrderItemsItem: Codable {
     }
 
     init() {
-        (amount, currency, description, parent, quantity) = (nil, nil, nil, nil, nil)
-        type = nil
+        (self.amount, self.currency, self.description, self.parent, self.quantity) = (nil, nil, nil, nil, nil)
+        self.type = nil
     }
 }
 
-public extension PostSourcesRequestBodySourceOrderItemsItem {
-    init(from decoder: Decoder) throws {
+extension PostSourcesRequestBodySourceOrderItemsItem {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        amount = try container.sdkDecodeIfPresent(.amount)
-        currency = try container.sdkDecodeIfPresent(.currency)
-        description = try container.sdkDecodeIfPresent(.description)
-        parent = try container.sdkDecodeIfPresent(.parent)
-        quantity = try container.sdkDecodeIfPresent(.quantity)
-        type = try container.sdkDecodeIfPresent(.type)
-        if let value = description {
+        self.amount = try container.sdkDecodeIfPresent(.amount)
+        self.currency = try container.sdkDecodeIfPresent(.currency)
+        self.description = try container.sdkDecodeIfPresent(.description)
+        self.parent = try container.sdkDecodeIfPresent(.parent)
+        self.quantity = try container.sdkDecodeIfPresent(.quantity)
+        self.type = try container.sdkDecodeIfPresent(.type)
+        if let value = self.description {
             try validateLength("description", value, min: nil, max: 1000)
         }
-        if let value = parent {
+        if let value = self.parent {
             try validateLength("parent", value, min: nil, max: 5000)
         }
-        if let value = type {
+        if let value = self.type {
             try validateLength("type", sdkWireString(value), min: nil, max: 5000)
         }
     }
 }
 
-public extension PostSourcesRequestBodySourceOrderItemsItem {
-    init(
-        amount: Int? = nil,
-        currency: String? = nil,
-        description: String? = nil,
-        parent: String? = nil,
-        quantity: Int? = nil,
-        type: PostSourcesRequestBodySourceOrderItemsItemType? = nil
-    ) throws {
+extension PostSourcesRequestBodySourceOrderItemsItem {
+    public init(amount: Int? = nil, currency: String? = nil, description: String? = nil, parent: String? = nil, quantity: Int? = nil, type: PostSourcesRequestBodySourceOrderItemsItemType? = nil) throws {
         self.init()
         (self.amount, self.currency) = (amount, currency)
         (self.description, self.parent) = (description, parent)
@@ -312,24 +280,24 @@ public struct PostSourcesRequestBodyMandateAcceptanceOnline: Codable {
     }
 
     init() {
-        (date, ip, userAgent) = (nil, nil, nil)
+        (self.date, self.ip, self.userAgent) = (nil, nil, nil)
     }
 }
 
-public extension PostSourcesRequestBodyMandateAcceptanceOnline {
-    init(from decoder: Decoder) throws {
+extension PostSourcesRequestBodyMandateAcceptanceOnline {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        date = try container.sdkDecodeIfPresent(.date)
-        ip = try container.sdkDecodeIfPresent(.ip)
-        userAgent = try container.sdkDecodeIfPresent(.userAgent)
-        if let value = userAgent {
+        self.date = try container.sdkDecodeIfPresent(.date)
+        self.ip = try container.sdkDecodeIfPresent(.ip)
+        self.userAgent = try container.sdkDecodeIfPresent(.userAgent)
+        if let value = self.userAgent {
             try validateLength("user_agent", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PostSourcesRequestBodyMandateAcceptanceOnline {
-    init(date: Int? = nil, ip: String? = nil, userAgent: String? = nil) throws {
+extension PostSourcesRequestBodyMandateAcceptanceOnline {
+    public init(date: Int? = nil, ip: String? = nil, userAgent: String? = nil) throws {
         self.init()
         (self.date, self.ip) = (date, ip)
         self.userAgent = userAgent
@@ -355,33 +323,28 @@ public struct PostSourcesSourceRequestBodyOwner: Codable {
     }
 
     init() {
-        (address, email, name, phone) = (nil, nil, nil, nil)
+        (self.address, self.email, self.name, self.phone) = (nil, nil, nil, nil)
     }
 }
 
-public extension PostSourcesSourceRequestBodyOwner {
-    init(from decoder: Decoder) throws {
+extension PostSourcesSourceRequestBodyOwner {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        address = try container.sdkDecodeIfPresent(.address)
-        email = try container.sdkDecodeIfPresent(.email)
-        name = try container.sdkDecodeIfPresent(.name)
-        phone = try container.sdkDecodeIfPresent(.phone)
-        if let value = name {
+        self.address = try container.sdkDecodeIfPresent(.address)
+        self.email = try container.sdkDecodeIfPresent(.email)
+        self.name = try container.sdkDecodeIfPresent(.name)
+        self.phone = try container.sdkDecodeIfPresent(.phone)
+        if let value = self.name {
             try validateLength("name", value, min: nil, max: 5000)
         }
-        if let value = phone {
+        if let value = self.phone {
             try validateLength("phone", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PostSourcesSourceRequestBodyOwner {
-    init(
-        address: PostSourcesSourceRequestBodyOwnerAddress? = nil,
-        email: String? = nil,
-        name: String? = nil,
-        phone: String? = nil
-    ) throws {
+extension PostSourcesSourceRequestBodyOwner {
+    public init(address: PostSourcesSourceRequestBodyOwnerAddress? = nil, email: String? = nil, name: String? = nil, phone: String? = nil) throws {
         self.init()
         (self.address, self.email) = (address, email)
         (self.name, self.phone) = (name, phone)
@@ -403,22 +366,22 @@ public struct PostSourcesRequestBodyReceiver: Codable {
     }
 
     init() {
-        refundAttributesMethod = nil
+        self.refundAttributesMethod = nil
     }
 }
 
-public extension PostSourcesRequestBodyReceiver {
-    init(from decoder: Decoder) throws {
+extension PostSourcesRequestBodyReceiver {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        refundAttributesMethod = try container.sdkDecodeIfPresent(.refundAttributesMethod)
-        if let value = refundAttributesMethod {
+        self.refundAttributesMethod = try container.sdkDecodeIfPresent(.refundAttributesMethod)
+        if let value = self.refundAttributesMethod {
             try validateLength("refund_attributes_method", sdkWireString(value), min: nil, max: 5000)
         }
     }
 }
 
-public extension PostSourcesRequestBodyReceiver {
-    init(refundAttributesMethod: PostSourcesRequestBodyReceiverRefundAttributesMethod? = nil) throws {
+extension PostSourcesRequestBodyReceiver {
+    public init(refundAttributesMethod: PostSourcesRequestBodyReceiverRefundAttributesMethod? = nil) throws {
         self.init()
         self.refundAttributesMethod = refundAttributesMethod
         if let value = self.refundAttributesMethod {
@@ -440,23 +403,20 @@ public struct PostSourcesSourceRequestBodySourceOrder: Codable {
     }
 
     init() {
-        (items, shipping) = (nil, nil)
+        (self.items, self.shipping) = (nil, nil)
     }
 }
 
-public extension PostSourcesSourceRequestBodySourceOrder {
-    init(from decoder: Decoder) throws {
+extension PostSourcesSourceRequestBodySourceOrder {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        items = try container.sdkDecodeIfPresent(.items)
-        shipping = try container.sdkDecodeIfPresent(.shipping)
+        self.items = try container.sdkDecodeIfPresent(.items)
+        self.shipping = try container.sdkDecodeIfPresent(.shipping)
     }
 }
 
-public extension PostSourcesSourceRequestBodySourceOrder {
-    init(
-        items: [PostSourcesSourceRequestBodySourceOrderItemsItem]? = nil,
-        shipping: PostSourcesSourceRequestBodySourceOrderShipping? = nil
-    ) {
+extension PostSourcesSourceRequestBodySourceOrder {
+    public init(items: [PostSourcesSourceRequestBodySourceOrderItemsItem]? = nil, shipping: PostSourcesSourceRequestBodySourceOrderShipping? = nil) {
         self.init()
         (self.items, self.shipping) = (items, shipping)
     }
@@ -479,59 +439,46 @@ public struct PostSourcesSourceRequestBodySourceOrderShippingAddress: Codable {
         case state
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostSourcesSourceRequestBodySourceOrderShippingAddress {
-    init(from decoder: Decoder) throws {
+extension PostSourcesSourceRequestBodySourceOrderShippingAddress {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.line1) else {
-            throw SdkValidationError(
-                field: "line1",
-                code: "required",
-                message: "Validation failed for 'line1': value is required"
-            )
+            throw SdkValidationError(field: "line1", code: "required", message: "Validation failed for 'line1': value is required")
         }
-        line1 = try container.sdkDecodeRequired(.line1)
-        city = try container.sdkDecodeIfPresent(.city)
-        country = try container.sdkDecodeIfPresent(.country)
-        line2 = try container.sdkDecodeIfPresent(.line2)
-        postalCode = try container.sdkDecodeIfPresent(.postalCode)
-        state = try container.sdkDecodeIfPresent(.state)
-        try validateLength("line1", line1, min: nil, max: 5000)
-        if let value = city {
+        self.line1 = try container.sdkDecodeRequired(.line1)
+        self.city = try container.sdkDecodeIfPresent(.city)
+        self.country = try container.sdkDecodeIfPresent(.country)
+        self.line2 = try container.sdkDecodeIfPresent(.line2)
+        self.postalCode = try container.sdkDecodeIfPresent(.postalCode)
+        self.state = try container.sdkDecodeIfPresent(.state)
+            try validateLength("line1", self.line1, min: nil, max: 5000)
+        if let value = self.city {
             try validateLength("city", value, min: nil, max: 5000)
         }
-        if let value = country {
+        if let value = self.country {
             try validateLength("country", value, min: nil, max: 5000)
         }
-        if let value = line2 {
+        if let value = self.line2 {
             try validateLength("line2", value, min: nil, max: 5000)
         }
-        if let value = postalCode {
+        if let value = self.postalCode {
             try validateLength("postal_code", value, min: nil, max: 5000)
         }
-        if let value = state {
+        if let value = self.state {
             try validateLength("state", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PostSourcesSourceRequestBodySourceOrderShippingAddress {
-    init(
-        line1: String,
-        city: String? = nil,
-        country: String? = nil,
-        line2: String? = nil,
-        postalCode: String? = nil,
-        state: String? = nil
-    ) throws {
+extension PostSourcesSourceRequestBodySourceOrderShippingAddress {
+    public init(line1: String, city: String? = nil, country: String? = nil, line2: String? = nil, postalCode: String? = nil, state: String? = nil) throws {
         (self.line1, self.city) = (line1, city)
         (self.country, self.line2) = (country, line2)
         (self.postalCode, self.state) = (postalCode, state)
-        try validateLength("line1", self.line1, min: nil, max: 5000)
+            try validateLength("line1", self.line1, min: nil, max: 5000)
         if let value = self.city {
             try validateLength("city", value, min: nil, max: 5000)
         }
@@ -569,35 +516,29 @@ public struct PostSourcesSourceRequestBodyMandate: Codable {
     }
 
     init() {
-        (acceptance, amount, currency, interval, notificationMethod) = (nil, nil, nil, nil, nil)
+        (self.acceptance, self.amount, self.currency, self.interval, self.notificationMethod) = (nil, nil, nil, nil, nil)
     }
 }
 
-public extension PostSourcesSourceRequestBodyMandate {
-    init(from decoder: Decoder) throws {
+extension PostSourcesSourceRequestBodyMandate {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        acceptance = try container.sdkDecodeIfPresent(.acceptance)
-        amount = try container.sdkDecodeIfPresent(.amount)
-        currency = try container.sdkDecodeIfPresent(.currency)
-        interval = try container.sdkDecodeIfPresent(.interval)
-        notificationMethod = try container.sdkDecodeIfPresent(.notificationMethod)
-        if let value = interval {
+        self.acceptance = try container.sdkDecodeIfPresent(.acceptance)
+        self.amount = try container.sdkDecodeIfPresent(.amount)
+        self.currency = try container.sdkDecodeIfPresent(.currency)
+        self.interval = try container.sdkDecodeIfPresent(.interval)
+        self.notificationMethod = try container.sdkDecodeIfPresent(.notificationMethod)
+        if let value = self.interval {
             try validateLength("interval", sdkWireString(value), min: nil, max: 5000)
         }
-        if let value = notificationMethod {
+        if let value = self.notificationMethod {
             try validateLength("notification_method", sdkWireString(value), min: nil, max: 5000)
         }
     }
 }
 
-public extension PostSourcesSourceRequestBodyMandate {
-    init(
-        acceptance: PostSourcesSourceRequestBodyMandateAcceptance? = nil,
-        amount: PostSourcesSourceRequestBodyMandateAmount? = nil,
-        currency: String? = nil,
-        interval: PostSourcesSourceRequestBodyMandateInterval? = nil,
-        notificationMethod: PostSourcesSourceRequestBodyMandateNotificationMethod? = nil
-    ) throws {
+extension PostSourcesSourceRequestBodyMandate {
+    public init(acceptance: PostSourcesSourceRequestBodyMandateAcceptance? = nil, amount: PostSourcesSourceRequestBodyMandateAmount? = nil, currency: String? = nil, interval: PostSourcesSourceRequestBodyMandateInterval? = nil, notificationMethod: PostSourcesSourceRequestBodyMandateNotificationMethod? = nil) throws {
         self.init()
         (self.acceptance, self.amount) = (acceptance, amount)
         (self.currency, self.interval) = (currency, interval)

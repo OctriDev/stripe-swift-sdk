@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1CheckoutSessionsMethods {
-    struct PostCheckoutSessionsOptions: Codable {
+extension V1CheckoutSessionsMethods {
+    public struct PostCheckoutSessionsOptions: Codable {
         public var adaptivePricing: PostCheckoutSessionsRequestBodyAdaptivePricing?
         public var afterExpiration: PostCheckoutSessionsRequestBodyAfterExpiration?
         public var allowPromotionCodes: Bool?
@@ -63,9 +63,7 @@ public extension V1CheckoutSessionsMethods {
         public init() {}
     }
 
-    /// Creates a Checkout Session for a one-time purchase or subscription. Supply the session configuration, including
-    /// its mode, payment settings, line items, customer information, and redirect behaviour as applicable. A 200
-    /// response returns the created session for use in the Checkout flow.
+    /// Creates a Checkout Session for a one-time purchase or subscription. Supply the session configuration, including its mode, payment settings, line items, customer information, and redirect behaviour as applicable. A 200 response returns the created session for use in the Checkout flow.
     ///
     /// Creates a Checkout Session object.
     ///
@@ -259,10 +257,7 @@ public extension V1CheckoutSessionsMethods {
     /// - taxIdCollection: Controls tax ID collection during checkout.
     /// - uiMode: The UI mode of the Session. Defaults to `hosted_page`.
     /// - walletOptions: Wallet-specific configuration.
-    static func postCheckoutSessions(
-        config: ClientConfig,
-        options: PostCheckoutSessionsOptions
-    ) async throws -> CheckoutSession {
+    public static func postCheckoutSessions(config: ClientConfig, options: PostCheckoutSessionsOptions) async throws -> CheckoutSession {
         if let clientReferenceId = options.clientReferenceId {
             try validateLength("client_reference_id", clientReferenceId, max: 200)
         }
@@ -285,14 +280,6 @@ public extension V1CheckoutSessionsMethods {
 
         let requestBody = PostCheckoutSessionsRequestBody(options: options)
 
-        return try await (sdkRequest(
-            "POST",
-            "/v1/checkout/sessions",
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostCheckoutSessions"
-        )).data
+        return try (await sdkRequest("POST", "/v1/checkout/sessions", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostCheckoutSessions")).data
     }
 }

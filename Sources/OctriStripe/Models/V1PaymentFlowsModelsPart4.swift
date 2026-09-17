@@ -3,22 +3,17 @@
 
 import Foundation
 
-/// V1PaymentFlows domain models
+// V1PaymentFlows domain models
 /// Controls when the funds will be captured from the customer's account.
-public struct PaymentFlowsPrivatePaymentMethodsSamsungPayPaymentMethodOptioXa5a6636092: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PaymentFlowsPrivatePaymentMethodsSamsungPayPaymentMethodOptioXa5a6636092: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let manual =
-        PaymentFlowsPrivatePaymentMethodsSamsungPayPaymentMethodOptioXa5a6636092(rawValue: "manual")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let manual = PaymentFlowsPrivatePaymentMethodsSamsungPayPaymentMethodOptioXa5a6636092(rawValue: "manual")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -28,14 +23,10 @@ public struct PaymentFlowsPrivatePaymentMethodsSamsungPayPaymentMethodOptioXa5a6
 }
 
 /// The type of mobile wallet, one of `apple_pay`, `google_pay`, `samsung_pay`, or `unknown`.
-public struct PaymentFlowsPrivatePaymentMethodsCardPresentCommonWalletType: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct PaymentFlowsPrivatePaymentMethodsCardPresentCommonWalletType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let applePay = PaymentFlowsPrivatePaymentMethodsCardPresentCommonWalletType(rawValue: "apple_pay")
     public static let googlePay = PaymentFlowsPrivatePaymentMethodsCardPresentCommonWalletType(rawValue: "google_pay")
     public static let samsungPay = PaymentFlowsPrivatePaymentMethodsCardPresentCommonWalletType(rawValue: "samsung_pay")
@@ -43,7 +34,7 @@ public struct PaymentFlowsPrivatePaymentMethodsCardPresentCommonWalletType: RawR
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -56,20 +47,16 @@ public struct PaymentFlowsPrivatePaymentMethodsCardPresentCommonWalletType: RawR
 /// methods may require your customer to be redirected to a payment method's app or site for authentication or
 /// additional steps. To confirm this PaymentIntent, you may be required to provide a `return_url` to redirect
 /// customers back to your site after they authenticate or complete the payment.
-public struct PaymentFlowsAutomaticPaymentMethodsPaymentIntentAllowRedirects: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct PaymentFlowsAutomaticPaymentMethodsPaymentIntentAllowRedirects: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let always = PaymentFlowsAutomaticPaymentMethodsPaymentIntentAllowRedirects(rawValue: "always")
     public static let never = PaymentFlowsAutomaticPaymentMethodsPaymentIntentAllowRedirects(rawValue: "never")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -83,21 +70,16 @@ public struct PaymentFlowsAutomaticPaymentMethodsPaymentIntentAllowRedirects: Ra
 /// after the PaymentIntent is confirmed and the customer completes any required actions. If you don't provide a
 /// Customer, you can still attach the payment method to a Customer after the transaction completes. If the
 /// payment method is `card_present` and isn't a digital…
-public struct PaymentFlowsPrivatePaymentMethodsKakaoPayPaymentMethodOptionsX4bc91a870c: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PaymentFlowsPrivatePaymentMethodsKakaoPayPaymentMethodOptionsX4bc91a870c: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let none = PaymentFlowsPrivatePaymentMethodsKakaoPayPaymentMethodOptionsX4bc91a870c(rawValue: "none")
-    public static let offSession =
-        PaymentFlowsPrivatePaymentMethodsKakaoPayPaymentMethodOptionsX4bc91a870c(rawValue: "off_session")
+    public static let offSession = PaymentFlowsPrivatePaymentMethodsKakaoPayPaymentMethodOptionsX4bc91a870c(rawValue: "off_session")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

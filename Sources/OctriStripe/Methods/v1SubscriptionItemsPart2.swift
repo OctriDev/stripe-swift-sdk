@@ -6,10 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1SubscriptionItemsMethods {
-    /// Lists the subscription items associated with a subscription. Provide `subscription` to scope the results, and
-    /// use cursor parameters to navigate through multiple pages. The response includes each subscription item and a
-    /// `has_more` indicator.
+extension V1SubscriptionItemsMethods {
+    /// Lists the subscription items associated with a subscription. Provide `subscription` to scope the results, and use cursor parameters to navigate through multiple pages. The response includes each subscription item and a `has_more` indicator.
     ///
     /// Returns a list of your subscription items for a given subscription.
     ///
@@ -28,17 +26,10 @@ public extension V1SubscriptionItemsMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    static func getSubscriptionItems(
-        config: ClientConfig,
-        subscription: String,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        startingAfter: String?
-    ) async throws -> GetSubscriptionItemsResponse {
+    public static func getSubscriptionItems(config: ClientConfig, subscription: String, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetSubscriptionItemsResponse {
         try validateLength("subscription", subscription, max: 5000)
 
-        return try await (sdkRequest("GET", "/v1/subscription_items", config: config, query: [
+        return try (await sdkRequest("GET", "/v1/subscription_items", config: config, query: [
             SdkQueryParameter("subscription", value: subscription),
             SdkQueryParameter("ending_before", value: endingBefore),
             SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),

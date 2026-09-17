@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1BillingMetersEventSummariesMethods {
-    struct GetBillingMetersIdEventSummariesOptions: Codable {
+extension V1BillingMetersEventSummariesMethods {
+    public struct GetBillingMetersIdEventSummariesOptions: Codable {
         public var id: String
         public var customer: String
         public var endTime: Int
@@ -26,9 +26,7 @@ public extension V1BillingMetersEventSummariesMethods {
         }
     }
 
-    /// Lists aggregated event summaries for a billing meter and customer over a specified time range. Supply
-    /// `start_time` and `end_time` on minute boundaries, and use `value_grouping_window` to request hourly or daily
-    /// aggregation; summaries are generated asynchronously.
+    /// Lists aggregated event summaries for a billing meter and customer over a specified time range. Supply `start_time` and `end_time` on minute boundaries, and use `value_grouping_window` to request hourly or daily aggregation; summaries are generated asynchronously.
     ///
     /// Retrieve a list of billing meter event summaries.
     ///
@@ -58,10 +56,7 @@ public extension V1BillingMetersEventSummariesMethods {
     ///   must align with hour boundaries (e.g., 00:00, 01:00, ..., 23:00). For daily
     ///   granularity, start and end times must align with UTC day boundaries (00:00
     ///   UTC).
-    static func getBillingMetersIdEventSummaries(
-        config: ClientConfig,
-        options: GetBillingMetersIdEventSummariesOptions
-    ) async throws -> GetBillingMetersIdEventSummariesResponse {
+    public static func getBillingMetersIdEventSummaries(config: ClientConfig, options: GetBillingMetersIdEventSummariesOptions) async throws -> GetBillingMetersIdEventSummariesResponse {
         try validateLength("id", options.id, max: 5000)
 
         try validateLength("customer", options.customer, max: 5000)
@@ -74,22 +69,15 @@ public extension V1BillingMetersEventSummariesMethods {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try await (sdkRequest(
-            "GET",
-            ["/v1/billing/meters/", sdkEncodePathSegment(sdkWireString(options.id)), "/event_summaries"].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("customer", value: options.customer),
-                SdkQueryParameter("end_time", value: options.endTime),
-                SdkQueryParameter("start_time", value: options.startTime),
-                SdkQueryParameter("ending_before", value: options.endingBefore),
-                SdkQueryParameter("expand", values: options.expand, style: "deepObject", explode: true),
-                SdkQueryParameter("limit", value: options.limit),
-                SdkQueryParameter("starting_after", value: options.startingAfter),
-                SdkQueryParameter("value_grouping_window", value: options.valueGroupingWindow),
-            ],
-            decoder: .json,
-            operationId: "GetBillingMetersIdEventSummaries"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/billing/meters/", sdkEncodePathSegment(sdkWireString(options.id)), "/event_summaries"].joined(), config: config, query: [
+            SdkQueryParameter("customer", value: options.customer),
+            SdkQueryParameter("end_time", value: options.endTime),
+            SdkQueryParameter("start_time", value: options.startTime),
+            SdkQueryParameter("ending_before", value: options.endingBefore),
+            SdkQueryParameter("expand", values: options.expand, style: "deepObject", explode: true),
+            SdkQueryParameter("limit", value: options.limit),
+            SdkQueryParameter("starting_after", value: options.startingAfter),
+            SdkQueryParameter("value_grouping_window", value: options.valueGroupingWindow),
+        ], decoder: .json, operationId: "GetBillingMetersIdEventSummaries")).data
     }
 }

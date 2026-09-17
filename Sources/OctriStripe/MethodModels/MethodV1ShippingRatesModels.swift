@@ -7,38 +7,28 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1ShippingRates operation model declarations
+// Canonical v1ShippingRates operation model declarations
 public enum PostShippingRatesShippingRateTokenRequestBodyMetadata {
     case dictionary([String: String])
     case stringValue(String)
 }
 
 extension PostShippingRatesShippingRateTokenRequestBodyMetadata: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostShippingRatesShippingRateTokenRequestBodyMetadata"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostShippingRatesShippingRateTokenRequestBodyMetadata")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode([String: String].self) {
-            return .dictionary(value)
-        }
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
+        if let value = try? container.decode([String: String].self) { return .dictionary(value) }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -48,6 +38,7 @@ extension PostShippingRatesShippingRateTokenRequestBodyMetadata: Codable {
         case let .stringValue(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// The estimated range for how long shipping will take, meant to be displayable to the customer. This will appear
@@ -64,23 +55,20 @@ public struct PostShippingRatesRequestBodyDeliveryEstimate: Codable {
     }
 
     init() {
-        (maximum, minimum) = (nil, nil)
+        (self.maximum, self.minimum) = (nil, nil)
     }
 }
 
-public extension PostShippingRatesRequestBodyDeliveryEstimate {
-    init(from decoder: Decoder) throws {
+extension PostShippingRatesRequestBodyDeliveryEstimate {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        maximum = try container.sdkDecodeIfPresent(.maximum)
-        minimum = try container.sdkDecodeIfPresent(.minimum)
+        self.maximum = try container.sdkDecodeIfPresent(.maximum)
+        self.minimum = try container.sdkDecodeIfPresent(.minimum)
     }
 }
 
-public extension PostShippingRatesRequestBodyDeliveryEstimate {
-    init(
-        maximum: PostShippingRatesRequestBodyDeliveryEstimateMaximum? = nil,
-        minimum: PostShippingRatesRequestBodyDeliveryEstimateMinimum? = nil
-    ) {
+extension PostShippingRatesRequestBodyDeliveryEstimate {
+    public init(maximum: PostShippingRatesRequestBodyDeliveryEstimateMaximum? = nil, minimum: PostShippingRatesRequestBodyDeliveryEstimateMinimum? = nil) {
         self.init()
         (self.maximum, self.minimum) = (maximum, minimum)
     }
@@ -96,23 +84,20 @@ public struct PostShippingRatesShippingRateTokenRequestBodyFixedAmountCurreXf09e
     }
 
     init() {
-        (amount, taxBehavior) = (nil, nil)
+        (self.amount, self.taxBehavior) = (nil, nil)
     }
 }
 
-public extension PostShippingRatesShippingRateTokenRequestBodyFixedAmountCurreXf09ed3b1e7 {
-    init(from decoder: Decoder) throws {
+extension PostShippingRatesShippingRateTokenRequestBodyFixedAmountCurreXf09ed3b1e7 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        amount = try container.sdkDecodeIfPresent(.amount)
-        taxBehavior = try container.sdkDecodeIfPresent(.taxBehavior)
+        self.amount = try container.sdkDecodeIfPresent(.amount)
+        self.taxBehavior = try container.sdkDecodeIfPresent(.taxBehavior)
     }
 }
 
-public extension PostShippingRatesShippingRateTokenRequestBodyFixedAmountCurreXf09ed3b1e7 {
-    init(
-        amount: Int? = nil,
-        taxBehavior: PostShippingRatesShippingRateTokenRequestBodyFixedAmountCurreXaf8456c164? = nil
-    ) {
+extension PostShippingRatesShippingRateTokenRequestBodyFixedAmountCurreXf09ed3b1e7 {
+    public init(amount: Int? = nil, taxBehavior: PostShippingRatesShippingRateTokenRequestBodyFixedAmountCurreXaf8456c164? = nil) {
         self.init()
         (self.amount, self.taxBehavior) = (amount, taxBehavior)
     }
@@ -127,19 +112,19 @@ public struct PostShippingRatesShippingRateTokenRequestBodyFixedAmount: Codable 
     }
 
     init() {
-        currencyOptions = nil
+        self.currencyOptions = nil
     }
 }
 
-public extension PostShippingRatesShippingRateTokenRequestBodyFixedAmount {
-    init(from decoder: Decoder) throws {
+extension PostShippingRatesShippingRateTokenRequestBodyFixedAmount {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        currencyOptions = try container.sdkDecodeIfPresent(.currencyOptions)
+        self.currencyOptions = try container.sdkDecodeIfPresent(.currencyOptions)
     }
 }
 
-public extension PostShippingRatesShippingRateTokenRequestBodyFixedAmount {
-    init(currencyOptions: [String: PostShippingRatesShippingRateTokenRequestBodyFixedAmountCurreXf09ed3b1e7]? = nil) {
+extension PostShippingRatesShippingRateTokenRequestBodyFixedAmount {
+    public init(currencyOptions: [String: PostShippingRatesShippingRateTokenRequestBodyFixedAmountCurreXf09ed3b1e7]? = nil) {
         self.init()
         self.currencyOptions = currencyOptions
     }
@@ -159,22 +144,22 @@ public struct GetShippingRatesParameterVariant0: Codable {
     }
 
     init() {
-        (gt, gte, lt, lte) = (nil, nil, nil, nil)
+        (self.gt, self.gte, self.lt, self.lte) = (nil, nil, nil, nil)
     }
 }
 
-public extension GetShippingRatesParameterVariant0 {
-    init(from decoder: Decoder) throws {
+extension GetShippingRatesParameterVariant0 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        gt = try container.sdkDecodeIfPresent(.gt)
-        gte = try container.sdkDecodeIfPresent(.gte)
-        lt = try container.sdkDecodeIfPresent(.lt)
-        lte = try container.sdkDecodeIfPresent(.lte)
+        self.gt = try container.sdkDecodeIfPresent(.gt)
+        self.gte = try container.sdkDecodeIfPresent(.gte)
+        self.lt = try container.sdkDecodeIfPresent(.lt)
+        self.lte = try container.sdkDecodeIfPresent(.lte)
     }
 }
 
-public extension GetShippingRatesParameterVariant0 {
-    init(gt: Int? = nil, gte: Int? = nil, lt: Int? = nil, lte: Int? = nil) {
+extension GetShippingRatesParameterVariant0 {
+    public init(gt: Int? = nil, gte: Int? = nil, lt: Int? = nil, lte: Int? = nil) {
         self.init()
         (self.gt, self.gte) = (gt, gte)
         (self.lt, self.lte) = (lt, lte)
@@ -190,35 +175,25 @@ public struct PostShippingRatesRequestBodyDeliveryEstimateMaximum: Codable {
         case value
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostShippingRatesRequestBodyDeliveryEstimateMaximum {
-    init(from decoder: Decoder) throws {
+extension PostShippingRatesRequestBodyDeliveryEstimateMaximum {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.unit) else {
-            throw SdkValidationError(
-                field: "unit",
-                code: "required",
-                message: "Validation failed for 'unit': value is required"
-            )
+            throw SdkValidationError(field: "unit", code: "required", message: "Validation failed for 'unit': value is required")
         }
         guard container.contains(.value) else {
-            throw SdkValidationError(
-                field: "value",
-                code: "required",
-                message: "Validation failed for 'value': value is required"
-            )
+            throw SdkValidationError(field: "value", code: "required", message: "Validation failed for 'value': value is required")
         }
-        unit = try container.sdkDecodeRequired(.unit)
-        value = try container.sdkDecodeRequired(.value)
+        self.unit = try container.sdkDecodeRequired(.unit)
+        self.value = try container.sdkDecodeRequired(.value)
     }
 }
 
-public extension PostShippingRatesRequestBodyDeliveryEstimateMaximum {
-    init(unit: PostShippingRatesRequestBodyDeliveryEstimateMaximumUnit, value: Int) {
+extension PostShippingRatesRequestBodyDeliveryEstimateMaximum {
+    public init(unit: PostShippingRatesRequestBodyDeliveryEstimateMaximumUnit, value: Int) {
         (self.unit, self.value) = (unit, value)
     }
 }
@@ -232,28 +207,22 @@ public struct PostShippingRatesRequestBodyFixedAmountCurrencyOptionsValue: Codab
         case taxBehavior = "tax_behavior"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostShippingRatesRequestBodyFixedAmountCurrencyOptionsValue {
-    init(from decoder: Decoder) throws {
+extension PostShippingRatesRequestBodyFixedAmountCurrencyOptionsValue {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.amount) else {
-            throw SdkValidationError(
-                field: "amount",
-                code: "required",
-                message: "Validation failed for 'amount': value is required"
-            )
+            throw SdkValidationError(field: "amount", code: "required", message: "Validation failed for 'amount': value is required")
         }
-        amount = try container.sdkDecodeRequired(.amount)
-        taxBehavior = try container.sdkDecodeIfPresent(.taxBehavior)
+        self.amount = try container.sdkDecodeRequired(.amount)
+        self.taxBehavior = try container.sdkDecodeIfPresent(.taxBehavior)
     }
 }
 
-public extension PostShippingRatesRequestBodyFixedAmountCurrencyOptionsValue {
-    init(amount: Int, taxBehavior: PostShippingRatesRequestBodyFixedAmountCurrencyOptionsValueTaxBehavior? = nil) {
+extension PostShippingRatesRequestBodyFixedAmountCurrencyOptionsValue {
+    public init(amount: Int, taxBehavior: PostShippingRatesRequestBodyFixedAmountCurrencyOptionsValueTaxBehavior? = nil) {
         (self.amount, self.taxBehavior) = (amount, taxBehavior)
     }
 }
@@ -267,35 +236,25 @@ public struct PostShippingRatesRequestBodyDeliveryEstimateMinimum: Codable {
         case value
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostShippingRatesRequestBodyDeliveryEstimateMinimum {
-    init(from decoder: Decoder) throws {
+extension PostShippingRatesRequestBodyDeliveryEstimateMinimum {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.unit) else {
-            throw SdkValidationError(
-                field: "unit",
-                code: "required",
-                message: "Validation failed for 'unit': value is required"
-            )
+            throw SdkValidationError(field: "unit", code: "required", message: "Validation failed for 'unit': value is required")
         }
         guard container.contains(.value) else {
-            throw SdkValidationError(
-                field: "value",
-                code: "required",
-                message: "Validation failed for 'value': value is required"
-            )
+            throw SdkValidationError(field: "value", code: "required", message: "Validation failed for 'value': value is required")
         }
-        unit = try container.sdkDecodeRequired(.unit)
-        value = try container.sdkDecodeRequired(.value)
+        self.unit = try container.sdkDecodeRequired(.unit)
+        self.value = try container.sdkDecodeRequired(.value)
     }
 }
 
-public extension PostShippingRatesRequestBodyDeliveryEstimateMinimum {
-    init(unit: PostShippingRatesRequestBodyDeliveryEstimateMinimumUnit, value: Int) {
+extension PostShippingRatesRequestBodyDeliveryEstimateMinimum {
+    public init(unit: PostShippingRatesRequestBodyDeliveryEstimateMinimumUnit, value: Int) {
         (self.unit, self.value) = (unit, value)
     }
 }
@@ -306,32 +265,21 @@ public enum GetShippingRatesParameter {
 }
 
 extension GetShippingRatesParameter: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for GetShippingRatesParameter"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for GetShippingRatesParameter")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container
-            .decode(GetShippingRatesParameterVariant0.self) {
-            return .getShippingRatesParameterVariant0(value)
-        }
-        if let value = try? container.decode(Int.self) {
-            return .intValue(value)
-        }
+        if let value = try? container.decode(GetShippingRatesParameterVariant0.self) { return .getShippingRatesParameterVariant0(value) }
+        if let value = try? container.decode(Int.self) { return .intValue(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -341,6 +289,7 @@ extension GetShippingRatesParameter: Codable {
         case let .intValue(value): try container.encode(value); return true
         }
     }
+
 }
 
 public struct GetShippingRatesResponse: Codable {
@@ -360,57 +309,39 @@ public struct GetShippingRatesResponse: Codable {
         case url
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension GetShippingRatesResponse {
-    init(from decoder: Decoder) throws {
+extension GetShippingRatesResponse {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.data) else {
-            throw SdkValidationError(
-                field: "data",
-                code: "required",
-                message: "Validation failed for 'data': value is required"
-            )
+            throw SdkValidationError(field: "data", code: "required", message: "Validation failed for 'data': value is required")
         }
         guard container.contains(.hasMore) else {
-            throw SdkValidationError(
-                field: "has_more",
-                code: "required",
-                message: "Validation failed for 'has_more': value is required"
-            )
+            throw SdkValidationError(field: "has_more", code: "required", message: "Validation failed for 'has_more': value is required")
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(
-                field: "object",
-                code: "required",
-                message: "Validation failed for 'object': value is required"
-            )
+            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
         }
         guard container.contains(.url) else {
-            throw SdkValidationError(
-                field: "url",
-                code: "required",
-                message: "Validation failed for 'url': value is required"
-            )
+            throw SdkValidationError(field: "url", code: "required", message: "Validation failed for 'url': value is required")
         }
-        data = try container.sdkDecodeRequired(.data)
-        hasMore = try container.sdkDecodeRequired(.hasMore)
-        object = try container.sdkDecodeRequired(.object)
-        url = try container.sdkDecodeRequired(.url)
-        try validateLength("url", url, min: nil, max: 5000)
-        try sdkValidatePattern("url", url, sdkPattern9ba198a34dbe)
+        self.data = try container.sdkDecodeRequired(.data)
+        self.hasMore = try container.sdkDecodeRequired(.hasMore)
+        self.object = try container.sdkDecodeRequired(.object)
+        self.url = try container.sdkDecodeRequired(.url)
+            try validateLength("url", self.url, min: nil, max: 5000)
+            try sdkValidatePattern("url", self.url, sdkPattern9ba198a34dbe)
     }
 }
 
-public extension GetShippingRatesResponse {
-    init(data: [ShippingRate], hasMore: Bool, object: GetShippingRatesResponseObject, url: String) throws {
+extension GetShippingRatesResponse {
+    public init(data: [ShippingRate], hasMore: Bool, object: GetShippingRatesResponseObject, url: String) throws {
         (self.data, self.hasMore) = (data, hasMore)
         (self.object, self.url) = (object, url)
-        try validateLength("url", self.url, min: nil, max: 5000)
-        try sdkValidatePattern("url", self.url, sdkPattern9ba198a34dbe)
+            try validateLength("url", self.url, min: nil, max: 5000)
+            try sdkValidatePattern("url", self.url, sdkPattern9ba198a34dbe)
     }
 }
 
@@ -426,40 +357,26 @@ public struct PostShippingRatesRequestBodyFixedAmount: Codable {
         case currencyOptions = "currency_options"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostShippingRatesRequestBodyFixedAmount {
-    init(from decoder: Decoder) throws {
+extension PostShippingRatesRequestBodyFixedAmount {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.amount) else {
-            throw SdkValidationError(
-                field: "amount",
-                code: "required",
-                message: "Validation failed for 'amount': value is required"
-            )
+            throw SdkValidationError(field: "amount", code: "required", message: "Validation failed for 'amount': value is required")
         }
         guard container.contains(.currency) else {
-            throw SdkValidationError(
-                field: "currency",
-                code: "required",
-                message: "Validation failed for 'currency': value is required"
-            )
+            throw SdkValidationError(field: "currency", code: "required", message: "Validation failed for 'currency': value is required")
         }
-        amount = try container.sdkDecodeRequired(.amount)
-        currency = try container.sdkDecodeRequired(.currency)
-        currencyOptions = try container.sdkDecodeIfPresent(.currencyOptions)
+        self.amount = try container.sdkDecodeRequired(.amount)
+        self.currency = try container.sdkDecodeRequired(.currency)
+        self.currencyOptions = try container.sdkDecodeIfPresent(.currencyOptions)
     }
 }
 
-public extension PostShippingRatesRequestBodyFixedAmount {
-    init(
-        amount: Int,
-        currency: String,
-        currencyOptions: [String: PostShippingRatesRequestBodyFixedAmountCurrencyOptionsValue]? = nil
-    ) {
+extension PostShippingRatesRequestBodyFixedAmount {
+    public init(amount: Int, currency: String, currencyOptions: [String: PostShippingRatesRequestBodyFixedAmountCurrencyOptionsValue]? = nil) {
         (self.amount, self.currency) = (amount, currency)
         self.currencyOptions = currencyOptions
     }

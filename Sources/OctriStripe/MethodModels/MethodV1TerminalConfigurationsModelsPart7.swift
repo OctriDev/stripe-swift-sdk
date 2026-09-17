@@ -7,45 +7,37 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1TerminalConfigurations operation model declarations
+// Canonical v1TerminalConfigurations operation model declarations
 extension PostTerminalConfigurationsConfigurationRequestBodyCellular: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostTerminalConfigurationsConfigurationRequestBodyCellular"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostTerminalConfigurationsConfigurationRequestBodyCellular")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PostTerminalConfigurationsConfigurationRequestBodyCellularVariant0.self
         ) {
-            return .postTerminalConfigurationsConfigurationRequestBodyCellularVariant0(value)
+            return             .postTerminalConfigurationsConfigurationRequestBodyCellularVariant0(value)
         }
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .postTerminalConfigurationsConfigurationRequestBodyCellularVariant0(value): try container
-            .encode(value); return true
+        case let .postTerminalConfigurationsConfigurationRequestBodyCellularVariant0(value): try container.encode(value); return true
         case let .stringValue(value): try container.encode(value); return true
         }
     }
+
 }
 
 public struct PostTerminalConfigurationsRequestBodyTippingVariant0Cad: Codable {
@@ -60,21 +52,21 @@ public struct PostTerminalConfigurationsRequestBodyTippingVariant0Cad: Codable {
     }
 
     init() {
-        (fixedAmounts, percentages, smartTipThreshold) = (nil, nil, nil)
+        (self.fixedAmounts, self.percentages, self.smartTipThreshold) = (nil, nil, nil)
     }
 }
 
-public extension PostTerminalConfigurationsRequestBodyTippingVariant0Cad {
-    init(from decoder: Decoder) throws {
+extension PostTerminalConfigurationsRequestBodyTippingVariant0Cad {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        fixedAmounts = try container.sdkDecodeIfPresent(.fixedAmounts)
-        percentages = try container.sdkDecodeIfPresent(.percentages)
-        smartTipThreshold = try container.sdkDecodeIfPresent(.smartTipThreshold)
+        self.fixedAmounts = try container.sdkDecodeIfPresent(.fixedAmounts)
+        self.percentages = try container.sdkDecodeIfPresent(.percentages)
+        self.smartTipThreshold = try container.sdkDecodeIfPresent(.smartTipThreshold)
     }
 }
 
-public extension PostTerminalConfigurationsRequestBodyTippingVariant0Cad {
-    init(fixedAmounts: [Int]? = nil, percentages: [Int]? = nil, smartTipThreshold: Int? = nil) {
+extension PostTerminalConfigurationsRequestBodyTippingVariant0Cad {
+    public init(fixedAmounts: [Int]? = nil, percentages: [Int]? = nil, smartTipThreshold: Int? = nil) {
         self.init()
         (self.fixedAmounts, self.percentages) = (fixedAmounts, percentages)
         self.smartTipThreshold = smartTipThreshold

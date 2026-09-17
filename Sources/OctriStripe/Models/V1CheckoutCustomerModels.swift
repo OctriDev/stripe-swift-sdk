@@ -3,9 +3,10 @@
 
 import Foundation
 
-/// V1CheckoutCustomer domain models
-public typealias CheckoutCustomerBalanceBankTransferPaymentMethodOptionsRequesX6a97b9e938 =
-    [CheckoutCustomerBalanceBankTransferPaymentMethodOptionsRequesX53ea32b377]
+// V1CheckoutCustomer domain models
+public typealias CheckoutCustomerBalanceBankTransferPaymentMethodOptionsRequesX6a97b9e938 = [CheckoutCustomerBalanceBankTransferPaymentMethodOptionsRequesX53ea32b377]
+
+
 
 /// Typed representation of the `CheckoutCustomerBalanceBankTransferPaymentMethodOptions` API schema.
 public struct CheckoutCustomerBalanceBankTransferPaymentMethodOptions: Codable {
@@ -25,30 +26,30 @@ public struct CheckoutCustomerBalanceBankTransferPaymentMethodOptions: Codable {
     }
 
     init() {
-        (euBankTransfer, requestedAddressTypes, type) = (nil, nil, nil)
+        (self.euBankTransfer, self.requestedAddressTypes, self.type) = (nil, nil, nil)
     }
 }
 
-public extension CheckoutCustomerBalanceBankTransferPaymentMethodOptions {
-    init(from decoder: Decoder) throws {
+extension CheckoutCustomerBalanceBankTransferPaymentMethodOptions {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        euBankTransfer = try container.sdkDecodeIfPresent(.euBankTransfer)
-        requestedAddressTypes = try container.sdkDecodeIfPresent(.requestedAddressTypes)
-        type = try container.sdkDecodeIfPresent(.type)
+        self.euBankTransfer = try container.sdkDecodeIfPresent(.euBankTransfer)
+        self.requestedAddressTypes = try container.sdkDecodeIfPresent(.requestedAddressTypes)
+        self.type = try container.sdkDecodeIfPresent(.type)
     }
 }
 
-public extension CheckoutCustomerBalanceBankTransferPaymentMethodOptions {
-    init(
-        euBankTransfer: PaymentMethodOptionsCustomerBalanceEuBankAccount? = nil,
-        requestedAddressTypes: CheckoutCustomerBalanceBankTransferPaymentMethodOptionsRequesX6a97b9e938? = nil,
-        type: CheckoutCustomerBalanceBankTransferPaymentMethodOptionsType? = nil
-    ) {
+extension CheckoutCustomerBalanceBankTransferPaymentMethodOptions {
+    public init(euBankTransfer: PaymentMethodOptionsCustomerBalanceEuBankAccount? = nil, requestedAddressTypes: CheckoutCustomerBalanceBankTransferPaymentMethodOptionsRequesX6a97b9e938? = nil, type: CheckoutCustomerBalanceBankTransferPaymentMethodOptionsType? = nil) {
         self.init()
         (self.euBankTransfer, self.requestedAddressTypes) = (euBankTransfer, requestedAddressTypes)
         self.type = type
     }
 }
+
+
+
+
 
 /// Typed representation of the `CheckoutCustomerBalancePaymentMethodOptions` API schema.
 public struct CheckoutCustomerBalancePaymentMethodOptions: Codable {
@@ -71,25 +72,21 @@ public struct CheckoutCustomerBalancePaymentMethodOptions: Codable {
     }
 
     init() {
-        (bankTransfer, fundingType, setupFutureUsage) = (nil, nil, nil)
+        (self.bankTransfer, self.fundingType, self.setupFutureUsage) = (nil, nil, nil)
     }
 }
 
-public extension CheckoutCustomerBalancePaymentMethodOptions {
-    init(from decoder: Decoder) throws {
+extension CheckoutCustomerBalancePaymentMethodOptions {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        bankTransfer = try container.sdkDecodeIfPresent(.bankTransfer)
-        fundingType = try container.sdkDecodeIfPresent(.fundingType)
-        setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
+        self.bankTransfer = try container.sdkDecodeIfPresent(.bankTransfer)
+        self.fundingType = try container.sdkDecodeIfPresent(.fundingType)
+        self.setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
     }
 }
 
-public extension CheckoutCustomerBalancePaymentMethodOptions {
-    init(
-        bankTransfer: CheckoutCustomerBalanceBankTransferPaymentMethodOptions? = nil,
-        fundingType: CheckoutCustomerBalancePaymentMethodOptionsFundingType? = nil,
-        setupFutureUsage: CheckoutCustomerBalancePaymentMethodOptionsSetupFutureUsage? = nil
-    ) {
+extension CheckoutCustomerBalancePaymentMethodOptions {
+    public init(bankTransfer: CheckoutCustomerBalanceBankTransferPaymentMethodOptions? = nil, fundingType: CheckoutCustomerBalancePaymentMethodOptionsFundingType? = nil, setupFutureUsage: CheckoutCustomerBalancePaymentMethodOptionsSetupFutureUsage? = nil) {
         self.init()
         (self.bankTransfer, self.fundingType) = (bankTransfer, fundingType)
         self.setupFutureUsage = setupFutureUsage
@@ -97,28 +94,21 @@ public extension CheckoutCustomerBalancePaymentMethodOptions {
 }
 
 /// Required enumerated value serialized in the `requested_address_types[]` wire field.
-public struct CheckoutCustomerBalanceBankTransferPaymentMethodOptionsRequesX53ea32b377: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct CheckoutCustomerBalanceBankTransferPaymentMethodOptionsRequesX53ea32b377: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let aba = CheckoutCustomerBalanceBankTransferPaymentMethodOptionsRequesX53ea32b377(rawValue: "aba")
     public static let iban = CheckoutCustomerBalanceBankTransferPaymentMethodOptionsRequesX53ea32b377(rawValue: "iban")
     public static let sepa = CheckoutCustomerBalanceBankTransferPaymentMethodOptionsRequesX53ea32b377(rawValue: "sepa")
-    public static let sortCode =
-        CheckoutCustomerBalanceBankTransferPaymentMethodOptionsRequesX53ea32b377(rawValue: "sort_code")
+    public static let sortCode = CheckoutCustomerBalanceBankTransferPaymentMethodOptionsRequesX53ea32b377(rawValue: "sort_code")
     public static let spei = CheckoutCustomerBalanceBankTransferPaymentMethodOptionsRequesX53ea32b377(rawValue: "spei")
-    public static let swift =
-        CheckoutCustomerBalanceBankTransferPaymentMethodOptionsRequesX53ea32b377(rawValue: "swift")
-    public static let zengin =
-        CheckoutCustomerBalanceBankTransferPaymentMethodOptionsRequesX53ea32b377(rawValue: "zengin")
+    public static let swift = CheckoutCustomerBalanceBankTransferPaymentMethodOptionsRequesX53ea32b377(rawValue: "swift")
+    public static let zengin = CheckoutCustomerBalanceBankTransferPaymentMethodOptionsRequesX53ea32b377(rawValue: "zengin")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -129,29 +119,19 @@ public struct CheckoutCustomerBalanceBankTransferPaymentMethodOptionsRequesX53ea
 
 /// The bank transfer type that this PaymentIntent is allowed to use for funding Permitted values include:
 /// `eu_bank_transfer`, `gb_bank_transfer`, `jp_bank_transfer`, `mx_bank_transfer`, or `us_bank_transfer`.
-public struct CheckoutCustomerBalanceBankTransferPaymentMethodOptionsType: RawRepresentable, Hashable, Codable,
-    Sendable,
-    SdkWireConvertible {
+public struct CheckoutCustomerBalanceBankTransferPaymentMethodOptionsType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let euBankTransfer =
-        CheckoutCustomerBalanceBankTransferPaymentMethodOptionsType(rawValue: "eu_bank_transfer")
-    public static let gbBankTransfer =
-        CheckoutCustomerBalanceBankTransferPaymentMethodOptionsType(rawValue: "gb_bank_transfer")
-    public static let jpBankTransfer =
-        CheckoutCustomerBalanceBankTransferPaymentMethodOptionsType(rawValue: "jp_bank_transfer")
-    public static let mxBankTransfer =
-        CheckoutCustomerBalanceBankTransferPaymentMethodOptionsType(rawValue: "mx_bank_transfer")
-    public static let usBankTransfer =
-        CheckoutCustomerBalanceBankTransferPaymentMethodOptionsType(rawValue: "us_bank_transfer")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let euBankTransfer = CheckoutCustomerBalanceBankTransferPaymentMethodOptionsType(rawValue: "eu_bank_transfer")
+    public static let gbBankTransfer = CheckoutCustomerBalanceBankTransferPaymentMethodOptionsType(rawValue: "gb_bank_transfer")
+    public static let jpBankTransfer = CheckoutCustomerBalanceBankTransferPaymentMethodOptionsType(rawValue: "jp_bank_transfer")
+    public static let mxBankTransfer = CheckoutCustomerBalanceBankTransferPaymentMethodOptionsType(rawValue: "mx_bank_transfer")
+    public static let usBankTransfer = CheckoutCustomerBalanceBankTransferPaymentMethodOptionsType(rawValue: "us_bank_transfer")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -165,20 +145,15 @@ public struct CheckoutCustomerBalanceBankTransferPaymentMethodOptionsType: RawRe
 /// after the PaymentIntent is confirmed and the customer completes any required actions. If you don't provide a
 /// Customer, you can still attach the payment method to a Customer after the transaction completes. If the
 /// payment method is `card_present` and isn't a digital…
-public struct CheckoutCustomerBalancePaymentMethodOptionsSetupFutureUsage: RawRepresentable, Hashable, Codable,
-    Sendable,
-    SdkWireConvertible {
+public struct CheckoutCustomerBalancePaymentMethodOptionsSetupFutureUsage: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let none = CheckoutCustomerBalancePaymentMethodOptionsSetupFutureUsage(rawValue: "none")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -189,19 +164,15 @@ public struct CheckoutCustomerBalancePaymentMethodOptionsSetupFutureUsage: RawRe
 
 /// The funding method type to be used when there are not enough funds in the customer balance. Permitted values
 /// include: `bank_transfer`.
-public struct CheckoutCustomerBalancePaymentMethodOptionsFundingType: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct CheckoutCustomerBalancePaymentMethodOptionsFundingType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let bankTransfer = CheckoutCustomerBalancePaymentMethodOptionsFundingType(rawValue: "bank_transfer")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

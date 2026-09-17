@@ -15,24 +15,11 @@ public enum V1AppsSecretsDeleteMethods {
     ///   extensions can only access account-scoped secrets or secrets scoped to their
     ///   own user.
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postAppsSecretsDelete(
-        config: ClientConfig,
-        name: String,
-        scope: PostAppsSecretsDeleteRequestBodyScope,
-        expand: [String]?
-    ) async throws -> AppsSecret {
+    public static func postAppsSecretsDelete(config: ClientConfig, name: String, scope: PostAppsSecretsDeleteRequestBodyScope, expand: [String]?) async throws -> AppsSecret {
         try validateLength("name", name, max: 5000)
 
         let requestBody = PostAppsSecretsDeleteRequestBody(name: name, scope: scope, expand: expand)
 
-        return try await (sdkRequest(
-            "POST",
-            "/v1/apps/secrets/delete",
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostAppsSecretsDelete"
-        )).data
+        return try (await sdkRequest("POST", "/v1/apps/secrets/delete", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostAppsSecretsDelete")).data
     }
 }

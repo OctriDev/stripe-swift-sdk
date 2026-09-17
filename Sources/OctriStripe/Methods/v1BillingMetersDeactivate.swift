@@ -7,31 +7,17 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1BillingMetersDeactivateMethods {
-    /// Deactivates a billing meter so that it no longer accepts meter events. You also cannot attach a deactivated
-    /// meter to a price; use `expand` when the response should include expanded fields.
+    /// Deactivates a billing meter so that it no longer accepts meter events. You also cannot attach a deactivated meter to a price; use `expand` when the response should include expanded fields.
     ///
-    /// When a meter is deactivated, no more meter events will be accepted for this meter. You can’t attach a
-    /// deactivated meter to a price.
+    /// When a meter is deactivated, no more meter events will be accepted for this meter. You can’t attach a deactivated meter to a price.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postBillingMetersIdDeactivate(
-        config: ClientConfig,
-        id: String,
-        expand: [String]?
-    ) async throws -> BillingMeter {
+    public static func postBillingMetersIdDeactivate(config: ClientConfig, id: String, expand: [String]?) async throws -> BillingMeter {
         try validateLength("id", id, max: 5000)
 
         let requestBody = PostBillingMetersIdDeactivateRequestBody(expand: expand)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/billing/meters/", sdkEncodePathSegment(sdkWireString(id)), "/deactivate"].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostBillingMetersIdDeactivate"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/billing/meters/", sdkEncodePathSegment(sdkWireString(id)), "/deactivate"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostBillingMetersIdDeactivate")).data
     }
 }

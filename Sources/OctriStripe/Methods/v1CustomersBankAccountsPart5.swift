@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1CustomersBankAccountsMethods {
-    struct PostCustomersCustomerBankAccountsIdOptions: Codable {
+extension V1CustomersBankAccountsMethods {
+    public struct PostCustomersCustomerBankAccountsIdOptions: Codable {
         public var customer: String
         public var id: String
         public var accountHolderName: String?
@@ -31,8 +31,7 @@ public extension V1CustomersBankAccountsMethods {
         }
     }
 
-    /// Updates a payment source associated with a customer. Submit only the mutable source attributes you want to
-    /// change, such as account-holder details, billing address, expiration values, owner information, or metadata.
+    /// Updates a payment source associated with a customer. Submit only the mutable source attributes you want to change, such as account-holder details, billing address, expiration values, owner information, or metadata.
     ///
     /// Update a specified source for a given customer.
     ///
@@ -56,10 +55,7 @@ public extension V1CustomersBankAccountsMethods {
     ///   unset by posting an empty value to them. All keys can be unset by posting an
     ///   empty value to `metadata`.
     /// - name: Cardholder name.
-    static func postCustomersCustomerBankAccountsId(
-        config: ClientConfig,
-        options: PostCustomersCustomerBankAccountsIdOptions
-    ) async throws -> PostCustomersCustomerBankAccountsIdResponse {
+    public static func postCustomersCustomerBankAccountsId(config: ClientConfig, options: PostCustomersCustomerBankAccountsIdOptions) async throws -> PostCustomersCustomerBankAccountsIdResponse {
         try validateLength("customer", options.customer, max: 5000)
 
         try validateLength("id", options.id, max: 5000)
@@ -110,19 +106,6 @@ public extension V1CustomersBankAccountsMethods {
 
         let requestBody = PostCustomersCustomerBankAccountsIdRequestBody(options: options)
 
-        return try await (sdkRequest(
-            "POST",
-            [
-                "/v1/customers/",
-                sdkEncodePathSegment(sdkWireString(options.customer)),
-                "/bank_accounts/",
-                sdkEncodePathSegment(sdkWireString(options.id)),
-            ].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostCustomersCustomerBankAccountsId"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/customers/", sdkEncodePathSegment(sdkWireString(options.customer)), "/bank_accounts/", sdkEncodePathSegment(sdkWireString(options.id))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostCustomersCustomerBankAccountsId")).data
     }
 }

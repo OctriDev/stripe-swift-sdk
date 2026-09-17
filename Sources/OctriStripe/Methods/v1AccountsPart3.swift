@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1AccountsMethods {
-    struct PostAccountsOptions: Codable {
+extension V1AccountsMethods {
+    public struct PostAccountsOptions: Codable {
         public var accountToken: String?
         public var bankAccount: PostAccountsRequestBodyBankAccount?
         public var businessProfile: PostAccountsRequestBodyBusinessProfile?
@@ -31,10 +31,7 @@ public extension V1AccountsMethods {
         public init() {}
     }
 
-    /// With Connect, you can create Stripe accounts for your users. To do this, you’ll first need to register your
-    /// platform. If you’ve already collected information for your connected accounts, you can prefill that information
-    /// when creating the account. Connect Onboarding won’t ask for the prefilled information during account onboarding.
-    /// You can prefill any information on the account.
+    /// With Connect, you can create Stripe accounts for your users. To do this, you’ll first need to register your platform. If you’ve already collected information for your connected accounts, you can prefill that information when creating the account. Connect Onboarding won’t ask for the prefilled information during account onboarding. You can prefill any information on the account.
     ///
     /// - Parameters:
     /// - accountToken: An [account
@@ -112,7 +109,7 @@ public extension V1AccountsMethods {
     /// - type: The `type` parameter is deprecated. Use `controller` instead to
     ///   configure dashboard access, fee payer, loss liability, and requirement
     ///   collection.
-    static func postAccounts(config: ClientConfig, options: PostAccountsOptions) async throws -> Account {
+    public static func postAccounts(config: ClientConfig, options: PostAccountsOptions) async throws -> Account {
         if let accountToken = options.accountToken {
             try validateLength("account_token", accountToken, max: 5000)
         }
@@ -127,14 +124,6 @@ public extension V1AccountsMethods {
 
         let requestBody = PostAccountsRequestBody(options: options)
 
-        return try await (sdkRequest(
-            "POST",
-            "/v1/accounts",
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostAccounts"
-        )).data
+        return try (await sdkRequest("POST", "/v1/accounts", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostAccounts")).data
     }
 }

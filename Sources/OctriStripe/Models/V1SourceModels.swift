@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1Source domain models
+// V1Source domain models
 /// `Source` objects allow you to accept a variety of payment methods. They represent a customer's payment
 /// instrument, and can be used with the Stripe API just like a `Card` object: once chargeable, they can be charged,
 /// or can be attached to customers. Stripe doesn't recommend using the deprecated Sources API. We recommend that
@@ -145,97 +145,56 @@ public struct Source: Codable {
         case wechat
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension Source {
-    init(from decoder: Decoder) throws {
+extension Source {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        clientSecret = try container.sdkDecodeRequired(.clientSecret)
-        created = try container.sdkDecodeRequired(.created)
-        flow = try container.sdkDecodeRequired(.flow)
-        id = try container.sdkDecodeRequired(.id)
-        livemode = try container.sdkDecodeRequired(.livemode)
-        object = try container.sdkDecodeRequired(.object)
-        status = try container.sdkDecodeRequired(.status)
-        type = try container.sdkDecodeRequired(.type)
-        achCreditTransfer = try container.sdkDecodeIfPresent(.achCreditTransfer)
-        achDebit = try container.sdkDecodeIfPresent(.achDebit)
-        acssDebit = try container.sdkDecodeIfPresent(.acssDebit)
-        alipay = try container.sdkDecodeIfPresent(.alipay)
-        allowRedisplay = try container.sdkDecodeIfPresent(.allowRedisplay)
-        amount = try container.sdkDecodeIfPresent(.amount)
-        auBecsDebit = try container.sdkDecodeIfPresent(.auBecsDebit)
-        bancontact = try container.sdkDecodeIfPresent(.bancontact)
-        card = try container.sdkDecodeIfPresent(.card)
-        cardPresent = try container.sdkDecodeIfPresent(.cardPresent)
-        codeVerification = try container.sdkDecodeIfPresent(.codeVerification)
-        currency = try container.sdkDecodeIfPresent(.currency)
-        customer = try container.sdkDecodeIfPresent(.customer)
-        eps = try container.sdkDecodeIfPresent(.eps)
-        giropay = try container.sdkDecodeIfPresent(.giropay)
-        ideal = try container.sdkDecodeIfPresent(.ideal)
-        klarna = try container.sdkDecodeIfPresent(.klarna)
-        metadata = try container.sdkDecodeIfPresent(.metadata)
-        multibanco = try container.sdkDecodeIfPresent(.multibanco)
-        owner = try container.sdkDecodeIfPresent(.owner)
-        p24 = try container.sdkDecodeIfPresent(.p24)
-        receiver = try container.sdkDecodeIfPresent(.receiver)
-        redirect = try container.sdkDecodeIfPresent(.redirect)
-        sepaDebit = try container.sdkDecodeIfPresent(.sepaDebit)
-        sofort = try container.sdkDecodeIfPresent(.sofort)
-        sourceOrder = try container.sdkDecodeIfPresent(.sourceOrder)
-        statementDescriptor = try container.sdkDecodeIfPresent(.statementDescriptor)
-        threeDSecure = try container.sdkDecodeIfPresent(.threeDSecure)
-        usage = try container.sdkDecodeIfPresent(.usage)
-        wechat = try container.sdkDecodeIfPresent(.wechat)
+        self.clientSecret = try container.sdkDecodeRequired(.clientSecret)
+        self.created = try container.sdkDecodeRequired(.created)
+        self.flow = try container.sdkDecodeRequired(.flow)
+        self.id = try container.sdkDecodeRequired(.id)
+        self.livemode = try container.sdkDecodeRequired(.livemode)
+        self.object = try container.sdkDecodeRequired(.object)
+        self.status = try container.sdkDecodeRequired(.status)
+        self.type = try container.sdkDecodeRequired(.type)
+        self.achCreditTransfer = try container.sdkDecodeIfPresent(.achCreditTransfer)
+        self.achDebit = try container.sdkDecodeIfPresent(.achDebit)
+        self.acssDebit = try container.sdkDecodeIfPresent(.acssDebit)
+        self.alipay = try container.sdkDecodeIfPresent(.alipay)
+        self.allowRedisplay = try container.sdkDecodeIfPresent(.allowRedisplay)
+        self.amount = try container.sdkDecodeIfPresent(.amount)
+        self.auBecsDebit = try container.sdkDecodeIfPresent(.auBecsDebit)
+        self.bancontact = try container.sdkDecodeIfPresent(.bancontact)
+        self.card = try container.sdkDecodeIfPresent(.card)
+        self.cardPresent = try container.sdkDecodeIfPresent(.cardPresent)
+        self.codeVerification = try container.sdkDecodeIfPresent(.codeVerification)
+        self.currency = try container.sdkDecodeIfPresent(.currency)
+        self.customer = try container.sdkDecodeIfPresent(.customer)
+        self.eps = try container.sdkDecodeIfPresent(.eps)
+        self.giropay = try container.sdkDecodeIfPresent(.giropay)
+        self.ideal = try container.sdkDecodeIfPresent(.ideal)
+        self.klarna = try container.sdkDecodeIfPresent(.klarna)
+        self.metadata = try container.sdkDecodeIfPresent(.metadata)
+        self.multibanco = try container.sdkDecodeIfPresent(.multibanco)
+        self.owner = try container.sdkDecodeIfPresent(.owner)
+        self.p24 = try container.sdkDecodeIfPresent(.p24)
+        self.receiver = try container.sdkDecodeIfPresent(.receiver)
+        self.redirect = try container.sdkDecodeIfPresent(.redirect)
+        self.sepaDebit = try container.sdkDecodeIfPresent(.sepaDebit)
+        self.sofort = try container.sdkDecodeIfPresent(.sofort)
+        self.sourceOrder = try container.sdkDecodeIfPresent(.sourceOrder)
+        self.statementDescriptor = try container.sdkDecodeIfPresent(.statementDescriptor)
+        self.threeDSecure = try container.sdkDecodeIfPresent(.threeDSecure)
+        self.usage = try container.sdkDecodeIfPresent(.usage)
+        self.wechat = try container.sdkDecodeIfPresent(.wechat)
         try sdkValidateConstraints()
     }
 }
 
-public extension Source {
-    init(
-        clientSecret: String,
-        created: Int,
-        flow: String,
-        id: String,
-        livemode: Bool,
-        object: SourceObject,
-        status: String,
-        type: SourceType,
-        achCreditTransfer: SourceTypeAchCreditTransfer? = nil,
-        achDebit: SourceTypeAchDebit? = nil,
-        acssDebit: SourceTypeAcssDebit? = nil,
-        alipay: SourceTypeAlipay? = nil,
-        allowRedisplay: SourceAllowRedisplay? = nil,
-        amount: Int? = nil,
-        auBecsDebit: SourceTypeAuBecsDebit? = nil,
-        bancontact: SourceTypeBancontact? = nil,
-        card: SourceTypeCard? = nil,
-        cardPresent: SourceTypeCardPresent? = nil,
-        codeVerification: SourceCodeVerificationFlow? = nil,
-        currency: String? = nil,
-        customer: String? = nil,
-        eps: SourceTypeEps? = nil,
-        giropay: SourceTypeGiropay? = nil,
-        ideal: SourceTypeIdeal? = nil,
-        klarna: SourceTypeKlarna? = nil,
-        metadata: [String: String]? = nil,
-        multibanco: SourceTypeMultibanco? = nil,
-        owner: SourceOwnerX1c45c7d5? = nil,
-        p24: SourceTypeP24? = nil,
-        receiver: SourceReceiverFlow? = nil,
-        redirect: SourceRedirectFlow? = nil,
-        sepaDebit: SourceTypeSepaDebit? = nil,
-        sofort: SourceTypeSofort? = nil,
-        sourceOrder: SourceOrder? = nil,
-        statementDescriptor: String? = nil,
-        threeDSecure: SourceTypeThreeDSecure? = nil,
-        usage: String? = nil,
-        wechat: SourceTypeWechat? = nil
-    ) throws {
+extension Source {
+    public init(clientSecret: String, created: Int, flow: String, id: String, livemode: Bool, object: SourceObject, status: String, type: SourceType, achCreditTransfer: SourceTypeAchCreditTransfer? = nil, achDebit: SourceTypeAchDebit? = nil, acssDebit: SourceTypeAcssDebit? = nil, alipay: SourceTypeAlipay? = nil, allowRedisplay: SourceAllowRedisplay? = nil, amount: Int? = nil, auBecsDebit: SourceTypeAuBecsDebit? = nil, bancontact: SourceTypeBancontact? = nil, card: SourceTypeCard? = nil, cardPresent: SourceTypeCardPresent? = nil, codeVerification: SourceCodeVerificationFlow? = nil, currency: String? = nil, customer: String? = nil, eps: SourceTypeEps? = nil, giropay: SourceTypeGiropay? = nil, ideal: SourceTypeIdeal? = nil, klarna: SourceTypeKlarna? = nil, metadata: [String: String]? = nil, multibanco: SourceTypeMultibanco? = nil, owner: SourceOwnerX1c45c7d5? = nil, p24: SourceTypeP24? = nil, receiver: SourceReceiverFlow? = nil, redirect: SourceRedirectFlow? = nil, sepaDebit: SourceTypeSepaDebit? = nil, sofort: SourceTypeSofort? = nil, sourceOrder: SourceOrder? = nil, statementDescriptor: String? = nil, threeDSecure: SourceTypeThreeDSecure? = nil, usage: String? = nil, wechat: SourceTypeWechat? = nil) throws {
         (self.clientSecret, self.created) = (clientSecret, created)
         (self.flow, self.id) = (flow, id)
         (self.livemode, self.object) = (livemode, object)
@@ -261,17 +220,17 @@ public extension Source {
 
 extension Source {
     func sdkValidateConstraints() throws {
-        try validateLength("client_secret", clientSecret, min: nil, max: 5000)
-        try validateLength("flow", flow, min: nil, max: 5000)
-        try validateLength("id", id, min: nil, max: 5000)
-        try validateLength("status", status, min: nil, max: 5000)
-        if let value = customer {
+            try validateLength("client_secret", self.clientSecret, min: nil, max: 5000)
+            try validateLength("flow", self.flow, min: nil, max: 5000)
+            try validateLength("id", self.id, min: nil, max: 5000)
+            try validateLength("status", self.status, min: nil, max: 5000)
+        if let value = self.customer {
             try validateLength("customer", value, min: nil, max: 5000)
         }
-        if let value = statementDescriptor {
+        if let value = self.statementDescriptor {
             try validateLength("statement_descriptor", value, min: nil, max: 5000)
         }
-        if let value = usage {
+        if let value = self.usage {
             try validateLength("usage", value, min: nil, max: 5000)
         }
     }
@@ -282,28 +241,20 @@ public enum SourceOwnerX1c45c7d5 {
 }
 
 extension SourceOwnerX1c45c7d5: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for SourceOwnerX1c45c7d5"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for SourceOwnerX1c45c7d5")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(SourceOwner.self) {
-            return .sourceOwner(value)
-        }
+        if let value = try? container.decode(SourceOwner.self) { return .sourceOwner(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -312,6 +263,7 @@ extension SourceOwnerX1c45c7d5: Codable {
         case let .sourceOwner(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// Typed representation of the `SourceCodeVerificationFlow` API schema.
@@ -328,38 +280,28 @@ public struct SourceCodeVerificationFlow: Codable {
         case status
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension SourceCodeVerificationFlow {
-    init(from decoder: Decoder) throws {
+extension SourceCodeVerificationFlow {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.attemptsRemaining) else {
-            throw SdkValidationError(
-                field: "attempts_remaining",
-                code: "required",
-                message: "Validation failed for 'attempts_remaining': value is required"
-            )
+            throw SdkValidationError(field: "attempts_remaining", code: "required", message: "Validation failed for 'attempts_remaining': value is required")
         }
         guard container.contains(.status) else {
-            throw SdkValidationError(
-                field: "status",
-                code: "required",
-                message: "Validation failed for 'status': value is required"
-            )
+            throw SdkValidationError(field: "status", code: "required", message: "Validation failed for 'status': value is required")
         }
-        attemptsRemaining = try container.sdkDecodeRequired(.attemptsRemaining)
-        status = try container.sdkDecodeRequired(.status)
-        try validateLength("status", status, min: nil, max: 5000)
+        self.attemptsRemaining = try container.sdkDecodeRequired(.attemptsRemaining)
+        self.status = try container.sdkDecodeRequired(.status)
+            try validateLength("status", self.status, min: nil, max: 5000)
     }
 }
 
-public extension SourceCodeVerificationFlow {
-    init(attemptsRemaining: Int, status: String) throws {
+extension SourceCodeVerificationFlow {
+    public init(attemptsRemaining: Int, status: String) throws {
         (self.attemptsRemaining, self.status) = (attemptsRemaining, status)
-        try validateLength("status", self.status, min: nil, max: 5000)
+            try validateLength("status", self.status, min: nil, max: 5000)
     }
 }
 
@@ -415,58 +357,43 @@ public struct SourceMandateNotification: Codable {
         case sepaDebit = "sepa_debit"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension SourceMandateNotification {
-    init(from decoder: Decoder) throws {
+extension SourceMandateNotification {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        created = try container.sdkDecodeRequired(.created)
-        id = try container.sdkDecodeRequired(.id)
-        livemode = try container.sdkDecodeRequired(.livemode)
-        object = try container.sdkDecodeRequired(.object)
-        reason = try container.sdkDecodeRequired(.reason)
-        source = try container.sdkDecodeRequired(.source)
-        status = try container.sdkDecodeRequired(.status)
-        type = try container.sdkDecodeRequired(.type)
-        acssDebit = try container.sdkDecodeIfPresent(.acssDebit)
-        amount = try container.sdkDecodeIfPresent(.amount)
-        bacsDebit = try container.sdkDecodeIfPresent(.bacsDebit)
-        sepaDebit = try container.sdkDecodeIfPresent(.sepaDebit)
-        try validateLength("id", id, min: nil, max: 5000)
-        try validateLength("reason", reason, min: nil, max: 5000)
-        try validateLength("status", status, min: nil, max: 5000)
-        try validateLength("type", type, min: nil, max: 5000)
+        self.created = try container.sdkDecodeRequired(.created)
+        self.id = try container.sdkDecodeRequired(.id)
+        self.livemode = try container.sdkDecodeRequired(.livemode)
+        self.object = try container.sdkDecodeRequired(.object)
+        self.reason = try container.sdkDecodeRequired(.reason)
+        self.source = try container.sdkDecodeRequired(.source)
+        self.status = try container.sdkDecodeRequired(.status)
+        self.type = try container.sdkDecodeRequired(.type)
+        self.acssDebit = try container.sdkDecodeIfPresent(.acssDebit)
+        self.amount = try container.sdkDecodeIfPresent(.amount)
+        self.bacsDebit = try container.sdkDecodeIfPresent(.bacsDebit)
+        self.sepaDebit = try container.sdkDecodeIfPresent(.sepaDebit)
+            try validateLength("id", self.id, min: nil, max: 5000)
+            try validateLength("reason", self.reason, min: nil, max: 5000)
+            try validateLength("status", self.status, min: nil, max: 5000)
+            try validateLength("type", self.type, min: nil, max: 5000)
     }
 }
 
-public extension SourceMandateNotification {
-    init(
-        created: Int,
-        id: String,
-        livemode: Bool,
-        object: SourceMandateNotificationObject,
-        reason: String,
-        source: Source,
-        status: String,
-        type: String,
-        acssDebit: SourceMandateNotificationAcssDebitData? = nil,
-        amount: Int? = nil,
-        bacsDebit: SourceMandateNotificationBacsDebitData? = nil,
-        sepaDebit: SourceMandateNotificationSepaDebitData? = nil
-    ) throws {
+extension SourceMandateNotification {
+    public init(created: Int, id: String, livemode: Bool, object: SourceMandateNotificationObject, reason: String, source: Source, status: String, type: String, acssDebit: SourceMandateNotificationAcssDebitData? = nil, amount: Int? = nil, bacsDebit: SourceMandateNotificationBacsDebitData? = nil, sepaDebit: SourceMandateNotificationSepaDebitData? = nil) throws {
         (self.created, self.id) = (created, id)
         (self.livemode, self.object) = (livemode, object)
         (self.reason, self.source) = (reason, source)
         (self.status, self.type) = (status, type)
         (self.acssDebit, self.amount) = (acssDebit, amount)
         (self.bacsDebit, self.sepaDebit) = (bacsDebit, sepaDebit)
-        try validateLength("id", self.id, min: nil, max: 5000)
-        try validateLength("reason", self.reason, min: nil, max: 5000)
-        try validateLength("status", self.status, min: nil, max: 5000)
-        try validateLength("type", self.type, min: nil, max: 5000)
+            try validateLength("id", self.id, min: nil, max: 5000)
+            try validateLength("reason", self.reason, min: nil, max: 5000)
+            try validateLength("status", self.status, min: nil, max: 5000)
+            try validateLength("type", self.type, min: nil, max: 5000)
     }
 }
 
@@ -480,22 +407,22 @@ public struct SourceMandateNotificationAcssDebitData: Codable {
     }
 
     init() {
-        statementDescriptor = nil
+        self.statementDescriptor = nil
     }
 }
 
-public extension SourceMandateNotificationAcssDebitData {
-    init(from decoder: Decoder) throws {
+extension SourceMandateNotificationAcssDebitData {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        statementDescriptor = try container.sdkDecodeIfPresent(.statementDescriptor)
-        if let value = statementDescriptor {
+        self.statementDescriptor = try container.sdkDecodeIfPresent(.statementDescriptor)
+        if let value = self.statementDescriptor {
             try validateLength("statement_descriptor", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension SourceMandateNotificationAcssDebitData {
-    init(statementDescriptor: String? = nil) throws {
+extension SourceMandateNotificationAcssDebitData {
+    public init(statementDescriptor: String? = nil) throws {
         self.init()
         self.statementDescriptor = statementDescriptor
         if let value = self.statementDescriptor {
@@ -514,22 +441,22 @@ public struct SourceMandateNotificationBacsDebitData: Codable {
     }
 
     init() {
-        last4 = nil
+        self.last4 = nil
     }
 }
 
-public extension SourceMandateNotificationBacsDebitData {
-    init(from decoder: Decoder) throws {
+extension SourceMandateNotificationBacsDebitData {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        last4 = try container.sdkDecodeIfPresent(.last4)
-        if let value = last4 {
+        self.last4 = try container.sdkDecodeIfPresent(.last4)
+        if let value = self.last4 {
             try validateLength("last4", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension SourceMandateNotificationBacsDebitData {
-    init(last4: String? = nil) throws {
+extension SourceMandateNotificationBacsDebitData {
+    public init(last4: String? = nil) throws {
         self.init()
         self.last4 = last4
         if let value = self.last4 {
@@ -554,30 +481,30 @@ public struct SourceMandateNotificationSepaDebitData: Codable {
     }
 
     init() {
-        (creditorIdentifier, last4, mandateReference) = (nil, nil, nil)
+        (self.creditorIdentifier, self.last4, self.mandateReference) = (nil, nil, nil)
     }
 }
 
-public extension SourceMandateNotificationSepaDebitData {
-    init(from decoder: Decoder) throws {
+extension SourceMandateNotificationSepaDebitData {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        creditorIdentifier = try container.sdkDecodeIfPresent(.creditorIdentifier)
-        last4 = try container.sdkDecodeIfPresent(.last4)
-        mandateReference = try container.sdkDecodeIfPresent(.mandateReference)
-        if let value = creditorIdentifier {
+        self.creditorIdentifier = try container.sdkDecodeIfPresent(.creditorIdentifier)
+        self.last4 = try container.sdkDecodeIfPresent(.last4)
+        self.mandateReference = try container.sdkDecodeIfPresent(.mandateReference)
+        if let value = self.creditorIdentifier {
             try validateLength("creditor_identifier", value, min: nil, max: 5000)
         }
-        if let value = last4 {
+        if let value = self.last4 {
             try validateLength("last4", value, min: nil, max: 5000)
         }
-        if let value = mandateReference {
+        if let value = self.mandateReference {
             try validateLength("mandate_reference", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension SourceMandateNotificationSepaDebitData {
-    init(creditorIdentifier: String? = nil, last4: String? = nil, mandateReference: String? = nil) throws {
+extension SourceMandateNotificationSepaDebitData {
+    public init(creditorIdentifier: String? = nil, last4: String? = nil, mandateReference: String? = nil) throws {
         self.init()
         (self.creditorIdentifier, self.last4) = (creditorIdentifier, last4)
         self.mandateReference = mandateReference
@@ -615,7 +542,5 @@ public struct SourceOrder: Codable {
         case shipping
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }

@@ -23,35 +23,35 @@ struct PostInvoicesInvoiceLinesLineItemIdRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(amount, forKey: SdkCodingKey("amount"))
-        try keyedContainer.encodeIfPresent(description, forKey: SdkCodingKey("description"))
-        try keyedContainer.encodeIfPresent(discountable, forKey: SdkCodingKey("discountable"))
-        try keyedContainer.encodeIfPresent(discounts, forKey: SdkCodingKey("discounts"))
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
-        try keyedContainer.encodeIfPresent(period, forKey: SdkCodingKey("period"))
-        try keyedContainer.encodeIfPresent(priceData, forKey: SdkCodingKey("price_data"))
-        try keyedContainer.encodeIfPresent(pricing, forKey: SdkCodingKey("pricing"))
-        try keyedContainer.encodeIfPresent(quantity, forKey: SdkCodingKey("quantity"))
-        try keyedContainer.encodeIfPresent(quantityDecimal, forKey: SdkCodingKey("quantity_decimal"))
-        try keyedContainer.encodeIfPresent(taxAmounts, forKey: SdkCodingKey("tax_amounts"))
-        try keyedContainer.encodeIfPresent(taxRates, forKey: SdkCodingKey("tax_rates"))
+        try keyedContainer.encodeIfPresent(self.amount, forKey: SdkCodingKey("amount"))
+        try keyedContainer.encodeIfPresent(self.description, forKey: SdkCodingKey("description"))
+        try keyedContainer.encodeIfPresent(self.discountable, forKey: SdkCodingKey("discountable"))
+        try keyedContainer.encodeIfPresent(self.discounts, forKey: SdkCodingKey("discounts"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encodeIfPresent(self.period, forKey: SdkCodingKey("period"))
+        try keyedContainer.encodeIfPresent(self.priceData, forKey: SdkCodingKey("price_data"))
+        try keyedContainer.encodeIfPresent(self.pricing, forKey: SdkCodingKey("pricing"))
+        try keyedContainer.encodeIfPresent(self.quantity, forKey: SdkCodingKey("quantity"))
+        try keyedContainer.encodeIfPresent(self.quantityDecimal, forKey: SdkCodingKey("quantity_decimal"))
+        try keyedContainer.encodeIfPresent(self.taxAmounts, forKey: SdkCodingKey("tax_amounts"))
+        try keyedContainer.encodeIfPresent(self.taxRates, forKey: SdkCodingKey("tax_rates"))
     }
 
     init(options: V1InvoicesLinesMethods.PostInvoicesInvoiceLinesLineItemIdOptions) {
-        amount = options.amount
-        description = options.description
-        discountable = options.discountable
-        discounts = options.discounts
-        expand = options.expand
-        metadata = options.metadata
-        period = options.period
-        priceData = options.priceData
-        pricing = options.pricing
-        quantity = options.quantity
-        quantityDecimal = options.quantityDecimal
-        taxAmounts = options.taxAmounts
-        taxRates = options.taxRates
+        self.amount = options.amount
+        self.description = options.description
+        self.discountable = options.discountable
+        self.discounts = options.discounts
+        self.expand = options.expand
+        self.metadata = options.metadata
+        self.period = options.period
+        self.priceData = options.priceData
+        self.pricing = options.pricing
+        self.quantity = options.quantity
+        self.quantityDecimal = options.quantityDecimal
+        self.taxAmounts = options.taxAmounts
+        self.taxRates = options.taxRates
     }
 }
 
@@ -60,7 +60,7 @@ struct PostInvoicesInvoiceMarkUncollectibleRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
     }
 }
 
@@ -75,23 +75,23 @@ struct PostInvoicesInvoicePayRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(forgive, forKey: SdkCodingKey("forgive"))
-        try keyedContainer.encodeIfPresent(mandate, forKey: SdkCodingKey("mandate"))
-        try keyedContainer.encodeIfPresent(offSession, forKey: SdkCodingKey("off_session"))
-        try keyedContainer.encodeIfPresent(paidOutOfBand, forKey: SdkCodingKey("paid_out_of_band"))
-        try keyedContainer.encodeIfPresent(paymentMethod, forKey: SdkCodingKey("payment_method"))
-        try keyedContainer.encodeIfPresent(source, forKey: SdkCodingKey("source"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.forgive, forKey: SdkCodingKey("forgive"))
+        try keyedContainer.encodeIfPresent(self.mandate, forKey: SdkCodingKey("mandate"))
+        try keyedContainer.encodeIfPresent(self.offSession, forKey: SdkCodingKey("off_session"))
+        try keyedContainer.encodeIfPresent(self.paidOutOfBand, forKey: SdkCodingKey("paid_out_of_band"))
+        try keyedContainer.encodeIfPresent(self.paymentMethod, forKey: SdkCodingKey("payment_method"))
+        try keyedContainer.encodeIfPresent(self.source, forKey: SdkCodingKey("source"))
     }
 
     init(options: V1InvoicesPayMethods.PostInvoicesInvoicePayOptions) {
-        expand = options.expand
-        forgive = options.forgive
-        mandate = options.mandate
-        offSession = options.offSession
-        paidOutOfBand = options.paidOutOfBand
-        paymentMethod = options.paymentMethod
-        source = options.source
+        self.expand = options.expand
+        self.forgive = options.forgive
+        self.mandate = options.mandate
+        self.offSession = options.offSession
+        self.paidOutOfBand = options.paidOutOfBand
+        self.paymentMethod = options.paymentMethod
+        self.source = options.source
     }
 }
 
@@ -102,9 +102,9 @@ struct PostInvoicesInvoiceRemoveLinesRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encode(lines, forKey: SdkCodingKey("lines"))
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(invoiceMetadata, forKey: SdkCodingKey("invoice_metadata"))
+        try keyedContainer.encode(self.lines, forKey: SdkCodingKey("lines"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.invoiceMetadata, forKey: SdkCodingKey("invoice_metadata"))
     }
 }
 
@@ -113,7 +113,7 @@ struct PostInvoicesInvoiceSendRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
     }
 }
 
@@ -124,9 +124,9 @@ struct PostInvoicesInvoiceUpdateLinesRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encode(lines, forKey: SdkCodingKey("lines"))
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(invoiceMetadata, forKey: SdkCodingKey("invoice_metadata"))
+        try keyedContainer.encode(self.lines, forKey: SdkCodingKey("lines"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.invoiceMetadata, forKey: SdkCodingKey("invoice_metadata"))
     }
 }
 
@@ -135,7 +135,7 @@ struct PostInvoicesInvoiceVoidRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
     }
 }
 
@@ -145,8 +145,8 @@ struct PostIssuingAuthorizationsAuthorizationRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
     }
 }
 
@@ -157,9 +157,9 @@ struct PostIssuingAuthorizationsAuthorizationApproveRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(amount, forKey: SdkCodingKey("amount"))
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encodeIfPresent(self.amount, forKey: SdkCodingKey("amount"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
     }
 }
 
@@ -169,7 +169,7 @@ struct PostIssuingAuthorizationsAuthorizationDeclineRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
     }
 }

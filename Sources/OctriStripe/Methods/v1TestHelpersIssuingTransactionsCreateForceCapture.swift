@@ -23,34 +23,11 @@ public enum V1TestHelpersIssuingTransactionsCreateForceCaptureMethods {
     ///   etc.) where the card authorization happened.
     /// - purchaseDetails: Additional purchase information that is optionally
     ///   provided by the merchant.
-    public static func postTestHelpersIssuingTransactionsCreateForceCapture(
-        config: ClientConfig,
-        amount: Int,
-        card: String,
-        currency: String?,
-        expand: [String]?,
-        merchantData: PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXb2216bfa73?,
-        purchaseDetails: PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXf0b3163d09?
-    ) async throws -> IssuingTransaction {
+    public static func postTestHelpersIssuingTransactionsCreateForceCapture(config: ClientConfig, amount: Int, card: String, currency: String?, expand: [String]?, merchantData: PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXb2216bfa73?, purchaseDetails: PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXf0b3163d09?) async throws -> IssuingTransaction {
         try validateLength("card", card, max: 5000)
 
-        let requestBody = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBody(
-            amount: amount,
-            card: card,
-            currency: currency,
-            expand: expand,
-            merchantData: merchantData,
-            purchaseDetails: purchaseDetails
-        )
+        let requestBody = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBody(amount: amount, card: card, currency: currency, expand: expand, merchantData: merchantData, purchaseDetails: purchaseDetails)
 
-        return try await (sdkRequest(
-            "POST",
-            "/v1/test_helpers/issuing/transactions/create_force_capture",
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostTestHelpersIssuingTransactionsCreateForceCapture"
-        )).data
+        return try (await sdkRequest("POST", "/v1/test_helpers/issuing/transactions/create_force_capture", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTestHelpersIssuingTransactionsCreateForceCapture")).data
     }
 }

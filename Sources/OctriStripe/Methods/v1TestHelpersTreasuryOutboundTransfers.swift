@@ -7,38 +7,18 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1TestHelpersTreasuryOutboundTransfersMethods {
-    /// Updates a test-mode OutboundTransfer with network-specific tracking details. Supply the `outbound_transfer`
-    /// identifier and `tracking_details` for an OutboundTransfer that is not cancelable and is not canceled or failed;
-    /// use `expand` to request expanded response fields.
+    /// Updates a test-mode OutboundTransfer with network-specific tracking details. Supply the `outbound_transfer` identifier and `tracking_details` for an OutboundTransfer that is not cancelable and is not canceled or failed; use `expand` to request expanded response fields.
     ///
-    /// Updates a test mode created OutboundTransfer with tracking details. The OutboundTransfer must not be cancelable,
-    /// and cannot be in the canceled or failed states.
+    /// Updates a test mode created OutboundTransfer with tracking details. The OutboundTransfer must not be cancelable, and cannot be in the canceled or failed states.
     ///
     /// - Parameters:
     /// - trackingDetails: Details about network-specific tracking information.
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postTestHelpersTreasuryOutboundTransfersOutboundTransfer(
-        config: ClientConfig,
-        outboundTransfer: String,
-        trackingDetails: PostTestHelpersTreasuryOutboundTransfersOutboundTransferRequeXff52e9e383,
-        expand: [String]?
-    ) async throws -> TreasuryOutboundTransfer {
+    public static func postTestHelpersTreasuryOutboundTransfersOutboundTransfer(config: ClientConfig, outboundTransfer: String, trackingDetails: PostTestHelpersTreasuryOutboundTransfersOutboundTransferRequeXff52e9e383, expand: [String]?) async throws -> TreasuryOutboundTransfer {
         try validateLength("outbound_transfer", outboundTransfer, max: 5000)
 
-        let requestBody = PostTestHelpersTreasuryOutboundTransfersOutboundTransferRequestBody(
-            trackingDetails: trackingDetails,
-            expand: expand
-        )
+        let requestBody = PostTestHelpersTreasuryOutboundTransfersOutboundTransferRequestBody(trackingDetails: trackingDetails, expand: expand)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/test_helpers/treasury/outbound_transfers/", sdkEncodePathSegment(sdkWireString(outboundTransfer))]
-                .joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostTestHelpersTreasuryOutboundTransfersOutboundTransfer"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/test_helpers/treasury/outbound_transfers/", sdkEncodePathSegment(sdkWireString(outboundTransfer))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTestHelpersTreasuryOutboundTransfersOutboundTransfer")).data
     }
 }

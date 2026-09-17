@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1Coupon domain models
+// V1Coupon domain models
 /// A coupon contains information about a percent-off or amount-off discount you might want to apply to a customer.
 /// Coupons may be applied to subscriptions, invoices, checkout sessions, quotes, and more. Coupons do not work with
 /// conventional one-off charges or payment intents.
@@ -71,107 +71,59 @@ public struct Coupon: Codable {
         case redeemBy = "redeem_by"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension Coupon {
-    init(from decoder: Decoder) throws {
+extension Coupon {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.created) else {
-            throw SdkValidationError(
-                field: "created",
-                code: "required",
-                message: "Validation failed for 'created': value is required"
-            )
+            throw SdkValidationError(field: "created", code: "required", message: "Validation failed for 'created': value is required")
         }
         guard container.contains(.duration) else {
-            throw SdkValidationError(
-                field: "duration",
-                code: "required",
-                message: "Validation failed for 'duration': value is required"
-            )
+            throw SdkValidationError(field: "duration", code: "required", message: "Validation failed for 'duration': value is required")
         }
         guard container.contains(.id) else {
-            throw SdkValidationError(
-                field: "id",
-                code: "required",
-                message: "Validation failed for 'id': value is required"
-            )
+            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
         }
         guard container.contains(.livemode) else {
-            throw SdkValidationError(
-                field: "livemode",
-                code: "required",
-                message: "Validation failed for 'livemode': value is required"
-            )
+            throw SdkValidationError(field: "livemode", code: "required", message: "Validation failed for 'livemode': value is required")
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(
-                field: "object",
-                code: "required",
-                message: "Validation failed for 'object': value is required"
-            )
+            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
         }
         guard container.contains(.timesRedeemed) else {
-            throw SdkValidationError(
-                field: "times_redeemed",
-                code: "required",
-                message: "Validation failed for 'times_redeemed': value is required"
-            )
+            throw SdkValidationError(field: "times_redeemed", code: "required", message: "Validation failed for 'times_redeemed': value is required")
         }
         guard container.contains(.valid) else {
-            throw SdkValidationError(
-                field: "valid",
-                code: "required",
-                message: "Validation failed for 'valid': value is required"
-            )
+            throw SdkValidationError(field: "valid", code: "required", message: "Validation failed for 'valid': value is required")
         }
-        created = try container.sdkDecodeRequired(.created)
-        duration = try container.sdkDecodeRequired(.duration)
-        id = try container.sdkDecodeRequired(.id)
-        livemode = try container.sdkDecodeRequired(.livemode)
-        object = try container.sdkDecodeRequired(.object)
-        timesRedeemed = try container.sdkDecodeRequired(.timesRedeemed)
-        valid = try container.sdkDecodeRequired(.valid)
-        amountOff = try container.sdkDecodeIfPresent(.amountOff)
-        appliesTo = try container.sdkDecodeIfPresent(.appliesTo)
-        currency = try container.sdkDecodeIfPresent(.currency)
-        currencyOptions = try container.sdkDecodeIfPresent(.currencyOptions)
-        durationInMonths = try container.sdkDecodeIfPresent(.durationInMonths)
-        maxRedemptions = try container.sdkDecodeIfPresent(.maxRedemptions)
-        metadata = try container.sdkDecodeIfPresent(.metadata)
-        name = try container.sdkDecodeIfPresent(.name)
-        percentOff = try container.sdkDecodeIfPresent(.percentOff)
-        redeemBy = try container.sdkDecodeIfPresent(.redeemBy)
-        try validateLength("id", id, min: nil, max: 5000)
-        if let value = name {
+        self.created = try container.sdkDecodeRequired(.created)
+        self.duration = try container.sdkDecodeRequired(.duration)
+        self.id = try container.sdkDecodeRequired(.id)
+        self.livemode = try container.sdkDecodeRequired(.livemode)
+        self.object = try container.sdkDecodeRequired(.object)
+        self.timesRedeemed = try container.sdkDecodeRequired(.timesRedeemed)
+        self.valid = try container.sdkDecodeRequired(.valid)
+        self.amountOff = try container.sdkDecodeIfPresent(.amountOff)
+        self.appliesTo = try container.sdkDecodeIfPresent(.appliesTo)
+        self.currency = try container.sdkDecodeIfPresent(.currency)
+        self.currencyOptions = try container.sdkDecodeIfPresent(.currencyOptions)
+        self.durationInMonths = try container.sdkDecodeIfPresent(.durationInMonths)
+        self.maxRedemptions = try container.sdkDecodeIfPresent(.maxRedemptions)
+        self.metadata = try container.sdkDecodeIfPresent(.metadata)
+        self.name = try container.sdkDecodeIfPresent(.name)
+        self.percentOff = try container.sdkDecodeIfPresent(.percentOff)
+        self.redeemBy = try container.sdkDecodeIfPresent(.redeemBy)
+            try validateLength("id", self.id, min: nil, max: 5000)
+        if let value = self.name {
             try validateLength("name", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension Coupon {
-    init(
-        created: Int,
-        duration: CouponDuration,
-        id: String,
-        livemode: Bool,
-        object: CouponObject,
-        timesRedeemed: Int,
-        valid: Bool,
-        amountOff: Int? = nil,
-        appliesTo: CouponAppliesTo? = nil,
-        currency: String? = nil,
-        currencyOptions: [String: CouponCurrencyOption]? = nil,
-        durationInMonths: Int? = nil,
-        maxRedemptions: Int? = nil,
-        metadata: [String: String]? = nil,
-        name: String? = nil,
-        percentOff: Double? = nil,
-        redeemBy: Int? = nil
-    ) throws {
+extension Coupon {
+    public init(created: Int, duration: CouponDuration, id: String, livemode: Bool, object: CouponObject, timesRedeemed: Int, valid: Bool, amountOff: Int? = nil, appliesTo: CouponAppliesTo? = nil, currency: String? = nil, currencyOptions: [String: CouponCurrencyOption]? = nil, durationInMonths: Int? = nil, maxRedemptions: Int? = nil, metadata: [String: String]? = nil, name: String? = nil, percentOff: Double? = nil, redeemBy: Int? = nil) throws {
         (self.created, self.duration) = (created, duration)
         (self.id, self.livemode) = (id, livemode)
         (self.object, self.timesRedeemed) = (object, timesRedeemed)
@@ -181,7 +133,7 @@ public extension Coupon {
         (self.maxRedemptions, self.metadata) = (maxRedemptions, metadata)
         (self.name, self.percentOff) = (name, percentOff)
         self.redeemBy = redeemBy
-        try validateLength("id", self.id, min: nil, max: 5000)
+            try validateLength("id", self.id, min: nil, max: 5000)
         if let value = self.name {
             try validateLength("name", value, min: nil, max: 5000)
         }
@@ -197,27 +149,21 @@ public struct CouponAppliesTo: Codable {
         case products
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension CouponAppliesTo {
-    init(from decoder: Decoder) throws {
+extension CouponAppliesTo {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.products) else {
-            throw SdkValidationError(
-                field: "products",
-                code: "required",
-                message: "Validation failed for 'products': value is required"
-            )
+            throw SdkValidationError(field: "products", code: "required", message: "Validation failed for 'products': value is required")
         }
-        products = try container.sdkDecodeRequired(.products)
+        self.products = try container.sdkDecodeRequired(.products)
     }
 }
 
-public extension CouponAppliesTo {
-    init(products: [String]) {
+extension CouponAppliesTo {
+    public init(products: [String]) {
         self.products = products
     }
 }
@@ -231,27 +177,21 @@ public struct CouponCurrencyOption: Codable {
         case amountOff = "amount_off"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension CouponCurrencyOption {
-    init(from decoder: Decoder) throws {
+extension CouponCurrencyOption {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.amountOff) else {
-            throw SdkValidationError(
-                field: "amount_off",
-                code: "required",
-                message: "Validation failed for 'amount_off': value is required"
-            )
+            throw SdkValidationError(field: "amount_off", code: "required", message: "Validation failed for 'amount_off': value is required")
         }
-        amountOff = try container.sdkDecodeRequired(.amountOff)
+        self.amountOff = try container.sdkDecodeRequired(.amountOff)
     }
 }
 
-public extension CouponCurrencyOption {
-    init(amountOff: Int) {
+extension CouponCurrencyOption {
+    public init(amountOff: Int) {
         self.amountOff = amountOff
     }
 }
@@ -261,17 +201,14 @@ public extension CouponCurrencyOption {
 public struct CouponDuration: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let forever = CouponDuration(rawValue: "forever")
     public static let once = CouponDuration(rawValue: "once")
     public static let repeating = CouponDuration(rawValue: "repeating")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -284,15 +221,12 @@ public struct CouponDuration: RawRepresentable, Hashable, Codable, Sendable, Sdk
 public struct CouponObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let coupon = CouponObject(rawValue: "coupon")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

@@ -7,9 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1SetupIntentsVerifyMicrodepositsMethods {
-    /// Verifies the microdeposits sent to the bank account associated with a SetupIntent. Supply either the two
-    /// deposited amounts or the descriptor code from the microdeposit. A successful verification updates the
-    /// SetupIntent with the resulting setup status.
+    /// Verifies the microdeposits sent to the bank account associated with a SetupIntent. Supply either the two deposited amounts or the descriptor code from the microdeposit. A successful verification updates the SetupIntent with the resulting setup status.
     ///
     /// Verifies microdeposits on a SetupIntent object.
     ///
@@ -20,39 +18,19 @@ public enum V1SetupIntentsVerifyMicrodepositsMethods {
     /// - descriptorCode: A six-character code starting with SM present in the
     ///   microdeposit sent to the bank account.
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postSetupIntentsIntentVerifyMicrodeposits(
-        config: ClientConfig,
-        intent: String,
-        amounts: [Int]?,
-        clientSecret: String?,
-        descriptorCode: String?,
-        expand: [String]?
-    ) async throws -> SetupIntent {
+    public static func postSetupIntentsIntentVerifyMicrodeposits(config: ClientConfig, intent: String, amounts: [Int]?, clientSecret: String?, descriptorCode: String?, expand: [String]?) async throws -> SetupIntent {
         try validateLength("intent", intent, max: 5000)
 
-        if let clientSecret {
+        if let clientSecret = clientSecret {
             try validateLength("client_secret", clientSecret, max: 5000)
         }
 
-        if let descriptorCode {
+        if let descriptorCode = descriptorCode {
             try validateLength("descriptor_code", descriptorCode, max: 5000)
         }
 
-        let requestBody = PostSetupIntentsIntentVerifyMicrodepositsRequestBody(
-            amounts: amounts,
-            clientSecret: clientSecret,
-            descriptorCode: descriptorCode,
-            expand: expand
-        )
+        let requestBody = PostSetupIntentsIntentVerifyMicrodepositsRequestBody(amounts: amounts, clientSecret: clientSecret, descriptorCode: descriptorCode, expand: expand)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/setup_intents/", sdkEncodePathSegment(sdkWireString(intent)), "/verify_microdeposits"].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostSetupIntentsIntentVerifyMicrodeposits"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/setup_intents/", sdkEncodePathSegment(sdkWireString(intent)), "/verify_microdeposits"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostSetupIntentsIntentVerifyMicrodeposits")).data
     }
 }

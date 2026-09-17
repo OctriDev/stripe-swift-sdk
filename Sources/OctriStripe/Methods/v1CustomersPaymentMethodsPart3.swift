@@ -6,38 +6,20 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1CustomersPaymentMethodsMethods {
-    /// Retrieves a specific payment method attached to a customer. Provide both `customer` and `payment_method` to
-    /// identify the relationship, and use `expand` when you need additional fields in the response.
+extension V1CustomersPaymentMethodsMethods {
+    /// Retrieves a specific payment method attached to a customer. Provide both `customer` and `payment_method` to identify the relationship, and use `expand` when you need additional fields in the response.
     ///
     /// Retrieves a PaymentMethod object for a given Customer.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    static func getCustomersCustomerPaymentMethodsPaymentMethod(
-        config: ClientConfig,
-        customer: String,
-        paymentMethod: String,
-        expand: [String]?
-    ) async throws -> PaymentMethod {
+    public static func getCustomersCustomerPaymentMethodsPaymentMethod(config: ClientConfig, customer: String, paymentMethod: String, expand: [String]?) async throws -> PaymentMethod {
         try validateLength("customer", customer, max: 5000)
 
         try validateLength("payment_method", paymentMethod, max: 5000)
 
-        return try await (sdkRequest(
-            "GET",
-            [
-                "/v1/customers/",
-                sdkEncodePathSegment(sdkWireString(customer)),
-                "/payment_methods/",
-                sdkEncodePathSegment(sdkWireString(paymentMethod)),
-            ].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .json,
-            operationId: "GetCustomersCustomerPaymentMethodsPaymentMethod"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/customers/", sdkEncodePathSegment(sdkWireString(customer)), "/payment_methods/", sdkEncodePathSegment(sdkWireString(paymentMethod))].joined(), config: config, query: [
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .json, operationId: "GetCustomersCustomerPaymentMethodsPaymentMethod")).data
     }
 }

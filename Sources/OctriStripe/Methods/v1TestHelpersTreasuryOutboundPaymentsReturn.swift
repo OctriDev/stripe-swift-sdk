@@ -7,37 +7,18 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1TestHelpersTreasuryOutboundPaymentsReturnMethods {
-    /// Triggers a test-mode OutboundPayment transition to the returned status. Supply the `id` of an OutboundPayment
-    /// that is currently processing, and optionally provide a return code through `returned_details`.
+    /// Triggers a test-mode OutboundPayment transition to the returned status. Supply the `id` of an OutboundPayment that is currently processing, and optionally provide a return code through `returned_details`.
     ///
-    /// Transitions a test mode created OutboundPayment to the returned status. The OutboundPayment must already be in
-    /// the processing state.
+    /// Transitions a test mode created OutboundPayment to the returned status. The OutboundPayment must already be in the processing state.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
     /// - returnedDetails: Optional hash to set the return code.
-    public static func postTestHelpersTreasuryOutboundPaymentsIdReturn(
-        config: ClientConfig,
-        id: String,
-        expand: [String]?,
-        returnedDetails: PostTestHelpersTreasuryOutboundPaymentsIdReturnRequestBodyRetX14e5924c34?
-    ) async throws -> TreasuryOutboundPayment {
+    public static func postTestHelpersTreasuryOutboundPaymentsIdReturn(config: ClientConfig, id: String, expand: [String]?, returnedDetails: PostTestHelpersTreasuryOutboundPaymentsIdReturnRequestBodyRetX14e5924c34?) async throws -> TreasuryOutboundPayment {
         try validateLength("id", id, max: 5000)
 
-        let requestBody = PostTestHelpersTreasuryOutboundPaymentsIdReturnRequestBody(
-            expand: expand,
-            returnedDetails: returnedDetails
-        )
+        let requestBody = PostTestHelpersTreasuryOutboundPaymentsIdReturnRequestBody(expand: expand, returnedDetails: returnedDetails)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/test_helpers/treasury/outbound_payments/", sdkEncodePathSegment(sdkWireString(id)), "/return"]
-                .joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostTestHelpersTreasuryOutboundPaymentsIdReturn"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/test_helpers/treasury/outbound_payments/", sdkEncodePathSegment(sdkWireString(id)), "/return"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTestHelpersTreasuryOutboundPaymentsIdReturn")).data
     }
 }

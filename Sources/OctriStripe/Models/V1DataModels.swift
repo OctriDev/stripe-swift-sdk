@@ -3,13 +3,14 @@
 
 import Foundation
 
-/// V1Data domain models
+// V1Data domain models
 public enum DataItem {
     case bankAccount(BankAccount)
     case card(Card)
 }
 
 extension DataItem: Codable {
+
     private enum CodingKeys: String, CodingKey {
         case discriminator = "object"
     }
@@ -17,28 +18,20 @@ extension DataItem: Codable {
     public init(from decoder: Decoder) throws {
         let tagged = try decoder.container(keyedBy: CodingKeys.self)
         let discriminator = try tagged.decode(String.self, forKey: .discriminator)
-        if let value = try Self.decodeGroup1(discriminator, from: decoder) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            forKey: .discriminator,
-            in: tagged,
-            debugDescription: "Unknown discriminator for DataItem"
-        )
+        if let value = try Self.decodeGroup1(discriminator, from: decoder) { self = value; return }
+        throw DecodingError.dataCorruptedError(forKey: .discriminator, in: tagged, debugDescription: "Unknown discriminator for DataItem")
     }
 
     private static func decodeGroup1(_ discriminator: String, from decoder: Decoder) throws -> Self? {
         switch discriminator {
-        case "bank_account": try .bankAccount(BankAccount(from: decoder))
-        case "card": try .card(Card(from: decoder))
-        default: nil
+        case "bank_account": return .bankAccount(try BankAccount(from: decoder))
+        case "card": return .card(try Card(from: decoder))
+        default: return nil
         }
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -48,6 +41,7 @@ extension DataItem: Codable {
         case let .card(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum DataItem2 {
@@ -57,6 +51,7 @@ public enum DataItem2 {
 }
 
 extension DataItem2: Codable {
+
     private enum CodingKeys: String, CodingKey {
         case discriminator = "object"
     }
@@ -64,29 +59,21 @@ extension DataItem2: Codable {
     public init(from decoder: Decoder) throws {
         let tagged = try decoder.container(keyedBy: CodingKeys.self)
         let discriminator = try tagged.decode(String.self, forKey: .discriminator)
-        if let value = try Self.decodeGroup1(discriminator, from: decoder) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            forKey: .discriminator,
-            in: tagged,
-            debugDescription: "Unknown discriminator for DataItem2"
-        )
+        if let value = try Self.decodeGroup1(discriminator, from: decoder) { self = value; return }
+        throw DecodingError.dataCorruptedError(forKey: .discriminator, in: tagged, debugDescription: "Unknown discriminator for DataItem2")
     }
 
     private static func decodeGroup1(_ discriminator: String, from decoder: Decoder) throws -> Self? {
         switch discriminator {
-        case "bank_account": try .bankAccount(BankAccount(from: decoder))
-        case "card": try .card(Card(from: decoder))
-        case "source": try .source(Source(from: decoder))
-        default: nil
+        case "bank_account": return .bankAccount(try BankAccount(from: decoder))
+        case "card": return .card(try Card(from: decoder))
+        case "source": return .source(try Source(from: decoder))
+        default: return nil
         }
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -97,4 +84,5 @@ extension DataItem2: Codable {
         case let .source(value): try container.encode(value); return true
         }
     }
+
 }

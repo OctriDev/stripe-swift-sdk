@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1QuotesMethods {
-    struct GetQuotesOptions: Codable {
+extension V1QuotesMethods {
+    public struct GetQuotesOptions: Codable {
         public var customer: String?
         public var customerAccount: String?
         public var endingBefore: String?
@@ -20,8 +20,7 @@ public extension V1QuotesMethods {
         public init() {}
     }
 
-    /// Lists quotes available to the authenticated user. Use `customer`, `customer_account`, and `status` to filter the
-    /// results, and use cursor parameters to navigate between pages. Use `page` and `per_page` to paginate the results.
+    /// Lists quotes available to the authenticated user. Use `customer`, `customer_account`, and `status` to filter the results, and use cursor parameters to navigate between pages. Use `page` and `per_page` to paginate the results.
     ///
     /// Returns a list of your quotes.
     ///
@@ -46,7 +45,7 @@ public extension V1QuotesMethods {
     /// - testClock: Provides a list of quotes that are associated with the
     ///   specified test clock. The response will not include quotes with test clocks
     ///   if this and the customer parameter is not set.
-    static func getQuotes(config: ClientConfig, options: GetQuotesOptions) async throws -> GetQuotesResponse {
+    public static func getQuotes(config: ClientConfig, options: GetQuotesOptions) async throws -> GetQuotesResponse {
         if let customer = options.customer {
             try validateLength("customer", customer, max: 5000)
         }
@@ -67,7 +66,7 @@ public extension V1QuotesMethods {
             try validateLength("test_clock", testClock, max: 5000)
         }
 
-        return try await (sdkRequest("GET", "/v1/quotes", config: config, query: [
+        return try (await sdkRequest("GET", "/v1/quotes", config: config, query: [
             SdkQueryParameter("customer", value: options.customer),
             SdkQueryParameter("customer_account", value: options.customerAccount),
             SdkQueryParameter("ending_before", value: options.endingBefore),

@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1QuotesMethods {
-    struct PostQuotesOptions: Codable {
+extension V1QuotesMethods {
+    public struct PostQuotesOptions: Codable {
         public var applicationFeeAmount: PostQuotesRequestBodyApplicationFeeAmount?
         public var applicationFeePercent: PostQuotesRequestBodyApplicationFeePercent?
         public var automaticTax: PostQuotesRequestBodyAutomaticTax?
@@ -33,8 +33,7 @@ public extension V1QuotesMethods {
         public init() {}
     }
 
-    /// A quote models prices and services for a customer. Default options for header , description , footer , and
-    /// expires_at can be set in the dashboard via the quote template.
+    /// A quote models prices and services for a customer. Default options for header , description , footer , and expires_at can be set in the dashboard via the quote template.
     ///
     /// - Parameters:
     /// - applicationFeeAmount: The amount of the application fee (if any) that will
@@ -99,7 +98,7 @@ public extension V1QuotesMethods {
     /// - testClock: ID of the test clock to attach to the quote.
     /// - transferData: The data with which to automatically create a Transfer for
     ///   each of the invoices.
-    static func postQuotes(config: ClientConfig, options: PostQuotesOptions) async throws -> Quote {
+    public static func postQuotes(config: ClientConfig, options: PostQuotesOptions) async throws -> Quote {
         if let customer = options.customer {
             try validateLength("customer", customer, max: 5000)
         }
@@ -114,14 +113,6 @@ public extension V1QuotesMethods {
 
         let requestBody = PostQuotesRequestBody(options: options)
 
-        return try await (sdkRequest(
-            "POST",
-            "/v1/quotes",
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostQuotes"
-        )).data
+        return try (await sdkRequest("POST", "/v1/quotes", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostQuotes")).data
     }
 }

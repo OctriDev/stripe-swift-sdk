@@ -6,44 +6,34 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public struct PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataIdealBank: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataIdealBank: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let abnAmro = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataIdealBank(rawValue: "abn_amro")
     public static let adyen = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataIdealBank(rawValue: "adyen")
     public static let asnBank = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataIdealBank(rawValue: "asn_bank")
     public static let bunq = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataIdealBank(rawValue: "bunq")
     public static let buut = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataIdealBank(rawValue: "buut")
     public static let finom = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataIdealBank(rawValue: "finom")
-    public static let handelsbanken =
-        PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataIdealBank(rawValue: "handelsbanken")
+    public static let handelsbanken = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataIdealBank(rawValue: "handelsbanken")
     public static let ing = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataIdealBank(rawValue: "ing")
     public static let knab = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataIdealBank(rawValue: "knab")
     public static let mollie = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataIdealBank(rawValue: "mollie")
     public static let moneyou = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataIdealBank(rawValue: "moneyou")
     public static let n26 = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataIdealBank(rawValue: "n26")
     public static let nn = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataIdealBank(rawValue: "nn")
-    public static let rabobank =
-        PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataIdealBank(rawValue: "rabobank")
-    public static let regiobank =
-        PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataIdealBank(rawValue: "regiobank")
+    public static let rabobank = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataIdealBank(rawValue: "rabobank")
+    public static let regiobank = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataIdealBank(rawValue: "regiobank")
     public static let revolut = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataIdealBank(rawValue: "revolut")
     public static let snsBank = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataIdealBank(rawValue: "sns_bank")
-    public static let triodosBank =
-        PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataIdealBank(rawValue: "triodos_bank")
-    public static let vanLanschot =
-        PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataIdealBank(rawValue: "van_lanschot")
-    public static let yoursafe =
-        PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataIdealBank(rawValue: "yoursafe")
+    public static let triodosBank = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataIdealBank(rawValue: "triodos_bank")
+    public static let vanLanschot = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataIdealBank(rawValue: "van_lanschot")
+    public static let yoursafe = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataIdealBank(rawValue: "yoursafe")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -52,21 +42,16 @@ public struct PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataIdealBank
     }
 }
 
-public struct PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataNaverPayFunding: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataNaverPayFunding: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let card = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataNaverPayFunding(rawValue: "card")
-    public static let points =
-        PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataNaverPayFunding(rawValue: "points")
+    public static let points = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataNaverPayFunding(rawValue: "points")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -75,62 +60,40 @@ public struct PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataNaverPayF
     }
 }
 
-public struct PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataP24Bank: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataP24Bank: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let aliorBank =
-        PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataP24Bank(rawValue: "alior_bank")
-    public static let bankMillennium =
-        PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataP24Bank(rawValue: "bank_millennium")
-    public static let bankNowyBfgSa =
-        PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataP24Bank(rawValue: "bank_nowy_bfg_sa")
-    public static let bankPekaoSa =
-        PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataP24Bank(rawValue: "bank_pekao_sa")
-    public static let bankiSpbdzielcze =
-        PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataP24Bank(rawValue: "banki_spbdzielcze")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let aliorBank = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataP24Bank(rawValue: "alior_bank")
+    public static let bankMillennium = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataP24Bank(rawValue: "bank_millennium")
+    public static let bankNowyBfgSa = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataP24Bank(rawValue: "bank_nowy_bfg_sa")
+    public static let bankPekaoSa = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataP24Bank(rawValue: "bank_pekao_sa")
+    public static let bankiSpbdzielcze = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataP24Bank(rawValue: "banki_spbdzielcze")
     public static let blik = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataP24Bank(rawValue: "blik")
-    public static let bnpParibas =
-        PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataP24Bank(rawValue: "bnp_paribas")
+    public static let bnpParibas = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataP24Bank(rawValue: "bnp_paribas")
     public static let boz = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataP24Bank(rawValue: "boz")
-    public static let citiHandlowy =
-        PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataP24Bank(rawValue: "citi_handlowy")
-    public static let creditAgricole =
-        PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataP24Bank(rawValue: "credit_agricole")
-    public static let envelobank =
-        PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataP24Bank(rawValue: "envelobank")
-    public static let etransferPocztowy24 =
-        PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataP24Bank(rawValue: "etransfer_pocztowy24")
-    public static let getinBank =
-        PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataP24Bank(rawValue: "getin_bank")
+    public static let citiHandlowy = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataP24Bank(rawValue: "citi_handlowy")
+    public static let creditAgricole = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataP24Bank(rawValue: "credit_agricole")
+    public static let envelobank = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataP24Bank(rawValue: "envelobank")
+    public static let etransferPocztowy24 = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataP24Bank(rawValue: "etransfer_pocztowy24")
+    public static let getinBank = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataP24Bank(rawValue: "getin_bank")
     public static let ideabank = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataP24Bank(rawValue: "ideabank")
     public static let ing = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataP24Bank(rawValue: "ing")
     public static let inteligo = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataP24Bank(rawValue: "inteligo")
-    public static let mbankMtransfer =
-        PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataP24Bank(rawValue: "mbank_mtransfer")
-    public static let nestPrzelew =
-        PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataP24Bank(rawValue: "nest_przelew")
+    public static let mbankMtransfer = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataP24Bank(rawValue: "mbank_mtransfer")
+    public static let nestPrzelew = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataP24Bank(rawValue: "nest_przelew")
     public static let noblePay = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataP24Bank(rawValue: "noble_pay")
-    public static let pbacZIpko =
-        PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataP24Bank(rawValue: "pbac_z_ipko")
+    public static let pbacZIpko = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataP24Bank(rawValue: "pbac_z_ipko")
     public static let plusBank = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataP24Bank(rawValue: "plus_bank")
-    public static let santanderPrzelew24 =
-        PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataP24Bank(rawValue: "santander_przelew24")
-    public static let tmobileUsbugiBankowe =
-        PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataP24Bank(rawValue: "tmobile_usbugi_bankowe")
-    public static let toyotaBank =
-        PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataP24Bank(rawValue: "toyota_bank")
+    public static let santanderPrzelew24 = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataP24Bank(rawValue: "santander_przelew24")
+    public static let tmobileUsbugiBankowe = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataP24Bank(rawValue: "tmobile_usbugi_bankowe")
+    public static let toyotaBank = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataP24Bank(rawValue: "toyota_bank")
     public static let velobank = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataP24Bank(rawValue: "velobank")
-    public static let volkswagenBank =
-        PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataP24Bank(rawValue: "volkswagen_bank")
+    public static let volkswagenBank = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataP24Bank(rawValue: "volkswagen_bank")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -139,14 +102,10 @@ public struct PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataP24Bank: 
     }
 }
 
-public struct PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataSofortCountry: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataSofortCountry: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let at = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataSofortCountry(rawValue: "AT")
     public static let be = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataSofortCountry(rawValue: "BE")
     public static let de = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataSofortCountry(rawValue: "DE")
@@ -156,7 +115,7 @@ public struct PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataSofortCou
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -165,23 +124,17 @@ public struct PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataSofortCou
     }
 }
 
-public struct PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataType: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let acssDebit = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataType(rawValue: "acss_debit")
     public static let affirm = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataType(rawValue: "affirm")
-    public static let afterpayClearpay =
-        PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataType(rawValue: "afterpay_clearpay")
+    public static let afterpayClearpay = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataType(rawValue: "afterpay_clearpay")
     public static let alipay = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataType(rawValue: "alipay")
     public static let alma = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataType(rawValue: "alma")
     public static let amazonPay = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataType(rawValue: "amazon_pay")
-    public static let auBecsDebit =
-        PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataType(rawValue: "au_becs_debit")
+    public static let auBecsDebit = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataType(rawValue: "au_becs_debit")
     public static let bacsDebit = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataType(rawValue: "bacs_debit")
     public static let bancontact = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataType(rawValue: "bancontact")
     public static let billie = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataType(rawValue: "billie")
@@ -190,8 +143,7 @@ public struct PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataType: Raw
     public static let boleto = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataType(rawValue: "boleto")
     public static let cashapp = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataType(rawValue: "cashapp")
     public static let crypto = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataType(rawValue: "crypto")
-    public static let customerBalance =
-        PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataType(rawValue: "customer_balance")
+    public static let customerBalance = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataType(rawValue: "customer_balance")
     public static let eps = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataType(rawValue: "eps")
     public static let fpx = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataType(rawValue: "fpx")
     public static let giropay = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataType(rawValue: "giropay")
@@ -206,8 +158,7 @@ public struct PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataType: Raw
     public static let mobilepay = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataType(rawValue: "mobilepay")
     public static let multibanco = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataType(rawValue: "multibanco")
     public static let naverPay = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataType(rawValue: "naver_pay")
-    public static let nzBankAccount =
-        PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataType(rawValue: "nz_bank_account")
+    public static let nzBankAccount = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataType(rawValue: "nz_bank_account")
     public static let oxxo = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataType(rawValue: "oxxo")
     public static let p24 = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataType(rawValue: "p24")
     public static let payByBank = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataType(rawValue: "pay_by_bank")
@@ -217,10 +168,8 @@ public struct PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataType: Raw
     public static let payto = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataType(rawValue: "payto")
     public static let pix = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataType(rawValue: "pix")
     public static let promptpay = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataType(rawValue: "promptpay")
-    public static let revolutPay =
-        PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataType(rawValue: "revolut_pay")
-    public static let samsungPay =
-        PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataType(rawValue: "samsung_pay")
+    public static let revolutPay = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataType(rawValue: "revolut_pay")
+    public static let samsungPay = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataType(rawValue: "samsung_pay")
     public static let satispay = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataType(rawValue: "satispay")
     public static let scalapay = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataType(rawValue: "scalapay")
     public static let sepaDebit = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataType(rawValue: "sepa_debit")
@@ -229,14 +178,13 @@ public struct PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataType: Raw
     public static let swish = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataType(rawValue: "swish")
     public static let twint = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataType(rawValue: "twint")
     public static let upi = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataType(rawValue: "upi")
-    public static let usBankAccount =
-        PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataType(rawValue: "us_bank_account")
+    public static let usBankAccount = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataType(rawValue: "us_bank_account")
     public static let wechatPay = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataType(rawValue: "wechat_pay")
     public static let zip = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataType(rawValue: "zip")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -245,22 +193,16 @@ public struct PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataType: Raw
     }
 }
 
-public struct PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataUpiMX3baa36f312: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataUpiMX3baa36f312: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let fixed =
-        PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataUpiMX3baa36f312(rawValue: "fixed")
-    public static let maximum =
-        PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataUpiMX3baa36f312(rawValue: "maximum")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let fixed = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataUpiMX3baa36f312(rawValue: "fixed")
+    public static let maximum = PostSetupIntentsIntentConfirmRequestBodyPaymentMethodDataUpiMX3baa36f312(rawValue: "maximum")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

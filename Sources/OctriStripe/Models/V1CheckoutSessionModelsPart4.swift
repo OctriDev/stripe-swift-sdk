@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1CheckoutSession domain models
+// V1CheckoutSession domain models
 /// Typed representation of the `CheckoutSessionWalletOptions` API schema.
 public struct CheckoutSessionWalletOptions: Codable {
     /// Optional object value serialized in the `link` wire field.
@@ -14,19 +14,19 @@ public struct CheckoutSessionWalletOptions: Codable {
     }
 
     init() {
-        link = nil
+        self.link = nil
     }
 }
 
-public extension CheckoutSessionWalletOptions {
-    init(from decoder: Decoder) throws {
+extension CheckoutSessionWalletOptions {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        link = try container.sdkDecodeIfPresent(.link)
+        self.link = try container.sdkDecodeIfPresent(.link)
     }
 }
 
-public extension CheckoutSessionWalletOptions {
-    init(link: CheckoutLinkWalletOptions? = nil) {
+extension CheckoutSessionWalletOptions {
+    public init(link: CheckoutLinkWalletOptions? = nil) {
         self.init()
         self.link = link
     }
@@ -36,17 +36,14 @@ public extension CheckoutSessionWalletOptions {
 public struct CheckoutSessionStatus: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let complete = CheckoutSessionStatus(rawValue: "complete")
     public static let expired = CheckoutSessionStatus(rawValue: "expired")
     public static let open = CheckoutSessionStatus(rawValue: "open")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -60,17 +57,14 @@ public struct CheckoutSessionStatus: RawRepresentable, Hashable, Codable, Sendab
 public struct CheckoutSessionPaymentStatus: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let noPaymentRequired = CheckoutSessionPaymentStatus(rawValue: "no_payment_required")
     public static let paid = CheckoutSessionPaymentStatus(rawValue: "paid")
     public static let unpaid = CheckoutSessionPaymentStatus(rawValue: "unpaid")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -83,17 +77,14 @@ public struct CheckoutSessionPaymentStatus: RawRepresentable, Hashable, Codable,
 public struct CheckoutSessionUiMode: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let elements = CheckoutSessionUiMode(rawValue: "elements")
     public static let embeddedPage = CheckoutSessionUiMode(rawValue: "embedded_page")
     public static let hostedPage = CheckoutSessionUiMode(rawValue: "hosted_page")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -106,16 +97,13 @@ public struct CheckoutSessionUiMode: RawRepresentable, Hashable, Codable, Sendab
 public struct CheckoutSessionCustomerCreation: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let always = CheckoutSessionCustomerCreation(rawValue: "always")
     public static let ifRequired = CheckoutSessionCustomerCreation(rawValue: "if_required")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -128,16 +116,13 @@ public struct CheckoutSessionCustomerCreation: RawRepresentable, Hashable, Codab
 public struct CheckoutSessionOriginContext: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let mobileApp = CheckoutSessionOriginContext(rawValue: "mobile_app")
     public static let web = CheckoutSessionOriginContext(rawValue: "web")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -151,15 +136,12 @@ public struct CheckoutSessionOriginContext: RawRepresentable, Hashable, Codable,
 public struct CheckoutSessionLineItemsObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let list = CheckoutSessionLineItemsObject(rawValue: "list")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -169,20 +151,16 @@ public struct CheckoutSessionLineItemsObject: RawRepresentable, Hashable, Codabl
 }
 
 /// Describes whether Checkout should collect the customer's billing address. Defaults to `auto`.
-public struct CheckoutSessionBillingAddressCollection: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct CheckoutSessionBillingAddressCollection: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let auto = CheckoutSessionBillingAddressCollection(rawValue: "auto")
     public static let required = CheckoutSessionBillingAddressCollection(rawValue: "required")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -195,15 +173,12 @@ public struct CheckoutSessionBillingAddressCollection: RawRepresentable, Hashabl
 public struct CheckoutSessionObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let checkoutSession = CheckoutSessionObject(rawValue: "checkout.session")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -216,17 +191,14 @@ public struct CheckoutSessionObject: RawRepresentable, Hashable, Codable, Sendab
 public struct CheckoutSessionMode: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let payment = CheckoutSessionMode(rawValue: "payment")
     public static let setup = CheckoutSessionMode(rawValue: "setup")
     public static let subscription = CheckoutSessionMode(rawValue: "subscription")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -240,10 +212,7 @@ public struct CheckoutSessionMode: RawRepresentable, Hashable, Codable, Sendable
 public struct CheckoutSessionLocale: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let auto = CheckoutSessionLocale(rawValue: "auto")
     public static let bg = CheckoutSessionLocale(rawValue: "bg")
     public static let cs = CheckoutSessionLocale(rawValue: "cs")
@@ -288,7 +257,7 @@ public struct CheckoutSessionLocale: RawRepresentable, Hashable, Codable, Sendab
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -299,20 +268,16 @@ public struct CheckoutSessionLocale: RawRepresentable, Hashable, Codable, Sendab
 
 /// Configure whether a Checkout Session should collect a payment method for sessions with mode `payment`.
 /// Defaults to `always`.
-public struct CheckoutSessionPaymentMethodCollection: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct CheckoutSessionPaymentMethodCollection: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let always = CheckoutSessionPaymentMethodCollection(rawValue: "always")
     public static let ifRequired = CheckoutSessionPaymentMethodCollection(rawValue: "if_required")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -327,10 +292,7 @@ public struct CheckoutSessionPaymentMethodCollection: RawRepresentable, Hashable
 public struct CheckoutSessionSubmitType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let auto = CheckoutSessionSubmitType(rawValue: "auto")
     public static let book = CheckoutSessionSubmitType(rawValue: "book")
     public static let donate = CheckoutSessionSubmitType(rawValue: "donate")
@@ -339,7 +301,7 @@ public struct CheckoutSessionSubmitType: RawRepresentable, Hashable, Codable, Se
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -353,17 +315,14 @@ public struct CheckoutSessionSubmitType: RawRepresentable, Hashable, Codable, Se
 public struct CheckoutSessionRedirectOnCompletion: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let always = CheckoutSessionRedirectOnCompletion(rawValue: "always")
     public static let ifRequired = CheckoutSessionRedirectOnCompletion(rawValue: "if_required")
     public static let never = CheckoutSessionRedirectOnCompletion(rawValue: "never")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

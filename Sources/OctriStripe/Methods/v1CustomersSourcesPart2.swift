@@ -6,9 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1CustomersSourcesMethods {
-    /// Lists the payment sources attached to a customer. Use `object` to filter source types and `starting_after` or
-    /// `ending_before` to navigate through the paginated results.
+extension V1CustomersSourcesMethods {
+    /// Lists the payment sources attached to a customer. Use `object` to filter source types and `starting_after` or `ending_before` to navigate through the paginated results.
     ///
     /// List sources for a specified customer.
     ///
@@ -27,34 +26,19 @@ public extension V1CustomersSourcesMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    static func getCustomersCustomerSources(
-        config: ClientConfig,
-        customer: String,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        object: String?,
-        startingAfter: String?
-    ) async throws -> GetCustomersCustomerSourcesResponse {
+    public static func getCustomersCustomerSources(config: ClientConfig, customer: String, endingBefore: String?, expand: [String]?, limit: Int?, object: String?, startingAfter: String?) async throws -> GetCustomersCustomerSourcesResponse {
         try validateLength("customer", customer, max: 5000)
 
-        if let object {
+        if let object = object {
             try validateLength("object", object, max: 5000)
         }
 
-        return try await (sdkRequest(
-            "GET",
-            ["/v1/customers/", sdkEncodePathSegment(sdkWireString(customer)), "/sources"].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("ending_before", value: endingBefore),
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-                SdkQueryParameter("limit", value: limit),
-                SdkQueryParameter("object", value: object),
-                SdkQueryParameter("starting_after", value: startingAfter),
-            ],
-            decoder: .json,
-            operationId: "GetCustomersCustomerSources"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/customers/", sdkEncodePathSegment(sdkWireString(customer)), "/sources"].joined(), config: config, query: [
+            SdkQueryParameter("ending_before", value: endingBefore),
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+            SdkQueryParameter("limit", value: limit),
+            SdkQueryParameter("object", value: object),
+            SdkQueryParameter("starting_after", value: startingAfter),
+        ], decoder: .json, operationId: "GetCustomersCustomerSources")).data
     }
 }

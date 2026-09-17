@@ -6,31 +6,19 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1EntitlementsActiveEntitlementsMethods {
-    /// Retrieves a specific active entitlement. Provide the entitlement identifier to return the feature access granted
-    /// to the associated customer.
+extension V1EntitlementsActiveEntitlementsMethods {
+    /// Retrieves a specific active entitlement. Provide the entitlement identifier to return the feature access granted to the associated customer.
     ///
     /// Retrieve an active entitlement
     ///
     /// - Parameters:
     /// - id: The ID of the entitlement.
     /// - expand: Specifies which fields in the response should be expanded.
-    static func getEntitlementsActiveEntitlementsId(
-        config: ClientConfig,
-        id: String,
-        expand: [String]?
-    ) async throws -> EntitlementsActiveEntitlement {
+    public static func getEntitlementsActiveEntitlementsId(config: ClientConfig, id: String, expand: [String]?) async throws -> EntitlementsActiveEntitlement {
         try validateLength("id", id, max: 5000)
 
-        return try await (sdkRequest(
-            "GET",
-            ["/v1/entitlements/active_entitlements/", sdkEncodePathSegment(sdkWireString(id))].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .json,
-            operationId: "GetEntitlementsActiveEntitlementsId"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/entitlements/active_entitlements/", sdkEncodePathSegment(sdkWireString(id))].joined(), config: config, query: [
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .json, operationId: "GetEntitlementsActiveEntitlementsId")).data
     }
 }

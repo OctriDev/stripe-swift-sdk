@@ -6,32 +6,19 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1BillingCreditBalanceTransactionsMethods {
-    /// Retrieves a specific credit balance transaction associated with a credit grant. Provide the transaction `id` and
-    /// optionally request expanded response fields with `expand`. The returned transaction identifies whether the
-    /// recorded activity is a credit or debit when that information is present.
+extension V1BillingCreditBalanceTransactionsMethods {
+    /// Retrieves a specific credit balance transaction associated with a credit grant. Provide the transaction `id` and optionally request expanded response fields with `expand`. The returned transaction identifies whether the recorded activity is a credit or debit when that information is present.
     ///
     /// Retrieves a credit balance transaction.
     ///
     /// - Parameters:
     /// - id: Unique identifier for the object.
     /// - expand: Specifies which fields in the response should be expanded.
-    static func getBillingCreditBalanceTransactionsId(
-        config: ClientConfig,
-        id: String,
-        expand: [String]?
-    ) async throws -> BillingCreditBalanceTransaction {
+    public static func getBillingCreditBalanceTransactionsId(config: ClientConfig, id: String, expand: [String]?) async throws -> BillingCreditBalanceTransaction {
         try validateLength("id", id, max: 5000)
 
-        return try await (sdkRequest(
-            "GET",
-            ["/v1/billing/credit_balance_transactions/", sdkEncodePathSegment(sdkWireString(id))].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .json,
-            operationId: "GetBillingCreditBalanceTransactionsId"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/billing/credit_balance_transactions/", sdkEncodePathSegment(sdkWireString(id))].joined(), config: config, query: [
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .json, operationId: "GetBillingCreditBalanceTransactionsId")).data
     }
 }

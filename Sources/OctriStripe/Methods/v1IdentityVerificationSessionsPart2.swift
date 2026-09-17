@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1IdentityVerificationSessionsMethods {
-    struct GetIdentityVerificationSessionsOptions: Codable {
+extension V1IdentityVerificationSessionsMethods {
+    public struct GetIdentityVerificationSessionsOptions: Codable {
         public var clientReferenceId: String?
         public var created: GetIdentityVerificationSessionsParameter?
         public var endingBefore: String?
@@ -21,8 +21,7 @@ public extension V1IdentityVerificationSessionsMethods {
         public init() {}
     }
 
-    /// Lists verification sessions created for identity checks. Filter by customer, creation time, or session `status`,
-    /// and use cursor parameters with `limit` to paginate the results.
+    /// Lists verification sessions created for identity checks. Filter by customer, creation time, or session `status`, and use cursor parameters with `limit` to paginate the results.
     ///
     /// Returns a list of VerificationSessions
     ///
@@ -50,10 +49,7 @@ public extension V1IdentityVerificationSessionsMethods {
     /// - status: Only return VerificationSessions with this status. [Learn more
     ///   about the lifecycle of
     ///   sessions](https://docs.stripe.com/identity/how-sessions-work).
-    static func getIdentityVerificationSessions(
-        config: ClientConfig,
-        options: GetIdentityVerificationSessionsOptions
-    ) async throws -> GetIdentityVerificationSessionsResponse {
+    public static func getIdentityVerificationSessions(config: ClientConfig, options: GetIdentityVerificationSessionsOptions) async throws -> GetIdentityVerificationSessionsResponse {
         if let clientReferenceId = options.clientReferenceId {
             try validateLength("client_reference_id", clientReferenceId, max: 5000)
         }
@@ -74,7 +70,7 @@ public extension V1IdentityVerificationSessionsMethods {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try await (sdkRequest("GET", "/v1/identity/verification_sessions", config: config, query: [
+        return try (await sdkRequest("GET", "/v1/identity/verification_sessions", config: config, query: [
             SdkQueryParameter("client_reference_id", value: options.clientReferenceId),
             SdkQueryParameter("created", value: options.created),
             SdkQueryParameter("ending_before", value: options.endingBefore),

@@ -6,76 +6,36 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1CustomersCardsMethods {
-    /// Deletes a card or other payment source stored on a customer. Provide the customer and source identifiers to
-    /// remove the specified source, and use `expand` if you need expanded fields in the response. The response
-    /// identifies the deleted payment source.
+extension V1CustomersCardsMethods {
+    /// Deletes a card or other payment source stored on a customer. Provide the customer and source identifiers to remove the specified source, and use `expand` if you need expanded fields in the response. The response identifies the deleted payment source.
     ///
     /// Delete a specified source for a given customer.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    static func deleteCustomersCustomerCardsId(
-        config: ClientConfig,
-        customer: String,
-        id: String,
-        expand: [String]?
-    ) async throws -> DeleteCustomersCustomerCardsIdResponse {
+    public static func deleteCustomersCustomerCardsId(config: ClientConfig, customer: String, id: String, expand: [String]?) async throws -> DeleteCustomersCustomerCardsIdResponse {
         try validateLength("customer", customer, max: 5000)
 
         let requestBody = DeleteCustomersCustomerCardsIdRequestBody(expand: expand)
 
-        return try await (sdkRequest(
-            "DELETE",
-            [
-                "/v1/customers/",
-                sdkEncodePathSegment(sdkWireString(customer)),
-                "/cards/",
-                sdkEncodePathSegment(sdkWireString(id)),
-            ].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "DeleteCustomersCustomerCardsId"
-        )).data
+        return try (await sdkRequest("DELETE", ["/v1/customers/", sdkEncodePathSegment(sdkWireString(customer)), "/cards/", sdkEncodePathSegment(sdkWireString(id))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "DeleteCustomersCustomerCardsId")).data
     }
 
-    /// Retrieves a specific card stored on a customer. Provide the customer and card identifiers to view the card's
-    /// details, and use `expand` for additional response fields. The response contains card identity, billing,
-    /// currency, and funding information.
+    /// Retrieves a specific card stored on a customer. Provide the customer and card identifiers to view the card's details, and use `expand` for additional response fields. The response contains card identity, billing, currency, and funding information.
     ///
-    /// You can always see the 10 most recent cards directly on a customer; this method lets you retrieve details about
-    /// a specific card stored on the customer.
+    /// You can always see the 10 most recent cards directly on a customer; this method lets you retrieve details about a specific card stored on the customer.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
     ///
     /// - Warning: This operation is deprecated and may be removed in a future release.
-    static func getCustomersCustomerCardsId(
-        config: ClientConfig,
-        customer: String,
-        id: String,
-        expand: [String]?
-    ) async throws -> Card {
+    public static func getCustomersCustomerCardsId(config: ClientConfig, customer: String, id: String, expand: [String]?) async throws -> Card {
         try validateLength("customer", customer, max: 5000)
 
         try validateLength("id", id, max: 5000)
 
-        return try await (sdkRequest(
-            "GET",
-            [
-                "/v1/customers/",
-                sdkEncodePathSegment(sdkWireString(customer)),
-                "/cards/",
-                sdkEncodePathSegment(sdkWireString(id)),
-            ].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .json,
-            operationId: "GetCustomersCustomerCardsId"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/customers/", sdkEncodePathSegment(sdkWireString(customer)), "/cards/", sdkEncodePathSegment(sdkWireString(id))].joined(), config: config, query: [
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .json, operationId: "GetCustomersCustomerCardsId")).data
     }
 }

@@ -6,13 +6,10 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1IssuingDisputesMethods {
-    /// Lists Issuing disputes in descending creation order, with the most recently created dispute first. Use
-    /// `created`, `status`, and `transaction` to filter results, and use `starting_after` or `ending_before` to
-    /// navigate between pages. Use `limit` to control page size and `expand` to request expanded response fields.
+extension V1IssuingDisputesMethods {
+    /// Lists Issuing disputes in descending creation order, with the most recently created dispute first. Use `created`, `status`, and `transaction` to filter results, and use `starting_after` or `ending_before` to navigate between pages. Use `limit` to control page size and `expand` to request expanded response fields.
     ///
-    /// Returns a list of Issuing Dispute objects. The objects are sorted in descending order by creation date, with the
-    /// most recently created object appearing first.
+    /// Returns a list of Issuing Dispute objects. The objects are sorted in descending order by creation date, with the most recently created object appearing first.
     ///
     /// - Parameters:
     /// - created: Only return Issuing disputes that were created during the given
@@ -32,29 +29,20 @@ public extension V1IssuingDisputesMethods {
     ///   the list.
     /// - status: Select Issuing disputes with the given status.
     /// - transaction: Select the Issuing dispute for the given transaction.
-    static func getIssuingDisputes(
-        config: ClientConfig,
-        created: GetIssuingDisputesParameter?,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        startingAfter: String?,
-        status: GetIssuingDisputesParameterXfda2f4f2?,
-        transaction: String?
-    ) async throws -> GetIssuingDisputesResponse {
-        if let endingBefore {
+    public static func getIssuingDisputes(config: ClientConfig, created: GetIssuingDisputesParameter?, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?, status: GetIssuingDisputesParameterXfda2f4f2?, transaction: String?) async throws -> GetIssuingDisputesResponse {
+        if let endingBefore = endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let startingAfter {
+        if let startingAfter = startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        if let transaction {
+        if let transaction = transaction {
             try validateLength("transaction", transaction, max: 5000)
         }
 
-        return try await (sdkRequest("GET", "/v1/issuing/disputes", config: config, query: [
+        return try (await sdkRequest("GET", "/v1/issuing/disputes", config: config, query: [
             SdkQueryParameter("created", value: created),
             SdkQueryParameter("ending_before", value: endingBefore),
             SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),

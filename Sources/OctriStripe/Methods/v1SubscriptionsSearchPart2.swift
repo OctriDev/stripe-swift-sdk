@@ -6,15 +6,10 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1SubscriptionsSearchMethods {
-    /// Lists subscriptions matching a search query. Supply `query` using the subscription search query language, and
-    /// use `page` with the returned `next_page` value to retrieve subsequent pages. Search results can lag behind
-    /// recent changes and are limited to 100 objects per request.
+extension V1SubscriptionsSearchMethods {
+    /// Lists subscriptions matching a search query. Supply `query` using the subscription search query language, and use `page` with the returned `next_page` value to retrieve subsequent pages. Search results can lag behind recent changes and are limited to 100 objects per request.
     ///
-    /// Search for subscriptions you’ve previously created using Stripe’s Search Query Language. Don’t use search in
-    /// read-after-write flows where strict consistency is necessary. Under normal operating conditions, data is
-    /// searchable in less than a minute. Occasionally, propagation of new or updated data can be up to an hour behind
-    /// during outages. Search functionality is not available to merchants in India.
+    /// Search for subscriptions you’ve previously created using Stripe’s Search Query Language. Don’t use search in read-after-write flows where strict consistency is necessary. Under normal operating conditions, data is searchable in less than a minute. Occasionally, propagation of new or updated data can be up to an hour behind during outages. Search functionality is not available to merchants in India.
     ///
     /// - Parameters:
     /// - query: The search query string. See [search query
@@ -28,20 +23,14 @@ public extension V1SubscriptionsSearchMethods {
     /// - page: A cursor for pagination across multiple pages of results. Don't
     ///   include this parameter on the first call. Use the next_page value returned
     ///   in a previous response to request subsequent results.
-    static func getSubscriptionsSearch(
-        config: ClientConfig,
-        query: String,
-        expand: [String]?,
-        limit: Int?,
-        page: String?
-    ) async throws -> GetSubscriptionsSearchResponse {
+    public static func getSubscriptionsSearch(config: ClientConfig, query: String, expand: [String]?, limit: Int?, page: String?) async throws -> GetSubscriptionsSearchResponse {
         try validateLength("query", query, max: 5000)
 
-        if let page {
+        if let page = page {
             try validateLength("page", page, max: 5000)
         }
 
-        return try await (sdkRequest("GET", "/v1/subscriptions/search", config: config, query: [
+        return try (await sdkRequest("GET", "/v1/subscriptions/search", config: config, query: [
             SdkQueryParameter("query", value: query),
             SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
             SdkQueryParameter("limit", value: limit),
@@ -49,14 +38,9 @@ public extension V1SubscriptionsSearchMethods {
         ], decoder: .json, operationId: "GetSubscriptionsSearch")).data
     }
 
-    /// Lists subscriptions matching a search query. Supply `query` using the subscription search query language, and
-    /// use `page` with the returned `next_page` value to retrieve subsequent pages. Search results can lag behind
-    /// recent changes and are limited to 100 objects per request.
+    /// Lists subscriptions matching a search query. Supply `query` using the subscription search query language, and use `page` with the returned `next_page` value to retrieve subsequent pages. Search results can lag behind recent changes and are limited to 100 objects per request.
     ///
-    /// Search for subscriptions you’ve previously created using Stripe’s Search Query Language. Don’t use search in
-    /// read-after-write flows where strict consistency is necessary. Under normal operating conditions, data is
-    /// searchable in less than a minute. Occasionally, propagation of new or updated data can be up to an hour behind
-    /// during outages. Search functionality is not available to merchants in India.
+    /// Search for subscriptions you’ve previously created using Stripe’s Search Query Language. Don’t use search in read-after-write flows where strict consistency is necessary. Under normal operating conditions, data is searchable in less than a minute. Occasionally, propagation of new or updated data can be up to an hour behind during outages. Search functionality is not available to merchants in India.
     ///
     /// - Parameters:
     /// - query: The search query string. See [search query
@@ -70,34 +54,15 @@ public extension V1SubscriptionsSearchMethods {
     /// - page: A cursor for pagination across multiple pages of results. Don't
     ///   include this parameter on the first call. Use the next_page value returned
     ///   in a previous response to request subsequent results.
-    static func getSubscriptionsSearchPaginated(
-        config: ClientConfig,
-        query: String,
-        expand: [String]?,
-        limit: Int?,
-        page: String?
-    ) -> AsyncThrowingStream<Subscription, Swift.Error> {
-        AsyncThrowingStream<Subscription, Swift.Error> { (continuation: AsyncThrowingStream<
-            Subscription,
-            Swift.Error
-        >.Continuation) in
+    public static func getSubscriptionsSearchPaginated(config: ClientConfig, query: String, expand: [String]?, limit: Int?, page: String?) -> AsyncThrowingStream<Subscription, Swift.Error> {
+        return AsyncThrowingStream<Subscription, Swift.Error> { (continuation: AsyncThrowingStream<Subscription, Swift.Error>.Continuation) in
             let task = _Concurrency.Task {
                 do {
                     var pageCursor = page
                     while true {
-                        let pageResponse = try await getSubscriptionsSearch(
-                            config: config,
-                            query: query,
-                            expand: expand,
-                            limit: limit,
-                            page: pageCursor
-                        )
-                        for item in pageResponse.data {
-                            continuation.yield(item)
-                        }
-                        if !pageResponse.hasMore {
-                            break
-                        }
+                        let pageResponse = try await getSubscriptionsSearch(config: config, query: query, expand: expand, limit: limit, page: pageCursor)
+                        for item in pageResponse.data { continuation.yield(item) }
+                        if !pageResponse.hasMore { break }
                         guard let nextCursor = pageResponse.nextPage else { break }
                         pageCursor = nextCursor
                     }
@@ -111,47 +76,24 @@ public extension V1SubscriptionsSearchMethods {
         }
     }
 
-    struct GetSubscriptionsSearchPage {
+    public struct GetSubscriptionsSearchPage {
         public let data: GetSubscriptionsSearchResponse
         public let items: [Subscription]
         public let hasMore: Bool
     }
 
-    static func getSubscriptionsSearchPages(
-        config: ClientConfig,
-        query: String,
-        expand: [String]?,
-        limit: Int?,
-        page: String?
-    ) -> AsyncThrowingStream<GetSubscriptionsSearchPage, Swift.Error> {
-        AsyncThrowingStream<GetSubscriptionsSearchPage, Swift.Error> { (pageContinuation: AsyncThrowingStream<
-            GetSubscriptionsSearchPage,
-            Swift.Error
-        >.Continuation) in
+    public static func getSubscriptionsSearchPages(config: ClientConfig, query: String, expand: [String]?, limit: Int?, page: String?) -> AsyncThrowingStream<GetSubscriptionsSearchPage, Swift.Error> {
+        return AsyncThrowingStream<GetSubscriptionsSearchPage, Swift.Error> { (pageContinuation: AsyncThrowingStream<GetSubscriptionsSearchPage, Swift.Error>.Continuation) in
             let task = _Concurrency.Task {
                 do {
                     var pageCursor = page
                     while true {
-                        let pageResponse = try await getSubscriptionsSearch(
-                            config: config,
-                            query: query,
-                            expand: expand,
-                            limit: limit,
-                            page: pageCursor
-                        )
+                        let pageResponse = try await getSubscriptionsSearch(config: config, query: query, expand: expand, limit: limit, page: pageCursor)
                         let pageItems = pageResponse.data
-                        if pageItems.isEmpty {
-                            break
-                        }
+                        if pageItems.isEmpty { break }
                         let hasMore = pageResponse.hasMore && pageResponse.nextPage != nil
-                        pageContinuation.yield(GetSubscriptionsSearchPage(
-                            data: pageResponse,
-                            items: pageItems,
-                            hasMore: hasMore
-                        ))
-                        if !hasMore {
-                            break
-                        }
+                        pageContinuation.yield(GetSubscriptionsSearchPage(data: pageResponse, items: pageItems, hasMore: hasMore))
+                        if !hasMore { break }
                         guard let nextCursor = pageResponse.nextPage else { break }
                         pageCursor = nextCursor
                     }

@@ -146,7 +146,7 @@ extension PostCheckoutSessionsRequestBodyShippingAddressCollectionAllowX7d610cd6
         .dj,
         .dk,
         .dm,
-        .do,
+        .`do`,
         .dz,
         .ec,
         .ee,

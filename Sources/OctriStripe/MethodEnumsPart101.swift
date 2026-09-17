@@ -154,23 +154,20 @@ extension PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem
 extension PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem: CaseIterable {
     public static var allCases: [PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem] {
         allCasesPart1
-            + allCasesPart2
-            + allCasesPart3
-            + allCasesPart4
+        +         allCasesPart2
+        +         allCasesPart3
+        +         allCasesPart4
     }
 }
 
-public struct PostIssuingCardholdersRequestBodySpendingControlsSpendingLimiXc317383fbc: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostIssuingCardholdersRequestBodySpendingControlsSpendingLimiXc317383fbc: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
+    public init(rawValue: String) { self.rawValue = rawValue }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

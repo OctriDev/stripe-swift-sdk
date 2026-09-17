@@ -3,33 +3,23 @@
 
 import Foundation
 
-/// V1Legal domain models
+// V1Legal domain models
 extension LegalEntityCompanyVerificationDocumentFront: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for LegalEntityCompanyVerificationDocumentFront"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for LegalEntityCompanyVerificationDocumentFront")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(File2.self) {
-            return .file2(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(File2.self) { return .file2(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -39,6 +29,7 @@ extension LegalEntityCompanyVerificationDocumentFront: Codable {
         case let .file2(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// Typed representation of the `LegalEntityDirectorshipDeclaration` API schema.
@@ -57,27 +48,27 @@ public struct LegalEntityDirectorshipDeclaration: Codable {
     }
 
     init() {
-        (date, ip, userAgent) = (nil, nil, nil)
+        (self.date, self.ip, self.userAgent) = (nil, nil, nil)
     }
 }
 
-public extension LegalEntityDirectorshipDeclaration {
-    init(from decoder: Decoder) throws {
+extension LegalEntityDirectorshipDeclaration {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        date = try container.sdkDecodeIfPresent(.date)
-        ip = try container.sdkDecodeIfPresent(.ip)
-        userAgent = try container.sdkDecodeIfPresent(.userAgent)
-        if let value = ip {
+        self.date = try container.sdkDecodeIfPresent(.date)
+        self.ip = try container.sdkDecodeIfPresent(.ip)
+        self.userAgent = try container.sdkDecodeIfPresent(.userAgent)
+        if let value = self.ip {
             try validateLength("ip", value, min: nil, max: 5000)
         }
-        if let value = userAgent {
+        if let value = self.userAgent {
             try validateLength("user_agent", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension LegalEntityDirectorshipDeclaration {
-    init(date: Int? = nil, ip: String? = nil, userAgent: String? = nil) throws {
+extension LegalEntityDirectorshipDeclaration {
+    public init(date: Int? = nil, ip: String? = nil, userAgent: String? = nil) throws {
         self.init()
         (self.date, self.ip) = (date, ip)
         self.userAgent = userAgent
@@ -106,21 +97,21 @@ public struct LegalEntityDob: Codable {
     }
 
     init() {
-        (day, month, year) = (nil, nil, nil)
+        (self.day, self.month, self.year) = (nil, nil, nil)
     }
 }
 
-public extension LegalEntityDob {
-    init(from decoder: Decoder) throws {
+extension LegalEntityDob {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        day = try container.sdkDecodeIfPresent(.day)
-        month = try container.sdkDecodeIfPresent(.month)
-        year = try container.sdkDecodeIfPresent(.year)
+        self.day = try container.sdkDecodeIfPresent(.day)
+        self.month = try container.sdkDecodeIfPresent(.month)
+        self.year = try container.sdkDecodeIfPresent(.year)
     }
 }
 
-public extension LegalEntityDob {
-    init(day: Int? = nil, month: Int? = nil, year: Int? = nil) {
+extension LegalEntityDob {
+    public init(day: Int? = nil, month: Int? = nil, year: Int? = nil) {
         self.init()
         (self.day, self.month) = (day, month)
         self.year = year
@@ -155,35 +146,27 @@ public struct LegalEntityJapanAddress: Codable {
     }
 
     init() {
-        (city, country, line1, line2, postalCode) = (nil, nil, nil, nil, nil)
-        (state, town) = (nil, nil)
+        (self.city, self.country, self.line1, self.line2, self.postalCode) = (nil, nil, nil, nil, nil)
+        (self.state, self.town) = (nil, nil)
     }
 }
 
-public extension LegalEntityJapanAddress {
-    init(from decoder: Decoder) throws {
+extension LegalEntityJapanAddress {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        city = try container.sdkDecodeIfPresent(.city)
-        country = try container.sdkDecodeIfPresent(.country)
-        line1 = try container.sdkDecodeIfPresent(.line1)
-        line2 = try container.sdkDecodeIfPresent(.line2)
-        postalCode = try container.sdkDecodeIfPresent(.postalCode)
-        state = try container.sdkDecodeIfPresent(.state)
-        town = try container.sdkDecodeIfPresent(.town)
+        self.city = try container.sdkDecodeIfPresent(.city)
+        self.country = try container.sdkDecodeIfPresent(.country)
+        self.line1 = try container.sdkDecodeIfPresent(.line1)
+        self.line2 = try container.sdkDecodeIfPresent(.line2)
+        self.postalCode = try container.sdkDecodeIfPresent(.postalCode)
+        self.state = try container.sdkDecodeIfPresent(.state)
+        self.town = try container.sdkDecodeIfPresent(.town)
         try sdkValidateConstraints()
     }
 }
 
-public extension LegalEntityJapanAddress {
-    init(
-        city: String? = nil,
-        country: String? = nil,
-        line1: String? = nil,
-        line2: String? = nil,
-        postalCode: String? = nil,
-        state: String? = nil,
-        town: String? = nil
-    ) throws {
+extension LegalEntityJapanAddress {
+    public init(city: String? = nil, country: String? = nil, line1: String? = nil, line2: String? = nil, postalCode: String? = nil, state: String? = nil, town: String? = nil) throws {
         self.init()
         (self.city, self.country) = (city, country)
         (self.line1, self.line2) = (line1, line2)
@@ -195,25 +178,25 @@ public extension LegalEntityJapanAddress {
 
 extension LegalEntityJapanAddress {
     func sdkValidateConstraints() throws {
-        if let value = city {
+        if let value = self.city {
             try validateLength("city", value, min: nil, max: 5000)
         }
-        if let value = country {
+        if let value = self.country {
             try validateLength("country", value, min: nil, max: 5000)
         }
-        if let value = line1 {
+        if let value = self.line1 {
             try validateLength("line1", value, min: nil, max: 5000)
         }
-        if let value = line2 {
+        if let value = self.line2 {
             try validateLength("line2", value, min: nil, max: 5000)
         }
-        if let value = postalCode {
+        if let value = self.postalCode {
             try validateLength("postal_code", value, min: nil, max: 5000)
         }
-        if let value = state {
+        if let value = self.state {
             try validateLength("state", value, min: nil, max: 5000)
         }
-        if let value = town {
+        if let value = self.town {
             try validateLength("town", value, min: nil, max: 5000)
         }
     }
@@ -246,48 +229,36 @@ public struct LegalEntityPersonVerification: Codable {
         case document
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension LegalEntityPersonVerification {
-    init(from decoder: Decoder) throws {
+extension LegalEntityPersonVerification {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.status) else {
-            throw SdkValidationError(
-                field: "status",
-                code: "required",
-                message: "Validation failed for 'status': value is required"
-            )
+            throw SdkValidationError(field: "status", code: "required", message: "Validation failed for 'status': value is required")
         }
-        status = try container.sdkDecodeRequired(.status)
-        additionalDocument = try container.sdkDecodeIfPresent(.additionalDocument)
-        details = try container.sdkDecodeIfPresent(.details)
-        detailsCode = try container.sdkDecodeIfPresent(.detailsCode)
-        document = try container.sdkDecodeIfPresent(.document)
-        try validateLength("status", status, min: nil, max: 5000)
-        if let value = details {
+        self.status = try container.sdkDecodeRequired(.status)
+        self.additionalDocument = try container.sdkDecodeIfPresent(.additionalDocument)
+        self.details = try container.sdkDecodeIfPresent(.details)
+        self.detailsCode = try container.sdkDecodeIfPresent(.detailsCode)
+        self.document = try container.sdkDecodeIfPresent(.document)
+            try validateLength("status", self.status, min: nil, max: 5000)
+        if let value = self.details {
             try validateLength("details", value, min: nil, max: 5000)
         }
-        if let value = detailsCode {
+        if let value = self.detailsCode {
             try validateLength("details_code", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension LegalEntityPersonVerification {
-    init(
-        status: String,
-        additionalDocument: LegalEntityPersonVerificationAdditionalDocument? = nil,
-        details: String? = nil,
-        detailsCode: String? = nil,
-        document: LegalEntityPersonVerificationDocument? = nil
-    ) throws {
+extension LegalEntityPersonVerification {
+    public init(status: String, additionalDocument: LegalEntityPersonVerificationAdditionalDocument? = nil, details: String? = nil, detailsCode: String? = nil, document: LegalEntityPersonVerificationDocument? = nil) throws {
         (self.status, self.additionalDocument) = (status, additionalDocument)
         (self.details, self.detailsCode) = (details, detailsCode)
         self.document = document
-        try validateLength("status", self.status, min: nil, max: 5000)
+            try validateLength("status", self.status, min: nil, max: 5000)
         if let value = self.details {
             try validateLength("details", value, min: nil, max: 5000)
         }
@@ -302,30 +273,24 @@ public enum LegalEntityPersonVerificationAdditionalDocument {
 }
 
 extension LegalEntityPersonVerificationAdditionalDocument: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for LegalEntityPersonVerificationAdditionalDocument"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for LegalEntityPersonVerificationAdditionalDocument")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             LegalEntityPersonVerificationDocument.self
         ) {
-            return .legalEntityPersonVerificationDocument(value)
+            return             .legalEntityPersonVerificationDocument(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -334,6 +299,7 @@ extension LegalEntityPersonVerificationAdditionalDocument: Codable {
         case let .legalEntityPersonVerificationDocument(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// Typed representation of the `LegalEntityPersonVerificationDocument` API schema.
@@ -360,33 +326,28 @@ public struct LegalEntityPersonVerificationDocument: Codable {
     }
 
     init() {
-        (back, details, detailsCode, front) = (nil, nil, nil, nil)
+        (self.back, self.details, self.detailsCode, self.front) = (nil, nil, nil, nil)
     }
 }
 
-public extension LegalEntityPersonVerificationDocument {
-    init(from decoder: Decoder) throws {
+extension LegalEntityPersonVerificationDocument {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        back = try container.sdkDecodeIfPresent(.back)
-        details = try container.sdkDecodeIfPresent(.details)
-        detailsCode = try container.sdkDecodeIfPresent(.detailsCode)
-        front = try container.sdkDecodeIfPresent(.front)
-        if let value = details {
+        self.back = try container.sdkDecodeIfPresent(.back)
+        self.details = try container.sdkDecodeIfPresent(.details)
+        self.detailsCode = try container.sdkDecodeIfPresent(.detailsCode)
+        self.front = try container.sdkDecodeIfPresent(.front)
+        if let value = self.details {
             try validateLength("details", value, min: nil, max: 5000)
         }
-        if let value = detailsCode {
+        if let value = self.detailsCode {
             try validateLength("details_code", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension LegalEntityPersonVerificationDocument {
-    init(
-        back: LegalEntityPersonVerificationDocumentBack? = nil,
-        details: String? = nil,
-        detailsCode: String? = nil,
-        front: LegalEntityPersonVerificationDocumentFront? = nil
-    ) throws {
+extension LegalEntityPersonVerificationDocument {
+    public init(back: LegalEntityPersonVerificationDocumentBack? = nil, details: String? = nil, detailsCode: String? = nil, front: LegalEntityPersonVerificationDocumentFront? = nil) throws {
         self.init()
         (self.back, self.details) = (back, details)
         (self.detailsCode, self.front) = (detailsCode, front)
@@ -405,31 +366,21 @@ public enum LegalEntityPersonVerificationDocumentBack {
 }
 
 extension LegalEntityPersonVerificationDocumentBack: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for LegalEntityPersonVerificationDocumentBack"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for LegalEntityPersonVerificationDocumentBack")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(File2.self) {
-            return .file2(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(File2.self) { return .file2(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -439,6 +390,7 @@ extension LegalEntityPersonVerificationDocumentBack: Codable {
         case let .file2(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum LegalEntityPersonVerificationDocumentFront {
@@ -447,31 +399,21 @@ public enum LegalEntityPersonVerificationDocumentFront {
 }
 
 extension LegalEntityPersonVerificationDocumentFront: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for LegalEntityPersonVerificationDocumentFront"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for LegalEntityPersonVerificationDocumentFront")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(File2.self) {
-            return .file2(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(File2.self) { return .file2(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -481,6 +423,7 @@ extension LegalEntityPersonVerificationDocumentFront: Codable {
         case let .file2(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// Typed representation of the `LegalEntityRegistrationDate` API schema.
@@ -499,21 +442,21 @@ public struct LegalEntityRegistrationDate: Codable {
     }
 
     init() {
-        (day, month, year) = (nil, nil, nil)
+        (self.day, self.month, self.year) = (nil, nil, nil)
     }
 }
 
-public extension LegalEntityRegistrationDate {
-    init(from decoder: Decoder) throws {
+extension LegalEntityRegistrationDate {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        day = try container.sdkDecodeIfPresent(.day)
-        month = try container.sdkDecodeIfPresent(.month)
-        year = try container.sdkDecodeIfPresent(.year)
+        self.day = try container.sdkDecodeIfPresent(.day)
+        self.month = try container.sdkDecodeIfPresent(.month)
+        self.year = try container.sdkDecodeIfPresent(.year)
     }
 }
 
-public extension LegalEntityRegistrationDate {
-    init(day: Int? = nil, month: Int? = nil, year: Int? = nil) {
+extension LegalEntityRegistrationDate {
+    public init(day: Int? = nil, month: Int? = nil, year: Int? = nil) {
         self.init()
         (self.day, self.month) = (day, month)
         self.year = year
@@ -536,27 +479,27 @@ public struct LegalEntityRepresentativeDeclaration: Codable {
     }
 
     init() {
-        (date, ip, userAgent) = (nil, nil, nil)
+        (self.date, self.ip, self.userAgent) = (nil, nil, nil)
     }
 }
 
-public extension LegalEntityRepresentativeDeclaration {
-    init(from decoder: Decoder) throws {
+extension LegalEntityRepresentativeDeclaration {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        date = try container.sdkDecodeIfPresent(.date)
-        ip = try container.sdkDecodeIfPresent(.ip)
-        userAgent = try container.sdkDecodeIfPresent(.userAgent)
-        if let value = ip {
+        self.date = try container.sdkDecodeIfPresent(.date)
+        self.ip = try container.sdkDecodeIfPresent(.ip)
+        self.userAgent = try container.sdkDecodeIfPresent(.userAgent)
+        if let value = self.ip {
             try validateLength("ip", value, min: nil, max: 5000)
         }
-        if let value = userAgent {
+        if let value = self.userAgent {
             try validateLength("user_agent", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension LegalEntityRepresentativeDeclaration {
-    init(date: Int? = nil, ip: String? = nil, userAgent: String? = nil) throws {
+extension LegalEntityRepresentativeDeclaration {
+    public init(date: Int? = nil, ip: String? = nil, userAgent: String? = nil) throws {
         self.init()
         (self.date, self.ip) = (date, ip)
         self.userAgent = userAgent
@@ -585,27 +528,27 @@ public struct LegalEntityUboDeclaration: Codable {
     }
 
     init() {
-        (date, ip, userAgent) = (nil, nil, nil)
+        (self.date, self.ip, self.userAgent) = (nil, nil, nil)
     }
 }
 
-public extension LegalEntityUboDeclaration {
-    init(from decoder: Decoder) throws {
+extension LegalEntityUboDeclaration {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        date = try container.sdkDecodeIfPresent(.date)
-        ip = try container.sdkDecodeIfPresent(.ip)
-        userAgent = try container.sdkDecodeIfPresent(.userAgent)
-        if let value = ip {
+        self.date = try container.sdkDecodeIfPresent(.date)
+        self.ip = try container.sdkDecodeIfPresent(.ip)
+        self.userAgent = try container.sdkDecodeIfPresent(.userAgent)
+        if let value = self.ip {
             try validateLength("ip", value, min: nil, max: 5000)
         }
-        if let value = userAgent {
+        if let value = self.userAgent {
             try validateLength("user_agent", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension LegalEntityUboDeclaration {
-    init(date: Int? = nil, ip: String? = nil, userAgent: String? = nil) throws {
+extension LegalEntityUboDeclaration {
+    public init(date: Int? = nil, ip: String? = nil, userAgent: String? = nil) throws {
         self.init()
         (self.date, self.ip) = (date, ip)
         self.userAgent = userAgent

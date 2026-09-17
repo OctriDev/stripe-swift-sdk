@@ -6,41 +6,22 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1CustomersBalanceTransactionsMethods {
-    /// Retrieves one customer balance transaction that changed a customer's credit balance. Use `expand` when you need
-    /// selected response fields returned in expanded form.
+extension V1CustomersBalanceTransactionsMethods {
+    /// Retrieves one customer balance transaction that changed a customer's credit balance. Use `expand` when you need selected response fields returned in expanded form.
     ///
     /// Retrieves a specific customer balance transaction that updated the customer’s balances.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    static func getCustomersCustomerBalanceTransactionsTransaction(
-        config: ClientConfig,
-        customer: String,
-        transaction: String,
-        expand: [String]?
-    ) async throws -> CustomerBalanceTransaction {
+    public static func getCustomersCustomerBalanceTransactionsTransaction(config: ClientConfig, customer: String, transaction: String, expand: [String]?) async throws -> CustomerBalanceTransaction {
         try validateLength("customer", customer, max: 5000)
 
-        return try await (sdkRequest(
-            "GET",
-            [
-                "/v1/customers/",
-                sdkEncodePathSegment(sdkWireString(customer)),
-                "/balance_transactions/",
-                sdkEncodePathSegment(sdkWireString(transaction)),
-            ].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .json,
-            operationId: "GetCustomersCustomerBalanceTransactionsTransaction"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/customers/", sdkEncodePathSegment(sdkWireString(customer)), "/balance_transactions/", sdkEncodePathSegment(sdkWireString(transaction))].joined(), config: config, query: [
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .json, operationId: "GetCustomersCustomerBalanceTransactionsTransaction")).data
     }
 
-    /// Updates the mutable fields of a customer credit balance transaction. Only `description` and `metadata` can be
-    /// changed; the transaction's balance effect and other immutable fields remain unchanged.
+    /// Updates the mutable fields of a customer credit balance transaction. Only `description` and `metadata` can be changed; the transaction's balance effect and other immutable fields remain unchanged.
     ///
     /// Most credit balance transaction fields are immutable, but you may update its description and metadata .
     ///
@@ -53,41 +34,17 @@ public extension V1CustomersBalanceTransactionsMethods {
     ///   information about the object in a structured format. Individual keys can be
     ///   unset by posting an empty value to them. All keys can be unset by posting an
     ///   empty value to `metadata`.
-    static func postCustomersCustomerBalanceTransactionsTransaction(
-        config: ClientConfig,
-        customer: String,
-        transaction: String,
-        description: String?,
-        expand: [String]?,
-        metadata: PostCustomersCustomerBalanceTransactionsTransactionRequestBodyMetadata?
-    ) async throws -> CustomerBalanceTransaction {
+    public static func postCustomersCustomerBalanceTransactionsTransaction(config: ClientConfig, customer: String, transaction: String, description: String?, expand: [String]?, metadata: PostCustomersCustomerBalanceTransactionsTransactionRequestBodyMetadata?) async throws -> CustomerBalanceTransaction {
         try validateLength("customer", customer, max: 5000)
 
         try validateLength("transaction", transaction, max: 5000)
 
-        if let description {
+        if let description = description {
             try validateLength("description", description, max: 350)
         }
 
-        let requestBody = PostCustomersCustomerBalanceTransactionsTransactionRequestBody(
-            description: description,
-            expand: expand,
-            metadata: metadata
-        )
+        let requestBody = PostCustomersCustomerBalanceTransactionsTransactionRequestBody(description: description, expand: expand, metadata: metadata)
 
-        return try await (sdkRequest(
-            "POST",
-            [
-                "/v1/customers/",
-                sdkEncodePathSegment(sdkWireString(customer)),
-                "/balance_transactions/",
-                sdkEncodePathSegment(sdkWireString(transaction)),
-            ].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostCustomersCustomerBalanceTransactionsTransaction"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/customers/", sdkEncodePathSegment(sdkWireString(customer)), "/balance_transactions/", sdkEncodePathSegment(sdkWireString(transaction))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostCustomersCustomerBalanceTransactionsTransaction")).data
     }
 }

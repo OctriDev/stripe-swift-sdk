@@ -9,17 +9,11 @@ public class V1ChargesCaptureNamespace {
         self.config = config
     }
 
-    /// Captures an existing charge that was created with capture disabled. Supply `charge` and optionally provide a
-    /// partial capture amount and related transfer or receipt details. Do not use this operation for a
-    /// PaymentIntent-initiated charge; capture the PaymentIntent instead.
+/// Captures an existing charge that was created with capture disabled. Supply `charge` and optionally provide a partial capture amount and related transfer or receipt details. Do not use this operation for a PaymentIntent-initiated charge; capture the PaymentIntent instead.
     ///
-    /// Capture the payment of an existing, uncaptured charge that was created with the capture option set to false.
-    /// Uncaptured payments expire a set number of days after they are created (7 by default), after which they are
-    /// marked as refunded and capture attempts will fail. Don’t use this method to capture a PaymentIntent-initiated
-    /// charge. Use Capture a PaymentIntent.
-    public func postChargesCharge(options: V1ChargesCaptureMethods
-        .PostChargesChargeCaptureOptions) async throws -> Charge {
-        try await V1ChargesCaptureMethods.postChargesChargeCapture(config: config, options: options)
+    /// Capture the payment of an existing, uncaptured charge that was created with the capture option set to false. Uncaptured payments expire a set number of days after they are created (7 by default), after which they are marked as refunded and capture attempts will fail. Don’t use this method to capture a PaymentIntent-initiated charge. Use Capture a PaymentIntent.
+    public func postChargesCharge(options: V1ChargesCaptureMethods.PostChargesChargeCaptureOptions) async throws -> Charge {
+        return try await V1ChargesCaptureMethods.postChargesChargeCapture(config: config, options: options)
     }
 }
 
@@ -29,15 +23,9 @@ public class V1ChargesDisputeCloseNamespace {
         self.config = config
     }
 
-    /// Closes the dispute associated with a specified charge. Supply `charge` to identify the disputed charge and
-    /// optionally use `expand` to include related response fields. Closing the dispute ends the available dispute
-    /// response process.
+/// Closes the dispute associated with a specified charge. Supply `charge` to identify the disputed charge and optionally use `expand` to include related response fields. Closing the dispute ends the available dispute response process.
     public func postChargesChargeDispute(charge: String, expand: [String]?) async throws -> Dispute {
-        try await V1ChargesDisputeCloseMethods.postChargesChargeDisputeClose(
-            config: config,
-            charge: charge,
-            expand: expand
-        )
+        return try await V1ChargesDisputeCloseMethods.postChargesChargeDisputeClose(config: config, charge: charge, expand: expand)
     }
 }
 
@@ -49,34 +37,16 @@ public class V1ChargesDisputeNamespace {
         close = V1ChargesDisputeCloseNamespace(config: config)
     }
 
-    /// Retrieves the dispute associated with a specified charge. Supply `charge` to inspect the disputed amount,
-    /// evidence state, status, and related balance transactions. Use the returned dispute details to determine whether
-    /// evidence or closure actions are available.
+/// Retrieves the dispute associated with a specified charge. Supply `charge` to inspect the disputed amount, evidence state, status, and related balance transactions. Use the returned dispute details to determine whether evidence or closure actions are available.
     ///
     /// Retrieve a dispute for a specified charge.
     public func getChargesCharge(charge: String, expand: [String]?) async throws -> Dispute {
-        try await V1ChargesDisputeMethods.getChargesChargeDispute(config: config, charge: charge, expand: expand)
+        return try await V1ChargesDisputeMethods.getChargesChargeDispute(config: config, charge: charge, expand: expand)
     }
 
-    /// Updates the evidence associated with the dispute for a charge and can submit that evidence to the bank. Supply
-    /// `evidence` fields to respond to the dispute, and use `submit` to control whether the evidence is submitted
-    /// immediately. Updating any evidence field submits the complete evidence set for review when submission is
-    /// enabled.
-    public func postChargesCharge(
-        charge: String,
-        evidence: PostChargesChargeDisputeRequestBodyEvidence?,
-        expand: [String]?,
-        metadata: PostChargesChargeDisputeRequestBodyMetadata?,
-        submit: Bool?
-    ) async throws -> Dispute {
-        try await V1ChargesDisputeMethods.postChargesChargeDispute(
-            config: config,
-            charge: charge,
-            evidence: evidence,
-            expand: expand,
-            metadata: metadata,
-            submit: submit
-        )
+/// Updates the evidence associated with the dispute for a charge and can submit that evidence to the bank. Supply `evidence` fields to respond to the dispute, and use `submit` to control whether the evidence is submitted immediately. Updating any evidence field submits the complete evidence set for review when submission is enabled.
+    public func postChargesCharge(charge: String, evidence: PostChargesChargeDisputeRequestBodyEvidence?, expand: [String]?, metadata: PostChargesChargeDisputeRequestBodyMetadata?, submit: Bool?) async throws -> Dispute {
+        return try await V1ChargesDisputeMethods.postChargesChargeDispute(config: config, charge: charge, evidence: evidence, expand: expand, metadata: metadata, submit: submit)
     }
 }
 
@@ -86,14 +56,9 @@ public class V1ChargesRefundNamespace {
         self.config = config
     }
 
-    /// When you create a new refund, you must specify either a Charge or a PaymentIntent object. This action refunds a
-    /// previously created charge that’s not refunded yet. Funds are refunded to the credit or debit card that’s
-    /// originally charged. You can optionally refund only part of a charge. You can repeat this until the entire charge
-    /// is refunded. After you entirely refund a charge, you can’t refund it again. This method raises an error when
-    /// it’s called on an already-refunded charge, or when you attempt to refund more money than is left on a charge.
-    public func postChargesCharge(options: V1ChargesRefundMethods
-        .PostChargesChargeRefundOptions) async throws -> Charge {
-        try await V1ChargesRefundMethods.postChargesChargeRefund(config: config, options: options)
+/// When you create a new refund, you must specify either a Charge or a PaymentIntent object. This action refunds a previously created charge that’s not refunded yet. Funds are refunded to the credit or debit card that’s originally charged. You can optionally refund only part of a charge. You can repeat this until the entire charge is refunded. After you entirely refund a charge, you can’t refund it again. This method raises an error when it’s called on an already-refunded charge, or when you attempt to refund more money than is left on a charge.
+    public func postChargesCharge(options: V1ChargesRefundMethods.PostChargesChargeRefundOptions) async throws -> Charge {
+        return try await V1ChargesRefundMethods.postChargesChargeRefund(config: config, options: options)
     }
 }
 
@@ -103,77 +68,32 @@ public class V1ChargesRefundsNamespace {
         self.config = config
     }
 
-    /// Lists refunds belonging to a specific charge. Supply `charge` and use `limit`, `starting_after`, or
-    /// `ending_before` to page through refunds beyond the most recent refunds included on the charge object. The
-    /// response indicates whether more refunds are available.
+/// Lists refunds belonging to a specific charge. Supply `charge` and use `limit`, `starting_after`, or `ending_before` to page through refunds beyond the most recent refunds included on the charge object. The response indicates whether more refunds are available.
     ///
-    /// You can see a list of the refunds belonging to a specific charge. Note that the 10 most recent refunds are
-    /// always available by default on the charge object. If you need more than those 10, you can use this API method
-    /// and the limit and starting_after parameters to page through additional refunds.
-    public func getChargesCharge(
-        charge: String,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        startingAfter: String?
-    ) async throws -> GetChargesChargeRefundsResponse {
-        try await V1ChargesRefundsMethods.getChargesChargeRefunds(
-            config: config,
-            charge: charge,
-            endingBefore: endingBefore,
-            expand: expand,
-            limit: limit,
-            startingAfter: startingAfter
-        )
+    /// You can see a list of the refunds belonging to a specific charge. Note that the 10 most recent refunds are always available by default on the charge object. If you need more than those 10, you can use this API method and the limit and starting_after parameters to page through additional refunds.
+    public func getChargesCharge(charge: String, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetChargesChargeRefundsResponse {
+        return try await V1ChargesRefundsMethods.getChargesChargeRefunds(config: config, charge: charge, endingBefore: endingBefore, expand: expand, limit: limit, startingAfter: startingAfter)
     }
 
-    /// Creates a refund for a previously created charge. Specify the target charge in `charge`, and optionally refund
-    /// only part of the remaining amount or refund a PaymentIntent. You can create multiple partial refunds until the
-    /// charge is fully refunded.
+/// Creates a refund for a previously created charge. Specify the target charge in `charge`, and optionally refund only part of the remaining amount or refund a PaymentIntent. You can create multiple partial refunds until the charge is fully refunded.
     ///
-    /// When you create a new refund, you must specify a Charge or a PaymentIntent object on which to create it.
-    /// Creating a new refund will refund a charge that has previously been created but not yet refunded. Funds will be
-    /// refunded to the credit or debit card that was originally charged. You can optionally refund only part of a
-    /// charge. You can do so multiple times, until the entire charge has been refunded. Once entirely refunded, a
-    /// charge can’t be refunded again. This method will raise an error when called on an already-refunded charge, or
-    /// when trying to refund more money than is left on a charge.
-    public func postChargesCharge(options: V1ChargesRefundsMethods
-        .PostChargesChargeRefundsOptions) async throws -> Refund {
-        try await V1ChargesRefundsMethods.postChargesChargeRefunds(config: config, options: options)
+    /// When you create a new refund, you must specify a Charge or a PaymentIntent object on which to create it. Creating a new refund will refund a charge that has previously been created but not yet refunded. Funds will be refunded to the credit or debit card that was originally charged. You can optionally refund only part of a charge. You can do so multiple times, until the entire charge has been refunded. Once entirely refunded, a charge can’t be refunded again. This method will raise an error when called on an already-refunded charge, or when trying to refund more money than is left on a charge.
+    public func postChargesCharge(options: V1ChargesRefundsMethods.PostChargesChargeRefundsOptions) async throws -> Refund {
+        return try await V1ChargesRefundsMethods.postChargesChargeRefunds(config: config, options: options)
     }
 
-    /// Retrieves a specific refund associated with a charge. Use `charge` and `refund` together to identify the refund,
-    /// and use `expand` when you need selected response fields expanded. The response contains the refund's amount,
-    /// currency, charge, status, and related balance details.
+/// Retrieves a specific refund associated with a charge. Use `charge` and `refund` together to identify the refund, and use `expand` when you need selected response fields expanded. The response contains the refund's amount, currency, charge, status, and related balance details.
     ///
     /// Retrieves the details of an existing refund.
     public func getChargesChargeRefund(charge: String, refund: String, expand: [String]?) async throws -> Refund {
-        try await V1ChargesRefundsMethods.getChargesChargeRefundsRefund(
-            config: config,
-            charge: charge,
-            refund: refund,
-            expand: expand
-        )
+        return try await V1ChargesRefundsMethods.getChargesChargeRefundsRefund(config: config, charge: charge, refund: refund, expand: expand)
     }
 
-    /// Updates an existing refund associated with a charge. Use `charge` and `refund` to identify the refund, then
-    /// submit `metadata` or `expand` values to change the refund representation. The request updates only the fields
-    /// supplied in the body.
+/// Updates an existing refund associated with a charge. Use `charge` and `refund` to identify the refund, then submit `metadata` or `expand` values to change the refund representation. The request updates only the fields supplied in the body.
     ///
     /// Update a specified refund.
-    public func postChargesChargeRefund(
-        charge: String,
-        refund: String,
-        expand: [String]?,
-        metadata: PostChargesChargeRefundsRefundRequestBodyMetadata?
-    ) async throws -> Refund {
-        try await V1ChargesRefundsMethods.postChargesChargeRefundsRefund(
-            config: config,
-            charge: charge,
-            refund: refund,
-            expand: expand,
-            metadata: metadata
-        )
+    public func postChargesChargeRefund(charge: String, refund: String, expand: [String]?, metadata: PostChargesChargeRefundsRefundRequestBodyMetadata?) async throws -> Refund {
+        return try await V1ChargesRefundsMethods.postChargesChargeRefundsRefund(config: config, charge: charge, refund: refund, expand: expand, metadata: metadata)
     }
 }
 
@@ -193,45 +113,32 @@ public class V1ChargesNamespace {
         refunds = V1ChargesRefundsNamespace(config: config)
     }
 
-    /// Lists charges previously created for the account, ordered with the most recent charges first. Filter by
-    /// `customer`, `payment_intent`, `transfer_group`, or `created`, and use `starting_after` or `ending_before` with
-    /// `limit` to paginate the results.
+/// Lists charges previously created for the account, ordered with the most recent charges first. Filter by `customer`, `payment_intent`, `transfer_group`, or `created`, and use `starting_after` or `ending_before` with `limit` to paginate the results.
     ///
-    /// Returns a list of charges you’ve previously created. The charges are returned in sorted order, with the most
-    /// recent charges appearing first.
+    /// Returns a list of charges you’ve previously created. The charges are returned in sorted order, with the most recent charges appearing first.
     public func get(options: V1ChargesMethods.GetChargesOptions) async throws -> GetChargesResponse {
-        try await V1ChargesMethods.getCharges(config: config, options: options)
+        return try await V1ChargesMethods.getCharges(config: config, options: options)
     }
 
-    /// Creates a charge to move funds into your account using the legacy Charges API. Supply the payment amount and
-    /// currency, and use `capture` to choose immediate capture or authorization for later capture. Use the Payment
-    /// Intents API for new payment flows.
+/// Creates a charge to move funds into your account using the legacy Charges API. Supply the payment amount and currency, and use `capture` to choose immediate capture or authorization for later capture. Use the Payment Intents API for new payment flows.
     ///
-    /// This method is no longer recommended—use the Payment Intents API to initiate a new payment instead. Confirmation
-    /// of the PaymentIntent creates the Charge object used to request payment.
+    /// This method is no longer recommended—use the Payment Intents API to initiate a new payment instead. Confirmation of the PaymentIntent creates the Charge object used to request payment.
     public func post(options: V1ChargesMethods.PostChargesOptions) async throws -> Charge {
-        try await V1ChargesMethods.postCharges(config: config, options: options)
+        return try await V1ChargesMethods.postCharges(config: config, options: options)
     }
 
-    /// Retrieves a previously created charge by its unique identifier. Supply `charge` to retrieve the charge details
-    /// and use `expand` when related response fields are needed inline. The response contains the same charge
-    /// information available from charge creation and refund operations.
+/// Retrieves a previously created charge by its unique identifier. Supply `charge` to retrieve the charge details and use `expand` when related response fields are needed inline. The response contains the same charge information available from charge creation and refund operations.
     ///
-    /// Retrieves the details of a charge that has previously been created. Supply the unique charge ID that was
-    /// returned from your previous request, and Stripe will return the corresponding charge information. The same
-    /// information is returned when creating or refunding the charge.
+    /// Retrieves the details of a charge that has previously been created. Supply the unique charge ID that was returned from your previous request, and Stripe will return the corresponding charge information. The same information is returned when creating or refunding the charge.
     public func getCharge(charge: String, expand: [String]?) async throws -> Charge {
-        try await V1ChargesMethods.getChargesCharge(config: config, charge: charge, expand: expand)
+        return try await V1ChargesMethods.getChargesCharge(config: config, charge: charge, expand: expand)
     }
 
-    /// Updates selected properties of an existing charge without changing fields that you omit. Supply `charge` and
-    /// include only the charge attributes you want to modify. Some attributes, including an associated customer or
-    /// transfer group, can only be set when their existing value permits the change.
+/// Updates selected properties of an existing charge without changing fields that you omit. Supply `charge` and include only the charge attributes you want to modify. Some attributes, including an associated customer or transfer group, can only be set when their existing value permits the change.
     ///
-    /// Updates the specified charge by setting the values of the parameters passed. Any parameters not provided will be
-    /// left unchanged.
+    /// Updates the specified charge by setting the values of the parameters passed. Any parameters not provided will be left unchanged.
     public func postCharge(options: V1ChargesMethods.PostChargesChargeOptions) async throws -> Charge {
-        try await V1ChargesMethods.postChargesCharge(config: config, options: options)
+        return try await V1ChargesMethods.postChargesCharge(config: config, options: options)
     }
 }
 
@@ -241,19 +148,11 @@ public class V1CheckoutSessionsExpireNamespace {
         self.config = config
     }
 
-    /// Expires an open Checkout Session so the customer can no longer complete it. Use `session` to identify the
-    /// session, and optionally use `expand` to include related fields in the response. Expiring the session causes
-    /// customers who load it afterward to see that it has expired.
+/// Expires an open Checkout Session so the customer can no longer complete it. Use `session` to identify the session, and optionally use `expand` to include related fields in the response. Expiring the session causes customers who load it afterward to see that it has expired.
     ///
-    /// A Checkout Session can be expired when it is in one of these statuses: open After it expires, a customer can’t
-    /// complete a Checkout Session and customers loading the Checkout Session see a message saying the Checkout Session
-    /// is expired.
+    /// A Checkout Session can be expired when it is in one of these statuses: open After it expires, a customer can’t complete a Checkout Session and customers loading the Checkout Session see a message saying the Checkout Session is expired.
     public func postCheckoutSessionsSession(session: String, expand: [String]?) async throws -> CheckoutSession {
-        try await V1CheckoutSessionsExpireMethods.postCheckoutSessionsSessionExpire(
-            config: config,
-            session: session,
-            expand: expand
-        )
+        return try await V1CheckoutSessionsExpireMethods.postCheckoutSessionsSessionExpire(config: config, session: session, expand: expand)
     }
 }
 
@@ -263,27 +162,11 @@ public class V1CheckoutSessionsLineItemsNamespace {
         self.config = config
     }
 
-    /// Lists the line items associated with a Checkout Session. Use `session` to identify the session and cursor
-    /// parameters to retrieve the complete paginated collection beyond the items included on the session object. Use
-    /// `expand` when you need selected fields expanded.
+/// Lists the line items associated with a Checkout Session. Use `session` to identify the session and cursor parameters to retrieve the complete paginated collection beyond the items included on the session object. Use `expand` when you need selected fields expanded.
     ///
-    /// When retrieving a Checkout Session, there is an includable line_items property containing the first handful of
-    /// those items. There is also a URL where you can retrieve the full (paginated) list of line items.
-    public func getCheckoutSessionsSession(
-        session: String,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        startingAfter: String?
-    ) async throws -> GetCheckoutSessionsSessionLineItemsResponse {
-        try await V1CheckoutSessionsLineItemsMethods.getCheckoutSessionsSessionLineItems(
-            config: config,
-            session: session,
-            endingBefore: endingBefore,
-            expand: expand,
-            limit: limit,
-            startingAfter: startingAfter
-        )
+    /// When retrieving a Checkout Session, there is an includable line_items property containing the first handful of those items. There is also a URL where you can retrieve the full (paginated) list of line items.
+    public func getCheckoutSessionsSession(session: String, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetCheckoutSessionsSessionLineItemsResponse {
+        return try await V1CheckoutSessionsLineItemsMethods.getCheckoutSessionsSessionLineItems(config: config, session: session, endingBefore: endingBefore, expand: expand, limit: limit, startingAfter: startingAfter)
     }
 }
 
@@ -297,56 +180,31 @@ public class V1CheckoutSessionsNamespace {
         lineItems = V1CheckoutSessionsLineItemsNamespace(config: config)
     }
 
-    /// Lists Checkout Sessions, optionally filtered by creation interval, customer, payment relationship, or session
-    /// status. Use cursor parameters and `limit` to paginate the results, which are returned in the API's list format.
-    /// You can request expanded fields with `expand`.
+/// Lists Checkout Sessions, optionally filtered by creation interval, customer, payment relationship, or session status. Use cursor parameters and `limit` to paginate the results, which are returned in the API's list format. You can request expanded fields with `expand`.
     ///
     /// Returns a list of Checkout Sessions.
-    public func getCheckout(options: V1CheckoutSessionsMethods
-        .GetCheckoutSessionsOptions) async throws -> GetCheckoutSessionsResponse {
-        try await V1CheckoutSessionsMethods.getCheckoutSessions(config: config, options: options)
+    public func getCheckout(options: V1CheckoutSessionsMethods.GetCheckoutSessionsOptions) async throws -> GetCheckoutSessionsResponse {
+        return try await V1CheckoutSessionsMethods.getCheckoutSessions(config: config, options: options)
     }
 
-    /// Creates a Checkout Session for a one-time purchase or subscription. Supply the session configuration, including
-    /// its mode, payment settings, line items, customer information, and redirect behaviour as applicable. A 200
-    /// response returns the created session for use in the Checkout flow.
+/// Creates a Checkout Session for a one-time purchase or subscription. Supply the session configuration, including its mode, payment settings, line items, customer information, and redirect behaviour as applicable. A 200 response returns the created session for use in the Checkout flow.
     ///
     /// Creates a Checkout Session object.
-    public func postCheckout(options: V1CheckoutSessionsMethods
-        .PostCheckoutSessionsOptions) async throws -> CheckoutSession {
-        try await V1CheckoutSessionsMethods.postCheckoutSessions(config: config, options: options)
+    public func postCheckout(options: V1CheckoutSessionsMethods.PostCheckoutSessionsOptions) async throws -> CheckoutSession {
+        return try await V1CheckoutSessionsMethods.postCheckoutSessions(config: config, options: options)
     }
 
-    /// Retrieves a Checkout Session by its identifier. Use `expand` to include selected related fields in the response
-    /// when needed. The response contains the session's payment, customer, expiration, and Checkout configuration.
+/// Retrieves a Checkout Session by its identifier. Use `expand` to include selected related fields in the response when needed. The response contains the session's payment, customer, expiration, and Checkout configuration.
     ///
     /// Retrieves a Checkout Session object.
     public func getCheckoutSession(session: String, expand: [String]?) async throws -> CheckoutSession {
-        try await V1CheckoutSessionsMethods.getCheckoutSessionsSession(config: config, session: session, expand: expand)
+        return try await V1CheckoutSessionsMethods.getCheckoutSessionsSession(config: config, session: session, expand: expand)
     }
 
-    /// Updates an existing Checkout Session with customer information, line items, metadata, shipping options, or
-    /// expanded response fields. When changing `line_items`, retransmit the entire array and include existing item IDs
-    /// for items you want to retain. Use this operation for dynamic Checkout Session updates before the customer
-    /// completes the session.
+/// Updates an existing Checkout Session with customer information, line items, metadata, shipping options, or expanded response fields. When changing `line_items`, retransmit the entire array and include existing item IDs for items you want to retain. Use this operation for dynamic Checkout Session updates before the customer completes the session.
     ///
     /// Updates a Checkout Session object. Related guide: Dynamically update a Checkout Session
-    public func postCheckoutSession(
-        session: String,
-        collectedInformation: PostCheckoutSessionsSessionRequestBodyCollectedInformation?,
-        expand: [String]?,
-        lineItems: [PostCheckoutSessionsSessionRequestBodyLineItemsItem]?,
-        metadata: PostCheckoutSessionsSessionRequestBodyMetadata?,
-        shippingOptions: PostCheckoutSessionsSessionRequestBodyShippingOptions?
-    ) async throws -> CheckoutSession {
-        try await V1CheckoutSessionsMethods.postCheckoutSessionsSession(
-            config: config,
-            session: session,
-            collectedInformation: collectedInformation,
-            expand: expand,
-            lineItems: lineItems,
-            metadata: metadata,
-            shippingOptions: shippingOptions
-        )
+    public func postCheckoutSession(session: String, collectedInformation: PostCheckoutSessionsSessionRequestBodyCollectedInformation?, expand: [String]?, lineItems: [PostCheckoutSessionsSessionRequestBodyLineItemsItem]?, metadata: PostCheckoutSessionsSessionRequestBodyMetadata?, shippingOptions: PostCheckoutSessionsSessionRequestBodyShippingOptions?) async throws -> CheckoutSession {
+        return try await V1CheckoutSessionsMethods.postCheckoutSessionsSession(config: config, session: session, collectedInformation: collectedInformation, expand: expand, lineItems: lineItems, metadata: metadata, shippingOptions: shippingOptions)
     }
 }

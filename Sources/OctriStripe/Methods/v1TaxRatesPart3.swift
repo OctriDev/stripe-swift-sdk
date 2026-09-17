@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1TaxRatesMethods {
-    struct PostTaxRatesOptions: Codable {
+extension V1TaxRatesMethods {
+    public struct PostTaxRatesOptions: Codable {
         public var displayName: String
         public var inclusive: Bool
         public var percentage: Double
@@ -27,10 +27,7 @@ public extension V1TaxRatesMethods {
         }
     }
 
-    /// Creates a new tax rate for use with invoices, subscriptions, or Checkout Sessions. Supply `display_name`,
-    /// `inclusive`, and `percentage`, and optionally provide jurisdiction, country, state, metadata, or tax
-    /// classification details. Inactive rates cannot be used with new applications or Checkout Sessions, although
-    /// existing subscriptions and invoices can continue using them.
+    /// Creates a new tax rate for use with invoices, subscriptions, or Checkout Sessions. Supply `display_name`, `inclusive`, and `percentage`, and optionally provide jurisdiction, country, state, metadata, or tax classification details. Inactive rates cannot be used with new applications or Checkout Sessions, although existing subscriptions and invoices can continue using them.
     ///
     /// Creates a new tax rate.
     ///
@@ -60,7 +57,7 @@ public extension V1TaxRatesMethods {
     ///   code](https://en.wikipedia.org/wiki/ISO_3166-2), without country prefix. For
     ///   example, "NY" for New York, United States.
     /// - taxType: The high-level tax type, such as `vat` or `sales_tax`.
-    static func postTaxRates(config: ClientConfig, options: PostTaxRatesOptions) async throws -> TaxRate {
+    public static func postTaxRates(config: ClientConfig, options: PostTaxRatesOptions) async throws -> TaxRate {
         try validateLength("display_name", options.displayName, max: 50)
 
         if let country = options.country {
@@ -81,14 +78,6 @@ public extension V1TaxRatesMethods {
 
         let requestBody = PostTaxRatesRequestBody(options: options)
 
-        return try await (sdkRequest(
-            "POST",
-            "/v1/tax_rates",
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostTaxRates"
-        )).data
+        return try (await sdkRequest("POST", "/v1/tax_rates", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTaxRates")).data
     }
 }

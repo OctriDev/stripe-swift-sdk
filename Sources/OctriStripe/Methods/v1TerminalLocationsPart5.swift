@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1TerminalLocationsMethods {
-    struct PostTerminalLocationsLocationOptions: Codable {
+extension V1TerminalLocationsMethods {
+    public struct PostTerminalLocationsLocationOptions: Codable {
         public var location: String
         public var address: PostTerminalLocationsLocationRequestBodyAddress?
         public var addressKana: PostTerminalLocationsLocationRequestBodyAddressKana?
@@ -25,12 +25,9 @@ public extension V1TerminalLocationsMethods {
         }
     }
 
-    /// Updates a Terminal location without changing fields that you omit from the request. Use `address`,
-    /// `display_name`, and the other supported fields to modify location details, but create a new location if you need
-    /// to change its `country`.
+    /// Updates a Terminal location without changing fields that you omit from the request. Use `address`, `display_name`, and the other supported fields to modify location details, but create a new location if you need to change its `country`.
     ///
-    /// Updates a Location object by setting the values of the parameters passed. Any parameters not provided will be
-    /// left unchanged.
+    /// Updates a Location object by setting the values of the parameters passed. Any parameters not provided will be left unchanged.
     ///
     /// - Parameters:
     /// - address: The full address of the location. You can't change the location's
@@ -54,22 +51,11 @@ public extension V1TerminalLocationsMethods {
     ///   unset by posting an empty value to them. All keys can be unset by posting an
     ///   empty value to `metadata`.
     /// - phone: The phone number for the location.
-    static func postTerminalLocationsLocation(
-        config: ClientConfig,
-        options: PostTerminalLocationsLocationOptions
-    ) async throws -> PostTerminalLocationsLocationResponse {
+    public static func postTerminalLocationsLocation(config: ClientConfig, options: PostTerminalLocationsLocationOptions) async throws -> PostTerminalLocationsLocationResponse {
         try validateLength("location", options.location, max: 5000)
 
         let requestBody = PostTerminalLocationsLocationRequestBody(options: options)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/terminal/locations/", sdkEncodePathSegment(sdkWireString(options.location))].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostTerminalLocationsLocation"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/terminal/locations/", sdkEncodePathSegment(sdkWireString(options.location))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTerminalLocationsLocation")).data
     }
 }

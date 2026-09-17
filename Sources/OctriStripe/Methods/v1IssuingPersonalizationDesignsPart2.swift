@@ -6,13 +6,10 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1IssuingPersonalizationDesignsMethods {
-    /// Lists personalization designs in descending creation order, with the most recently created design first. Filter
-    /// results by `lookup_keys`, `preferences`, or `status`, and use cursor parameters to navigate between pages. Use
-    /// `limit` to control the number of designs returned and `expand` to request expanded fields.
+extension V1IssuingPersonalizationDesignsMethods {
+    /// Lists personalization designs in descending creation order, with the most recently created design first. Filter results by `lookup_keys`, `preferences`, or `status`, and use cursor parameters to navigate between pages. Use `limit` to control the number of designs returned and `expand` to request expanded fields.
     ///
-    /// Returns a list of personalization design objects. The objects are sorted in descending order by creation date,
-    /// with the most recently created object appearing first.
+    /// Returns a list of personalization design objects. The objects are sorted in descending order by creation date, with the most recently created object appearing first.
     ///
     /// - Parameters:
     /// - endingBefore: A cursor for use in pagination. `ending_before` is an object
@@ -33,25 +30,16 @@ public extension V1IssuingPersonalizationDesignsMethods {
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
     /// - status: Only return personalization designs with the given status.
-    static func getIssuingPersonalizationDesigns(
-        config: ClientConfig,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        lookupKeys: [String]?,
-        preferences: GetIssuingPersonalizationDesignsParameter?,
-        startingAfter: String?,
-        status: GetIssuingPersonalizationDesignsParameterX1136c1a1?
-    ) async throws -> GetIssuingPersonalizationDesignsResponse {
-        if let endingBefore {
+    public static func getIssuingPersonalizationDesigns(config: ClientConfig, endingBefore: String?, expand: [String]?, limit: Int?, lookupKeys: [String]?, preferences: GetIssuingPersonalizationDesignsParameter?, startingAfter: String?, status: GetIssuingPersonalizationDesignsParameterX1136c1a1?) async throws -> GetIssuingPersonalizationDesignsResponse {
+        if let endingBefore = endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let startingAfter {
+        if let startingAfter = startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try await (sdkRequest("GET", "/v1/issuing/personalization_designs", config: config, query: [
+        return try (await sdkRequest("GET", "/v1/issuing/personalization_designs", config: config, query: [
             SdkQueryParameter("ending_before", value: endingBefore),
             SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
             SdkQueryParameter("limit", value: limit),

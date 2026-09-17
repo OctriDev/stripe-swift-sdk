@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1Mandate domain models
+// V1Mandate domain models
 /// Typed representation of the `MandateAcssDebit` API schema.
 public struct MandateAcssDebit: Codable {
     /// Payment schedule for the mandate.
@@ -22,45 +22,30 @@ public struct MandateAcssDebit: Codable {
         case intervalDescription = "interval_description"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension MandateAcssDebit {
-    init(from decoder: Decoder) throws {
+extension MandateAcssDebit {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.paymentSchedule) else {
-            throw SdkValidationError(
-                field: "payment_schedule",
-                code: "required",
-                message: "Validation failed for 'payment_schedule': value is required"
-            )
+            throw SdkValidationError(field: "payment_schedule", code: "required", message: "Validation failed for 'payment_schedule': value is required")
         }
         guard container.contains(.transactionType) else {
-            throw SdkValidationError(
-                field: "transaction_type",
-                code: "required",
-                message: "Validation failed for 'transaction_type': value is required"
-            )
+            throw SdkValidationError(field: "transaction_type", code: "required", message: "Validation failed for 'transaction_type': value is required")
         }
-        paymentSchedule = try container.sdkDecodeRequired(.paymentSchedule)
-        transactionType = try container.sdkDecodeRequired(.transactionType)
-        defaultFor = try container.sdkDecodeIfPresent(.defaultFor)
-        intervalDescription = try container.sdkDecodeIfPresent(.intervalDescription)
-        if let value = intervalDescription {
+        self.paymentSchedule = try container.sdkDecodeRequired(.paymentSchedule)
+        self.transactionType = try container.sdkDecodeRequired(.transactionType)
+        self.defaultFor = try container.sdkDecodeIfPresent(.defaultFor)
+        self.intervalDescription = try container.sdkDecodeIfPresent(.intervalDescription)
+        if let value = self.intervalDescription {
             try validateLength("interval_description", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension MandateAcssDebit {
-    init(
-        paymentSchedule: MandateAcssDebitPaymentSchedule,
-        transactionType: MandateAcssDebitTransactionType,
-        defaultFor: [MandateAcssDebitDefaultForItem]? = nil,
-        intervalDescription: String? = nil
-    ) throws {
+extension MandateAcssDebit {
+    public init(paymentSchedule: MandateAcssDebitPaymentSchedule, transactionType: MandateAcssDebitTransactionType, defaultFor: [MandateAcssDebitDefaultForItem]? = nil, intervalDescription: String? = nil) throws {
         (self.paymentSchedule, self.transactionType) = (paymentSchedule, transactionType)
         (self.defaultFor, self.intervalDescription) = (defaultFor, intervalDescription)
         if let value = self.intervalDescription {
@@ -71,13 +56,13 @@ public extension MandateAcssDebit {
 
 /// Typed representation of the `MandateAmazonPay` API schema.
 public struct MandateAmazonPay: Codable {
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension MandateAmazonPay {
-    init() {}
+extension MandateAmazonPay {
+    public init() {
+    }
 }
 
 /// Typed representation of the `MandateAuBecsDebit` API schema.
@@ -90,30 +75,24 @@ public struct MandateAuBecsDebit: Codable {
         case url
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension MandateAuBecsDebit {
-    init(from decoder: Decoder) throws {
+extension MandateAuBecsDebit {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.url) else {
-            throw SdkValidationError(
-                field: "url",
-                code: "required",
-                message: "Validation failed for 'url': value is required"
-            )
+            throw SdkValidationError(field: "url", code: "required", message: "Validation failed for 'url': value is required")
         }
-        url = try container.sdkDecodeRequired(.url)
-        try validateLength("url", url, min: nil, max: 5000)
+        self.url = try container.sdkDecodeRequired(.url)
+            try validateLength("url", self.url, min: nil, max: 5000)
     }
 }
 
-public extension MandateAuBecsDebit {
-    init(url: String) throws {
+extension MandateAuBecsDebit {
+    public init(url: String) throws {
         self.url = url
-        try validateLength("url", self.url, min: nil, max: 5000)
+            try validateLength("url", self.url, min: nil, max: 5000)
     }
 }
 
@@ -141,66 +120,45 @@ public struct MandateBacsDebit: Codable {
         case serviceUserNumber = "service_user_number"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension MandateBacsDebit {
-    init(from decoder: Decoder) throws {
+extension MandateBacsDebit {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.networkStatus) else {
-            throw SdkValidationError(
-                field: "network_status",
-                code: "required",
-                message: "Validation failed for 'network_status': value is required"
-            )
+            throw SdkValidationError(field: "network_status", code: "required", message: "Validation failed for 'network_status': value is required")
         }
         guard container.contains(.reference) else {
-            throw SdkValidationError(
-                field: "reference",
-                code: "required",
-                message: "Validation failed for 'reference': value is required"
-            )
+            throw SdkValidationError(field: "reference", code: "required", message: "Validation failed for 'reference': value is required")
         }
         guard container.contains(.url) else {
-            throw SdkValidationError(
-                field: "url",
-                code: "required",
-                message: "Validation failed for 'url': value is required"
-            )
+            throw SdkValidationError(field: "url", code: "required", message: "Validation failed for 'url': value is required")
         }
-        networkStatus = try container.sdkDecodeRequired(.networkStatus)
-        reference = try container.sdkDecodeRequired(.reference)
-        url = try container.sdkDecodeRequired(.url)
-        displayName = try container.sdkDecodeIfPresent(.displayName)
-        revocationReason = try container.sdkDecodeIfPresent(.revocationReason)
-        serviceUserNumber = try container.sdkDecodeIfPresent(.serviceUserNumber)
-        try validateLength("reference", reference, min: nil, max: 5000)
-        try validateLength("url", url, min: nil, max: 5000)
-        if let value = displayName {
+        self.networkStatus = try container.sdkDecodeRequired(.networkStatus)
+        self.reference = try container.sdkDecodeRequired(.reference)
+        self.url = try container.sdkDecodeRequired(.url)
+        self.displayName = try container.sdkDecodeIfPresent(.displayName)
+        self.revocationReason = try container.sdkDecodeIfPresent(.revocationReason)
+        self.serviceUserNumber = try container.sdkDecodeIfPresent(.serviceUserNumber)
+            try validateLength("reference", self.reference, min: nil, max: 5000)
+            try validateLength("url", self.url, min: nil, max: 5000)
+        if let value = self.displayName {
             try validateLength("display_name", value, min: nil, max: 5000)
         }
-        if let value = serviceUserNumber {
+        if let value = self.serviceUserNumber {
             try validateLength("service_user_number", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension MandateBacsDebit {
-    init(
-        networkStatus: MandateBacsDebitNetworkStatus,
-        reference: String,
-        url: String,
-        displayName: String? = nil,
-        revocationReason: MandateBacsDebitRevocationReason? = nil,
-        serviceUserNumber: String? = nil
-    ) throws {
+extension MandateBacsDebit {
+    public init(networkStatus: MandateBacsDebitNetworkStatus, reference: String, url: String, displayName: String? = nil, revocationReason: MandateBacsDebitRevocationReason? = nil, serviceUserNumber: String? = nil) throws {
         (self.networkStatus, self.reference) = (networkStatus, reference)
         (self.url, self.displayName) = (url, displayName)
         (self.revocationReason, self.serviceUserNumber) = (revocationReason, serviceUserNumber)
-        try validateLength("reference", self.reference, min: nil, max: 5000)
-        try validateLength("url", self.url, min: nil, max: 5000)
+            try validateLength("reference", self.reference, min: nil, max: 5000)
+            try validateLength("url", self.url, min: nil, max: 5000)
         if let value = self.displayName {
             try validateLength("display_name", value, min: nil, max: 5000)
         }
@@ -212,57 +170,57 @@ public extension MandateBacsDebit {
 
 /// Typed representation of the `MandateCashapp` API schema.
 public struct MandateCashapp: Codable {
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension MandateCashapp {
-    init() {}
+extension MandateCashapp {
+    public init() {
+    }
 }
 
 /// Typed representation of the `MandateKakaoPay` API schema.
 public struct MandateKakaoPay: Codable {
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension MandateKakaoPay {
-    init() {}
+extension MandateKakaoPay {
+    public init() {
+    }
 }
 
 /// Typed representation of the `MandateKlarna` API schema.
 public struct MandateKlarna: Codable {
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension MandateKlarna {
-    init() {}
+extension MandateKlarna {
+    public init() {
+    }
 }
 
 /// Typed representation of the `MandateKrCard` API schema.
 public struct MandateKrCard: Codable {
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension MandateKrCard {
-    init() {}
+extension MandateKrCard {
+    public init() {
+    }
 }
 
 /// Typed representation of the `MandateLink` API schema.
 public struct MandateLink: Codable {
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension MandateLink {
-    init() {}
+extension MandateLink {
+    public init() {
+    }
 }
 
 /// Typed representation of the `MandateMultiUse` API schema.
@@ -278,20 +236,20 @@ public struct MandateMultiUse: Codable {
     }
 
     init() {
-        (amount, currency) = (nil, nil)
+        (self.amount, self.currency) = (nil, nil)
     }
 }
 
-public extension MandateMultiUse {
-    init(from decoder: Decoder) throws {
+extension MandateMultiUse {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        amount = try container.sdkDecodeIfPresent(.amount)
-        currency = try container.sdkDecodeIfPresent(.currency)
+        self.amount = try container.sdkDecodeIfPresent(.amount)
+        self.currency = try container.sdkDecodeIfPresent(.currency)
     }
 }
 
-public extension MandateMultiUse {
-    init(amount: Int? = nil, currency: String? = nil) {
+extension MandateMultiUse {
+    public init(amount: Int? = nil, currency: String? = nil) {
         self.init()
         (self.amount, self.currency) = (amount, currency)
     }
@@ -299,24 +257,24 @@ public extension MandateMultiUse {
 
 /// Typed representation of the `MandateNaverPay` API schema.
 public struct MandateNaverPay: Codable {
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension MandateNaverPay {
-    init() {}
+extension MandateNaverPay {
+    public init() {
+    }
 }
 
 /// Typed representation of the `MandateNzBankAccount` API schema.
 public struct MandateNzBankAccount: Codable {
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension MandateNzBankAccount {
-    init() {}
+extension MandateNzBankAccount {
+    public init() {
+    }
 }
 
 /// Typed representation of the `MandateOptionsPayto` API schema.
@@ -349,40 +307,32 @@ public struct MandateOptionsPayto: Codable {
     }
 
     init() {
-        (amount, amountType, endDate, paymentSchedule, paymentsPerPeriod) = (nil, nil, nil, nil, nil)
-        (purpose, startDate) = (nil, nil)
+        (self.amount, self.amountType, self.endDate, self.paymentSchedule, self.paymentsPerPeriod) = (nil, nil, nil, nil, nil)
+        (self.purpose, self.startDate) = (nil, nil)
     }
 }
 
-public extension MandateOptionsPayto {
-    init(from decoder: Decoder) throws {
+extension MandateOptionsPayto {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        amount = try container.sdkDecodeIfPresent(.amount)
-        amountType = try container.sdkDecodeIfPresent(.amountType)
-        endDate = try container.sdkDecodeIfPresent(.endDate)
-        paymentSchedule = try container.sdkDecodeIfPresent(.paymentSchedule)
-        paymentsPerPeriod = try container.sdkDecodeIfPresent(.paymentsPerPeriod)
-        purpose = try container.sdkDecodeIfPresent(.purpose)
-        startDate = try container.sdkDecodeIfPresent(.startDate)
-        if let value = endDate {
+        self.amount = try container.sdkDecodeIfPresent(.amount)
+        self.amountType = try container.sdkDecodeIfPresent(.amountType)
+        self.endDate = try container.sdkDecodeIfPresent(.endDate)
+        self.paymentSchedule = try container.sdkDecodeIfPresent(.paymentSchedule)
+        self.paymentsPerPeriod = try container.sdkDecodeIfPresent(.paymentsPerPeriod)
+        self.purpose = try container.sdkDecodeIfPresent(.purpose)
+        self.startDate = try container.sdkDecodeIfPresent(.startDate)
+        if let value = self.endDate {
             try validateLength("end_date", value, min: nil, max: 5000)
         }
-        if let value = startDate {
+        if let value = self.startDate {
             try validateLength("start_date", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension MandateOptionsPayto {
-    init(
-        amount: Int? = nil,
-        amountType: MandateOptionsPaytoAmountType? = nil,
-        endDate: String? = nil,
-        paymentSchedule: MandateOptionsPaytoPaymentSchedule? = nil,
-        paymentsPerPeriod: Int? = nil,
-        purpose: MandateOptionsPaytoPurpose? = nil,
-        startDate: String? = nil
-    ) throws {
+extension MandateOptionsPayto {
+    public init(amount: Int? = nil, amountType: MandateOptionsPaytoAmountType? = nil, endDate: String? = nil, paymentSchedule: MandateOptionsPaytoPaymentSchedule? = nil, paymentsPerPeriod: Int? = nil, purpose: MandateOptionsPaytoPurpose? = nil, startDate: String? = nil) throws {
         self.init()
         (self.amount, self.amountType) = (amount, amountType)
         (self.endDate, self.paymentSchedule) = (endDate, paymentSchedule)
@@ -417,30 +367,25 @@ public struct MandateOptionsUpi: Codable {
     }
 
     init() {
-        (amount, amountType, description, endDate) = (nil, nil, nil, nil)
+        (self.amount, self.amountType, self.description, self.endDate) = (nil, nil, nil, nil)
     }
 }
 
-public extension MandateOptionsUpi {
-    init(from decoder: Decoder) throws {
+extension MandateOptionsUpi {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        amount = try container.sdkDecodeIfPresent(.amount)
-        amountType = try container.sdkDecodeIfPresent(.amountType)
-        description = try container.sdkDecodeIfPresent(.description)
-        endDate = try container.sdkDecodeIfPresent(.endDate)
-        if let value = description {
+        self.amount = try container.sdkDecodeIfPresent(.amount)
+        self.amountType = try container.sdkDecodeIfPresent(.amountType)
+        self.description = try container.sdkDecodeIfPresent(.description)
+        self.endDate = try container.sdkDecodeIfPresent(.endDate)
+        if let value = self.description {
             try validateLength("description", value, min: nil, max: 20)
         }
     }
 }
 
-public extension MandateOptionsUpi {
-    init(
-        amount: Int? = nil,
-        amountType: MandateOptionsUpiAmountType? = nil,
-        description: String? = nil,
-        endDate: Int? = nil
-    ) throws {
+extension MandateOptionsUpi {
+    public init(amount: Int? = nil, amountType: MandateOptionsUpiAmountType? = nil, description: String? = nil, endDate: Int? = nil) throws {
         self.init()
         (self.amount, self.amountType) = (amount, amountType)
         (self.description, self.endDate) = (description, endDate)
@@ -520,70 +465,42 @@ public struct MandatePaymentMethodDetails: Codable {
         case usBankAccount = "us_bank_account"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension MandatePaymentMethodDetails {
-    init(from decoder: Decoder) throws {
+extension MandatePaymentMethodDetails {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.type) else {
-            throw SdkValidationError(
-                field: "type",
-                code: "required",
-                message: "Validation failed for 'type': value is required"
-            )
+            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
         }
-        type = try container.sdkDecodeRequired(.type)
-        acssDebit = try container.sdkDecodeIfPresent(.acssDebit)
-        amazonPay = try container.sdkDecodeIfPresent(.amazonPay)
-        auBecsDebit = try container.sdkDecodeIfPresent(.auBecsDebit)
-        bacsDebit = try container.sdkDecodeIfPresent(.bacsDebit)
-        card = try container.sdkDecodeIfPresent(.card)
-        cashapp = try container.sdkDecodeIfPresent(.cashapp)
-        kakaoPay = try container.sdkDecodeIfPresent(.kakaoPay)
-        klarna = try container.sdkDecodeIfPresent(.klarna)
-        krCard = try container.sdkDecodeIfPresent(.krCard)
-        link = try container.sdkDecodeIfPresent(.link)
-        naverPay = try container.sdkDecodeIfPresent(.naverPay)
-        nzBankAccount = try container.sdkDecodeIfPresent(.nzBankAccount)
-        paypal = try container.sdkDecodeIfPresent(.paypal)
-        payto = try container.sdkDecodeIfPresent(.payto)
-        pix = try container.sdkDecodeIfPresent(.pix)
-        revolutPay = try container.sdkDecodeIfPresent(.revolutPay)
-        sepaDebit = try container.sdkDecodeIfPresent(.sepaDebit)
-        twint = try container.sdkDecodeIfPresent(.twint)
-        upi = try container.sdkDecodeIfPresent(.upi)
-        usBankAccount = try container.sdkDecodeIfPresent(.usBankAccount)
-        try validateLength("type", type, min: nil, max: 5000)
+        self.type = try container.sdkDecodeRequired(.type)
+        self.acssDebit = try container.sdkDecodeIfPresent(.acssDebit)
+        self.amazonPay = try container.sdkDecodeIfPresent(.amazonPay)
+        self.auBecsDebit = try container.sdkDecodeIfPresent(.auBecsDebit)
+        self.bacsDebit = try container.sdkDecodeIfPresent(.bacsDebit)
+        self.card = try container.sdkDecodeIfPresent(.card)
+        self.cashapp = try container.sdkDecodeIfPresent(.cashapp)
+        self.kakaoPay = try container.sdkDecodeIfPresent(.kakaoPay)
+        self.klarna = try container.sdkDecodeIfPresent(.klarna)
+        self.krCard = try container.sdkDecodeIfPresent(.krCard)
+        self.link = try container.sdkDecodeIfPresent(.link)
+        self.naverPay = try container.sdkDecodeIfPresent(.naverPay)
+        self.nzBankAccount = try container.sdkDecodeIfPresent(.nzBankAccount)
+        self.paypal = try container.sdkDecodeIfPresent(.paypal)
+        self.payto = try container.sdkDecodeIfPresent(.payto)
+        self.pix = try container.sdkDecodeIfPresent(.pix)
+        self.revolutPay = try container.sdkDecodeIfPresent(.revolutPay)
+        self.sepaDebit = try container.sdkDecodeIfPresent(.sepaDebit)
+        self.twint = try container.sdkDecodeIfPresent(.twint)
+        self.upi = try container.sdkDecodeIfPresent(.upi)
+        self.usBankAccount = try container.sdkDecodeIfPresent(.usBankAccount)
+            try validateLength("type", self.type, min: nil, max: 5000)
     }
 }
 
-public extension MandatePaymentMethodDetails {
-    init(
-        type: String,
-        acssDebit: MandateAcssDebit? = nil,
-        amazonPay: MandateAmazonPay? = nil,
-        auBecsDebit: MandateAuBecsDebit? = nil,
-        bacsDebit: MandateBacsDebit? = nil,
-        card: CardMandatePaymentMethodDetails? = nil,
-        cashapp: MandateCashapp? = nil,
-        kakaoPay: MandateKakaoPay? = nil,
-        klarna: MandateKlarna? = nil,
-        krCard: MandateKrCard? = nil,
-        link: MandateLink? = nil,
-        naverPay: MandateNaverPay? = nil,
-        nzBankAccount: MandateNzBankAccount? = nil,
-        paypal: MandatePaypal? = nil,
-        payto: MandatePayto? = nil,
-        pix: MandatePix? = nil,
-        revolutPay: MandateRevolutPay? = nil,
-        sepaDebit: MandateSepaDebit? = nil,
-        twint: MandateTwint? = nil,
-        upi: MandateUpi? = nil,
-        usBankAccount: MandateUsBankAccount? = nil
-    ) throws {
+extension MandatePaymentMethodDetails {
+    public init(type: String, acssDebit: MandateAcssDebit? = nil, amazonPay: MandateAmazonPay? = nil, auBecsDebit: MandateAuBecsDebit? = nil, bacsDebit: MandateBacsDebit? = nil, card: CardMandatePaymentMethodDetails? = nil, cashapp: MandateCashapp? = nil, kakaoPay: MandateKakaoPay? = nil, klarna: MandateKlarna? = nil, krCard: MandateKrCard? = nil, link: MandateLink? = nil, naverPay: MandateNaverPay? = nil, nzBankAccount: MandateNzBankAccount? = nil, paypal: MandatePaypal? = nil, payto: MandatePayto? = nil, pix: MandatePix? = nil, revolutPay: MandateRevolutPay? = nil, sepaDebit: MandateSepaDebit? = nil, twint: MandateTwint? = nil, upi: MandateUpi? = nil, usBankAccount: MandateUsBankAccount? = nil) throws {
         (self.type, self.acssDebit) = (type, acssDebit)
         (self.amazonPay, self.auBecsDebit) = (amazonPay, auBecsDebit)
         (self.bacsDebit, self.card) = (bacsDebit, card)
@@ -595,7 +512,7 @@ public extension MandatePaymentMethodDetails {
         (self.revolutPay, self.sepaDebit) = (revolutPay, sepaDebit)
         (self.twint, self.upi) = (twint, upi)
         self.usBankAccount = usBankAccount
-        try validateLength("type", self.type, min: nil, max: 5000)
+            try validateLength("type", self.type, min: nil, max: 5000)
     }
 }
 
@@ -613,6 +530,6 @@ public struct MandatePaypal: Codable {
     }
 
     init() {
-        (billingAgreementId, payerId) = (nil, nil)
+        (self.billingAgreementId, self.payerId) = (nil, nil)
     }
 }

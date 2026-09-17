@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1PlansMethods {
-    struct PostPlansOptions: Codable {
+extension V1PlansMethods {
+    public struct PostPlansOptions: Codable {
         public var currency: String
         public var interval: PostPlansRequestBodyInterval
         public var active: Bool?
@@ -33,11 +33,9 @@ public extension V1PlansMethods {
         }
     }
 
-    /// Creates a plan that defines recurring pricing for a product. Supply `currency` and `interval` at minimum, and
-    /// use `billing_scheme`, tiers, or product details to define how recurring charges are calculated.
+    /// Creates a plan that defines recurring pricing for a product. Supply `currency` and `interval` at minimum, and use `billing_scheme`, tiers, or product details to define how recurring charges are calculated.
     ///
-    /// You can now model subscriptions more flexibly using the Prices API. It replaces the Plans API and is backwards
-    /// compatible to simplify your migration.
+    /// You can now model subscriptions more flexibly using the Prices API. It replaces the Plans API and is backwards compatible to simplify your migration.
     ///
     /// - Parameters:
     /// - currency: Three-letter [ISO currency
@@ -90,7 +88,7 @@ public extension V1PlansMethods {
     ///   Can be either `metered` or `licensed`. `licensed` automatically bills the
     ///   `quantity` set when adding it to a subscription. `metered` aggregates the
     ///   total usage based on usage records. Defaults to `licensed`.
-    static func postPlans(config: ClientConfig, options: PostPlansOptions) async throws -> Plan {
+    public static func postPlans(config: ClientConfig, options: PostPlansOptions) async throws -> Plan {
         if let id = options.id {
             try validateLength("id", id, max: 5000)
         }
@@ -105,14 +103,6 @@ public extension V1PlansMethods {
 
         let requestBody = PostPlansRequestBody(options: options)
 
-        return try await (sdkRequest(
-            "POST",
-            "/v1/plans",
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostPlans"
-        )).data
+        return try (await sdkRequest("POST", "/v1/plans", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostPlans")).data
     }
 }

@@ -6,26 +6,18 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1TokensMethods {
-    /// Retrieves the token identified by `token`. Use `expand` to request expanded response fields when the default
-    /// token representation is insufficient.
+extension V1TokensMethods {
+    /// Retrieves the token identified by `token`. Use `expand` to request expanded response fields when the default token representation is insufficient.
     ///
     /// Retrieves the token with the given ID.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    static func getTokensToken(config: ClientConfig, token: String, expand: [String]?) async throws -> Token {
+    public static func getTokensToken(config: ClientConfig, token: String, expand: [String]?) async throws -> Token {
         try validateLength("token", token, max: 5000)
 
-        return try await (sdkRequest(
-            "GET",
-            ["/v1/tokens/", sdkEncodePathSegment(sdkWireString(token))].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .json,
-            operationId: "GetTokensToken"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/tokens/", sdkEncodePathSegment(sdkWireString(token))].joined(), config: config, query: [
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .json, operationId: "GetTokensToken")).data
     }
 }

@@ -6,30 +6,18 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1IdentityVerificationReportsMethods {
-    /// Retrieves one verification report by its identifier. Use `expand` when you need selected fields included
-    /// directly in the response instead of returned as references.
+extension V1IdentityVerificationReportsMethods {
+    /// Retrieves one verification report by its identifier. Use `expand` when you need selected fields included directly in the response instead of returned as references.
     ///
     /// Retrieves an existing VerificationReport
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    static func getIdentityVerificationReportsReport(
-        config: ClientConfig,
-        report: String,
-        expand: [String]?
-    ) async throws -> IdentityVerificationReport {
+    public static func getIdentityVerificationReportsReport(config: ClientConfig, report: String, expand: [String]?) async throws -> IdentityVerificationReport {
         try validateLength("report", report, max: 5000)
 
-        return try await (sdkRequest(
-            "GET",
-            ["/v1/identity/verification_reports/", sdkEncodePathSegment(sdkWireString(report))].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .json,
-            operationId: "GetIdentityVerificationReportsReport"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/identity/verification_reports/", sdkEncodePathSegment(sdkWireString(report))].joined(), config: config, query: [
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .json, operationId: "GetIdentityVerificationReportsReport")).data
     }
 }

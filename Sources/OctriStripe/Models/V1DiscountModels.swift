@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1Discount domain models
+// V1Discount domain models
 /// Typed representation of the `DiscountSource` API schema.
 public struct DiscountSource: Codable {
     /// The source type of the discount.
@@ -16,28 +16,22 @@ public struct DiscountSource: Codable {
         case coupon
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension DiscountSource {
-    init(from decoder: Decoder) throws {
+extension DiscountSource {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.type) else {
-            throw SdkValidationError(
-                field: "type",
-                code: "required",
-                message: "Validation failed for 'type': value is required"
-            )
+            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
         }
-        type = try container.sdkDecodeRequired(.type)
-        coupon = try container.sdkDecodeIfPresent(.coupon)
+        self.type = try container.sdkDecodeRequired(.type)
+        self.coupon = try container.sdkDecodeIfPresent(.coupon)
     }
 }
 
-public extension DiscountSource {
-    init(type: DiscountSourceType, coupon: DiscountSourceCoupon? = nil) {
+extension DiscountSource {
+    public init(type: DiscountSourceType, coupon: DiscountSourceCoupon? = nil) {
         (self.type, self.coupon) = (type, coupon)
     }
 }
@@ -48,31 +42,21 @@ public enum DiscountSourceCoupon {
 }
 
 extension DiscountSourceCoupon: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for DiscountSourceCoupon"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for DiscountSourceCoupon")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(Coupon.self) {
-            return .coupon(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(Coupon.self) { return .coupon(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -82,21 +66,19 @@ extension DiscountSourceCoupon: Codable {
         case let .coupon(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// The source type of the discount.
 public struct DiscountSourceType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let coupon = DiscountSourceType(rawValue: "coupon")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

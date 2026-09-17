@@ -6,60 +6,37 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1BillingMetersMethods {
-    /// Retrieves a billing meter by its unique identifier. Use `id` to select the meter and `expand` to include
-    /// expanded response fields. The response contains the meter's event configuration, aggregation settings, lifecycle
-    /// status, and timestamps.
+extension V1BillingMetersMethods {
+    /// Retrieves a billing meter by its unique identifier. Use `id` to select the meter and `expand` to include expanded response fields. The response contains the meter's event configuration, aggregation settings, lifecycle status, and timestamps.
     ///
     /// Retrieves a billing meter given an ID.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    static func getBillingMetersId(config: ClientConfig, id: String, expand: [String]?) async throws -> BillingMeter {
+    public static func getBillingMetersId(config: ClientConfig, id: String, expand: [String]?) async throws -> BillingMeter {
         try validateLength("id", id, max: 5000)
 
-        return try await (sdkRequest(
-            "GET",
-            ["/v1/billing/meters/", sdkEncodePathSegment(sdkWireString(id))].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .json,
-            operationId: "GetBillingMetersId"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/billing/meters/", sdkEncodePathSegment(sdkWireString(id))].joined(), config: config, query: [
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .json, operationId: "GetBillingMetersId")).data
     }
 
-    /// Updates an existing billing meter. Supply `display_name` to change the meter name and `expand` to request
-    /// expanded response fields; the meter continues to define how usage events are aggregated for billing.
+    /// Updates an existing billing meter. Supply `display_name` to change the meter name and `expand` to request expanded response fields; the meter continues to define how usage events are aggregated for billing.
     ///
     /// Updates a billing meter.
     ///
     /// - Parameters:
     /// - displayName: The meter’s name. Not visible to the customer.
     /// - expand: Specifies which fields in the response should be expanded.
-    static func postBillingMetersId(
-        config: ClientConfig,
-        id: String,
-        displayName: String?,
-        expand: [String]?
-    ) async throws -> BillingMeter {
+    public static func postBillingMetersId(config: ClientConfig, id: String, displayName: String?, expand: [String]?) async throws -> BillingMeter {
         try validateLength("id", id, max: 5000)
 
-        if let displayName {
+        if let displayName = displayName {
             try validateLength("display_name", displayName, max: 250)
         }
 
         let requestBody = PostBillingMetersIdRequestBody(displayName: displayName, expand: expand)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/billing/meters/", sdkEncodePathSegment(sdkWireString(id))].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostBillingMetersId"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/billing/meters/", sdkEncodePathSegment(sdkWireString(id))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostBillingMetersId")).data
     }
 }

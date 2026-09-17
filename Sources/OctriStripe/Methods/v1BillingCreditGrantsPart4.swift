@@ -6,38 +6,23 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1BillingCreditGrantsMethods {
-    /// Retrieves a specific credit grant allocated to a customer or customer account. Provide the grant `id` and
-    /// optionally request expanded response fields with `expand`. The response includes the grant's allocation,
-    /// applicability configuration, timing, priority, and metadata.
+extension V1BillingCreditGrantsMethods {
+    /// Retrieves a specific credit grant allocated to a customer or customer account. Provide the grant `id` and optionally request expanded response fields with `expand`. The response includes the grant's allocation, applicability configuration, timing, priority, and metadata.
     ///
     /// Retrieves a credit grant.
     ///
     /// - Parameters:
     /// - id: Unique identifier for the object.
     /// - expand: Specifies which fields in the response should be expanded.
-    static func getBillingCreditGrantsId(
-        config: ClientConfig,
-        id: String,
-        expand: [String]?
-    ) async throws -> BillingCreditGrant {
+    public static func getBillingCreditGrantsId(config: ClientConfig, id: String, expand: [String]?) async throws -> BillingCreditGrant {
         try validateLength("id", id, max: 5000)
 
-        return try await (sdkRequest(
-            "GET",
-            ["/v1/billing/credit_grants/", sdkEncodePathSegment(sdkWireString(id))].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .json,
-            operationId: "GetBillingCreditGrantsId"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/billing/credit_grants/", sdkEncodePathSegment(sdkWireString(id))].joined(), config: config, query: [
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .json, operationId: "GetBillingCreditGrantsId")).data
     }
 
-    /// Updates the expiration time or metadata of an existing credit grant. Provide the grant `id` and send only the
-    /// properties you want to change; set `expires_at` to an empty string to make the billing credits never expire. The
-    /// response contains the updated credit grant.
+    /// Updates the expiration time or metadata of an existing credit grant. Provide the grant `id` and send only the properties you want to change; set `expires_at` to an empty string to make the billing credits never expire. The response contains the updated credit grant.
     ///
     /// Updates a credit grant.
     ///
@@ -49,25 +34,11 @@ public extension V1BillingCreditGrantsMethods {
     /// - metadata: Set of key-value pairs you can attach to an object. You can use
     ///   this to store additional information about the object (for example, cost
     ///   basis) in a structured format.
-    static func postBillingCreditGrantsId(
-        config: ClientConfig,
-        id: String,
-        expand: [String]?,
-        expiresAt: PostBillingCreditGrantsIdRequestBodyExpiresAt?,
-        metadata: [String: String]?
-    ) async throws -> BillingCreditGrant {
+    public static func postBillingCreditGrantsId(config: ClientConfig, id: String, expand: [String]?, expiresAt: PostBillingCreditGrantsIdRequestBodyExpiresAt?, metadata: [String: String]?) async throws -> BillingCreditGrant {
         try validateLength("id", id, max: 5000)
 
         let requestBody = PostBillingCreditGrantsIdRequestBody(expand: expand, expiresAt: expiresAt, metadata: metadata)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/billing/credit_grants/", sdkEncodePathSegment(sdkWireString(id))].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostBillingCreditGrantsId"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/billing/credit_grants/", sdkEncodePathSegment(sdkWireString(id))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostBillingCreditGrantsId")).data
     }
 }

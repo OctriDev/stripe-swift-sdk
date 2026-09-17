@@ -6,83 +6,51 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public struct PostReportingReportRunsRequestBodyParametersReportingCategory: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct PostReportingReportRunsRequestBodyParametersReportingCategory: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let advance = PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "advance")
-    public static let advanceFunding =
-        PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "advance_funding")
-    public static let anticipationRepayment =
-        PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "anticipation_repayment")
+    public static let advanceFunding = PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "advance_funding")
+    public static let anticipationRepayment = PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "anticipation_repayment")
     public static let charge = PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "charge")
-    public static let chargeFailure =
-        PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "charge_failure")
-    public static let climateOrderPurchase =
-        PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "climate_order_purchase")
-    public static let climateOrderRefund =
-        PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "climate_order_refund")
-    public static let connectCollectionTransfer =
-        PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "connect_collection_transfer")
-    public static let connectReservedFunds =
-        PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "connect_reserved_funds")
-    public static let contribution =
-        PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "contribution")
+    public static let chargeFailure = PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "charge_failure")
+    public static let climateOrderPurchase = PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "climate_order_purchase")
+    public static let climateOrderRefund = PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "climate_order_refund")
+    public static let connectCollectionTransfer = PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "connect_collection_transfer")
+    public static let connectReservedFunds = PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "connect_reserved_funds")
+    public static let contribution = PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "contribution")
     public static let dispute = PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "dispute")
-    public static let disputeReversal =
-        PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "dispute_reversal")
+    public static let disputeReversal = PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "dispute_reversal")
     public static let fee = PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "fee")
-    public static let financingPaydown =
-        PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "financing_paydown")
-    public static let financingPaydownReversal =
-        PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "financing_paydown_reversal")
-    public static let financingPayout =
-        PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "financing_payout")
-    public static let financingPayoutReversal =
-        PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "financing_payout_reversal")
-    public static let issuingAuthorizationHold =
-        PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "issuing_authorization_hold")
-    public static let issuingAuthorizationRelease =
-        PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "issuing_authorization_release")
-    public static let issuingDispute =
-        PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "issuing_dispute")
-    public static let issuingTransaction =
-        PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "issuing_transaction")
-    public static let networkCost =
-        PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "network_cost")
-    public static let otherAdjustment =
-        PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "other_adjustment")
-    public static let partialCaptureReversal =
-        PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "partial_capture_reversal")
+    public static let financingPaydown = PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "financing_paydown")
+    public static let financingPaydownReversal = PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "financing_paydown_reversal")
+    public static let financingPayout = PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "financing_payout")
+    public static let financingPayoutReversal = PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "financing_payout_reversal")
+    public static let issuingAuthorizationHold = PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "issuing_authorization_hold")
+    public static let issuingAuthorizationRelease = PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "issuing_authorization_release")
+    public static let issuingDispute = PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "issuing_dispute")
+    public static let issuingTransaction = PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "issuing_transaction")
+    public static let networkCost = PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "network_cost")
+    public static let otherAdjustment = PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "other_adjustment")
+    public static let partialCaptureReversal = PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "partial_capture_reversal")
     public static let payout = PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "payout")
-    public static let payoutReversal =
-        PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "payout_reversal")
-    public static let platformEarning =
-        PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "platform_earning")
-    public static let platformEarningRefund =
-        PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "platform_earning_refund")
+    public static let payoutReversal = PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "payout_reversal")
+    public static let platformEarning = PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "platform_earning")
+    public static let platformEarningRefund = PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "platform_earning_refund")
     public static let refund = PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "refund")
-    public static let refundFailure =
-        PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "refund_failure")
-    public static let riskReservedFunds =
-        PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "risk_reserved_funds")
+    public static let refundFailure = PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "refund_failure")
+    public static let riskReservedFunds = PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "risk_reserved_funds")
     public static let tax = PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "tax")
     public static let topup = PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "topup")
-    public static let topupReversal =
-        PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "topup_reversal")
+    public static let topupReversal = PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "topup_reversal")
     public static let transfer = PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "transfer")
-    public static let transferReversal =
-        PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "transfer_reversal")
-    public static let unreconciledCustomerFunds =
-        PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "unreconciled_customer_funds")
+    public static let transferReversal = PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "transfer_reversal")
+    public static let unreconciledCustomerFunds = PostReportingReportRunsRequestBodyParametersReportingCategory(rawValue: "unreconciled_customer_funds")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -91,17 +59,14 @@ public struct PostReportingReportRunsRequestBodyParametersReportingCategory: Raw
     }
 }
 
-public struct PostReportingReportRunsRequestBodyParametersTimezone: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostReportingReportRunsRequestBodyParametersTimezone: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
+    public init(rawValue: String) { self.rawValue = rawValue }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -129,16 +94,14 @@ public extension PostReportingReportRunsRequestBodyParametersTimezone {
     static let africaCeuta = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Africa/Ceuta")
     static let africaConakry = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Africa/Conakry")
     static let africaDakar = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Africa/Dakar")
-    static let africaDarEsSalaam =
-        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Africa/Dar_es_Salaam")
+    static let africaDarEsSalaam = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Africa/Dar_es_Salaam")
     static let africaDjibouti = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Africa/Djibouti")
     static let africaDouala = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Africa/Douala")
     static let africaElAaiun = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Africa/El_Aaiun")
     static let africaFreetown = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Africa/Freetown")
     static let africaGaborone = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Africa/Gaborone")
     static let africaHarare = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Africa/Harare")
-    static let africaJohannesburg =
-        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Africa/Johannesburg")
+    static let africaJohannesburg = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Africa/Johannesburg")
     static let africaJuba = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Africa/Juba")
     static let africaKampala = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Africa/Kampala")
     static let africaKhartoum = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Africa/Khartoum")
@@ -172,39 +135,25 @@ public extension PostReportingReportRunsRequestBodyParametersTimezone {
     static let americaAnguilla = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Anguilla")
     static let americaAntigua = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Antigua")
     static let americaAraguaina = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Araguaina")
-    static let americaArgentinaBuenosAires =
-        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Argentina/Buenos_Aires")
-    static let americaArgentinaCatamarca =
-        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Argentina/Catamarca")
-    static let americaArgentinaComodRivadavia =
-        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Argentina/ComodRivadavia")
-    static let americaArgentinaCordoba =
-        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Argentina/Cordoba")
-    static let americaArgentinaJujuy =
-        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Argentina/Jujuy")
-    static let americaArgentinaLaRioja =
-        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Argentina/La_Rioja")
-    static let americaArgentinaMendoza =
-        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Argentina/Mendoza")
-    static let americaArgentinaRioGallegos =
-        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Argentina/Rio_Gallegos")
-    static let americaArgentinaSalta =
-        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Argentina/Salta")
-    static let americaArgentinaSanJuan =
-        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Argentina/San_Juan")
-    static let americaArgentinaSanLuis =
-        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Argentina/San_Luis")
-    static let americaArgentinaTucuman =
-        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Argentina/Tucuman")
-    static let americaArgentinaUshuaia =
-        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Argentina/Ushuaia")
+    static let americaArgentinaBuenosAires = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Argentina/Buenos_Aires")
+    static let americaArgentinaCatamarca = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Argentina/Catamarca")
+    static let americaArgentinaComodRivadavia = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Argentina/ComodRivadavia")
+    static let americaArgentinaCordoba = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Argentina/Cordoba")
+    static let americaArgentinaJujuy = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Argentina/Jujuy")
+    static let americaArgentinaLaRioja = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Argentina/La_Rioja")
+    static let americaArgentinaMendoza = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Argentina/Mendoza")
+    static let americaArgentinaRioGallegos = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Argentina/Rio_Gallegos")
+    static let americaArgentinaSalta = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Argentina/Salta")
+    static let americaArgentinaSanJuan = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Argentina/San_Juan")
+    static let americaArgentinaSanLuis = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Argentina/San_Luis")
+    static let americaArgentinaTucuman = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Argentina/Tucuman")
+    static let americaArgentinaUshuaia = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Argentina/Ushuaia")
     static let americaAruba = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Aruba")
     static let americaAsuncion = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Asuncion")
     static let americaAtikokan = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Atikokan")
     static let americaAtka = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Atka")
     static let americaBahia = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Bahia")
-    static let americaBahiaBanderas =
-        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Bahia_Banderas")
+    static let americaBahiaBanderas = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Bahia_Banderas")
     static let americaBarbados = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Barbados")
     static let americaBelem = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Belem")
 }

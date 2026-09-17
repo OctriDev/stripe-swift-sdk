@@ -7,15 +7,9 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1Accounts operation model declarations
+// Canonical v1Accounts operation model declarations
 extension PostAccountsRequestBodyCapabilities {
-    mutating func sdkSet10(
-        _ paynowPayments: PostAccountsRequestBodyCapabilitiesPaynowPayments?,
-        _ paytoPayments: PostAccountsRequestBodyCapabilitiesPaytoPayments?,
-        _ pixPayments: PostAccountsRequestBodyCapabilitiesPixPayments?,
-        _ promptpayPayments: PostAccountsRequestBodyCapabilitiesPromptpayPayments?,
-        _ revolutPayPayments: PostAccountsRequestBodyCapabilitiesRevolutPayPayments?
-    ) {
+    mutating func sdkSet10(_ paynowPayments: PostAccountsRequestBodyCapabilitiesPaynowPayments?, _ paytoPayments: PostAccountsRequestBodyCapabilitiesPaytoPayments?, _ pixPayments: PostAccountsRequestBodyCapabilitiesPixPayments?, _ promptpayPayments: PostAccountsRequestBodyCapabilitiesPromptpayPayments?, _ revolutPayPayments: PostAccountsRequestBodyCapabilitiesRevolutPayPayments?) {
         self.paynowPayments = paynowPayments
         self.paytoPayments = paytoPayments
         self.pixPayments = pixPayments
@@ -25,13 +19,7 @@ extension PostAccountsRequestBodyCapabilities {
 }
 
 extension PostAccountsRequestBodyCapabilities {
-    mutating func sdkSet11(
-        _ samsungPayPayments: PostAccountsRequestBodyCapabilitiesSamsungPayPayments?,
-        _ satispayPayments: PostAccountsRequestBodyCapabilitiesSatispayPayments?,
-        _ scalapayPayments: PostAccountsRequestBodyCapabilitiesScalapayPayments?,
-        _ sepaBankTransferPayments: PostAccountsRequestBodyCapabilitiesSepaBankTransferPayments?,
-        _ sepaDebitPayments: PostAccountsRequestBodyCapabilitiesSepaDebitPayments?
-    ) {
+    mutating func sdkSet11(_ samsungPayPayments: PostAccountsRequestBodyCapabilitiesSamsungPayPayments?, _ satispayPayments: PostAccountsRequestBodyCapabilitiesSatispayPayments?, _ scalapayPayments: PostAccountsRequestBodyCapabilitiesScalapayPayments?, _ sepaBankTransferPayments: PostAccountsRequestBodyCapabilitiesSepaBankTransferPayments?, _ sepaDebitPayments: PostAccountsRequestBodyCapabilitiesSepaDebitPayments?) {
         self.samsungPayPayments = samsungPayPayments
         self.satispayPayments = satispayPayments
         self.scalapayPayments = scalapayPayments
@@ -41,13 +29,7 @@ extension PostAccountsRequestBodyCapabilities {
 }
 
 extension PostAccountsRequestBodyCapabilities {
-    mutating func sdkSet12(
-        _ sofortPayments: PostAccountsRequestBodyCapabilitiesSofortPayments?,
-        _ sunbitPayments: PostAccountsRequestBodyCapabilitiesSunbitPayments?,
-        _ swishPayments: PostAccountsRequestBodyCapabilitiesSwishPayments?,
-        _ taxReportingUs1099K: PostAccountsRequestBodyCapabilitiesTaxReportingUs1099K?,
-        _ taxReportingUs1099Misc: PostAccountsRequestBodyCapabilitiesTaxReportingUs1099Misc?
-    ) {
+    mutating func sdkSet12(_ sofortPayments: PostAccountsRequestBodyCapabilitiesSofortPayments?, _ sunbitPayments: PostAccountsRequestBodyCapabilitiesSunbitPayments?, _ swishPayments: PostAccountsRequestBodyCapabilitiesSwishPayments?, _ taxReportingUs1099K: PostAccountsRequestBodyCapabilitiesTaxReportingUs1099K?, _ taxReportingUs1099Misc: PostAccountsRequestBodyCapabilitiesTaxReportingUs1099Misc?) {
         self.sofortPayments = sofortPayments
         self.sunbitPayments = sunbitPayments
         self.swishPayments = swishPayments
@@ -57,13 +39,7 @@ extension PostAccountsRequestBodyCapabilities {
 }
 
 extension PostAccountsRequestBodyCapabilities {
-    mutating func sdkSet13(
-        _ transfers: PostAccountsRequestBodyCapabilitiesTransfers?,
-        _ treasury: PostAccountsRequestBodyCapabilitiesTreasury?,
-        _ twintPayments: PostAccountsRequestBodyCapabilitiesTwintPayments?,
-        _ upiPayments: PostAccountsRequestBodyCapabilitiesUpiPayments?,
-        _ usBankAccountAchPayments: PostAccountsRequestBodyCapabilitiesUsBankAccountAchPayments?
-    ) {
+    mutating func sdkSet13(_ transfers: PostAccountsRequestBodyCapabilitiesTransfers?, _ treasury: PostAccountsRequestBodyCapabilitiesTreasury?, _ twintPayments: PostAccountsRequestBodyCapabilitiesTwintPayments?, _ upiPayments: PostAccountsRequestBodyCapabilitiesUpiPayments?, _ usBankAccountAchPayments: PostAccountsRequestBodyCapabilitiesUsBankAccountAchPayments?) {
         self.transfers = transfers
         self.treasury = treasury
         self.twintPayments = twintPayments
@@ -73,10 +49,7 @@ extension PostAccountsRequestBodyCapabilities {
 }
 
 extension PostAccountsRequestBodyCapabilities {
-    mutating func sdkSet14(
-        _ usBankTransferPayments: PostAccountsRequestBodyCapabilitiesUsBankTransferPayments?,
-        _ zipPayments: PostAccountsRequestBodyCapabilitiesZipPayments?
-    ) {
+    mutating func sdkSet14(_ usBankTransferPayments: PostAccountsRequestBodyCapabilitiesUsBankTransferPayments?, _ zipPayments: PostAccountsRequestBodyCapabilitiesZipPayments?) {
         self.usBankTransferPayments = usBankTransferPayments
         self.zipPayments = zipPayments
     }
@@ -84,97 +57,97 @@ extension PostAccountsRequestBodyCapabilities {
 
 extension PostAccountsRequestBodyCapabilities {
     mutating func sdkDecodeFieldsPart1(_ container: KeyedDecodingContainer<CodingKeys>) throws {
-        acssDebitPayments = try container.sdkDecodeIfPresent(.acssDebitPayments)
-        affirmPayments = try container.sdkDecodeIfPresent(.affirmPayments)
-        afterpayClearpayPayments = try container.sdkDecodeIfPresent(.afterpayClearpayPayments)
-        almaPayments = try container.sdkDecodeIfPresent(.almaPayments)
-        amazonPayPayments = try container.sdkDecodeIfPresent(.amazonPayPayments)
-        appDistribution = try container.sdkDecodeIfPresent(.appDistribution)
-        auBecsDebitPayments = try container.sdkDecodeIfPresent(.auBecsDebitPayments)
-        bacsDebitPayments = try container.sdkDecodeIfPresent(.bacsDebitPayments)
-        bancontactPayments = try container.sdkDecodeIfPresent(.bancontactPayments)
-        bankTransferPayments = try container.sdkDecodeIfPresent(.bankTransferPayments)
-        billiePayments = try container.sdkDecodeIfPresent(.billiePayments)
-        bizumPayments = try container.sdkDecodeIfPresent(.bizumPayments)
+        self.acssDebitPayments = try container.sdkDecodeIfPresent(.acssDebitPayments)
+        self.affirmPayments = try container.sdkDecodeIfPresent(.affirmPayments)
+        self.afterpayClearpayPayments = try container.sdkDecodeIfPresent(.afterpayClearpayPayments)
+        self.almaPayments = try container.sdkDecodeIfPresent(.almaPayments)
+        self.amazonPayPayments = try container.sdkDecodeIfPresent(.amazonPayPayments)
+        self.appDistribution = try container.sdkDecodeIfPresent(.appDistribution)
+        self.auBecsDebitPayments = try container.sdkDecodeIfPresent(.auBecsDebitPayments)
+        self.bacsDebitPayments = try container.sdkDecodeIfPresent(.bacsDebitPayments)
+        self.bancontactPayments = try container.sdkDecodeIfPresent(.bancontactPayments)
+        self.bankTransferPayments = try container.sdkDecodeIfPresent(.bankTransferPayments)
+        self.billiePayments = try container.sdkDecodeIfPresent(.billiePayments)
+        self.bizumPayments = try container.sdkDecodeIfPresent(.bizumPayments)
     }
 }
 
 extension PostAccountsRequestBodyCapabilities {
     mutating func sdkDecodeFieldsPart2(_ container: KeyedDecodingContainer<CodingKeys>) throws {
-        blikPayments = try container.sdkDecodeIfPresent(.blikPayments)
-        boletoPayments = try container.sdkDecodeIfPresent(.boletoPayments)
-        cardIssuing = try container.sdkDecodeIfPresent(.cardIssuing)
-        cardPayments = try container.sdkDecodeIfPresent(.cardPayments)
-        cartesBancairesPayments = try container.sdkDecodeIfPresent(.cartesBancairesPayments)
-        cashappPayments = try container.sdkDecodeIfPresent(.cashappPayments)
-        cryptoPayments = try container.sdkDecodeIfPresent(.cryptoPayments)
-        epsPayments = try container.sdkDecodeIfPresent(.epsPayments)
-        fpxPayments = try container.sdkDecodeIfPresent(.fpxPayments)
-        gbBankTransferPayments = try container.sdkDecodeIfPresent(.gbBankTransferPayments)
-        giropayPayments = try container.sdkDecodeIfPresent(.giropayPayments)
-        grabpayPayments = try container.sdkDecodeIfPresent(.grabpayPayments)
+        self.blikPayments = try container.sdkDecodeIfPresent(.blikPayments)
+        self.boletoPayments = try container.sdkDecodeIfPresent(.boletoPayments)
+        self.cardIssuing = try container.sdkDecodeIfPresent(.cardIssuing)
+        self.cardPayments = try container.sdkDecodeIfPresent(.cardPayments)
+        self.cartesBancairesPayments = try container.sdkDecodeIfPresent(.cartesBancairesPayments)
+        self.cashappPayments = try container.sdkDecodeIfPresent(.cashappPayments)
+        self.cryptoPayments = try container.sdkDecodeIfPresent(.cryptoPayments)
+        self.epsPayments = try container.sdkDecodeIfPresent(.epsPayments)
+        self.fpxPayments = try container.sdkDecodeIfPresent(.fpxPayments)
+        self.gbBankTransferPayments = try container.sdkDecodeIfPresent(.gbBankTransferPayments)
+        self.giropayPayments = try container.sdkDecodeIfPresent(.giropayPayments)
+        self.grabpayPayments = try container.sdkDecodeIfPresent(.grabpayPayments)
     }
 }
 
 extension PostAccountsRequestBodyCapabilities {
     mutating func sdkDecodeFieldsPart3(_ container: KeyedDecodingContainer<CodingKeys>) throws {
-        idealPayments = try container.sdkDecodeIfPresent(.idealPayments)
-        indiaInternationalPayments = try container.sdkDecodeIfPresent(.indiaInternationalPayments)
-        jcbPayments = try container.sdkDecodeIfPresent(.jcbPayments)
-        jpBankTransferPayments = try container.sdkDecodeIfPresent(.jpBankTransferPayments)
-        kakaoPayPayments = try container.sdkDecodeIfPresent(.kakaoPayPayments)
-        klarnaPayments = try container.sdkDecodeIfPresent(.klarnaPayments)
-        konbiniPayments = try container.sdkDecodeIfPresent(.konbiniPayments)
-        krCardPayments = try container.sdkDecodeIfPresent(.krCardPayments)
-        legacyPayments = try container.sdkDecodeIfPresent(.legacyPayments)
-        linkPayments = try container.sdkDecodeIfPresent(.linkPayments)
-        mbWayPayments = try container.sdkDecodeIfPresent(.mbWayPayments)
-        mobilepayPayments = try container.sdkDecodeIfPresent(.mobilepayPayments)
+        self.idealPayments = try container.sdkDecodeIfPresent(.idealPayments)
+        self.indiaInternationalPayments = try container.sdkDecodeIfPresent(.indiaInternationalPayments)
+        self.jcbPayments = try container.sdkDecodeIfPresent(.jcbPayments)
+        self.jpBankTransferPayments = try container.sdkDecodeIfPresent(.jpBankTransferPayments)
+        self.kakaoPayPayments = try container.sdkDecodeIfPresent(.kakaoPayPayments)
+        self.klarnaPayments = try container.sdkDecodeIfPresent(.klarnaPayments)
+        self.konbiniPayments = try container.sdkDecodeIfPresent(.konbiniPayments)
+        self.krCardPayments = try container.sdkDecodeIfPresent(.krCardPayments)
+        self.legacyPayments = try container.sdkDecodeIfPresent(.legacyPayments)
+        self.linkPayments = try container.sdkDecodeIfPresent(.linkPayments)
+        self.mbWayPayments = try container.sdkDecodeIfPresent(.mbWayPayments)
+        self.mobilepayPayments = try container.sdkDecodeIfPresent(.mobilepayPayments)
     }
 }
 
 extension PostAccountsRequestBodyCapabilities {
     mutating func sdkDecodeFieldsPart4(_ container: KeyedDecodingContainer<CodingKeys>) throws {
-        multibancoPayments = try container.sdkDecodeIfPresent(.multibancoPayments)
-        mxBankTransferPayments = try container.sdkDecodeIfPresent(.mxBankTransferPayments)
-        naverPayPayments = try container.sdkDecodeIfPresent(.naverPayPayments)
-        nzBankAccountBecsDebitPayments = try container.sdkDecodeIfPresent(.nzBankAccountBecsDebitPayments)
-        oxxoPayments = try container.sdkDecodeIfPresent(.oxxoPayments)
-        p24Payments = try container.sdkDecodeIfPresent(.p24Payments)
-        payByBankPayments = try container.sdkDecodeIfPresent(.payByBankPayments)
-        paycoPayments = try container.sdkDecodeIfPresent(.paycoPayments)
-        paynowPayments = try container.sdkDecodeIfPresent(.paynowPayments)
-        paytoPayments = try container.sdkDecodeIfPresent(.paytoPayments)
-        pixPayments = try container.sdkDecodeIfPresent(.pixPayments)
-        promptpayPayments = try container.sdkDecodeIfPresent(.promptpayPayments)
+        self.multibancoPayments = try container.sdkDecodeIfPresent(.multibancoPayments)
+        self.mxBankTransferPayments = try container.sdkDecodeIfPresent(.mxBankTransferPayments)
+        self.naverPayPayments = try container.sdkDecodeIfPresent(.naverPayPayments)
+        self.nzBankAccountBecsDebitPayments = try container.sdkDecodeIfPresent(.nzBankAccountBecsDebitPayments)
+        self.oxxoPayments = try container.sdkDecodeIfPresent(.oxxoPayments)
+        self.p24Payments = try container.sdkDecodeIfPresent(.p24Payments)
+        self.payByBankPayments = try container.sdkDecodeIfPresent(.payByBankPayments)
+        self.paycoPayments = try container.sdkDecodeIfPresent(.paycoPayments)
+        self.paynowPayments = try container.sdkDecodeIfPresent(.paynowPayments)
+        self.paytoPayments = try container.sdkDecodeIfPresent(.paytoPayments)
+        self.pixPayments = try container.sdkDecodeIfPresent(.pixPayments)
+        self.promptpayPayments = try container.sdkDecodeIfPresent(.promptpayPayments)
     }
 }
 
 extension PostAccountsRequestBodyCapabilities {
     mutating func sdkDecodeFieldsPart5(_ container: KeyedDecodingContainer<CodingKeys>) throws {
-        revolutPayPayments = try container.sdkDecodeIfPresent(.revolutPayPayments)
-        samsungPayPayments = try container.sdkDecodeIfPresent(.samsungPayPayments)
-        satispayPayments = try container.sdkDecodeIfPresent(.satispayPayments)
-        scalapayPayments = try container.sdkDecodeIfPresent(.scalapayPayments)
-        sepaBankTransferPayments = try container.sdkDecodeIfPresent(.sepaBankTransferPayments)
-        sepaDebitPayments = try container.sdkDecodeIfPresent(.sepaDebitPayments)
-        sofortPayments = try container.sdkDecodeIfPresent(.sofortPayments)
-        sunbitPayments = try container.sdkDecodeIfPresent(.sunbitPayments)
-        swishPayments = try container.sdkDecodeIfPresent(.swishPayments)
-        taxReportingUs1099K = try container.sdkDecodeIfPresent(.taxReportingUs1099K)
-        taxReportingUs1099Misc = try container.sdkDecodeIfPresent(.taxReportingUs1099Misc)
-        transfers = try container.sdkDecodeIfPresent(.transfers)
+        self.revolutPayPayments = try container.sdkDecodeIfPresent(.revolutPayPayments)
+        self.samsungPayPayments = try container.sdkDecodeIfPresent(.samsungPayPayments)
+        self.satispayPayments = try container.sdkDecodeIfPresent(.satispayPayments)
+        self.scalapayPayments = try container.sdkDecodeIfPresent(.scalapayPayments)
+        self.sepaBankTransferPayments = try container.sdkDecodeIfPresent(.sepaBankTransferPayments)
+        self.sepaDebitPayments = try container.sdkDecodeIfPresent(.sepaDebitPayments)
+        self.sofortPayments = try container.sdkDecodeIfPresent(.sofortPayments)
+        self.sunbitPayments = try container.sdkDecodeIfPresent(.sunbitPayments)
+        self.swishPayments = try container.sdkDecodeIfPresent(.swishPayments)
+        self.taxReportingUs1099K = try container.sdkDecodeIfPresent(.taxReportingUs1099K)
+        self.taxReportingUs1099Misc = try container.sdkDecodeIfPresent(.taxReportingUs1099Misc)
+        self.transfers = try container.sdkDecodeIfPresent(.transfers)
     }
 }
 
 extension PostAccountsRequestBodyCapabilities {
     mutating func sdkDecodeFieldsPart6(_ container: KeyedDecodingContainer<CodingKeys>) throws {
-        treasury = try container.sdkDecodeIfPresent(.treasury)
-        twintPayments = try container.sdkDecodeIfPresent(.twintPayments)
-        upiPayments = try container.sdkDecodeIfPresent(.upiPayments)
-        usBankAccountAchPayments = try container.sdkDecodeIfPresent(.usBankAccountAchPayments)
-        usBankTransferPayments = try container.sdkDecodeIfPresent(.usBankTransferPayments)
-        zipPayments = try container.sdkDecodeIfPresent(.zipPayments)
+        self.treasury = try container.sdkDecodeIfPresent(.treasury)
+        self.twintPayments = try container.sdkDecodeIfPresent(.twintPayments)
+        self.upiPayments = try container.sdkDecodeIfPresent(.upiPayments)
+        self.usBankAccountAchPayments = try container.sdkDecodeIfPresent(.usBankAccountAchPayments)
+        self.usBankTransferPayments = try container.sdkDecodeIfPresent(.usBankTransferPayments)
+        self.zipPayments = try container.sdkDecodeIfPresent(.zipPayments)
     }
 }
 
@@ -186,19 +159,19 @@ public struct PostAccountsRequestBodyCapabilitiesKrCardPayments: Codable {
     }
 
     init() {
-        requested = nil
+        self.requested = nil
     }
 }
 
-public extension PostAccountsRequestBodyCapabilitiesKrCardPayments {
-    init(from decoder: Decoder) throws {
+extension PostAccountsRequestBodyCapabilitiesKrCardPayments {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        requested = try container.sdkDecodeIfPresent(.requested)
+        self.requested = try container.sdkDecodeIfPresent(.requested)
     }
 }
 
-public extension PostAccountsRequestBodyCapabilitiesKrCardPayments {
-    init(requested: Bool? = nil) {
+extension PostAccountsRequestBodyCapabilitiesKrCardPayments {
+    public init(requested: Bool? = nil) {
         self.init()
         self.requested = requested
     }
@@ -212,19 +185,19 @@ public struct PostAccountsRequestBodyDocumentsProofOfAddress: Codable {
     }
 
     init() {
-        files = nil
+        self.files = nil
     }
 }
 
-public extension PostAccountsRequestBodyDocumentsProofOfAddress {
-    init(from decoder: Decoder) throws {
+extension PostAccountsRequestBodyDocumentsProofOfAddress {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        files = try container.sdkDecodeIfPresent(.files)
+        self.files = try container.sdkDecodeIfPresent(.files)
     }
 }
 
-public extension PostAccountsRequestBodyDocumentsProofOfAddress {
-    init(files: [String]? = nil) {
+extension PostAccountsRequestBodyDocumentsProofOfAddress {
+    public init(files: [String]? = nil) {
         self.init()
         self.files = files
     }
@@ -248,50 +221,43 @@ public struct PostAccountsRequestBodyBusinessProfileSupportAddress: Codable {
     }
 
     init() {
-        (city, country, line1, line2, postalCode) = (nil, nil, nil, nil, nil)
-        state = nil
+        (self.city, self.country, self.line1, self.line2, self.postalCode) = (nil, nil, nil, nil, nil)
+        self.state = nil
     }
 }
 
-public extension PostAccountsRequestBodyBusinessProfileSupportAddress {
-    init(from decoder: Decoder) throws {
+extension PostAccountsRequestBodyBusinessProfileSupportAddress {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        city = try container.sdkDecodeIfPresent(.city)
-        country = try container.sdkDecodeIfPresent(.country)
-        line1 = try container.sdkDecodeIfPresent(.line1)
-        line2 = try container.sdkDecodeIfPresent(.line2)
-        postalCode = try container.sdkDecodeIfPresent(.postalCode)
-        state = try container.sdkDecodeIfPresent(.state)
-        if let value = city {
+        self.city = try container.sdkDecodeIfPresent(.city)
+        self.country = try container.sdkDecodeIfPresent(.country)
+        self.line1 = try container.sdkDecodeIfPresent(.line1)
+        self.line2 = try container.sdkDecodeIfPresent(.line2)
+        self.postalCode = try container.sdkDecodeIfPresent(.postalCode)
+        self.state = try container.sdkDecodeIfPresent(.state)
+        if let value = self.city {
             try validateLength("city", value, min: nil, max: 100)
         }
-        if let value = country {
+        if let value = self.country {
             try validateLength("country", value, min: nil, max: 5000)
         }
-        if let value = line1 {
+        if let value = self.line1 {
             try validateLength("line1", value, min: nil, max: 200)
         }
-        if let value = line2 {
+        if let value = self.line2 {
             try validateLength("line2", value, min: nil, max: 200)
         }
-        if let value = postalCode {
+        if let value = self.postalCode {
             try validateLength("postal_code", value, min: nil, max: 5000)
         }
-        if let value = state {
+        if let value = self.state {
             try validateLength("state", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PostAccountsRequestBodyBusinessProfileSupportAddress {
-    init(
-        city: String? = nil,
-        country: String? = nil,
-        line1: String? = nil,
-        line2: String? = nil,
-        postalCode: String? = nil,
-        state: String? = nil
-    ) throws {
+extension PostAccountsRequestBodyBusinessProfileSupportAddress {
+    public init(city: String? = nil, country: String? = nil, line1: String? = nil, line2: String? = nil, postalCode: String? = nil, state: String? = nil) throws {
         self.init()
         (self.city, self.country) = (city, country)
         (self.line1, self.line2) = (line1, line2)
@@ -325,19 +291,19 @@ public struct PostAccountsRequestBodyCapabilitiesGbBankTransferPayments: Codable
     }
 
     init() {
-        requested = nil
+        self.requested = nil
     }
 }
 
-public extension PostAccountsRequestBodyCapabilitiesGbBankTransferPayments {
-    init(from decoder: Decoder) throws {
+extension PostAccountsRequestBodyCapabilitiesGbBankTransferPayments {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        requested = try container.sdkDecodeIfPresent(.requested)
+        self.requested = try container.sdkDecodeIfPresent(.requested)
     }
 }
 
-public extension PostAccountsRequestBodyCapabilitiesGbBankTransferPayments {
-    init(requested: Bool? = nil) {
+extension PostAccountsRequestBodyCapabilitiesGbBankTransferPayments {
+    public init(requested: Bool? = nil) {
         self.init()
         self.requested = requested
     }
@@ -351,19 +317,19 @@ public struct PostAccountsAccountRequestBodyCapabilitiesAfterpayClearpayPayments
     }
 
     init() {
-        requested = nil
+        self.requested = nil
     }
 }
 
-public extension PostAccountsAccountRequestBodyCapabilitiesAfterpayClearpayPayments {
-    init(from decoder: Decoder) throws {
+extension PostAccountsAccountRequestBodyCapabilitiesAfterpayClearpayPayments {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        requested = try container.sdkDecodeIfPresent(.requested)
+        self.requested = try container.sdkDecodeIfPresent(.requested)
     }
 }
 
-public extension PostAccountsAccountRequestBodyCapabilitiesAfterpayClearpayPayments {
-    init(requested: Bool? = nil) {
+extension PostAccountsAccountRequestBodyCapabilitiesAfterpayClearpayPayments {
+    public init(requested: Bool? = nil) {
         self.init()
         self.requested = requested
     }
@@ -377,19 +343,19 @@ public struct PostAccountsRequestBodyCapabilitiesBoletoPayments: Codable {
     }
 
     init() {
-        requested = nil
+        self.requested = nil
     }
 }
 
-public extension PostAccountsRequestBodyCapabilitiesBoletoPayments {
-    init(from decoder: Decoder) throws {
+extension PostAccountsRequestBodyCapabilitiesBoletoPayments {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        requested = try container.sdkDecodeIfPresent(.requested)
+        self.requested = try container.sdkDecodeIfPresent(.requested)
     }
 }
 
-public extension PostAccountsRequestBodyCapabilitiesBoletoPayments {
-    init(requested: Bool? = nil) {
+extension PostAccountsRequestBodyCapabilitiesBoletoPayments {
+    public init(requested: Bool? = nil) {
         self.init()
         self.requested = requested
     }
@@ -401,31 +367,21 @@ public enum PostAccountsRequestBodyMetadata {
 }
 
 extension PostAccountsRequestBodyMetadata: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostAccountsRequestBodyMetadata"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostAccountsRequestBodyMetadata")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode([String: String].self) {
-            return .dictionary(value)
-        }
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
+        if let value = try? container.decode([String: String].self) { return .dictionary(value) }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -435,6 +391,7 @@ extension PostAccountsRequestBodyMetadata: Codable {
         case let .stringValue(value): try container.encode(value); return true
         }
     }
+
 }
 
 public struct PostAccountsAccountRequestBodyCapabilitiesJpBankTransferPayments: Codable {
@@ -445,19 +402,19 @@ public struct PostAccountsAccountRequestBodyCapabilitiesJpBankTransferPayments: 
     }
 
     init() {
-        requested = nil
+        self.requested = nil
     }
 }
 
-public extension PostAccountsAccountRequestBodyCapabilitiesJpBankTransferPayments {
-    init(from decoder: Decoder) throws {
+extension PostAccountsAccountRequestBodyCapabilitiesJpBankTransferPayments {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        requested = try container.sdkDecodeIfPresent(.requested)
+        self.requested = try container.sdkDecodeIfPresent(.requested)
     }
 }
 
-public extension PostAccountsAccountRequestBodyCapabilitiesJpBankTransferPayments {
-    init(requested: Bool? = nil) {
+extension PostAccountsAccountRequestBodyCapabilitiesJpBankTransferPayments {
+    public init(requested: Bool? = nil) {
         self.init()
         self.requested = requested
     }
@@ -471,19 +428,19 @@ public struct PostAccountsRequestBodySettingsInvoices: Codable {
     }
 
     init() {
-        hostedPaymentMethodSave = nil
+        self.hostedPaymentMethodSave = nil
     }
 }
 
-public extension PostAccountsRequestBodySettingsInvoices {
-    init(from decoder: Decoder) throws {
+extension PostAccountsRequestBodySettingsInvoices {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        hostedPaymentMethodSave = try container.sdkDecodeIfPresent(.hostedPaymentMethodSave)
+        self.hostedPaymentMethodSave = try container.sdkDecodeIfPresent(.hostedPaymentMethodSave)
     }
 }
 
-public extension PostAccountsRequestBodySettingsInvoices {
-    init(hostedPaymentMethodSave: PostAccountsRequestBodySettingsInvoicesHostedPaymentMethodSave? = nil) {
+extension PostAccountsRequestBodySettingsInvoices {
+    public init(hostedPaymentMethodSave: PostAccountsRequestBodySettingsInvoicesHostedPaymentMethodSave? = nil) {
         self.init()
         self.hostedPaymentMethodSave = hostedPaymentMethodSave
     }
@@ -499,26 +456,26 @@ public struct PostAccountsRequestBodyIndividualVerificationAdditionalDocument: C
     }
 
     init() {
-        (back, front) = (nil, nil)
+        (self.back, self.front) = (nil, nil)
     }
 }
 
-public extension PostAccountsRequestBodyIndividualVerificationAdditionalDocument {
-    init(from decoder: Decoder) throws {
+extension PostAccountsRequestBodyIndividualVerificationAdditionalDocument {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        back = try container.sdkDecodeIfPresent(.back)
-        front = try container.sdkDecodeIfPresent(.front)
-        if let value = back {
+        self.back = try container.sdkDecodeIfPresent(.back)
+        self.front = try container.sdkDecodeIfPresent(.front)
+        if let value = self.back {
             try validateLength("back", value, min: nil, max: 500)
         }
-        if let value = front {
+        if let value = self.front {
             try validateLength("front", value, min: nil, max: 500)
         }
     }
 }
 
-public extension PostAccountsRequestBodyIndividualVerificationAdditionalDocument {
-    init(back: String? = nil, front: String? = nil) throws {
+extension PostAccountsRequestBodyIndividualVerificationAdditionalDocument {
+    public init(back: String? = nil, front: String? = nil) throws {
         self.init()
         (self.back, self.front) = (back, front)
         if let value = self.back {
@@ -538,19 +495,19 @@ public struct PostAccountsRequestBodyCapabilitiesBilliePayments: Codable {
     }
 
     init() {
-        requested = nil
+        self.requested = nil
     }
 }
 
-public extension PostAccountsRequestBodyCapabilitiesBilliePayments {
-    init(from decoder: Decoder) throws {
+extension PostAccountsRequestBodyCapabilitiesBilliePayments {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        requested = try container.sdkDecodeIfPresent(.requested)
+        self.requested = try container.sdkDecodeIfPresent(.requested)
     }
 }
 
-public extension PostAccountsRequestBodyCapabilitiesBilliePayments {
-    init(requested: Bool? = nil) {
+extension PostAccountsRequestBodyCapabilitiesBilliePayments {
+    public init(requested: Bool? = nil) {
         self.init()
         self.requested = requested
     }
@@ -580,53 +537,33 @@ public struct PostAccountsRequestBodyBankAccountVariant0: Codable {
         case routingNumber = "routing_number"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostAccountsRequestBodyBankAccountVariant0 {
-    init(from decoder: Decoder) throws {
+extension PostAccountsRequestBodyBankAccountVariant0 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.accountNumber) else {
-            throw SdkValidationError(
-                field: "account_number",
-                code: "required",
-                message: "Validation failed for 'account_number': value is required"
-            )
+            throw SdkValidationError(field: "account_number", code: "required", message: "Validation failed for 'account_number': value is required")
         }
         guard container.contains(.country) else {
-            throw SdkValidationError(
-                field: "country",
-                code: "required",
-                message: "Validation failed for 'country': value is required"
-            )
+            throw SdkValidationError(field: "country", code: "required", message: "Validation failed for 'country': value is required")
         }
-        accountNumber = try container.sdkDecodeRequired(.accountNumber)
-        country = try container.sdkDecodeRequired(.country)
-        accountHolderName = try container.sdkDecodeIfPresent(.accountHolderName)
-        accountHolderType = try container.sdkDecodeIfPresent(.accountHolderType)
-        accountType = try container.sdkDecodeIfPresent(.accountType)
-        currency = try container.sdkDecodeIfPresent(.currency)
-        documents = try container.sdkDecodeIfPresent(.documents)
-        object = try container.sdkDecodeIfPresent(.object)
-        routingNumber = try container.sdkDecodeIfPresent(.routingNumber)
+        self.accountNumber = try container.sdkDecodeRequired(.accountNumber)
+        self.country = try container.sdkDecodeRequired(.country)
+        self.accountHolderName = try container.sdkDecodeIfPresent(.accountHolderName)
+        self.accountHolderType = try container.sdkDecodeIfPresent(.accountHolderType)
+        self.accountType = try container.sdkDecodeIfPresent(.accountType)
+        self.currency = try container.sdkDecodeIfPresent(.currency)
+        self.documents = try container.sdkDecodeIfPresent(.documents)
+        self.object = try container.sdkDecodeIfPresent(.object)
+        self.routingNumber = try container.sdkDecodeIfPresent(.routingNumber)
         try sdkValidateConstraints()
     }
 }
 
-public extension PostAccountsRequestBodyBankAccountVariant0 {
-    init(
-        accountNumber: String,
-        country: String,
-        accountHolderName: String? = nil,
-        accountHolderType: PostAccountsRequestBodyBankAccountVariant0AccountHolderType? = nil,
-        accountType: PostAccountsRequestBodyBankAccountVariant0AccountType? = nil,
-        currency: String? = nil,
-        documents: PostAccountsRequestBodyBankAccountVariant0Documents? = nil,
-        object: PostAccountsRequestBodyBankAccountVariant0Object? = nil,
-        routingNumber: String? = nil
-    ) throws {
+extension PostAccountsRequestBodyBankAccountVariant0 {
+    public init(accountNumber: String, country: String, accountHolderName: String? = nil, accountHolderType: PostAccountsRequestBodyBankAccountVariant0AccountHolderType? = nil, accountType: PostAccountsRequestBodyBankAccountVariant0AccountType? = nil, currency: String? = nil, documents: PostAccountsRequestBodyBankAccountVariant0Documents? = nil, object: PostAccountsRequestBodyBankAccountVariant0Object? = nil, routingNumber: String? = nil) throws {
         (self.accountNumber, self.country) = (accountNumber, country)
         (self.accountHolderName, self.accountHolderType) = (accountHolderName, accountHolderType)
         (self.accountType, self.currency) = (accountType, currency)

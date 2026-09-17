@@ -27,10 +27,10 @@ extension PostPaymentLinksRequestBodyShippingAddressCollectionAllowedCountriesIt
         .ie,
         .il,
         .im,
-        .in,
+        .`in`,
         .io,
         .iq,
-        .is,
+        .`is`,
         .it,
         .je,
         .jm,
@@ -177,8 +177,8 @@ extension PostPaymentLinksRequestBodyShippingAddressCollectionAllowedCountriesIt
 extension PostPaymentLinksRequestBodyShippingAddressCollectionAllowedCountriesItem: CaseIterable {
     public static var allCases: [PostPaymentLinksRequestBodyShippingAddressCollectionAllowedCountriesItem] {
         allCasesPart1
-            + allCasesPart2
-            + allCasesPart3
+        +         allCasesPart2
+        +         allCasesPart3
     }
 }
 
@@ -188,10 +188,7 @@ extension PostPaymentLinksRequestBodyShippingAddressCollectionAllowedCountriesIt
 public struct PostPaymentLinksRequestBodySubmitType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let auto = PostPaymentLinksRequestBodySubmitType(rawValue: "auto")
     public static let book = PostPaymentLinksRequestBodySubmitType(rawValue: "book")
     public static let donate = PostPaymentLinksRequestBodySubmitType(rawValue: "donate")
@@ -200,7 +197,7 @@ public struct PostPaymentLinksRequestBodySubmitType: RawRepresentable, Hashable,
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

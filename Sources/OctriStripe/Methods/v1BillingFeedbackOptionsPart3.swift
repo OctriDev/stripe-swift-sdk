@@ -6,91 +6,50 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1BillingFeedbackOptionsMethods {
-    /// Creates a new feedback option for use as a custom cancellation reason. Supply a `description` for the option and
-    /// use `expand` when the response should include expanded fields. The response contains the created feedback option
-    /// and its initial status.
+extension V1BillingFeedbackOptionsMethods {
+    /// Creates a new feedback option for use as a custom cancellation reason. Supply a `description` for the option and use `expand` when the response should include expanded fields. The response contains the created feedback option and its initial status.
     ///
     /// Creates a new feedback option.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    static func postBillingFeedbackOptions(
-        config: ClientConfig,
-        description: String,
-        expand: [String]?
-    ) async throws -> BillingFeedbackOption {
+    public static func postBillingFeedbackOptions(config: ClientConfig, description: String, expand: [String]?) async throws -> BillingFeedbackOption {
         try validateLength("description", description, max: 100)
 
         let requestBody = PostBillingFeedbackOptionsRequestBody(description: description, expand: expand)
 
-        return try await (sdkRequest(
-            "POST",
-            "/v1/billing/feedback_options",
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostBillingFeedbackOptions"
-        )).data
+        return try (await sdkRequest("POST", "/v1/billing/feedback_options", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostBillingFeedbackOptions")).data
     }
 
-    /// Retrieves a feedback option by its unique identifier. Supply `id` to select the feedback option and use `expand`
-    /// to include expanded response fields. The response contains the option's description, status, and lifecycle
-    /// information.
+    /// Retrieves a feedback option by its unique identifier. Supply `id` to select the feedback option and use `expand` to include expanded response fields. The response contains the option's description, status, and lifecycle information.
     ///
     /// Retrieves a feedback options object given an ID.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    static func getBillingFeedbackOptionsId(
-        config: ClientConfig,
-        id: String,
-        expand: [String]?
-    ) async throws -> BillingFeedbackOption {
+    public static func getBillingFeedbackOptionsId(config: ClientConfig, id: String, expand: [String]?) async throws -> BillingFeedbackOption {
         try validateLength("id", id, max: 5000)
 
-        return try await (sdkRequest(
-            "GET",
-            ["/v1/billing/feedback_options/", sdkEncodePathSegment(sdkWireString(id))].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .json,
-            operationId: "GetBillingFeedbackOptionsId"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/billing/feedback_options/", sdkEncodePathSegment(sdkWireString(id))].joined(), config: config, query: [
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .json, operationId: "GetBillingFeedbackOptionsId")).data
     }
 
-    /// Updates the description of an existing feedback option. Supply `id` to select the option and include
-    /// `description` when changing its text. Use `expand` to include expanded fields in the response.
+    /// Updates the description of an existing feedback option. Supply `id` to select the option and include `description` when changing its text. Use `expand` to include expanded fields in the response.
     ///
     /// Updates the description of an existing feedback option.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    static func postBillingFeedbackOptionsId(
-        config: ClientConfig,
-        id: String,
-        description: String?,
-        expand: [String]?
-    ) async throws -> BillingFeedbackOption {
+    public static func postBillingFeedbackOptionsId(config: ClientConfig, id: String, description: String?, expand: [String]?) async throws -> BillingFeedbackOption {
         try validateLength("id", id, max: 5000)
 
-        if let description {
+        if let description = description {
             try validateLength("description", description, max: 100)
         }
 
         let requestBody = PostBillingFeedbackOptionsIdRequestBody(description: description, expand: expand)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/billing/feedback_options/", sdkEncodePathSegment(sdkWireString(id))].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostBillingFeedbackOptionsId"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/billing/feedback_options/", sdkEncodePathSegment(sdkWireString(id))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostBillingFeedbackOptionsId")).data
     }
 }

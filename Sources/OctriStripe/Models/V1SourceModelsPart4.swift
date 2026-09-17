@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1Source domain models
+// V1Source domain models
 /// Typed representation of the `SourceTypeAuBecsDebit` API schema.
 public struct SourceTypeAuBecsDebit: Codable {
     /// Optional `string` value serialized in the `bsb_number` wire field.
@@ -20,21 +20,21 @@ public struct SourceTypeAuBecsDebit: Codable {
     }
 
     init() {
-        (bsbNumber, fingerprint, last4) = (nil, nil, nil)
+        (self.bsbNumber, self.fingerprint, self.last4) = (nil, nil, nil)
     }
 }
 
-public extension SourceTypeAuBecsDebit {
-    init(from decoder: Decoder) throws {
+extension SourceTypeAuBecsDebit {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        bsbNumber = try container.sdkDecodeIfPresent(.bsbNumber)
-        fingerprint = try container.sdkDecodeIfPresent(.fingerprint)
-        last4 = try container.sdkDecodeIfPresent(.last4)
+        self.bsbNumber = try container.sdkDecodeIfPresent(.bsbNumber)
+        self.fingerprint = try container.sdkDecodeIfPresent(.fingerprint)
+        self.last4 = try container.sdkDecodeIfPresent(.last4)
     }
 }
 
-public extension SourceTypeAuBecsDebit {
-    init(bsbNumber: String? = nil, fingerprint: String? = nil, last4: String? = nil) {
+extension SourceTypeAuBecsDebit {
+    public init(bsbNumber: String? = nil, fingerprint: String? = nil, last4: String? = nil) {
         self.init()
         (self.bsbNumber, self.fingerprint) = (bsbNumber, fingerprint)
         self.last4 = last4
@@ -66,32 +66,25 @@ public struct SourceTypeBancontact: Codable {
     }
 
     init() {
-        (bankCode, bankName, bic, ibanLast4, preferredLanguage) = (nil, nil, nil, nil, nil)
-        statementDescriptor = nil
+        (self.bankCode, self.bankName, self.bic, self.ibanLast4, self.preferredLanguage) = (nil, nil, nil, nil, nil)
+        self.statementDescriptor = nil
     }
 }
 
-public extension SourceTypeBancontact {
-    init(from decoder: Decoder) throws {
+extension SourceTypeBancontact {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        bankCode = try container.sdkDecodeIfPresent(.bankCode)
-        bankName = try container.sdkDecodeIfPresent(.bankName)
-        bic = try container.sdkDecodeIfPresent(.bic)
-        ibanLast4 = try container.sdkDecodeIfPresent(.ibanLast4)
-        preferredLanguage = try container.sdkDecodeIfPresent(.preferredLanguage)
-        statementDescriptor = try container.sdkDecodeIfPresent(.statementDescriptor)
+        self.bankCode = try container.sdkDecodeIfPresent(.bankCode)
+        self.bankName = try container.sdkDecodeIfPresent(.bankName)
+        self.bic = try container.sdkDecodeIfPresent(.bic)
+        self.ibanLast4 = try container.sdkDecodeIfPresent(.ibanLast4)
+        self.preferredLanguage = try container.sdkDecodeIfPresent(.preferredLanguage)
+        self.statementDescriptor = try container.sdkDecodeIfPresent(.statementDescriptor)
     }
 }
 
-public extension SourceTypeBancontact {
-    init(
-        bankCode: String? = nil,
-        bankName: String? = nil,
-        bic: String? = nil,
-        ibanLast4: String? = nil,
-        preferredLanguage: String? = nil,
-        statementDescriptor: String? = nil
-    ) {
+extension SourceTypeBancontact {
+    public init(bankCode: String? = nil, bankName: String? = nil, bic: String? = nil, ibanLast4: String? = nil, preferredLanguage: String? = nil, statementDescriptor: String? = nil) {
         self.init()
         (self.bankCode, self.bankName) = (bankCode, bankName)
         (self.bic, self.ibanLast4) = (bic, ibanLast4)
@@ -148,49 +141,34 @@ public struct SourceTypeCard: Codable {
     }
 
     init() {
-        (addressLine1Check, addressZipCheck, brand, country, cvcCheck) = (nil, nil, nil, nil, nil)
-        (dynamicLast4, expMonth, expYear, fingerprint, funding) = (nil, nil, nil, nil, nil)
-        (last4, name, threeDSecure, tokenizationMethod) = (nil, nil, nil, nil)
+        (self.addressLine1Check, self.addressZipCheck, self.brand, self.country, self.cvcCheck) = (nil, nil, nil, nil, nil)
+        (self.dynamicLast4, self.expMonth, self.expYear, self.fingerprint, self.funding) = (nil, nil, nil, nil, nil)
+        (self.last4, self.name, self.threeDSecure, self.tokenizationMethod) = (nil, nil, nil, nil)
     }
 }
 
-public extension SourceTypeCard {
-    init(from decoder: Decoder) throws {
+extension SourceTypeCard {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        addressLine1Check = try container.sdkDecodeIfPresent(.addressLine1Check)
-        addressZipCheck = try container.sdkDecodeIfPresent(.addressZipCheck)
-        brand = try container.sdkDecodeIfPresent(.brand)
-        country = try container.sdkDecodeIfPresent(.country)
-        cvcCheck = try container.sdkDecodeIfPresent(.cvcCheck)
-        dynamicLast4 = try container.sdkDecodeIfPresent(.dynamicLast4)
-        expMonth = try container.sdkDecodeIfPresent(.expMonth)
-        expYear = try container.sdkDecodeIfPresent(.expYear)
-        fingerprint = try container.sdkDecodeIfPresent(.fingerprint)
-        funding = try container.sdkDecodeIfPresent(.funding)
-        last4 = try container.sdkDecodeIfPresent(.last4)
-        name = try container.sdkDecodeIfPresent(.name)
-        threeDSecure = try container.sdkDecodeIfPresent(.threeDSecure)
-        tokenizationMethod = try container.sdkDecodeIfPresent(.tokenizationMethod)
+        self.addressLine1Check = try container.sdkDecodeIfPresent(.addressLine1Check)
+        self.addressZipCheck = try container.sdkDecodeIfPresent(.addressZipCheck)
+        self.brand = try container.sdkDecodeIfPresent(.brand)
+        self.country = try container.sdkDecodeIfPresent(.country)
+        self.cvcCheck = try container.sdkDecodeIfPresent(.cvcCheck)
+        self.dynamicLast4 = try container.sdkDecodeIfPresent(.dynamicLast4)
+        self.expMonth = try container.sdkDecodeIfPresent(.expMonth)
+        self.expYear = try container.sdkDecodeIfPresent(.expYear)
+        self.fingerprint = try container.sdkDecodeIfPresent(.fingerprint)
+        self.funding = try container.sdkDecodeIfPresent(.funding)
+        self.last4 = try container.sdkDecodeIfPresent(.last4)
+        self.name = try container.sdkDecodeIfPresent(.name)
+        self.threeDSecure = try container.sdkDecodeIfPresent(.threeDSecure)
+        self.tokenizationMethod = try container.sdkDecodeIfPresent(.tokenizationMethod)
     }
 }
 
-public extension SourceTypeCard {
-    init(
-        addressLine1Check: String? = nil,
-        addressZipCheck: String? = nil,
-        brand: String? = nil,
-        country: String? = nil,
-        cvcCheck: String? = nil,
-        dynamicLast4: String? = nil,
-        expMonth: Int? = nil,
-        expYear: Int? = nil,
-        fingerprint: String? = nil,
-        funding: String? = nil,
-        last4: String? = nil,
-        name: String? = nil,
-        threeDSecure: String? = nil,
-        tokenizationMethod: String? = nil
-    ) {
+extension SourceTypeCard {
+    public init(addressLine1Check: String? = nil, addressZipCheck: String? = nil, brand: String? = nil, country: String? = nil, cvcCheck: String? = nil, dynamicLast4: String? = nil, expMonth: Int? = nil, expYear: Int? = nil, fingerprint: String? = nil, funding: String? = nil, last4: String? = nil, name: String? = nil, threeDSecure: String? = nil, tokenizationMethod: String? = nil) {
         self.init()
         (self.addressLine1Check, self.addressZipCheck) = (addressLine1Check, addressZipCheck)
         (self.brand, self.country) = (brand, country)
@@ -278,28 +256,16 @@ public struct SourceTypeCardPresent: Codable {
     }
 
     init() {
-        (applicationCryptogram, applicationPreferredName, authorizationCode, authorizationResponseCode, brand) = (
-            nil,
-            nil,
-            nil,
-            nil,
-            nil
-        )
-        (country, cvmType, dataType, dedicatedFileName, emvAuthData) = (nil, nil, nil, nil, nil)
-        (evidenceCustomerSignature, evidenceTransactionCertificate, expMonth, expYear, fingerprint) = (
-            nil,
-            nil,
-            nil,
-            nil,
-            nil
-        )
-        (funding, last4, posDeviceId, posEntryMode, readMethod) = (nil, nil, nil, nil, nil)
-        (reader, terminalVerificationResults, transactionStatusInformation) = (nil, nil, nil)
+        (self.applicationCryptogram, self.applicationPreferredName, self.authorizationCode, self.authorizationResponseCode, self.brand) = (nil, nil, nil, nil, nil)
+        (self.country, self.cvmType, self.dataType, self.dedicatedFileName, self.emvAuthData) = (nil, nil, nil, nil, nil)
+        (self.evidenceCustomerSignature, self.evidenceTransactionCertificate, self.expMonth, self.expYear, self.fingerprint) = (nil, nil, nil, nil, nil)
+        (self.funding, self.last4, self.posDeviceId, self.posEntryMode, self.readMethod) = (nil, nil, nil, nil, nil)
+        (self.reader, self.terminalVerificationResults, self.transactionStatusInformation) = (nil, nil, nil)
     }
 }
 
-public extension SourceTypeCardPresent {
-    init(from decoder: Decoder) throws {
+extension SourceTypeCardPresent {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.init()
         try sdkDecodeFieldsPart1(container)
@@ -307,32 +273,8 @@ public extension SourceTypeCardPresent {
     }
 }
 
-public extension SourceTypeCardPresent {
-    init(
-        applicationCryptogram: String? = nil,
-        applicationPreferredName: String? = nil,
-        authorizationCode: String? = nil,
-        authorizationResponseCode: String? = nil,
-        brand: String? = nil,
-        country: String? = nil,
-        cvmType: String? = nil,
-        dataType: String? = nil,
-        dedicatedFileName: String? = nil,
-        emvAuthData: String? = nil,
-        evidenceCustomerSignature: String? = nil,
-        evidenceTransactionCertificate: String? = nil,
-        expMonth: Int? = nil,
-        expYear: Int? = nil,
-        fingerprint: String? = nil,
-        funding: String? = nil,
-        last4: String? = nil,
-        posDeviceId: String? = nil,
-        posEntryMode: String? = nil,
-        readMethod: String? = nil,
-        reader: String? = nil,
-        terminalVerificationResults: String? = nil,
-        transactionStatusInformation: String? = nil
-    ) {
+extension SourceTypeCardPresent {
+    public init(applicationCryptogram: String? = nil, applicationPreferredName: String? = nil, authorizationCode: String? = nil, authorizationResponseCode: String? = nil, brand: String? = nil, country: String? = nil, cvmType: String? = nil, dataType: String? = nil, dedicatedFileName: String? = nil, emvAuthData: String? = nil, evidenceCustomerSignature: String? = nil, evidenceTransactionCertificate: String? = nil, expMonth: Int? = nil, expYear: Int? = nil, fingerprint: String? = nil, funding: String? = nil, last4: String? = nil, posDeviceId: String? = nil, posEntryMode: String? = nil, readMethod: String? = nil, reader: String? = nil, terminalVerificationResults: String? = nil, transactionStatusInformation: String? = nil) {
         self.init()
         self.applicationCryptogram = applicationCryptogram
         self.applicationPreferredName = applicationPreferredName
@@ -353,34 +295,34 @@ public extension SourceTypeCardPresent {
 
 extension SourceTypeCardPresent {
     mutating func sdkDecodeFieldsPart1(_ container: KeyedDecodingContainer<CodingKeys>) throws {
-        applicationCryptogram = try container.sdkDecodeIfPresent(.applicationCryptogram)
-        applicationPreferredName = try container.sdkDecodeIfPresent(.applicationPreferredName)
-        authorizationCode = try container.sdkDecodeIfPresent(.authorizationCode)
-        authorizationResponseCode = try container.sdkDecodeIfPresent(.authorizationResponseCode)
-        brand = try container.sdkDecodeIfPresent(.brand)
-        country = try container.sdkDecodeIfPresent(.country)
-        cvmType = try container.sdkDecodeIfPresent(.cvmType)
-        dataType = try container.sdkDecodeIfPresent(.dataType)
-        dedicatedFileName = try container.sdkDecodeIfPresent(.dedicatedFileName)
-        emvAuthData = try container.sdkDecodeIfPresent(.emvAuthData)
-        evidenceCustomerSignature = try container.sdkDecodeIfPresent(.evidenceCustomerSignature)
-        evidenceTransactionCertificate = try container.sdkDecodeIfPresent(.evidenceTransactionCertificate)
+        self.applicationCryptogram = try container.sdkDecodeIfPresent(.applicationCryptogram)
+        self.applicationPreferredName = try container.sdkDecodeIfPresent(.applicationPreferredName)
+        self.authorizationCode = try container.sdkDecodeIfPresent(.authorizationCode)
+        self.authorizationResponseCode = try container.sdkDecodeIfPresent(.authorizationResponseCode)
+        self.brand = try container.sdkDecodeIfPresent(.brand)
+        self.country = try container.sdkDecodeIfPresent(.country)
+        self.cvmType = try container.sdkDecodeIfPresent(.cvmType)
+        self.dataType = try container.sdkDecodeIfPresent(.dataType)
+        self.dedicatedFileName = try container.sdkDecodeIfPresent(.dedicatedFileName)
+        self.emvAuthData = try container.sdkDecodeIfPresent(.emvAuthData)
+        self.evidenceCustomerSignature = try container.sdkDecodeIfPresent(.evidenceCustomerSignature)
+        self.evidenceTransactionCertificate = try container.sdkDecodeIfPresent(.evidenceTransactionCertificate)
     }
 }
 
 extension SourceTypeCardPresent {
     mutating func sdkDecodeFieldsPart2(_ container: KeyedDecodingContainer<CodingKeys>) throws {
-        expMonth = try container.sdkDecodeIfPresent(.expMonth)
-        expYear = try container.sdkDecodeIfPresent(.expYear)
-        fingerprint = try container.sdkDecodeIfPresent(.fingerprint)
-        funding = try container.sdkDecodeIfPresent(.funding)
-        last4 = try container.sdkDecodeIfPresent(.last4)
-        posDeviceId = try container.sdkDecodeIfPresent(.posDeviceId)
-        posEntryMode = try container.sdkDecodeIfPresent(.posEntryMode)
-        readMethod = try container.sdkDecodeIfPresent(.readMethod)
-        reader = try container.sdkDecodeIfPresent(.reader)
-        terminalVerificationResults = try container.sdkDecodeIfPresent(.terminalVerificationResults)
-        transactionStatusInformation = try container.sdkDecodeIfPresent(.transactionStatusInformation)
+        self.expMonth = try container.sdkDecodeIfPresent(.expMonth)
+        self.expYear = try container.sdkDecodeIfPresent(.expYear)
+        self.fingerprint = try container.sdkDecodeIfPresent(.fingerprint)
+        self.funding = try container.sdkDecodeIfPresent(.funding)
+        self.last4 = try container.sdkDecodeIfPresent(.last4)
+        self.posDeviceId = try container.sdkDecodeIfPresent(.posDeviceId)
+        self.posEntryMode = try container.sdkDecodeIfPresent(.posEntryMode)
+        self.readMethod = try container.sdkDecodeIfPresent(.readMethod)
+        self.reader = try container.sdkDecodeIfPresent(.reader)
+        self.terminalVerificationResults = try container.sdkDecodeIfPresent(.terminalVerificationResults)
+        self.transactionStatusInformation = try container.sdkDecodeIfPresent(.transactionStatusInformation)
     }
 }
 
@@ -397,20 +339,20 @@ public struct SourceTypeEps: Codable {
     }
 
     init() {
-        (reference, statementDescriptor) = (nil, nil)
+        (self.reference, self.statementDescriptor) = (nil, nil)
     }
 }
 
-public extension SourceTypeEps {
-    init(from decoder: Decoder) throws {
+extension SourceTypeEps {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        reference = try container.sdkDecodeIfPresent(.reference)
-        statementDescriptor = try container.sdkDecodeIfPresent(.statementDescriptor)
+        self.reference = try container.sdkDecodeIfPresent(.reference)
+        self.statementDescriptor = try container.sdkDecodeIfPresent(.statementDescriptor)
     }
 }
 
-public extension SourceTypeEps {
-    init(reference: String? = nil, statementDescriptor: String? = nil) {
+extension SourceTypeEps {
+    public init(reference: String? = nil, statementDescriptor: String? = nil) {
         self.init()
         (self.reference, self.statementDescriptor) = (reference, statementDescriptor)
     }
@@ -435,22 +377,22 @@ public struct SourceTypeGiropay: Codable {
     }
 
     init() {
-        (bankCode, bankName, bic, statementDescriptor) = (nil, nil, nil, nil)
+        (self.bankCode, self.bankName, self.bic, self.statementDescriptor) = (nil, nil, nil, nil)
     }
 }
 
-public extension SourceTypeGiropay {
-    init(from decoder: Decoder) throws {
+extension SourceTypeGiropay {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        bankCode = try container.sdkDecodeIfPresent(.bankCode)
-        bankName = try container.sdkDecodeIfPresent(.bankName)
-        bic = try container.sdkDecodeIfPresent(.bic)
-        statementDescriptor = try container.sdkDecodeIfPresent(.statementDescriptor)
+        self.bankCode = try container.sdkDecodeIfPresent(.bankCode)
+        self.bankName = try container.sdkDecodeIfPresent(.bankName)
+        self.bic = try container.sdkDecodeIfPresent(.bic)
+        self.statementDescriptor = try container.sdkDecodeIfPresent(.statementDescriptor)
     }
 }
 
-public extension SourceTypeGiropay {
-    init(bankCode: String? = nil, bankName: String? = nil, bic: String? = nil, statementDescriptor: String? = nil) {
+extension SourceTypeGiropay {
+    public init(bankCode: String? = nil, bankName: String? = nil, bic: String? = nil, statementDescriptor: String? = nil) {
         self.init()
         (self.bankCode, self.bankName) = (bankCode, bankName)
         (self.bic, self.statementDescriptor) = (bic, statementDescriptor)
@@ -476,22 +418,22 @@ public struct SourceTypeIdeal: Codable {
     }
 
     init() {
-        (bank, bic, ibanLast4, statementDescriptor) = (nil, nil, nil, nil)
+        (self.bank, self.bic, self.ibanLast4, self.statementDescriptor) = (nil, nil, nil, nil)
     }
 }
 
-public extension SourceTypeIdeal {
-    init(from decoder: Decoder) throws {
+extension SourceTypeIdeal {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        bank = try container.sdkDecodeIfPresent(.bank)
-        bic = try container.sdkDecodeIfPresent(.bic)
-        ibanLast4 = try container.sdkDecodeIfPresent(.ibanLast4)
-        statementDescriptor = try container.sdkDecodeIfPresent(.statementDescriptor)
+        self.bank = try container.sdkDecodeIfPresent(.bank)
+        self.bic = try container.sdkDecodeIfPresent(.bic)
+        self.ibanLast4 = try container.sdkDecodeIfPresent(.ibanLast4)
+        self.statementDescriptor = try container.sdkDecodeIfPresent(.statementDescriptor)
     }
 }
 
-public extension SourceTypeIdeal {
-    init(bank: String? = nil, bic: String? = nil, ibanLast4: String? = nil, statementDescriptor: String? = nil) {
+extension SourceTypeIdeal {
+    public init(bank: String? = nil, bic: String? = nil, ibanLast4: String? = nil, statementDescriptor: String? = nil) {
         self.init()
         (self.bank, self.bic) = (bank, bic)
         (self.ibanLast4, self.statementDescriptor) = (ibanLast4, statementDescriptor)

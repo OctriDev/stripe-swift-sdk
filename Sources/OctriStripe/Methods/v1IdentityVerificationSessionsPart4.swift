@@ -6,31 +6,18 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1IdentityVerificationSessionsMethods {
-    /// Retrieves a previously created verification session by its identifier. When the session has `requires_input`
-    /// status, use the response to obtain a valid `client_secret` or `url` for resubmission.
+extension V1IdentityVerificationSessionsMethods {
+    /// Retrieves a previously created verification session by its identifier. When the session has `requires_input` status, use the response to obtain a valid `client_secret` or `url` for resubmission.
     ///
-    /// Retrieves the details of a VerificationSession that was previously created. When the session status is
-    /// requires_input , you can use this method to retrieve a valid client_secret or url to allow re-submission.
+    /// Retrieves the details of a VerificationSession that was previously created. When the session status is requires_input , you can use this method to retrieve a valid client_secret or url to allow re-submission.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    static func getIdentityVerificationSessionsSession(
-        config: ClientConfig,
-        session: String,
-        expand: [String]?
-    ) async throws -> IdentityVerificationSession {
+    public static func getIdentityVerificationSessionsSession(config: ClientConfig, session: String, expand: [String]?) async throws -> IdentityVerificationSession {
         try validateLength("session", session, max: 5000)
 
-        return try await (sdkRequest(
-            "GET",
-            ["/v1/identity/verification_sessions/", sdkEncodePathSegment(sdkWireString(session))].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .json,
-            operationId: "GetIdentityVerificationSessionsSession"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/identity/verification_sessions/", sdkEncodePathSegment(sdkWireString(session))].joined(), config: config, query: [
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .json, operationId: "GetIdentityVerificationSessionsSession")).data
     }
 }

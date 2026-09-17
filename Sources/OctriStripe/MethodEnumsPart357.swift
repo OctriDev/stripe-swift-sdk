@@ -7,387 +7,141 @@ import Foundation
     import FoundationNetworking
 #endif
 public extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a {
-    static let jewelryStoresWatchesClocksAndSilverwareStores =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(
-            rawValue: "jewelry_stores_watches_clocks_and_silverware_stores"
-        )
-    static let landscapingServices =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "landscaping_services")
-    static let laundries =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "laundries")
-    static let laundryCleaningServices =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "laundry_cleaning_services")
-    static let legalServicesAttorneys =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "legal_services_attorneys")
-    static let luggageAndLeatherGoodsStores =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(
-            rawValue: "luggage_and_leather_goods_stores"
-        )
-    static let lumberBuildingMaterialsStores =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(
-            rawValue: "lumber_building_materials_stores"
-        )
-    static let manualCashDisburse =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "manual_cash_disburse")
-    static let marinasServiceAndSupplies =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(
-            rawValue: "marinas_service_and_supplies"
-        )
-    static let marketplaces =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "marketplaces")
-    static let masonryStoneworkAndPlaster =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(
-            rawValue: "masonry_stonework_and_plaster"
-        )
-    static let massageParlors =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "massage_parlors")
-    static let medicalAndDentalLabs =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "medical_and_dental_labs")
-    static let medicalDentalOphthalmicAndHospitalEquipmentAndSupplies =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(
-            rawValue: "medical_dental_ophthalmic_and_hospital_equipment_and_supplies"
-        )
-    static let medicalServices =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "medical_services")
-    static let membershipOrganizations =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "membership_organizations")
-    static let mensAndBoysClothingAndAccessoriesStores =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(
-            rawValue: "mens_and_boys_clothing_and_accessories_stores"
-        )
-    static let mensWomensClothingStores =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(
-            rawValue: "mens_womens_clothing_stores"
-        )
-    static let metalServiceCenters =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "metal_service_centers")
-    static let miscellaneousApparelAndAccessoryShops =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(
-            rawValue: "miscellaneous_apparel_and_accessory_shops"
-        )
-    static let miscellaneousAutoDealers =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "miscellaneous_auto_dealers")
-    static let miscellaneousBusinessServices =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(
-            rawValue: "miscellaneous_business_services"
-        )
-    static let miscellaneousFoodStores =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "miscellaneous_food_stores")
-    static let miscellaneousGeneralMerchandise =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(
-            rawValue: "miscellaneous_general_merchandise"
-        )
-    static let miscellaneousGeneralServices =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(
-            rawValue: "miscellaneous_general_services"
-        )
-    static let miscellaneousHomeFurnishingSpecialtyStores =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(
-            rawValue: "miscellaneous_home_furnishing_specialty_stores"
-        )
-    static let miscellaneousPublishingAndPrinting =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(
-            rawValue: "miscellaneous_publishing_and_printing"
-        )
-    static let miscellaneousRecreationServices =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(
-            rawValue: "miscellaneous_recreation_services"
-        )
-    static let miscellaneousRepairShops =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "miscellaneous_repair_shops")
-    static let miscellaneousSpecialtyRetail =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(
-            rawValue: "miscellaneous_specialty_retail"
-        )
-    static let mobileHomeDealers =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "mobile_home_dealers")
-    static let motionPictureTheaters =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "motion_picture_theaters")
-    static let motorFreightCarriersAndTrucking =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(
-            rawValue: "motor_freight_carriers_and_trucking"
-        )
-    static let motorHomesDealers =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "motor_homes_dealers")
-    static let motorVehicleSuppliesAndNewParts =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(
-            rawValue: "motor_vehicle_supplies_and_new_parts"
-        )
-    static let motorcycleShopsAndDealers =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(
-            rawValue: "motorcycle_shops_and_dealers"
-        )
-    static let motorcycleShopsDealers =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "motorcycle_shops_dealers")
-    static let musicStoresMusicalInstrumentsPianosAndSheetMusic =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(
-            rawValue: "music_stores_musical_instruments_pianos_and_sheet_music"
-        )
-    static let newsDealersAndNewsstands =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(
-            rawValue: "news_dealers_and_newsstands"
-        )
-    static let nonFiMoneyOrders =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "non_fi_money_orders")
-    static let nonFiStoredValueCardPurchaseLoad =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(
-            rawValue: "non_fi_stored_value_card_purchase_load"
-        )
-    static let nondurableGoods =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "nondurable_goods")
-    static let nurseriesLawnAndGardenSupplyStores =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(
-            rawValue: "nurseries_lawn_and_garden_supply_stores"
-        )
-    static let nursingPersonalCare =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "nursing_personal_care")
-    static let officeAndCommercialFurniture =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(
-            rawValue: "office_and_commercial_furniture"
-        )
-    static let opticiansEyeglasses =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "opticians_eyeglasses")
-    static let optometristsOphthalmologist =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(
-            rawValue: "optometrists_ophthalmologist"
-        )
-    static let orthopedicGoodsProstheticDevices =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(
-            rawValue: "orthopedic_goods_prosthetic_devices"
-        )
-    static let osteopaths =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "osteopaths")
-    static let packageStoresBeerWineAndLiquor =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(
-            rawValue: "package_stores_beer_wine_and_liquor"
-        )
-    static let paintsVarnishesAndSupplies =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(
-            rawValue: "paints_varnishes_and_supplies"
-        )
-    static let parkingLotsGarages =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "parking_lots_garages")
-    static let passengerRailways =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "passenger_railways")
-    static let pawnShops =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "pawn_shops")
-    static let petShopsPetFoodAndSupplies =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(
-            rawValue: "pet_shops_pet_food_and_supplies"
-        )
-    static let petroleumAndPetroleumProducts =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(
-            rawValue: "petroleum_and_petroleum_products"
-        )
-    static let photoDeveloping =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "photo_developing")
-    static let photographicPhotocopyMicrofilmEquipmentAndSupplies =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(
-            rawValue: "photographic_photocopy_microfilm_equipment_and_supplies"
-        )
-    static let photographicStudios =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "photographic_studios")
-    static let pictureVideoProduction =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "picture_video_production")
-    static let pieceGoodsNotionsAndOtherDryGoods =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(
-            rawValue: "piece_goods_notions_and_other_dry_goods"
-        )
-    static let plumbingHeatingEquipmentAndSupplies =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(
-            rawValue: "plumbing_heating_equipment_and_supplies"
-        )
-    static let politicalOrganizations =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "political_organizations")
-    static let postalServicesGovernmentOnly =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(
-            rawValue: "postal_services_government_only"
-        )
-    static let preciousStonesAndMetalsWatchesAndJewelry =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(
-            rawValue: "precious_stones_and_metals_watches_and_jewelry"
-        )
-    static let professionalServices =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "professional_services")
-    static let publicWarehousingAndStorage =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(
-            rawValue: "public_warehousing_and_storage"
-        )
-    static let quickCopyReproAndBlueprint =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(
-            rawValue: "quick_copy_repro_and_blueprint"
-        )
-    static let railroads =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "railroads")
-    static let realEstateAgentsAndManagersRentals =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(
-            rawValue: "real_estate_agents_and_managers_rentals"
-        )
-    static let recordStores =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "record_stores")
-    static let recreationalVehicleRentals =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(
-            rawValue: "recreational_vehicle_rentals"
-        )
-    static let religiousGoodsStores =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "religious_goods_stores")
-    static let religiousOrganizations =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "religious_organizations")
-    static let roofingSidingSheetMetal =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "roofing_siding_sheet_metal")
-    static let secretarialSupportServices =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(
-            rawValue: "secretarial_support_services"
-        )
-    static let securityBrokersDealers =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "security_brokers_dealers")
-    static let serviceStations =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "service_stations")
-    static let sewingNeedleworkFabricAndPieceGoodsStores =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(
-            rawValue: "sewing_needlework_fabric_and_piece_goods_stores"
-        )
-    static let shoeRepairHatCleaning =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "shoe_repair_hat_cleaning")
+    static let jewelryStoresWatchesClocksAndSilverwareStores = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "jewelry_stores_watches_clocks_and_silverware_stores")
+    static let landscapingServices = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "landscaping_services")
+    static let laundries = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "laundries")
+    static let laundryCleaningServices = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "laundry_cleaning_services")
+    static let legalServicesAttorneys = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "legal_services_attorneys")
+    static let luggageAndLeatherGoodsStores = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "luggage_and_leather_goods_stores")
+    static let lumberBuildingMaterialsStores = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "lumber_building_materials_stores")
+    static let manualCashDisburse = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "manual_cash_disburse")
+    static let marinasServiceAndSupplies = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "marinas_service_and_supplies")
+    static let marketplaces = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "marketplaces")
+    static let masonryStoneworkAndPlaster = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "masonry_stonework_and_plaster")
+    static let massageParlors = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "massage_parlors")
+    static let medicalAndDentalLabs = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "medical_and_dental_labs")
+    static let medicalDentalOphthalmicAndHospitalEquipmentAndSupplies = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "medical_dental_ophthalmic_and_hospital_equipment_and_supplies")
+    static let medicalServices = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "medical_services")
+    static let membershipOrganizations = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "membership_organizations")
+    static let mensAndBoysClothingAndAccessoriesStores = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "mens_and_boys_clothing_and_accessories_stores")
+    static let mensWomensClothingStores = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "mens_womens_clothing_stores")
+    static let metalServiceCenters = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "metal_service_centers")
+    static let miscellaneousApparelAndAccessoryShops = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "miscellaneous_apparel_and_accessory_shops")
+    static let miscellaneousAutoDealers = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "miscellaneous_auto_dealers")
+    static let miscellaneousBusinessServices = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "miscellaneous_business_services")
+    static let miscellaneousFoodStores = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "miscellaneous_food_stores")
+    static let miscellaneousGeneralMerchandise = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "miscellaneous_general_merchandise")
+    static let miscellaneousGeneralServices = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "miscellaneous_general_services")
+    static let miscellaneousHomeFurnishingSpecialtyStores = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "miscellaneous_home_furnishing_specialty_stores")
+    static let miscellaneousPublishingAndPrinting = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "miscellaneous_publishing_and_printing")
+    static let miscellaneousRecreationServices = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "miscellaneous_recreation_services")
+    static let miscellaneousRepairShops = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "miscellaneous_repair_shops")
+    static let miscellaneousSpecialtyRetail = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "miscellaneous_specialty_retail")
+    static let mobileHomeDealers = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "mobile_home_dealers")
+    static let motionPictureTheaters = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "motion_picture_theaters")
+    static let motorFreightCarriersAndTrucking = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "motor_freight_carriers_and_trucking")
+    static let motorHomesDealers = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "motor_homes_dealers")
+    static let motorVehicleSuppliesAndNewParts = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "motor_vehicle_supplies_and_new_parts")
+    static let motorcycleShopsAndDealers = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "motorcycle_shops_and_dealers")
+    static let motorcycleShopsDealers = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "motorcycle_shops_dealers")
+    static let musicStoresMusicalInstrumentsPianosAndSheetMusic = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "music_stores_musical_instruments_pianos_and_sheet_music")
+    static let newsDealersAndNewsstands = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "news_dealers_and_newsstands")
+    static let nonFiMoneyOrders = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "non_fi_money_orders")
+    static let nonFiStoredValueCardPurchaseLoad = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "non_fi_stored_value_card_purchase_load")
+    static let nondurableGoods = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "nondurable_goods")
+    static let nurseriesLawnAndGardenSupplyStores = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "nurseries_lawn_and_garden_supply_stores")
+    static let nursingPersonalCare = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "nursing_personal_care")
+    static let officeAndCommercialFurniture = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "office_and_commercial_furniture")
+    static let opticiansEyeglasses = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "opticians_eyeglasses")
+    static let optometristsOphthalmologist = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "optometrists_ophthalmologist")
+    static let orthopedicGoodsProstheticDevices = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "orthopedic_goods_prosthetic_devices")
+    static let osteopaths = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "osteopaths")
+    static let packageStoresBeerWineAndLiquor = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "package_stores_beer_wine_and_liquor")
+    static let paintsVarnishesAndSupplies = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "paints_varnishes_and_supplies")
+    static let parkingLotsGarages = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "parking_lots_garages")
+    static let passengerRailways = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "passenger_railways")
+    static let pawnShops = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "pawn_shops")
+    static let petShopsPetFoodAndSupplies = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "pet_shops_pet_food_and_supplies")
+    static let petroleumAndPetroleumProducts = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "petroleum_and_petroleum_products")
+    static let photoDeveloping = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "photo_developing")
+    static let photographicPhotocopyMicrofilmEquipmentAndSupplies = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "photographic_photocopy_microfilm_equipment_and_supplies")
+    static let photographicStudios = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "photographic_studios")
+    static let pictureVideoProduction = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "picture_video_production")
+    static let pieceGoodsNotionsAndOtherDryGoods = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "piece_goods_notions_and_other_dry_goods")
+    static let plumbingHeatingEquipmentAndSupplies = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "plumbing_heating_equipment_and_supplies")
+    static let politicalOrganizations = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "political_organizations")
+    static let postalServicesGovernmentOnly = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "postal_services_government_only")
+    static let preciousStonesAndMetalsWatchesAndJewelry = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "precious_stones_and_metals_watches_and_jewelry")
+    static let professionalServices = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "professional_services")
+    static let publicWarehousingAndStorage = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "public_warehousing_and_storage")
+    static let quickCopyReproAndBlueprint = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "quick_copy_repro_and_blueprint")
+    static let railroads = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "railroads")
+    static let realEstateAgentsAndManagersRentals = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "real_estate_agents_and_managers_rentals")
+    static let recordStores = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "record_stores")
+    static let recreationalVehicleRentals = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "recreational_vehicle_rentals")
+    static let religiousGoodsStores = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "religious_goods_stores")
+    static let religiousOrganizations = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "religious_organizations")
+    static let roofingSidingSheetMetal = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "roofing_siding_sheet_metal")
+    static let secretarialSupportServices = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "secretarial_support_services")
+    static let securityBrokersDealers = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "security_brokers_dealers")
+    static let serviceStations = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "service_stations")
+    static let sewingNeedleworkFabricAndPieceGoodsStores = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "sewing_needlework_fabric_and_piece_goods_stores")
+    static let shoeRepairHatCleaning = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "shoe_repair_hat_cleaning")
 }
 
 public extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a {
-    static let shoeStores =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "shoe_stores")
-    static let smallApplianceRepair =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "small_appliance_repair")
-    static let snowmobileDealers =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "snowmobile_dealers")
-    static let specialTradeServices =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "special_trade_services")
-    static let specialtyCleaning =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "specialty_cleaning")
-    static let sportingGoodsStores =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "sporting_goods_stores")
-    static let sportingRecreationCamps =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "sporting_recreation_camps")
-    static let sportsAndRidingApparelStores =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(
-            rawValue: "sports_and_riding_apparel_stores"
-        )
-    static let sportsClubsFields =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "sports_clubs_fields")
-    static let stampAndCoinStores =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "stamp_and_coin_stores")
-    static let stationaryOfficeSuppliesPrintingAndWritingPaper =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(
-            rawValue: "stationary_office_supplies_printing_and_writing_paper"
-        )
-    static let stationeryStoresOfficeAndSchoolSupplyStores =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(
-            rawValue: "stationery_stores_office_and_school_supply_stores"
-        )
-    static let swimmingPoolsSales =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "swimming_pools_sales")
-    static let tUiTravelGermany =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "t_ui_travel_germany")
-    static let tailorsAlterations =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "tailors_alterations")
-    static let taxPaymentsGovernmentAgencies =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(
-            rawValue: "tax_payments_government_agencies"
-        )
-    static let taxPreparationServices =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "tax_preparation_services")
-    static let taxicabsLimousines =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "taxicabs_limousines")
-    static let telecommunicationEquipmentAndTelephoneSales =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(
-            rawValue: "telecommunication_equipment_and_telephone_sales"
-        )
-    static let telecommunicationServices =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "telecommunication_services")
-    static let telegraphServices =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "telegraph_services")
-    static let tentAndAwningShops =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "tent_and_awning_shops")
-    static let testingLaboratories =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "testing_laboratories")
-    static let theatricalTicketAgencies =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "theatrical_ticket_agencies")
-    static let timeshares =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "timeshares")
-    static let tireRetreadingAndRepair =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "tire_retreading_and_repair")
-    static let tollsBridgeFees =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "tolls_bridge_fees")
-    static let touristAttractionsAndExhibits =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(
-            rawValue: "tourist_attractions_and_exhibits"
-        )
-    static let towingServices =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "towing_services")
-    static let trailerParksCampgrounds =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "trailer_parks_campgrounds")
-    static let transportationServices =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "transportation_services")
-    static let travelAgenciesTourOperators =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(
-            rawValue: "travel_agencies_tour_operators"
-        )
-    static let truckStopIteration =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "truck_stop_iteration")
-    static let truckUtilityTrailerRentals =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(
-            rawValue: "truck_utility_trailer_rentals"
-        )
-    static let typesettingPlateMakingAndRelatedServices =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(
-            rawValue: "typesetting_plate_making_and_related_services"
-        )
-    static let typewriterStores =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "typewriter_stores")
-    static let uSFederalGovernmentAgenciesOrDepartments =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(
-            rawValue: "u_s_federal_government_agencies_or_departments"
-        )
-    static let uniformsCommercialClothing =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(
-            rawValue: "uniforms_commercial_clothing"
-        )
-    static let usedMerchandiseAndSecondhandStores =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(
-            rawValue: "used_merchandise_and_secondhand_stores"
-        )
-    static let utilities =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "utilities")
-    static let varietyStores =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "variety_stores")
-    static let veterinaryServices =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "veterinary_services")
-    static let videoAmusementGameSupplies =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(
-            rawValue: "video_amusement_game_supplies"
-        )
-    static let videoGameArcades =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "video_game_arcades")
-    static let videoTapeRentalStores =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "video_tape_rental_stores")
-    static let vocationalTradeSchools =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "vocational_trade_schools")
-    static let watchJewelryRepair =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "watch_jewelry_repair")
-    static let weldingRepair =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "welding_repair")
-    static let wholesaleClubs =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "wholesale_clubs")
-    static let wigAndToupeeStores =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "wig_and_toupee_stores")
-    static let wiresMoneyOrders =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "wires_money_orders")
-    static let womensAccessoryAndSpecialtyShops =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(
-            rawValue: "womens_accessory_and_specialty_shops"
-        )
-    static let womensReadyToWearStores =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(
-            rawValue: "womens_ready_to_wear_stores"
-        )
-    static let wreckingAndSalvageYards =
-        PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "wrecking_and_salvage_yards")
+    static let shoeStores = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "shoe_stores")
+    static let smallApplianceRepair = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "small_appliance_repair")
+    static let snowmobileDealers = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "snowmobile_dealers")
+    static let specialTradeServices = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "special_trade_services")
+    static let specialtyCleaning = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "specialty_cleaning")
+    static let sportingGoodsStores = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "sporting_goods_stores")
+    static let sportingRecreationCamps = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "sporting_recreation_camps")
+    static let sportsAndRidingApparelStores = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "sports_and_riding_apparel_stores")
+    static let sportsClubsFields = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "sports_clubs_fields")
+    static let stampAndCoinStores = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "stamp_and_coin_stores")
+    static let stationaryOfficeSuppliesPrintingAndWritingPaper = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "stationary_office_supplies_printing_and_writing_paper")
+    static let stationeryStoresOfficeAndSchoolSupplyStores = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "stationery_stores_office_and_school_supply_stores")
+    static let swimmingPoolsSales = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "swimming_pools_sales")
+    static let tUiTravelGermany = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "t_ui_travel_germany")
+    static let tailorsAlterations = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "tailors_alterations")
+    static let taxPaymentsGovernmentAgencies = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "tax_payments_government_agencies")
+    static let taxPreparationServices = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "tax_preparation_services")
+    static let taxicabsLimousines = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "taxicabs_limousines")
+    static let telecommunicationEquipmentAndTelephoneSales = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "telecommunication_equipment_and_telephone_sales")
+    static let telecommunicationServices = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "telecommunication_services")
+    static let telegraphServices = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "telegraph_services")
+    static let tentAndAwningShops = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "tent_and_awning_shops")
+    static let testingLaboratories = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "testing_laboratories")
+    static let theatricalTicketAgencies = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "theatrical_ticket_agencies")
+    static let timeshares = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "timeshares")
+    static let tireRetreadingAndRepair = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "tire_retreading_and_repair")
+    static let tollsBridgeFees = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "tolls_bridge_fees")
+    static let touristAttractionsAndExhibits = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "tourist_attractions_and_exhibits")
+    static let towingServices = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "towing_services")
+    static let trailerParksCampgrounds = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "trailer_parks_campgrounds")
+    static let transportationServices = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "transportation_services")
+    static let travelAgenciesTourOperators = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "travel_agencies_tour_operators")
+    static let truckStopIteration = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "truck_stop_iteration")
+    static let truckUtilityTrailerRentals = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "truck_utility_trailer_rentals")
+    static let typesettingPlateMakingAndRelatedServices = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "typesetting_plate_making_and_related_services")
+    static let typewriterStores = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "typewriter_stores")
+    static let uSFederalGovernmentAgenciesOrDepartments = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "u_s_federal_government_agencies_or_departments")
+    static let uniformsCommercialClothing = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "uniforms_commercial_clothing")
+    static let usedMerchandiseAndSecondhandStores = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "used_merchandise_and_secondhand_stores")
+    static let utilities = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "utilities")
+    static let varietyStores = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "variety_stores")
+    static let veterinaryServices = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "veterinary_services")
+    static let videoAmusementGameSupplies = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "video_amusement_game_supplies")
+    static let videoGameArcades = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "video_game_arcades")
+    static let videoTapeRentalStores = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "video_tape_rental_stores")
+    static let vocationalTradeSchools = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "vocational_trade_schools")
+    static let watchJewelryRepair = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "watch_jewelry_repair")
+    static let weldingRepair = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "welding_repair")
+    static let wholesaleClubs = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "wholesale_clubs")
+    static let wigAndToupeeStores = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "wig_and_toupee_stores")
+    static let wiresMoneyOrders = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "wires_money_orders")
+    static let womensAccessoryAndSpecialtyShops = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "womens_accessory_and_specialty_shops")
+    static let womensReadyToWearStores = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "womens_ready_to_wear_stores")
+    static let wreckingAndSalvageYards = PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX85bf829f6a(rawValue: "wrecking_and_salvage_yards")
 }

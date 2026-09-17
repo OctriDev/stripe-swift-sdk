@@ -6,7 +6,7 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1TestHelpersTestClocksMethods {
+extension V1TestHelpersTestClocksMethods {
     /// Creates a new test clock that can be attached to new customers and quotes.
     ///
     /// - Parameters:
@@ -15,81 +15,40 @@ public extension V1TestHelpersTestClocksMethods {
     ///   attached, customers can't be removed from a test clock.
     /// - expand: Specifies which fields in the response should be expanded.
     /// - name: The name for this test clock.
-    static func postTestHelpersTestClocks(
-        config: ClientConfig,
-        frozenTime: Int,
-        customer: String?,
-        expand: [String]?,
-        name: String?
-    ) async throws -> TestHelpersTestClock {
-        if let customer {
+    public static func postTestHelpersTestClocks(config: ClientConfig, frozenTime: Int, customer: String?, expand: [String]?, name: String?) async throws -> TestHelpersTestClock {
+        if let customer = customer {
             try validateLength("customer", customer, max: 5000)
         }
 
-        if let name {
+        if let name = name {
             try validateLength("name", name, max: 300)
         }
 
-        let requestBody = PostTestHelpersTestClocksRequestBody(
-            frozenTime: frozenTime,
-            customer: customer,
-            expand: expand,
-            name: name
-        )
+        let requestBody = PostTestHelpersTestClocksRequestBody(frozenTime: frozenTime, customer: customer, expand: expand, name: name)
 
-        return try await (sdkRequest(
-            "POST",
-            "/v1/test_helpers/test_clocks",
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostTestHelpersTestClocks"
-        )).data
+        return try (await sdkRequest("POST", "/v1/test_helpers/test_clocks", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTestHelpersTestClocks")).data
     }
 
-    /// Deletes a test clock from the test environment. Supply the test clock identifier to remove the clock and receive
-    /// a confirmation object identifying the deleted resource.
+    /// Deletes a test clock from the test environment. Supply the test clock identifier to remove the clock and receive a confirmation object identifying the deleted resource.
     ///
     /// Deletes a test clock.
-    static func deleteTestHelpersTestClocksTestClock(
-        config: ClientConfig,
-        testClock: String
-    ) async throws -> DeletedTestHelpersTestClock {
+    public static func deleteTestHelpersTestClocksTestClock(config: ClientConfig, testClock: String) async throws -> DeletedTestHelpersTestClock {
         try validateLength("test_clock", testClock, max: 5000)
 
-        return try await (sdkRequest(
-            "DELETE",
-            ["/v1/test_helpers/test_clocks/", sdkEncodePathSegment(sdkWireString(testClock))].joined(),
-            config: config,
-            decoder: .json,
-            operationId: "DeleteTestHelpersTestClocksTestClock"
-        )).data
+        return try (await sdkRequest("DELETE", ["/v1/test_helpers/test_clocks/", sdkEncodePathSegment(sdkWireString(testClock))].joined(), config: config, decoder: .json, operationId: "DeleteTestHelpersTestClocksTestClock")).data
     }
 
-    /// Retrieves a single test clock by its identifier. Use `expand` when you need additional fields included in the
-    /// returned test clock representation.
+    /// Retrieves a single test clock by its identifier. Use `expand` when you need additional fields included in the returned test clock representation.
     ///
     /// Retrieves a test clock.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    static func getTestHelpersTestClocksTestClock(
-        config: ClientConfig,
-        testClock: String,
-        expand: [String]?
-    ) async throws -> TestHelpersTestClock {
+    public static func getTestHelpersTestClocksTestClock(config: ClientConfig, testClock: String, expand: [String]?) async throws -> TestHelpersTestClock {
         try validateLength("test_clock", testClock, max: 5000)
 
-        return try await (sdkRequest(
-            "GET",
-            ["/v1/test_helpers/test_clocks/", sdkEncodePathSegment(sdkWireString(testClock))].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .json,
-            operationId: "GetTestHelpersTestClocksTestClock"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/test_helpers/test_clocks/", sdkEncodePathSegment(sdkWireString(testClock))].joined(), config: config, query: [
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .json, operationId: "GetTestHelpersTestClocksTestClock")).data
     }
 }

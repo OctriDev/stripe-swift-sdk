@@ -3,17 +3,13 @@
 
 import Foundation
 
-/// V1Invoice domain models
+// V1Invoice domain models
 /// The desired country code of the bank account information. Permitted values include: `DE`, `FR`, `IE`, or
 /// `NL`.
-public struct InvoicePaymentMethodOptionsCustomerBalanceBankTransferEuBankTX634ce1c025: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct InvoicePaymentMethodOptionsCustomerBalanceBankTransferEuBankTX634ce1c025: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let be = InvoicePaymentMethodOptionsCustomerBalanceBankTransferEuBankTX634ce1c025(rawValue: "BE")
     public static let de = InvoicePaymentMethodOptionsCustomerBalanceBankTransferEuBankTX634ce1c025(rawValue: "DE")
     public static let es = InvoicePaymentMethodOptionsCustomerBalanceBankTransferEuBankTX634ce1c025(rawValue: "ES")
@@ -23,7 +19,7 @@ public struct InvoicePaymentMethodOptionsCustomerBalanceBankTransferEuBankTX634c
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -34,19 +30,15 @@ public struct InvoicePaymentMethodOptionsCustomerBalanceBankTransferEuBankTX634c
 
 /// The funding method type to be used when there are not enough funds in the customer balance. Permitted values
 /// include: `bank_transfer`.
-public struct InvoicePaymentMethodOptionsCustomerBalanceFundingType: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct InvoicePaymentMethodOptionsCustomerBalanceFundingType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let bankTransfer = InvoicePaymentMethodOptionsCustomerBalanceFundingType(rawValue: "bank_transfer")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -59,16 +51,13 @@ public struct InvoicePaymentMethodOptionsCustomerBalanceFundingType: RawRepresen
 public struct InvoiceItemProrationCreditedItemsType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let invoiceItem = InvoiceItemProrationCreditedItemsType(rawValue: "invoice_item")
     public static let invoiceLineItems = InvoiceItemProrationCreditedItemsType(rawValue: "invoice_line_items")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -81,21 +70,17 @@ public struct InvoiceItemProrationCreditedItemsType: RawRepresentable, Hashable,
 /// authentication based on risk level and other requirements. However, if you wish to request 3D Secure based
 /// on logic from your own fraud engine, provide this option. Read our guide on manually requesting 3D Secure
 /// for more information on how this configuration interacts with Radar and our SCA Engine.
-public struct InvoicePaymentMethodOptionsCardRequestThreeDSecure: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct InvoicePaymentMethodOptionsCardRequestThreeDSecure: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let any = InvoicePaymentMethodOptionsCardRequestThreeDSecure(rawValue: "any")
     public static let automatic = InvoicePaymentMethodOptionsCardRequestThreeDSecure(rawValue: "automatic")
     public static let challenge = InvoicePaymentMethodOptionsCardRequestThreeDSecure(rawValue: "challenge")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -108,16 +93,13 @@ public struct InvoicePaymentMethodOptionsCardRequestThreeDSecure: RawRepresentab
 public struct InvoiceRenderingTemplateStatus: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let active = InvoiceRenderingTemplateStatus(rawValue: "active")
     public static let archived = InvoiceRenderingTemplateStatus(rawValue: "archived")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -127,21 +109,17 @@ public struct InvoiceRenderingTemplateStatus: RawRepresentable, Hashable, Codabl
 }
 
 /// Bank account verification method. The default value is `automatic`.
-public struct InvoicePaymentMethodOptionsAcssDebitVerificationMethod: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct InvoicePaymentMethodOptionsAcssDebitVerificationMethod: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let automatic = InvoicePaymentMethodOptionsAcssDebitVerificationMethod(rawValue: "automatic")
     public static let instant = InvoicePaymentMethodOptionsAcssDebitVerificationMethod(rawValue: "instant")
     public static let microdeposits = InvoicePaymentMethodOptionsAcssDebitVerificationMethod(rawValue: "microdeposits")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -151,22 +129,17 @@ public struct InvoicePaymentMethodOptionsAcssDebitVerificationMethod: RawReprese
 }
 
 /// Bank account verification method. The default value is `automatic`.
-public struct InvoicePaymentMethodOptionsUsBankAccountVerificationMethod: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct InvoicePaymentMethodOptionsUsBankAccountVerificationMethod: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let automatic = InvoicePaymentMethodOptionsUsBankAccountVerificationMethod(rawValue: "automatic")
     public static let instant = InvoicePaymentMethodOptionsUsBankAccountVerificationMethod(rawValue: "instant")
-    public static let microdeposits =
-        InvoicePaymentMethodOptionsUsBankAccountVerificationMethod(rawValue: "microdeposits")
+    public static let microdeposits = InvoicePaymentMethodOptionsUsBankAccountVerificationMethod(rawValue: "microdeposits")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -179,10 +152,7 @@ public struct InvoicePaymentMethodOptionsUsBankAccountVerificationMethod: RawRep
 public struct InvoiceMandateOptionsPaytoPurpose: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let dependantSupport = InvoiceMandateOptionsPaytoPurpose(rawValue: "dependant_support")
     public static let government = InvoiceMandateOptionsPaytoPurpose(rawValue: "government")
     public static let loan = InvoiceMandateOptionsPaytoPurpose(rawValue: "loan")
@@ -197,7 +167,7 @@ public struct InvoiceMandateOptionsPaytoPurpose: RawRepresentable, Hashable, Cod
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -207,26 +177,18 @@ public struct InvoiceMandateOptionsPaytoPurpose: RawRepresentable, Hashable, Cod
 }
 
 /// Required enumerated value serialized in the `permissions[]` wire field.
-public struct InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptionsPXb40d53863b: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptionsPXb40d53863b: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let balances =
-        InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptionsPXb40d53863b(rawValue: "balances")
-    public static let ownership =
-        InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptionsPXb40d53863b(rawValue: "ownership")
-    public static let paymentMethod =
-        InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptionsPXb40d53863b(rawValue: "payment_method")
-    public static let transactions =
-        InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptionsPXb40d53863b(rawValue: "transactions")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let balances = InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptionsPXb40d53863b(rawValue: "balances")
+    public static let ownership = InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptionsPXb40d53863b(rawValue: "ownership")
+    public static let paymentMethod = InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptionsPXb40d53863b(rawValue: "payment_method")
+    public static let transactions = InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptionsPXb40d53863b(rawValue: "transactions")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -240,16 +202,13 @@ public struct InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptionsPXb40d
 public struct InvoiceMandateOptionsCardAmountType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let fixed = InvoiceMandateOptionsCardAmountType(rawValue: "fixed")
     public static let maximum = InvoiceMandateOptionsCardAmountType(rawValue: "maximum")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -262,16 +221,13 @@ public struct InvoiceMandateOptionsCardAmountType: RawRepresentable, Hashable, C
 public struct InvoiceMandateOptionsPaytoAmountType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let fixed = InvoiceMandateOptionsPaytoAmountType(rawValue: "fixed")
     public static let maximum = InvoiceMandateOptionsPaytoAmountType(rawValue: "maximum")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -281,24 +237,17 @@ public struct InvoiceMandateOptionsPaytoAmountType: RawRepresentable, Hashable, 
 }
 
 /// Required enumerated value serialized in the `prefetch[]` wire field.
-public struct InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptionsPrefetchItem: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptionsPrefetchItem: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let balances =
-        InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptionsPrefetchItem(rawValue: "balances")
-    public static let ownership =
-        InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptionsPrefetchItem(rawValue: "ownership")
-    public static let transactions =
-        InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptionsPrefetchItem(rawValue: "transactions")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let balances = InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptionsPrefetchItem(rawValue: "balances")
+    public static let ownership = InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptionsPrefetchItem(rawValue: "ownership")
+    public static let transactions = InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptionsPrefetchItem(rawValue: "transactions")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -311,15 +260,12 @@ public struct InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptionsPrefet
 public struct InvoiceRenderingTemplateObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let invoiceRenderingTemplate = InvoiceRenderingTemplateObject(rawValue: "invoice_rendering_template")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -333,17 +279,14 @@ public struct InvoiceRenderingTemplateObject: RawRepresentable, Hashable, Codabl
 public struct InvoiceRenderingPdfPageSize: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let a4 = InvoiceRenderingPdfPageSize(rawValue: "a4")
     public static let auto = InvoiceRenderingPdfPageSize(rawValue: "auto")
     public static let letter = InvoiceRenderingPdfPageSize(rawValue: "letter")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -353,22 +296,16 @@ public struct InvoiceRenderingPdfPageSize: RawRepresentable, Hashable, Codable, 
 }
 
 /// Required enumerated value serialized in the `account_subcategories[]` wire field.
-public struct InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptionsFX5c04409465: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptionsFX5c04409465: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let checking =
-        InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptionsFX5c04409465(rawValue: "checking")
-    public static let savings =
-        InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptionsFX5c04409465(rawValue: "savings")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let checking = InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptionsFX5c04409465(rawValue: "checking")
+    public static let savings = InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptionsFX5c04409465(rawValue: "savings")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -379,20 +316,16 @@ public struct InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptionsFX5c04
 
 /// One of `fixed` or `maximum`. If `fixed`, the `amount` param refers to the exact amount to be charged in
 /// future payments. If `maximum`, the amount charged can be up to the value passed for the `amount` param.
-public struct InvoicePaymentMethodOptionsMandateOptionsUpiAmountType: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct InvoicePaymentMethodOptionsMandateOptionsUpiAmountType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let fixed = InvoicePaymentMethodOptionsMandateOptionsUpiAmountType(rawValue: "fixed")
     public static let maximum = InvoicePaymentMethodOptionsMandateOptionsUpiAmountType(rawValue: "maximum")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -402,20 +335,16 @@ public struct InvoicePaymentMethodOptionsMandateOptionsUpiAmountType: RawReprese
 }
 
 /// Determines if the amount includes the IOF tax.
-public struct InvoicePaymentMethodOptionsPixAmountIncludesIof: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct InvoicePaymentMethodOptionsPixAmountIncludesIof: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let always = InvoicePaymentMethodOptionsPixAmountIncludesIof(rawValue: "always")
     public static let never = InvoicePaymentMethodOptionsPixAmountIncludesIof(rawValue: "never")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

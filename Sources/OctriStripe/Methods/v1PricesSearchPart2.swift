@@ -6,15 +6,10 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1PricesSearchMethods {
-    /// Searches prices that you previously created using the Search Query Language. Use `query` to define the search
-    /// expression and `page` to continue through result pages; search results can lag behind recently created or
-    /// updated data.
+extension V1PricesSearchMethods {
+    /// Searches prices that you previously created using the Search Query Language. Use `query` to define the search expression and `page` to continue through result pages; search results can lag behind recently created or updated data.
     ///
-    /// Search for prices you’ve previously created using Stripe’s Search Query Language. Don’t use search in
-    /// read-after-write flows where strict consistency is necessary. Under normal operating conditions, data is
-    /// searchable in less than a minute. Occasionally, propagation of new or updated data can be up to an hour behind
-    /// during outages. Search functionality is not available to merchants in India.
+    /// Search for prices you’ve previously created using Stripe’s Search Query Language. Don’t use search in read-after-write flows where strict consistency is necessary. Under normal operating conditions, data is searchable in less than a minute. Occasionally, propagation of new or updated data can be up to an hour behind during outages. Search functionality is not available to merchants in India.
     ///
     /// - Parameters:
     /// - query: The search query string. See [search query
@@ -27,20 +22,14 @@ public extension V1PricesSearchMethods {
     /// - page: A cursor for pagination across multiple pages of results. Don't
     ///   include this parameter on the first call. Use the next_page value returned
     ///   in a previous response to request subsequent results.
-    static func getPricesSearch(
-        config: ClientConfig,
-        query: String,
-        expand: [String]?,
-        limit: Int?,
-        page: String?
-    ) async throws -> GetPricesSearchResponse {
+    public static func getPricesSearch(config: ClientConfig, query: String, expand: [String]?, limit: Int?, page: String?) async throws -> GetPricesSearchResponse {
         try validateLength("query", query, max: 5000)
 
-        if let page {
+        if let page = page {
             try validateLength("page", page, max: 5000)
         }
 
-        return try await (sdkRequest("GET", "/v1/prices/search", config: config, query: [
+        return try (await sdkRequest("GET", "/v1/prices/search", config: config, query: [
             SdkQueryParameter("query", value: query),
             SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
             SdkQueryParameter("limit", value: limit),
@@ -48,14 +37,9 @@ public extension V1PricesSearchMethods {
         ], decoder: .json, operationId: "GetPricesSearch")).data
     }
 
-    /// Searches prices that you previously created using the Search Query Language. Use `query` to define the search
-    /// expression and `page` to continue through result pages; search results can lag behind recently created or
-    /// updated data.
+    /// Searches prices that you previously created using the Search Query Language. Use `query` to define the search expression and `page` to continue through result pages; search results can lag behind recently created or updated data.
     ///
-    /// Search for prices you’ve previously created using Stripe’s Search Query Language. Don’t use search in
-    /// read-after-write flows where strict consistency is necessary. Under normal operating conditions, data is
-    /// searchable in less than a minute. Occasionally, propagation of new or updated data can be up to an hour behind
-    /// during outages. Search functionality is not available to merchants in India.
+    /// Search for prices you’ve previously created using Stripe’s Search Query Language. Don’t use search in read-after-write flows where strict consistency is necessary. Under normal operating conditions, data is searchable in less than a minute. Occasionally, propagation of new or updated data can be up to an hour behind during outages. Search functionality is not available to merchants in India.
     ///
     /// - Parameters:
     /// - query: The search query string. See [search query
@@ -68,34 +52,15 @@ public extension V1PricesSearchMethods {
     /// - page: A cursor for pagination across multiple pages of results. Don't
     ///   include this parameter on the first call. Use the next_page value returned
     ///   in a previous response to request subsequent results.
-    static func getPricesSearchPaginated(
-        config: ClientConfig,
-        query: String,
-        expand: [String]?,
-        limit: Int?,
-        page: String?
-    ) -> AsyncThrowingStream<Price, Swift.Error> {
-        AsyncThrowingStream<Price, Swift.Error> { (continuation: AsyncThrowingStream<
-            Price,
-            Swift.Error
-        >.Continuation) in
+    public static func getPricesSearchPaginated(config: ClientConfig, query: String, expand: [String]?, limit: Int?, page: String?) -> AsyncThrowingStream<Price, Swift.Error> {
+        return AsyncThrowingStream<Price, Swift.Error> { (continuation: AsyncThrowingStream<Price, Swift.Error>.Continuation) in
             let task = _Concurrency.Task {
                 do {
                     var pageCursor = page
                     while true {
-                        let pageResponse = try await getPricesSearch(
-                            config: config,
-                            query: query,
-                            expand: expand,
-                            limit: limit,
-                            page: pageCursor
-                        )
-                        for item in pageResponse.data {
-                            continuation.yield(item)
-                        }
-                        if !pageResponse.hasMore {
-                            break
-                        }
+                        let pageResponse = try await getPricesSearch(config: config, query: query, expand: expand, limit: limit, page: pageCursor)
+                        for item in pageResponse.data { continuation.yield(item) }
+                        if !pageResponse.hasMore { break }
                         guard let nextCursor = pageResponse.nextPage else { break }
                         pageCursor = nextCursor
                     }
@@ -109,47 +74,24 @@ public extension V1PricesSearchMethods {
         }
     }
 
-    struct GetPricesSearchPage {
+    public struct GetPricesSearchPage {
         public let data: GetPricesSearchResponse
         public let items: [Price]
         public let hasMore: Bool
     }
 
-    static func getPricesSearchPages(
-        config: ClientConfig,
-        query: String,
-        expand: [String]?,
-        limit: Int?,
-        page: String?
-    ) -> AsyncThrowingStream<GetPricesSearchPage, Swift.Error> {
-        AsyncThrowingStream<GetPricesSearchPage, Swift.Error> { (pageContinuation: AsyncThrowingStream<
-            GetPricesSearchPage,
-            Swift.Error
-        >.Continuation) in
+    public static func getPricesSearchPages(config: ClientConfig, query: String, expand: [String]?, limit: Int?, page: String?) -> AsyncThrowingStream<GetPricesSearchPage, Swift.Error> {
+        return AsyncThrowingStream<GetPricesSearchPage, Swift.Error> { (pageContinuation: AsyncThrowingStream<GetPricesSearchPage, Swift.Error>.Continuation) in
             let task = _Concurrency.Task {
                 do {
                     var pageCursor = page
                     while true {
-                        let pageResponse = try await getPricesSearch(
-                            config: config,
-                            query: query,
-                            expand: expand,
-                            limit: limit,
-                            page: pageCursor
-                        )
+                        let pageResponse = try await getPricesSearch(config: config, query: query, expand: expand, limit: limit, page: pageCursor)
                         let pageItems = pageResponse.data
-                        if pageItems.isEmpty {
-                            break
-                        }
+                        if pageItems.isEmpty { break }
                         let hasMore = pageResponse.hasMore && pageResponse.nextPage != nil
-                        pageContinuation.yield(GetPricesSearchPage(
-                            data: pageResponse,
-                            items: pageItems,
-                            hasMore: hasMore
-                        ))
-                        if !hasMore {
-                            break
-                        }
+                        pageContinuation.yield(GetPricesSearchPage(data: pageResponse, items: pageItems, hasMore: hasMore))
+                        if !hasMore { break }
                         guard let nextCursor = pageResponse.nextPage else { break }
                         pageCursor = nextCursor
                     }

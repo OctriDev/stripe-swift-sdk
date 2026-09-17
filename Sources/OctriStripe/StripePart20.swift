@@ -13,45 +13,30 @@ public class V1PayoutsNamespace {
         reverse = V1PayoutsReverseNamespace(config: config)
     }
 
-    /// Lists existing payouts sent to third-party bank accounts or paid to connected accounts. Use `arrival_date`,
-    /// `created`, `destination`, and `status` to filter results, and use cursor parameters to navigate the list in
-    /// reverse chronological order.
+/// Lists existing payouts sent to third-party bank accounts or paid to connected accounts. Use `arrival_date`, `created`, `destination`, and `status` to filter results, and use cursor parameters to navigate the list in reverse chronological order.
     ///
-    /// Returns a list of existing payouts sent to third-party bank accounts or payouts that Stripe sent to you. The
-    /// payouts return in sorted order, with the most recently created payouts appearing first.
+    /// Returns a list of existing payouts sent to third-party bank accounts or payouts that Stripe sent to you. The payouts return in sorted order, with the most recently created payouts appearing first.
     public func get(options: V1PayoutsMethods.GetPayoutsOptions) async throws -> GetPayoutsResponse {
-        try await V1PayoutsMethods.getPayouts(config: config, options: options)
+        return try await V1PayoutsMethods.getPayouts(config: config, options: options)
     }
 
-    /// To send funds to your own bank account, create a new payout object. Your Stripe balance must cover the payout
-    /// amount. If it doesn’t, you receive an “Insufficient Funds” error. If your API key is in test mode, money won’t
-    /// actually be sent, though every other action occurs as if you’re in live mode. If you create a manual payout on a
-    /// Stripe account that uses multiple payment source types, you need to specify the source type balance that the
-    /// payout draws from. The balance object details available and pending amounts by source type.
+/// To send funds to your own bank account, create a new payout object. Your Stripe balance must cover the payout amount. If it doesn’t, you receive an “Insufficient Funds” error. If your API key is in test mode, money won’t actually be sent, though every other action occurs as if you’re in live mode. If you create a manual payout on a Stripe account that uses multiple payment source types, you need to specify the source type balance that the payout draws from. The balance object details available and pending amounts by source type.
     public func post(options: V1PayoutsMethods.PostPayoutsOptions) async throws -> Payout {
-        try await V1PayoutsMethods.postPayouts(config: config, options: options)
+        return try await V1PayoutsMethods.postPayouts(config: config, options: options)
     }
 
-    /// Retrieves a single payout by its unique identifier. Use `expand` when the response should include expanded
-    /// related fields instead of only their identifiers.
+/// Retrieves a single payout by its unique identifier. Use `expand` when the response should include expanded related fields instead of only their identifiers.
     ///
-    /// Retrieves the details of an existing payout. Supply the unique payout ID from either a payout creation request
-    /// or the payout list. Stripe returns the corresponding payout information.
+    /// Retrieves the details of an existing payout. Supply the unique payout ID from either a payout creation request or the payout list. Stripe returns the corresponding payout information.
     public func getPayout(payout: String, expand: [String]?) async throws -> Payout {
-        try await V1PayoutsMethods.getPayoutsPayout(config: config, payout: payout, expand: expand)
+        return try await V1PayoutsMethods.getPayoutsPayout(config: config, payout: payout, expand: expand)
     }
 
-    /// Updates the metadata associated with a payout without changing parameters that you omit. Use `metadata` to
-    /// attach or remove key-value pairs and `expand` to request expanded response fields.
+/// Updates the metadata associated with a payout without changing parameters that you omit. Use `metadata` to attach or remove key-value pairs and `expand` to request expanded response fields.
     ///
-    /// Updates the specified payout by setting the values of the parameters you pass. We don’t change parameters that
-    /// you don’t provide. This request only accepts the metadata as arguments.
-    public func postPayout(
-        payout: String,
-        expand: [String]?,
-        metadata: PostPayoutsPayoutRequestBodyMetadata?
-    ) async throws -> Payout {
-        try await V1PayoutsMethods.postPayoutsPayout(config: config, payout: payout, expand: expand, metadata: metadata)
+    /// Updates the specified payout by setting the values of the parameters you pass. We don’t change parameters that you don’t provide. This request only accepts the metadata as arguments.
+    public func postPayout(payout: String, expand: [String]?, metadata: PostPayoutsPayoutRequestBodyMetadata?) async throws -> Payout {
+        return try await V1PayoutsMethods.postPayoutsPayout(config: config, payout: payout, expand: expand, metadata: metadata)
     }
 }
 
@@ -61,81 +46,39 @@ public class V1PlansNamespace {
         self.config = config
     }
 
-    /// Lists plans in the account, optionally filtered by active state, creation time, or product. Use cursor
-    /// parameters to paginate the results, which are returned in the list format defined for plans.
+/// Lists plans in the account, optionally filtered by active state, creation time, or product. Use cursor parameters to paginate the results, which are returned in the list format defined for plans.
     ///
     /// Returns a list of your plans.
-    public func get(
-        active: Bool?,
-        created: GetPlansParameter?,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        product: String?,
-        startingAfter: String?
-    ) async throws -> GetPlansResponse {
-        try await V1PlansMethods.getPlans(
-            config: config,
-            active: active,
-            created: created,
-            endingBefore: endingBefore,
-            expand: expand,
-            limit: limit,
-            product: product,
-            startingAfter: startingAfter
-        )
+    public func get(active: Bool?, created: GetPlansParameter?, endingBefore: String?, expand: [String]?, limit: Int?, product: String?, startingAfter: String?) async throws -> GetPlansResponse {
+        return try await V1PlansMethods.getPlans(config: config, active: active, created: created, endingBefore: endingBefore, expand: expand, limit: limit, product: product, startingAfter: startingAfter)
     }
 
-    /// Creates a plan that defines recurring pricing for a product. Supply `currency` and `interval` at minimum, and
-    /// use `billing_scheme`, tiers, or product details to define how recurring charges are calculated.
+/// Creates a plan that defines recurring pricing for a product. Supply `currency` and `interval` at minimum, and use `billing_scheme`, tiers, or product details to define how recurring charges are calculated.
     ///
-    /// You can now model subscriptions more flexibly using the Prices API. It replaces the Plans API and is backwards
-    /// compatible to simplify your migration.
+    /// You can now model subscriptions more flexibly using the Prices API. It replaces the Plans API and is backwards compatible to simplify your migration.
     public func post(options: V1PlansMethods.PostPlansOptions) async throws -> Plan {
-        try await V1PlansMethods.postPlans(config: config, options: options)
+        return try await V1PlansMethods.postPlans(config: config, options: options)
     }
 
-    /// Deletes a plan from the account. New subscribers can no longer be added to the deleted plan, while existing
-    /// subscribers remain unaffected.
+/// Deletes a plan from the account. New subscribers can no longer be added to the deleted plan, while existing subscribers remain unaffected.
     ///
     /// Deleting plans means new subscribers can’t be added. Existing subscribers aren’t affected.
     public func deletePlan(plan: String) async throws -> DeletedPlan {
-        try await V1PlansMethods.deletePlansPlan(config: config, plan: plan)
+        return try await V1PlansMethods.deletePlansPlan(config: config, plan: plan)
     }
 
-    /// Retrieves a plan by its unique identifier. Use `expand` to include expanded related fields in the returned plan
-    /// object when needed.
+/// Retrieves a plan by its unique identifier. Use `expand` to include expanded related fields in the returned plan object when needed.
     ///
     /// Retrieves the plan with the given ID.
     public func getPlan(plan: String, expand: [String]?) async throws -> Plan {
-        try await V1PlansMethods.getPlansPlan(config: config, plan: plan, expand: expand)
+        return try await V1PlansMethods.getPlansPlan(config: config, plan: plan, expand: expand)
     }
 
-    /// Updates the mutable properties of an existing plan while leaving omitted properties unchanged. You can change
-    /// availability, metadata, nickname, product assignment, trial settings, and response expansion, but you cannot
-    /// change the plan ID, amount, currency, or billing cycle.
+/// Updates the mutable properties of an existing plan while leaving omitted properties unchanged. You can change availability, metadata, nickname, product assignment, trial settings, and response expansion, but you cannot change the plan ID, amount, currency, or billing cycle.
     ///
-    /// Updates the specified plan by setting the values of the parameters passed. Any parameters not provided are left
-    /// unchanged. By design, you cannot change a plan’s ID, amount, currency, or billing cycle.
-    public func postPlan(
-        plan: String,
-        active: Bool?,
-        expand: [String]?,
-        metadata: PostPlansPlanRequestBodyMetadata?,
-        nickname: String?,
-        product: String?,
-        trialPeriodDays: Int?
-    ) async throws -> Plan {
-        try await V1PlansMethods.postPlansPlan(
-            config: config,
-            plan: plan,
-            active: active,
-            expand: expand,
-            metadata: metadata,
-            nickname: nickname,
-            product: product,
-            trialPeriodDays: trialPeriodDays
-        )
+    /// Updates the specified plan by setting the values of the parameters passed. Any parameters not provided are left unchanged. By design, you cannot change a plan’s ID, amount, currency, or billing cycle.
+    public func postPlan(plan: String, active: Bool?, expand: [String]?, metadata: PostPlansPlanRequestBodyMetadata?, nickname: String?, product: String?, trialPeriodDays: Int?) async throws -> Plan {
+        return try await V1PlansMethods.postPlansPlan(config: config, plan: plan, active: active, expand: expand, metadata: metadata, nickname: nickname, product: product, trialPeriodDays: trialPeriodDays)
     }
 }
 
@@ -145,50 +88,18 @@ public class V1PricesSearchNamespace {
         self.config = config
     }
 
-    /// Searches prices that you previously created using the Search Query Language. Use `query` to define the search
-    /// expression and `page` to continue through result pages; search results can lag behind recently created or
-    /// updated data.
+/// Searches prices that you previously created using the Search Query Language. Use `query` to define the search expression and `page` to continue through result pages; search results can lag behind recently created or updated data.
     ///
-    /// Search for prices you’ve previously created using Stripe’s Search Query Language. Don’t use search in
-    /// read-after-write flows where strict consistency is necessary. Under normal operating conditions, data is
-    /// searchable in less than a minute. Occasionally, propagation of new or updated data can be up to an hour behind
-    /// during outages. Search functionality is not available to merchants in India.
-    public func getPrices(
-        query: String,
-        expand: [String]?,
-        limit: Int?,
-        page: String?
-    ) async throws -> GetPricesSearchResponse {
-        try await V1PricesSearchMethods.getPricesSearch(
-            config: config,
-            query: query,
-            expand: expand,
-            limit: limit,
-            page: page
-        )
+    /// Search for prices you’ve previously created using Stripe’s Search Query Language. Don’t use search in read-after-write flows where strict consistency is necessary. Under normal operating conditions, data is searchable in less than a minute. Occasionally, propagation of new or updated data can be up to an hour behind during outages. Search functionality is not available to merchants in India.
+    public func getPrices(query: String, expand: [String]?, limit: Int?, page: String?) async throws -> GetPricesSearchResponse {
+        return try await V1PricesSearchMethods.getPricesSearch(config: config, query: query, expand: expand, limit: limit, page: page)
     }
 
-    /// Searches prices that you previously created using the Search Query Language. Use `query` to define the search
-    /// expression and `page` to continue through result pages; search results can lag behind recently created or
-    /// updated data.
+/// Searches prices that you previously created using the Search Query Language. Use `query` to define the search expression and `page` to continue through result pages; search results can lag behind recently created or updated data.
     ///
-    /// Search for prices you’ve previously created using Stripe’s Search Query Language. Don’t use search in
-    /// read-after-write flows where strict consistency is necessary. Under normal operating conditions, data is
-    /// searchable in less than a minute. Occasionally, propagation of new or updated data can be up to an hour behind
-    /// during outages. Search functionality is not available to merchants in India.
-    public func getPricesPaginated(
-        query: String,
-        expand: [String]?,
-        limit: Int?,
-        page: String?
-    ) -> AsyncThrowingStream<Price, Swift.Error> {
-        V1PricesSearchMethods.getPricesSearchPaginated(
-            config: config,
-            query: query,
-            expand: expand,
-            limit: limit,
-            page: page
-        )
+    /// Search for prices you’ve previously created using Stripe’s Search Query Language. Don’t use search in read-after-write flows where strict consistency is necessary. Under normal operating conditions, data is searchable in less than a minute. Occasionally, propagation of new or updated data can be up to an hour behind during outages. Search functionality is not available to merchants in India.
+    public func getPricesPaginated(query: String, expand: [String]?, limit: Int?, page: String?) -> AsyncThrowingStream<Price, Swift.Error> {
+        return V1PricesSearchMethods.getPricesSearchPaginated(config: config, query: query, expand: expand, limit: limit, page: page)
     }
 }
 
@@ -200,36 +111,30 @@ public class V1PricesNamespace {
         search = V1PricesSearchNamespace(config: config)
     }
 
-    /// Lists active or inactive prices, excluding inline prices by default. Use `active`, `currency`, `product`,
-    /// `recurring`, or `type` to filter the results, and use cursor parameters to navigate between pages.
+/// Lists active or inactive prices, excluding inline prices by default. Use `active`, `currency`, `product`, `recurring`, or `type` to filter the results, and use cursor parameters to navigate between pages.
     ///
-    /// Returns a list of your active prices, excluding inline prices. For the list of inactive prices, set active to
-    /// false.
+    /// Returns a list of your active prices, excluding inline prices. For the list of inactive prices, set active to false.
     public func get(options: V1PricesMethods.GetPricesOptions) async throws -> GetPricesResponse {
-        try await V1PricesMethods.getPrices(config: config, options: options)
+        return try await V1PricesMethods.getPrices(config: config, options: options)
     }
 
-    /// Creates a new Price for an existing Product. The Price can be recurring or one-time.
+/// Creates a new Price for an existing Product. The Price can be recurring or one-time.
     public func post(options: V1PricesMethods.PostPricesOptions) async throws -> Price {
-        try await V1PricesMethods.postPrices(config: config, options: options)
+        return try await V1PricesMethods.postPrices(config: config, options: options)
     }
 
-    /// Retrieves a price by its unique identifier. Use the returned price details to inspect its currency, product
-    /// association, billing configuration, and availability for new purchases.
+/// Retrieves a price by its unique identifier. Use the returned price details to inspect its currency, product association, billing configuration, and availability for new purchases.
     ///
     /// Retrieves the price with the given ID.
     public func getPrice(price: String, expand: [String]?) async throws -> Price {
-        try await V1PricesMethods.getPricesPrice(config: config, price: price, expand: expand)
+        return try await V1PricesMethods.getPricesPrice(config: config, price: price, expand: expand)
     }
 
-    /// Updates the specified price by changing only the values supplied in the request. Use the fields in the form body
-    /// to change availability, lookup configuration, metadata, currency options, or tax behavior without replacing
-    /// other price attributes.
+/// Updates the specified price by changing only the values supplied in the request. Use the fields in the form body to change availability, lookup configuration, metadata, currency options, or tax behavior without replacing other price attributes.
     ///
-    /// Updates the specified price by setting the values of the parameters passed. Any parameters not provided are left
-    /// unchanged.
+    /// Updates the specified price by setting the values of the parameters passed. Any parameters not provided are left unchanged.
     public func postPrice(options: V1PricesMethods.PostPricesPriceOptions) async throws -> Price {
-        try await V1PricesMethods.postPricesPrice(config: config, options: options)
+        return try await V1PricesMethods.postPricesPrice(config: config, options: options)
     }
 }
 
@@ -239,50 +144,18 @@ public class V1ProductsSearchNamespace {
         self.config = config
     }
 
-    /// Searches products that you previously created using the Search Query Language. Use `query` to define the search
-    /// expression and `page` to continue through result pages; search results can lag behind recently created or
-    /// updated data.
+/// Searches products that you previously created using the Search Query Language. Use `query` to define the search expression and `page` to continue through result pages; search results can lag behind recently created or updated data.
     ///
-    /// Search for products you’ve previously created using Stripe’s Search Query Language. Don’t use search in
-    /// read-after-write flows where strict consistency is necessary. Under normal operating conditions, data is
-    /// searchable in less than a minute. Occasionally, propagation of new or updated data can be up to an hour behind
-    /// during outages. Search functionality is not available to merchants in India.
-    public func getProducts(
-        query: String,
-        expand: [String]?,
-        limit: Int?,
-        page: String?
-    ) async throws -> GetProductsSearchResponse {
-        try await V1ProductsSearchMethods.getProductsSearch(
-            config: config,
-            query: query,
-            expand: expand,
-            limit: limit,
-            page: page
-        )
+    /// Search for products you’ve previously created using Stripe’s Search Query Language. Don’t use search in read-after-write flows where strict consistency is necessary. Under normal operating conditions, data is searchable in less than a minute. Occasionally, propagation of new or updated data can be up to an hour behind during outages. Search functionality is not available to merchants in India.
+    public func getProducts(query: String, expand: [String]?, limit: Int?, page: String?) async throws -> GetProductsSearchResponse {
+        return try await V1ProductsSearchMethods.getProductsSearch(config: config, query: query, expand: expand, limit: limit, page: page)
     }
 
-    /// Searches products that you previously created using the Search Query Language. Use `query` to define the search
-    /// expression and `page` to continue through result pages; search results can lag behind recently created or
-    /// updated data.
+/// Searches products that you previously created using the Search Query Language. Use `query` to define the search expression and `page` to continue through result pages; search results can lag behind recently created or updated data.
     ///
-    /// Search for products you’ve previously created using Stripe’s Search Query Language. Don’t use search in
-    /// read-after-write flows where strict consistency is necessary. Under normal operating conditions, data is
-    /// searchable in less than a minute. Occasionally, propagation of new or updated data can be up to an hour behind
-    /// during outages. Search functionality is not available to merchants in India.
-    public func getProductsPaginated(
-        query: String,
-        expand: [String]?,
-        limit: Int?,
-        page: String?
-    ) -> AsyncThrowingStream<Product, Swift.Error> {
-        V1ProductsSearchMethods.getProductsSearchPaginated(
-            config: config,
-            query: query,
-            expand: expand,
-            limit: limit,
-            page: page
-        )
+    /// Search for products you’ve previously created using Stripe’s Search Query Language. Don’t use search in read-after-write flows where strict consistency is necessary. Under normal operating conditions, data is searchable in less than a minute. Occasionally, propagation of new or updated data can be up to an hour behind during outages. Search functionality is not available to merchants in India.
+    public func getProductsPaginated(query: String, expand: [String]?, limit: Int?, page: String?) -> AsyncThrowingStream<Product, Swift.Error> {
+        return V1ProductsSearchMethods.getProductsSearchPaginated(config: config, query: query, expand: expand, limit: limit, page: page)
     }
 }
 
@@ -292,62 +165,31 @@ public class V1ProductsFeaturesNamespace {
         self.config = config
     }
 
-    /// Lists the features attached to a product. Use the cursor parameters to navigate through the results and `expand`
-    /// to request expanded response fields. The response indicates whether another page is available.
+/// Lists the features attached to a product. Use the cursor parameters to navigate through the results and `expand` to request expanded response fields. The response indicates whether another page is available.
     ///
     /// Retrieve a list of features for a product
-    public func getProductsProduct(
-        product: String,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        startingAfter: String?
-    ) async throws -> GetProductsProductFeaturesResponse {
-        try await V1ProductsFeaturesMethods.getProductsProductFeatures(
-            config: config,
-            product: product,
-            endingBefore: endingBefore,
-            expand: expand,
-            limit: limit,
-            startingAfter: startingAfter
-        )
+    public func getProductsProduct(product: String, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetProductsProductFeaturesResponse {
+        return try await V1ProductsFeaturesMethods.getProductsProductFeatures(config: config, product: product, endingBefore: endingBefore, expand: expand, limit: limit, startingAfter: startingAfter)
     }
 
-    /// Creates a feature attachment for a product. Supply the entitlement feature identifier in `entitlement_feature`
-    /// to associate that feature with `product`. Use `expand` when you need selected response fields expanded.
+/// Creates a feature attachment for a product. Supply the entitlement feature identifier in `entitlement_feature` to associate that feature with `product`. Use `expand` when you need selected response fields expanded.
     ///
     /// Creates a product_feature, which represents a feature attachment to a product
-    public func postProductsProduct(
-        product: String,
-        entitlementFeature: String,
-        expand: [String]?
-    ) async throws -> ProductFeature {
-        try await V1ProductsFeaturesMethods.postProductsProductFeatures(
-            config: config,
-            product: product,
-            entitlementFeature: entitlementFeature,
-            expand: expand
-        )
+    public func postProductsProduct(product: String, entitlementFeature: String, expand: [String]?) async throws -> ProductFeature {
+        return try await V1ProductsFeaturesMethods.postProductsProductFeatures(config: config, product: product, entitlementFeature: entitlementFeature, expand: expand)
     }
 
-    /// Deletes a feature attachment from a product. Provide `product` and `id` to identify the relationship that you
-    /// want to remove.
+/// Deletes a feature attachment from a product. Provide `product` and `id` to identify the relationship that you want to remove.
     ///
     /// Deletes the feature attachment to a product
     public func deleteProductsProductId(id: String, product: String) async throws -> DeletedProductFeature {
-        try await V1ProductsFeaturesMethods.deleteProductsProductFeaturesId(config: config, id: id, product: product)
+        return try await V1ProductsFeaturesMethods.deleteProductsProductFeaturesId(config: config, id: id, product: product)
     }
 
-    /// Retrieves a feature attachment from a product. Provide both `product` and `id` to identify the product feature
-    /// relationship, and use `expand` for selected expanded response fields.
+/// Retrieves a feature attachment from a product. Provide both `product` and `id` to identify the product feature relationship, and use `expand` for selected expanded response fields.
     ///
     /// Retrieves a product_feature, which represents a feature attachment to a product
     public func getProductsProductId(id: String, product: String, expand: [String]?) async throws -> ProductFeature {
-        try await V1ProductsFeaturesMethods.getProductsProductFeaturesId(
-            config: config,
-            id: id,
-            product: product,
-            expand: expand
-        )
+        return try await V1ProductsFeaturesMethods.getProductsProductFeaturesId(config: config, id: id, product: product, expand: expand)
     }
 }

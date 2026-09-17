@@ -7,8 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1QuotesPdfMethods {
-    /// Retrieves the PDF document for a finalized quote. Use `quote` to identify the quote and download the resulting
-    /// binary PDF response. The quote must be finalized before its PDF can be downloaded.
+    /// Retrieves the PDF document for a finalized quote. Use `quote` to identify the quote and download the resulting binary PDF response. The quote must be finalized before its PDF can be downloaded.
     ///
     /// Download the PDF for a finalized quote. Explanation for special handling can be found here
     ///
@@ -17,15 +16,8 @@ public enum V1QuotesPdfMethods {
     public static func getQuotesQuotePdf(config: ClientConfig, quote: String, expand: [String]?) async throws -> Data {
         try validateLength("quote", quote, max: 5000)
 
-        return try await (sdkRequest(
-            "GET",
-            ["/v1/quotes/", sdkEncodePathSegment(sdkWireString(quote)), "/pdf"].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .bytes,
-            operationId: "GetQuotesQuotePdf"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/quotes/", sdkEncodePathSegment(sdkWireString(quote)), "/pdf"].joined(), config: config, query: [
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .bytes, operationId: "GetQuotesQuotePdf")).data
     }
 }

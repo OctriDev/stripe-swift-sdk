@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1PricesMethods {
-    struct PostPricesPriceOptions: Codable {
+extension V1PricesMethods {
+    public struct PostPricesPriceOptions: Codable {
         public var price: String
         public var active: Bool?
         public var currencyOptions: PostPricesPriceRequestBodyCurrencyOptions?
@@ -23,12 +23,9 @@ public extension V1PricesMethods {
         }
     }
 
-    /// Updates the specified price by changing only the values supplied in the request. Use the fields in the form body
-    /// to change availability, lookup configuration, metadata, currency options, or tax behavior without replacing
-    /// other price attributes.
+    /// Updates the specified price by changing only the values supplied in the request. Use the fields in the form body to change availability, lookup configuration, metadata, currency options, or tax behavior without replacing other price attributes.
     ///
-    /// Updates the specified price by setting the values of the parameters passed. Any parameters not provided are left
-    /// unchanged.
+    /// Updates the specified price by setting the values of the parameters passed. Any parameters not provided are left unchanged.
     ///
     /// - Parameters:
     /// - active: Whether the price can be used for new purchases. Defaults to
@@ -55,7 +52,7 @@ public extension V1PricesMethods {
     ///   cannot be changed.
     /// - transferLookupKey: If set to true, will atomically remove the lookup key
     ///   from the existing price, and assign it to this price.
-    static func postPricesPrice(config: ClientConfig, options: PostPricesPriceOptions) async throws -> Price {
+    public static func postPricesPrice(config: ClientConfig, options: PostPricesPriceOptions) async throws -> Price {
         try validateLength("price", options.price, max: 5000)
 
         if let lookupKey = options.lookupKey {
@@ -68,14 +65,6 @@ public extension V1PricesMethods {
 
         let requestBody = PostPricesPriceRequestBody(options: options)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/prices/", sdkEncodePathSegment(sdkWireString(options.price))].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostPricesPrice"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/prices/", sdkEncodePathSegment(sdkWireString(options.price))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostPricesPrice")).data
     }
 }

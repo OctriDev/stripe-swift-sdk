@@ -6,28 +6,19 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1PaymentRecordsMethods {
-    /// Retrieves a Payment Record by its identifier. Use `id` to select the record and `expand` to request additional
-    /// fields in the response. The response contains the record's payment amounts, processing details, reporting
-    /// information, and lifecycle metadata.
+extension V1PaymentRecordsMethods {
+    /// Retrieves a Payment Record by its identifier. Use `id` to select the record and `expand` to request additional fields in the response. The response contains the record's payment amounts, processing details, reporting information, and lifecycle metadata.
     ///
     /// Retrieves a Payment Record with the given ID
     ///
     /// - Parameters:
     /// - id: The ID of the Payment Record.
     /// - expand: Specifies which fields in the response should be expanded.
-    static func getPaymentRecordsId(config: ClientConfig, id: String, expand: [String]?) async throws -> PaymentRecord {
+    public static func getPaymentRecordsId(config: ClientConfig, id: String, expand: [String]?) async throws -> PaymentRecord {
         try validateLength("id", id, max: 5000)
 
-        return try await (sdkRequest(
-            "GET",
-            ["/v1/payment_records/", sdkEncodePathSegment(sdkWireString(id))].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .json,
-            operationId: "GetPaymentRecordsId"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/payment_records/", sdkEncodePathSegment(sdkWireString(id))].joined(), config: config, query: [
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .json, operationId: "GetPaymentRecordsId")).data
     }
 }

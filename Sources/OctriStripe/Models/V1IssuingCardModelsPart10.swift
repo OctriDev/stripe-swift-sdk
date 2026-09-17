@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1IssuingCard domain models
+// V1IssuingCard domain models
 extension IssuingCardSpendingLimitCategoriesItem {
     static let allCasesPart2: [IssuingCardSpendingLimitCategoriesItem] = [
         .danceHallStudiosSchools,
@@ -237,8 +237,8 @@ extension IssuingCardSpendingLimitCategoriesItem {
 extension IssuingCardSpendingLimitCategoriesItem: CaseIterable {
     public static var allCases: [IssuingCardSpendingLimitCategoriesItem] {
         allCasesPart1
-            + allCasesPart2
-            + allCasesPart3
-            + allCasesPart4
+        +         allCasesPart2
+        +         allCasesPart3
+        +         allCasesPart4
     }
 }

@@ -6,37 +6,18 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1CustomersCashBalanceTransactionsMethods {
-    /// Retrieves a specific transaction that changed a customer's cash balance. Provide the customer and transaction
-    /// identifiers to retrieve the transaction, and use `expand` to request additional response fields. The response
-    /// includes the transaction amount, resulting balance, currency, type, and funding or payment details.
+extension V1CustomersCashBalanceTransactionsMethods {
+    /// Retrieves a specific transaction that changed a customer's cash balance. Provide the customer and transaction identifiers to retrieve the transaction, and use `expand` to request additional response fields. The response includes the transaction amount, resulting balance, currency, type, and funding or payment details.
     ///
     /// Retrieves a specific cash balance transaction, which updated the customer’s cash balance.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    static func getCustomersCustomerCashBalanceTransactionsTransaction(
-        config: ClientConfig,
-        customer: String,
-        transaction: String,
-        expand: [String]?
-    ) async throws -> CustomerCashBalanceTransaction {
+    public static func getCustomersCustomerCashBalanceTransactionsTransaction(config: ClientConfig, customer: String, transaction: String, expand: [String]?) async throws -> CustomerCashBalanceTransaction {
         try validateLength("customer", customer, max: 5000)
 
-        return try await (sdkRequest(
-            "GET",
-            [
-                "/v1/customers/",
-                sdkEncodePathSegment(sdkWireString(customer)),
-                "/cash_balance_transactions/",
-                sdkEncodePathSegment(sdkWireString(transaction)),
-            ].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .json,
-            operationId: "GetCustomersCustomerCashBalanceTransactionsTransaction"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/customers/", sdkEncodePathSegment(sdkWireString(customer)), "/cash_balance_transactions/", sdkEncodePathSegment(sdkWireString(transaction))].joined(), config: config, query: [
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .json, operationId: "GetCustomersCustomerCashBalanceTransactionsTransaction")).data
     }
 }

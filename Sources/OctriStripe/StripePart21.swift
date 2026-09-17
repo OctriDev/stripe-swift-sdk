@@ -13,52 +13,39 @@ public class V1ProductsNamespace {
         features = V1ProductsFeaturesNamespace(config: config)
     }
 
-    /// Lists products sorted by creation date, with the most recently created products first. Use `active`,
-    /// `shippable`, `url`, `ids`, or a creation-time filter to narrow the results, and use cursor parameters to
-    /// paginate through the list.
+/// Lists products sorted by creation date, with the most recently created products first. Use `active`, `shippable`, `url`, `ids`, or a creation-time filter to narrow the results, and use cursor parameters to paginate through the list.
     ///
-    /// Returns a list of your products. The products are returned sorted by creation date, with the most recently
-    /// created products appearing first.
+    /// Returns a list of your products. The products are returned sorted by creation date, with the most recently created products appearing first.
     public func get(options: V1ProductsMethods.GetProductsOptions) async throws -> GetProductsResponse {
-        try await V1ProductsMethods.getProducts(config: config, options: options)
+        return try await V1ProductsMethods.getProducts(config: config, options: options)
     }
 
-    /// Creates a new product object for goods or services that you offer. Supply `name` and optionally configure
-    /// pricing, descriptions, images, marketing features, shipping information, tax settings, and display metadata. A
-    /// nested `default_price_data` object can create and assign the product's default price.
+/// Creates a new product object for goods or services that you offer. Supply `name` and optionally configure pricing, descriptions, images, marketing features, shipping information, tax settings, and display metadata. A nested `default_price_data` object can create and assign the product's default price.
     ///
     /// Creates a new product object.
     public func post(options: V1ProductsMethods.PostProductsOptions) async throws -> Product {
-        try await V1ProductsMethods.postProducts(config: config, options: options)
+        return try await V1ProductsMethods.postProducts(config: config, options: options)
     }
 
-    /// Deletes a product. Use this operation only when the product has no associated prices and, for a product with
-    /// `type=good`, no associated SKUs.
+/// Deletes a product. Use this operation only when the product has no associated prices and, for a product with `type=good`, no associated SKUs.
     ///
-    /// Delete a product. Deleting a product is only possible if it has no prices associated with it. Additionally,
-    /// deleting a product with type=good is only possible if it has no SKUs associated with it.
+    /// Delete a product. Deleting a product is only possible if it has no prices associated with it. Additionally, deleting a product with type=good is only possible if it has no SKUs associated with it.
     public func deleteId(id: String) async throws -> DeletedProduct {
-        try await V1ProductsMethods.deleteProductsId(config: config, id: id)
+        return try await V1ProductsMethods.deleteProductsId(config: config, id: id)
     }
 
-    /// Retrieves the details of an existing product by its unique identifier. Use the product ID from a product
-    /// creation response or product list to retrieve its name, availability, default price, images, and other product
-    /// information.
+/// Retrieves the details of an existing product by its unique identifier. Use the product ID from a product creation response or product list to retrieve its name, availability, default price, images, and other product information.
     ///
-    /// Retrieves the details of an existing product. Supply the unique product ID from either a product creation
-    /// request or the product list, and Stripe will return the corresponding product information.
+    /// Retrieves the details of an existing product. Supply the unique product ID from either a product creation request or the product list, and Stripe will return the corresponding product information.
     public func getId(id: String, expand: [String]?) async throws -> Product {
-        try await V1ProductsMethods.getProductsId(config: config, id: id, expand: expand)
+        return try await V1ProductsMethods.getProductsId(config: config, id: id, expand: expand)
     }
 
-    /// Updates a product by changing only the fields you provide. Use the form fields to modify availability, pricing,
-    /// customer-facing content, shipping details, tax information, or product metadata; omitted fields remain
-    /// unchanged.
+/// Updates a product by changing only the fields you provide. Use the form fields to modify availability, pricing, customer-facing content, shipping details, tax information, or product metadata; omitted fields remain unchanged.
     ///
-    /// Updates the specific product by setting the values of the parameters passed. Any parameters not provided will be
-    /// left unchanged.
+    /// Updates the specific product by setting the values of the parameters passed. Any parameters not provided will be left unchanged.
     public func postId(options: V1ProductsMethods.PostProductsIdOptions) async throws -> Product {
-        try await V1ProductsMethods.postProductsId(config: config, options: options)
+        return try await V1ProductsMethods.postProductsId(config: config, options: options)
     }
 }
 
@@ -68,55 +55,30 @@ public class V1PromotionCodesNamespace {
         self.config = config
     }
 
-    /// Lists promotion codes. Use the filters to narrow results by active state, customer, coupon, code, or creation
-    /// time, and use cursor parameters to paginate the list.
+/// Lists promotion codes. Use the filters to narrow results by active state, customer, coupon, code, or creation time, and use cursor parameters to paginate the list.
     ///
     /// Returns a list of your promotion codes.
-    public func get(options: V1PromotionCodesMethods
-        .GetPromotionCodesOptions) async throws -> GetPromotionCodesResponse {
-        try await V1PromotionCodesMethods.getPromotionCodes(config: config, options: options)
+    public func get(options: V1PromotionCodesMethods.GetPromotionCodesOptions) async throws -> GetPromotionCodesResponse {
+        return try await V1PromotionCodesMethods.getPromotionCodes(config: config, options: options)
     }
 
-    /// A promotion code points to an underlying promotion. You can optionally restrict the code to a specific customer,
-    /// redemption limit, and expiration date.
+/// A promotion code points to an underlying promotion. You can optionally restrict the code to a specific customer, redemption limit, and expiration date.
     public func post(options: V1PromotionCodesMethods.PostPromotionCodesOptions) async throws -> PromotionCode {
-        try await V1PromotionCodesMethods.postPromotionCodes(config: config, options: options)
+        return try await V1PromotionCodesMethods.postPromotionCodes(config: config, options: options)
     }
 
-    /// Retrieves a promotion code by its identifier. Use the promotion code ID in `promotion_code`; to find a code by
-    /// its customer-facing value, list promotion codes with the `code` filter instead.
+/// Retrieves a promotion code by its identifier. Use the promotion code ID in `promotion_code`; to find a code by its customer-facing value, list promotion codes with the `code` filter instead.
     ///
-    /// Retrieves the promotion code with the given ID. In order to retrieve a promotion code by the customer-facing
-    /// code use list with the desired code .
+    /// Retrieves the promotion code with the given ID. In order to retrieve a promotion code by the customer-facing code use list with the desired code .
     public func getPromotionCode(promotionCode: String, expand: [String]?) async throws -> PromotionCode {
-        try await V1PromotionCodesMethods.getPromotionCodesPromotionCode(
-            config: config,
-            promotionCode: promotionCode,
-            expand: expand
-        )
+        return try await V1PromotionCodesMethods.getPromotionCodesPromotionCode(config: config, promotionCode: promotionCode, expand: expand)
     }
 
-    /// Updates a promotion code by changing the editable fields you provide. Use `active` to change its availability,
-    /// `metadata` to manage attached key-value data, and `restrictions` to update currency-specific redemption
-    /// settings.
+/// Updates a promotion code by changing the editable fields you provide. Use `active` to change its availability, `metadata` to manage attached key-value data, and `restrictions` to update currency-specific redemption settings.
     ///
-    /// Updates the specified promotion code by setting the values of the parameters passed. Most fields are, by design,
-    /// not editable.
-    public func postPromotionCode(
-        promotionCode: String,
-        active: Bool?,
-        expand: [String]?,
-        metadata: PostPromotionCodesPromotionCodeRequestBodyMetadata?,
-        restrictions: PostPromotionCodesPromotionCodeRequestBodyRestrictions?
-    ) async throws -> PromotionCode {
-        try await V1PromotionCodesMethods.postPromotionCodesPromotionCode(
-            config: config,
-            promotionCode: promotionCode,
-            active: active,
-            expand: expand,
-            metadata: metadata,
-            restrictions: restrictions
-        )
+    /// Updates the specified promotion code by setting the values of the parameters passed. Most fields are, by design, not editable.
+    public func postPromotionCode(promotionCode: String, active: Bool?, expand: [String]?, metadata: PostPromotionCodesPromotionCodeRequestBodyMetadata?, restrictions: PostPromotionCodesPromotionCodeRequestBodyRestrictions?) async throws -> PromotionCode {
+        return try await V1PromotionCodesMethods.postPromotionCodesPromotionCode(config: config, promotionCode: promotionCode, active: active, expand: expand, metadata: metadata, restrictions: restrictions)
     }
 }
 
@@ -126,13 +88,11 @@ public class V1QuotesAcceptNamespace {
         self.config = config
     }
 
-    /// Accepts a specified quote and changes its lifecycle state. The accepted quote can automatically create an
-    /// invoice, subscription, or subscription schedule. Use `expand` when the response should include additional
-    /// related fields.
+/// Accepts a specified quote and changes its lifecycle state. The accepted quote can automatically create an invoice, subscription, or subscription schedule. Use `expand` when the response should include additional related fields.
     ///
     /// Accepts the specified quote.
     public func postQuotesQuote(quote: String, expand: [String]?) async throws -> Quote {
-        try await V1QuotesAcceptMethods.postQuotesQuoteAccept(config: config, quote: quote, expand: expand)
+        return try await V1QuotesAcceptMethods.postQuotesQuoteAccept(config: config, quote: quote, expand: expand)
     }
 }
 
@@ -142,12 +102,11 @@ public class V1QuotesCancelNamespace {
         self.config = config
     }
 
-    /// Cancels a specified quote. Use this action when the quote should no longer remain open or available for
-    /// acceptance. Use `expand` when the response should include additional related fields.
+/// Cancels a specified quote. Use this action when the quote should no longer remain open or available for acceptance. Use `expand` when the response should include additional related fields.
     ///
     /// Cancels the quote.
     public func postQuotesQuote(quote: String, expand: [String]?) async throws -> Quote {
-        try await V1QuotesCancelMethods.postQuotesQuoteCancel(config: config, quote: quote, expand: expand)
+        return try await V1QuotesCancelMethods.postQuotesQuoteCancel(config: config, quote: quote, expand: expand)
     }
 }
 
@@ -157,27 +116,11 @@ public class V1QuotesComputedUpfrontLineItemsNamespace {
         self.config = config
     }
 
-    /// Lists the complete set of upfront line items for a quote. Use cursor parameters to retrieve pages beyond the
-    /// initial result set and `expand` to include additional fields. Use `page` and `per_page` to paginate the results.
+/// Lists the complete set of upfront line items for a quote. Use cursor parameters to retrieve pages beyond the initial result set and `expand` to include additional fields. Use `page` and `per_page` to paginate the results.
     ///
-    /// When retrieving a quote, there is an includable computed.upfront.line_items property containing the first
-    /// handful of those items. There is also a URL where you can retrieve the full (paginated) list of upfront line
-    /// items.
-    public func getQuotesQuote(
-        quote: String,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        startingAfter: String?
-    ) async throws -> GetQuotesQuoteComputedUpfrontLineItemsResponse {
-        try await V1QuotesComputedUpfrontLineItemsMethods.getQuotesQuoteComputedUpfrontLineItems(
-            config: config,
-            quote: quote,
-            endingBefore: endingBefore,
-            expand: expand,
-            limit: limit,
-            startingAfter: startingAfter
-        )
+    /// When retrieving a quote, there is an includable computed.upfront.line_items property containing the first handful of those items. There is also a URL where you can retrieve the full (paginated) list of upfront line items.
+    public func getQuotesQuote(quote: String, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetQuotesQuoteComputedUpfrontLineItemsResponse {
+        return try await V1QuotesComputedUpfrontLineItemsMethods.getQuotesQuoteComputedUpfrontLineItems(config: config, quote: quote, endingBefore: endingBefore, expand: expand, limit: limit, startingAfter: startingAfter)
     }
 }
 
@@ -187,18 +130,11 @@ public class V1QuotesFinalizeNamespace {
         self.config = config
     }
 
-    /// Finalizes a specified quote so it can proceed to the next billing stage. Supply `expires_at` when you need to
-    /// set or update the future cancellation time before finalization. After finalization, use the returned quote to
-    /// continue the invoice, subscription, or subscription schedule flow.
+/// Finalizes a specified quote so it can proceed to the next billing stage. Supply `expires_at` when you need to set or update the future cancellation time before finalization. After finalization, use the returned quote to continue the invoice, subscription, or subscription schedule flow.
     ///
     /// Finalizes the quote.
     public func postQuotesQuote(quote: String, expand: [String]?, expiresAt: Int?) async throws -> Quote {
-        try await V1QuotesFinalizeMethods.postQuotesQuoteFinalize(
-            config: config,
-            quote: quote,
-            expand: expand,
-            expiresAt: expiresAt
-        )
+        return try await V1QuotesFinalizeMethods.postQuotesQuoteFinalize(config: config, quote: quote, expand: expand, expiresAt: expiresAt)
     }
 }
 
@@ -208,26 +144,11 @@ public class V1QuotesLineItemsNamespace {
         self.config = config
     }
 
-    /// Lists all line items associated with a quote. Use cursor parameters to retrieve additional pages and `expand` to
-    /// include related fields in each result. Use `page` and `per_page` to paginate the results.
+/// Lists all line items associated with a quote. Use cursor parameters to retrieve additional pages and `expand` to include related fields in each result. Use `page` and `per_page` to paginate the results.
     ///
-    /// When retrieving a quote, there is an includable line_items property containing the first handful of those items.
-    /// There is also a URL where you can retrieve the full (paginated) list of line items.
-    public func getQuotesQuote(
-        quote: String,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        startingAfter: String?
-    ) async throws -> GetQuotesQuoteLineItemsResponse {
-        try await V1QuotesLineItemsMethods.getQuotesQuoteLineItems(
-            config: config,
-            quote: quote,
-            endingBefore: endingBefore,
-            expand: expand,
-            limit: limit,
-            startingAfter: startingAfter
-        )
+    /// When retrieving a quote, there is an includable line_items property containing the first handful of those items. There is also a URL where you can retrieve the full (paginated) list of line items.
+    public func getQuotesQuote(quote: String, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetQuotesQuoteLineItemsResponse {
+        return try await V1QuotesLineItemsMethods.getQuotesQuoteLineItems(config: config, quote: quote, endingBefore: endingBefore, expand: expand, limit: limit, startingAfter: startingAfter)
     }
 }
 
@@ -237,12 +158,11 @@ public class V1QuotesPdfNamespace {
         self.config = config
     }
 
-    /// Retrieves the PDF document for a finalized quote. Use `quote` to identify the quote and download the resulting
-    /// binary PDF response. The quote must be finalized before its PDF can be downloaded.
+/// Retrieves the PDF document for a finalized quote. Use `quote` to identify the quote and download the resulting binary PDF response. The quote must be finalized before its PDF can be downloaded.
     ///
     /// Download the PDF for a finalized quote. Explanation for special handling can be found here
     public func getQuotesQuote(quote: String, expand: [String]?) async throws -> Data {
-        try await V1QuotesPdfMethods.getQuotesQuotePdf(config: config, quote: quote, expand: expand)
+        return try await V1QuotesPdfMethods.getQuotesQuotePdf(config: config, quote: quote, expand: expand)
     }
 }
 
@@ -264,34 +184,29 @@ public class V1QuotesNamespace {
         pdf = V1QuotesPdfNamespace(config: config)
     }
 
-    /// Lists quotes available to the authenticated user. Use `customer`, `customer_account`, and `status` to filter the
-    /// results, and use cursor parameters to navigate between pages. Use `page` and `per_page` to paginate the results.
+/// Lists quotes available to the authenticated user. Use `customer`, `customer_account`, and `status` to filter the results, and use cursor parameters to navigate between pages. Use `page` and `per_page` to paginate the results.
     ///
     /// Returns a list of your quotes.
     public func get(options: V1QuotesMethods.GetQuotesOptions) async throws -> GetQuotesResponse {
-        try await V1QuotesMethods.getQuotes(config: config, options: options)
+        return try await V1QuotesMethods.getQuotes(config: config, options: options)
     }
 
-    /// A quote models prices and services for a customer. Default options for header , description , footer , and
-    /// expires_at can be set in the dashboard via the quote template.
+/// A quote models prices and services for a customer. Default options for header , description , footer , and expires_at can be set in the dashboard via the quote template.
     public func post(options: V1QuotesMethods.PostQuotesOptions) async throws -> Quote {
-        try await V1QuotesMethods.postQuotes(config: config, options: options)
+        return try await V1QuotesMethods.postQuotes(config: config, options: options)
     }
 
-    /// Retrieves a quote by its identifier. Use `expand` to include additional fields in the response when needed. The
-    /// quote includes pricing, customer, tax, collection, and lifecycle information.
+/// Retrieves a quote by its identifier. Use `expand` to include additional fields in the response when needed. The quote includes pricing, customer, tax, collection, and lifecycle information.
     ///
     /// Retrieves the quote with the given ID.
     public func getQuote(quote: String, expand: [String]?) async throws -> Quote {
-        try await V1QuotesMethods.getQuotesQuote(config: config, quote: quote, expand: expand)
+        return try await V1QuotesMethods.getQuotesQuote(config: config, quote: quote, expand: expand)
     }
 
-    /// Updates an existing quote with customer, pricing, tax, invoice, and presentation settings. Supply only the
-    /// fields you want to change, and use `collection_method` to select automatic charging or invoice-based collection.
-    /// Use `expires_at` to set a future Unix timestamp for cancellation while the quote is open or in draft status.
+/// Updates an existing quote with customer, pricing, tax, invoice, and presentation settings. Supply only the fields you want to change, and use `collection_method` to select automatic charging or invoice-based collection. Use `expires_at` to set a future Unix timestamp for cancellation while the quote is open or in draft status.
     ///
     /// A quote models prices and services for a customer.
     public func postQuote(options: V1QuotesMethods.PostQuotesQuoteOptions) async throws -> Quote {
-        try await V1QuotesMethods.postQuotesQuote(config: config, options: options)
+        return try await V1QuotesMethods.postQuotesQuote(config: config, options: options)
     }
 }

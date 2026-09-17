@@ -6,40 +6,24 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1IssuingAuthorizationsMethods {
-    /// Retrieves a single Issuing authorization by its identifier. Supply `authorization` to return the authorization
-    /// details, including its approval state, card, amount, currency, and related balance transactions. Use `expand`
-    /// when you need additional nested fields in the response.
+extension V1IssuingAuthorizationsMethods {
+    /// Retrieves a single Issuing authorization by its identifier. Supply `authorization` to return the authorization details, including its approval state, card, amount, currency, and related balance transactions. Use `expand` when you need additional nested fields in the response.
     ///
     /// Retrieves an Issuing Authorization object.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    static func getIssuingAuthorizationsAuthorization(
-        config: ClientConfig,
-        authorization: String,
-        expand: [String]?
-    ) async throws -> IssuingAuthorization {
+    public static func getIssuingAuthorizationsAuthorization(config: ClientConfig, authorization: String, expand: [String]?) async throws -> IssuingAuthorization {
         try validateLength("authorization", authorization, max: 5000)
 
-        return try await (sdkRequest(
-            "GET",
-            ["/v1/issuing/authorizations/", sdkEncodePathSegment(sdkWireString(authorization))].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .json,
-            operationId: "GetIssuingAuthorizationsAuthorization"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/issuing/authorizations/", sdkEncodePathSegment(sdkWireString(authorization))].joined(), config: config, query: [
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .json, operationId: "GetIssuingAuthorizationsAuthorization")).data
     }
 
-    /// Updates an Issuing authorization without changing parameters that you omit. Supply `authorization` and
-    /// optionally provide `metadata` or `expand` to modify metadata or control the returned representation. The updated
-    /// authorization remains associated with its existing card, cardholder, and transaction details.
+    /// Updates an Issuing authorization without changing parameters that you omit. Supply `authorization` and optionally provide `metadata` or `expand` to modify metadata or control the returned representation. The updated authorization remains associated with its existing card, cardholder, and transaction details.
     ///
-    /// Updates the specified Issuing Authorization object by setting the values of the parameters passed. Any
-    /// parameters not provided will be left unchanged.
+    /// Updates the specified Issuing Authorization object by setting the values of the parameters passed. Any parameters not provided will be left unchanged.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
@@ -48,24 +32,11 @@ public extension V1IssuingAuthorizationsMethods {
     ///   information about the object in a structured format. Individual keys can be
     ///   unset by posting an empty value to them. All keys can be unset by posting an
     ///   empty value to `metadata`.
-    static func postIssuingAuthorizationsAuthorization(
-        config: ClientConfig,
-        authorization: String,
-        expand: [String]?,
-        metadata: PostIssuingAuthorizationsAuthorizationRequestBodyMetadata?
-    ) async throws -> IssuingAuthorization {
+    public static func postIssuingAuthorizationsAuthorization(config: ClientConfig, authorization: String, expand: [String]?, metadata: PostIssuingAuthorizationsAuthorizationRequestBodyMetadata?) async throws -> IssuingAuthorization {
         try validateLength("authorization", authorization, max: 5000)
 
         let requestBody = PostIssuingAuthorizationsAuthorizationRequestBody(expand: expand, metadata: metadata)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/issuing/authorizations/", sdkEncodePathSegment(sdkWireString(authorization))].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostIssuingAuthorizationsAuthorization"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/issuing/authorizations/", sdkEncodePathSegment(sdkWireString(authorization))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostIssuingAuthorizationsAuthorization")).data
     }
 }

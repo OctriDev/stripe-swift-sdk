@@ -6,13 +6,10 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1ClimateOrdersMethods {
-    /// Lists Climate orders sorted by creation date, with the most recently created orders first. Use cursor parameters
-    /// and `limit` to paginate the results, and use `expand` to request expanded response fields. Each order represents
-    /// an intent to purchase a Climate product funded from the merchant balance.
+extension V1ClimateOrdersMethods {
+    /// Lists Climate orders sorted by creation date, with the most recently created orders first. Use cursor parameters and `limit` to paginate the results, and use `expand` to request expanded response fields. Each order represents an intent to purchase a Climate product funded from the merchant balance.
     ///
-    /// Lists all Climate order objects. The orders are returned sorted by creation date, with the most recently created
-    /// orders appearing first.
+    /// Lists all Climate order objects. The orders are returned sorted by creation date, with the most recently created orders appearing first.
     ///
     /// - Parameters:
     /// - endingBefore: A cursor for use in pagination. `ending_before` is an object
@@ -28,22 +25,16 @@ public extension V1ClimateOrdersMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    static func getClimateOrders(
-        config: ClientConfig,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        startingAfter: String?
-    ) async throws -> GetClimateOrdersResponse {
-        if let endingBefore {
+    public static func getClimateOrders(config: ClientConfig, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetClimateOrdersResponse {
+        if let endingBefore = endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let startingAfter {
+        if let startingAfter = startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try await (sdkRequest("GET", "/v1/climate/orders", config: config, query: [
+        return try (await sdkRequest("GET", "/v1/climate/orders", config: config, query: [
             SdkQueryParameter("ending_before", value: endingBefore),
             SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
             SdkQueryParameter("limit", value: limit),

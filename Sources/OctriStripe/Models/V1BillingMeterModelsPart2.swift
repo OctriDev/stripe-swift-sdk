@@ -3,34 +3,26 @@
 
 import Foundation
 
-/// V1BillingMeter domain models
-public extension BillingMeterResourceCustomerMappingSettings {
-    init(from decoder: Decoder) throws {
+// V1BillingMeter domain models
+extension BillingMeterResourceCustomerMappingSettings {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.eventPayloadKey) else {
-            throw SdkValidationError(
-                field: "event_payload_key",
-                code: "required",
-                message: "Validation failed for 'event_payload_key': value is required"
-            )
+            throw SdkValidationError(field: "event_payload_key", code: "required", message: "Validation failed for 'event_payload_key': value is required")
         }
         guard container.contains(.type) else {
-            throw SdkValidationError(
-                field: "type",
-                code: "required",
-                message: "Validation failed for 'type': value is required"
-            )
+            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
         }
-        eventPayloadKey = try container.sdkDecodeRequired(.eventPayloadKey)
-        type = try container.sdkDecodeRequired(.type)
-        try validateLength("event_payload_key", eventPayloadKey, min: nil, max: 5000)
+        self.eventPayloadKey = try container.sdkDecodeRequired(.eventPayloadKey)
+        self.type = try container.sdkDecodeRequired(.type)
+            try validateLength("event_payload_key", self.eventPayloadKey, min: nil, max: 5000)
     }
 }
 
-public extension BillingMeterResourceCustomerMappingSettings {
-    init(eventPayloadKey: String, type: BillingMeterResourceCustomerMappingSettingsType) throws {
+extension BillingMeterResourceCustomerMappingSettings {
+    public init(eventPayloadKey: String, type: BillingMeterResourceCustomerMappingSettingsType) throws {
         (self.eventPayloadKey, self.type) = (eventPayloadKey, type)
-        try validateLength("event_payload_key", self.eventPayloadKey, min: nil, max: 5000)
+            try validateLength("event_payload_key", self.eventPayloadKey, min: nil, max: 5000)
     }
 }
 
@@ -38,16 +30,13 @@ public extension BillingMeterResourceCustomerMappingSettings {
 public struct BillingMeterEventTimeWindow: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let day = BillingMeterEventTimeWindow(rawValue: "day")
     public static let hour = BillingMeterEventTimeWindow(rawValue: "hour")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -60,16 +49,13 @@ public struct BillingMeterEventTimeWindow: RawRepresentable, Hashable, Codable, 
 public struct BillingMeterStatus: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let active = BillingMeterStatus(rawValue: "active")
     public static let inactive = BillingMeterStatus(rawValue: "inactive")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -79,19 +65,15 @@ public struct BillingMeterStatus: RawRepresentable, Hashable, Codable, Sendable,
 }
 
 /// The method for mapping a meter event to a customer.
-public struct BillingMeterResourceCustomerMappingSettingsType: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct BillingMeterResourceCustomerMappingSettingsType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let byId = BillingMeterResourceCustomerMappingSettingsType(rawValue: "by_id")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -104,16 +86,12 @@ public struct BillingMeterResourceCustomerMappingSettingsType: RawRepresentable,
 public struct BillingMeterEventAdjustmentObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let billingMeterEventAdjustment =
-        BillingMeterEventAdjustmentObject(rawValue: "billing.meter_event_adjustment")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let billingMeterEventAdjustment = BillingMeterEventAdjustmentObject(rawValue: "billing.meter_event_adjustment")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -127,15 +105,12 @@ public struct BillingMeterEventAdjustmentObject: RawRepresentable, Hashable, Cod
 public struct BillingMeterEventAdjustmentType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let cancel = BillingMeterEventAdjustmentType(rawValue: "cancel")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -145,21 +120,17 @@ public struct BillingMeterEventAdjustmentType: RawRepresentable, Hashable, Codab
 }
 
 /// Specifies how events are aggregated.
-public struct BillingMeterResourceAggregationSettingsFormula: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct BillingMeterResourceAggregationSettingsFormula: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let count = BillingMeterResourceAggregationSettingsFormula(rawValue: "count")
     public static let last = BillingMeterResourceAggregationSettingsFormula(rawValue: "last")
     public static let sum = BillingMeterResourceAggregationSettingsFormula(rawValue: "sum")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -172,16 +143,13 @@ public struct BillingMeterResourceAggregationSettingsFormula: RawRepresentable, 
 public struct BillingMeterEventAdjustmentStatus: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let complete = BillingMeterEventAdjustmentStatus(rawValue: "complete")
     public static let pending = BillingMeterEventAdjustmentStatus(rawValue: "pending")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -194,15 +162,12 @@ public struct BillingMeterEventAdjustmentStatus: RawRepresentable, Hashable, Cod
 public struct BillingMeterObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let billingMeter = BillingMeterObject(rawValue: "billing.meter")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -215,15 +180,12 @@ public struct BillingMeterObject: RawRepresentable, Hashable, Codable, Sendable,
 public struct BillingMeterEventObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let billingMeterEvent = BillingMeterEventObject(rawValue: "billing.meter_event")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -236,15 +198,12 @@ public struct BillingMeterEventObject: RawRepresentable, Hashable, Codable, Send
 public struct BillingMeterEventSummaryObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let billingMeterEventSummary = BillingMeterEventSummaryObject(rawValue: "billing.meter_event_summary")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

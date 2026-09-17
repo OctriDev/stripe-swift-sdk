@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1BillingMeter domain models
+// V1BillingMeter domain models
 /// Meters specify how to aggregate meter events over a billing period. Meter events represent the actions that
 /// customers take in your system. Meters attach to prices and form the basis of the bill. Related guide: Usage
 /// based billing
@@ -52,49 +52,33 @@ public struct BillingMeter: Codable {
         case eventTimeWindow = "event_time_window"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension BillingMeter {
-    init(from decoder: Decoder) throws {
+extension BillingMeter {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        created = try container.sdkDecodeRequired(.created)
-        customerMapping = try container.sdkDecodeRequired(.customerMapping)
-        defaultAggregation = try container.sdkDecodeRequired(.defaultAggregation)
-        displayName = try container.sdkDecodeRequired(.displayName)
-        eventName = try container.sdkDecodeRequired(.eventName)
-        id = try container.sdkDecodeRequired(.id)
-        livemode = try container.sdkDecodeRequired(.livemode)
-        object = try container.sdkDecodeRequired(.object)
-        status = try container.sdkDecodeRequired(.status)
-        statusTransitions = try container.sdkDecodeRequired(.statusTransitions)
-        updated = try container.sdkDecodeRequired(.updated)
-        valueSettings = try container.sdkDecodeRequired(.valueSettings)
-        eventTimeWindow = try container.sdkDecodeIfPresent(.eventTimeWindow)
-        try validateLength("display_name", displayName, min: nil, max: 5000)
-        try validateLength("event_name", eventName, min: nil, max: 5000)
-        try validateLength("id", id, min: nil, max: 5000)
+        self.created = try container.sdkDecodeRequired(.created)
+        self.customerMapping = try container.sdkDecodeRequired(.customerMapping)
+        self.defaultAggregation = try container.sdkDecodeRequired(.defaultAggregation)
+        self.displayName = try container.sdkDecodeRequired(.displayName)
+        self.eventName = try container.sdkDecodeRequired(.eventName)
+        self.id = try container.sdkDecodeRequired(.id)
+        self.livemode = try container.sdkDecodeRequired(.livemode)
+        self.object = try container.sdkDecodeRequired(.object)
+        self.status = try container.sdkDecodeRequired(.status)
+        self.statusTransitions = try container.sdkDecodeRequired(.statusTransitions)
+        self.updated = try container.sdkDecodeRequired(.updated)
+        self.valueSettings = try container.sdkDecodeRequired(.valueSettings)
+        self.eventTimeWindow = try container.sdkDecodeIfPresent(.eventTimeWindow)
+            try validateLength("display_name", self.displayName, min: nil, max: 5000)
+            try validateLength("event_name", self.eventName, min: nil, max: 5000)
+            try validateLength("id", self.id, min: nil, max: 5000)
     }
 }
 
-public extension BillingMeter {
-    init(
-        created: Int,
-        customerMapping: BillingMeterResourceCustomerMappingSettings,
-        defaultAggregation: BillingMeterResourceAggregationSettings,
-        displayName: String,
-        eventName: String,
-        id: String,
-        livemode: Bool,
-        object: BillingMeterObject,
-        status: BillingMeterStatus,
-        statusTransitions: BillingMeterResourceBillingMeterStatusTransitions,
-        updated: Int,
-        valueSettings: BillingMeterResourceBillingMeterValue,
-        eventTimeWindow: BillingMeterEventTimeWindow? = nil
-    ) throws {
+extension BillingMeter {
+    public init(created: Int, customerMapping: BillingMeterResourceCustomerMappingSettings, defaultAggregation: BillingMeterResourceAggregationSettings, displayName: String, eventName: String, id: String, livemode: Bool, object: BillingMeterObject, status: BillingMeterStatus, statusTransitions: BillingMeterResourceBillingMeterStatusTransitions, updated: Int, valueSettings: BillingMeterResourceBillingMeterValue, eventTimeWindow: BillingMeterEventTimeWindow? = nil) throws {
         (self.created, self.customerMapping) = (created, customerMapping)
         (self.defaultAggregation, self.displayName) = (defaultAggregation, displayName)
         (self.eventName, self.id) = (eventName, id)
@@ -102,9 +86,9 @@ public extension BillingMeter {
         (self.status, self.statusTransitions) = (status, statusTransitions)
         (self.updated, self.valueSettings) = (updated, valueSettings)
         self.eventTimeWindow = eventTimeWindow
-        try validateLength("display_name", self.displayName, min: nil, max: 5000)
-        try validateLength("event_name", self.eventName, min: nil, max: 5000)
-        try validateLength("id", self.id, min: nil, max: 5000)
+            try validateLength("display_name", self.displayName, min: nil, max: 5000)
+            try validateLength("event_name", self.eventName, min: nil, max: 5000)
+            try validateLength("id", self.id, min: nil, max: 5000)
     }
 }
 
@@ -140,91 +124,53 @@ public struct BillingMeterEvent: Codable {
         case timestamp
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension BillingMeterEvent {
-    init(from decoder: Decoder) throws {
+extension BillingMeterEvent {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.created) else {
-            throw SdkValidationError(
-                field: "created",
-                code: "required",
-                message: "Validation failed for 'created': value is required"
-            )
+            throw SdkValidationError(field: "created", code: "required", message: "Validation failed for 'created': value is required")
         }
         guard container.contains(.eventName) else {
-            throw SdkValidationError(
-                field: "event_name",
-                code: "required",
-                message: "Validation failed for 'event_name': value is required"
-            )
+            throw SdkValidationError(field: "event_name", code: "required", message: "Validation failed for 'event_name': value is required")
         }
         guard container.contains(.identifier) else {
-            throw SdkValidationError(
-                field: "identifier",
-                code: "required",
-                message: "Validation failed for 'identifier': value is required"
-            )
+            throw SdkValidationError(field: "identifier", code: "required", message: "Validation failed for 'identifier': value is required")
         }
         guard container.contains(.livemode) else {
-            throw SdkValidationError(
-                field: "livemode",
-                code: "required",
-                message: "Validation failed for 'livemode': value is required"
-            )
+            throw SdkValidationError(field: "livemode", code: "required", message: "Validation failed for 'livemode': value is required")
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(
-                field: "object",
-                code: "required",
-                message: "Validation failed for 'object': value is required"
-            )
+            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
         }
         guard container.contains(.payload) else {
-            throw SdkValidationError(
-                field: "payload",
-                code: "required",
-                message: "Validation failed for 'payload': value is required"
-            )
+            throw SdkValidationError(field: "payload", code: "required", message: "Validation failed for 'payload': value is required")
         }
         guard container.contains(.timestamp) else {
-            throw SdkValidationError(
-                field: "timestamp",
-                code: "required",
-                message: "Validation failed for 'timestamp': value is required"
-            )
+            throw SdkValidationError(field: "timestamp", code: "required", message: "Validation failed for 'timestamp': value is required")
         }
-        created = try container.sdkDecodeRequired(.created)
-        eventName = try container.sdkDecodeRequired(.eventName)
-        identifier = try container.sdkDecodeRequired(.identifier)
-        livemode = try container.sdkDecodeRequired(.livemode)
-        object = try container.sdkDecodeRequired(.object)
-        payload = try container.sdkDecodeRequired(.payload)
-        timestamp = try container.sdkDecodeRequired(.timestamp)
-        try validateLength("event_name", eventName, min: nil, max: 100)
-        try validateLength("identifier", identifier, min: nil, max: 5000)
+        self.created = try container.sdkDecodeRequired(.created)
+        self.eventName = try container.sdkDecodeRequired(.eventName)
+        self.identifier = try container.sdkDecodeRequired(.identifier)
+        self.livemode = try container.sdkDecodeRequired(.livemode)
+        self.object = try container.sdkDecodeRequired(.object)
+        self.payload = try container.sdkDecodeRequired(.payload)
+        self.timestamp = try container.sdkDecodeRequired(.timestamp)
+            try validateLength("event_name", self.eventName, min: nil, max: 100)
+            try validateLength("identifier", self.identifier, min: nil, max: 5000)
     }
 }
 
-public extension BillingMeterEvent {
-    init(
-        created: Int,
-        eventName: String,
-        identifier: String,
-        livemode: Bool,
-        object: BillingMeterEventObject,
-        payload: [String: String],
-        timestamp: Int
-    ) throws {
+extension BillingMeterEvent {
+    public init(created: Int, eventName: String, identifier: String, livemode: Bool, object: BillingMeterEventObject, payload: [String: String], timestamp: Int) throws {
         (self.created, self.eventName) = (created, eventName)
         (self.identifier, self.livemode) = (identifier, livemode)
         (self.object, self.payload) = (object, payload)
         self.timestamp = timestamp
-        try validateLength("event_name", self.eventName, min: nil, max: 100)
-        try validateLength("identifier", self.identifier, min: nil, max: 5000)
+            try validateLength("event_name", self.eventName, min: nil, max: 100)
+            try validateLength("identifier", self.identifier, min: nil, max: 5000)
     }
 }
 
@@ -256,72 +202,43 @@ public struct BillingMeterEventAdjustment: Codable {
         case cancel
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension BillingMeterEventAdjustment {
-    init(from decoder: Decoder) throws {
+extension BillingMeterEventAdjustment {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.eventName) else {
-            throw SdkValidationError(
-                field: "event_name",
-                code: "required",
-                message: "Validation failed for 'event_name': value is required"
-            )
+            throw SdkValidationError(field: "event_name", code: "required", message: "Validation failed for 'event_name': value is required")
         }
         guard container.contains(.livemode) else {
-            throw SdkValidationError(
-                field: "livemode",
-                code: "required",
-                message: "Validation failed for 'livemode': value is required"
-            )
+            throw SdkValidationError(field: "livemode", code: "required", message: "Validation failed for 'livemode': value is required")
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(
-                field: "object",
-                code: "required",
-                message: "Validation failed for 'object': value is required"
-            )
+            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
         }
         guard container.contains(.status) else {
-            throw SdkValidationError(
-                field: "status",
-                code: "required",
-                message: "Validation failed for 'status': value is required"
-            )
+            throw SdkValidationError(field: "status", code: "required", message: "Validation failed for 'status': value is required")
         }
         guard container.contains(.type) else {
-            throw SdkValidationError(
-                field: "type",
-                code: "required",
-                message: "Validation failed for 'type': value is required"
-            )
+            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
         }
-        eventName = try container.sdkDecodeRequired(.eventName)
-        livemode = try container.sdkDecodeRequired(.livemode)
-        object = try container.sdkDecodeRequired(.object)
-        status = try container.sdkDecodeRequired(.status)
-        type = try container.sdkDecodeRequired(.type)
-        cancel = try container.sdkDecodeIfPresent(.cancel)
-        try validateLength("event_name", eventName, min: nil, max: 100)
+        self.eventName = try container.sdkDecodeRequired(.eventName)
+        self.livemode = try container.sdkDecodeRequired(.livemode)
+        self.object = try container.sdkDecodeRequired(.object)
+        self.status = try container.sdkDecodeRequired(.status)
+        self.type = try container.sdkDecodeRequired(.type)
+        self.cancel = try container.sdkDecodeIfPresent(.cancel)
+            try validateLength("event_name", self.eventName, min: nil, max: 100)
     }
 }
 
-public extension BillingMeterEventAdjustment {
-    init(
-        eventName: String,
-        livemode: Bool,
-        object: BillingMeterEventAdjustmentObject,
-        status: BillingMeterEventAdjustmentStatus,
-        type: BillingMeterEventAdjustmentType,
-        cancel: BillingMeterEventAdjustmentCancel? = nil
-    ) throws {
+extension BillingMeterEventAdjustment {
+    public init(eventName: String, livemode: Bool, object: BillingMeterEventAdjustmentObject, status: BillingMeterEventAdjustmentStatus, type: BillingMeterEventAdjustmentType, cancel: BillingMeterEventAdjustmentCancel? = nil) throws {
         (self.eventName, self.livemode) = (eventName, livemode)
         (self.object, self.status) = (object, status)
         (self.type, self.cancel) = (type, cancel)
-        try validateLength("event_name", self.eventName, min: nil, max: 100)
+            try validateLength("event_name", self.eventName, min: nil, max: 100)
     }
 }
 
@@ -330,30 +247,24 @@ public enum BillingMeterEventAdjustmentCancel {
 }
 
 extension BillingMeterEventAdjustmentCancel: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for BillingMeterEventAdjustmentCancel"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for BillingMeterEventAdjustmentCancel")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             BillingMeterResourceBillingMeterEventAdjustmentCancel.self
         ) {
-            return .billingMeterResourceBillingMeterEventAdjustmentCancel(value)
+            return             .billingMeterResourceBillingMeterEventAdjustmentCancel(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -362,6 +273,7 @@ extension BillingMeterEventAdjustmentCancel: Codable {
         case let .billingMeterResourceBillingMeterEventAdjustmentCancel(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// A billing meter event summary represents an aggregated view of a customer's billing meter events within a
@@ -396,91 +308,53 @@ public struct BillingMeterEventSummary: Codable {
         case startTime = "start_time"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension BillingMeterEventSummary {
-    init(from decoder: Decoder) throws {
+extension BillingMeterEventSummary {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.aggregatedValue) else {
-            throw SdkValidationError(
-                field: "aggregated_value",
-                code: "required",
-                message: "Validation failed for 'aggregated_value': value is required"
-            )
+            throw SdkValidationError(field: "aggregated_value", code: "required", message: "Validation failed for 'aggregated_value': value is required")
         }
         guard container.contains(.endTime) else {
-            throw SdkValidationError(
-                field: "end_time",
-                code: "required",
-                message: "Validation failed for 'end_time': value is required"
-            )
+            throw SdkValidationError(field: "end_time", code: "required", message: "Validation failed for 'end_time': value is required")
         }
         guard container.contains(.id) else {
-            throw SdkValidationError(
-                field: "id",
-                code: "required",
-                message: "Validation failed for 'id': value is required"
-            )
+            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
         }
         guard container.contains(.livemode) else {
-            throw SdkValidationError(
-                field: "livemode",
-                code: "required",
-                message: "Validation failed for 'livemode': value is required"
-            )
+            throw SdkValidationError(field: "livemode", code: "required", message: "Validation failed for 'livemode': value is required")
         }
         guard container.contains(.meter) else {
-            throw SdkValidationError(
-                field: "meter",
-                code: "required",
-                message: "Validation failed for 'meter': value is required"
-            )
+            throw SdkValidationError(field: "meter", code: "required", message: "Validation failed for 'meter': value is required")
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(
-                field: "object",
-                code: "required",
-                message: "Validation failed for 'object': value is required"
-            )
+            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
         }
         guard container.contains(.startTime) else {
-            throw SdkValidationError(
-                field: "start_time",
-                code: "required",
-                message: "Validation failed for 'start_time': value is required"
-            )
+            throw SdkValidationError(field: "start_time", code: "required", message: "Validation failed for 'start_time': value is required")
         }
-        aggregatedValue = try container.sdkDecodeRequired(.aggregatedValue)
-        endTime = try container.sdkDecodeRequired(.endTime)
-        id = try container.sdkDecodeRequired(.id)
-        livemode = try container.sdkDecodeRequired(.livemode)
-        meter = try container.sdkDecodeRequired(.meter)
-        object = try container.sdkDecodeRequired(.object)
-        startTime = try container.sdkDecodeRequired(.startTime)
-        try validateLength("id", id, min: nil, max: 5000)
-        try validateLength("meter", meter, min: nil, max: 5000)
+        self.aggregatedValue = try container.sdkDecodeRequired(.aggregatedValue)
+        self.endTime = try container.sdkDecodeRequired(.endTime)
+        self.id = try container.sdkDecodeRequired(.id)
+        self.livemode = try container.sdkDecodeRequired(.livemode)
+        self.meter = try container.sdkDecodeRequired(.meter)
+        self.object = try container.sdkDecodeRequired(.object)
+        self.startTime = try container.sdkDecodeRequired(.startTime)
+            try validateLength("id", self.id, min: nil, max: 5000)
+            try validateLength("meter", self.meter, min: nil, max: 5000)
     }
 }
 
-public extension BillingMeterEventSummary {
-    init(
-        aggregatedValue: Double,
-        endTime: Int,
-        id: String,
-        livemode: Bool,
-        meter: String,
-        object: BillingMeterEventSummaryObject,
-        startTime: Int
-    ) throws {
+extension BillingMeterEventSummary {
+    public init(aggregatedValue: Double, endTime: Int, id: String, livemode: Bool, meter: String, object: BillingMeterEventSummaryObject, startTime: Int) throws {
         (self.aggregatedValue, self.endTime) = (aggregatedValue, endTime)
         (self.id, self.livemode) = (id, livemode)
         (self.meter, self.object) = (meter, object)
         self.startTime = startTime
-        try validateLength("id", self.id, min: nil, max: 5000)
-        try validateLength("meter", self.meter, min: nil, max: 5000)
+            try validateLength("id", self.id, min: nil, max: 5000)
+            try validateLength("meter", self.meter, min: nil, max: 5000)
     }
 }
 
@@ -493,27 +367,21 @@ public struct BillingMeterResourceAggregationSettings: Codable {
         case formula
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension BillingMeterResourceAggregationSettings {
-    init(from decoder: Decoder) throws {
+extension BillingMeterResourceAggregationSettings {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.formula) else {
-            throw SdkValidationError(
-                field: "formula",
-                code: "required",
-                message: "Validation failed for 'formula': value is required"
-            )
+            throw SdkValidationError(field: "formula", code: "required", message: "Validation failed for 'formula': value is required")
         }
-        formula = try container.sdkDecodeRequired(.formula)
+        self.formula = try container.sdkDecodeRequired(.formula)
     }
 }
 
-public extension BillingMeterResourceAggregationSettings {
-    init(formula: BillingMeterResourceAggregationSettingsFormula) {
+extension BillingMeterResourceAggregationSettings {
+    public init(formula: BillingMeterResourceAggregationSettingsFormula) {
         self.formula = formula
     }
 }
@@ -528,22 +396,22 @@ public struct BillingMeterResourceBillingMeterEventAdjustmentCancel: Codable {
     }
 
     init() {
-        identifier = nil
+        self.identifier = nil
     }
 }
 
-public extension BillingMeterResourceBillingMeterEventAdjustmentCancel {
-    init(from decoder: Decoder) throws {
+extension BillingMeterResourceBillingMeterEventAdjustmentCancel {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        identifier = try container.sdkDecodeIfPresent(.identifier)
-        if let value = identifier {
+        self.identifier = try container.sdkDecodeIfPresent(.identifier)
+        if let value = self.identifier {
             try validateLength("identifier", value, min: nil, max: 100)
         }
     }
 }
 
-public extension BillingMeterResourceBillingMeterEventAdjustmentCancel {
-    init(identifier: String? = nil) throws {
+extension BillingMeterResourceBillingMeterEventAdjustmentCancel {
+    public init(identifier: String? = nil) throws {
         self.init()
         self.identifier = identifier
         if let value = self.identifier {
@@ -562,19 +430,19 @@ public struct BillingMeterResourceBillingMeterStatusTransitions: Codable {
     }
 
     init() {
-        deactivatedAt = nil
+        self.deactivatedAt = nil
     }
 }
 
-public extension BillingMeterResourceBillingMeterStatusTransitions {
-    init(from decoder: Decoder) throws {
+extension BillingMeterResourceBillingMeterStatusTransitions {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        deactivatedAt = try container.sdkDecodeIfPresent(.deactivatedAt)
+        self.deactivatedAt = try container.sdkDecodeIfPresent(.deactivatedAt)
     }
 }
 
-public extension BillingMeterResourceBillingMeterStatusTransitions {
-    init(deactivatedAt: Int? = nil) {
+extension BillingMeterResourceBillingMeterStatusTransitions {
+    public init(deactivatedAt: Int? = nil) {
         self.init()
         self.deactivatedAt = deactivatedAt
     }
@@ -589,30 +457,24 @@ public struct BillingMeterResourceBillingMeterValue: Codable {
         case eventPayloadKey = "event_payload_key"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension BillingMeterResourceBillingMeterValue {
-    init(from decoder: Decoder) throws {
+extension BillingMeterResourceBillingMeterValue {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.eventPayloadKey) else {
-            throw SdkValidationError(
-                field: "event_payload_key",
-                code: "required",
-                message: "Validation failed for 'event_payload_key': value is required"
-            )
+            throw SdkValidationError(field: "event_payload_key", code: "required", message: "Validation failed for 'event_payload_key': value is required")
         }
-        eventPayloadKey = try container.sdkDecodeRequired(.eventPayloadKey)
-        try validateLength("event_payload_key", eventPayloadKey, min: nil, max: 5000)
+        self.eventPayloadKey = try container.sdkDecodeRequired(.eventPayloadKey)
+            try validateLength("event_payload_key", self.eventPayloadKey, min: nil, max: 5000)
     }
 }
 
-public extension BillingMeterResourceBillingMeterValue {
-    init(eventPayloadKey: String) throws {
+extension BillingMeterResourceBillingMeterValue {
+    public init(eventPayloadKey: String) throws {
         self.eventPayloadKey = eventPayloadKey
-        try validateLength("event_payload_key", self.eventPayloadKey, min: nil, max: 5000)
+            try validateLength("event_payload_key", self.eventPayloadKey, min: nil, max: 5000)
     }
 }
 
@@ -628,7 +490,5 @@ public struct BillingMeterResourceCustomerMappingSettings: Codable {
         case type
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }

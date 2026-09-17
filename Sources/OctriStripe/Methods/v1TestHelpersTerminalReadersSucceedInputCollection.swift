@@ -7,9 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1TestHelpersTerminalReadersSucceedInputCollectionMethods {
-    /// Triggers a successful input-collection result on a simulated Terminal reader. Use this test helper to complete
-    /// an input collection without simulating a payment-method presentation, optionally controlling how non-required
-    /// inputs are skipped.
+    /// Triggers a successful input-collection result on a simulated Terminal reader. Use this test helper to complete an input collection without simulating a payment-method presentation, optionally controlling how non-required inputs are skipped.
     ///
     /// Use this endpoint to trigger a successful input collection on a simulated reader.
     ///
@@ -17,31 +15,11 @@ public enum V1TestHelpersTerminalReadersSucceedInputCollectionMethods {
     /// - expand: Specifies which fields in the response should be expanded.
     /// - skipNonRequiredInputs: This parameter defines the skip behavior for input
     ///   collection.
-    public static func postTestHelpersTerminalReadersReaderSucceedInputCollection(
-        config: ClientConfig,
-        reader: String,
-        expand: [String]?,
-        skipNonRequiredInputs: PostTestHelpersTerminalReadersReaderSucceedInputCollectionReqX8ca3114b86?
-    ) async throws -> TerminalReader {
+    public static func postTestHelpersTerminalReadersReaderSucceedInputCollection(config: ClientConfig, reader: String, expand: [String]?, skipNonRequiredInputs: PostTestHelpersTerminalReadersReaderSucceedInputCollectionReqX8ca3114b86?) async throws -> TerminalReader {
         try validateLength("reader", reader, max: 5000)
 
-        let requestBody = PostTestHelpersTerminalReadersReaderSucceedInputCollectionRequestBody(
-            expand: expand,
-            skipNonRequiredInputs: skipNonRequiredInputs
-        )
+        let requestBody = PostTestHelpersTerminalReadersReaderSucceedInputCollectionRequestBody(expand: expand, skipNonRequiredInputs: skipNonRequiredInputs)
 
-        return try await (sdkRequest(
-            "POST",
-            [
-                "/v1/test_helpers/terminal/readers/",
-                sdkEncodePathSegment(sdkWireString(reader)),
-                "/succeed_input_collection",
-            ].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostTestHelpersTerminalReadersReaderSucceedInputCollection"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/test_helpers/terminal/readers/", sdkEncodePathSegment(sdkWireString(reader)), "/succeed_input_collection"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTestHelpersTerminalReadersReaderSucceedInputCollection")).data
     }
 }

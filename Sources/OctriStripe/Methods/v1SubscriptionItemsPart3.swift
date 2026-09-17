@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1SubscriptionItemsMethods {
-    struct PostSubscriptionItemsOptions: Codable {
+extension V1SubscriptionItemsMethods {
+    public struct PostSubscriptionItemsOptions: Codable {
         public var subscription: String
         public var billingThresholds: PostSubscriptionItemsRequestBodyBillingThresholds?
         public var discounts: PostSubscriptionItemsRequestBodyDiscounts?
@@ -60,10 +60,7 @@ public extension V1SubscriptionItemsMethods {
     ///   [`default_tax_rates`](https://docs.stripe.com/api/subscriptions/create#creat
     ///   e_subscription-default_tax_rates) on the Subscription. When updating, pass
     ///   an empty string to remove previously-defined tax rates.
-    static func postSubscriptionItems(
-        config: ClientConfig,
-        options: PostSubscriptionItemsOptions
-    ) async throws -> SubscriptionItem {
+    public static func postSubscriptionItems(config: ClientConfig, options: PostSubscriptionItemsOptions) async throws -> SubscriptionItem {
         try validateLength("subscription", options.subscription, max: 5000)
 
         if let price = options.price {
@@ -72,14 +69,6 @@ public extension V1SubscriptionItemsMethods {
 
         let requestBody = PostSubscriptionItemsRequestBody(options: options)
 
-        return try await (sdkRequest(
-            "POST",
-            "/v1/subscription_items",
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostSubscriptionItems"
-        )).data
+        return try (await sdkRequest("POST", "/v1/subscription_items", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostSubscriptionItems")).data
     }
 }

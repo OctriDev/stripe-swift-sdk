@@ -6,31 +6,18 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1IssuingCardholdersMethods {
-    /// Retrieves an Issuing cardholder by its identifier. Use `expand` when you need selected nested fields included in
-    /// the response rather than returned as identifiers. The response contains the cardholder's identity, billing
-    /// information, status, requirements, and spending controls.
+extension V1IssuingCardholdersMethods {
+    /// Retrieves an Issuing cardholder by its identifier. Use `expand` when you need selected nested fields included in the response rather than returned as identifiers. The response contains the cardholder's identity, billing information, status, requirements, and spending controls.
     ///
     /// Retrieves an Issuing Cardholder object.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    static func getIssuingCardholdersCardholder(
-        config: ClientConfig,
-        cardholder: String,
-        expand: [String]?
-    ) async throws -> IssuingCardholder {
+    public static func getIssuingCardholdersCardholder(config: ClientConfig, cardholder: String, expand: [String]?) async throws -> IssuingCardholder {
         try validateLength("cardholder", cardholder, max: 5000)
 
-        return try await (sdkRequest(
-            "GET",
-            ["/v1/issuing/cardholders/", sdkEncodePathSegment(sdkWireString(cardholder))].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .json,
-            operationId: "GetIssuingCardholdersCardholder"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/issuing/cardholders/", sdkEncodePathSegment(sdkWireString(cardholder))].joined(), config: config, query: [
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .json, operationId: "GetIssuingCardholdersCardholder")).data
     }
 }

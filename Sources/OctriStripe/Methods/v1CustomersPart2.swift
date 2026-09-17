@@ -6,13 +6,10 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1CustomersMethods {
-    /// Lists customers sorted by creation date, with the most recently created customers first. Filter results by
-    /// creation interval, email address, or test clock, and use cursor parameters to paginate through the collection.
-    /// The response includes customer objects and list pagination metadata.
+extension V1CustomersMethods {
+    /// Lists customers sorted by creation date, with the most recently created customers first. Filter results by creation interval, email address, or test clock, and use cursor parameters to paginate through the collection. The response includes customer objects and list pagination metadata.
     ///
-    /// Returns a list of your customers. The customers are returned sorted by creation date, with the most recent
-    /// customers appearing first.
+    /// Returns a list of your customers. The customers are returned sorted by creation date, with the most recent customers appearing first.
     ///
     /// - Parameters:
     /// - created: Only return customers that were created during the given date
@@ -35,33 +32,24 @@ public extension V1CustomersMethods {
     /// - testClock: Provides a list of customers that are associated with the
     ///   specified test clock. The response will not include customers with test
     ///   clocks if this parameter is not set.
-    static func getCustomers(
-        config: ClientConfig,
-        created: GetCustomersParameter?,
-        email: String?,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        startingAfter: String?,
-        testClock: String?
-    ) async throws -> GetCustomersResponse {
-        if let email {
+    public static func getCustomers(config: ClientConfig, created: GetCustomersParameter?, email: String?, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?, testClock: String?) async throws -> GetCustomersResponse {
+        if let email = email {
             try validateLength("email", email, max: 512)
         }
 
-        if let endingBefore {
+        if let endingBefore = endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let startingAfter {
+        if let startingAfter = startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        if let testClock {
+        if let testClock = testClock {
             try validateLength("test_clock", testClock, max: 5000)
         }
 
-        return try await (sdkRequest("GET", "/v1/customers", config: config, query: [
+        return try (await sdkRequest("GET", "/v1/customers", config: config, query: [
             SdkQueryParameter("created", value: created),
             SdkQueryParameter("email", value: email),
             SdkQueryParameter("ending_before", value: endingBefore),

@@ -9,26 +9,11 @@ public class V1PaymentIntentsVerifyMicrodepositsNamespace {
         self.config = config
     }
 
-    /// Verifies the microdeposit amounts or descriptor code for a PaymentIntent. Supply `intent` and either `amounts`
-    /// containing the two deposited values or `descriptor_code` containing the code sent to the bank account. The
-    /// response contains the updated PaymentIntent.
+/// Verifies the microdeposit amounts or descriptor code for a PaymentIntent. Supply `intent` and either `amounts` containing the two deposited values or `descriptor_code` containing the code sent to the bank account. The response contains the updated PaymentIntent.
     ///
     /// Verifies microdeposits on a PaymentIntent object.
-    public func postPaymentIntentsIntent(
-        intent: String,
-        amounts: [Int]?,
-        clientSecret: String?,
-        descriptorCode: String?,
-        expand: [String]?
-    ) async throws -> PaymentIntent {
-        try await V1PaymentIntentsVerifyMicrodepositsMethods.postPaymentIntentsIntentVerifyMicrodeposits(
-            config: config,
-            intent: intent,
-            amounts: amounts,
-            clientSecret: clientSecret,
-            descriptorCode: descriptorCode,
-            expand: expand
-        )
+    public func postPaymentIntentsIntent(intent: String, amounts: [Int]?, clientSecret: String?, descriptorCode: String?, expand: [String]?) async throws -> PaymentIntent {
+        return try await V1PaymentIntentsVerifyMicrodepositsMethods.postPaymentIntentsIntentVerifyMicrodeposits(config: config, intent: intent, amounts: amounts, clientSecret: clientSecret, descriptorCode: descriptorCode, expand: expand)
     }
 }
 
@@ -54,66 +39,30 @@ public class V1PaymentIntentsNamespace {
         verifyMicrodeposits = V1PaymentIntentsVerifyMicrodepositsNamespace(config: config)
     }
 
-    /// Lists PaymentIntents with optional filters for creation time, customer, and customer account. Use `limit` and
-    /// cursor parameters to paginate the results, and use `expand` to request additional response fields.
+/// Lists PaymentIntents with optional filters for creation time, customer, and customer account. Use `limit` and cursor parameters to paginate the results, and use `expand` to request additional response fields.
     ///
     /// Returns a list of PaymentIntents.
-    public func get(
-        created: GetPaymentIntentsParameter?,
-        customer: String?,
-        customerAccount: String?,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        startingAfter: String?
-    ) async throws -> GetPaymentIntentsResponse {
-        try await V1PaymentIntentsMethods.getPaymentIntents(
-            config: config,
-            created: created,
-            customer: customer,
-            customerAccount: customerAccount,
-            endingBefore: endingBefore,
-            expand: expand,
-            limit: limit,
-            startingAfter: startingAfter
-        )
+    public func get(created: GetPaymentIntentsParameter?, customer: String?, customerAccount: String?, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetPaymentIntentsResponse {
+        return try await V1PaymentIntentsMethods.getPaymentIntents(config: config, created: created, customer: customer, customerAccount: customerAccount, endingBefore: endingBefore, expand: expand, limit: limit, startingAfter: startingAfter)
     }
 
-    /// Creates a PaymentIntent object. After the PaymentIntent is created, attach a payment method and confirm to
-    /// continue the payment. Learn more about the available payment flows with the Payment Intents API. When you use
-    /// confirm=true during creation, it’s equivalent to creating and confirming the PaymentIntent in the same call. You
-    /// can use any parameters available in the confirm API when you supply confirm=true .
+/// Creates a PaymentIntent object. After the PaymentIntent is created, attach a payment method and confirm to continue the payment. Learn more about the available payment flows with the Payment Intents API. When you use confirm=true during creation, it’s equivalent to creating and confirming the PaymentIntent in the same call. You can use any parameters available in the confirm API when you supply confirm=true .
     public func post(options: V1PaymentIntentsMethods.PostPaymentIntentsOptions) async throws -> PaymentIntent {
-        try await V1PaymentIntentsMethods.postPaymentIntents(config: config, options: options)
+        return try await V1PaymentIntentsMethods.postPaymentIntents(config: config, options: options)
     }
 
-    /// Retrieves a previously created PaymentIntent by its identifier. Use `client_secret` when retrieving the
-    /// PaymentIntent with a publishable key; publishable-key requests return only a subset of properties.
+/// Retrieves a previously created PaymentIntent by its identifier. Use `client_secret` when retrieving the PaymentIntent with a publishable key; publishable-key requests return only a subset of properties.
     ///
-    /// Retrieves the details of a PaymentIntent that has previously been created. You can retrieve a PaymentIntent
-    /// client-side using a publishable key when the client_secret is in the query string. If you retrieve a
-    /// PaymentIntent with a publishable key, it only returns a subset of properties. Refer to the payment intent object
-    /// reference for more details.
+    /// Retrieves the details of a PaymentIntent that has previously been created. You can retrieve a PaymentIntent client-side using a publishable key when the client_secret is in the query string. If you retrieve a PaymentIntent with a publishable key, it only returns a subset of properties. Refer to the payment intent object reference for more details.
     public func getIntent(intent: String, clientSecret: String?, expand: [String]?) async throws -> PaymentIntent {
-        try await V1PaymentIntentsMethods.getPaymentIntentsIntent(
-            config: config,
-            intent: intent,
-            clientSecret: clientSecret,
-            expand: expand
-        )
+        return try await V1PaymentIntentsMethods.getPaymentIntentsIntent(config: config, intent: intent, clientSecret: clientSecret, expand: expand)
     }
 
-    /// Updates properties on an existing PaymentIntent without confirming it. Supply only the properties you want to
-    /// change; changing `payment_method` requires you to confirm the PaymentIntent again, while updating and confirming
-    /// together requires the confirm operation.
+/// Updates properties on an existing PaymentIntent without confirming it. Supply only the properties you want to change; changing `payment_method` requires you to confirm the PaymentIntent again, while updating and confirming together requires the confirm operation.
     ///
-    /// Updates properties on a PaymentIntent object without confirming. Depending on which properties you update, you
-    /// might need to confirm the PaymentIntent again. For example, updating the payment_method always requires you to
-    /// confirm the PaymentIntent again. If you prefer to update and confirm at the same time, we recommend updating
-    /// properties through the confirm API instead.
-    public func postIntent(options: V1PaymentIntentsMethods
-        .PostPaymentIntentsIntentOptions) async throws -> PaymentIntent {
-        try await V1PaymentIntentsMethods.postPaymentIntentsIntent(config: config, options: options)
+    /// Updates properties on a PaymentIntent object without confirming. Depending on which properties you update, you might need to confirm the PaymentIntent again. For example, updating the payment_method always requires you to confirm the PaymentIntent again. If you prefer to update and confirm at the same time, we recommend updating properties through the confirm API instead.
+    public func postIntent(options: V1PaymentIntentsMethods.PostPaymentIntentsIntentOptions) async throws -> PaymentIntent {
+        return try await V1PaymentIntentsMethods.postPaymentIntentsIntent(config: config, options: options)
     }
 }
 
@@ -123,27 +72,11 @@ public class V1PaymentLinksLineItemsNamespace {
         self.config = config
     }
 
-    /// Lists the line items associated with a payment link. Use `payment_link` to select the link and cursor parameters
-    /// to retrieve earlier or later pages of items. The response contains line item amounts, quantities, prices,
-    /// discounts, taxes, and pagination metadata.
+/// Lists the line items associated with a payment link. Use `payment_link` to select the link and cursor parameters to retrieve earlier or later pages of items. The response contains line item amounts, quantities, prices, discounts, taxes, and pagination metadata.
     ///
-    /// When retrieving a payment link, there is an includable line_items property containing the first handful of those
-    /// items. There is also a URL where you can retrieve the full (paginated) list of line items.
-    public func getPaymentLinksPaymentLink(
-        paymentLink: String,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        startingAfter: String?
-    ) async throws -> GetPaymentLinksPaymentLinkLineItemsResponse {
-        try await V1PaymentLinksLineItemsMethods.getPaymentLinksPaymentLinkLineItems(
-            config: config,
-            paymentLink: paymentLink,
-            endingBefore: endingBefore,
-            expand: expand,
-            limit: limit,
-            startingAfter: startingAfter
-        )
+    /// When retrieving a payment link, there is an includable line_items property containing the first handful of those items. There is also a URL where you can retrieve the full (paginated) list of line items.
+    public func getPaymentLinksPaymentLink(paymentLink: String, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetPaymentLinksPaymentLinkLineItemsResponse {
+        return try await V1PaymentLinksLineItemsMethods.getPaymentLinksPaymentLinkLineItems(config: config, paymentLink: paymentLink, endingBefore: endingBefore, expand: expand, limit: limit, startingAfter: startingAfter)
     }
 }
 
@@ -155,58 +88,32 @@ public class V1PaymentLinksNamespace {
         lineItems = V1PaymentLinksLineItemsNamespace(config: config)
     }
 
-    /// Lists payment links available to the authenticated user. Use `active` to filter by activation state and
-    /// `starting_after` or `ending_before` to navigate the cursor-paginated results. Use `limit` to control the page
-    /// size.
+/// Lists payment links available to the authenticated user. Use `active` to filter by activation state and `starting_after` or `ending_before` to navigate the cursor-paginated results. Use `limit` to control the page size.
     ///
     /// Returns a list of your payment links.
-    public func get(
-        active: Bool?,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        startingAfter: String?
-    ) async throws -> GetPaymentLinksResponse {
-        try await V1PaymentLinksMethods.getPaymentLinks(
-            config: config,
-            active: active,
-            endingBefore: endingBefore,
-            expand: expand,
-            limit: limit,
-            startingAfter: startingAfter
-        )
+    public func get(active: Bool?, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetPaymentLinksResponse {
+        return try await V1PaymentLinksMethods.getPaymentLinks(config: config, active: active, endingBefore: endingBefore, expand: expand, limit: limit, startingAfter: startingAfter)
     }
 
-    /// Creates a payment link that provides customers with a hosted payment page for the configured items. Supply
-    /// `line_items` and configure checkout behaviour such as `after_completion`, `automatic_tax`, payment methods,
-    /// customer creation, and shipping collection as needed. The response contains the created payment link and its
-    /// hosted URL.
+/// Creates a payment link that provides customers with a hosted payment page for the configured items. Supply `line_items` and configure checkout behaviour such as `after_completion`, `automatic_tax`, payment methods, customer creation, and shipping collection as needed. The response contains the created payment link and its hosted URL.
     ///
     /// Creates a payment link.
     public func post(options: V1PaymentLinksMethods.PostPaymentLinksOptions) async throws -> PaymentLink {
-        try await V1PaymentLinksMethods.postPaymentLinks(config: config, options: options)
+        return try await V1PaymentLinksMethods.postPaymentLinks(config: config, options: options)
     }
 
-    /// Retrieves a payment link by its identifier. Use `expand` when you need selected related fields included directly
-    /// in the response. The response contains the payment link configuration and current activation state.
+/// Retrieves a payment link by its identifier. Use `expand` when you need selected related fields included directly in the response. The response contains the payment link configuration and current activation state.
     ///
     /// Retrieve a payment link.
     public func getPaymentLink(paymentLink: String, expand: [String]?) async throws -> PaymentLink {
-        try await V1PaymentLinksMethods.getPaymentLinksPaymentLink(
-            config: config,
-            paymentLink: paymentLink,
-            expand: expand
-        )
+        return try await V1PaymentLinksMethods.getPaymentLinksPaymentLink(config: config, paymentLink: paymentLink, expand: expand)
     }
 
-    /// Updates the configuration of an existing payment link. Supply only the payment link properties you want to
-    /// change, including activation, completion behaviour, line items, payment methods, metadata, or customer
-    /// collection settings. The response contains the updated payment link.
+/// Updates the configuration of an existing payment link. Supply only the payment link properties you want to change, including activation, completion behaviour, line items, payment methods, metadata, or customer collection settings. The response contains the updated payment link.
     ///
     /// Updates a payment link.
-    public func postPaymentLink(options: V1PaymentLinksMethods
-        .PostPaymentLinksPaymentLinkOptions) async throws -> PaymentLink {
-        try await V1PaymentLinksMethods.postPaymentLinksPaymentLink(config: config, options: options)
+    public func postPaymentLink(options: V1PaymentLinksMethods.PostPaymentLinksPaymentLinkOptions) async throws -> PaymentLink {
+        return try await V1PaymentLinksMethods.postPaymentLinksPaymentLink(config: config, options: options)
     }
 }
 
@@ -216,65 +123,32 @@ public class V1PaymentMethodConfigurationsNamespace {
         self.config = config
     }
 
-    /// Lists payment method configurations available to the authenticated user. Use `active` to filter configurations
-    /// by whether they can be used for new payments and `application` to select configurations associated with a
-    /// Connect application. Use cursor parameters and `limit` to paginate the results.
+/// Lists payment method configurations available to the authenticated user. Use `active` to filter configurations by whether they can be used for new payments and `application` to select configurations associated with a Connect application. Use cursor parameters and `limit` to paginate the results.
     ///
     /// List payment method configurations
-    public func get(
-        active: Bool?,
-        application: GetPaymentMethodConfigurationsParameterVariant1?,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        startingAfter: String?
-    ) async throws -> GetPaymentMethodConfigurationsResponse {
-        try await V1PaymentMethodConfigurationsMethods.getPaymentMethodConfigurations(
-            config: config,
-            active: active,
-            application: application,
-            endingBefore: endingBefore,
-            expand: expand,
-            limit: limit,
-            startingAfter: startingAfter
-        )
+    public func get(active: Bool?, application: GetPaymentMethodConfigurationsParameterVariant1?, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetPaymentMethodConfigurationsResponse {
+        return try await V1PaymentMethodConfigurationsMethods.getPaymentMethodConfigurations(config: config, active: active, application: application, endingBefore: endingBefore, expand: expand, limit: limit, startingAfter: startingAfter)
     }
 
-    /// Creates a payment method configuration that controls which payment methods are displayed when payment method
-    /// types are not explicitly specified. Configure individual payment methods through their display preferences,
-    /// including card, wallets, bank debits, and local payment methods. The response contains the created configuration
-    /// and its available payment methods.
+/// Creates a payment method configuration that controls which payment methods are displayed when payment method types are not explicitly specified. Configure individual payment methods through their display preferences, including card, wallets, bank debits, and local payment methods. The response contains the created configuration and its available payment methods.
     ///
     /// Creates a payment method configuration
-    public func post(options: V1PaymentMethodConfigurationsMethods
-        .PostPaymentMethodConfigurationsOptions) async throws -> PaymentMethodConfiguration {
-        try await V1PaymentMethodConfigurationsMethods.postPaymentMethodConfigurations(config: config, options: options)
+    public func post(options: V1PaymentMethodConfigurationsMethods.PostPaymentMethodConfigurationsOptions) async throws -> PaymentMethodConfiguration {
+        return try await V1PaymentMethodConfigurationsMethods.postPaymentMethodConfigurations(config: config, options: options)
     }
 
-    /// Retrieves a payment method configuration by its identifier. Use `expand` to include selected related fields
-    /// directly in the response. The response contains the configuration's active state, default state, associated
-    /// application, and payment method settings.
+/// Retrieves a payment method configuration by its identifier. Use `expand` to include selected related fields directly in the response. The response contains the configuration's active state, default state, associated application, and payment method settings.
     ///
     /// Retrieve payment method configuration
     public func getConfiguration(configuration: String, expand: [String]?) async throws -> PaymentMethodConfiguration {
-        try await V1PaymentMethodConfigurationsMethods.getPaymentMethodConfigurationsConfiguration(
-            config: config,
-            configuration: configuration,
-            expand: expand
-        )
+        return try await V1PaymentMethodConfigurationsMethods.getPaymentMethodConfigurationsConfiguration(config: config, configuration: configuration, expand: expand)
     }
 
-    /// Updates a payment method configuration and its individual payment method settings. Supply only the configuration
-    /// properties you want to change, including the active state or display preferences for supported payment methods.
-    /// The response contains the updated configuration.
+/// Updates a payment method configuration and its individual payment method settings. Supply only the configuration properties you want to change, including the active state or display preferences for supported payment methods. The response contains the updated configuration.
     ///
     /// Update payment method configuration
-    public func postConfiguration(options: V1PaymentMethodConfigurationsMethods
-        .PostPaymentMethodConfigurationsConfigurationOptions) async throws -> PaymentMethodConfiguration {
-        try await V1PaymentMethodConfigurationsMethods.postPaymentMethodConfigurationsConfiguration(
-            config: config,
-            options: options
-        )
+    public func postConfiguration(options: V1PaymentMethodConfigurationsMethods.PostPaymentMethodConfigurationsConfigurationOptions) async throws -> PaymentMethodConfiguration {
+        return try await V1PaymentMethodConfigurationsMethods.postPaymentMethodConfigurationsConfiguration(config: config, options: options)
     }
 }
 
@@ -284,25 +158,11 @@ public class V1PaymentMethodDomainsValidateNamespace {
         self.config = config
     }
 
-    /// Validates an existing payment method domain after you complete the registration steps required for specific
-    /// payment methods. Use `payment_method_domain` to identify the domain and optionally provide `expand` values for
-    /// additional response fields. Validation activates eligible payment methods that satisfy their registration
-    /// requirements.
+/// Validates an existing payment method domain after you complete the registration steps required for specific payment methods. Use `payment_method_domain` to identify the domain and optionally provide `expand` values for additional response fields. Validation activates eligible payment methods that satisfy their registration requirements.
     ///
-    /// Some payment methods might require additional steps to register a domain. If the requirements weren’t satisfied
-    /// when the domain was created, the payment method will be inactive on the domain. The payment method doesn’t
-    /// appear in Elements or Embedded Checkout for this domain until it is active. To activate a payment method on an
-    /// existing payment method domain, complete the required registration steps specific to the payment method, and
-    /// then validate the payment method domain with this endpoint. Related guides: Payment method domains.
-    public func postPaymentMethodDomainsPaymentMethodDomain(
-        paymentMethodDomain: String,
-        expand: [String]?
-    ) async throws -> PaymentMethodDomain {
-        try await V1PaymentMethodDomainsValidateMethods.postPaymentMethodDomainsPaymentMethodDomainValidate(
-            config: config,
-            paymentMethodDomain: paymentMethodDomain,
-            expand: expand
-        )
+    /// Some payment methods might require additional steps to register a domain. If the requirements weren’t satisfied when the domain was created, the payment method will be inactive on the domain. The payment method doesn’t appear in Elements or Embedded Checkout for this domain until it is active. To activate a payment method on an existing payment method domain, complete the required registration steps specific to the payment method, and then validate the payment method domain with this endpoint. Related guides: Payment method domains.
+    public func postPaymentMethodDomainsPaymentMethodDomain(paymentMethodDomain: String, expand: [String]?) async throws -> PaymentMethodDomain {
+        return try await V1PaymentMethodDomainsValidateMethods.postPaymentMethodDomainsPaymentMethodDomainValidate(config: config, paymentMethodDomain: paymentMethodDomain, expand: expand)
     }
 }
 
@@ -314,75 +174,32 @@ public class V1PaymentMethodDomainsNamespace {
         validate = V1PaymentMethodDomainsValidateNamespace(config: config)
     }
 
-    /// Lists registered payment method domains and their payment-method statuses. Use `domain_name` or `enabled` to
-    /// filter the results, and use `starting_after` or `ending_before` to navigate between pages.
+/// Lists registered payment method domains and their payment-method statuses. Use `domain_name` or `enabled` to filter the results, and use `starting_after` or `ending_before` to navigate between pages.
     ///
     /// Lists the details of existing payment method domains.
-    public func get(
-        domainName: String?,
-        enabled: Bool?,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        startingAfter: String?
-    ) async throws -> GetPaymentMethodDomainsResponse {
-        try await V1PaymentMethodDomainsMethods.getPaymentMethodDomains(
-            config: config,
-            domainName: domainName,
-            enabled: enabled,
-            endingBefore: endingBefore,
-            expand: expand,
-            limit: limit,
-            startingAfter: startingAfter
-        )
+    public func get(domainName: String?, enabled: Bool?, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetPaymentMethodDomainsResponse {
+        return try await V1PaymentMethodDomainsMethods.getPaymentMethodDomains(config: config, domainName: domainName, enabled: enabled, endingBefore: endingBefore, expand: expand, limit: limit, startingAfter: startingAfter)
     }
 
-    /// Creates a payment method domain that you have registered for payment-method display. Supply `domain_name` and
-    /// optionally set `enabled` to control whether eligible payment methods appear in Elements or Embedded Checkout.
-    /// The response includes the domain's status for supported payment methods.
+/// Creates a payment method domain that you have registered for payment-method display. Supply `domain_name` and optionally set `enabled` to control whether eligible payment methods appear in Elements or Embedded Checkout. The response includes the domain's status for supported payment methods.
     ///
     /// Creates a payment method domain.
     public func post(domainName: String, enabled: Bool?, expand: [String]?) async throws -> PaymentMethodDomain {
-        try await V1PaymentMethodDomainsMethods.postPaymentMethodDomains(
-            config: config,
-            domainName: domainName,
-            enabled: enabled,
-            expand: expand
-        )
+        return try await V1PaymentMethodDomainsMethods.postPaymentMethodDomains(config: config, domainName: domainName, enabled: enabled, expand: expand)
     }
 
-    /// Retrieves a registered payment method domain by its identifier. Use `expand` when you need additional response
-    /// fields included in the returned domain object. The response includes the domain configuration and statuses for
-    /// supported payment methods.
+/// Retrieves a registered payment method domain by its identifier. Use `expand` when you need additional response fields included in the returned domain object. The response includes the domain configuration and statuses for supported payment methods.
     ///
     /// Retrieves the details of an existing payment method domain.
-    public func getPaymentMethodDomain(
-        paymentMethodDomain: String,
-        expand: [String]?
-    ) async throws -> PaymentMethodDomain {
-        try await V1PaymentMethodDomainsMethods.getPaymentMethodDomainsPaymentMethodDomain(
-            config: config,
-            paymentMethodDomain: paymentMethodDomain,
-            expand: expand
-        )
+    public func getPaymentMethodDomain(paymentMethodDomain: String, expand: [String]?) async throws -> PaymentMethodDomain {
+        return try await V1PaymentMethodDomainsMethods.getPaymentMethodDomainsPaymentMethodDomain(config: config, paymentMethodDomain: paymentMethodDomain, expand: expand)
     }
 
-    /// Updates the enabled state of an existing payment method domain. Supply `enabled` to control whether payment
-    /// methods that require a registered domain appear in Elements or Embedded Checkout, and use `expand` to request
-    /// additional response fields.
+/// Updates the enabled state of an existing payment method domain. Supply `enabled` to control whether payment methods that require a registered domain appear in Elements or Embedded Checkout, and use `expand` to request additional response fields.
     ///
     /// Updates an existing payment method domain.
-    public func postPaymentMethodDomain(
-        paymentMethodDomain: String,
-        enabled: Bool?,
-        expand: [String]?
-    ) async throws -> PaymentMethodDomain {
-        try await V1PaymentMethodDomainsMethods.postPaymentMethodDomainsPaymentMethodDomain(
-            config: config,
-            paymentMethodDomain: paymentMethodDomain,
-            enabled: enabled,
-            expand: expand
-        )
+    public func postPaymentMethodDomain(paymentMethodDomain: String, enabled: Bool?, expand: [String]?) async throws -> PaymentMethodDomain {
+        return try await V1PaymentMethodDomainsMethods.postPaymentMethodDomainsPaymentMethodDomain(config: config, paymentMethodDomain: paymentMethodDomain, enabled: enabled, expand: expand)
     }
 }
 
@@ -392,31 +209,10 @@ public class V1PaymentMethodsAttachNamespace {
         self.config = config
     }
 
-    /// Attaches a PaymentMethod to a customer for use with payments or future payment setup. Supply either `customer`
-    /// or `customer_account` to identify the customer association, and use `expand` to request additional response
-    /// fields. For future payments, prefer a SetupIntent or a PaymentIntent configured with setup-future-usage
-    /// behavior.
+/// Attaches a PaymentMethod to a customer for use with payments or future payment setup. Supply either `customer` or `customer_account` to identify the customer association, and use `expand` to request additional response fields. For future payments, prefer a SetupIntent or a PaymentIntent configured with setup-future-usage behavior.
     ///
-    /// Attaches a PaymentMethod object to a Customer. To attach a new PaymentMethod to a customer for future payments,
-    /// we recommend you use a SetupIntent or a PaymentIntent with setup_future_usage. These approaches will perform any
-    /// necessary steps to set up the PaymentMethod for future payments. Using the /v1/payment_methods/:id/attach
-    /// endpoint without first using a SetupIntent or PaymentIntent with setup_future_usage does not optimize the
-    /// PaymentMethod for future use, which makes later declines and payment friction more likely. See Optimizing cards
-    /// for future payments for more information about setting up future payments. To use this PaymentMethod as the
-    /// default for invoice or subscription payments, set invoice_settings.default_payment_method , on the Customer to
-    /// the PaymentMethod’s ID.
-    public func postPaymentMethodsPaymentMethod(
-        paymentMethod: String,
-        customer: String?,
-        customerAccount: String?,
-        expand: [String]?
-    ) async throws -> PaymentMethod {
-        try await V1PaymentMethodsAttachMethods.postPaymentMethodsPaymentMethodAttach(
-            config: config,
-            paymentMethod: paymentMethod,
-            customer: customer,
-            customerAccount: customerAccount,
-            expand: expand
-        )
+    /// Attaches a PaymentMethod object to a Customer. To attach a new PaymentMethod to a customer for future payments, we recommend you use a SetupIntent or a PaymentIntent with setup_future_usage. These approaches will perform any necessary steps to set up the PaymentMethod for future payments. Using the /v1/payment_methods/:id/attach endpoint without first using a SetupIntent or PaymentIntent with setup_future_usage does not optimize the PaymentMethod for future use, which makes later declines and payment friction more likely. See Optimizing cards for future payments for more information about setting up future payments. To use this PaymentMethod as the default for invoice or subscription payments, set invoice_settings.default_payment_method , on the Customer to the PaymentMethod’s ID.
+    public func postPaymentMethodsPaymentMethod(paymentMethod: String, customer: String?, customerAccount: String?, expand: [String]?) async throws -> PaymentMethod {
+        return try await V1PaymentMethodsAttachMethods.postPaymentMethodsPaymentMethodAttach(config: config, paymentMethod: paymentMethod, customer: customer, customerAccount: customerAccount, expand: expand)
     }
 }

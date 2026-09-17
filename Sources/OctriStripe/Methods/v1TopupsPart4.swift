@@ -6,32 +6,22 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1TopupsMethods {
-    /// Retrieves the details of an existing top-up by its unique identifier. Use `expand` to include expanded fields in
-    /// the returned top-up representation.
+extension V1TopupsMethods {
+    /// Retrieves the details of an existing top-up by its unique identifier. Use `expand` to include expanded fields in the returned top-up representation.
     ///
-    /// Retrieves the details of a top-up that has previously been created. Supply the unique top-up ID that was
-    /// returned from your previous request, and Stripe will return the corresponding top-up information.
+    /// Retrieves the details of a top-up that has previously been created. Supply the unique top-up ID that was returned from your previous request, and Stripe will return the corresponding top-up information.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    static func getTopupsTopup(config: ClientConfig, topup: String, expand: [String]?) async throws -> Topup {
+    public static func getTopupsTopup(config: ClientConfig, topup: String, expand: [String]?) async throws -> Topup {
         try validateLength("topup", topup, max: 5000)
 
-        return try await (sdkRequest(
-            "GET",
-            ["/v1/topups/", sdkEncodePathSegment(sdkWireString(topup))].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .json,
-            operationId: "GetTopupsTopup"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/topups/", sdkEncodePathSegment(sdkWireString(topup))].joined(), config: config, query: [
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .json, operationId: "GetTopupsTopup")).data
     }
 
-    /// Updates the editable metadata and description of an existing top-up. Other top-up details remain unchanged
-    /// because they cannot be edited after creation. Use `expand` to request expanded fields in the response.
+    /// Updates the editable metadata and description of an existing top-up. Other top-up details remain unchanged because they cannot be edited after creation. Use `expand` to request expanded fields in the response.
     ///
     /// Updates the metadata of a top-up. Other top-up details are not editable by design.
     ///
@@ -44,29 +34,15 @@ public extension V1TopupsMethods {
     ///   information about the object in a structured format. Individual keys can be
     ///   unset by posting an empty value to them. All keys can be unset by posting an
     ///   empty value to `metadata`.
-    static func postTopupsTopup(
-        config: ClientConfig,
-        topup: String,
-        description: String?,
-        expand: [String]?,
-        metadata: PostTopupsTopupRequestBodyMetadata?
-    ) async throws -> Topup {
+    public static func postTopupsTopup(config: ClientConfig, topup: String, description: String?, expand: [String]?, metadata: PostTopupsTopupRequestBodyMetadata?) async throws -> Topup {
         try validateLength("topup", topup, max: 5000)
 
-        if let description {
+        if let description = description {
             try validateLength("description", description, max: 5000)
         }
 
         let requestBody = PostTopupsTopupRequestBody(description: description, expand: expand, metadata: metadata)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/topups/", sdkEncodePathSegment(sdkWireString(topup))].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostTopupsTopup"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/topups/", sdkEncodePathSegment(sdkWireString(topup))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTopupsTopup")).data
     }
 }

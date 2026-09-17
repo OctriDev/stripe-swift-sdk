@@ -3,31 +3,24 @@
 
 import Foundation
 
-/// V1TaxProduct domain models
+// V1TaxProduct domain models
 /// The tax type, such as `vat` or `sales_tax`.
-public struct TaxProductResourceLineItemTaxRateDetailsTaxType: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct TaxProductResourceLineItemTaxRateDetailsTaxType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let amusementTax = TaxProductResourceLineItemTaxRateDetailsTaxType(rawValue: "amusement_tax")
-    public static let communicationsTax =
-        TaxProductResourceLineItemTaxRateDetailsTaxType(rawValue: "communications_tax")
+    public static let communicationsTax = TaxProductResourceLineItemTaxRateDetailsTaxType(rawValue: "communications_tax")
     public static let gst = TaxProductResourceLineItemTaxRateDetailsTaxType(rawValue: "gst")
     public static let hst = TaxProductResourceLineItemTaxRateDetailsTaxType(rawValue: "hst")
     public static let igst = TaxProductResourceLineItemTaxRateDetailsTaxType(rawValue: "igst")
     public static let jct = TaxProductResourceLineItemTaxRateDetailsTaxType(rawValue: "jct")
     public static let leaseTax = TaxProductResourceLineItemTaxRateDetailsTaxType(rawValue: "lease_tax")
-    public static let massTransitParkingTax =
-        TaxProductResourceLineItemTaxRateDetailsTaxType(rawValue: "mass_transit_parking_tax")
+    public static let massTransitParkingTax = TaxProductResourceLineItemTaxRateDetailsTaxType(rawValue: "mass_transit_parking_tax")
     public static let parkingTax = TaxProductResourceLineItemTaxRateDetailsTaxType(rawValue: "parking_tax")
     public static let pst = TaxProductResourceLineItemTaxRateDetailsTaxType(rawValue: "pst")
     public static let qst = TaxProductResourceLineItemTaxRateDetailsTaxType(rawValue: "qst")
-    public static let retailDeliveryFee =
-        TaxProductResourceLineItemTaxRateDetailsTaxType(rawValue: "retail_delivery_fee")
+    public static let retailDeliveryFee = TaxProductResourceLineItemTaxRateDetailsTaxType(rawValue: "retail_delivery_fee")
     public static let rst = TaxProductResourceLineItemTaxRateDetailsTaxType(rawValue: "rst")
     public static let salesTax = TaxProductResourceLineItemTaxRateDetailsTaxType(rawValue: "sales_tax")
     public static let serviceTax = TaxProductResourceLineItemTaxRateDetailsTaxType(rawValue: "service_tax")
@@ -35,7 +28,7 @@ public struct TaxProductResourceLineItemTaxRateDetailsTaxType: RawRepresentable,
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -45,22 +38,16 @@ public struct TaxProductResourceLineItemTaxRateDetailsTaxType: RawRepresentable,
 }
 
 /// Place of supply scheme used in an IGIC registration.
-public struct TaxProductRegistrationsResourceCountryOptionsIgicPlaceOfSupplyScheme: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct TaxProductRegistrationsResourceCountryOptionsIgicPlaceOfSupplyScheme: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let inboundGoods =
-        TaxProductRegistrationsResourceCountryOptionsIgicPlaceOfSupplyScheme(rawValue: "inbound_goods")
-    public static let standard =
-        TaxProductRegistrationsResourceCountryOptionsIgicPlaceOfSupplyScheme(rawValue: "standard")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let inboundGoods = TaxProductRegistrationsResourceCountryOptionsIgicPlaceOfSupplyScheme(rawValue: "inbound_goods")
+    public static let standard = TaxProductRegistrationsResourceCountryOptionsIgicPlaceOfSupplyScheme(rawValue: "standard")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -70,14 +57,10 @@ public struct TaxProductRegistrationsResourceCountryOptionsIgicPlaceOfSupplySche
 }
 
 /// Type of registration in an EU country.
-public struct TaxProductRegistrationsResourceCountryOptionsEuropeType: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct TaxProductRegistrationsResourceCountryOptionsEuropeType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let ioss = TaxProductRegistrationsResourceCountryOptionsEuropeType(rawValue: "ioss")
     public static let ossNonUnion = TaxProductRegistrationsResourceCountryOptionsEuropeType(rawValue: "oss_non_union")
     public static let ossUnion = TaxProductRegistrationsResourceCountryOptionsEuropeType(rawValue: "oss_union")
@@ -85,7 +68,7 @@ public struct TaxProductRegistrationsResourceCountryOptionsEuropeType: RawRepres
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -96,20 +79,16 @@ public struct TaxProductRegistrationsResourceCountryOptionsEuropeType: RawRepres
 
 /// Indicates the type of tax rate applied to the taxable amount. This value can be `null` when no tax applies
 /// to the location. This field is only present for TaxRates created by Stripe Tax.
-public struct TaxProductResourceTaxRateDetailsRateType: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct TaxProductResourceTaxRateDetailsRateType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let flatAmount = TaxProductResourceTaxRateDetailsRateType(rawValue: "flat_amount")
     public static let percentage = TaxProductResourceTaxRateDetailsRateType(rawValue: "percentage")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -122,10 +101,7 @@ public struct TaxProductResourceTaxRateDetailsRateType: RawRepresentable, Hashab
 public struct TaxProductResourceJurisdictionLevel: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let city = TaxProductResourceJurisdictionLevel(rawValue: "city")
     public static let country = TaxProductResourceJurisdictionLevel(rawValue: "country")
     public static let county = TaxProductResourceJurisdictionLevel(rawValue: "county")
@@ -134,7 +110,7 @@ public struct TaxProductResourceJurisdictionLevel: RawRepresentable, Hashable, C
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -145,39 +121,29 @@ public struct TaxProductResourceJurisdictionLevel: RawRepresentable, Hashable, C
 
 /// The reasoning behind this tax, for example, if the product is tax exempt. We might extend the possible
 /// values for this field to support new tax rules.
-public struct TaxProductResourceTaxBreakdownTaxabilityReason: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct TaxProductResourceTaxBreakdownTaxabilityReason: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let customerExempt = TaxProductResourceTaxBreakdownTaxabilityReason(rawValue: "customer_exempt")
     public static let notCollecting = TaxProductResourceTaxBreakdownTaxabilityReason(rawValue: "not_collecting")
     public static let notSubjectToTax = TaxProductResourceTaxBreakdownTaxabilityReason(rawValue: "not_subject_to_tax")
     public static let notSupported = TaxProductResourceTaxBreakdownTaxabilityReason(rawValue: "not_supported")
-    public static let portionProductExempt =
-        TaxProductResourceTaxBreakdownTaxabilityReason(rawValue: "portion_product_exempt")
-    public static let portionReducedRated =
-        TaxProductResourceTaxBreakdownTaxabilityReason(rawValue: "portion_reduced_rated")
-    public static let portionStandardRated =
-        TaxProductResourceTaxBreakdownTaxabilityReason(rawValue: "portion_standard_rated")
+    public static let portionProductExempt = TaxProductResourceTaxBreakdownTaxabilityReason(rawValue: "portion_product_exempt")
+    public static let portionReducedRated = TaxProductResourceTaxBreakdownTaxabilityReason(rawValue: "portion_reduced_rated")
+    public static let portionStandardRated = TaxProductResourceTaxBreakdownTaxabilityReason(rawValue: "portion_standard_rated")
     public static let productExempt = TaxProductResourceTaxBreakdownTaxabilityReason(rawValue: "product_exempt")
-    public static let productExemptHoliday =
-        TaxProductResourceTaxBreakdownTaxabilityReason(rawValue: "product_exempt_holiday")
-    public static let proportionallyRated =
-        TaxProductResourceTaxBreakdownTaxabilityReason(rawValue: "proportionally_rated")
+    public static let productExemptHoliday = TaxProductResourceTaxBreakdownTaxabilityReason(rawValue: "product_exempt_holiday")
+    public static let proportionallyRated = TaxProductResourceTaxBreakdownTaxabilityReason(rawValue: "proportionally_rated")
     public static let reducedRated = TaxProductResourceTaxBreakdownTaxabilityReason(rawValue: "reduced_rated")
     public static let reverseCharge = TaxProductResourceTaxBreakdownTaxabilityReason(rawValue: "reverse_charge")
     public static let standardRated = TaxProductResourceTaxBreakdownTaxabilityReason(rawValue: "standard_rated")
-    public static let taxableBasisReduced =
-        TaxProductResourceTaxBreakdownTaxabilityReason(rawValue: "taxable_basis_reduced")
+    public static let taxableBasisReduced = TaxProductResourceTaxBreakdownTaxabilityReason(rawValue: "taxable_basis_reduced")
     public static let zeroRated = TaxProductResourceTaxBreakdownTaxabilityReason(rawValue: "zero_rated")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -187,19 +153,15 @@ public struct TaxProductResourceTaxBreakdownTaxabilityReason: RawRepresentable, 
 }
 
 /// Type of registration in `country`.
-public struct TaxProductRegistrationsResourceCountryOptionsThailandType: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct TaxProductRegistrationsResourceCountryOptionsThailandType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let simplified = TaxProductRegistrationsResourceCountryOptionsThailandType(rawValue: "simplified")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -209,32 +171,21 @@ public struct TaxProductRegistrationsResourceCountryOptionsThailandType: RawRepr
 }
 
 /// Type of registration in the US.
-public struct TaxProductRegistrationsResourceCountryOptionsUnitedStatesType: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct TaxProductRegistrationsResourceCountryOptionsUnitedStatesType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let localAmusementTax =
-        TaxProductRegistrationsResourceCountryOptionsUnitedStatesType(rawValue: "local_amusement_tax")
-    public static let localLeaseTax =
-        TaxProductRegistrationsResourceCountryOptionsUnitedStatesType(rawValue: "local_lease_tax")
-    public static let massTransitParkingTax =
-        TaxProductRegistrationsResourceCountryOptionsUnitedStatesType(rawValue: "mass_transit_parking_tax")
-    public static let parkingTax =
-        TaxProductRegistrationsResourceCountryOptionsUnitedStatesType(rawValue: "parking_tax")
-    public static let stateCommunicationsTax =
-        TaxProductRegistrationsResourceCountryOptionsUnitedStatesType(rawValue: "state_communications_tax")
-    public static let stateRetailDeliveryFee =
-        TaxProductRegistrationsResourceCountryOptionsUnitedStatesType(rawValue: "state_retail_delivery_fee")
-    public static let stateSalesTax =
-        TaxProductRegistrationsResourceCountryOptionsUnitedStatesType(rawValue: "state_sales_tax")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let localAmusementTax = TaxProductRegistrationsResourceCountryOptionsUnitedStatesType(rawValue: "local_amusement_tax")
+    public static let localLeaseTax = TaxProductRegistrationsResourceCountryOptionsUnitedStatesType(rawValue: "local_lease_tax")
+    public static let massTransitParkingTax = TaxProductRegistrationsResourceCountryOptionsUnitedStatesType(rawValue: "mass_transit_parking_tax")
+    public static let parkingTax = TaxProductRegistrationsResourceCountryOptionsUnitedStatesType(rawValue: "parking_tax")
+    public static let stateCommunicationsTax = TaxProductRegistrationsResourceCountryOptionsUnitedStatesType(rawValue: "state_communications_tax")
+    public static let stateRetailDeliveryFee = TaxProductRegistrationsResourceCountryOptionsUnitedStatesType(rawValue: "state_retail_delivery_fee")
+    public static let stateSalesTax = TaxProductRegistrationsResourceCountryOptionsUnitedStatesType(rawValue: "state_sales_tax")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -245,20 +196,16 @@ public struct TaxProductRegistrationsResourceCountryOptionsUnitedStatesType: Raw
 
 /// Indicates whether the jurisdiction was determined by the origin (merchant's address) or destination
 /// (customer's address).
-public struct TaxProductResourceLineItemTaxBreakdownSourcing: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct TaxProductResourceLineItemTaxBreakdownSourcing: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let destination = TaxProductResourceLineItemTaxBreakdownSourcing(rawValue: "destination")
     public static let origin = TaxProductResourceLineItemTaxBreakdownSourcing(rawValue: "origin")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -268,14 +215,10 @@ public struct TaxProductResourceLineItemTaxBreakdownSourcing: RawRepresentable, 
 }
 
 /// The tax type, such as `vat` or `sales_tax`.
-public struct TaxProductResourceTaxRateDetailsTaxType: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct TaxProductResourceTaxRateDetailsTaxType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let amusementTax = TaxProductResourceTaxRateDetailsTaxType(rawValue: "amusement_tax")
     public static let communicationsTax = TaxProductResourceTaxRateDetailsTaxType(rawValue: "communications_tax")
     public static let gst = TaxProductResourceTaxRateDetailsTaxType(rawValue: "gst")
@@ -283,8 +226,7 @@ public struct TaxProductResourceTaxRateDetailsTaxType: RawRepresentable, Hashabl
     public static let igst = TaxProductResourceTaxRateDetailsTaxType(rawValue: "igst")
     public static let jct = TaxProductResourceTaxRateDetailsTaxType(rawValue: "jct")
     public static let leaseTax = TaxProductResourceTaxRateDetailsTaxType(rawValue: "lease_tax")
-    public static let massTransitParkingTax =
-        TaxProductResourceTaxRateDetailsTaxType(rawValue: "mass_transit_parking_tax")
+    public static let massTransitParkingTax = TaxProductResourceTaxRateDetailsTaxType(rawValue: "mass_transit_parking_tax")
     public static let parkingTax = TaxProductResourceTaxRateDetailsTaxType(rawValue: "parking_tax")
     public static let pst = TaxProductResourceTaxRateDetailsTaxType(rawValue: "pst")
     public static let qst = TaxProductResourceTaxRateDetailsTaxType(rawValue: "qst")
@@ -296,7 +238,7 @@ public struct TaxProductResourceTaxRateDetailsTaxType: RawRepresentable, Hashabl
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -306,20 +248,15 @@ public struct TaxProductResourceTaxRateDetailsTaxType: RawRepresentable, Hashabl
 }
 
 /// Type of registration in `country`.
-public struct TaxProductRegistrationsResourceCountryOptionsDefaultInboundGoodsType: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct TaxProductRegistrationsResourceCountryOptionsDefaultInboundGoodsType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let standard =
-        TaxProductRegistrationsResourceCountryOptionsDefaultInboundGoodsType(rawValue: "standard")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let standard = TaxProductRegistrationsResourceCountryOptionsDefaultInboundGoodsType(rawValue: "standard")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -330,22 +267,17 @@ public struct TaxProductRegistrationsResourceCountryOptionsDefaultInboundGoodsTy
 
 /// Default tax behavior used to specify whether the price is considered inclusive of taxes or exclusive of
 /// taxes. If the item's price has a tax behavior set, it will take precedence over the default tax behavior.
-public struct TaxProductResourceTaxSettingsDefaultsTaxBehavior: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct TaxProductResourceTaxSettingsDefaultsTaxBehavior: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let exclusive = TaxProductResourceTaxSettingsDefaultsTaxBehavior(rawValue: "exclusive")
     public static let inclusive = TaxProductResourceTaxSettingsDefaultsTaxBehavior(rawValue: "inclusive")
-    public static let inferredByCurrency =
-        TaxProductResourceTaxSettingsDefaultsTaxBehavior(rawValue: "inferred_by_currency")
+    public static let inferredByCurrency = TaxProductResourceTaxSettingsDefaultsTaxBehavior(rawValue: "inferred_by_currency")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -355,20 +287,16 @@ public struct TaxProductResourceTaxSettingsDefaultsTaxBehavior: RawRepresentable
 }
 
 /// Specifies whether the `amount` includes taxes. If `tax_behavior=inclusive`, then the amount includes taxes.
-public struct TaxProductResourceTaxTransactionShippingCostTaxBehavior: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct TaxProductResourceTaxTransactionShippingCostTaxBehavior: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let exclusive = TaxProductResourceTaxTransactionShippingCostTaxBehavior(rawValue: "exclusive")
     public static let inclusive = TaxProductResourceTaxTransactionShippingCostTaxBehavior(rawValue: "inclusive")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -382,14 +310,10 @@ public struct TaxProductResourceTaxTransactionShippingCostTaxBehavior: RawRepres
 /// `uy_ruc`, `ve_rif`, `vn_tin`, `gb_vat`, `nz_gst`, `au_abn`, `au_arn`, `in_gst`, `no_vat`, `no_voec`,
 /// `za_vat`, `ch_vat`, `mx_rfc`, `sg_uen`, `ru_inn`, `ru_kpp`, `ca_bn`, `hk_br`, `es_cif`, `pl_nip`, `it_cf`,
 /// `fo_vat`, `gi_tin`, `py_ruc`, `tw_vat`, `th_vat`, `jp_cn`,…
-public struct TaxProductResourceCustomerDetailsResourceTaxIdType: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct TaxProductResourceCustomerDetailsResourceTaxIdType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let adNrt = TaxProductResourceCustomerDetailsResourceTaxIdType(rawValue: "ad_nrt")
     public static let aeTrn = TaxProductResourceCustomerDetailsResourceTaxIdType(rawValue: "ae_trn")
     public static let alTin = TaxProductResourceCustomerDetailsResourceTaxIdType(rawValue: "al_tin")
@@ -511,7 +435,7 @@ public struct TaxProductResourceCustomerDetailsResourceTaxIdType: RawRepresentab
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -521,22 +445,16 @@ public struct TaxProductResourceCustomerDetailsResourceTaxIdType: RawRepresentab
 }
 
 /// Place of supply scheme used in an Default standard registration.
-public struct TaxProductRegistrationsResourceCountryOptionsDefaultStandardPX1b508ee313: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct TaxProductRegistrationsResourceCountryOptionsDefaultStandardPX1b508ee313: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let inboundGoods =
-        TaxProductRegistrationsResourceCountryOptionsDefaultStandardPX1b508ee313(rawValue: "inbound_goods")
-    public static let standard =
-        TaxProductRegistrationsResourceCountryOptionsDefaultStandardPX1b508ee313(rawValue: "standard")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let inboundGoods = TaxProductRegistrationsResourceCountryOptionsDefaultStandardPX1b508ee313(rawValue: "inbound_goods")
+    public static let standard = TaxProductRegistrationsResourceCountryOptionsDefaultStandardPX1b508ee313(rawValue: "standard")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

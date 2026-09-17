@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1Klarna domain models
+// V1Klarna domain models
 /// Typed representation of the `KlarnaAddress` API schema.
 public struct KlarnaAddress: Codable {
     /// The payer address country
@@ -14,22 +14,22 @@ public struct KlarnaAddress: Codable {
     }
 
     init() {
-        country = nil
+        self.country = nil
     }
 }
 
-public extension KlarnaAddress {
-    init(from decoder: Decoder) throws {
+extension KlarnaAddress {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        country = try container.sdkDecodeIfPresent(.country)
-        if let value = country {
+        self.country = try container.sdkDecodeIfPresent(.country)
+        if let value = self.country {
             try validateLength("country", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension KlarnaAddress {
-    init(country: String? = nil) throws {
+extension KlarnaAddress {
+    public init(country: String? = nil) throws {
         self.init()
         self.country = country
         if let value = self.country {
@@ -48,19 +48,19 @@ public struct KlarnaPayerDetails: Codable {
     }
 
     init() {
-        address = nil
+        self.address = nil
     }
 }
 
-public extension KlarnaPayerDetails {
-    init(from decoder: Decoder) throws {
+extension KlarnaPayerDetails {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        address = try container.sdkDecodeIfPresent(.address)
+        self.address = try container.sdkDecodeIfPresent(.address)
     }
 }
 
-public extension KlarnaPayerDetails {
-    init(address: KlarnaPayerDetailsAddress? = nil) {
+extension KlarnaPayerDetails {
+    public init(address: KlarnaPayerDetailsAddress? = nil) {
         self.init()
         self.address = address
     }
@@ -71,28 +71,20 @@ public enum KlarnaPayerDetailsAddress {
 }
 
 extension KlarnaPayerDetailsAddress: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for KlarnaPayerDetailsAddress"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for KlarnaPayerDetailsAddress")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(KlarnaAddress.self) {
-            return .klarnaAddress(value)
-        }
+        if let value = try? container.decode(KlarnaAddress.self) { return .klarnaAddress(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -101,4 +93,5 @@ extension KlarnaPayerDetailsAddress: Codable {
         case let .klarnaAddress(value): try container.encode(value); return true
         }
     }
+
 }

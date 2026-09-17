@@ -7,33 +7,23 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1InvoicesCreatePreview operation model declarations
+// Canonical v1InvoicesCreatePreview operation model declarations
 extension PostInvoicesCreatePreviewRequestBodySubscriptionDetailsMetadata: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostInvoicesCreatePreviewRequestBodySubscriptionDetailsMetadata"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostInvoicesCreatePreviewRequestBodySubscriptionDetailsMetadata")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode([String: String].self) {
-            return .dictionary(value)
-        }
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
+        if let value = try? container.decode([String: String].self) { return .dictionary(value) }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -43,6 +33,7 @@ extension PostInvoicesCreatePreviewRequestBodySubscriptionDetailsMetadata: Codab
         case let .stringValue(value): try container.encode(value); return true
         }
     }
+
 }
 
 public struct PostInvoicesCreatePreviewRequestBodyInvoiceItemsItemPeriod: Codable {
@@ -54,35 +45,25 @@ public struct PostInvoicesCreatePreviewRequestBodyInvoiceItemsItemPeriod: Codabl
         case start
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostInvoicesCreatePreviewRequestBodyInvoiceItemsItemPeriod {
-    init(from decoder: Decoder) throws {
+extension PostInvoicesCreatePreviewRequestBodyInvoiceItemsItemPeriod {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.end) else {
-            throw SdkValidationError(
-                field: "end",
-                code: "required",
-                message: "Validation failed for 'end': value is required"
-            )
+            throw SdkValidationError(field: "end", code: "required", message: "Validation failed for 'end': value is required")
         }
         guard container.contains(.start) else {
-            throw SdkValidationError(
-                field: "start",
-                code: "required",
-                message: "Validation failed for 'start': value is required"
-            )
+            throw SdkValidationError(field: "start", code: "required", message: "Validation failed for 'start': value is required")
         }
-        end = try container.sdkDecodeRequired(.end)
-        start = try container.sdkDecodeRequired(.start)
+        self.end = try container.sdkDecodeRequired(.end)
+        self.start = try container.sdkDecodeRequired(.start)
     }
 }
 
-public extension PostInvoicesCreatePreviewRequestBodyInvoiceItemsItemPeriod {
-    init(end: Int, start: Int) {
+extension PostInvoicesCreatePreviewRequestBodyInvoiceItemsItemPeriod {
+    public init(end: Int, start: Int) {
         (self.end, self.start) = (end, start)
     }
 }
@@ -96,28 +77,22 @@ public struct PostInvoicesCreatePreviewRequestBodyScheduleDetailsPhasesItemXae47
         case timestamp
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostInvoicesCreatePreviewRequestBodyScheduleDetailsPhasesItemXae4799fb90 {
-    init(from decoder: Decoder) throws {
+extension PostInvoicesCreatePreviewRequestBodyScheduleDetailsPhasesItemXae4799fb90 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.type) else {
-            throw SdkValidationError(
-                field: "type",
-                code: "required",
-                message: "Validation failed for 'type': value is required"
-            )
+            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
         }
-        type = try container.sdkDecodeRequired(.type)
-        timestamp = try container.sdkDecodeIfPresent(.timestamp)
+        self.type = try container.sdkDecodeRequired(.type)
+        self.timestamp = try container.sdkDecodeIfPresent(.timestamp)
     }
 }
 
-public extension PostInvoicesCreatePreviewRequestBodyScheduleDetailsPhasesItemXae4799fb90 {
-    init(type: PostInvoicesCreatePreviewRequestBodyScheduleDetailsPhasesItemX11504465f7, timestamp: Int? = nil) {
+extension PostInvoicesCreatePreviewRequestBodyScheduleDetailsPhasesItemXae4799fb90 {
+    public init(type: PostInvoicesCreatePreviewRequestBodyScheduleDetailsPhasesItemX11504465f7, timestamp: Int? = nil) {
         (self.type, self.timestamp) = (type, timestamp)
     }
 }
@@ -149,46 +124,35 @@ public struct PostInvoicesCreatePreviewRequestBodySubscriptionDetailsItemsItem: 
     }
 
     init() {
-        (billingThresholds, clearUsage, deleted, discounts, id) = (nil, nil, nil, nil, nil)
-        (metadata, price, priceData, quantity, taxRates) = (nil, nil, nil, nil, nil)
+        (self.billingThresholds, self.clearUsage, self.deleted, self.discounts, self.id) = (nil, nil, nil, nil, nil)
+        (self.metadata, self.price, self.priceData, self.quantity, self.taxRates) = (nil, nil, nil, nil, nil)
     }
 }
 
-public extension PostInvoicesCreatePreviewRequestBodySubscriptionDetailsItemsItem {
-    init(from decoder: Decoder) throws {
+extension PostInvoicesCreatePreviewRequestBodySubscriptionDetailsItemsItem {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        billingThresholds = try container.sdkDecodeIfPresent(.billingThresholds)
-        clearUsage = try container.sdkDecodeIfPresent(.clearUsage)
-        deleted = try container.sdkDecodeIfPresent(.deleted)
-        discounts = try container.sdkDecodeIfPresent(.discounts)
-        id = try container.sdkDecodeIfPresent(.id)
-        metadata = try container.sdkDecodeIfPresent(.metadata)
-        price = try container.sdkDecodeIfPresent(.price)
-        priceData = try container.sdkDecodeIfPresent(.priceData)
-        quantity = try container.sdkDecodeIfPresent(.quantity)
-        taxRates = try container.sdkDecodeIfPresent(.taxRates)
-        if let value = id {
+        self.billingThresholds = try container.sdkDecodeIfPresent(.billingThresholds)
+        self.clearUsage = try container.sdkDecodeIfPresent(.clearUsage)
+        self.deleted = try container.sdkDecodeIfPresent(.deleted)
+        self.discounts = try container.sdkDecodeIfPresent(.discounts)
+        self.id = try container.sdkDecodeIfPresent(.id)
+        self.metadata = try container.sdkDecodeIfPresent(.metadata)
+        self.price = try container.sdkDecodeIfPresent(.price)
+        self.priceData = try container.sdkDecodeIfPresent(.priceData)
+        self.quantity = try container.sdkDecodeIfPresent(.quantity)
+        self.taxRates = try container.sdkDecodeIfPresent(.taxRates)
+        if let value = self.id {
             try validateLength("id", value, min: nil, max: 5000)
         }
-        if let value = price {
+        if let value = self.price {
             try validateLength("price", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PostInvoicesCreatePreviewRequestBodySubscriptionDetailsItemsItem {
-    init(
-        billingThresholds: PostInvoicesCreatePreviewRequestBodySubscriptionDetailsItemsIXb9c3397702? = nil,
-        clearUsage: Bool? = nil,
-        deleted: Bool? = nil,
-        discounts: PostInvoicesCreatePreviewRequestBodySubscriptionDetailsItemsIXa2105bb910? = nil,
-        id: String? = nil,
-        metadata: PostInvoicesCreatePreviewRequestBodySubscriptionDetailsItemsItemMetadata? = nil,
-        price: String? = nil,
-        priceData: PostInvoicesCreatePreviewRequestBodySubscriptionDetailsItemsIX2c63af415d? = nil,
-        quantity: Int? = nil,
-        taxRates: PostInvoicesCreatePreviewRequestBodySubscriptionDetailsItemsItemTaxRates? = nil
-    ) throws {
+extension PostInvoicesCreatePreviewRequestBodySubscriptionDetailsItemsItem {
+    public init(billingThresholds: PostInvoicesCreatePreviewRequestBodySubscriptionDetailsItemsIXb9c3397702? = nil, clearUsage: Bool? = nil, deleted: Bool? = nil, discounts: PostInvoicesCreatePreviewRequestBodySubscriptionDetailsItemsIXa2105bb910? = nil, id: String? = nil, metadata: PostInvoicesCreatePreviewRequestBodySubscriptionDetailsItemsItemMetadata? = nil, price: String? = nil, priceData: PostInvoicesCreatePreviewRequestBodySubscriptionDetailsItemsIX2c63af415d? = nil, quantity: Int? = nil, taxRates: PostInvoicesCreatePreviewRequestBodySubscriptionDetailsItemsItemTaxRates? = nil) throws {
         self.init()
         (self.billingThresholds, self.clearUsage) = (billingThresholds, clearUsage)
         (self.deleted, self.discounts) = (deleted, discounts)
@@ -205,50 +169,40 @@ public extension PostInvoicesCreatePreviewRequestBodySubscriptionDetailsItemsIte
 }
 
 public enum PostInvoicesCreatePreviewRequestBodyDiscounts {
-    case postInvoicesCreatePreviewRequestBodyDiscountsVariant0ItemList(
-        [PostInvoicesCreatePreviewRequestBodyDiscountsVariant0Item]
-    )
+    case postInvoicesCreatePreviewRequestBodyDiscountsVariant0ItemList([PostInvoicesCreatePreviewRequestBodyDiscountsVariant0Item])
     case stringValue(String)
 }
 
 extension PostInvoicesCreatePreviewRequestBodyDiscounts: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostInvoicesCreatePreviewRequestBodyDiscounts"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostInvoicesCreatePreviewRequestBodyDiscounts")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             [PostInvoicesCreatePreviewRequestBodyDiscountsVariant0Item].self
         ) {
-            return .postInvoicesCreatePreviewRequestBodyDiscountsVariant0ItemList(value)
+            return             .postInvoicesCreatePreviewRequestBodyDiscountsVariant0ItemList(value)
         }
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .postInvoicesCreatePreviewRequestBodyDiscountsVariant0ItemList(value): try container
-            .encode(value); return true
+        case let .postInvoicesCreatePreviewRequestBodyDiscountsVariant0ItemList(value): try container.encode(value); return true
         case let .stringValue(value): try container.encode(value); return true
         }
     }
+
 }
 
 public struct PostInvoicesCreatePreviewRequestBodyScheduleDetailsPhasesItemXf445da0790: Codable {
@@ -262,38 +216,25 @@ public struct PostInvoicesCreatePreviewRequestBodyScheduleDetailsPhasesItemXf445
         case start
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostInvoicesCreatePreviewRequestBodyScheduleDetailsPhasesItemXf445da0790 {
-    init(from decoder: Decoder) throws {
+extension PostInvoicesCreatePreviewRequestBodyScheduleDetailsPhasesItemXf445da0790 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.end) else {
-            throw SdkValidationError(
-                field: "end",
-                code: "required",
-                message: "Validation failed for 'end': value is required"
-            )
+            throw SdkValidationError(field: "end", code: "required", message: "Validation failed for 'end': value is required")
         }
         guard container.contains(.start) else {
-            throw SdkValidationError(
-                field: "start",
-                code: "required",
-                message: "Validation failed for 'start': value is required"
-            )
+            throw SdkValidationError(field: "start", code: "required", message: "Validation failed for 'start': value is required")
         }
-        end = try container.sdkDecodeRequired(.end)
-        start = try container.sdkDecodeRequired(.start)
+        self.end = try container.sdkDecodeRequired(.end)
+        self.start = try container.sdkDecodeRequired(.start)
     }
 }
 
-public extension PostInvoicesCreatePreviewRequestBodyScheduleDetailsPhasesItemXf445da0790 {
-    init(
-        end: PostInvoicesCreatePreviewRequestBodyScheduleDetailsPhasesItemXae4799fb90,
-        start: PostInvoicesCreatePreviewRequestBodyScheduleDetailsPhasesItemXcdc059bc9a
-    ) {
+extension PostInvoicesCreatePreviewRequestBodyScheduleDetailsPhasesItemXf445da0790 {
+    public init(end: PostInvoicesCreatePreviewRequestBodyScheduleDetailsPhasesItemXae4799fb90, start: PostInvoicesCreatePreviewRequestBodyScheduleDetailsPhasesItemXcdc059bc9a) {
         (self.end, self.start) = (end, start)
     }
 }
@@ -306,43 +247,35 @@ public enum PostInvoicesCreatePreviewRequestBodyScheduleDetailsPhasesItemX8b094e
 }
 
 extension PostInvoicesCreatePreviewRequestBodyScheduleDetailsPhasesItemX8b094e4f6a: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostInvoicesCreatePreviewRequestBodyScheduleDetailsPhasesItemX8b094e4f6a"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostInvoicesCreatePreviewRequestBodyScheduleDetailsPhasesItemX8b094e4f6a")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PostInvoicesCreatePreviewRequestBodyScheduleDetailsPhasesItemX6adce3c4f6.self
         ) {
-            return .postInvoicesCreatePreviewRequestBodyScheduleDetailsPhasesItemX6adce3c4f6(value)
+            return             .postInvoicesCreatePreviewRequestBodyScheduleDetailsPhasesItemX6adce3c4f6(value)
         }
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .postInvoicesCreatePreviewRequestBodyScheduleDetailsPhasesItemX6adce3c4f6(value): try container
-            .encode(value); return true
+        case let .postInvoicesCreatePreviewRequestBodyScheduleDetailsPhasesItemX6adce3c4f6(value): try container.encode(value); return true
         case let .stringValue(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum PostInvoicesCreatePreviewRequestBodySubscriptionDetailsItemsItemTaxRates {
@@ -351,31 +284,21 @@ public enum PostInvoicesCreatePreviewRequestBodySubscriptionDetailsItemsItemTaxR
 }
 
 extension PostInvoicesCreatePreviewRequestBodySubscriptionDetailsItemsItemTaxRates: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostInvoicesCreatePreviewRequestBodySubscriptionDetailsItemsItemTaxRates"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostInvoicesCreatePreviewRequestBodySubscriptionDetailsItemsItemTaxRates")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode([String].self) {
-            return .stringList(value)
-        }
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
+        if let value = try? container.decode([String].self) { return .stringList(value) }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -385,6 +308,7 @@ extension PostInvoicesCreatePreviewRequestBodySubscriptionDetailsItemsItemTaxRat
         case let .stringValue(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum PostInvoicesCreatePreviewRequestBodySubscriptionDetailsDefaultTaxRates {
@@ -393,31 +317,21 @@ public enum PostInvoicesCreatePreviewRequestBodySubscriptionDetailsDefaultTaxRat
 }
 
 extension PostInvoicesCreatePreviewRequestBodySubscriptionDetailsDefaultTaxRates: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostInvoicesCreatePreviewRequestBodySubscriptionDetailsDefaultTaxRates"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostInvoicesCreatePreviewRequestBodySubscriptionDetailsDefaultTaxRates")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode([String].self) {
-            return .stringList(value)
-        }
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
+        if let value = try? container.decode([String].self) { return .stringList(value) }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -427,6 +341,7 @@ extension PostInvoicesCreatePreviewRequestBodySubscriptionDetailsDefaultTaxRates
         case let .stringValue(value): try container.encode(value); return true
         }
     }
+
 }
 
 public struct PostInvoicesCreatePreviewRequestBodyCustomerDetailsShippingVariant0: Codable {
@@ -441,47 +356,33 @@ public struct PostInvoicesCreatePreviewRequestBodyCustomerDetailsShippingVariant
         case phone
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostInvoicesCreatePreviewRequestBodyCustomerDetailsShippingVariant0 {
-    init(from decoder: Decoder) throws {
+extension PostInvoicesCreatePreviewRequestBodyCustomerDetailsShippingVariant0 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.address) else {
-            throw SdkValidationError(
-                field: "address",
-                code: "required",
-                message: "Validation failed for 'address': value is required"
-            )
+            throw SdkValidationError(field: "address", code: "required", message: "Validation failed for 'address': value is required")
         }
         guard container.contains(.name) else {
-            throw SdkValidationError(
-                field: "name",
-                code: "required",
-                message: "Validation failed for 'name': value is required"
-            )
+            throw SdkValidationError(field: "name", code: "required", message: "Validation failed for 'name': value is required")
         }
-        address = try container.sdkDecodeRequired(.address)
-        name = try container.sdkDecodeRequired(.name)
-        phone = try container.sdkDecodeIfPresent(.phone)
-        try validateLength("name", name, min: nil, max: 5000)
-        if let value = phone {
+        self.address = try container.sdkDecodeRequired(.address)
+        self.name = try container.sdkDecodeRequired(.name)
+        self.phone = try container.sdkDecodeIfPresent(.phone)
+            try validateLength("name", self.name, min: nil, max: 5000)
+        if let value = self.phone {
             try validateLength("phone", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PostInvoicesCreatePreviewRequestBodyCustomerDetailsShippingVariant0 {
-    init(
-        address: PostInvoicesCreatePreviewRequestBodyCustomerDetailsShippingVaXbfa1d352c7,
-        name: String,
-        phone: String? = nil
-    ) throws {
+extension PostInvoicesCreatePreviewRequestBodyCustomerDetailsShippingVariant0 {
+    public init(address: PostInvoicesCreatePreviewRequestBodyCustomerDetailsShippingVaXbfa1d352c7, name: String, phone: String? = nil) throws {
         (self.address, self.name) = (address, name)
         self.phone = phone
-        try validateLength("name", self.name, min: nil, max: 5000)
+            try validateLength("name", self.name, min: nil, max: 5000)
         if let value = self.phone {
             try validateLength("phone", value, min: nil, max: 5000)
         }
@@ -496,43 +397,35 @@ public enum PostInvoicesCreatePreviewRequestBodyInvoiceItemsItemDiscounts {
 }
 
 extension PostInvoicesCreatePreviewRequestBodyInvoiceItemsItemDiscounts: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostInvoicesCreatePreviewRequestBodyInvoiceItemsItemDiscounts"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostInvoicesCreatePreviewRequestBodyInvoiceItemsItemDiscounts")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             [PostInvoicesCreatePreviewRequestBodyInvoiceItemsItemDiscountsXce959bb394].self
         ) {
-            return .postInvoicesCreatePreviewRequestBodyInvoiceItemsItemDiscountsX640706162d(value)
+            return             .postInvoicesCreatePreviewRequestBodyInvoiceItemsItemDiscountsX640706162d(value)
         }
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .postInvoicesCreatePreviewRequestBodyInvoiceItemsItemDiscountsX640706162d(value): try container
-            .encode(value); return true
+        case let .postInvoicesCreatePreviewRequestBodyInvoiceItemsItemDiscountsX640706162d(value): try container.encode(value); return true
         case let .stringValue(value): try container.encode(value); return true
         }
     }
+
 }
 
 public struct PostInvoicesCreatePreviewRequestBodySubscriptionDetailsBillinXba7ca9d78b: Codable {
@@ -543,26 +436,25 @@ public struct PostInvoicesCreatePreviewRequestBodySubscriptionDetailsBillinXba7c
     }
 
     init() {
-        prorationDiscounts = nil
+        self.prorationDiscounts = nil
     }
 }
 
-public extension PostInvoicesCreatePreviewRequestBodySubscriptionDetailsBillinXba7ca9d78b {
-    init(from decoder: Decoder) throws {
+extension PostInvoicesCreatePreviewRequestBodySubscriptionDetailsBillinXba7ca9d78b {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        prorationDiscounts = try container.sdkDecodeIfPresent(.prorationDiscounts)
+        self.prorationDiscounts = try container.sdkDecodeIfPresent(.prorationDiscounts)
     }
 }
 
-public extension PostInvoicesCreatePreviewRequestBodySubscriptionDetailsBillinXba7ca9d78b {
-    init(prorationDiscounts: PostInvoicesCreatePreviewRequestBodySubscriptionDetailsBillinX2d93ebd4d7? = nil) {
+extension PostInvoicesCreatePreviewRequestBodySubscriptionDetailsBillinXba7ca9d78b {
+    public init(prorationDiscounts: PostInvoicesCreatePreviewRequestBodySubscriptionDetailsBillinX2d93ebd4d7? = nil) {
         self.init()
         self.prorationDiscounts = prorationDiscounts
     }
 }
 
-public typealias PostInvoicesCreatePreviewRequestBodyCustomerDetailsTaxIdsList =
-    [PostInvoicesCreatePreviewRequestBodyCustomerDetailsTaxIdsItem]
+public typealias PostInvoicesCreatePreviewRequestBodyCustomerDetailsTaxIdsList = [PostInvoicesCreatePreviewRequestBodyCustomerDetailsTaxIdsItem]
 
 /// Details about the customer you want to invoice or overrides for an existing customer. If `automatic_tax` is
 /// enabled then one of `customer`, `customer_details`, `subscription`, or `schedule` must be set.
@@ -583,29 +475,23 @@ public struct PostInvoicesCreatePreviewRequestBodyCustomerDetails: Codable {
     }
 
     init() {
-        (address, shipping, tax, taxExempt, taxIds) = (nil, nil, nil, nil, nil)
+        (self.address, self.shipping, self.tax, self.taxExempt, self.taxIds) = (nil, nil, nil, nil, nil)
     }
 }
 
-public extension PostInvoicesCreatePreviewRequestBodyCustomerDetails {
-    init(from decoder: Decoder) throws {
+extension PostInvoicesCreatePreviewRequestBodyCustomerDetails {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        address = try container.sdkDecodeIfPresent(.address)
-        shipping = try container.sdkDecodeIfPresent(.shipping)
-        tax = try container.sdkDecodeIfPresent(.tax)
-        taxExempt = try container.sdkDecodeIfPresent(.taxExempt)
-        taxIds = try container.sdkDecodeIfPresent(.taxIds)
+        self.address = try container.sdkDecodeIfPresent(.address)
+        self.shipping = try container.sdkDecodeIfPresent(.shipping)
+        self.tax = try container.sdkDecodeIfPresent(.tax)
+        self.taxExempt = try container.sdkDecodeIfPresent(.taxExempt)
+        self.taxIds = try container.sdkDecodeIfPresent(.taxIds)
     }
 }
 
-public extension PostInvoicesCreatePreviewRequestBodyCustomerDetails {
-    init(
-        address: PostInvoicesCreatePreviewRequestBodyCustomerDetailsAddress? = nil,
-        shipping: PostInvoicesCreatePreviewRequestBodyCustomerDetailsShipping? = nil,
-        tax: PostInvoicesCreatePreviewRequestBodyCustomerDetailsTax? = nil,
-        taxExempt: PostInvoicesCreatePreviewRequestBodyCustomerDetailsTaxExempt? = nil,
-        taxIds: PostInvoicesCreatePreviewRequestBodyCustomerDetailsTaxIdsList? = nil
-    ) {
+extension PostInvoicesCreatePreviewRequestBodyCustomerDetails {
+    public init(address: PostInvoicesCreatePreviewRequestBodyCustomerDetailsAddress? = nil, shipping: PostInvoicesCreatePreviewRequestBodyCustomerDetailsShipping? = nil, tax: PostInvoicesCreatePreviewRequestBodyCustomerDetailsTax? = nil, taxExempt: PostInvoicesCreatePreviewRequestBodyCustomerDetailsTaxExempt? = nil, taxIds: PostInvoicesCreatePreviewRequestBodyCustomerDetailsTaxIdsList? = nil) {
         self.init()
         (self.address, self.shipping) = (address, shipping)
         (self.tax, self.taxExempt) = (tax, taxExempt)
@@ -625,23 +511,23 @@ public struct PostInvoicesCreatePreviewRequestBodyScheduleDetailsPhasesItemX0a6c
     }
 
     init() {
-        (coupon, discount, promotionCode) = (nil, nil, nil)
+        (self.coupon, self.discount, self.promotionCode) = (nil, nil, nil)
     }
 }
 
-public extension PostInvoicesCreatePreviewRequestBodyScheduleDetailsPhasesItemX0a6c5bf7a1 {
-    init(from decoder: Decoder) throws {
+extension PostInvoicesCreatePreviewRequestBodyScheduleDetailsPhasesItemX0a6c5bf7a1 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        coupon = try container.sdkDecodeIfPresent(.coupon)
-        discount = try container.sdkDecodeIfPresent(.discount)
-        promotionCode = try container.sdkDecodeIfPresent(.promotionCode)
-        if let value = coupon {
+        self.coupon = try container.sdkDecodeIfPresent(.coupon)
+        self.discount = try container.sdkDecodeIfPresent(.discount)
+        self.promotionCode = try container.sdkDecodeIfPresent(.promotionCode)
+        if let value = self.coupon {
             try validateLength("coupon", value, min: nil, max: 5000)
         }
-        if let value = discount {
+        if let value = self.discount {
             try validateLength("discount", value, min: nil, max: 5000)
         }
-        if let value = promotionCode {
+        if let value = self.promotionCode {
             try validateLength("promotion_code", value, min: nil, max: 5000)
         }
     }

@@ -9,16 +9,11 @@ public class V1TreasuryOutboundPaymentsCancelNamespace {
         self.config = config
     }
 
-    /// Cancels an existing OutboundPayment when it is still cancelable. Supply `id` to identify the payment and
-    /// optionally use `expand` to include additional response fields.
+/// Cancels an existing OutboundPayment when it is still cancelable. Supply `id` to identify the payment and optionally use `expand` to include additional response fields.
     ///
     /// Cancel an OutboundPayment.
     public func postTreasuryOutboundPaymentsId(id: String, expand: [String]?) async throws -> TreasuryOutboundPayment {
-        try await V1TreasuryOutboundPaymentsCancelMethods.postTreasuryOutboundPaymentsIdCancel(
-            config: config,
-            id: id,
-            expand: expand
-        )
+        return try await V1TreasuryOutboundPaymentsCancelMethods.postTreasuryOutboundPaymentsIdCancel(config: config, id: id, expand: expand)
     }
 }
 
@@ -30,36 +25,25 @@ public class V1TreasuryOutboundPaymentsNamespace {
         cancel = V1TreasuryOutboundPaymentsCancelNamespace(config: config)
     }
 
-    /// Lists OutboundPayments sent from a specified FinancialAccount. Use `financial_account` to scope the results,
-    /// apply filters such as `status` or `created`, and use cursor parameters to paginate the list.
+/// Lists OutboundPayments sent from a specified FinancialAccount. Use `financial_account` to scope the results, apply filters such as `status` or `created`, and use cursor parameters to paginate the list.
     ///
     /// Returns a list of OutboundPayments sent from the specified FinancialAccount.
-    public func getTreasury(options: V1TreasuryOutboundPaymentsMethods
-        .GetTreasuryOutboundPaymentsOptions) async throws -> GetTreasuryOutboundPaymentsResponse {
-        try await V1TreasuryOutboundPaymentsMethods.getTreasuryOutboundPayments(config: config, options: options)
+    public func getTreasury(options: V1TreasuryOutboundPaymentsMethods.GetTreasuryOutboundPaymentsOptions) async throws -> GetTreasuryOutboundPaymentsResponse {
+        return try await V1TreasuryOutboundPaymentsMethods.getTreasuryOutboundPayments(config: config, options: options)
     }
 
-    /// Creates a new OutboundPayment from a FinancialAccount to another party's external bank account or
-    /// FinancialAccount. Supply `amount`, `currency`, and `financial_account`, then provide either an existing
-    /// `destination_payment_method` or `destination_payment_method_data` to specify the payment instrument.
+/// Creates a new OutboundPayment from a FinancialAccount to another party's external bank account or FinancialAccount. Supply `amount`, `currency`, and `financial_account`, then provide either an existing `destination_payment_method` or `destination_payment_method_data` to specify the payment instrument.
     ///
     /// Creates an OutboundPayment.
-    public func postTreasury(options: V1TreasuryOutboundPaymentsMethods
-        .PostTreasuryOutboundPaymentsOptions) async throws -> TreasuryOutboundPayment {
-        try await V1TreasuryOutboundPaymentsMethods.postTreasuryOutboundPayments(config: config, options: options)
+    public func postTreasury(options: V1TreasuryOutboundPaymentsMethods.PostTreasuryOutboundPaymentsOptions) async throws -> TreasuryOutboundPayment {
+        return try await V1TreasuryOutboundPaymentsMethods.postTreasuryOutboundPayments(config: config, options: options)
     }
 
-    /// Retrieves the details of an existing OutboundPayment by its unique identifier. Pass `id` from an OutboundPayment
-    /// creation response or list, and use `expand` to request additional response fields inline.
+/// Retrieves the details of an existing OutboundPayment by its unique identifier. Pass `id` from an OutboundPayment creation response or list, and use `expand` to request additional response fields inline.
     ///
-    /// Retrieves the details of an existing OutboundPayment by passing the unique OutboundPayment ID from either the
-    /// OutboundPayment creation request or OutboundPayment list.
+    /// Retrieves the details of an existing OutboundPayment by passing the unique OutboundPayment ID from either the OutboundPayment creation request or OutboundPayment list.
     public func getTreasuryId(id: String, expand: [String]?) async throws -> TreasuryOutboundPayment {
-        try await V1TreasuryOutboundPaymentsMethods.getTreasuryOutboundPaymentsId(
-            config: config,
-            id: id,
-            expand: expand
-        )
+        return try await V1TreasuryOutboundPaymentsMethods.getTreasuryOutboundPaymentsId(config: config, id: id, expand: expand)
     }
 }
 
@@ -69,19 +53,11 @@ public class V1TreasuryOutboundTransfersCancelNamespace {
         self.config = config
     }
 
-    /// Cancels an outbound transfer before its funds are paid out. Supply the `outbound_transfer` identifier and
-    /// optionally request expanded response fields with `expand`.
+/// Cancels an outbound transfer before its funds are paid out. Supply the `outbound_transfer` identifier and optionally request expanded response fields with `expand`.
     ///
     /// An OutboundTransfer can be canceled if the funds have not yet been paid out.
-    public func postTreasuryOutboundTransfersOutboundTransfer(
-        outboundTransfer: String,
-        expand: [String]?
-    ) async throws -> TreasuryOutboundTransfer {
-        try await V1TreasuryOutboundTransfersCancelMethods.postTreasuryOutboundTransfersOutboundTransferCancel(
-            config: config,
-            outboundTransfer: outboundTransfer,
-            expand: expand
-        )
+    public func postTreasuryOutboundTransfersOutboundTransfer(outboundTransfer: String, expand: [String]?) async throws -> TreasuryOutboundTransfer {
+        return try await V1TreasuryOutboundTransfersCancelMethods.postTreasuryOutboundTransfersOutboundTransferCancel(config: config, outboundTransfer: outboundTransfer, expand: expand)
     }
 }
 
@@ -93,53 +69,25 @@ public class V1TreasuryOutboundTransfersNamespace {
         cancel = V1TreasuryOutboundTransfersCancelNamespace(config: config)
     }
 
-    /// Lists OutboundTransfers sent from a specified FinancialAccount. Use `financial_account` to scope the results,
-    /// filter by `status`, and use `starting_after` or `ending_before` to paginate through the list.
+/// Lists OutboundTransfers sent from a specified FinancialAccount. Use `financial_account` to scope the results, filter by `status`, and use `starting_after` or `ending_before` to paginate through the list.
     ///
     /// Returns a list of OutboundTransfers sent from the specified FinancialAccount.
-    public func getTreasury(
-        financialAccount: String,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        startingAfter: String?,
-        status: GetTreasuryOutboundTransfersParameter?
-    ) async throws -> GetTreasuryOutboundTransfersResponse {
-        try await V1TreasuryOutboundTransfersMethods.getTreasuryOutboundTransfers(
-            config: config,
-            financialAccount: financialAccount,
-            endingBefore: endingBefore,
-            expand: expand,
-            limit: limit,
-            startingAfter: startingAfter,
-            status: status
-        )
+    public func getTreasury(financialAccount: String, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?, status: GetTreasuryOutboundTransfersParameter?) async throws -> GetTreasuryOutboundTransfersResponse {
+        return try await V1TreasuryOutboundTransfersMethods.getTreasuryOutboundTransfers(config: config, financialAccount: financialAccount, endingBefore: endingBefore, expand: expand, limit: limit, startingAfter: startingAfter, status: status)
     }
 
-    /// Creates a new OutboundTransfer from a FinancialAccount to a PaymentMethod belonging to the same entity. Supply
-    /// `amount`, `currency`, and `financial_account`, then identify the destination with either
-    /// `destination_payment_method` or `destination_payment_method_data`.
+/// Creates a new OutboundTransfer from a FinancialAccount to a PaymentMethod belonging to the same entity. Supply `amount`, `currency`, and `financial_account`, then identify the destination with either `destination_payment_method` or `destination_payment_method_data`.
     ///
     /// Creates an OutboundTransfer.
-    public func postTreasury(options: V1TreasuryOutboundTransfersMethods
-        .PostTreasuryOutboundTransfersOptions) async throws -> TreasuryOutboundTransfer {
-        try await V1TreasuryOutboundTransfersMethods.postTreasuryOutboundTransfers(config: config, options: options)
+    public func postTreasury(options: V1TreasuryOutboundTransfersMethods.PostTreasuryOutboundTransfersOptions) async throws -> TreasuryOutboundTransfer {
+        return try await V1TreasuryOutboundTransfersMethods.postTreasuryOutboundTransfers(config: config, options: options)
     }
 
-    /// Retrieves the details of an existing OutboundTransfer by its unique identifier. Pass `outbound_transfer` from an
-    /// OutboundTransfer creation response or list, and use `expand` to request additional response fields inline.
+/// Retrieves the details of an existing OutboundTransfer by its unique identifier. Pass `outbound_transfer` from an OutboundTransfer creation response or list, and use `expand` to request additional response fields inline.
     ///
-    /// Retrieves the details of an existing OutboundTransfer by passing the unique OutboundTransfer ID from either the
-    /// OutboundTransfer creation request or OutboundTransfer list.
-    public func getTreasuryOutboundTransfer(
-        outboundTransfer: String,
-        expand: [String]?
-    ) async throws -> TreasuryOutboundTransfer {
-        try await V1TreasuryOutboundTransfersMethods.getTreasuryOutboundTransfersOutboundTransfer(
-            config: config,
-            outboundTransfer: outboundTransfer,
-            expand: expand
-        )
+    /// Retrieves the details of an existing OutboundTransfer by passing the unique OutboundTransfer ID from either the OutboundTransfer creation request or OutboundTransfer list.
+    public func getTreasuryOutboundTransfer(outboundTransfer: String, expand: [String]?) async throws -> TreasuryOutboundTransfer {
+        return try await V1TreasuryOutboundTransfersMethods.getTreasuryOutboundTransfersOutboundTransfer(config: config, outboundTransfer: outboundTransfer, expand: expand)
     }
 }
 
@@ -149,38 +97,18 @@ public class V1TreasuryReceivedCreditsNamespace {
         self.config = config
     }
 
-    /// Lists received credits associated with a financial account. Use `financial_account` to scope the results,
-    /// `status` and `linked_flows` to filter them, and cursor parameters to paginate the list.
+/// Lists received credits associated with a financial account. Use `financial_account` to scope the results, `status` and `linked_flows` to filter them, and cursor parameters to paginate the list.
     ///
     /// Returns a list of ReceivedCredits.
-    public func getTreasury(
-        financialAccount: String,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        linkedFlows: GetTreasuryReceivedCreditsParameter?,
-        startingAfter: String?,
-        status: GetTreasuryReceivedCreditsParameterX8a21dc06?
-    ) async throws -> GetTreasuryReceivedCreditsResponse {
-        try await V1TreasuryReceivedCreditsMethods.getTreasuryReceivedCredits(
-            config: config,
-            financialAccount: financialAccount,
-            endingBefore: endingBefore,
-            expand: expand,
-            limit: limit,
-            linkedFlows: linkedFlows,
-            startingAfter: startingAfter,
-            status: status
-        )
+    public func getTreasury(financialAccount: String, endingBefore: String?, expand: [String]?, limit: Int?, linkedFlows: GetTreasuryReceivedCreditsParameter?, startingAfter: String?, status: GetTreasuryReceivedCreditsParameterX8a21dc06?) async throws -> GetTreasuryReceivedCreditsResponse {
+        return try await V1TreasuryReceivedCreditsMethods.getTreasuryReceivedCredits(config: config, financialAccount: financialAccount, endingBefore: endingBefore, expand: expand, limit: limit, linkedFlows: linkedFlows, startingAfter: startingAfter, status: status)
     }
 
-    /// Retrieves a specific received credit by its unique identifier. Use `expand` when you need selected fields
-    /// returned in expanded form.
+/// Retrieves a specific received credit by its unique identifier. Use `expand` when you need selected fields returned in expanded form.
     ///
-    /// Retrieves the details of an existing ReceivedCredit by passing the unique ReceivedCredit ID from the
-    /// ReceivedCredit list.
+    /// Retrieves the details of an existing ReceivedCredit by passing the unique ReceivedCredit ID from the ReceivedCredit list.
     public func getTreasuryId(id: String, expand: [String]?) async throws -> TreasuryReceivedCredit {
-        try await V1TreasuryReceivedCreditsMethods.getTreasuryReceivedCreditsId(config: config, id: id, expand: expand)
+        return try await V1TreasuryReceivedCreditsMethods.getTreasuryReceivedCreditsId(config: config, id: id, expand: expand)
     }
 }
 
@@ -190,36 +118,18 @@ public class V1TreasuryReceivedDebitsNamespace {
         self.config = config
     }
 
-    /// Lists received debits associated with a financial account. Use `financial_account` to scope the results,
-    /// `status` to filter their outcome, and cursor parameters to paginate the list.
+/// Lists received debits associated with a financial account. Use `financial_account` to scope the results, `status` to filter their outcome, and cursor parameters to paginate the list.
     ///
     /// Returns a list of ReceivedDebits.
-    public func getTreasury(
-        financialAccount: String,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        startingAfter: String?,
-        status: GetTreasuryReceivedDebitsParameter?
-    ) async throws -> GetTreasuryReceivedDebitsResponse {
-        try await V1TreasuryReceivedDebitsMethods.getTreasuryReceivedDebits(
-            config: config,
-            financialAccount: financialAccount,
-            endingBefore: endingBefore,
-            expand: expand,
-            limit: limit,
-            startingAfter: startingAfter,
-            status: status
-        )
+    public func getTreasury(financialAccount: String, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?, status: GetTreasuryReceivedDebitsParameter?) async throws -> GetTreasuryReceivedDebitsResponse {
+        return try await V1TreasuryReceivedDebitsMethods.getTreasuryReceivedDebits(config: config, financialAccount: financialAccount, endingBefore: endingBefore, expand: expand, limit: limit, startingAfter: startingAfter, status: status)
     }
 
-    /// Retrieves a specific received debit by its unique identifier. Use `expand` when you need selected fields
-    /// returned in expanded form.
+/// Retrieves a specific received debit by its unique identifier. Use `expand` when you need selected fields returned in expanded form.
     ///
-    /// Retrieves the details of an existing ReceivedDebit by passing the unique ReceivedDebit ID from the ReceivedDebit
-    /// list
+    /// Retrieves the details of an existing ReceivedDebit by passing the unique ReceivedDebit ID from the ReceivedDebit list
     public func getTreasuryId(id: String, expand: [String]?) async throws -> TreasuryReceivedDebit {
-        try await V1TreasuryReceivedDebitsMethods.getTreasuryReceivedDebitsId(config: config, id: id, expand: expand)
+        return try await V1TreasuryReceivedDebitsMethods.getTreasuryReceivedDebitsId(config: config, id: id, expand: expand)
     }
 }
 
@@ -229,25 +139,18 @@ public class V1TreasuryTransactionEntriesNamespace {
         self.config = config
     }
 
-    /// Lists transaction entries associated with a financial account. Filter by creation or effective timestamps,
-    /// transaction, and ordering, then use cursor parameters to paginate the results.
+/// Lists transaction entries associated with a financial account. Filter by creation or effective timestamps, transaction, and ordering, then use cursor parameters to paginate the results.
     ///
     /// Retrieves a list of TransactionEntry objects.
-    public func getTreasury(options: V1TreasuryTransactionEntriesMethods
-        .GetTreasuryTransactionEntriesOptions) async throws -> GetTreasuryTransactionEntriesResponse {
-        try await V1TreasuryTransactionEntriesMethods.getTreasuryTransactionEntries(config: config, options: options)
+    public func getTreasury(options: V1TreasuryTransactionEntriesMethods.GetTreasuryTransactionEntriesOptions) async throws -> GetTreasuryTransactionEntriesResponse {
+        return try await V1TreasuryTransactionEntriesMethods.getTreasuryTransactionEntries(config: config, options: options)
     }
 
-    /// Retrieves a specific transaction entry by its unique identifier. Use `expand` when you need selected fields
-    /// returned in expanded form.
+/// Retrieves a specific transaction entry by its unique identifier. Use `expand` when you need selected fields returned in expanded form.
     ///
     /// Retrieves a TransactionEntry object.
     public func getTreasuryId(id: String, expand: [String]?) async throws -> TreasuryTransactionEntry {
-        try await V1TreasuryTransactionEntriesMethods.getTreasuryTransactionEntriesId(
-            config: config,
-            id: id,
-            expand: expand
-        )
+        return try await V1TreasuryTransactionEntriesMethods.getTreasuryTransactionEntriesId(config: config, id: id, expand: expand)
     }
 }
 
@@ -257,21 +160,18 @@ public class V1TreasuryTransactionsNamespace {
         self.config = config
     }
 
-    /// Lists transactions that represent changes to a financial account's balance. Filter by status, creation time,
-    /// posting time, and flow, and use cursor parameters to paginate the results.
+/// Lists transactions that represent changes to a financial account's balance. Filter by status, creation time, posting time, and flow, and use cursor parameters to paginate the results.
     ///
     /// Retrieves a list of Transaction objects.
-    public func getTreasury(options: V1TreasuryTransactionsMethods
-        .GetTreasuryTransactionsOptions) async throws -> GetTreasuryTransactionsResponse {
-        try await V1TreasuryTransactionsMethods.getTreasuryTransactions(config: config, options: options)
+    public func getTreasury(options: V1TreasuryTransactionsMethods.GetTreasuryTransactionsOptions) async throws -> GetTreasuryTransactionsResponse {
+        return try await V1TreasuryTransactionsMethods.getTreasuryTransactions(config: config, options: options)
     }
 
-    /// Retrieves a specific financial account transaction by its unique identifier. Use `expand` when you need selected
-    /// fields returned in expanded form.
+/// Retrieves a specific financial account transaction by its unique identifier. Use `expand` when you need selected fields returned in expanded form.
     ///
     /// Retrieves the details of an existing Transaction.
     public func getTreasuryId(id: String, expand: [String]?) async throws -> TreasuryTransaction {
-        try await V1TreasuryTransactionsMethods.getTreasuryTransactionsId(config: config, id: id, expand: expand)
+        return try await V1TreasuryTransactionsMethods.getTreasuryTransactionsId(config: config, id: id, expand: expand)
     }
 }
 

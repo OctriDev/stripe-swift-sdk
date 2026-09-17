@@ -7,56 +7,28 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1PaymentMethodsAttachMethods {
-    /// Attaches a PaymentMethod to a customer for use with payments or future payment setup. Supply either `customer`
-    /// or `customer_account` to identify the customer association, and use `expand` to request additional response
-    /// fields. For future payments, prefer a SetupIntent or a PaymentIntent configured with setup-future-usage
-    /// behavior.
+    /// Attaches a PaymentMethod to a customer for use with payments or future payment setup. Supply either `customer` or `customer_account` to identify the customer association, and use `expand` to request additional response fields. For future payments, prefer a SetupIntent or a PaymentIntent configured with setup-future-usage behavior.
     ///
-    /// Attaches a PaymentMethod object to a Customer. To attach a new PaymentMethod to a customer for future payments,
-    /// we recommend you use a SetupIntent or a PaymentIntent with setup_future_usage. These approaches will perform any
-    /// necessary steps to set up the PaymentMethod for future payments. Using the /v1/payment_methods/:id/attach
-    /// endpoint without first using a SetupIntent or PaymentIntent with setup_future_usage does not optimize the
-    /// PaymentMethod for future use, which makes later declines and payment friction more likely. See Optimizing cards
-    /// for future payments for more information about setting up future payments. To use this PaymentMethod as the
-    /// default for invoice or subscription payments, set invoice_settings.default_payment_method , on the Customer to
-    /// the PaymentMethod’s ID.
+    /// Attaches a PaymentMethod object to a Customer. To attach a new PaymentMethod to a customer for future payments, we recommend you use a SetupIntent or a PaymentIntent with setup_future_usage. These approaches will perform any necessary steps to set up the PaymentMethod for future payments. Using the /v1/payment_methods/:id/attach endpoint without first using a SetupIntent or PaymentIntent with setup_future_usage does not optimize the PaymentMethod for future use, which makes later declines and payment friction more likely. See Optimizing cards for future payments for more information about setting up future payments. To use this PaymentMethod as the default for invoice or subscription payments, set invoice_settings.default_payment_method , on the Customer to the PaymentMethod’s ID.
     ///
     /// - Parameters:
     /// - customer: The ID of the customer to which to attach the PaymentMethod.
     /// - customerAccount: The ID of the Account representing the customer to which
     ///   to attach the PaymentMethod.
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postPaymentMethodsPaymentMethodAttach(
-        config: ClientConfig,
-        paymentMethod: String,
-        customer: String?,
-        customerAccount: String?,
-        expand: [String]?
-    ) async throws -> PaymentMethod {
+    public static func postPaymentMethodsPaymentMethodAttach(config: ClientConfig, paymentMethod: String, customer: String?, customerAccount: String?, expand: [String]?) async throws -> PaymentMethod {
         try validateLength("payment_method", paymentMethod, max: 5000)
 
-        if let customer {
+        if let customer = customer {
             try validateLength("customer", customer, max: 5000)
         }
 
-        if let customerAccount {
+        if let customerAccount = customerAccount {
             try validateLength("customer_account", customerAccount, max: 5000)
         }
 
-        let requestBody = PostPaymentMethodsPaymentMethodAttachRequestBody(
-            customer: customer,
-            customerAccount: customerAccount,
-            expand: expand
-        )
+        let requestBody = PostPaymentMethodsPaymentMethodAttachRequestBody(customer: customer, customerAccount: customerAccount, expand: expand)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/payment_methods/", sdkEncodePathSegment(sdkWireString(paymentMethod)), "/attach"].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostPaymentMethodsPaymentMethodAttach"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/payment_methods/", sdkEncodePathSegment(sdkWireString(paymentMethod)), "/attach"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostPaymentMethodsPaymentMethodAttach")).data
     }
 }

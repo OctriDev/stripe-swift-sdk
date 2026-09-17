@@ -3,27 +3,21 @@
 
 import Foundation
 
-/// V1Customer domain models
+// V1Customer domain models
 /// Controls whether the Payment Element displays a checkbox offering to save a new payment method. This
 /// parameter defaults to `disabled`. If a customer checks the box, the `allow_redisplay` value on the
 /// PaymentMethod is set to `'always'` at confirmation time. For PaymentIntents, the `setup_future_usage` value
 /// is also set to the value defined in `payment_method_save_usage`.
-public struct CustomerSessionResourceComponentsResourcePaymentElementResourX7965ae18ff: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct CustomerSessionResourceComponentsResourcePaymentElementResourX7965ae18ff: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let disabled =
-        CustomerSessionResourceComponentsResourcePaymentElementResourX7965ae18ff(rawValue: "disabled")
-    public static let enabled =
-        CustomerSessionResourceComponentsResourcePaymentElementResourX7965ae18ff(rawValue: "enabled")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let disabled = CustomerSessionResourceComponentsResourcePaymentElementResourX7965ae18ff(rawValue: "disabled")
+    public static let enabled = CustomerSessionResourceComponentsResourcePaymentElementResourX7965ae18ff(rawValue: "enabled")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -36,10 +30,7 @@ public struct CustomerSessionResourceComponentsResourcePaymentElementResourX7965
 public struct CustomerTaxLocationSource: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let billingAddress = CustomerTaxLocationSource(rawValue: "billing_address")
     public static let ipAddress = CustomerTaxLocationSource(rawValue: "ip_address")
     public static let paymentMethod = CustomerTaxLocationSource(rawValue: "payment_method")
@@ -47,7 +38,7 @@ public struct CustomerTaxLocationSource: RawRepresentable, Hashable, Codable, Se
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -59,22 +50,16 @@ public struct CustomerTaxLocationSource: RawRepresentable, Hashable, Codable, Se
 /// Controls whether the customer sheet displays the option to remove a saved payment method." Allowing buyers
 /// to remove their saved payment methods impacts subscriptions that depend on that payment method. Removing the
 /// payment method detaches the `customer` object from that PaymentMethod.
-public struct CustomerSessionResourceComponentsResourceCustomerSheetResourcX0b6bb25794: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct CustomerSessionResourceComponentsResourceCustomerSheetResourcX0b6bb25794: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let disabled =
-        CustomerSessionResourceComponentsResourceCustomerSheetResourcX0b6bb25794(rawValue: "disabled")
-    public static let enabled =
-        CustomerSessionResourceComponentsResourceCustomerSheetResourcX0b6bb25794(rawValue: "enabled")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let disabled = CustomerSessionResourceComponentsResourceCustomerSheetResourcX0b6bb25794(rawValue: "disabled")
+    public static let enabled = CustomerSessionResourceComponentsResourceCustomerSheetResourcX0b6bb25794(rawValue: "enabled")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -88,10 +73,7 @@ public struct CustomerSessionResourceComponentsResourceCustomerSheetResourcX0b6b
 public struct CustomerTaxProvider: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let anrok = CustomerTaxProvider(rawValue: "anrok")
     public static let avalara = CustomerTaxProvider(rawValue: "avalara")
     public static let sphere = CustomerTaxProvider(rawValue: "sphere")
@@ -99,7 +81,7 @@ public struct CustomerTaxProvider: RawRepresentable, Hashable, Codable, Sendable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -112,15 +94,12 @@ public struct CustomerTaxProvider: RawRepresentable, Hashable, Codable, Sendable
 public struct CustomerSessionObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let customerSession = CustomerSessionObject(rawValue: "customer_session")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -131,28 +110,19 @@ public struct CustomerSessionObject: RawRepresentable, Hashable, Codable, Sendab
 
 /// The funding method type used to fund the customer balance. Permitted values include: `eu_bank_transfer`,
 /// `gb_bank_transfer`, `jp_bank_transfer`, `mx_bank_transfer`, or `us_bank_transfer`.
-public struct CustomerBalanceResourceCashBalanceTransactionResourceFundedTrXbb06d05e55: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct CustomerBalanceResourceCashBalanceTransactionResourceFundedTrXbb06d05e55: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let euBankTransfer =
-        CustomerBalanceResourceCashBalanceTransactionResourceFundedTrXbb06d05e55(rawValue: "eu_bank_transfer")
-    public static let gbBankTransfer =
-        CustomerBalanceResourceCashBalanceTransactionResourceFundedTrXbb06d05e55(rawValue: "gb_bank_transfer")
-    public static let jpBankTransfer =
-        CustomerBalanceResourceCashBalanceTransactionResourceFundedTrXbb06d05e55(rawValue: "jp_bank_transfer")
-    public static let mxBankTransfer =
-        CustomerBalanceResourceCashBalanceTransactionResourceFundedTrXbb06d05e55(rawValue: "mx_bank_transfer")
-    public static let usBankTransfer =
-        CustomerBalanceResourceCashBalanceTransactionResourceFundedTrXbb06d05e55(rawValue: "us_bank_transfer")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let euBankTransfer = CustomerBalanceResourceCashBalanceTransactionResourceFundedTrXbb06d05e55(rawValue: "eu_bank_transfer")
+    public static let gbBankTransfer = CustomerBalanceResourceCashBalanceTransactionResourceFundedTrXbb06d05e55(rawValue: "gb_bank_transfer")
+    public static let jpBankTransfer = CustomerBalanceResourceCashBalanceTransactionResourceFundedTrXbb06d05e55(rawValue: "jp_bank_transfer")
+    public static let mxBankTransfer = CustomerBalanceResourceCashBalanceTransactionResourceFundedTrXbb06d05e55(rawValue: "mx_bank_transfer")
+    public static let usBankTransfer = CustomerBalanceResourceCashBalanceTransactionResourceFundedTrXbb06d05e55(rawValue: "us_bank_transfer")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -162,24 +132,17 @@ public struct CustomerBalanceResourceCashBalanceTransactionResourceFundedTrXbb06
 }
 
 /// Required enumerated value serialized in the `payment_method_allow_redisplay_filters[]` wire field.
-public struct CustomerSessionResourceComponentsResourceCustomerSheetResourcXfe5bb14688: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct CustomerSessionResourceComponentsResourceCustomerSheetResourcXfe5bb14688: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let always =
-        CustomerSessionResourceComponentsResourceCustomerSheetResourcXfe5bb14688(rawValue: "always")
-    public static let limited =
-        CustomerSessionResourceComponentsResourceCustomerSheetResourcXfe5bb14688(rawValue: "limited")
-    public static let unspecified =
-        CustomerSessionResourceComponentsResourceCustomerSheetResourcXfe5bb14688(rawValue: "unspecified")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let always = CustomerSessionResourceComponentsResourceCustomerSheetResourcXfe5bb14688(rawValue: "always")
+    public static let limited = CustomerSessionResourceComponentsResourceCustomerSheetResourcXfe5bb14688(rawValue: "limited")
+    public static let unspecified = CustomerSessionResourceComponentsResourceCustomerSheetResourcXfe5bb14688(rawValue: "unspecified")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -192,10 +155,7 @@ public struct CustomerSessionResourceComponentsResourceCustomerSheetResourcXfe5b
 public struct CustomerTaxAutomaticTax: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let failed = CustomerTaxAutomaticTax(rawValue: "failed")
     public static let notCollecting = CustomerTaxAutomaticTax(rawValue: "not_collecting")
     public static let supported = CustomerTaxAutomaticTax(rawValue: "supported")
@@ -203,7 +163,7 @@ public struct CustomerTaxAutomaticTax: RawRepresentable, Hashable, Codable, Send
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -214,22 +174,16 @@ public struct CustomerTaxAutomaticTax: RawRepresentable, Hashable, Codable, Send
 
 /// Controls whether or not the Payment Element shows saved payment methods. This parameter defaults to
 /// `disabled`.
-public struct CustomerSessionResourceComponentsResourcePaymentElementResourX3719e93d25: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct CustomerSessionResourceComponentsResourcePaymentElementResourX3719e93d25: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let disabled =
-        CustomerSessionResourceComponentsResourcePaymentElementResourX3719e93d25(rawValue: "disabled")
-    public static let enabled =
-        CustomerSessionResourceComponentsResourcePaymentElementResourX3719e93d25(rawValue: "enabled")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let disabled = CustomerSessionResourceComponentsResourcePaymentElementResourX3719e93d25(rawValue: "disabled")
+    public static let enabled = CustomerSessionResourceComponentsResourcePaymentElementResourX3719e93d25(rawValue: "enabled")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

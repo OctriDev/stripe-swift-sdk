@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1BillingPortalSessionsMethods {
-    struct PostBillingPortalSessionsOptions: Codable {
+extension V1BillingPortalSessionsMethods {
+    public struct PostBillingPortalSessionsOptions: Codable {
         public var configuration: String?
         public var customer: String?
         public var customerAccount: String?
@@ -20,9 +20,7 @@ public extension V1BillingPortalSessionsMethods {
         public init() {}
     }
 
-    /// Creates a customer portal session for an existing customer or account. Supply `customer` or `customer_account`,
-    /// optionally select a `configuration`, and use `flow_data` to direct the customer through a specific portal flow;
-    /// the response includes a short-lived portal URL.
+    /// Creates a customer portal session for an existing customer or account. Supply `customer` or `customer_account`, optionally select a `configuration`, and use `flow_data` to direct the customer through a specific portal flow; the response includes a short-lived portal URL.
     ///
     /// Creates a session of the customer portal.
     ///
@@ -51,10 +49,7 @@ public extension V1BillingPortalSessionsMethods {
     ///   portal displays.
     /// - returnUrl: The default URL to redirect customers to when they click on the
     ///   portal's link to return to your website.
-    static func postBillingPortalSessions(
-        config: ClientConfig,
-        options: PostBillingPortalSessionsOptions
-    ) async throws -> BillingPortalSession {
+    public static func postBillingPortalSessions(config: ClientConfig, options: PostBillingPortalSessionsOptions) async throws -> BillingPortalSession {
         if let configuration = options.configuration {
             try validateLength("configuration", configuration, max: 5000)
         }
@@ -69,14 +64,6 @@ public extension V1BillingPortalSessionsMethods {
 
         let requestBody = PostBillingPortalSessionsRequestBody(options: options)
 
-        return try await (sdkRequest(
-            "POST",
-            "/v1/billing_portal/sessions",
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostBillingPortalSessions"
-        )).data
+        return try (await sdkRequest("POST", "/v1/billing_portal/sessions", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostBillingPortalSessions")).data
     }
 }

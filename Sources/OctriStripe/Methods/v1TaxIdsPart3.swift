@@ -6,7 +6,7 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1TaxIdsMethods {
+extension V1TaxIdsMethods {
     /// Creates a new account or customer tax_id object.
     ///
     /// - Parameters:
@@ -32,25 +32,11 @@ public extension V1TaxIdsMethods {
     /// - expand: Specifies which fields in the response should be expanded.
     /// - owner: The account or customer the tax ID belongs to. Defaults to
     ///   `owner[type]=self`.
-    static func postTaxIds(
-        config: ClientConfig,
-        type: PostTaxIdsRequestBodyType,
-        value: String,
-        expand: [String]?,
-        owner: PostTaxIdsRequestBodyOwner?
-    ) async throws -> TaxId {
+    public static func postTaxIds(config: ClientConfig, type: PostTaxIdsRequestBodyType, value: String, expand: [String]?, owner: PostTaxIdsRequestBodyOwner?) async throws -> TaxId {
         try validateLength("type", type.rawValue, max: 5000)
 
         let requestBody = PostTaxIdsRequestBody(type: type, value: value, expand: expand, owner: owner)
 
-        return try await (sdkRequest(
-            "POST",
-            "/v1/tax_ids",
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostTaxIds"
-        )).data
+        return try (await sdkRequest("POST", "/v1/tax_ids", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTaxIds")).data
     }
 }

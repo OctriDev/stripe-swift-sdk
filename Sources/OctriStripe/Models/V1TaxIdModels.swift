@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1TaxId domain models
+// V1TaxId domain models
 /// Typed representation of the `TaxIdVerification` API schema.
 public struct TaxIdVerification: Codable {
     /// Verification status, one of `pending`, `verified`, `unverified`, or `unavailable`.
@@ -19,35 +19,29 @@ public struct TaxIdVerification: Codable {
         case verifiedName = "verified_name"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension TaxIdVerification {
-    init(from decoder: Decoder) throws {
+extension TaxIdVerification {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.status) else {
-            throw SdkValidationError(
-                field: "status",
-                code: "required",
-                message: "Validation failed for 'status': value is required"
-            )
+            throw SdkValidationError(field: "status", code: "required", message: "Validation failed for 'status': value is required")
         }
-        status = try container.sdkDecodeRequired(.status)
-        verifiedAddress = try container.sdkDecodeIfPresent(.verifiedAddress)
-        verifiedName = try container.sdkDecodeIfPresent(.verifiedName)
-        if let value = verifiedAddress {
+        self.status = try container.sdkDecodeRequired(.status)
+        self.verifiedAddress = try container.sdkDecodeIfPresent(.verifiedAddress)
+        self.verifiedName = try container.sdkDecodeIfPresent(.verifiedName)
+        if let value = self.verifiedAddress {
             try validateLength("verified_address", value, min: nil, max: 5000)
         }
-        if let value = verifiedName {
+        if let value = self.verifiedName {
             try validateLength("verified_name", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension TaxIdVerification {
-    init(status: TaxIdVerificationStatus, verifiedAddress: String? = nil, verifiedName: String? = nil) throws {
+extension TaxIdVerification {
+    public init(status: TaxIdVerificationStatus, verifiedAddress: String? = nil, verifiedName: String? = nil) throws {
         (self.status, self.verifiedAddress) = (status, verifiedAddress)
         self.verifiedName = verifiedName
         if let value = self.verifiedAddress {
@@ -63,10 +57,7 @@ public extension TaxIdVerification {
 public struct TaxIdVerificationStatus: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let pending = TaxIdVerificationStatus(rawValue: "pending")
     public static let unavailable = TaxIdVerificationStatus(rawValue: "unavailable")
     public static let unverified = TaxIdVerificationStatus(rawValue: "unverified")
@@ -74,7 +65,7 @@ public struct TaxIdVerificationStatus: RawRepresentable, Hashable, Codable, Send
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

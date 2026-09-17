@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1SubscriptionsMigrate operation model declarations
+// Canonical v1SubscriptionsMigrate operation model declarations
 /// Controls how prorations and invoices for subscriptions are calculated and orchestrated.
 public struct PostSubscriptionsSubscriptionMigrateRequestBodyBillingMode: Codable {
     public var type: PostSubscriptionsSubscriptionMigrateRequestBodyBillingModeType
@@ -19,31 +19,22 @@ public struct PostSubscriptionsSubscriptionMigrateRequestBodyBillingMode: Codabl
         case flexible
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostSubscriptionsSubscriptionMigrateRequestBodyBillingMode {
-    init(from decoder: Decoder) throws {
+extension PostSubscriptionsSubscriptionMigrateRequestBodyBillingMode {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.type) else {
-            throw SdkValidationError(
-                field: "type",
-                code: "required",
-                message: "Validation failed for 'type': value is required"
-            )
+            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
         }
-        type = try container.sdkDecodeRequired(.type)
-        flexible = try container.sdkDecodeIfPresent(.flexible)
+        self.type = try container.sdkDecodeRequired(.type)
+        self.flexible = try container.sdkDecodeIfPresent(.flexible)
     }
 }
 
-public extension PostSubscriptionsSubscriptionMigrateRequestBodyBillingMode {
-    init(
-        type: PostSubscriptionsSubscriptionMigrateRequestBodyBillingModeType,
-        flexible: PostSubscriptionsSubscriptionMigrateRequestBodyBillingModeFlexible? = nil
-    ) {
+extension PostSubscriptionsSubscriptionMigrateRequestBodyBillingMode {
+    public init(type: PostSubscriptionsSubscriptionMigrateRequestBodyBillingModeType, flexible: PostSubscriptionsSubscriptionMigrateRequestBodyBillingModeFlexible? = nil) {
         (self.type, self.flexible) = (type, flexible)
     }
 }
@@ -56,19 +47,19 @@ public struct PostSubscriptionsSubscriptionMigrateRequestBodyBillingModeFlexible
     }
 
     init() {
-        prorationDiscounts = nil
+        self.prorationDiscounts = nil
     }
 }
 
-public extension PostSubscriptionsSubscriptionMigrateRequestBodyBillingModeFlexible {
-    init(from decoder: Decoder) throws {
+extension PostSubscriptionsSubscriptionMigrateRequestBodyBillingModeFlexible {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        prorationDiscounts = try container.sdkDecodeIfPresent(.prorationDiscounts)
+        self.prorationDiscounts = try container.sdkDecodeIfPresent(.prorationDiscounts)
     }
 }
 
-public extension PostSubscriptionsSubscriptionMigrateRequestBodyBillingModeFlexible {
-    init(prorationDiscounts: PostSubscriptionsSubscriptionMigrateRequestBodyBillingModeFleX54df7146ec? = nil) {
+extension PostSubscriptionsSubscriptionMigrateRequestBodyBillingModeFlexible {
+    public init(prorationDiscounts: PostSubscriptionsSubscriptionMigrateRequestBodyBillingModeFleX54df7146ec? = nil) {
         self.init()
         self.prorationDiscounts = prorationDiscounts
     }

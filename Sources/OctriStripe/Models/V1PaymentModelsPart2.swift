@@ -3,47 +3,9 @@
 
 import Foundation
 
-/// V1Payment domain models
-public extension PaymentLink {
-    init(
-        active: Bool,
-        afterCompletion: PaymentLinksResourceAfterCompletion,
-        allowPromotionCodes: Bool,
-        automaticTax: PaymentLinksResourceAutomaticTax,
-        billingAddressCollection: PaymentLinkBillingAddressCollection,
-        currency: String,
-        customFields: [PaymentLinksResourceCustomFields],
-        customText: PaymentLinksResourceCustomText,
-        customerCreation: PaymentLinkCustomerCreation,
-        id: String,
-        livemode: Bool,
-        metadata: [String: String],
-        object: PaymentLinkObject,
-        paymentMethodCollection: PaymentLinkPaymentMethodCollection,
-        phoneNumberCollection: PaymentLinksResourcePhoneNumberCollection,
-        shippingOptions: [PaymentLinksResourceShippingOption],
-        submitType: PaymentLinkSubmitType,
-        taxIdCollection: PaymentLinksResourceTaxIdCollection,
-        url: String,
-        application: PaymentLinkApplication? = nil,
-        applicationFeeAmount: Int? = nil,
-        applicationFeePercent: Double? = nil,
-        consentCollection: PaymentLinkConsentCollection? = nil,
-        inactiveMessage: String? = nil,
-        invoiceCreation: PaymentLinkInvoiceCreation? = nil,
-        lineItems: PaymentLinkLineItems? = nil,
-        managedPayments: PaymentLinkManagedPayments? = nil,
-        nameCollection: PaymentLinksResourceNameCollection? = nil,
-        onBehalfOf: PaymentLinkOnBehalfOf? = nil,
-        optionalItems: [PaymentLinksResourceOptionalItem]? = nil,
-        paymentIntentData: PaymentLinkPaymentIntentData? = nil,
-        paymentMethodOptions: PaymentLinkPaymentMethodOptions? = nil,
-        paymentMethodTypes: [PaymentLinkPaymentMethodTypesItem]? = nil,
-        restrictions: PaymentLinkRestrictions? = nil,
-        shippingAddressCollection: PaymentLinkShippingAddressCollection? = nil,
-        subscriptionData: PaymentLinkSubscriptionData? = nil,
-        transferData: PaymentLinkTransferData? = nil
-    ) throws {
+// V1Payment domain models
+extension PaymentLink {
+    public init(active: Bool, afterCompletion: PaymentLinksResourceAfterCompletion, allowPromotionCodes: Bool, automaticTax: PaymentLinksResourceAutomaticTax, billingAddressCollection: PaymentLinkBillingAddressCollection, currency: String, customFields: [PaymentLinksResourceCustomFields], customText: PaymentLinksResourceCustomText, customerCreation: PaymentLinkCustomerCreation, id: String, livemode: Bool, metadata: [String: String], object: PaymentLinkObject, paymentMethodCollection: PaymentLinkPaymentMethodCollection, phoneNumberCollection: PaymentLinksResourcePhoneNumberCollection, shippingOptions: [PaymentLinksResourceShippingOption], submitType: PaymentLinkSubmitType, taxIdCollection: PaymentLinksResourceTaxIdCollection, url: String, application: PaymentLinkApplication? = nil, applicationFeeAmount: Int? = nil, applicationFeePercent: Double? = nil, consentCollection: PaymentLinkConsentCollection? = nil, inactiveMessage: String? = nil, invoiceCreation: PaymentLinkInvoiceCreation? = nil, lineItems: PaymentLinkLineItems? = nil, managedPayments: PaymentLinkManagedPayments? = nil, nameCollection: PaymentLinksResourceNameCollection? = nil, onBehalfOf: PaymentLinkOnBehalfOf? = nil, optionalItems: [PaymentLinksResourceOptionalItem]? = nil, paymentIntentData: PaymentLinkPaymentIntentData? = nil, paymentMethodOptions: PaymentLinkPaymentMethodOptions? = nil, paymentMethodTypes: [PaymentLinkPaymentMethodTypesItem]? = nil, restrictions: PaymentLinkRestrictions? = nil, shippingAddressCollection: PaymentLinkShippingAddressCollection? = nil, subscriptionData: PaymentLinkSubscriptionData? = nil, transferData: PaymentLinkTransferData? = nil) throws {
         (self.active, self.afterCompletion) = (active, afterCompletion)
         (self.allowPromotionCodes, self.automaticTax) = (allowPromotionCodes, automaticTax)
         (self.billingAddressCollection, self.currency) = (billingAddressCollection, currency)
@@ -63,8 +25,8 @@ public extension PaymentLink {
         (self.paymentMethodOptions, self.paymentMethodTypes) = (paymentMethodOptions, paymentMethodTypes)
         (self.restrictions, self.shippingAddressCollection) = (restrictions, shippingAddressCollection)
         (self.subscriptionData, self.transferData) = (subscriptionData, transferData)
-        try validateLength("id", self.id, min: nil, max: 5000)
-        try validateLength("url", self.url, min: nil, max: 5000)
+            try validateLength("id", self.id, min: nil, max: 5000)
+            try validateLength("url", self.url, min: nil, max: 5000)
         if let value = self.inactiveMessage {
             try validateLength("inactive_message", value, min: nil, max: 5000)
         }
@@ -78,34 +40,22 @@ public enum PaymentLinkApplication {
 }
 
 extension PaymentLinkApplication: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PaymentLinkApplication"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentLinkApplication")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(Application.self) {
-            return .application(value)
-        }
-        if let value = try? container.decode(DeletedApplication.self) {
-            return .deletedApplication(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(Application.self) { return .application(value) }
+        if let value = try? container.decode(DeletedApplication.self) { return .deletedApplication(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -116,6 +66,7 @@ extension PaymentLinkApplication: Codable {
         case let .deletedApplication(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum PaymentLinkConsentCollection {
@@ -123,30 +74,24 @@ public enum PaymentLinkConsentCollection {
 }
 
 extension PaymentLinkConsentCollection: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PaymentLinkConsentCollection"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentLinkConsentCollection")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PaymentLinksResourceConsentCollection.self
         ) {
-            return .paymentLinksResourceConsentCollection(value)
+            return             .paymentLinksResourceConsentCollection(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -155,6 +100,7 @@ extension PaymentLinkConsentCollection: Codable {
         case let .paymentLinksResourceConsentCollection(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum PaymentLinkInvoiceCreation {
@@ -162,30 +108,24 @@ public enum PaymentLinkInvoiceCreation {
 }
 
 extension PaymentLinkInvoiceCreation: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PaymentLinkInvoiceCreation"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentLinkInvoiceCreation")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PaymentLinksResourceInvoiceCreation.self
         ) {
-            return .paymentLinksResourceInvoiceCreation(value)
+            return             .paymentLinksResourceInvoiceCreation(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -194,6 +134,7 @@ extension PaymentLinkInvoiceCreation: Codable {
         case let .paymentLinksResourceInvoiceCreation(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// The line items representing what is being sold.
@@ -215,55 +156,37 @@ public struct PaymentLinkLineItems: Codable {
         case url
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PaymentLinkLineItems {
-    init(from decoder: Decoder) throws {
+extension PaymentLinkLineItems {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.data) else {
-            throw SdkValidationError(
-                field: "data",
-                code: "required",
-                message: "Validation failed for 'data': value is required"
-            )
+            throw SdkValidationError(field: "data", code: "required", message: "Validation failed for 'data': value is required")
         }
         guard container.contains(.hasMore) else {
-            throw SdkValidationError(
-                field: "has_more",
-                code: "required",
-                message: "Validation failed for 'has_more': value is required"
-            )
+            throw SdkValidationError(field: "has_more", code: "required", message: "Validation failed for 'has_more': value is required")
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(
-                field: "object",
-                code: "required",
-                message: "Validation failed for 'object': value is required"
-            )
+            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
         }
         guard container.contains(.url) else {
-            throw SdkValidationError(
-                field: "url",
-                code: "required",
-                message: "Validation failed for 'url': value is required"
-            )
+            throw SdkValidationError(field: "url", code: "required", message: "Validation failed for 'url': value is required")
         }
-        data = try container.sdkDecodeRequired(.data)
-        hasMore = try container.sdkDecodeRequired(.hasMore)
-        object = try container.sdkDecodeRequired(.object)
-        url = try container.sdkDecodeRequired(.url)
-        try validateLength("url", url, min: nil, max: 5000)
+        self.data = try container.sdkDecodeRequired(.data)
+        self.hasMore = try container.sdkDecodeRequired(.hasMore)
+        self.object = try container.sdkDecodeRequired(.object)
+        self.url = try container.sdkDecodeRequired(.url)
+            try validateLength("url", self.url, min: nil, max: 5000)
     }
 }
 
-public extension PaymentLinkLineItems {
-    init(data: [Item], hasMore: Bool, object: PaymentLinkLineItemsObject, url: String) throws {
+extension PaymentLinkLineItems {
+    public init(data: [Item], hasMore: Bool, object: PaymentLinkLineItemsObject, url: String) throws {
         (self.data, self.hasMore) = (data, hasMore)
         (self.object, self.url) = (object, url)
-        try validateLength("url", self.url, min: nil, max: 5000)
+            try validateLength("url", self.url, min: nil, max: 5000)
     }
 }
 
@@ -272,30 +195,24 @@ public enum PaymentLinkManagedPayments {
 }
 
 extension PaymentLinkManagedPayments: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PaymentLinkManagedPayments"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentLinkManagedPayments")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PaymentPagesCheckoutSessionManagedPayments.self
         ) {
-            return .paymentPagesCheckoutSessionManagedPayments(value)
+            return             .paymentPagesCheckoutSessionManagedPayments(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -304,6 +221,7 @@ extension PaymentLinkManagedPayments: Codable {
         case let .paymentPagesCheckoutSessionManagedPayments(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum PaymentLinkOnBehalfOf {
@@ -312,31 +230,21 @@ public enum PaymentLinkOnBehalfOf {
 }
 
 extension PaymentLinkOnBehalfOf: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PaymentLinkOnBehalfOf"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentLinkOnBehalfOf")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(Account.self) {
-            return .account(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(Account.self) { return .account(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -346,6 +254,7 @@ extension PaymentLinkOnBehalfOf: Codable {
         case let .account(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum PaymentLinkPaymentIntentData {
@@ -353,30 +262,24 @@ public enum PaymentLinkPaymentIntentData {
 }
 
 extension PaymentLinkPaymentIntentData: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PaymentLinkPaymentIntentData"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentLinkPaymentIntentData")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PaymentLinksResourcePaymentIntentData.self
         ) {
-            return .paymentLinksResourcePaymentIntentData(value)
+            return             .paymentLinksResourcePaymentIntentData(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -385,6 +288,7 @@ extension PaymentLinkPaymentIntentData: Codable {
         case let .paymentLinksResourcePaymentIntentData(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum PaymentLinkPaymentMethodOptions {
@@ -392,30 +296,24 @@ public enum PaymentLinkPaymentMethodOptions {
 }
 
 extension PaymentLinkPaymentMethodOptions: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PaymentLinkPaymentMethodOptions"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentLinkPaymentMethodOptions")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PaymentLinksResourcePaymentMethodOptions.self
         ) {
-            return .paymentLinksResourcePaymentMethodOptions(value)
+            return             .paymentLinksResourcePaymentMethodOptions(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -424,6 +322,7 @@ extension PaymentLinkPaymentMethodOptions: Codable {
         case let .paymentLinksResourcePaymentMethodOptions(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum PaymentLinkRestrictions {
@@ -431,29 +330,20 @@ public enum PaymentLinkRestrictions {
 }
 
 extension PaymentLinkRestrictions: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PaymentLinkRestrictions"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentLinkRestrictions")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container
-            .decode(PaymentLinksResourceRestrictions.self) {
-            return .paymentLinksResourceRestrictions(value)
-        }
+        if let value = try? container.decode(PaymentLinksResourceRestrictions.self) { return .paymentLinksResourceRestrictions(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -462,6 +352,7 @@ extension PaymentLinkRestrictions: Codable {
         case let .paymentLinksResourceRestrictions(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum PaymentLinkShippingAddressCollection {
@@ -469,30 +360,24 @@ public enum PaymentLinkShippingAddressCollection {
 }
 
 extension PaymentLinkShippingAddressCollection: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PaymentLinkShippingAddressCollection"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentLinkShippingAddressCollection")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PaymentLinksResourceShippingAddressCollection.self
         ) {
-            return .paymentLinksResourceShippingAddressCollection(value)
+            return             .paymentLinksResourceShippingAddressCollection(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -501,6 +386,7 @@ extension PaymentLinkShippingAddressCollection: Codable {
         case let .paymentLinksResourceShippingAddressCollection(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum PaymentLinkSubscriptionData {
@@ -508,30 +394,24 @@ public enum PaymentLinkSubscriptionData {
 }
 
 extension PaymentLinkSubscriptionData: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PaymentLinkSubscriptionData"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentLinkSubscriptionData")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PaymentLinksResourceSubscriptionData.self
         ) {
-            return .paymentLinksResourceSubscriptionData(value)
+            return             .paymentLinksResourceSubscriptionData(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -540,6 +420,7 @@ extension PaymentLinkSubscriptionData: Codable {
         case let .paymentLinksResourceSubscriptionData(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum PaymentLinkTransferData {
@@ -547,29 +428,20 @@ public enum PaymentLinkTransferData {
 }
 
 extension PaymentLinkTransferData: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PaymentLinkTransferData"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentLinkTransferData")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container
-            .decode(PaymentLinksResourceTransferData.self) {
-            return .paymentLinksResourceTransferData(value)
-        }
+        if let value = try? container.decode(PaymentLinksResourceTransferData.self) { return .paymentLinksResourceTransferData(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -578,6 +450,7 @@ extension PaymentLinkTransferData: Codable {
         case let .paymentLinksResourceTransferData(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// String representing the object's type. Objects of the same type share the same value. Always has the value
@@ -585,15 +458,12 @@ extension PaymentLinkTransferData: Codable {
 public struct PaymentLinkLineItemsObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let list = PaymentLinkLineItemsObject(rawValue: "list")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -606,16 +476,13 @@ public struct PaymentLinkLineItemsObject: RawRepresentable, Hashable, Codable, S
 public struct PaymentLinkCustomerCreation: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let always = PaymentLinkCustomerCreation(rawValue: "always")
     public static let ifRequired = PaymentLinkCustomerCreation(rawValue: "if_required")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -628,15 +495,12 @@ public struct PaymentLinkCustomerCreation: RawRepresentable, Hashable, Codable, 
 public struct PaymentLinkObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let paymentLink = PaymentLinkObject(rawValue: "payment_link")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -649,16 +513,13 @@ public struct PaymentLinkObject: RawRepresentable, Hashable, Codable, Sendable, 
 public struct PaymentLinkBillingAddressCollection: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let auto = PaymentLinkBillingAddressCollection(rawValue: "auto")
     public static let required = PaymentLinkBillingAddressCollection(rawValue: "required")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

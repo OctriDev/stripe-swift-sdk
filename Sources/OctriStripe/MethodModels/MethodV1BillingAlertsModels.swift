@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1BillingAlerts operation model declarations
+// Canonical v1BillingAlerts operation model declarations
 public struct PostBillingAlertsRequestBodyUsageThresholdFiltersItem: Codable {
     public var type: PostBillingAlertsRequestBodyUsageThresholdFiltersItemType
     public var customer: String?
@@ -17,31 +17,25 @@ public struct PostBillingAlertsRequestBodyUsageThresholdFiltersItem: Codable {
         case customer
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostBillingAlertsRequestBodyUsageThresholdFiltersItem {
-    init(from decoder: Decoder) throws {
+extension PostBillingAlertsRequestBodyUsageThresholdFiltersItem {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.type) else {
-            throw SdkValidationError(
-                field: "type",
-                code: "required",
-                message: "Validation failed for 'type': value is required"
-            )
+            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
         }
-        type = try container.sdkDecodeRequired(.type)
-        customer = try container.sdkDecodeIfPresent(.customer)
-        if let value = customer {
+        self.type = try container.sdkDecodeRequired(.type)
+        self.customer = try container.sdkDecodeIfPresent(.customer)
+        if let value = self.customer {
             try validateLength("customer", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PostBillingAlertsRequestBodyUsageThresholdFiltersItem {
-    init(type: PostBillingAlertsRequestBodyUsageThresholdFiltersItemType, customer: String? = nil) throws {
+extension PostBillingAlertsRequestBodyUsageThresholdFiltersItem {
+    public init(type: PostBillingAlertsRequestBodyUsageThresholdFiltersItemType, customer: String? = nil) throws {
         (self.type, self.customer) = (type, customer)
         if let value = self.customer {
             try validateLength("customer", value, min: nil, max: 5000)
@@ -66,57 +60,39 @@ public struct GetBillingAlertsResponse: Codable {
         case url
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension GetBillingAlertsResponse {
-    init(from decoder: Decoder) throws {
+extension GetBillingAlertsResponse {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.data) else {
-            throw SdkValidationError(
-                field: "data",
-                code: "required",
-                message: "Validation failed for 'data': value is required"
-            )
+            throw SdkValidationError(field: "data", code: "required", message: "Validation failed for 'data': value is required")
         }
         guard container.contains(.hasMore) else {
-            throw SdkValidationError(
-                field: "has_more",
-                code: "required",
-                message: "Validation failed for 'has_more': value is required"
-            )
+            throw SdkValidationError(field: "has_more", code: "required", message: "Validation failed for 'has_more': value is required")
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(
-                field: "object",
-                code: "required",
-                message: "Validation failed for 'object': value is required"
-            )
+            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
         }
         guard container.contains(.url) else {
-            throw SdkValidationError(
-                field: "url",
-                code: "required",
-                message: "Validation failed for 'url': value is required"
-            )
+            throw SdkValidationError(field: "url", code: "required", message: "Validation failed for 'url': value is required")
         }
-        data = try container.sdkDecodeRequired(.data)
-        hasMore = try container.sdkDecodeRequired(.hasMore)
-        object = try container.sdkDecodeRequired(.object)
-        url = try container.sdkDecodeRequired(.url)
-        try validateLength("url", url, min: nil, max: 5000)
-        try sdkValidatePattern("url", url, sdkPatterna35b6a912e7d)
+        self.data = try container.sdkDecodeRequired(.data)
+        self.hasMore = try container.sdkDecodeRequired(.hasMore)
+        self.object = try container.sdkDecodeRequired(.object)
+        self.url = try container.sdkDecodeRequired(.url)
+            try validateLength("url", self.url, min: nil, max: 5000)
+            try sdkValidatePattern("url", self.url, sdkPatterna35b6a912e7d)
     }
 }
 
-public extension GetBillingAlertsResponse {
-    init(data: [BillingAlert], hasMore: Bool, object: GetBillingAlertsResponseObject, url: String) throws {
+extension GetBillingAlertsResponse {
+    public init(data: [BillingAlert], hasMore: Bool, object: GetBillingAlertsResponseObject, url: String) throws {
         (self.data, self.hasMore) = (data, hasMore)
         (self.object, self.url) = (object, url)
-        try validateLength("url", self.url, min: nil, max: 5000)
-        try sdkValidatePattern("url", self.url, sdkPatterna35b6a912e7d)
+            try validateLength("url", self.url, min: nil, max: 5000)
+            try sdkValidatePattern("url", self.url, sdkPatterna35b6a912e7d)
     }
 }
 
@@ -134,52 +110,33 @@ public struct PostBillingAlertsRequestBodyUsageThreshold: Codable {
         case filters
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostBillingAlertsRequestBodyUsageThreshold {
-    init(from decoder: Decoder) throws {
+extension PostBillingAlertsRequestBodyUsageThreshold {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.gte) else {
-            throw SdkValidationError(
-                field: "gte",
-                code: "required",
-                message: "Validation failed for 'gte': value is required"
-            )
+            throw SdkValidationError(field: "gte", code: "required", message: "Validation failed for 'gte': value is required")
         }
         guard container.contains(.meter) else {
-            throw SdkValidationError(
-                field: "meter",
-                code: "required",
-                message: "Validation failed for 'meter': value is required"
-            )
+            throw SdkValidationError(field: "meter", code: "required", message: "Validation failed for 'meter': value is required")
         }
         guard container.contains(.recurrence) else {
-            throw SdkValidationError(
-                field: "recurrence",
-                code: "required",
-                message: "Validation failed for 'recurrence': value is required"
-            )
+            throw SdkValidationError(field: "recurrence", code: "required", message: "Validation failed for 'recurrence': value is required")
         }
-        gte = try container.sdkDecodeRequired(.gte)
-        meter = try container.sdkDecodeRequired(.meter)
-        recurrence = try container.sdkDecodeRequired(.recurrence)
-        filters = try container.sdkDecodeIfPresent(.filters)
-        try validateLength("meter", meter, min: nil, max: 5000)
+        self.gte = try container.sdkDecodeRequired(.gte)
+        self.meter = try container.sdkDecodeRequired(.meter)
+        self.recurrence = try container.sdkDecodeRequired(.recurrence)
+        self.filters = try container.sdkDecodeIfPresent(.filters)
+            try validateLength("meter", self.meter, min: nil, max: 5000)
     }
 }
 
-public extension PostBillingAlertsRequestBodyUsageThreshold {
-    init(
-        gte: Int,
-        meter: String,
-        recurrence: PostBillingAlertsRequestBodyUsageThresholdRecurrence,
-        filters: [PostBillingAlertsRequestBodyUsageThresholdFiltersItem]? = nil
-    ) throws {
+extension PostBillingAlertsRequestBodyUsageThreshold {
+    public init(gte: Int, meter: String, recurrence: PostBillingAlertsRequestBodyUsageThresholdRecurrence, filters: [PostBillingAlertsRequestBodyUsageThresholdFiltersItem]? = nil) throws {
         (self.gte, self.meter) = (gte, meter)
         (self.recurrence, self.filters) = (recurrence, filters)
-        try validateLength("meter", self.meter, min: nil, max: 5000)
+            try validateLength("meter", self.meter, min: nil, max: 5000)
     }
 }

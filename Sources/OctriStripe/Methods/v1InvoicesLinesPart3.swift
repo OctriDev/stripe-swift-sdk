@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1InvoicesLinesMethods {
-    struct PostInvoicesInvoiceLinesLineItemIdOptions: Codable {
+extension V1InvoicesLinesMethods {
+    public struct PostInvoicesInvoiceLinesLineItemIdOptions: Codable {
         public var invoice: String
         public var lineItemId: String
         public var amount: Int?
@@ -30,10 +30,7 @@ public extension V1InvoicesLinesMethods {
         }
     }
 
-    /// Updates an invoice’s line item. Some fields, such as tax_amounts , only live on the invoice line item, so they
-    /// can only be updated through this endpoint. Other fields, such as amount , live on both the invoice item and the
-    /// invoice line item, so updates on this endpoint will propagate to the invoice item as well. Updating an invoice’s
-    /// line item is only possible before the invoice is finalized.
+    /// Updates an invoice’s line item. Some fields, such as tax_amounts , only live on the invoice line item, so they can only be updated through this endpoint. Other fields, such as amount , live on both the invoice item and the invoice line item, so updates on this endpoint will propagate to the invoice item as well. Updating an invoice’s line item is only possible before the invoice is finalized.
     ///
     /// - Parameters:
     /// - invoice: Invoice ID of line item
@@ -85,10 +82,7 @@ public extension V1InvoicesLinesMethods {
     /// - taxRates: The tax rates which apply to the line item. When set, the
     ///   `default_tax_rates` on the invoice do not apply to this line item. Pass an
     ///   empty string to remove previously-defined tax rates.
-    static func postInvoicesInvoiceLinesLineItemId(
-        config: ClientConfig,
-        options: PostInvoicesInvoiceLinesLineItemIdOptions
-    ) async throws -> LineItem {
+    public static func postInvoicesInvoiceLinesLineItemId(config: ClientConfig, options: PostInvoicesInvoiceLinesLineItemIdOptions) async throws -> LineItem {
         try validateLength("invoice", options.invoice, max: 5000)
 
         try validateLength("line_item_id", options.lineItemId, max: 5000)
@@ -99,19 +93,6 @@ public extension V1InvoicesLinesMethods {
 
         let requestBody = PostInvoicesInvoiceLinesLineItemIdRequestBody(options: options)
 
-        return try await (sdkRequest(
-            "POST",
-            [
-                "/v1/invoices/",
-                sdkEncodePathSegment(sdkWireString(options.invoice)),
-                "/lines/",
-                sdkEncodePathSegment(sdkWireString(options.lineItemId)),
-            ].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostInvoicesInvoiceLinesLineItemId"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/invoices/", sdkEncodePathSegment(sdkWireString(options.invoice)), "/lines/", sdkEncodePathSegment(sdkWireString(options.lineItemId))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostInvoicesInvoiceLinesLineItemId")).data
     }
 }

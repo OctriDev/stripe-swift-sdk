@@ -9,37 +9,18 @@ public class V1EntitlementsActiveEntitlementsNamespace {
         self.config = config
     }
 
-    /// Lists active entitlements for a customer. Supply the customer identifier and use cursor parameters to page
-    /// through the customer's active feature access.
+/// Lists active entitlements for a customer. Supply the customer identifier and use cursor parameters to page through the customer's active feature access.
     ///
     /// Retrieve a list of active entitlements for a customer
-    public func getEntitlements(
-        customer: String,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        startingAfter: String?
-    ) async throws -> GetEntitlementsActiveEntitlementsResponse {
-        try await V1EntitlementsActiveEntitlementsMethods.getEntitlementsActiveEntitlements(
-            config: config,
-            customer: customer,
-            endingBefore: endingBefore,
-            expand: expand,
-            limit: limit,
-            startingAfter: startingAfter
-        )
+    public func getEntitlements(customer: String, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetEntitlementsActiveEntitlementsResponse {
+        return try await V1EntitlementsActiveEntitlementsMethods.getEntitlementsActiveEntitlements(config: config, customer: customer, endingBefore: endingBefore, expand: expand, limit: limit, startingAfter: startingAfter)
     }
 
-    /// Retrieves a specific active entitlement. Provide the entitlement identifier to return the feature access granted
-    /// to the associated customer.
+/// Retrieves a specific active entitlement. Provide the entitlement identifier to return the feature access granted to the associated customer.
     ///
     /// Retrieve an active entitlement
     public func getEntitlementsId(id: String, expand: [String]?) async throws -> EntitlementsActiveEntitlement {
-        try await V1EntitlementsActiveEntitlementsMethods.getEntitlementsActiveEntitlementsId(
-            config: config,
-            id: id,
-            expand: expand
-        )
+        return try await V1EntitlementsActiveEntitlementsMethods.getEntitlementsActiveEntitlementsId(config: config, id: id, expand: expand)
     }
 }
 
@@ -49,76 +30,32 @@ public class V1EntitlementsFeaturesNamespace {
         self.config = config
     }
 
-    /// Lists entitlement features. Filter the results by archive status or `lookup_key`, and use cursor parameters to
-    /// paginate through the available features.
+/// Lists entitlement features. Filter the results by archive status or `lookup_key`, and use cursor parameters to paginate through the available features.
     ///
     /// Retrieve a list of features
-    public func getEntitlements(
-        archived: Bool?,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        lookupKey: String?,
-        startingAfter: String?
-    ) async throws -> GetEntitlementsFeaturesResponse {
-        try await V1EntitlementsFeaturesMethods.getEntitlementsFeatures(
-            config: config,
-            archived: archived,
-            endingBefore: endingBefore,
-            expand: expand,
-            limit: limit,
-            lookupKey: lookupKey,
-            startingAfter: startingAfter
-        )
+    public func getEntitlements(archived: Bool?, endingBefore: String?, expand: [String]?, limit: Int?, lookupKey: String?, startingAfter: String?) async throws -> GetEntitlementsFeaturesResponse {
+        return try await V1EntitlementsFeaturesMethods.getEntitlementsFeatures(config: config, archived: archived, endingBefore: endingBefore, expand: expand, limit: limit, lookupKey: lookupKey, startingAfter: startingAfter)
     }
 
-    /// Creates an entitlement feature that you can assign to products and use to represent a monetizable ability or
-    /// functionality. Supply `lookup_key` and `name`, and optionally attach `metadata` or request expanded response
-    /// fields.
+/// Creates an entitlement feature that you can assign to products and use to represent a monetizable ability or functionality. Supply `lookup_key` and `name`, and optionally attach `metadata` or request expanded response fields.
     ///
     /// Creates a feature
-    public func postEntitlements(
-        lookupKey: String,
-        name: String,
-        expand: [String]?,
-        metadata: [String: String]?
-    ) async throws -> EntitlementsFeature {
-        try await V1EntitlementsFeaturesMethods.postEntitlementsFeatures(
-            config: config,
-            lookupKey: lookupKey,
-            name: name,
-            expand: expand,
-            metadata: metadata
-        )
+    public func postEntitlements(lookupKey: String, name: String, expand: [String]?, metadata: [String: String]?) async throws -> EntitlementsFeature {
+        return try await V1EntitlementsFeaturesMethods.postEntitlementsFeatures(config: config, lookupKey: lookupKey, name: name, expand: expand, metadata: metadata)
     }
 
-    /// Retrieves a feature by its identifier. Use `id` to select the feature and `expand` to request additional
-    /// response fields; the feature response includes its activation state, lookup key, name, and metadata.
+/// Retrieves a feature by its identifier. Use `id` to select the feature and `expand` to request additional response fields; the feature response includes its activation state, lookup key, name, and metadata.
     ///
     /// Retrieves a feature
     public func getEntitlementsId(id: String, expand: [String]?) async throws -> EntitlementsFeature {
-        try await V1EntitlementsFeaturesMethods.getEntitlementsFeaturesId(config: config, id: id, expand: expand)
+        return try await V1EntitlementsFeaturesMethods.getEntitlementsFeaturesId(config: config, id: id, expand: expand)
     }
 
-    /// Updates a feature's metadata or activation state. Use `active` to deactivate the feature, or provide `metadata`
-    /// and `name` to change its stored information; deactivated features cannot be attached to new products.
+/// Updates a feature's metadata or activation state. Use `active` to deactivate the feature, or provide `metadata` and `name` to change its stored information; deactivated features cannot be attached to new products.
     ///
     /// Update a feature’s metadata or permanently deactivate it.
-    public func postEntitlementsId(
-        id: String,
-        active: Bool?,
-        expand: [String]?,
-        metadata: PostEntitlementsFeaturesIdRequestBodyMetadata?,
-        name: String?
-    ) async throws -> EntitlementsFeature {
-        try await V1EntitlementsFeaturesMethods.postEntitlementsFeaturesId(
-            config: config,
-            id: id,
-            active: active,
-            expand: expand,
-            metadata: metadata,
-            name: name
-        )
+    public func postEntitlementsId(id: String, active: Bool?, expand: [String]?, metadata: PostEntitlementsFeaturesIdRequestBodyMetadata?, name: String?) async throws -> EntitlementsFeature {
+        return try await V1EntitlementsFeaturesMethods.postEntitlementsFeaturesId(config: config, id: id, active: active, expand: expand, metadata: metadata, name: name)
     }
 }
 
@@ -137,30 +74,16 @@ public class V1EphemeralKeysNamespace {
         self.config = config
     }
 
-    /// Creates a short-lived API key for a given resource.
-    public func post(
-        customer: String?,
-        expand: [String]?,
-        issuingCard: String?,
-        nonce: String?,
-        verificationSession: String?
-    ) async throws -> EphemeralKey {
-        try await V1EphemeralKeysMethods.postEphemeralKeys(
-            config: config,
-            customer: customer,
-            expand: expand,
-            issuingCard: issuingCard,
-            nonce: nonce,
-            verificationSession: verificationSession
-        )
+/// Creates a short-lived API key for a given resource.
+    public func post(customer: String?, expand: [String]?, issuingCard: String?, nonce: String?, verificationSession: String?) async throws -> EphemeralKey {
+        return try await V1EphemeralKeysMethods.postEphemeralKeys(config: config, customer: customer, expand: expand, issuingCard: issuingCard, nonce: nonce, verificationSession: verificationSession)
     }
 
-    /// Deletes an ephemeral key immediately. Use `key` to identify the short-lived credential that should no longer
-    /// grant access to its scoped resource.
+/// Deletes an ephemeral key immediately. Use `key` to identify the short-lived credential that should no longer grant access to its scoped resource.
     ///
     /// Invalidates a short-lived API key for a given resource.
     public func deleteKey(key: String, expand: [String]?) async throws -> EphemeralKey {
-        try await V1EphemeralKeysMethods.deleteEphemeralKeysKey(config: config, key: key, expand: expand)
+        return try await V1EphemeralKeysMethods.deleteEphemeralKeysKey(config: config, key: key, expand: expand)
     }
 }
 
@@ -170,23 +93,18 @@ public class V1EventsNamespace {
         self.config = config
     }
 
-    /// Lists events created within the last 30 days. Use `created`, `type`, or `types` to filter results and
-    /// `starting_after` or `ending_before` to traverse the list; do not provide `type` and `types` together.
+/// Lists events created within the last 30 days. Use `created`, `type`, or `types` to filter results and `starting_after` or `ending_before` to traverse the list; do not provide `type` and `types` together.
     ///
-    /// List events, going back up to 30 days. Each event data is rendered according to Stripe API version at its
-    /// creation time, specified in event object api_version attribute (not according to your current Stripe API version
-    /// or Stripe-Version header).
+    /// List events, going back up to 30 days. Each event data is rendered according to Stripe API version at its creation time, specified in event object api_version attribute (not according to your current Stripe API version or Stripe-Version header).
     public func get(options: V1EventsMethods.GetEventsOptions) async throws -> GetEventsResponse {
-        try await V1EventsMethods.getEvents(config: config, options: options)
+        return try await V1EventsMethods.getEvents(config: config, options: options)
     }
 
-    /// Retrieves an event created within the last 30 days. Use `id` to select the event, optionally requesting expanded
-    /// fields with `expand`; event data is rendered according to the API version in effect when the event was created.
+/// Retrieves an event created within the last 30 days. Use `id` to select the event, optionally requesting expanded fields with `expand`; event data is rendered according to the API version in effect when the event was created.
     ///
-    /// Retrieves the details of an event if it was created in the last 30 days. Supply the unique identifier of the
-    /// event, which you might have received in a webhook.
+    /// Retrieves the details of an event if it was created in the last 30 days. Supply the unique identifier of the event, which you might have received in a webhook.
     public func getId(id: String, expand: [String]?) async throws -> Event {
-        try await V1EventsMethods.getEventsId(config: config, id: id, expand: expand)
+        return try await V1EventsMethods.getEventsId(config: config, id: id, expand: expand)
     }
 }
 
@@ -196,35 +114,18 @@ public class V1ExchangeRatesNamespace {
         self.config = config
     }
 
-    /// Lists exchange rates from supported currencies. Use `limit`, `starting_after`, and `ending_before` to control
-    /// pagination; the ExchangeRate APIs are deprecated, so use the FX Quotes API for new integrations.
+/// Lists exchange rates from supported currencies. Use `limit`, `starting_after`, and `ending_before` to control pagination; the ExchangeRate APIs are deprecated, so use the FX Quotes API for new integrations.
     ///
-    /// [Deprecated] The ExchangeRate APIs are deprecated. Please use the FX Quotes API instead. Returns a list of
-    /// objects that contain the rates at which foreign currencies are converted to one another. Only shows the
-    /// currencies for which Stripe supports.
-    public func get(
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        startingAfter: String?
-    ) async throws -> GetExchangeRatesResponse {
-        try await V1ExchangeRatesMethods.getExchangeRates(
-            config: config,
-            endingBefore: endingBefore,
-            expand: expand,
-            limit: limit,
-            startingAfter: startingAfter
-        )
+    /// [Deprecated] The ExchangeRate APIs are deprecated. Please use the FX Quotes API instead. Returns a list of objects that contain the rates at which foreign currencies are converted to one another. Only shows the currencies for which Stripe supports.
+    public func get(endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetExchangeRatesResponse {
+        return try await V1ExchangeRatesMethods.getExchangeRates(config: config, endingBefore: endingBefore, expand: expand, limit: limit, startingAfter: startingAfter)
     }
 
-    /// Retrieves exchange rates from a specified base currency to every supported currency. Use `rate_id` as the
-    /// lowercase three-letter ISO currency code; the ExchangeRate APIs are deprecated, so use the FX Quotes API for new
-    /// integrations.
+/// Retrieves exchange rates from a specified base currency to every supported currency. Use `rate_id` as the lowercase three-letter ISO currency code; the ExchangeRate APIs are deprecated, so use the FX Quotes API for new integrations.
     ///
-    /// [Deprecated] The ExchangeRate APIs are deprecated. Please use the FX Quotes API instead. Retrieves the exchange
-    /// rates from the given currency to every supported currency.
+    /// [Deprecated] The ExchangeRate APIs are deprecated. Please use the FX Quotes API instead. Retrieves the exchange rates from the given currency to every supported currency.
     public func getRateId(rateId: String, expand: [String]?) async throws -> ExchangeRate {
-        try await V1ExchangeRatesMethods.getExchangeRatesRateId(config: config, rateId: rateId, expand: expand)
+        return try await V1ExchangeRatesMethods.getExchangeRatesRateId(config: config, rateId: rateId, expand: expand)
     }
 }
 
@@ -234,19 +135,11 @@ public class V1ExternalAccountsNamespace {
         self.config = config
     }
 
-    /// Updates editable details of a bank account belonging to a connected account. Use fields such as
-    /// `account_holder_name`, `account_holder_type`, `metadata`, or `default_for_currency`; updates are available only
-    /// when the connected account uses application requirement collection, and an empty update can re-enable a disabled
-    /// bank account.
+/// Updates editable details of a bank account belonging to a connected account. Use fields such as `account_holder_name`, `account_holder_type`, `metadata`, or `default_for_currency`; updates are available only when the connected account uses application requirement collection, and an empty update can re-enable a disabled bank account.
     ///
-    /// Updates the metadata, account holder name, account holder type of a bank account belonging to a connected
-    /// account and optionally sets it as the default for its currency. Other bank account details are not editable by
-    /// design. You can only update bank accounts when account.controller.requirement_collection is application , which
-    /// includes Custom accounts. You can re-enable a disabled bank account by performing an update call without
-    /// providing any arguments or changes.
-    public func postId(options: V1ExternalAccountsMethods
-        .PostExternalAccountsIdOptions) async throws -> ExternalAccount {
-        try await V1ExternalAccountsMethods.postExternalAccountsId(config: config, options: options)
+    /// Updates the metadata, account holder name, account holder type of a bank account belonging to a connected account and optionally sets it as the default for its currency. Other bank account details are not editable by design. You can only update bank accounts when account.controller.requirement_collection is application , which includes Custom accounts. You can re-enable a disabled bank account by performing an update call without providing any arguments or changes.
+    public func postId(options: V1ExternalAccountsMethods.PostExternalAccountsIdOptions) async throws -> ExternalAccount {
+        return try await V1ExternalAccountsMethods.postExternalAccountsId(config: config, options: options)
     }
 }
 
@@ -256,78 +149,32 @@ public class V1FileLinksNamespace {
         self.config = config
     }
 
-    /// Lists file links that provide unauthenticated access to File object contents. Use `file`, `expired`, and
-    /// `created` to filter links, and use cursor parameters to paginate through the results.
+/// Lists file links that provide unauthenticated access to File object contents. Use `file`, `expired`, and `created` to filter links, and use cursor parameters to paginate through the results.
     ///
     /// Returns a list of file links.
-    public func get(
-        created: GetFileLinksParameter?,
-        endingBefore: String?,
-        expand: [String]?,
-        expired: Bool?,
-        file: String?,
-        limit: Int?,
-        startingAfter: String?
-    ) async throws -> GetFileLinksResponse {
-        try await V1FileLinksMethods.getFileLinks(
-            config: config,
-            created: created,
-            endingBefore: endingBefore,
-            expand: expand,
-            expired: expired,
-            file: file,
-            limit: limit,
-            startingAfter: startingAfter
-        )
+    public func get(created: GetFileLinksParameter?, endingBefore: String?, expand: [String]?, expired: Bool?, file: String?, limit: Int?, startingAfter: String?) async throws -> GetFileLinksResponse {
+        return try await V1FileLinksMethods.getFileLinks(config: config, created: created, endingBefore: endingBefore, expand: expand, expired: expired, file: file, limit: limit, startingAfter: startingAfter)
     }
 
-    /// Creates a new file link for sharing the contents of a file without authentication. Supply `file` with the
-    /// identifier of a file whose purpose supports file links, and optionally set `expires_at` or attach `metadata`.
-    /// The response includes the downloadable URL and the link's expiration state.
+/// Creates a new file link for sharing the contents of a file without authentication. Supply `file` with the identifier of a file whose purpose supports file links, and optionally set `expires_at` or attach `metadata`. The response includes the downloadable URL and the link's expiration state.
     ///
     /// Creates a new file link object.
-    public func post(
-        file: String,
-        expand: [String]?,
-        expiresAt: Int?,
-        metadata: PostFileLinksRequestBodyMetadata?
-    ) async throws -> FileLink {
-        try await V1FileLinksMethods.postFileLinks(
-            config: config,
-            file: file,
-            expand: expand,
-            expiresAt: expiresAt,
-            metadata: metadata
-        )
+    public func post(file: String, expand: [String]?, expiresAt: Int?, metadata: PostFileLinksRequestBodyMetadata?) async throws -> FileLink {
+        return try await V1FileLinksMethods.postFileLinks(config: config, file: file, expand: expand, expiresAt: expiresAt, metadata: metadata)
     }
 
-    /// Retrieves a file link by its identifier. Use `expand` when you need selected response fields expanded rather
-    /// than returned as identifiers. The response contains the link's associated file and publicly accessible download
-    /// URL.
+/// Retrieves a file link by its identifier. Use `expand` when you need selected response fields expanded rather than returned as identifiers. The response contains the link's associated file and publicly accessible download URL.
     ///
     /// Retrieves the file link with the given ID.
     public func getLink(link: String, expand: [String]?) async throws -> FileLink {
-        try await V1FileLinksMethods.getFileLinksLink(config: config, link: link, expand: expand)
+        return try await V1FileLinksMethods.getFileLinksLink(config: config, link: link, expand: expand)
     }
 
-    /// Updates an existing file link's expiration or metadata. Use `expires_at` to set a future Unix expiration
-    /// timestamp, expire the link immediately with `now`, or clear the expiration with an empty string. Expired links
-    /// can no longer be updated.
+/// Updates an existing file link's expiration or metadata. Use `expires_at` to set a future Unix expiration timestamp, expire the link immediately with `now`, or clear the expiration with an empty string. Expired links can no longer be updated.
     ///
     /// Updates an existing file link object. Expired links can no longer be updated.
-    public func postLink(
-        link: String,
-        expand: [String]?,
-        expiresAt: PostFileLinksLinkRequestBodyExpiresAt?,
-        metadata: PostFileLinksLinkRequestBodyMetadata?
-    ) async throws -> FileLink {
-        try await V1FileLinksMethods.postFileLinksLink(
-            config: config,
-            link: link,
-            expand: expand,
-            expiresAt: expiresAt,
-            metadata: metadata
-        )
+    public func postLink(link: String, expand: [String]?, expiresAt: PostFileLinksLinkRequestBodyExpiresAt?, metadata: PostFileLinksLinkRequestBodyMetadata?) async throws -> FileLink {
+        return try await V1FileLinksMethods.postFileLinksLink(config: config, link: link, expand: expand, expiresAt: expiresAt, metadata: metadata)
     }
 }
 
@@ -337,55 +184,22 @@ public class V1FilesNamespace {
         self.config = config
     }
 
-    /// Lists files that the authenticated user can access, ordered from most recently created to oldest. Use `purpose`
-    /// to filter the results, `created` to constrain the creation interval, and cursor parameters to navigate between
-    /// pages. Set `limit` to control the page size.
+/// Lists files that the authenticated user can access, ordered from most recently created to oldest. Use `purpose` to filter the results, `created` to constrain the creation interval, and cursor parameters to navigate between pages. Set `limit` to control the page size.
     ///
-    /// Returns a list of the files that your account has access to. Stripe sorts and returns the files by their
-    /// creation dates, placing the most recently created files at the top.
-    public func get(
-        created: GetFilesParameter?,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        purpose: GetFilesParameterX972a335d?,
-        startingAfter: String?
-    ) async throws -> GetFilesResponse {
-        try await V1FilesMethods.getFiles(
-            config: config,
-            created: created,
-            endingBefore: endingBefore,
-            expand: expand,
-            limit: limit,
-            purpose: purpose,
-            startingAfter: startingAfter
-        )
+    /// Returns a list of the files that your account has access to. Stripe sorts and returns the files by their creation dates, placing the most recently created files at the top.
+    public func get(created: GetFilesParameter?, endingBefore: String?, expand: [String]?, limit: Int?, purpose: GetFilesParameterX972a335d?, startingAfter: String?) async throws -> GetFilesResponse {
+        return try await V1FilesMethods.getFiles(config: config, created: created, endingBefore: endingBefore, expand: expand, limit: limit, purpose: purpose, startingAfter: startingAfter)
     }
 
-    /// To upload a file to Stripe, you need to send a request of type multipart/form-data . Include the file you want
-    /// to upload in the request, and the parameters for creating a file. All of Stripe’s officially supported Client
-    /// libraries support sending multipart/form-data .
-    public func post(
-        file: SdkUploadFile,
-        purpose: PostFilesRequestBodyPurpose,
-        expand: [String]?,
-        fileLinkData: PostFilesRequestBodyFileLinkData?
-    ) async throws -> File2 {
-        try await V1FilesMethods.postFiles(
-            config: config,
-            file: file,
-            purpose: purpose,
-            expand: expand,
-            fileLinkData: fileLinkData
-        )
+/// To upload a file to Stripe, you need to send a request of type multipart/form-data . Include the file you want to upload in the request, and the parameters for creating a file. All of Stripe’s officially supported Client libraries support sending multipart/form-data .
+    public func post(file: SdkUploadFile, purpose: PostFilesRequestBodyPurpose, expand: [String]?, fileLinkData: PostFilesRequestBodyFileLinkData?) async throws -> File2 {
+        return try await V1FilesMethods.postFiles(config: config, file: file, purpose: purpose, expand: expand, fileLinkData: fileLinkData)
     }
 
-    /// Retrieves the details of a file by its identifier. Use `expand` when you need selected fields expanded in the
-    /// response. The returned file includes its purpose, size, timestamps, type, and download URL when available.
+/// Retrieves the details of a file by its identifier. Use `expand` when you need selected fields expanded in the response. The returned file includes its purpose, size, timestamps, type, and download URL when available.
     ///
-    /// Retrieves the details of an existing file object. After you supply a unique file ID, Stripe returns the
-    /// corresponding file object. Learn how to access file contents.
+    /// Retrieves the details of an existing file object. After you supply a unique file ID, Stripe returns the corresponding file object. Learn how to access file contents.
     public func getFile(file: String, expand: [String]?) async throws -> File2 {
-        try await V1FilesMethods.getFilesFile(config: config, file: file, expand: expand)
+        return try await V1FilesMethods.getFilesFile(config: config, file: file, expand: expand)
     }
 }

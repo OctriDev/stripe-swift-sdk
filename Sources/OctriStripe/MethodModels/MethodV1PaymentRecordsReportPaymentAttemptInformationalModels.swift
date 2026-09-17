@@ -7,38 +7,28 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1PaymentRecordsReportPaymentAttemptInformational operation model declarations
+// Canonical v1PaymentRecordsReportPaymentAttemptInformational operation model declarations
 public enum PostPaymentRecordsIdReportPaymentAttemptInformationalRequestBX5f0e4fa803 {
     case stringValue(String)
     case stringValue1(String)
 }
 
 extension PostPaymentRecordsIdReportPaymentAttemptInformationalRequestBX5f0e4fa803: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostPaymentRecordsIdReportPaymentAttemptInformationalRequestBX5f0e4fa803"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostPaymentRecordsIdReportPaymentAttemptInformationalRequestBX5f0e4fa803")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(String.self) {
-            return .stringValue1(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(String.self) { return .stringValue1(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -48,6 +38,7 @@ extension PostPaymentRecordsIdReportPaymentAttemptInformationalRequestBX5f0e4fa8
         case let .stringValue1(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum PostPaymentRecordsIdReportPaymentAttemptInformationalRequestBodyMetadata {
@@ -56,31 +47,21 @@ public enum PostPaymentRecordsIdReportPaymentAttemptInformationalRequestBodyMeta
 }
 
 extension PostPaymentRecordsIdReportPaymentAttemptInformationalRequestBodyMetadata: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostPaymentRecordsIdReportPaymentAttemptInformationalRequestBodyMetadata"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostPaymentRecordsIdReportPaymentAttemptInformationalRequestBodyMetadata")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode([String: String].self) {
-            return .dictionary(value)
-        }
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
+        if let value = try? container.decode([String: String].self) { return .dictionary(value) }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -90,6 +71,7 @@ extension PostPaymentRecordsIdReportPaymentAttemptInformationalRequestBodyMetada
         case let .stringValue(value): try container.encode(value); return true
         }
     }
+
 }
 
 public struct PostPaymentRecordsIdReportPaymentAttemptInformationalRequestBX37a9136c69: Codable {
@@ -105,28 +87,24 @@ public struct PostPaymentRecordsIdReportPaymentAttemptInformationalRequestBX37a9
     }
 
     init() {
-        (address, name, phone) = (nil, nil, nil)
+        (self.address, self.name, self.phone) = (nil, nil, nil)
     }
 }
 
-public extension PostPaymentRecordsIdReportPaymentAttemptInformationalRequestBX37a9136c69 {
-    init(from decoder: Decoder) throws {
+extension PostPaymentRecordsIdReportPaymentAttemptInformationalRequestBX37a9136c69 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        address = try container.sdkDecodeIfPresent(.address)
-        name = try container.sdkDecodeIfPresent(.name)
-        phone = try container.sdkDecodeIfPresent(.phone)
-        if let value = name {
+        self.address = try container.sdkDecodeIfPresent(.address)
+        self.name = try container.sdkDecodeIfPresent(.name)
+        self.phone = try container.sdkDecodeIfPresent(.phone)
+        if let value = self.name {
             try validateLength("name", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PostPaymentRecordsIdReportPaymentAttemptInformationalRequestBX37a9136c69 {
-    init(
-        address: PostPaymentRecordsIdReportPaymentAttemptInformationalRequestBX0cfa862766? = nil,
-        name: String? = nil,
-        phone: String? = nil
-    ) throws {
+extension PostPaymentRecordsIdReportPaymentAttemptInformationalRequestBX37a9136c69 {
+    public init(address: PostPaymentRecordsIdReportPaymentAttemptInformationalRequestBX0cfa862766? = nil, name: String? = nil, phone: String? = nil) throws {
         self.init()
         (self.address, self.name) = (address, name)
         self.phone = phone
@@ -144,43 +122,35 @@ public enum PostPaymentRecordsIdReportPaymentAttemptInformationalRequestBXcb3b5d
 }
 
 extension PostPaymentRecordsIdReportPaymentAttemptInformationalRequestBXcb3b5d6439: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostPaymentRecordsIdReportPaymentAttemptInformationalRequestBXcb3b5d6439"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostPaymentRecordsIdReportPaymentAttemptInformationalRequestBXcb3b5d6439")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PostPaymentRecordsIdReportPaymentAttemptInformationalRequestBX37a9136c69.self
         ) {
-            return .postPaymentRecordsIdReportPaymentAttemptInformationalRequestBX37a9136c69(value)
+            return             .postPaymentRecordsIdReportPaymentAttemptInformationalRequestBX37a9136c69(value)
         }
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .postPaymentRecordsIdReportPaymentAttemptInformationalRequestBX37a9136c69(value): try container
-            .encode(value); return true
+        case let .postPaymentRecordsIdReportPaymentAttemptInformationalRequestBX37a9136c69(value): try container.encode(value); return true
         case let .stringValue(value): try container.encode(value); return true
         }
     }
+
 }
 
 public struct PostPaymentRecordsIdReportPaymentAttemptInformationalRequestBX0cfa862766: Codable {
@@ -201,50 +171,43 @@ public struct PostPaymentRecordsIdReportPaymentAttemptInformationalRequestBX0cfa
     }
 
     init() {
-        (city, country, line1, line2, postalCode) = (nil, nil, nil, nil, nil)
-        state = nil
+        (self.city, self.country, self.line1, self.line2, self.postalCode) = (nil, nil, nil, nil, nil)
+        self.state = nil
     }
 }
 
-public extension PostPaymentRecordsIdReportPaymentAttemptInformationalRequestBX0cfa862766 {
-    init(from decoder: Decoder) throws {
+extension PostPaymentRecordsIdReportPaymentAttemptInformationalRequestBX0cfa862766 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        city = try container.sdkDecodeIfPresent(.city)
-        country = try container.sdkDecodeIfPresent(.country)
-        line1 = try container.sdkDecodeIfPresent(.line1)
-        line2 = try container.sdkDecodeIfPresent(.line2)
-        postalCode = try container.sdkDecodeIfPresent(.postalCode)
-        state = try container.sdkDecodeIfPresent(.state)
-        if let value = city {
+        self.city = try container.sdkDecodeIfPresent(.city)
+        self.country = try container.sdkDecodeIfPresent(.country)
+        self.line1 = try container.sdkDecodeIfPresent(.line1)
+        self.line2 = try container.sdkDecodeIfPresent(.line2)
+        self.postalCode = try container.sdkDecodeIfPresent(.postalCode)
+        self.state = try container.sdkDecodeIfPresent(.state)
+        if let value = self.city {
             try validateLength("city", value, min: nil, max: 5000)
         }
-        if let value = country {
+        if let value = self.country {
             try validateLength("country", value, min: nil, max: 5000)
         }
-        if let value = line1 {
+        if let value = self.line1 {
             try validateLength("line1", value, min: nil, max: 5000)
         }
-        if let value = line2 {
+        if let value = self.line2 {
             try validateLength("line2", value, min: nil, max: 5000)
         }
-        if let value = postalCode {
+        if let value = self.postalCode {
             try validateLength("postal_code", value, min: nil, max: 5000)
         }
-        if let value = state {
+        if let value = self.state {
             try validateLength("state", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PostPaymentRecordsIdReportPaymentAttemptInformationalRequestBX0cfa862766 {
-    init(
-        city: String? = nil,
-        country: String? = nil,
-        line1: String? = nil,
-        line2: String? = nil,
-        postalCode: String? = nil,
-        state: String? = nil
-    ) throws {
+extension PostPaymentRecordsIdReportPaymentAttemptInformationalRequestBX0cfa862766 {
+    public init(city: String? = nil, country: String? = nil, line1: String? = nil, line2: String? = nil, postalCode: String? = nil, state: String? = nil) throws {
         self.init()
         (self.city, self.country) = (city, country)
         (self.line1, self.line2) = (line1, line2)
@@ -285,28 +248,28 @@ public struct PostPaymentRecordsIdReportPaymentAttemptInformationalRequestBX3177
     }
 
     init() {
-        (customer, email, name, phone) = (nil, nil, nil, nil)
+        (self.customer, self.email, self.name, self.phone) = (nil, nil, nil, nil)
     }
 }
 
-public extension PostPaymentRecordsIdReportPaymentAttemptInformationalRequestBX31778bbcec {
-    init(from decoder: Decoder) throws {
+extension PostPaymentRecordsIdReportPaymentAttemptInformationalRequestBX31778bbcec {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        customer = try container.sdkDecodeIfPresent(.customer)
-        email = try container.sdkDecodeIfPresent(.email)
-        name = try container.sdkDecodeIfPresent(.name)
-        phone = try container.sdkDecodeIfPresent(.phone)
-        if let value = customer {
+        self.customer = try container.sdkDecodeIfPresent(.customer)
+        self.email = try container.sdkDecodeIfPresent(.email)
+        self.name = try container.sdkDecodeIfPresent(.name)
+        self.phone = try container.sdkDecodeIfPresent(.phone)
+        if let value = self.customer {
             try validateLength("customer", value, min: nil, max: 5000)
         }
-        if let value = name {
+        if let value = self.name {
             try validateLength("name", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PostPaymentRecordsIdReportPaymentAttemptInformationalRequestBX31778bbcec {
-    init(customer: String? = nil, email: String? = nil, name: String? = nil, phone: String? = nil) throws {
+extension PostPaymentRecordsIdReportPaymentAttemptInformationalRequestBX31778bbcec {
+    public init(customer: String? = nil, email: String? = nil, name: String? = nil, phone: String? = nil) throws {
         self.init()
         (self.customer, self.email) = (customer, email)
         (self.name, self.phone) = (name, phone)

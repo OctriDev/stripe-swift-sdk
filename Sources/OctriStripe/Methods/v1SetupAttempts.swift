@@ -7,8 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1SetupAttemptsMethods {
-    /// Lists SetupAttempts associated with a specified SetupIntent. Supply `setup_intent` to scope the results, and use
-    /// `created`, `limit`, and cursor parameters to filter and paginate the attempts.
+    /// Lists SetupAttempts associated with a specified SetupIntent. Supply `setup_intent` to scope the results, and use `created`, `limit`, and cursor parameters to filter and paginate the attempts.
     ///
     /// Returns a list of SetupAttempts that associate with a provided SetupIntent.
     ///
@@ -31,26 +30,18 @@ public enum V1SetupAttemptsMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    public static func getSetupAttempts(
-        config: ClientConfig,
-        setupIntent: String,
-        created: GetSetupAttemptsParameter?,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        startingAfter: String?
-    ) async throws -> GetSetupAttemptsResponse {
+    public static func getSetupAttempts(config: ClientConfig, setupIntent: String, created: GetSetupAttemptsParameter?, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetSetupAttemptsResponse {
         try validateLength("setup_intent", setupIntent, max: 5000)
 
-        if let endingBefore {
+        if let endingBefore = endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let startingAfter {
+        if let startingAfter = startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try await (sdkRequest("GET", "/v1/setup_attempts", config: config, query: [
+        return try (await sdkRequest("GET", "/v1/setup_attempts", config: config, query: [
             SdkQueryParameter("setup_intent", value: setupIntent),
             SdkQueryParameter("created", value: created),
             SdkQueryParameter("ending_before", value: endingBefore),

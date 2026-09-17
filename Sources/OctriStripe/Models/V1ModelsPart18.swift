@@ -3,41 +3,41 @@
 
 import Foundation
 
-/// V1 domain models
+// V1 domain models
 extension Invoice {
     func sdkValidateConstraintsPart1() throws {
-        try validateLength("id", id, min: nil, max: 5000)
-        if let value = accountCountry {
+            try validateLength("id", self.id, min: nil, max: 5000)
+        if let value = self.accountCountry {
             try validateLength("account_country", value, min: nil, max: 5000)
         }
-        if let value = accountName {
+        if let value = self.accountName {
             try validateLength("account_name", value, min: nil, max: 5000)
         }
-        if let value = customerAccount {
+        if let value = self.customerAccount {
             try validateLength("customer_account", value, min: nil, max: 5000)
         }
-        if let value = customerEmail {
+        if let value = self.customerEmail {
             try validateLength("customer_email", value, min: nil, max: 5000)
         }
-        if let value = customerName {
+        if let value = self.customerName {
             try validateLength("customer_name", value, min: nil, max: 5000)
         }
-        if let value = customerPhone {
+        if let value = self.customerPhone {
             try validateLength("customer_phone", value, min: nil, max: 5000)
         }
-        if let value = description {
+        if let value = self.description {
             try validateLength("description", value, min: nil, max: 5000)
         }
-        if let value = footer {
+        if let value = self.footer {
             try validateLength("footer", value, min: nil, max: 5000)
         }
-        if let value = hostedInvoiceUrl {
+        if let value = self.hostedInvoiceUrl {
             try validateLength("hosted_invoice_url", value, min: nil, max: 5000)
         }
-        if let value = invoicePdf {
+        if let value = self.invoicePdf {
             try validateLength("invoice_pdf", value, min: nil, max: 5000)
         }
-        if let value = number {
+        if let value = self.number {
             try validateLength("number", value, min: nil, max: 5000)
         }
     }
@@ -45,10 +45,10 @@ extension Invoice {
 
 extension Invoice {
     func sdkValidateConstraintsPart2() throws {
-        if let value = receiptNumber {
+        if let value = self.receiptNumber {
             try validateLength("receipt_number", value, min: nil, max: 5000)
         }
-        if let value = statementDescriptor {
+        if let value = self.statementDescriptor {
             try validateLength("statement_descriptor", value, min: nil, max: 5000)
         }
     }
@@ -61,34 +61,22 @@ public enum InvoiceAccountTaxIdsItem {
 }
 
 extension InvoiceAccountTaxIdsItem: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for InvoiceAccountTaxIdsItem"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for InvoiceAccountTaxIdsItem")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(TaxId.self) {
-            return .taxId(value)
-        }
-        if let value = try? container.decode(DeletedTaxId.self) {
-            return .deletedTaxId(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(TaxId.self) { return .taxId(value) }
+        if let value = try? container.decode(DeletedTaxId.self) { return .deletedTaxId(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -99,6 +87,7 @@ extension InvoiceAccountTaxIdsItem: Codable {
         case let .deletedTaxId(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum InvoiceApplication {
@@ -108,34 +97,22 @@ public enum InvoiceApplication {
 }
 
 extension InvoiceApplication: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for InvoiceApplication"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for InvoiceApplication")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(Application.self) {
-            return .application(value)
-        }
-        if let value = try? container.decode(DeletedApplication.self) {
-            return .deletedApplication(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(Application.self) { return .application(value) }
+        if let value = try? container.decode(DeletedApplication.self) { return .deletedApplication(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -146,6 +123,7 @@ extension InvoiceApplication: Codable {
         case let .deletedApplication(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum InvoiceConfirmationSecret {
@@ -153,29 +131,20 @@ public enum InvoiceConfirmationSecret {
 }
 
 extension InvoiceConfirmationSecret: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for InvoiceConfirmationSecret"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for InvoiceConfirmationSecret")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container
-            .decode(InvoicesResourceConfirmationSecret.self) {
-            return .invoicesResourceConfirmationSecret(value)
-        }
+        if let value = try? container.decode(InvoicesResourceConfirmationSecret.self) { return .invoicesResourceConfirmationSecret(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -184,6 +153,7 @@ extension InvoiceConfirmationSecret: Codable {
         case let .invoicesResourceConfirmationSecret(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum InvoiceCustomer {
@@ -193,34 +163,22 @@ public enum InvoiceCustomer {
 }
 
 extension InvoiceCustomer: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for InvoiceCustomer"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for InvoiceCustomer")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(Customer.self) {
-            return .customer(value)
-        }
-        if let value = try? container.decode(DeletedCustomer.self) {
-            return .deletedCustomer(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(Customer.self) { return .customer(value) }
+        if let value = try? container.decode(DeletedCustomer.self) { return .deletedCustomer(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -231,6 +189,7 @@ extension InvoiceCustomer: Codable {
         case let .deletedCustomer(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum InvoiceCustomerAddress {
@@ -238,28 +197,20 @@ public enum InvoiceCustomerAddress {
 }
 
 extension InvoiceCustomerAddress: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for InvoiceCustomerAddress"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for InvoiceCustomerAddress")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(Address.self) {
-            return .address(value)
-        }
+        if let value = try? container.decode(Address.self) { return .address(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -268,6 +219,7 @@ extension InvoiceCustomerAddress: Codable {
         case let .address(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum InvoiceCustomerShipping {
@@ -275,28 +227,20 @@ public enum InvoiceCustomerShipping {
 }
 
 extension InvoiceCustomerShipping: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for InvoiceCustomerShipping"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for InvoiceCustomerShipping")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(Shipping.self) {
-            return .shipping(value)
-        }
+        if let value = try? container.decode(Shipping.self) { return .shipping(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -305,6 +249,7 @@ extension InvoiceCustomerShipping: Codable {
         case let .shipping(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum InvoiceDefaultPaymentMethod {
@@ -313,31 +258,21 @@ public enum InvoiceDefaultPaymentMethod {
 }
 
 extension InvoiceDefaultPaymentMethod: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for InvoiceDefaultPaymentMethod"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for InvoiceDefaultPaymentMethod")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(PaymentMethod.self) {
-            return .paymentMethod(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(PaymentMethod.self) { return .paymentMethod(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -347,6 +282,7 @@ extension InvoiceDefaultPaymentMethod: Codable {
         case let .paymentMethod(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum InvoiceDiscountsItem {
@@ -356,34 +292,22 @@ public enum InvoiceDiscountsItem {
 }
 
 extension InvoiceDiscountsItem: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for InvoiceDiscountsItem"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for InvoiceDiscountsItem")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(Discount.self) {
-            return .discount(value)
-        }
-        if let value = try? container.decode(DeletedDiscount.self) {
-            return .deletedDiscount(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(Discount.self) { return .discount(value) }
+        if let value = try? container.decode(DeletedDiscount.self) { return .deletedDiscount(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -394,6 +318,7 @@ extension InvoiceDiscountsItem: Codable {
         case let .deletedDiscount(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum InvoiceFromInvoice {
@@ -401,29 +326,20 @@ public enum InvoiceFromInvoice {
 }
 
 extension InvoiceFromInvoice: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for InvoiceFromInvoice"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for InvoiceFromInvoice")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container
-            .decode(InvoicesResourceFromInvoice.self) {
-            return .invoicesResourceFromInvoice(value)
-        }
+        if let value = try? container.decode(InvoicesResourceFromInvoice.self) { return .invoicesResourceFromInvoice(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -432,6 +348,7 @@ extension InvoiceFromInvoice: Codable {
         case let .invoicesResourceFromInvoice(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum InvoiceLastFinalizationError {
@@ -439,28 +356,20 @@ public enum InvoiceLastFinalizationError {
 }
 
 extension InvoiceLastFinalizationError: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for InvoiceLastFinalizationError"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for InvoiceLastFinalizationError")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(ApiErrors.self) {
-            return .apiErrors(value)
-        }
+        if let value = try? container.decode(ApiErrors.self) { return .apiErrors(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -469,39 +378,30 @@ extension InvoiceLastFinalizationError: Codable {
         case let .apiErrors(value): try container.encode(value); return true
         }
     }
+
 }
 
-public enum InvoiceLatestRevision {
+public indirect enum InvoiceLatestRevision {
     case stringValue(String)
     case invoice(Invoice)
 }
 
 extension InvoiceLatestRevision: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for InvoiceLatestRevision"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for InvoiceLatestRevision")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(Invoice.self) {
-            return .invoice(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(Invoice.self) { return .invoice(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -511,6 +411,7 @@ extension InvoiceLatestRevision: Codable {
         case let .invoice(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// The individual line items that make up the invoice. `lines` is sorted as follows: (1) pending invoice items
@@ -534,55 +435,37 @@ public struct InvoiceLines: Codable {
         case url
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension InvoiceLines {
-    init(from decoder: Decoder) throws {
+extension InvoiceLines {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.data) else {
-            throw SdkValidationError(
-                field: "data",
-                code: "required",
-                message: "Validation failed for 'data': value is required"
-            )
+            throw SdkValidationError(field: "data", code: "required", message: "Validation failed for 'data': value is required")
         }
         guard container.contains(.hasMore) else {
-            throw SdkValidationError(
-                field: "has_more",
-                code: "required",
-                message: "Validation failed for 'has_more': value is required"
-            )
+            throw SdkValidationError(field: "has_more", code: "required", message: "Validation failed for 'has_more': value is required")
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(
-                field: "object",
-                code: "required",
-                message: "Validation failed for 'object': value is required"
-            )
+            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
         }
         guard container.contains(.url) else {
-            throw SdkValidationError(
-                field: "url",
-                code: "required",
-                message: "Validation failed for 'url': value is required"
-            )
+            throw SdkValidationError(field: "url", code: "required", message: "Validation failed for 'url': value is required")
         }
-        data = try container.sdkDecodeRequired(.data)
-        hasMore = try container.sdkDecodeRequired(.hasMore)
-        object = try container.sdkDecodeRequired(.object)
-        url = try container.sdkDecodeRequired(.url)
-        try validateLength("url", url, min: nil, max: 5000)
+        self.data = try container.sdkDecodeRequired(.data)
+        self.hasMore = try container.sdkDecodeRequired(.hasMore)
+        self.object = try container.sdkDecodeRequired(.object)
+        self.url = try container.sdkDecodeRequired(.url)
+            try validateLength("url", self.url, min: nil, max: 5000)
     }
 }
 
-public extension InvoiceLines {
-    init(data: [LineItem], hasMore: Bool, object: InvoiceLinesObject, url: String) throws {
+extension InvoiceLines {
+    public init(data: [LineItem], hasMore: Bool, object: InvoiceLinesObject, url: String) throws {
         (self.data, self.hasMore) = (data, hasMore)
         (self.object, self.url) = (object, url)
-        try validateLength("url", self.url, min: nil, max: 5000)
+            try validateLength("url", self.url, min: nil, max: 5000)
     }
 }
 
@@ -592,31 +475,21 @@ public enum InvoiceOnBehalfOf {
 }
 
 extension InvoiceOnBehalfOf: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for InvoiceOnBehalfOf"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for InvoiceOnBehalfOf")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(Account.self) {
-            return .account(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(Account.self) { return .account(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -626,6 +499,7 @@ extension InvoiceOnBehalfOf: Codable {
         case let .account(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum InvoiceParent {
@@ -633,11 +507,10 @@ public enum InvoiceParent {
 }
 
 extension InvoiceParent: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
         throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for InvoiceParent")
     }
 
@@ -645,15 +518,13 @@ extension InvoiceParent: Codable {
         if let value = try? container.decode(
             BillingBillResourceInvoicingParentsInvoiceParent.self
         ) {
-            return .billingBillResourceInvoicingParentsInvoiceParent(value)
+            return             .billingBillResourceInvoicingParentsInvoiceParent(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -662,6 +533,7 @@ extension InvoiceParent: Codable {
         case let .billingBillResourceInvoicingParentsInvoiceParent(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// Payments for this invoice. Use invoice payment to get more details.
@@ -683,7 +555,5 @@ public struct InvoicePayments: Codable {
         case url
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }

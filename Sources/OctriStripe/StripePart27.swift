@@ -9,59 +9,32 @@ public class V1TaxRatesNamespace {
         self.config = config
     }
 
-    /// Lists tax rates, sorted by creation date with the most recently created rates first. Use `active`, `inclusive`,
-    /// and `created` to filter the collection, and use `starting_after` or `ending_before` to paginate the results. Set
-    /// `limit` to control the page size and use `expand` when you need expanded response fields.
+/// Lists tax rates, sorted by creation date with the most recently created rates first. Use `active`, `inclusive`, and `created` to filter the collection, and use `starting_after` or `ending_before` to paginate the results. Set `limit` to control the page size and use `expand` when you need expanded response fields.
     ///
-    /// Returns a list of your tax rates. Tax rates are returned sorted by creation date, with the most recently created
-    /// tax rates appearing first.
-    public func get(
-        active: Bool?,
-        created: GetTaxRatesParameter?,
-        endingBefore: String?,
-        expand: [String]?,
-        inclusive: Bool?,
-        limit: Int?,
-        startingAfter: String?
-    ) async throws -> GetTaxRatesResponse {
-        try await V1TaxRatesMethods.getTaxRates(
-            config: config,
-            active: active,
-            created: created,
-            endingBefore: endingBefore,
-            expand: expand,
-            inclusive: inclusive,
-            limit: limit,
-            startingAfter: startingAfter
-        )
+    /// Returns a list of your tax rates. Tax rates are returned sorted by creation date, with the most recently created tax rates appearing first.
+    public func get(active: Bool?, created: GetTaxRatesParameter?, endingBefore: String?, expand: [String]?, inclusive: Bool?, limit: Int?, startingAfter: String?) async throws -> GetTaxRatesResponse {
+        return try await V1TaxRatesMethods.getTaxRates(config: config, active: active, created: created, endingBefore: endingBefore, expand: expand, inclusive: inclusive, limit: limit, startingAfter: startingAfter)
     }
 
-    /// Creates a new tax rate for use with invoices, subscriptions, or Checkout Sessions. Supply `display_name`,
-    /// `inclusive`, and `percentage`, and optionally provide jurisdiction, country, state, metadata, or tax
-    /// classification details. Inactive rates cannot be used with new applications or Checkout Sessions, although
-    /// existing subscriptions and invoices can continue using them.
+/// Creates a new tax rate for use with invoices, subscriptions, or Checkout Sessions. Supply `display_name`, `inclusive`, and `percentage`, and optionally provide jurisdiction, country, state, metadata, or tax classification details. Inactive rates cannot be used with new applications or Checkout Sessions, although existing subscriptions and invoices can continue using them.
     ///
     /// Creates a new tax rate.
     public func post(options: V1TaxRatesMethods.PostTaxRatesOptions) async throws -> TaxRate {
-        try await V1TaxRatesMethods.postTaxRates(config: config, options: options)
+        return try await V1TaxRatesMethods.postTaxRates(config: config, options: options)
     }
 
-    /// Retrieves a tax rate by its unique identifier. Use `tax_rate` to select the rate and `expand` when you need
-    /// expanded response fields. The response includes the rate's configuration, jurisdiction details, percentage, and
-    /// active status.
+/// Retrieves a tax rate by its unique identifier. Use `tax_rate` to select the rate and `expand` when you need expanded response fields. The response includes the rate's configuration, jurisdiction details, percentage, and active status.
     ///
     /// Retrieves a tax rate with the given ID
     public func getTaxRate(taxRate: String, expand: [String]?) async throws -> TaxRate {
-        try await V1TaxRatesMethods.getTaxRatesTaxRate(config: config, taxRate: taxRate, expand: expand)
+        return try await V1TaxRatesMethods.getTaxRatesTaxRate(config: config, taxRate: taxRate, expand: expand)
     }
 
-    /// Updates an existing tax rate identified by its tax rate ID. Use the form fields to change its active state,
-    /// displayed name, jurisdiction, country, metadata, or tax classification. A successful response returns the
-    /// updated tax rate object.
+/// Updates an existing tax rate identified by its tax rate ID. Use the form fields to change its active state, displayed name, jurisdiction, country, metadata, or tax classification. A successful response returns the updated tax rate object.
     ///
     /// Updates an existing tax rate.
     public func postTaxRate(options: V1TaxRatesMethods.PostTaxRatesTaxRateOptions) async throws -> TaxRate {
-        try await V1TaxRatesMethods.postTaxRatesTaxRate(config: config, options: options)
+        return try await V1TaxRatesMethods.postTaxRatesTaxRate(config: config, options: options)
     }
 }
 
@@ -71,74 +44,37 @@ public class V1TerminalConfigurationsNamespace {
         self.config = config
     }
 
-    /// Lists Terminal configurations available for readers. Use cursor parameters to page through configurations and
-    /// `is_account_default` to filter for account-default or non-default configurations. Results include pagination
-    /// metadata and configuration objects.
+/// Lists Terminal configurations available for readers. Use cursor parameters to page through configurations and `is_account_default` to filter for account-default or non-default configurations. Results include pagination metadata and configuration objects.
     ///
     /// Returns a list of Configuration objects.
-    public func getTerminal(
-        endingBefore: String?,
-        expand: [String]?,
-        isAccountDefault: Bool?,
-        limit: Int?,
-        startingAfter: String?
-    ) async throws -> GetTerminalConfigurationsResponse {
-        try await V1TerminalConfigurationsMethods.getTerminalConfigurations(
-            config: config,
-            endingBefore: endingBefore,
-            expand: expand,
-            isAccountDefault: isAccountDefault,
-            limit: limit,
-            startingAfter: startingAfter
-        )
+    public func getTerminal(endingBefore: String?, expand: [String]?, isAccountDefault: Bool?, limit: Int?, startingAfter: String?) async throws -> GetTerminalConfigurationsResponse {
+        return try await V1TerminalConfigurationsMethods.getTerminalConfigurations(config: config, endingBefore: endingBefore, expand: expand, isAccountDefault: isAccountDefault, limit: limit, startingAfter: startingAfter)
     }
 
-    /// Creates a new Configuration object.
-    public func postTerminal(options: V1TerminalConfigurationsMethods
-        .PostTerminalConfigurationsOptions) async throws -> TerminalConfiguration {
-        try await V1TerminalConfigurationsMethods.postTerminalConfigurations(config: config, options: options)
+/// Creates a new Configuration object.
+    public func postTerminal(options: V1TerminalConfigurationsMethods.PostTerminalConfigurationsOptions) async throws -> TerminalConfiguration {
+        return try await V1TerminalConfigurationsMethods.postTerminalConfigurations(config: config, options: options)
     }
 
-    /// Deletes a Terminal configuration by its configuration ID. Use this operation when the configuration should no
-    /// longer be available for Terminal readers. A successful response confirms deletion with the configuration
-    /// identifier.
+/// Deletes a Terminal configuration by its configuration ID. Use this operation when the configuration should no longer be available for Terminal readers. A successful response confirms deletion with the configuration identifier.
     ///
     /// Deletes a Configuration object.
     public func deleteTerminalConfiguration(configuration: String) async throws -> DeletedTerminalConfiguration {
-        try await V1TerminalConfigurationsMethods.deleteTerminalConfigurationsConfiguration(
-            config: config,
-            configuration: configuration
-        )
+        return try await V1TerminalConfigurationsMethods.deleteTerminalConfigurationsConfiguration(config: config, configuration: configuration)
     }
 
-    /// Retrieves a Terminal configuration by its configuration ID. Use `expand` to include additional response fields
-    /// when retrieving the configuration. The response can contain either the configuration object or a deleted
-    /// configuration object.
+/// Retrieves a Terminal configuration by its configuration ID. Use `expand` to include additional response fields when retrieving the configuration. The response can contain either the configuration object or a deleted configuration object.
     ///
     /// Retrieves a Configuration object.
-    public func getTerminalConfiguration(
-        configuration: String,
-        expand: [String]?
-    ) async throws -> GetTerminalConfigurationsConfigurationResponse {
-        try await V1TerminalConfigurationsMethods.getTerminalConfigurationsConfiguration(
-            config: config,
-            configuration: configuration,
-            expand: expand
-        )
+    public func getTerminalConfiguration(configuration: String, expand: [String]?) async throws -> GetTerminalConfigurationsConfigurationResponse {
+        return try await V1TerminalConfigurationsMethods.getTerminalConfigurationsConfiguration(config: config, configuration: configuration, expand: expand)
     }
 
-    /// Updates an existing Terminal configuration for readers. Supply only the configuration properties you want to
-    /// change, including device-specific settings, connectivity, offline collection, reboot windows, tipping, or the
-    /// configuration name. The response returns the updated configuration or a deleted configuration representation.
+/// Updates an existing Terminal configuration for readers. Supply only the configuration properties you want to change, including device-specific settings, connectivity, offline collection, reboot windows, tipping, or the configuration name. The response returns the updated configuration or a deleted configuration representation.
     ///
     /// Updates a new Configuration object.
-    public func postTerminalConfiguration(options: V1TerminalConfigurationsMethods
-        .PostTerminalConfigurationsConfigurationOptions) async throws
-        -> PostTerminalConfigurationsConfigurationResponse {
-        try await V1TerminalConfigurationsMethods.postTerminalConfigurationsConfiguration(
-            config: config,
-            options: options
-        )
+    public func postTerminalConfiguration(options: V1TerminalConfigurationsMethods.PostTerminalConfigurationsConfigurationOptions) async throws -> PostTerminalConfigurationsConfigurationResponse {
+        return try await V1TerminalConfigurationsMethods.postTerminalConfigurationsConfiguration(config: config, options: options)
     }
 }
 
@@ -148,14 +84,9 @@ public class V1TerminalConnectionTokensNamespace {
         self.config = config
     }
 
-    /// To connect to a reader the Stripe Terminal SDK needs to retrieve a short-lived connection token from Stripe,
-    /// proxied through your server. On your backend, add an endpoint that creates and returns a connection token.
+/// To connect to a reader the Stripe Terminal SDK needs to retrieve a short-lived connection token from Stripe, proxied through your server. On your backend, add an endpoint that creates and returns a connection token.
     public func postTerminal(expand: [String]?, location: String?) async throws -> TerminalConnectionToken {
-        try await V1TerminalConnectionTokensMethods.postTerminalConnectionTokens(
-            config: config,
-            expand: expand,
-            location: location
-        )
+        return try await V1TerminalConnectionTokensMethods.postTerminalConnectionTokens(config: config, expand: expand, location: location)
     }
 }
 
@@ -165,64 +96,37 @@ public class V1TerminalLocationsNamespace {
         self.config = config
     }
 
-    /// Lists Terminal locations that group readers. Use cursor parameters to retrieve successive or previous pages and
-    /// `limit` to control the number of locations returned. Results include location objects and pagination metadata.
+/// Lists Terminal locations that group readers. Use cursor parameters to retrieve successive or previous pages and `limit` to control the number of locations returned. Results include location objects and pagination metadata.
     ///
     /// Returns a list of Location objects.
-    public func getTerminal(
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        startingAfter: String?
-    ) async throws -> GetTerminalLocationsResponse {
-        try await V1TerminalLocationsMethods.getTerminalLocations(
-            config: config,
-            endingBefore: endingBefore,
-            expand: expand,
-            limit: limit,
-            startingAfter: startingAfter
-        )
+    public func getTerminal(endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetTerminalLocationsResponse {
+        return try await V1TerminalLocationsMethods.getTerminalLocations(config: config, endingBefore: endingBefore, expand: expand, limit: limit, startingAfter: startingAfter)
     }
 
-    /// Creates a new Location object. For further details, including which address fields are required in each country,
-    /// see the Manage locations guide.
-    public func postTerminal(options: V1TerminalLocationsMethods
-        .PostTerminalLocationsOptions) async throws -> TerminalLocation {
-        try await V1TerminalLocationsMethods.postTerminalLocations(config: config, options: options)
+/// Creates a new Location object. For further details, including which address fields are required in each country, see the Manage locations guide.
+    public func postTerminal(options: V1TerminalLocationsMethods.PostTerminalLocationsOptions) async throws -> TerminalLocation {
+        return try await V1TerminalLocationsMethods.postTerminalLocations(config: config, options: options)
     }
 
-    /// Deletes a Terminal location and removes the location object from active use. Supply the location identifier for
-    /// the location you want to delete; the request body has no fields.
+/// Deletes a Terminal location and removes the location object from active use. Supply the location identifier for the location you want to delete; the request body has no fields.
     ///
     /// Deletes a Location object.
     public func deleteTerminalLocation(location: String) async throws -> DeletedTerminalLocation {
-        try await V1TerminalLocationsMethods.deleteTerminalLocationsLocation(config: config, location: location)
+        return try await V1TerminalLocationsMethods.deleteTerminalLocationsLocation(config: config, location: location)
     }
 
-    /// Retrieves a Terminal location by its location ID. Use `expand` to include additional response fields when
-    /// retrieving the location. The response can contain either the location object or a deleted location object.
+/// Retrieves a Terminal location by its location ID. Use `expand` to include additional response fields when retrieving the location. The response can contain either the location object or a deleted location object.
     ///
     /// Retrieves a Location object.
-    public func getTerminalLocation(
-        location: String,
-        expand: [String]?
-    ) async throws -> GetTerminalLocationsLocationResponse {
-        try await V1TerminalLocationsMethods.getTerminalLocationsLocation(
-            config: config,
-            location: location,
-            expand: expand
-        )
+    public func getTerminalLocation(location: String, expand: [String]?) async throws -> GetTerminalLocationsLocationResponse {
+        return try await V1TerminalLocationsMethods.getTerminalLocationsLocation(config: config, location: location, expand: expand)
     }
 
-    /// Updates a Terminal location without changing fields that you omit from the request. Use `address`,
-    /// `display_name`, and the other supported fields to modify location details, but create a new location if you need
-    /// to change its `country`.
+/// Updates a Terminal location without changing fields that you omit from the request. Use `address`, `display_name`, and the other supported fields to modify location details, but create a new location if you need to change its `country`.
     ///
-    /// Updates a Location object by setting the values of the parameters passed. Any parameters not provided will be
-    /// left unchanged.
-    public func postTerminalLocation(options: V1TerminalLocationsMethods
-        .PostTerminalLocationsLocationOptions) async throws -> PostTerminalLocationsLocationResponse {
-        try await V1TerminalLocationsMethods.postTerminalLocationsLocation(config: config, options: options)
+    /// Updates a Location object by setting the values of the parameters passed. Any parameters not provided will be left unchanged.
+    public func postTerminalLocation(options: V1TerminalLocationsMethods.PostTerminalLocationsLocationOptions) async throws -> PostTerminalLocationsLocationResponse {
+        return try await V1TerminalLocationsMethods.postTerminalLocationsLocation(config: config, options: options)
     }
 }
 
@@ -232,20 +136,9 @@ public class V1TerminalOnboardingLinksNamespace {
         self.config = config
     }
 
-    /// Creates a new OnboardingLink object that contains a redirect_url used for onboarding onto Tap to Pay on iPhone.
-    public func postTerminal(
-        linkOptions: PostTerminalOnboardingLinksRequestBodyLinkOptions,
-        linkType: PostTerminalOnboardingLinksRequestBodyLinkType,
-        expand: [String]?,
-        onBehalfOf: String?
-    ) async throws -> TerminalOnboardingLink {
-        try await V1TerminalOnboardingLinksMethods.postTerminalOnboardingLinks(
-            config: config,
-            linkOptions: linkOptions,
-            linkType: linkType,
-            expand: expand,
-            onBehalfOf: onBehalfOf
-        )
+/// Creates a new OnboardingLink object that contains a redirect_url used for onboarding onto Tap to Pay on iPhone.
+    public func postTerminal(linkOptions: PostTerminalOnboardingLinksRequestBodyLinkOptions, linkType: PostTerminalOnboardingLinksRequestBodyLinkType, expand: [String]?, onBehalfOf: String?) async throws -> TerminalOnboardingLink {
+        return try await V1TerminalOnboardingLinksMethods.postTerminalOnboardingLinks(config: config, linkOptions: linkOptions, linkType: linkType, expand: expand, onBehalfOf: onBehalfOf)
     }
 }
 
@@ -255,19 +148,11 @@ public class V1TerminalReadersCancelActionNamespace {
         self.config = config
     }
 
-    /// Triggers cancellation of the current action running on a Terminal reader. Use this operation when you need to
-    /// stop an in-progress reader action, and use `expand` to request expanded response fields.
+/// Triggers cancellation of the current action running on a Terminal reader. Use this operation when you need to stop an in-progress reader action, and use `expand` to request expanded response fields.
     ///
     /// Cancels the current reader action. See Programmatic Cancellation for more details.
-    public func postTerminalReadersReader(
-        reader: String,
-        expand: [String]?
-    ) async throws -> PostTerminalReadersReaderCancelActionResponse {
-        try await V1TerminalReadersCancelActionMethods.postTerminalReadersReaderCancelAction(
-            config: config,
-            reader: reader,
-            expand: expand
-        )
+    public func postTerminalReadersReader(reader: String, expand: [String]?) async throws -> PostTerminalReadersReaderCancelActionResponse {
+        return try await V1TerminalReadersCancelActionMethods.postTerminalReadersReaderCancelAction(config: config, reader: reader, expand: expand)
     }
 }
 
@@ -277,25 +162,11 @@ public class V1TerminalReadersCollectInputsNamespace {
         self.config = config
     }
 
-    /// Triggers an input collection flow on a Terminal reader to display forms and collect information from customers.
-    /// Supply up to five entries in `inputs`, with each entry defining an input type and its corresponding
-    /// configuration such as custom text, selection choices, or toggles.
+/// Triggers an input collection flow on a Terminal reader to display forms and collect information from customers. Supply up to five entries in `inputs`, with each entry defining an input type and its corresponding configuration such as custom text, selection choices, or toggles.
     ///
-    /// Initiates an input collection flow on a Reader to display input forms and collect information from your
-    /// customers.
-    public func postTerminalReadersReader(
-        reader: String,
-        inputs: [PostTerminalReadersReaderCollectInputsRequestBodyInputsItem],
-        expand: [String]?,
-        metadata: [String: String]?
-    ) async throws -> TerminalReader {
-        try await V1TerminalReadersCollectInputsMethods.postTerminalReadersReaderCollectInputs(
-            config: config,
-            reader: reader,
-            inputs: inputs,
-            expand: expand,
-            metadata: metadata
-        )
+    /// Initiates an input collection flow on a Reader to display input forms and collect information from your customers.
+    public func postTerminalReadersReader(reader: String, inputs: [PostTerminalReadersReaderCollectInputsRequestBodyInputsItem], expand: [String]?, metadata: [String: String]?) async throws -> TerminalReader {
+        return try await V1TerminalReadersCollectInputsMethods.postTerminalReadersReaderCollectInputs(config: config, reader: reader, inputs: inputs, expand: expand, metadata: metadata)
     }
 }
 
@@ -305,25 +176,11 @@ public class V1TerminalReadersCollectPaymentMethodNamespace {
         self.config = config
     }
 
-    /// Triggers collection of card details for a PaymentIntent on a Reader. Supply `payment_intent` and use
-    /// `collect_config` for collection options such as tipping or customer cancellation. The Reader returns its current
-    /// state after the collection flow is initiated.
+/// Triggers collection of card details for a PaymentIntent on a Reader. Supply `payment_intent` and use `collect_config` for collection options such as tipping or customer cancellation. The Reader returns its current state after the collection flow is initiated.
     ///
-    /// Initiates a payment flow on a Reader and updates the PaymentIntent with card details before manual confirmation.
-    /// See Collecting a Payment method for more details.
-    public func postTerminalReadersReader(
-        reader: String,
-        paymentIntent: String,
-        collectConfig: PostTerminalReadersReaderCollectPaymentMethodRequestBodyCollectConfig?,
-        expand: [String]?
-    ) async throws -> TerminalReader {
-        try await V1TerminalReadersCollectPaymentMethodMethods.postTerminalReadersReaderCollectPaymentMethod(
-            config: config,
-            reader: reader,
-            paymentIntent: paymentIntent,
-            collectConfig: collectConfig,
-            expand: expand
-        )
+    /// Initiates a payment flow on a Reader and updates the PaymentIntent with card details before manual confirmation. See Collecting a Payment method for more details.
+    public func postTerminalReadersReader(reader: String, paymentIntent: String, collectConfig: PostTerminalReadersReaderCollectPaymentMethodRequestBodyCollectConfig?, expand: [String]?) async throws -> TerminalReader {
+        return try await V1TerminalReadersCollectPaymentMethodMethods.postTerminalReadersReaderCollectPaymentMethod(config: config, reader: reader, paymentIntent: paymentIntent, collectConfig: collectConfig, expand: expand)
     }
 }
 
@@ -333,24 +190,11 @@ public class V1TerminalReadersConfirmPaymentIntentNamespace {
         self.config = config
     }
 
-    /// Triggers confirmation of a PaymentIntent on a Reader. Supply `payment_intent` and optionally use
-    /// `confirm_config` to provide confirmation settings such as a return URL. The Reader returns its current state
-    /// after the confirmation flow is initiated.
+/// Triggers confirmation of a PaymentIntent on a Reader. Supply `payment_intent` and optionally use `confirm_config` to provide confirmation settings such as a return URL. The Reader returns its current state after the confirmation flow is initiated.
     ///
     /// Finalizes a payment on a Reader. See Confirming a Payment for more details.
-    public func postTerminalReadersReader(
-        reader: String,
-        paymentIntent: String,
-        confirmConfig: PostTerminalReadersReaderConfirmPaymentIntentRequestBodyConfirmConfig?,
-        expand: [String]?
-    ) async throws -> TerminalReader {
-        try await V1TerminalReadersConfirmPaymentIntentMethods.postTerminalReadersReaderConfirmPaymentIntent(
-            config: config,
-            reader: reader,
-            paymentIntent: paymentIntent,
-            confirmConfig: confirmConfig,
-            expand: expand
-        )
+    public func postTerminalReadersReader(reader: String, paymentIntent: String, confirmConfig: PostTerminalReadersReaderConfirmPaymentIntentRequestBodyConfirmConfig?, expand: [String]?) async throws -> TerminalReader {
+        return try await V1TerminalReadersConfirmPaymentIntentMethods.postTerminalReadersReaderConfirmPaymentIntent(config: config, reader: reader, paymentIntent: paymentIntent, confirmConfig: confirmConfig, expand: expand)
     }
 }
 
@@ -360,23 +204,10 @@ public class V1TerminalReadersProcessPaymentIntentNamespace {
         self.config = config
     }
 
-    /// Triggers immediate processing of a PaymentIntent on a Reader. Supply `payment_intent` and optionally use
-    /// `process_config` to control tipping, customer cancellation, or the return URL. The Reader returns its current
-    /// state after the payment flow is initiated.
+/// Triggers immediate processing of a PaymentIntent on a Reader. Supply `payment_intent` and optionally use `process_config` to control tipping, customer cancellation, or the return URL. The Reader returns its current state after the payment flow is initiated.
     ///
     /// Initiates a payment flow on a Reader. See process the payment for more details.
-    public func postTerminalReadersReader(
-        reader: String,
-        paymentIntent: String,
-        expand: [String]?,
-        processConfig: PostTerminalReadersReaderProcessPaymentIntentRequestBodyProcessConfig?
-    ) async throws -> TerminalReader {
-        try await V1TerminalReadersProcessPaymentIntentMethods.postTerminalReadersReaderProcessPaymentIntent(
-            config: config,
-            reader: reader,
-            paymentIntent: paymentIntent,
-            expand: expand,
-            processConfig: processConfig
-        )
+    public func postTerminalReadersReader(reader: String, paymentIntent: String, expand: [String]?, processConfig: PostTerminalReadersReaderProcessPaymentIntentRequestBodyProcessConfig?) async throws -> TerminalReader {
+        return try await V1TerminalReadersProcessPaymentIntentMethods.postTerminalReadersReaderProcessPaymentIntent(config: config, reader: reader, paymentIntent: paymentIntent, expand: expand, processConfig: processConfig)
     }
 }

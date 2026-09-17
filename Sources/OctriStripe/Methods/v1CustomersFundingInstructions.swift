@@ -7,15 +7,9 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1CustomersFundingInstructionsMethods {
-    /// Creates or retrieves stable bank-transfer funding instructions for a customer's cash balance. Supply
-    /// `bank_transfer`, `currency`, and `funding_type` to request instructions, and repeated requests for the same
-    /// customer return the same instructions. Use `bank_transfer` to select the supported transfer type and any
-    /// requested address types.
+    /// Creates or retrieves stable bank-transfer funding instructions for a customer's cash balance. Supply `bank_transfer`, `currency`, and `funding_type` to request instructions, and repeated requests for the same customer return the same instructions. Use `bank_transfer` to select the supported transfer type and any requested address types.
     ///
-    /// Retrieve funding instructions for a customer cash balance. If funding instructions do not yet exist for the
-    /// customer, new funding instructions will be created. If funding instructions have already been created for a
-    /// given customer, the same funding instructions will be retrieved. In other words, we will return the same funding
-    /// instructions each time.
+    /// Retrieve funding instructions for a customer cash balance. If funding instructions do not yet exist for the customer, new funding instructions will be created. If funding instructions have already been created for a given customer, the same funding instructions will be retrieved. In other words, we will return the same funding instructions each time.
     ///
     /// - Parameters:
     /// - bankTransfer: Additional parameters for `bank_transfer` funding types
@@ -24,31 +18,11 @@ public enum V1CustomersFundingInstructionsMethods {
     ///   be a [supported currency](https://stripe.com/docs/currencies).
     /// - fundingType: The `funding_type` to get the instructions for.
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postCustomersCustomerFundingInstructions(
-        config: ClientConfig,
-        customer: String,
-        bankTransfer: PostCustomersCustomerFundingInstructionsRequestBodyBankTransfer,
-        currency: String,
-        fundingType: PostCustomersCustomerFundingInstructionsRequestBodyFundingType,
-        expand: [String]?
-    ) async throws -> FundingInstructions {
+    public static func postCustomersCustomerFundingInstructions(config: ClientConfig, customer: String, bankTransfer: PostCustomersCustomerFundingInstructionsRequestBodyBankTransfer, currency: String, fundingType: PostCustomersCustomerFundingInstructionsRequestBodyFundingType, expand: [String]?) async throws -> FundingInstructions {
         try validateLength("customer", customer, max: 5000)
 
-        let requestBody = PostCustomersCustomerFundingInstructionsRequestBody(
-            bankTransfer: bankTransfer,
-            currency: currency,
-            fundingType: fundingType,
-            expand: expand
-        )
+        let requestBody = PostCustomersCustomerFundingInstructionsRequestBody(bankTransfer: bankTransfer, currency: currency, fundingType: fundingType, expand: expand)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/customers/", sdkEncodePathSegment(sdkWireString(customer)), "/funding_instructions"].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostCustomersCustomerFundingInstructions"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/customers/", sdkEncodePathSegment(sdkWireString(customer)), "/funding_instructions"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostCustomersCustomerFundingInstructions")).data
     }
 }

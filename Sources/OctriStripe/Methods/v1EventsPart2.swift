@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1EventsMethods {
-    struct GetEventsOptions: Codable {
+extension V1EventsMethods {
+    public struct GetEventsOptions: Codable {
         public var created: GetEventsParameter?
         public var deliverySuccess: Bool?
         public var endingBefore: String?
@@ -20,12 +20,9 @@ public extension V1EventsMethods {
         public init() {}
     }
 
-    /// Lists events created within the last 30 days. Use `created`, `type`, or `types` to filter results and
-    /// `starting_after` or `ending_before` to traverse the list; do not provide `type` and `types` together.
+    /// Lists events created within the last 30 days. Use `created`, `type`, or `types` to filter results and `starting_after` or `ending_before` to traverse the list; do not provide `type` and `types` together.
     ///
-    /// List events, going back up to 30 days. Each event data is rendered according to Stripe API version at its
-    /// creation time, specified in event object api_version attribute (not according to your current Stripe API version
-    /// or Stripe-Version header).
+    /// List events, going back up to 30 days. Each event data is rendered according to Stripe API version at its creation time, specified in event object api_version attribute (not according to your current Stripe API version or Stripe-Version header).
     ///
     /// - Parameters:
     /// - created: Only return events that were created during the given date
@@ -52,7 +49,7 @@ public extension V1EventsMethods {
     /// - types: An array of up to 20 strings containing specific event names. The
     ///   list will be filtered to include only events with a matching event property.
     ///   You may pass either `type` or `types`, but not both.
-    static func getEvents(config: ClientConfig, options: GetEventsOptions) async throws -> GetEventsResponse {
+    public static func getEvents(config: ClientConfig, options: GetEventsOptions) async throws -> GetEventsResponse {
         if let endingBefore = options.endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
@@ -65,7 +62,7 @@ public extension V1EventsMethods {
             try validateLength("type", type, max: 5000)
         }
 
-        return try await (sdkRequest("GET", "/v1/events", config: config, query: [
+        return try (await sdkRequest("GET", "/v1/events", config: config, query: [
             SdkQueryParameter("created", value: options.created),
             SdkQueryParameter("delivery_success", value: options.deliverySuccess),
             SdkQueryParameter("ending_before", value: options.endingBefore),

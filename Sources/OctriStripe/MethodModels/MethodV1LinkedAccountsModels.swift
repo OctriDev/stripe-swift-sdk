@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1LinkedAccounts operation model declarations
+// Canonical v1LinkedAccounts operation model declarations
 public struct GetLinkedAccountsParameter: Codable {
     public var account: String?
     public var customer: String?
@@ -20,30 +20,30 @@ public struct GetLinkedAccountsParameter: Codable {
     }
 
     init() {
-        (account, customer, customerAccount) = (nil, nil, nil)
+        (self.account, self.customer, self.customerAccount) = (nil, nil, nil)
     }
 }
 
-public extension GetLinkedAccountsParameter {
-    init(from decoder: Decoder) throws {
+extension GetLinkedAccountsParameter {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        account = try container.sdkDecodeIfPresent(.account)
-        customer = try container.sdkDecodeIfPresent(.customer)
-        customerAccount = try container.sdkDecodeIfPresent(.customerAccount)
-        if let value = account {
+        self.account = try container.sdkDecodeIfPresent(.account)
+        self.customer = try container.sdkDecodeIfPresent(.customer)
+        self.customerAccount = try container.sdkDecodeIfPresent(.customerAccount)
+        if let value = self.account {
             try validateLength("account", value, min: nil, max: 5000)
         }
-        if let value = customer {
+        if let value = self.customer {
             try validateLength("customer", value, min: nil, max: 5000)
         }
-        if let value = customerAccount {
+        if let value = self.customerAccount {
             try validateLength("customer_account", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension GetLinkedAccountsParameter {
-    init(account: String? = nil, customer: String? = nil, customerAccount: String? = nil) throws {
+extension GetLinkedAccountsParameter {
+    public init(account: String? = nil, customer: String? = nil, customerAccount: String? = nil) throws {
         self.init()
         (self.account, self.customer) = (account, customer)
         self.customerAccount = customerAccount
@@ -77,61 +77,38 @@ public struct GetLinkedAccountsResponse: Codable {
         case url
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension GetLinkedAccountsResponse {
-    init(from decoder: Decoder) throws {
+extension GetLinkedAccountsResponse {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.data) else {
-            throw SdkValidationError(
-                field: "data",
-                code: "required",
-                message: "Validation failed for 'data': value is required"
-            )
+            throw SdkValidationError(field: "data", code: "required", message: "Validation failed for 'data': value is required")
         }
         guard container.contains(.hasMore) else {
-            throw SdkValidationError(
-                field: "has_more",
-                code: "required",
-                message: "Validation failed for 'has_more': value is required"
-            )
+            throw SdkValidationError(field: "has_more", code: "required", message: "Validation failed for 'has_more': value is required")
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(
-                field: "object",
-                code: "required",
-                message: "Validation failed for 'object': value is required"
-            )
+            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
         }
         guard container.contains(.url) else {
-            throw SdkValidationError(
-                field: "url",
-                code: "required",
-                message: "Validation failed for 'url': value is required"
-            )
+            throw SdkValidationError(field: "url", code: "required", message: "Validation failed for 'url': value is required")
         }
-        data = try container.sdkDecodeRequired(.data)
-        hasMore = try container.sdkDecodeRequired(.hasMore)
-        object = try container.sdkDecodeRequired(.object)
-        url = try container.sdkDecodeRequired(.url)
-        try validateLength("url", url, min: nil, max: 5000)
-        try sdkValidatePattern("url", url, sdkPattern28b1a5de7ccc)
+        self.data = try container.sdkDecodeRequired(.data)
+        self.hasMore = try container.sdkDecodeRequired(.hasMore)
+        self.object = try container.sdkDecodeRequired(.object)
+        self.url = try container.sdkDecodeRequired(.url)
+            try validateLength("url", self.url, min: nil, max: 5000)
+            try sdkValidatePattern("url", self.url, sdkPattern28b1a5de7ccc)
     }
 }
 
-public extension GetLinkedAccountsResponse {
-    init(
-        data: [FinancialConnectionsAccount],
-        hasMore: Bool,
-        object: GetLinkedAccountsResponseObject,
-        url: String
-    ) throws {
+extension GetLinkedAccountsResponse {
+    public init(data: [FinancialConnectionsAccount], hasMore: Bool, object: GetLinkedAccountsResponseObject, url: String) throws {
         (self.data, self.hasMore) = (data, hasMore)
         (self.object, self.url) = (object, url)
-        try validateLength("url", self.url, min: nil, max: 5000)
-        try sdkValidatePattern("url", self.url, sdkPattern28b1a5de7ccc)
+            try validateLength("url", self.url, min: nil, max: 5000)
+            try sdkValidatePattern("url", self.url, sdkPattern28b1a5de7ccc)
     }
 }

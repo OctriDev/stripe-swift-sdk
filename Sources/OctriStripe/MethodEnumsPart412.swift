@@ -42,76 +42,73 @@ struct PostSubscriptionsSubscriptionExposedIdRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(addInvoiceItems, forKey: SdkCodingKey("add_invoice_items"))
-        try keyedContainer.encodeIfPresent(applicationFeePercent, forKey: SdkCodingKey("application_fee_percent"))
-        try keyedContainer.encodeIfPresent(automaticTax, forKey: SdkCodingKey("automatic_tax"))
-        try keyedContainer.encodeIfPresent(billingCycleAnchor, forKey: SdkCodingKey("billing_cycle_anchor"))
-        try keyedContainer.encodeIfPresent(billingSchedules, forKey: SdkCodingKey("billing_schedules"))
-        try keyedContainer.encodeIfPresent(billingThresholds, forKey: SdkCodingKey("billing_thresholds"))
-        try keyedContainer.encodeIfPresent(cancelAt, forKey: SdkCodingKey("cancel_at"))
-        try keyedContainer.encodeIfPresent(cancelAtPeriodEnd, forKey: SdkCodingKey("cancel_at_period_end"))
-        try keyedContainer.encodeIfPresent(cancellationDetails, forKey: SdkCodingKey("cancellation_details"))
-        try keyedContainer.encodeIfPresent(collectionMethod, forKey: SdkCodingKey("collection_method"))
-        try keyedContainer.encodeIfPresent(daysUntilDue, forKey: SdkCodingKey("days_until_due"))
-        try keyedContainer.encodeIfPresent(defaultPaymentMethod, forKey: SdkCodingKey("default_payment_method"))
-        try keyedContainer.encodeIfPresent(defaultSource, forKey: SdkCodingKey("default_source"))
-        try keyedContainer.encodeIfPresent(defaultTaxRates, forKey: SdkCodingKey("default_tax_rates"))
-        try keyedContainer.encodeIfPresent(description, forKey: SdkCodingKey("description"))
-        try keyedContainer.encodeIfPresent(discounts, forKey: SdkCodingKey("discounts"))
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(invoiceSettings, forKey: SdkCodingKey("invoice_settings"))
-        try keyedContainer.encodeIfPresent(items, forKey: SdkCodingKey("items"))
-        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
-        try keyedContainer.encodeIfPresent(offSession, forKey: SdkCodingKey("off_session"))
-        try keyedContainer.encodeIfPresent(onBehalfOf, forKey: SdkCodingKey("on_behalf_of"))
-        try keyedContainer.encodeIfPresent(pauseCollection, forKey: SdkCodingKey("pause_collection"))
-        try keyedContainer.encodeIfPresent(paymentBehavior, forKey: SdkCodingKey("payment_behavior"))
-        try keyedContainer.encodeIfPresent(paymentSettings, forKey: SdkCodingKey("payment_settings"))
-        try keyedContainer.encodeIfPresent(
-            pendingInvoiceItemInterval,
-            forKey: SdkCodingKey("pending_invoice_item_interval")
-        )
-        try keyedContainer.encodeIfPresent(prorationBehavior, forKey: SdkCodingKey("proration_behavior"))
-        try keyedContainer.encodeIfPresent(prorationDate, forKey: SdkCodingKey("proration_date"))
-        try keyedContainer.encodeIfPresent(transferData, forKey: SdkCodingKey("transfer_data"))
-        try keyedContainer.encodeIfPresent(trialEnd, forKey: SdkCodingKey("trial_end"))
-        try keyedContainer.encodeIfPresent(trialFromPlan, forKey: SdkCodingKey("trial_from_plan"))
-        try keyedContainer.encodeIfPresent(trialSettings, forKey: SdkCodingKey("trial_settings"))
+        try keyedContainer.encodeIfPresent(self.addInvoiceItems, forKey: SdkCodingKey("add_invoice_items"))
+        try keyedContainer.encodeIfPresent(self.applicationFeePercent, forKey: SdkCodingKey("application_fee_percent"))
+        try keyedContainer.encodeIfPresent(self.automaticTax, forKey: SdkCodingKey("automatic_tax"))
+        try keyedContainer.encodeIfPresent(self.billingCycleAnchor, forKey: SdkCodingKey("billing_cycle_anchor"))
+        try keyedContainer.encodeIfPresent(self.billingSchedules, forKey: SdkCodingKey("billing_schedules"))
+        try keyedContainer.encodeIfPresent(self.billingThresholds, forKey: SdkCodingKey("billing_thresholds"))
+        try keyedContainer.encodeIfPresent(self.cancelAt, forKey: SdkCodingKey("cancel_at"))
+        try keyedContainer.encodeIfPresent(self.cancelAtPeriodEnd, forKey: SdkCodingKey("cancel_at_period_end"))
+        try keyedContainer.encodeIfPresent(self.cancellationDetails, forKey: SdkCodingKey("cancellation_details"))
+        try keyedContainer.encodeIfPresent(self.collectionMethod, forKey: SdkCodingKey("collection_method"))
+        try keyedContainer.encodeIfPresent(self.daysUntilDue, forKey: SdkCodingKey("days_until_due"))
+        try keyedContainer.encodeIfPresent(self.defaultPaymentMethod, forKey: SdkCodingKey("default_payment_method"))
+        try keyedContainer.encodeIfPresent(self.defaultSource, forKey: SdkCodingKey("default_source"))
+        try keyedContainer.encodeIfPresent(self.defaultTaxRates, forKey: SdkCodingKey("default_tax_rates"))
+        try keyedContainer.encodeIfPresent(self.description, forKey: SdkCodingKey("description"))
+        try keyedContainer.encodeIfPresent(self.discounts, forKey: SdkCodingKey("discounts"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.invoiceSettings, forKey: SdkCodingKey("invoice_settings"))
+        try keyedContainer.encodeIfPresent(self.items, forKey: SdkCodingKey("items"))
+        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encodeIfPresent(self.offSession, forKey: SdkCodingKey("off_session"))
+        try keyedContainer.encodeIfPresent(self.onBehalfOf, forKey: SdkCodingKey("on_behalf_of"))
+        try keyedContainer.encodeIfPresent(self.pauseCollection, forKey: SdkCodingKey("pause_collection"))
+        try keyedContainer.encodeIfPresent(self.paymentBehavior, forKey: SdkCodingKey("payment_behavior"))
+        try keyedContainer.encodeIfPresent(self.paymentSettings, forKey: SdkCodingKey("payment_settings"))
+        try keyedContainer.encodeIfPresent(self.pendingInvoiceItemInterval, forKey: SdkCodingKey("pending_invoice_item_interval"))
+        try keyedContainer.encodeIfPresent(self.prorationBehavior, forKey: SdkCodingKey("proration_behavior"))
+        try keyedContainer.encodeIfPresent(self.prorationDate, forKey: SdkCodingKey("proration_date"))
+        try keyedContainer.encodeIfPresent(self.transferData, forKey: SdkCodingKey("transfer_data"))
+        try keyedContainer.encodeIfPresent(self.trialEnd, forKey: SdkCodingKey("trial_end"))
+        try keyedContainer.encodeIfPresent(self.trialFromPlan, forKey: SdkCodingKey("trial_from_plan"))
+        try keyedContainer.encodeIfPresent(self.trialSettings, forKey: SdkCodingKey("trial_settings"))
     }
 
     init(options: V1SubscriptionsMethods.PostSubscriptionsSubscriptionExposedIdOptions) {
-        addInvoiceItems = options.addInvoiceItems
-        applicationFeePercent = options.applicationFeePercent
-        automaticTax = options.automaticTax
-        billingCycleAnchor = options.billingCycleAnchor
-        billingSchedules = options.billingSchedules
-        billingThresholds = options.billingThresholds
-        cancelAt = options.cancelAt
-        cancelAtPeriodEnd = options.cancelAtPeriodEnd
-        cancellationDetails = options.cancellationDetails
-        collectionMethod = options.collectionMethod
-        daysUntilDue = options.daysUntilDue
-        defaultPaymentMethod = options.defaultPaymentMethod
-        defaultSource = options.defaultSource
-        defaultTaxRates = options.defaultTaxRates
-        description = options.description
-        discounts = options.discounts
-        expand = options.expand
-        invoiceSettings = options.invoiceSettings
-        items = options.items
-        metadata = options.metadata
-        offSession = options.offSession
-        onBehalfOf = options.onBehalfOf
-        pauseCollection = options.pauseCollection
-        paymentBehavior = options.paymentBehavior
-        paymentSettings = options.paymentSettings
-        pendingInvoiceItemInterval = options.pendingInvoiceItemInterval
-        prorationBehavior = options.prorationBehavior
-        prorationDate = options.prorationDate
-        transferData = options.transferData
-        trialEnd = options.trialEnd
-        trialFromPlan = options.trialFromPlan
-        trialSettings = options.trialSettings
+        self.addInvoiceItems = options.addInvoiceItems
+        self.applicationFeePercent = options.applicationFeePercent
+        self.automaticTax = options.automaticTax
+        self.billingCycleAnchor = options.billingCycleAnchor
+        self.billingSchedules = options.billingSchedules
+        self.billingThresholds = options.billingThresholds
+        self.cancelAt = options.cancelAt
+        self.cancelAtPeriodEnd = options.cancelAtPeriodEnd
+        self.cancellationDetails = options.cancellationDetails
+        self.collectionMethod = options.collectionMethod
+        self.daysUntilDue = options.daysUntilDue
+        self.defaultPaymentMethod = options.defaultPaymentMethod
+        self.defaultSource = options.defaultSource
+        self.defaultTaxRates = options.defaultTaxRates
+        self.description = options.description
+        self.discounts = options.discounts
+        self.expand = options.expand
+        self.invoiceSettings = options.invoiceSettings
+        self.items = options.items
+        self.metadata = options.metadata
+        self.offSession = options.offSession
+        self.onBehalfOf = options.onBehalfOf
+        self.pauseCollection = options.pauseCollection
+        self.paymentBehavior = options.paymentBehavior
+        self.paymentSettings = options.paymentSettings
+        self.pendingInvoiceItemInterval = options.pendingInvoiceItemInterval
+        self.prorationBehavior = options.prorationBehavior
+        self.prorationDate = options.prorationDate
+        self.transferData = options.transferData
+        self.trialEnd = options.trialEnd
+        self.trialFromPlan = options.trialFromPlan
+        self.trialSettings = options.trialSettings
     }
 }
 
@@ -121,8 +118,8 @@ struct PostSubscriptionsSubscriptionMigrateRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encode(billingMode, forKey: SdkCodingKey("billing_mode"))
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encode(self.billingMode, forKey: SdkCodingKey("billing_mode"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
     }
 }
 
@@ -134,10 +131,10 @@ struct PostSubscriptionsSubscriptionResumeRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(billingCycleAnchor, forKey: SdkCodingKey("billing_cycle_anchor"))
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(prorationBehavior, forKey: SdkCodingKey("proration_behavior"))
-        try keyedContainer.encodeIfPresent(prorationDate, forKey: SdkCodingKey("proration_date"))
+        try keyedContainer.encodeIfPresent(self.billingCycleAnchor, forKey: SdkCodingKey("billing_cycle_anchor"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.prorationBehavior, forKey: SdkCodingKey("proration_behavior"))
+        try keyedContainer.encodeIfPresent(self.prorationDate, forKey: SdkCodingKey("proration_date"))
     }
 }
 
@@ -153,25 +150,25 @@ struct PostTaxCalculationsRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encode(currency, forKey: SdkCodingKey("currency"))
-        try keyedContainer.encode(lineItems, forKey: SdkCodingKey("line_items"))
-        try keyedContainer.encodeIfPresent(customer, forKey: SdkCodingKey("customer"))
-        try keyedContainer.encodeIfPresent(customerDetails, forKey: SdkCodingKey("customer_details"))
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(shipFromDetails, forKey: SdkCodingKey("ship_from_details"))
-        try keyedContainer.encodeIfPresent(shippingCost, forKey: SdkCodingKey("shipping_cost"))
-        try keyedContainer.encodeIfPresent(taxDate, forKey: SdkCodingKey("tax_date"))
+        try keyedContainer.encode(self.currency, forKey: SdkCodingKey("currency"))
+        try keyedContainer.encode(self.lineItems, forKey: SdkCodingKey("line_items"))
+        try keyedContainer.encodeIfPresent(self.customer, forKey: SdkCodingKey("customer"))
+        try keyedContainer.encodeIfPresent(self.customerDetails, forKey: SdkCodingKey("customer_details"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.shipFromDetails, forKey: SdkCodingKey("ship_from_details"))
+        try keyedContainer.encodeIfPresent(self.shippingCost, forKey: SdkCodingKey("shipping_cost"))
+        try keyedContainer.encodeIfPresent(self.taxDate, forKey: SdkCodingKey("tax_date"))
     }
 
     init(options: V1TaxCalculationsMethods.PostTaxCalculationsOptions) {
-        currency = options.currency
-        lineItems = options.lineItems
-        customer = options.customer
-        customerDetails = options.customerDetails
-        expand = options.expand
-        shipFromDetails = options.shipFromDetails
-        shippingCost = options.shippingCost
-        taxDate = options.taxDate
+        self.currency = options.currency
+        self.lineItems = options.lineItems
+        self.customer = options.customer
+        self.customerDetails = options.customerDetails
+        self.expand = options.expand
+        self.shipFromDetails = options.shipFromDetails
+        self.shippingCost = options.shippingCost
+        self.taxDate = options.taxDate
     }
 }
 
@@ -184,11 +181,11 @@ struct PostTaxRegistrationsRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encode(activeFrom, forKey: SdkCodingKey("active_from"))
-        try keyedContainer.encode(country, forKey: SdkCodingKey("country"))
-        try keyedContainer.encode(countryOptions, forKey: SdkCodingKey("country_options"))
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(expiresAt, forKey: SdkCodingKey("expires_at"))
+        try keyedContainer.encode(self.activeFrom, forKey: SdkCodingKey("active_from"))
+        try keyedContainer.encode(self.country, forKey: SdkCodingKey("country"))
+        try keyedContainer.encode(self.countryOptions, forKey: SdkCodingKey("country_options"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.expiresAt, forKey: SdkCodingKey("expires_at"))
     }
 }
 
@@ -199,9 +196,9 @@ struct PostTaxRegistrationsIdRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(activeFrom, forKey: SdkCodingKey("active_from"))
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(expiresAt, forKey: SdkCodingKey("expires_at"))
+        try keyedContainer.encodeIfPresent(self.activeFrom, forKey: SdkCodingKey("active_from"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.expiresAt, forKey: SdkCodingKey("expires_at"))
     }
 }
 
@@ -212,8 +209,8 @@ struct PostTaxSettingsRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(defaults, forKey: SdkCodingKey("defaults"))
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(headOffice, forKey: SdkCodingKey("head_office"))
+        try keyedContainer.encodeIfPresent(self.defaults, forKey: SdkCodingKey("defaults"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.headOffice, forKey: SdkCodingKey("head_office"))
     }
 }

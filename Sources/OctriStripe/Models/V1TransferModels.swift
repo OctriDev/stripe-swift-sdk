@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1Transfer domain models
+// V1Transfer domain models
 /// Typed representation of the `TransferSchedule` API schema.
 public struct TransferSchedule: Codable {
     /// The number of days charges for the account will be held before being paid out.
@@ -33,54 +33,37 @@ public struct TransferSchedule: Codable {
         case weeklyPayoutDays = "weekly_payout_days"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension TransferSchedule {
-    init(from decoder: Decoder) throws {
+extension TransferSchedule {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.delayDays) else {
-            throw SdkValidationError(
-                field: "delay_days",
-                code: "required",
-                message: "Validation failed for 'delay_days': value is required"
-            )
+            throw SdkValidationError(field: "delay_days", code: "required", message: "Validation failed for 'delay_days': value is required")
         }
         guard container.contains(.interval) else {
-            throw SdkValidationError(
-                field: "interval",
-                code: "required",
-                message: "Validation failed for 'interval': value is required"
-            )
+            throw SdkValidationError(field: "interval", code: "required", message: "Validation failed for 'interval': value is required")
         }
-        delayDays = try container.sdkDecodeRequired(.delayDays)
-        interval = try container.sdkDecodeRequired(.interval)
-        monthlyAnchor = try container.sdkDecodeIfPresent(.monthlyAnchor)
-        monthlyPayoutDays = try container.sdkDecodeIfPresent(.monthlyPayoutDays)
-        weeklyAnchor = try container.sdkDecodeIfPresent(.weeklyAnchor)
-        weeklyPayoutDays = try container.sdkDecodeIfPresent(.weeklyPayoutDays)
-        try validateLength("interval", interval, min: nil, max: 5000)
-        if let value = weeklyAnchor {
+        self.delayDays = try container.sdkDecodeRequired(.delayDays)
+        self.interval = try container.sdkDecodeRequired(.interval)
+        self.monthlyAnchor = try container.sdkDecodeIfPresent(.monthlyAnchor)
+        self.monthlyPayoutDays = try container.sdkDecodeIfPresent(.monthlyPayoutDays)
+        self.weeklyAnchor = try container.sdkDecodeIfPresent(.weeklyAnchor)
+        self.weeklyPayoutDays = try container.sdkDecodeIfPresent(.weeklyPayoutDays)
+            try validateLength("interval", self.interval, min: nil, max: 5000)
+        if let value = self.weeklyAnchor {
             try validateLength("weekly_anchor", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension TransferSchedule {
-    init(
-        delayDays: Int,
-        interval: String,
-        monthlyAnchor: Int? = nil,
-        monthlyPayoutDays: [Int]? = nil,
-        weeklyAnchor: String? = nil,
-        weeklyPayoutDays: [TransferScheduleWeeklyPayoutDaysItem]? = nil
-    ) throws {
+extension TransferSchedule {
+    public init(delayDays: Int, interval: String, monthlyAnchor: Int? = nil, monthlyPayoutDays: [Int]? = nil, weeklyAnchor: String? = nil, weeklyPayoutDays: [TransferScheduleWeeklyPayoutDaysItem]? = nil) throws {
         (self.delayDays, self.interval) = (delayDays, interval)
         (self.monthlyAnchor, self.monthlyPayoutDays) = (monthlyAnchor, monthlyPayoutDays)
         (self.weeklyAnchor, self.weeklyPayoutDays) = (weeklyAnchor, weeklyPayoutDays)
-        try validateLength("interval", self.interval, min: nil, max: 5000)
+            try validateLength("interval", self.interval, min: nil, max: 5000)
         if let value = self.weeklyAnchor {
             try validateLength("weekly_anchor", value, min: nil, max: 5000)
         }
@@ -91,10 +74,7 @@ public extension TransferSchedule {
 public struct TransferScheduleWeeklyPayoutDaysItem: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let friday = TransferScheduleWeeklyPayoutDaysItem(rawValue: "friday")
     public static let monday = TransferScheduleWeeklyPayoutDaysItem(rawValue: "monday")
     public static let thursday = TransferScheduleWeeklyPayoutDaysItem(rawValue: "thursday")
@@ -103,7 +83,7 @@ public struct TransferScheduleWeeklyPayoutDaysItem: RawRepresentable, Hashable, 
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

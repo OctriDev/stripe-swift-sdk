@@ -6,66 +6,31 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1AccountsBankAccountsMethods {
-    /// Deletes a specified bank account or card used as an external account for a connected account. Provide the parent
-    /// account and external account identifiers to remove the selected external account. The response identifies the
-    /// deleted object and its deletion state.
+extension V1AccountsBankAccountsMethods {
+    /// Deletes a specified bank account or card used as an external account for a connected account. Provide the parent account and external account identifiers to remove the selected external account. The response identifies the deleted object and its deletion state.
     ///
     /// Delete a specified external account for a given account.
     ///
     /// - Parameters:
     /// - id: Unique identifier for the external account to be deleted.
-    static func deleteAccountsAccountBankAccountsId(
-        config: ClientConfig,
-        account: String,
-        id: String
-    ) async throws -> DeletedExternalAccount {
+    public static func deleteAccountsAccountBankAccountsId(config: ClientConfig, account: String, id: String) async throws -> DeletedExternalAccount {
         try validateLength("account", account, max: 5000)
 
-        return try await (sdkRequest(
-            "DELETE",
-            [
-                "/v1/accounts/",
-                sdkEncodePathSegment(sdkWireString(account)),
-                "/bank_accounts/",
-                sdkEncodePathSegment(sdkWireString(id)),
-            ].joined(),
-            config: config,
-            decoder: .json,
-            operationId: "DeleteAccountsAccountBankAccountsId"
-        )).data
+        return try (await sdkRequest("DELETE", ["/v1/accounts/", sdkEncodePathSegment(sdkWireString(account)), "/bank_accounts/", sdkEncodePathSegment(sdkWireString(id))].joined(), config: config, decoder: .json, operationId: "DeleteAccountsAccountBankAccountsId")).data
     }
 
-    /// Retrieves a specific external account attached to a connected account. Use `account` to identify the connected
-    /// account and `id` to identify the bank account or card, with `expand` available for additional nested fields.
+    /// Retrieves a specific external account attached to a connected account. Use `account` to identify the connected account and `id` to identify the bank account or card, with `expand` available for additional nested fields.
     ///
     /// Retrieve a specified external account for a given account.
     ///
     /// - Parameters:
     /// - id: Unique identifier for the external account to be retrieved.
     /// - expand: Specifies which fields in the response should be expanded.
-    static func getAccountsAccountBankAccountsId(
-        config: ClientConfig,
-        account: String,
-        id: String,
-        expand: [String]?
-    ) async throws -> ExternalAccount {
+    public static func getAccountsAccountBankAccountsId(config: ClientConfig, account: String, id: String, expand: [String]?) async throws -> ExternalAccount {
         try validateLength("account", account, max: 5000)
 
-        return try await (sdkRequest(
-            "GET",
-            [
-                "/v1/accounts/",
-                sdkEncodePathSegment(sdkWireString(account)),
-                "/bank_accounts/",
-                sdkEncodePathSegment(sdkWireString(id)),
-            ].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .json,
-            operationId: "GetAccountsAccountBankAccountsId"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/accounts/", sdkEncodePathSegment(sdkWireString(account)), "/bank_accounts/", sdkEncodePathSegment(sdkWireString(id))].joined(), config: config, query: [
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .json, operationId: "GetAccountsAccountBankAccountsId")).data
     }
 }

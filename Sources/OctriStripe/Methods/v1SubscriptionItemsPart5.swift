@@ -6,31 +6,18 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1SubscriptionItemsMethods {
-    /// Retrieves a subscription item by its unique identifier. Use `expand` to include additional fields such as
-    /// discounts, the associated price, or tax rates in the response. The response contains the item's billing period,
-    /// quantity, subscription, price, metadata, discounts, and tax rates.
+extension V1SubscriptionItemsMethods {
+    /// Retrieves a subscription item by its unique identifier. Use `expand` to include additional fields such as discounts, the associated price, or tax rates in the response. The response contains the item's billing period, quantity, subscription, price, metadata, discounts, and tax rates.
     ///
     /// Retrieves the subscription item with the given ID.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    static func getSubscriptionItemsItem(
-        config: ClientConfig,
-        item: String,
-        expand: [String]?
-    ) async throws -> SubscriptionItem {
+    public static func getSubscriptionItemsItem(config: ClientConfig, item: String, expand: [String]?) async throws -> SubscriptionItem {
         try validateLength("item", item, max: 5000)
 
-        return try await (sdkRequest(
-            "GET",
-            ["/v1/subscription_items/", sdkEncodePathSegment(sdkWireString(item))].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .json,
-            operationId: "GetSubscriptionItemsItem"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/subscription_items/", sdkEncodePathSegment(sdkWireString(item))].joined(), config: config, query: [
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .json, operationId: "GetSubscriptionItemsItem")).data
     }
 }

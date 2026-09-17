@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1FinancialConnectionsSessionsMethods {
-    struct PostFinancialConnectionsSessionsOptions: Codable {
+extension V1FinancialConnectionsSessionsMethods {
+    public struct PostFinancialConnectionsSessionsOptions: Codable {
         public var accountHolder: PostFinancialConnectionsSessionsRequestBodyAccountHolder
         public var permissions: [PostFinancialConnectionsSessionsRequestBodyPermissionsItem]
         public var expand: [String]?
@@ -17,17 +17,13 @@ public extension V1FinancialConnectionsSessionsMethods {
         public var prefetch: [PostFinancialConnectionsSessionsRequestBodyPrefetchItem]?
         public var returnUrl: String?
 
-        public init(
-            accountHolder: PostFinancialConnectionsSessionsRequestBodyAccountHolder,
-            permissions: [PostFinancialConnectionsSessionsRequestBodyPermissionsItem]
-        ) {
+        public init(accountHolder: PostFinancialConnectionsSessionsRequestBodyAccountHolder, permissions: [PostFinancialConnectionsSessionsRequestBodyPermissionsItem]) {
             self.accountHolder = accountHolder
             self.permissions = permissions
         }
     }
 
-    /// To launch the Financial Connections authorization flow, create a Session . The session’s client_secret can be
-    /// used to launch the flow using Stripe.js.
+    /// To launch the Financial Connections authorization flow, create a Session . The session’s client_secret can be used to launch the flow using Stripe.js.
     ///
     /// - Parameters:
     /// - accountHolder: The account holder to link accounts for.
@@ -43,24 +39,13 @@ public extension V1FinancialConnectionsSessionsMethods {
     /// - returnUrl: For webview integrations only. Upon completing OAuth login in
     ///   the native browser, the user will be redirected to this URL to return to
     ///   your app.
-    static func postFinancialConnectionsSessions(
-        config: ClientConfig,
-        options: PostFinancialConnectionsSessionsOptions
-    ) async throws -> FinancialConnectionsSession {
+    public static func postFinancialConnectionsSessions(config: ClientConfig, options: PostFinancialConnectionsSessionsOptions) async throws -> FinancialConnectionsSession {
         if let returnUrl = options.returnUrl {
             try validateLength("return_url", returnUrl, max: 5000)
         }
 
         let requestBody = PostFinancialConnectionsSessionsRequestBody(options: options)
 
-        return try await (sdkRequest(
-            "POST",
-            "/v1/financial_connections/sessions",
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostFinancialConnectionsSessions"
-        )).data
+        return try (await sdkRequest("POST", "/v1/financial_connections/sessions", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostFinancialConnectionsSessions")).data
     }
 }

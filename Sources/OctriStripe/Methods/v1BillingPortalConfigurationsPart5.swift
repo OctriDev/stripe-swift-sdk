@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1BillingPortalConfigurationsMethods {
-    struct PostBillingPortalConfigurationsConfigurationOptions: Codable {
+extension V1BillingPortalConfigurationsMethods {
+    public struct PostBillingPortalConfigurationsConfigurationOptions: Codable {
         public var configuration: String
         public var active: Bool?
         public var businessProfile: PostBillingPortalConfigurationsConfigurationRequestBodyBusinessProfile?
@@ -23,9 +23,7 @@ public extension V1BillingPortalConfigurationsMethods {
         }
     }
 
-    /// Updates a customer portal configuration. Supply only the configuration properties you want to change, such as
-    /// `active`, `features`, `login_page`, `name`, or `default_return_url`; use `expand` to request expanded response
-    /// fields.
+    /// Updates a customer portal configuration. Supply only the configuration properties you want to change, such as `active`, `features`, `login_page`, `name`, or `default_return_url`; use `expand` to request expanded response fields.
     ///
     /// Updates a configuration that describes the functionality of the customer portal.
     ///
@@ -50,22 +48,11 @@ public extension V1BillingPortalConfigurationsMethods {
     ///   unset by posting an empty value to them. All keys can be unset by posting an
     ///   empty value to `metadata`.
     /// - name: The name of the configuration.
-    static func postBillingPortalConfigurationsConfiguration(
-        config: ClientConfig,
-        options: PostBillingPortalConfigurationsConfigurationOptions
-    ) async throws -> BillingPortalConfiguration {
+    public static func postBillingPortalConfigurationsConfiguration(config: ClientConfig, options: PostBillingPortalConfigurationsConfigurationOptions) async throws -> BillingPortalConfiguration {
         try validateLength("configuration", options.configuration, max: 5000)
 
         let requestBody = PostBillingPortalConfigurationsConfigurationRequestBody(options: options)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/billing_portal/configurations/", sdkEncodePathSegment(sdkWireString(options.configuration))].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostBillingPortalConfigurationsConfiguration"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/billing_portal/configurations/", sdkEncodePathSegment(sdkWireString(options.configuration))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostBillingPortalConfigurationsConfiguration")).data
     }
 }

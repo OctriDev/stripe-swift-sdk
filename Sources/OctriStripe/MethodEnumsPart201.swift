@@ -6,114 +6,67 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public struct PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let acssDebit =
-        PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "acss_debit")
-    public static let affirm =
-        PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "affirm")
-    public static let afterpayClearpay =
-        PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "afterpay_clearpay")
-    public static let alipay =
-        PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "alipay")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let acssDebit = PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "acss_debit")
+    public static let affirm = PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "affirm")
+    public static let afterpayClearpay = PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "afterpay_clearpay")
+    public static let alipay = PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "alipay")
     public static let alma = PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "alma")
-    public static let amazonPay =
-        PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "amazon_pay")
-    public static let auBecsDebit =
-        PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "au_becs_debit")
-    public static let bacsDebit =
-        PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "bacs_debit")
-    public static let bancontact =
-        PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "bancontact")
-    public static let billie =
-        PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "billie")
-    public static let bizum =
-        PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "bizum")
+    public static let amazonPay = PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "amazon_pay")
+    public static let auBecsDebit = PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "au_becs_debit")
+    public static let bacsDebit = PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "bacs_debit")
+    public static let bancontact = PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "bancontact")
+    public static let billie = PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "billie")
+    public static let bizum = PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "bizum")
     public static let blik = PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "blik")
-    public static let boleto =
-        PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "boleto")
+    public static let boleto = PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "boleto")
     public static let card = PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "card")
-    public static let cashapp =
-        PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "cashapp")
-    public static let crypto =
-        PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "crypto")
-    public static let customerBalance =
-        PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "customer_balance")
+    public static let cashapp = PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "cashapp")
+    public static let crypto = PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "crypto")
+    public static let customerBalance = PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "customer_balance")
     public static let eps = PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "eps")
     public static let fpx = PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "fpx")
-    public static let giropay =
-        PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "giropay")
-    public static let grabpay =
-        PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "grabpay")
-    public static let ideal =
-        PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "ideal")
-    public static let kakaoPay =
-        PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "kakao_pay")
-    public static let klarna =
-        PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "klarna")
-    public static let konbini =
-        PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "konbini")
-    public static let krCard =
-        PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "kr_card")
-    public static let mbWay =
-        PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "mb_way")
-    public static let mobilepay =
-        PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "mobilepay")
-    public static let multibanco =
-        PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "multibanco")
-    public static let naverPay =
-        PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "naver_pay")
-    public static let nzBankAccount =
-        PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "nz_bank_account")
+    public static let giropay = PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "giropay")
+    public static let grabpay = PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "grabpay")
+    public static let ideal = PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "ideal")
+    public static let kakaoPay = PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "kakao_pay")
+    public static let klarna = PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "klarna")
+    public static let konbini = PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "konbini")
+    public static let krCard = PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "kr_card")
+    public static let mbWay = PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "mb_way")
+    public static let mobilepay = PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "mobilepay")
+    public static let multibanco = PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "multibanco")
+    public static let naverPay = PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "naver_pay")
+    public static let nzBankAccount = PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "nz_bank_account")
     public static let oxxo = PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "oxxo")
     public static let p24 = PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "p24")
-    public static let payByBank =
-        PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "pay_by_bank")
-    public static let payco =
-        PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "payco")
-    public static let paynow =
-        PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "paynow")
-    public static let paypal =
-        PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "paypal")
-    public static let payto =
-        PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "payto")
+    public static let payByBank = PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "pay_by_bank")
+    public static let payco = PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "payco")
+    public static let paynow = PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "paynow")
+    public static let paypal = PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "paypal")
+    public static let payto = PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "payto")
     public static let pix = PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "pix")
-    public static let promptpay =
-        PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "promptpay")
-    public static let revolutPay =
-        PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "revolut_pay")
-    public static let samsungPay =
-        PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "samsung_pay")
-    public static let satispay =
-        PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "satispay")
-    public static let scalapay =
-        PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "scalapay")
-    public static let sepaDebit =
-        PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "sepa_debit")
-    public static let sofort =
-        PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "sofort")
-    public static let sunbit =
-        PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "sunbit")
-    public static let swish =
-        PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "swish")
-    public static let twint =
-        PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "twint")
+    public static let promptpay = PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "promptpay")
+    public static let revolutPay = PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "revolut_pay")
+    public static let samsungPay = PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "samsung_pay")
+    public static let satispay = PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "satispay")
+    public static let scalapay = PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "scalapay")
+    public static let sepaDebit = PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "sepa_debit")
+    public static let sofort = PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "sofort")
+    public static let sunbit = PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "sunbit")
+    public static let swish = PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "swish")
+    public static let twint = PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "twint")
     public static let upi = PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "upi")
-    public static let usBankAccount =
-        PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "us_bank_account")
-    public static let wechatPay =
-        PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "wechat_pay")
+    public static let usBankAccount = PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "us_bank_account")
+    public static let wechatPay = PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "wechat_pay")
     public static let zip = PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78a5e028(rawValue: "zip")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -122,19 +75,15 @@ public struct PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethXdb78
     }
 }
 
-public struct PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethX20323340cb: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethX20323340cb: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethX20323340cb(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -143,19 +92,15 @@ public struct PostPaymentIntentsIntentConfirmRequestBodyExcludedPaymentMethX2032
     }
 }
 
-public struct PostPaymentIntentsIntentConfirmRequestBodyHooksInputsTaxCalcuX16cb7d4dce: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostPaymentIntentsIntentConfirmRequestBodyHooksInputsTaxCalcuX16cb7d4dce: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostPaymentIntentsIntentConfirmRequestBodyHooksInputsTaxCalcuX16cb7d4dce(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -164,22 +109,16 @@ public struct PostPaymentIntentsIntentConfirmRequestBodyHooksInputsTaxCalcuX16cb
     }
 }
 
-public struct PostPaymentIntentsIntentConfirmRequestBodyMandateDataVariant0X2a29743ed1: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostPaymentIntentsIntentConfirmRequestBodyMandateDataVariant0X2a29743ed1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let offline =
-        PostPaymentIntentsIntentConfirmRequestBodyMandateDataVariant0X2a29743ed1(rawValue: "offline")
-    public static let online =
-        PostPaymentIntentsIntentConfirmRequestBodyMandateDataVariant0X2a29743ed1(rawValue: "online")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let offline = PostPaymentIntentsIntentConfirmRequestBodyMandateDataVariant0X2a29743ed1(rawValue: "offline")
+    public static let online = PostPaymentIntentsIntentConfirmRequestBodyMandateDataVariant0X2a29743ed1(rawValue: "online")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -188,19 +127,15 @@ public struct PostPaymentIntentsIntentConfirmRequestBodyMandateDataVariant0X2a29
     }
 }
 
-public struct PostPaymentIntentsIntentConfirmRequestBodyMandateDataVariant1: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct PostPaymentIntentsIntentConfirmRequestBodyMandateDataVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostPaymentIntentsIntentConfirmRequestBodyMandateDataVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -209,20 +144,15 @@ public struct PostPaymentIntentsIntentConfirmRequestBodyMandateDataVariant1: Raw
     }
 }
 
-public struct PostPaymentIntentsIntentConfirmRequestBodyMandateDataVariant2Xb60c44f7b1: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostPaymentIntentsIntentConfirmRequestBodyMandateDataVariant2Xb60c44f7b1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let online =
-        PostPaymentIntentsIntentConfirmRequestBodyMandateDataVariant2Xb60c44f7b1(rawValue: "online")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let online = PostPaymentIntentsIntentConfirmRequestBodyMandateDataVariant2Xb60c44f7b1(rawValue: "online")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -231,20 +161,16 @@ public struct PostPaymentIntentsIntentConfirmRequestBodyMandateDataVariant2Xb60c
     }
 }
 
-public struct PostPaymentIntentsIntentConfirmRequestBodyOffSessionVariant1: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct PostPaymentIntentsIntentConfirmRequestBodyOffSessionVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let oneOff = PostPaymentIntentsIntentConfirmRequestBodyOffSessionVariant1(rawValue: "one_off")
     public static let recurring = PostPaymentIntentsIntentConfirmRequestBodyOffSessionVariant1(rawValue: "recurring")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -253,19 +179,15 @@ public struct PostPaymentIntentsIntentConfirmRequestBodyOffSessionVariant1: RawR
     }
 }
 
-public struct PostPaymentIntentsIntentConfirmRequestBodyPaymentDetailsVariaX65f7c3c82d: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostPaymentIntentsIntentConfirmRequestBodyPaymentDetailsVariaX65f7c3c82d: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostPaymentIntentsIntentConfirmRequestBodyPaymentDetailsVariaX65f7c3c82d(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -274,19 +196,15 @@ public struct PostPaymentIntentsIntentConfirmRequestBodyPaymentDetailsVariaX65f7
     }
 }
 
-public struct PostPaymentIntentsIntentConfirmRequestBodyPaymentDetailsVariaXcdebd6f9f6: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostPaymentIntentsIntentConfirmRequestBodyPaymentDetailsVariaXcdebd6f9f6: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostPaymentIntentsIntentConfirmRequestBodyPaymentDetailsVariaXcdebd6f9f6(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

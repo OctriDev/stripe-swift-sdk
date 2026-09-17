@@ -6,15 +6,10 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1ChargesSearchMethods {
-    /// Searches previously created charges using the charge Search Query Language. Supply `query` to define the search
-    /// and use `limit` and `page` to retrieve additional result pages. Search results may lag behind recent charge
-    /// changes.
+extension V1ChargesSearchMethods {
+    /// Searches previously created charges using the charge Search Query Language. Supply `query` to define the search and use `limit` and `page` to retrieve additional result pages. Search results may lag behind recent charge changes.
     ///
-    /// Search for charges you’ve previously created using Stripe’s Search Query Language. Don’t use search in
-    /// read-after-write flows where strict consistency is necessary. Under normal operating conditions, data is
-    /// searchable in less than a minute. Occasionally, propagation of new or updated data can be up to an hour behind
-    /// during outages. Search functionality is not available to merchants in India.
+    /// Search for charges you’ve previously created using Stripe’s Search Query Language. Don’t use search in read-after-write flows where strict consistency is necessary. Under normal operating conditions, data is searchable in less than a minute. Occasionally, propagation of new or updated data can be up to an hour behind during outages. Search functionality is not available to merchants in India.
     ///
     /// - Parameters:
     /// - query: The search query string. See [search query
@@ -27,20 +22,14 @@ public extension V1ChargesSearchMethods {
     /// - page: A cursor for pagination across multiple pages of results. Don't
     ///   include this parameter on the first call. Use the next_page value returned
     ///   in a previous response to request subsequent results.
-    static func getChargesSearch(
-        config: ClientConfig,
-        query: String,
-        expand: [String]?,
-        limit: Int?,
-        page: String?
-    ) async throws -> GetChargesSearchResponse {
+    public static func getChargesSearch(config: ClientConfig, query: String, expand: [String]?, limit: Int?, page: String?) async throws -> GetChargesSearchResponse {
         try validateLength("query", query, max: 5000)
 
-        if let page {
+        if let page = page {
             try validateLength("page", page, max: 5000)
         }
 
-        return try await (sdkRequest("GET", "/v1/charges/search", config: config, query: [
+        return try (await sdkRequest("GET", "/v1/charges/search", config: config, query: [
             SdkQueryParameter("query", value: query),
             SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
             SdkQueryParameter("limit", value: limit),
@@ -48,14 +37,9 @@ public extension V1ChargesSearchMethods {
         ], decoder: .json, operationId: "GetChargesSearch")).data
     }
 
-    /// Searches previously created charges using the charge Search Query Language. Supply `query` to define the search
-    /// and use `limit` and `page` to retrieve additional result pages. Search results may lag behind recent charge
-    /// changes.
+    /// Searches previously created charges using the charge Search Query Language. Supply `query` to define the search and use `limit` and `page` to retrieve additional result pages. Search results may lag behind recent charge changes.
     ///
-    /// Search for charges you’ve previously created using Stripe’s Search Query Language. Don’t use search in
-    /// read-after-write flows where strict consistency is necessary. Under normal operating conditions, data is
-    /// searchable in less than a minute. Occasionally, propagation of new or updated data can be up to an hour behind
-    /// during outages. Search functionality is not available to merchants in India.
+    /// Search for charges you’ve previously created using Stripe’s Search Query Language. Don’t use search in read-after-write flows where strict consistency is necessary. Under normal operating conditions, data is searchable in less than a minute. Occasionally, propagation of new or updated data can be up to an hour behind during outages. Search functionality is not available to merchants in India.
     ///
     /// - Parameters:
     /// - query: The search query string. See [search query
@@ -68,34 +52,15 @@ public extension V1ChargesSearchMethods {
     /// - page: A cursor for pagination across multiple pages of results. Don't
     ///   include this parameter on the first call. Use the next_page value returned
     ///   in a previous response to request subsequent results.
-    static func getChargesSearchPaginated(
-        config: ClientConfig,
-        query: String,
-        expand: [String]?,
-        limit: Int?,
-        page: String?
-    ) -> AsyncThrowingStream<Charge, Swift.Error> {
-        AsyncThrowingStream<Charge, Swift.Error> { (continuation: AsyncThrowingStream<
-            Charge,
-            Swift.Error
-        >.Continuation) in
+    public static func getChargesSearchPaginated(config: ClientConfig, query: String, expand: [String]?, limit: Int?, page: String?) -> AsyncThrowingStream<Charge, Swift.Error> {
+        return AsyncThrowingStream<Charge, Swift.Error> { (continuation: AsyncThrowingStream<Charge, Swift.Error>.Continuation) in
             let task = _Concurrency.Task {
                 do {
                     var pageCursor = page
                     while true {
-                        let pageResponse = try await getChargesSearch(
-                            config: config,
-                            query: query,
-                            expand: expand,
-                            limit: limit,
-                            page: pageCursor
-                        )
-                        for item in pageResponse.data {
-                            continuation.yield(item)
-                        }
-                        if !pageResponse.hasMore {
-                            break
-                        }
+                        let pageResponse = try await getChargesSearch(config: config, query: query, expand: expand, limit: limit, page: pageCursor)
+                        for item in pageResponse.data { continuation.yield(item) }
+                        if !pageResponse.hasMore { break }
                         guard let nextCursor = pageResponse.nextPage else { break }
                         pageCursor = nextCursor
                     }
@@ -109,47 +74,24 @@ public extension V1ChargesSearchMethods {
         }
     }
 
-    struct GetChargesSearchPage {
+    public struct GetChargesSearchPage {
         public let data: GetChargesSearchResponse
         public let items: [Charge]
         public let hasMore: Bool
     }
 
-    static func getChargesSearchPages(
-        config: ClientConfig,
-        query: String,
-        expand: [String]?,
-        limit: Int?,
-        page: String?
-    ) -> AsyncThrowingStream<GetChargesSearchPage, Swift.Error> {
-        AsyncThrowingStream<GetChargesSearchPage, Swift.Error> { (pageContinuation: AsyncThrowingStream<
-            GetChargesSearchPage,
-            Swift.Error
-        >.Continuation) in
+    public static func getChargesSearchPages(config: ClientConfig, query: String, expand: [String]?, limit: Int?, page: String?) -> AsyncThrowingStream<GetChargesSearchPage, Swift.Error> {
+        return AsyncThrowingStream<GetChargesSearchPage, Swift.Error> { (pageContinuation: AsyncThrowingStream<GetChargesSearchPage, Swift.Error>.Continuation) in
             let task = _Concurrency.Task {
                 do {
                     var pageCursor = page
                     while true {
-                        let pageResponse = try await getChargesSearch(
-                            config: config,
-                            query: query,
-                            expand: expand,
-                            limit: limit,
-                            page: pageCursor
-                        )
+                        let pageResponse = try await getChargesSearch(config: config, query: query, expand: expand, limit: limit, page: pageCursor)
                         let pageItems = pageResponse.data
-                        if pageItems.isEmpty {
-                            break
-                        }
+                        if pageItems.isEmpty { break }
                         let hasMore = pageResponse.hasMore && pageResponse.nextPage != nil
-                        pageContinuation.yield(GetChargesSearchPage(
-                            data: pageResponse,
-                            items: pageItems,
-                            hasMore: hasMore
-                        ))
-                        if !hasMore {
-                            break
-                        }
+                        pageContinuation.yield(GetChargesSearchPage(data: pageResponse, items: pageItems, hasMore: hasMore))
+                        if !hasMore { break }
                         guard let nextCursor = pageResponse.nextPage else { break }
                         pageCursor = nextCursor
                     }

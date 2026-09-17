@@ -6,19 +6,15 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public struct PostWebhookEndpointsRequestBodyMetadataVariant1: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostWebhookEndpointsRequestBodyMetadataVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostWebhookEndpointsRequestBodyMetadataVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -27,19 +23,15 @@ public struct PostWebhookEndpointsRequestBodyMetadataVariant1: RawRepresentable,
     }
 }
 
-public struct PostWebhookEndpointsWebhookEndpointRequestBodyDescriptionVariant1: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct PostWebhookEndpointsWebhookEndpointRequestBodyDescriptionVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostWebhookEndpointsWebhookEndpointRequestBodyDescriptionVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -48,17 +40,14 @@ public struct PostWebhookEndpointsWebhookEndpointRequestBodyDescriptionVariant1:
     }
 }
 
-public struct PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
+    public init(rawValue: String) { self.rawValue = rawValue }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -69,393 +58,166 @@ public struct PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem: R
 
 public extension PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem {
     static let unknown = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "*")
-    static let accountApplicationAuthorized =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "account.application.authorized")
-    static let accountApplicationDeauthorized =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "account.application.deauthorized")
-    static let accountExternalAccountCreated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "account.external_account.created")
-    static let accountExternalAccountDeleted =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "account.external_account.deleted")
-    static let accountExternalAccountUpdated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "account.external_account.updated")
-    static let accountUpdated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "account.updated")
-    static let applicationFeeCreated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "application_fee.created")
-    static let applicationFeeRefundUpdated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "application_fee.refund.updated")
-    static let applicationFeeRefunded =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "application_fee.refunded")
-    static let balanceAvailable =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "balance.available")
-    static let balanceSettingsUpdated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "balance_settings.updated")
-    static let billingAlertTriggered =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "billing.alert.triggered")
-    static let billingCreditBalanceTransactionCreated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(
-            rawValue: "billing.credit_balance_transaction.created"
-        )
-    static let billingCreditGrantCreated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "billing.credit_grant.created")
-    static let billingCreditGrantUpdated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "billing.credit_grant.updated")
-    static let billingMeterCreated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "billing.meter.created")
-    static let billingMeterDeactivated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "billing.meter.deactivated")
-    static let billingMeterReactivated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "billing.meter.reactivated")
-    static let billingMeterUpdated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "billing.meter.updated")
-    static let billingPortalConfigurationCreated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(
-            rawValue: "billing_portal.configuration.created"
-        )
-    static let billingPortalConfigurationUpdated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(
-            rawValue: "billing_portal.configuration.updated"
-        )
-    static let billingPortalSessionCreated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "billing_portal.session.created")
-    static let capabilityUpdated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "capability.updated")
-    static let cashBalanceFundsAvailable =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "cash_balance.funds_available")
-    static let chargeCaptured =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "charge.captured")
-    static let chargeDisputeClosed =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "charge.dispute.closed")
-    static let chargeDisputeCreated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "charge.dispute.created")
-    static let chargeDisputeFundsReinstated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "charge.dispute.funds_reinstated")
-    static let chargeDisputeFundsWithdrawn =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "charge.dispute.funds_withdrawn")
-    static let chargeDisputeUpdated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "charge.dispute.updated")
-    static let chargeExpired =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "charge.expired")
+    static let accountApplicationAuthorized = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "account.application.authorized")
+    static let accountApplicationDeauthorized = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "account.application.deauthorized")
+    static let accountExternalAccountCreated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "account.external_account.created")
+    static let accountExternalAccountDeleted = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "account.external_account.deleted")
+    static let accountExternalAccountUpdated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "account.external_account.updated")
+    static let accountUpdated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "account.updated")
+    static let applicationFeeCreated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "application_fee.created")
+    static let applicationFeeRefundUpdated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "application_fee.refund.updated")
+    static let applicationFeeRefunded = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "application_fee.refunded")
+    static let balanceAvailable = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "balance.available")
+    static let balanceSettingsUpdated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "balance_settings.updated")
+    static let billingAlertTriggered = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "billing.alert.triggered")
+    static let billingCreditBalanceTransactionCreated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "billing.credit_balance_transaction.created")
+    static let billingCreditGrantCreated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "billing.credit_grant.created")
+    static let billingCreditGrantUpdated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "billing.credit_grant.updated")
+    static let billingMeterCreated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "billing.meter.created")
+    static let billingMeterDeactivated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "billing.meter.deactivated")
+    static let billingMeterReactivated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "billing.meter.reactivated")
+    static let billingMeterUpdated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "billing.meter.updated")
+    static let billingPortalConfigurationCreated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "billing_portal.configuration.created")
+    static let billingPortalConfigurationUpdated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "billing_portal.configuration.updated")
+    static let billingPortalSessionCreated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "billing_portal.session.created")
+    static let capabilityUpdated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "capability.updated")
+    static let cashBalanceFundsAvailable = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "cash_balance.funds_available")
+    static let chargeCaptured = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "charge.captured")
+    static let chargeDisputeClosed = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "charge.dispute.closed")
+    static let chargeDisputeCreated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "charge.dispute.created")
+    static let chargeDisputeFundsReinstated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "charge.dispute.funds_reinstated")
+    static let chargeDisputeFundsWithdrawn = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "charge.dispute.funds_withdrawn")
+    static let chargeDisputeUpdated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "charge.dispute.updated")
+    static let chargeExpired = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "charge.expired")
     static let chargeFailed = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "charge.failed")
-    static let chargePending =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "charge.pending")
-    static let chargeRefundUpdated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "charge.refund.updated")
-    static let chargeRefunded =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "charge.refunded")
-    static let chargeSucceeded =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "charge.succeeded")
-    static let chargeUpdated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "charge.updated")
-    static let checkoutSessionAsyncPaymentFailed =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(
-            rawValue: "checkout.session.async_payment_failed"
-        )
-    static let checkoutSessionAsyncPaymentSucceeded =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(
-            rawValue: "checkout.session.async_payment_succeeded"
-        )
-    static let checkoutSessionCompleted =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "checkout.session.completed")
-    static let checkoutSessionExpired =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "checkout.session.expired")
-    static let climateOrderCanceled =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "climate.order.canceled")
-    static let climateOrderCreated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "climate.order.created")
-    static let climateOrderDelayed =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "climate.order.delayed")
-    static let climateOrderDelivered =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "climate.order.delivered")
-    static let climateOrderProductSubstituted =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "climate.order.product_substituted")
-    static let climateProductCreated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "climate.product.created")
-    static let climateProductPricingUpdated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "climate.product.pricing_updated")
-    static let couponCreated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "coupon.created")
-    static let couponDeleted =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "coupon.deleted")
-    static let couponUpdated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "coupon.updated")
-    static let creditNoteCreated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "credit_note.created")
-    static let creditNoteUpdated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "credit_note.updated")
-    static let creditNoteVoided =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "credit_note.voided")
-    static let customerCreated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "customer.created")
-    static let customerDeleted =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "customer.deleted")
-    static let customerDiscountCreated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "customer.discount.created")
-    static let customerDiscountDeleted =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "customer.discount.deleted")
-    static let customerDiscountUpdated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "customer.discount.updated")
-    static let customerSourceCreated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "customer.source.created")
-    static let customerSourceDeleted =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "customer.source.deleted")
-    static let customerSourceExpiring =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "customer.source.expiring")
-    static let customerSourceUpdated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "customer.source.updated")
-    static let customerSubscriptionCreated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "customer.subscription.created")
-    static let customerSubscriptionDeleted =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "customer.subscription.deleted")
-    static let customerSubscriptionPaused =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "customer.subscription.paused")
-    static let customerSubscriptionPendingUpdateApplied =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(
-            rawValue: "customer.subscription.pending_update_applied"
-        )
-    static let customerSubscriptionPendingUpdateExpired =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(
-            rawValue: "customer.subscription.pending_update_expired"
-        )
-    static let customerSubscriptionResumed =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "customer.subscription.resumed")
-    static let customerSubscriptionTrialWillEnd =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(
-            rawValue: "customer.subscription.trial_will_end"
-        )
-    static let customerSubscriptionUpdated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "customer.subscription.updated")
-    static let customerTaxIdCreated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "customer.tax_id.created")
-    static let customerTaxIdDeleted =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "customer.tax_id.deleted")
-    static let customerTaxIdUpdated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "customer.tax_id.updated")
-    static let customerUpdated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "customer.updated")
-    static let customerCashBalanceTransactionCreated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(
-            rawValue: "customer_cash_balance_transaction.created"
-        )
-    static let entitlementsActiveEntitlementSummaryUpdated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(
-            rawValue: "entitlements.active_entitlement_summary.updated"
-        )
+    static let chargePending = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "charge.pending")
+    static let chargeRefundUpdated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "charge.refund.updated")
+    static let chargeRefunded = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "charge.refunded")
+    static let chargeSucceeded = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "charge.succeeded")
+    static let chargeUpdated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "charge.updated")
+    static let checkoutSessionAsyncPaymentFailed = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "checkout.session.async_payment_failed")
+    static let checkoutSessionAsyncPaymentSucceeded = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "checkout.session.async_payment_succeeded")
+    static let checkoutSessionCompleted = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "checkout.session.completed")
+    static let checkoutSessionExpired = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "checkout.session.expired")
+    static let climateOrderCanceled = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "climate.order.canceled")
+    static let climateOrderCreated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "climate.order.created")
+    static let climateOrderDelayed = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "climate.order.delayed")
+    static let climateOrderDelivered = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "climate.order.delivered")
+    static let climateOrderProductSubstituted = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "climate.order.product_substituted")
+    static let climateProductCreated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "climate.product.created")
+    static let climateProductPricingUpdated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "climate.product.pricing_updated")
+    static let couponCreated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "coupon.created")
+    static let couponDeleted = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "coupon.deleted")
+    static let couponUpdated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "coupon.updated")
+    static let creditNoteCreated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "credit_note.created")
+    static let creditNoteUpdated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "credit_note.updated")
+    static let creditNoteVoided = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "credit_note.voided")
+    static let customerCreated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "customer.created")
+    static let customerDeleted = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "customer.deleted")
+    static let customerDiscountCreated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "customer.discount.created")
+    static let customerDiscountDeleted = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "customer.discount.deleted")
+    static let customerDiscountUpdated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "customer.discount.updated")
+    static let customerSourceCreated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "customer.source.created")
+    static let customerSourceDeleted = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "customer.source.deleted")
+    static let customerSourceExpiring = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "customer.source.expiring")
+    static let customerSourceUpdated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "customer.source.updated")
+    static let customerSubscriptionCreated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "customer.subscription.created")
+    static let customerSubscriptionDeleted = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "customer.subscription.deleted")
+    static let customerSubscriptionPaused = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "customer.subscription.paused")
+    static let customerSubscriptionPendingUpdateApplied = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "customer.subscription.pending_update_applied")
+    static let customerSubscriptionPendingUpdateExpired = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "customer.subscription.pending_update_expired")
+    static let customerSubscriptionResumed = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "customer.subscription.resumed")
+    static let customerSubscriptionTrialWillEnd = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "customer.subscription.trial_will_end")
+    static let customerSubscriptionUpdated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "customer.subscription.updated")
+    static let customerTaxIdCreated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "customer.tax_id.created")
+    static let customerTaxIdDeleted = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "customer.tax_id.deleted")
+    static let customerTaxIdUpdated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "customer.tax_id.updated")
+    static let customerUpdated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "customer.updated")
+    static let customerCashBalanceTransactionCreated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "customer_cash_balance_transaction.created")
+    static let entitlementsActiveEntitlementSummaryUpdated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "entitlements.active_entitlement_summary.updated")
     static let fileCreated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "file.created")
-    static let financialConnectionsAccountAccountNumbersUpdated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(
-            rawValue: "financial_connections.account.account_numbers_updated"
-        )
+    static let financialConnectionsAccountAccountNumbersUpdated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "financial_connections.account.account_numbers_updated")
 }
 
 public extension PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem {
-    static let financialConnectionsAccountCreated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(
-            rawValue: "financial_connections.account.created"
-        )
-    static let financialConnectionsAccountDeactivated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(
-            rawValue: "financial_connections.account.deactivated"
-        )
-    static let financialConnectionsAccountDisconnected =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(
-            rawValue: "financial_connections.account.disconnected"
-        )
-    static let financialConnectionsAccountExpectedDeactivationDateUpdated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(
-            rawValue: "financial_connections.account.expected_deactivation_date_updated"
-        )
-    static let financialConnectionsAccountReactivated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(
-            rawValue: "financial_connections.account.reactivated"
-        )
-    static let financialConnectionsAccountRefreshedBalance =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(
-            rawValue: "financial_connections.account.refreshed_balance"
-        )
-    static let financialConnectionsAccountRefreshedOwnership =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(
-            rawValue: "financial_connections.account.refreshed_ownership"
-        )
-    static let financialConnectionsAccountRefreshedTransactions =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(
-            rawValue: "financial_connections.account.refreshed_transactions"
-        )
-    static let financialConnectionsAccountSupportedPaymentMethodTypesUpdated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(
-            rawValue: "financial_connections.account.supported_payment_method_types_updated"
-        )
-    static let financialConnectionsAccountUpcomingAccountNumberExpiry =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(
-            rawValue: "financial_connections.account.upcoming_account_number_expiry"
-        )
-    static let financialConnectionsAccountUpcomingDeactivation =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(
-            rawValue: "financial_connections.account.upcoming_deactivation"
-        )
-    static let financialConnectionsAuthorizationExpectedDeactivationDateUpdated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(
-            rawValue: "financial_connections.authorization.expected_deactivation_date_updated"
-        )
-    static let financialConnectionsAuthorizationUpcomingDeactivation =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(
-            rawValue: "financial_connections.authorization.upcoming_deactivation"
-        )
-    static let identityVerificationSessionCanceled =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(
-            rawValue: "identity.verification_session.canceled"
-        )
-    static let identityVerificationSessionCreated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(
-            rawValue: "identity.verification_session.created"
-        )
-    static let identityVerificationSessionProcessing =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(
-            rawValue: "identity.verification_session.processing"
-        )
-    static let identityVerificationSessionRedacted =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(
-            rawValue: "identity.verification_session.redacted"
-        )
-    static let identityVerificationSessionRequiresInput =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(
-            rawValue: "identity.verification_session.requires_input"
-        )
-    static let identityVerificationSessionVerified =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(
-            rawValue: "identity.verification_session.verified"
-        )
-    static let invoiceCreated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "invoice.created")
-    static let invoiceDeleted =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "invoice.deleted")
-    static let invoiceFinalizationFailed =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "invoice.finalization_failed")
-    static let invoiceFinalized =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "invoice.finalized")
-    static let invoiceMarkedUncollectible =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "invoice.marked_uncollectible")
-    static let invoiceOverdue =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "invoice.overdue")
-    static let invoiceOverpaid =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "invoice.overpaid")
+    static let financialConnectionsAccountCreated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "financial_connections.account.created")
+    static let financialConnectionsAccountDeactivated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "financial_connections.account.deactivated")
+    static let financialConnectionsAccountDisconnected = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "financial_connections.account.disconnected")
+    static let financialConnectionsAccountExpectedDeactivationDateUpdated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "financial_connections.account.expected_deactivation_date_updated")
+    static let financialConnectionsAccountReactivated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "financial_connections.account.reactivated")
+    static let financialConnectionsAccountRefreshedBalance = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "financial_connections.account.refreshed_balance")
+    static let financialConnectionsAccountRefreshedOwnership = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "financial_connections.account.refreshed_ownership")
+    static let financialConnectionsAccountRefreshedTransactions = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "financial_connections.account.refreshed_transactions")
+    static let financialConnectionsAccountSupportedPaymentMethodTypesUpdated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "financial_connections.account.supported_payment_method_types_updated")
+    static let financialConnectionsAccountUpcomingAccountNumberExpiry = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "financial_connections.account.upcoming_account_number_expiry")
+    static let financialConnectionsAccountUpcomingDeactivation = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "financial_connections.account.upcoming_deactivation")
+    static let financialConnectionsAuthorizationExpectedDeactivationDateUpdated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "financial_connections.authorization.expected_deactivation_date_updated")
+    static let financialConnectionsAuthorizationUpcomingDeactivation = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "financial_connections.authorization.upcoming_deactivation")
+    static let identityVerificationSessionCanceled = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "identity.verification_session.canceled")
+    static let identityVerificationSessionCreated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "identity.verification_session.created")
+    static let identityVerificationSessionProcessing = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "identity.verification_session.processing")
+    static let identityVerificationSessionRedacted = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "identity.verification_session.redacted")
+    static let identityVerificationSessionRequiresInput = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "identity.verification_session.requires_input")
+    static let identityVerificationSessionVerified = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "identity.verification_session.verified")
+    static let invoiceCreated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "invoice.created")
+    static let invoiceDeleted = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "invoice.deleted")
+    static let invoiceFinalizationFailed = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "invoice.finalization_failed")
+    static let invoiceFinalized = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "invoice.finalized")
+    static let invoiceMarkedUncollectible = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "invoice.marked_uncollectible")
+    static let invoiceOverdue = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "invoice.overdue")
+    static let invoiceOverpaid = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "invoice.overpaid")
     static let invoicePaid = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "invoice.paid")
-    static let invoicePaymentActionRequired =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "invoice.payment_action_required")
-    static let invoicePaymentAttemptRequired =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "invoice.payment_attempt_required")
-    static let invoicePaymentFailed =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "invoice.payment_failed")
-    static let invoicePaymentSucceeded =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "invoice.payment_succeeded")
+    static let invoicePaymentActionRequired = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "invoice.payment_action_required")
+    static let invoicePaymentAttemptRequired = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "invoice.payment_attempt_required")
+    static let invoicePaymentFailed = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "invoice.payment_failed")
+    static let invoicePaymentSucceeded = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "invoice.payment_succeeded")
     static let invoiceSent = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "invoice.sent")
-    static let invoiceUpcoming =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "invoice.upcoming")
-    static let invoiceUpdated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "invoice.updated")
-    static let invoiceVoided =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "invoice.voided")
-    static let invoiceWillBeDue =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "invoice.will_be_due")
-    static let invoicePaymentPaid =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "invoice_payment.paid")
-    static let invoiceitemCreated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "invoiceitem.created")
-    static let invoiceitemDeleted =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "invoiceitem.deleted")
-    static let issuingAuthorizationCreated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "issuing_authorization.created")
-    static let issuingAuthorizationRequest =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "issuing_authorization.request")
-    static let issuingAuthorizationUpdated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "issuing_authorization.updated")
-    static let issuingCardCreated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "issuing_card.created")
-    static let issuingCardUpdated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "issuing_card.updated")
-    static let issuingCardholderCreated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "issuing_cardholder.created")
-    static let issuingCardholderUpdated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "issuing_cardholder.updated")
-    static let issuingDisputeClosed =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "issuing_dispute.closed")
-    static let issuingDisputeCreated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "issuing_dispute.created")
-    static let issuingDisputeFundsReinstated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "issuing_dispute.funds_reinstated")
-    static let issuingDisputeFundsRescinded =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "issuing_dispute.funds_rescinded")
-    static let issuingDisputeSubmitted =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "issuing_dispute.submitted")
-    static let issuingDisputeUpdated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "issuing_dispute.updated")
-    static let issuingPersonalizationDesignActivated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(
-            rawValue: "issuing_personalization_design.activated"
-        )
-    static let issuingPersonalizationDesignDeactivated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(
-            rawValue: "issuing_personalization_design.deactivated"
-        )
-    static let issuingPersonalizationDesignRejected =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(
-            rawValue: "issuing_personalization_design.rejected"
-        )
-    static let issuingPersonalizationDesignUpdated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(
-            rawValue: "issuing_personalization_design.updated"
-        )
-    static let issuingTokenCreated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "issuing_token.created")
-    static let issuingTokenUpdated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "issuing_token.updated")
-    static let issuingTransactionCreated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "issuing_transaction.created")
-    static let issuingTransactionPurchaseDetailsReceiptUpdated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(
-            rawValue: "issuing_transaction.purchase_details_receipt_updated"
-        )
-    static let issuingTransactionUpdated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "issuing_transaction.updated")
-    static let mandateUpdated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "mandate.updated")
-    static let paymentIntentAmountCapturableUpdated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(
-            rawValue: "payment_intent.amount_capturable_updated"
-        )
-    static let paymentIntentCanceled =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "payment_intent.canceled")
-    static let paymentIntentCreated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "payment_intent.created")
-    static let paymentIntentPartiallyFunded =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "payment_intent.partially_funded")
-    static let paymentIntentPaymentFailed =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "payment_intent.payment_failed")
-    static let paymentIntentProcessing =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "payment_intent.processing")
-    static let paymentIntentRequiresAction =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "payment_intent.requires_action")
-    static let paymentIntentSucceeded =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "payment_intent.succeeded")
-    static let paymentLinkCreated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "payment_link.created")
-    static let paymentLinkUpdated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "payment_link.updated")
-    static let paymentMethodAttached =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "payment_method.attached")
-    static let paymentMethodAutomaticallyUpdated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(
-            rawValue: "payment_method.automatically_updated"
-        )
-    static let paymentMethodDetached =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "payment_method.detached")
-    static let paymentMethodUpdated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "payment_method.updated")
-    static let payoutCanceled =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "payout.canceled")
-    static let payoutCreated =
-        PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "payout.created")
+    static let invoiceUpcoming = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "invoice.upcoming")
+    static let invoiceUpdated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "invoice.updated")
+    static let invoiceVoided = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "invoice.voided")
+    static let invoiceWillBeDue = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "invoice.will_be_due")
+    static let invoicePaymentPaid = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "invoice_payment.paid")
+    static let invoiceitemCreated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "invoiceitem.created")
+    static let invoiceitemDeleted = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "invoiceitem.deleted")
+    static let issuingAuthorizationCreated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "issuing_authorization.created")
+    static let issuingAuthorizationRequest = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "issuing_authorization.request")
+    static let issuingAuthorizationUpdated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "issuing_authorization.updated")
+    static let issuingCardCreated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "issuing_card.created")
+    static let issuingCardUpdated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "issuing_card.updated")
+    static let issuingCardholderCreated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "issuing_cardholder.created")
+    static let issuingCardholderUpdated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "issuing_cardholder.updated")
+    static let issuingDisputeClosed = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "issuing_dispute.closed")
+    static let issuingDisputeCreated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "issuing_dispute.created")
+    static let issuingDisputeFundsReinstated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "issuing_dispute.funds_reinstated")
+    static let issuingDisputeFundsRescinded = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "issuing_dispute.funds_rescinded")
+    static let issuingDisputeSubmitted = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "issuing_dispute.submitted")
+    static let issuingDisputeUpdated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "issuing_dispute.updated")
+    static let issuingPersonalizationDesignActivated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "issuing_personalization_design.activated")
+    static let issuingPersonalizationDesignDeactivated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "issuing_personalization_design.deactivated")
+    static let issuingPersonalizationDesignRejected = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "issuing_personalization_design.rejected")
+    static let issuingPersonalizationDesignUpdated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "issuing_personalization_design.updated")
+    static let issuingTokenCreated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "issuing_token.created")
+    static let issuingTokenUpdated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "issuing_token.updated")
+    static let issuingTransactionCreated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "issuing_transaction.created")
+    static let issuingTransactionPurchaseDetailsReceiptUpdated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "issuing_transaction.purchase_details_receipt_updated")
+    static let issuingTransactionUpdated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "issuing_transaction.updated")
+    static let mandateUpdated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "mandate.updated")
+    static let paymentIntentAmountCapturableUpdated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "payment_intent.amount_capturable_updated")
+    static let paymentIntentCanceled = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "payment_intent.canceled")
+    static let paymentIntentCreated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "payment_intent.created")
+    static let paymentIntentPartiallyFunded = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "payment_intent.partially_funded")
+    static let paymentIntentPaymentFailed = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "payment_intent.payment_failed")
+    static let paymentIntentProcessing = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "payment_intent.processing")
+    static let paymentIntentRequiresAction = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "payment_intent.requires_action")
+    static let paymentIntentSucceeded = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "payment_intent.succeeded")
+    static let paymentLinkCreated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "payment_link.created")
+    static let paymentLinkUpdated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "payment_link.updated")
+    static let paymentMethodAttached = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "payment_method.attached")
+    static let paymentMethodAutomaticallyUpdated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "payment_method.automatically_updated")
+    static let paymentMethodDetached = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "payment_method.detached")
+    static let paymentMethodUpdated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "payment_method.updated")
+    static let payoutCanceled = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "payout.canceled")
+    static let payoutCreated = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "payout.created")
     static let payoutFailed = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "payout.failed")
     static let payoutPaid = PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem(rawValue: "payout.paid")
 }

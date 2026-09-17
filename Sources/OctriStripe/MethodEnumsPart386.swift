@@ -16,12 +16,12 @@ struct PostCustomersCustomerBankAccountsRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(alipayAccount, forKey: SdkCodingKey("alipay_account"))
-        try keyedContainer.encodeIfPresent(bankAccount, forKey: SdkCodingKey("bank_account"))
-        try keyedContainer.encodeIfPresent(card, forKey: SdkCodingKey("card"))
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
-        try keyedContainer.encodeIfPresent(source, forKey: SdkCodingKey("source"))
+        try keyedContainer.encodeIfPresent(self.alipayAccount, forKey: SdkCodingKey("alipay_account"))
+        try keyedContainer.encodeIfPresent(self.bankAccount, forKey: SdkCodingKey("bank_account"))
+        try keyedContainer.encodeIfPresent(self.card, forKey: SdkCodingKey("card"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encodeIfPresent(self.source, forKey: SdkCodingKey("source"))
     }
 }
 
@@ -30,7 +30,7 @@ struct DeleteCustomersCustomerBankAccountsIdRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
     }
 }
 
@@ -52,37 +52,37 @@ struct PostCustomersCustomerBankAccountsIdRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(accountHolderName, forKey: SdkCodingKey("account_holder_name"))
-        try keyedContainer.encodeIfPresent(accountHolderType, forKey: SdkCodingKey("account_holder_type"))
-        try keyedContainer.encodeIfPresent(addressCity, forKey: SdkCodingKey("address_city"))
-        try keyedContainer.encodeIfPresent(addressCountry, forKey: SdkCodingKey("address_country"))
-        try keyedContainer.encodeIfPresent(addressLine1, forKey: SdkCodingKey("address_line1"))
-        try keyedContainer.encodeIfPresent(addressLine2, forKey: SdkCodingKey("address_line2"))
-        try keyedContainer.encodeIfPresent(addressState, forKey: SdkCodingKey("address_state"))
-        try keyedContainer.encodeIfPresent(addressZip, forKey: SdkCodingKey("address_zip"))
-        try keyedContainer.encodeIfPresent(expMonth, forKey: SdkCodingKey("exp_month"))
-        try keyedContainer.encodeIfPresent(expYear, forKey: SdkCodingKey("exp_year"))
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
-        try keyedContainer.encodeIfPresent(name, forKey: SdkCodingKey("name"))
-        try keyedContainer.encodeIfPresent(owner, forKey: SdkCodingKey("owner"))
+        try keyedContainer.encodeIfPresent(self.accountHolderName, forKey: SdkCodingKey("account_holder_name"))
+        try keyedContainer.encodeIfPresent(self.accountHolderType, forKey: SdkCodingKey("account_holder_type"))
+        try keyedContainer.encodeIfPresent(self.addressCity, forKey: SdkCodingKey("address_city"))
+        try keyedContainer.encodeIfPresent(self.addressCountry, forKey: SdkCodingKey("address_country"))
+        try keyedContainer.encodeIfPresent(self.addressLine1, forKey: SdkCodingKey("address_line1"))
+        try keyedContainer.encodeIfPresent(self.addressLine2, forKey: SdkCodingKey("address_line2"))
+        try keyedContainer.encodeIfPresent(self.addressState, forKey: SdkCodingKey("address_state"))
+        try keyedContainer.encodeIfPresent(self.addressZip, forKey: SdkCodingKey("address_zip"))
+        try keyedContainer.encodeIfPresent(self.expMonth, forKey: SdkCodingKey("exp_month"))
+        try keyedContainer.encodeIfPresent(self.expYear, forKey: SdkCodingKey("exp_year"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encodeIfPresent(self.name, forKey: SdkCodingKey("name"))
+        try keyedContainer.encodeIfPresent(self.owner, forKey: SdkCodingKey("owner"))
     }
 
     init(options: V1CustomersBankAccountsMethods.PostCustomersCustomerBankAccountsIdOptions) {
-        accountHolderName = options.accountHolderName
-        accountHolderType = options.accountHolderType
-        addressCity = options.addressCity
-        addressCountry = options.addressCountry
-        addressLine1 = options.addressLine1
-        addressLine2 = options.addressLine2
-        addressState = options.addressState
-        addressZip = options.addressZip
-        expMonth = options.expMonth
-        expYear = options.expYear
-        expand = options.expand
-        metadata = options.metadata
-        name = options.name
-        owner = options.owner
+        self.accountHolderName = options.accountHolderName
+        self.accountHolderType = options.accountHolderType
+        self.addressCity = options.addressCity
+        self.addressCountry = options.addressCountry
+        self.addressLine1 = options.addressLine1
+        self.addressLine2 = options.addressLine2
+        self.addressState = options.addressState
+        self.addressZip = options.addressZip
+        self.expMonth = options.expMonth
+        self.expYear = options.expYear
+        self.expand = options.expand
+        self.metadata = options.metadata
+        self.name = options.name
+        self.owner = options.owner
     }
 }
 
@@ -92,8 +92,8 @@ struct PostCustomersCustomerBankAccountsIdVerifyRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(amounts, forKey: SdkCodingKey("amounts"))
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.amounts, forKey: SdkCodingKey("amounts"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
     }
 }
 
@@ -107,12 +107,12 @@ struct PostCustomersCustomerCardsRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(alipayAccount, forKey: SdkCodingKey("alipay_account"))
-        try keyedContainer.encodeIfPresent(bankAccount, forKey: SdkCodingKey("bank_account"))
-        try keyedContainer.encodeIfPresent(card, forKey: SdkCodingKey("card"))
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
-        try keyedContainer.encodeIfPresent(source, forKey: SdkCodingKey("source"))
+        try keyedContainer.encodeIfPresent(self.alipayAccount, forKey: SdkCodingKey("alipay_account"))
+        try keyedContainer.encodeIfPresent(self.bankAccount, forKey: SdkCodingKey("bank_account"))
+        try keyedContainer.encodeIfPresent(self.card, forKey: SdkCodingKey("card"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encodeIfPresent(self.source, forKey: SdkCodingKey("source"))
     }
 }
 
@@ -121,7 +121,7 @@ struct DeleteCustomersCustomerCardsIdRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
     }
 }
 
@@ -143,37 +143,37 @@ struct PostCustomersCustomerCardsIdRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(accountHolderName, forKey: SdkCodingKey("account_holder_name"))
-        try keyedContainer.encodeIfPresent(accountHolderType, forKey: SdkCodingKey("account_holder_type"))
-        try keyedContainer.encodeIfPresent(addressCity, forKey: SdkCodingKey("address_city"))
-        try keyedContainer.encodeIfPresent(addressCountry, forKey: SdkCodingKey("address_country"))
-        try keyedContainer.encodeIfPresent(addressLine1, forKey: SdkCodingKey("address_line1"))
-        try keyedContainer.encodeIfPresent(addressLine2, forKey: SdkCodingKey("address_line2"))
-        try keyedContainer.encodeIfPresent(addressState, forKey: SdkCodingKey("address_state"))
-        try keyedContainer.encodeIfPresent(addressZip, forKey: SdkCodingKey("address_zip"))
-        try keyedContainer.encodeIfPresent(expMonth, forKey: SdkCodingKey("exp_month"))
-        try keyedContainer.encodeIfPresent(expYear, forKey: SdkCodingKey("exp_year"))
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
-        try keyedContainer.encodeIfPresent(name, forKey: SdkCodingKey("name"))
-        try keyedContainer.encodeIfPresent(owner, forKey: SdkCodingKey("owner"))
+        try keyedContainer.encodeIfPresent(self.accountHolderName, forKey: SdkCodingKey("account_holder_name"))
+        try keyedContainer.encodeIfPresent(self.accountHolderType, forKey: SdkCodingKey("account_holder_type"))
+        try keyedContainer.encodeIfPresent(self.addressCity, forKey: SdkCodingKey("address_city"))
+        try keyedContainer.encodeIfPresent(self.addressCountry, forKey: SdkCodingKey("address_country"))
+        try keyedContainer.encodeIfPresent(self.addressLine1, forKey: SdkCodingKey("address_line1"))
+        try keyedContainer.encodeIfPresent(self.addressLine2, forKey: SdkCodingKey("address_line2"))
+        try keyedContainer.encodeIfPresent(self.addressState, forKey: SdkCodingKey("address_state"))
+        try keyedContainer.encodeIfPresent(self.addressZip, forKey: SdkCodingKey("address_zip"))
+        try keyedContainer.encodeIfPresent(self.expMonth, forKey: SdkCodingKey("exp_month"))
+        try keyedContainer.encodeIfPresent(self.expYear, forKey: SdkCodingKey("exp_year"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encodeIfPresent(self.name, forKey: SdkCodingKey("name"))
+        try keyedContainer.encodeIfPresent(self.owner, forKey: SdkCodingKey("owner"))
     }
 
     init(options: V1CustomersCardsMethods.PostCustomersCustomerCardsIdOptions) {
-        accountHolderName = options.accountHolderName
-        accountHolderType = options.accountHolderType
-        addressCity = options.addressCity
-        addressCountry = options.addressCountry
-        addressLine1 = options.addressLine1
-        addressLine2 = options.addressLine2
-        addressState = options.addressState
-        addressZip = options.addressZip
-        expMonth = options.expMonth
-        expYear = options.expYear
-        expand = options.expand
-        metadata = options.metadata
-        name = options.name
-        owner = options.owner
+        self.accountHolderName = options.accountHolderName
+        self.accountHolderType = options.accountHolderType
+        self.addressCity = options.addressCity
+        self.addressCountry = options.addressCountry
+        self.addressLine1 = options.addressLine1
+        self.addressLine2 = options.addressLine2
+        self.addressState = options.addressState
+        self.addressZip = options.addressZip
+        self.expMonth = options.expMonth
+        self.expYear = options.expYear
+        self.expand = options.expand
+        self.metadata = options.metadata
+        self.name = options.name
+        self.owner = options.owner
     }
 }
 
@@ -183,8 +183,8 @@ struct PostCustomersCustomerCashBalanceRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(settings, forKey: SdkCodingKey("settings"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.settings, forKey: SdkCodingKey("settings"))
     }
 }
 
@@ -196,9 +196,9 @@ struct PostCustomersCustomerFundingInstructionsRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encode(bankTransfer, forKey: SdkCodingKey("bank_transfer"))
-        try keyedContainer.encode(currency, forKey: SdkCodingKey("currency"))
-        try keyedContainer.encode(fundingType, forKey: SdkCodingKey("funding_type"))
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encode(self.bankTransfer, forKey: SdkCodingKey("bank_transfer"))
+        try keyedContainer.encode(self.currency, forKey: SdkCodingKey("currency"))
+        try keyedContainer.encode(self.fundingType, forKey: SdkCodingKey("funding_type"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
     }
 }

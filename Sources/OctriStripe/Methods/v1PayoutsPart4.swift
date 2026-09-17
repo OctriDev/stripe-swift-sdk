@@ -6,35 +6,24 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1PayoutsMethods {
-    /// Retrieves a single payout by its unique identifier. Use `expand` when the response should include expanded
-    /// related fields instead of only their identifiers.
+extension V1PayoutsMethods {
+    /// Retrieves a single payout by its unique identifier. Use `expand` when the response should include expanded related fields instead of only their identifiers.
     ///
-    /// Retrieves the details of an existing payout. Supply the unique payout ID from either a payout creation request
-    /// or the payout list. Stripe returns the corresponding payout information.
+    /// Retrieves the details of an existing payout. Supply the unique payout ID from either a payout creation request or the payout list. Stripe returns the corresponding payout information.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    static func getPayoutsPayout(config: ClientConfig, payout: String, expand: [String]?) async throws -> Payout {
+    public static func getPayoutsPayout(config: ClientConfig, payout: String, expand: [String]?) async throws -> Payout {
         try validateLength("payout", payout, max: 5000)
 
-        return try await (sdkRequest(
-            "GET",
-            ["/v1/payouts/", sdkEncodePathSegment(sdkWireString(payout))].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .json,
-            operationId: "GetPayoutsPayout"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/payouts/", sdkEncodePathSegment(sdkWireString(payout))].joined(), config: config, query: [
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .json, operationId: "GetPayoutsPayout")).data
     }
 
-    /// Updates the metadata associated with a payout without changing parameters that you omit. Use `metadata` to
-    /// attach or remove key-value pairs and `expand` to request expanded response fields.
+    /// Updates the metadata associated with a payout without changing parameters that you omit. Use `metadata` to attach or remove key-value pairs and `expand` to request expanded response fields.
     ///
-    /// Updates the specified payout by setting the values of the parameters you pass. We don’t change parameters that
-    /// you don’t provide. This request only accepts the metadata as arguments.
+    /// Updates the specified payout by setting the values of the parameters you pass. We don’t change parameters that you don’t provide. This request only accepts the metadata as arguments.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
@@ -43,24 +32,11 @@ public extension V1PayoutsMethods {
     ///   information about the object in a structured format. Individual keys can be
     ///   unset by posting an empty value to them. All keys can be unset by posting an
     ///   empty value to `metadata`.
-    static func postPayoutsPayout(
-        config: ClientConfig,
-        payout: String,
-        expand: [String]?,
-        metadata: PostPayoutsPayoutRequestBodyMetadata?
-    ) async throws -> Payout {
+    public static func postPayoutsPayout(config: ClientConfig, payout: String, expand: [String]?, metadata: PostPayoutsPayoutRequestBodyMetadata?) async throws -> Payout {
         try validateLength("payout", payout, max: 5000)
 
         let requestBody = PostPayoutsPayoutRequestBody(expand: expand, metadata: metadata)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/payouts/", sdkEncodePathSegment(sdkWireString(payout))].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostPayoutsPayout"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/payouts/", sdkEncodePathSegment(sdkWireString(payout))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostPayoutsPayout")).data
     }
 }

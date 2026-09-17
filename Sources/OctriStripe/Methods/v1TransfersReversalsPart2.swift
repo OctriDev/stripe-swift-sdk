@@ -6,13 +6,10 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1TransfersReversalsMethods {
-    /// Lists reversals associated with a specific transfer. Use `limit`, `starting_after`, and `ending_before` to page
-    /// through reversals beyond the 10 most recent entries available on the transfer object.
+extension V1TransfersReversalsMethods {
+    /// Lists reversals associated with a specific transfer. Use `limit`, `starting_after`, and `ending_before` to page through reversals beyond the 10 most recent entries available on the transfer object.
     ///
-    /// You can see a list of the reversals belonging to a specific transfer. Note that the 10 most recent reversals are
-    /// always available by default on the transfer object. If you need more than those 10, you can use this API method
-    /// and the limit and starting_after parameters to page through additional reversals.
+    /// You can see a list of the reversals belonging to a specific transfer. Note that the 10 most recent reversals are always available by default on the transfer object. If you need more than those 10, you can use this API method and the limit and starting_after parameters to page through additional reversals.
     ///
     /// - Parameters:
     /// - endingBefore: A cursor for use in pagination. `ending_before` is an object
@@ -28,36 +25,22 @@ public extension V1TransfersReversalsMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    static func getTransfersIdReversals(
-        config: ClientConfig,
-        id: String,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        startingAfter: String?
-    ) async throws -> GetTransfersIdReversalsResponse {
+    public static func getTransfersIdReversals(config: ClientConfig, id: String, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetTransfersIdReversalsResponse {
         try validateLength("id", id, max: 5000)
 
-        if let endingBefore {
+        if let endingBefore = endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let startingAfter {
+        if let startingAfter = startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try await (sdkRequest(
-            "GET",
-            ["/v1/transfers/", sdkEncodePathSegment(sdkWireString(id)), "/reversals"].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("ending_before", value: endingBefore),
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-                SdkQueryParameter("limit", value: limit),
-                SdkQueryParameter("starting_after", value: startingAfter),
-            ],
-            decoder: .json,
-            operationId: "GetTransfersIdReversals"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/transfers/", sdkEncodePathSegment(sdkWireString(id)), "/reversals"].joined(), config: config, query: [
+            SdkQueryParameter("ending_before", value: endingBefore),
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+            SdkQueryParameter("limit", value: limit),
+            SdkQueryParameter("starting_after", value: startingAfter),
+        ], decoder: .json, operationId: "GetTransfersIdReversals")).data
     }
 }

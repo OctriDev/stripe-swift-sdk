@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1PayoutsMethods {
-    struct PostPayoutsOptions: Codable {
+extension V1PayoutsMethods {
+    public struct PostPayoutsOptions: Codable {
         public var amount: Int
         public var currency: String
         public var description: String?
@@ -25,11 +25,7 @@ public extension V1PayoutsMethods {
         }
     }
 
-    /// To send funds to your own bank account, create a new payout object. Your Stripe balance must cover the payout
-    /// amount. If it doesn’t, you receive an “Insufficient Funds” error. If your API key is in test mode, money won’t
-    /// actually be sent, though every other action occurs as if you’re in live mode. If you create a manual payout on a
-    /// Stripe account that uses multiple payment source types, you need to specify the source type balance that the
-    /// payout draws from. The balance object details available and pending amounts by source type.
+    /// To send funds to your own bank account, create a new payout object. Your Stripe balance must cover the payout amount. If it doesn’t, you receive an “Insufficient Funds” error. If your API key is in test mode, money won’t actually be sent, though every other action occurs as if you’re in live mode. If you create a manual payout on a Stripe account that uses multiple payment source types, you need to specify the source type balance that the payout draws from. The balance object details available and pending amounts by source type.
     ///
     /// - Parameters:
     /// - amount: A positive integer in cents representing how much to payout.
@@ -63,7 +59,7 @@ public extension V1PayoutsMethods {
     ///   ACH payouts, this maps to the ACH Company Entry Description field, which the
     ///   NACHA standard limits to 10 characters. Stripe truncates descriptors longer
     ///   than 10 characters for US ACH payouts.
-    static func postPayouts(config: ClientConfig, options: PostPayoutsOptions) async throws -> Payout {
+    public static func postPayouts(config: ClientConfig, options: PostPayoutsOptions) async throws -> Payout {
         if let description = options.description {
             try validateLength("description", description, max: 5000)
         }
@@ -82,14 +78,6 @@ public extension V1PayoutsMethods {
 
         let requestBody = PostPayoutsRequestBody(options: options)
 
-        return try await (sdkRequest(
-            "POST",
-            "/v1/payouts",
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostPayouts"
-        )).data
+        return try (await sdkRequest("POST", "/v1/payouts", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostPayouts")).data
     }
 }

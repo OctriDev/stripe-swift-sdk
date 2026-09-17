@@ -7,70 +7,41 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1CustomersCards operation model declarations
-public extension PostCustomersCustomerCardsRequestBodyCardVariant0 {
-    init(from decoder: Decoder) throws {
+// Canonical v1CustomersCards operation model declarations
+extension PostCustomersCustomerCardsRequestBodyCardVariant0 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.expMonth) else {
-            throw SdkValidationError(
-                field: "exp_month",
-                code: "required",
-                message: "Validation failed for 'exp_month': value is required"
-            )
+            throw SdkValidationError(field: "exp_month", code: "required", message: "Validation failed for 'exp_month': value is required")
         }
         guard container.contains(.expYear) else {
-            throw SdkValidationError(
-                field: "exp_year",
-                code: "required",
-                message: "Validation failed for 'exp_year': value is required"
-            )
+            throw SdkValidationError(field: "exp_year", code: "required", message: "Validation failed for 'exp_year': value is required")
         }
         guard container.contains(.number) else {
-            throw SdkValidationError(
-                field: "number",
-                code: "required",
-                message: "Validation failed for 'number': value is required"
-            )
+            throw SdkValidationError(field: "number", code: "required", message: "Validation failed for 'number': value is required")
         }
-        expMonth = try container.sdkDecodeRequired(.expMonth)
-        expYear = try container.sdkDecodeRequired(.expYear)
-        number = try container.sdkDecodeRequired(.number)
-        addressCity = try container.sdkDecodeIfPresent(.addressCity)
-        addressCountry = try container.sdkDecodeIfPresent(.addressCountry)
-        addressLine1 = try container.sdkDecodeIfPresent(.addressLine1)
-        addressLine2 = try container.sdkDecodeIfPresent(.addressLine2)
-        addressState = try container.sdkDecodeIfPresent(.addressState)
-        addressZip = try container.sdkDecodeIfPresent(.addressZip)
-        cvc = try container.sdkDecodeIfPresent(.cvc)
-        encrypted = try container.sdkDecodeIfPresent(.encrypted)
-        metadata = try container.sdkDecodeIfPresent(.metadata)
-        name = try container.sdkDecodeIfPresent(.name)
-        networkToken = try container.sdkDecodeIfPresent(.networkToken)
-        object = try container.sdkDecodeIfPresent(.object)
-        swipeData = try container.sdkDecodeIfPresent(.swipeData)
+        self.expMonth = try container.sdkDecodeRequired(.expMonth)
+        self.expYear = try container.sdkDecodeRequired(.expYear)
+        self.number = try container.sdkDecodeRequired(.number)
+        self.addressCity = try container.sdkDecodeIfPresent(.addressCity)
+        self.addressCountry = try container.sdkDecodeIfPresent(.addressCountry)
+        self.addressLine1 = try container.sdkDecodeIfPresent(.addressLine1)
+        self.addressLine2 = try container.sdkDecodeIfPresent(.addressLine2)
+        self.addressState = try container.sdkDecodeIfPresent(.addressState)
+        self.addressZip = try container.sdkDecodeIfPresent(.addressZip)
+        self.cvc = try container.sdkDecodeIfPresent(.cvc)
+        self.encrypted = try container.sdkDecodeIfPresent(.encrypted)
+        self.metadata = try container.sdkDecodeIfPresent(.metadata)
+        self.name = try container.sdkDecodeIfPresent(.name)
+        self.networkToken = try container.sdkDecodeIfPresent(.networkToken)
+        self.object = try container.sdkDecodeIfPresent(.object)
+        self.swipeData = try container.sdkDecodeIfPresent(.swipeData)
         try sdkValidateConstraints()
     }
 }
 
-public extension PostCustomersCustomerCardsRequestBodyCardVariant0 {
-    init(
-        expMonth: Int,
-        expYear: Int,
-        number: String,
-        addressCity: String? = nil,
-        addressCountry: String? = nil,
-        addressLine1: String? = nil,
-        addressLine2: String? = nil,
-        addressState: String? = nil,
-        addressZip: String? = nil,
-        cvc: String? = nil,
-        encrypted: String? = nil,
-        metadata: [String: String]? = nil,
-        name: String? = nil,
-        networkToken: PostCustomersCustomerCardsRequestBodyCardVariant0NetworkToken? = nil,
-        object: PostCustomersCustomerCardsRequestBodyCardVariant0Object? = nil,
-        swipeData: String? = nil
-    ) throws {
+extension PostCustomersCustomerCardsRequestBodyCardVariant0 {
+    public init(expMonth: Int, expYear: Int, number: String, addressCity: String? = nil, addressCountry: String? = nil, addressLine1: String? = nil, addressLine2: String? = nil, addressState: String? = nil, addressZip: String? = nil, cvc: String? = nil, encrypted: String? = nil, metadata: [String: String]? = nil, name: String? = nil, networkToken: PostCustomersCustomerCardsRequestBodyCardVariant0NetworkToken? = nil, object: PostCustomersCustomerCardsRequestBodyCardVariant0Object? = nil, swipeData: String? = nil) throws {
         (self.expMonth, self.expYear) = (expMonth, expYear)
         (self.number, self.addressCity) = (number, addressCity)
         (self.addressCountry, self.addressLine1) = (addressCountry, addressLine1)
@@ -85,38 +56,38 @@ public extension PostCustomersCustomerCardsRequestBodyCardVariant0 {
 
 extension PostCustomersCustomerCardsRequestBodyCardVariant0 {
     func sdkValidateConstraints() throws {
-        try validateLength("number", number, min: nil, max: 5000)
-        if let value = addressCity {
+            try validateLength("number", self.number, min: nil, max: 5000)
+        if let value = self.addressCity {
             try validateLength("address_city", value, min: nil, max: 5000)
         }
-        if let value = addressCountry {
+        if let value = self.addressCountry {
             try validateLength("address_country", value, min: nil, max: 5000)
         }
-        if let value = addressLine1 {
+        if let value = self.addressLine1 {
             try validateLength("address_line1", value, min: nil, max: 5000)
         }
-        if let value = addressLine2 {
+        if let value = self.addressLine2 {
             try validateLength("address_line2", value, min: nil, max: 5000)
         }
-        if let value = addressState {
+        if let value = self.addressState {
             try validateLength("address_state", value, min: nil, max: 5000)
         }
-        if let value = addressZip {
+        if let value = self.addressZip {
             try validateLength("address_zip", value, min: nil, max: 5000)
         }
-        if let value = cvc {
+        if let value = self.cvc {
             try validateLength("cvc", value, min: nil, max: 5000)
         }
-        if let value = encrypted {
+        if let value = self.encrypted {
             try validateLength("encrypted", value, min: nil, max: 5000)
         }
-        if let value = name {
+        if let value = self.name {
             try validateLength("name", value, min: nil, max: 5000)
         }
-        if let value = object {
+        if let value = self.object {
             try validateLength("object", sdkWireString(value), min: nil, max: 5000)
         }
-        if let value = swipeData {
+        if let value = self.swipeData {
             try validateLength("swipe_data", value, min: nil, max: 5000)
         }
     }

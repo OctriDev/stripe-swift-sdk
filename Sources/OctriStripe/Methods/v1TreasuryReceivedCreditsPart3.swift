@@ -6,31 +6,18 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1TreasuryReceivedCreditsMethods {
-    /// Retrieves a specific received credit by its unique identifier. Use `expand` when you need selected fields
-    /// returned in expanded form.
+extension V1TreasuryReceivedCreditsMethods {
+    /// Retrieves a specific received credit by its unique identifier. Use `expand` when you need selected fields returned in expanded form.
     ///
-    /// Retrieves the details of an existing ReceivedCredit by passing the unique ReceivedCredit ID from the
-    /// ReceivedCredit list.
+    /// Retrieves the details of an existing ReceivedCredit by passing the unique ReceivedCredit ID from the ReceivedCredit list.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    static func getTreasuryReceivedCreditsId(
-        config: ClientConfig,
-        id: String,
-        expand: [String]?
-    ) async throws -> TreasuryReceivedCredit {
+    public static func getTreasuryReceivedCreditsId(config: ClientConfig, id: String, expand: [String]?) async throws -> TreasuryReceivedCredit {
         try validateLength("id", id, max: 5000)
 
-        return try await (sdkRequest(
-            "GET",
-            ["/v1/treasury/received_credits/", sdkEncodePathSegment(sdkWireString(id))].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .json,
-            operationId: "GetTreasuryReceivedCreditsId"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/treasury/received_credits/", sdkEncodePathSegment(sdkWireString(id))].joined(), config: config, query: [
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .json, operationId: "GetTreasuryReceivedCreditsId")).data
     }
 }

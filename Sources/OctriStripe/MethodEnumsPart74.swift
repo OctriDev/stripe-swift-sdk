@@ -6,19 +6,15 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public struct PostInvoiceitemsInvoiceitemRequestBodyMetadataVariant1: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostInvoiceitemsInvoiceitemRequestBodyMetadataVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostInvoiceitemsInvoiceitemRequestBodyMetadataVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -27,21 +23,17 @@ public struct PostInvoiceitemsInvoiceitemRequestBodyMetadataVariant1: RawReprese
     }
 }
 
-public struct PostInvoiceitemsInvoiceitemRequestBodyPriceDataTaxBehavior: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostInvoiceitemsInvoiceitemRequestBodyPriceDataTaxBehavior: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let exclusive = PostInvoiceitemsInvoiceitemRequestBodyPriceDataTaxBehavior(rawValue: "exclusive")
     public static let inclusive = PostInvoiceitemsInvoiceitemRequestBodyPriceDataTaxBehavior(rawValue: "inclusive")
     public static let unspecified = PostInvoiceitemsInvoiceitemRequestBodyPriceDataTaxBehavior(rawValue: "unspecified")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -53,21 +45,17 @@ public struct PostInvoiceitemsInvoiceitemRequestBodyPriceDataTaxBehavior: RawRep
 /// Only required if a default tax behavior) was not provided in the Stripe Tax settings. Specifies whether the
 /// price is considered inclusive of taxes or exclusive of taxes. One of `inclusive`, `exclusive`, or
 /// `unspecified`. Once specified as either `inclusive` or `exclusive`, it cannot be changed.
-public struct PostInvoiceitemsInvoiceitemRequestBodyTaxBehavior: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostInvoiceitemsInvoiceitemRequestBodyTaxBehavior: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let exclusive = PostInvoiceitemsInvoiceitemRequestBodyTaxBehavior(rawValue: "exclusive")
     public static let inclusive = PostInvoiceitemsInvoiceitemRequestBodyTaxBehavior(rawValue: "inclusive")
     public static let unspecified = PostInvoiceitemsInvoiceitemRequestBodyTaxBehavior(rawValue: "unspecified")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -76,19 +64,15 @@ public struct PostInvoiceitemsInvoiceitemRequestBodyTaxBehavior: RawRepresentabl
     }
 }
 
-public struct PostInvoiceitemsInvoiceitemRequestBodyTaxRatesVariant1: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostInvoiceitemsInvoiceitemRequestBodyTaxRatesVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostInvoiceitemsInvoiceitemRequestBodyTaxRatesVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -100,16 +84,13 @@ public struct PostInvoiceitemsInvoiceitemRequestBodyTaxRatesVariant1: RawReprese
 public struct GetInvoicesParameter: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let chargeAutomatically = GetInvoicesParameter(rawValue: "charge_automatically")
     public static let sendInvoice = GetInvoicesParameter(rawValue: "send_invoice")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -121,10 +102,7 @@ public struct GetInvoicesParameter: RawRepresentable, Hashable, Codable, Sendabl
 public struct GetInvoicesParameterX224e8ed5: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let draft = GetInvoicesParameterX224e8ed5(rawValue: "draft")
     public static let open = GetInvoicesParameterX224e8ed5(rawValue: "open")
     public static let paid = GetInvoicesParameterX224e8ed5(rawValue: "paid")
@@ -133,7 +111,7 @@ public struct GetInvoicesParameterX224e8ed5: RawRepresentable, Hashable, Codable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -147,15 +125,12 @@ public struct GetInvoicesParameterX224e8ed5: RawRepresentable, Hashable, Codable
 public struct GetInvoicesResponseObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let list = GetInvoicesResponseObject(rawValue: "list")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -164,19 +139,15 @@ public struct GetInvoicesResponseObject: RawRepresentable, Hashable, Codable, Se
     }
 }
 
-public struct PostInvoicesRequestBodyAccountTaxIdsVariant1: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostInvoicesRequestBodyAccountTaxIdsVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostInvoicesRequestBodyAccountTaxIdsVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -185,20 +156,16 @@ public struct PostInvoicesRequestBodyAccountTaxIdsVariant1: RawRepresentable, Ha
     }
 }
 
-public struct PostInvoicesRequestBodyAutomaticTaxLiabilityType: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostInvoicesRequestBodyAutomaticTaxLiabilityType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let account = PostInvoicesRequestBodyAutomaticTaxLiabilityType(rawValue: "account")
     public static let `self` = PostInvoicesRequestBodyAutomaticTaxLiabilityType(rawValue: "self")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -210,20 +177,16 @@ public struct PostInvoicesRequestBodyAutomaticTaxLiabilityType: RawRepresentable
 /// Either `charge_automatically`, or `send_invoice`. When charging automatically, Stripe will attempt to pay
 /// this invoice using the default source attached to the customer. When sending an invoice, Stripe will email
 /// this invoice to the customer with payment instructions. Defaults to `charge_automatically`.
-public struct PostInvoicesRequestBodyCollectionMethod: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostInvoicesRequestBodyCollectionMethod: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let chargeAutomatically = PostInvoicesRequestBodyCollectionMethod(rawValue: "charge_automatically")
     public static let sendInvoice = PostInvoicesRequestBodyCollectionMethod(rawValue: "send_invoice")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -232,19 +195,15 @@ public struct PostInvoicesRequestBodyCollectionMethod: RawRepresentable, Hashabl
     }
 }
 
-public struct PostInvoicesRequestBodyCustomFieldsVariant1: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostInvoicesRequestBodyCustomFieldsVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostInvoicesRequestBodyCustomFieldsVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

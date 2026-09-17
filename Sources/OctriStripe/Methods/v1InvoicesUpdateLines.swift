@@ -7,9 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1InvoicesUpdateLinesMethods {
-    /// Updates multiple line items on a draft invoice. Supply `lines` with each line item's identifier and the values
-    /// to change, including pricing, quantity, description, or tax settings as needed. The operation only applies while
-    /// the invoice remains in draft status.
+    /// Updates multiple line items on a draft invoice. Supply `lines` with each line item's identifier and the values to change, including pricing, quantity, description, or tax settings as needed. The operation only applies while the invoice remains in draft status.
     ///
     /// Updates multiple line items on an invoice. This is only possible when an invoice is still a draft.
     ///
@@ -28,29 +26,11 @@ public enum V1InvoicesUpdateLinesMethods {
     ///   [type=invoiceitem](api/invoices/line_item#invoice_line_item_object-type)
     ///   line items, where any existing metadata on the invoice line is merged with
     ///   the incoming data.
-    public static func postInvoicesInvoiceUpdateLines(
-        config: ClientConfig,
-        invoice: String,
-        lines: [PostInvoicesInvoiceUpdateLinesRequestBodyLinesItem],
-        expand: [String]?,
-        invoiceMetadata: PostInvoicesInvoiceUpdateLinesRequestBodyInvoiceMetadata?
-    ) async throws -> Invoice {
+    public static func postInvoicesInvoiceUpdateLines(config: ClientConfig, invoice: String, lines: [PostInvoicesInvoiceUpdateLinesRequestBodyLinesItem], expand: [String]?, invoiceMetadata: PostInvoicesInvoiceUpdateLinesRequestBodyInvoiceMetadata?) async throws -> Invoice {
         try validateLength("invoice", invoice, max: 5000)
 
-        let requestBody = PostInvoicesInvoiceUpdateLinesRequestBody(
-            lines: lines,
-            expand: expand,
-            invoiceMetadata: invoiceMetadata
-        )
+        let requestBody = PostInvoicesInvoiceUpdateLinesRequestBody(lines: lines, expand: expand, invoiceMetadata: invoiceMetadata)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/invoices/", sdkEncodePathSegment(sdkWireString(invoice)), "/update_lines"].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostInvoicesInvoiceUpdateLines"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/invoices/", sdkEncodePathSegment(sdkWireString(invoice)), "/update_lines"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostInvoicesInvoiceUpdateLines")).data
     }
 }

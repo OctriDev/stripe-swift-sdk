@@ -6,24 +6,17 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public struct PostTestHelpersConfirmationTokensRequestBodyPaymentMethodOptiX49c7d7b668: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostTestHelpersConfirmationTokensRequestBodyPaymentMethodOptiX49c7d7b668: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let bonus =
-        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodOptiX49c7d7b668(rawValue: "bonus")
-    public static let fixedCount =
-        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodOptiX49c7d7b668(rawValue: "fixed_count")
-    public static let revolving =
-        PostTestHelpersConfirmationTokensRequestBodyPaymentMethodOptiX49c7d7b668(rawValue: "revolving")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let bonus = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodOptiX49c7d7b668(rawValue: "bonus")
+    public static let fixedCount = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodOptiX49c7d7b668(rawValue: "fixed_count")
+    public static let revolving = PostTestHelpersConfirmationTokensRequestBodyPaymentMethodOptiX49c7d7b668(rawValue: "revolving")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -35,20 +28,16 @@ public struct PostTestHelpersConfirmationTokensRequestBodyPaymentMethodOptiX49c7
 /// Indicates that you intend to make future payments with this ConfirmationToken's payment method. The presence
 /// of this property will attach the payment method to the PaymentIntent's Customer, if present, after the
 /// PaymentIntent is confirmed and any required actions from the user are complete.
-public struct PostTestHelpersConfirmationTokensRequestBodySetupFutureUsage: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct PostTestHelpersConfirmationTokensRequestBodySetupFutureUsage: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let offSession = PostTestHelpersConfirmationTokensRequestBodySetupFutureUsage(rawValue: "off_session")
     public static let onSession = PostTestHelpersConfirmationTokensRequestBodySetupFutureUsage(rawValue: "on_session")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -57,19 +46,15 @@ public struct PostTestHelpersConfirmationTokensRequestBodySetupFutureUsage: RawR
     }
 }
 
-public struct PostTestHelpersConfirmationTokensRequestBodyShippingPhoneVariant1: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct PostTestHelpersConfirmationTokensRequestBodyShippingPhoneVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostTestHelpersConfirmationTokensRequestBodyShippingPhoneVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -79,24 +64,19 @@ public struct PostTestHelpersConfirmationTokensRequestBodyShippingPhoneVariant1:
 }
 
 /// How the card details were provided. Defaults to online.
-public struct PostTestHelpersIssuingAuthorizationsRequestBodyAuthorizationMethod: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct PostTestHelpersIssuingAuthorizationsRequestBodyAuthorizationMethod: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let chip = PostTestHelpersIssuingAuthorizationsRequestBodyAuthorizationMethod(rawValue: "chip")
-    public static let contactless =
-        PostTestHelpersIssuingAuthorizationsRequestBodyAuthorizationMethod(rawValue: "contactless")
+    public static let contactless = PostTestHelpersIssuingAuthorizationsRequestBodyAuthorizationMethod(rawValue: "contactless")
     public static let keyedIn = PostTestHelpersIssuingAuthorizationsRequestBodyAuthorizationMethod(rawValue: "keyed_in")
     public static let online = PostTestHelpersIssuingAuthorizationsRequestBodyAuthorizationMethod(rawValue: "online")
     public static let swipe = PostTestHelpersIssuingAuthorizationsRequestBodyAuthorizationMethod(rawValue: "swipe")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -105,24 +85,17 @@ public struct PostTestHelpersIssuingAuthorizationsRequestBodyAuthorizationMethod
     }
 }
 
-public struct PostTestHelpersIssuingAuthorizationsRequestBodyFleetPurchaseType: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct PostTestHelpersIssuingAuthorizationsRequestBodyFleetPurchaseType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let fuelAndNonFuelPurchase =
-        PostTestHelpersIssuingAuthorizationsRequestBodyFleetPurchaseType(rawValue: "fuel_and_non_fuel_purchase")
-    public static let fuelPurchase =
-        PostTestHelpersIssuingAuthorizationsRequestBodyFleetPurchaseType(rawValue: "fuel_purchase")
-    public static let nonFuelPurchase =
-        PostTestHelpersIssuingAuthorizationsRequestBodyFleetPurchaseType(rawValue: "non_fuel_purchase")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let fuelAndNonFuelPurchase = PostTestHelpersIssuingAuthorizationsRequestBodyFleetPurchaseType(rawValue: "fuel_and_non_fuel_purchase")
+    public static let fuelPurchase = PostTestHelpersIssuingAuthorizationsRequestBodyFleetPurchaseType(rawValue: "fuel_purchase")
+    public static let nonFuelPurchase = PostTestHelpersIssuingAuthorizationsRequestBodyFleetPurchaseType(rawValue: "non_fuel_purchase")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -131,24 +104,17 @@ public struct PostTestHelpersIssuingAuthorizationsRequestBodyFleetPurchaseType: 
     }
 }
 
-public struct PostTestHelpersIssuingAuthorizationsRequestBodyFleetServiceType: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct PostTestHelpersIssuingAuthorizationsRequestBodyFleetServiceType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let fullService =
-        PostTestHelpersIssuingAuthorizationsRequestBodyFleetServiceType(rawValue: "full_service")
-    public static let nonFuelTransaction =
-        PostTestHelpersIssuingAuthorizationsRequestBodyFleetServiceType(rawValue: "non_fuel_transaction")
-    public static let selfService =
-        PostTestHelpersIssuingAuthorizationsRequestBodyFleetServiceType(rawValue: "self_service")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let fullService = PostTestHelpersIssuingAuthorizationsRequestBodyFleetServiceType(rawValue: "full_service")
+    public static let nonFuelTransaction = PostTestHelpersIssuingAuthorizationsRequestBodyFleetServiceType(rawValue: "non_fuel_transaction")
+    public static let selfService = PostTestHelpersIssuingAuthorizationsRequestBodyFleetServiceType(rawValue: "self_service")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -159,26 +125,18 @@ public struct PostTestHelpersIssuingAuthorizationsRequestBodyFleetServiceType: R
 
 /// Probability that this transaction can be disputed in the event of fraud. Assessed by comparing the
 /// characteristics of the authorization to card network rules.
-public struct PostTestHelpersIssuingAuthorizationsRequestBodyFraudDisputabiXe80f3f9ddd: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostTestHelpersIssuingAuthorizationsRequestBodyFraudDisputabiXe80f3f9ddd: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let neutral =
-        PostTestHelpersIssuingAuthorizationsRequestBodyFraudDisputabiXe80f3f9ddd(rawValue: "neutral")
-    public static let unknown =
-        PostTestHelpersIssuingAuthorizationsRequestBodyFraudDisputabiXe80f3f9ddd(rawValue: "unknown")
-    public static let veryLikely =
-        PostTestHelpersIssuingAuthorizationsRequestBodyFraudDisputabiXe80f3f9ddd(rawValue: "very_likely")
-    public static let veryUnlikely =
-        PostTestHelpersIssuingAuthorizationsRequestBodyFraudDisputabiXe80f3f9ddd(rawValue: "very_unlikely")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let neutral = PostTestHelpersIssuingAuthorizationsRequestBodyFraudDisputabiXe80f3f9ddd(rawValue: "neutral")
+    public static let unknown = PostTestHelpersIssuingAuthorizationsRequestBodyFraudDisputabiXe80f3f9ddd(rawValue: "unknown")
+    public static let veryLikely = PostTestHelpersIssuingAuthorizationsRequestBodyFraudDisputabiXe80f3f9ddd(rawValue: "very_likely")
+    public static let veryUnlikely = PostTestHelpersIssuingAuthorizationsRequestBodyFraudDisputabiXe80f3f9ddd(rawValue: "very_unlikely")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -187,25 +145,19 @@ public struct PostTestHelpersIssuingAuthorizationsRequestBodyFraudDisputabiXe80f
     }
 }
 
-public struct PostTestHelpersIssuingAuthorizationsRequestBodyFuelType: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostTestHelpersIssuingAuthorizationsRequestBodyFuelType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let diesel = PostTestHelpersIssuingAuthorizationsRequestBodyFuelType(rawValue: "diesel")
     public static let other = PostTestHelpersIssuingAuthorizationsRequestBodyFuelType(rawValue: "other")
     public static let unleadedPlus = PostTestHelpersIssuingAuthorizationsRequestBodyFuelType(rawValue: "unleaded_plus")
-    public static let unleadedRegular =
-        PostTestHelpersIssuingAuthorizationsRequestBodyFuelType(rawValue: "unleaded_regular")
-    public static let unleadedSuper =
-        PostTestHelpersIssuingAuthorizationsRequestBodyFuelType(rawValue: "unleaded_super")
+    public static let unleadedRegular = PostTestHelpersIssuingAuthorizationsRequestBodyFuelType(rawValue: "unleaded_regular")
+    public static let unleadedSuper = PostTestHelpersIssuingAuthorizationsRequestBodyFuelType(rawValue: "unleaded_super")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -214,18 +166,12 @@ public struct PostTestHelpersIssuingAuthorizationsRequestBodyFuelType: RawRepres
     }
 }
 
-public struct PostTestHelpersIssuingAuthorizationsRequestBodyFuelUnit: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostTestHelpersIssuingAuthorizationsRequestBodyFuelUnit: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let chargingMinute =
-        PostTestHelpersIssuingAuthorizationsRequestBodyFuelUnit(rawValue: "charging_minute")
-    public static let imperialGallon =
-        PostTestHelpersIssuingAuthorizationsRequestBodyFuelUnit(rawValue: "imperial_gallon")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let chargingMinute = PostTestHelpersIssuingAuthorizationsRequestBodyFuelUnit(rawValue: "charging_minute")
+    public static let imperialGallon = PostTestHelpersIssuingAuthorizationsRequestBodyFuelUnit(rawValue: "imperial_gallon")
     public static let kilogram = PostTestHelpersIssuingAuthorizationsRequestBodyFuelUnit(rawValue: "kilogram")
     public static let kilowattHour = PostTestHelpersIssuingAuthorizationsRequestBodyFuelUnit(rawValue: "kilowatt_hour")
     public static let liter = PostTestHelpersIssuingAuthorizationsRequestBodyFuelUnit(rawValue: "liter")
@@ -235,7 +181,7 @@ public struct PostTestHelpersIssuingAuthorizationsRequestBodyFuelUnit: RawRepres
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -244,17 +190,14 @@ public struct PostTestHelpersIssuingAuthorizationsRequestBodyFuelUnit: RawRepres
     }
 }
 
-public struct PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
+    public init(rawValue: String) { self.rawValue = rawValue }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

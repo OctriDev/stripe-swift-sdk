@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1Line domain models
+// V1Line domain models
 /// Typed representation of the `LineItemsAdjustableQuantity` API schema.
 public struct LineItemsAdjustableQuantity: Codable {
     /// Required `boolean` value serialized in the `enabled` wire field.
@@ -19,29 +19,23 @@ public struct LineItemsAdjustableQuantity: Codable {
         case minimum
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension LineItemsAdjustableQuantity {
-    init(from decoder: Decoder) throws {
+extension LineItemsAdjustableQuantity {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.enabled) else {
-            throw SdkValidationError(
-                field: "enabled",
-                code: "required",
-                message: "Validation failed for 'enabled': value is required"
-            )
+            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
         }
-        enabled = try container.sdkDecodeRequired(.enabled)
-        maximum = try container.sdkDecodeIfPresent(.maximum)
-        minimum = try container.sdkDecodeIfPresent(.minimum)
+        self.enabled = try container.sdkDecodeRequired(.enabled)
+        self.maximum = try container.sdkDecodeIfPresent(.maximum)
+        self.minimum = try container.sdkDecodeIfPresent(.minimum)
     }
 }
 
-public extension LineItemsAdjustableQuantity {
-    init(enabled: Bool, maximum: Int? = nil, minimum: Int? = nil) {
+extension LineItemsAdjustableQuantity {
+    public init(enabled: Bool, maximum: Int? = nil, minimum: Int? = nil) {
         (self.enabled, self.maximum) = (enabled, maximum)
         self.minimum = minimum
     }
@@ -61,35 +55,25 @@ public struct LineItemsDiscountAmount: Codable {
         case discount
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension LineItemsDiscountAmount {
-    init(from decoder: Decoder) throws {
+extension LineItemsDiscountAmount {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.amount) else {
-            throw SdkValidationError(
-                field: "amount",
-                code: "required",
-                message: "Validation failed for 'amount': value is required"
-            )
+            throw SdkValidationError(field: "amount", code: "required", message: "Validation failed for 'amount': value is required")
         }
         guard container.contains(.discount) else {
-            throw SdkValidationError(
-                field: "discount",
-                code: "required",
-                message: "Validation failed for 'discount': value is required"
-            )
+            throw SdkValidationError(field: "discount", code: "required", message: "Validation failed for 'discount': value is required")
         }
-        amount = try container.sdkDecodeRequired(.amount)
-        discount = try container.sdkDecodeRequired(.discount)
+        self.amount = try container.sdkDecodeRequired(.amount)
+        self.discount = try container.sdkDecodeRequired(.discount)
     }
 }
 
-public extension LineItemsDiscountAmount {
-    init(amount: Int, discount: Discount) {
+extension LineItemsDiscountAmount {
+    public init(amount: Int, discount: Discount) {
         (self.amount, self.discount) = (amount, discount)
     }
 }
@@ -114,42 +98,27 @@ public struct LineItemsTaxAmount: Codable {
         case taxableAmount = "taxable_amount"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension LineItemsTaxAmount {
-    init(from decoder: Decoder) throws {
+extension LineItemsTaxAmount {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.amount) else {
-            throw SdkValidationError(
-                field: "amount",
-                code: "required",
-                message: "Validation failed for 'amount': value is required"
-            )
+            throw SdkValidationError(field: "amount", code: "required", message: "Validation failed for 'amount': value is required")
         }
         guard container.contains(.rate) else {
-            throw SdkValidationError(
-                field: "rate",
-                code: "required",
-                message: "Validation failed for 'rate': value is required"
-            )
+            throw SdkValidationError(field: "rate", code: "required", message: "Validation failed for 'rate': value is required")
         }
-        amount = try container.sdkDecodeRequired(.amount)
-        rate = try container.sdkDecodeRequired(.rate)
-        taxabilityReason = try container.sdkDecodeIfPresent(.taxabilityReason)
-        taxableAmount = try container.sdkDecodeIfPresent(.taxableAmount)
+        self.amount = try container.sdkDecodeRequired(.amount)
+        self.rate = try container.sdkDecodeRequired(.rate)
+        self.taxabilityReason = try container.sdkDecodeIfPresent(.taxabilityReason)
+        self.taxableAmount = try container.sdkDecodeIfPresent(.taxableAmount)
     }
 }
 
-public extension LineItemsTaxAmount {
-    init(
-        amount: Int,
-        rate: TaxRate,
-        taxabilityReason: LineItemsTaxAmountTaxabilityReason? = nil,
-        taxableAmount: Int? = nil
-    ) {
+extension LineItemsTaxAmount {
+    public init(amount: Int, rate: TaxRate, taxabilityReason: LineItemsTaxAmountTaxabilityReason? = nil, taxableAmount: Int? = nil) {
         (self.amount, self.rate) = (amount, rate)
         (self.taxabilityReason, self.taxableAmount) = (taxabilityReason, taxableAmount)
     }
@@ -160,10 +129,7 @@ public extension LineItemsTaxAmount {
 public struct LineItemsTaxAmountTaxabilityReason: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let customerExempt = LineItemsTaxAmountTaxabilityReason(rawValue: "customer_exempt")
     public static let notCollecting = LineItemsTaxAmountTaxabilityReason(rawValue: "not_collecting")
     public static let notSubjectToTax = LineItemsTaxAmountTaxabilityReason(rawValue: "not_subject_to_tax")
@@ -182,7 +148,7 @@ public struct LineItemsTaxAmountTaxabilityReason: RawRepresentable, Hashable, Co
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1PaymentIntentsConfirmMethods {
-    struct PostPaymentIntentsIntentConfirmOptions: Codable {
+extension V1PaymentIntentsConfirmMethods {
+    public struct PostPaymentIntentsIntentConfirmOptions: Codable {
         public var intent: String
         public var allowedPaymentMethodTypes: [PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem]?
         public var amountDetails: PostPaymentIntentsIntentConfirmRequestBodyAmountDetails?
@@ -39,24 +39,9 @@ public extension V1PaymentIntentsConfirmMethods {
         }
     }
 
-    /// Confirms that the customer intends to pay with the current or a supplied payment method and initiates a payment
-    /// attempt. The PaymentIntent may require customer action, return to requires-confirmation for another server-side
-    /// attempt, succeed, require capture, or become canceled after the confirmation limit is reached.
+    /// Confirms that the customer intends to pay with the current or a supplied payment method and initiates a payment attempt. The PaymentIntent may require customer action, return to requires-confirmation for another server-side attempt, succeed, require capture, or become canceled after the confirmation limit is reached.
     ///
-    /// Confirm that your customer intends to pay with current or provided payment method. Upon confirmation, the
-    /// PaymentIntent will attempt to initiate a payment. If the selected payment method requires additional
-    /// authentication steps, the PaymentIntent will transition to the requires_action status and suggest additional
-    /// actions via next_action . If payment fails, the PaymentIntent transitions to the requires_payment_method status
-    /// or the canceled status if the confirmation limit is reached. If payment succeeds, the PaymentIntent will
-    /// transition to the succeeded status (or requires_capture , if capture_method is set to manual ). If the
-    /// confirmation_method is automatic , payment may be attempted using our client SDKs and the PaymentIntent’s
-    /// client_secret. After next_action s are handled by the client, no additional confirmation is required to complete
-    /// the payment. If the confirmation_method is manual , all payment attempts must be initiated using a secret key.
-    /// If any actions are required for the payment, the PaymentIntent will return to the requires_confirmation state
-    /// after those actions are completed. Your server needs to then explicitly re-confirm the PaymentIntent to initiate
-    /// the next payment attempt. There is a variable upper limit on how many times a PaymentIntent can be confirmed.
-    /// After this limit is reached, any further calls to this endpoint will transition the PaymentIntent to the
-    /// canceled state.
+    /// Confirm that your customer intends to pay with current or provided payment method. Upon confirmation, the PaymentIntent will attempt to initiate a payment. If the selected payment method requires additional authentication steps, the PaymentIntent will transition to the requires_action status and suggest additional actions via next_action . If payment fails, the PaymentIntent transitions to the requires_payment_method status or the canceled status if the confirmation limit is reached. If payment succeeds, the PaymentIntent will transition to the succeeded status (or requires_capture , if capture_method is set to manual ). If the confirmation_method is automatic , payment may be attempted using our client SDKs and the PaymentIntent’s client_secret. After next_action s are handled by the client, no additional confirmation is required to complete the payment. If the confirmation_method is manual , all payment attempts must be initiated using a secret key. If any actions are required for the payment, the PaymentIntent will return to the requires_confirmation state after those actions are completed. Your server needs to then explicitly re-confirm the PaymentIntent to initiate the next payment attempt. There is a variable upper limit on how many times a PaymentIntent can be confirmed. After this limit is reached, any further calls to this endpoint will transition the PaymentIntent to the canceled state.
     ///
     /// - Parameters:
     /// - allowedPaymentMethodTypes: The list of payment method types allowed for
@@ -137,10 +122,7 @@ public extension V1PaymentIntentsConfirmMethods {
     /// - shipping: Shipping information for this PaymentIntent.
     /// - useStripeSdk: Set to `true` when confirming server-side and using
     ///   Stripe.js, iOS, or Android client-side SDKs to handle the next actions.
-    static func postPaymentIntentsIntentConfirm(
-        config: ClientConfig,
-        options: PostPaymentIntentsIntentConfirmOptions
-    ) async throws -> PaymentIntent {
+    public static func postPaymentIntentsIntentConfirm(config: ClientConfig, options: PostPaymentIntentsIntentConfirmOptions) async throws -> PaymentIntent {
         try validateLength("intent", options.intent, max: 5000)
 
         if let clientSecret = options.clientSecret {
@@ -161,14 +143,6 @@ public extension V1PaymentIntentsConfirmMethods {
 
         let requestBody = PostPaymentIntentsIntentConfirmRequestBody(options: options)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/payment_intents/", sdkEncodePathSegment(sdkWireString(options.intent)), "/confirm"].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostPaymentIntentsIntentConfirm"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/payment_intents/", sdkEncodePathSegment(sdkWireString(options.intent)), "/confirm"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostPaymentIntentsIntentConfirm")).data
     }
 }

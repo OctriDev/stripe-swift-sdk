@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1CustomersSubscriptionsMethods {
-    struct PostCustomersCustomerSubscriptionsSubscriptionExposedIdOptions: Codable {
+extension V1CustomersSubscriptionsMethods {
+    public struct PostCustomersCustomerSubscriptionsSubscriptionExposedIdOptions: Codable {
         public var customer: String
         public var subscriptionExposedId: String
         public var addInvoiceItems: PostCustomersCustomerSubscriptionsSubscriptionExposedIdAddInvXce4d386374?
@@ -46,14 +46,9 @@ public extension V1CustomersSubscriptionsMethods {
         }
     }
 
-    /// Updates an existing subscription on a customer using the supplied configuration. Use the subscription
-    /// identifiers to select the resource and provide only the settings you want to change, such as items, billing
-    /// behavior, discounts, or cancellation details. Changes to plans or quantities can affect proration and the next
-    /// amount charged.
+    /// Updates an existing subscription on a customer using the supplied configuration. Use the subscription identifiers to select the resource and provide only the settings you want to change, such as items, billing behavior, discounts, or cancellation details. Changes to plans or quantities can affect proration and the next amount charged.
     ///
-    /// Updates an existing subscription on a customer to match the specified parameters. When changing plans or
-    /// quantities, we will optionally prorate the price we charge next month to make up for any price changes. To
-    /// preview how the proration will be calculated, use the upcoming invoice endpoint.
+    /// Updates an existing subscription on a customer to match the specified parameters. When changing plans or quantities, we will optionally prorate the price we charge next month to make up for any price changes. To preview how the proration will be calculated, use the upcoming invoice endpoint.
     ///
     /// - Parameters:
     /// - addInvoiceItems: A list of prices and quantities that will generate
@@ -169,10 +164,7 @@ public extension V1CustomersSubscriptionsMethods {
     ///   subscriptions](https://docs.stripe.com/billing/subscriptions/trials) to
     ///   learn more.
     /// - trialSettings: Settings related to subscription trials.
-    static func postCustomersCustomerSubscriptionsSubscriptionExposedId(
-        config: ClientConfig,
-        options: PostCustomersCustomerSubscriptionsSubscriptionExposedIdOptions
-    ) async throws -> Subscription {
+    public static func postCustomersCustomerSubscriptionsSubscriptionExposedId(config: ClientConfig, options: PostCustomersCustomerSubscriptionsSubscriptionExposedIdOptions) async throws -> Subscription {
         try validateLength("customer", options.customer, max: 5000)
 
         try validateLength("subscription_exposed_id", options.subscriptionExposedId, max: 5000)
@@ -187,19 +179,6 @@ public extension V1CustomersSubscriptionsMethods {
 
         let requestBody = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequestBody(options: options)
 
-        return try await (sdkRequest(
-            "POST",
-            [
-                "/v1/customers/",
-                sdkEncodePathSegment(sdkWireString(options.customer)),
-                "/subscriptions/",
-                sdkEncodePathSegment(sdkWireString(options.subscriptionExposedId)),
-            ].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostCustomersCustomerSubscriptionsSubscriptionExposedId"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/customers/", sdkEncodePathSegment(sdkWireString(options.customer)), "/subscriptions/", sdkEncodePathSegment(sdkWireString(options.subscriptionExposedId))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostCustomersCustomerSubscriptionsSubscriptionExposedId")).data
     }
 }

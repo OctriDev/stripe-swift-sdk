@@ -6,41 +6,25 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1PaymentIntentsMethods {
-    /// Retrieves a previously created PaymentIntent by its identifier. Use `client_secret` when retrieving the
-    /// PaymentIntent with a publishable key; publishable-key requests return only a subset of properties.
+extension V1PaymentIntentsMethods {
+    /// Retrieves a previously created PaymentIntent by its identifier. Use `client_secret` when retrieving the PaymentIntent with a publishable key; publishable-key requests return only a subset of properties.
     ///
-    /// Retrieves the details of a PaymentIntent that has previously been created. You can retrieve a PaymentIntent
-    /// client-side using a publishable key when the client_secret is in the query string. If you retrieve a
-    /// PaymentIntent with a publishable key, it only returns a subset of properties. Refer to the payment intent object
-    /// reference for more details.
+    /// Retrieves the details of a PaymentIntent that has previously been created. You can retrieve a PaymentIntent client-side using a publishable key when the client_secret is in the query string. If you retrieve a PaymentIntent with a publishable key, it only returns a subset of properties. Refer to the payment intent object reference for more details.
     ///
     /// - Parameters:
     /// - clientSecret: The client secret of the PaymentIntent. We require it if you
     ///   use a publishable key to retrieve the source.
     /// - expand: Specifies which fields in the response should be expanded.
-    static func getPaymentIntentsIntent(
-        config: ClientConfig,
-        intent: String,
-        clientSecret: String?,
-        expand: [String]?
-    ) async throws -> PaymentIntent {
+    public static func getPaymentIntentsIntent(config: ClientConfig, intent: String, clientSecret: String?, expand: [String]?) async throws -> PaymentIntent {
         try validateLength("intent", intent, max: 5000)
 
-        if let clientSecret {
+        if let clientSecret = clientSecret {
             try validateLength("client_secret", clientSecret, max: 5000)
         }
 
-        return try await (sdkRequest(
-            "GET",
-            ["/v1/payment_intents/", sdkEncodePathSegment(sdkWireString(intent))].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("client_secret", value: clientSecret),
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .json,
-            operationId: "GetPaymentIntentsIntent"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/payment_intents/", sdkEncodePathSegment(sdkWireString(intent))].joined(), config: config, query: [
+            SdkQueryParameter("client_secret", value: clientSecret),
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .json, operationId: "GetPaymentIntentsIntent")).data
     }
 }

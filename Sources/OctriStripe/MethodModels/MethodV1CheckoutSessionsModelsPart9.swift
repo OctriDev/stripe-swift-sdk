@@ -7,33 +7,23 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1CheckoutSessions operation model declarations
+// Canonical v1CheckoutSessions operation model declarations
 extension PostCheckoutSessionsSessionRequestBodyLineItemsItemMetadata: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostCheckoutSessionsSessionRequestBodyLineItemsItemMetadata"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostCheckoutSessionsSessionRequestBodyLineItemsItemMetadata")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode([String: String].self) {
-            return .dictionary(value)
-        }
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
+        if let value = try? container.decode([String: String].self) { return .dictionary(value) }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -43,6 +33,7 @@ extension PostCheckoutSessionsSessionRequestBodyLineItemsItemMetadata: Codable {
         case let .stringValue(value): try container.encode(value); return true
         }
     }
+
 }
 
 public struct PostCheckoutSessionsRequestBodyPaymentMethodOptionsAmazonPay: Codable {
@@ -55,23 +46,20 @@ public struct PostCheckoutSessionsRequestBodyPaymentMethodOptionsAmazonPay: Coda
     }
 
     init() {
-        (captureMethod, setupFutureUsage) = (nil, nil)
+        (self.captureMethod, self.setupFutureUsage) = (nil, nil)
     }
 }
 
-public extension PostCheckoutSessionsRequestBodyPaymentMethodOptionsAmazonPay {
-    init(from decoder: Decoder) throws {
+extension PostCheckoutSessionsRequestBodyPaymentMethodOptionsAmazonPay {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        captureMethod = try container.sdkDecodeIfPresent(.captureMethod)
-        setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
+        self.captureMethod = try container.sdkDecodeIfPresent(.captureMethod)
+        self.setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
     }
 }
 
-public extension PostCheckoutSessionsRequestBodyPaymentMethodOptionsAmazonPay {
-    init(
-        captureMethod: PostCheckoutSessionsRequestBodyPaymentMethodOptionsAmazonPayCXa2264b9543? = nil,
-        setupFutureUsage: PostCheckoutSessionsRequestBodyPaymentMethodOptionsAmazonPaySX0177da805a? = nil
-    ) {
+extension PostCheckoutSessionsRequestBodyPaymentMethodOptionsAmazonPay {
+    public init(captureMethod: PostCheckoutSessionsRequestBodyPaymentMethodOptionsAmazonPayCXa2264b9543? = nil, setupFutureUsage: PostCheckoutSessionsRequestBodyPaymentMethodOptionsAmazonPaySX0177da805a? = nil) {
         self.init()
         (self.captureMethod, self.setupFutureUsage) = (captureMethod, setupFutureUsage)
     }
@@ -83,31 +71,21 @@ public enum PostCheckoutSessionsRequestBodyPaymentMethodOptionsSepaDebitMX4c57b7
 }
 
 extension PostCheckoutSessionsRequestBodyPaymentMethodOptionsSepaDebitMX4c57b7eccf: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostCheckoutSessionsRequestBodyPaymentMethodOptionsSepaDebitMX4c57b7eccf"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostCheckoutSessionsRequestBodyPaymentMethodOptionsSepaDebitMX4c57b7eccf")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(String.self) {
-            return .stringValue1(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(String.self) { return .stringValue1(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -117,6 +95,7 @@ extension PostCheckoutSessionsRequestBodyPaymentMethodOptionsSepaDebitMX4c57b7ec
         case let .stringValue1(value): try container.encode(value); return true
         }
     }
+
 }
 
 public struct PostCheckoutSessionsRequestBodyPaymentMethodOptionsLink: Codable {
@@ -129,23 +108,20 @@ public struct PostCheckoutSessionsRequestBodyPaymentMethodOptionsLink: Codable {
     }
 
     init() {
-        (captureMethod, setupFutureUsage) = (nil, nil)
+        (self.captureMethod, self.setupFutureUsage) = (nil, nil)
     }
 }
 
-public extension PostCheckoutSessionsRequestBodyPaymentMethodOptionsLink {
-    init(from decoder: Decoder) throws {
+extension PostCheckoutSessionsRequestBodyPaymentMethodOptionsLink {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        captureMethod = try container.sdkDecodeIfPresent(.captureMethod)
-        setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
+        self.captureMethod = try container.sdkDecodeIfPresent(.captureMethod)
+        self.setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
     }
 }
 
-public extension PostCheckoutSessionsRequestBodyPaymentMethodOptionsLink {
-    init(
-        captureMethod: PostCheckoutSessionsRequestBodyPaymentMethodOptionsLinkCaptureMethod? = nil,
-        setupFutureUsage: PostCheckoutSessionsRequestBodyPaymentMethodOptionsLinkSetupFutureUsage? = nil
-    ) {
+extension PostCheckoutSessionsRequestBodyPaymentMethodOptionsLink {
+    public init(captureMethod: PostCheckoutSessionsRequestBodyPaymentMethodOptionsLinkCaptureMethod? = nil, setupFutureUsage: PostCheckoutSessionsRequestBodyPaymentMethodOptionsLinkSetupFutureUsage? = nil) {
         self.init()
         (self.captureMethod, self.setupFutureUsage) = (captureMethod, setupFutureUsage)
     }
@@ -309,8 +285,8 @@ extension PostCheckoutSessionsRequestBodyPaymentMethodOptions {
     }
 }
 
-public extension PostCheckoutSessionsRequestBodyPaymentMethodOptions {
-    init(from decoder: Decoder) throws {
+extension PostCheckoutSessionsRequestBodyPaymentMethodOptions {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.init(sdkDefaults: ())
         try sdkDecodeFieldsPart1(container)
@@ -321,58 +297,8 @@ public extension PostCheckoutSessionsRequestBodyPaymentMethodOptions {
     }
 }
 
-public extension PostCheckoutSessionsRequestBodyPaymentMethodOptions {
-    init(
-        acssDebit: PostCheckoutSessionsRequestBodyPaymentMethodOptionsAcssDebit? = nil,
-        affirm: PostCheckoutSessionsRequestBodyPaymentMethodOptionsAffirm? = nil,
-        afterpayClearpay: PostCheckoutSessionsRequestBodyPaymentMethodOptionsAfterpayClearpay? = nil,
-        alipay: PostCheckoutSessionsRequestBodyPaymentMethodOptionsAlipay? = nil,
-        alma: PostCheckoutSessionsRequestBodyPaymentMethodOptionsAlma? = nil,
-        amazonPay: PostCheckoutSessionsRequestBodyPaymentMethodOptionsAmazonPay? = nil,
-        auBecsDebit: PostCheckoutSessionsRequestBodyPaymentMethodOptionsAuBecsDebit? = nil,
-        bacsDebit: PostCheckoutSessionsRequestBodyPaymentMethodOptionsBacsDebit? = nil,
-        bancontact: PostCheckoutSessionsRequestBodyPaymentMethodOptionsBancontact? = nil,
-        billie: PostCheckoutSessionsRequestBodyPaymentMethodOptionsBillie? = nil,
-        boleto: PostCheckoutSessionsRequestBodyPaymentMethodOptionsBoleto? = nil,
-        card: PostCheckoutSessionsRequestBodyPaymentMethodOptionsCard? = nil,
-        cashapp: PostCheckoutSessionsRequestBodyPaymentMethodOptionsCashapp? = nil,
-        crypto: PostCheckoutSessionsRequestBodyPaymentMethodOptionsCrypto? = nil,
-        customerBalance: PostCheckoutSessionsRequestBodyPaymentMethodOptionsCustomerBalance? = nil,
-        demoPay: PostCheckoutSessionsRequestBodyPaymentMethodOptionsDemoPay? = nil,
-        eps: PostCheckoutSessionsRequestBodyPaymentMethodOptionsEps? = nil,
-        fpx: PostCheckoutSessionsRequestBodyPaymentMethodOptionsFpx? = nil,
-        giropay: PostCheckoutSessionsRequestBodyPaymentMethodOptionsGiropay? = nil,
-        grabpay: PostCheckoutSessionsRequestBodyPaymentMethodOptionsGrabpay? = nil,
-        ideal: PostCheckoutSessionsRequestBodyPaymentMethodOptionsIdeal? = nil,
-        kakaoPay: PostCheckoutSessionsRequestBodyPaymentMethodOptionsKakaoPay? = nil,
-        klarna: PostCheckoutSessionsRequestBodyPaymentMethodOptionsKlarna? = nil,
-        konbini: PostCheckoutSessionsRequestBodyPaymentMethodOptionsKonbini? = nil,
-        krCard: PostCheckoutSessionsRequestBodyPaymentMethodOptionsKrCard? = nil,
-        link: PostCheckoutSessionsRequestBodyPaymentMethodOptionsLink? = nil,
-        mobilepay: PostCheckoutSessionsRequestBodyPaymentMethodOptionsMobilepay? = nil,
-        multibanco: PostCheckoutSessionsRequestBodyPaymentMethodOptionsMultibanco? = nil,
-        naverPay: PostCheckoutSessionsRequestBodyPaymentMethodOptionsNaverPay? = nil,
-        oxxo: PostCheckoutSessionsRequestBodyPaymentMethodOptionsOxxo? = nil,
-        p24: PostCheckoutSessionsRequestBodyPaymentMethodOptionsP24? = nil,
-        payByBank: PostCheckoutSessionsRequestBodyPaymentMethodOptionsPayByBank? = nil,
-        payco: PostCheckoutSessionsRequestBodyPaymentMethodOptionsPayco? = nil,
-        paynow: PostCheckoutSessionsRequestBodyPaymentMethodOptionsPaynow? = nil,
-        paypal: PostCheckoutSessionsRequestBodyPaymentMethodOptionsPaypal? = nil,
-        payto: PostCheckoutSessionsRequestBodyPaymentMethodOptionsPayto? = nil,
-        pix: PostCheckoutSessionsRequestBodyPaymentMethodOptionsPix? = nil,
-        revolutPay: PostCheckoutSessionsRequestBodyPaymentMethodOptionsRevolutPay? = nil,
-        samsungPay: PostCheckoutSessionsRequestBodyPaymentMethodOptionsSamsungPay? = nil,
-        satispay: PostCheckoutSessionsRequestBodyPaymentMethodOptionsSatispay? = nil,
-        scalapay: PostCheckoutSessionsRequestBodyPaymentMethodOptionsScalapay? = nil,
-        sepaDebit: PostCheckoutSessionsRequestBodyPaymentMethodOptionsSepaDebit? = nil,
-        sofort: PostCheckoutSessionsRequestBodyPaymentMethodOptionsSofort? = nil,
-        sunbit: PostCheckoutSessionsRequestBodyPaymentMethodOptionsSunbit? = nil,
-        swish: PostCheckoutSessionsRequestBodyPaymentMethodOptionsSwish? = nil,
-        twint: PostCheckoutSessionsRequestBodyPaymentMethodOptionsTwint? = nil,
-        upi: PostCheckoutSessionsRequestBodyPaymentMethodOptionsUpi? = nil,
-        usBankAccount: PostCheckoutSessionsRequestBodyPaymentMethodOptionsUsBankAccount? = nil,
-        wechatPay: PostCheckoutSessionsRequestBodyPaymentMethodOptionsWechatPay? = nil
-    ) {
+extension PostCheckoutSessionsRequestBodyPaymentMethodOptions {
+    public init(acssDebit: PostCheckoutSessionsRequestBodyPaymentMethodOptionsAcssDebit? = nil, affirm: PostCheckoutSessionsRequestBodyPaymentMethodOptionsAffirm? = nil, afterpayClearpay: PostCheckoutSessionsRequestBodyPaymentMethodOptionsAfterpayClearpay? = nil, alipay: PostCheckoutSessionsRequestBodyPaymentMethodOptionsAlipay? = nil, alma: PostCheckoutSessionsRequestBodyPaymentMethodOptionsAlma? = nil, amazonPay: PostCheckoutSessionsRequestBodyPaymentMethodOptionsAmazonPay? = nil, auBecsDebit: PostCheckoutSessionsRequestBodyPaymentMethodOptionsAuBecsDebit? = nil, bacsDebit: PostCheckoutSessionsRequestBodyPaymentMethodOptionsBacsDebit? = nil, bancontact: PostCheckoutSessionsRequestBodyPaymentMethodOptionsBancontact? = nil, billie: PostCheckoutSessionsRequestBodyPaymentMethodOptionsBillie? = nil, boleto: PostCheckoutSessionsRequestBodyPaymentMethodOptionsBoleto? = nil, card: PostCheckoutSessionsRequestBodyPaymentMethodOptionsCard? = nil, cashapp: PostCheckoutSessionsRequestBodyPaymentMethodOptionsCashapp? = nil, crypto: PostCheckoutSessionsRequestBodyPaymentMethodOptionsCrypto? = nil, customerBalance: PostCheckoutSessionsRequestBodyPaymentMethodOptionsCustomerBalance? = nil, demoPay: PostCheckoutSessionsRequestBodyPaymentMethodOptionsDemoPay? = nil, eps: PostCheckoutSessionsRequestBodyPaymentMethodOptionsEps? = nil, fpx: PostCheckoutSessionsRequestBodyPaymentMethodOptionsFpx? = nil, giropay: PostCheckoutSessionsRequestBodyPaymentMethodOptionsGiropay? = nil, grabpay: PostCheckoutSessionsRequestBodyPaymentMethodOptionsGrabpay? = nil, ideal: PostCheckoutSessionsRequestBodyPaymentMethodOptionsIdeal? = nil, kakaoPay: PostCheckoutSessionsRequestBodyPaymentMethodOptionsKakaoPay? = nil, klarna: PostCheckoutSessionsRequestBodyPaymentMethodOptionsKlarna? = nil, konbini: PostCheckoutSessionsRequestBodyPaymentMethodOptionsKonbini? = nil, krCard: PostCheckoutSessionsRequestBodyPaymentMethodOptionsKrCard? = nil, link: PostCheckoutSessionsRequestBodyPaymentMethodOptionsLink? = nil, mobilepay: PostCheckoutSessionsRequestBodyPaymentMethodOptionsMobilepay? = nil, multibanco: PostCheckoutSessionsRequestBodyPaymentMethodOptionsMultibanco? = nil, naverPay: PostCheckoutSessionsRequestBodyPaymentMethodOptionsNaverPay? = nil, oxxo: PostCheckoutSessionsRequestBodyPaymentMethodOptionsOxxo? = nil, p24: PostCheckoutSessionsRequestBodyPaymentMethodOptionsP24? = nil, payByBank: PostCheckoutSessionsRequestBodyPaymentMethodOptionsPayByBank? = nil, payco: PostCheckoutSessionsRequestBodyPaymentMethodOptionsPayco? = nil, paynow: PostCheckoutSessionsRequestBodyPaymentMethodOptionsPaynow? = nil, paypal: PostCheckoutSessionsRequestBodyPaymentMethodOptionsPaypal? = nil, payto: PostCheckoutSessionsRequestBodyPaymentMethodOptionsPayto? = nil, pix: PostCheckoutSessionsRequestBodyPaymentMethodOptionsPix? = nil, revolutPay: PostCheckoutSessionsRequestBodyPaymentMethodOptionsRevolutPay? = nil, samsungPay: PostCheckoutSessionsRequestBodyPaymentMethodOptionsSamsungPay? = nil, satispay: PostCheckoutSessionsRequestBodyPaymentMethodOptionsSatispay? = nil, scalapay: PostCheckoutSessionsRequestBodyPaymentMethodOptionsScalapay? = nil, sepaDebit: PostCheckoutSessionsRequestBodyPaymentMethodOptionsSepaDebit? = nil, sofort: PostCheckoutSessionsRequestBodyPaymentMethodOptionsSofort? = nil, sunbit: PostCheckoutSessionsRequestBodyPaymentMethodOptionsSunbit? = nil, swish: PostCheckoutSessionsRequestBodyPaymentMethodOptionsSwish? = nil, twint: PostCheckoutSessionsRequestBodyPaymentMethodOptionsTwint? = nil, upi: PostCheckoutSessionsRequestBodyPaymentMethodOptionsUpi? = nil, usBankAccount: PostCheckoutSessionsRequestBodyPaymentMethodOptionsUsBankAccount? = nil, wechatPay: PostCheckoutSessionsRequestBodyPaymentMethodOptionsWechatPay? = nil) {
         self.init(sdkDefaults: ())
         sdkSet1(acssDebit, affirm, afterpayClearpay, alipay, alma)
         sdkSet2(amazonPay, auBecsDebit, bacsDebit, bancontact, billie)
@@ -388,13 +314,7 @@ public extension PostCheckoutSessionsRequestBodyPaymentMethodOptions {
 }
 
 extension PostCheckoutSessionsRequestBodyPaymentMethodOptions {
-    mutating func sdkSet1(
-        _ acssDebit: PostCheckoutSessionsRequestBodyPaymentMethodOptionsAcssDebit?,
-        _ affirm: PostCheckoutSessionsRequestBodyPaymentMethodOptionsAffirm?,
-        _ afterpayClearpay: PostCheckoutSessionsRequestBodyPaymentMethodOptionsAfterpayClearpay?,
-        _ alipay: PostCheckoutSessionsRequestBodyPaymentMethodOptionsAlipay?,
-        _ alma: PostCheckoutSessionsRequestBodyPaymentMethodOptionsAlma?
-    ) {
+    mutating func sdkSet1(_ acssDebit: PostCheckoutSessionsRequestBodyPaymentMethodOptionsAcssDebit?, _ affirm: PostCheckoutSessionsRequestBodyPaymentMethodOptionsAffirm?, _ afterpayClearpay: PostCheckoutSessionsRequestBodyPaymentMethodOptionsAfterpayClearpay?, _ alipay: PostCheckoutSessionsRequestBodyPaymentMethodOptionsAlipay?, _ alma: PostCheckoutSessionsRequestBodyPaymentMethodOptionsAlma?) {
         self.acssDebit = acssDebit
         self.affirm = affirm
         self.afterpayClearpay = afterpayClearpay
@@ -404,13 +324,7 @@ extension PostCheckoutSessionsRequestBodyPaymentMethodOptions {
 }
 
 extension PostCheckoutSessionsRequestBodyPaymentMethodOptions {
-    mutating func sdkSet2(
-        _ amazonPay: PostCheckoutSessionsRequestBodyPaymentMethodOptionsAmazonPay?,
-        _ auBecsDebit: PostCheckoutSessionsRequestBodyPaymentMethodOptionsAuBecsDebit?,
-        _ bacsDebit: PostCheckoutSessionsRequestBodyPaymentMethodOptionsBacsDebit?,
-        _ bancontact: PostCheckoutSessionsRequestBodyPaymentMethodOptionsBancontact?,
-        _ billie: PostCheckoutSessionsRequestBodyPaymentMethodOptionsBillie?
-    ) {
+    mutating func sdkSet2(_ amazonPay: PostCheckoutSessionsRequestBodyPaymentMethodOptionsAmazonPay?, _ auBecsDebit: PostCheckoutSessionsRequestBodyPaymentMethodOptionsAuBecsDebit?, _ bacsDebit: PostCheckoutSessionsRequestBodyPaymentMethodOptionsBacsDebit?, _ bancontact: PostCheckoutSessionsRequestBodyPaymentMethodOptionsBancontact?, _ billie: PostCheckoutSessionsRequestBodyPaymentMethodOptionsBillie?) {
         self.amazonPay = amazonPay
         self.auBecsDebit = auBecsDebit
         self.bacsDebit = bacsDebit
@@ -420,13 +334,7 @@ extension PostCheckoutSessionsRequestBodyPaymentMethodOptions {
 }
 
 extension PostCheckoutSessionsRequestBodyPaymentMethodOptions {
-    mutating func sdkSet3(
-        _ boleto: PostCheckoutSessionsRequestBodyPaymentMethodOptionsBoleto?,
-        _ card: PostCheckoutSessionsRequestBodyPaymentMethodOptionsCard?,
-        _ cashapp: PostCheckoutSessionsRequestBodyPaymentMethodOptionsCashapp?,
-        _ crypto: PostCheckoutSessionsRequestBodyPaymentMethodOptionsCrypto?,
-        _ customerBalance: PostCheckoutSessionsRequestBodyPaymentMethodOptionsCustomerBalance?
-    ) {
+    mutating func sdkSet3(_ boleto: PostCheckoutSessionsRequestBodyPaymentMethodOptionsBoleto?, _ card: PostCheckoutSessionsRequestBodyPaymentMethodOptionsCard?, _ cashapp: PostCheckoutSessionsRequestBodyPaymentMethodOptionsCashapp?, _ crypto: PostCheckoutSessionsRequestBodyPaymentMethodOptionsCrypto?, _ customerBalance: PostCheckoutSessionsRequestBodyPaymentMethodOptionsCustomerBalance?) {
         self.boleto = boleto
         self.card = card
         self.cashapp = cashapp
@@ -436,13 +344,7 @@ extension PostCheckoutSessionsRequestBodyPaymentMethodOptions {
 }
 
 extension PostCheckoutSessionsRequestBodyPaymentMethodOptions {
-    mutating func sdkSet4(
-        _ demoPay: PostCheckoutSessionsRequestBodyPaymentMethodOptionsDemoPay?,
-        _ eps: PostCheckoutSessionsRequestBodyPaymentMethodOptionsEps?,
-        _ fpx: PostCheckoutSessionsRequestBodyPaymentMethodOptionsFpx?,
-        _ giropay: PostCheckoutSessionsRequestBodyPaymentMethodOptionsGiropay?,
-        _ grabpay: PostCheckoutSessionsRequestBodyPaymentMethodOptionsGrabpay?
-    ) {
+    mutating func sdkSet4(_ demoPay: PostCheckoutSessionsRequestBodyPaymentMethodOptionsDemoPay?, _ eps: PostCheckoutSessionsRequestBodyPaymentMethodOptionsEps?, _ fpx: PostCheckoutSessionsRequestBodyPaymentMethodOptionsFpx?, _ giropay: PostCheckoutSessionsRequestBodyPaymentMethodOptionsGiropay?, _ grabpay: PostCheckoutSessionsRequestBodyPaymentMethodOptionsGrabpay?) {
         self.demoPay = demoPay
         self.eps = eps
         self.fpx = fpx
@@ -452,13 +354,7 @@ extension PostCheckoutSessionsRequestBodyPaymentMethodOptions {
 }
 
 extension PostCheckoutSessionsRequestBodyPaymentMethodOptions {
-    mutating func sdkSet5(
-        _ ideal: PostCheckoutSessionsRequestBodyPaymentMethodOptionsIdeal?,
-        _ kakaoPay: PostCheckoutSessionsRequestBodyPaymentMethodOptionsKakaoPay?,
-        _ klarna: PostCheckoutSessionsRequestBodyPaymentMethodOptionsKlarna?,
-        _ konbini: PostCheckoutSessionsRequestBodyPaymentMethodOptionsKonbini?,
-        _ krCard: PostCheckoutSessionsRequestBodyPaymentMethodOptionsKrCard?
-    ) {
+    mutating func sdkSet5(_ ideal: PostCheckoutSessionsRequestBodyPaymentMethodOptionsIdeal?, _ kakaoPay: PostCheckoutSessionsRequestBodyPaymentMethodOptionsKakaoPay?, _ klarna: PostCheckoutSessionsRequestBodyPaymentMethodOptionsKlarna?, _ konbini: PostCheckoutSessionsRequestBodyPaymentMethodOptionsKonbini?, _ krCard: PostCheckoutSessionsRequestBodyPaymentMethodOptionsKrCard?) {
         self.ideal = ideal
         self.kakaoPay = kakaoPay
         self.klarna = klarna
@@ -468,13 +364,7 @@ extension PostCheckoutSessionsRequestBodyPaymentMethodOptions {
 }
 
 extension PostCheckoutSessionsRequestBodyPaymentMethodOptions {
-    mutating func sdkSet6(
-        _ link: PostCheckoutSessionsRequestBodyPaymentMethodOptionsLink?,
-        _ mobilepay: PostCheckoutSessionsRequestBodyPaymentMethodOptionsMobilepay?,
-        _ multibanco: PostCheckoutSessionsRequestBodyPaymentMethodOptionsMultibanco?,
-        _ naverPay: PostCheckoutSessionsRequestBodyPaymentMethodOptionsNaverPay?,
-        _ oxxo: PostCheckoutSessionsRequestBodyPaymentMethodOptionsOxxo?
-    ) {
+    mutating func sdkSet6(_ link: PostCheckoutSessionsRequestBodyPaymentMethodOptionsLink?, _ mobilepay: PostCheckoutSessionsRequestBodyPaymentMethodOptionsMobilepay?, _ multibanco: PostCheckoutSessionsRequestBodyPaymentMethodOptionsMultibanco?, _ naverPay: PostCheckoutSessionsRequestBodyPaymentMethodOptionsNaverPay?, _ oxxo: PostCheckoutSessionsRequestBodyPaymentMethodOptionsOxxo?) {
         self.link = link
         self.mobilepay = mobilepay
         self.multibanco = multibanco
@@ -484,13 +374,7 @@ extension PostCheckoutSessionsRequestBodyPaymentMethodOptions {
 }
 
 extension PostCheckoutSessionsRequestBodyPaymentMethodOptions {
-    mutating func sdkSet7(
-        _ p24: PostCheckoutSessionsRequestBodyPaymentMethodOptionsP24?,
-        _ payByBank: PostCheckoutSessionsRequestBodyPaymentMethodOptionsPayByBank?,
-        _ payco: PostCheckoutSessionsRequestBodyPaymentMethodOptionsPayco?,
-        _ paynow: PostCheckoutSessionsRequestBodyPaymentMethodOptionsPaynow?,
-        _ paypal: PostCheckoutSessionsRequestBodyPaymentMethodOptionsPaypal?
-    ) {
+    mutating func sdkSet7(_ p24: PostCheckoutSessionsRequestBodyPaymentMethodOptionsP24?, _ payByBank: PostCheckoutSessionsRequestBodyPaymentMethodOptionsPayByBank?, _ payco: PostCheckoutSessionsRequestBodyPaymentMethodOptionsPayco?, _ paynow: PostCheckoutSessionsRequestBodyPaymentMethodOptionsPaynow?, _ paypal: PostCheckoutSessionsRequestBodyPaymentMethodOptionsPaypal?) {
         self.p24 = p24
         self.payByBank = payByBank
         self.payco = payco
@@ -500,13 +384,7 @@ extension PostCheckoutSessionsRequestBodyPaymentMethodOptions {
 }
 
 extension PostCheckoutSessionsRequestBodyPaymentMethodOptions {
-    mutating func sdkSet8(
-        _ payto: PostCheckoutSessionsRequestBodyPaymentMethodOptionsPayto?,
-        _ pix: PostCheckoutSessionsRequestBodyPaymentMethodOptionsPix?,
-        _ revolutPay: PostCheckoutSessionsRequestBodyPaymentMethodOptionsRevolutPay?,
-        _ samsungPay: PostCheckoutSessionsRequestBodyPaymentMethodOptionsSamsungPay?,
-        _ satispay: PostCheckoutSessionsRequestBodyPaymentMethodOptionsSatispay?
-    ) {
+    mutating func sdkSet8(_ payto: PostCheckoutSessionsRequestBodyPaymentMethodOptionsPayto?, _ pix: PostCheckoutSessionsRequestBodyPaymentMethodOptionsPix?, _ revolutPay: PostCheckoutSessionsRequestBodyPaymentMethodOptionsRevolutPay?, _ samsungPay: PostCheckoutSessionsRequestBodyPaymentMethodOptionsSamsungPay?, _ satispay: PostCheckoutSessionsRequestBodyPaymentMethodOptionsSatispay?) {
         self.payto = payto
         self.pix = pix
         self.revolutPay = revolutPay
@@ -516,13 +394,7 @@ extension PostCheckoutSessionsRequestBodyPaymentMethodOptions {
 }
 
 extension PostCheckoutSessionsRequestBodyPaymentMethodOptions {
-    mutating func sdkSet9(
-        _ scalapay: PostCheckoutSessionsRequestBodyPaymentMethodOptionsScalapay?,
-        _ sepaDebit: PostCheckoutSessionsRequestBodyPaymentMethodOptionsSepaDebit?,
-        _ sofort: PostCheckoutSessionsRequestBodyPaymentMethodOptionsSofort?,
-        _ sunbit: PostCheckoutSessionsRequestBodyPaymentMethodOptionsSunbit?,
-        _ swish: PostCheckoutSessionsRequestBodyPaymentMethodOptionsSwish?
-    ) {
+    mutating func sdkSet9(_ scalapay: PostCheckoutSessionsRequestBodyPaymentMethodOptionsScalapay?, _ sepaDebit: PostCheckoutSessionsRequestBodyPaymentMethodOptionsSepaDebit?, _ sofort: PostCheckoutSessionsRequestBodyPaymentMethodOptionsSofort?, _ sunbit: PostCheckoutSessionsRequestBodyPaymentMethodOptionsSunbit?, _ swish: PostCheckoutSessionsRequestBodyPaymentMethodOptionsSwish?) {
         self.scalapay = scalapay
         self.sepaDebit = sepaDebit
         self.sofort = sofort
@@ -532,12 +404,7 @@ extension PostCheckoutSessionsRequestBodyPaymentMethodOptions {
 }
 
 extension PostCheckoutSessionsRequestBodyPaymentMethodOptions {
-    mutating func sdkSet10(
-        _ twint: PostCheckoutSessionsRequestBodyPaymentMethodOptionsTwint?,
-        _ upi: PostCheckoutSessionsRequestBodyPaymentMethodOptionsUpi?,
-        _ usBankAccount: PostCheckoutSessionsRequestBodyPaymentMethodOptionsUsBankAccount?,
-        _ wechatPay: PostCheckoutSessionsRequestBodyPaymentMethodOptionsWechatPay?
-    ) {
+    mutating func sdkSet10(_ twint: PostCheckoutSessionsRequestBodyPaymentMethodOptionsTwint?, _ upi: PostCheckoutSessionsRequestBodyPaymentMethodOptionsUpi?, _ usBankAccount: PostCheckoutSessionsRequestBodyPaymentMethodOptionsUsBankAccount?, _ wechatPay: PostCheckoutSessionsRequestBodyPaymentMethodOptionsWechatPay?) {
         self.twint = twint
         self.upi = upi
         self.usBankAccount = usBankAccount
@@ -547,75 +414,75 @@ extension PostCheckoutSessionsRequestBodyPaymentMethodOptions {
 
 extension PostCheckoutSessionsRequestBodyPaymentMethodOptions {
     mutating func sdkDecodeFieldsPart1(_ container: KeyedDecodingContainer<CodingKeys>) throws {
-        acssDebit = try container.sdkDecodeIfPresent(.acssDebit)
-        affirm = try container.sdkDecodeIfPresent(.affirm)
-        afterpayClearpay = try container.sdkDecodeIfPresent(.afterpayClearpay)
-        alipay = try container.sdkDecodeIfPresent(.alipay)
-        alma = try container.sdkDecodeIfPresent(.alma)
-        amazonPay = try container.sdkDecodeIfPresent(.amazonPay)
-        auBecsDebit = try container.sdkDecodeIfPresent(.auBecsDebit)
-        bacsDebit = try container.sdkDecodeIfPresent(.bacsDebit)
-        bancontact = try container.sdkDecodeIfPresent(.bancontact)
-        billie = try container.sdkDecodeIfPresent(.billie)
-        boleto = try container.sdkDecodeIfPresent(.boleto)
-        card = try container.sdkDecodeIfPresent(.card)
+        self.acssDebit = try container.sdkDecodeIfPresent(.acssDebit)
+        self.affirm = try container.sdkDecodeIfPresent(.affirm)
+        self.afterpayClearpay = try container.sdkDecodeIfPresent(.afterpayClearpay)
+        self.alipay = try container.sdkDecodeIfPresent(.alipay)
+        self.alma = try container.sdkDecodeIfPresent(.alma)
+        self.amazonPay = try container.sdkDecodeIfPresent(.amazonPay)
+        self.auBecsDebit = try container.sdkDecodeIfPresent(.auBecsDebit)
+        self.bacsDebit = try container.sdkDecodeIfPresent(.bacsDebit)
+        self.bancontact = try container.sdkDecodeIfPresent(.bancontact)
+        self.billie = try container.sdkDecodeIfPresent(.billie)
+        self.boleto = try container.sdkDecodeIfPresent(.boleto)
+        self.card = try container.sdkDecodeIfPresent(.card)
     }
 }
 
 extension PostCheckoutSessionsRequestBodyPaymentMethodOptions {
     mutating func sdkDecodeFieldsPart2(_ container: KeyedDecodingContainer<CodingKeys>) throws {
-        cashapp = try container.sdkDecodeIfPresent(.cashapp)
-        crypto = try container.sdkDecodeIfPresent(.crypto)
-        customerBalance = try container.sdkDecodeIfPresent(.customerBalance)
-        demoPay = try container.sdkDecodeIfPresent(.demoPay)
-        eps = try container.sdkDecodeIfPresent(.eps)
-        fpx = try container.sdkDecodeIfPresent(.fpx)
-        giropay = try container.sdkDecodeIfPresent(.giropay)
-        grabpay = try container.sdkDecodeIfPresent(.grabpay)
-        ideal = try container.sdkDecodeIfPresent(.ideal)
-        kakaoPay = try container.sdkDecodeIfPresent(.kakaoPay)
-        klarna = try container.sdkDecodeIfPresent(.klarna)
-        konbini = try container.sdkDecodeIfPresent(.konbini)
+        self.cashapp = try container.sdkDecodeIfPresent(.cashapp)
+        self.crypto = try container.sdkDecodeIfPresent(.crypto)
+        self.customerBalance = try container.sdkDecodeIfPresent(.customerBalance)
+        self.demoPay = try container.sdkDecodeIfPresent(.demoPay)
+        self.eps = try container.sdkDecodeIfPresent(.eps)
+        self.fpx = try container.sdkDecodeIfPresent(.fpx)
+        self.giropay = try container.sdkDecodeIfPresent(.giropay)
+        self.grabpay = try container.sdkDecodeIfPresent(.grabpay)
+        self.ideal = try container.sdkDecodeIfPresent(.ideal)
+        self.kakaoPay = try container.sdkDecodeIfPresent(.kakaoPay)
+        self.klarna = try container.sdkDecodeIfPresent(.klarna)
+        self.konbini = try container.sdkDecodeIfPresent(.konbini)
     }
 }
 
 extension PostCheckoutSessionsRequestBodyPaymentMethodOptions {
     mutating func sdkDecodeFieldsPart3(_ container: KeyedDecodingContainer<CodingKeys>) throws {
-        krCard = try container.sdkDecodeIfPresent(.krCard)
-        link = try container.sdkDecodeIfPresent(.link)
-        mobilepay = try container.sdkDecodeIfPresent(.mobilepay)
-        multibanco = try container.sdkDecodeIfPresent(.multibanco)
-        naverPay = try container.sdkDecodeIfPresent(.naverPay)
-        oxxo = try container.sdkDecodeIfPresent(.oxxo)
-        p24 = try container.sdkDecodeIfPresent(.p24)
-        payByBank = try container.sdkDecodeIfPresent(.payByBank)
-        payco = try container.sdkDecodeIfPresent(.payco)
-        paynow = try container.sdkDecodeIfPresent(.paynow)
-        paypal = try container.sdkDecodeIfPresent(.paypal)
-        payto = try container.sdkDecodeIfPresent(.payto)
+        self.krCard = try container.sdkDecodeIfPresent(.krCard)
+        self.link = try container.sdkDecodeIfPresent(.link)
+        self.mobilepay = try container.sdkDecodeIfPresent(.mobilepay)
+        self.multibanco = try container.sdkDecodeIfPresent(.multibanco)
+        self.naverPay = try container.sdkDecodeIfPresent(.naverPay)
+        self.oxxo = try container.sdkDecodeIfPresent(.oxxo)
+        self.p24 = try container.sdkDecodeIfPresent(.p24)
+        self.payByBank = try container.sdkDecodeIfPresent(.payByBank)
+        self.payco = try container.sdkDecodeIfPresent(.payco)
+        self.paynow = try container.sdkDecodeIfPresent(.paynow)
+        self.paypal = try container.sdkDecodeIfPresent(.paypal)
+        self.payto = try container.sdkDecodeIfPresent(.payto)
     }
 }
 
 extension PostCheckoutSessionsRequestBodyPaymentMethodOptions {
     mutating func sdkDecodeFieldsPart4(_ container: KeyedDecodingContainer<CodingKeys>) throws {
-        pix = try container.sdkDecodeIfPresent(.pix)
-        revolutPay = try container.sdkDecodeIfPresent(.revolutPay)
-        samsungPay = try container.sdkDecodeIfPresent(.samsungPay)
-        satispay = try container.sdkDecodeIfPresent(.satispay)
-        scalapay = try container.sdkDecodeIfPresent(.scalapay)
-        sepaDebit = try container.sdkDecodeIfPresent(.sepaDebit)
-        sofort = try container.sdkDecodeIfPresent(.sofort)
-        sunbit = try container.sdkDecodeIfPresent(.sunbit)
-        swish = try container.sdkDecodeIfPresent(.swish)
-        twint = try container.sdkDecodeIfPresent(.twint)
-        upi = try container.sdkDecodeIfPresent(.upi)
-        usBankAccount = try container.sdkDecodeIfPresent(.usBankAccount)
+        self.pix = try container.sdkDecodeIfPresent(.pix)
+        self.revolutPay = try container.sdkDecodeIfPresent(.revolutPay)
+        self.samsungPay = try container.sdkDecodeIfPresent(.samsungPay)
+        self.satispay = try container.sdkDecodeIfPresent(.satispay)
+        self.scalapay = try container.sdkDecodeIfPresent(.scalapay)
+        self.sepaDebit = try container.sdkDecodeIfPresent(.sepaDebit)
+        self.sofort = try container.sdkDecodeIfPresent(.sofort)
+        self.sunbit = try container.sdkDecodeIfPresent(.sunbit)
+        self.swish = try container.sdkDecodeIfPresent(.swish)
+        self.twint = try container.sdkDecodeIfPresent(.twint)
+        self.upi = try container.sdkDecodeIfPresent(.upi)
+        self.usBankAccount = try container.sdkDecodeIfPresent(.usBankAccount)
     }
 }
 
 extension PostCheckoutSessionsRequestBodyPaymentMethodOptions {
     mutating func sdkDecodeFieldsPart5(_ container: KeyedDecodingContainer<CodingKeys>) throws {
-        wechatPay = try container.sdkDecodeIfPresent(.wechatPay)
+        self.wechatPay = try container.sdkDecodeIfPresent(.wechatPay)
     }
 }
 
@@ -627,15 +494,15 @@ public struct PostCheckoutSessionsRequestBodyPaymentMethodOptionsSwish: Codable 
     }
 
     init() {
-        reference = nil
+        self.reference = nil
     }
 }
 
-public extension PostCheckoutSessionsRequestBodyPaymentMethodOptionsSwish {
-    init(from decoder: Decoder) throws {
+extension PostCheckoutSessionsRequestBodyPaymentMethodOptionsSwish {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        reference = try container.sdkDecodeIfPresent(.reference)
-        if let value = reference {
+        self.reference = try container.sdkDecodeIfPresent(.reference)
+        if let value = self.reference {
             try validateLength("reference", value, min: nil, max: 5000)
         }
     }

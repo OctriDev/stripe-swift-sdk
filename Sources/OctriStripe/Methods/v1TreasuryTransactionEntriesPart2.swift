@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1TreasuryTransactionEntriesMethods {
-    struct GetTreasuryTransactionEntriesOptions: Codable {
+extension V1TreasuryTransactionEntriesMethods {
+    public struct GetTreasuryTransactionEntriesOptions: Codable {
         public var financialAccount: String
         public var created: GetTreasuryTransactionEntriesParameter?
         public var effectiveAt: GetTreasuryTransactionEntriesParameterXf0247d5e?
@@ -23,8 +23,7 @@ public extension V1TreasuryTransactionEntriesMethods {
         }
     }
 
-    /// Lists transaction entries associated with a financial account. Filter by creation or effective timestamps,
-    /// transaction, and ordering, then use cursor parameters to paginate the results.
+    /// Lists transaction entries associated with a financial account. Filter by creation or effective timestamps, transaction, and ordering, then use cursor parameters to paginate the results.
     ///
     /// Retrieves a list of TransactionEntry objects.
     ///
@@ -49,10 +48,7 @@ public extension V1TreasuryTransactionEntriesMethods {
     ///   the list.
     /// - transaction: Only return TransactionEntries associated with this
     ///   Transaction.
-    static func getTreasuryTransactionEntries(
-        config: ClientConfig,
-        options: GetTreasuryTransactionEntriesOptions
-    ) async throws -> GetTreasuryTransactionEntriesResponse {
+    public static func getTreasuryTransactionEntries(config: ClientConfig, options: GetTreasuryTransactionEntriesOptions) async throws -> GetTreasuryTransactionEntriesResponse {
         if let endingBefore = options.endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
@@ -65,7 +61,7 @@ public extension V1TreasuryTransactionEntriesMethods {
             try validateLength("transaction", transaction, max: 5000)
         }
 
-        return try await (sdkRequest("GET", "/v1/treasury/transaction_entries", config: config, query: [
+        return try (await sdkRequest("GET", "/v1/treasury/transaction_entries", config: config, query: [
             SdkQueryParameter("financial_account", value: options.financialAccount),
             SdkQueryParameter("created", value: options.created),
             SdkQueryParameter("effective_at", value: options.effectiveAt),

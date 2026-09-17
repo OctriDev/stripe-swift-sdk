@@ -6,10 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1TaxCodesMethods {
-    /// Lists all tax codes available for assignment to products. Use `starting_after` or `ending_before` to navigate
-    /// through the collection and `limit` to control the number of results per page. Use `expand` when you need
-    /// expanded response fields.
+extension V1TaxCodesMethods {
+    /// Lists all tax codes available for assignment to products. Use `starting_after` or `ending_before` to navigate through the collection and `limit` to control the number of results per page. Use `expand` when you need expanded response fields.
     ///
     /// A list of all tax codes available to add to Products in order to allow specific tax calculations.
     ///
@@ -27,14 +25,8 @@ public extension V1TaxCodesMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    static func getTaxCodes(
-        config: ClientConfig,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        startingAfter: String?
-    ) async throws -> GetTaxCodesResponse {
-        try await (sdkRequest("GET", "/v1/tax_codes", config: config, query: [
+    public static func getTaxCodes(config: ClientConfig, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetTaxCodesResponse {
+        return try (await sdkRequest("GET", "/v1/tax_codes", config: config, query: [
             SdkQueryParameter("ending_before", value: endingBefore),
             SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
             SdkQueryParameter("limit", value: limit),

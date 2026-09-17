@@ -61,8 +61,7 @@ extension SdkMethodTests {
             return
         }
         _ = client
-        var options = try V1TerminalLocationsMethods
-            .PostTerminalLocationsLocationOptions(location: decoded("\"location\""))
+        var options = try V1TerminalLocationsMethods.PostTerminalLocationsLocationOptions(location: decoded("\"location\""))
         options.address = try decoded(sdkMethodFixture519Value1)
         options.addressKana = try decoded(sdkMethodFixture519Value2)
         options.addressKanji = try decoded(sdkMethodFixture519Value3)
@@ -152,8 +151,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostTerminalReadersReaderCancelActionPostTerminalReadersReadeX30dc641690ReachesMockAndDecodesResponse(
-    ) async throws {
+    func testPostTerminalReadersReaderCancelActionPostTerminalReadersReadeX30dc641690ReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -173,8 +171,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostTerminalReadersReaderCollectInputsPostTerminalReadersReadX0336d95d77ReachesMockAndDecodesResponse(
-    ) async throws {
+    func testPostTerminalReadersReaderCollectInputsPostTerminalReadersReadX0336d95d77ReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -196,8 +193,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostTerminalReadersReaderCollectPaymentMethodPostTerminalReadX1ce9b40944ReachesMockAndDecodesResponse(
-    ) async throws {
+    func testPostTerminalReadersReaderCollectPaymentMethodPostTerminalReadX1ce9b40944ReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -219,8 +215,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostTerminalReadersReaderConfirmPaymentIntentPostTerminalReadX8a197c3bd3ReachesMockAndDecodesResponse(
-    ) async throws {
+    func testPostTerminalReadersReaderConfirmPaymentIntentPostTerminalReadX8a197c3bd3ReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -242,8 +237,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostTerminalReadersReaderProcessPaymentIntentPostTerminalReadX5f08760247ReachesMockAndDecodesResponse(
-    ) async throws {
+    func testPostTerminalReadersReaderProcessPaymentIntentPostTerminalReadX5f08760247ReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -265,8 +259,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostTerminalReadersReaderProcessSetupIntentPostTerminalReaderX530cc903afReachesMockAndDecodesResponse(
-    ) async throws {
+    func testPostTerminalReadersReaderProcessSetupIntentPostTerminalReaderX530cc903afReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -289,14 +282,12 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostTerminalReadersReaderRefundPaymentPostTerminalReadersReadXb2550c0067ReachesMockAndDecodesResponse(
-    ) async throws {
+    func testPostTerminalReadersReaderRefundPaymentPostTerminalReadersReadXb2550c0067ReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        var options = try V1TerminalReadersRefundPaymentMethods
-            .PostTerminalReadersReaderRefundPaymentOptions(reader: decoded("\"reader\""))
+        var options = try V1TerminalReadersRefundPaymentMethods.PostTerminalReadersReaderRefundPaymentOptions(reader: decoded("\"reader\""))
         options.amount = try decoded("100")
         options.charge = try decoded("\"charge\"")
         options.expand = try decoded("[\"expand\"]")
@@ -319,8 +310,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostTerminalReadersReaderSetReaderDisplayPostTerminalReadersRXed8b08191cReachesMockAndDecodesResponse(
-    ) async throws {
+    func testPostTerminalReadersReaderSetReaderDisplayPostTerminalReadersRXed8b08191cReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -361,8 +351,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostTestHelpersConfirmationTokensPostTestHelpersConfirmationTokensReachesMockAndDecodesResponse(
-    ) async throws {
+    func testPostTestHelpersConfirmationTokensPostTestHelpersConfirmationTokensReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -387,8 +376,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostTestHelpersCustomersCustomerFundCashBalancePostTestHelperXea2df9d64dReachesMockAndDecodesResponse(
-    ) async throws {
+    func testPostTestHelpersCustomersCustomerFundCashBalancePostTestHelperXea2df9d64dReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -411,14 +399,12 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostTestHelpersIssuingAuthorizationsPostTestHelpersIssuingAuthorizationsReachesMockAndDecodesResponse(
-    ) async throws {
+    func testPostTestHelpersIssuingAuthorizationsPostTestHelpersIssuingAuthorizationsReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        var options = try V1TestHelpersIssuingAuthorizationsMethods
-            .PostTestHelpersIssuingAuthorizationsOptions(card: decoded("\"card\""))
+        var options = try V1TestHelpersIssuingAuthorizationsMethods.PostTestHelpersIssuingAuthorizationsOptions(card: decoded("\"card\""))
         options.amount = try decoded("100")
         options.amountDetails = try decoded("{\"atm_fee\":1,\"cashback_amount\":100}")
         options.authorizationMethod = try decoded("\"chip\"")
@@ -449,20 +435,18 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostTestHelpersIssuingAuthorizationsAuthorizationCapturePostTX4aff045737ReachesMockAndDecodesResponse(
-    ) async throws {
+    func testPostTestHelpersIssuingAuthorizationsAuthorizationCapturePostTX4aff045737ReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        let actual = try await client.v1.testHelpers.issuing.authorizations.capture
-            .postTestHelpersIssuingAuthorizationsAuthorization(
-                authorization: decoded("\"authorization\""),
-                captureAmount: decoded("100"),
-                closeAuthorization: decoded("false"),
-                expand: decoded("[\"expand\"]"),
-                purchaseDetails: decoded(sdkMethodFixture535Value1)
-            )
+        let actual = try await client.v1.testHelpers.issuing.authorizations.capture.postTestHelpersIssuingAuthorizationsAuthorization(
+            authorization: decoded("\"authorization\""),
+            captureAmount: decoded("100"),
+            closeAuthorization: decoded("false"),
+            expand: decoded("[\"expand\"]"),
+            purchaseDetails: decoded(sdkMethodFixture535Value1)
+        )
         let expected = try JSONSerialization.jsonObject(
             with: Data(sdkMethodFixture535Expected.utf8),
             options: [.fragmentsAllowed]
@@ -474,17 +458,15 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostTestHelpersIssuingAuthorizationsAuthorizationExpirePostTeXbb3c69d1faReachesMockAndDecodesResponse(
-    ) async throws {
+    func testPostTestHelpersIssuingAuthorizationsAuthorizationExpirePostTeXbb3c69d1faReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        let actual = try await client.v1.testHelpers.issuing.authorizations.expire
-            .postTestHelpersIssuingAuthorizationsAuthorization(
-                authorization: decoded("\"authorization\""),
-                expand: decoded("[\"expand\"]")
-            )
+        let actual = try await client.v1.testHelpers.issuing.authorizations.expire.postTestHelpersIssuingAuthorizationsAuthorization(
+            authorization: decoded("\"authorization\""),
+            expand: decoded("[\"expand\"]")
+        )
         let expected = try JSONSerialization.jsonObject(
             with: Data(sdkMethodFixture536Expected.utf8),
             options: [.fragmentsAllowed]
@@ -496,20 +478,18 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouXb8b98b5086ReachesMockAndDecodesResponse(
-    ) async throws {
+    func testPostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouXb8b98b5086ReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        let actual = try await client.v1.testHelpers.issuing.authorizations.finalizeAmount
-            .postTestHelpersIssuingAuthorizationsAuthorization(
-                authorization: decoded("\"authorization\""),
-                finalAmount: decoded("100"),
-                expand: decoded("[\"expand\"]"),
-                fleet: decoded(sdkMethodFixture537Value1),
-                fuel: decoded(sdkMethodFixture537Value2)
-            )
+        let actual = try await client.v1.testHelpers.issuing.authorizations.finalizeAmount.postTestHelpersIssuingAuthorizationsAuthorization(
+            authorization: decoded("\"authorization\""),
+            finalAmount: decoded("100"),
+            expand: decoded("[\"expand\"]"),
+            fleet: decoded(sdkMethodFixture537Value1),
+            fuel: decoded(sdkMethodFixture537Value2)
+        )
         let expected = try JSONSerialization.jsonObject(
             with: Data(sdkMethodFixture537Expected.utf8),
             options: [.fragmentsAllowed]
@@ -521,18 +501,16 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostTestHelpersIssuingAuthorizationsAuthorizationFraudChallenX065bc410a2ReachesMockAndDecodesResponse(
-    ) async throws {
+    func testPostTestHelpersIssuingAuthorizationsAuthorizationFraudChallenX065bc410a2ReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        let actual = try await client.v1.testHelpers.issuing.authorizations.fraudChallenges.respond
-            .postTestHelpersIssuingAuthorizationsAuthorizationFraudChallenges(
-                authorization: decoded("\"authorization\""),
-                confirmed: decoded("false"),
-                expand: decoded("[\"expand\"]")
-            )
+        let actual = try await client.v1.testHelpers.issuing.authorizations.fraudChallenges.respond.postTestHelpersIssuingAuthorizationsAuthorizationFraudChallenges(
+            authorization: decoded("\"authorization\""),
+            confirmed: decoded("false"),
+            expand: decoded("[\"expand\"]")
+        )
         let expected = try JSONSerialization.jsonObject(
             with: Data(sdkMethodFixture538Expected.utf8),
             options: [.fragmentsAllowed]

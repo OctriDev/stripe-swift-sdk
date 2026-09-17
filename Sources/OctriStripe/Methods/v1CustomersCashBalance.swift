@@ -7,60 +7,31 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1CustomersCashBalanceMethods {
-    /// Retrieves the cash balance associated with a customer. Use `expand` to request additional fields in the returned
-    /// cash balance object. The response includes available balances, customer association, mode, object type, and
-    /// balance settings.
+    /// Retrieves the cash balance associated with a customer. Use `expand` to request additional fields in the returned cash balance object. The response includes available balances, customer association, mode, object type, and balance settings.
     ///
     /// Retrieves a customer’s cash balance.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func getCustomersCustomerCashBalance(
-        config: ClientConfig,
-        customer: String,
-        expand: [String]?
-    ) async throws -> CashBalance {
+    public static func getCustomersCustomerCashBalance(config: ClientConfig, customer: String, expand: [String]?) async throws -> CashBalance {
         try validateLength("customer", customer, max: 5000)
 
-        return try await (sdkRequest(
-            "GET",
-            ["/v1/customers/", sdkEncodePathSegment(sdkWireString(customer)), "/cash_balance"].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .json,
-            operationId: "GetCustomersCustomerCashBalance"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/customers/", sdkEncodePathSegment(sdkWireString(customer)), "/cash_balance"].joined(), config: config, query: [
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .json, operationId: "GetCustomersCustomerCashBalance")).data
     }
-
-    /// Updates the settings for a customer's cash balance. Use `settings.reconciliation_mode` to choose how incoming
-    /// cash balance funds are reconciled, and use `expand` to request expanded response fields. The response contains
-    /// the updated cash balance and its settings.
+    /// Updates the settings for a customer's cash balance. Use `settings.reconciliation_mode` to choose how incoming cash balance funds are reconciled, and use `expand` to request expanded response fields. The response contains the updated cash balance and its settings.
     ///
     /// Changes the settings on a customer’s cash balance.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
     /// - settings: A hash of settings for this cash balance.
-    public static func postCustomersCustomerCashBalance(
-        config: ClientConfig,
-        customer: String,
-        expand: [String]?,
-        settings: PostCustomersCustomerCashBalanceRequestBodySettings?
-    ) async throws -> CashBalance {
+    public static func postCustomersCustomerCashBalance(config: ClientConfig, customer: String, expand: [String]?, settings: PostCustomersCustomerCashBalanceRequestBodySettings?) async throws -> CashBalance {
         try validateLength("customer", customer, max: 5000)
 
         let requestBody = PostCustomersCustomerCashBalanceRequestBody(expand: expand, settings: settings)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/customers/", sdkEncodePathSegment(sdkWireString(customer)), "/cash_balance"].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostCustomersCustomerCashBalance"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/customers/", sdkEncodePathSegment(sdkWireString(customer)), "/cash_balance"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostCustomersCustomerCashBalance")).data
     }
 }

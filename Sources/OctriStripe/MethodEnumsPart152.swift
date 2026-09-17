@@ -6,19 +6,15 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public struct PostIssuingPersonalizationDesignsPersonalizationDesignRequestX05bec0e8dc: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostIssuingPersonalizationDesignsPersonalizationDesignRequestX05bec0e8dc: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostIssuingPersonalizationDesignsPersonalizationDesignRequestX05bec0e8dc(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -27,19 +23,15 @@ public struct PostIssuingPersonalizationDesignsPersonalizationDesignRequestX05be
     }
 }
 
-public struct PostIssuingPersonalizationDesignsPersonalizationDesignRequestX357d4d93c3: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostIssuingPersonalizationDesignsPersonalizationDesignRequestX357d4d93c3: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostIssuingPersonalizationDesignsPersonalizationDesignRequestX357d4d93c3(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -48,19 +40,15 @@ public struct PostIssuingPersonalizationDesignsPersonalizationDesignRequestX357d
     }
 }
 
-public struct PostIssuingPersonalizationDesignsPersonalizationDesignRequestX478c911ade: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostIssuingPersonalizationDesignsPersonalizationDesignRequestX478c911ade: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostIssuingPersonalizationDesignsPersonalizationDesignRequestX478c911ade(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -69,19 +57,15 @@ public struct PostIssuingPersonalizationDesignsPersonalizationDesignRequestX478c
     }
 }
 
-public struct PostIssuingPersonalizationDesignsPersonalizationDesignRequestXcbd0a080c8: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostIssuingPersonalizationDesignsPersonalizationDesignRequestXcbd0a080c8: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostIssuingPersonalizationDesignsPersonalizationDesignRequestXcbd0a080c8(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -93,17 +77,14 @@ public struct PostIssuingPersonalizationDesignsPersonalizationDesignRequestXcbd0
 public struct GetIssuingPhysicalBundlesParameter: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let active = GetIssuingPhysicalBundlesParameter(rawValue: "active")
     public static let inactive = GetIssuingPhysicalBundlesParameter(rawValue: "inactive")
     public static let review = GetIssuingPhysicalBundlesParameter(rawValue: "review")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -112,20 +93,16 @@ public struct GetIssuingPhysicalBundlesParameter: RawRepresentable, Hashable, Co
     }
 }
 
-public struct GetIssuingPhysicalBundlesParameterX94a3bca5: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct GetIssuingPhysicalBundlesParameterX94a3bca5: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let custom = GetIssuingPhysicalBundlesParameterX94a3bca5(rawValue: "custom")
     public static let standard = GetIssuingPhysicalBundlesParameterX94a3bca5(rawValue: "standard")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -136,19 +113,15 @@ public struct GetIssuingPhysicalBundlesParameterX94a3bca5: RawRepresentable, Has
 
 /// String representing the object's type. Objects of the same type share the same value. Always has the value
 /// `list`.
-public struct GetIssuingPhysicalBundlesResponseObject: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct GetIssuingPhysicalBundlesResponseObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let list = GetIssuingPhysicalBundlesResponseObject(rawValue: "list")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -160,10 +133,7 @@ public struct GetIssuingPhysicalBundlesResponseObject: RawRepresentable, Hashabl
 public struct GetIssuingTokensParameterX95ebd4ae: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let active = GetIssuingTokensParameterX95ebd4ae(rawValue: "active")
     public static let deleted = GetIssuingTokensParameterX95ebd4ae(rawValue: "deleted")
     public static let requested = GetIssuingTokensParameterX95ebd4ae(rawValue: "requested")
@@ -171,7 +141,7 @@ public struct GetIssuingTokensParameterX95ebd4ae: RawRepresentable, Hashable, Co
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -185,15 +155,12 @@ public struct GetIssuingTokensParameterX95ebd4ae: RawRepresentable, Hashable, Co
 public struct GetIssuingTokensResponseObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let list = GetIssuingTokensResponseObject(rawValue: "list")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -203,21 +170,17 @@ public struct GetIssuingTokensResponseObject: RawRepresentable, Hashable, Codabl
 }
 
 /// Specifies which status the token should be updated to.
-public struct PostIssuingTokensTokenRequestBodyStatus: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostIssuingTokensTokenRequestBodyStatus: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let active = PostIssuingTokensTokenRequestBodyStatus(rawValue: "active")
     public static let deleted = PostIssuingTokensTokenRequestBodyStatus(rawValue: "deleted")
     public static let suspended = PostIssuingTokensTokenRequestBodyStatus(rawValue: "suspended")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -226,20 +189,16 @@ public struct PostIssuingTokensTokenRequestBodyStatus: RawRepresentable, Hashabl
     }
 }
 
-public struct GetIssuingTransactionsParameterXdb754602: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct GetIssuingTransactionsParameterXdb754602: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let capture = GetIssuingTransactionsParameterXdb754602(rawValue: "capture")
     public static let refund = GetIssuingTransactionsParameterXdb754602(rawValue: "refund")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

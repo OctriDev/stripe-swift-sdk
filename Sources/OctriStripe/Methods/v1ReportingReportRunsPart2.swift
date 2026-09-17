@@ -6,9 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1ReportingReportRunsMethods {
-    /// Lists Report Runs in reverse chronological order, with the most recently created runs first. Use creation-time
-    /// filters and cursor parameters to narrow the results or navigate through multiple pages.
+extension V1ReportingReportRunsMethods {
+    /// Lists Report Runs in reverse chronological order, with the most recently created runs first. Use creation-time filters and cursor parameters to narrow the results or navigate through multiple pages.
     ///
     /// Returns a list of Report Runs, with the most recent appearing first.
     ///
@@ -28,23 +27,16 @@ public extension V1ReportingReportRunsMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    static func getReportingReportRuns(
-        config: ClientConfig,
-        created: GetReportingReportRunsParameter?,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        startingAfter: String?
-    ) async throws -> GetReportingReportRunsResponse {
-        if let endingBefore {
+    public static func getReportingReportRuns(config: ClientConfig, created: GetReportingReportRunsParameter?, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetReportingReportRunsResponse {
+        if let endingBefore = endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let startingAfter {
+        if let startingAfter = startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try await (sdkRequest("GET", "/v1/reporting/report_runs", config: config, query: [
+        return try (await sdkRequest("GET", "/v1/reporting/report_runs", config: config, query: [
             SdkQueryParameter("created", value: created),
             SdkQueryParameter("ending_before", value: endingBefore),
             SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),

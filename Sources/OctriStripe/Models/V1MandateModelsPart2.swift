@@ -3,23 +3,23 @@
 
 import Foundation
 
-/// V1Mandate domain models
-public extension MandatePaypal {
-    init(from decoder: Decoder) throws {
+// V1Mandate domain models
+extension MandatePaypal {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        billingAgreementId = try container.sdkDecodeIfPresent(.billingAgreementId)
-        payerId = try container.sdkDecodeIfPresent(.payerId)
-        if let value = billingAgreementId {
+        self.billingAgreementId = try container.sdkDecodeIfPresent(.billingAgreementId)
+        self.payerId = try container.sdkDecodeIfPresent(.payerId)
+        if let value = self.billingAgreementId {
             try validateLength("billing_agreement_id", value, min: nil, max: 5000)
         }
-        if let value = payerId {
+        if let value = self.payerId {
             try validateLength("payer_id", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension MandatePaypal {
-    init(billingAgreementId: String? = nil, payerId: String? = nil) throws {
+extension MandatePaypal {
+    public init(billingAgreementId: String? = nil, payerId: String? = nil) throws {
         self.init()
         (self.billingAgreementId, self.payerId) = (billingAgreementId, payerId)
         if let value = self.billingAgreementId {
@@ -60,54 +60,36 @@ public struct MandatePayto: Codable {
         case startDate = "start_date"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension MandatePayto {
-    init(from decoder: Decoder) throws {
+extension MandatePayto {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.amountType) else {
-            throw SdkValidationError(
-                field: "amount_type",
-                code: "required",
-                message: "Validation failed for 'amount_type': value is required"
-            )
+            throw SdkValidationError(field: "amount_type", code: "required", message: "Validation failed for 'amount_type': value is required")
         }
         guard container.contains(.paymentSchedule) else {
-            throw SdkValidationError(
-                field: "payment_schedule",
-                code: "required",
-                message: "Validation failed for 'payment_schedule': value is required"
-            )
+            throw SdkValidationError(field: "payment_schedule", code: "required", message: "Validation failed for 'payment_schedule': value is required")
         }
-        amountType = try container.sdkDecodeRequired(.amountType)
-        paymentSchedule = try container.sdkDecodeRequired(.paymentSchedule)
-        amount = try container.sdkDecodeIfPresent(.amount)
-        endDate = try container.sdkDecodeIfPresent(.endDate)
-        paymentsPerPeriod = try container.sdkDecodeIfPresent(.paymentsPerPeriod)
-        purpose = try container.sdkDecodeIfPresent(.purpose)
-        startDate = try container.sdkDecodeIfPresent(.startDate)
-        if let value = endDate {
+        self.amountType = try container.sdkDecodeRequired(.amountType)
+        self.paymentSchedule = try container.sdkDecodeRequired(.paymentSchedule)
+        self.amount = try container.sdkDecodeIfPresent(.amount)
+        self.endDate = try container.sdkDecodeIfPresent(.endDate)
+        self.paymentsPerPeriod = try container.sdkDecodeIfPresent(.paymentsPerPeriod)
+        self.purpose = try container.sdkDecodeIfPresent(.purpose)
+        self.startDate = try container.sdkDecodeIfPresent(.startDate)
+        if let value = self.endDate {
             try validateLength("end_date", value, min: nil, max: 5000)
         }
-        if let value = startDate {
+        if let value = self.startDate {
             try validateLength("start_date", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension MandatePayto {
-    init(
-        amountType: MandatePaytoAmountType,
-        paymentSchedule: MandatePaytoPaymentSchedule,
-        amount: Int? = nil,
-        endDate: String? = nil,
-        paymentsPerPeriod: Int? = nil,
-        purpose: MandatePaytoPurpose? = nil,
-        startDate: String? = nil
-    ) throws {
+extension MandatePayto {
+    public init(amountType: MandatePaytoAmountType, paymentSchedule: MandatePaytoPaymentSchedule, amount: Int? = nil, endDate: String? = nil, paymentsPerPeriod: Int? = nil, purpose: MandatePaytoPurpose? = nil, startDate: String? = nil) throws {
         (self.amountType, self.paymentSchedule) = (amountType, paymentSchedule)
         (self.amount, self.endDate) = (amount, endDate)
         (self.paymentsPerPeriod, self.purpose) = (paymentsPerPeriod, purpose)
@@ -146,41 +128,34 @@ public struct MandatePix: Codable {
     }
 
     init() {
-        (amountIncludesIof, amountType, endDate, paymentSchedule, reference) = (nil, nil, nil, nil, nil)
-        startDate = nil
+        (self.amountIncludesIof, self.amountType, self.endDate, self.paymentSchedule, self.reference) = (nil, nil, nil, nil, nil)
+        self.startDate = nil
     }
 }
 
-public extension MandatePix {
-    init(from decoder: Decoder) throws {
+extension MandatePix {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        amountIncludesIof = try container.sdkDecodeIfPresent(.amountIncludesIof)
-        amountType = try container.sdkDecodeIfPresent(.amountType)
-        endDate = try container.sdkDecodeIfPresent(.endDate)
-        paymentSchedule = try container.sdkDecodeIfPresent(.paymentSchedule)
-        reference = try container.sdkDecodeIfPresent(.reference)
-        startDate = try container.sdkDecodeIfPresent(.startDate)
-        if let value = endDate {
+        self.amountIncludesIof = try container.sdkDecodeIfPresent(.amountIncludesIof)
+        self.amountType = try container.sdkDecodeIfPresent(.amountType)
+        self.endDate = try container.sdkDecodeIfPresent(.endDate)
+        self.paymentSchedule = try container.sdkDecodeIfPresent(.paymentSchedule)
+        self.reference = try container.sdkDecodeIfPresent(.reference)
+        self.startDate = try container.sdkDecodeIfPresent(.startDate)
+        if let value = self.endDate {
             try validateLength("end_date", value, min: nil, max: 5000)
         }
-        if let value = reference {
+        if let value = self.reference {
             try validateLength("reference", value, min: nil, max: 5000)
         }
-        if let value = startDate {
+        if let value = self.startDate {
             try validateLength("start_date", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension MandatePix {
-    init(
-        amountIncludesIof: MandatePixAmountIncludesIof? = nil,
-        amountType: MandatePixAmountType? = nil,
-        endDate: String? = nil,
-        paymentSchedule: MandatePixPaymentSchedule? = nil,
-        reference: String? = nil,
-        startDate: String? = nil
-    ) throws {
+extension MandatePix {
+    public init(amountIncludesIof: MandatePixAmountIncludesIof? = nil, amountType: MandatePixAmountType? = nil, endDate: String? = nil, paymentSchedule: MandatePixPaymentSchedule? = nil, reference: String? = nil, startDate: String? = nil) throws {
         self.init()
         (self.amountIncludesIof, self.amountType) = (amountIncludesIof, amountType)
         (self.endDate, self.paymentSchedule) = (endDate, paymentSchedule)
@@ -199,13 +174,13 @@ public extension MandatePix {
 
 /// Typed representation of the `MandateRevolutPay` API schema.
 public struct MandateRevolutPay: Codable {
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension MandateRevolutPay {
-    init() {}
+extension MandateRevolutPay {
+    public init() {
+    }
 }
 
 /// Typed representation of the `MandateSepaDebit` API schema.
@@ -221,40 +196,30 @@ public struct MandateSepaDebit: Codable {
         case url
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension MandateSepaDebit {
-    init(from decoder: Decoder) throws {
+extension MandateSepaDebit {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.reference) else {
-            throw SdkValidationError(
-                field: "reference",
-                code: "required",
-                message: "Validation failed for 'reference': value is required"
-            )
+            throw SdkValidationError(field: "reference", code: "required", message: "Validation failed for 'reference': value is required")
         }
         guard container.contains(.url) else {
-            throw SdkValidationError(
-                field: "url",
-                code: "required",
-                message: "Validation failed for 'url': value is required"
-            )
+            throw SdkValidationError(field: "url", code: "required", message: "Validation failed for 'url': value is required")
         }
-        reference = try container.sdkDecodeRequired(.reference)
-        url = try container.sdkDecodeRequired(.url)
-        try validateLength("reference", reference, min: nil, max: 5000)
-        try validateLength("url", url, min: nil, max: 5000)
+        self.reference = try container.sdkDecodeRequired(.reference)
+        self.url = try container.sdkDecodeRequired(.url)
+            try validateLength("reference", self.reference, min: nil, max: 5000)
+            try validateLength("url", self.url, min: nil, max: 5000)
     }
 }
 
-public extension MandateSepaDebit {
-    init(reference: String, url: String) throws {
+extension MandateSepaDebit {
+    public init(reference: String, url: String) throws {
         (self.reference, self.url) = (reference, url)
-        try validateLength("reference", self.reference, min: nil, max: 5000)
-        try validateLength("url", self.url, min: nil, max: 5000)
+            try validateLength("reference", self.reference, min: nil, max: 5000)
+            try validateLength("url", self.url, min: nil, max: 5000)
     }
 }
 
@@ -270,48 +235,38 @@ public struct MandateSingleUse: Codable {
         case currency
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension MandateSingleUse {
-    init(from decoder: Decoder) throws {
+extension MandateSingleUse {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.amount) else {
-            throw SdkValidationError(
-                field: "amount",
-                code: "required",
-                message: "Validation failed for 'amount': value is required"
-            )
+            throw SdkValidationError(field: "amount", code: "required", message: "Validation failed for 'amount': value is required")
         }
         guard container.contains(.currency) else {
-            throw SdkValidationError(
-                field: "currency",
-                code: "required",
-                message: "Validation failed for 'currency': value is required"
-            )
+            throw SdkValidationError(field: "currency", code: "required", message: "Validation failed for 'currency': value is required")
         }
-        amount = try container.sdkDecodeRequired(.amount)
-        currency = try container.sdkDecodeRequired(.currency)
+        self.amount = try container.sdkDecodeRequired(.amount)
+        self.currency = try container.sdkDecodeRequired(.currency)
     }
 }
 
-public extension MandateSingleUse {
-    init(amount: Int, currency: String) {
+extension MandateSingleUse {
+    public init(amount: Int, currency: String) {
         (self.amount, self.currency) = (amount, currency)
     }
 }
 
 /// Typed representation of the `MandateTwint` API schema.
 public struct MandateTwint: Codable {
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension MandateTwint {
-    init() {}
+extension MandateTwint {
+    public init() {
+    }
 }
 
 /// Typed representation of the `MandateUpi` API schema.
@@ -334,30 +289,25 @@ public struct MandateUpi: Codable {
     }
 
     init() {
-        (amount, amountType, description, endDate) = (nil, nil, nil, nil)
+        (self.amount, self.amountType, self.description, self.endDate) = (nil, nil, nil, nil)
     }
 }
 
-public extension MandateUpi {
-    init(from decoder: Decoder) throws {
+extension MandateUpi {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        amount = try container.sdkDecodeIfPresent(.amount)
-        amountType = try container.sdkDecodeIfPresent(.amountType)
-        description = try container.sdkDecodeIfPresent(.description)
-        endDate = try container.sdkDecodeIfPresent(.endDate)
-        if let value = description {
+        self.amount = try container.sdkDecodeIfPresent(.amount)
+        self.amountType = try container.sdkDecodeIfPresent(.amountType)
+        self.description = try container.sdkDecodeIfPresent(.description)
+        self.endDate = try container.sdkDecodeIfPresent(.endDate)
+        if let value = self.description {
             try validateLength("description", value, min: nil, max: 20)
         }
     }
 }
 
-public extension MandateUpi {
-    init(
-        amount: Int? = nil,
-        amountType: MandateUpiAmountType? = nil,
-        description: String? = nil,
-        endDate: Int? = nil
-    ) throws {
+extension MandateUpi {
+    public init(amount: Int? = nil, amountType: MandateUpiAmountType? = nil, description: String? = nil, endDate: Int? = nil) throws {
         self.init()
         (self.amount, self.amountType) = (amount, amountType)
         (self.description, self.endDate) = (description, endDate)
@@ -377,19 +327,19 @@ public struct MandateUsBankAccount: Codable {
     }
 
     init() {
-        collectionMethod = nil
+        self.collectionMethod = nil
     }
 }
 
-public extension MandateUsBankAccount {
-    init(from decoder: Decoder) throws {
+extension MandateUsBankAccount {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        collectionMethod = try container.sdkDecodeIfPresent(.collectionMethod)
+        self.collectionMethod = try container.sdkDecodeIfPresent(.collectionMethod)
     }
 }
 
-public extension MandateUsBankAccount {
-    init(collectionMethod: MandateUsBankAccountCollectionMethod? = nil) {
+extension MandateUsBankAccount {
+    public init(collectionMethod: MandateUsBankAccountCollectionMethod? = nil) {
         self.init()
         self.collectionMethod = collectionMethod
     }
@@ -399,10 +349,7 @@ public extension MandateUsBankAccount {
 public struct MandatePaytoPurpose: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let dependantSupport = MandatePaytoPurpose(rawValue: "dependant_support")
     public static let government = MandatePaytoPurpose(rawValue: "government")
     public static let loan = MandatePaytoPurpose(rawValue: "loan")
@@ -417,7 +364,7 @@ public struct MandatePaytoPurpose: RawRepresentable, Hashable, Codable, Sendable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -430,16 +377,13 @@ public struct MandatePaytoPurpose: RawRepresentable, Hashable, Codable, Sendable
 public struct MandatePixAmountIncludesIof: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let always = MandatePixAmountIncludesIof(rawValue: "always")
     public static let never = MandatePixAmountIncludesIof(rawValue: "never")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -452,10 +396,7 @@ public struct MandatePixAmountIncludesIof: RawRepresentable, Hashable, Codable, 
 public struct MandatePixPaymentSchedule: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let halfyearly = MandatePixPaymentSchedule(rawValue: "halfyearly")
     public static let monthly = MandatePixPaymentSchedule(rawValue: "monthly")
     public static let quarterly = MandatePixPaymentSchedule(rawValue: "quarterly")
@@ -464,7 +405,7 @@ public struct MandatePixPaymentSchedule: RawRepresentable, Hashable, Codable, Se
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -477,10 +418,7 @@ public struct MandatePixPaymentSchedule: RawRepresentable, Hashable, Codable, Se
 public struct MandateOptionsPaytoPaymentSchedule: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let adhoc = MandateOptionsPaytoPaymentSchedule(rawValue: "adhoc")
     public static let annual = MandateOptionsPaytoPaymentSchedule(rawValue: "annual")
     public static let daily = MandateOptionsPaytoPaymentSchedule(rawValue: "daily")
@@ -492,7 +430,7 @@ public struct MandateOptionsPaytoPaymentSchedule: RawRepresentable, Hashable, Co
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -505,15 +443,12 @@ public struct MandateOptionsPaytoPaymentSchedule: RawRepresentable, Hashable, Co
 public struct MandateUsBankAccountCollectionMethod: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let paper = MandateUsBankAccountCollectionMethod(rawValue: "paper")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -526,17 +461,14 @@ public struct MandateUsBankAccountCollectionMethod: RawRepresentable, Hashable, 
 public struct MandateAcssDebitPaymentSchedule: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let combined = MandateAcssDebitPaymentSchedule(rawValue: "combined")
     public static let interval = MandateAcssDebitPaymentSchedule(rawValue: "interval")
     public static let sporadic = MandateAcssDebitPaymentSchedule(rawValue: "sporadic")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -550,16 +482,13 @@ public struct MandateAcssDebitPaymentSchedule: RawRepresentable, Hashable, Codab
 public struct MandateOptionsPaytoAmountType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let fixed = MandateOptionsPaytoAmountType(rawValue: "fixed")
     public static let maximum = MandateOptionsPaytoAmountType(rawValue: "maximum")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -572,16 +501,13 @@ public struct MandateOptionsPaytoAmountType: RawRepresentable, Hashable, Codable
 public struct MandateAcssDebitTransactionType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let business = MandateAcssDebitTransactionType(rawValue: "business")
     public static let personal = MandateAcssDebitTransactionType(rawValue: "personal")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -594,16 +520,13 @@ public struct MandateAcssDebitTransactionType: RawRepresentable, Hashable, Codab
 public struct MandateAcssDebitDefaultForItem: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let invoice = MandateAcssDebitDefaultForItem(rawValue: "invoice")
     public static let subscription = MandateAcssDebitDefaultForItem(rawValue: "subscription")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -616,10 +539,7 @@ public struct MandateAcssDebitDefaultForItem: RawRepresentable, Hashable, Codabl
 public struct MandateOptionsPaytoPurpose: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let dependantSupport = MandateOptionsPaytoPurpose(rawValue: "dependant_support")
     public static let government = MandateOptionsPaytoPurpose(rawValue: "government")
     public static let loan = MandateOptionsPaytoPurpose(rawValue: "loan")
@@ -634,7 +554,7 @@ public struct MandateOptionsPaytoPurpose: RawRepresentable, Hashable, Codable, S
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

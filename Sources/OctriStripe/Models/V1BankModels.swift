@@ -3,9 +3,8 @@
 
 import Foundation
 
-/// V1Bank domain models
-public typealias BankConnectionsResourceAccountNumberDetailsSupportedNetworksList =
-    [BankConnectionsResourceAccountNumberDetailsSupportedNetworksItem]
+// V1Bank domain models
+public typealias BankConnectionsResourceAccountNumberDetailsSupportedNetworksList = [BankConnectionsResourceAccountNumberDetailsSupportedNetworksItem]
 
 /// Typed representation of the `BankConnectionsResourceAccountNumberDetails` API schema.
 public struct BankConnectionsResourceAccountNumberDetails: Codable {
@@ -25,49 +24,30 @@ public struct BankConnectionsResourceAccountNumberDetails: Codable {
         case expectedExpiryDate = "expected_expiry_date"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension BankConnectionsResourceAccountNumberDetails {
-    init(from decoder: Decoder) throws {
+extension BankConnectionsResourceAccountNumberDetails {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.identifierType) else {
-            throw SdkValidationError(
-                field: "identifier_type",
-                code: "required",
-                message: "Validation failed for 'identifier_type': value is required"
-            )
+            throw SdkValidationError(field: "identifier_type", code: "required", message: "Validation failed for 'identifier_type': value is required")
         }
         guard container.contains(.status) else {
-            throw SdkValidationError(
-                field: "status",
-                code: "required",
-                message: "Validation failed for 'status': value is required"
-            )
+            throw SdkValidationError(field: "status", code: "required", message: "Validation failed for 'status': value is required")
         }
         guard container.contains(.supportedNetworks) else {
-            throw SdkValidationError(
-                field: "supported_networks",
-                code: "required",
-                message: "Validation failed for 'supported_networks': value is required"
-            )
+            throw SdkValidationError(field: "supported_networks", code: "required", message: "Validation failed for 'supported_networks': value is required")
         }
-        identifierType = try container.sdkDecodeRequired(.identifierType)
-        status = try container.sdkDecodeRequired(.status)
-        supportedNetworks = try container.sdkDecodeRequired(.supportedNetworks)
-        expectedExpiryDate = try container.sdkDecodeIfPresent(.expectedExpiryDate)
+        self.identifierType = try container.sdkDecodeRequired(.identifierType)
+        self.status = try container.sdkDecodeRequired(.status)
+        self.supportedNetworks = try container.sdkDecodeRequired(.supportedNetworks)
+        self.expectedExpiryDate = try container.sdkDecodeIfPresent(.expectedExpiryDate)
     }
 }
 
-public extension BankConnectionsResourceAccountNumberDetails {
-    init(
-        identifierType: BankConnectionsResourceAccountNumberDetailsIdentifierType,
-        status: BankConnectionsResourceAccountNumberDetailsStatus,
-        supportedNetworks: BankConnectionsResourceAccountNumberDetailsSupportedNetworksList,
-        expectedExpiryDate: Int? = nil
-    ) {
+extension BankConnectionsResourceAccountNumberDetails {
+    public init(identifierType: BankConnectionsResourceAccountNumberDetailsIdentifierType, status: BankConnectionsResourceAccountNumberDetailsStatus, supportedNetworks: BankConnectionsResourceAccountNumberDetailsSupportedNetworksList, expectedExpiryDate: Int? = nil) {
         (self.identifierType, self.status) = (identifierType, status)
         (self.supportedNetworks, self.expectedExpiryDate) = (supportedNetworks, expectedExpiryDate)
     }
@@ -83,19 +63,19 @@ public struct BankConnectionsResourceAccountStatusDetails: Codable {
     }
 
     init() {
-        active = nil
+        self.active = nil
     }
 }
 
-public extension BankConnectionsResourceAccountStatusDetails {
-    init(from decoder: Decoder) throws {
+extension BankConnectionsResourceAccountStatusDetails {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        active = try container.sdkDecodeIfPresent(.active)
+        self.active = try container.sdkDecodeIfPresent(.active)
     }
 }
 
-public extension BankConnectionsResourceAccountStatusDetails {
-    init(active: BankConnectionsResourceAccountStatusDetailsApiResourceActiveSXef2331639f? = nil) {
+extension BankConnectionsResourceAccountStatusDetails {
+    public init(active: BankConnectionsResourceAccountStatusDetailsApiResourceActiveSXef2331639f? = nil) {
         self.init()
         self.active = active
     }
@@ -117,47 +97,29 @@ public struct BankConnectionsResourceAccountStatusDetailsApiResourceActiveSXef23
         case expectedDeactivationDate = "expected_deactivation_date"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension BankConnectionsResourceAccountStatusDetailsApiResourceActiveSXef2331639f {
-    init(from decoder: Decoder) throws {
+extension BankConnectionsResourceAccountStatusDetailsApiResourceActiveSXef2331639f {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.action) else {
-            throw SdkValidationError(
-                field: "action",
-                code: "required",
-                message: "Validation failed for 'action': value is required"
-            )
+            throw SdkValidationError(field: "action", code: "required", message: "Validation failed for 'action': value is required")
         }
         guard container.contains(.cause) else {
-            throw SdkValidationError(
-                field: "cause",
-                code: "required",
-                message: "Validation failed for 'cause': value is required"
-            )
+            throw SdkValidationError(field: "cause", code: "required", message: "Validation failed for 'cause': value is required")
         }
         guard container.contains(.expectedDeactivationDate) else {
-            throw SdkValidationError(
-                field: "expected_deactivation_date",
-                code: "required",
-                message: "Validation failed for 'expected_deactivation_date': value is required"
-            )
+            throw SdkValidationError(field: "expected_deactivation_date", code: "required", message: "Validation failed for 'expected_deactivation_date': value is required")
         }
-        action = try container.sdkDecodeRequired(.action)
-        cause = try container.sdkDecodeRequired(.cause)
-        expectedDeactivationDate = try container.sdkDecodeRequired(.expectedDeactivationDate)
+        self.action = try container.sdkDecodeRequired(.action)
+        self.cause = try container.sdkDecodeRequired(.cause)
+        self.expectedDeactivationDate = try container.sdkDecodeRequired(.expectedDeactivationDate)
     }
 }
 
-public extension BankConnectionsResourceAccountStatusDetailsApiResourceActiveSXef2331639f {
-    init(
-        action: BankConnectionsResourceAccountStatusDetailsApiResourceActiveSX8ab18c2ad7,
-        cause: BankConnectionsResourceAccountStatusDetailsApiResourceActiveSXedced8ce85,
-        expectedDeactivationDate: Int
-    ) {
+extension BankConnectionsResourceAccountStatusDetailsApiResourceActiveSXef2331639f {
+    public init(action: BankConnectionsResourceAccountStatusDetailsApiResourceActiveSX8ab18c2ad7, cause: BankConnectionsResourceAccountStatusDetailsApiResourceActiveSXedced8ce85, expectedDeactivationDate: Int) {
         (self.action, self.cause) = (action, cause)
         self.expectedDeactivationDate = expectedDeactivationDate
     }
@@ -183,38 +145,27 @@ public struct BankConnectionsResourceAccountholder: Codable {
         case customerAccount = "customer_account"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension BankConnectionsResourceAccountholder {
-    init(from decoder: Decoder) throws {
+extension BankConnectionsResourceAccountholder {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.type) else {
-            throw SdkValidationError(
-                field: "type",
-                code: "required",
-                message: "Validation failed for 'type': value is required"
-            )
+            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
         }
-        type = try container.sdkDecodeRequired(.type)
-        account = try container.sdkDecodeIfPresent(.account)
-        customer = try container.sdkDecodeIfPresent(.customer)
-        customerAccount = try container.sdkDecodeIfPresent(.customerAccount)
-        if let value = customerAccount {
+        self.type = try container.sdkDecodeRequired(.type)
+        self.account = try container.sdkDecodeIfPresent(.account)
+        self.customer = try container.sdkDecodeIfPresent(.customer)
+        self.customerAccount = try container.sdkDecodeIfPresent(.customerAccount)
+        if let value = self.customerAccount {
             try validateLength("customer_account", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension BankConnectionsResourceAccountholder {
-    init(
-        type: BankConnectionsResourceAccountholderType,
-        account: BankConnectionsResourceAccountholderAccount? = nil,
-        customer: BankConnectionsResourceAccountholderCustomer? = nil,
-        customerAccount: String? = nil
-    ) throws {
+extension BankConnectionsResourceAccountholder {
+    public init(type: BankConnectionsResourceAccountholderType, account: BankConnectionsResourceAccountholderAccount? = nil, customer: BankConnectionsResourceAccountholderCustomer? = nil, customerAccount: String? = nil) throws {
         (self.type, self.account) = (type, account)
         (self.customer, self.customerAccount) = (customer, customerAccount)
         if let value = self.customerAccount {
@@ -229,31 +180,21 @@ public enum BankConnectionsResourceAccountholderAccount {
 }
 
 extension BankConnectionsResourceAccountholderAccount: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for BankConnectionsResourceAccountholderAccount"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for BankConnectionsResourceAccountholderAccount")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(Account.self) {
-            return .account(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(Account.self) { return .account(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -263,6 +204,7 @@ extension BankConnectionsResourceAccountholderAccount: Codable {
         case let .account(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum BankConnectionsResourceAccountholderCustomer {
@@ -271,31 +213,21 @@ public enum BankConnectionsResourceAccountholderCustomer {
 }
 
 extension BankConnectionsResourceAccountholderCustomer: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for BankConnectionsResourceAccountholderCustomer"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for BankConnectionsResourceAccountholderCustomer")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(Customer.self) {
-            return .customer(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(Customer.self) { return .customer(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -305,6 +237,7 @@ extension BankConnectionsResourceAccountholderCustomer: Codable {
         case let .customer(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// Typed representation of the `BankConnectionsResourceBalance` API schema.
@@ -331,51 +264,31 @@ public struct BankConnectionsResourceBalance: Codable {
         case credit
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension BankConnectionsResourceBalance {
-    init(from decoder: Decoder) throws {
+extension BankConnectionsResourceBalance {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.asOf) else {
-            throw SdkValidationError(
-                field: "as_of",
-                code: "required",
-                message: "Validation failed for 'as_of': value is required"
-            )
+            throw SdkValidationError(field: "as_of", code: "required", message: "Validation failed for 'as_of': value is required")
         }
         guard container.contains(.current) else {
-            throw SdkValidationError(
-                field: "current",
-                code: "required",
-                message: "Validation failed for 'current': value is required"
-            )
+            throw SdkValidationError(field: "current", code: "required", message: "Validation failed for 'current': value is required")
         }
         guard container.contains(.type) else {
-            throw SdkValidationError(
-                field: "type",
-                code: "required",
-                message: "Validation failed for 'type': value is required"
-            )
+            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
         }
-        asOf = try container.sdkDecodeRequired(.asOf)
-        current = try container.sdkDecodeRequired(.current)
-        type = try container.sdkDecodeRequired(.type)
-        cash = try container.sdkDecodeIfPresent(.cash)
-        credit = try container.sdkDecodeIfPresent(.credit)
+        self.asOf = try container.sdkDecodeRequired(.asOf)
+        self.current = try container.sdkDecodeRequired(.current)
+        self.type = try container.sdkDecodeRequired(.type)
+        self.cash = try container.sdkDecodeIfPresent(.cash)
+        self.credit = try container.sdkDecodeIfPresent(.credit)
     }
 }
 
-public extension BankConnectionsResourceBalance {
-    init(
-        asOf: Int,
-        current: [String: Int],
-        type: BankConnectionsResourceBalanceType,
-        cash: BankConnectionsResourceBalanceApiResourceCashBalance? = nil,
-        credit: BankConnectionsResourceBalanceApiResourceCreditBalance? = nil
-    ) {
+extension BankConnectionsResourceBalance {
+    public init(asOf: Int, current: [String: Int], type: BankConnectionsResourceBalanceType, cash: BankConnectionsResourceBalanceApiResourceCashBalance? = nil, credit: BankConnectionsResourceBalanceApiResourceCreditBalance? = nil) {
         (self.asOf, self.current) = (asOf, current)
         (self.type, self.cash) = (type, cash)
         self.credit = credit
@@ -395,19 +308,19 @@ public struct BankConnectionsResourceBalanceApiResourceCashBalance: Codable {
     }
 
     init() {
-        available = nil
+        self.available = nil
     }
 }
 
-public extension BankConnectionsResourceBalanceApiResourceCashBalance {
-    init(from decoder: Decoder) throws {
+extension BankConnectionsResourceBalanceApiResourceCashBalance {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        available = try container.sdkDecodeIfPresent(.available)
+        self.available = try container.sdkDecodeIfPresent(.available)
     }
 }
 
-public extension BankConnectionsResourceBalanceApiResourceCashBalance {
-    init(available: [String: Int]? = nil) {
+extension BankConnectionsResourceBalanceApiResourceCashBalance {
+    public init(available: [String: Int]? = nil) {
         self.init()
         self.available = available
     }
@@ -425,19 +338,19 @@ public struct BankConnectionsResourceBalanceApiResourceCreditBalance: Codable {
     }
 
     init() {
-        used = nil
+        self.used = nil
     }
 }
 
-public extension BankConnectionsResourceBalanceApiResourceCreditBalance {
-    init(from decoder: Decoder) throws {
+extension BankConnectionsResourceBalanceApiResourceCreditBalance {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        used = try container.sdkDecodeIfPresent(.used)
+        self.used = try container.sdkDecodeIfPresent(.used)
     }
 }
 
-public extension BankConnectionsResourceBalanceApiResourceCreditBalance {
-    init(used: [String: Int]? = nil) {
+extension BankConnectionsResourceBalanceApiResourceCreditBalance {
+    public init(used: [String: Int]? = nil) {
         self.init()
         self.used = used
     }
@@ -459,47 +372,32 @@ public struct BankConnectionsResourceBalanceRefresh: Codable {
         case nextRefreshAvailableAt = "next_refresh_available_at"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension BankConnectionsResourceBalanceRefresh {
-    init(from decoder: Decoder) throws {
+extension BankConnectionsResourceBalanceRefresh {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.lastAttemptedAt) else {
-            throw SdkValidationError(
-                field: "last_attempted_at",
-                code: "required",
-                message: "Validation failed for 'last_attempted_at': value is required"
-            )
+            throw SdkValidationError(field: "last_attempted_at", code: "required", message: "Validation failed for 'last_attempted_at': value is required")
         }
         guard container.contains(.status) else {
-            throw SdkValidationError(
-                field: "status",
-                code: "required",
-                message: "Validation failed for 'status': value is required"
-            )
+            throw SdkValidationError(field: "status", code: "required", message: "Validation failed for 'status': value is required")
         }
-        lastAttemptedAt = try container.sdkDecodeRequired(.lastAttemptedAt)
-        status = try container.sdkDecodeRequired(.status)
-        nextRefreshAvailableAt = try container.sdkDecodeIfPresent(.nextRefreshAvailableAt)
+        self.lastAttemptedAt = try container.sdkDecodeRequired(.lastAttemptedAt)
+        self.status = try container.sdkDecodeRequired(.status)
+        self.nextRefreshAvailableAt = try container.sdkDecodeIfPresent(.nextRefreshAvailableAt)
     }
 }
 
-public extension BankConnectionsResourceBalanceRefresh {
-    init(
-        lastAttemptedAt: Int,
-        status: BankConnectionsResourceBalanceRefreshStatus,
-        nextRefreshAvailableAt: Int? = nil
-    ) {
+extension BankConnectionsResourceBalanceRefresh {
+    public init(lastAttemptedAt: Int, status: BankConnectionsResourceBalanceRefreshStatus, nextRefreshAvailableAt: Int? = nil) {
         (self.lastAttemptedAt, self.status) = (lastAttemptedAt, status)
         self.nextRefreshAvailableAt = nextRefreshAvailableAt
     }
 }
 
-public typealias BankConnectionsResourceLinkAccountSessionFiltersAccountSubcategoriesList =
-    [BankConnectionsResourceLinkAccountSessionFiltersAccountSubcategoriesItem]
+public typealias BankConnectionsResourceLinkAccountSessionFiltersAccountSubcategoriesList = [BankConnectionsResourceLinkAccountSessionFiltersAccountSubcategoriesItem]
 
 /// Typed representation of the `BankConnectionsResourceLinkAccountSessionFilters` API schema.
 public struct BankConnectionsResourceLinkAccountSessionFilters: Codable {
@@ -522,30 +420,25 @@ public struct BankConnectionsResourceLinkAccountSessionFilters: Codable {
     }
 
     init() {
-        (accountSubcategories, countries, country, requirePaymentMethodSupport) = (nil, nil, nil, nil)
+        (self.accountSubcategories, self.countries, self.country, self.requirePaymentMethodSupport) = (nil, nil, nil, nil)
     }
 }
 
-public extension BankConnectionsResourceLinkAccountSessionFilters {
-    init(from decoder: Decoder) throws {
+extension BankConnectionsResourceLinkAccountSessionFilters {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        accountSubcategories = try container.sdkDecodeIfPresent(.accountSubcategories)
-        countries = try container.sdkDecodeIfPresent(.countries)
-        country = try container.sdkDecodeIfPresent(.country)
-        requirePaymentMethodSupport = try container.sdkDecodeIfPresent(.requirePaymentMethodSupport)
-        if let value = country {
+        self.accountSubcategories = try container.sdkDecodeIfPresent(.accountSubcategories)
+        self.countries = try container.sdkDecodeIfPresent(.countries)
+        self.country = try container.sdkDecodeIfPresent(.country)
+        self.requirePaymentMethodSupport = try container.sdkDecodeIfPresent(.requirePaymentMethodSupport)
+        if let value = self.country {
             try validateLength("country", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension BankConnectionsResourceLinkAccountSessionFilters {
-    init(
-        accountSubcategories: BankConnectionsResourceLinkAccountSessionFiltersAccountSubcategoriesList? = nil,
-        countries: [String]? = nil,
-        country: String? = nil,
-        requirePaymentMethodSupport: BankConnectionsResourceLinkAccountSessionFiltersRequirePaymenX2d2a53ae85? = nil
-    ) throws {
+extension BankConnectionsResourceLinkAccountSessionFilters {
+    public init(accountSubcategories: BankConnectionsResourceLinkAccountSessionFiltersAccountSubcategoriesList? = nil, countries: [String]? = nil, country: String? = nil, requirePaymentMethodSupport: BankConnectionsResourceLinkAccountSessionFiltersRequirePaymenX2d2a53ae85? = nil) throws {
         self.init()
         (self.accountSubcategories, self.countries) = (accountSubcategories, countries)
         (self.country, self.requirePaymentMethodSupport) = (country, requirePaymentMethodSupport)
@@ -564,27 +457,21 @@ public struct BankConnectionsResourceLinkAccountSessionLimits: Codable {
         case accounts
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension BankConnectionsResourceLinkAccountSessionLimits {
-    init(from decoder: Decoder) throws {
+extension BankConnectionsResourceLinkAccountSessionLimits {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.accounts) else {
-            throw SdkValidationError(
-                field: "accounts",
-                code: "required",
-                message: "Validation failed for 'accounts': value is required"
-            )
+            throw SdkValidationError(field: "accounts", code: "required", message: "Validation failed for 'accounts': value is required")
         }
-        accounts = try container.sdkDecodeRequired(.accounts)
+        self.accounts = try container.sdkDecodeRequired(.accounts)
     }
 }
 
-public extension BankConnectionsResourceLinkAccountSessionLimits {
-    init(accounts: Int) {
+extension BankConnectionsResourceLinkAccountSessionLimits {
+    public init(accounts: Int) {
         self.accounts = accounts
     }
 }
@@ -599,19 +486,19 @@ public struct BankConnectionsResourceLinkAccountSessionManualEntry: Codable {
     }
 
     init() {
-        mode = nil
+        self.mode = nil
     }
 }
 
-public extension BankConnectionsResourceLinkAccountSessionManualEntry {
-    init(from decoder: Decoder) throws {
+extension BankConnectionsResourceLinkAccountSessionManualEntry {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        mode = try container.sdkDecodeIfPresent(.mode)
+        self.mode = try container.sdkDecodeIfPresent(.mode)
     }
 }
 
-public extension BankConnectionsResourceLinkAccountSessionManualEntry {
-    init(mode: BankConnectionsResourceLinkAccountSessionManualEntryMode? = nil) {
+extension BankConnectionsResourceLinkAccountSessionManualEntry {
+    public init(mode: BankConnectionsResourceLinkAccountSessionManualEntryMode? = nil) {
         self.init()
         self.mode = mode
     }
@@ -633,7 +520,5 @@ public struct BankConnectionsResourceOwnershipRefresh: Codable {
         case nextRefreshAvailableAt = "next_refresh_available_at"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }

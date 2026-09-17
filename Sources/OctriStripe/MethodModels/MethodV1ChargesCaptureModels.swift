@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1ChargesCapture operation model declarations
+// Canonical v1ChargesCapture operation model declarations
 /// An optional dictionary including the account to automatically transfer to as part of a destination charge. See
 /// the Connect documentation for details.
 public struct PostChargesChargeCaptureRequestBodyTransferData: Codable {
@@ -18,19 +18,19 @@ public struct PostChargesChargeCaptureRequestBodyTransferData: Codable {
     }
 
     init() {
-        amount = nil
+        self.amount = nil
     }
 }
 
-public extension PostChargesChargeCaptureRequestBodyTransferData {
-    init(from decoder: Decoder) throws {
+extension PostChargesChargeCaptureRequestBodyTransferData {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        amount = try container.sdkDecodeIfPresent(.amount)
+        self.amount = try container.sdkDecodeIfPresent(.amount)
     }
 }
 
-public extension PostChargesChargeCaptureRequestBodyTransferData {
-    init(amount: Int? = nil) {
+extension PostChargesChargeCaptureRequestBodyTransferData {
+    public init(amount: Int? = nil) {
         self.init()
         self.amount = amount
     }

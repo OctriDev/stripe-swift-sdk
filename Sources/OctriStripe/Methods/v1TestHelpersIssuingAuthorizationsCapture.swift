@@ -7,9 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1TestHelpersIssuingAuthorizationsCaptureMethods {
-    /// Captures an Issuing authorization in test mode. Use `capture_amount` to capture a partial amount or omit it to
-    /// capture the full authorized amount, and use `close_authorization` to control whether the authorization closes
-    /// after capture.
+    /// Captures an Issuing authorization in test mode. Use `capture_amount` to capture a partial amount or omit it to capture the full authorized amount, and use `close_authorization` to control whether the authorization closes after capture.
     ///
     /// Capture a test-mode authorization.
     ///
@@ -23,32 +21,11 @@ public enum V1TestHelpersIssuingAuthorizationsCaptureMethods {
     /// - expand: Specifies which fields in the response should be expanded.
     /// - purchaseDetails: Additional purchase information that is optionally
     ///   provided by the merchant.
-    public static func postTestHelpersIssuingAuthorizationsAuthorizationCapture(
-        config: ClientConfig,
-        authorization: String,
-        captureAmount: Int?,
-        closeAuthorization: Bool?,
-        expand: [String]?,
-        purchaseDetails: PostTestHelpersIssuingAuthorizationsAuthorizationCaptureRequeX9a6e57731c?
-    ) async throws -> IssuingAuthorization {
+    public static func postTestHelpersIssuingAuthorizationsAuthorizationCapture(config: ClientConfig, authorization: String, captureAmount: Int?, closeAuthorization: Bool?, expand: [String]?, purchaseDetails: PostTestHelpersIssuingAuthorizationsAuthorizationCaptureRequeX9a6e57731c?) async throws -> IssuingAuthorization {
         try validateLength("authorization", authorization, max: 5000)
 
-        let requestBody = PostTestHelpersIssuingAuthorizationsAuthorizationCaptureRequestBody(
-            captureAmount: captureAmount,
-            closeAuthorization: closeAuthorization,
-            expand: expand,
-            purchaseDetails: purchaseDetails
-        )
+        let requestBody = PostTestHelpersIssuingAuthorizationsAuthorizationCaptureRequestBody(captureAmount: captureAmount, closeAuthorization: closeAuthorization, expand: expand, purchaseDetails: purchaseDetails)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/test_helpers/issuing/authorizations/", sdkEncodePathSegment(sdkWireString(authorization)), "/capture"]
-                .joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostTestHelpersIssuingAuthorizationsAuthorizationCapture"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/test_helpers/issuing/authorizations/", sdkEncodePathSegment(sdkWireString(authorization)), "/capture"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTestHelpersIssuingAuthorizationsAuthorizationCapture")).data
     }
 }

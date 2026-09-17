@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1PaymentMethodsMethods {
-    struct PostPaymentMethodsPaymentMethodOptions: Codable {
+extension V1PaymentMethodsMethods {
+    public struct PostPaymentMethodsPaymentMethodOptions: Codable {
         public var paymentMethod: String
         public var allowRedisplay: PostPaymentMethodsPaymentMethodRequestBodyAllowRedisplay?
         public var billingDetails: PostPaymentMethodsPaymentMethodRequestBodyBillingDetails?
@@ -22,9 +22,7 @@ public extension V1PaymentMethodsMethods {
         }
     }
 
-    /// Updates an existing PaymentMethod that is attached to a customer. Supply only the PaymentMethod properties you
-    /// want to change, such as `billing_details`, `metadata`, or type-specific details. Use `allow_redisplay` to
-    /// control whether the method can be shown again in a customer checkout flow.
+    /// Updates an existing PaymentMethod that is attached to a customer. Supply only the PaymentMethod properties you want to change, such as `billing_details`, `metadata`, or type-specific details. Use `allow_redisplay` to control whether the method can be shown again in a customer checkout flow.
     ///
     /// Updates a PaymentMethod object. A PaymentMethod must be attached to a customer to be updated.
     ///
@@ -48,22 +46,11 @@ public extension V1PaymentMethodsMethods {
     ///   about the PayTo payment method.
     /// - usBankAccount: If this is an `us_bank_account` PaymentMethod, this hash
     ///   contains details about the US bank account payment method.
-    static func postPaymentMethodsPaymentMethod(
-        config: ClientConfig,
-        options: PostPaymentMethodsPaymentMethodOptions
-    ) async throws -> PaymentMethod {
+    public static func postPaymentMethodsPaymentMethod(config: ClientConfig, options: PostPaymentMethodsPaymentMethodOptions) async throws -> PaymentMethod {
         try validateLength("payment_method", options.paymentMethod, max: 5000)
 
         let requestBody = PostPaymentMethodsPaymentMethodRequestBody(options: options)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/payment_methods/", sdkEncodePathSegment(sdkWireString(options.paymentMethod))].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostPaymentMethodsPaymentMethod"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/payment_methods/", sdkEncodePathSegment(sdkWireString(options.paymentMethod))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostPaymentMethodsPaymentMethod")).data
     }
 }

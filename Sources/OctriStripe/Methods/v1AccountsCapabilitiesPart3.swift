@@ -6,10 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1AccountsCapabilitiesMethods {
-    /// Updates an account capability by requesting it or removing the request for it. Set `requested` to true to
-    /// request the capability or false to remove the request when supported. Activation can be delayed, and the
-    /// response includes requirements when additional information is needed.
+extension V1AccountsCapabilitiesMethods {
+    /// Updates an account capability by requesting it or removing the request for it. Set `requested` to true to request the capability or false to remove the request when supported. Activation can be delayed, and the response includes requirements when additional information is needed.
     ///
     /// Updates an existing Account Capability. Request or remove a capability by updating its requested parameter.
     ///
@@ -22,30 +20,11 @@ public extension V1AccountsCapabilitiesMethods {
     ///   it from the account by passing false. Some capabilities are permanent after
     ///   they've been requested. Attempting to remove a permanent capability returns
     ///   an error.
-    static func postAccountsAccountCapabilitiesCapability(
-        config: ClientConfig,
-        account: String,
-        capability: String,
-        expand: [String]?,
-        requested: Bool?
-    ) async throws -> Capability {
+    public static func postAccountsAccountCapabilitiesCapability(config: ClientConfig, account: String, capability: String, expand: [String]?, requested: Bool?) async throws -> Capability {
         try validateLength("account", account, max: 5000)
 
         let requestBody = PostAccountsAccountCapabilitiesCapabilityRequestBody(expand: expand, requested: requested)
 
-        return try await (sdkRequest(
-            "POST",
-            [
-                "/v1/accounts/",
-                sdkEncodePathSegment(sdkWireString(account)),
-                "/capabilities/",
-                sdkEncodePathSegment(sdkWireString(capability)),
-            ].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostAccountsAccountCapabilitiesCapability"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/accounts/", sdkEncodePathSegment(sdkWireString(account)), "/capabilities/", sdkEncodePathSegment(sdkWireString(capability))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostAccountsAccountCapabilitiesCapability")).data
     }
 }

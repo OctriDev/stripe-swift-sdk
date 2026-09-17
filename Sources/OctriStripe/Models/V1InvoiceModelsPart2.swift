@@ -3,17 +3,17 @@
 
 import Foundation
 
-/// V1Invoice domain models
-public extension InvoicePaymentMethodOptionsPix {
-    init(from decoder: Decoder) throws {
+// V1Invoice domain models
+extension InvoicePaymentMethodOptionsPix {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        amountIncludesIof = try container.sdkDecodeIfPresent(.amountIncludesIof)
-        expiresAfterSeconds = try container.sdkDecodeIfPresent(.expiresAfterSeconds)
+        self.amountIncludesIof = try container.sdkDecodeIfPresent(.amountIncludesIof)
+        self.expiresAfterSeconds = try container.sdkDecodeIfPresent(.expiresAfterSeconds)
     }
 }
 
-public extension InvoicePaymentMethodOptionsPix {
-    init(amountIncludesIof: InvoicePaymentMethodOptionsPixAmountIncludesIof? = nil, expiresAfterSeconds: Int? = nil) {
+extension InvoicePaymentMethodOptionsPix {
+    public init(amountIncludesIof: InvoicePaymentMethodOptionsPixAmountIncludesIof? = nil, expiresAfterSeconds: Int? = nil) {
         self.init()
         (self.amountIncludesIof, self.expiresAfterSeconds) = (amountIncludesIof, expiresAfterSeconds)
     }
@@ -21,13 +21,13 @@ public extension InvoicePaymentMethodOptionsPix {
 
 /// Typed representation of the `InvoicePaymentMethodOptionsSepaDebit` API schema.
 public struct InvoicePaymentMethodOptionsSepaDebit: Codable {
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension InvoicePaymentMethodOptionsSepaDebit {
-    init() {}
+extension InvoicePaymentMethodOptionsSepaDebit {
+    public init() {
+    }
 }
 
 /// Typed representation of the `InvoicePaymentMethodOptionsUpi` API schema.
@@ -40,19 +40,19 @@ public struct InvoicePaymentMethodOptionsUpi: Codable {
     }
 
     init() {
-        mandateOptions = nil
+        self.mandateOptions = nil
     }
 }
 
-public extension InvoicePaymentMethodOptionsUpi {
-    init(from decoder: Decoder) throws {
+extension InvoicePaymentMethodOptionsUpi {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        mandateOptions = try container.sdkDecodeIfPresent(.mandateOptions)
+        self.mandateOptions = try container.sdkDecodeIfPresent(.mandateOptions)
     }
 }
 
-public extension InvoicePaymentMethodOptionsUpi {
-    init(mandateOptions: InvoicePaymentMethodOptionsMandateOptionsUpi? = nil) {
+extension InvoicePaymentMethodOptionsUpi {
+    public init(mandateOptions: InvoicePaymentMethodOptionsMandateOptionsUpi? = nil) {
         self.init()
         self.mandateOptions = mandateOptions
     }
@@ -71,33 +71,28 @@ public struct InvoicePaymentMethodOptionsUsBankAccount: Codable {
     }
 
     init() {
-        (financialConnections, verificationMethod) = (nil, nil)
+        (self.financialConnections, self.verificationMethod) = (nil, nil)
     }
 }
 
-public extension InvoicePaymentMethodOptionsUsBankAccount {
-    init(from decoder: Decoder) throws {
+extension InvoicePaymentMethodOptionsUsBankAccount {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        financialConnections = try container.sdkDecodeIfPresent(.financialConnections)
-        verificationMethod = try container.sdkDecodeIfPresent(.verificationMethod)
+        self.financialConnections = try container.sdkDecodeIfPresent(.financialConnections)
+        self.verificationMethod = try container.sdkDecodeIfPresent(.verificationMethod)
     }
 }
 
-public extension InvoicePaymentMethodOptionsUsBankAccount {
-    init(
-        financialConnections: InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptions? = nil,
-        verificationMethod: InvoicePaymentMethodOptionsUsBankAccountVerificationMethod? = nil
-    ) {
+extension InvoicePaymentMethodOptionsUsBankAccount {
+    public init(financialConnections: InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptions? = nil, verificationMethod: InvoicePaymentMethodOptionsUsBankAccountVerificationMethod? = nil) {
         self.init()
         (self.financialConnections, self.verificationMethod) = (financialConnections, verificationMethod)
     }
 }
 
-public typealias InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptionsPX121577f679 =
-    [InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptionsPXb40d53863b]
+public typealias InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptionsPX121577f679 = [InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptionsPXb40d53863b]
 
-public typealias InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptionsPrefetchList =
-    [InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptionsPrefetchItem]
+public typealias InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptionsPrefetchList = [InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptionsPrefetchItem]
 
 /// Typed representation of the `InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptions` API schema.
 public struct InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptions: Codable {
@@ -115,33 +110,28 @@ public struct InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptions: Coda
     }
 
     init() {
-        (filters, permissions, prefetch) = (nil, nil, nil)
+        (self.filters, self.permissions, self.prefetch) = (nil, nil, nil)
     }
 }
 
-public extension InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptions {
-    init(from decoder: Decoder) throws {
+extension InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptions {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        filters = try container.sdkDecodeIfPresent(.filters)
-        permissions = try container.sdkDecodeIfPresent(.permissions)
-        prefetch = try container.sdkDecodeIfPresent(.prefetch)
+        self.filters = try container.sdkDecodeIfPresent(.filters)
+        self.permissions = try container.sdkDecodeIfPresent(.permissions)
+        self.prefetch = try container.sdkDecodeIfPresent(.prefetch)
     }
 }
 
-public extension InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptions {
-    init(
-        filters: InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptionsFilters? = nil,
-        permissions: InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptionsPX121577f679? = nil,
-        prefetch: InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptionsPrefetchList? = nil
-    ) {
+extension InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptions {
+    public init(filters: InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptionsFilters? = nil, permissions: InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptionsPX121577f679? = nil, prefetch: InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptionsPrefetchList? = nil) {
         self.init()
         (self.filters, self.permissions) = (filters, permissions)
         self.prefetch = prefetch
     }
 }
 
-public typealias InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptionsFX71beac16e0 =
-    [InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptionsFX5c04409465]
+public typealias InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptionsFX71beac16e0 = [InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptionsFX5c04409465]
 
 /// Typed representation of the `InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptionsFilters` API schema.
 public struct InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptionsFilters: Codable {
@@ -154,19 +144,19 @@ public struct InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptionsFilter
     }
 
     init() {
-        accountSubcategories = nil
+        self.accountSubcategories = nil
     }
 }
 
-public extension InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptionsFilters {
-    init(from decoder: Decoder) throws {
+extension InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptionsFilters {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        accountSubcategories = try container.sdkDecodeIfPresent(.accountSubcategories)
+        self.accountSubcategories = try container.sdkDecodeIfPresent(.accountSubcategories)
     }
 }
 
-public extension InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptionsFilters {
-    init(accountSubcategories: InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptionsFX71beac16e0? = nil) {
+extension InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptionsFilters {
+    public init(accountSubcategories: InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptionsFX71beac16e0? = nil) {
         self.init()
         self.accountSubcategories = accountSubcategories
     }
@@ -183,19 +173,19 @@ public struct InvoiceRenderingPdf: Codable {
     }
 
     init() {
-        pageSize = nil
+        self.pageSize = nil
     }
 }
 
-public extension InvoiceRenderingPdf {
-    init(from decoder: Decoder) throws {
+extension InvoiceRenderingPdf {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        pageSize = try container.sdkDecodeIfPresent(.pageSize)
+        self.pageSize = try container.sdkDecodeIfPresent(.pageSize)
     }
 }
 
-public extension InvoiceRenderingPdf {
-    init(pageSize: InvoiceRenderingPdfPageSize? = nil) {
+extension InvoiceRenderingPdf {
+    public init(pageSize: InvoiceRenderingPdfPageSize? = nil) {
         self.init()
         self.pageSize = pageSize
     }
@@ -236,87 +226,52 @@ public struct InvoiceRenderingTemplate: Codable {
         case nickname
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension InvoiceRenderingTemplate {
-    init(from decoder: Decoder) throws {
+extension InvoiceRenderingTemplate {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.created) else {
-            throw SdkValidationError(
-                field: "created",
-                code: "required",
-                message: "Validation failed for 'created': value is required"
-            )
+            throw SdkValidationError(field: "created", code: "required", message: "Validation failed for 'created': value is required")
         }
         guard container.contains(.id) else {
-            throw SdkValidationError(
-                field: "id",
-                code: "required",
-                message: "Validation failed for 'id': value is required"
-            )
+            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
         }
         guard container.contains(.livemode) else {
-            throw SdkValidationError(
-                field: "livemode",
-                code: "required",
-                message: "Validation failed for 'livemode': value is required"
-            )
+            throw SdkValidationError(field: "livemode", code: "required", message: "Validation failed for 'livemode': value is required")
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(
-                field: "object",
-                code: "required",
-                message: "Validation failed for 'object': value is required"
-            )
+            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
         }
         guard container.contains(.status) else {
-            throw SdkValidationError(
-                field: "status",
-                code: "required",
-                message: "Validation failed for 'status': value is required"
-            )
+            throw SdkValidationError(field: "status", code: "required", message: "Validation failed for 'status': value is required")
         }
         guard container.contains(.version) else {
-            throw SdkValidationError(
-                field: "version",
-                code: "required",
-                message: "Validation failed for 'version': value is required"
-            )
+            throw SdkValidationError(field: "version", code: "required", message: "Validation failed for 'version': value is required")
         }
-        created = try container.sdkDecodeRequired(.created)
-        id = try container.sdkDecodeRequired(.id)
-        livemode = try container.sdkDecodeRequired(.livemode)
-        object = try container.sdkDecodeRequired(.object)
-        status = try container.sdkDecodeRequired(.status)
-        version = try container.sdkDecodeRequired(.version)
-        metadata = try container.sdkDecodeIfPresent(.metadata)
-        nickname = try container.sdkDecodeIfPresent(.nickname)
-        try validateLength("id", id, min: nil, max: 5000)
-        if let value = nickname {
+        self.created = try container.sdkDecodeRequired(.created)
+        self.id = try container.sdkDecodeRequired(.id)
+        self.livemode = try container.sdkDecodeRequired(.livemode)
+        self.object = try container.sdkDecodeRequired(.object)
+        self.status = try container.sdkDecodeRequired(.status)
+        self.version = try container.sdkDecodeRequired(.version)
+        self.metadata = try container.sdkDecodeIfPresent(.metadata)
+        self.nickname = try container.sdkDecodeIfPresent(.nickname)
+            try validateLength("id", self.id, min: nil, max: 5000)
+        if let value = self.nickname {
             try validateLength("nickname", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension InvoiceRenderingTemplate {
-    init(
-        created: Int,
-        id: String,
-        livemode: Bool,
-        object: InvoiceRenderingTemplateObject,
-        status: InvoiceRenderingTemplateStatus,
-        version: Int,
-        metadata: [String: String]? = nil,
-        nickname: String? = nil
-    ) throws {
+extension InvoiceRenderingTemplate {
+    public init(created: Int, id: String, livemode: Bool, object: InvoiceRenderingTemplateObject, status: InvoiceRenderingTemplateStatus, version: Int, metadata: [String: String]? = nil, nickname: String? = nil) throws {
         (self.created, self.id) = (created, id)
         (self.livemode, self.object) = (livemode, object)
         (self.status, self.version) = (status, version)
         (self.metadata, self.nickname) = (metadata, nickname)
-        try validateLength("id", self.id, min: nil, max: 5000)
+            try validateLength("id", self.id, min: nil, max: 5000)
         if let value = self.nickname {
             try validateLength("nickname", value, min: nil, max: 5000)
         }
@@ -336,26 +291,26 @@ public struct InvoiceSettingCheckoutRenderingOptions: Codable {
     }
 
     init() {
-        (amountTaxDisplay, template) = (nil, nil)
+        (self.amountTaxDisplay, self.template) = (nil, nil)
     }
 }
 
-public extension InvoiceSettingCheckoutRenderingOptions {
-    init(from decoder: Decoder) throws {
+extension InvoiceSettingCheckoutRenderingOptions {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        amountTaxDisplay = try container.sdkDecodeIfPresent(.amountTaxDisplay)
-        template = try container.sdkDecodeIfPresent(.template)
-        if let value = amountTaxDisplay {
+        self.amountTaxDisplay = try container.sdkDecodeIfPresent(.amountTaxDisplay)
+        self.template = try container.sdkDecodeIfPresent(.template)
+        if let value = self.amountTaxDisplay {
             try validateLength("amount_tax_display", value, min: nil, max: 5000)
         }
-        if let value = template {
+        if let value = self.template {
             try validateLength("template", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension InvoiceSettingCheckoutRenderingOptions {
-    init(amountTaxDisplay: String? = nil, template: String? = nil) throws {
+extension InvoiceSettingCheckoutRenderingOptions {
+    public init(amountTaxDisplay: String? = nil, template: String? = nil) throws {
         self.init()
         (self.amountTaxDisplay, self.template) = (amountTaxDisplay, template)
         if let value = self.amountTaxDisplay {
@@ -379,40 +334,30 @@ public struct InvoiceSettingCustomField: Codable {
         case value
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension InvoiceSettingCustomField {
-    init(from decoder: Decoder) throws {
+extension InvoiceSettingCustomField {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.name) else {
-            throw SdkValidationError(
-                field: "name",
-                code: "required",
-                message: "Validation failed for 'name': value is required"
-            )
+            throw SdkValidationError(field: "name", code: "required", message: "Validation failed for 'name': value is required")
         }
         guard container.contains(.value) else {
-            throw SdkValidationError(
-                field: "value",
-                code: "required",
-                message: "Validation failed for 'value': value is required"
-            )
+            throw SdkValidationError(field: "value", code: "required", message: "Validation failed for 'value': value is required")
         }
-        name = try container.sdkDecodeRequired(.name)
-        value = try container.sdkDecodeRequired(.value)
-        try validateLength("name", name, min: nil, max: 5000)
-        try validateLength("value", value, min: nil, max: 5000)
+        self.name = try container.sdkDecodeRequired(.name)
+        self.value = try container.sdkDecodeRequired(.value)
+            try validateLength("name", self.name, min: nil, max: 5000)
+            try validateLength("value", self.value, min: nil, max: 5000)
     }
 }
 
-public extension InvoiceSettingCustomField {
-    init(name: String, value: String) throws {
+extension InvoiceSettingCustomField {
+    public init(name: String, value: String) throws {
         (self.name, self.value) = (name, value)
-        try validateLength("name", self.name, min: nil, max: 5000)
-        try validateLength("value", self.value, min: nil, max: 5000)
+            try validateLength("name", self.name, min: nil, max: 5000)
+            try validateLength("value", self.value, min: nil, max: 5000)
     }
 }
 
@@ -430,26 +375,26 @@ public struct InvoiceSettingCustomerRenderingOptions: Codable {
     }
 
     init() {
-        (amountTaxDisplay, template) = (nil, nil)
+        (self.amountTaxDisplay, self.template) = (nil, nil)
     }
 }
 
-public extension InvoiceSettingCustomerRenderingOptions {
-    init(from decoder: Decoder) throws {
+extension InvoiceSettingCustomerRenderingOptions {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        amountTaxDisplay = try container.sdkDecodeIfPresent(.amountTaxDisplay)
-        template = try container.sdkDecodeIfPresent(.template)
-        if let value = amountTaxDisplay {
+        self.amountTaxDisplay = try container.sdkDecodeIfPresent(.amountTaxDisplay)
+        self.template = try container.sdkDecodeIfPresent(.template)
+        if let value = self.amountTaxDisplay {
             try validateLength("amount_tax_display", value, min: nil, max: 5000)
         }
-        if let value = template {
+        if let value = self.template {
             try validateLength("template", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension InvoiceSettingCustomerRenderingOptions {
-    init(amountTaxDisplay: String? = nil, template: String? = nil) throws {
+extension InvoiceSettingCustomerRenderingOptions {
+    public init(amountTaxDisplay: String? = nil, template: String? = nil) throws {
         self.init()
         (self.amountTaxDisplay, self.template) = (amountTaxDisplay, template)
         if let value = self.amountTaxDisplay {
@@ -483,43 +428,31 @@ public struct InvoiceSettingQuoteSetting: Codable {
         case footer
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension InvoiceSettingQuoteSetting {
-    init(from decoder: Decoder) throws {
+extension InvoiceSettingQuoteSetting {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.issuer) else {
-            throw SdkValidationError(
-                field: "issuer",
-                code: "required",
-                message: "Validation failed for 'issuer': value is required"
-            )
+            throw SdkValidationError(field: "issuer", code: "required", message: "Validation failed for 'issuer': value is required")
         }
-        issuer = try container.sdkDecodeRequired(.issuer)
-        customFields = try container.sdkDecodeIfPresent(.customFields)
-        daysUntilDue = try container.sdkDecodeIfPresent(.daysUntilDue)
-        description = try container.sdkDecodeIfPresent(.description)
-        footer = try container.sdkDecodeIfPresent(.footer)
-        if let value = description {
+        self.issuer = try container.sdkDecodeRequired(.issuer)
+        self.customFields = try container.sdkDecodeIfPresent(.customFields)
+        self.daysUntilDue = try container.sdkDecodeIfPresent(.daysUntilDue)
+        self.description = try container.sdkDecodeIfPresent(.description)
+        self.footer = try container.sdkDecodeIfPresent(.footer)
+        if let value = self.description {
             try validateLength("description", value, min: nil, max: 5000)
         }
-        if let value = footer {
+        if let value = self.footer {
             try validateLength("footer", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension InvoiceSettingQuoteSetting {
-    init(
-        issuer: ConnectAccountReference,
-        customFields: [InvoiceSettingCustomField]? = nil,
-        daysUntilDue: Int? = nil,
-        description: String? = nil,
-        footer: String? = nil
-    ) throws {
+extension InvoiceSettingQuoteSetting {
+    public init(issuer: ConnectAccountReference, customFields: [InvoiceSettingCustomField]? = nil, daysUntilDue: Int? = nil, description: String? = nil, footer: String? = nil) throws {
         (self.issuer, self.customFields) = (issuer, customFields)
         (self.daysUntilDue, self.description) = (daysUntilDue, description)
         self.footer = footer
@@ -544,41 +477,31 @@ public struct InvoiceThresholdReason: Codable {
         case amountGte = "amount_gte"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension InvoiceThresholdReason {
-    init(from decoder: Decoder) throws {
+extension InvoiceThresholdReason {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.itemReasons) else {
-            throw SdkValidationError(
-                field: "item_reasons",
-                code: "required",
-                message: "Validation failed for 'item_reasons': value is required"
-            )
+            throw SdkValidationError(field: "item_reasons", code: "required", message: "Validation failed for 'item_reasons': value is required")
         }
-        itemReasons = try container.sdkDecodeRequired(.itemReasons)
-        amountGte = try container.sdkDecodeIfPresent(.amountGte)
+        self.itemReasons = try container.sdkDecodeRequired(.itemReasons)
+        self.amountGte = try container.sdkDecodeIfPresent(.amountGte)
     }
 }
 
-public extension InvoiceThresholdReason {
-    init(itemReasons: [InvoiceItemThresholdReason], amountGte: Int? = nil) {
+extension InvoiceThresholdReason {
+    public init(itemReasons: [InvoiceItemThresholdReason], amountGte: Int? = nil) {
         (self.itemReasons, self.amountGte) = (itemReasons, amountGte)
     }
 }
 
 /// Preferred language of the Bancontact authorization page that the customer is redirected to.
-public struct InvoicePaymentMethodOptionsBancontactPreferredLanguage: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct InvoicePaymentMethodOptionsBancontactPreferredLanguage: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let de = InvoicePaymentMethodOptionsBancontactPreferredLanguage(rawValue: "de")
     public static let en = InvoicePaymentMethodOptionsBancontactPreferredLanguage(rawValue: "en")
     public static let fr = InvoicePaymentMethodOptionsBancontactPreferredLanguage(rawValue: "fr")
@@ -586,7 +509,7 @@ public struct InvoicePaymentMethodOptionsBancontactPreferredLanguage: RawReprese
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -596,20 +519,16 @@ public struct InvoicePaymentMethodOptionsBancontactPreferredLanguage: RawReprese
 }
 
 /// Transaction type of the mandate.
-public struct InvoicePaymentMethodOptionsAcssDebitMandateOptionsTransactionType: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct InvoicePaymentMethodOptionsAcssDebitMandateOptionsTransactionType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let business = InvoicePaymentMethodOptionsAcssDebitMandateOptionsTransactionType(rawValue: "business")
     public static let personal = InvoicePaymentMethodOptionsAcssDebitMandateOptionsTransactionType(rawValue: "personal")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

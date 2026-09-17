@@ -7,31 +7,17 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1PayoutsCancelMethods {
-    /// Cancels a previously created payout while it is still pending. Use this action to return the payout funds to the
-    /// available balance, but do not use it for automatic payouts.
+    /// Cancels a previously created payout while it is still pending. Use this action to return the payout funds to the available balance, but do not use it for automatic payouts.
     ///
-    /// You can cancel a previously created payout if its status is pending . Stripe refunds the funds to your available
-    /// balance. You can’t cancel automatic Stripe payouts.
+    /// You can cancel a previously created payout if its status is pending . Stripe refunds the funds to your available balance. You can’t cancel automatic Stripe payouts.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postPayoutsPayoutCancel(
-        config: ClientConfig,
-        payout: String,
-        expand: [String]?
-    ) async throws -> Payout {
+    public static func postPayoutsPayoutCancel(config: ClientConfig, payout: String, expand: [String]?) async throws -> Payout {
         try validateLength("payout", payout, max: 5000)
 
         let requestBody = PostPayoutsPayoutCancelRequestBody(expand: expand)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/payouts/", sdkEncodePathSegment(sdkWireString(payout)), "/cancel"].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostPayoutsPayoutCancel"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/payouts/", sdkEncodePathSegment(sdkWireString(payout)), "/cancel"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostPayoutsPayoutCancel")).data
     }
 }

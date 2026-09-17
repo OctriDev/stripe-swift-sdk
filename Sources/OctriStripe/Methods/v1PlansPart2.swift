@@ -6,9 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1PlansMethods {
-    /// Lists plans in the account, optionally filtered by active state, creation time, or product. Use cursor
-    /// parameters to paginate the results, which are returned in the list format defined for plans.
+extension V1PlansMethods {
+    /// Lists plans in the account, optionally filtered by active state, creation time, or product. Use cursor parameters to paginate the results, which are returned in the list format defined for plans.
     ///
     /// Returns a list of your plans.
     ///
@@ -32,29 +31,20 @@ public extension V1PlansMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    static func getPlans(
-        config: ClientConfig,
-        active: Bool?,
-        created: GetPlansParameter?,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        product: String?,
-        startingAfter: String?
-    ) async throws -> GetPlansResponse {
-        if let endingBefore {
+    public static func getPlans(config: ClientConfig, active: Bool?, created: GetPlansParameter?, endingBefore: String?, expand: [String]?, limit: Int?, product: String?, startingAfter: String?) async throws -> GetPlansResponse {
+        if let endingBefore = endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let product {
+        if let product = product {
             try validateLength("product", product, max: 5000)
         }
 
-        if let startingAfter {
+        if let startingAfter = startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try await (sdkRequest("GET", "/v1/plans", config: config, query: [
+        return try (await sdkRequest("GET", "/v1/plans", config: config, query: [
             SdkQueryParameter("active", value: active),
             SdkQueryParameter("created", value: created),
             SdkQueryParameter("ending_before", value: endingBefore),

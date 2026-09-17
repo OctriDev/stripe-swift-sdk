@@ -7,32 +7,17 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1InvoicesMarkUncollectibleMethods {
-    /// Marks a specific invoice as uncollectible for accounting purposes. Supply the `invoice` identifier to record the
-    /// bad debt while preserving the invoice's history. The invoice must be identified by a string no longer than 5,000
-    /// characters.
+    /// Marks a specific invoice as uncollectible for accounting purposes. Supply the `invoice` identifier to record the bad debt while preserving the invoice's history. The invoice must be identified by a string no longer than 5,000 characters.
     ///
-    /// Marking an invoice as uncollectible is useful for keeping track of bad debts that can be written off for
-    /// accounting purposes.
+    /// Marking an invoice as uncollectible is useful for keeping track of bad debts that can be written off for accounting purposes.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postInvoicesInvoiceMarkUncollectible(
-        config: ClientConfig,
-        invoice: String,
-        expand: [String]?
-    ) async throws -> Invoice {
+    public static func postInvoicesInvoiceMarkUncollectible(config: ClientConfig, invoice: String, expand: [String]?) async throws -> Invoice {
         try validateLength("invoice", invoice, max: 5000)
 
         let requestBody = PostInvoicesInvoiceMarkUncollectibleRequestBody(expand: expand)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/invoices/", sdkEncodePathSegment(sdkWireString(invoice)), "/mark_uncollectible"].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostInvoicesInvoiceMarkUncollectible"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/invoices/", sdkEncodePathSegment(sdkWireString(invoice)), "/mark_uncollectible"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostInvoicesInvoiceMarkUncollectible")).data
     }
 }

@@ -8,19 +8,15 @@ import Foundation
 #endif
 /// String representing the object's type. Objects of the same type share the same value. Always has the value
 /// `list`.
-public struct GetCustomersCustomerBalanceTransactionsResponseObject: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct GetCustomersCustomerBalanceTransactionsResponseObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let list = GetCustomersCustomerBalanceTransactionsResponseObject(rawValue: "list")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -29,19 +25,15 @@ public struct GetCustomersCustomerBalanceTransactionsResponseObject: RawRepresen
     }
 }
 
-public struct PostCustomersCustomerBalanceTransactionsRequestBodyMetadataVariant1: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct PostCustomersCustomerBalanceTransactionsRequestBodyMetadataVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostCustomersCustomerBalanceTransactionsRequestBodyMetadataVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -50,19 +42,15 @@ public struct PostCustomersCustomerBalanceTransactionsRequestBodyMetadataVariant
     }
 }
 
-public struct PostCustomersCustomerBalanceTransactionsTransactionRequestBodX8af11a7f67: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostCustomersCustomerBalanceTransactionsTransactionRequestBodX8af11a7f67: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostCustomersCustomerBalanceTransactionsTransactionRequestBodX8af11a7f67(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -73,19 +61,15 @@ public struct PostCustomersCustomerBalanceTransactionsTransactionRequestBodX8af1
 
 /// String representing the object's type. Objects of the same type share the same value. Always has the value
 /// `list`.
-public struct GetCustomersCustomerBankAccountsResponseObject: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct GetCustomersCustomerBankAccountsResponseObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let list = GetCustomersCustomerBankAccountsResponseObject(rawValue: "list")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -94,22 +78,16 @@ public struct GetCustomersCustomerBankAccountsResponseObject: RawRepresentable, 
     }
 }
 
-public struct PostCustomersCustomerBankAccountsRequestBodyBankAccountVarianXcbd5f1d3db: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostCustomersCustomerBankAccountsRequestBodyBankAccountVarianXcbd5f1d3db: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let company =
-        PostCustomersCustomerBankAccountsRequestBodyBankAccountVarianXcbd5f1d3db(rawValue: "company")
-    public static let individual =
-        PostCustomersCustomerBankAccountsRequestBodyBankAccountVarianXcbd5f1d3db(rawValue: "individual")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let company = PostCustomersCustomerBankAccountsRequestBodyBankAccountVarianXcbd5f1d3db(rawValue: "company")
+    public static let individual = PostCustomersCustomerBankAccountsRequestBodyBankAccountVarianXcbd5f1d3db(rawValue: "individual")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -118,21 +96,15 @@ public struct PostCustomersCustomerBankAccountsRequestBodyBankAccountVarianXcbd5
     }
 }
 
-public struct PostCustomersCustomerBankAccountsRequestBodyBankAccountVariant0Object: RawRepresentable, Hashable,
-    Codable,
-    Sendable, SdkWireConvertible {
+public struct PostCustomersCustomerBankAccountsRequestBodyBankAccountVariant0Object: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let bankAccount =
-        PostCustomersCustomerBankAccountsRequestBodyBankAccountVariant0Object(rawValue: "bank_account")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let bankAccount = PostCustomersCustomerBankAccountsRequestBodyBankAccountVariant0Object(rawValue: "bank_account")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -141,19 +113,15 @@ public struct PostCustomersCustomerBankAccountsRequestBodyBankAccountVariant0Obj
     }
 }
 
-public struct PostCustomersCustomerBankAccountsRequestBodyCardVariant0Object: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct PostCustomersCustomerBankAccountsRequestBodyCardVariant0Object: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let card = PostCustomersCustomerBankAccountsRequestBodyCardVariant0Object(rawValue: "card")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -163,21 +131,16 @@ public struct PostCustomersCustomerBankAccountsRequestBodyCardVariant0Object: Ra
 }
 
 /// The type of entity that holds the account. This can be either `individual` or `company`.
-public struct PostCustomersCustomerBankAccountsIdRequestBodyAccountHolderType: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct PostCustomersCustomerBankAccountsIdRequestBodyAccountHolderType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let company = PostCustomersCustomerBankAccountsIdRequestBodyAccountHolderType(rawValue: "company")
-    public static let individual =
-        PostCustomersCustomerBankAccountsIdRequestBodyAccountHolderType(rawValue: "individual")
+    public static let individual = PostCustomersCustomerBankAccountsIdRequestBodyAccountHolderType(rawValue: "individual")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -186,19 +149,15 @@ public struct PostCustomersCustomerBankAccountsIdRequestBodyAccountHolderType: R
     }
 }
 
-public struct PostCustomersCustomerBankAccountsIdRequestBodyMetadataVariant1: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct PostCustomersCustomerBankAccountsIdRequestBodyMetadataVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostCustomersCustomerBankAccountsIdRequestBodyMetadataVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -209,19 +168,15 @@ public struct PostCustomersCustomerBankAccountsIdRequestBodyMetadataVariant1: Ra
 
 /// String representing the object's type. Objects of the same type share the same value. Always has the value
 /// `list`.
-public struct GetCustomersCustomerCardsResponseObject: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct GetCustomersCustomerCardsResponseObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let list = GetCustomersCustomerCardsResponseObject(rawValue: "list")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -230,22 +185,16 @@ public struct GetCustomersCustomerCardsResponseObject: RawRepresentable, Hashabl
     }
 }
 
-public struct PostCustomersCustomerCardsRequestBodyBankAccountVariant0AccouX3d850c92e7: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostCustomersCustomerCardsRequestBodyBankAccountVariant0AccouX3d850c92e7: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let company =
-        PostCustomersCustomerCardsRequestBodyBankAccountVariant0AccouX3d850c92e7(rawValue: "company")
-    public static let individual =
-        PostCustomersCustomerCardsRequestBodyBankAccountVariant0AccouX3d850c92e7(rawValue: "individual")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let company = PostCustomersCustomerCardsRequestBodyBankAccountVariant0AccouX3d850c92e7(rawValue: "company")
+    public static let individual = PostCustomersCustomerCardsRequestBodyBankAccountVariant0AccouX3d850c92e7(rawValue: "individual")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

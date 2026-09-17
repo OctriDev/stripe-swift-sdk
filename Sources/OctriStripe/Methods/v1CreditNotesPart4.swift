@@ -6,33 +6,22 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1CreditNotesMethods {
-    /// Retrieves a credit note by its identifier. Use `expand` when you need selected related fields included in the
-    /// response. The response contains the credit note's amounts, currency, customer, invoice, line items, and
-    /// lifecycle data.
+extension V1CreditNotesMethods {
+    /// Retrieves a credit note by its identifier. Use `expand` when you need selected related fields included in the response. The response contains the credit note's amounts, currency, customer, invoice, line items, and lifecycle data.
     ///
     /// Retrieves the credit note object with the given identifier.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    static func getCreditNotesId(config: ClientConfig, id: String, expand: [String]?) async throws -> CreditNote {
+    public static func getCreditNotesId(config: ClientConfig, id: String, expand: [String]?) async throws -> CreditNote {
         try validateLength("id", id, max: 5000)
 
-        return try await (sdkRequest(
-            "GET",
-            ["/v1/credit_notes/", sdkEncodePathSegment(sdkWireString(id))].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .json,
-            operationId: "GetCreditNotesId"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/credit_notes/", sdkEncodePathSegment(sdkWireString(id))].joined(), config: config, query: [
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .json, operationId: "GetCreditNotesId")).data
     }
 
-    /// Updates an existing credit note's editable fields. Supply `memo` to change the customer-facing text or
-    /// `metadata` to attach structured key-value pairs, and use `expand` to request expanded response fields. Fields
-    /// not supplied remain unchanged.
+    /// Updates an existing credit note's editable fields. Supply `memo` to change the customer-facing text or `metadata` to attach structured key-value pairs, and use `expand` to request expanded response fields. Fields not supplied remain unchanged.
     ///
     /// Updates an existing credit note.
     ///
@@ -44,29 +33,15 @@ public extension V1CreditNotesMethods {
     ///   information about the object in a structured format. Individual keys can be
     ///   unset by posting an empty value to them. All keys can be unset by posting an
     ///   empty value to `metadata`.
-    static func postCreditNotesId(
-        config: ClientConfig,
-        id: String,
-        expand: [String]?,
-        memo: String?,
-        metadata: [String: String]?
-    ) async throws -> CreditNote {
+    public static func postCreditNotesId(config: ClientConfig, id: String, expand: [String]?, memo: String?, metadata: [String: String]?) async throws -> CreditNote {
         try validateLength("id", id, max: 5000)
 
-        if let memo {
+        if let memo = memo {
             try validateLength("memo", memo, max: 5000)
         }
 
         let requestBody = PostCreditNotesIdRequestBody(expand: expand, memo: memo, metadata: metadata)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/credit_notes/", sdkEncodePathSegment(sdkWireString(id))].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostCreditNotesId"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/credit_notes/", sdkEncodePathSegment(sdkWireString(id))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostCreditNotesId")).data
     }
 }

@@ -6,18 +6,13 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public struct PostCheckoutSessionsRequestBodyPaymentMethodTypesItem: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostCheckoutSessionsRequestBodyPaymentMethodTypesItem: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let acssDebit = PostCheckoutSessionsRequestBodyPaymentMethodTypesItem(rawValue: "acss_debit")
     public static let affirm = PostCheckoutSessionsRequestBodyPaymentMethodTypesItem(rawValue: "affirm")
-    public static let afterpayClearpay =
-        PostCheckoutSessionsRequestBodyPaymentMethodTypesItem(rawValue: "afterpay_clearpay")
+    public static let afterpayClearpay = PostCheckoutSessionsRequestBodyPaymentMethodTypesItem(rawValue: "afterpay_clearpay")
     public static let alipay = PostCheckoutSessionsRequestBodyPaymentMethodTypesItem(rawValue: "alipay")
     public static let alma = PostCheckoutSessionsRequestBodyPaymentMethodTypesItem(rawValue: "alma")
     public static let amazonPay = PostCheckoutSessionsRequestBodyPaymentMethodTypesItem(rawValue: "amazon_pay")
@@ -31,8 +26,7 @@ public struct PostCheckoutSessionsRequestBodyPaymentMethodTypesItem: RawRepresen
     public static let card = PostCheckoutSessionsRequestBodyPaymentMethodTypesItem(rawValue: "card")
     public static let cashapp = PostCheckoutSessionsRequestBodyPaymentMethodTypesItem(rawValue: "cashapp")
     public static let crypto = PostCheckoutSessionsRequestBodyPaymentMethodTypesItem(rawValue: "crypto")
-    public static let customerBalance =
-        PostCheckoutSessionsRequestBodyPaymentMethodTypesItem(rawValue: "customer_balance")
+    public static let customerBalance = PostCheckoutSessionsRequestBodyPaymentMethodTypesItem(rawValue: "customer_balance")
     public static let eps = PostCheckoutSessionsRequestBodyPaymentMethodTypesItem(rawValue: "eps")
     public static let fpx = PostCheckoutSessionsRequestBodyPaymentMethodTypesItem(rawValue: "fpx")
     public static let giropay = PostCheckoutSessionsRequestBodyPaymentMethodTypesItem(rawValue: "giropay")
@@ -73,7 +67,7 @@ public struct PostCheckoutSessionsRequestBodyPaymentMethodTypesItem: RawRepresen
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -82,22 +76,16 @@ public struct PostCheckoutSessionsRequestBodyPaymentMethodTypesItem: RawRepresen
     }
 }
 
-public struct PostCheckoutSessionsRequestBodyPermissionsUpdateShippingDetails: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct PostCheckoutSessionsRequestBodyPermissionsUpdateShippingDetails: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let clientOnly =
-        PostCheckoutSessionsRequestBodyPermissionsUpdateShippingDetails(rawValue: "client_only")
-    public static let serverOnly =
-        PostCheckoutSessionsRequestBodyPermissionsUpdateShippingDetails(rawValue: "server_only")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let clientOnly = PostCheckoutSessionsRequestBodyPermissionsUpdateShippingDetails(rawValue: "client_only")
+    public static let serverOnly = PostCheckoutSessionsRequestBodyPermissionsUpdateShippingDetails(rawValue: "server_only")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -108,21 +96,17 @@ public struct PostCheckoutSessionsRequestBodyPermissionsUpdateShippingDetails: R
 
 /// This parameter applies to `ui_mode: embedded_page`. Learn more about the redirect behavior of embedded
 /// sessions. Defaults to `always`.
-public struct PostCheckoutSessionsRequestBodyRedirectOnCompletion: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostCheckoutSessionsRequestBodyRedirectOnCompletion: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let always = PostCheckoutSessionsRequestBodyRedirectOnCompletion(rawValue: "always")
     public static let ifRequired = PostCheckoutSessionsRequestBodyRedirectOnCompletion(rawValue: "if_required")
     public static let never = PostCheckoutSessionsRequestBodyRedirectOnCompletion(rawValue: "never")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -131,24 +115,17 @@ public struct PostCheckoutSessionsRequestBodyRedirectOnCompletion: RawRepresenta
     }
 }
 
-public struct PostCheckoutSessionsRequestBodySavedPaymentMethodOptionsAllowX13db17fa5e: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostCheckoutSessionsRequestBodySavedPaymentMethodOptionsAllowX13db17fa5e: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let always =
-        PostCheckoutSessionsRequestBodySavedPaymentMethodOptionsAllowX13db17fa5e(rawValue: "always")
-    public static let limited =
-        PostCheckoutSessionsRequestBodySavedPaymentMethodOptionsAllowX13db17fa5e(rawValue: "limited")
-    public static let unspecified =
-        PostCheckoutSessionsRequestBodySavedPaymentMethodOptionsAllowX13db17fa5e(rawValue: "unspecified")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let always = PostCheckoutSessionsRequestBodySavedPaymentMethodOptionsAllowX13db17fa5e(rawValue: "always")
+    public static let limited = PostCheckoutSessionsRequestBodySavedPaymentMethodOptionsAllowX13db17fa5e(rawValue: "limited")
+    public static let unspecified = PostCheckoutSessionsRequestBodySavedPaymentMethodOptionsAllowX13db17fa5e(rawValue: "unspecified")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -157,22 +134,16 @@ public struct PostCheckoutSessionsRequestBodySavedPaymentMethodOptionsAllowX13db
     }
 }
 
-public struct PostCheckoutSessionsRequestBodySavedPaymentMethodOptionsPaymeX6ea17bda39: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostCheckoutSessionsRequestBodySavedPaymentMethodOptionsPaymeX6ea17bda39: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let disabled =
-        PostCheckoutSessionsRequestBodySavedPaymentMethodOptionsPaymeX6ea17bda39(rawValue: "disabled")
-    public static let enabled =
-        PostCheckoutSessionsRequestBodySavedPaymentMethodOptionsPaymeX6ea17bda39(rawValue: "enabled")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let disabled = PostCheckoutSessionsRequestBodySavedPaymentMethodOptionsPaymeX6ea17bda39(rawValue: "disabled")
+    public static let enabled = PostCheckoutSessionsRequestBodySavedPaymentMethodOptionsPaymeX6ea17bda39(rawValue: "enabled")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -181,22 +152,16 @@ public struct PostCheckoutSessionsRequestBodySavedPaymentMethodOptionsPaymeX6ea1
     }
 }
 
-public struct PostCheckoutSessionsRequestBodySavedPaymentMethodOptionsPaymeXaba7be5757: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostCheckoutSessionsRequestBodySavedPaymentMethodOptionsPaymeXaba7be5757: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let disabled =
-        PostCheckoutSessionsRequestBodySavedPaymentMethodOptionsPaymeXaba7be5757(rawValue: "disabled")
-    public static let enabled =
-        PostCheckoutSessionsRequestBodySavedPaymentMethodOptionsPaymeXaba7be5757(rawValue: "enabled")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let disabled = PostCheckoutSessionsRequestBodySavedPaymentMethodOptionsPaymeXaba7be5757(rawValue: "disabled")
+    public static let enabled = PostCheckoutSessionsRequestBodySavedPaymentMethodOptionsPaymeXaba7be5757(rawValue: "enabled")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -205,17 +170,14 @@ public struct PostCheckoutSessionsRequestBodySavedPaymentMethodOptionsPaymeXaba7
     }
 }
 
-public struct PostCheckoutSessionsRequestBodyShippingAddressCollectionAllowX7d610cd6a9: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostCheckoutSessionsRequestBodyShippingAddressCollectionAllowX7d610cd6a9: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
+    public init(rawValue: String) { self.rawValue = rawValue }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

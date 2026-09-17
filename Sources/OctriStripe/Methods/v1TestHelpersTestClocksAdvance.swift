@@ -7,12 +7,9 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1TestHelpersTestClocksAdvanceMethods {
-    /// Triggers advancement of a test clock to a specified future time. Supply `frozen_time` after the clock's current
-    /// frozen time and within the permitted future range; advancement continues until the clock reaches the ready
-    /// state.
+    /// Triggers advancement of a test clock to a specified future time. Supply `frozen_time` after the clock's current frozen time and within the permitted future range; advancement continues until the clock reaches the ready state.
     ///
-    /// Starts advancing a test clock to a specified time in the future. Advancement is done when status changes to
-    /// Ready .
+    /// Starts advancing a test clock to a specified time in the future. Advancement is done when status changes to Ready .
     ///
     /// - Parameters:
     /// - frozenTime: The time to advance the test clock. Must be after the test
@@ -21,24 +18,11 @@ public enum V1TestHelpersTestClocksAdvanceMethods {
     ///   subscriptions in this test clock, it cannot be more than two years in the
     ///   future.
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postTestHelpersTestClocksTestClockAdvance(
-        config: ClientConfig,
-        testClock: String,
-        frozenTime: Int,
-        expand: [String]?
-    ) async throws -> TestHelpersTestClock {
+    public static func postTestHelpersTestClocksTestClockAdvance(config: ClientConfig, testClock: String, frozenTime: Int, expand: [String]?) async throws -> TestHelpersTestClock {
         try validateLength("test_clock", testClock, max: 5000)
 
         let requestBody = PostTestHelpersTestClocksTestClockAdvanceRequestBody(frozenTime: frozenTime, expand: expand)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/test_helpers/test_clocks/", sdkEncodePathSegment(sdkWireString(testClock)), "/advance"].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostTestHelpersTestClocksTestClockAdvance"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/test_helpers/test_clocks/", sdkEncodePathSegment(sdkWireString(testClock)), "/advance"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTestHelpersTestClocksTestClockAdvance")).data
     }
 }

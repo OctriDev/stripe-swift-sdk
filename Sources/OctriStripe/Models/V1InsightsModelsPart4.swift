@@ -3,24 +3,18 @@
 
 import Foundation
 
-/// V1Insights domain models
+// V1Insights domain models
 /// Describes the presence of the customer during the payment.
-public struct InsightsResourcesPaymentEvaluationMoneyMovementCardCustomerPresence: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct InsightsResourcesPaymentEvaluationMoneyMovementCardCustomerPresence: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let offSession =
-        InsightsResourcesPaymentEvaluationMoneyMovementCardCustomerPresence(rawValue: "off_session")
-    public static let onSession =
-        InsightsResourcesPaymentEvaluationMoneyMovementCardCustomerPresence(rawValue: "on_session")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let offSession = InsightsResourcesPaymentEvaluationMoneyMovementCardCustomerPresence(rawValue: "off_session")
+    public static let onSession = InsightsResourcesPaymentEvaluationMoneyMovementCardCustomerPresence(rawValue: "on_session")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -30,14 +24,10 @@ public struct InsightsResourcesPaymentEvaluationMoneyMovementCardCustomerPresenc
 }
 
 /// Result of the CVC check.
-public struct InsightsResourcesPaymentEvaluationRejectedCardCvcCheck: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct InsightsResourcesPaymentEvaluationRejectedCardCvcCheck: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let fail = InsightsResourcesPaymentEvaluationRejectedCardCvcCheck(rawValue: "fail")
     public static let pass = InsightsResourcesPaymentEvaluationRejectedCardCvcCheck(rawValue: "pass")
     public static let unavailable = InsightsResourcesPaymentEvaluationRejectedCardCvcCheck(rawValue: "unavailable")
@@ -45,7 +35,7 @@ public struct InsightsResourcesPaymentEvaluationRejectedCardCvcCheck: RawReprese
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -55,25 +45,18 @@ public struct InsightsResourcesPaymentEvaluationRejectedCardCvcCheck: RawReprese
 }
 
 /// The type of fraud labeled by the issuer.
-public struct InsightsResourcesPaymentEvaluationEarlyFraudWarningReceivedFraudType: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct InsightsResourcesPaymentEvaluationEarlyFraudWarningReceivedFraudType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let madeWithLostCard =
-        InsightsResourcesPaymentEvaluationEarlyFraudWarningReceivedFraudType(rawValue: "made_with_lost_card")
-    public static let madeWithStolenCard =
-        InsightsResourcesPaymentEvaluationEarlyFraudWarningReceivedFraudType(rawValue: "made_with_stolen_card")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let madeWithLostCard = InsightsResourcesPaymentEvaluationEarlyFraudWarningReceivedFraudType(rawValue: "made_with_lost_card")
+    public static let madeWithStolenCard = InsightsResourcesPaymentEvaluationEarlyFraudWarningReceivedFraudType(rawValue: "made_with_stolen_card")
     public static let other = InsightsResourcesPaymentEvaluationEarlyFraudWarningReceivedFraudType(rawValue: "other")
-    public static let unauthorizedUseOfCard =
-        InsightsResourcesPaymentEvaluationEarlyFraudWarningReceivedFraudType(rawValue: "unauthorized_use_of_card")
+    public static let unauthorizedUseOfCard = InsightsResourcesPaymentEvaluationEarlyFraudWarningReceivedFraudType(rawValue: "unauthorized_use_of_card")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -83,23 +66,18 @@ public struct InsightsResourcesPaymentEvaluationEarlyFraudWarningReceivedFraudTy
 }
 
 /// Indicates the reason for the refund.
-public struct InsightsResourcesPaymentEvaluationRefundedReason: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct InsightsResourcesPaymentEvaluationRefundedReason: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let duplicate = InsightsResourcesPaymentEvaluationRefundedReason(rawValue: "duplicate")
     public static let fraudulent = InsightsResourcesPaymentEvaluationRefundedReason(rawValue: "fraudulent")
     public static let other = InsightsResourcesPaymentEvaluationRefundedReason(rawValue: "other")
-    public static let requestedByCustomer =
-        InsightsResourcesPaymentEvaluationRefundedReason(rawValue: "requested_by_customer")
+    public static let requestedByCustomer = InsightsResourcesPaymentEvaluationRefundedReason(rawValue: "requested_by_customer")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -109,24 +87,18 @@ public struct InsightsResourcesPaymentEvaluationRefundedReason: RawRepresentable
 }
 
 /// Describes the type of payment.
-public struct InsightsResourcesPaymentEvaluationMoneyMovementCardPaymentType: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct InsightsResourcesPaymentEvaluationMoneyMovementCardPaymentType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let oneOff = InsightsResourcesPaymentEvaluationMoneyMovementCardPaymentType(rawValue: "one_off")
     public static let recurring = InsightsResourcesPaymentEvaluationMoneyMovementCardPaymentType(rawValue: "recurring")
-    public static let setupOneOff =
-        InsightsResourcesPaymentEvaluationMoneyMovementCardPaymentType(rawValue: "setup_one_off")
-    public static let setupRecurring =
-        InsightsResourcesPaymentEvaluationMoneyMovementCardPaymentType(rawValue: "setup_recurring")
+    public static let setupOneOff = InsightsResourcesPaymentEvaluationMoneyMovementCardPaymentType(rawValue: "setup_one_off")
+    public static let setupRecurring = InsightsResourcesPaymentEvaluationMoneyMovementCardPaymentType(rawValue: "setup_recurring")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -136,24 +108,18 @@ public struct InsightsResourcesPaymentEvaluationMoneyMovementCardPaymentType: Ra
 }
 
 /// Indicates whether the cardholder provided a postal code and if it matched the cardholder’s billing address.
-public struct InsightsResourcesPaymentEvaluationRejectedCardAddressPostalCodeCheck: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct InsightsResourcesPaymentEvaluationRejectedCardAddressPostalCodeCheck: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let fail = InsightsResourcesPaymentEvaluationRejectedCardAddressPostalCodeCheck(rawValue: "fail")
     public static let pass = InsightsResourcesPaymentEvaluationRejectedCardAddressPostalCodeCheck(rawValue: "pass")
-    public static let unavailable =
-        InsightsResourcesPaymentEvaluationRejectedCardAddressPostalCodeCheck(rawValue: "unavailable")
-    public static let unchecked =
-        InsightsResourcesPaymentEvaluationRejectedCardAddressPostalCodeCheck(rawValue: "unchecked")
+    public static let unavailable = InsightsResourcesPaymentEvaluationRejectedCardAddressPostalCodeCheck(rawValue: "unavailable")
+    public static let unchecked = InsightsResourcesPaymentEvaluationRejectedCardAddressPostalCodeCheck(rawValue: "unchecked")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -163,14 +129,10 @@ public struct InsightsResourcesPaymentEvaluationRejectedCardAddressPostalCodeChe
 }
 
 /// Result of the CVC check.
-public struct InsightsResourcesPaymentEvaluationSucceededCardCvcCheck: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct InsightsResourcesPaymentEvaluationSucceededCardCvcCheck: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let fail = InsightsResourcesPaymentEvaluationSucceededCardCvcCheck(rawValue: "fail")
     public static let pass = InsightsResourcesPaymentEvaluationSucceededCardCvcCheck(rawValue: "pass")
     public static let unavailable = InsightsResourcesPaymentEvaluationSucceededCardCvcCheck(rawValue: "unavailable")
@@ -178,7 +140,7 @@ public struct InsightsResourcesPaymentEvaluationSucceededCardCvcCheck: RawRepres
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -188,25 +150,18 @@ public struct InsightsResourcesPaymentEvaluationSucceededCardCvcCheck: RawRepres
 }
 
 /// The reason the payment was blocked by the merchant.
-public struct InsightsResourcesPaymentEvaluationMerchantBlockedReason: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct InsightsResourcesPaymentEvaluationMerchantBlockedReason: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let authenticationRequired =
-        InsightsResourcesPaymentEvaluationMerchantBlockedReason(rawValue: "authentication_required")
-    public static let blockedForFraud =
-        InsightsResourcesPaymentEvaluationMerchantBlockedReason(rawValue: "blocked_for_fraud")
-    public static let invalidPayment =
-        InsightsResourcesPaymentEvaluationMerchantBlockedReason(rawValue: "invalid_payment")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let authenticationRequired = InsightsResourcesPaymentEvaluationMerchantBlockedReason(rawValue: "authentication_required")
+    public static let blockedForFraud = InsightsResourcesPaymentEvaluationMerchantBlockedReason(rawValue: "blocked_for_fraud")
+    public static let invalidPayment = InsightsResourcesPaymentEvaluationMerchantBlockedReason(rawValue: "invalid_payment")
     public static let other = InsightsResourcesPaymentEvaluationMerchantBlockedReason(rawValue: "other")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

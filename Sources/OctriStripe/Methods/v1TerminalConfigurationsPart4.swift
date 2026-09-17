@@ -6,51 +6,27 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1TerminalConfigurationsMethods {
-    /// Deletes a Terminal configuration by its configuration ID. Use this operation when the configuration should no
-    /// longer be available for Terminal readers. A successful response confirms deletion with the configuration
-    /// identifier.
+extension V1TerminalConfigurationsMethods {
+    /// Deletes a Terminal configuration by its configuration ID. Use this operation when the configuration should no longer be available for Terminal readers. A successful response confirms deletion with the configuration identifier.
     ///
     /// Deletes a Configuration object.
-    static func deleteTerminalConfigurationsConfiguration(
-        config: ClientConfig,
-        configuration: String
-    ) async throws -> DeletedTerminalConfiguration {
+    public static func deleteTerminalConfigurationsConfiguration(config: ClientConfig, configuration: String) async throws -> DeletedTerminalConfiguration {
         try validateLength("configuration", configuration, max: 5000)
 
-        return try await (sdkRequest(
-            "DELETE",
-            ["/v1/terminal/configurations/", sdkEncodePathSegment(sdkWireString(configuration))].joined(),
-            config: config,
-            decoder: .json,
-            operationId: "DeleteTerminalConfigurationsConfiguration"
-        )).data
+        return try (await sdkRequest("DELETE", ["/v1/terminal/configurations/", sdkEncodePathSegment(sdkWireString(configuration))].joined(), config: config, decoder: .json, operationId: "DeleteTerminalConfigurationsConfiguration")).data
     }
 
-    /// Retrieves a Terminal configuration by its configuration ID. Use `expand` to include additional response fields
-    /// when retrieving the configuration. The response can contain either the configuration object or a deleted
-    /// configuration object.
+    /// Retrieves a Terminal configuration by its configuration ID. Use `expand` to include additional response fields when retrieving the configuration. The response can contain either the configuration object or a deleted configuration object.
     ///
     /// Retrieves a Configuration object.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    static func getTerminalConfigurationsConfiguration(
-        config: ClientConfig,
-        configuration: String,
-        expand: [String]?
-    ) async throws -> GetTerminalConfigurationsConfigurationResponse {
+    public static func getTerminalConfigurationsConfiguration(config: ClientConfig, configuration: String, expand: [String]?) async throws -> GetTerminalConfigurationsConfigurationResponse {
         try validateLength("configuration", configuration, max: 5000)
 
-        return try await (sdkRequest(
-            "GET",
-            ["/v1/terminal/configurations/", sdkEncodePathSegment(sdkWireString(configuration))].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .json,
-            operationId: "GetTerminalConfigurationsConfiguration"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/terminal/configurations/", sdkEncodePathSegment(sdkWireString(configuration))].joined(), config: config, query: [
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .json, operationId: "GetTerminalConfigurationsConfiguration")).data
     }
 }

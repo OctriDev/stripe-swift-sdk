@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1Country domain models
+// V1Country domain models
 /// Stripe needs to collect certain pieces of information about each account created. These requirements can differ
 /// depending on the account's country. The Country Specs API makes these rules available to your integration. You
 /// can also view the information from this API call as an online guide.
@@ -38,46 +38,35 @@ public struct CountrySpec: Codable {
         case verificationFields = "verification_fields"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension CountrySpec {
-    init(from decoder: Decoder) throws {
+extension CountrySpec {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        defaultCurrency = try container.sdkDecodeRequired(.defaultCurrency)
-        id = try container.sdkDecodeRequired(.id)
-        object = try container.sdkDecodeRequired(.object)
-        supportedBankAccountCurrencies = try container.sdkDecodeRequired(.supportedBankAccountCurrencies)
-        supportedPaymentCurrencies = try container.sdkDecodeRequired(.supportedPaymentCurrencies)
-        supportedPaymentMethods = try container.sdkDecodeRequired(.supportedPaymentMethods)
-        supportedTransferCountries = try container.sdkDecodeRequired(.supportedTransferCountries)
-        verificationFields = try container.sdkDecodeRequired(.verificationFields)
-        try validateLength("default_currency", defaultCurrency, min: nil, max: 5000)
-        try validateLength("id", id, min: nil, max: 5000)
+        self.defaultCurrency = try container.sdkDecodeRequired(.defaultCurrency)
+        self.id = try container.sdkDecodeRequired(.id)
+        self.object = try container.sdkDecodeRequired(.object)
+        self.supportedBankAccountCurrencies = try container.sdkDecodeRequired(.supportedBankAccountCurrencies)
+        self.supportedPaymentCurrencies = try container.sdkDecodeRequired(.supportedPaymentCurrencies)
+        self.supportedPaymentMethods = try container.sdkDecodeRequired(.supportedPaymentMethods)
+        self.supportedTransferCountries = try container.sdkDecodeRequired(.supportedTransferCountries)
+        self.verificationFields = try container.sdkDecodeRequired(.verificationFields)
+            try validateLength("default_currency", self.defaultCurrency, min: nil, max: 5000)
+            try validateLength("id", self.id, min: nil, max: 5000)
     }
 }
 
-public extension CountrySpec {
-    init(
-        defaultCurrency: String,
-        id: String,
-        object: CountrySpecObject,
-        supportedBankAccountCurrencies: [String: [String]],
-        supportedPaymentCurrencies: [String],
-        supportedPaymentMethods: [String],
-        supportedTransferCountries: [String],
-        verificationFields: CountrySpecVerificationFields
-    ) throws {
+extension CountrySpec {
+    public init(defaultCurrency: String, id: String, object: CountrySpecObject, supportedBankAccountCurrencies: [String: [String]], supportedPaymentCurrencies: [String], supportedPaymentMethods: [String], supportedTransferCountries: [String], verificationFields: CountrySpecVerificationFields) throws {
         (self.defaultCurrency, self.id) = (defaultCurrency, id)
         (self.object, self.supportedBankAccountCurrencies) = (object, supportedBankAccountCurrencies)
         self.supportedPaymentCurrencies = supportedPaymentCurrencies
         self.supportedPaymentMethods = supportedPaymentMethods
         self.supportedTransferCountries = supportedTransferCountries
         self.verificationFields = verificationFields
-        try validateLength("default_currency", self.defaultCurrency, min: nil, max: 5000)
-        try validateLength("id", self.id, min: nil, max: 5000)
+            try validateLength("default_currency", self.defaultCurrency, min: nil, max: 5000)
+            try validateLength("id", self.id, min: nil, max: 5000)
     }
 }
 
@@ -93,35 +82,25 @@ public struct CountrySpecVerificationFieldDetails: Codable {
         case minimum
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension CountrySpecVerificationFieldDetails {
-    init(from decoder: Decoder) throws {
+extension CountrySpecVerificationFieldDetails {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.additional) else {
-            throw SdkValidationError(
-                field: "additional",
-                code: "required",
-                message: "Validation failed for 'additional': value is required"
-            )
+            throw SdkValidationError(field: "additional", code: "required", message: "Validation failed for 'additional': value is required")
         }
         guard container.contains(.minimum) else {
-            throw SdkValidationError(
-                field: "minimum",
-                code: "required",
-                message: "Validation failed for 'minimum': value is required"
-            )
+            throw SdkValidationError(field: "minimum", code: "required", message: "Validation failed for 'minimum': value is required")
         }
-        additional = try container.sdkDecodeRequired(.additional)
-        minimum = try container.sdkDecodeRequired(.minimum)
+        self.additional = try container.sdkDecodeRequired(.additional)
+        self.minimum = try container.sdkDecodeRequired(.minimum)
     }
 }
 
-public extension CountrySpecVerificationFieldDetails {
-    init(additional: [String], minimum: [String]) {
+extension CountrySpecVerificationFieldDetails {
+    public init(additional: [String], minimum: [String]) {
         (self.additional, self.minimum) = (additional, minimum)
     }
 }
@@ -138,35 +117,25 @@ public struct CountrySpecVerificationFields: Codable {
         case individual
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension CountrySpecVerificationFields {
-    init(from decoder: Decoder) throws {
+extension CountrySpecVerificationFields {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.company) else {
-            throw SdkValidationError(
-                field: "company",
-                code: "required",
-                message: "Validation failed for 'company': value is required"
-            )
+            throw SdkValidationError(field: "company", code: "required", message: "Validation failed for 'company': value is required")
         }
         guard container.contains(.individual) else {
-            throw SdkValidationError(
-                field: "individual",
-                code: "required",
-                message: "Validation failed for 'individual': value is required"
-            )
+            throw SdkValidationError(field: "individual", code: "required", message: "Validation failed for 'individual': value is required")
         }
-        company = try container.sdkDecodeRequired(.company)
-        individual = try container.sdkDecodeRequired(.individual)
+        self.company = try container.sdkDecodeRequired(.company)
+        self.individual = try container.sdkDecodeRequired(.individual)
     }
 }
 
-public extension CountrySpecVerificationFields {
-    init(company: CountrySpecVerificationFieldDetails, individual: CountrySpecVerificationFieldDetails) {
+extension CountrySpecVerificationFields {
+    public init(company: CountrySpecVerificationFieldDetails, individual: CountrySpecVerificationFieldDetails) {
         (self.company, self.individual) = (company, individual)
     }
 }
@@ -175,15 +144,12 @@ public extension CountrySpecVerificationFields {
 public struct CountrySpecObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let countrySpec = CountrySpecObject(rawValue: "country_spec")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

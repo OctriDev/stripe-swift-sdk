@@ -7,12 +7,9 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1IssuingDisputesSubmitMethods {
-    /// Submits an Issuing dispute to the card network for review. The API validates that the evidence required for the
-    /// dispute's reason is present before submission. Use `expand` or `metadata` to control the returned representation
-    /// or attach metadata to the request.
+    /// Submits an Issuing dispute to the card network for review. The API validates that the evidence required for the dispute's reason is present before submission. Use `expand` or `metadata` to control the returned representation or attach metadata to the request.
     ///
-    /// Submits an Issuing Dispute to the card network. Stripe validates that all evidence fields required for the
-    /// dispute’s reason are present. For more details, see Dispute reasons and evidence.
+    /// Submits an Issuing Dispute to the card network. Stripe validates that all evidence fields required for the dispute’s reason are present. For more details, see Dispute reasons and evidence.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
@@ -21,24 +18,11 @@ public enum V1IssuingDisputesSubmitMethods {
     ///   information about the object in a structured format. Individual keys can be
     ///   unset by posting an empty value to them. All keys can be unset by posting an
     ///   empty value to `metadata`.
-    public static func postIssuingDisputesDisputeSubmit(
-        config: ClientConfig,
-        dispute: String,
-        expand: [String]?,
-        metadata: PostIssuingDisputesDisputeSubmitRequestBodyMetadata?
-    ) async throws -> IssuingDispute {
+    public static func postIssuingDisputesDisputeSubmit(config: ClientConfig, dispute: String, expand: [String]?, metadata: PostIssuingDisputesDisputeSubmitRequestBodyMetadata?) async throws -> IssuingDispute {
         try validateLength("dispute", dispute, max: 5000)
 
         let requestBody = PostIssuingDisputesDisputeSubmitRequestBody(expand: expand, metadata: metadata)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/issuing/disputes/", sdkEncodePathSegment(sdkWireString(dispute)), "/submit"].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostIssuingDisputesDisputeSubmit"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/issuing/disputes/", sdkEncodePathSegment(sdkWireString(dispute)), "/submit"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostIssuingDisputesDisputeSubmit")).data
     }
 }

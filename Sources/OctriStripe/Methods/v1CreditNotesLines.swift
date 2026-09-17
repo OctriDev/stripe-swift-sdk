@@ -7,12 +7,9 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1CreditNotesLinesMethods {
-    /// Lists the line items associated with a credit note. Use `starting_after` or `ending_before` to traverse the
-    /// paginated results and `limit` to control the page size. The response includes pagination metadata and the credit
-    /// note line item objects.
+    /// Lists the line items associated with a credit note. Use `starting_after` or `ending_before` to traverse the paginated results and `limit` to control the page size. The response includes pagination metadata and the credit note line item objects.
     ///
-    /// When retrieving a credit note, you’ll get a lines property containing the first handful of those items. There is
-    /// also a URL where you can retrieve the full (paginated) list of line items.
+    /// When retrieving a credit note, you’ll get a lines property containing the first handful of those items. There is also a URL where you can retrieve the full (paginated) list of line items.
     ///
     /// - Parameters:
     /// - endingBefore: A cursor for use in pagination. `ending_before` is an object
@@ -28,36 +25,22 @@ public enum V1CreditNotesLinesMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    public static func getCreditNotesCreditNoteLines(
-        config: ClientConfig,
-        creditNote: String,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        startingAfter: String?
-    ) async throws -> GetCreditNotesCreditNoteLinesResponse {
+    public static func getCreditNotesCreditNoteLines(config: ClientConfig, creditNote: String, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetCreditNotesCreditNoteLinesResponse {
         try validateLength("credit_note", creditNote, max: 5000)
 
-        if let endingBefore {
+        if let endingBefore = endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let startingAfter {
+        if let startingAfter = startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try await (sdkRequest(
-            "GET",
-            ["/v1/credit_notes/", sdkEncodePathSegment(sdkWireString(creditNote)), "/lines"].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("ending_before", value: endingBefore),
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-                SdkQueryParameter("limit", value: limit),
-                SdkQueryParameter("starting_after", value: startingAfter),
-            ],
-            decoder: .json,
-            operationId: "GetCreditNotesCreditNoteLines"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/credit_notes/", sdkEncodePathSegment(sdkWireString(creditNote)), "/lines"].joined(), config: config, query: [
+            SdkQueryParameter("ending_before", value: endingBefore),
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+            SdkQueryParameter("limit", value: limit),
+            SdkQueryParameter("starting_after", value: startingAfter),
+        ], decoder: .json, operationId: "GetCreditNotesCreditNoteLines")).data
     }
 }

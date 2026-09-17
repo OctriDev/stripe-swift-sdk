@@ -6,40 +6,25 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1SourcesMethods {
-    /// Retrieves an existing source payment instrument by its unique identifier. Use `client_secret` when retrieving
-    /// the source with a publishable key, and use `expand` to include additional response fields. The response contains
-    /// the source's current status and payment-method details.
+extension V1SourcesMethods {
+    /// Retrieves an existing source payment instrument by its unique identifier. Use `client_secret` when retrieving the source with a publishable key, and use `expand` to include additional response fields. The response contains the source's current status and payment-method details.
     ///
-    /// Retrieves an existing source object. Supply the unique source ID from a source creation request and Stripe will
-    /// return the corresponding up-to-date source object information.
+    /// Retrieves an existing source object. Supply the unique source ID from a source creation request and Stripe will return the corresponding up-to-date source object information.
     ///
     /// - Parameters:
     /// - clientSecret: The client secret of the source. Required if a publishable
     ///   key is used to retrieve the source.
     /// - expand: Specifies which fields in the response should be expanded.
-    static func getSourcesSource(
-        config: ClientConfig,
-        source: String,
-        clientSecret: String?,
-        expand: [String]?
-    ) async throws -> Source {
+    public static func getSourcesSource(config: ClientConfig, source: String, clientSecret: String?, expand: [String]?) async throws -> Source {
         try validateLength("source", source, max: 5000)
 
-        if let clientSecret {
+        if let clientSecret = clientSecret {
             try validateLength("client_secret", clientSecret, max: 5000)
         }
 
-        return try await (sdkRequest(
-            "GET",
-            ["/v1/sources/", sdkEncodePathSegment(sdkWireString(source))].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("client_secret", value: clientSecret),
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .json,
-            operationId: "GetSourcesSource"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/sources/", sdkEncodePathSegment(sdkWireString(source))].joined(), config: config, query: [
+            SdkQueryParameter("client_secret", value: clientSecret),
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .json, operationId: "GetSourcesSource")).data
     }
 }

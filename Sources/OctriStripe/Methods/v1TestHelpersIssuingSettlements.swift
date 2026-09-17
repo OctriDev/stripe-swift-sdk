@@ -48,10 +48,7 @@ public enum V1TestHelpersIssuingSettlementsMethods {
     ///   settlement.
     /// - transactionCount: The total number of transactions reflected in this
     ///   settlement.
-    public static func postTestHelpersIssuingSettlements(
-        config: ClientConfig,
-        options: PostTestHelpersIssuingSettlementsOptions
-    ) async throws -> IssuingSettlement {
+    public static func postTestHelpersIssuingSettlements(config: ClientConfig, options: PostTestHelpersIssuingSettlementsOptions) async throws -> IssuingSettlement {
         try validateLength("bin", options.bin, max: 5000)
 
         if let networkSettlementIdentifier = options.networkSettlementIdentifier {
@@ -60,14 +57,6 @@ public enum V1TestHelpersIssuingSettlementsMethods {
 
         let requestBody = PostTestHelpersIssuingSettlementsRequestBody(options: options)
 
-        return try await (sdkRequest(
-            "POST",
-            "/v1/test_helpers/issuing/settlements",
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostTestHelpersIssuingSettlements"
-        )).data
+        return try (await sdkRequest("POST", "/v1/test_helpers/issuing/settlements", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTestHelpersIssuingSettlements")).data
     }
 }

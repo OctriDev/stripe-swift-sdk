@@ -6,12 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1WebhookEndpointsMethods {
-    /// A webhook endpoint must have a url and a list of enabled_events . You may optionally specify the Boolean connect
-    /// parameter. If set to true, then a Connect webhook endpoint that notifies the specified url about events from all
-    /// connected accounts is created; otherwise an account webhook endpoint that notifies the specified url only about
-    /// events from your account is created. You can also create webhook endpoints in the webhooks settings section of
-    /// the Dashboard.
+extension V1WebhookEndpointsMethods {
+    /// A webhook endpoint must have a url and a list of enabled_events . You may optionally specify the Boolean connect parameter. If set to true, then a Connect webhook endpoint that notifies the specified url about events from all connected accounts is created; otherwise an account webhook endpoint that notifies the specified url only about events from your account is created. You can also create webhook endpoints in the webhooks settings section of the Dashboard.
     ///
     /// - Parameters:
     /// - enabledEvents: The list of events to enable for this endpoint. You may
@@ -29,38 +25,13 @@ public extension V1WebhookEndpointsMethods {
     ///   information about the object in a structured format. Individual keys can be
     ///   unset by posting an empty value to them. All keys can be unset by posting an
     ///   empty value to `metadata`.
-    static func postWebhookEndpoints(
-        config: ClientConfig,
-        enabledEvents: [PostWebhookEndpointsRequestBodyEnabledEventsItem],
-        url: String,
-        apiVersion: PostWebhookEndpointsRequestBodyApiVersion?,
-        connect: Bool?,
-        description: PostWebhookEndpointsRequestBodyDescriptionVariant1?,
-        expand: [String]?,
-        metadata: PostWebhookEndpointsRequestBodyMetadata?
-    ) async throws -> WebhookEndpoint {
-        if let apiVersion {
+    public static func postWebhookEndpoints(config: ClientConfig, enabledEvents: [PostWebhookEndpointsRequestBodyEnabledEventsItem], url: String, apiVersion: PostWebhookEndpointsRequestBodyApiVersion?, connect: Bool?, description: PostWebhookEndpointsRequestBodyDescriptionVariant1?, expand: [String]?, metadata: PostWebhookEndpointsRequestBodyMetadata?) async throws -> WebhookEndpoint {
+        if let apiVersion = apiVersion {
             try validateLength("api_version", apiVersion.rawValue, max: 5000)
         }
 
-        let requestBody = PostWebhookEndpointsRequestBody(
-            enabledEvents: enabledEvents,
-            url: url,
-            apiVersion: apiVersion,
-            connect: connect,
-            description: description,
-            expand: expand,
-            metadata: metadata
-        )
+        let requestBody = PostWebhookEndpointsRequestBody(enabledEvents: enabledEvents, url: url, apiVersion: apiVersion, connect: connect, description: description, expand: expand, metadata: metadata)
 
-        return try await (sdkRequest(
-            "POST",
-            "/v1/webhook_endpoints",
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostWebhookEndpoints"
-        )).data
+        return try (await sdkRequest("POST", "/v1/webhook_endpoints", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostWebhookEndpoints")).data
     }
 }

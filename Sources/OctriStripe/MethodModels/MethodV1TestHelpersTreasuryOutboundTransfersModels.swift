@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1TestHelpersTreasuryOutboundTransfers operation model declarations
+// Canonical v1TestHelpersTreasuryOutboundTransfers operation model declarations
 public struct PostTestHelpersTreasuryOutboundTransfersOutboundTransferRequeXc72cc7d576: Codable {
     public var traceId: String
 
@@ -15,30 +15,24 @@ public struct PostTestHelpersTreasuryOutboundTransfersOutboundTransferRequeXc72c
         case traceId = "trace_id"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostTestHelpersTreasuryOutboundTransfersOutboundTransferRequeXc72cc7d576 {
-    init(from decoder: Decoder) throws {
+extension PostTestHelpersTreasuryOutboundTransfersOutboundTransferRequeXc72cc7d576 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.traceId) else {
-            throw SdkValidationError(
-                field: "trace_id",
-                code: "required",
-                message: "Validation failed for 'trace_id': value is required"
-            )
+            throw SdkValidationError(field: "trace_id", code: "required", message: "Validation failed for 'trace_id': value is required")
         }
-        traceId = try container.sdkDecodeRequired(.traceId)
-        try validateLength("trace_id", traceId, min: nil, max: 5000)
+        self.traceId = try container.sdkDecodeRequired(.traceId)
+            try validateLength("trace_id", self.traceId, min: nil, max: 5000)
     }
 }
 
-public extension PostTestHelpersTreasuryOutboundTransfersOutboundTransferRequeXc72cc7d576 {
-    init(traceId: String) throws {
+extension PostTestHelpersTreasuryOutboundTransfersOutboundTransferRequeXc72cc7d576 {
+    public init(traceId: String) throws {
         self.traceId = traceId
-        try validateLength("trace_id", self.traceId, min: nil, max: 5000)
+            try validateLength("trace_id", self.traceId, min: nil, max: 5000)
     }
 }
 
@@ -54,30 +48,30 @@ public struct PostTestHelpersTreasuryOutboundTransfersOutboundTransferRequeXcfd4
     }
 
     init() {
-        (chips, imad, omad) = (nil, nil, nil)
+        (self.chips, self.imad, self.omad) = (nil, nil, nil)
     }
 }
 
-public extension PostTestHelpersTreasuryOutboundTransfersOutboundTransferRequeXcfd4756e2e {
-    init(from decoder: Decoder) throws {
+extension PostTestHelpersTreasuryOutboundTransfersOutboundTransferRequeXcfd4756e2e {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        chips = try container.sdkDecodeIfPresent(.chips)
-        imad = try container.sdkDecodeIfPresent(.imad)
-        omad = try container.sdkDecodeIfPresent(.omad)
-        if let value = chips {
+        self.chips = try container.sdkDecodeIfPresent(.chips)
+        self.imad = try container.sdkDecodeIfPresent(.imad)
+        self.omad = try container.sdkDecodeIfPresent(.omad)
+        if let value = self.chips {
             try validateLength("chips", value, min: nil, max: 5000)
         }
-        if let value = imad {
+        if let value = self.imad {
             try validateLength("imad", value, min: nil, max: 5000)
         }
-        if let value = omad {
+        if let value = self.omad {
             try validateLength("omad", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PostTestHelpersTreasuryOutboundTransfersOutboundTransferRequeXcfd4756e2e {
-    init(chips: String? = nil, imad: String? = nil, omad: String? = nil) throws {
+extension PostTestHelpersTreasuryOutboundTransfersOutboundTransferRequeXcfd4756e2e {
+    public init(chips: String? = nil, imad: String? = nil, omad: String? = nil) throws {
         self.init()
         (self.chips, self.imad) = (chips, imad)
         self.omad = omad
@@ -107,33 +101,23 @@ public struct PostTestHelpersTreasuryOutboundTransfersOutboundTransferRequeXff52
         case usDomesticWire = "us_domestic_wire"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostTestHelpersTreasuryOutboundTransfersOutboundTransferRequeXff52e9e383 {
-    init(from decoder: Decoder) throws {
+extension PostTestHelpersTreasuryOutboundTransfersOutboundTransferRequeXff52e9e383 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.type) else {
-            throw SdkValidationError(
-                field: "type",
-                code: "required",
-                message: "Validation failed for 'type': value is required"
-            )
+            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
         }
-        type = try container.sdkDecodeRequired(.type)
-        ach = try container.sdkDecodeIfPresent(.ach)
-        usDomesticWire = try container.sdkDecodeIfPresent(.usDomesticWire)
+        self.type = try container.sdkDecodeRequired(.type)
+        self.ach = try container.sdkDecodeIfPresent(.ach)
+        self.usDomesticWire = try container.sdkDecodeIfPresent(.usDomesticWire)
     }
 }
 
-public extension PostTestHelpersTreasuryOutboundTransfersOutboundTransferRequeXff52e9e383 {
-    init(
-        type: PostTestHelpersTreasuryOutboundTransfersOutboundTransferRequeX29fb0926f9,
-        ach: PostTestHelpersTreasuryOutboundTransfersOutboundTransferRequeXc72cc7d576? = nil,
-        usDomesticWire: PostTestHelpersTreasuryOutboundTransfersOutboundTransferRequeXcfd4756e2e? = nil
-    ) {
+extension PostTestHelpersTreasuryOutboundTransfersOutboundTransferRequeXff52e9e383 {
+    public init(type: PostTestHelpersTreasuryOutboundTransfersOutboundTransferRequeX29fb0926f9, ach: PostTestHelpersTreasuryOutboundTransfersOutboundTransferRequeXc72cc7d576? = nil, usDomesticWire: PostTestHelpersTreasuryOutboundTransfersOutboundTransferRequeXcfd4756e2e? = nil) {
         (self.type, self.ach) = (type, ach)
         self.usDomesticWire = usDomesticWire
     }

@@ -7,41 +7,19 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1TestHelpersIssuingPersonalizationDesignsRejectMethods {
-    /// Rejects a test-mode personalization design by changing its status to `rejected`. Provide the
-    /// `personalization_design` identifier and the rejection reasons that explain why the design cannot be used. You
-    /// can use `expand` to include additional response fields.
+    /// Rejects a test-mode personalization design by changing its status to `rejected`. Provide the `personalization_design` identifier and the rejection reasons that explain why the design cannot be used. You can use `expand` to include additional response fields.
     ///
     /// Updates the status of the specified testmode personalization design object to rejected .
     ///
     /// - Parameters:
     /// - rejectionReasons: The reason(s) the personalization design was rejected.
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postTestHelpersIssuingPersonalizationDesignsPersonalizationDesignReject(
-        config: ClientConfig,
-        personalizationDesign: String,
-        rejectionReasons: PostTestHelpersIssuingPersonalizationDesignsPersonalizationDeXbf9fda67d9,
-        expand: [String]?
-    ) async throws -> IssuingPersonalizationDesign {
+    public static func postTestHelpersIssuingPersonalizationDesignsPersonalizationDesignReject(config: ClientConfig, personalizationDesign: String, rejectionReasons: PostTestHelpersIssuingPersonalizationDesignsPersonalizationDeXbf9fda67d9, expand: [String]?) async throws -> IssuingPersonalizationDesign {
         try validateLength("personalization_design", personalizationDesign, max: 5000)
 
-        let requestBody = PostTestHelpersIssuingPersonalizationDesignsPersonalizationDeX17266ed150(
-            rejectionReasons: rejectionReasons,
-            expand: expand
-        )
+        let requestBody = PostTestHelpersIssuingPersonalizationDesignsPersonalizationDeX17266ed150(rejectionReasons: rejectionReasons, expand: expand)
 
-        return try await (sdkRequest(
-            "POST",
-            [
-                "/v1/test_helpers/issuing/personalization_designs/",
-                sdkEncodePathSegment(sdkWireString(personalizationDesign)),
-                "/reject",
-            ].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostTestHelpersIssuingPersonalizationDesignsPersonalizationDesignReject"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/test_helpers/issuing/personalization_designs/", sdkEncodePathSegment(sdkWireString(personalizationDesign)), "/reject"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTestHelpersIssuingPersonalizationDesignsPersonalizationDesignReject")).data
     }
 
     private struct PostTestHelpersIssuingPersonalizationDesignsPersonalizationDeX17266ed150: Encodable {
@@ -50,8 +28,8 @@ public enum V1TestHelpersIssuingPersonalizationDesignsRejectMethods {
 
         func encode(to encoder: Encoder) throws {
             var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-            try keyedContainer.encode(rejectionReasons, forKey: SdkCodingKey("rejection_reasons"))
-            try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
+            try keyedContainer.encode(self.rejectionReasons, forKey: SdkCodingKey("rejection_reasons"))
+            try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
         }
     }
 }

@@ -9,24 +9,18 @@ public class V1ReportingReportTypesNamespace {
         self.config = config
     }
 
-    /// Lists all available report types. Use `expand` to include additional response fields when needed; each report
-    /// type identifies a specific report and its available data range.
+/// Lists all available report types. Use `expand` to include additional response fields when needed; each report type identifies a specific report and its available data range.
     ///
     /// Returns a full list of Report Types.
     public func getReporting(expand: [String]?) async throws -> GetReportingReportTypesResponse {
-        try await V1ReportingReportTypesMethods.getReportingReportTypes(config: config, expand: expand)
+        return try await V1ReportingReportTypesMethods.getReportingReportTypes(config: config, expand: expand)
     }
 
-    /// Retrieves the details of a specific report type. Provide `report_type` to identify the report type and use
-    /// `expand` to include additional response fields; certain report types require a live-mode API key.
+/// Retrieves the details of a specific report type. Provide `report_type` to identify the report type and use `expand` to include additional response fields; certain report types require a live-mode API key.
     ///
     /// Retrieves the details of a Report Type. (Certain report types require a live-mode API key.)
     public func getReportingReportType(reportType: String, expand: [String]?) async throws -> ReportingReportType {
-        try await V1ReportingReportTypesMethods.getReportingReportTypesReportType(
-            config: config,
-            reportType: reportType,
-            expand: expand
-        )
+        return try await V1ReportingReportTypesMethods.getReportingReportTypesReportType(config: config, reportType: reportType, expand: expand)
     }
 }
 
@@ -45,12 +39,11 @@ public class V1ReviewsApproveNamespace {
         self.config = config
     }
 
-    /// Approves an open review, closes it, and removes it from the list of reviews. Provide `review` to identify the
-    /// review and use the optional `expand` field to include additional response fields.
+/// Approves an open review, closes it, and removes it from the list of reviews. Provide `review` to identify the review and use the optional `expand` field to include additional response fields.
     ///
     /// Approves a Review object, closing it and removing it from the list of reviews.
     public func postReviewsReview(review: String, expand: [String]?) async throws -> Review {
-        try await V1ReviewsApproveMethods.postReviewsReviewApprove(config: config, review: review, expand: expand)
+        return try await V1ReviewsApproveMethods.postReviewsReviewApprove(config: config, review: review, expand: expand)
     }
 }
 
@@ -62,34 +55,18 @@ public class V1ReviewsNamespace {
         approve = V1ReviewsApproveNamespace(config: config)
     }
 
-    /// Lists open reviews sorted by creation date, with the most recently created review first. Use `created` to filter
-    /// by creation time, `limit` to control page size, and `starting_after` or `ending_before` to navigate the results.
+/// Lists open reviews sorted by creation date, with the most recently created review first. Use `created` to filter by creation time, `limit` to control page size, and `starting_after` or `ending_before` to navigate the results.
     ///
-    /// Returns a list of Review objects that have open set to true . The objects are sorted in descending order by
-    /// creation date, with the most recently created object appearing first.
-    public func get(
-        created: GetReviewsParameter?,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        startingAfter: String?
-    ) async throws -> GetReviewsResponse {
-        try await V1ReviewsMethods.getReviews(
-            config: config,
-            created: created,
-            endingBefore: endingBefore,
-            expand: expand,
-            limit: limit,
-            startingAfter: startingAfter
-        )
+    /// Returns a list of Review objects that have open set to true . The objects are sorted in descending order by creation date, with the most recently created object appearing first.
+    public func get(created: GetReviewsParameter?, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetReviewsResponse {
+        return try await V1ReviewsMethods.getReviews(config: config, created: created, endingBefore: endingBefore, expand: expand, limit: limit, startingAfter: startingAfter)
     }
 
-    /// Retrieves a specific review object. Provide `review` to identify the review and use `expand` to include
-    /// additional fields in the response.
+/// Retrieves a specific review object. Provide `review` to identify the review and use `expand` to include additional fields in the response.
     ///
     /// Retrieves a Review object.
     public func getReview(review: String, expand: [String]?) async throws -> Review {
-        try await V1ReviewsMethods.getReviewsReview(config: config, review: review, expand: expand)
+        return try await V1ReviewsMethods.getReviewsReview(config: config, review: review, expand: expand)
     }
 }
 
@@ -99,27 +76,11 @@ public class V1SetupAttemptsNamespace {
         self.config = config
     }
 
-    /// Lists SetupAttempts associated with a specified SetupIntent. Supply `setup_intent` to scope the results, and use
-    /// `created`, `limit`, and cursor parameters to filter and paginate the attempts.
+/// Lists SetupAttempts associated with a specified SetupIntent. Supply `setup_intent` to scope the results, and use `created`, `limit`, and cursor parameters to filter and paginate the attempts.
     ///
     /// Returns a list of SetupAttempts that associate with a provided SetupIntent.
-    public func get(
-        setupIntent: String,
-        created: GetSetupAttemptsParameter?,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        startingAfter: String?
-    ) async throws -> GetSetupAttemptsResponse {
-        try await V1SetupAttemptsMethods.getSetupAttempts(
-            config: config,
-            setupIntent: setupIntent,
-            created: created,
-            endingBefore: endingBefore,
-            expand: expand,
-            limit: limit,
-            startingAfter: startingAfter
-        )
+    public func get(setupIntent: String, created: GetSetupAttemptsParameter?, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetSetupAttemptsResponse {
+        return try await V1SetupAttemptsMethods.getSetupAttempts(config: config, setupIntent: setupIntent, created: created, endingBefore: endingBefore, expand: expand, limit: limit, startingAfter: startingAfter)
     }
 }
 
@@ -129,25 +90,11 @@ public class V1SetupIntentsCancelNamespace {
         self.config = config
     }
 
-    /// Cancels a SetupIntent and abandons its setup process. Use `cancellation_reason` to record whether the
-    /// cancellation was abandoned, requested by the customer, or caused by a duplicate. You cannot cancel a SetupIntent
-    /// created for a Checkout Session; expire the Checkout Session instead.
+/// Cancels a SetupIntent and abandons its setup process. Use `cancellation_reason` to record whether the cancellation was abandoned, requested by the customer, or caused by a duplicate. You cannot cancel a SetupIntent created for a Checkout Session; expire the Checkout Session instead.
     ///
-    /// You can cancel a SetupIntent object when it’s in one of these statuses: requires_payment_method ,
-    /// requires_confirmation , or requires_action . After you cancel it, setup is abandoned and any operations on the
-    /// SetupIntent fail with an error. You can’t cancel the SetupIntent for a Checkout Session. Expire the Checkout
-    /// Session instead.
-    public func postSetupIntentsIntent(
-        intent: String,
-        cancellationReason: PostSetupIntentsIntentCancelRequestBodyCancellationReason?,
-        expand: [String]?
-    ) async throws -> SetupIntent {
-        try await V1SetupIntentsCancelMethods.postSetupIntentsIntentCancel(
-            config: config,
-            intent: intent,
-            cancellationReason: cancellationReason,
-            expand: expand
-        )
+    /// You can cancel a SetupIntent object when it’s in one of these statuses: requires_payment_method , requires_confirmation , or requires_action . After you cancel it, setup is abandoned and any operations on the SetupIntent fail with an error. You can’t cancel the SetupIntent for a Checkout Session. Expire the Checkout Session instead.
+    public func postSetupIntentsIntent(intent: String, cancellationReason: PostSetupIntentsIntentCancelRequestBodyCancellationReason?, expand: [String]?) async throws -> SetupIntent {
+        return try await V1SetupIntentsCancelMethods.postSetupIntentsIntentCancel(config: config, intent: intent, cancellationReason: cancellationReason, expand: expand)
     }
 }
 
@@ -157,19 +104,11 @@ public class V1SetupIntentsConfirmNamespace {
         self.config = config
     }
 
-    /// Confirms that a customer intends to set up a payment method on a SetupIntent. Provide a payment method,
-    /// confirmation token, or payment method data as appropriate for the setup flow. The SetupIntent can succeed
-    /// immediately, require additional customer action, or transition to a failed or canceled status.
+/// Confirms that a customer intends to set up a payment method on a SetupIntent. Provide a payment method, confirmation token, or payment method data as appropriate for the setup flow. The SetupIntent can succeed immediately, require additional customer action, or transition to a failed or canceled status.
     ///
-    /// Confirm that your customer intends to set up the current or provided payment method. For example, you would
-    /// confirm a SetupIntent when a customer hits the “Save” button on a payment method management page on your
-    /// website. If the selected payment method does not require any additional steps from the customer, the SetupIntent
-    /// will transition to the succeeded status. Otherwise, it will transition to the requires_action status and suggest
-    /// additional actions via next_action . If setup fails, the SetupIntent will transition to the
-    /// requires_payment_method status or the canceled status if the confirmation limit is reached.
-    public func postSetupIntentsIntent(options: V1SetupIntentsConfirmMethods
-        .PostSetupIntentsIntentConfirmOptions) async throws -> SetupIntent {
-        try await V1SetupIntentsConfirmMethods.postSetupIntentsIntentConfirm(config: config, options: options)
+    /// Confirm that your customer intends to set up the current or provided payment method. For example, you would confirm a SetupIntent when a customer hits the “Save” button on a payment method management page on your website. If the selected payment method does not require any additional steps from the customer, the SetupIntent will transition to the succeeded status. Otherwise, it will transition to the requires_action status and suggest additional actions via next_action . If setup fails, the SetupIntent will transition to the requires_payment_method status or the canceled status if the confirmation limit is reached.
+    public func postSetupIntentsIntent(options: V1SetupIntentsConfirmMethods.PostSetupIntentsIntentConfirmOptions) async throws -> SetupIntent {
+        return try await V1SetupIntentsConfirmMethods.postSetupIntentsIntentConfirm(config: config, options: options)
     }
 }
 
@@ -179,26 +118,11 @@ public class V1SetupIntentsVerifyMicrodepositsNamespace {
         self.config = config
     }
 
-    /// Verifies the microdeposits sent to the bank account associated with a SetupIntent. Supply either the two
-    /// deposited amounts or the descriptor code from the microdeposit. A successful verification updates the
-    /// SetupIntent with the resulting setup status.
+/// Verifies the microdeposits sent to the bank account associated with a SetupIntent. Supply either the two deposited amounts or the descriptor code from the microdeposit. A successful verification updates the SetupIntent with the resulting setup status.
     ///
     /// Verifies microdeposits on a SetupIntent object.
-    public func postSetupIntentsIntent(
-        intent: String,
-        amounts: [Int]?,
-        clientSecret: String?,
-        descriptorCode: String?,
-        expand: [String]?
-    ) async throws -> SetupIntent {
-        try await V1SetupIntentsVerifyMicrodepositsMethods.postSetupIntentsIntentVerifyMicrodeposits(
-            config: config,
-            intent: intent,
-            amounts: amounts,
-            clientSecret: clientSecret,
-            descriptorCode: descriptorCode,
-            expand: expand
-        )
+    public func postSetupIntentsIntent(intent: String, amounts: [Int]?, clientSecret: String?, descriptorCode: String?, expand: [String]?) async throws -> SetupIntent {
+        return try await V1SetupIntentsVerifyMicrodepositsMethods.postSetupIntentsIntentVerifyMicrodeposits(config: config, intent: intent, amounts: amounts, clientSecret: clientSecret, descriptorCode: descriptorCode, expand: expand)
     }
 }
 
@@ -214,45 +138,30 @@ public class V1SetupIntentsNamespace {
         verifyMicrodeposits = V1SetupIntentsVerifyMicrodepositsNamespace(config: config)
     }
 
-    /// Lists SetupIntents and supports filtering by customer, account, payment method, and creation time. Use `limit`
-    /// with cursor parameters to paginate the results, and use `attach_to_self` only for supported in-context account
-    /// money movement flows.
+/// Lists SetupIntents and supports filtering by customer, account, payment method, and creation time. Use `limit` with cursor parameters to paginate the results, and use `attach_to_self` only for supported in-context account money movement flows.
     ///
     /// Returns a list of SetupIntents.
     public func get(options: V1SetupIntentsMethods.GetSetupIntentsOptions) async throws -> GetSetupIntentsResponse {
-        try await V1SetupIntentsMethods.getSetupIntents(config: config, options: options)
+        return try await V1SetupIntentsMethods.getSetupIntents(config: config, options: options)
     }
 
-    /// Creates a SetupIntent object. After you create the SetupIntent, attach a payment method and confirm it to
-    /// collect any required permissions to charge the payment method later.
+/// Creates a SetupIntent object. After you create the SetupIntent, attach a payment method and confirm it to collect any required permissions to charge the payment method later.
     public func post(options: V1SetupIntentsMethods.PostSetupIntentsOptions) async throws -> SetupIntent {
-        try await V1SetupIntentsMethods.postSetupIntents(config: config, options: options)
+        return try await V1SetupIntentsMethods.postSetupIntents(config: config, options: options)
     }
 
-    /// Retrieves the details of a previously created SetupIntent. Provide `intent` to identify it, and provide
-    /// `client_secret` when using a publishable key for client-side retrieval; publishable-key responses contain only a
-    /// subset of SetupIntent properties.
+/// Retrieves the details of a previously created SetupIntent. Provide `intent` to identify it, and provide `client_secret` when using a publishable key for client-side retrieval; publishable-key responses contain only a subset of SetupIntent properties.
     ///
-    /// Retrieves the details of a SetupIntent that has previously been created. Client-side retrieval using a
-    /// publishable key is allowed when the client_secret is provided in the query string. When retrieved with a
-    /// publishable key, only a subset of properties will be returned. Please refer to the SetupIntent object reference
-    /// for more details.
+    /// Retrieves the details of a SetupIntent that has previously been created. Client-side retrieval using a publishable key is allowed when the client_secret is provided in the query string. When retrieved with a publishable key, only a subset of properties will be returned. Please refer to the SetupIntent object reference for more details.
     public func getIntent(intent: String, clientSecret: String?, expand: [String]?) async throws -> SetupIntent {
-        try await V1SetupIntentsMethods.getSetupIntentsIntent(
-            config: config,
-            intent: intent,
-            clientSecret: clientSecret,
-            expand: expand
-        )
+        return try await V1SetupIntentsMethods.getSetupIntentsIntent(config: config, intent: intent, clientSecret: clientSecret, expand: expand)
     }
 
-    /// Updates a SetupIntent's configuration, payment method, customer association, metadata, or descriptive fields.
-    /// Supply only the fields you want to change, and use `expand` to include additional fields in the returned
-    /// SetupIntent.
+/// Updates a SetupIntent's configuration, payment method, customer association, metadata, or descriptive fields. Supply only the fields you want to change, and use `expand` to include additional fields in the returned SetupIntent.
     ///
     /// Updates a SetupIntent object.
     public func postIntent(options: V1SetupIntentsMethods.PostSetupIntentsIntentOptions) async throws -> SetupIntent {
-        try await V1SetupIntentsMethods.postSetupIntentsIntent(config: config, options: options)
+        return try await V1SetupIntentsMethods.postSetupIntentsIntent(config: config, options: options)
     }
 }
 
@@ -262,76 +171,32 @@ public class V1ShippingRatesNamespace {
         self.config = config
     }
 
-    /// Lists shipping rates available to your account. Filter the collection by active state, creation time, or
-    /// currency, and use cursor parameters to retrieve adjacent pages. Each result contains shipping price and
-    /// presentation details for use with purchases.
+/// Lists shipping rates available to your account. Filter the collection by active state, creation time, or currency, and use cursor parameters to retrieve adjacent pages. Each result contains shipping price and presentation details for use with purchases.
     ///
     /// Returns a list of your shipping rates.
-    public func get(
-        active: Bool?,
-        created: GetShippingRatesParameter?,
-        currency: String?,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        startingAfter: String?
-    ) async throws -> GetShippingRatesResponse {
-        try await V1ShippingRatesMethods.getShippingRates(
-            config: config,
-            active: active,
-            created: created,
-            currency: currency,
-            endingBefore: endingBefore,
-            expand: expand,
-            limit: limit,
-            startingAfter: startingAfter
-        )
+    public func get(active: Bool?, created: GetShippingRatesParameter?, currency: String?, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetShippingRatesResponse {
+        return try await V1ShippingRatesMethods.getShippingRates(config: config, active: active, created: created, currency: currency, endingBefore: endingBefore, expand: expand, limit: limit, startingAfter: startingAfter)
     }
 
-    /// Creates a new shipping rate for display to customers and application to purchases. Supply `display_name` and
-    /// configure the calculation type, fixed amount, tax behavior, and delivery estimate as needed. The created rate
-    /// can appear in Checkout Sessions.
+/// Creates a new shipping rate for display to customers and application to purchases. Supply `display_name` and configure the calculation type, fixed amount, tax behavior, and delivery estimate as needed. The created rate can appear in Checkout Sessions.
     ///
     /// Creates a new shipping rate object.
     public func post(options: V1ShippingRatesMethods.PostShippingRatesOptions) async throws -> ShippingRate {
-        try await V1ShippingRatesMethods.postShippingRates(config: config, options: options)
+        return try await V1ShippingRatesMethods.postShippingRates(config: config, options: options)
     }
 
-    /// Retrieves a shipping rate by its identifier. Use `expand` when you need selected response fields included
-    /// inline. The response describes the rate's availability, customer-facing name, fixed charge, delivery estimate,
-    /// and tax treatment.
+/// Retrieves a shipping rate by its identifier. Use `expand` when you need selected response fields included inline. The response describes the rate's availability, customer-facing name, fixed charge, delivery estimate, and tax treatment.
     ///
     /// Returns the shipping rate object with the given ID.
     public func getShippingRateToken(shippingRateToken: String, expand: [String]?) async throws -> ShippingRate {
-        try await V1ShippingRatesMethods.getShippingRatesShippingRateToken(
-            config: config,
-            shippingRateToken: shippingRateToken,
-            expand: expand
-        )
+        return try await V1ShippingRatesMethods.getShippingRatesShippingRateToken(config: config, shippingRateToken: shippingRateToken, expand: expand)
     }
 
-    /// Updates an existing shipping rate's active state, fixed-amount currency options, metadata, or tax behavior.
-    /// Supply only the properties you want to change because omitted properties retain their current values. Use
-    /// `expand` to include selected response fields inline.
+/// Updates an existing shipping rate's active state, fixed-amount currency options, metadata, or tax behavior. Supply only the properties you want to change because omitted properties retain their current values. Use `expand` to include selected response fields inline.
     ///
     /// Updates an existing shipping rate object.
-    public func postShippingRateToken(
-        shippingRateToken: String,
-        active: Bool?,
-        expand: [String]?,
-        fixedAmount: PostShippingRatesShippingRateTokenRequestBodyFixedAmount?,
-        metadata: PostShippingRatesShippingRateTokenRequestBodyMetadata?,
-        taxBehavior: PostShippingRatesShippingRateTokenRequestBodyTaxBehavior?
-    ) async throws -> ShippingRate {
-        try await V1ShippingRatesMethods.postShippingRatesShippingRateToken(
-            config: config,
-            shippingRateToken: shippingRateToken,
-            active: active,
-            expand: expand,
-            fixedAmount: fixedAmount,
-            metadata: metadata,
-            taxBehavior: taxBehavior
-        )
+    public func postShippingRateToken(shippingRateToken: String, active: Bool?, expand: [String]?, fixedAmount: PostShippingRatesShippingRateTokenRequestBodyFixedAmount?, metadata: PostShippingRatesShippingRateTokenRequestBodyMetadata?, taxBehavior: PostShippingRatesShippingRateTokenRequestBodyTaxBehavior?) async throws -> ShippingRate {
+        return try await V1ShippingRatesMethods.postShippingRatesShippingRateToken(config: config, shippingRateToken: shippingRateToken, active: active, expand: expand, fixedAmount: fixedAmount, metadata: metadata, taxBehavior: taxBehavior)
     }
 }
 
@@ -341,19 +206,8 @@ public class V1SigmaSavedQueriesNamespace {
         self.config = config
     }
 
-    /// Update an existing Sigma query that previously exists
-    public func postSigmaId(
-        id: String,
-        expand: [String]?,
-        name: String?,
-        sql: String?
-    ) async throws -> SigmaSigmaApiQuery {
-        try await V1SigmaSavedQueriesMethods.postSigmaSavedQueriesId(
-            config: config,
-            id: id,
-            expand: expand,
-            name: name,
-            sql: sql
-        )
+/// Update an existing Sigma query that previously exists
+    public func postSigmaId(id: String, expand: [String]?, name: String?, sql: String?) async throws -> SigmaSigmaApiQuery {
+        return try await V1SigmaSavedQueriesMethods.postSigmaSavedQueriesId(config: config, id: id, expand: expand, name: name, sql: sql)
     }
 }

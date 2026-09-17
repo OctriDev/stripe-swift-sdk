@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1Sigma domain models
+// V1Sigma domain models
 /// Typed representation of the `SigmaScheduledQueryRunError` API schema.
 public struct SigmaScheduledQueryRunError: Codable {
     /// Information about the run failure.
@@ -13,30 +13,24 @@ public struct SigmaScheduledQueryRunError: Codable {
         case message
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension SigmaScheduledQueryRunError {
-    init(from decoder: Decoder) throws {
+extension SigmaScheduledQueryRunError {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.message) else {
-            throw SdkValidationError(
-                field: "message",
-                code: "required",
-                message: "Validation failed for 'message': value is required"
-            )
+            throw SdkValidationError(field: "message", code: "required", message: "Validation failed for 'message': value is required")
         }
-        message = try container.sdkDecodeRequired(.message)
-        try validateLength("message", message, min: nil, max: 5000)
+        self.message = try container.sdkDecodeRequired(.message)
+            try validateLength("message", self.message, min: nil, max: 5000)
     }
 }
 
-public extension SigmaScheduledQueryRunError {
-    init(message: String) throws {
+extension SigmaScheduledQueryRunError {
+    public init(message: String) throws {
         self.message = message
-        try validateLength("message", self.message, min: nil, max: 5000)
+            try validateLength("message", self.message, min: nil, max: 5000)
     }
 }
 
@@ -65,76 +59,50 @@ public struct SigmaSigmaApiQuery: Codable {
         case sql
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension SigmaSigmaApiQuery {
-    init(from decoder: Decoder) throws {
+extension SigmaSigmaApiQuery {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.created) else {
-            throw SdkValidationError(
-                field: "created",
-                code: "required",
-                message: "Validation failed for 'created': value is required"
-            )
+            throw SdkValidationError(field: "created", code: "required", message: "Validation failed for 'created': value is required")
         }
         guard container.contains(.id) else {
-            throw SdkValidationError(
-                field: "id",
-                code: "required",
-                message: "Validation failed for 'id': value is required"
-            )
+            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
         }
         guard container.contains(.livemode) else {
-            throw SdkValidationError(
-                field: "livemode",
-                code: "required",
-                message: "Validation failed for 'livemode': value is required"
-            )
+            throw SdkValidationError(field: "livemode", code: "required", message: "Validation failed for 'livemode': value is required")
         }
         guard container.contains(.name) else {
-            throw SdkValidationError(
-                field: "name",
-                code: "required",
-                message: "Validation failed for 'name': value is required"
-            )
+            throw SdkValidationError(field: "name", code: "required", message: "Validation failed for 'name': value is required")
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(
-                field: "object",
-                code: "required",
-                message: "Validation failed for 'object': value is required"
-            )
+            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
         }
         guard container.contains(.sql) else {
-            throw SdkValidationError(
-                field: "sql",
-                code: "required",
-                message: "Validation failed for 'sql': value is required"
-            )
+            throw SdkValidationError(field: "sql", code: "required", message: "Validation failed for 'sql': value is required")
         }
-        created = try container.sdkDecodeRequired(.created)
-        id = try container.sdkDecodeRequired(.id)
-        livemode = try container.sdkDecodeRequired(.livemode)
-        name = try container.sdkDecodeRequired(.name)
-        object = try container.sdkDecodeRequired(.object)
-        sql = try container.sdkDecodeRequired(.sql)
-        try validateLength("id", id, min: nil, max: 5000)
-        try validateLength("name", name, min: nil, max: 5000)
-        try validateLength("sql", sql, min: nil, max: 5000)
+        self.created = try container.sdkDecodeRequired(.created)
+        self.id = try container.sdkDecodeRequired(.id)
+        self.livemode = try container.sdkDecodeRequired(.livemode)
+        self.name = try container.sdkDecodeRequired(.name)
+        self.object = try container.sdkDecodeRequired(.object)
+        self.sql = try container.sdkDecodeRequired(.sql)
+            try validateLength("id", self.id, min: nil, max: 5000)
+            try validateLength("name", self.name, min: nil, max: 5000)
+            try validateLength("sql", self.sql, min: nil, max: 5000)
     }
 }
 
-public extension SigmaSigmaApiQuery {
-    init(created: Int, id: String, livemode: Bool, name: String, object: SigmaSigmaApiQueryObject, sql: String) throws {
+extension SigmaSigmaApiQuery {
+    public init(created: Int, id: String, livemode: Bool, name: String, object: SigmaSigmaApiQueryObject, sql: String) throws {
         (self.created, self.id) = (created, id)
         (self.livemode, self.name) = (livemode, name)
         (self.object, self.sql) = (object, sql)
-        try validateLength("id", self.id, min: nil, max: 5000)
-        try validateLength("name", self.name, min: nil, max: 5000)
-        try validateLength("sql", self.sql, min: nil, max: 5000)
+            try validateLength("id", self.id, min: nil, max: 5000)
+            try validateLength("name", self.name, min: nil, max: 5000)
+            try validateLength("sql", self.sql, min: nil, max: 5000)
     }
 }
 
@@ -142,15 +110,12 @@ public extension SigmaSigmaApiQuery {
 public struct SigmaSigmaApiQueryObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let sigmaSigmaApiQuery = SigmaSigmaApiQueryObject(rawValue: "sigma.sigma_api_query")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

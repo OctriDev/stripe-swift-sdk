@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1TerminalConfigurationsMethods {
-    struct PostTerminalConfigurationsOptions: Codable {
+extension V1TerminalConfigurationsMethods {
+    public struct PostTerminalConfigurationsOptions: Codable {
         public var bbposWisepad3: PostTerminalConfigurationsRequestBodyBbposWisepad3?
         public var bbposWiseposE: PostTerminalConfigurationsRequestBodyBbposWiseposE?
         public var cellular: PostTerminalConfigurationsRequestBodyCellular?
@@ -57,24 +57,13 @@ public extension V1TerminalConfigurationsMethods {
     /// - verifoneV660p: An object containing device type specific settings for
     ///   Verifone V660p readers.
     /// - wifi: Configurations for connecting to a WiFi network.
-    static func postTerminalConfigurations(
-        config: ClientConfig,
-        options: PostTerminalConfigurationsOptions
-    ) async throws -> TerminalConfiguration {
+    public static func postTerminalConfigurations(config: ClientConfig, options: PostTerminalConfigurationsOptions) async throws -> TerminalConfiguration {
         if let name = options.name {
             try validateLength("name", name, max: 100)
         }
 
         let requestBody = PostTerminalConfigurationsRequestBody(options: options)
 
-        return try await (sdkRequest(
-            "POST",
-            "/v1/terminal/configurations",
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostTerminalConfigurations"
-        )).data
+        return try (await sdkRequest("POST", "/v1/terminal/configurations", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTerminalConfigurations")).data
     }
 }

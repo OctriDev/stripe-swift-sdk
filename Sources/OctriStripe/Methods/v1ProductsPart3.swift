@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1ProductsMethods {
-    struct PostProductsOptions: Codable {
+extension V1ProductsMethods {
+    public struct PostProductsOptions: Codable {
         public var name: String
         public var active: Bool?
         public var defaultPriceData: PostProductsRequestBodyDefaultPriceData?
@@ -29,9 +29,7 @@ public extension V1ProductsMethods {
         }
     }
 
-    /// Creates a new product object for goods or services that you offer. Supply `name` and optionally configure
-    /// pricing, descriptions, images, marketing features, shipping information, tax settings, and display metadata. A
-    /// nested `default_price_data` object can create and assign the product's default price.
+    /// Creates a new product object for goods or services that you offer. Supply `name` and optionally configure pricing, descriptions, images, marketing features, shipping information, tax settings, and display metadata. A nested `default_price_data` object can create and assign the product's default price.
     ///
     /// Creates a new product object.
     ///
@@ -74,7 +72,7 @@ public extension V1ProductsMethods {
     ///   will be included in customers' receipts, invoices, Checkout, and the
     ///   customer portal.
     /// - url: A URL of a publicly-accessible webpage for this product.
-    static func postProducts(config: ClientConfig, options: PostProductsOptions) async throws -> Product {
+    public static func postProducts(config: ClientConfig, options: PostProductsOptions) async throws -> Product {
         try validateLength("name", options.name, max: 5000)
 
         if let description = options.description {
@@ -99,14 +97,6 @@ public extension V1ProductsMethods {
 
         let requestBody = PostProductsRequestBody(options: options)
 
-        return try await (sdkRequest(
-            "POST",
-            "/v1/products",
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostProducts"
-        )).data
+        return try (await sdkRequest("POST", "/v1/products", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostProducts")).data
     }
 }

@@ -7,9 +7,9 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1TreasuryFinancialAccounts operation model declarations
-public extension PostTreasuryFinancialAccountsRequestBodyFeaturesFinancialAddresses {
-    init(aba: PostTreasuryFinancialAccountsRequestBodyFeaturesFinancialAddressesAba? = nil) {
+// Canonical v1TreasuryFinancialAccounts operation model declarations
+extension PostTreasuryFinancialAccountsRequestBodyFeaturesFinancialAddresses {
+    public init(aba: PostTreasuryFinancialAccountsRequestBodyFeaturesFinancialAddressesAba? = nil) {
         self.init()
         self.aba = aba
     }
@@ -27,23 +27,20 @@ public struct PostTreasuryFinancialAccountsRequestBodyFeaturesOutboundTransfers:
     }
 
     init() {
-        (ach, usDomesticWire) = (nil, nil)
+        (self.ach, self.usDomesticWire) = (nil, nil)
     }
 }
 
-public extension PostTreasuryFinancialAccountsRequestBodyFeaturesOutboundTransfers {
-    init(from decoder: Decoder) throws {
+extension PostTreasuryFinancialAccountsRequestBodyFeaturesOutboundTransfers {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        ach = try container.sdkDecodeIfPresent(.ach)
-        usDomesticWire = try container.sdkDecodeIfPresent(.usDomesticWire)
+        self.ach = try container.sdkDecodeIfPresent(.ach)
+        self.usDomesticWire = try container.sdkDecodeIfPresent(.usDomesticWire)
     }
 }
 
-public extension PostTreasuryFinancialAccountsRequestBodyFeaturesOutboundTransfers {
-    init(
-        ach: PostTreasuryFinancialAccountsRequestBodyFeaturesOutboundTransfersAch? = nil,
-        usDomesticWire: PostTreasuryFinancialAccountsRequestBodyFeaturesOutboundTransX5fdc07f82f? = nil
-    ) {
+extension PostTreasuryFinancialAccountsRequestBodyFeaturesOutboundTransfers {
+    public init(ach: PostTreasuryFinancialAccountsRequestBodyFeaturesOutboundTransfersAch? = nil, usDomesticWire: PostTreasuryFinancialAccountsRequestBodyFeaturesOutboundTransX5fdc07f82f? = nil) {
         self.init()
         (self.ach, self.usDomesticWire) = (ach, usDomesticWire)
     }

@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1TreasuryOutboundTransfersMethods {
-    struct PostTreasuryOutboundTransfersOptions: Codable {
+extension V1TreasuryOutboundTransfersMethods {
+    public struct PostTreasuryOutboundTransfersOptions: Codable {
         public var amount: Int
         public var currency: String
         public var financialAccount: String
@@ -26,9 +26,7 @@ public extension V1TreasuryOutboundTransfersMethods {
         }
     }
 
-    /// Creates a new OutboundTransfer from a FinancialAccount to a PaymentMethod belonging to the same entity. Supply
-    /// `amount`, `currency`, and `financial_account`, then identify the destination with either
-    /// `destination_payment_method` or `destination_payment_method_data`.
+    /// Creates a new OutboundTransfer from a FinancialAccount to a PaymentMethod belonging to the same entity. Supply `amount`, `currency`, and `financial_account`, then identify the destination with either `destination_payment_method` or `destination_payment_method_data`.
     ///
     /// Creates an OutboundTransfer.
     ///
@@ -57,10 +55,7 @@ public extension V1TreasuryOutboundTransfersMethods {
     ///   of an OutboundTransfer. Maximum 10 characters for `ach` transfers or 140
     ///   characters for `us_domestic_wire` transfers. The default value is
     ///   "transfer". Can only include -#.$&*, spaces, and alphanumeric characters.
-    static func postTreasuryOutboundTransfers(
-        config: ClientConfig,
-        options: PostTreasuryOutboundTransfersOptions
-    ) async throws -> TreasuryOutboundTransfer {
+    public static func postTreasuryOutboundTransfers(config: ClientConfig, options: PostTreasuryOutboundTransfersOptions) async throws -> TreasuryOutboundTransfer {
         if let description = options.description {
             try validateLength("description", description, max: 5000)
         }
@@ -75,14 +70,6 @@ public extension V1TreasuryOutboundTransfersMethods {
 
         let requestBody = PostTreasuryOutboundTransfersRequestBody(options: options)
 
-        return try await (sdkRequest(
-            "POST",
-            "/v1/treasury/outbound_transfers",
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostTreasuryOutboundTransfers"
-        )).data
+        return try (await sdkRequest("POST", "/v1/treasury/outbound_transfers", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTreasuryOutboundTransfers")).data
     }
 }

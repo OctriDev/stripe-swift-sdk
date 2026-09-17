@@ -6,40 +6,24 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1IssuingDisputesMethods {
-    /// Retrieves a single Issuing dispute by its identifier. Use `expand` when you need selected fields expanded in the
-    /// response rather than returned as references. The `dispute` value must be no longer than 5000 characters.
+extension V1IssuingDisputesMethods {
+    /// Retrieves a single Issuing dispute by its identifier. Use `expand` when you need selected fields expanded in the response rather than returned as references. The `dispute` value must be no longer than 5000 characters.
     ///
     /// Retrieves an Issuing Dispute object.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    static func getIssuingDisputesDispute(
-        config: ClientConfig,
-        dispute: String,
-        expand: [String]?
-    ) async throws -> IssuingDispute {
+    public static func getIssuingDisputesDispute(config: ClientConfig, dispute: String, expand: [String]?) async throws -> IssuingDispute {
         try validateLength("dispute", dispute, max: 5000)
 
-        return try await (sdkRequest(
-            "GET",
-            ["/v1/issuing/disputes/", sdkEncodePathSegment(sdkWireString(dispute))].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .json,
-            operationId: "GetIssuingDisputesDispute"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/issuing/disputes/", sdkEncodePathSegment(sdkWireString(dispute))].joined(), config: config, query: [
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .json, operationId: "GetIssuingDisputesDispute")).data
     }
 
-    /// Updates an existing Issuing dispute with the values you provide, leaving omitted properties unchanged. Use
-    /// `evidence` to add or clear evidence fields, and use `amount` to set the disputed amount in the card's smallest
-    /// currency unit. Pass an empty string for an evidence property or `metadata` value when the schema permits
-    /// clearing it.
+    /// Updates an existing Issuing dispute with the values you provide, leaving omitted properties unchanged. Use `evidence` to add or clear evidence fields, and use `amount` to set the disputed amount in the card's smallest currency unit. Pass an empty string for an evidence property or `metadata` value when the schema permits clearing it.
     ///
-    /// Updates the specified Issuing Dispute object by setting the values of the parameters passed. Any parameters not
-    /// provided will be left unchanged. Properties on the evidence object can be unset by passing in an empty string.
+    /// Updates the specified Issuing Dispute object by setting the values of the parameters passed. Any parameters not provided will be left unchanged. Properties on the evidence object can be unset by passing in an empty string.
     ///
     /// - Parameters:
     /// - amount: The dispute amount in the card's currency and in the [smallest
@@ -51,31 +35,11 @@ public extension V1IssuingDisputesMethods {
     ///   information about the object in a structured format. Individual keys can be
     ///   unset by posting an empty value to them. All keys can be unset by posting an
     ///   empty value to `metadata`.
-    static func postIssuingDisputesDispute(
-        config: ClientConfig,
-        dispute: String,
-        amount: Int?,
-        evidence: PostIssuingDisputesDisputeRequestBodyEvidence?,
-        expand: [String]?,
-        metadata: PostIssuingDisputesDisputeRequestBodyMetadata?
-    ) async throws -> IssuingDispute {
+    public static func postIssuingDisputesDispute(config: ClientConfig, dispute: String, amount: Int?, evidence: PostIssuingDisputesDisputeRequestBodyEvidence?, expand: [String]?, metadata: PostIssuingDisputesDisputeRequestBodyMetadata?) async throws -> IssuingDispute {
         try validateLength("dispute", dispute, max: 5000)
 
-        let requestBody = PostIssuingDisputesDisputeRequestBody(
-            amount: amount,
-            evidence: evidence,
-            expand: expand,
-            metadata: metadata
-        )
+        let requestBody = PostIssuingDisputesDisputeRequestBody(amount: amount, evidence: evidence, expand: expand, metadata: metadata)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/issuing/disputes/", sdkEncodePathSegment(sdkWireString(dispute))].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostIssuingDisputesDispute"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/issuing/disputes/", sdkEncodePathSegment(sdkWireString(dispute))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostIssuingDisputesDispute")).data
     }
 }

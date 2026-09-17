@@ -7,36 +7,18 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1TestHelpersIssuingPersonalizationDesignsDeactivateMethods {
-    /// Deactivates a test-mode personalization design by changing its status to `inactive`. Provide the
-    /// `personalization_design` identifier for the design to deactivate. You can use `expand` to include additional
-    /// response fields.
+    /// Deactivates a test-mode personalization design by changing its status to `inactive`. Provide the `personalization_design` identifier for the design to deactivate. You can use `expand` to include additional response fields.
     ///
     /// Updates the status of the specified testmode personalization design object to inactive .
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postTestHelpersIssuingPersonalizationDesignsPersonalizationDeXe71bb26efc(
-        config: ClientConfig,
-        personalizationDesign: String,
-        expand: [String]?
-    ) async throws -> IssuingPersonalizationDesign {
+    public static func postTestHelpersIssuingPersonalizationDesignsPersonalizationDeXe71bb26efc(config: ClientConfig, personalizationDesign: String, expand: [String]?) async throws -> IssuingPersonalizationDesign {
         try validateLength("personalization_design", personalizationDesign, max: 5000)
 
         let requestBody = PostTestHelpersIssuingPersonalizationDesignsPersonalizationDeXdc364516a9(expand: expand)
 
-        return try await (sdkRequest(
-            "POST",
-            [
-                "/v1/test_helpers/issuing/personalization_designs/",
-                sdkEncodePathSegment(sdkWireString(personalizationDesign)),
-                "/deactivate",
-            ].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostTestHelpersIssuingPersonalizationDesignsPersonalizationDesignDeactivate"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/test_helpers/issuing/personalization_designs/", sdkEncodePathSegment(sdkWireString(personalizationDesign)), "/deactivate"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTestHelpersIssuingPersonalizationDesignsPersonalizationDesignDeactivate")).data
     }
 
     private struct PostTestHelpersIssuingPersonalizationDesignsPersonalizationDeXdc364516a9: Encodable {
@@ -44,7 +26,7 @@ public enum V1TestHelpersIssuingPersonalizationDesignsDeactivateMethods {
 
         func encode(to encoder: Encoder) throws {
             var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-            try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
+            try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
         }
     }
 }

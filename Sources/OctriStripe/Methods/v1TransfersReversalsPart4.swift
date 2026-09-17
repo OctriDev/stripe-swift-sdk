@@ -6,47 +6,26 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1TransfersReversalsMethods {
-    /// Retrieves a specific reversal belonging to a transfer. Use the transfer and reversal identifiers together to
-    /// obtain details about the reversal, including its amount, currency, and related refunds.
+extension V1TransfersReversalsMethods {
+    /// Retrieves a specific reversal belonging to a transfer. Use the transfer and reversal identifiers together to obtain details about the reversal, including its amount, currency, and related refunds.
     ///
-    /// By default, you can see the 10 most recent reversals stored directly on the transfer object, but you can also
-    /// retrieve details about a specific reversal stored on the transfer.
+    /// By default, you can see the 10 most recent reversals stored directly on the transfer object, but you can also retrieve details about a specific reversal stored on the transfer.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    static func getTransfersTransferReversalsId(
-        config: ClientConfig,
-        id: String,
-        transfer: String,
-        expand: [String]?
-    ) async throws -> TransferReversal {
+    public static func getTransfersTransferReversalsId(config: ClientConfig, id: String, transfer: String, expand: [String]?) async throws -> TransferReversal {
         try validateLength("id", id, max: 5000)
 
         try validateLength("transfer", transfer, max: 5000)
 
-        return try await (sdkRequest(
-            "GET",
-            [
-                "/v1/transfers/",
-                sdkEncodePathSegment(sdkWireString(transfer)),
-                "/reversals/",
-                sdkEncodePathSegment(sdkWireString(id)),
-            ].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .json,
-            operationId: "GetTransfersTransferReversalsId"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/transfers/", sdkEncodePathSegment(sdkWireString(transfer)), "/reversals/", sdkEncodePathSegment(sdkWireString(id))].joined(), config: config, query: [
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .json, operationId: "GetTransfersTransferReversalsId")).data
     }
 
-    /// Updates an existing transfer reversal without changing values that you omit. Use the request body to manage
-    /// `metadata` or request expanded response fields for the reversal.
+    /// Updates an existing transfer reversal without changing values that you omit. Use the request body to manage `metadata` or request expanded response fields for the reversal.
     ///
-    /// Updates the specified reversal by setting the values of the parameters passed. Any parameters not provided will
-    /// be left unchanged. This request only accepts metadata and description as arguments.
+    /// Updates the specified reversal by setting the values of the parameters passed. Any parameters not provided will be left unchanged. This request only accepts metadata and description as arguments.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
@@ -55,32 +34,13 @@ public extension V1TransfersReversalsMethods {
     ///   information about the object in a structured format. Individual keys can be
     ///   unset by posting an empty value to them. All keys can be unset by posting an
     ///   empty value to `metadata`.
-    static func postTransfersTransferReversalsId(
-        config: ClientConfig,
-        id: String,
-        transfer: String,
-        expand: [String]?,
-        metadata: PostTransfersTransferReversalsIdRequestBodyMetadata?
-    ) async throws -> TransferReversal {
+    public static func postTransfersTransferReversalsId(config: ClientConfig, id: String, transfer: String, expand: [String]?, metadata: PostTransfersTransferReversalsIdRequestBodyMetadata?) async throws -> TransferReversal {
         try validateLength("id", id, max: 5000)
 
         try validateLength("transfer", transfer, max: 5000)
 
         let requestBody = PostTransfersTransferReversalsIdRequestBody(expand: expand, metadata: metadata)
 
-        return try await (sdkRequest(
-            "POST",
-            [
-                "/v1/transfers/",
-                sdkEncodePathSegment(sdkWireString(transfer)),
-                "/reversals/",
-                sdkEncodePathSegment(sdkWireString(id)),
-            ].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostTransfersTransferReversalsId"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/transfers/", sdkEncodePathSegment(sdkWireString(transfer)), "/reversals/", sdkEncodePathSegment(sdkWireString(id))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTransfersTransferReversalsId")).data
     }
 }

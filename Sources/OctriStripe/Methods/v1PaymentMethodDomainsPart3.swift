@@ -6,10 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1PaymentMethodDomainsMethods {
-    /// Creates a payment method domain that you have registered for payment-method display. Supply `domain_name` and
-    /// optionally set `enabled` to control whether eligible payment methods appear in Elements or Embedded Checkout.
-    /// The response includes the domain's status for supported payment methods.
+extension V1PaymentMethodDomainsMethods {
+    /// Creates a payment method domain that you have registered for payment-method display. Supply `domain_name` and optionally set `enabled` to control whether eligible payment methods appear in Elements or Embedded Checkout. The response includes the domain's status for supported payment methods.
     ///
     /// Creates a payment method domain.
     ///
@@ -20,51 +18,25 @@ public extension V1PaymentMethodDomainsMethods {
     ///   not enabled, payment methods that require a payment method domain will not
     ///   appear in Elements or Embedded Checkout.
     /// - expand: Specifies which fields in the response should be expanded.
-    static func postPaymentMethodDomains(
-        config: ClientConfig,
-        domainName: String,
-        enabled: Bool?,
-        expand: [String]?
-    ) async throws -> PaymentMethodDomain {
+    public static func postPaymentMethodDomains(config: ClientConfig, domainName: String, enabled: Bool?, expand: [String]?) async throws -> PaymentMethodDomain {
         try validateLength("domain_name", domainName, max: 5000)
 
         let requestBody = PostPaymentMethodDomainsRequestBody(domainName: domainName, enabled: enabled, expand: expand)
 
-        return try await (sdkRequest(
-            "POST",
-            "/v1/payment_method_domains",
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostPaymentMethodDomains"
-        )).data
+        return try (await sdkRequest("POST", "/v1/payment_method_domains", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostPaymentMethodDomains")).data
     }
 
-    /// Retrieves a registered payment method domain by its identifier. Use `expand` when you need additional response
-    /// fields included in the returned domain object. The response includes the domain configuration and statuses for
-    /// supported payment methods.
+    /// Retrieves a registered payment method domain by its identifier. Use `expand` when you need additional response fields included in the returned domain object. The response includes the domain configuration and statuses for supported payment methods.
     ///
     /// Retrieves the details of an existing payment method domain.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    static func getPaymentMethodDomainsPaymentMethodDomain(
-        config: ClientConfig,
-        paymentMethodDomain: String,
-        expand: [String]?
-    ) async throws -> PaymentMethodDomain {
+    public static func getPaymentMethodDomainsPaymentMethodDomain(config: ClientConfig, paymentMethodDomain: String, expand: [String]?) async throws -> PaymentMethodDomain {
         try validateLength("payment_method_domain", paymentMethodDomain, max: 5000)
 
-        return try await (sdkRequest(
-            "GET",
-            ["/v1/payment_method_domains/", sdkEncodePathSegment(sdkWireString(paymentMethodDomain))].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .json,
-            operationId: "GetPaymentMethodDomainsPaymentMethodDomain"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/payment_method_domains/", sdkEncodePathSegment(sdkWireString(paymentMethodDomain))].joined(), config: config, query: [
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .json, operationId: "GetPaymentMethodDomainsPaymentMethodDomain")).data
     }
 }

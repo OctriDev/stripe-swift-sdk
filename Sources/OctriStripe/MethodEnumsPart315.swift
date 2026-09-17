@@ -6,19 +6,15 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public struct PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb1fdd9781a: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb1fdd9781a: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb1fdd9781a(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -27,22 +23,16 @@ public struct PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb1fd
     }
 }
 
-public struct PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiX12653405fd: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiX12653405fd: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let fixed =
-        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiX12653405fd(rawValue: "fixed")
-    public static let maximum =
-        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiX12653405fd(rawValue: "maximum")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let fixed = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiX12653405fd(rawValue: "fixed")
+    public static let maximum = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiX12653405fd(rawValue: "maximum")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -51,19 +41,15 @@ public struct PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiX1265
     }
 }
 
-public struct PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiX68f9d643e6: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiX68f9d643e6: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiX68f9d643e6(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -72,22 +58,16 @@ public struct PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiX68f9
     }
 }
 
-public struct PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXec0e725e56: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXec0e725e56: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let checking =
-        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXec0e725e56(rawValue: "checking")
-    public static let savings =
-        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXec0e725e56(rawValue: "savings")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let checking = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXec0e725e56(rawValue: "checking")
+    public static let savings = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXec0e725e56(rawValue: "savings")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -96,26 +76,18 @@ public struct PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXec0e
     }
 }
 
-public struct PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiX14a788bc59: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiX14a788bc59: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let balances =
-        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiX14a788bc59(rawValue: "balances")
-    public static let ownership =
-        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiX14a788bc59(rawValue: "ownership")
-    public static let paymentMethod =
-        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiX14a788bc59(rawValue: "payment_method")
-    public static let transactions =
-        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiX14a788bc59(rawValue: "transactions")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let balances = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiX14a788bc59(rawValue: "balances")
+    public static let ownership = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiX14a788bc59(rawValue: "ownership")
+    public static let paymentMethod = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiX14a788bc59(rawValue: "payment_method")
+    public static let transactions = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiX14a788bc59(rawValue: "transactions")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -124,24 +96,17 @@ public struct PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiX14a7
     }
 }
 
-public struct PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXda2e8d5794: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXda2e8d5794: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let balances =
-        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXda2e8d5794(rawValue: "balances")
-    public static let ownership =
-        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXda2e8d5794(rawValue: "ownership")
-    public static let transactions =
-        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXda2e8d5794(rawValue: "transactions")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let balances = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXda2e8d5794(rawValue: "balances")
+    public static let ownership = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXda2e8d5794(rawValue: "ownership")
+    public static let transactions = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXda2e8d5794(rawValue: "transactions")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -150,24 +115,17 @@ public struct PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXda2e
     }
 }
 
-public struct PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXaaff4d441b: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXaaff4d441b: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let automatic =
-        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXaaff4d441b(rawValue: "automatic")
-    public static let instant =
-        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXaaff4d441b(rawValue: "instant")
-    public static let microdeposits =
-        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXaaff4d441b(rawValue: "microdeposits")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let automatic = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXaaff4d441b(rawValue: "automatic")
+    public static let instant = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXaaff4d441b(rawValue: "instant")
+    public static let microdeposits = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXaaff4d441b(rawValue: "microdeposits")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -176,19 +134,15 @@ public struct PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXaaff
     }
 }
 
-public struct PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiX902371f6e2: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiX902371f6e2: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiX902371f6e2(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -197,109 +151,63 @@ public struct PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiX9023
     }
 }
 
-public struct PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let achCreditTransfer =
-        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "ach_credit_transfer")
-    public static let achDebit =
-        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "ach_debit")
-    public static let acssDebit =
-        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "acss_debit")
-    public static let affirm =
-        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "affirm")
-    public static let alipay =
-        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "alipay")
-    public static let amazonPay =
-        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "amazon_pay")
-    public static let auBecsDebit =
-        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "au_becs_debit")
-    public static let bacsDebit =
-        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "bacs_debit")
-    public static let bancontact =
-        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "bancontact")
-    public static let billie =
-        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "billie")
-    public static let boleto =
-        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "boleto")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let achCreditTransfer = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "ach_credit_transfer")
+    public static let achDebit = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "ach_debit")
+    public static let acssDebit = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "acss_debit")
+    public static let affirm = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "affirm")
+    public static let alipay = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "alipay")
+    public static let amazonPay = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "amazon_pay")
+    public static let auBecsDebit = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "au_becs_debit")
+    public static let bacsDebit = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "bacs_debit")
+    public static let bancontact = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "bancontact")
+    public static let billie = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "billie")
+    public static let boleto = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "boleto")
     public static let card = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "card")
-    public static let cashapp =
-        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "cashapp")
-    public static let crypto =
-        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "crypto")
-    public static let custom =
-        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "custom")
-    public static let customerBalance =
-        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "customer_balance")
+    public static let cashapp = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "cashapp")
+    public static let crypto = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "crypto")
+    public static let custom = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "custom")
+    public static let customerBalance = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "customer_balance")
     public static let eps = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "eps")
     public static let fpx = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "fpx")
-    public static let giropay =
-        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "giropay")
-    public static let grabpay =
-        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "grabpay")
-    public static let ideal =
-        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "ideal")
-    public static let jpCreditTransfer =
-        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "jp_credit_transfer")
-    public static let kakaoPay =
-        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "kakao_pay")
-    public static let klarna =
-        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "klarna")
-    public static let konbini =
-        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "konbini")
-    public static let krCard =
-        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "kr_card")
+    public static let giropay = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "giropay")
+    public static let grabpay = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "grabpay")
+    public static let ideal = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "ideal")
+    public static let jpCreditTransfer = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "jp_credit_transfer")
+    public static let kakaoPay = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "kakao_pay")
+    public static let klarna = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "klarna")
+    public static let konbini = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "konbini")
+    public static let krCard = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "kr_card")
     public static let link = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "link")
-    public static let mbWay =
-        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "mb_way")
-    public static let multibanco =
-        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "multibanco")
-    public static let naverPay =
-        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "naver_pay")
-    public static let nzBankAccount =
-        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "nz_bank_account")
+    public static let mbWay = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "mb_way")
+    public static let multibanco = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "multibanco")
+    public static let naverPay = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "naver_pay")
+    public static let nzBankAccount = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "nz_bank_account")
     public static let p24 = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "p24")
-    public static let payByBank =
-        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "pay_by_bank")
-    public static let payco =
-        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "payco")
-    public static let paynow =
-        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "paynow")
-    public static let paypal =
-        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "paypal")
-    public static let payto =
-        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "payto")
+    public static let payByBank = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "pay_by_bank")
+    public static let payco = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "payco")
+    public static let paynow = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "paynow")
+    public static let paypal = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "paypal")
+    public static let payto = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "payto")
     public static let pix = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "pix")
-    public static let promptpay =
-        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "promptpay")
-    public static let revolutPay =
-        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "revolut_pay")
-    public static let satispay =
-        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "satispay")
-    public static let sepaCreditTransfer =
-        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "sepa_credit_transfer")
-    public static let sepaDebit =
-        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "sepa_debit")
-    public static let sofort =
-        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "sofort")
-    public static let swish =
-        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "swish")
-    public static let twint =
-        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "twint")
+    public static let promptpay = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "promptpay")
+    public static let revolutPay = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "revolut_pay")
+    public static let satispay = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "satispay")
+    public static let sepaCreditTransfer = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "sepa_credit_transfer")
+    public static let sepaDebit = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "sepa_debit")
+    public static let sofort = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "sofort")
+    public static let swish = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "swish")
+    public static let twint = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "twint")
     public static let upi = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "upi")
-    public static let usBankAccount =
-        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "us_bank_account")
-    public static let wechatPay =
-        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "wechat_pay")
+    public static let usBankAccount = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "us_bank_account")
+    public static let wechatPay = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXb563544e96(rawValue: "wechat_pay")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

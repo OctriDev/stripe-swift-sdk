@@ -15,11 +15,11 @@ struct PostTransfersIdReversalsRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(amount, forKey: SdkCodingKey("amount"))
-        try keyedContainer.encodeIfPresent(description, forKey: SdkCodingKey("description"))
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
-        try keyedContainer.encodeIfPresent(refundApplicationFee, forKey: SdkCodingKey("refund_application_fee"))
+        try keyedContainer.encodeIfPresent(self.amount, forKey: SdkCodingKey("amount"))
+        try keyedContainer.encodeIfPresent(self.description, forKey: SdkCodingKey("description"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encodeIfPresent(self.refundApplicationFee, forKey: SdkCodingKey("refund_application_fee"))
     }
 }
 
@@ -29,8 +29,8 @@ struct PostTransfersTransferReversalsIdRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
     }
 }
 
@@ -41,9 +41,9 @@ struct PostTreasuryCreditReversalsRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encode(receivedCredit, forKey: SdkCodingKey("received_credit"))
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encode(self.receivedCredit, forKey: SdkCodingKey("received_credit"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
     }
 }
 
@@ -54,9 +54,9 @@ struct PostTreasuryDebitReversalsRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encode(receivedDebit, forKey: SdkCodingKey("received_debit"))
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encode(self.receivedDebit, forKey: SdkCodingKey("received_debit"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
     }
 }
 
@@ -70,12 +70,12 @@ struct PostTreasuryFinancialAccountsRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encode(supportedCurrencies, forKey: SdkCodingKey("supported_currencies"))
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(features, forKey: SdkCodingKey("features"))
-        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
-        try keyedContainer.encodeIfPresent(nickname, forKey: SdkCodingKey("nickname"))
-        try keyedContainer.encodeIfPresent(platformRestrictions, forKey: SdkCodingKey("platform_restrictions"))
+        try keyedContainer.encode(self.supportedCurrencies, forKey: SdkCodingKey("supported_currencies"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.features, forKey: SdkCodingKey("features"))
+        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encodeIfPresent(self.nickname, forKey: SdkCodingKey("nickname"))
+        try keyedContainer.encodeIfPresent(self.platformRestrictions, forKey: SdkCodingKey("platform_restrictions"))
     }
 }
 
@@ -89,12 +89,12 @@ struct PostTreasuryFinancialAccountsFinancialAccountRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(features, forKey: SdkCodingKey("features"))
-        try keyedContainer.encodeIfPresent(forwardingSettings, forKey: SdkCodingKey("forwarding_settings"))
-        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
-        try keyedContainer.encodeIfPresent(nickname, forKey: SdkCodingKey("nickname"))
-        try keyedContainer.encodeIfPresent(platformRestrictions, forKey: SdkCodingKey("platform_restrictions"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.features, forKey: SdkCodingKey("features"))
+        try keyedContainer.encodeIfPresent(self.forwardingSettings, forKey: SdkCodingKey("forwarding_settings"))
+        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encodeIfPresent(self.nickname, forKey: SdkCodingKey("nickname"))
+        try keyedContainer.encodeIfPresent(self.platformRestrictions, forKey: SdkCodingKey("platform_restrictions"))
     }
 }
 
@@ -104,8 +104,8 @@ struct PostTreasuryFinancialAccountsFinancialAccountCloseRequestBody: Encodable 
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(forwardingSettings, forKey: SdkCodingKey("forwarding_settings"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.forwardingSettings, forKey: SdkCodingKey("forwarding_settings"))
     }
 }
 
@@ -121,26 +121,25 @@ struct PostTreasuryFinancialAccountsFinancialAccountFeaturesRequestBody: Encodab
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(cardIssuing, forKey: SdkCodingKey("card_issuing"))
-        try keyedContainer.encodeIfPresent(depositInsurance, forKey: SdkCodingKey("deposit_insurance"))
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(financialAddresses, forKey: SdkCodingKey("financial_addresses"))
-        try keyedContainer.encodeIfPresent(inboundTransfers, forKey: SdkCodingKey("inbound_transfers"))
-        try keyedContainer.encodeIfPresent(intraStripeFlows, forKey: SdkCodingKey("intra_stripe_flows"))
-        try keyedContainer.encodeIfPresent(outboundPayments, forKey: SdkCodingKey("outbound_payments"))
-        try keyedContainer.encodeIfPresent(outboundTransfers, forKey: SdkCodingKey("outbound_transfers"))
+        try keyedContainer.encodeIfPresent(self.cardIssuing, forKey: SdkCodingKey("card_issuing"))
+        try keyedContainer.encodeIfPresent(self.depositInsurance, forKey: SdkCodingKey("deposit_insurance"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.financialAddresses, forKey: SdkCodingKey("financial_addresses"))
+        try keyedContainer.encodeIfPresent(self.inboundTransfers, forKey: SdkCodingKey("inbound_transfers"))
+        try keyedContainer.encodeIfPresent(self.intraStripeFlows, forKey: SdkCodingKey("intra_stripe_flows"))
+        try keyedContainer.encodeIfPresent(self.outboundPayments, forKey: SdkCodingKey("outbound_payments"))
+        try keyedContainer.encodeIfPresent(self.outboundTransfers, forKey: SdkCodingKey("outbound_transfers"))
     }
 
-    init(options: V1TreasuryFinancialAccountsFeaturesMethods
-        .PostTreasuryFinancialAccountsFinancialAccountFeaturesOptions) {
-        cardIssuing = options.cardIssuing
-        depositInsurance = options.depositInsurance
-        expand = options.expand
-        financialAddresses = options.financialAddresses
-        inboundTransfers = options.inboundTransfers
-        intraStripeFlows = options.intraStripeFlows
-        outboundPayments = options.outboundPayments
-        outboundTransfers = options.outboundTransfers
+    init(options: V1TreasuryFinancialAccountsFeaturesMethods.PostTreasuryFinancialAccountsFinancialAccountFeaturesOptions) {
+        self.cardIssuing = options.cardIssuing
+        self.depositInsurance = options.depositInsurance
+        self.expand = options.expand
+        self.financialAddresses = options.financialAddresses
+        self.inboundTransfers = options.inboundTransfers
+        self.intraStripeFlows = options.intraStripeFlows
+        self.outboundPayments = options.outboundPayments
+        self.outboundTransfers = options.outboundTransfers
     }
 }
 
@@ -156,25 +155,25 @@ struct PostTreasuryInboundTransfersRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encode(amount, forKey: SdkCodingKey("amount"))
-        try keyedContainer.encode(currency, forKey: SdkCodingKey("currency"))
-        try keyedContainer.encode(financialAccount, forKey: SdkCodingKey("financial_account"))
-        try keyedContainer.encode(originPaymentMethod, forKey: SdkCodingKey("origin_payment_method"))
-        try keyedContainer.encodeIfPresent(description, forKey: SdkCodingKey("description"))
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
-        try keyedContainer.encodeIfPresent(statementDescriptor, forKey: SdkCodingKey("statement_descriptor"))
+        try keyedContainer.encode(self.amount, forKey: SdkCodingKey("amount"))
+        try keyedContainer.encode(self.currency, forKey: SdkCodingKey("currency"))
+        try keyedContainer.encode(self.financialAccount, forKey: SdkCodingKey("financial_account"))
+        try keyedContainer.encode(self.originPaymentMethod, forKey: SdkCodingKey("origin_payment_method"))
+        try keyedContainer.encodeIfPresent(self.description, forKey: SdkCodingKey("description"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encodeIfPresent(self.statementDescriptor, forKey: SdkCodingKey("statement_descriptor"))
     }
 
     init(options: V1TreasuryInboundTransfersMethods.PostTreasuryInboundTransfersOptions) {
-        amount = options.amount
-        currency = options.currency
-        financialAccount = options.financialAccount
-        originPaymentMethod = options.originPaymentMethod
-        description = options.description
-        expand = options.expand
-        metadata = options.metadata
-        statementDescriptor = options.statementDescriptor
+        self.amount = options.amount
+        self.currency = options.currency
+        self.financialAccount = options.financialAccount
+        self.originPaymentMethod = options.originPaymentMethod
+        self.description = options.description
+        self.expand = options.expand
+        self.metadata = options.metadata
+        self.statementDescriptor = options.statementDescriptor
     }
 }
 
@@ -183,6 +182,6 @@ struct PostTreasuryInboundTransfersInboundTransferCancelRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
     }
 }

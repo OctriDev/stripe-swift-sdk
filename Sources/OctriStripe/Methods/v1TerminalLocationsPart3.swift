@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1TerminalLocationsMethods {
-    struct PostTerminalLocationsOptions: Codable {
+extension V1TerminalLocationsMethods {
+    public struct PostTerminalLocationsOptions: Codable {
         public var address: PostTerminalLocationsRequestBodyAddress?
         public var addressKana: PostTerminalLocationsRequestBodyAddressKana?
         public var addressKanji: PostTerminalLocationsRequestBodyAddressKanji?
@@ -22,8 +22,7 @@ public extension V1TerminalLocationsMethods {
         public init() {}
     }
 
-    /// Creates a new Location object. For further details, including which address fields are required in each country,
-    /// see the Manage locations guide.
+    /// Creates a new Location object. For further details, including which address fields are required in each country, see the Manage locations guide.
     ///
     /// - Parameters:
     /// - address: The full address of the location.
@@ -45,10 +44,7 @@ public extension V1TerminalLocationsMethods {
     ///   unset by posting an empty value to them. All keys can be unset by posting an
     ///   empty value to `metadata`.
     /// - phone: The phone number for the location.
-    static func postTerminalLocations(
-        config: ClientConfig,
-        options: PostTerminalLocationsOptions
-    ) async throws -> TerminalLocation {
+    public static func postTerminalLocations(config: ClientConfig, options: PostTerminalLocationsOptions) async throws -> TerminalLocation {
         if let configurationOverrides = options.configurationOverrides {
             try validateLength("configuration_overrides", configurationOverrides, max: 500)
         }
@@ -67,14 +63,6 @@ public extension V1TerminalLocationsMethods {
 
         let requestBody = PostTerminalLocationsRequestBody(options: options)
 
-        return try await (sdkRequest(
-            "POST",
-            "/v1/terminal/locations",
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostTerminalLocations"
-        )).data
+        return try (await sdkRequest("POST", "/v1/terminal/locations", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTerminalLocations")).data
     }
 }

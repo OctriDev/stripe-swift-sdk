@@ -6,30 +6,18 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1ClimateProductsMethods {
-    /// Retrieves the details of a Climate product by its unique identifier. Use `expand` to request expanded response
-    /// fields when you need additional object details beyond the standard product representation.
+extension V1ClimateProductsMethods {
+    /// Retrieves the details of a Climate product by its unique identifier. Use `expand` to request expanded response fields when you need additional object details beyond the standard product representation.
     ///
     /// Retrieves the details of a Climate product with the given ID.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    static func getClimateProductsProduct(
-        config: ClientConfig,
-        product: String,
-        expand: [String]?
-    ) async throws -> ClimateProduct {
+    public static func getClimateProductsProduct(config: ClientConfig, product: String, expand: [String]?) async throws -> ClimateProduct {
         try validateLength("product", product, max: 5000)
 
-        return try await (sdkRequest(
-            "GET",
-            ["/v1/climate/products/", sdkEncodePathSegment(sdkWireString(product))].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .json,
-            operationId: "GetClimateProductsProduct"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/climate/products/", sdkEncodePathSegment(sdkWireString(product))].joined(), config: config, query: [
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .json, operationId: "GetClimateProductsProduct")).data
     }
 }

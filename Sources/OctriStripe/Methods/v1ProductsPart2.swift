@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1ProductsMethods {
-    struct GetProductsOptions: Codable {
+extension V1ProductsMethods {
+    public struct GetProductsOptions: Codable {
         public var active: Bool?
         public var created: GetProductsParameter?
         public var endingBefore: String?
@@ -21,12 +21,9 @@ public extension V1ProductsMethods {
         public init() {}
     }
 
-    /// Lists products sorted by creation date, with the most recently created products first. Use `active`,
-    /// `shippable`, `url`, `ids`, or a creation-time filter to narrow the results, and use cursor parameters to
-    /// paginate through the list.
+    /// Lists products sorted by creation date, with the most recently created products first. Use `active`, `shippable`, `url`, `ids`, or a creation-time filter to narrow the results, and use cursor parameters to paginate through the list.
     ///
-    /// Returns a list of your products. The products are returned sorted by creation date, with the most recently
-    /// created products appearing first.
+    /// Returns a list of your products. The products are returned sorted by creation date, with the most recently created products appearing first.
     ///
     /// - Parameters:
     /// - active: Only return products that are active or inactive (e.g., pass
@@ -52,7 +49,7 @@ public extension V1ProductsMethods {
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
     /// - url: Only return products with the given url.
-    static func getProducts(config: ClientConfig, options: GetProductsOptions) async throws -> GetProductsResponse {
+    public static func getProducts(config: ClientConfig, options: GetProductsOptions) async throws -> GetProductsResponse {
         if let endingBefore = options.endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
@@ -65,7 +62,7 @@ public extension V1ProductsMethods {
             try validateLength("url", url, max: 5000)
         }
 
-        return try await (sdkRequest("GET", "/v1/products", config: config, query: [
+        return try (await sdkRequest("GET", "/v1/products", config: config, query: [
             SdkQueryParameter("active", value: options.active),
             SdkQueryParameter("created", value: options.created),
             SdkQueryParameter("ending_before", value: options.endingBefore),

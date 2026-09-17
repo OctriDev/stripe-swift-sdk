@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1PricesMethods {
-    struct PostPricesOptions: Codable {
+extension V1PricesMethods {
+    public struct PostPricesOptions: Codable {
         public var currency: String
         public var active: Bool?
         public var billingScheme: PostPricesRequestBodyBillingScheme?
@@ -94,7 +94,7 @@ public extension V1PricesMethods {
     /// - unitAmountDecimal: Same as `unit_amount`, but accepts a decimal value in
     ///   cents (or local equivalent) with at most 12 decimal places. Only one of
     ///   `unit_amount` and `unit_amount_decimal` can be set.
-    static func postPrices(config: ClientConfig, options: PostPricesOptions) async throws -> Price {
+    public static func postPrices(config: ClientConfig, options: PostPricesOptions) async throws -> Price {
         if let lookupKey = options.lookupKey {
             try validateLength("lookup_key", lookupKey, max: 200)
         }
@@ -109,14 +109,6 @@ public extension V1PricesMethods {
 
         let requestBody = PostPricesRequestBody(options: options)
 
-        return try await (sdkRequest(
-            "POST",
-            "/v1/prices",
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostPrices"
-        )).data
+        return try (await sdkRequest("POST", "/v1/prices", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostPrices")).data
     }
 }

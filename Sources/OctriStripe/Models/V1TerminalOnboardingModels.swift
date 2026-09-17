@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1TerminalOnboarding domain models
+// V1TerminalOnboarding domain models
 /// Returns redirect links used for onboarding onto Tap to Pay on iPhone.
 public struct TerminalOnboardingLink: Codable {
     /// Link type options associated with the current onboarding link object.
@@ -25,66 +25,42 @@ public struct TerminalOnboardingLink: Codable {
         case onBehalfOf = "on_behalf_of"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension TerminalOnboardingLink {
-    init(from decoder: Decoder) throws {
+extension TerminalOnboardingLink {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.linkOptions) else {
-            throw SdkValidationError(
-                field: "link_options",
-                code: "required",
-                message: "Validation failed for 'link_options': value is required"
-            )
+            throw SdkValidationError(field: "link_options", code: "required", message: "Validation failed for 'link_options': value is required")
         }
         guard container.contains(.linkType) else {
-            throw SdkValidationError(
-                field: "link_type",
-                code: "required",
-                message: "Validation failed for 'link_type': value is required"
-            )
+            throw SdkValidationError(field: "link_type", code: "required", message: "Validation failed for 'link_type': value is required")
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(
-                field: "object",
-                code: "required",
-                message: "Validation failed for 'object': value is required"
-            )
+            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
         }
         guard container.contains(.redirectUrl) else {
-            throw SdkValidationError(
-                field: "redirect_url",
-                code: "required",
-                message: "Validation failed for 'redirect_url': value is required"
-            )
+            throw SdkValidationError(field: "redirect_url", code: "required", message: "Validation failed for 'redirect_url': value is required")
         }
-        linkOptions = try container.sdkDecodeRequired(.linkOptions)
-        linkType = try container.sdkDecodeRequired(.linkType)
-        object = try container.sdkDecodeRequired(.object)
-        redirectUrl = try container.sdkDecodeRequired(.redirectUrl)
-        onBehalfOf = try container.sdkDecodeIfPresent(.onBehalfOf)
-        try validateLength("redirect_url", redirectUrl, min: nil, max: 5000)
-        if let value = onBehalfOf {
+        self.linkOptions = try container.sdkDecodeRequired(.linkOptions)
+        self.linkType = try container.sdkDecodeRequired(.linkType)
+        self.object = try container.sdkDecodeRequired(.object)
+        self.redirectUrl = try container.sdkDecodeRequired(.redirectUrl)
+        self.onBehalfOf = try container.sdkDecodeIfPresent(.onBehalfOf)
+            try validateLength("redirect_url", self.redirectUrl, min: nil, max: 5000)
+        if let value = self.onBehalfOf {
             try validateLength("on_behalf_of", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension TerminalOnboardingLink {
-    init(
-        linkOptions: TerminalOnboardingLinkLinkOptions,
-        linkType: TerminalOnboardingLinkLinkType,
-        object: TerminalOnboardingLinkObject,
-        redirectUrl: String,
-        onBehalfOf: String? = nil
-    ) throws {
+extension TerminalOnboardingLink {
+    public init(linkOptions: TerminalOnboardingLinkLinkOptions, linkType: TerminalOnboardingLinkLinkType, object: TerminalOnboardingLinkObject, redirectUrl: String, onBehalfOf: String? = nil) throws {
         (self.linkOptions, self.linkType) = (linkOptions, linkType)
         (self.object, self.redirectUrl) = (object, redirectUrl)
         self.onBehalfOf = onBehalfOf
-        try validateLength("redirect_url", self.redirectUrl, min: nil, max: 5000)
+            try validateLength("redirect_url", self.redirectUrl, min: nil, max: 5000)
         if let value = self.onBehalfOf {
             try validateLength("on_behalf_of", value, min: nil, max: 5000)
         }
@@ -103,31 +79,25 @@ public struct TerminalOnboardingLinkAppleTermsAndConditions: Codable {
         case allowRelinking = "allow_relinking"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension TerminalOnboardingLinkAppleTermsAndConditions {
-    init(from decoder: Decoder) throws {
+extension TerminalOnboardingLinkAppleTermsAndConditions {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.merchantDisplayName) else {
-            throw SdkValidationError(
-                field: "merchant_display_name",
-                code: "required",
-                message: "Validation failed for 'merchant_display_name': value is required"
-            )
+            throw SdkValidationError(field: "merchant_display_name", code: "required", message: "Validation failed for 'merchant_display_name': value is required")
         }
-        merchantDisplayName = try container.sdkDecodeRequired(.merchantDisplayName)
-        allowRelinking = try container.sdkDecodeIfPresent(.allowRelinking)
-        try validateLength("merchant_display_name", merchantDisplayName, min: nil, max: 5000)
+        self.merchantDisplayName = try container.sdkDecodeRequired(.merchantDisplayName)
+        self.allowRelinking = try container.sdkDecodeIfPresent(.allowRelinking)
+            try validateLength("merchant_display_name", self.merchantDisplayName, min: nil, max: 5000)
     }
 }
 
-public extension TerminalOnboardingLinkAppleTermsAndConditions {
-    init(merchantDisplayName: String, allowRelinking: Bool? = nil) throws {
+extension TerminalOnboardingLinkAppleTermsAndConditions {
+    public init(merchantDisplayName: String, allowRelinking: Bool? = nil) throws {
         (self.merchantDisplayName, self.allowRelinking) = (merchantDisplayName, allowRelinking)
-        try validateLength("merchant_display_name", self.merchantDisplayName, min: nil, max: 5000)
+            try validateLength("merchant_display_name", self.merchantDisplayName, min: nil, max: 5000)
     }
 }
 
@@ -141,19 +111,19 @@ public struct TerminalOnboardingLinkLinkOptions: Codable {
     }
 
     init() {
-        appleTermsAndConditions = nil
+        self.appleTermsAndConditions = nil
     }
 }
 
-public extension TerminalOnboardingLinkLinkOptions {
-    init(from decoder: Decoder) throws {
+extension TerminalOnboardingLinkLinkOptions {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        appleTermsAndConditions = try container.sdkDecodeIfPresent(.appleTermsAndConditions)
+        self.appleTermsAndConditions = try container.sdkDecodeIfPresent(.appleTermsAndConditions)
     }
 }
 
-public extension TerminalOnboardingLinkLinkOptions {
-    init(appleTermsAndConditions: TerminalOnboardingLinkLinkOptionsAppleTermsAndConditions? = nil) {
+extension TerminalOnboardingLinkLinkOptions {
+    public init(appleTermsAndConditions: TerminalOnboardingLinkLinkOptionsAppleTermsAndConditions? = nil) {
         self.init()
         self.appleTermsAndConditions = appleTermsAndConditions
     }
@@ -164,30 +134,24 @@ public enum TerminalOnboardingLinkLinkOptionsAppleTermsAndConditions {
 }
 
 extension TerminalOnboardingLinkLinkOptionsAppleTermsAndConditions: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for TerminalOnboardingLinkLinkOptionsAppleTermsAndConditions"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for TerminalOnboardingLinkLinkOptionsAppleTermsAndConditions")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             TerminalOnboardingLinkAppleTermsAndConditions.self
         ) {
-            return .terminalOnboardingLinkAppleTermsAndConditions(value)
+            return             .terminalOnboardingLinkAppleTermsAndConditions(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -196,21 +160,19 @@ extension TerminalOnboardingLinkLinkOptionsAppleTermsAndConditions: Codable {
         case let .terminalOnboardingLinkAppleTermsAndConditions(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// The type of link being generated.
 public struct TerminalOnboardingLinkLinkType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let appleTermsAndConditions = TerminalOnboardingLinkLinkType(rawValue: "apple_terms_and_conditions")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -223,15 +185,12 @@ public struct TerminalOnboardingLinkLinkType: RawRepresentable, Hashable, Codabl
 public struct TerminalOnboardingLinkObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let terminalOnboardingLink = TerminalOnboardingLinkObject(rawValue: "terminal.onboarding_link")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

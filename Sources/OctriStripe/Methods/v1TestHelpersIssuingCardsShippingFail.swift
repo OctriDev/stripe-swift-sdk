@@ -7,30 +7,17 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1TestHelpersIssuingCardsShippingFailMethods {
-    /// Updates the shipping status of a test-mode Issuing card to failure. Use the card identifier to simulate a failed
-    /// delivery event, and optionally expand fields in the returned card object.
+    /// Updates the shipping status of a test-mode Issuing card to failure. Use the card identifier to simulate a failed delivery event, and optionally expand fields in the returned card object.
     ///
     /// Updates the shipping status of the specified Issuing Card object to failure .
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postTestHelpersIssuingCardsCardShippingFail(
-        config: ClientConfig,
-        card: String,
-        expand: [String]?
-    ) async throws -> IssuingCard {
+    public static func postTestHelpersIssuingCardsCardShippingFail(config: ClientConfig, card: String, expand: [String]?) async throws -> IssuingCard {
         try validateLength("card", card, max: 5000)
 
         let requestBody = PostTestHelpersIssuingCardsCardShippingFailRequestBody(expand: expand)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/test_helpers/issuing/cards/", sdkEncodePathSegment(sdkWireString(card)), "/shipping/fail"].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostTestHelpersIssuingCardsCardShippingFail"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/test_helpers/issuing/cards/", sdkEncodePathSegment(sdkWireString(card)), "/shipping/fail"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTestHelpersIssuingCardsCardShippingFail")).data
     }
 }

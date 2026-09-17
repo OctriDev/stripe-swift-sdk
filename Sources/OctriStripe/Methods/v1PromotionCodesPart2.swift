@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1PromotionCodesMethods {
-    struct GetPromotionCodesOptions: Codable {
+extension V1PromotionCodesMethods {
+    public struct GetPromotionCodesOptions: Codable {
         public var active: Bool?
         public var code: String?
         public var coupon: String?
@@ -22,8 +22,7 @@ public extension V1PromotionCodesMethods {
         public init() {}
     }
 
-    /// Lists promotion codes. Use the filters to narrow results by active state, customer, coupon, code, or creation
-    /// time, and use cursor parameters to paginate the list.
+    /// Lists promotion codes. Use the filters to narrow results by active state, customer, coupon, code, or creation time, and use cursor parameters to paginate the list.
     ///
     /// Returns a list of your promotion codes.
     ///
@@ -51,10 +50,7 @@ public extension V1PromotionCodesMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    static func getPromotionCodes(
-        config: ClientConfig,
-        options: GetPromotionCodesOptions
-    ) async throws -> GetPromotionCodesResponse {
+    public static func getPromotionCodes(config: ClientConfig, options: GetPromotionCodesOptions) async throws -> GetPromotionCodesResponse {
         if let code = options.code {
             try validateLength("code", code, max: 5000)
         }
@@ -79,7 +75,7 @@ public extension V1PromotionCodesMethods {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try await (sdkRequest("GET", "/v1/promotion_codes", config: config, query: [
+        return try (await sdkRequest("GET", "/v1/promotion_codes", config: config, query: [
             SdkQueryParameter("active", value: options.active),
             SdkQueryParameter("code", value: options.code),
             SdkQueryParameter("coupon", value: options.coupon),

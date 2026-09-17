@@ -11,15 +11,12 @@ import Foundation
 public struct GetBillingCreditGrantsResponseObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let list = GetBillingCreditGrantsResponseObject(rawValue: "list")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -28,19 +25,15 @@ public struct GetBillingCreditGrantsResponseObject: RawRepresentable, Hashable, 
     }
 }
 
-public struct PostBillingCreditGrantsRequestBodyAmountType: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostBillingCreditGrantsRequestBodyAmountType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let monetary = PostBillingCreditGrantsRequestBodyAmountType(rawValue: "monetary")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -49,19 +42,15 @@ public struct PostBillingCreditGrantsRequestBodyAmountType: RawRepresentable, Ha
     }
 }
 
-public struct PostBillingCreditGrantsRequestBodyApplicabilityConfigScopePriceType: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct PostBillingCreditGrantsRequestBodyApplicabilityConfigScopePriceType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let metered = PostBillingCreditGrantsRequestBodyApplicabilityConfigScopePriceType(rawValue: "metered")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -71,20 +60,16 @@ public struct PostBillingCreditGrantsRequestBodyApplicabilityConfigScopePriceTyp
 }
 
 /// The category of this credit grant. It defaults to `paid` if not specified.
-public struct PostBillingCreditGrantsRequestBodyCategory: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostBillingCreditGrantsRequestBodyCategory: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let paid = PostBillingCreditGrantsRequestBodyCategory(rawValue: "paid")
     public static let promotional = PostBillingCreditGrantsRequestBodyCategory(rawValue: "promotional")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -93,19 +78,15 @@ public struct PostBillingCreditGrantsRequestBodyCategory: RawRepresentable, Hash
     }
 }
 
-public struct PostBillingCreditGrantsIdRequestBodyExpiresAtVariant1: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostBillingCreditGrantsIdRequestBodyExpiresAtVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostBillingCreditGrantsIdRequestBodyExpiresAtVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -117,16 +98,13 @@ public struct PostBillingCreditGrantsIdRequestBodyExpiresAtVariant1: RawRepresen
 public struct GetBillingFeedbackOptionsParameter: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let active = GetBillingFeedbackOptionsParameter(rawValue: "active")
     public static let inactive = GetBillingFeedbackOptionsParameter(rawValue: "inactive")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -137,19 +115,15 @@ public struct GetBillingFeedbackOptionsParameter: RawRepresentable, Hashable, Co
 
 /// String representing the object's type. Objects of the same type share the same value. Always has the value
 /// `list`.
-public struct GetBillingFeedbackOptionsResponseObject: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct GetBillingFeedbackOptionsResponseObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let list = GetBillingFeedbackOptionsResponseObject(rawValue: "list")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -160,19 +134,15 @@ public struct GetBillingFeedbackOptionsResponseObject: RawRepresentable, Hashabl
 
 /// Specifies whether to cancel a single event or a range of events for a time period. Time period cancellation
 /// is not supported yet.
-public struct PostBillingMeterEventAdjustmentsRequestBodyType: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostBillingMeterEventAdjustmentsRequestBodyType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let cancel = PostBillingMeterEventAdjustmentsRequestBodyType(rawValue: "cancel")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -184,16 +154,13 @@ public struct PostBillingMeterEventAdjustmentsRequestBodyType: RawRepresentable,
 public struct GetBillingMetersParameter: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let active = GetBillingMetersParameter(rawValue: "active")
     public static let inactive = GetBillingMetersParameter(rawValue: "inactive")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -207,15 +174,12 @@ public struct GetBillingMetersParameter: RawRepresentable, Hashable, Codable, Se
 public struct GetBillingMetersResponseObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let list = GetBillingMetersResponseObject(rawValue: "list")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -224,19 +188,15 @@ public struct GetBillingMetersResponseObject: RawRepresentable, Hashable, Codabl
     }
 }
 
-public struct PostBillingMetersRequestBodyCustomerMappingType: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostBillingMetersRequestBodyCustomerMappingType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let byId = PostBillingMetersRequestBodyCustomerMappingType(rawValue: "by_id")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

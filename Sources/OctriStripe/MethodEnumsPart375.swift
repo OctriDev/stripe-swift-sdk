@@ -210,8 +210,8 @@ extension PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem {
 extension PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem: CaseIterable {
     public static var allCases: [PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem] {
         allCasesPart1
-            + allCasesPart2
-            + allCasesPart3
-            + allCasesPart4
+        +         allCasesPart2
+        +         allCasesPart3
+        +         allCasesPart4
     }
 }

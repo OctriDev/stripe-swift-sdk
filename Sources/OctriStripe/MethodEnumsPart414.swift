@@ -26,41 +26,41 @@ struct PostTerminalConfigurationsConfigurationRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(bbposWisepad3, forKey: SdkCodingKey("bbpos_wisepad3"))
-        try keyedContainer.encodeIfPresent(bbposWiseposE, forKey: SdkCodingKey("bbpos_wisepos_e"))
-        try keyedContainer.encodeIfPresent(cellular, forKey: SdkCodingKey("cellular"))
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(name, forKey: SdkCodingKey("name"))
-        try keyedContainer.encodeIfPresent(offline, forKey: SdkCodingKey("offline"))
-        try keyedContainer.encodeIfPresent(rebootWindow, forKey: SdkCodingKey("reboot_window"))
-        try keyedContainer.encodeIfPresent(stripeS700, forKey: SdkCodingKey("stripe_s700"))
-        try keyedContainer.encodeIfPresent(stripeS710, forKey: SdkCodingKey("stripe_s710"))
-        try keyedContainer.encodeIfPresent(tipping, forKey: SdkCodingKey("tipping"))
-        try keyedContainer.encodeIfPresent(verifoneM425, forKey: SdkCodingKey("verifone_m425"))
-        try keyedContainer.encodeIfPresent(verifoneP400, forKey: SdkCodingKey("verifone_p400"))
-        try keyedContainer.encodeIfPresent(verifoneP630, forKey: SdkCodingKey("verifone_p630"))
-        try keyedContainer.encodeIfPresent(verifoneUx700, forKey: SdkCodingKey("verifone_ux700"))
-        try keyedContainer.encodeIfPresent(verifoneV660p, forKey: SdkCodingKey("verifone_v660p"))
-        try keyedContainer.encodeIfPresent(wifi, forKey: SdkCodingKey("wifi"))
+        try keyedContainer.encodeIfPresent(self.bbposWisepad3, forKey: SdkCodingKey("bbpos_wisepad3"))
+        try keyedContainer.encodeIfPresent(self.bbposWiseposE, forKey: SdkCodingKey("bbpos_wisepos_e"))
+        try keyedContainer.encodeIfPresent(self.cellular, forKey: SdkCodingKey("cellular"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.name, forKey: SdkCodingKey("name"))
+        try keyedContainer.encodeIfPresent(self.offline, forKey: SdkCodingKey("offline"))
+        try keyedContainer.encodeIfPresent(self.rebootWindow, forKey: SdkCodingKey("reboot_window"))
+        try keyedContainer.encodeIfPresent(self.stripeS700, forKey: SdkCodingKey("stripe_s700"))
+        try keyedContainer.encodeIfPresent(self.stripeS710, forKey: SdkCodingKey("stripe_s710"))
+        try keyedContainer.encodeIfPresent(self.tipping, forKey: SdkCodingKey("tipping"))
+        try keyedContainer.encodeIfPresent(self.verifoneM425, forKey: SdkCodingKey("verifone_m425"))
+        try keyedContainer.encodeIfPresent(self.verifoneP400, forKey: SdkCodingKey("verifone_p400"))
+        try keyedContainer.encodeIfPresent(self.verifoneP630, forKey: SdkCodingKey("verifone_p630"))
+        try keyedContainer.encodeIfPresent(self.verifoneUx700, forKey: SdkCodingKey("verifone_ux700"))
+        try keyedContainer.encodeIfPresent(self.verifoneV660p, forKey: SdkCodingKey("verifone_v660p"))
+        try keyedContainer.encodeIfPresent(self.wifi, forKey: SdkCodingKey("wifi"))
     }
 
     init(options: V1TerminalConfigurationsMethods.PostTerminalConfigurationsConfigurationOptions) {
-        bbposWisepad3 = options.bbposWisepad3
-        bbposWiseposE = options.bbposWiseposE
-        cellular = options.cellular
-        expand = options.expand
-        name = options.name
-        offline = options.offline
-        rebootWindow = options.rebootWindow
-        stripeS700 = options.stripeS700
-        stripeS710 = options.stripeS710
-        tipping = options.tipping
-        verifoneM425 = options.verifoneM425
-        verifoneP400 = options.verifoneP400
-        verifoneP630 = options.verifoneP630
-        verifoneUx700 = options.verifoneUx700
-        verifoneV660p = options.verifoneV660p
-        wifi = options.wifi
+        self.bbposWisepad3 = options.bbposWisepad3
+        self.bbposWiseposE = options.bbposWiseposE
+        self.cellular = options.cellular
+        self.expand = options.expand
+        self.name = options.name
+        self.offline = options.offline
+        self.rebootWindow = options.rebootWindow
+        self.stripeS700 = options.stripeS700
+        self.stripeS710 = options.stripeS710
+        self.tipping = options.tipping
+        self.verifoneM425 = options.verifoneM425
+        self.verifoneP400 = options.verifoneP400
+        self.verifoneP630 = options.verifoneP630
+        self.verifoneUx700 = options.verifoneUx700
+        self.verifoneV660p = options.verifoneV660p
+        self.wifi = options.wifi
     }
 }
 
@@ -70,8 +70,8 @@ struct PostTerminalConnectionTokensRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(location, forKey: SdkCodingKey("location"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.location, forKey: SdkCodingKey("location"))
     }
 }
 
@@ -89,29 +89,29 @@ struct PostTerminalLocationsRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(address, forKey: SdkCodingKey("address"))
-        try keyedContainer.encodeIfPresent(addressKana, forKey: SdkCodingKey("address_kana"))
-        try keyedContainer.encodeIfPresent(addressKanji, forKey: SdkCodingKey("address_kanji"))
-        try keyedContainer.encodeIfPresent(configurationOverrides, forKey: SdkCodingKey("configuration_overrides"))
-        try keyedContainer.encodeIfPresent(displayName, forKey: SdkCodingKey("display_name"))
-        try keyedContainer.encodeIfPresent(displayNameKana, forKey: SdkCodingKey("display_name_kana"))
-        try keyedContainer.encodeIfPresent(displayNameKanji, forKey: SdkCodingKey("display_name_kanji"))
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
-        try keyedContainer.encodeIfPresent(phone, forKey: SdkCodingKey("phone"))
+        try keyedContainer.encodeIfPresent(self.address, forKey: SdkCodingKey("address"))
+        try keyedContainer.encodeIfPresent(self.addressKana, forKey: SdkCodingKey("address_kana"))
+        try keyedContainer.encodeIfPresent(self.addressKanji, forKey: SdkCodingKey("address_kanji"))
+        try keyedContainer.encodeIfPresent(self.configurationOverrides, forKey: SdkCodingKey("configuration_overrides"))
+        try keyedContainer.encodeIfPresent(self.displayName, forKey: SdkCodingKey("display_name"))
+        try keyedContainer.encodeIfPresent(self.displayNameKana, forKey: SdkCodingKey("display_name_kana"))
+        try keyedContainer.encodeIfPresent(self.displayNameKanji, forKey: SdkCodingKey("display_name_kanji"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encodeIfPresent(self.phone, forKey: SdkCodingKey("phone"))
     }
 
     init(options: V1TerminalLocationsMethods.PostTerminalLocationsOptions) {
-        address = options.address
-        addressKana = options.addressKana
-        addressKanji = options.addressKanji
-        configurationOverrides = options.configurationOverrides
-        displayName = options.displayName
-        displayNameKana = options.displayNameKana
-        displayNameKanji = options.displayNameKanji
-        expand = options.expand
-        metadata = options.metadata
-        phone = options.phone
+        self.address = options.address
+        self.addressKana = options.addressKana
+        self.addressKanji = options.addressKanji
+        self.configurationOverrides = options.configurationOverrides
+        self.displayName = options.displayName
+        self.displayNameKana = options.displayNameKana
+        self.displayNameKanji = options.displayNameKanji
+        self.expand = options.expand
+        self.metadata = options.metadata
+        self.phone = options.phone
     }
 }
 
@@ -129,29 +129,29 @@ struct PostTerminalLocationsLocationRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(address, forKey: SdkCodingKey("address"))
-        try keyedContainer.encodeIfPresent(addressKana, forKey: SdkCodingKey("address_kana"))
-        try keyedContainer.encodeIfPresent(addressKanji, forKey: SdkCodingKey("address_kanji"))
-        try keyedContainer.encodeIfPresent(configurationOverrides, forKey: SdkCodingKey("configuration_overrides"))
-        try keyedContainer.encodeIfPresent(displayName, forKey: SdkCodingKey("display_name"))
-        try keyedContainer.encodeIfPresent(displayNameKana, forKey: SdkCodingKey("display_name_kana"))
-        try keyedContainer.encodeIfPresent(displayNameKanji, forKey: SdkCodingKey("display_name_kanji"))
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
-        try keyedContainer.encodeIfPresent(phone, forKey: SdkCodingKey("phone"))
+        try keyedContainer.encodeIfPresent(self.address, forKey: SdkCodingKey("address"))
+        try keyedContainer.encodeIfPresent(self.addressKana, forKey: SdkCodingKey("address_kana"))
+        try keyedContainer.encodeIfPresent(self.addressKanji, forKey: SdkCodingKey("address_kanji"))
+        try keyedContainer.encodeIfPresent(self.configurationOverrides, forKey: SdkCodingKey("configuration_overrides"))
+        try keyedContainer.encodeIfPresent(self.displayName, forKey: SdkCodingKey("display_name"))
+        try keyedContainer.encodeIfPresent(self.displayNameKana, forKey: SdkCodingKey("display_name_kana"))
+        try keyedContainer.encodeIfPresent(self.displayNameKanji, forKey: SdkCodingKey("display_name_kanji"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encodeIfPresent(self.phone, forKey: SdkCodingKey("phone"))
     }
 
     init(options: V1TerminalLocationsMethods.PostTerminalLocationsLocationOptions) {
-        address = options.address
-        addressKana = options.addressKana
-        addressKanji = options.addressKanji
-        configurationOverrides = options.configurationOverrides
-        displayName = options.displayName
-        displayNameKana = options.displayNameKana
-        displayNameKanji = options.displayNameKanji
-        expand = options.expand
-        metadata = options.metadata
-        phone = options.phone
+        self.address = options.address
+        self.addressKana = options.addressKana
+        self.addressKanji = options.addressKanji
+        self.configurationOverrides = options.configurationOverrides
+        self.displayName = options.displayName
+        self.displayNameKana = options.displayNameKana
+        self.displayNameKanji = options.displayNameKanji
+        self.expand = options.expand
+        self.metadata = options.metadata
+        self.phone = options.phone
     }
 }
 
@@ -163,10 +163,10 @@ struct PostTerminalOnboardingLinksRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encode(linkOptions, forKey: SdkCodingKey("link_options"))
-        try keyedContainer.encode(linkType, forKey: SdkCodingKey("link_type"))
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(onBehalfOf, forKey: SdkCodingKey("on_behalf_of"))
+        try keyedContainer.encode(self.linkOptions, forKey: SdkCodingKey("link_options"))
+        try keyedContainer.encode(self.linkType, forKey: SdkCodingKey("link_type"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.onBehalfOf, forKey: SdkCodingKey("on_behalf_of"))
     }
 }
 
@@ -179,11 +179,11 @@ struct PostTerminalReadersRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encode(registrationCode, forKey: SdkCodingKey("registration_code"))
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(label, forKey: SdkCodingKey("label"))
-        try keyedContainer.encodeIfPresent(location, forKey: SdkCodingKey("location"))
-        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encode(self.registrationCode, forKey: SdkCodingKey("registration_code"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.label, forKey: SdkCodingKey("label"))
+        try keyedContainer.encodeIfPresent(self.location, forKey: SdkCodingKey("location"))
+        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
     }
 }
 
@@ -194,9 +194,9 @@ struct PostTerminalReadersReaderRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(label, forKey: SdkCodingKey("label"))
-        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.label, forKey: SdkCodingKey("label"))
+        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
     }
 }
 
@@ -205,6 +205,6 @@ struct PostTerminalReadersReaderCancelActionRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
     }
 }

@@ -6,38 +6,24 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1TerminalReadersMethods {
-    /// Retrieves a specific Terminal reader by its identifier. Use `expand` when you need additional response fields
-    /// expanded instead of returned as identifiers.
+extension V1TerminalReadersMethods {
+    /// Retrieves a specific Terminal reader by its identifier. Use `expand` when you need additional response fields expanded instead of returned as identifiers.
     ///
     /// Retrieves a Reader object.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    static func getTerminalReadersReader(
-        config: ClientConfig,
-        reader: String,
-        expand: [String]?
-    ) async throws -> GetTerminalReadersReaderResponse {
+    public static func getTerminalReadersReader(config: ClientConfig, reader: String, expand: [String]?) async throws -> GetTerminalReadersReaderResponse {
         try validateLength("reader", reader, max: 5000)
 
-        return try await (sdkRequest(
-            "GET",
-            ["/v1/terminal/readers/", sdkEncodePathSegment(sdkWireString(reader))].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .json,
-            operationId: "GetTerminalReadersReader"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/terminal/readers/", sdkEncodePathSegment(sdkWireString(reader))].joined(), config: config, query: [
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .json, operationId: "GetTerminalReadersReader")).data
     }
 
-    /// Updates the configurable properties of a Terminal reader without changing fields that you omit. Use `label` to
-    /// change or clear the reader label, and use `metadata` to add, update, or remove metadata entries.
+    /// Updates the configurable properties of a Terminal reader without changing fields that you omit. Use `label` to change or clear the reader label, and use `metadata` to add, update, or remove metadata entries.
     ///
-    /// Updates a Reader object by setting the values of the parameters passed. Any parameters not provided will be left
-    /// unchanged.
+    /// Updates a Reader object by setting the values of the parameters passed. Any parameters not provided will be left unchanged.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
@@ -47,25 +33,11 @@ public extension V1TerminalReadersMethods {
     ///   information about the object in a structured format. Individual keys can be
     ///   unset by posting an empty value to them. All keys can be unset by posting an
     ///   empty value to `metadata`.
-    static func postTerminalReadersReader(
-        config: ClientConfig,
-        reader: String,
-        expand: [String]?,
-        label: PostTerminalReadersReaderRequestBodyLabelVariant1?,
-        metadata: PostTerminalReadersReaderRequestBodyMetadata?
-    ) async throws -> PostTerminalReadersReaderResponse {
+    public static func postTerminalReadersReader(config: ClientConfig, reader: String, expand: [String]?, label: PostTerminalReadersReaderRequestBodyLabelVariant1?, metadata: PostTerminalReadersReaderRequestBodyMetadata?) async throws -> PostTerminalReadersReaderResponse {
         try validateLength("reader", reader, max: 5000)
 
         let requestBody = PostTerminalReadersReaderRequestBody(expand: expand, label: label, metadata: metadata)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/terminal/readers/", sdkEncodePathSegment(sdkWireString(reader))].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostTerminalReadersReader"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/terminal/readers/", sdkEncodePathSegment(sdkWireString(reader))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTerminalReadersReader")).data
     }
 }

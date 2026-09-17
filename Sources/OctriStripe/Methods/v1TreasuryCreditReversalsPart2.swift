@@ -6,9 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1TreasuryCreditReversalsMethods {
-    /// Lists credit reversals associated with a financial account. Use `received_credit` and `status` to filter the
-    /// results, and use cursor parameters to paginate through the account's credit reversals.
+extension V1TreasuryCreditReversalsMethods {
+    /// Lists credit reversals associated with a financial account. Use `received_credit` and `status` to filter the results, and use cursor parameters to paginate through the account's credit reversals.
     ///
     /// Returns a list of CreditReversals.
     ///
@@ -29,29 +28,20 @@ public extension V1TreasuryCreditReversalsMethods {
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
     /// - status: Only return CreditReversals for a given status.
-    static func getTreasuryCreditReversals(
-        config: ClientConfig,
-        financialAccount: String,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        receivedCredit: String?,
-        startingAfter: String?,
-        status: GetTreasuryCreditReversalsParameter?
-    ) async throws -> GetTreasuryCreditReversalsResponse {
-        if let endingBefore {
+    public static func getTreasuryCreditReversals(config: ClientConfig, financialAccount: String, endingBefore: String?, expand: [String]?, limit: Int?, receivedCredit: String?, startingAfter: String?, status: GetTreasuryCreditReversalsParameter?) async throws -> GetTreasuryCreditReversalsResponse {
+        if let endingBefore = endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let receivedCredit {
+        if let receivedCredit = receivedCredit {
             try validateLength("received_credit", receivedCredit, max: 5000)
         }
 
-        if let startingAfter {
+        if let startingAfter = startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try await (sdkRequest("GET", "/v1/treasury/credit_reversals", config: config, query: [
+        return try (await sdkRequest("GET", "/v1/treasury/credit_reversals", config: config, query: [
             SdkQueryParameter("financial_account", value: financialAccount),
             SdkQueryParameter("ending_before", value: endingBefore),
             SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),

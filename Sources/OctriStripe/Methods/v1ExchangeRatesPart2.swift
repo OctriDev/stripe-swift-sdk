@@ -6,13 +6,10 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1ExchangeRatesMethods {
-    /// Lists exchange rates from supported currencies. Use `limit`, `starting_after`, and `ending_before` to control
-    /// pagination; the ExchangeRate APIs are deprecated, so use the FX Quotes API for new integrations.
+extension V1ExchangeRatesMethods {
+    /// Lists exchange rates from supported currencies. Use `limit`, `starting_after`, and `ending_before` to control pagination; the ExchangeRate APIs are deprecated, so use the FX Quotes API for new integrations.
     ///
-    /// [Deprecated] The ExchangeRate APIs are deprecated. Please use the FX Quotes API instead. Returns a list of
-    /// objects that contain the rates at which foreign currencies are converted to one another. Only shows the
-    /// currencies for which Stripe supports.
+    /// [Deprecated] The ExchangeRate APIs are deprecated. Please use the FX Quotes API instead. Returns a list of objects that contain the rates at which foreign currencies are converted to one another. Only shows the currencies for which Stripe supports.
     ///
     /// - Parameters:
     /// - endingBefore: A cursor for use in pagination. `ending_before` is the
@@ -29,22 +26,16 @@ public extension V1ExchangeRatesMethods {
     ///   list request and receive 100 objects, ending with the exchange rate for
     ///   currency X, your subsequent call can include `starting_after=X` in order to
     ///   fetch the next page of the list.
-    static func getExchangeRates(
-        config: ClientConfig,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        startingAfter: String?
-    ) async throws -> GetExchangeRatesResponse {
-        if let endingBefore {
+    public static func getExchangeRates(config: ClientConfig, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetExchangeRatesResponse {
+        if let endingBefore = endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let startingAfter {
+        if let startingAfter = startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try await (sdkRequest("GET", "/v1/exchange_rates", config: config, query: [
+        return try (await sdkRequest("GET", "/v1/exchange_rates", config: config, query: [
             SdkQueryParameter("ending_before", value: endingBefore),
             SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
             SdkQueryParameter("limit", value: limit),

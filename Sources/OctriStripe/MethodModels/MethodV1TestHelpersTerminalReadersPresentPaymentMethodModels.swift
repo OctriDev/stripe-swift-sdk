@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1TestHelpersTerminalReadersPresentPaymentMethod operation model declarations
+// Canonical v1TestHelpersTerminalReadersPresentPaymentMethod operation model declarations
 /// Simulated data for the card payment method.
 public struct PostTestHelpersTerminalReadersReaderPresentPaymentMethodRequestBodyCard: Codable {
     public var expMonth: Int
@@ -22,51 +22,37 @@ public struct PostTestHelpersTerminalReadersReaderPresentPaymentMethodRequestBod
         case cvc
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostTestHelpersTerminalReadersReaderPresentPaymentMethodRequestBodyCard {
-    init(from decoder: Decoder) throws {
+extension PostTestHelpersTerminalReadersReaderPresentPaymentMethodRequestBodyCard {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.expMonth) else {
-            throw SdkValidationError(
-                field: "exp_month",
-                code: "required",
-                message: "Validation failed for 'exp_month': value is required"
-            )
+            throw SdkValidationError(field: "exp_month", code: "required", message: "Validation failed for 'exp_month': value is required")
         }
         guard container.contains(.expYear) else {
-            throw SdkValidationError(
-                field: "exp_year",
-                code: "required",
-                message: "Validation failed for 'exp_year': value is required"
-            )
+            throw SdkValidationError(field: "exp_year", code: "required", message: "Validation failed for 'exp_year': value is required")
         }
         guard container.contains(.number) else {
-            throw SdkValidationError(
-                field: "number",
-                code: "required",
-                message: "Validation failed for 'number': value is required"
-            )
+            throw SdkValidationError(field: "number", code: "required", message: "Validation failed for 'number': value is required")
         }
-        expMonth = try container.sdkDecodeRequired(.expMonth)
-        expYear = try container.sdkDecodeRequired(.expYear)
-        number = try container.sdkDecodeRequired(.number)
-        cvc = try container.sdkDecodeIfPresent(.cvc)
-        try validateLength("number", number, min: nil, max: 5000)
-        if let value = cvc {
+        self.expMonth = try container.sdkDecodeRequired(.expMonth)
+        self.expYear = try container.sdkDecodeRequired(.expYear)
+        self.number = try container.sdkDecodeRequired(.number)
+        self.cvc = try container.sdkDecodeIfPresent(.cvc)
+            try validateLength("number", self.number, min: nil, max: 5000)
+        if let value = self.cvc {
             try validateLength("cvc", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PostTestHelpersTerminalReadersReaderPresentPaymentMethodRequestBodyCard {
-    init(expMonth: Int, expYear: Int, number: String, cvc: String? = nil) throws {
+extension PostTestHelpersTerminalReadersReaderPresentPaymentMethodRequestBodyCard {
+    public init(expMonth: Int, expYear: Int, number: String, cvc: String? = nil) throws {
         (self.expMonth, self.expYear) = (expMonth, expYear)
         (self.number, self.cvc) = (number, cvc)
-        try validateLength("number", self.number, min: nil, max: 5000)
+            try validateLength("number", self.number, min: nil, max: 5000)
         if let value = self.cvc {
             try validateLength("cvc", value, min: nil, max: 5000)
         }
@@ -82,22 +68,22 @@ public struct PostTestHelpersTerminalReadersReaderPresentPaymentMethodRequeX78e0
     }
 
     init() {
-        number = nil
+        self.number = nil
     }
 }
 
-public extension PostTestHelpersTerminalReadersReaderPresentPaymentMethodRequeX78e0a8e86f {
-    init(from decoder: Decoder) throws {
+extension PostTestHelpersTerminalReadersReaderPresentPaymentMethodRequeX78e0a8e86f {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        number = try container.sdkDecodeIfPresent(.number)
-        if let value = number {
+        self.number = try container.sdkDecodeIfPresent(.number)
+        if let value = self.number {
             try validateLength("number", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PostTestHelpersTerminalReadersReaderPresentPaymentMethodRequeX78e0a8e86f {
-    init(number: String? = nil) throws {
+extension PostTestHelpersTerminalReadersReaderPresentPaymentMethodRequeX78e0a8e86f {
+    public init(number: String? = nil) throws {
         self.init()
         self.number = number
         if let value = self.number {
@@ -115,22 +101,22 @@ public struct PostTestHelpersTerminalReadersReaderPresentPaymentMethodRequeX3805
     }
 
     init() {
-        number = nil
+        self.number = nil
     }
 }
 
-public extension PostTestHelpersTerminalReadersReaderPresentPaymentMethodRequeX3805a0d5ab {
-    init(from decoder: Decoder) throws {
+extension PostTestHelpersTerminalReadersReaderPresentPaymentMethodRequeX3805a0d5ab {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        number = try container.sdkDecodeIfPresent(.number)
-        if let value = number {
+        self.number = try container.sdkDecodeIfPresent(.number)
+        if let value = self.number {
             try validateLength("number", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PostTestHelpersTerminalReadersReaderPresentPaymentMethodRequeX3805a0d5ab {
-    init(number: String? = nil) throws {
+extension PostTestHelpersTerminalReadersReaderPresentPaymentMethodRequeX3805a0d5ab {
+    public init(number: String? = nil) throws {
         self.init()
         self.number = number
         if let value = self.number {

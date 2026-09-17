@@ -7,31 +7,17 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1TestHelpersTreasuryOutboundPaymentsFailMethods {
-    /// Triggers a test-mode OutboundPayment transition to the failed status. Supply the `id` of an OutboundPayment that
-    /// is currently processing, and use `expand` to request expanded response fields when needed.
+    /// Triggers a test-mode OutboundPayment transition to the failed status. Supply the `id` of an OutboundPayment that is currently processing, and use `expand` to request expanded response fields when needed.
     ///
-    /// Transitions a test mode created OutboundPayment to the failed status. The OutboundPayment must already be in the
-    /// processing state.
+    /// Transitions a test mode created OutboundPayment to the failed status. The OutboundPayment must already be in the processing state.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postTestHelpersTreasuryOutboundPaymentsIdFail(
-        config: ClientConfig,
-        id: String,
-        expand: [String]?
-    ) async throws -> TreasuryOutboundPayment {
+    public static func postTestHelpersTreasuryOutboundPaymentsIdFail(config: ClientConfig, id: String, expand: [String]?) async throws -> TreasuryOutboundPayment {
         try validateLength("id", id, max: 5000)
 
         let requestBody = PostTestHelpersTreasuryOutboundPaymentsIdFailRequestBody(expand: expand)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/test_helpers/treasury/outbound_payments/", sdkEncodePathSegment(sdkWireString(id)), "/fail"].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostTestHelpersTreasuryOutboundPaymentsIdFail"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/test_helpers/treasury/outbound_payments/", sdkEncodePathSegment(sdkWireString(id)), "/fail"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTestHelpersTreasuryOutboundPaymentsIdFail")).data
     }
 }

@@ -6,40 +6,20 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1SourcesSourceTransactionsMethods {
-    /// Retrieves a source transaction by its source and transaction identifiers. Use `source` to identify the parent
-    /// source and `source_transaction` to identify the associated transaction. The response includes the received
-    /// amount, currency, transaction status, payment-method type, and source identifier.
+extension V1SourcesSourceTransactionsMethods {
+    /// Retrieves a source transaction by its source and transaction identifiers. Use `source` to identify the parent source and `source_transaction` to identify the associated transaction. The response includes the received amount, currency, transaction status, payment-method type, and source identifier.
     ///
-    /// Retrieve an existing source transaction object. Supply the unique source ID from a source creation request and
-    /// the source transaction ID and Stripe will return the corresponding up-to-date source object information.
+    /// Retrieve an existing source transaction object. Supply the unique source ID from a source creation request and the source transaction ID and Stripe will return the corresponding up-to-date source object information.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    static func getSourcesSourceSourceTransactionsSourceTransaction(
-        config: ClientConfig,
-        source: String,
-        sourceTransaction: String,
-        expand: [String]?
-    ) async throws -> SourceTransaction {
+    public static func getSourcesSourceSourceTransactionsSourceTransaction(config: ClientConfig, source: String, sourceTransaction: String, expand: [String]?) async throws -> SourceTransaction {
         try validateLength("source", source, max: 5000)
 
         try validateLength("source_transaction", sourceTransaction, max: 5000)
 
-        return try await (sdkRequest(
-            "GET",
-            [
-                "/v1/sources/",
-                sdkEncodePathSegment(sdkWireString(source)),
-                "/source_transactions/",
-                sdkEncodePathSegment(sdkWireString(sourceTransaction)),
-            ].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .json,
-            operationId: "GetSourcesSourceSourceTransactionsSourceTransaction"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/sources/", sdkEncodePathSegment(sdkWireString(source)), "/source_transactions/", sdkEncodePathSegment(sdkWireString(sourceTransaction))].joined(), config: config, query: [
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .json, operationId: "GetSourcesSourceSourceTransactionsSourceTransaction")).data
     }
 }

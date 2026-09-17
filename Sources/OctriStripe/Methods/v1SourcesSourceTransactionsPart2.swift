@@ -6,10 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1SourcesSourceTransactionsMethods {
-    /// Lists source transactions associated with a specific source. Use `starting_after` and `ending_before` to
-    /// navigate through the transaction list, and use `limit` to control the page size. The response indicates whether
-    /// more transactions are available.
+extension V1SourcesSourceTransactionsMethods {
+    /// Lists source transactions associated with a specific source. Use `starting_after` and `ending_before` to navigate through the transaction list, and use `limit` to control the page size. The response indicates whether more transactions are available.
     ///
     /// List source transactions for a given source.
     ///
@@ -27,36 +25,22 @@ public extension V1SourcesSourceTransactionsMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    static func getSourcesSourceSourceTransactions(
-        config: ClientConfig,
-        source: String,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        startingAfter: String?
-    ) async throws -> GetSourcesSourceSourceTransactionsResponse {
+    public static func getSourcesSourceSourceTransactions(config: ClientConfig, source: String, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetSourcesSourceSourceTransactionsResponse {
         try validateLength("source", source, max: 5000)
 
-        if let endingBefore {
+        if let endingBefore = endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let startingAfter {
+        if let startingAfter = startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try await (sdkRequest(
-            "GET",
-            ["/v1/sources/", sdkEncodePathSegment(sdkWireString(source)), "/source_transactions"].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("ending_before", value: endingBefore),
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-                SdkQueryParameter("limit", value: limit),
-                SdkQueryParameter("starting_after", value: startingAfter),
-            ],
-            decoder: .json,
-            operationId: "GetSourcesSourceSourceTransactions"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/sources/", sdkEncodePathSegment(sdkWireString(source)), "/source_transactions"].joined(), config: config, query: [
+            SdkQueryParameter("ending_before", value: endingBefore),
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+            SdkQueryParameter("limit", value: limit),
+            SdkQueryParameter("starting_after", value: startingAfter),
+        ], decoder: .json, operationId: "GetSourcesSourceSourceTransactions")).data
     }
 }

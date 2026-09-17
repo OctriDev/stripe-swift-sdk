@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1Person domain models
+// V1Person domain models
 /// This is an object representing a person associated with a Stripe account. A platform can only access a subset of
 /// data in a person for an account where account.controller.requirement_collection is `stripe`, which includes
 /// Standard and Express accounts, after creating an Account Link or Account Session to start Connect onboarding.
@@ -119,113 +119,62 @@ public struct Person: Codable {
         case verification
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension Person {
-    init(from decoder: Decoder) throws {
+extension Person {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.account) else {
-            throw SdkValidationError(
-                field: "account",
-                code: "required",
-                message: "Validation failed for 'account': value is required"
-            )
+            throw SdkValidationError(field: "account", code: "required", message: "Validation failed for 'account': value is required")
         }
         guard container.contains(.created) else {
-            throw SdkValidationError(
-                field: "created",
-                code: "required",
-                message: "Validation failed for 'created': value is required"
-            )
+            throw SdkValidationError(field: "created", code: "required", message: "Validation failed for 'created': value is required")
         }
         guard container.contains(.id) else {
-            throw SdkValidationError(
-                field: "id",
-                code: "required",
-                message: "Validation failed for 'id': value is required"
-            )
+            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(
-                field: "object",
-                code: "required",
-                message: "Validation failed for 'object': value is required"
-            )
+            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
         }
-        account = try container.sdkDecodeRequired(.account)
-        created = try container.sdkDecodeRequired(.created)
-        id = try container.sdkDecodeRequired(.id)
-        object = try container.sdkDecodeRequired(.object)
-        additionalTosAcceptances = try container.sdkDecodeIfPresent(.additionalTosAcceptances)
-        address = try container.sdkDecodeIfPresent(.address)
-        addressKana = try container.sdkDecodeIfPresent(.addressKana)
-        addressKanji = try container.sdkDecodeIfPresent(.addressKanji)
-        dob = try container.sdkDecodeIfPresent(.dob)
-        email = try container.sdkDecodeIfPresent(.email)
-        firstName = try container.sdkDecodeIfPresent(.firstName)
-        firstNameKana = try container.sdkDecodeIfPresent(.firstNameKana)
-        firstNameKanji = try container.sdkDecodeIfPresent(.firstNameKanji)
-        fullNameAliases = try container.sdkDecodeIfPresent(.fullNameAliases)
-        futureRequirements = try container.sdkDecodeIfPresent(.futureRequirements)
-        gender = try container.sdkDecodeIfPresent(.gender)
-        idNumberProvided = try container.sdkDecodeIfPresent(.idNumberProvided)
-        idNumberSecondaryProvided = try container.sdkDecodeIfPresent(.idNumberSecondaryProvided)
-        lastName = try container.sdkDecodeIfPresent(.lastName)
-        lastNameKana = try container.sdkDecodeIfPresent(.lastNameKana)
-        lastNameKanji = try container.sdkDecodeIfPresent(.lastNameKanji)
-        maidenName = try container.sdkDecodeIfPresent(.maidenName)
-        metadata = try container.sdkDecodeIfPresent(.metadata)
-        nationality = try container.sdkDecodeIfPresent(.nationality)
-        phone = try container.sdkDecodeIfPresent(.phone)
-        politicalExposure = try container.sdkDecodeIfPresent(.politicalExposure)
-        registeredAddress = try container.sdkDecodeIfPresent(.registeredAddress)
-        relationship = try container.sdkDecodeIfPresent(.relationship)
-        requirements = try container.sdkDecodeIfPresent(.requirements)
-        ssnLast4Provided = try container.sdkDecodeIfPresent(.ssnLast4Provided)
-        usCfpbData = try container.sdkDecodeIfPresent(.usCfpbData)
-        verification = try container.sdkDecodeIfPresent(.verification)
+        self.account = try container.sdkDecodeRequired(.account)
+        self.created = try container.sdkDecodeRequired(.created)
+        self.id = try container.sdkDecodeRequired(.id)
+        self.object = try container.sdkDecodeRequired(.object)
+        self.additionalTosAcceptances = try container.sdkDecodeIfPresent(.additionalTosAcceptances)
+        self.address = try container.sdkDecodeIfPresent(.address)
+        self.addressKana = try container.sdkDecodeIfPresent(.addressKana)
+        self.addressKanji = try container.sdkDecodeIfPresent(.addressKanji)
+        self.dob = try container.sdkDecodeIfPresent(.dob)
+        self.email = try container.sdkDecodeIfPresent(.email)
+        self.firstName = try container.sdkDecodeIfPresent(.firstName)
+        self.firstNameKana = try container.sdkDecodeIfPresent(.firstNameKana)
+        self.firstNameKanji = try container.sdkDecodeIfPresent(.firstNameKanji)
+        self.fullNameAliases = try container.sdkDecodeIfPresent(.fullNameAliases)
+        self.futureRequirements = try container.sdkDecodeIfPresent(.futureRequirements)
+        self.gender = try container.sdkDecodeIfPresent(.gender)
+        self.idNumberProvided = try container.sdkDecodeIfPresent(.idNumberProvided)
+        self.idNumberSecondaryProvided = try container.sdkDecodeIfPresent(.idNumberSecondaryProvided)
+        self.lastName = try container.sdkDecodeIfPresent(.lastName)
+        self.lastNameKana = try container.sdkDecodeIfPresent(.lastNameKana)
+        self.lastNameKanji = try container.sdkDecodeIfPresent(.lastNameKanji)
+        self.maidenName = try container.sdkDecodeIfPresent(.maidenName)
+        self.metadata = try container.sdkDecodeIfPresent(.metadata)
+        self.nationality = try container.sdkDecodeIfPresent(.nationality)
+        self.phone = try container.sdkDecodeIfPresent(.phone)
+        self.politicalExposure = try container.sdkDecodeIfPresent(.politicalExposure)
+        self.registeredAddress = try container.sdkDecodeIfPresent(.registeredAddress)
+        self.relationship = try container.sdkDecodeIfPresent(.relationship)
+        self.requirements = try container.sdkDecodeIfPresent(.requirements)
+        self.ssnLast4Provided = try container.sdkDecodeIfPresent(.ssnLast4Provided)
+        self.usCfpbData = try container.sdkDecodeIfPresent(.usCfpbData)
+        self.verification = try container.sdkDecodeIfPresent(.verification)
         try sdkValidateConstraints()
     }
 }
 
-public extension Person {
-    init(
-        account: String,
-        created: Int,
-        id: String,
-        object: PersonObject,
-        additionalTosAcceptances: PersonAdditionalTosAcceptances? = nil,
-        address: Address? = nil,
-        addressKana: PersonAddressKana? = nil,
-        addressKanji: PersonAddressKanji? = nil,
-        dob: LegalEntityDob? = nil,
-        email: String? = nil,
-        firstName: String? = nil,
-        firstNameKana: String? = nil,
-        firstNameKanji: String? = nil,
-        fullNameAliases: [String]? = nil,
-        futureRequirements: PersonFutureRequirementsX5b5f7e36? = nil,
-        gender: String? = nil,
-        idNumberProvided: Bool? = nil,
-        idNumberSecondaryProvided: Bool? = nil,
-        lastName: String? = nil,
-        lastNameKana: String? = nil,
-        lastNameKanji: String? = nil,
-        maidenName: String? = nil,
-        metadata: [String: String]? = nil,
-        nationality: String? = nil,
-        phone: String? = nil,
-        politicalExposure: PersonPoliticalExposure? = nil,
-        registeredAddress: Address? = nil,
-        relationship: PersonRelationship? = nil,
-        requirements: PersonRequirementsXe76d5a21? = nil,
-        ssnLast4Provided: Bool? = nil,
-        usCfpbData: PersonUsCfpbDataX28428d0d? = nil,
-        verification: LegalEntityPersonVerification? = nil
-    ) throws {
+extension Person {
+    public init(account: String, created: Int, id: String, object: PersonObject, additionalTosAcceptances: PersonAdditionalTosAcceptances? = nil, address: Address? = nil, addressKana: PersonAddressKana? = nil, addressKanji: PersonAddressKanji? = nil, dob: LegalEntityDob? = nil, email: String? = nil, firstName: String? = nil, firstNameKana: String? = nil, firstNameKanji: String? = nil, fullNameAliases: [String]? = nil, futureRequirements: PersonFutureRequirementsX5b5f7e36? = nil, gender: String? = nil, idNumberProvided: Bool? = nil, idNumberSecondaryProvided: Bool? = nil, lastName: String? = nil, lastNameKana: String? = nil, lastNameKanji: String? = nil, maidenName: String? = nil, metadata: [String: String]? = nil, nationality: String? = nil, phone: String? = nil, politicalExposure: PersonPoliticalExposure? = nil, registeredAddress: Address? = nil, relationship: PersonRelationship? = nil, requirements: PersonRequirementsXe76d5a21? = nil, ssnLast4Provided: Bool? = nil, usCfpbData: PersonUsCfpbDataX28428d0d? = nil, verification: LegalEntityPersonVerification? = nil) throws {
         (self.account, self.created) = (account, created)
         (self.id, self.object) = (id, object)
         (self.additionalTosAcceptances, self.address) = (additionalTosAcceptances, address)
@@ -249,36 +198,36 @@ public extension Person {
 
 extension Person {
     func sdkValidateConstraints() throws {
-        try validateLength("account", account, min: nil, max: 5000)
-        try validateLength("id", id, min: nil, max: 5000)
-        if let value = email {
+            try validateLength("account", self.account, min: nil, max: 5000)
+            try validateLength("id", self.id, min: nil, max: 5000)
+        if let value = self.email {
             try validateLength("email", value, min: nil, max: 5000)
         }
-        if let value = firstName {
+        if let value = self.firstName {
             try validateLength("first_name", value, min: nil, max: 5000)
         }
-        if let value = firstNameKana {
+        if let value = self.firstNameKana {
             try validateLength("first_name_kana", value, min: nil, max: 5000)
         }
-        if let value = firstNameKanji {
+        if let value = self.firstNameKanji {
             try validateLength("first_name_kanji", value, min: nil, max: 5000)
         }
-        if let value = lastName {
+        if let value = self.lastName {
             try validateLength("last_name", value, min: nil, max: 5000)
         }
-        if let value = lastNameKana {
+        if let value = self.lastNameKana {
             try validateLength("last_name_kana", value, min: nil, max: 5000)
         }
-        if let value = lastNameKanji {
+        if let value = self.lastNameKanji {
             try validateLength("last_name_kanji", value, min: nil, max: 5000)
         }
-        if let value = maidenName {
+        if let value = self.maidenName {
             try validateLength("maiden_name", value, min: nil, max: 5000)
         }
-        if let value = nationality {
+        if let value = self.nationality {
             try validateLength("nationality", value, min: nil, max: 5000)
         }
-        if let value = phone {
+        if let value = self.phone {
             try validateLength("phone", value, min: nil, max: 5000)
         }
     }
@@ -289,28 +238,20 @@ public enum PersonAddressKana {
 }
 
 extension PersonAddressKana: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PersonAddressKana"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PersonAddressKana")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(LegalEntityJapanAddress.self) {
-            return .legalEntityJapanAddress(value)
-        }
+        if let value = try? container.decode(LegalEntityJapanAddress.self) { return .legalEntityJapanAddress(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -319,6 +260,7 @@ extension PersonAddressKana: Codable {
         case let .legalEntityJapanAddress(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum PersonAddressKanji {
@@ -326,28 +268,20 @@ public enum PersonAddressKanji {
 }
 
 extension PersonAddressKanji: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PersonAddressKanji"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PersonAddressKanji")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(LegalEntityJapanAddress.self) {
-            return .legalEntityJapanAddress(value)
-        }
+        if let value = try? container.decode(LegalEntityJapanAddress.self) { return .legalEntityJapanAddress(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -356,6 +290,7 @@ extension PersonAddressKanji: Codable {
         case let .legalEntityJapanAddress(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum PersonFutureRequirementsX5b5f7e36 {
@@ -363,28 +298,20 @@ public enum PersonFutureRequirementsX5b5f7e36 {
 }
 
 extension PersonFutureRequirementsX5b5f7e36: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PersonFutureRequirementsX5b5f7e36"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PersonFutureRequirementsX5b5f7e36")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(PersonFutureRequirements.self) {
-            return .personFutureRequirements(value)
-        }
+        if let value = try? container.decode(PersonFutureRequirements.self) { return .personFutureRequirements(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -393,6 +320,7 @@ extension PersonFutureRequirementsX5b5f7e36: Codable {
         case let .personFutureRequirements(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum PersonRequirementsXe76d5a21 {
@@ -400,28 +328,20 @@ public enum PersonRequirementsXe76d5a21 {
 }
 
 extension PersonRequirementsXe76d5a21: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PersonRequirementsXe76d5a21"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PersonRequirementsXe76d5a21")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(PersonRequirements.self) {
-            return .personRequirements(value)
-        }
+        if let value = try? container.decode(PersonRequirements.self) { return .personRequirements(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -430,6 +350,7 @@ extension PersonRequirementsXe76d5a21: Codable {
         case let .personRequirements(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum PersonUsCfpbDataX28428d0d {
@@ -437,28 +358,20 @@ public enum PersonUsCfpbDataX28428d0d {
 }
 
 extension PersonUsCfpbDataX28428d0d: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PersonUsCfpbDataX28428d0d"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PersonUsCfpbDataX28428d0d")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(PersonUsCfpbData.self) {
-            return .personUsCfpbData(value)
-        }
+        if let value = try? container.decode(PersonUsCfpbData.self) { return .personUsCfpbData(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -467,6 +380,7 @@ extension PersonUsCfpbDataX28428d0d: Codable {
         case let .personUsCfpbData(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// Typed representation of the `PersonAdditionalTosAcceptance` API schema.
@@ -485,27 +399,27 @@ public struct PersonAdditionalTosAcceptance: Codable {
     }
 
     init() {
-        (date, ip, userAgent) = (nil, nil, nil)
+        (self.date, self.ip, self.userAgent) = (nil, nil, nil)
     }
 }
 
-public extension PersonAdditionalTosAcceptance {
-    init(from decoder: Decoder) throws {
+extension PersonAdditionalTosAcceptance {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        date = try container.sdkDecodeIfPresent(.date)
-        ip = try container.sdkDecodeIfPresent(.ip)
-        userAgent = try container.sdkDecodeIfPresent(.userAgent)
-        if let value = ip {
+        self.date = try container.sdkDecodeIfPresent(.date)
+        self.ip = try container.sdkDecodeIfPresent(.ip)
+        self.userAgent = try container.sdkDecodeIfPresent(.userAgent)
+        if let value = self.ip {
             try validateLength("ip", value, min: nil, max: 5000)
         }
-        if let value = userAgent {
+        if let value = self.userAgent {
             try validateLength("user_agent", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PersonAdditionalTosAcceptance {
-    init(date: Int? = nil, ip: String? = nil, userAgent: String? = nil) throws {
+extension PersonAdditionalTosAcceptance {
+    public init(date: Int? = nil, ip: String? = nil, userAgent: String? = nil) throws {
         self.init()
         (self.date, self.ip) = (date, ip)
         self.userAgent = userAgent
@@ -528,19 +442,19 @@ public struct PersonAdditionalTosAcceptances: Codable {
     }
 
     init() {
-        account = nil
+        self.account = nil
     }
 }
 
-public extension PersonAdditionalTosAcceptances {
-    init(from decoder: Decoder) throws {
+extension PersonAdditionalTosAcceptances {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        account = try container.sdkDecodeIfPresent(.account)
+        self.account = try container.sdkDecodeIfPresent(.account)
     }
 }
 
-public extension PersonAdditionalTosAcceptances {
-    init(account: PersonAdditionalTosAcceptancesAccount? = nil) {
+extension PersonAdditionalTosAcceptances {
+    public init(account: PersonAdditionalTosAcceptancesAccount? = nil) {
         self.init()
         self.account = account
     }
@@ -551,29 +465,20 @@ public enum PersonAdditionalTosAcceptancesAccount {
 }
 
 extension PersonAdditionalTosAcceptancesAccount: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PersonAdditionalTosAcceptancesAccount"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PersonAdditionalTosAcceptancesAccount")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container
-            .decode(PersonAdditionalTosAcceptance.self) {
-            return .personAdditionalTosAcceptance(value)
-        }
+        if let value = try? container.decode(PersonAdditionalTosAcceptance.self) { return .personAdditionalTosAcceptance(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -582,6 +487,7 @@ extension PersonAdditionalTosAcceptancesAccount: Codable {
         case let .personAdditionalTosAcceptance(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// Typed representation of the `PersonEthnicityDetails` API schema.
@@ -597,23 +503,23 @@ public struct PersonEthnicityDetails: Codable {
     }
 
     init() {
-        (ethnicity, ethnicityOther) = (nil, nil)
+        (self.ethnicity, self.ethnicityOther) = (nil, nil)
     }
 }
 
-public extension PersonEthnicityDetails {
-    init(from decoder: Decoder) throws {
+extension PersonEthnicityDetails {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        ethnicity = try container.sdkDecodeIfPresent(.ethnicity)
-        ethnicityOther = try container.sdkDecodeIfPresent(.ethnicityOther)
-        if let value = ethnicityOther {
+        self.ethnicity = try container.sdkDecodeIfPresent(.ethnicity)
+        self.ethnicityOther = try container.sdkDecodeIfPresent(.ethnicityOther)
+        if let value = self.ethnicityOther {
             try validateLength("ethnicity_other", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PersonEthnicityDetails {
-    init(ethnicity: [PersonEthnicityDetailsEthnicityItem]? = nil, ethnicityOther: String? = nil) throws {
+extension PersonEthnicityDetails {
+    public init(ethnicity: [PersonEthnicityDetailsEthnicityItem]? = nil, ethnicityOther: String? = nil) throws {
         self.init()
         (self.ethnicity, self.ethnicityOther) = (ethnicity, ethnicityOther)
         if let value = self.ethnicityOther {

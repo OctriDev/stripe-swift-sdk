@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1Account domain models
+// V1Account domain models
 /// Typed representation of the `AccountAnnualRevenue` API schema.
 public struct AccountAnnualRevenue: Codable {
     /// A non-negative integer representing the amount in the smallest currency unit.
@@ -21,24 +21,24 @@ public struct AccountAnnualRevenue: Codable {
     }
 
     init() {
-        (amount, currency, fiscalYearEnd) = (nil, nil, nil)
+        (self.amount, self.currency, self.fiscalYearEnd) = (nil, nil, nil)
     }
 }
 
-public extension AccountAnnualRevenue {
-    init(from decoder: Decoder) throws {
+extension AccountAnnualRevenue {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        amount = try container.sdkDecodeIfPresent(.amount)
-        currency = try container.sdkDecodeIfPresent(.currency)
-        fiscalYearEnd = try container.sdkDecodeIfPresent(.fiscalYearEnd)
-        if let value = fiscalYearEnd {
+        self.amount = try container.sdkDecodeIfPresent(.amount)
+        self.currency = try container.sdkDecodeIfPresent(.currency)
+        self.fiscalYearEnd = try container.sdkDecodeIfPresent(.fiscalYearEnd)
+        if let value = self.fiscalYearEnd {
             try validateLength("fiscal_year_end", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension AccountAnnualRevenue {
-    init(amount: Int? = nil, currency: String? = nil, fiscalYearEnd: String? = nil) throws {
+extension AccountAnnualRevenue {
+    public init(amount: Int? = nil, currency: String? = nil, fiscalYearEnd: String? = nil) throws {
         self.init()
         (self.amount, self.currency) = (amount, currency)
         self.fiscalYearEnd = fiscalYearEnd
@@ -66,26 +66,26 @@ public struct AccountBacsDebitPaymentsSettings: Codable {
     }
 
     init() {
-        (displayName, serviceUserNumber) = (nil, nil)
+        (self.displayName, self.serviceUserNumber) = (nil, nil)
     }
 }
 
-public extension AccountBacsDebitPaymentsSettings {
-    init(from decoder: Decoder) throws {
+extension AccountBacsDebitPaymentsSettings {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        displayName = try container.sdkDecodeIfPresent(.displayName)
-        serviceUserNumber = try container.sdkDecodeIfPresent(.serviceUserNumber)
-        if let value = displayName {
+        self.displayName = try container.sdkDecodeIfPresent(.displayName)
+        self.serviceUserNumber = try container.sdkDecodeIfPresent(.serviceUserNumber)
+        if let value = self.displayName {
             try validateLength("display_name", value, min: nil, max: 5000)
         }
-        if let value = serviceUserNumber {
+        if let value = self.serviceUserNumber {
             try validateLength("service_user_number", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension AccountBacsDebitPaymentsSettings {
-    init(displayName: String? = nil, serviceUserNumber: String? = nil) throws {
+extension AccountBacsDebitPaymentsSettings {
+    public init(displayName: String? = nil, serviceUserNumber: String? = nil) throws {
         self.init()
         (self.displayName, self.serviceUserNumber) = (displayName, serviceUserNumber)
         if let value = self.displayName {
@@ -117,33 +117,28 @@ public struct AccountBrandingSettings: Codable {
     }
 
     init() {
-        (icon, logo, primaryColor, secondaryColor) = (nil, nil, nil, nil)
+        (self.icon, self.logo, self.primaryColor, self.secondaryColor) = (nil, nil, nil, nil)
     }
 }
 
-public extension AccountBrandingSettings {
-    init(from decoder: Decoder) throws {
+extension AccountBrandingSettings {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        icon = try container.sdkDecodeIfPresent(.icon)
-        logo = try container.sdkDecodeIfPresent(.logo)
-        primaryColor = try container.sdkDecodeIfPresent(.primaryColor)
-        secondaryColor = try container.sdkDecodeIfPresent(.secondaryColor)
-        if let value = primaryColor {
+        self.icon = try container.sdkDecodeIfPresent(.icon)
+        self.logo = try container.sdkDecodeIfPresent(.logo)
+        self.primaryColor = try container.sdkDecodeIfPresent(.primaryColor)
+        self.secondaryColor = try container.sdkDecodeIfPresent(.secondaryColor)
+        if let value = self.primaryColor {
             try validateLength("primary_color", value, min: nil, max: 5000)
         }
-        if let value = secondaryColor {
+        if let value = self.secondaryColor {
             try validateLength("secondary_color", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension AccountBrandingSettings {
-    init(
-        icon: AccountBrandingSettingsIcon? = nil,
-        logo: AccountBrandingSettingsLogo? = nil,
-        primaryColor: String? = nil,
-        secondaryColor: String? = nil
-    ) throws {
+extension AccountBrandingSettings {
+    public init(icon: AccountBrandingSettingsIcon? = nil, logo: AccountBrandingSettingsLogo? = nil, primaryColor: String? = nil, secondaryColor: String? = nil) throws {
         self.init()
         (self.icon, self.logo) = (icon, logo)
         (self.primaryColor, self.secondaryColor) = (primaryColor, secondaryColor)
@@ -162,31 +157,21 @@ public enum AccountBrandingSettingsIcon {
 }
 
 extension AccountBrandingSettingsIcon: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for AccountBrandingSettingsIcon"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for AccountBrandingSettingsIcon")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(File2.self) {
-            return .file2(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(File2.self) { return .file2(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -196,6 +181,7 @@ extension AccountBrandingSettingsIcon: Codable {
         case let .file2(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum AccountBrandingSettingsLogo {
@@ -204,31 +190,21 @@ public enum AccountBrandingSettingsLogo {
 }
 
 extension AccountBrandingSettingsLogo: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for AccountBrandingSettingsLogo"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for AccountBrandingSettingsLogo")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(File2.self) {
-            return .file2(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(File2.self) { return .file2(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -238,6 +214,7 @@ extension AccountBrandingSettingsLogo: Codable {
         case let .file2(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// Typed representation of the `AccountBusinessProfile` API schema.
@@ -285,52 +262,33 @@ public struct AccountBusinessProfile: Codable {
     }
 
     init() {
-        (annualRevenue, estimatedWorkerCount, mcc, minorityOwnedBusinessDesignation, monthlyEstimatedRevenue) = (
-            nil,
-            nil,
-            nil,
-            nil,
-            nil
-        )
-        (name, productDescription, supportAddress, supportEmail, supportPhone) = (nil, nil, nil, nil, nil)
-        (supportUrl, url) = (nil, nil)
+        (self.annualRevenue, self.estimatedWorkerCount, self.mcc, self.minorityOwnedBusinessDesignation, self.monthlyEstimatedRevenue) = (nil, nil, nil, nil, nil)
+        (self.name, self.productDescription, self.supportAddress, self.supportEmail, self.supportPhone) = (nil, nil, nil, nil, nil)
+        (self.supportUrl, self.url) = (nil, nil)
     }
 }
 
-public extension AccountBusinessProfile {
-    init(from decoder: Decoder) throws {
+extension AccountBusinessProfile {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        annualRevenue = try container.sdkDecodeIfPresent(.annualRevenue)
-        estimatedWorkerCount = try container.sdkDecodeIfPresent(.estimatedWorkerCount)
-        mcc = try container.sdkDecodeIfPresent(.mcc)
-        minorityOwnedBusinessDesignation = try container.sdkDecodeIfPresent(.minorityOwnedBusinessDesignation)
-        monthlyEstimatedRevenue = try container.sdkDecodeIfPresent(.monthlyEstimatedRevenue)
-        name = try container.sdkDecodeIfPresent(.name)
-        productDescription = try container.sdkDecodeIfPresent(.productDescription)
-        supportAddress = try container.sdkDecodeIfPresent(.supportAddress)
-        supportEmail = try container.sdkDecodeIfPresent(.supportEmail)
-        supportPhone = try container.sdkDecodeIfPresent(.supportPhone)
-        supportUrl = try container.sdkDecodeIfPresent(.supportUrl)
-        url = try container.sdkDecodeIfPresent(.url)
+        self.annualRevenue = try container.sdkDecodeIfPresent(.annualRevenue)
+        self.estimatedWorkerCount = try container.sdkDecodeIfPresent(.estimatedWorkerCount)
+        self.mcc = try container.sdkDecodeIfPresent(.mcc)
+        self.minorityOwnedBusinessDesignation = try container.sdkDecodeIfPresent(.minorityOwnedBusinessDesignation)
+        self.monthlyEstimatedRevenue = try container.sdkDecodeIfPresent(.monthlyEstimatedRevenue)
+        self.name = try container.sdkDecodeIfPresent(.name)
+        self.productDescription = try container.sdkDecodeIfPresent(.productDescription)
+        self.supportAddress = try container.sdkDecodeIfPresent(.supportAddress)
+        self.supportEmail = try container.sdkDecodeIfPresent(.supportEmail)
+        self.supportPhone = try container.sdkDecodeIfPresent(.supportPhone)
+        self.supportUrl = try container.sdkDecodeIfPresent(.supportUrl)
+        self.url = try container.sdkDecodeIfPresent(.url)
         try sdkValidateConstraints()
     }
 }
 
-public extension AccountBusinessProfile {
-    init(
-        annualRevenue: AccountBusinessProfileAnnualRevenue? = nil,
-        estimatedWorkerCount: Int? = nil,
-        mcc: String? = nil,
-        minorityOwnedBusinessDesignation: [AccountBusinessProfileMinorityOwnedBusinessDesignationItem]? = nil,
-        monthlyEstimatedRevenue: AccountMonthlyEstimatedRevenue? = nil,
-        name: String? = nil,
-        productDescription: String? = nil,
-        supportAddress: AccountBusinessProfileSupportAddress? = nil,
-        supportEmail: String? = nil,
-        supportPhone: String? = nil,
-        supportUrl: String? = nil,
-        url: String? = nil
-    ) throws {
+extension AccountBusinessProfile {
+    public init(annualRevenue: AccountBusinessProfileAnnualRevenue? = nil, estimatedWorkerCount: Int? = nil, mcc: String? = nil, minorityOwnedBusinessDesignation: [AccountBusinessProfileMinorityOwnedBusinessDesignationItem]? = nil, monthlyEstimatedRevenue: AccountMonthlyEstimatedRevenue? = nil, name: String? = nil, productDescription: String? = nil, supportAddress: AccountBusinessProfileSupportAddress? = nil, supportEmail: String? = nil, supportPhone: String? = nil, supportUrl: String? = nil, url: String? = nil) throws {
         self.init()
         (self.annualRevenue, self.estimatedWorkerCount) = (annualRevenue, estimatedWorkerCount)
         (self.mcc, self.minorityOwnedBusinessDesignation) = (mcc, minorityOwnedBusinessDesignation)
@@ -344,25 +302,25 @@ public extension AccountBusinessProfile {
 
 extension AccountBusinessProfile {
     func sdkValidateConstraints() throws {
-        if let value = mcc {
+        if let value = self.mcc {
             try validateLength("mcc", value, min: nil, max: 5000)
         }
-        if let value = name {
+        if let value = self.name {
             try validateLength("name", value, min: nil, max: 5000)
         }
-        if let value = productDescription {
+        if let value = self.productDescription {
             try validateLength("product_description", value, min: nil, max: 40000)
         }
-        if let value = supportEmail {
+        if let value = self.supportEmail {
             try validateLength("support_email", value, min: nil, max: 5000)
         }
-        if let value = supportPhone {
+        if let value = self.supportPhone {
             try validateLength("support_phone", value, min: nil, max: 5000)
         }
-        if let value = supportUrl {
+        if let value = self.supportUrl {
             try validateLength("support_url", value, min: nil, max: 5000)
         }
-        if let value = url {
+        if let value = self.url {
             try validateLength("url", value, min: nil, max: 5000)
         }
     }
@@ -373,28 +331,20 @@ public enum AccountBusinessProfileAnnualRevenue {
 }
 
 extension AccountBusinessProfileAnnualRevenue: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for AccountBusinessProfileAnnualRevenue"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for AccountBusinessProfileAnnualRevenue")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(AccountAnnualRevenue.self) {
-            return .accountAnnualRevenue(value)
-        }
+        if let value = try? container.decode(AccountAnnualRevenue.self) { return .accountAnnualRevenue(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -403,6 +353,7 @@ extension AccountBusinessProfileAnnualRevenue: Codable {
         case let .accountAnnualRevenue(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum AccountBusinessProfileSupportAddress {
@@ -410,28 +361,20 @@ public enum AccountBusinessProfileSupportAddress {
 }
 
 extension AccountBusinessProfileSupportAddress: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for AccountBusinessProfileSupportAddress"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for AccountBusinessProfileSupportAddress")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(Address.self) {
-            return .address(value)
-        }
+        if let value = try? container.decode(Address.self) { return .address(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -440,4 +383,5 @@ extension AccountBusinessProfileSupportAddress: Codable {
         case let .address(value): try container.encode(value); return true
         }
     }
+
 }

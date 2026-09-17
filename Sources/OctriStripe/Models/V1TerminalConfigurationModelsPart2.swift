@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1TerminalConfiguration domain models
+// V1TerminalConfiguration domain models
 /// Typed representation of the `TerminalConfigurationConfigurationResourceTipping` API schema.
 public struct TerminalConfigurationConfigurationResourceTipping: Codable {
     /// Optional object value serialized in the `aed` wire field.
@@ -74,16 +74,16 @@ public struct TerminalConfigurationConfigurationResourceTipping: Codable {
     }
 
     init() {
-        (aed, aud, cad, chf, czk) = (nil, nil, nil, nil, nil)
-        (dkk, eur, gbp, gip, hkd) = (nil, nil, nil, nil, nil)
-        (huf, jpy, mxn, myr, nok) = (nil, nil, nil, nil, nil)
-        (nzd, pln, ron, sek, sgd) = (nil, nil, nil, nil, nil)
-        usd = nil
+        (self.aed, self.aud, self.cad, self.chf, self.czk) = (nil, nil, nil, nil, nil)
+        (self.dkk, self.eur, self.gbp, self.gip, self.hkd) = (nil, nil, nil, nil, nil)
+        (self.huf, self.jpy, self.mxn, self.myr, self.nok) = (nil, nil, nil, nil, nil)
+        (self.nzd, self.pln, self.ron, self.sek, self.sgd) = (nil, nil, nil, nil, nil)
+        self.usd = nil
     }
 }
 
-public extension TerminalConfigurationConfigurationResourceTipping {
-    init(from decoder: Decoder) throws {
+extension TerminalConfigurationConfigurationResourceTipping {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.init()
         try sdkDecodeFieldsPart1(container)
@@ -91,30 +91,8 @@ public extension TerminalConfigurationConfigurationResourceTipping {
     }
 }
 
-public extension TerminalConfigurationConfigurationResourceTipping {
-    init(
-        aed: TerminalConfigurationConfigurationResourceCurrencySpecificConfig? = nil,
-        aud: TerminalConfigurationConfigurationResourceCurrencySpecificConfig? = nil,
-        cad: TerminalConfigurationConfigurationResourceCurrencySpecificConfig? = nil,
-        chf: TerminalConfigurationConfigurationResourceCurrencySpecificConfig? = nil,
-        czk: TerminalConfigurationConfigurationResourceCurrencySpecificConfig? = nil,
-        dkk: TerminalConfigurationConfigurationResourceCurrencySpecificConfig? = nil,
-        eur: TerminalConfigurationConfigurationResourceCurrencySpecificConfig? = nil,
-        gbp: TerminalConfigurationConfigurationResourceCurrencySpecificConfig? = nil,
-        gip: TerminalConfigurationConfigurationResourceCurrencySpecificConfig? = nil,
-        hkd: TerminalConfigurationConfigurationResourceCurrencySpecificConfig? = nil,
-        huf: TerminalConfigurationConfigurationResourceCurrencySpecificConfig? = nil,
-        jpy: TerminalConfigurationConfigurationResourceCurrencySpecificConfig? = nil,
-        mxn: TerminalConfigurationConfigurationResourceCurrencySpecificConfig? = nil,
-        myr: TerminalConfigurationConfigurationResourceCurrencySpecificConfig? = nil,
-        nok: TerminalConfigurationConfigurationResourceCurrencySpecificConfig? = nil,
-        nzd: TerminalConfigurationConfigurationResourceCurrencySpecificConfig? = nil,
-        pln: TerminalConfigurationConfigurationResourceCurrencySpecificConfig? = nil,
-        ron: TerminalConfigurationConfigurationResourceCurrencySpecificConfig? = nil,
-        sek: TerminalConfigurationConfigurationResourceCurrencySpecificConfig? = nil,
-        sgd: TerminalConfigurationConfigurationResourceCurrencySpecificConfig? = nil,
-        usd: TerminalConfigurationConfigurationResourceCurrencySpecificConfig? = nil
-    ) {
+extension TerminalConfigurationConfigurationResourceTipping {
+    public init(aed: TerminalConfigurationConfigurationResourceCurrencySpecificConfig? = nil, aud: TerminalConfigurationConfigurationResourceCurrencySpecificConfig? = nil, cad: TerminalConfigurationConfigurationResourceCurrencySpecificConfig? = nil, chf: TerminalConfigurationConfigurationResourceCurrencySpecificConfig? = nil, czk: TerminalConfigurationConfigurationResourceCurrencySpecificConfig? = nil, dkk: TerminalConfigurationConfigurationResourceCurrencySpecificConfig? = nil, eur: TerminalConfigurationConfigurationResourceCurrencySpecificConfig? = nil, gbp: TerminalConfigurationConfigurationResourceCurrencySpecificConfig? = nil, gip: TerminalConfigurationConfigurationResourceCurrencySpecificConfig? = nil, hkd: TerminalConfigurationConfigurationResourceCurrencySpecificConfig? = nil, huf: TerminalConfigurationConfigurationResourceCurrencySpecificConfig? = nil, jpy: TerminalConfigurationConfigurationResourceCurrencySpecificConfig? = nil, mxn: TerminalConfigurationConfigurationResourceCurrencySpecificConfig? = nil, myr: TerminalConfigurationConfigurationResourceCurrencySpecificConfig? = nil, nok: TerminalConfigurationConfigurationResourceCurrencySpecificConfig? = nil, nzd: TerminalConfigurationConfigurationResourceCurrencySpecificConfig? = nil, pln: TerminalConfigurationConfigurationResourceCurrencySpecificConfig? = nil, ron: TerminalConfigurationConfigurationResourceCurrencySpecificConfig? = nil, sek: TerminalConfigurationConfigurationResourceCurrencySpecificConfig? = nil, sgd: TerminalConfigurationConfigurationResourceCurrencySpecificConfig? = nil, usd: TerminalConfigurationConfigurationResourceCurrencySpecificConfig? = nil) {
         self.init()
         (self.aed, self.aud) = (aed, aud)
         (self.cad, self.chf) = (cad, chf)
@@ -132,32 +110,32 @@ public extension TerminalConfigurationConfigurationResourceTipping {
 
 extension TerminalConfigurationConfigurationResourceTipping {
     mutating func sdkDecodeFieldsPart1(_ container: KeyedDecodingContainer<CodingKeys>) throws {
-        aed = try container.sdkDecodeIfPresent(.aed)
-        aud = try container.sdkDecodeIfPresent(.aud)
-        cad = try container.sdkDecodeIfPresent(.cad)
-        chf = try container.sdkDecodeIfPresent(.chf)
-        czk = try container.sdkDecodeIfPresent(.czk)
-        dkk = try container.sdkDecodeIfPresent(.dkk)
-        eur = try container.sdkDecodeIfPresent(.eur)
-        gbp = try container.sdkDecodeIfPresent(.gbp)
-        gip = try container.sdkDecodeIfPresent(.gip)
-        hkd = try container.sdkDecodeIfPresent(.hkd)
-        huf = try container.sdkDecodeIfPresent(.huf)
-        jpy = try container.sdkDecodeIfPresent(.jpy)
+        self.aed = try container.sdkDecodeIfPresent(.aed)
+        self.aud = try container.sdkDecodeIfPresent(.aud)
+        self.cad = try container.sdkDecodeIfPresent(.cad)
+        self.chf = try container.sdkDecodeIfPresent(.chf)
+        self.czk = try container.sdkDecodeIfPresent(.czk)
+        self.dkk = try container.sdkDecodeIfPresent(.dkk)
+        self.eur = try container.sdkDecodeIfPresent(.eur)
+        self.gbp = try container.sdkDecodeIfPresent(.gbp)
+        self.gip = try container.sdkDecodeIfPresent(.gip)
+        self.hkd = try container.sdkDecodeIfPresent(.hkd)
+        self.huf = try container.sdkDecodeIfPresent(.huf)
+        self.jpy = try container.sdkDecodeIfPresent(.jpy)
     }
 }
 
 extension TerminalConfigurationConfigurationResourceTipping {
     mutating func sdkDecodeFieldsPart2(_ container: KeyedDecodingContainer<CodingKeys>) throws {
-        mxn = try container.sdkDecodeIfPresent(.mxn)
-        myr = try container.sdkDecodeIfPresent(.myr)
-        nok = try container.sdkDecodeIfPresent(.nok)
-        nzd = try container.sdkDecodeIfPresent(.nzd)
-        pln = try container.sdkDecodeIfPresent(.pln)
-        ron = try container.sdkDecodeIfPresent(.ron)
-        sek = try container.sdkDecodeIfPresent(.sek)
-        sgd = try container.sdkDecodeIfPresent(.sgd)
-        usd = try container.sdkDecodeIfPresent(.usd)
+        self.mxn = try container.sdkDecodeIfPresent(.mxn)
+        self.myr = try container.sdkDecodeIfPresent(.myr)
+        self.nok = try container.sdkDecodeIfPresent(.nok)
+        self.nzd = try container.sdkDecodeIfPresent(.nzd)
+        self.pln = try container.sdkDecodeIfPresent(.pln)
+        self.ron = try container.sdkDecodeIfPresent(.ron)
+        self.sek = try container.sdkDecodeIfPresent(.sek)
+        self.sgd = try container.sdkDecodeIfPresent(.sgd)
+        self.usd = try container.sdkDecodeIfPresent(.usd)
     }
 }
 
@@ -180,35 +158,24 @@ public struct TerminalConfigurationConfigurationResourceWifiConfig: Codable {
         case personalPsk = "personal_psk"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension TerminalConfigurationConfigurationResourceWifiConfig {
-    init(from decoder: Decoder) throws {
+extension TerminalConfigurationConfigurationResourceWifiConfig {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.type) else {
-            throw SdkValidationError(
-                field: "type",
-                code: "required",
-                message: "Validation failed for 'type': value is required"
-            )
+            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
         }
-        type = try container.sdkDecodeRequired(.type)
-        enterpriseEapPeap = try container.sdkDecodeIfPresent(.enterpriseEapPeap)
-        enterpriseEapTls = try container.sdkDecodeIfPresent(.enterpriseEapTls)
-        personalPsk = try container.sdkDecodeIfPresent(.personalPsk)
+        self.type = try container.sdkDecodeRequired(.type)
+        self.enterpriseEapPeap = try container.sdkDecodeIfPresent(.enterpriseEapPeap)
+        self.enterpriseEapTls = try container.sdkDecodeIfPresent(.enterpriseEapTls)
+        self.personalPsk = try container.sdkDecodeIfPresent(.personalPsk)
     }
 }
 
-public extension TerminalConfigurationConfigurationResourceWifiConfig {
-    init(
-        type: TerminalConfigurationConfigurationResourceWifiConfigType,
-        enterpriseEapPeap: TerminalConfigurationConfigurationResourceEnterprisePeapWifi? = nil,
-        enterpriseEapTls: TerminalConfigurationConfigurationResourceEnterpriseTlsWifi? = nil,
-        personalPsk: TerminalConfigurationConfigurationResourcePersonalPskWifi? = nil
-    ) {
+extension TerminalConfigurationConfigurationResourceWifiConfig {
+    public init(type: TerminalConfigurationConfigurationResourceWifiConfigType, enterpriseEapPeap: TerminalConfigurationConfigurationResourceEnterprisePeapWifi? = nil, enterpriseEapTls: TerminalConfigurationConfigurationResourceEnterpriseTlsWifi? = nil, personalPsk: TerminalConfigurationConfigurationResourcePersonalPskWifi? = nil) {
         (self.type, self.enterpriseEapPeap) = (type, enterpriseEapPeap)
         (self.enterpriseEapTls, self.personalPsk) = (enterpriseEapTls, personalPsk)
     }
@@ -218,15 +185,12 @@ public extension TerminalConfigurationConfigurationResourceWifiConfig {
 public struct TerminalConfigurationObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let terminalConfiguration = TerminalConfigurationObject(rawValue: "terminal.configuration")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -237,23 +201,17 @@ public struct TerminalConfigurationObject: RawRepresentable, Hashable, Codable, 
 
 /// Security type of the WiFi network. The hash with the corresponding name contains the credentials for this
 /// security type.
-public struct TerminalConfigurationConfigurationResourceWifiConfigType: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct TerminalConfigurationConfigurationResourceWifiConfigType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let enterpriseEapPeap =
-        TerminalConfigurationConfigurationResourceWifiConfigType(rawValue: "enterprise_eap_peap")
-    public static let enterpriseEapTls =
-        TerminalConfigurationConfigurationResourceWifiConfigType(rawValue: "enterprise_eap_tls")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let enterpriseEapPeap = TerminalConfigurationConfigurationResourceWifiConfigType(rawValue: "enterprise_eap_peap")
+    public static let enterpriseEapTls = TerminalConfigurationConfigurationResourceWifiConfigType(rawValue: "enterprise_eap_tls")
     public static let personalPsk = TerminalConfigurationConfigurationResourceWifiConfigType(rawValue: "personal_psk")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

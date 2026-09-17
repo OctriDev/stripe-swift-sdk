@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1PaymentIntentNext domain models
+// V1PaymentIntentNext domain models
 /// Typed representation of the `PaymentIntentNextAction` API schema.
 public struct PaymentIntentNextAction: Codable {
     /// Type of the next action to perform. Refer to the other child attributes under `next_action` for available
@@ -80,72 +80,43 @@ public struct PaymentIntentNextAction: Codable {
         case wechatPayRedirectToIosApp = "wechat_pay_redirect_to_ios_app"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PaymentIntentNextAction {
-    init(from decoder: Decoder) throws {
+extension PaymentIntentNextAction {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.type) else {
-            throw SdkValidationError(
-                field: "type",
-                code: "required",
-                message: "Validation failed for 'type': value is required"
-            )
+            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
         }
-        type = try container.sdkDecodeRequired(.type)
-        alipayHandleRedirect = try container.sdkDecodeIfPresent(.alipayHandleRedirect)
-        blikAuthorize = try container.sdkDecodeIfPresent(.blikAuthorize)
-        boletoDisplayDetails = try container.sdkDecodeIfPresent(.boletoDisplayDetails)
-        cardAwaitNotification = try container.sdkDecodeIfPresent(.cardAwaitNotification)
-        cashappHandleRedirectOrDisplayQrCode = try container.sdkDecodeIfPresent(.cashappHandleRedirectOrDisplayQrCode)
-        displayBankTransferInstructions = try container.sdkDecodeIfPresent(.displayBankTransferInstructions)
-        klarnaDisplayQrCode = try container.sdkDecodeIfPresent(.klarnaDisplayQrCode)
-        konbiniDisplayDetails = try container.sdkDecodeIfPresent(.konbiniDisplayDetails)
-        multibancoDisplayDetails = try container.sdkDecodeIfPresent(.multibancoDisplayDetails)
-        oxxoDisplayDetails = try container.sdkDecodeIfPresent(.oxxoDisplayDetails)
-        paynowDisplayQrCode = try container.sdkDecodeIfPresent(.paynowDisplayQrCode)
-        pixDisplayQrCode = try container.sdkDecodeIfPresent(.pixDisplayQrCode)
-        promptpayDisplayQrCode = try container.sdkDecodeIfPresent(.promptpayDisplayQrCode)
-        redirectToUrl = try container.sdkDecodeIfPresent(.redirectToUrl)
-        swishHandleRedirectOrDisplayQrCode = try container.sdkDecodeIfPresent(.swishHandleRedirectOrDisplayQrCode)
-        upiHandleRedirectOrDisplayQrCode = try container.sdkDecodeIfPresent(.upiHandleRedirectOrDisplayQrCode)
-        useStripeSdk = try container.sdkDecodeIfPresent(.useStripeSdk)
-        verifyWithMicrodeposits = try container.sdkDecodeIfPresent(.verifyWithMicrodeposits)
-        wechatPayDisplayQrCode = try container.sdkDecodeIfPresent(.wechatPayDisplayQrCode)
-        wechatPayRedirectToAndroidApp = try container.sdkDecodeIfPresent(.wechatPayRedirectToAndroidApp)
-        wechatPayRedirectToIosApp = try container.sdkDecodeIfPresent(.wechatPayRedirectToIosApp)
-        try validateLength("type", type, min: nil, max: 5000)
+        self.type = try container.sdkDecodeRequired(.type)
+        self.alipayHandleRedirect = try container.sdkDecodeIfPresent(.alipayHandleRedirect)
+        self.blikAuthorize = try container.sdkDecodeIfPresent(.blikAuthorize)
+        self.boletoDisplayDetails = try container.sdkDecodeIfPresent(.boletoDisplayDetails)
+        self.cardAwaitNotification = try container.sdkDecodeIfPresent(.cardAwaitNotification)
+        self.cashappHandleRedirectOrDisplayQrCode = try container.sdkDecodeIfPresent(.cashappHandleRedirectOrDisplayQrCode)
+        self.displayBankTransferInstructions = try container.sdkDecodeIfPresent(.displayBankTransferInstructions)
+        self.klarnaDisplayQrCode = try container.sdkDecodeIfPresent(.klarnaDisplayQrCode)
+        self.konbiniDisplayDetails = try container.sdkDecodeIfPresent(.konbiniDisplayDetails)
+        self.multibancoDisplayDetails = try container.sdkDecodeIfPresent(.multibancoDisplayDetails)
+        self.oxxoDisplayDetails = try container.sdkDecodeIfPresent(.oxxoDisplayDetails)
+        self.paynowDisplayQrCode = try container.sdkDecodeIfPresent(.paynowDisplayQrCode)
+        self.pixDisplayQrCode = try container.sdkDecodeIfPresent(.pixDisplayQrCode)
+        self.promptpayDisplayQrCode = try container.sdkDecodeIfPresent(.promptpayDisplayQrCode)
+        self.redirectToUrl = try container.sdkDecodeIfPresent(.redirectToUrl)
+        self.swishHandleRedirectOrDisplayQrCode = try container.sdkDecodeIfPresent(.swishHandleRedirectOrDisplayQrCode)
+        self.upiHandleRedirectOrDisplayQrCode = try container.sdkDecodeIfPresent(.upiHandleRedirectOrDisplayQrCode)
+        self.useStripeSdk = try container.sdkDecodeIfPresent(.useStripeSdk)
+        self.verifyWithMicrodeposits = try container.sdkDecodeIfPresent(.verifyWithMicrodeposits)
+        self.wechatPayDisplayQrCode = try container.sdkDecodeIfPresent(.wechatPayDisplayQrCode)
+        self.wechatPayRedirectToAndroidApp = try container.sdkDecodeIfPresent(.wechatPayRedirectToAndroidApp)
+        self.wechatPayRedirectToIosApp = try container.sdkDecodeIfPresent(.wechatPayRedirectToIosApp)
+            try validateLength("type", self.type, min: nil, max: 5000)
     }
 }
 
-public extension PaymentIntentNextAction {
-    init(
-        type: String,
-        alipayHandleRedirect: PaymentIntentNextActionAlipayHandleRedirect? = nil,
-        blikAuthorize: PaymentIntentNextActionBlikAuthorize? = nil,
-        boletoDisplayDetails: PaymentIntentNextActionBoleto? = nil,
-        cardAwaitNotification: PaymentIntentNextActionCardAwaitNotification? = nil,
-        cashappHandleRedirectOrDisplayQrCode: PaymentIntentNextActionCashappHandleRedirectOrDisplayQrCode? = nil,
-        displayBankTransferInstructions: PaymentIntentNextActionDisplayBankTransferInstructions? = nil,
-        klarnaDisplayQrCode: PaymentIntentNextActionKlarnaDisplayQrCode? = nil,
-        konbiniDisplayDetails: PaymentIntentNextActionKonbini? = nil,
-        multibancoDisplayDetails: PaymentIntentNextActionDisplayMultibancoDetails? = nil,
-        oxxoDisplayDetails: PaymentIntentNextActionDisplayOxxoDetails? = nil,
-        paynowDisplayQrCode: PaymentIntentNextActionPaynowDisplayQrCode? = nil,
-        pixDisplayQrCode: PaymentIntentNextActionPixDisplayQrCode? = nil,
-        promptpayDisplayQrCode: PaymentIntentNextActionPromptpayDisplayQrCode? = nil,
-        redirectToUrl: PaymentIntentNextActionRedirectToUrl? = nil,
-        swishHandleRedirectOrDisplayQrCode: PaymentIntentNextActionSwishHandleRedirectOrDisplayQrCode? = nil,
-        upiHandleRedirectOrDisplayQrCode: PaymentIntentNextActionUpiHandleRedirectOrDisplayQrCode? = nil,
-        useStripeSdk: [String: JSONValue]? = nil,
-        verifyWithMicrodeposits: PaymentIntentNextActionVerifyWithMicrodeposits? = nil,
-        wechatPayDisplayQrCode: PaymentIntentNextActionWechatPayDisplayQrCode? = nil,
-        wechatPayRedirectToAndroidApp: PaymentIntentNextActionWechatPayRedirectToAndroidApp? = nil,
-        wechatPayRedirectToIosApp: PaymentIntentNextActionWechatPayRedirectToIosApp? = nil
-    ) throws {
+extension PaymentIntentNextAction {
+    public init(type: String, alipayHandleRedirect: PaymentIntentNextActionAlipayHandleRedirect? = nil, blikAuthorize: PaymentIntentNextActionBlikAuthorize? = nil, boletoDisplayDetails: PaymentIntentNextActionBoleto? = nil, cardAwaitNotification: PaymentIntentNextActionCardAwaitNotification? = nil, cashappHandleRedirectOrDisplayQrCode: PaymentIntentNextActionCashappHandleRedirectOrDisplayQrCode? = nil, displayBankTransferInstructions: PaymentIntentNextActionDisplayBankTransferInstructions? = nil, klarnaDisplayQrCode: PaymentIntentNextActionKlarnaDisplayQrCode? = nil, konbiniDisplayDetails: PaymentIntentNextActionKonbini? = nil, multibancoDisplayDetails: PaymentIntentNextActionDisplayMultibancoDetails? = nil, oxxoDisplayDetails: PaymentIntentNextActionDisplayOxxoDetails? = nil, paynowDisplayQrCode: PaymentIntentNextActionPaynowDisplayQrCode? = nil, pixDisplayQrCode: PaymentIntentNextActionPixDisplayQrCode? = nil, promptpayDisplayQrCode: PaymentIntentNextActionPromptpayDisplayQrCode? = nil, redirectToUrl: PaymentIntentNextActionRedirectToUrl? = nil, swishHandleRedirectOrDisplayQrCode: PaymentIntentNextActionSwishHandleRedirectOrDisplayQrCode? = nil, upiHandleRedirectOrDisplayQrCode: PaymentIntentNextActionUpiHandleRedirectOrDisplayQrCode? = nil, useStripeSdk: [String: JSONValue]? = nil, verifyWithMicrodeposits: PaymentIntentNextActionVerifyWithMicrodeposits? = nil, wechatPayDisplayQrCode: PaymentIntentNextActionWechatPayDisplayQrCode? = nil, wechatPayRedirectToAndroidApp: PaymentIntentNextActionWechatPayRedirectToAndroidApp? = nil, wechatPayRedirectToIosApp: PaymentIntentNextActionWechatPayRedirectToIosApp? = nil) throws {
         (self.type, self.alipayHandleRedirect) = (type, alipayHandleRedirect)
         (self.blikAuthorize, self.boletoDisplayDetails) = (blikAuthorize, boletoDisplayDetails)
         self.cardAwaitNotification = cardAwaitNotification
@@ -163,7 +134,7 @@ public extension PaymentIntentNextAction {
         self.wechatPayDisplayQrCode = wechatPayDisplayQrCode
         self.wechatPayRedirectToAndroidApp = wechatPayRedirectToAndroidApp
         self.wechatPayRedirectToIosApp = wechatPayRedirectToIosApp
-        try validateLength("type", self.type, min: nil, max: 5000)
+            try validateLength("type", self.type, min: nil, max: 5000)
     }
 }
 
@@ -188,34 +159,34 @@ public struct PaymentIntentNextActionAlipayHandleRedirect: Codable {
     }
 
     init() {
-        (nativeData, nativeUrl, returnUrl, url) = (nil, nil, nil, nil)
+        (self.nativeData, self.nativeUrl, self.returnUrl, self.url) = (nil, nil, nil, nil)
     }
 }
 
-public extension PaymentIntentNextActionAlipayHandleRedirect {
-    init(from decoder: Decoder) throws {
+extension PaymentIntentNextActionAlipayHandleRedirect {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        nativeData = try container.sdkDecodeIfPresent(.nativeData)
-        nativeUrl = try container.sdkDecodeIfPresent(.nativeUrl)
-        returnUrl = try container.sdkDecodeIfPresent(.returnUrl)
-        url = try container.sdkDecodeIfPresent(.url)
-        if let value = nativeData {
+        self.nativeData = try container.sdkDecodeIfPresent(.nativeData)
+        self.nativeUrl = try container.sdkDecodeIfPresent(.nativeUrl)
+        self.returnUrl = try container.sdkDecodeIfPresent(.returnUrl)
+        self.url = try container.sdkDecodeIfPresent(.url)
+        if let value = self.nativeData {
             try validateLength("native_data", value, min: nil, max: 5000)
         }
-        if let value = nativeUrl {
+        if let value = self.nativeUrl {
             try validateLength("native_url", value, min: nil, max: 5000)
         }
-        if let value = returnUrl {
+        if let value = self.returnUrl {
             try validateLength("return_url", value, min: nil, max: 5000)
         }
-        if let value = url {
+        if let value = self.url {
             try validateLength("url", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PaymentIntentNextActionAlipayHandleRedirect {
-    init(nativeData: String? = nil, nativeUrl: String? = nil, returnUrl: String? = nil, url: String? = nil) throws {
+extension PaymentIntentNextActionAlipayHandleRedirect {
+    public init(nativeData: String? = nil, nativeUrl: String? = nil, returnUrl: String? = nil, url: String? = nil) throws {
         self.init()
         (self.nativeData, self.nativeUrl) = (nativeData, nativeUrl)
         (self.returnUrl, self.url) = (returnUrl, url)
@@ -236,13 +207,13 @@ public extension PaymentIntentNextActionAlipayHandleRedirect {
 
 /// Typed representation of the `PaymentIntentNextActionBlikAuthorize` API schema.
 public struct PaymentIntentNextActionBlikAuthorize: Codable {
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PaymentIntentNextActionBlikAuthorize {
-    init() {}
+extension PaymentIntentNextActionBlikAuthorize {
+    public init() {
+    }
 }
 
 /// Typed representation of the `PaymentIntentNextActionBoleto` API schema.
@@ -264,31 +235,31 @@ public struct PaymentIntentNextActionBoleto: Codable {
     }
 
     init() {
-        (expiresAt, hostedVoucherUrl, number, pdf) = (nil, nil, nil, nil)
+        (self.expiresAt, self.hostedVoucherUrl, self.number, self.pdf) = (nil, nil, nil, nil)
     }
 }
 
-public extension PaymentIntentNextActionBoleto {
-    init(from decoder: Decoder) throws {
+extension PaymentIntentNextActionBoleto {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        expiresAt = try container.sdkDecodeIfPresent(.expiresAt)
-        hostedVoucherUrl = try container.sdkDecodeIfPresent(.hostedVoucherUrl)
-        number = try container.sdkDecodeIfPresent(.number)
-        pdf = try container.sdkDecodeIfPresent(.pdf)
-        if let value = hostedVoucherUrl {
+        self.expiresAt = try container.sdkDecodeIfPresent(.expiresAt)
+        self.hostedVoucherUrl = try container.sdkDecodeIfPresent(.hostedVoucherUrl)
+        self.number = try container.sdkDecodeIfPresent(.number)
+        self.pdf = try container.sdkDecodeIfPresent(.pdf)
+        if let value = self.hostedVoucherUrl {
             try validateLength("hosted_voucher_url", value, min: nil, max: 5000)
         }
-        if let value = number {
+        if let value = self.number {
             try validateLength("number", value, min: nil, max: 5000)
         }
-        if let value = pdf {
+        if let value = self.pdf {
             try validateLength("pdf", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PaymentIntentNextActionBoleto {
-    init(expiresAt: Int? = nil, hostedVoucherUrl: String? = nil, number: String? = nil, pdf: String? = nil) throws {
+extension PaymentIntentNextActionBoleto {
+    public init(expiresAt: Int? = nil, hostedVoucherUrl: String? = nil, number: String? = nil, pdf: String? = nil) throws {
         self.init()
         (self.expiresAt, self.hostedVoucherUrl) = (expiresAt, hostedVoucherUrl)
         (self.number, self.pdf) = (number, pdf)
@@ -319,20 +290,20 @@ public struct PaymentIntentNextActionCardAwaitNotification: Codable {
     }
 
     init() {
-        (chargeAttemptAt, customerApprovalRequired) = (nil, nil)
+        (self.chargeAttemptAt, self.customerApprovalRequired) = (nil, nil)
     }
 }
 
-public extension PaymentIntentNextActionCardAwaitNotification {
-    init(from decoder: Decoder) throws {
+extension PaymentIntentNextActionCardAwaitNotification {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        chargeAttemptAt = try container.sdkDecodeIfPresent(.chargeAttemptAt)
-        customerApprovalRequired = try container.sdkDecodeIfPresent(.customerApprovalRequired)
+        self.chargeAttemptAt = try container.sdkDecodeIfPresent(.chargeAttemptAt)
+        self.customerApprovalRequired = try container.sdkDecodeIfPresent(.customerApprovalRequired)
     }
 }
 
-public extension PaymentIntentNextActionCardAwaitNotification {
-    init(chargeAttemptAt: Int? = nil, customerApprovalRequired: Bool? = nil) {
+extension PaymentIntentNextActionCardAwaitNotification {
+    public init(chargeAttemptAt: Int? = nil, customerApprovalRequired: Bool? = nil) {
         self.init()
         (self.chargeAttemptAt, self.customerApprovalRequired) = (chargeAttemptAt, customerApprovalRequired)
     }
@@ -354,49 +325,35 @@ public struct PaymentIntentNextActionCashappHandleRedirectOrDisplayQrCode: Codab
         case qrCode = "qr_code"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PaymentIntentNextActionCashappHandleRedirectOrDisplayQrCode {
-    init(from decoder: Decoder) throws {
+extension PaymentIntentNextActionCashappHandleRedirectOrDisplayQrCode {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.hostedInstructionsUrl) else {
-            throw SdkValidationError(
-                field: "hosted_instructions_url",
-                code: "required",
-                message: "Validation failed for 'hosted_instructions_url': value is required"
-            )
+            throw SdkValidationError(field: "hosted_instructions_url", code: "required", message: "Validation failed for 'hosted_instructions_url': value is required")
         }
         guard container.contains(.mobileAuthUrl) else {
-            throw SdkValidationError(
-                field: "mobile_auth_url",
-                code: "required",
-                message: "Validation failed for 'mobile_auth_url': value is required"
-            )
+            throw SdkValidationError(field: "mobile_auth_url", code: "required", message: "Validation failed for 'mobile_auth_url': value is required")
         }
         guard container.contains(.qrCode) else {
-            throw SdkValidationError(
-                field: "qr_code",
-                code: "required",
-                message: "Validation failed for 'qr_code': value is required"
-            )
+            throw SdkValidationError(field: "qr_code", code: "required", message: "Validation failed for 'qr_code': value is required")
         }
-        hostedInstructionsUrl = try container.sdkDecodeRequired(.hostedInstructionsUrl)
-        mobileAuthUrl = try container.sdkDecodeRequired(.mobileAuthUrl)
-        qrCode = try container.sdkDecodeRequired(.qrCode)
-        try validateLength("hosted_instructions_url", hostedInstructionsUrl, min: nil, max: 5000)
-        try validateLength("mobile_auth_url", mobileAuthUrl, min: nil, max: 5000)
+        self.hostedInstructionsUrl = try container.sdkDecodeRequired(.hostedInstructionsUrl)
+        self.mobileAuthUrl = try container.sdkDecodeRequired(.mobileAuthUrl)
+        self.qrCode = try container.sdkDecodeRequired(.qrCode)
+            try validateLength("hosted_instructions_url", self.hostedInstructionsUrl, min: nil, max: 5000)
+            try validateLength("mobile_auth_url", self.mobileAuthUrl, min: nil, max: 5000)
     }
 }
 
-public extension PaymentIntentNextActionCashappHandleRedirectOrDisplayQrCode {
-    init(hostedInstructionsUrl: String, mobileAuthUrl: String, qrCode: PaymentIntentNextActionCashappQrCode) throws {
+extension PaymentIntentNextActionCashappHandleRedirectOrDisplayQrCode {
+    public init(hostedInstructionsUrl: String, mobileAuthUrl: String, qrCode: PaymentIntentNextActionCashappQrCode) throws {
         (self.hostedInstructionsUrl, self.mobileAuthUrl) = (hostedInstructionsUrl, mobileAuthUrl)
         self.qrCode = qrCode
-        try validateLength("hosted_instructions_url", self.hostedInstructionsUrl, min: nil, max: 5000)
-        try validateLength("mobile_auth_url", self.mobileAuthUrl, min: nil, max: 5000)
+            try validateLength("hosted_instructions_url", self.hostedInstructionsUrl, min: nil, max: 5000)
+            try validateLength("mobile_auth_url", self.mobileAuthUrl, min: nil, max: 5000)
     }
 }
 
@@ -415,49 +372,35 @@ public struct PaymentIntentNextActionCashappQrCode: Codable {
         case imageUrlSvg = "image_url_svg"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PaymentIntentNextActionCashappQrCode {
-    init(from decoder: Decoder) throws {
+extension PaymentIntentNextActionCashappQrCode {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.expiresAt) else {
-            throw SdkValidationError(
-                field: "expires_at",
-                code: "required",
-                message: "Validation failed for 'expires_at': value is required"
-            )
+            throw SdkValidationError(field: "expires_at", code: "required", message: "Validation failed for 'expires_at': value is required")
         }
         guard container.contains(.imageUrlPng) else {
-            throw SdkValidationError(
-                field: "image_url_png",
-                code: "required",
-                message: "Validation failed for 'image_url_png': value is required"
-            )
+            throw SdkValidationError(field: "image_url_png", code: "required", message: "Validation failed for 'image_url_png': value is required")
         }
         guard container.contains(.imageUrlSvg) else {
-            throw SdkValidationError(
-                field: "image_url_svg",
-                code: "required",
-                message: "Validation failed for 'image_url_svg': value is required"
-            )
+            throw SdkValidationError(field: "image_url_svg", code: "required", message: "Validation failed for 'image_url_svg': value is required")
         }
-        expiresAt = try container.sdkDecodeRequired(.expiresAt)
-        imageUrlPng = try container.sdkDecodeRequired(.imageUrlPng)
-        imageUrlSvg = try container.sdkDecodeRequired(.imageUrlSvg)
-        try validateLength("image_url_png", imageUrlPng, min: nil, max: 5000)
-        try validateLength("image_url_svg", imageUrlSvg, min: nil, max: 5000)
+        self.expiresAt = try container.sdkDecodeRequired(.expiresAt)
+        self.imageUrlPng = try container.sdkDecodeRequired(.imageUrlPng)
+        self.imageUrlSvg = try container.sdkDecodeRequired(.imageUrlSvg)
+            try validateLength("image_url_png", self.imageUrlPng, min: nil, max: 5000)
+            try validateLength("image_url_svg", self.imageUrlSvg, min: nil, max: 5000)
     }
 }
 
-public extension PaymentIntentNextActionCashappQrCode {
-    init(expiresAt: Int, imageUrlPng: String, imageUrlSvg: String) throws {
+extension PaymentIntentNextActionCashappQrCode {
+    public init(expiresAt: Int, imageUrlPng: String, imageUrlSvg: String) throws {
         (self.expiresAt, self.imageUrlPng) = (expiresAt, imageUrlPng)
         self.imageUrlSvg = imageUrlSvg
-        try validateLength("image_url_png", self.imageUrlPng, min: nil, max: 5000)
-        try validateLength("image_url_svg", self.imageUrlSvg, min: nil, max: 5000)
+            try validateLength("image_url_png", self.imageUrlPng, min: nil, max: 5000)
+            try validateLength("image_url_svg", self.imageUrlSvg, min: nil, max: 5000)
     }
 }
 
@@ -486,45 +429,32 @@ public struct PaymentIntentNextActionDisplayBankTransferInstructions: Codable {
         case reference
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PaymentIntentNextActionDisplayBankTransferInstructions {
-    init(from decoder: Decoder) throws {
+extension PaymentIntentNextActionDisplayBankTransferInstructions {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.type) else {
-            throw SdkValidationError(
-                field: "type",
-                code: "required",
-                message: "Validation failed for 'type': value is required"
-            )
+            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
         }
-        type = try container.sdkDecodeRequired(.type)
-        amountRemaining = try container.sdkDecodeIfPresent(.amountRemaining)
-        currency = try container.sdkDecodeIfPresent(.currency)
-        financialAddresses = try container.sdkDecodeIfPresent(.financialAddresses)
-        hostedInstructionsUrl = try container.sdkDecodeIfPresent(.hostedInstructionsUrl)
-        reference = try container.sdkDecodeIfPresent(.reference)
-        if let value = hostedInstructionsUrl {
+        self.type = try container.sdkDecodeRequired(.type)
+        self.amountRemaining = try container.sdkDecodeIfPresent(.amountRemaining)
+        self.currency = try container.sdkDecodeIfPresent(.currency)
+        self.financialAddresses = try container.sdkDecodeIfPresent(.financialAddresses)
+        self.hostedInstructionsUrl = try container.sdkDecodeIfPresent(.hostedInstructionsUrl)
+        self.reference = try container.sdkDecodeIfPresent(.reference)
+        if let value = self.hostedInstructionsUrl {
             try validateLength("hosted_instructions_url", value, min: nil, max: 5000)
         }
-        if let value = reference {
+        if let value = self.reference {
             try validateLength("reference", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PaymentIntentNextActionDisplayBankTransferInstructions {
-    init(
-        type: PaymentIntentNextActionDisplayBankTransferInstructionsType,
-        amountRemaining: Int? = nil,
-        currency: String? = nil,
-        financialAddresses: [FundingInstructionsBankTransferFinancialAddress]? = nil,
-        hostedInstructionsUrl: String? = nil,
-        reference: String? = nil
-    ) throws {
+extension PaymentIntentNextActionDisplayBankTransferInstructions {
+    public init(type: PaymentIntentNextActionDisplayBankTransferInstructionsType, amountRemaining: Int? = nil, currency: String? = nil, financialAddresses: [FundingInstructionsBankTransferFinancialAddress]? = nil, hostedInstructionsUrl: String? = nil, reference: String? = nil) throws {
         (self.type, self.amountRemaining) = (type, amountRemaining)
         (self.currency, self.financialAddresses) = (currency, financialAddresses)
         (self.hostedInstructionsUrl, self.reference) = (hostedInstructionsUrl, reference)
@@ -556,36 +486,31 @@ public struct PaymentIntentNextActionDisplayMultibancoDetails: Codable {
     }
 
     init() {
-        (entity, expiresAt, hostedVoucherUrl, reference) = (nil, nil, nil, nil)
+        (self.entity, self.expiresAt, self.hostedVoucherUrl, self.reference) = (nil, nil, nil, nil)
     }
 }
 
-public extension PaymentIntentNextActionDisplayMultibancoDetails {
-    init(from decoder: Decoder) throws {
+extension PaymentIntentNextActionDisplayMultibancoDetails {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        entity = try container.sdkDecodeIfPresent(.entity)
-        expiresAt = try container.sdkDecodeIfPresent(.expiresAt)
-        hostedVoucherUrl = try container.sdkDecodeIfPresent(.hostedVoucherUrl)
-        reference = try container.sdkDecodeIfPresent(.reference)
-        if let value = entity {
+        self.entity = try container.sdkDecodeIfPresent(.entity)
+        self.expiresAt = try container.sdkDecodeIfPresent(.expiresAt)
+        self.hostedVoucherUrl = try container.sdkDecodeIfPresent(.hostedVoucherUrl)
+        self.reference = try container.sdkDecodeIfPresent(.reference)
+        if let value = self.entity {
             try validateLength("entity", value, min: nil, max: 5000)
         }
-        if let value = hostedVoucherUrl {
+        if let value = self.hostedVoucherUrl {
             try validateLength("hosted_voucher_url", value, min: nil, max: 5000)
         }
-        if let value = reference {
+        if let value = self.reference {
             try validateLength("reference", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PaymentIntentNextActionDisplayMultibancoDetails {
-    init(
-        entity: String? = nil,
-        expiresAt: Int? = nil,
-        hostedVoucherUrl: String? = nil,
-        reference: String? = nil
-    ) throws {
+extension PaymentIntentNextActionDisplayMultibancoDetails {
+    public init(entity: String? = nil, expiresAt: Int? = nil, hostedVoucherUrl: String? = nil, reference: String? = nil) throws {
         self.init()
         (self.entity, self.expiresAt) = (entity, expiresAt)
         (self.hostedVoucherUrl, self.reference) = (hostedVoucherUrl, reference)

@@ -6,9 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1TreasuryReceivedCreditsMethods {
-    /// Lists received credits associated with a financial account. Use `financial_account` to scope the results,
-    /// `status` and `linked_flows` to filter them, and cursor parameters to paginate the list.
+extension V1TreasuryReceivedCreditsMethods {
+    /// Lists received credits associated with a financial account. Use `financial_account` to scope the results, `status` and `linked_flows` to filter them, and cursor parameters to paginate the list.
     ///
     /// Returns a list of ReceivedCredits.
     ///
@@ -30,25 +29,16 @@ public extension V1TreasuryReceivedCreditsMethods {
     ///   the list.
     /// - status: Only return ReceivedCredits that have the given status:
     ///   `succeeded` or `failed`.
-    static func getTreasuryReceivedCredits(
-        config: ClientConfig,
-        financialAccount: String,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        linkedFlows: GetTreasuryReceivedCreditsParameter?,
-        startingAfter: String?,
-        status: GetTreasuryReceivedCreditsParameterX8a21dc06?
-    ) async throws -> GetTreasuryReceivedCreditsResponse {
-        if let endingBefore {
+    public static func getTreasuryReceivedCredits(config: ClientConfig, financialAccount: String, endingBefore: String?, expand: [String]?, limit: Int?, linkedFlows: GetTreasuryReceivedCreditsParameter?, startingAfter: String?, status: GetTreasuryReceivedCreditsParameterX8a21dc06?) async throws -> GetTreasuryReceivedCreditsResponse {
+        if let endingBefore = endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let startingAfter {
+        if let startingAfter = startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try await (sdkRequest("GET", "/v1/treasury/received_credits", config: config, query: [
+        return try (await sdkRequest("GET", "/v1/treasury/received_credits", config: config, query: [
             SdkQueryParameter("financial_account", value: financialAccount),
             SdkQueryParameter("ending_before", value: endingBefore),
             SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),

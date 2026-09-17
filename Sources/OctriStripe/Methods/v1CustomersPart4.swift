@@ -6,47 +6,27 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1CustomersMethods {
-    /// Deletes a customer and permanently removes the customer record. Active subscriptions for the customer are
-    /// cancelled immediately, and the deletion cannot be undone.
+extension V1CustomersMethods {
+    /// Deletes a customer and permanently removes the customer record. Active subscriptions for the customer are cancelled immediately, and the deletion cannot be undone.
     ///
-    /// Permanently deletes a customer. It cannot be undone. Also immediately cancels any active subscriptions on the
-    /// customer.
-    static func deleteCustomersCustomer(config: ClientConfig, customer: String) async throws -> DeletedCustomer {
+    /// Permanently deletes a customer. It cannot be undone. Also immediately cancels any active subscriptions on the customer.
+    public static func deleteCustomersCustomer(config: ClientConfig, customer: String) async throws -> DeletedCustomer {
         try validateLength("customer", customer, max: 5000)
 
-        return try await (sdkRequest(
-            "DELETE",
-            ["/v1/customers/", sdkEncodePathSegment(sdkWireString(customer))].joined(),
-            config: config,
-            decoder: .json,
-            operationId: "DeleteCustomersCustomer"
-        )).data
+        return try (await sdkRequest("DELETE", ["/v1/customers/", sdkEncodePathSegment(sdkWireString(customer))].joined(), config: config, decoder: .json, operationId: "DeleteCustomersCustomer")).data
     }
 
-    /// Retrieves a customer by its identifier. Use `expand` to include selected related fields in the response when
-    /// needed. The response contains the customer object or the representation used when a customer has been deleted.
+    /// Retrieves a customer by its identifier. Use `expand` to include selected related fields in the response when needed. The response contains the customer object or the representation used when a customer has been deleted.
     ///
     /// Retrieves a Customer object.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    static func getCustomersCustomer(
-        config: ClientConfig,
-        customer: String,
-        expand: [String]?
-    ) async throws -> GetCustomersCustomerResponse {
+    public static func getCustomersCustomer(config: ClientConfig, customer: String, expand: [String]?) async throws -> GetCustomersCustomerResponse {
         try validateLength("customer", customer, max: 5000)
 
-        return try await (sdkRequest(
-            "GET",
-            ["/v1/customers/", sdkEncodePathSegment(sdkWireString(customer))].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .json,
-            operationId: "GetCustomersCustomer"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/customers/", sdkEncodePathSegment(sdkWireString(customer))].joined(), config: config, query: [
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .json, operationId: "GetCustomersCustomer")).data
     }
 }

@@ -6,10 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1IssuingDisputesMethods {
-    /// Creates an Issuing Dispute object. Individual pieces of evidence within the evidence object are optional at this
-    /// point. Stripe only validates that required evidence is present during submission. Refer to Dispute reasons and
-    /// evidence for more details about evidence requirements.
+extension V1IssuingDisputesMethods {
+    /// Creates an Issuing Dispute object. Individual pieces of evidence within the evidence object are optional at this point. Stripe only validates that required evidence is present during submission. Refer to Dispute reasons and evidence for more details about evidence requirements.
     ///
     /// - Parameters:
     /// - amount: The dispute amount in the card's currency and in the [smallest
@@ -26,36 +24,13 @@ public extension V1IssuingDisputesMethods {
     ///   For transaction on Treasury FinancialAccounts, use
     ///   `treasury.received_debit`.
     /// - treasury: Params for disputes related to Treasury FinancialAccounts
-    static func postIssuingDisputes(
-        config: ClientConfig,
-        amount: Int?,
-        evidence: PostIssuingDisputesRequestBodyEvidence?,
-        expand: [String]?,
-        metadata: [String: String]?,
-        transaction: String?,
-        treasury: PostIssuingDisputesRequestBodyTreasury?
-    ) async throws -> IssuingDispute {
-        if let transaction {
+    public static func postIssuingDisputes(config: ClientConfig, amount: Int?, evidence: PostIssuingDisputesRequestBodyEvidence?, expand: [String]?, metadata: [String: String]?, transaction: String?, treasury: PostIssuingDisputesRequestBodyTreasury?) async throws -> IssuingDispute {
+        if let transaction = transaction {
             try validateLength("transaction", transaction, max: 5000)
         }
 
-        let requestBody = PostIssuingDisputesRequestBody(
-            amount: amount,
-            evidence: evidence,
-            expand: expand,
-            metadata: metadata,
-            transaction: transaction,
-            treasury: treasury
-        )
+        let requestBody = PostIssuingDisputesRequestBody(amount: amount, evidence: evidence, expand: expand, metadata: metadata, transaction: transaction, treasury: treasury)
 
-        return try await (sdkRequest(
-            "POST",
-            "/v1/issuing/disputes",
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostIssuingDisputes"
-        )).data
+        return try (await sdkRequest("POST", "/v1/issuing/disputes", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostIssuingDisputes")).data
     }
 }

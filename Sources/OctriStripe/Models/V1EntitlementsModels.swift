@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1Entitlements domain models
+// V1Entitlements domain models
 /// An active entitlement describes access to a feature for a customer.
 public struct EntitlementsActiveEntitlement: Codable {
     /// The Feature that the customer is entitled to.
@@ -26,72 +26,44 @@ public struct EntitlementsActiveEntitlement: Codable {
         case object
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension EntitlementsActiveEntitlement {
-    init(from decoder: Decoder) throws {
+extension EntitlementsActiveEntitlement {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.feature) else {
-            throw SdkValidationError(
-                field: "feature",
-                code: "required",
-                message: "Validation failed for 'feature': value is required"
-            )
+            throw SdkValidationError(field: "feature", code: "required", message: "Validation failed for 'feature': value is required")
         }
         guard container.contains(.id) else {
-            throw SdkValidationError(
-                field: "id",
-                code: "required",
-                message: "Validation failed for 'id': value is required"
-            )
+            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
         }
         guard container.contains(.livemode) else {
-            throw SdkValidationError(
-                field: "livemode",
-                code: "required",
-                message: "Validation failed for 'livemode': value is required"
-            )
+            throw SdkValidationError(field: "livemode", code: "required", message: "Validation failed for 'livemode': value is required")
         }
         guard container.contains(.lookupKey) else {
-            throw SdkValidationError(
-                field: "lookup_key",
-                code: "required",
-                message: "Validation failed for 'lookup_key': value is required"
-            )
+            throw SdkValidationError(field: "lookup_key", code: "required", message: "Validation failed for 'lookup_key': value is required")
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(
-                field: "object",
-                code: "required",
-                message: "Validation failed for 'object': value is required"
-            )
+            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
         }
-        feature = try container.sdkDecodeRequired(.feature)
-        id = try container.sdkDecodeRequired(.id)
-        livemode = try container.sdkDecodeRequired(.livemode)
-        lookupKey = try container.sdkDecodeRequired(.lookupKey)
-        object = try container.sdkDecodeRequired(.object)
-        try validateLength("id", id, min: nil, max: 5000)
-        try validateLength("lookup_key", lookupKey, min: nil, max: 5000)
+        self.feature = try container.sdkDecodeRequired(.feature)
+        self.id = try container.sdkDecodeRequired(.id)
+        self.livemode = try container.sdkDecodeRequired(.livemode)
+        self.lookupKey = try container.sdkDecodeRequired(.lookupKey)
+        self.object = try container.sdkDecodeRequired(.object)
+            try validateLength("id", self.id, min: nil, max: 5000)
+            try validateLength("lookup_key", self.lookupKey, min: nil, max: 5000)
     }
 }
 
-public extension EntitlementsActiveEntitlement {
-    init(
-        feature: EntitlementsActiveEntitlementFeature,
-        id: String,
-        livemode: Bool,
-        lookupKey: String,
-        object: EntitlementsActiveEntitlementObject
-    ) throws {
+extension EntitlementsActiveEntitlement {
+    public init(feature: EntitlementsActiveEntitlementFeature, id: String, livemode: Bool, lookupKey: String, object: EntitlementsActiveEntitlementObject) throws {
         (self.feature, self.id) = (feature, id)
         (self.livemode, self.lookupKey) = (livemode, lookupKey)
         self.object = object
-        try validateLength("id", self.id, min: nil, max: 5000)
-        try validateLength("lookup_key", self.lookupKey, min: nil, max: 5000)
+            try validateLength("id", self.id, min: nil, max: 5000)
+            try validateLength("lookup_key", self.lookupKey, min: nil, max: 5000)
     }
 }
 
@@ -101,31 +73,21 @@ public enum EntitlementsActiveEntitlementFeature {
 }
 
 extension EntitlementsActiveEntitlementFeature: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for EntitlementsActiveEntitlementFeature"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for EntitlementsActiveEntitlementFeature")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(EntitlementsFeature.self) {
-            return .entitlementsFeature(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(EntitlementsFeature.self) { return .entitlementsFeature(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -135,6 +97,7 @@ extension EntitlementsActiveEntitlementFeature: Codable {
         case let .entitlementsFeature(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// A feature represents a monetizable ability or functionality in your system. Features can be assigned to
@@ -169,93 +132,55 @@ public struct EntitlementsFeature: Codable {
         case object
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension EntitlementsFeature {
-    init(from decoder: Decoder) throws {
+extension EntitlementsFeature {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.active) else {
-            throw SdkValidationError(
-                field: "active",
-                code: "required",
-                message: "Validation failed for 'active': value is required"
-            )
+            throw SdkValidationError(field: "active", code: "required", message: "Validation failed for 'active': value is required")
         }
         guard container.contains(.id) else {
-            throw SdkValidationError(
-                field: "id",
-                code: "required",
-                message: "Validation failed for 'id': value is required"
-            )
+            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
         }
         guard container.contains(.livemode) else {
-            throw SdkValidationError(
-                field: "livemode",
-                code: "required",
-                message: "Validation failed for 'livemode': value is required"
-            )
+            throw SdkValidationError(field: "livemode", code: "required", message: "Validation failed for 'livemode': value is required")
         }
         guard container.contains(.lookupKey) else {
-            throw SdkValidationError(
-                field: "lookup_key",
-                code: "required",
-                message: "Validation failed for 'lookup_key': value is required"
-            )
+            throw SdkValidationError(field: "lookup_key", code: "required", message: "Validation failed for 'lookup_key': value is required")
         }
         guard container.contains(.metadata) else {
-            throw SdkValidationError(
-                field: "metadata",
-                code: "required",
-                message: "Validation failed for 'metadata': value is required"
-            )
+            throw SdkValidationError(field: "metadata", code: "required", message: "Validation failed for 'metadata': value is required")
         }
         guard container.contains(.name) else {
-            throw SdkValidationError(
-                field: "name",
-                code: "required",
-                message: "Validation failed for 'name': value is required"
-            )
+            throw SdkValidationError(field: "name", code: "required", message: "Validation failed for 'name': value is required")
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(
-                field: "object",
-                code: "required",
-                message: "Validation failed for 'object': value is required"
-            )
+            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
         }
-        active = try container.sdkDecodeRequired(.active)
-        id = try container.sdkDecodeRequired(.id)
-        livemode = try container.sdkDecodeRequired(.livemode)
-        lookupKey = try container.sdkDecodeRequired(.lookupKey)
-        metadata = try container.sdkDecodeRequired(.metadata)
-        name = try container.sdkDecodeRequired(.name)
-        object = try container.sdkDecodeRequired(.object)
-        try validateLength("id", id, min: nil, max: 5000)
-        try validateLength("lookup_key", lookupKey, min: nil, max: 5000)
-        try validateLength("name", name, min: nil, max: 80)
+        self.active = try container.sdkDecodeRequired(.active)
+        self.id = try container.sdkDecodeRequired(.id)
+        self.livemode = try container.sdkDecodeRequired(.livemode)
+        self.lookupKey = try container.sdkDecodeRequired(.lookupKey)
+        self.metadata = try container.sdkDecodeRequired(.metadata)
+        self.name = try container.sdkDecodeRequired(.name)
+        self.object = try container.sdkDecodeRequired(.object)
+            try validateLength("id", self.id, min: nil, max: 5000)
+            try validateLength("lookup_key", self.lookupKey, min: nil, max: 5000)
+            try validateLength("name", self.name, min: nil, max: 80)
     }
 }
 
-public extension EntitlementsFeature {
-    init(
-        active: Bool,
-        id: String,
-        livemode: Bool,
-        lookupKey: String,
-        metadata: [String: String],
-        name: String,
-        object: EntitlementsFeatureObject
-    ) throws {
+extension EntitlementsFeature {
+    public init(active: Bool, id: String, livemode: Bool, lookupKey: String, metadata: [String: String], name: String, object: EntitlementsFeatureObject) throws {
         (self.active, self.id) = (active, id)
         (self.livemode, self.lookupKey) = (livemode, lookupKey)
         (self.metadata, self.name) = (metadata, name)
         self.object = object
-        try validateLength("id", self.id, min: nil, max: 5000)
-        try validateLength("lookup_key", self.lookupKey, min: nil, max: 5000)
-        try validateLength("name", self.name, min: nil, max: 80)
+            try validateLength("id", self.id, min: nil, max: 5000)
+            try validateLength("lookup_key", self.lookupKey, min: nil, max: 5000)
+            try validateLength("name", self.name, min: nil, max: 80)
     }
 }
 
@@ -263,16 +188,12 @@ public extension EntitlementsFeature {
 public struct EntitlementsActiveEntitlementObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let entitlementsActiveEntitlement =
-        EntitlementsActiveEntitlementObject(rawValue: "entitlements.active_entitlement")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let entitlementsActiveEntitlement = EntitlementsActiveEntitlementObject(rawValue: "entitlements.active_entitlement")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -285,15 +206,12 @@ public struct EntitlementsActiveEntitlementObject: RawRepresentable, Hashable, C
 public struct EntitlementsFeatureObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let entitlementsFeature = EntitlementsFeatureObject(rawValue: "entitlements.feature")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

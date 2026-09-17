@@ -7,31 +7,17 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1TreasuryOutboundTransfersCancelMethods {
-    /// Cancels an outbound transfer before its funds are paid out. Supply the `outbound_transfer` identifier and
-    /// optionally request expanded response fields with `expand`.
+    /// Cancels an outbound transfer before its funds are paid out. Supply the `outbound_transfer` identifier and optionally request expanded response fields with `expand`.
     ///
     /// An OutboundTransfer can be canceled if the funds have not yet been paid out.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postTreasuryOutboundTransfersOutboundTransferCancel(
-        config: ClientConfig,
-        outboundTransfer: String,
-        expand: [String]?
-    ) async throws -> TreasuryOutboundTransfer {
+    public static func postTreasuryOutboundTransfersOutboundTransferCancel(config: ClientConfig, outboundTransfer: String, expand: [String]?) async throws -> TreasuryOutboundTransfer {
         try validateLength("outbound_transfer", outboundTransfer, max: 5000)
 
         let requestBody = PostTreasuryOutboundTransfersOutboundTransferCancelRequestBody(expand: expand)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/treasury/outbound_transfers/", sdkEncodePathSegment(sdkWireString(outboundTransfer)), "/cancel"]
-                .joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostTreasuryOutboundTransfersOutboundTransferCancel"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/treasury/outbound_transfers/", sdkEncodePathSegment(sdkWireString(outboundTransfer)), "/cancel"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTreasuryOutboundTransfersOutboundTransferCancel")).data
     }
 }

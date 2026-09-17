@@ -6,8 +6,7 @@ import Foundation
 import XCTest
 
 extension SdkMethodTests {
-    func testGetCustomersCustomerBalanceTransactionsTransactionGetCustomerX456eabae7aReachesMockAndDecodesResponse(
-    ) async throws {
+    func testGetCustomersCustomerBalanceTransactionsTransactionGetCustomerX456eabae7aReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -28,8 +27,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testGetCustomersCustomerBankAccountsGetCustomersCustomerBankAccountsReachesMockAndDecodesResponse(
-    ) async throws {
+    func testGetCustomersCustomerBankAccountsGetCustomersCustomerBankAccountsReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -52,8 +50,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testGetCustomersCustomerBankAccountsIdGetCustomersCustomerBankAccountsIdReachesMockAndDecodesResponse(
-    ) async throws {
+    func testGetCustomersCustomerBankAccountsIdGetCustomersCustomerBankAccountsIdReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -138,8 +135,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testGetCustomersCustomerCashBalanceTransactionsGetCustomersCustomXfca4eab7a8ReachesMockAndDecodesResponse(
-    ) async throws {
+    func testGetCustomersCustomerCashBalanceTransactionsGetCustomersCustomXfca4eab7a8ReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -162,8 +158,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testGetCustomersCustomerCashBalanceTransactionsTransactionGetCustXca5873d34fReachesMockAndDecodesResponse(
-    ) async throws {
+    func testGetCustomersCustomerCashBalanceTransactionsTransactionGetCustXca5873d34fReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -204,8 +199,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testGetCustomersCustomerPaymentMethodsGetCustomersCustomerPaymentMethodsReachesMockAndDecodesResponse(
-    ) async throws {
+    func testGetCustomersCustomerPaymentMethodsGetCustomersCustomerPaymentMethodsReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -230,8 +224,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testGetCustomersCustomerPaymentMethodsPaymentMethodGetCustomersCuXf116976ddbReachesMockAndDecodesResponse(
-    ) async throws {
+    func testGetCustomersCustomerPaymentMethodsPaymentMethodGetCustomersCuXf116976ddbReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -297,8 +290,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testGetCustomersCustomerSubscriptionsGetCustomersCustomerSubscriptionsReachesMockAndDecodesResponse(
-    ) async throws {
+    func testGetCustomersCustomerSubscriptionsGetCustomersCustomerSubscriptionsReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -321,18 +313,16 @@ extension SdkMethodTests {
         )
     }
 
-    func testGetCustomersCustomerSubscriptionsSubscriptionExposedIdGetCustX2ebcfde64eReachesMockAndDecodesResponse(
-    ) async throws {
+    func testGetCustomersCustomerSubscriptionsSubscriptionExposedIdGetCustX2ebcfde64eReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        let actual = try await client.v1.customers.subscriptions.discount
-            .getCustomersCustomerSubscriptionsSubscriptionExposedId(
-                customer: decoded("\"customer\""),
-                subscriptionExposedId: decoded("\"subscription_exposed_-1\""),
-                expand: decoded("[\"expand\"]")
-            )
+        let actual = try await client.v1.customers.subscriptions.discount.getCustomersCustomerSubscriptionsSubscriptionExposedId(
+            customer: decoded("\"customer\""),
+            subscriptionExposedId: decoded("\"subscription_exposed_-1\""),
+            expand: decoded("[\"expand\"]")
+        )
         let expected = try JSONSerialization.jsonObject(
             with: Data(sdkMethodFixture115Expected.utf8),
             options: [.fragmentsAllowed]
@@ -344,18 +334,16 @@ extension SdkMethodTests {
         )
     }
 
-    func testGetCustomersCustomerSubscriptionsSubscriptionExposedIdDiscounX2ac467fbd4ReachesMockAndDecodesResponse(
-    ) async throws {
+    func testGetCustomersCustomerSubscriptionsSubscriptionExposedIdDiscounX2ac467fbd4ReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        let actual = try await client.v1.customers.subscriptions.discount
-            .getCustomersCustomerSubscriptionsSubscriptionExposedId(
-                customer: decoded("\"customer\""),
-                subscriptionExposedId: decoded("\"subscription_exposed_-1\""),
-                expand: decoded("[\"expand\"]")
-            )
+        let actual = try await client.v1.customers.subscriptions.discount.getCustomersCustomerSubscriptionsSubscriptionExposedId(
+            customer: decoded("\"customer\""),
+            subscriptionExposedId: decoded("\"subscription_exposed_-1\""),
+            expand: decoded("[\"expand\"]")
+        )
         let expected = try JSONSerialization.jsonObject(
             with: Data(sdkMethodFixture116Expected.utf8),
             options: [.fragmentsAllowed]
@@ -478,8 +466,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testGetEntitlementsActiveEntitlementsGetEntitlementsActiveEntitlementsReachesMockAndDecodesResponse(
-    ) async throws {
+    func testGetEntitlementsActiveEntitlementsGetEntitlementsActiveEntitlementsReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -502,8 +489,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testGetEntitlementsActiveEntitlementsIdGetEntitlementsActiveEntitlementsIdReachesMockAndDecodesResponse(
-    ) async throws {
+    func testGetEntitlementsActiveEntitlementsIdGetEntitlementsActiveEntitlementsIdReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }

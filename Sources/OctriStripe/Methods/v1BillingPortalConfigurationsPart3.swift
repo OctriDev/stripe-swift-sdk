@@ -6,7 +6,7 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1BillingPortalConfigurationsMethods {
+extension V1BillingPortalConfigurationsMethods {
     /// Creates a configuration that describes the functionality and behavior of a PortalSession
     ///
     /// - Parameters:
@@ -28,34 +28,9 @@ public extension V1BillingPortalConfigurationsMethods {
     ///   unset by posting an empty value to them. All keys can be unset by posting an
     ///   empty value to `metadata`.
     /// - name: The name of the configuration.
-    static func postBillingPortalConfigurations(
-        config: ClientConfig,
-        features: PostBillingPortalConfigurationsRequestBodyFeatures,
-        businessProfile: PostBillingPortalConfigurationsRequestBodyBusinessProfile?,
-        defaultReturnUrl: String?,
-        expand: [String]?,
-        loginPage: PostBillingPortalConfigurationsRequestBodyLoginPage?,
-        metadata: [String: String]?,
-        name: PostBillingPortalConfigurationsRequestBodyNameVariant1?
-    ) async throws -> BillingPortalConfiguration {
-        let requestBody = PostBillingPortalConfigurationsRequestBody(
-            features: features,
-            businessProfile: businessProfile,
-            defaultReturnUrl: defaultReturnUrl,
-            expand: expand,
-            loginPage: loginPage,
-            metadata: metadata,
-            name: name
-        )
+    public static func postBillingPortalConfigurations(config: ClientConfig, features: PostBillingPortalConfigurationsRequestBodyFeatures, businessProfile: PostBillingPortalConfigurationsRequestBodyBusinessProfile?, defaultReturnUrl: String?, expand: [String]?, loginPage: PostBillingPortalConfigurationsRequestBodyLoginPage?, metadata: [String: String]?, name: PostBillingPortalConfigurationsRequestBodyNameVariant1?) async throws -> BillingPortalConfiguration {
+        let requestBody = PostBillingPortalConfigurationsRequestBody(features: features, businessProfile: businessProfile, defaultReturnUrl: defaultReturnUrl, expand: expand, loginPage: loginPage, metadata: metadata, name: name)
 
-        return try await (sdkRequest(
-            "POST",
-            "/v1/billing_portal/configurations",
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostBillingPortalConfigurations"
-        )).data
+        return try (await sdkRequest("POST", "/v1/billing_portal/configurations", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostBillingPortalConfigurations")).data
     }
 }

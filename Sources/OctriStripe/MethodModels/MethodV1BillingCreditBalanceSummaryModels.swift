@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1BillingCreditBalanceSummary operation model declarations
+// Canonical v1BillingCreditBalanceSummary operation model declarations
 public struct GetBillingCreditBalanceSummaryParameter: Codable {
     public var type: GetBillingCreditBalanceSummaryParameterType
     /// scope_param
@@ -20,36 +20,26 @@ public struct GetBillingCreditBalanceSummaryParameter: Codable {
         case creditGrant = "credit_grant"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension GetBillingCreditBalanceSummaryParameter {
-    init(from decoder: Decoder) throws {
+extension GetBillingCreditBalanceSummaryParameter {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.type) else {
-            throw SdkValidationError(
-                field: "type",
-                code: "required",
-                message: "Validation failed for 'type': value is required"
-            )
+            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
         }
-        type = try container.sdkDecodeRequired(.type)
-        applicabilityScope = try container.sdkDecodeIfPresent(.applicabilityScope)
-        creditGrant = try container.sdkDecodeIfPresent(.creditGrant)
-        if let value = creditGrant {
+        self.type = try container.sdkDecodeRequired(.type)
+        self.applicabilityScope = try container.sdkDecodeIfPresent(.applicabilityScope)
+        self.creditGrant = try container.sdkDecodeIfPresent(.creditGrant)
+        if let value = self.creditGrant {
             try validateLength("credit_grant", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension GetBillingCreditBalanceSummaryParameter {
-    init(
-        type: GetBillingCreditBalanceSummaryParameterType,
-        applicabilityScope: GetBillingCreditBalanceSummaryParameterApplicabilityScope? = nil,
-        creditGrant: String? = nil
-    ) throws {
+extension GetBillingCreditBalanceSummaryParameter {
+    public init(type: GetBillingCreditBalanceSummaryParameterType, applicabilityScope: GetBillingCreditBalanceSummaryParameterApplicabilityScope? = nil, creditGrant: String? = nil) throws {
         (self.type, self.applicabilityScope) = (type, applicabilityScope)
         self.creditGrant = creditGrant
         if let value = self.creditGrant {
@@ -65,35 +55,30 @@ public struct GetBillingCreditBalanceSummaryParameterApplicabilityScopePricesIte
         case id
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension GetBillingCreditBalanceSummaryParameterApplicabilityScopePricesItem {
-    init(from decoder: Decoder) throws {
+extension GetBillingCreditBalanceSummaryParameterApplicabilityScopePricesItem {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.id) else {
-            throw SdkValidationError(
-                field: "id",
-                code: "required",
-                message: "Validation failed for 'id': value is required"
-            )
+            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
         }
-        id = try container.sdkDecodeRequired(.id)
-        try validateLength("id", id, min: nil, max: 5000)
+        self.id = try container.sdkDecodeRequired(.id)
+            try validateLength("id", self.id, min: nil, max: 5000)
     }
 }
 
-public extension GetBillingCreditBalanceSummaryParameterApplicabilityScopePricesItem {
-    init(id: String) throws {
+extension GetBillingCreditBalanceSummaryParameterApplicabilityScopePricesItem {
+    public init(id: String) throws {
         self.id = id
-        try validateLength("id", self.id, min: nil, max: 5000)
+            try validateLength("id", self.id, min: nil, max: 5000)
     }
 }
 
-public typealias GetBillingCreditBalanceSummaryParameterApplicabilityScopePricesList =
-    [GetBillingCreditBalanceSummaryParameterApplicabilityScopePricesItem]
+
+
+public typealias GetBillingCreditBalanceSummaryParameterApplicabilityScopePricesList = [GetBillingCreditBalanceSummaryParameterApplicabilityScopePricesItem]
 
 public struct GetBillingCreditBalanceSummaryParameterApplicabilityScope: Codable {
     public var priceType: GetBillingCreditBalanceSummaryParameterApplicabilityScopePriceType?
@@ -105,23 +90,20 @@ public struct GetBillingCreditBalanceSummaryParameterApplicabilityScope: Codable
     }
 
     init() {
-        (priceType, prices) = (nil, nil)
+        (self.priceType, self.prices) = (nil, nil)
     }
 }
 
-public extension GetBillingCreditBalanceSummaryParameterApplicabilityScope {
-    init(from decoder: Decoder) throws {
+extension GetBillingCreditBalanceSummaryParameterApplicabilityScope {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        priceType = try container.sdkDecodeIfPresent(.priceType)
-        prices = try container.sdkDecodeIfPresent(.prices)
+        self.priceType = try container.sdkDecodeIfPresent(.priceType)
+        self.prices = try container.sdkDecodeIfPresent(.prices)
     }
 }
 
-public extension GetBillingCreditBalanceSummaryParameterApplicabilityScope {
-    init(
-        priceType: GetBillingCreditBalanceSummaryParameterApplicabilityScopePriceType? = nil,
-        prices: GetBillingCreditBalanceSummaryParameterApplicabilityScopePricesList? = nil
-    ) {
+extension GetBillingCreditBalanceSummaryParameterApplicabilityScope {
+    public init(priceType: GetBillingCreditBalanceSummaryParameterApplicabilityScopePriceType? = nil, prices: GetBillingCreditBalanceSummaryParameterApplicabilityScopePricesList? = nil) {
         self.init()
         (self.priceType, self.prices) = (priceType, prices)
     }

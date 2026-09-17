@@ -7,8 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1AppsSecretsFindMethods {
-    /// Retrieves a secret from Secret Store by its name and scope. Supply `name` together with `scope` to identify the
-    /// secret, and use `expand` when additional response fields are needed.
+    /// Retrieves a secret from Secret Store by its name and scope. Supply `name` together with `scope` to identify the secret, and use `expand` when additional response fields are needed.
     ///
     /// Finds a secret in the secret store by name and scope.
     ///
@@ -18,15 +17,10 @@ public enum V1AppsSecretsFindMethods {
     ///   extensions can only access account-scoped secrets or secrets scoped to their
     ///   own user.
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func getAppsSecretsFind(
-        config: ClientConfig,
-        name: String,
-        scope: GetAppsSecretsFindParameter,
-        expand: [String]?
-    ) async throws -> AppsSecret {
+    public static func getAppsSecretsFind(config: ClientConfig, name: String, scope: GetAppsSecretsFindParameter, expand: [String]?) async throws -> AppsSecret {
         try validateLength("name", name, max: 5000)
 
-        return try await (sdkRequest("GET", "/v1/apps/secrets/find", config: config, query: [
+        return try (await sdkRequest("GET", "/v1/apps/secrets/find", config: config, query: [
             SdkQueryParameter("name", value: name),
             SdkQueryParameter("scope", value: scope),
             SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),

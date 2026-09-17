@@ -8,19 +8,15 @@ import Foundation
 #endif
 /// String representing the object's type. Objects of the same type share the same value. Always has the value
 /// `list`.
-public struct GetCustomersCustomerSubscriptionsResponseObject: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct GetCustomersCustomerSubscriptionsResponseObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let list = GetCustomersCustomerSubscriptionsResponseObject(rawValue: "list")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -29,22 +25,16 @@ public struct GetCustomersCustomerSubscriptionsResponseObject: RawRepresentable,
     }
 }
 
-public struct PostCustomersCustomerSubscriptionsRequestBodyAddInvoiceItemsIX116b546629: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostCustomersCustomerSubscriptionsRequestBodyAddInvoiceItemsIX116b546629: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let minItemPeriodEnd =
-        PostCustomersCustomerSubscriptionsRequestBodyAddInvoiceItemsIX116b546629(rawValue: "min_item_period_end")
-    public static let timestamp =
-        PostCustomersCustomerSubscriptionsRequestBodyAddInvoiceItemsIX116b546629(rawValue: "timestamp")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let minItemPeriodEnd = PostCustomersCustomerSubscriptionsRequestBodyAddInvoiceItemsIX116b546629(rawValue: "min_item_period_end")
+    public static let timestamp = PostCustomersCustomerSubscriptionsRequestBodyAddInvoiceItemsIX116b546629(rawValue: "timestamp")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -53,23 +43,17 @@ public struct PostCustomersCustomerSubscriptionsRequestBodyAddInvoiceItemsIX116b
     }
 }
 
-public struct PostCustomersCustomerSubscriptionsRequestBodyAddInvoiceItemsIXc7237b1efa: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostCustomersCustomerSubscriptionsRequestBodyAddInvoiceItemsIXc7237b1efa: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let maxItemPeriodStart =
-        PostCustomersCustomerSubscriptionsRequestBodyAddInvoiceItemsIXc7237b1efa(rawValue: "max_item_period_start")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let maxItemPeriodStart = PostCustomersCustomerSubscriptionsRequestBodyAddInvoiceItemsIXc7237b1efa(rawValue: "max_item_period_start")
     public static let now = PostCustomersCustomerSubscriptionsRequestBodyAddInvoiceItemsIXc7237b1efa(rawValue: "now")
-    public static let timestamp =
-        PostCustomersCustomerSubscriptionsRequestBodyAddInvoiceItemsIXc7237b1efa(rawValue: "timestamp")
+    public static let timestamp = PostCustomersCustomerSubscriptionsRequestBodyAddInvoiceItemsIXc7237b1efa(rawValue: "timestamp")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -78,24 +62,17 @@ public struct PostCustomersCustomerSubscriptionsRequestBodyAddInvoiceItemsIXc723
     }
 }
 
-public struct PostCustomersCustomerSubscriptionsRequestBodyAddInvoiceItemsIX54a541aa09: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostCustomersCustomerSubscriptionsRequestBodyAddInvoiceItemsIX54a541aa09: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let exclusive =
-        PostCustomersCustomerSubscriptionsRequestBodyAddInvoiceItemsIX54a541aa09(rawValue: "exclusive")
-    public static let inclusive =
-        PostCustomersCustomerSubscriptionsRequestBodyAddInvoiceItemsIX54a541aa09(rawValue: "inclusive")
-    public static let unspecified =
-        PostCustomersCustomerSubscriptionsRequestBodyAddInvoiceItemsIX54a541aa09(rawValue: "unspecified")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let exclusive = PostCustomersCustomerSubscriptionsRequestBodyAddInvoiceItemsIX54a541aa09(rawValue: "exclusive")
+    public static let inclusive = PostCustomersCustomerSubscriptionsRequestBodyAddInvoiceItemsIX54a541aa09(rawValue: "inclusive")
+    public static let unspecified = PostCustomersCustomerSubscriptionsRequestBodyAddInvoiceItemsIX54a541aa09(rawValue: "unspecified")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -104,19 +81,15 @@ public struct PostCustomersCustomerSubscriptionsRequestBodyAddInvoiceItemsIX54a5
     }
 }
 
-public struct PostCustomersCustomerSubscriptionsRequestBodyAddInvoiceItemsIX34bdd42ddc: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostCustomersCustomerSubscriptionsRequestBodyAddInvoiceItemsIX34bdd42ddc: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostCustomersCustomerSubscriptionsRequestBodyAddInvoiceItemsIX34bdd42ddc(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -125,19 +98,15 @@ public struct PostCustomersCustomerSubscriptionsRequestBodyAddInvoiceItemsIX34bd
     }
 }
 
-public struct PostCustomersCustomerSubscriptionsRequestBodyApplicationFeePeX9b0641b8f4: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostCustomersCustomerSubscriptionsRequestBodyApplicationFeePeX9b0641b8f4: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostCustomersCustomerSubscriptionsRequestBodyApplicationFeePeX9b0641b8f4(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -146,21 +115,16 @@ public struct PostCustomersCustomerSubscriptionsRequestBodyApplicationFeePeX9b06
     }
 }
 
-public struct PostCustomersCustomerSubscriptionsRequestBodyAutomaticTaxLiabilityType: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostCustomersCustomerSubscriptionsRequestBodyAutomaticTaxLiabilityType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let account =
-        PostCustomersCustomerSubscriptionsRequestBodyAutomaticTaxLiabilityType(rawValue: "account")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let account = PostCustomersCustomerSubscriptionsRequestBodyAutomaticTaxLiabilityType(rawValue: "account")
     public static let `self` = PostCustomersCustomerSubscriptionsRequestBodyAutomaticTaxLiabilityType(rawValue: "self")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -169,19 +133,15 @@ public struct PostCustomersCustomerSubscriptionsRequestBodyAutomaticTaxLiability
     }
 }
 
-public struct PostCustomersCustomerSubscriptionsRequestBodyBillingThresholdsVariant1: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostCustomersCustomerSubscriptionsRequestBodyBillingThresholdsVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostCustomersCustomerSubscriptionsRequestBodyBillingThresholdsVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -190,24 +150,17 @@ public struct PostCustomersCustomerSubscriptionsRequestBodyBillingThresholdsVari
     }
 }
 
-public struct PostCustomersCustomerSubscriptionsRequestBodyCancelAtVariant1: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct PostCustomersCustomerSubscriptionsRequestBodyCancelAtVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let maxBilledUntil =
-        PostCustomersCustomerSubscriptionsRequestBodyCancelAtVariant1(rawValue: "max_billed_until")
-    public static let maxPeriodEnd =
-        PostCustomersCustomerSubscriptionsRequestBodyCancelAtVariant1(rawValue: "max_period_end")
-    public static let minPeriodEnd =
-        PostCustomersCustomerSubscriptionsRequestBodyCancelAtVariant1(rawValue: "min_period_end")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let maxBilledUntil = PostCustomersCustomerSubscriptionsRequestBodyCancelAtVariant1(rawValue: "max_billed_until")
+    public static let maxPeriodEnd = PostCustomersCustomerSubscriptionsRequestBodyCancelAtVariant1(rawValue: "max_period_end")
+    public static let minPeriodEnd = PostCustomersCustomerSubscriptionsRequestBodyCancelAtVariant1(rawValue: "min_period_end")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -220,22 +173,16 @@ public struct PostCustomersCustomerSubscriptionsRequestBodyCancelAtVariant1: Raw
 /// this subscription at the end of the cycle using the default source attached to the customer. When sending an
 /// invoice, Stripe will email your customer an invoice with payment instructions and mark the subscription as
 /// `active`. Defaults to `charge_automatically`.
-public struct PostCustomersCustomerSubscriptionsRequestBodyCollectionMethod: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct PostCustomersCustomerSubscriptionsRequestBodyCollectionMethod: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let chargeAutomatically =
-        PostCustomersCustomerSubscriptionsRequestBodyCollectionMethod(rawValue: "charge_automatically")
-    public static let sendInvoice =
-        PostCustomersCustomerSubscriptionsRequestBodyCollectionMethod(rawValue: "send_invoice")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let chargeAutomatically = PostCustomersCustomerSubscriptionsRequestBodyCollectionMethod(rawValue: "charge_automatically")
+    public static let sendInvoice = PostCustomersCustomerSubscriptionsRequestBodyCollectionMethod(rawValue: "send_invoice")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -244,19 +191,15 @@ public struct PostCustomersCustomerSubscriptionsRequestBodyCollectionMethod: Raw
     }
 }
 
-public struct PostCustomersCustomerSubscriptionsRequestBodyDefaultTaxRatesVariant1: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct PostCustomersCustomerSubscriptionsRequestBodyDefaultTaxRatesVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostCustomersCustomerSubscriptionsRequestBodyDefaultTaxRatesVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

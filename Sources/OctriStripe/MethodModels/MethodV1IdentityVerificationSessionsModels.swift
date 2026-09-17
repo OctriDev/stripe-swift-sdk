@@ -7,9 +7,8 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1IdentityVerificationSessions operation model declarations
-public typealias PostIdentityVerificationSessionsSessionRequestBodyOptionsDocuX9320f10cf8 =
-    [PostIdentityVerificationSessionsSessionRequestBodyOptionsDocuXccec8f98d6]
+// Canonical v1IdentityVerificationSessions operation model declarations
+public typealias PostIdentityVerificationSessionsSessionRequestBodyOptionsDocuX9320f10cf8 = [PostIdentityVerificationSessionsSessionRequestBodyOptionsDocuXccec8f98d6]
 
 public struct PostIdentityVerificationSessionsSessionRequestBodyOptionsDocuX32ba8d6ce7: Codable {
     public var allowedTypes: PostIdentityVerificationSessionsSessionRequestBodyOptionsDocuX9320f10cf8?
@@ -25,27 +24,22 @@ public struct PostIdentityVerificationSessionsSessionRequestBodyOptionsDocuX32ba
     }
 
     init() {
-        (allowedTypes, requireIdNumber, requireLiveCapture, requireMatchingSelfie) = (nil, nil, nil, nil)
+        (self.allowedTypes, self.requireIdNumber, self.requireLiveCapture, self.requireMatchingSelfie) = (nil, nil, nil, nil)
     }
 }
 
-public extension PostIdentityVerificationSessionsSessionRequestBodyOptionsDocuX32ba8d6ce7 {
-    init(from decoder: Decoder) throws {
+extension PostIdentityVerificationSessionsSessionRequestBodyOptionsDocuX32ba8d6ce7 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        allowedTypes = try container.sdkDecodeIfPresent(.allowedTypes)
-        requireIdNumber = try container.sdkDecodeIfPresent(.requireIdNumber)
-        requireLiveCapture = try container.sdkDecodeIfPresent(.requireLiveCapture)
-        requireMatchingSelfie = try container.sdkDecodeIfPresent(.requireMatchingSelfie)
+        self.allowedTypes = try container.sdkDecodeIfPresent(.allowedTypes)
+        self.requireIdNumber = try container.sdkDecodeIfPresent(.requireIdNumber)
+        self.requireLiveCapture = try container.sdkDecodeIfPresent(.requireLiveCapture)
+        self.requireMatchingSelfie = try container.sdkDecodeIfPresent(.requireMatchingSelfie)
     }
 }
 
-public extension PostIdentityVerificationSessionsSessionRequestBodyOptionsDocuX32ba8d6ce7 {
-    init(
-        allowedTypes: PostIdentityVerificationSessionsSessionRequestBodyOptionsDocuX9320f10cf8? = nil,
-        requireIdNumber: Bool? = nil,
-        requireLiveCapture: Bool? = nil,
-        requireMatchingSelfie: Bool? = nil
-    ) {
+extension PostIdentityVerificationSessionsSessionRequestBodyOptionsDocuX32ba8d6ce7 {
+    public init(allowedTypes: PostIdentityVerificationSessionsSessionRequestBodyOptionsDocuX9320f10cf8? = nil, requireIdNumber: Bool? = nil, requireLiveCapture: Bool? = nil, requireMatchingSelfie: Bool? = nil) {
         self.init()
         (self.allowedTypes, self.requireIdNumber) = (allowedTypes, requireIdNumber)
         (self.requireLiveCapture, self.requireMatchingSelfie) = (requireLiveCapture, requireMatchingSelfie)
@@ -61,19 +55,19 @@ public struct PostIdentityVerificationSessionsRequestBodyOptions: Codable {
     }
 
     init() {
-        document = nil
+        self.document = nil
     }
 }
 
-public extension PostIdentityVerificationSessionsRequestBodyOptions {
-    init(from decoder: Decoder) throws {
+extension PostIdentityVerificationSessionsRequestBodyOptions {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        document = try container.sdkDecodeIfPresent(.document)
+        self.document = try container.sdkDecodeIfPresent(.document)
     }
 }
 
-public extension PostIdentityVerificationSessionsRequestBodyOptions {
-    init(document: PostIdentityVerificationSessionsRequestBodyOptionsDocument? = nil) {
+extension PostIdentityVerificationSessionsRequestBodyOptions {
+    public init(document: PostIdentityVerificationSessionsRequestBodyOptionsDocument? = nil) {
         self.init()
         self.document = document
     }
@@ -90,20 +84,20 @@ public struct PostIdentityVerificationSessionsRequestBodyProvidedDetails: Codabl
     }
 
     init() {
-        (email, phone) = (nil, nil)
+        (self.email, self.phone) = (nil, nil)
     }
 }
 
-public extension PostIdentityVerificationSessionsRequestBodyProvidedDetails {
-    init(from decoder: Decoder) throws {
+extension PostIdentityVerificationSessionsRequestBodyProvidedDetails {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        email = try container.sdkDecodeIfPresent(.email)
-        phone = try container.sdkDecodeIfPresent(.phone)
+        self.email = try container.sdkDecodeIfPresent(.email)
+        self.phone = try container.sdkDecodeIfPresent(.phone)
     }
 }
 
-public extension PostIdentityVerificationSessionsRequestBodyProvidedDetails {
-    init(email: String? = nil, phone: String? = nil) {
+extension PostIdentityVerificationSessionsRequestBodyProvidedDetails {
+    public init(email: String? = nil, phone: String? = nil) {
         self.init()
         (self.email, self.phone) = (email, phone)
     }
@@ -118,19 +112,19 @@ public struct PostIdentityVerificationSessionsSessionRequestBodyOptions: Codable
     }
 
     init() {
-        document = nil
+        self.document = nil
     }
 }
 
-public extension PostIdentityVerificationSessionsSessionRequestBodyOptions {
-    init(from decoder: Decoder) throws {
+extension PostIdentityVerificationSessionsSessionRequestBodyOptions {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        document = try container.sdkDecodeIfPresent(.document)
+        self.document = try container.sdkDecodeIfPresent(.document)
     }
 }
 
-public extension PostIdentityVerificationSessionsSessionRequestBodyOptions {
-    init(document: PostIdentityVerificationSessionsSessionRequestBodyOptionsDocument? = nil) {
+extension PostIdentityVerificationSessionsSessionRequestBodyOptions {
+    public init(document: PostIdentityVerificationSessionsSessionRequestBodyOptionsDocument? = nil) {
         self.init()
         self.document = document
     }
@@ -147,20 +141,20 @@ public struct PostIdentityVerificationSessionsSessionRequestBodyProvidedDetails:
     }
 
     init() {
-        (email, phone) = (nil, nil)
+        (self.email, self.phone) = (nil, nil)
     }
 }
 
-public extension PostIdentityVerificationSessionsSessionRequestBodyProvidedDetails {
-    init(from decoder: Decoder) throws {
+extension PostIdentityVerificationSessionsSessionRequestBodyProvidedDetails {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        email = try container.sdkDecodeIfPresent(.email)
-        phone = try container.sdkDecodeIfPresent(.phone)
+        self.email = try container.sdkDecodeIfPresent(.email)
+        self.phone = try container.sdkDecodeIfPresent(.phone)
     }
 }
 
-public extension PostIdentityVerificationSessionsSessionRequestBodyProvidedDetails {
-    init(email: String? = nil, phone: String? = nil) {
+extension PostIdentityVerificationSessionsSessionRequestBodyProvidedDetails {
+    public init(email: String? = nil, phone: String? = nil) {
         self.init()
         (self.email, self.phone) = (email, phone)
     }
@@ -180,22 +174,22 @@ public struct GetIdentityVerificationSessionsParameterVariant0: Codable {
     }
 
     init() {
-        (gt, gte, lt, lte) = (nil, nil, nil, nil)
+        (self.gt, self.gte, self.lt, self.lte) = (nil, nil, nil, nil)
     }
 }
 
-public extension GetIdentityVerificationSessionsParameterVariant0 {
-    init(from decoder: Decoder) throws {
+extension GetIdentityVerificationSessionsParameterVariant0 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        gt = try container.sdkDecodeIfPresent(.gt)
-        gte = try container.sdkDecodeIfPresent(.gte)
-        lt = try container.sdkDecodeIfPresent(.lt)
-        lte = try container.sdkDecodeIfPresent(.lte)
+        self.gt = try container.sdkDecodeIfPresent(.gt)
+        self.gte = try container.sdkDecodeIfPresent(.gte)
+        self.lt = try container.sdkDecodeIfPresent(.lt)
+        self.lte = try container.sdkDecodeIfPresent(.lte)
     }
 }
 
-public extension GetIdentityVerificationSessionsParameterVariant0 {
-    init(gt: Int? = nil, gte: Int? = nil, lt: Int? = nil, lte: Int? = nil) {
+extension GetIdentityVerificationSessionsParameterVariant0 {
+    public init(gt: Int? = nil, gte: Int? = nil, lt: Int? = nil, lte: Int? = nil) {
         self.init()
         (self.gt, self.gte) = (gt, gte)
         (self.lt, self.lte) = (lt, lte)
@@ -219,62 +213,39 @@ public struct GetIdentityVerificationSessionsResponse: Codable {
         case url
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension GetIdentityVerificationSessionsResponse {
-    init(from decoder: Decoder) throws {
+extension GetIdentityVerificationSessionsResponse {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.data) else {
-            throw SdkValidationError(
-                field: "data",
-                code: "required",
-                message: "Validation failed for 'data': value is required"
-            )
+            throw SdkValidationError(field: "data", code: "required", message: "Validation failed for 'data': value is required")
         }
         guard container.contains(.hasMore) else {
-            throw SdkValidationError(
-                field: "has_more",
-                code: "required",
-                message: "Validation failed for 'has_more': value is required"
-            )
+            throw SdkValidationError(field: "has_more", code: "required", message: "Validation failed for 'has_more': value is required")
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(
-                field: "object",
-                code: "required",
-                message: "Validation failed for 'object': value is required"
-            )
+            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
         }
         guard container.contains(.url) else {
-            throw SdkValidationError(
-                field: "url",
-                code: "required",
-                message: "Validation failed for 'url': value is required"
-            )
+            throw SdkValidationError(field: "url", code: "required", message: "Validation failed for 'url': value is required")
         }
-        data = try container.sdkDecodeRequired(.data)
-        hasMore = try container.sdkDecodeRequired(.hasMore)
-        object = try container.sdkDecodeRequired(.object)
-        url = try container.sdkDecodeRequired(.url)
-        try validateLength("url", url, min: nil, max: 5000)
-        try sdkValidatePattern("url", url, sdkPatternbbdd4cff3db3)
+        self.data = try container.sdkDecodeRequired(.data)
+        self.hasMore = try container.sdkDecodeRequired(.hasMore)
+        self.object = try container.sdkDecodeRequired(.object)
+        self.url = try container.sdkDecodeRequired(.url)
+            try validateLength("url", self.url, min: nil, max: 5000)
+            try sdkValidatePattern("url", self.url, sdkPatternbbdd4cff3db3)
     }
 }
 
-public extension GetIdentityVerificationSessionsResponse {
-    init(
-        data: [IdentityVerificationSession],
-        hasMore: Bool,
-        object: GetIdentityVerificationSessionsResponseObject,
-        url: String
-    ) throws {
+extension GetIdentityVerificationSessionsResponse {
+    public init(data: [IdentityVerificationSession], hasMore: Bool, object: GetIdentityVerificationSessionsResponseObject, url: String) throws {
         (self.data, self.hasMore) = (data, hasMore)
         (self.object, self.url) = (object, url)
-        try validateLength("url", self.url, min: nil, max: 5000)
-        try sdkValidatePattern("url", self.url, sdkPatternbbdd4cff3db3)
+            try validateLength("url", self.url, min: nil, max: 5000)
+            try sdkValidatePattern("url", self.url, sdkPatternbbdd4cff3db3)
     }
 }
 
@@ -284,33 +255,25 @@ public enum GetIdentityVerificationSessionsParameter {
 }
 
 extension GetIdentityVerificationSessionsParameter: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for GetIdentityVerificationSessionsParameter"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for GetIdentityVerificationSessionsParameter")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             GetIdentityVerificationSessionsParameterVariant0.self
         ) {
-            return .getIdentityVerificationSessionsParameterVariant0(value)
+            return             .getIdentityVerificationSessionsParameterVariant0(value)
         }
-        if let value = try? container.decode(Int.self) {
-            return .intValue(value)
-        }
+        if let value = try? container.decode(Int.self) { return .intValue(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -320,6 +283,7 @@ extension GetIdentityVerificationSessionsParameter: Codable {
         case let .intValue(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// Tokens referencing a Person resource and its associated account.
@@ -332,45 +296,36 @@ public struct PostIdentityVerificationSessionsRequestBodyRelatedPerson: Codable 
         case person
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostIdentityVerificationSessionsRequestBodyRelatedPerson {
-    init(from decoder: Decoder) throws {
+extension PostIdentityVerificationSessionsRequestBodyRelatedPerson {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.account) else {
-            throw SdkValidationError(
-                field: "account",
-                code: "required",
-                message: "Validation failed for 'account': value is required"
-            )
+            throw SdkValidationError(field: "account", code: "required", message: "Validation failed for 'account': value is required")
         }
         guard container.contains(.person) else {
-            throw SdkValidationError(
-                field: "person",
-                code: "required",
-                message: "Validation failed for 'person': value is required"
-            )
+            throw SdkValidationError(field: "person", code: "required", message: "Validation failed for 'person': value is required")
         }
-        account = try container.sdkDecodeRequired(.account)
-        person = try container.sdkDecodeRequired(.person)
-        try validateLength("account", account, min: nil, max: 5000)
-        try validateLength("person", person, min: nil, max: 5000)
+        self.account = try container.sdkDecodeRequired(.account)
+        self.person = try container.sdkDecodeRequired(.person)
+            try validateLength("account", self.account, min: nil, max: 5000)
+            try validateLength("person", self.person, min: nil, max: 5000)
     }
 }
 
-public extension PostIdentityVerificationSessionsRequestBodyRelatedPerson {
-    init(account: String, person: String) throws {
+extension PostIdentityVerificationSessionsRequestBodyRelatedPerson {
+    public init(account: String, person: String) throws {
         (self.account, self.person) = (account, person)
-        try validateLength("account", self.account, min: nil, max: 5000)
-        try validateLength("person", self.person, min: nil, max: 5000)
+            try validateLength("account", self.account, min: nil, max: 5000)
+            try validateLength("person", self.person, min: nil, max: 5000)
     }
 }
 
-public typealias PostIdentityVerificationSessionsRequestBodyOptionsDocumentVarXfc884ba65c =
-    [PostIdentityVerificationSessionsRequestBodyOptionsDocumentVarX1c5894459e]
+
+
+public typealias PostIdentityVerificationSessionsRequestBodyOptionsDocumentVarXfc884ba65c = [PostIdentityVerificationSessionsRequestBodyOptionsDocumentVarX1c5894459e]
 
 public struct PostIdentityVerificationSessionsRequestBodyOptionsDocumentVariant0: Codable {
     public var allowedTypes: PostIdentityVerificationSessionsRequestBodyOptionsDocumentVarXfc884ba65c?
@@ -386,27 +341,22 @@ public struct PostIdentityVerificationSessionsRequestBodyOptionsDocumentVariant0
     }
 
     init() {
-        (allowedTypes, requireIdNumber, requireLiveCapture, requireMatchingSelfie) = (nil, nil, nil, nil)
+        (self.allowedTypes, self.requireIdNumber, self.requireLiveCapture, self.requireMatchingSelfie) = (nil, nil, nil, nil)
     }
 }
 
-public extension PostIdentityVerificationSessionsRequestBodyOptionsDocumentVariant0 {
-    init(from decoder: Decoder) throws {
+extension PostIdentityVerificationSessionsRequestBodyOptionsDocumentVariant0 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        allowedTypes = try container.sdkDecodeIfPresent(.allowedTypes)
-        requireIdNumber = try container.sdkDecodeIfPresent(.requireIdNumber)
-        requireLiveCapture = try container.sdkDecodeIfPresent(.requireLiveCapture)
-        requireMatchingSelfie = try container.sdkDecodeIfPresent(.requireMatchingSelfie)
+        self.allowedTypes = try container.sdkDecodeIfPresent(.allowedTypes)
+        self.requireIdNumber = try container.sdkDecodeIfPresent(.requireIdNumber)
+        self.requireLiveCapture = try container.sdkDecodeIfPresent(.requireLiveCapture)
+        self.requireMatchingSelfie = try container.sdkDecodeIfPresent(.requireMatchingSelfie)
     }
 }
 
-public extension PostIdentityVerificationSessionsRequestBodyOptionsDocumentVariant0 {
-    init(
-        allowedTypes: PostIdentityVerificationSessionsRequestBodyOptionsDocumentVarXfc884ba65c? = nil,
-        requireIdNumber: Bool? = nil,
-        requireLiveCapture: Bool? = nil,
-        requireMatchingSelfie: Bool? = nil
-    ) {
+extension PostIdentityVerificationSessionsRequestBodyOptionsDocumentVariant0 {
+    public init(allowedTypes: PostIdentityVerificationSessionsRequestBodyOptionsDocumentVarXfc884ba65c? = nil, requireIdNumber: Bool? = nil, requireLiveCapture: Bool? = nil, requireMatchingSelfie: Bool? = nil) {
         self.init()
         (self.allowedTypes, self.requireIdNumber) = (allowedTypes, requireIdNumber)
         (self.requireLiveCapture, self.requireMatchingSelfie) = (requireLiveCapture, requireMatchingSelfie)
@@ -421,43 +371,35 @@ public enum PostIdentityVerificationSessionsRequestBodyOptionsDocument {
 }
 
 extension PostIdentityVerificationSessionsRequestBodyOptionsDocument: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostIdentityVerificationSessionsRequestBodyOptionsDocument"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostIdentityVerificationSessionsRequestBodyOptionsDocument")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PostIdentityVerificationSessionsRequestBodyOptionsDocumentVariant0.self
         ) {
-            return .postIdentityVerificationSessionsRequestBodyOptionsDocumentVariant0(value)
+            return             .postIdentityVerificationSessionsRequestBodyOptionsDocumentVariant0(value)
         }
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .postIdentityVerificationSessionsRequestBodyOptionsDocumentVariant0(value): try container
-            .encode(value); return true
+        case let .postIdentityVerificationSessionsRequestBodyOptionsDocumentVariant0(value): try container.encode(value); return true
         case let .stringValue(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum PostIdentityVerificationSessionsSessionRequestBodyOptionsDocument {
@@ -468,41 +410,33 @@ public enum PostIdentityVerificationSessionsSessionRequestBodyOptionsDocument {
 }
 
 extension PostIdentityVerificationSessionsSessionRequestBodyOptionsDocument: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostIdentityVerificationSessionsSessionRequestBodyOptionsDocument"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostIdentityVerificationSessionsSessionRequestBodyOptionsDocument")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PostIdentityVerificationSessionsSessionRequestBodyOptionsDocuX32ba8d6ce7.self
         ) {
-            return .postIdentityVerificationSessionsSessionRequestBodyOptionsDocuX32ba8d6ce7(value)
+            return             .postIdentityVerificationSessionsSessionRequestBodyOptionsDocuX32ba8d6ce7(value)
         }
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .postIdentityVerificationSessionsSessionRequestBodyOptionsDocuX32ba8d6ce7(value): try container
-            .encode(value); return true
+        case let .postIdentityVerificationSessionsSessionRequestBodyOptionsDocuX32ba8d6ce7(value): try container.encode(value); return true
         case let .stringValue(value): try container.encode(value); return true
         }
     }
+
 }

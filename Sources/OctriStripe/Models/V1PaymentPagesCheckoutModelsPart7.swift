@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1PaymentPagesCheckout domain models
+// V1PaymentPagesCheckout domain models
 extension PaymentPagesCheckoutSessionShippingAddressCollectionAllowedCountriesItem {
     static let allCasesPart1: [PaymentPagesCheckoutSessionShippingAddressCollectionAllowedCountriesItem] = [
         .ac,
@@ -63,7 +63,7 @@ extension PaymentPagesCheckoutSessionShippingAddressCollectionAllowedCountriesIt
         .dj,
         .dk,
         .dm,
-        .do,
+        .`do`,
         .dz,
         .ec,
         .ee,
@@ -110,10 +110,10 @@ extension PaymentPagesCheckoutSessionShippingAddressCollectionAllowedCountriesIt
         .ie,
         .il,
         .im,
-        .in,
+        .`in`,
         .io,
         .iq,
-        .is,
+        .`is`,
         .it,
         .je,
         .jm,
@@ -260,29 +260,24 @@ extension PaymentPagesCheckoutSessionShippingAddressCollectionAllowedCountriesIt
 extension PaymentPagesCheckoutSessionShippingAddressCollectionAllowedCountriesItem: CaseIterable {
     public static var allCases: [PaymentPagesCheckoutSessionShippingAddressCollectionAllowedCountriesItem] {
         allCasesPart1
-            + allCasesPart2
-            + allCasesPart3
+        +         allCasesPart2
+        +         allCasesPart3
     }
 }
 
 /// Determines which entity is allowed to update the shipping details. Default is `client_only`. Stripe Checkout
 /// client will automatically update the shipping details. If set to `server_only`, only your server is allowed
 /// to update the shipping details. This parameter is only supported when `ui_mode=elements`.
-public struct PaymentPagesCheckoutSessionPermissionsUpdateShippingDetails: RawRepresentable, Hashable, Codable,
-    Sendable,
-    SdkWireConvertible {
+public struct PaymentPagesCheckoutSessionPermissionsUpdateShippingDetails: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let clientOnly = PaymentPagesCheckoutSessionPermissionsUpdateShippingDetails(rawValue: "client_only")
     public static let serverOnly = PaymentPagesCheckoutSessionPermissionsUpdateShippingDetails(rawValue: "server_only")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

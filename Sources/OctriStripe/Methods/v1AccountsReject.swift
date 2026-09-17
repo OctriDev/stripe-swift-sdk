@@ -7,12 +7,9 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1AccountsRejectMethods {
-    /// Rejects an account that your platform has flagged as suspicious. Use `account` to identify an eligible Custom or
-    /// Express account, and provide `reason` to explain the rejection; `payouts_action` controls whether payouts are
-    /// paused.
+    /// Rejects an account that your platform has flagged as suspicious. Use `account` to identify an eligible Custom or Express account, and provide `reason` to explain the rejection; `payouts_action` controls whether payouts are paused.
     ///
-    /// With Connect, you can reject accounts that you have flagged as suspicious. Only accounts where your platform is
-    /// liable for negative account balances, which includes Custom and Express accounts, can be rejected.
+    /// With Connect, you can reject accounts that you have flagged as suspicious. Only accounts where your platform is liable for negative account balances, which includes Custom and Express accounts, can be rejected.
     ///
     /// - Parameters:
     /// - reason: The reason for rejecting the account. Can be `fraud`,
@@ -20,31 +17,13 @@ public enum V1AccountsRejectMethods {
     /// - expand: Specifies which fields in the response should be expanded.
     /// - payoutsAction: Whether to pause payouts on the account as part of the
     ///   rejection. Defaults to `pause`. Use `none` to leave payouts enabled.
-    public static func postAccountsAccountReject(
-        config: ClientConfig,
-        account: String,
-        reason: String,
-        expand: [String]?,
-        payoutsAction: PostAccountsAccountRejectRequestBodyPayoutsAction?
-    ) async throws -> Account {
+    public static func postAccountsAccountReject(config: ClientConfig, account: String, reason: String, expand: [String]?, payoutsAction: PostAccountsAccountRejectRequestBodyPayoutsAction?) async throws -> Account {
         try validateLength("account", account, max: 5000)
 
         try validateLength("reason", reason, max: 5000)
 
-        let requestBody = PostAccountsAccountRejectRequestBody(
-            reason: reason,
-            expand: expand,
-            payoutsAction: payoutsAction
-        )
+        let requestBody = PostAccountsAccountRejectRequestBody(reason: reason, expand: expand, payoutsAction: payoutsAction)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/accounts/", sdkEncodePathSegment(sdkWireString(account)), "/reject"].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostAccountsAccountReject"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/accounts/", sdkEncodePathSegment(sdkWireString(account)), "/reject"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostAccountsAccountReject")).data
     }
 }

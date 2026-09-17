@@ -7,336 +7,141 @@ import Foundation
     import FoundationNetworking
 #endif
 public extension PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory {
-    static let jewelryStoresWatchesClocksAndSilverwareStores =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(
-            rawValue: "jewelry_stores_watches_clocks_and_silverware_stores"
-        )
-    static let landscapingServices =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "landscaping_services")
+    static let jewelryStoresWatchesClocksAndSilverwareStores = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "jewelry_stores_watches_clocks_and_silverware_stores")
+    static let landscapingServices = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "landscaping_services")
     static let laundries = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "laundries")
-    static let laundryCleaningServices =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "laundry_cleaning_services")
-    static let legalServicesAttorneys =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "legal_services_attorneys")
-    static let luggageAndLeatherGoodsStores =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(
-            rawValue: "luggage_and_leather_goods_stores"
-        )
-    static let lumberBuildingMaterialsStores =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(
-            rawValue: "lumber_building_materials_stores"
-        )
-    static let manualCashDisburse =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "manual_cash_disburse")
-    static let marinasServiceAndSupplies =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "marinas_service_and_supplies")
-    static let marketplaces =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "marketplaces")
-    static let masonryStoneworkAndPlaster =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "masonry_stonework_and_plaster")
-    static let massageParlors =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "massage_parlors")
-    static let medicalAndDentalLabs =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "medical_and_dental_labs")
-    static let medicalDentalOphthalmicAndHospitalEquipmentAndSupplies =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(
-            rawValue: "medical_dental_ophthalmic_and_hospital_equipment_and_supplies"
-        )
-    static let medicalServices =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "medical_services")
-    static let membershipOrganizations =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "membership_organizations")
-    static let mensAndBoysClothingAndAccessoriesStores =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(
-            rawValue: "mens_and_boys_clothing_and_accessories_stores"
-        )
-    static let mensWomensClothingStores =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "mens_womens_clothing_stores")
-    static let metalServiceCenters =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "metal_service_centers")
-    static let miscellaneousApparelAndAccessoryShops =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(
-            rawValue: "miscellaneous_apparel_and_accessory_shops"
-        )
-    static let miscellaneousAutoDealers =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "miscellaneous_auto_dealers")
-    static let miscellaneousBusinessServices =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "miscellaneous_business_services")
-    static let miscellaneousFoodStores =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "miscellaneous_food_stores")
-    static let miscellaneousGeneralMerchandise =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(
-            rawValue: "miscellaneous_general_merchandise"
-        )
-    static let miscellaneousGeneralServices =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "miscellaneous_general_services")
-    static let miscellaneousHomeFurnishingSpecialtyStores =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(
-            rawValue: "miscellaneous_home_furnishing_specialty_stores"
-        )
-    static let miscellaneousPublishingAndPrinting =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(
-            rawValue: "miscellaneous_publishing_and_printing"
-        )
-    static let miscellaneousRecreationServices =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(
-            rawValue: "miscellaneous_recreation_services"
-        )
-    static let miscellaneousRepairShops =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "miscellaneous_repair_shops")
-    static let miscellaneousSpecialtyRetail =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "miscellaneous_specialty_retail")
-    static let mobileHomeDealers =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "mobile_home_dealers")
-    static let motionPictureTheaters =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "motion_picture_theaters")
-    static let motorFreightCarriersAndTrucking =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(
-            rawValue: "motor_freight_carriers_and_trucking"
-        )
-    static let motorHomesDealers =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "motor_homes_dealers")
-    static let motorVehicleSuppliesAndNewParts =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(
-            rawValue: "motor_vehicle_supplies_and_new_parts"
-        )
-    static let motorcycleShopsAndDealers =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "motorcycle_shops_and_dealers")
-    static let motorcycleShopsDealers =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "motorcycle_shops_dealers")
-    static let musicStoresMusicalInstrumentsPianosAndSheetMusic =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(
-            rawValue: "music_stores_musical_instruments_pianos_and_sheet_music"
-        )
-    static let newsDealersAndNewsstands =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "news_dealers_and_newsstands")
-    static let nonFiMoneyOrders =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "non_fi_money_orders")
-    static let nonFiStoredValueCardPurchaseLoad =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(
-            rawValue: "non_fi_stored_value_card_purchase_load"
-        )
-    static let nondurableGoods =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "nondurable_goods")
-    static let nurseriesLawnAndGardenSupplyStores =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(
-            rawValue: "nurseries_lawn_and_garden_supply_stores"
-        )
-    static let nursingPersonalCare =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "nursing_personal_care")
-    static let officeAndCommercialFurniture =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "office_and_commercial_furniture")
-    static let opticiansEyeglasses =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "opticians_eyeglasses")
-    static let optometristsOphthalmologist =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "optometrists_ophthalmologist")
-    static let orthopedicGoodsProstheticDevices =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(
-            rawValue: "orthopedic_goods_prosthetic_devices"
-        )
+    static let laundryCleaningServices = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "laundry_cleaning_services")
+    static let legalServicesAttorneys = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "legal_services_attorneys")
+    static let luggageAndLeatherGoodsStores = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "luggage_and_leather_goods_stores")
+    static let lumberBuildingMaterialsStores = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "lumber_building_materials_stores")
+    static let manualCashDisburse = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "manual_cash_disburse")
+    static let marinasServiceAndSupplies = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "marinas_service_and_supplies")
+    static let marketplaces = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "marketplaces")
+    static let masonryStoneworkAndPlaster = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "masonry_stonework_and_plaster")
+    static let massageParlors = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "massage_parlors")
+    static let medicalAndDentalLabs = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "medical_and_dental_labs")
+    static let medicalDentalOphthalmicAndHospitalEquipmentAndSupplies = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "medical_dental_ophthalmic_and_hospital_equipment_and_supplies")
+    static let medicalServices = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "medical_services")
+    static let membershipOrganizations = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "membership_organizations")
+    static let mensAndBoysClothingAndAccessoriesStores = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "mens_and_boys_clothing_and_accessories_stores")
+    static let mensWomensClothingStores = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "mens_womens_clothing_stores")
+    static let metalServiceCenters = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "metal_service_centers")
+    static let miscellaneousApparelAndAccessoryShops = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "miscellaneous_apparel_and_accessory_shops")
+    static let miscellaneousAutoDealers = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "miscellaneous_auto_dealers")
+    static let miscellaneousBusinessServices = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "miscellaneous_business_services")
+    static let miscellaneousFoodStores = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "miscellaneous_food_stores")
+    static let miscellaneousGeneralMerchandise = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "miscellaneous_general_merchandise")
+    static let miscellaneousGeneralServices = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "miscellaneous_general_services")
+    static let miscellaneousHomeFurnishingSpecialtyStores = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "miscellaneous_home_furnishing_specialty_stores")
+    static let miscellaneousPublishingAndPrinting = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "miscellaneous_publishing_and_printing")
+    static let miscellaneousRecreationServices = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "miscellaneous_recreation_services")
+    static let miscellaneousRepairShops = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "miscellaneous_repair_shops")
+    static let miscellaneousSpecialtyRetail = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "miscellaneous_specialty_retail")
+    static let mobileHomeDealers = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "mobile_home_dealers")
+    static let motionPictureTheaters = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "motion_picture_theaters")
+    static let motorFreightCarriersAndTrucking = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "motor_freight_carriers_and_trucking")
+    static let motorHomesDealers = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "motor_homes_dealers")
+    static let motorVehicleSuppliesAndNewParts = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "motor_vehicle_supplies_and_new_parts")
+    static let motorcycleShopsAndDealers = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "motorcycle_shops_and_dealers")
+    static let motorcycleShopsDealers = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "motorcycle_shops_dealers")
+    static let musicStoresMusicalInstrumentsPianosAndSheetMusic = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "music_stores_musical_instruments_pianos_and_sheet_music")
+    static let newsDealersAndNewsstands = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "news_dealers_and_newsstands")
+    static let nonFiMoneyOrders = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "non_fi_money_orders")
+    static let nonFiStoredValueCardPurchaseLoad = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "non_fi_stored_value_card_purchase_load")
+    static let nondurableGoods = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "nondurable_goods")
+    static let nurseriesLawnAndGardenSupplyStores = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "nurseries_lawn_and_garden_supply_stores")
+    static let nursingPersonalCare = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "nursing_personal_care")
+    static let officeAndCommercialFurniture = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "office_and_commercial_furniture")
+    static let opticiansEyeglasses = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "opticians_eyeglasses")
+    static let optometristsOphthalmologist = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "optometrists_ophthalmologist")
+    static let orthopedicGoodsProstheticDevices = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "orthopedic_goods_prosthetic_devices")
     static let osteopaths = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "osteopaths")
-    static let packageStoresBeerWineAndLiquor =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(
-            rawValue: "package_stores_beer_wine_and_liquor"
-        )
-    static let paintsVarnishesAndSupplies =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "paints_varnishes_and_supplies")
-    static let parkingLotsGarages =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "parking_lots_garages")
-    static let passengerRailways =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "passenger_railways")
+    static let packageStoresBeerWineAndLiquor = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "package_stores_beer_wine_and_liquor")
+    static let paintsVarnishesAndSupplies = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "paints_varnishes_and_supplies")
+    static let parkingLotsGarages = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "parking_lots_garages")
+    static let passengerRailways = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "passenger_railways")
     static let pawnShops = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "pawn_shops")
-    static let petShopsPetFoodAndSupplies =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "pet_shops_pet_food_and_supplies")
-    static let petroleumAndPetroleumProducts =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(
-            rawValue: "petroleum_and_petroleum_products"
-        )
-    static let photoDeveloping =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "photo_developing")
-    static let photographicPhotocopyMicrofilmEquipmentAndSupplies =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(
-            rawValue: "photographic_photocopy_microfilm_equipment_and_supplies"
-        )
-    static let photographicStudios =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "photographic_studios")
-    static let pictureVideoProduction =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "picture_video_production")
-    static let pieceGoodsNotionsAndOtherDryGoods =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(
-            rawValue: "piece_goods_notions_and_other_dry_goods"
-        )
-    static let plumbingHeatingEquipmentAndSupplies =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(
-            rawValue: "plumbing_heating_equipment_and_supplies"
-        )
-    static let politicalOrganizations =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "political_organizations")
-    static let postalServicesGovernmentOnly =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "postal_services_government_only")
-    static let preciousStonesAndMetalsWatchesAndJewelry =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(
-            rawValue: "precious_stones_and_metals_watches_and_jewelry"
-        )
-    static let professionalServices =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "professional_services")
-    static let publicWarehousingAndStorage =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "public_warehousing_and_storage")
-    static let quickCopyReproAndBlueprint =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "quick_copy_repro_and_blueprint")
+    static let petShopsPetFoodAndSupplies = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "pet_shops_pet_food_and_supplies")
+    static let petroleumAndPetroleumProducts = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "petroleum_and_petroleum_products")
+    static let photoDeveloping = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "photo_developing")
+    static let photographicPhotocopyMicrofilmEquipmentAndSupplies = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "photographic_photocopy_microfilm_equipment_and_supplies")
+    static let photographicStudios = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "photographic_studios")
+    static let pictureVideoProduction = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "picture_video_production")
+    static let pieceGoodsNotionsAndOtherDryGoods = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "piece_goods_notions_and_other_dry_goods")
+    static let plumbingHeatingEquipmentAndSupplies = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "plumbing_heating_equipment_and_supplies")
+    static let politicalOrganizations = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "political_organizations")
+    static let postalServicesGovernmentOnly = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "postal_services_government_only")
+    static let preciousStonesAndMetalsWatchesAndJewelry = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "precious_stones_and_metals_watches_and_jewelry")
+    static let professionalServices = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "professional_services")
+    static let publicWarehousingAndStorage = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "public_warehousing_and_storage")
+    static let quickCopyReproAndBlueprint = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "quick_copy_repro_and_blueprint")
     static let railroads = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "railroads")
-    static let realEstateAgentsAndManagersRentals =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(
-            rawValue: "real_estate_agents_and_managers_rentals"
-        )
-    static let recordStores =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "record_stores")
-    static let recreationalVehicleRentals =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "recreational_vehicle_rentals")
-    static let religiousGoodsStores =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "religious_goods_stores")
-    static let religiousOrganizations =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "religious_organizations")
-    static let roofingSidingSheetMetal =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "roofing_siding_sheet_metal")
-    static let secretarialSupportServices =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "secretarial_support_services")
-    static let securityBrokersDealers =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "security_brokers_dealers")
-    static let serviceStations =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "service_stations")
-    static let sewingNeedleworkFabricAndPieceGoodsStores =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(
-            rawValue: "sewing_needlework_fabric_and_piece_goods_stores"
-        )
-    static let shoeRepairHatCleaning =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "shoe_repair_hat_cleaning")
+    static let realEstateAgentsAndManagersRentals = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "real_estate_agents_and_managers_rentals")
+    static let recordStores = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "record_stores")
+    static let recreationalVehicleRentals = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "recreational_vehicle_rentals")
+    static let religiousGoodsStores = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "religious_goods_stores")
+    static let religiousOrganizations = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "religious_organizations")
+    static let roofingSidingSheetMetal = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "roofing_siding_sheet_metal")
+    static let secretarialSupportServices = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "secretarial_support_services")
+    static let securityBrokersDealers = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "security_brokers_dealers")
+    static let serviceStations = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "service_stations")
+    static let sewingNeedleworkFabricAndPieceGoodsStores = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "sewing_needlework_fabric_and_piece_goods_stores")
+    static let shoeRepairHatCleaning = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "shoe_repair_hat_cleaning")
 }
 
 public extension PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory {
     static let shoeStores = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "shoe_stores")
-    static let smallApplianceRepair =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "small_appliance_repair")
-    static let snowmobileDealers =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "snowmobile_dealers")
-    static let specialTradeServices =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "special_trade_services")
-    static let specialtyCleaning =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "specialty_cleaning")
-    static let sportingGoodsStores =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "sporting_goods_stores")
-    static let sportingRecreationCamps =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "sporting_recreation_camps")
-    static let sportsAndRidingApparelStores =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(
-            rawValue: "sports_and_riding_apparel_stores"
-        )
-    static let sportsClubsFields =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "sports_clubs_fields")
-    static let stampAndCoinStores =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "stamp_and_coin_stores")
-    static let stationaryOfficeSuppliesPrintingAndWritingPaper =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(
-            rawValue: "stationary_office_supplies_printing_and_writing_paper"
-        )
-    static let stationeryStoresOfficeAndSchoolSupplyStores =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(
-            rawValue: "stationery_stores_office_and_school_supply_stores"
-        )
-    static let swimmingPoolsSales =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "swimming_pools_sales")
-    static let tUiTravelGermany =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "t_ui_travel_germany")
-    static let tailorsAlterations =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "tailors_alterations")
-    static let taxPaymentsGovernmentAgencies =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(
-            rawValue: "tax_payments_government_agencies"
-        )
-    static let taxPreparationServices =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "tax_preparation_services")
-    static let taxicabsLimousines =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "taxicabs_limousines")
-    static let telecommunicationEquipmentAndTelephoneSales =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(
-            rawValue: "telecommunication_equipment_and_telephone_sales"
-        )
-    static let telecommunicationServices =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "telecommunication_services")
-    static let telegraphServices =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "telegraph_services")
-    static let tentAndAwningShops =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "tent_and_awning_shops")
-    static let testingLaboratories =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "testing_laboratories")
-    static let theatricalTicketAgencies =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "theatrical_ticket_agencies")
+    static let smallApplianceRepair = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "small_appliance_repair")
+    static let snowmobileDealers = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "snowmobile_dealers")
+    static let specialTradeServices = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "special_trade_services")
+    static let specialtyCleaning = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "specialty_cleaning")
+    static let sportingGoodsStores = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "sporting_goods_stores")
+    static let sportingRecreationCamps = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "sporting_recreation_camps")
+    static let sportsAndRidingApparelStores = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "sports_and_riding_apparel_stores")
+    static let sportsClubsFields = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "sports_clubs_fields")
+    static let stampAndCoinStores = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "stamp_and_coin_stores")
+    static let stationaryOfficeSuppliesPrintingAndWritingPaper = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "stationary_office_supplies_printing_and_writing_paper")
+    static let stationeryStoresOfficeAndSchoolSupplyStores = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "stationery_stores_office_and_school_supply_stores")
+    static let swimmingPoolsSales = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "swimming_pools_sales")
+    static let tUiTravelGermany = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "t_ui_travel_germany")
+    static let tailorsAlterations = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "tailors_alterations")
+    static let taxPaymentsGovernmentAgencies = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "tax_payments_government_agencies")
+    static let taxPreparationServices = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "tax_preparation_services")
+    static let taxicabsLimousines = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "taxicabs_limousines")
+    static let telecommunicationEquipmentAndTelephoneSales = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "telecommunication_equipment_and_telephone_sales")
+    static let telecommunicationServices = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "telecommunication_services")
+    static let telegraphServices = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "telegraph_services")
+    static let tentAndAwningShops = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "tent_and_awning_shops")
+    static let testingLaboratories = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "testing_laboratories")
+    static let theatricalTicketAgencies = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "theatrical_ticket_agencies")
     static let timeshares = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "timeshares")
-    static let tireRetreadingAndRepair =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "tire_retreading_and_repair")
-    static let tollsBridgeFees =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "tolls_bridge_fees")
-    static let touristAttractionsAndExhibits =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(
-            rawValue: "tourist_attractions_and_exhibits"
-        )
-    static let towingServices =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "towing_services")
-    static let trailerParksCampgrounds =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "trailer_parks_campgrounds")
-    static let transportationServices =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "transportation_services")
-    static let travelAgenciesTourOperators =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "travel_agencies_tour_operators")
-    static let truckStopIteration =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "truck_stop_iteration")
-    static let truckUtilityTrailerRentals =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "truck_utility_trailer_rentals")
-    static let typesettingPlateMakingAndRelatedServices =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(
-            rawValue: "typesetting_plate_making_and_related_services"
-        )
-    static let typewriterStores =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "typewriter_stores")
-    static let uSFederalGovernmentAgenciesOrDepartments =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(
-            rawValue: "u_s_federal_government_agencies_or_departments"
-        )
-    static let uniformsCommercialClothing =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "uniforms_commercial_clothing")
-    static let usedMerchandiseAndSecondhandStores =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(
-            rawValue: "used_merchandise_and_secondhand_stores"
-        )
+    static let tireRetreadingAndRepair = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "tire_retreading_and_repair")
+    static let tollsBridgeFees = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "tolls_bridge_fees")
+    static let touristAttractionsAndExhibits = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "tourist_attractions_and_exhibits")
+    static let towingServices = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "towing_services")
+    static let trailerParksCampgrounds = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "trailer_parks_campgrounds")
+    static let transportationServices = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "transportation_services")
+    static let travelAgenciesTourOperators = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "travel_agencies_tour_operators")
+    static let truckStopIteration = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "truck_stop_iteration")
+    static let truckUtilityTrailerRentals = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "truck_utility_trailer_rentals")
+    static let typesettingPlateMakingAndRelatedServices = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "typesetting_plate_making_and_related_services")
+    static let typewriterStores = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "typewriter_stores")
+    static let uSFederalGovernmentAgenciesOrDepartments = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "u_s_federal_government_agencies_or_departments")
+    static let uniformsCommercialClothing = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "uniforms_commercial_clothing")
+    static let usedMerchandiseAndSecondhandStores = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "used_merchandise_and_secondhand_stores")
     static let utilities = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "utilities")
-    static let varietyStores =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "variety_stores")
-    static let veterinaryServices =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "veterinary_services")
-    static let videoAmusementGameSupplies =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "video_amusement_game_supplies")
-    static let videoGameArcades =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "video_game_arcades")
-    static let videoTapeRentalStores =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "video_tape_rental_stores")
-    static let vocationalTradeSchools =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "vocational_trade_schools")
-    static let watchJewelryRepair =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "watch_jewelry_repair")
-    static let weldingRepair =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "welding_repair")
-    static let wholesaleClubs =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "wholesale_clubs")
-    static let wigAndToupeeStores =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "wig_and_toupee_stores")
-    static let wiresMoneyOrders =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "wires_money_orders")
-    static let womensAccessoryAndSpecialtyShops =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(
-            rawValue: "womens_accessory_and_specialty_shops"
-        )
-    static let womensReadyToWearStores =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "womens_ready_to_wear_stores")
-    static let wreckingAndSalvageYards =
-        PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "wrecking_and_salvage_yards")
+    static let varietyStores = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "variety_stores")
+    static let veterinaryServices = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "veterinary_services")
+    static let videoAmusementGameSupplies = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "video_amusement_game_supplies")
+    static let videoGameArcades = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "video_game_arcades")
+    static let videoTapeRentalStores = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "video_tape_rental_stores")
+    static let vocationalTradeSchools = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "vocational_trade_schools")
+    static let watchJewelryRepair = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "watch_jewelry_repair")
+    static let weldingRepair = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "welding_repair")
+    static let wholesaleClubs = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "wholesale_clubs")
+    static let wigAndToupeeStores = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "wig_and_toupee_stores")
+    static let wiresMoneyOrders = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "wires_money_orders")
+    static let womensAccessoryAndSpecialtyShops = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "womens_accessory_and_specialty_shops")
+    static let womensReadyToWearStores = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "womens_ready_to_wear_stores")
+    static let wreckingAndSalvageYards = PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory(rawValue: "wrecking_and_salvage_yards")
 }

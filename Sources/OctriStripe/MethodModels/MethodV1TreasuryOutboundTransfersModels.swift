@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1TreasuryOutboundTransfers operation model declarations
+// Canonical v1TreasuryOutboundTransfers operation model declarations
 /// Hash used to generate the PaymentMethod to be used for this OutboundTransfer. Exclusive with
 /// `destination_payment_method`.
 public struct PostTreasuryOutboundTransfersRequestBodyDestinationPaymentMethodData: Codable {
@@ -19,31 +19,22 @@ public struct PostTreasuryOutboundTransfersRequestBodyDestinationPaymentMethodDa
         case financialAccount = "financial_account"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostTreasuryOutboundTransfersRequestBodyDestinationPaymentMethodData {
-    init(from decoder: Decoder) throws {
+extension PostTreasuryOutboundTransfersRequestBodyDestinationPaymentMethodData {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.type) else {
-            throw SdkValidationError(
-                field: "type",
-                code: "required",
-                message: "Validation failed for 'type': value is required"
-            )
+            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
         }
-        type = try container.sdkDecodeRequired(.type)
-        financialAccount = try container.sdkDecodeIfPresent(.financialAccount)
+        self.type = try container.sdkDecodeRequired(.type)
+        self.financialAccount = try container.sdkDecodeIfPresent(.financialAccount)
     }
 }
 
-public extension PostTreasuryOutboundTransfersRequestBodyDestinationPaymentMethodData {
-    init(
-        type: PostTreasuryOutboundTransfersRequestBodyDestinationPaymentMethodDataType,
-        financialAccount: String? = nil
-    ) {
+extension PostTreasuryOutboundTransfersRequestBodyDestinationPaymentMethodData {
+    public init(type: PostTreasuryOutboundTransfersRequestBodyDestinationPaymentMethodDataType, financialAccount: String? = nil) {
         (self.type, self.financialAccount) = (type, financialAccount)
     }
 }
@@ -66,60 +57,37 @@ public struct GetTreasuryOutboundTransfersResponse: Codable {
         case url
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension GetTreasuryOutboundTransfersResponse {
-    init(from decoder: Decoder) throws {
+extension GetTreasuryOutboundTransfersResponse {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.data) else {
-            throw SdkValidationError(
-                field: "data",
-                code: "required",
-                message: "Validation failed for 'data': value is required"
-            )
+            throw SdkValidationError(field: "data", code: "required", message: "Validation failed for 'data': value is required")
         }
         guard container.contains(.hasMore) else {
-            throw SdkValidationError(
-                field: "has_more",
-                code: "required",
-                message: "Validation failed for 'has_more': value is required"
-            )
+            throw SdkValidationError(field: "has_more", code: "required", message: "Validation failed for 'has_more': value is required")
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(
-                field: "object",
-                code: "required",
-                message: "Validation failed for 'object': value is required"
-            )
+            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
         }
         guard container.contains(.url) else {
-            throw SdkValidationError(
-                field: "url",
-                code: "required",
-                message: "Validation failed for 'url': value is required"
-            )
+            throw SdkValidationError(field: "url", code: "required", message: "Validation failed for 'url': value is required")
         }
-        data = try container.sdkDecodeRequired(.data)
-        hasMore = try container.sdkDecodeRequired(.hasMore)
-        object = try container.sdkDecodeRequired(.object)
-        url = try container.sdkDecodeRequired(.url)
-        try validateLength("url", url, min: nil, max: 5000)
+        self.data = try container.sdkDecodeRequired(.data)
+        self.hasMore = try container.sdkDecodeRequired(.hasMore)
+        self.object = try container.sdkDecodeRequired(.object)
+        self.url = try container.sdkDecodeRequired(.url)
+            try validateLength("url", self.url, min: nil, max: 5000)
     }
 }
 
-public extension GetTreasuryOutboundTransfersResponse {
-    init(
-        data: [TreasuryOutboundTransfer],
-        hasMore: Bool,
-        object: GetTreasuryOutboundTransfersResponseObject,
-        url: String
-    ) throws {
+extension GetTreasuryOutboundTransfersResponse {
+    public init(data: [TreasuryOutboundTransfer], hasMore: Bool, object: GetTreasuryOutboundTransfersResponseObject, url: String) throws {
         (self.data, self.hasMore) = (data, hasMore)
         (self.object, self.url) = (object, url)
-        try validateLength("url", self.url, min: nil, max: 5000)
+            try validateLength("url", self.url, min: nil, max: 5000)
     }
 }
 
@@ -131,43 +99,35 @@ public enum PostTreasuryOutboundTransfersRequestBodyDestinationPaymentMetX11a86e
 }
 
 extension PostTreasuryOutboundTransfersRequestBodyDestinationPaymentMetX11a86ea969: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostTreasuryOutboundTransfersRequestBodyDestinationPaymentMetX11a86ea969"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostTreasuryOutboundTransfersRequestBodyDestinationPaymentMetX11a86ea969")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PostTreasuryOutboundTransfersRequestBodyDestinationPaymentMetXfd4d096f51.self
         ) {
-            return .postTreasuryOutboundTransfersRequestBodyDestinationPaymentMetXfd4d096f51(value)
+            return             .postTreasuryOutboundTransfersRequestBodyDestinationPaymentMetXfd4d096f51(value)
         }
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .postTreasuryOutboundTransfersRequestBodyDestinationPaymentMetXfd4d096f51(value): try container
-            .encode(value); return true
+        case let .postTreasuryOutboundTransfersRequestBodyDestinationPaymentMetXfd4d096f51(value): try container.encode(value); return true
         case let .stringValue(value): try container.encode(value); return true
         }
     }
+
 }
 
 public struct PostTreasuryOutboundTransfersRequestBodyDestinationPaymentMetXfd4d096f51: Codable {
@@ -178,19 +138,19 @@ public struct PostTreasuryOutboundTransfersRequestBodyDestinationPaymentMetXfd4d
     }
 
     init() {
-        network = nil
+        self.network = nil
     }
 }
 
-public extension PostTreasuryOutboundTransfersRequestBodyDestinationPaymentMetXfd4d096f51 {
-    init(from decoder: Decoder) throws {
+extension PostTreasuryOutboundTransfersRequestBodyDestinationPaymentMetXfd4d096f51 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        network = try container.sdkDecodeIfPresent(.network)
+        self.network = try container.sdkDecodeIfPresent(.network)
     }
 }
 
-public extension PostTreasuryOutboundTransfersRequestBodyDestinationPaymentMetXfd4d096f51 {
-    init(network: PostTreasuryOutboundTransfersRequestBodyDestinationPaymentMetXa3c5acdc4e? = nil) {
+extension PostTreasuryOutboundTransfersRequestBodyDestinationPaymentMetXfd4d096f51 {
+    public init(network: PostTreasuryOutboundTransfersRequestBodyDestinationPaymentMetXa3c5acdc4e? = nil) {
         self.init()
         self.network = network
     }
@@ -205,19 +165,19 @@ public struct PostTreasuryOutboundTransfersRequestBodyDestinationPaymentMethodOp
     }
 
     init() {
-        usBankAccount = nil
+        self.usBankAccount = nil
     }
 }
 
-public extension PostTreasuryOutboundTransfersRequestBodyDestinationPaymentMethodOptions {
-    init(from decoder: Decoder) throws {
+extension PostTreasuryOutboundTransfersRequestBodyDestinationPaymentMethodOptions {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        usBankAccount = try container.sdkDecodeIfPresent(.usBankAccount)
+        self.usBankAccount = try container.sdkDecodeIfPresent(.usBankAccount)
     }
 }
 
-public extension PostTreasuryOutboundTransfersRequestBodyDestinationPaymentMethodOptions {
-    init(usBankAccount: PostTreasuryOutboundTransfersRequestBodyDestinationPaymentMetX11a86ea969? = nil) {
+extension PostTreasuryOutboundTransfersRequestBodyDestinationPaymentMethodOptions {
+    public init(usBankAccount: PostTreasuryOutboundTransfersRequestBodyDestinationPaymentMetX11a86ea969? = nil) {
         self.init()
         self.usBankAccount = usBankAccount
     }

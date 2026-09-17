@@ -6,10 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1ShippingRatesMethods {
-    /// Updates an existing shipping rate's active state, fixed-amount currency options, metadata, or tax behavior.
-    /// Supply only the properties you want to change because omitted properties retain their current values. Use
-    /// `expand` to include selected response fields inline.
+extension V1ShippingRatesMethods {
+    /// Updates an existing shipping rate's active state, fixed-amount currency options, metadata, or tax behavior. Supply only the properties you want to change because omitted properties retain their current values. Use `expand` to include selected response fields inline.
     ///
     /// Updates an existing shipping rate object.
     ///
@@ -26,33 +24,11 @@ public extension V1ShippingRatesMethods {
     ///   empty value to `metadata`.
     /// - taxBehavior: Specifies whether the rate is considered inclusive of taxes
     ///   or exclusive of taxes. One of `inclusive`, `exclusive`, or `unspecified`.
-    static func postShippingRatesShippingRateToken(
-        config: ClientConfig,
-        shippingRateToken: String,
-        active: Bool?,
-        expand: [String]?,
-        fixedAmount: PostShippingRatesShippingRateTokenRequestBodyFixedAmount?,
-        metadata: PostShippingRatesShippingRateTokenRequestBodyMetadata?,
-        taxBehavior: PostShippingRatesShippingRateTokenRequestBodyTaxBehavior?
-    ) async throws -> ShippingRate {
+    public static func postShippingRatesShippingRateToken(config: ClientConfig, shippingRateToken: String, active: Bool?, expand: [String]?, fixedAmount: PostShippingRatesShippingRateTokenRequestBodyFixedAmount?, metadata: PostShippingRatesShippingRateTokenRequestBodyMetadata?, taxBehavior: PostShippingRatesShippingRateTokenRequestBodyTaxBehavior?) async throws -> ShippingRate {
         try validateLength("shipping_rate_token", shippingRateToken, max: 5000)
 
-        let requestBody = PostShippingRatesShippingRateTokenRequestBody(
-            active: active,
-            expand: expand,
-            fixedAmount: fixedAmount,
-            metadata: metadata,
-            taxBehavior: taxBehavior
-        )
+        let requestBody = PostShippingRatesShippingRateTokenRequestBody(active: active, expand: expand, fixedAmount: fixedAmount, metadata: metadata, taxBehavior: taxBehavior)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/shipping_rates/", sdkEncodePathSegment(sdkWireString(shippingRateToken))].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostShippingRatesShippingRateToken"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/shipping_rates/", sdkEncodePathSegment(sdkWireString(shippingRateToken))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostShippingRatesShippingRateToken")).data
     }
 }

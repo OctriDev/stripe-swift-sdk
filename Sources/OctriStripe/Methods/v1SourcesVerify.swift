@@ -7,33 +7,18 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1SourcesVerifyMethods {
-    /// Verifies a source using the values supplied for its verification flow. Provide the `source` identifier and the
-    /// verification `values` required by that source. The response returns the updated source after verification
-    /// processing.
+    /// Verifies a source using the values supplied for its verification flow. Provide the `source` identifier and the verification `values` required by that source. The response returns the updated source after verification processing.
     ///
     /// Verify a given source.
     ///
     /// - Parameters:
     /// - values: The values needed to verify the source.
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postSourcesSourceVerify(
-        config: ClientConfig,
-        source: String,
-        values: [String],
-        expand: [String]?
-    ) async throws -> Source {
+    public static func postSourcesSourceVerify(config: ClientConfig, source: String, values: [String], expand: [String]?) async throws -> Source {
         try validateLength("source", source, max: 5000)
 
         let requestBody = PostSourcesSourceVerifyRequestBody(values: values, expand: expand)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/sources/", sdkEncodePathSegment(sdkWireString(source)), "/verify"].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostSourcesSourceVerify"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/sources/", sdkEncodePathSegment(sdkWireString(source)), "/verify"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostSourcesSourceVerify")).data
     }
 }

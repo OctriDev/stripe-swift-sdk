@@ -7,387 +7,141 @@ import Foundation
     import FoundationNetworking
 #endif
 public extension PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc {
-    static let jewelryStoresWatchesClocksAndSilverwareStores =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(
-            rawValue: "jewelry_stores_watches_clocks_and_silverware_stores"
-        )
-    static let landscapingServices =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "landscaping_services")
-    static let laundries =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "laundries")
-    static let laundryCleaningServices =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "laundry_cleaning_services")
-    static let legalServicesAttorneys =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "legal_services_attorneys")
-    static let luggageAndLeatherGoodsStores =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(
-            rawValue: "luggage_and_leather_goods_stores"
-        )
-    static let lumberBuildingMaterialsStores =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(
-            rawValue: "lumber_building_materials_stores"
-        )
-    static let manualCashDisburse =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "manual_cash_disburse")
-    static let marinasServiceAndSupplies =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(
-            rawValue: "marinas_service_and_supplies"
-        )
-    static let marketplaces =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "marketplaces")
-    static let masonryStoneworkAndPlaster =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(
-            rawValue: "masonry_stonework_and_plaster"
-        )
-    static let massageParlors =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "massage_parlors")
-    static let medicalAndDentalLabs =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "medical_and_dental_labs")
-    static let medicalDentalOphthalmicAndHospitalEquipmentAndSupplies =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(
-            rawValue: "medical_dental_ophthalmic_and_hospital_equipment_and_supplies"
-        )
-    static let medicalServices =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "medical_services")
-    static let membershipOrganizations =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "membership_organizations")
-    static let mensAndBoysClothingAndAccessoriesStores =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(
-            rawValue: "mens_and_boys_clothing_and_accessories_stores"
-        )
-    static let mensWomensClothingStores =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(
-            rawValue: "mens_womens_clothing_stores"
-        )
-    static let metalServiceCenters =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "metal_service_centers")
-    static let miscellaneousApparelAndAccessoryShops =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(
-            rawValue: "miscellaneous_apparel_and_accessory_shops"
-        )
-    static let miscellaneousAutoDealers =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "miscellaneous_auto_dealers")
-    static let miscellaneousBusinessServices =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(
-            rawValue: "miscellaneous_business_services"
-        )
-    static let miscellaneousFoodStores =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "miscellaneous_food_stores")
-    static let miscellaneousGeneralMerchandise =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(
-            rawValue: "miscellaneous_general_merchandise"
-        )
-    static let miscellaneousGeneralServices =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(
-            rawValue: "miscellaneous_general_services"
-        )
-    static let miscellaneousHomeFurnishingSpecialtyStores =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(
-            rawValue: "miscellaneous_home_furnishing_specialty_stores"
-        )
-    static let miscellaneousPublishingAndPrinting =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(
-            rawValue: "miscellaneous_publishing_and_printing"
-        )
-    static let miscellaneousRecreationServices =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(
-            rawValue: "miscellaneous_recreation_services"
-        )
-    static let miscellaneousRepairShops =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "miscellaneous_repair_shops")
-    static let miscellaneousSpecialtyRetail =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(
-            rawValue: "miscellaneous_specialty_retail"
-        )
-    static let mobileHomeDealers =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "mobile_home_dealers")
-    static let motionPictureTheaters =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "motion_picture_theaters")
-    static let motorFreightCarriersAndTrucking =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(
-            rawValue: "motor_freight_carriers_and_trucking"
-        )
-    static let motorHomesDealers =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "motor_homes_dealers")
-    static let motorVehicleSuppliesAndNewParts =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(
-            rawValue: "motor_vehicle_supplies_and_new_parts"
-        )
-    static let motorcycleShopsAndDealers =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(
-            rawValue: "motorcycle_shops_and_dealers"
-        )
-    static let motorcycleShopsDealers =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "motorcycle_shops_dealers")
-    static let musicStoresMusicalInstrumentsPianosAndSheetMusic =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(
-            rawValue: "music_stores_musical_instruments_pianos_and_sheet_music"
-        )
-    static let newsDealersAndNewsstands =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(
-            rawValue: "news_dealers_and_newsstands"
-        )
-    static let nonFiMoneyOrders =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "non_fi_money_orders")
-    static let nonFiStoredValueCardPurchaseLoad =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(
-            rawValue: "non_fi_stored_value_card_purchase_load"
-        )
-    static let nondurableGoods =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "nondurable_goods")
-    static let nurseriesLawnAndGardenSupplyStores =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(
-            rawValue: "nurseries_lawn_and_garden_supply_stores"
-        )
-    static let nursingPersonalCare =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "nursing_personal_care")
-    static let officeAndCommercialFurniture =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(
-            rawValue: "office_and_commercial_furniture"
-        )
-    static let opticiansEyeglasses =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "opticians_eyeglasses")
-    static let optometristsOphthalmologist =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(
-            rawValue: "optometrists_ophthalmologist"
-        )
-    static let orthopedicGoodsProstheticDevices =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(
-            rawValue: "orthopedic_goods_prosthetic_devices"
-        )
-    static let osteopaths =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "osteopaths")
-    static let packageStoresBeerWineAndLiquor =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(
-            rawValue: "package_stores_beer_wine_and_liquor"
-        )
-    static let paintsVarnishesAndSupplies =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(
-            rawValue: "paints_varnishes_and_supplies"
-        )
-    static let parkingLotsGarages =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "parking_lots_garages")
-    static let passengerRailways =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "passenger_railways")
-    static let pawnShops =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "pawn_shops")
-    static let petShopsPetFoodAndSupplies =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(
-            rawValue: "pet_shops_pet_food_and_supplies"
-        )
-    static let petroleumAndPetroleumProducts =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(
-            rawValue: "petroleum_and_petroleum_products"
-        )
-    static let photoDeveloping =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "photo_developing")
-    static let photographicPhotocopyMicrofilmEquipmentAndSupplies =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(
-            rawValue: "photographic_photocopy_microfilm_equipment_and_supplies"
-        )
-    static let photographicStudios =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "photographic_studios")
-    static let pictureVideoProduction =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "picture_video_production")
-    static let pieceGoodsNotionsAndOtherDryGoods =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(
-            rawValue: "piece_goods_notions_and_other_dry_goods"
-        )
-    static let plumbingHeatingEquipmentAndSupplies =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(
-            rawValue: "plumbing_heating_equipment_and_supplies"
-        )
-    static let politicalOrganizations =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "political_organizations")
-    static let postalServicesGovernmentOnly =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(
-            rawValue: "postal_services_government_only"
-        )
-    static let preciousStonesAndMetalsWatchesAndJewelry =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(
-            rawValue: "precious_stones_and_metals_watches_and_jewelry"
-        )
-    static let professionalServices =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "professional_services")
-    static let publicWarehousingAndStorage =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(
-            rawValue: "public_warehousing_and_storage"
-        )
-    static let quickCopyReproAndBlueprint =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(
-            rawValue: "quick_copy_repro_and_blueprint"
-        )
-    static let railroads =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "railroads")
-    static let realEstateAgentsAndManagersRentals =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(
-            rawValue: "real_estate_agents_and_managers_rentals"
-        )
-    static let recordStores =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "record_stores")
-    static let recreationalVehicleRentals =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(
-            rawValue: "recreational_vehicle_rentals"
-        )
-    static let religiousGoodsStores =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "religious_goods_stores")
-    static let religiousOrganizations =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "religious_organizations")
-    static let roofingSidingSheetMetal =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "roofing_siding_sheet_metal")
-    static let secretarialSupportServices =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(
-            rawValue: "secretarial_support_services"
-        )
-    static let securityBrokersDealers =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "security_brokers_dealers")
-    static let serviceStations =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "service_stations")
-    static let sewingNeedleworkFabricAndPieceGoodsStores =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(
-            rawValue: "sewing_needlework_fabric_and_piece_goods_stores"
-        )
-    static let shoeRepairHatCleaning =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "shoe_repair_hat_cleaning")
+    static let jewelryStoresWatchesClocksAndSilverwareStores = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "jewelry_stores_watches_clocks_and_silverware_stores")
+    static let landscapingServices = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "landscaping_services")
+    static let laundries = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "laundries")
+    static let laundryCleaningServices = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "laundry_cleaning_services")
+    static let legalServicesAttorneys = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "legal_services_attorneys")
+    static let luggageAndLeatherGoodsStores = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "luggage_and_leather_goods_stores")
+    static let lumberBuildingMaterialsStores = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "lumber_building_materials_stores")
+    static let manualCashDisburse = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "manual_cash_disburse")
+    static let marinasServiceAndSupplies = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "marinas_service_and_supplies")
+    static let marketplaces = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "marketplaces")
+    static let masonryStoneworkAndPlaster = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "masonry_stonework_and_plaster")
+    static let massageParlors = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "massage_parlors")
+    static let medicalAndDentalLabs = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "medical_and_dental_labs")
+    static let medicalDentalOphthalmicAndHospitalEquipmentAndSupplies = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "medical_dental_ophthalmic_and_hospital_equipment_and_supplies")
+    static let medicalServices = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "medical_services")
+    static let membershipOrganizations = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "membership_organizations")
+    static let mensAndBoysClothingAndAccessoriesStores = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "mens_and_boys_clothing_and_accessories_stores")
+    static let mensWomensClothingStores = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "mens_womens_clothing_stores")
+    static let metalServiceCenters = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "metal_service_centers")
+    static let miscellaneousApparelAndAccessoryShops = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "miscellaneous_apparel_and_accessory_shops")
+    static let miscellaneousAutoDealers = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "miscellaneous_auto_dealers")
+    static let miscellaneousBusinessServices = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "miscellaneous_business_services")
+    static let miscellaneousFoodStores = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "miscellaneous_food_stores")
+    static let miscellaneousGeneralMerchandise = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "miscellaneous_general_merchandise")
+    static let miscellaneousGeneralServices = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "miscellaneous_general_services")
+    static let miscellaneousHomeFurnishingSpecialtyStores = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "miscellaneous_home_furnishing_specialty_stores")
+    static let miscellaneousPublishingAndPrinting = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "miscellaneous_publishing_and_printing")
+    static let miscellaneousRecreationServices = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "miscellaneous_recreation_services")
+    static let miscellaneousRepairShops = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "miscellaneous_repair_shops")
+    static let miscellaneousSpecialtyRetail = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "miscellaneous_specialty_retail")
+    static let mobileHomeDealers = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "mobile_home_dealers")
+    static let motionPictureTheaters = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "motion_picture_theaters")
+    static let motorFreightCarriersAndTrucking = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "motor_freight_carriers_and_trucking")
+    static let motorHomesDealers = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "motor_homes_dealers")
+    static let motorVehicleSuppliesAndNewParts = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "motor_vehicle_supplies_and_new_parts")
+    static let motorcycleShopsAndDealers = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "motorcycle_shops_and_dealers")
+    static let motorcycleShopsDealers = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "motorcycle_shops_dealers")
+    static let musicStoresMusicalInstrumentsPianosAndSheetMusic = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "music_stores_musical_instruments_pianos_and_sheet_music")
+    static let newsDealersAndNewsstands = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "news_dealers_and_newsstands")
+    static let nonFiMoneyOrders = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "non_fi_money_orders")
+    static let nonFiStoredValueCardPurchaseLoad = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "non_fi_stored_value_card_purchase_load")
+    static let nondurableGoods = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "nondurable_goods")
+    static let nurseriesLawnAndGardenSupplyStores = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "nurseries_lawn_and_garden_supply_stores")
+    static let nursingPersonalCare = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "nursing_personal_care")
+    static let officeAndCommercialFurniture = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "office_and_commercial_furniture")
+    static let opticiansEyeglasses = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "opticians_eyeglasses")
+    static let optometristsOphthalmologist = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "optometrists_ophthalmologist")
+    static let orthopedicGoodsProstheticDevices = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "orthopedic_goods_prosthetic_devices")
+    static let osteopaths = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "osteopaths")
+    static let packageStoresBeerWineAndLiquor = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "package_stores_beer_wine_and_liquor")
+    static let paintsVarnishesAndSupplies = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "paints_varnishes_and_supplies")
+    static let parkingLotsGarages = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "parking_lots_garages")
+    static let passengerRailways = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "passenger_railways")
+    static let pawnShops = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "pawn_shops")
+    static let petShopsPetFoodAndSupplies = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "pet_shops_pet_food_and_supplies")
+    static let petroleumAndPetroleumProducts = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "petroleum_and_petroleum_products")
+    static let photoDeveloping = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "photo_developing")
+    static let photographicPhotocopyMicrofilmEquipmentAndSupplies = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "photographic_photocopy_microfilm_equipment_and_supplies")
+    static let photographicStudios = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "photographic_studios")
+    static let pictureVideoProduction = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "picture_video_production")
+    static let pieceGoodsNotionsAndOtherDryGoods = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "piece_goods_notions_and_other_dry_goods")
+    static let plumbingHeatingEquipmentAndSupplies = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "plumbing_heating_equipment_and_supplies")
+    static let politicalOrganizations = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "political_organizations")
+    static let postalServicesGovernmentOnly = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "postal_services_government_only")
+    static let preciousStonesAndMetalsWatchesAndJewelry = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "precious_stones_and_metals_watches_and_jewelry")
+    static let professionalServices = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "professional_services")
+    static let publicWarehousingAndStorage = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "public_warehousing_and_storage")
+    static let quickCopyReproAndBlueprint = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "quick_copy_repro_and_blueprint")
+    static let railroads = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "railroads")
+    static let realEstateAgentsAndManagersRentals = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "real_estate_agents_and_managers_rentals")
+    static let recordStores = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "record_stores")
+    static let recreationalVehicleRentals = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "recreational_vehicle_rentals")
+    static let religiousGoodsStores = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "religious_goods_stores")
+    static let religiousOrganizations = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "religious_organizations")
+    static let roofingSidingSheetMetal = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "roofing_siding_sheet_metal")
+    static let secretarialSupportServices = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "secretarial_support_services")
+    static let securityBrokersDealers = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "security_brokers_dealers")
+    static let serviceStations = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "service_stations")
+    static let sewingNeedleworkFabricAndPieceGoodsStores = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "sewing_needlework_fabric_and_piece_goods_stores")
+    static let shoeRepairHatCleaning = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "shoe_repair_hat_cleaning")
 }
 
 public extension PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc {
-    static let shoeStores =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "shoe_stores")
-    static let smallApplianceRepair =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "small_appliance_repair")
-    static let snowmobileDealers =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "snowmobile_dealers")
-    static let specialTradeServices =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "special_trade_services")
-    static let specialtyCleaning =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "specialty_cleaning")
-    static let sportingGoodsStores =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "sporting_goods_stores")
-    static let sportingRecreationCamps =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "sporting_recreation_camps")
-    static let sportsAndRidingApparelStores =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(
-            rawValue: "sports_and_riding_apparel_stores"
-        )
-    static let sportsClubsFields =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "sports_clubs_fields")
-    static let stampAndCoinStores =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "stamp_and_coin_stores")
-    static let stationaryOfficeSuppliesPrintingAndWritingPaper =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(
-            rawValue: "stationary_office_supplies_printing_and_writing_paper"
-        )
-    static let stationeryStoresOfficeAndSchoolSupplyStores =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(
-            rawValue: "stationery_stores_office_and_school_supply_stores"
-        )
-    static let swimmingPoolsSales =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "swimming_pools_sales")
-    static let tUiTravelGermany =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "t_ui_travel_germany")
-    static let tailorsAlterations =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "tailors_alterations")
-    static let taxPaymentsGovernmentAgencies =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(
-            rawValue: "tax_payments_government_agencies"
-        )
-    static let taxPreparationServices =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "tax_preparation_services")
-    static let taxicabsLimousines =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "taxicabs_limousines")
-    static let telecommunicationEquipmentAndTelephoneSales =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(
-            rawValue: "telecommunication_equipment_and_telephone_sales"
-        )
-    static let telecommunicationServices =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "telecommunication_services")
-    static let telegraphServices =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "telegraph_services")
-    static let tentAndAwningShops =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "tent_and_awning_shops")
-    static let testingLaboratories =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "testing_laboratories")
-    static let theatricalTicketAgencies =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "theatrical_ticket_agencies")
-    static let timeshares =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "timeshares")
-    static let tireRetreadingAndRepair =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "tire_retreading_and_repair")
-    static let tollsBridgeFees =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "tolls_bridge_fees")
-    static let touristAttractionsAndExhibits =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(
-            rawValue: "tourist_attractions_and_exhibits"
-        )
-    static let towingServices =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "towing_services")
-    static let trailerParksCampgrounds =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "trailer_parks_campgrounds")
-    static let transportationServices =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "transportation_services")
-    static let travelAgenciesTourOperators =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(
-            rawValue: "travel_agencies_tour_operators"
-        )
-    static let truckStopIteration =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "truck_stop_iteration")
-    static let truckUtilityTrailerRentals =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(
-            rawValue: "truck_utility_trailer_rentals"
-        )
-    static let typesettingPlateMakingAndRelatedServices =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(
-            rawValue: "typesetting_plate_making_and_related_services"
-        )
-    static let typewriterStores =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "typewriter_stores")
-    static let uSFederalGovernmentAgenciesOrDepartments =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(
-            rawValue: "u_s_federal_government_agencies_or_departments"
-        )
-    static let uniformsCommercialClothing =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(
-            rawValue: "uniforms_commercial_clothing"
-        )
-    static let usedMerchandiseAndSecondhandStores =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(
-            rawValue: "used_merchandise_and_secondhand_stores"
-        )
-    static let utilities =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "utilities")
-    static let varietyStores =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "variety_stores")
-    static let veterinaryServices =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "veterinary_services")
-    static let videoAmusementGameSupplies =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(
-            rawValue: "video_amusement_game_supplies"
-        )
-    static let videoGameArcades =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "video_game_arcades")
-    static let videoTapeRentalStores =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "video_tape_rental_stores")
-    static let vocationalTradeSchools =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "vocational_trade_schools")
-    static let watchJewelryRepair =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "watch_jewelry_repair")
-    static let weldingRepair =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "welding_repair")
-    static let wholesaleClubs =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "wholesale_clubs")
-    static let wigAndToupeeStores =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "wig_and_toupee_stores")
-    static let wiresMoneyOrders =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "wires_money_orders")
-    static let womensAccessoryAndSpecialtyShops =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(
-            rawValue: "womens_accessory_and_specialty_shops"
-        )
-    static let womensReadyToWearStores =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(
-            rawValue: "womens_ready_to_wear_stores"
-        )
-    static let wreckingAndSalvageYards =
-        PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "wrecking_and_salvage_yards")
+    static let shoeStores = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "shoe_stores")
+    static let smallApplianceRepair = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "small_appliance_repair")
+    static let snowmobileDealers = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "snowmobile_dealers")
+    static let specialTradeServices = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "special_trade_services")
+    static let specialtyCleaning = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "specialty_cleaning")
+    static let sportingGoodsStores = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "sporting_goods_stores")
+    static let sportingRecreationCamps = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "sporting_recreation_camps")
+    static let sportsAndRidingApparelStores = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "sports_and_riding_apparel_stores")
+    static let sportsClubsFields = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "sports_clubs_fields")
+    static let stampAndCoinStores = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "stamp_and_coin_stores")
+    static let stationaryOfficeSuppliesPrintingAndWritingPaper = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "stationary_office_supplies_printing_and_writing_paper")
+    static let stationeryStoresOfficeAndSchoolSupplyStores = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "stationery_stores_office_and_school_supply_stores")
+    static let swimmingPoolsSales = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "swimming_pools_sales")
+    static let tUiTravelGermany = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "t_ui_travel_germany")
+    static let tailorsAlterations = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "tailors_alterations")
+    static let taxPaymentsGovernmentAgencies = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "tax_payments_government_agencies")
+    static let taxPreparationServices = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "tax_preparation_services")
+    static let taxicabsLimousines = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "taxicabs_limousines")
+    static let telecommunicationEquipmentAndTelephoneSales = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "telecommunication_equipment_and_telephone_sales")
+    static let telecommunicationServices = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "telecommunication_services")
+    static let telegraphServices = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "telegraph_services")
+    static let tentAndAwningShops = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "tent_and_awning_shops")
+    static let testingLaboratories = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "testing_laboratories")
+    static let theatricalTicketAgencies = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "theatrical_ticket_agencies")
+    static let timeshares = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "timeshares")
+    static let tireRetreadingAndRepair = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "tire_retreading_and_repair")
+    static let tollsBridgeFees = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "tolls_bridge_fees")
+    static let touristAttractionsAndExhibits = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "tourist_attractions_and_exhibits")
+    static let towingServices = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "towing_services")
+    static let trailerParksCampgrounds = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "trailer_parks_campgrounds")
+    static let transportationServices = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "transportation_services")
+    static let travelAgenciesTourOperators = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "travel_agencies_tour_operators")
+    static let truckStopIteration = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "truck_stop_iteration")
+    static let truckUtilityTrailerRentals = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "truck_utility_trailer_rentals")
+    static let typesettingPlateMakingAndRelatedServices = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "typesetting_plate_making_and_related_services")
+    static let typewriterStores = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "typewriter_stores")
+    static let uSFederalGovernmentAgenciesOrDepartments = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "u_s_federal_government_agencies_or_departments")
+    static let uniformsCommercialClothing = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "uniforms_commercial_clothing")
+    static let usedMerchandiseAndSecondhandStores = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "used_merchandise_and_secondhand_stores")
+    static let utilities = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "utilities")
+    static let varietyStores = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "variety_stores")
+    static let veterinaryServices = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "veterinary_services")
+    static let videoAmusementGameSupplies = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "video_amusement_game_supplies")
+    static let videoGameArcades = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "video_game_arcades")
+    static let videoTapeRentalStores = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "video_tape_rental_stores")
+    static let vocationalTradeSchools = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "vocational_trade_schools")
+    static let watchJewelryRepair = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "watch_jewelry_repair")
+    static let weldingRepair = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "welding_repair")
+    static let wholesaleClubs = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "wholesale_clubs")
+    static let wigAndToupeeStores = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "wig_and_toupee_stores")
+    static let wiresMoneyOrders = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "wires_money_orders")
+    static let womensAccessoryAndSpecialtyShops = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "womens_accessory_and_specialty_shops")
+    static let womensReadyToWearStores = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "womens_ready_to_wear_stores")
+    static let wreckingAndSalvageYards = PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXd0e5d1e9cc(rawValue: "wrecking_and_salvage_yards")
 }

@@ -7,12 +7,12 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1TestHelpersIssuingPersonalizationDesignsReject operation model declarations
-public typealias PostTestHelpersIssuingPersonalizationDesignsPersonalizationDeXf476465333 =
-    [PostTestHelpersIssuingPersonalizationDesignsPersonalizationDeX5b1f9f9704]
+// Canonical v1TestHelpersIssuingPersonalizationDesignsReject operation model declarations
+public typealias PostTestHelpersIssuingPersonalizationDesignsPersonalizationDeXf476465333 = [PostTestHelpersIssuingPersonalizationDesignsPersonalizationDeX5b1f9f9704]
 
-public typealias PostTestHelpersIssuingPersonalizationDesignsPersonalizationDeXeae9c1a3da =
-    [PostTestHelpersIssuingPersonalizationDesignsPersonalizationDeX5cd65351ec]
+
+
+public typealias PostTestHelpersIssuingPersonalizationDesignsPersonalizationDeXeae9c1a3da = [PostTestHelpersIssuingPersonalizationDesignsPersonalizationDeX5cd65351ec]
 
 /// The reason(s) the personalization design was rejected.
 public struct PostTestHelpersIssuingPersonalizationDesignsPersonalizationDeXbf9fda67d9: Codable {
@@ -25,23 +25,20 @@ public struct PostTestHelpersIssuingPersonalizationDesignsPersonalizationDeXbf9f
     }
 
     init() {
-        (cardLogo, carrierText) = (nil, nil)
+        (self.cardLogo, self.carrierText) = (nil, nil)
     }
 }
 
-public extension PostTestHelpersIssuingPersonalizationDesignsPersonalizationDeXbf9fda67d9 {
-    init(from decoder: Decoder) throws {
+extension PostTestHelpersIssuingPersonalizationDesignsPersonalizationDeXbf9fda67d9 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        cardLogo = try container.sdkDecodeIfPresent(.cardLogo)
-        carrierText = try container.sdkDecodeIfPresent(.carrierText)
+        self.cardLogo = try container.sdkDecodeIfPresent(.cardLogo)
+        self.carrierText = try container.sdkDecodeIfPresent(.carrierText)
     }
 }
 
-public extension PostTestHelpersIssuingPersonalizationDesignsPersonalizationDeXbf9fda67d9 {
-    init(
-        cardLogo: PostTestHelpersIssuingPersonalizationDesignsPersonalizationDeXf476465333? = nil,
-        carrierText: PostTestHelpersIssuingPersonalizationDesignsPersonalizationDeXeae9c1a3da? = nil
-    ) {
+extension PostTestHelpersIssuingPersonalizationDesignsPersonalizationDeXbf9fda67d9 {
+    public init(cardLogo: PostTestHelpersIssuingPersonalizationDesignsPersonalizationDeXf476465333? = nil, carrierText: PostTestHelpersIssuingPersonalizationDesignsPersonalizationDeXeae9c1a3da? = nil) {
         self.init()
         (self.cardLogo, self.carrierText) = (cardLogo, carrierText)
     }

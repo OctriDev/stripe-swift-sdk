@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1CheckoutSessions operation model declarations
+// Canonical v1CheckoutSessions operation model declarations
 public struct PostCheckoutSessionsRequestBodyAfterExpirationRecovery: Codable {
     public var enabled: Bool
     public var allowPromotionCodes: Bool?
@@ -17,28 +17,22 @@ public struct PostCheckoutSessionsRequestBodyAfterExpirationRecovery: Codable {
         case allowPromotionCodes = "allow_promotion_codes"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostCheckoutSessionsRequestBodyAfterExpirationRecovery {
-    init(from decoder: Decoder) throws {
+extension PostCheckoutSessionsRequestBodyAfterExpirationRecovery {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.enabled) else {
-            throw SdkValidationError(
-                field: "enabled",
-                code: "required",
-                message: "Validation failed for 'enabled': value is required"
-            )
+            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
         }
-        enabled = try container.sdkDecodeRequired(.enabled)
-        allowPromotionCodes = try container.sdkDecodeIfPresent(.allowPromotionCodes)
+        self.enabled = try container.sdkDecodeRequired(.enabled)
+        self.allowPromotionCodes = try container.sdkDecodeIfPresent(.allowPromotionCodes)
     }
 }
 
-public extension PostCheckoutSessionsRequestBodyAfterExpirationRecovery {
-    init(enabled: Bool, allowPromotionCodes: Bool? = nil) {
+extension PostCheckoutSessionsRequestBodyAfterExpirationRecovery {
+    public init(enabled: Bool, allowPromotionCodes: Bool? = nil) {
         (self.enabled, self.allowPromotionCodes) = (enabled, allowPromotionCodes)
     }
 }
@@ -51,26 +45,25 @@ public struct PostCheckoutSessionsRequestBodyPaymentMethodOptionsBacsDebitMXb346
     }
 
     init() {
-        referencePrefix = nil
+        self.referencePrefix = nil
     }
 }
 
-public extension PostCheckoutSessionsRequestBodyPaymentMethodOptionsBacsDebitMXb346272674 {
-    init(from decoder: Decoder) throws {
+extension PostCheckoutSessionsRequestBodyPaymentMethodOptionsBacsDebitMXb346272674 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        referencePrefix = try container.sdkDecodeIfPresent(.referencePrefix)
+        self.referencePrefix = try container.sdkDecodeIfPresent(.referencePrefix)
     }
 }
 
-public extension PostCheckoutSessionsRequestBodyPaymentMethodOptionsBacsDebitMXb346272674 {
-    init(referencePrefix: PostCheckoutSessionsRequestBodyPaymentMethodOptionsBacsDebitMXad7cd166a8? = nil) {
+extension PostCheckoutSessionsRequestBodyPaymentMethodOptionsBacsDebitMXb346272674 {
+    public init(referencePrefix: PostCheckoutSessionsRequestBodyPaymentMethodOptionsBacsDebitMXad7cd166a8? = nil) {
         self.init()
         self.referencePrefix = referencePrefix
     }
 }
 
-public typealias PostCheckoutSessionsRequestBodyPaymentMethodOptionsCustomerBaX63adf856b2 =
-    [PostCheckoutSessionsRequestBodyPaymentMethodOptionsCustomerBaXcb1104e551]
+public typealias PostCheckoutSessionsRequestBodyPaymentMethodOptionsCustomerBaX63adf856b2 = [PostCheckoutSessionsRequestBodyPaymentMethodOptionsCustomerBaXcb1104e551]
 
 public struct PostCheckoutSessionsRequestBodyPaymentMethodOptionsCustomerBaX84a4731388: Codable {
     public var type: PostCheckoutSessionsRequestBodyPaymentMethodOptionsCustomerBaX0939107c54
@@ -84,33 +77,23 @@ public struct PostCheckoutSessionsRequestBodyPaymentMethodOptionsCustomerBaX84a4
         case requestedAddressTypes = "requested_address_types"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostCheckoutSessionsRequestBodyPaymentMethodOptionsCustomerBaX84a4731388 {
-    init(from decoder: Decoder) throws {
+extension PostCheckoutSessionsRequestBodyPaymentMethodOptionsCustomerBaX84a4731388 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.type) else {
-            throw SdkValidationError(
-                field: "type",
-                code: "required",
-                message: "Validation failed for 'type': value is required"
-            )
+            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
         }
-        type = try container.sdkDecodeRequired(.type)
-        euBankTransfer = try container.sdkDecodeIfPresent(.euBankTransfer)
-        requestedAddressTypes = try container.sdkDecodeIfPresent(.requestedAddressTypes)
+        self.type = try container.sdkDecodeRequired(.type)
+        self.euBankTransfer = try container.sdkDecodeIfPresent(.euBankTransfer)
+        self.requestedAddressTypes = try container.sdkDecodeIfPresent(.requestedAddressTypes)
     }
 }
 
-public extension PostCheckoutSessionsRequestBodyPaymentMethodOptionsCustomerBaX84a4731388 {
-    init(
-        type: PostCheckoutSessionsRequestBodyPaymentMethodOptionsCustomerBaX0939107c54,
-        euBankTransfer: PostCheckoutSessionsRequestBodyPaymentMethodOptionsCustomerBaXca199415d4? = nil,
-        requestedAddressTypes: PostCheckoutSessionsRequestBodyPaymentMethodOptionsCustomerBaX63adf856b2? = nil
-    ) {
+extension PostCheckoutSessionsRequestBodyPaymentMethodOptionsCustomerBaX84a4731388 {
+    public init(type: PostCheckoutSessionsRequestBodyPaymentMethodOptionsCustomerBaX0939107c54, euBankTransfer: PostCheckoutSessionsRequestBodyPaymentMethodOptionsCustomerBaXca199415d4? = nil, requestedAddressTypes: PostCheckoutSessionsRequestBodyPaymentMethodOptionsCustomerBaX63adf856b2? = nil) {
         (self.type, self.euBankTransfer) = (type, euBankTransfer)
         self.requestedAddressTypes = requestedAddressTypes
     }

@@ -3,29 +3,18 @@
 
 import Foundation
 
-/// V1Radar domain models
-public extension RadarValueList {
-    init(
-        alias: String,
-        created: Int,
-        createdBy: String,
-        id: String,
-        itemType: RadarValueListItemType,
-        listItems: RadarValueListListItems,
-        livemode: Bool,
-        metadata: [String: String],
-        name: String,
-        object: RadarValueListObject
-    ) throws {
+// V1Radar domain models
+extension RadarValueList {
+    public init(alias: String, created: Int, createdBy: String, id: String, itemType: RadarValueListItemType, listItems: RadarValueListListItems, livemode: Bool, metadata: [String: String], name: String, object: RadarValueListObject) throws {
         (self.alias, self.created) = (alias, created)
         (self.createdBy, self.id) = (createdBy, id)
         (self.itemType, self.listItems) = (itemType, listItems)
         (self.livemode, self.metadata) = (livemode, metadata)
         (self.name, self.object) = (name, object)
-        try validateLength("alias", self.alias, min: nil, max: 5000)
-        try validateLength("created_by", self.createdBy, min: nil, max: 5000)
-        try validateLength("id", self.id, min: nil, max: 5000)
-        try validateLength("name", self.name, min: nil, max: 5000)
+            try validateLength("alias", self.alias, min: nil, max: 5000)
+            try validateLength("created_by", self.createdBy, min: nil, max: 5000)
+            try validateLength("id", self.id, min: nil, max: 5000)
+            try validateLength("name", self.name, min: nil, max: 5000)
     }
 }
 
@@ -48,55 +37,37 @@ public struct RadarValueListListItems: Codable {
         case url
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension RadarValueListListItems {
-    init(from decoder: Decoder) throws {
+extension RadarValueListListItems {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.data) else {
-            throw SdkValidationError(
-                field: "data",
-                code: "required",
-                message: "Validation failed for 'data': value is required"
-            )
+            throw SdkValidationError(field: "data", code: "required", message: "Validation failed for 'data': value is required")
         }
         guard container.contains(.hasMore) else {
-            throw SdkValidationError(
-                field: "has_more",
-                code: "required",
-                message: "Validation failed for 'has_more': value is required"
-            )
+            throw SdkValidationError(field: "has_more", code: "required", message: "Validation failed for 'has_more': value is required")
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(
-                field: "object",
-                code: "required",
-                message: "Validation failed for 'object': value is required"
-            )
+            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
         }
         guard container.contains(.url) else {
-            throw SdkValidationError(
-                field: "url",
-                code: "required",
-                message: "Validation failed for 'url': value is required"
-            )
+            throw SdkValidationError(field: "url", code: "required", message: "Validation failed for 'url': value is required")
         }
-        data = try container.sdkDecodeRequired(.data)
-        hasMore = try container.sdkDecodeRequired(.hasMore)
-        object = try container.sdkDecodeRequired(.object)
-        url = try container.sdkDecodeRequired(.url)
-        try validateLength("url", url, min: nil, max: 5000)
+        self.data = try container.sdkDecodeRequired(.data)
+        self.hasMore = try container.sdkDecodeRequired(.hasMore)
+        self.object = try container.sdkDecodeRequired(.object)
+        self.url = try container.sdkDecodeRequired(.url)
+            try validateLength("url", self.url, min: nil, max: 5000)
     }
 }
 
-public extension RadarValueListListItems {
-    init(data: [RadarValueListItem], hasMore: Bool, object: RadarValueListListItemsObject, url: String) throws {
+extension RadarValueListListItems {
+    public init(data: [RadarValueListItem], hasMore: Bool, object: RadarValueListListItemsObject, url: String) throws {
         (self.data, self.hasMore) = (data, hasMore)
         (self.object, self.url) = (object, url)
-        try validateLength("url", self.url, min: nil, max: 5000)
+            try validateLength("url", self.url, min: nil, max: 5000)
     }
 }
 
@@ -129,95 +100,57 @@ public struct RadarValueListItem: Codable {
         case valueList = "value_list"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension RadarValueListItem {
-    init(from decoder: Decoder) throws {
+extension RadarValueListItem {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.created) else {
-            throw SdkValidationError(
-                field: "created",
-                code: "required",
-                message: "Validation failed for 'created': value is required"
-            )
+            throw SdkValidationError(field: "created", code: "required", message: "Validation failed for 'created': value is required")
         }
         guard container.contains(.createdBy) else {
-            throw SdkValidationError(
-                field: "created_by",
-                code: "required",
-                message: "Validation failed for 'created_by': value is required"
-            )
+            throw SdkValidationError(field: "created_by", code: "required", message: "Validation failed for 'created_by': value is required")
         }
         guard container.contains(.id) else {
-            throw SdkValidationError(
-                field: "id",
-                code: "required",
-                message: "Validation failed for 'id': value is required"
-            )
+            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
         }
         guard container.contains(.livemode) else {
-            throw SdkValidationError(
-                field: "livemode",
-                code: "required",
-                message: "Validation failed for 'livemode': value is required"
-            )
+            throw SdkValidationError(field: "livemode", code: "required", message: "Validation failed for 'livemode': value is required")
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(
-                field: "object",
-                code: "required",
-                message: "Validation failed for 'object': value is required"
-            )
+            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
         }
         guard container.contains(.value) else {
-            throw SdkValidationError(
-                field: "value",
-                code: "required",
-                message: "Validation failed for 'value': value is required"
-            )
+            throw SdkValidationError(field: "value", code: "required", message: "Validation failed for 'value': value is required")
         }
         guard container.contains(.valueList) else {
-            throw SdkValidationError(
-                field: "value_list",
-                code: "required",
-                message: "Validation failed for 'value_list': value is required"
-            )
+            throw SdkValidationError(field: "value_list", code: "required", message: "Validation failed for 'value_list': value is required")
         }
-        created = try container.sdkDecodeRequired(.created)
-        createdBy = try container.sdkDecodeRequired(.createdBy)
-        id = try container.sdkDecodeRequired(.id)
-        livemode = try container.sdkDecodeRequired(.livemode)
-        object = try container.sdkDecodeRequired(.object)
-        value = try container.sdkDecodeRequired(.value)
-        valueList = try container.sdkDecodeRequired(.valueList)
-        try validateLength("created_by", createdBy, min: nil, max: 5000)
-        try validateLength("id", id, min: nil, max: 5000)
-        try validateLength("value", value, min: nil, max: 5000)
-        try validateLength("value_list", valueList, min: nil, max: 5000)
+        self.created = try container.sdkDecodeRequired(.created)
+        self.createdBy = try container.sdkDecodeRequired(.createdBy)
+        self.id = try container.sdkDecodeRequired(.id)
+        self.livemode = try container.sdkDecodeRequired(.livemode)
+        self.object = try container.sdkDecodeRequired(.object)
+        self.value = try container.sdkDecodeRequired(.value)
+        self.valueList = try container.sdkDecodeRequired(.valueList)
+            try validateLength("created_by", self.createdBy, min: nil, max: 5000)
+            try validateLength("id", self.id, min: nil, max: 5000)
+            try validateLength("value", self.value, min: nil, max: 5000)
+            try validateLength("value_list", self.valueList, min: nil, max: 5000)
     }
 }
 
-public extension RadarValueListItem {
-    init(
-        created: Int,
-        createdBy: String,
-        id: String,
-        livemode: Bool,
-        object: RadarValueListItemObject,
-        value: String,
-        valueList: String
-    ) throws {
+extension RadarValueListItem {
+    public init(created: Int, createdBy: String, id: String, livemode: Bool, object: RadarValueListItemObject, value: String, valueList: String) throws {
         (self.created, self.createdBy) = (created, createdBy)
         (self.id, self.livemode) = (id, livemode)
         (self.object, self.value) = (object, value)
         self.valueList = valueList
-        try validateLength("created_by", self.createdBy, min: nil, max: 5000)
-        try validateLength("id", self.id, min: nil, max: 5000)
-        try validateLength("value", self.value, min: nil, max: 5000)
-        try validateLength("value_list", self.valueList, min: nil, max: 5000)
+            try validateLength("created_by", self.createdBy, min: nil, max: 5000)
+            try validateLength("id", self.id, min: nil, max: 5000)
+            try validateLength("value", self.value, min: nil, max: 5000)
+            try validateLength("value_list", self.valueList, min: nil, max: 5000)
     }
 }
 
@@ -225,15 +158,12 @@ public extension RadarValueListItem {
 public struct RadarPaymentEvaluationObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let radarPaymentEvaluation = RadarPaymentEvaluationObject(rawValue: "radar.payment_evaluation")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -246,15 +176,12 @@ public struct RadarPaymentEvaluationObject: RawRepresentable, Hashable, Codable,
 public struct RadarValueListItemObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let radarValueListItem = RadarValueListItemObject(rawValue: "radar.value_list_item")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -265,20 +192,16 @@ public struct RadarValueListItemObject: RawRepresentable, Hashable, Codable, Sen
 
 /// Recommended action based on the score of the `fraudulent_payment` signal. Possible values are `block`,
 /// `continue` and `request_three_d_secure`.
-public struct RadarPaymentEvaluationRecommendedAction: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct RadarPaymentEvaluationRecommendedAction: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let block = RadarPaymentEvaluationRecommendedAction(rawValue: "block")
     public static let `continue` = RadarPaymentEvaluationRecommendedAction(rawValue: "continue")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -291,15 +214,12 @@ public struct RadarPaymentEvaluationRecommendedAction: RawRepresentable, Hashabl
 public struct RadarEarlyFraudWarningObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let radarEarlyFraudWarning = RadarEarlyFraudWarningObject(rawValue: "radar.early_fraud_warning")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -312,15 +232,12 @@ public struct RadarEarlyFraudWarningObject: RawRepresentable, Hashable, Codable,
 public struct RadarValueListObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let radarValueList = RadarValueListObject(rawValue: "radar.value_list")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -335,10 +252,7 @@ public struct RadarValueListObject: RawRepresentable, Hashable, Codable, Sendabl
 public struct RadarValueListItemType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let account = RadarValueListItemType(rawValue: "account")
     public static let cardBin = RadarValueListItemType(rawValue: "card_bin")
     public static let cardFingerprint = RadarValueListItemType(rawValue: "card_fingerprint")
@@ -354,7 +268,7 @@ public struct RadarValueListItemType: RawRepresentable, Hashable, Codable, Senda
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -368,15 +282,12 @@ public struct RadarValueListItemType: RawRepresentable, Hashable, Codable, Senda
 public struct RadarValueListListItemsObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let list = RadarValueListListItemsObject(rawValue: "list")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

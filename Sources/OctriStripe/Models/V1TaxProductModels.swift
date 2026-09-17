@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1TaxProduct domain models
+// V1TaxProduct domain models
 /// Typed representation of the `TaxProductRegistrationsResourceCountryOptions` API schema.
 public struct TaxProductRegistrationsResourceCountryOptions: Codable {
     /// Optional object value serialized in the `ae` wire field.
@@ -318,8 +318,8 @@ extension TaxProductRegistrationsResourceCountryOptions {
     }
 }
 
-public extension TaxProductRegistrationsResourceCountryOptions {
-    init(from decoder: Decoder) throws {
+extension TaxProductRegistrationsResourceCountryOptions {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.init(sdkDefaults: ())
         try sdkDecodeFieldsPart1(container)
@@ -334,110 +334,8 @@ public extension TaxProductRegistrationsResourceCountryOptions {
     }
 }
 
-public extension TaxProductRegistrationsResourceCountryOptions {
-    init(
-        ae: TaxProductRegistrationsResourceCountryOptionsDefaultInboundGoods? = nil,
-        al: TaxProductRegistrationsResourceCountryOptionsDefault? = nil,
-        am: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil,
-        ao: TaxProductRegistrationsResourceCountryOptionsDefault? = nil,
-        at: TaxProductRegistrationsResourceCountryOptionsEurope? = nil,
-        au: TaxProductRegistrationsResourceCountryOptionsDefaultInboundGoods? = nil,
-        aw: TaxProductRegistrationsResourceCountryOptionsDefault? = nil,
-        az: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil,
-        ba: TaxProductRegistrationsResourceCountryOptionsDefault? = nil,
-        bb: TaxProductRegistrationsResourceCountryOptionsDefault? = nil,
-        bd: TaxProductRegistrationsResourceCountryOptionsDefault? = nil,
-        be: TaxProductRegistrationsResourceCountryOptionsEurope? = nil,
-        bf: TaxProductRegistrationsResourceCountryOptionsDefault? = nil,
-        bg: TaxProductRegistrationsResourceCountryOptionsEurope? = nil,
-        bh: TaxProductRegistrationsResourceCountryOptionsDefault? = nil,
-        bj: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil,
-        bs: TaxProductRegistrationsResourceCountryOptionsDefault? = nil,
-        by: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil,
-        ca: TaxProductRegistrationsResourceCountryOptionsCanada? = nil,
-        cd: TaxProductRegistrationsResourceCountryOptionsDefault? = nil,
-        ch: TaxProductRegistrationsResourceCountryOptionsDefaultInboundGoods? = nil,
-        cl: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil,
-        cm: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil,
-        co: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil,
-        cr: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil,
-        cv: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil,
-        cy: TaxProductRegistrationsResourceCountryOptionsEurope? = nil,
-        cz: TaxProductRegistrationsResourceCountryOptionsEurope? = nil,
-        de: TaxProductRegistrationsResourceCountryOptionsEurope? = nil,
-        dk: TaxProductRegistrationsResourceCountryOptionsEurope? = nil,
-        ec: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil,
-        ee: TaxProductRegistrationsResourceCountryOptionsEurope? = nil,
-        eg: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil,
-        es: TaxProductRegistrationsResourceCountryOptionsEurope? = nil,
-        et: TaxProductRegistrationsResourceCountryOptionsDefault? = nil,
-        fi: TaxProductRegistrationsResourceCountryOptionsEurope? = nil,
-        fr: TaxProductRegistrationsResourceCountryOptionsEurope? = nil,
-        gb: TaxProductRegistrationsResourceCountryOptionsDefaultInboundGoods? = nil,
-        ge: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil,
-        gn: TaxProductRegistrationsResourceCountryOptionsDefault? = nil,
-        gr: TaxProductRegistrationsResourceCountryOptionsEurope? = nil,
-        hr: TaxProductRegistrationsResourceCountryOptionsEurope? = nil,
-        hu: TaxProductRegistrationsResourceCountryOptionsEurope? = nil,
-        id: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil,
-        ie: TaxProductRegistrationsResourceCountryOptionsEurope? = nil,
-        in: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil,
-        is: TaxProductRegistrationsResourceCountryOptionsDefault? = nil,
-        it: TaxProductRegistrationsResourceCountryOptionsEurope? = nil,
-        jp: TaxProductRegistrationsResourceCountryOptionsDefaultInboundGoods? = nil,
-        ke: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil,
-        kg: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil,
-        kh: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil,
-        kr: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil,
-        kz: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil,
-        la: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil,
-        lk: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil,
-        lt: TaxProductRegistrationsResourceCountryOptionsEurope? = nil,
-        lu: TaxProductRegistrationsResourceCountryOptionsEurope? = nil,
-        lv: TaxProductRegistrationsResourceCountryOptionsEurope? = nil,
-        ma: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil,
-        md: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil,
-        me: TaxProductRegistrationsResourceCountryOptionsDefault? = nil,
-        mk: TaxProductRegistrationsResourceCountryOptionsDefault? = nil,
-        mr: TaxProductRegistrationsResourceCountryOptionsDefault? = nil,
-        mt: TaxProductRegistrationsResourceCountryOptionsEurope? = nil,
-        mx: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil,
-        my: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil,
-        ng: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil,
-        nl: TaxProductRegistrationsResourceCountryOptionsEurope? = nil,
-        no: TaxProductRegistrationsResourceCountryOptionsDefaultInboundGoods? = nil,
-        np: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil,
-        nz: TaxProductRegistrationsResourceCountryOptionsDefaultInboundGoods? = nil,
-        om: TaxProductRegistrationsResourceCountryOptionsDefault? = nil,
-        pe: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil,
-        ph: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil,
-        pl: TaxProductRegistrationsResourceCountryOptionsEurope? = nil,
-        pt: TaxProductRegistrationsResourceCountryOptionsEurope? = nil,
-        ro: TaxProductRegistrationsResourceCountryOptionsEurope? = nil,
-        rs: TaxProductRegistrationsResourceCountryOptionsDefault? = nil,
-        ru: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil,
-        sa: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil,
-        se: TaxProductRegistrationsResourceCountryOptionsEurope? = nil,
-        sg: TaxProductRegistrationsResourceCountryOptionsDefaultInboundGoods? = nil,
-        si: TaxProductRegistrationsResourceCountryOptionsEurope? = nil,
-        sk: TaxProductRegistrationsResourceCountryOptionsEurope? = nil,
-        sn: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil,
-        sr: TaxProductRegistrationsResourceCountryOptionsDefault? = nil,
-        th: TaxProductRegistrationsResourceCountryOptionsThailand? = nil,
-        tj: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil,
-        tr: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil,
-        tw: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil,
-        tz: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil,
-        ua: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil,
-        ug: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil,
-        us: TaxProductRegistrationsResourceCountryOptionsUnitedStates? = nil,
-        uy: TaxProductRegistrationsResourceCountryOptionsDefault? = nil,
-        uz: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil,
-        vn: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil,
-        za: TaxProductRegistrationsResourceCountryOptionsDefault? = nil,
-        zm: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil,
-        zw: TaxProductRegistrationsResourceCountryOptionsDefault? = nil
-    ) {
+extension TaxProductRegistrationsResourceCountryOptions {
+    public init(ae: TaxProductRegistrationsResourceCountryOptionsDefaultInboundGoods? = nil, al: TaxProductRegistrationsResourceCountryOptionsDefault? = nil, am: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil, ao: TaxProductRegistrationsResourceCountryOptionsDefault? = nil, at: TaxProductRegistrationsResourceCountryOptionsEurope? = nil, au: TaxProductRegistrationsResourceCountryOptionsDefaultInboundGoods? = nil, aw: TaxProductRegistrationsResourceCountryOptionsDefault? = nil, az: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil, ba: TaxProductRegistrationsResourceCountryOptionsDefault? = nil, bb: TaxProductRegistrationsResourceCountryOptionsDefault? = nil, bd: TaxProductRegistrationsResourceCountryOptionsDefault? = nil, be: TaxProductRegistrationsResourceCountryOptionsEurope? = nil, bf: TaxProductRegistrationsResourceCountryOptionsDefault? = nil, bg: TaxProductRegistrationsResourceCountryOptionsEurope? = nil, bh: TaxProductRegistrationsResourceCountryOptionsDefault? = nil, bj: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil, bs: TaxProductRegistrationsResourceCountryOptionsDefault? = nil, by: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil, ca: TaxProductRegistrationsResourceCountryOptionsCanada? = nil, cd: TaxProductRegistrationsResourceCountryOptionsDefault? = nil, ch: TaxProductRegistrationsResourceCountryOptionsDefaultInboundGoods? = nil, cl: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil, cm: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil, co: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil, cr: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil, cv: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil, cy: TaxProductRegistrationsResourceCountryOptionsEurope? = nil, cz: TaxProductRegistrationsResourceCountryOptionsEurope? = nil, de: TaxProductRegistrationsResourceCountryOptionsEurope? = nil, dk: TaxProductRegistrationsResourceCountryOptionsEurope? = nil, ec: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil, ee: TaxProductRegistrationsResourceCountryOptionsEurope? = nil, eg: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil, es: TaxProductRegistrationsResourceCountryOptionsEurope? = nil, et: TaxProductRegistrationsResourceCountryOptionsDefault? = nil, fi: TaxProductRegistrationsResourceCountryOptionsEurope? = nil, fr: TaxProductRegistrationsResourceCountryOptionsEurope? = nil, gb: TaxProductRegistrationsResourceCountryOptionsDefaultInboundGoods? = nil, ge: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil, gn: TaxProductRegistrationsResourceCountryOptionsDefault? = nil, gr: TaxProductRegistrationsResourceCountryOptionsEurope? = nil, hr: TaxProductRegistrationsResourceCountryOptionsEurope? = nil, hu: TaxProductRegistrationsResourceCountryOptionsEurope? = nil, id: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil, ie: TaxProductRegistrationsResourceCountryOptionsEurope? = nil, `in`: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil, `is`: TaxProductRegistrationsResourceCountryOptionsDefault? = nil, it: TaxProductRegistrationsResourceCountryOptionsEurope? = nil, jp: TaxProductRegistrationsResourceCountryOptionsDefaultInboundGoods? = nil, ke: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil, kg: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil, kh: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil, kr: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil, kz: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil, la: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil, lk: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil, lt: TaxProductRegistrationsResourceCountryOptionsEurope? = nil, lu: TaxProductRegistrationsResourceCountryOptionsEurope? = nil, lv: TaxProductRegistrationsResourceCountryOptionsEurope? = nil, ma: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil, md: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil, me: TaxProductRegistrationsResourceCountryOptionsDefault? = nil, mk: TaxProductRegistrationsResourceCountryOptionsDefault? = nil, mr: TaxProductRegistrationsResourceCountryOptionsDefault? = nil, mt: TaxProductRegistrationsResourceCountryOptionsEurope? = nil, mx: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil, my: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil, ng: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil, nl: TaxProductRegistrationsResourceCountryOptionsEurope? = nil, no: TaxProductRegistrationsResourceCountryOptionsDefaultInboundGoods? = nil, np: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil, nz: TaxProductRegistrationsResourceCountryOptionsDefaultInboundGoods? = nil, om: TaxProductRegistrationsResourceCountryOptionsDefault? = nil, pe: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil, ph: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil, pl: TaxProductRegistrationsResourceCountryOptionsEurope? = nil, pt: TaxProductRegistrationsResourceCountryOptionsEurope? = nil, ro: TaxProductRegistrationsResourceCountryOptionsEurope? = nil, rs: TaxProductRegistrationsResourceCountryOptionsDefault? = nil, ru: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil, sa: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil, se: TaxProductRegistrationsResourceCountryOptionsEurope? = nil, sg: TaxProductRegistrationsResourceCountryOptionsDefaultInboundGoods? = nil, si: TaxProductRegistrationsResourceCountryOptionsEurope? = nil, sk: TaxProductRegistrationsResourceCountryOptionsEurope? = nil, sn: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil, sr: TaxProductRegistrationsResourceCountryOptionsDefault? = nil, th: TaxProductRegistrationsResourceCountryOptionsThailand? = nil, tj: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil, tr: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil, tw: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil, tz: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil, ua: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil, ug: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil, us: TaxProductRegistrationsResourceCountryOptionsUnitedStates? = nil, uy: TaxProductRegistrationsResourceCountryOptionsDefault? = nil, uz: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil, vn: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil, za: TaxProductRegistrationsResourceCountryOptionsDefault? = nil, zm: TaxProductRegistrationsResourceCountryOptionsSimplified? = nil, zw: TaxProductRegistrationsResourceCountryOptionsDefault? = nil) {
         self.init(sdkDefaults: ())
         sdkSet1(ae, al, am, ao, at)
         sdkSet2(au, aw, az, ba, bb)
@@ -464,13 +362,7 @@ public extension TaxProductRegistrationsResourceCountryOptions {
 }
 
 extension TaxProductRegistrationsResourceCountryOptions {
-    mutating func sdkSet1(
-        _ ae: TaxProductRegistrationsResourceCountryOptionsDefaultInboundGoods?,
-        _ al: TaxProductRegistrationsResourceCountryOptionsDefault?,
-        _ am: TaxProductRegistrationsResourceCountryOptionsSimplified?,
-        _ ao: TaxProductRegistrationsResourceCountryOptionsDefault?,
-        _ at: TaxProductRegistrationsResourceCountryOptionsEurope?
-    ) {
+    mutating func sdkSet1(_ ae: TaxProductRegistrationsResourceCountryOptionsDefaultInboundGoods?, _ al: TaxProductRegistrationsResourceCountryOptionsDefault?, _ am: TaxProductRegistrationsResourceCountryOptionsSimplified?, _ ao: TaxProductRegistrationsResourceCountryOptionsDefault?, _ at: TaxProductRegistrationsResourceCountryOptionsEurope?) {
         self.ae = ae
         self.al = al
         self.am = am
@@ -480,13 +372,7 @@ extension TaxProductRegistrationsResourceCountryOptions {
 }
 
 extension TaxProductRegistrationsResourceCountryOptions {
-    mutating func sdkSet2(
-        _ au: TaxProductRegistrationsResourceCountryOptionsDefaultInboundGoods?,
-        _ aw: TaxProductRegistrationsResourceCountryOptionsDefault?,
-        _ az: TaxProductRegistrationsResourceCountryOptionsSimplified?,
-        _ ba: TaxProductRegistrationsResourceCountryOptionsDefault?,
-        _ bb: TaxProductRegistrationsResourceCountryOptionsDefault?
-    ) {
+    mutating func sdkSet2(_ au: TaxProductRegistrationsResourceCountryOptionsDefaultInboundGoods?, _ aw: TaxProductRegistrationsResourceCountryOptionsDefault?, _ az: TaxProductRegistrationsResourceCountryOptionsSimplified?, _ ba: TaxProductRegistrationsResourceCountryOptionsDefault?, _ bb: TaxProductRegistrationsResourceCountryOptionsDefault?) {
         self.au = au
         self.aw = aw
         self.az = az
@@ -496,13 +382,7 @@ extension TaxProductRegistrationsResourceCountryOptions {
 }
 
 extension TaxProductRegistrationsResourceCountryOptions {
-    mutating func sdkSet3(
-        _ bd: TaxProductRegistrationsResourceCountryOptionsDefault?,
-        _ be: TaxProductRegistrationsResourceCountryOptionsEurope?,
-        _ bf: TaxProductRegistrationsResourceCountryOptionsDefault?,
-        _ bg: TaxProductRegistrationsResourceCountryOptionsEurope?,
-        _ bh: TaxProductRegistrationsResourceCountryOptionsDefault?
-    ) {
+    mutating func sdkSet3(_ bd: TaxProductRegistrationsResourceCountryOptionsDefault?, _ be: TaxProductRegistrationsResourceCountryOptionsEurope?, _ bf: TaxProductRegistrationsResourceCountryOptionsDefault?, _ bg: TaxProductRegistrationsResourceCountryOptionsEurope?, _ bh: TaxProductRegistrationsResourceCountryOptionsDefault?) {
         self.bd = bd
         self.be = be
         self.bf = bf
@@ -512,13 +392,7 @@ extension TaxProductRegistrationsResourceCountryOptions {
 }
 
 extension TaxProductRegistrationsResourceCountryOptions {
-    mutating func sdkSet4(
-        _ bj: TaxProductRegistrationsResourceCountryOptionsSimplified?,
-        _ bs: TaxProductRegistrationsResourceCountryOptionsDefault?,
-        _ by: TaxProductRegistrationsResourceCountryOptionsSimplified?,
-        _ ca: TaxProductRegistrationsResourceCountryOptionsCanada?,
-        _ cd: TaxProductRegistrationsResourceCountryOptionsDefault?
-    ) {
+    mutating func sdkSet4(_ bj: TaxProductRegistrationsResourceCountryOptionsSimplified?, _ bs: TaxProductRegistrationsResourceCountryOptionsDefault?, _ by: TaxProductRegistrationsResourceCountryOptionsSimplified?, _ ca: TaxProductRegistrationsResourceCountryOptionsCanada?, _ cd: TaxProductRegistrationsResourceCountryOptionsDefault?) {
         self.bj = bj
         self.bs = bs
         self.by = by
@@ -528,13 +402,7 @@ extension TaxProductRegistrationsResourceCountryOptions {
 }
 
 extension TaxProductRegistrationsResourceCountryOptions {
-    mutating func sdkSet5(
-        _ ch: TaxProductRegistrationsResourceCountryOptionsDefaultInboundGoods?,
-        _ cl: TaxProductRegistrationsResourceCountryOptionsSimplified?,
-        _ cm: TaxProductRegistrationsResourceCountryOptionsSimplified?,
-        _ co: TaxProductRegistrationsResourceCountryOptionsSimplified?,
-        _ cr: TaxProductRegistrationsResourceCountryOptionsSimplified?
-    ) {
+    mutating func sdkSet5(_ ch: TaxProductRegistrationsResourceCountryOptionsDefaultInboundGoods?, _ cl: TaxProductRegistrationsResourceCountryOptionsSimplified?, _ cm: TaxProductRegistrationsResourceCountryOptionsSimplified?, _ co: TaxProductRegistrationsResourceCountryOptionsSimplified?, _ cr: TaxProductRegistrationsResourceCountryOptionsSimplified?) {
         self.ch = ch
         self.cl = cl
         self.cm = cm
@@ -544,13 +412,7 @@ extension TaxProductRegistrationsResourceCountryOptions {
 }
 
 extension TaxProductRegistrationsResourceCountryOptions {
-    mutating func sdkSet6(
-        _ cv: TaxProductRegistrationsResourceCountryOptionsSimplified?,
-        _ cy: TaxProductRegistrationsResourceCountryOptionsEurope?,
-        _ cz: TaxProductRegistrationsResourceCountryOptionsEurope?,
-        _ de: TaxProductRegistrationsResourceCountryOptionsEurope?,
-        _ dk: TaxProductRegistrationsResourceCountryOptionsEurope?
-    ) {
+    mutating func sdkSet6(_ cv: TaxProductRegistrationsResourceCountryOptionsSimplified?, _ cy: TaxProductRegistrationsResourceCountryOptionsEurope?, _ cz: TaxProductRegistrationsResourceCountryOptionsEurope?, _ de: TaxProductRegistrationsResourceCountryOptionsEurope?, _ dk: TaxProductRegistrationsResourceCountryOptionsEurope?) {
         self.cv = cv
         self.cy = cy
         self.cz = cz
@@ -560,13 +422,7 @@ extension TaxProductRegistrationsResourceCountryOptions {
 }
 
 extension TaxProductRegistrationsResourceCountryOptions {
-    mutating func sdkSet7(
-        _ ec: TaxProductRegistrationsResourceCountryOptionsSimplified?,
-        _ ee: TaxProductRegistrationsResourceCountryOptionsEurope?,
-        _ eg: TaxProductRegistrationsResourceCountryOptionsSimplified?,
-        _ es: TaxProductRegistrationsResourceCountryOptionsEurope?,
-        _ et: TaxProductRegistrationsResourceCountryOptionsDefault?
-    ) {
+    mutating func sdkSet7(_ ec: TaxProductRegistrationsResourceCountryOptionsSimplified?, _ ee: TaxProductRegistrationsResourceCountryOptionsEurope?, _ eg: TaxProductRegistrationsResourceCountryOptionsSimplified?, _ es: TaxProductRegistrationsResourceCountryOptionsEurope?, _ et: TaxProductRegistrationsResourceCountryOptionsDefault?) {
         self.ec = ec
         self.ee = ee
         self.eg = eg
@@ -576,13 +432,7 @@ extension TaxProductRegistrationsResourceCountryOptions {
 }
 
 extension TaxProductRegistrationsResourceCountryOptions {
-    mutating func sdkSet8(
-        _ fi: TaxProductRegistrationsResourceCountryOptionsEurope?,
-        _ fr: TaxProductRegistrationsResourceCountryOptionsEurope?,
-        _ gb: TaxProductRegistrationsResourceCountryOptionsDefaultInboundGoods?,
-        _ ge: TaxProductRegistrationsResourceCountryOptionsSimplified?,
-        _ gn: TaxProductRegistrationsResourceCountryOptionsDefault?
-    ) {
+    mutating func sdkSet8(_ fi: TaxProductRegistrationsResourceCountryOptionsEurope?, _ fr: TaxProductRegistrationsResourceCountryOptionsEurope?, _ gb: TaxProductRegistrationsResourceCountryOptionsDefaultInboundGoods?, _ ge: TaxProductRegistrationsResourceCountryOptionsSimplified?, _ gn: TaxProductRegistrationsResourceCountryOptionsDefault?) {
         self.fi = fi
         self.fr = fr
         self.gb = gb
@@ -592,13 +442,7 @@ extension TaxProductRegistrationsResourceCountryOptions {
 }
 
 extension TaxProductRegistrationsResourceCountryOptions {
-    mutating func sdkSet9(
-        _ gr: TaxProductRegistrationsResourceCountryOptionsEurope?,
-        _ hr: TaxProductRegistrationsResourceCountryOptionsEurope?,
-        _ hu: TaxProductRegistrationsResourceCountryOptionsEurope?,
-        _ id: TaxProductRegistrationsResourceCountryOptionsSimplified?,
-        _ ie: TaxProductRegistrationsResourceCountryOptionsEurope?
-    ) {
+    mutating func sdkSet9(_ gr: TaxProductRegistrationsResourceCountryOptionsEurope?, _ hr: TaxProductRegistrationsResourceCountryOptionsEurope?, _ hu: TaxProductRegistrationsResourceCountryOptionsEurope?, _ id: TaxProductRegistrationsResourceCountryOptionsSimplified?, _ ie: TaxProductRegistrationsResourceCountryOptionsEurope?) {
         self.gr = gr
         self.hr = hr
         self.hu = hu
@@ -608,15 +452,9 @@ extension TaxProductRegistrationsResourceCountryOptions {
 }
 
 extension TaxProductRegistrationsResourceCountryOptions {
-    mutating func sdkSet10(
-        _ in: TaxProductRegistrationsResourceCountryOptionsSimplified?,
-        _ is: TaxProductRegistrationsResourceCountryOptionsDefault?,
-        _ it: TaxProductRegistrationsResourceCountryOptionsEurope?,
-        _ jp: TaxProductRegistrationsResourceCountryOptionsDefaultInboundGoods?,
-        _ ke: TaxProductRegistrationsResourceCountryOptionsSimplified?
-    ) {
-        self.in = `in`
-        self.is = `is`
+    mutating func sdkSet10(_ `in`: TaxProductRegistrationsResourceCountryOptionsSimplified?, _ `is`: TaxProductRegistrationsResourceCountryOptionsDefault?, _ it: TaxProductRegistrationsResourceCountryOptionsEurope?, _ jp: TaxProductRegistrationsResourceCountryOptionsDefaultInboundGoods?, _ ke: TaxProductRegistrationsResourceCountryOptionsSimplified?) {
+        self.`in` = `in`
+        self.`is` = `is`
         self.it = it
         self.jp = jp
         self.ke = ke

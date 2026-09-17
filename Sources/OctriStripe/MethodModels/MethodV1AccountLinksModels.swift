@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1AccountLinks operation model declarations
+// Canonical v1AccountLinks operation model declarations
 /// Specifies the requirements that Stripe collects from connected accounts in the Connect Onboarding flow.
 public struct PostAccountLinksRequestBodyCollectionOptions: Codable {
     public var fields: PostAccountLinksRequestBodyCollectionOptionsFields?
@@ -19,23 +19,20 @@ public struct PostAccountLinksRequestBodyCollectionOptions: Codable {
     }
 
     init() {
-        (fields, futureRequirements) = (nil, nil)
+        (self.fields, self.futureRequirements) = (nil, nil)
     }
 }
 
-public extension PostAccountLinksRequestBodyCollectionOptions {
-    init(from decoder: Decoder) throws {
+extension PostAccountLinksRequestBodyCollectionOptions {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        fields = try container.sdkDecodeIfPresent(.fields)
-        futureRequirements = try container.sdkDecodeIfPresent(.futureRequirements)
+        self.fields = try container.sdkDecodeIfPresent(.fields)
+        self.futureRequirements = try container.sdkDecodeIfPresent(.futureRequirements)
     }
 }
 
-public extension PostAccountLinksRequestBodyCollectionOptions {
-    init(
-        fields: PostAccountLinksRequestBodyCollectionOptionsFields? = nil,
-        futureRequirements: PostAccountLinksRequestBodyCollectionOptionsFutureRequirements? = nil
-    ) {
+extension PostAccountLinksRequestBodyCollectionOptions {
+    public init(fields: PostAccountLinksRequestBodyCollectionOptionsFields? = nil, futureRequirements: PostAccountLinksRequestBodyCollectionOptionsFutureRequirements? = nil) {
         self.init()
         (self.fields, self.futureRequirements) = (fields, futureRequirements)
     }

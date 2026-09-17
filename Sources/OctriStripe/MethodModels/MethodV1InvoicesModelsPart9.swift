@@ -7,35 +7,27 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1Invoices operation model declarations
+// Canonical v1Invoices operation model declarations
 extension PostInvoicesInvoiceRequestBodyShippingDetails: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostInvoicesInvoiceRequestBodyShippingDetails"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostInvoicesInvoiceRequestBodyShippingDetails")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PostInvoicesInvoiceRequestBodyShippingDetailsVariant0.self
         ) {
-            return .postInvoicesInvoiceRequestBodyShippingDetailsVariant0(value)
+            return             .postInvoicesInvoiceRequestBodyShippingDetailsVariant0(value)
         }
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -45,6 +37,7 @@ extension PostInvoicesInvoiceRequestBodyShippingDetails: Codable {
         case let .stringValue(value): try container.encode(value); return true
         }
     }
+
 }
 
 public struct PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptX255962fc95: Codable {
@@ -58,23 +51,20 @@ public struct PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptX2559
     }
 
     init() {
-        (euBankTransfer, type) = (nil, nil)
+        (self.euBankTransfer, self.type) = (nil, nil)
     }
 }
 
-public extension PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptX255962fc95 {
-    init(from decoder: Decoder) throws {
+extension PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptX255962fc95 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        euBankTransfer = try container.sdkDecodeIfPresent(.euBankTransfer)
-        type = try container.sdkDecodeIfPresent(.type)
+        self.euBankTransfer = try container.sdkDecodeIfPresent(.euBankTransfer)
+        self.type = try container.sdkDecodeIfPresent(.type)
     }
 }
 
-public extension PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptX255962fc95 {
-    init(
-        euBankTransfer: PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptX2a6689829f? = nil,
-        type: String? = nil
-    ) {
+extension PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptX255962fc95 {
+    public init(euBankTransfer: PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptX2a6689829f? = nil, type: String? = nil) {
         self.init()
         (self.euBankTransfer, self.type) = (euBankTransfer, type)
     }
@@ -89,19 +79,19 @@ public struct PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptXf763
     }
 
     init() {
-        mandateOptions = nil
+        self.mandateOptions = nil
     }
 }
 
-public extension PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptXf7637ab348 {
-    init(from decoder: Decoder) throws {
+extension PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptXf7637ab348 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        mandateOptions = try container.sdkDecodeIfPresent(.mandateOptions)
+        self.mandateOptions = try container.sdkDecodeIfPresent(.mandateOptions)
     }
 }
 
-public extension PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptXf7637ab348 {
-    init(mandateOptions: PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptX167aec2b3e? = nil) {
+extension PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptXf7637ab348 {
+    public init(mandateOptions: PostInvoicesInvoiceRequestBodyPaymentSettingsPaymentMethodOptX167aec2b3e? = nil) {
         self.init()
         self.mandateOptions = mandateOptions
     }
@@ -121,22 +111,22 @@ public struct GetInvoicesParameterVariant0: Codable {
     }
 
     init() {
-        (gt, gte, lt, lte) = (nil, nil, nil, nil)
+        (self.gt, self.gte, self.lt, self.lte) = (nil, nil, nil, nil)
     }
 }
 
-public extension GetInvoicesParameterVariant0 {
-    init(from decoder: Decoder) throws {
+extension GetInvoicesParameterVariant0 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        gt = try container.sdkDecodeIfPresent(.gt)
-        gte = try container.sdkDecodeIfPresent(.gte)
-        lt = try container.sdkDecodeIfPresent(.lt)
-        lte = try container.sdkDecodeIfPresent(.lte)
+        self.gt = try container.sdkDecodeIfPresent(.gt)
+        self.gte = try container.sdkDecodeIfPresent(.gte)
+        self.lt = try container.sdkDecodeIfPresent(.lt)
+        self.lte = try container.sdkDecodeIfPresent(.lte)
     }
 }
 
-public extension GetInvoicesParameterVariant0 {
-    init(gt: Int? = nil, gte: Int? = nil, lt: Int? = nil, lte: Int? = nil) {
+extension GetInvoicesParameterVariant0 {
+    public init(gt: Int? = nil, gte: Int? = nil, lt: Int? = nil, lte: Int? = nil) {
         self.init()
         (self.gt, self.gte) = (gt, gte)
         (self.lt, self.lte) = (lt, lte)
@@ -153,20 +143,20 @@ public struct PostInvoicesRequestBodyPaymentSettingsPaymentMethodOptionsCarXa93d
     }
 
     init() {
-        (enabled, plan) = (nil, nil)
+        (self.enabled, self.plan) = (nil, nil)
     }
 }
 
-public extension PostInvoicesRequestBodyPaymentSettingsPaymentMethodOptionsCarXa93d75a126 {
-    init(from decoder: Decoder) throws {
+extension PostInvoicesRequestBodyPaymentSettingsPaymentMethodOptionsCarXa93d75a126 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        enabled = try container.sdkDecodeIfPresent(.enabled)
-        plan = try container.sdkDecodeIfPresent(.plan)
+        self.enabled = try container.sdkDecodeIfPresent(.enabled)
+        self.plan = try container.sdkDecodeIfPresent(.plan)
     }
 }
 
-public extension PostInvoicesRequestBodyPaymentSettingsPaymentMethodOptionsCarXa93d75a126 {
-    init(enabled: Bool? = nil, plan: PostInvoicesRequestBodyPaymentSettingsPaymentMethodOptionsCarXd4b1120796? = nil) {
+extension PostInvoicesRequestBodyPaymentSettingsPaymentMethodOptionsCarXa93d75a126 {
+    public init(enabled: Bool? = nil, plan: PostInvoicesRequestBodyPaymentSettingsPaymentMethodOptionsCarXd4b1120796? = nil) {
         self.init()
         (self.enabled, self.plan) = (enabled, plan)
     }
@@ -180,19 +170,19 @@ public struct PostInvoicesRequestBodyRenderingPdf: Codable {
     }
 
     init() {
-        pageSize = nil
+        self.pageSize = nil
     }
 }
 
-public extension PostInvoicesRequestBodyRenderingPdf {
-    init(from decoder: Decoder) throws {
+extension PostInvoicesRequestBodyRenderingPdf {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        pageSize = try container.sdkDecodeIfPresent(.pageSize)
+        self.pageSize = try container.sdkDecodeIfPresent(.pageSize)
     }
 }
 
-public extension PostInvoicesRequestBodyRenderingPdf {
-    init(pageSize: PostInvoicesRequestBodyRenderingPdfPageSize? = nil) {
+extension PostInvoicesRequestBodyRenderingPdf {
+    public init(pageSize: PostInvoicesRequestBodyRenderingPdfPageSize? = nil) {
         self.init()
         self.pageSize = pageSize
     }
@@ -212,22 +202,22 @@ public struct GetInvoicesParameterVariant0X94584a77: Codable {
     }
 
     init() {
-        (gt, gte, lt, lte) = (nil, nil, nil, nil)
+        (self.gt, self.gte, self.lt, self.lte) = (nil, nil, nil, nil)
     }
 }
 
-public extension GetInvoicesParameterVariant0X94584a77 {
-    init(from decoder: Decoder) throws {
+extension GetInvoicesParameterVariant0X94584a77 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        gt = try container.sdkDecodeIfPresent(.gt)
-        gte = try container.sdkDecodeIfPresent(.gte)
-        lt = try container.sdkDecodeIfPresent(.lt)
-        lte = try container.sdkDecodeIfPresent(.lte)
+        self.gt = try container.sdkDecodeIfPresent(.gt)
+        self.gte = try container.sdkDecodeIfPresent(.gte)
+        self.lt = try container.sdkDecodeIfPresent(.lt)
+        self.lte = try container.sdkDecodeIfPresent(.lte)
     }
 }
 
-public extension GetInvoicesParameterVariant0X94584a77 {
-    init(gt: Int? = nil, gte: Int? = nil, lt: Int? = nil, lte: Int? = nil) {
+extension GetInvoicesParameterVariant0X94584a77 {
+    public init(gt: Int? = nil, gte: Int? = nil, lt: Int? = nil, lte: Int? = nil) {
         self.init()
         (self.gt, self.gte) = (gt, gte)
         (self.lt, self.lte) = (lt, lte)
@@ -245,23 +235,20 @@ public struct PostInvoicesRequestBodyPaymentSettingsPaymentMethodOptionsCardVari
     }
 
     init() {
-        (installments, requestThreeDSecure) = (nil, nil)
+        (self.installments, self.requestThreeDSecure) = (nil, nil)
     }
 }
 
-public extension PostInvoicesRequestBodyPaymentSettingsPaymentMethodOptionsCardVariant0 {
-    init(from decoder: Decoder) throws {
+extension PostInvoicesRequestBodyPaymentSettingsPaymentMethodOptionsCardVariant0 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        installments = try container.sdkDecodeIfPresent(.installments)
-        requestThreeDSecure = try container.sdkDecodeIfPresent(.requestThreeDSecure)
+        self.installments = try container.sdkDecodeIfPresent(.installments)
+        self.requestThreeDSecure = try container.sdkDecodeIfPresent(.requestThreeDSecure)
     }
 }
 
-public extension PostInvoicesRequestBodyPaymentSettingsPaymentMethodOptionsCardVariant0 {
-    init(
-        installments: PostInvoicesRequestBodyPaymentSettingsPaymentMethodOptionsCarXa93d75a126? = nil,
-        requestThreeDSecure: PostInvoicesRequestBodyPaymentSettingsPaymentMethodOptionsCarX67cb42100a? = nil
-    ) {
+extension PostInvoicesRequestBodyPaymentSettingsPaymentMethodOptionsCardVariant0 {
+    public init(installments: PostInvoicesRequestBodyPaymentSettingsPaymentMethodOptionsCarXa93d75a126? = nil, requestThreeDSecure: PostInvoicesRequestBodyPaymentSettingsPaymentMethodOptionsCarX67cb42100a? = nil) {
         self.init()
         (self.installments, self.requestThreeDSecure) = (installments, requestThreeDSecure)
     }

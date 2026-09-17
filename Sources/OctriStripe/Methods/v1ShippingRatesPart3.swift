@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1ShippingRatesMethods {
-    struct PostShippingRatesOptions: Codable {
+extension V1ShippingRatesMethods {
+    public struct PostShippingRatesOptions: Codable {
         public var displayName: String
         public var deliveryEstimate: PostShippingRatesRequestBodyDeliveryEstimate?
         public var expand: [String]?
@@ -22,9 +22,7 @@ public extension V1ShippingRatesMethods {
         }
     }
 
-    /// Creates a new shipping rate for display to customers and application to purchases. Supply `display_name` and
-    /// configure the calculation type, fixed amount, tax behavior, and delivery estimate as needed. The created rate
-    /// can appear in Checkout Sessions.
+    /// Creates a new shipping rate for display to customers and application to purchases. Supply `display_name` and configure the calculation type, fixed amount, tax behavior, and delivery estimate as needed. The created rate can appear in Checkout Sessions.
     ///
     /// Creates a new shipping rate object.
     ///
@@ -47,22 +45,11 @@ public extension V1ShippingRatesMethods {
     /// - taxCode: A [tax code](https://docs.stripe.com/tax/tax-categories) ID. The
     ///   Shipping tax code is `txcd_92010001`.
     /// - type: The type of calculation to use on the shipping rate.
-    static func postShippingRates(
-        config: ClientConfig,
-        options: PostShippingRatesOptions
-    ) async throws -> ShippingRate {
+    public static func postShippingRates(config: ClientConfig, options: PostShippingRatesOptions) async throws -> ShippingRate {
         try validateLength("display_name", options.displayName, max: 100)
 
         let requestBody = PostShippingRatesRequestBody(options: options)
 
-        return try await (sdkRequest(
-            "POST",
-            "/v1/shipping_rates",
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostShippingRates"
-        )).data
+        return try (await sdkRequest("POST", "/v1/shipping_rates", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostShippingRates")).data
     }
 }

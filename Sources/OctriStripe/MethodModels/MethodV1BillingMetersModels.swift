@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1BillingMeters operation model declarations
+// Canonical v1BillingMeters operation model declarations
 /// The default settings to aggregate a meter's events with.
 public struct PostBillingMetersRequestBodyDefaultAggregation: Codable {
     public var formula: PostBillingMetersRequestBodyDefaultAggregationFormula
@@ -16,27 +16,21 @@ public struct PostBillingMetersRequestBodyDefaultAggregation: Codable {
         case formula
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostBillingMetersRequestBodyDefaultAggregation {
-    init(from decoder: Decoder) throws {
+extension PostBillingMetersRequestBodyDefaultAggregation {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.formula) else {
-            throw SdkValidationError(
-                field: "formula",
-                code: "required",
-                message: "Validation failed for 'formula': value is required"
-            )
+            throw SdkValidationError(field: "formula", code: "required", message: "Validation failed for 'formula': value is required")
         }
-        formula = try container.sdkDecodeRequired(.formula)
+        self.formula = try container.sdkDecodeRequired(.formula)
     }
 }
 
-public extension PostBillingMetersRequestBodyDefaultAggregation {
-    init(formula: PostBillingMetersRequestBodyDefaultAggregationFormula) {
+extension PostBillingMetersRequestBodyDefaultAggregation {
+    public init(formula: PostBillingMetersRequestBodyDefaultAggregationFormula) {
         self.formula = formula
     }
 }
@@ -51,38 +45,28 @@ public struct PostBillingMetersRequestBodyCustomerMapping: Codable {
         case type
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostBillingMetersRequestBodyCustomerMapping {
-    init(from decoder: Decoder) throws {
+extension PostBillingMetersRequestBodyCustomerMapping {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.eventPayloadKey) else {
-            throw SdkValidationError(
-                field: "event_payload_key",
-                code: "required",
-                message: "Validation failed for 'event_payload_key': value is required"
-            )
+            throw SdkValidationError(field: "event_payload_key", code: "required", message: "Validation failed for 'event_payload_key': value is required")
         }
         guard container.contains(.type) else {
-            throw SdkValidationError(
-                field: "type",
-                code: "required",
-                message: "Validation failed for 'type': value is required"
-            )
+            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
         }
-        eventPayloadKey = try container.sdkDecodeRequired(.eventPayloadKey)
-        type = try container.sdkDecodeRequired(.type)
-        try validateLength("event_payload_key", eventPayloadKey, min: nil, max: 100)
+        self.eventPayloadKey = try container.sdkDecodeRequired(.eventPayloadKey)
+        self.type = try container.sdkDecodeRequired(.type)
+            try validateLength("event_payload_key", self.eventPayloadKey, min: nil, max: 100)
     }
 }
 
-public extension PostBillingMetersRequestBodyCustomerMapping {
-    init(eventPayloadKey: String, type: PostBillingMetersRequestBodyCustomerMappingType) throws {
+extension PostBillingMetersRequestBodyCustomerMapping {
+    public init(eventPayloadKey: String, type: PostBillingMetersRequestBodyCustomerMappingType) throws {
         (self.eventPayloadKey, self.type) = (eventPayloadKey, type)
-        try validateLength("event_payload_key", self.eventPayloadKey, min: nil, max: 100)
+            try validateLength("event_payload_key", self.eventPayloadKey, min: nil, max: 100)
     }
 }
 
@@ -103,57 +87,39 @@ public struct GetBillingMetersResponse: Codable {
         case url
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension GetBillingMetersResponse {
-    init(from decoder: Decoder) throws {
+extension GetBillingMetersResponse {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.data) else {
-            throw SdkValidationError(
-                field: "data",
-                code: "required",
-                message: "Validation failed for 'data': value is required"
-            )
+            throw SdkValidationError(field: "data", code: "required", message: "Validation failed for 'data': value is required")
         }
         guard container.contains(.hasMore) else {
-            throw SdkValidationError(
-                field: "has_more",
-                code: "required",
-                message: "Validation failed for 'has_more': value is required"
-            )
+            throw SdkValidationError(field: "has_more", code: "required", message: "Validation failed for 'has_more': value is required")
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(
-                field: "object",
-                code: "required",
-                message: "Validation failed for 'object': value is required"
-            )
+            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
         }
         guard container.contains(.url) else {
-            throw SdkValidationError(
-                field: "url",
-                code: "required",
-                message: "Validation failed for 'url': value is required"
-            )
+            throw SdkValidationError(field: "url", code: "required", message: "Validation failed for 'url': value is required")
         }
-        data = try container.sdkDecodeRequired(.data)
-        hasMore = try container.sdkDecodeRequired(.hasMore)
-        object = try container.sdkDecodeRequired(.object)
-        url = try container.sdkDecodeRequired(.url)
-        try validateLength("url", url, min: nil, max: 5000)
-        try sdkValidatePattern("url", url, sdkPatterna5aab75f5191)
+        self.data = try container.sdkDecodeRequired(.data)
+        self.hasMore = try container.sdkDecodeRequired(.hasMore)
+        self.object = try container.sdkDecodeRequired(.object)
+        self.url = try container.sdkDecodeRequired(.url)
+            try validateLength("url", self.url, min: nil, max: 5000)
+            try sdkValidatePattern("url", self.url, sdkPatterna5aab75f5191)
     }
 }
 
-public extension GetBillingMetersResponse {
-    init(data: [BillingMeter], hasMore: Bool, object: GetBillingMetersResponseObject, url: String) throws {
+extension GetBillingMetersResponse {
+    public init(data: [BillingMeter], hasMore: Bool, object: GetBillingMetersResponseObject, url: String) throws {
         (self.data, self.hasMore) = (data, hasMore)
         (self.object, self.url) = (object, url)
-        try validateLength("url", self.url, min: nil, max: 5000)
-        try sdkValidatePattern("url", self.url, sdkPatterna5aab75f5191)
+            try validateLength("url", self.url, min: nil, max: 5000)
+            try sdkValidatePattern("url", self.url, sdkPatterna5aab75f5191)
     }
 }
 
@@ -165,29 +131,23 @@ public struct PostBillingMetersRequestBodyValueSettings: Codable {
         case eventPayloadKey = "event_payload_key"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostBillingMetersRequestBodyValueSettings {
-    init(from decoder: Decoder) throws {
+extension PostBillingMetersRequestBodyValueSettings {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.eventPayloadKey) else {
-            throw SdkValidationError(
-                field: "event_payload_key",
-                code: "required",
-                message: "Validation failed for 'event_payload_key': value is required"
-            )
+            throw SdkValidationError(field: "event_payload_key", code: "required", message: "Validation failed for 'event_payload_key': value is required")
         }
-        eventPayloadKey = try container.sdkDecodeRequired(.eventPayloadKey)
-        try validateLength("event_payload_key", eventPayloadKey, min: nil, max: 100)
+        self.eventPayloadKey = try container.sdkDecodeRequired(.eventPayloadKey)
+            try validateLength("event_payload_key", self.eventPayloadKey, min: nil, max: 100)
     }
 }
 
-public extension PostBillingMetersRequestBodyValueSettings {
-    init(eventPayloadKey: String) throws {
+extension PostBillingMetersRequestBodyValueSettings {
+    public init(eventPayloadKey: String) throws {
         self.eventPayloadKey = eventPayloadKey
-        try validateLength("event_payload_key", self.eventPayloadKey, min: nil, max: 100)
+            try validateLength("event_payload_key", self.eventPayloadKey, min: nil, max: 100)
     }
 }

@@ -6,9 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1PaymentIntentsMethods {
-    /// Lists PaymentIntents with optional filters for creation time, customer, and customer account. Use `limit` and
-    /// cursor parameters to paginate the results, and use `expand` to request additional response fields.
+extension V1PaymentIntentsMethods {
+    /// Lists PaymentIntents with optional filters for creation time, customer, and customer account. Use `limit` and cursor parameters to paginate the results, and use `expand` to request additional response fields.
     ///
     /// Returns a list of PaymentIntents.
     ///
@@ -33,33 +32,24 @@ public extension V1PaymentIntentsMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    static func getPaymentIntents(
-        config: ClientConfig,
-        created: GetPaymentIntentsParameter?,
-        customer: String?,
-        customerAccount: String?,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        startingAfter: String?
-    ) async throws -> GetPaymentIntentsResponse {
-        if let customer {
+    public static func getPaymentIntents(config: ClientConfig, created: GetPaymentIntentsParameter?, customer: String?, customerAccount: String?, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetPaymentIntentsResponse {
+        if let customer = customer {
             try validateLength("customer", customer, max: 5000)
         }
 
-        if let customerAccount {
+        if let customerAccount = customerAccount {
             try validateLength("customer_account", customerAccount, max: 5000)
         }
 
-        if let endingBefore {
+        if let endingBefore = endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let startingAfter {
+        if let startingAfter = startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try await (sdkRequest("GET", "/v1/payment_intents", config: config, query: [
+        return try (await sdkRequest("GET", "/v1/payment_intents", config: config, query: [
             SdkQueryParameter("created", value: created),
             SdkQueryParameter("customer", value: customer),
             SdkQueryParameter("customer_account", value: customerAccount),

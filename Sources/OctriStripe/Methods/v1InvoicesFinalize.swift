@@ -7,12 +7,9 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1InvoicesFinalizeMethods {
-    /// Finalizes a draft invoice manually. Use this operation when you need to finalize the invoice before its
-    /// automatic finalization process; set `auto_advance` to false if you do not want automatic collection after
-    /// finalization.
+    /// Finalizes a draft invoice manually. Use this operation when you need to finalize the invoice before its automatic finalization process; set `auto_advance` to false if you do not want automatic collection after finalization.
     ///
-    /// Stripe automatically finalizes drafts before sending and attempting payment on invoices. However, if you’d like
-    /// to finalize a draft invoice manually, you can do so using this method.
+    /// Stripe automatically finalizes drafts before sending and attempting payment on invoices. However, if you’d like to finalize a draft invoice manually, you can do so using this method.
     ///
     /// - Parameters:
     /// - autoAdvance: Controls whether Stripe performs [automatic
@@ -20,24 +17,11 @@ public enum V1InvoicesFinalizeMethods {
     ///   ent-collection) of the invoice. If `false`, the invoice's state doesn't
     ///   automatically advance without an explicit action.
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postInvoicesInvoiceFinalize(
-        config: ClientConfig,
-        invoice: String,
-        autoAdvance: Bool?,
-        expand: [String]?
-    ) async throws -> Invoice {
+    public static func postInvoicesInvoiceFinalize(config: ClientConfig, invoice: String, autoAdvance: Bool?, expand: [String]?) async throws -> Invoice {
         try validateLength("invoice", invoice, max: 5000)
 
         let requestBody = PostInvoicesInvoiceFinalizeRequestBody(autoAdvance: autoAdvance, expand: expand)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/invoices/", sdkEncodePathSegment(sdkWireString(invoice)), "/finalize"].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostInvoicesInvoiceFinalize"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/invoices/", sdkEncodePathSegment(sdkWireString(invoice)), "/finalize"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostInvoicesInvoiceFinalize")).data
     }
 }

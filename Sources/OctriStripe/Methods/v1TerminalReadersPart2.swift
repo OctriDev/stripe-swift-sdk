@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1TerminalReadersMethods {
-    struct GetTerminalReadersOptions: Codable {
+extension V1TerminalReadersMethods {
+    public struct GetTerminalReadersOptions: Codable {
         public var deviceType: GetTerminalReadersParameter?
         public var endingBefore: String?
         public var expand: [String]?
@@ -20,8 +20,7 @@ public extension V1TerminalReadersMethods {
         public init() {}
     }
 
-    /// Lists Terminal readers and returns a paginated collection of reader objects. Use filters such as `device_type`,
-    /// `location`, `serial_number`, or `status`, and use cursor parameters to navigate between result pages.
+    /// Lists Terminal readers and returns a paginated collection of reader objects. Use filters such as `device_type`, `location`, `serial_number`, or `status`, and use cursor parameters to navigate between result pages.
     ///
     /// Returns a list of Reader objects.
     ///
@@ -45,10 +44,7 @@ public extension V1TerminalReadersMethods {
     ///   the list.
     /// - status: A status filter to filter readers to only offline or online
     ///   readers
-    static func getTerminalReaders(
-        config: ClientConfig,
-        options: GetTerminalReadersOptions
-    ) async throws -> GetTerminalReadersResponse {
+    public static func getTerminalReaders(config: ClientConfig, options: GetTerminalReadersOptions) async throws -> GetTerminalReadersResponse {
         if let endingBefore = options.endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
@@ -65,7 +61,7 @@ public extension V1TerminalReadersMethods {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try await (sdkRequest("GET", "/v1/terminal/readers", config: config, query: [
+        return try (await sdkRequest("GET", "/v1/terminal/readers", config: config, query: [
             SdkQueryParameter("device_type", value: options.deviceType),
             SdkQueryParameter("ending_before", value: options.endingBefore),
             SdkQueryParameter("expand", values: options.expand, style: "deepObject", explode: true),

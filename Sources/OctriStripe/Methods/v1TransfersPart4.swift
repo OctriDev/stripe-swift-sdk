@@ -6,39 +6,24 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1TransfersMethods {
-    /// Retrieves a specific transfer by its unique identifier. Use the transfer ID from a transfer creation response or
-    /// transfer list to obtain its amount, destination, reversal state, and related balance information.
+extension V1TransfersMethods {
+    /// Retrieves a specific transfer by its unique identifier. Use the transfer ID from a transfer creation response or transfer list to obtain its amount, destination, reversal state, and related balance information.
     ///
-    /// Retrieves the details of an existing transfer. Supply the unique transfer ID from either a transfer creation
-    /// request or the transfer list, and Stripe will return the corresponding transfer information.
+    /// Retrieves the details of an existing transfer. Supply the unique transfer ID from either a transfer creation request or the transfer list, and Stripe will return the corresponding transfer information.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    static func getTransfersTransfer(
-        config: ClientConfig,
-        transfer: String,
-        expand: [String]?
-    ) async throws -> Transfer {
+    public static func getTransfersTransfer(config: ClientConfig, transfer: String, expand: [String]?) async throws -> Transfer {
         try validateLength("transfer", transfer, max: 5000)
 
-        return try await (sdkRequest(
-            "GET",
-            ["/v1/transfers/", sdkEncodePathSegment(sdkWireString(transfer))].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .json,
-            operationId: "GetTransfersTransfer"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/transfers/", sdkEncodePathSegment(sdkWireString(transfer))].joined(), config: config, query: [
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .json, operationId: "GetTransfersTransfer")).data
     }
 
-    /// Updates an existing transfer without changing values that you omit. Use the request body to change the transfer
-    /// `description`, manage `metadata`, or request expanded response fields.
+    /// Updates an existing transfer without changing values that you omit. Use the request body to change the transfer `description`, manage `metadata`, or request expanded response fields.
     ///
-    /// Updates the specified transfer by setting the values of the parameters passed. Any parameters not provided will
-    /// be left unchanged. This request accepts only metadata as an argument.
+    /// Updates the specified transfer by setting the values of the parameters passed. Any parameters not provided will be left unchanged. This request accepts only metadata as an argument.
     ///
     /// - Parameters:
     /// - description: An arbitrary string attached to the object. Often useful for
@@ -49,29 +34,15 @@ public extension V1TransfersMethods {
     ///   information about the object in a structured format. Individual keys can be
     ///   unset by posting an empty value to them. All keys can be unset by posting an
     ///   empty value to `metadata`.
-    static func postTransfersTransfer(
-        config: ClientConfig,
-        transfer: String,
-        description: String?,
-        expand: [String]?,
-        metadata: PostTransfersTransferRequestBodyMetadata?
-    ) async throws -> Transfer {
+    public static func postTransfersTransfer(config: ClientConfig, transfer: String, description: String?, expand: [String]?, metadata: PostTransfersTransferRequestBodyMetadata?) async throws -> Transfer {
         try validateLength("transfer", transfer, max: 5000)
 
-        if let description {
+        if let description = description {
             try validateLength("description", description, max: 5000)
         }
 
         let requestBody = PostTransfersTransferRequestBody(description: description, expand: expand, metadata: metadata)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/transfers/", sdkEncodePathSegment(sdkWireString(transfer))].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostTransfersTransfer"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/transfers/", sdkEncodePathSegment(sdkWireString(transfer))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTransfersTransfer")).data
     }
 }

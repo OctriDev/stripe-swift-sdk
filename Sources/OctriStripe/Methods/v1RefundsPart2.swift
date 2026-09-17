@@ -6,12 +6,10 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1RefundsMethods {
-    /// Lists refunds created through the API, with the most recent refunds first. Use `charge` or `payment_intent` to
-    /// filter the results, and use cursor parameters to retrieve adjacent pages.
+extension V1RefundsMethods {
+    /// Lists refunds created through the API, with the most recent refunds first. Use `charge` or `payment_intent` to filter the results, and use cursor parameters to retrieve adjacent pages.
     ///
-    /// Returns a list of all refunds you created. We return the refunds in sorted order, with the most recent refunds
-    /// appearing first. The 10 most recent refunds are always available by default on the Charge object.
+    /// Returns a list of all refunds you created. We return the refunds in sorted order, with the most recent refunds appearing first. The 10 most recent refunds are always available by default on the Charge object.
     ///
     /// - Parameters:
     /// - charge: Only return refunds for the charge specified by this charge ID.
@@ -32,21 +30,12 @@ public extension V1RefundsMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    static func getRefunds(
-        config: ClientConfig,
-        charge: String?,
-        created: GetRefundsParameter?,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        paymentIntent: String?,
-        startingAfter: String?
-    ) async throws -> GetRefundsResponse {
-        if let paymentIntent {
+    public static func getRefunds(config: ClientConfig, charge: String?, created: GetRefundsParameter?, endingBefore: String?, expand: [String]?, limit: Int?, paymentIntent: String?, startingAfter: String?) async throws -> GetRefundsResponse {
+        if let paymentIntent = paymentIntent {
             try validateLength("payment_intent", paymentIntent, max: 5000)
         }
 
-        return try await (sdkRequest("GET", "/v1/refunds", config: config, query: [
+        return try (await sdkRequest("GET", "/v1/refunds", config: config, query: [
             SdkQueryParameter("charge", value: charge),
             SdkQueryParameter("created", value: created),
             SdkQueryParameter("ending_before", value: endingBefore),

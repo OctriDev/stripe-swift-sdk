@@ -7,45 +7,37 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1TerminalConfigurations operation model declarations
+// Canonical v1TerminalConfigurations operation model declarations
 extension PostTerminalConfigurationsConfigurationRequestBodyStripeS710: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostTerminalConfigurationsConfigurationRequestBodyStripeS710"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostTerminalConfigurationsConfigurationRequestBodyStripeS710")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PostTerminalConfigurationsConfigurationRequestBodyStripeS710Variant0.self
         ) {
-            return .postTerminalConfigurationsConfigurationRequestBodyStripeS710Variant0(value)
+            return             .postTerminalConfigurationsConfigurationRequestBodyStripeS710Variant0(value)
         }
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .postTerminalConfigurationsConfigurationRequestBodyStripeS710Variant0(value): try container
-            .encode(value); return true
+        case let .postTerminalConfigurationsConfigurationRequestBodyStripeS710Variant0(value): try container.encode(value); return true
         case let .stringValue(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum PostTerminalConfigurationsConfigurationRequestBodyBbposWiseposE {
@@ -56,43 +48,35 @@ public enum PostTerminalConfigurationsConfigurationRequestBodyBbposWiseposE {
 }
 
 extension PostTerminalConfigurationsConfigurationRequestBodyBbposWiseposE: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostTerminalConfigurationsConfigurationRequestBodyBbposWiseposE"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostTerminalConfigurationsConfigurationRequestBodyBbposWiseposE")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PostTerminalConfigurationsConfigurationRequestBodyBbposWiseposEVariant0.self
         ) {
-            return .postTerminalConfigurationsConfigurationRequestBodyBbposWiseposEVariant0(value)
+            return             .postTerminalConfigurationsConfigurationRequestBodyBbposWiseposEVariant0(value)
         }
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .postTerminalConfigurationsConfigurationRequestBodyBbposWiseposEVariant0(value): try container
-            .encode(value); return true
+        case let .postTerminalConfigurationsConfigurationRequestBodyBbposWiseposEVariant0(value): try container.encode(value); return true
         case let .stringValue(value): try container.encode(value); return true
         }
     }
+
 }
 
 public struct PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Sek: Codable {
@@ -107,21 +91,21 @@ public struct PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0S
     }
 
     init() {
-        (fixedAmounts, percentages, smartTipThreshold) = (nil, nil, nil)
+        (self.fixedAmounts, self.percentages, self.smartTipThreshold) = (nil, nil, nil)
     }
 }
 
-public extension PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Sek {
-    init(from decoder: Decoder) throws {
+extension PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Sek {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        fixedAmounts = try container.sdkDecodeIfPresent(.fixedAmounts)
-        percentages = try container.sdkDecodeIfPresent(.percentages)
-        smartTipThreshold = try container.sdkDecodeIfPresent(.smartTipThreshold)
+        self.fixedAmounts = try container.sdkDecodeIfPresent(.fixedAmounts)
+        self.percentages = try container.sdkDecodeIfPresent(.percentages)
+        self.smartTipThreshold = try container.sdkDecodeIfPresent(.smartTipThreshold)
     }
 }
 
-public extension PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Sek {
-    init(fixedAmounts: [Int]? = nil, percentages: [Int]? = nil, smartTipThreshold: Int? = nil) {
+extension PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Sek {
+    public init(fixedAmounts: [Int]? = nil, percentages: [Int]? = nil, smartTipThreshold: Int? = nil) {
         self.init()
         (self.fixedAmounts, self.percentages) = (fixedAmounts, percentages)
         self.smartTipThreshold = smartTipThreshold
@@ -135,27 +119,21 @@ public struct PostTerminalConfigurationsRequestBodyOfflineVariant0: Codable {
         case enabled
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostTerminalConfigurationsRequestBodyOfflineVariant0 {
-    init(from decoder: Decoder) throws {
+extension PostTerminalConfigurationsRequestBodyOfflineVariant0 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.enabled) else {
-            throw SdkValidationError(
-                field: "enabled",
-                code: "required",
-                message: "Validation failed for 'enabled': value is required"
-            )
+            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
         }
-        enabled = try container.sdkDecodeRequired(.enabled)
+        self.enabled = try container.sdkDecodeRequired(.enabled)
     }
 }
 
-public extension PostTerminalConfigurationsRequestBodyOfflineVariant0 {
-    init(enabled: Bool) {
+extension PostTerminalConfigurationsRequestBodyOfflineVariant0 {
+    public init(enabled: Bool) {
         self.enabled = enabled
     }
 }
@@ -172,21 +150,21 @@ public struct PostTerminalConfigurationsRequestBodyTippingVariant0Jpy: Codable {
     }
 
     init() {
-        (fixedAmounts, percentages, smartTipThreshold) = (nil, nil, nil)
+        (self.fixedAmounts, self.percentages, self.smartTipThreshold) = (nil, nil, nil)
     }
 }
 
-public extension PostTerminalConfigurationsRequestBodyTippingVariant0Jpy {
-    init(from decoder: Decoder) throws {
+extension PostTerminalConfigurationsRequestBodyTippingVariant0Jpy {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        fixedAmounts = try container.sdkDecodeIfPresent(.fixedAmounts)
-        percentages = try container.sdkDecodeIfPresent(.percentages)
-        smartTipThreshold = try container.sdkDecodeIfPresent(.smartTipThreshold)
+        self.fixedAmounts = try container.sdkDecodeIfPresent(.fixedAmounts)
+        self.percentages = try container.sdkDecodeIfPresent(.percentages)
+        self.smartTipThreshold = try container.sdkDecodeIfPresent(.smartTipThreshold)
     }
 }
 
-public extension PostTerminalConfigurationsRequestBodyTippingVariant0Jpy {
-    init(fixedAmounts: [Int]? = nil, percentages: [Int]? = nil, smartTipThreshold: Int? = nil) {
+extension PostTerminalConfigurationsRequestBodyTippingVariant0Jpy {
+    public init(fixedAmounts: [Int]? = nil, percentages: [Int]? = nil, smartTipThreshold: Int? = nil) {
         self.init()
         (self.fixedAmounts, self.percentages) = (fixedAmounts, percentages)
         self.smartTipThreshold = smartTipThreshold
@@ -202,19 +180,19 @@ public struct PostTerminalConfigurationsRequestBodyBbposWisepad3: Codable {
     }
 
     init() {
-        splashscreen = nil
+        self.splashscreen = nil
     }
 }
 
-public extension PostTerminalConfigurationsRequestBodyBbposWisepad3 {
-    init(from decoder: Decoder) throws {
+extension PostTerminalConfigurationsRequestBodyBbposWisepad3 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        splashscreen = try container.sdkDecodeIfPresent(.splashscreen)
+        self.splashscreen = try container.sdkDecodeIfPresent(.splashscreen)
     }
 }
 
-public extension PostTerminalConfigurationsRequestBodyBbposWisepad3 {
-    init(splashscreen: String? = nil) {
+extension PostTerminalConfigurationsRequestBodyBbposWisepad3 {
+    public init(splashscreen: String? = nil) {
         self.init()
         self.splashscreen = splashscreen
     }
@@ -236,35 +214,24 @@ public struct PostTerminalConfigurationsRequestBodyWifiVariant0: Codable {
         case personalPsk = "personal_psk"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostTerminalConfigurationsRequestBodyWifiVariant0 {
-    init(from decoder: Decoder) throws {
+extension PostTerminalConfigurationsRequestBodyWifiVariant0 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.type) else {
-            throw SdkValidationError(
-                field: "type",
-                code: "required",
-                message: "Validation failed for 'type': value is required"
-            )
+            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
         }
-        type = try container.sdkDecodeRequired(.type)
-        enterpriseEapPeap = try container.sdkDecodeIfPresent(.enterpriseEapPeap)
-        enterpriseEapTls = try container.sdkDecodeIfPresent(.enterpriseEapTls)
-        personalPsk = try container.sdkDecodeIfPresent(.personalPsk)
+        self.type = try container.sdkDecodeRequired(.type)
+        self.enterpriseEapPeap = try container.sdkDecodeIfPresent(.enterpriseEapPeap)
+        self.enterpriseEapTls = try container.sdkDecodeIfPresent(.enterpriseEapTls)
+        self.personalPsk = try container.sdkDecodeIfPresent(.personalPsk)
     }
 }
 
-public extension PostTerminalConfigurationsRequestBodyWifiVariant0 {
-    init(
-        type: PostTerminalConfigurationsRequestBodyWifiVariant0Type,
-        enterpriseEapPeap: PostTerminalConfigurationsRequestBodyWifiVariant0EnterpriseEapPeap? = nil,
-        enterpriseEapTls: PostTerminalConfigurationsRequestBodyWifiVariant0EnterpriseEapTls? = nil,
-        personalPsk: PostTerminalConfigurationsRequestBodyWifiVariant0PersonalPsk? = nil
-    ) {
+extension PostTerminalConfigurationsRequestBodyWifiVariant0 {
+    public init(type: PostTerminalConfigurationsRequestBodyWifiVariant0Type, enterpriseEapPeap: PostTerminalConfigurationsRequestBodyWifiVariant0EnterpriseEapPeap? = nil, enterpriseEapTls: PostTerminalConfigurationsRequestBodyWifiVariant0EnterpriseEapTls? = nil, personalPsk: PostTerminalConfigurationsRequestBodyWifiVariant0PersonalPsk? = nil) {
         (self.type, self.enterpriseEapPeap) = (type, enterpriseEapPeap)
         (self.enterpriseEapTls, self.personalPsk) = (enterpriseEapTls, personalPsk)
     }
@@ -282,21 +249,21 @@ public struct PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0N
     }
 
     init() {
-        (fixedAmounts, percentages, smartTipThreshold) = (nil, nil, nil)
+        (self.fixedAmounts, self.percentages, self.smartTipThreshold) = (nil, nil, nil)
     }
 }
 
-public extension PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Nok {
-    init(from decoder: Decoder) throws {
+extension PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Nok {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        fixedAmounts = try container.sdkDecodeIfPresent(.fixedAmounts)
-        percentages = try container.sdkDecodeIfPresent(.percentages)
-        smartTipThreshold = try container.sdkDecodeIfPresent(.smartTipThreshold)
+        self.fixedAmounts = try container.sdkDecodeIfPresent(.fixedAmounts)
+        self.percentages = try container.sdkDecodeIfPresent(.percentages)
+        self.smartTipThreshold = try container.sdkDecodeIfPresent(.smartTipThreshold)
     }
 }
 
-public extension PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Nok {
-    init(fixedAmounts: [Int]? = nil, percentages: [Int]? = nil, smartTipThreshold: Int? = nil) {
+extension PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Nok {
+    public init(fixedAmounts: [Int]? = nil, percentages: [Int]? = nil, smartTipThreshold: Int? = nil) {
         self.init()
         (self.fixedAmounts, self.percentages) = (fixedAmounts, percentages)
         self.smartTipThreshold = smartTipThreshold
@@ -309,32 +276,21 @@ public enum PostTerminalConfigurationsConfigurationResponse {
 }
 
 extension PostTerminalConfigurationsConfigurationResponse: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostTerminalConfigurationsConfigurationResponse"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostTerminalConfigurationsConfigurationResponse")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(TerminalConfiguration.self) {
-            return .terminalConfiguration(value)
-        }
-        if let value = try? container
-            .decode(DeletedTerminalConfiguration.self) {
-            return .deletedTerminalConfiguration(value)
-        }
+        if let value = try? container.decode(TerminalConfiguration.self) { return .terminalConfiguration(value) }
+        if let value = try? container.decode(DeletedTerminalConfiguration.self) { return .deletedTerminalConfiguration(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -344,6 +300,7 @@ extension PostTerminalConfigurationsConfigurationResponse: Codable {
         case let .deletedTerminalConfiguration(value): try container.encode(value); return true
         }
     }
+
 }
 
 public struct PostTerminalConfigurationsRequestBodyCellularVariant0: Codable {
@@ -353,27 +310,21 @@ public struct PostTerminalConfigurationsRequestBodyCellularVariant0: Codable {
         case enabled
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostTerminalConfigurationsRequestBodyCellularVariant0 {
-    init(from decoder: Decoder) throws {
+extension PostTerminalConfigurationsRequestBodyCellularVariant0 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.enabled) else {
-            throw SdkValidationError(
-                field: "enabled",
-                code: "required",
-                message: "Validation failed for 'enabled': value is required"
-            )
+            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
         }
-        enabled = try container.sdkDecodeRequired(.enabled)
+        self.enabled = try container.sdkDecodeRequired(.enabled)
     }
 }
 
-public extension PostTerminalConfigurationsRequestBodyCellularVariant0 {
-    init(enabled: Bool) {
+extension PostTerminalConfigurationsRequestBodyCellularVariant0 {
+    public init(enabled: Bool) {
         self.enabled = enabled
     }
 }
@@ -390,21 +341,21 @@ public struct PostTerminalConfigurationsRequestBodyTippingVariant0Huf: Codable {
     }
 
     init() {
-        (fixedAmounts, percentages, smartTipThreshold) = (nil, nil, nil)
+        (self.fixedAmounts, self.percentages, self.smartTipThreshold) = (nil, nil, nil)
     }
 }
 
-public extension PostTerminalConfigurationsRequestBodyTippingVariant0Huf {
-    init(from decoder: Decoder) throws {
+extension PostTerminalConfigurationsRequestBodyTippingVariant0Huf {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        fixedAmounts = try container.sdkDecodeIfPresent(.fixedAmounts)
-        percentages = try container.sdkDecodeIfPresent(.percentages)
-        smartTipThreshold = try container.sdkDecodeIfPresent(.smartTipThreshold)
+        self.fixedAmounts = try container.sdkDecodeIfPresent(.fixedAmounts)
+        self.percentages = try container.sdkDecodeIfPresent(.percentages)
+        self.smartTipThreshold = try container.sdkDecodeIfPresent(.smartTipThreshold)
     }
 }
 
-public extension PostTerminalConfigurationsRequestBodyTippingVariant0Huf {
-    init(fixedAmounts: [Int]? = nil, percentages: [Int]? = nil, smartTipThreshold: Int? = nil) {
+extension PostTerminalConfigurationsRequestBodyTippingVariant0Huf {
+    public init(fixedAmounts: [Int]? = nil, percentages: [Int]? = nil, smartTipThreshold: Int? = nil) {
         self.init()
         (self.fixedAmounts, self.percentages) = (fixedAmounts, percentages)
         self.smartTipThreshold = smartTipThreshold
@@ -423,21 +374,21 @@ public struct PostTerminalConfigurationsRequestBodyTippingVariant0Aud: Codable {
     }
 
     init() {
-        (fixedAmounts, percentages, smartTipThreshold) = (nil, nil, nil)
+        (self.fixedAmounts, self.percentages, self.smartTipThreshold) = (nil, nil, nil)
     }
 }
 
-public extension PostTerminalConfigurationsRequestBodyTippingVariant0Aud {
-    init(from decoder: Decoder) throws {
+extension PostTerminalConfigurationsRequestBodyTippingVariant0Aud {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        fixedAmounts = try container.sdkDecodeIfPresent(.fixedAmounts)
-        percentages = try container.sdkDecodeIfPresent(.percentages)
-        smartTipThreshold = try container.sdkDecodeIfPresent(.smartTipThreshold)
+        self.fixedAmounts = try container.sdkDecodeIfPresent(.fixedAmounts)
+        self.percentages = try container.sdkDecodeIfPresent(.percentages)
+        self.smartTipThreshold = try container.sdkDecodeIfPresent(.smartTipThreshold)
     }
 }
 
-public extension PostTerminalConfigurationsRequestBodyTippingVariant0Aud {
-    init(fixedAmounts: [Int]? = nil, percentages: [Int]? = nil, smartTipThreshold: Int? = nil) {
+extension PostTerminalConfigurationsRequestBodyTippingVariant0Aud {
+    public init(fixedAmounts: [Int]? = nil, percentages: [Int]? = nil, smartTipThreshold: Int? = nil) {
         self.init()
         (self.fixedAmounts, self.percentages) = (fixedAmounts, percentages)
         self.smartTipThreshold = smartTipThreshold
@@ -513,16 +464,16 @@ public struct PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0:
     }
 
     init() {
-        (aed, aud, cad, chf, czk) = (nil, nil, nil, nil, nil)
-        (dkk, eur, gbp, gip, hkd) = (nil, nil, nil, nil, nil)
-        (huf, jpy, mxn, myr, nok) = (nil, nil, nil, nil, nil)
-        (nzd, pln, ron, sek, sgd) = (nil, nil, nil, nil, nil)
-        usd = nil
+        (self.aed, self.aud, self.cad, self.chf, self.czk) = (nil, nil, nil, nil, nil)
+        (self.dkk, self.eur, self.gbp, self.gip, self.hkd) = (nil, nil, nil, nil, nil)
+        (self.huf, self.jpy, self.mxn, self.myr, self.nok) = (nil, nil, nil, nil, nil)
+        (self.nzd, self.pln, self.ron, self.sek, self.sgd) = (nil, nil, nil, nil, nil)
+        self.usd = nil
     }
 }
 
-public extension PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0 {
-    init(from decoder: Decoder) throws {
+extension PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.init()
         try sdkDecodeFieldsPart1(container)
@@ -530,30 +481,8 @@ public extension PostTerminalConfigurationsConfigurationRequestBodyTippingVarian
     }
 }
 
-public extension PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0 {
-    init(
-        aed: PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Aed? = nil,
-        aud: PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Aud? = nil,
-        cad: PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Cad? = nil,
-        chf: PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Chf? = nil,
-        czk: PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Czk? = nil,
-        dkk: PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Dkk? = nil,
-        eur: PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Eur? = nil,
-        gbp: PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Gbp? = nil,
-        gip: PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Gip? = nil,
-        hkd: PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Hkd? = nil,
-        huf: PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Huf? = nil,
-        jpy: PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Jpy? = nil,
-        mxn: PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Mxn? = nil,
-        myr: PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Myr? = nil,
-        nok: PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Nok? = nil,
-        nzd: PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Nzd? = nil,
-        pln: PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Pln? = nil,
-        ron: PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Ron? = nil,
-        sek: PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Sek? = nil,
-        sgd: PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Sgd? = nil,
-        usd: PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Usd? = nil
-    ) {
+extension PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0 {
+    public init(aed: PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Aed? = nil, aud: PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Aud? = nil, cad: PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Cad? = nil, chf: PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Chf? = nil, czk: PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Czk? = nil, dkk: PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Dkk? = nil, eur: PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Eur? = nil, gbp: PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Gbp? = nil, gip: PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Gip? = nil, hkd: PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Hkd? = nil, huf: PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Huf? = nil, jpy: PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Jpy? = nil, mxn: PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Mxn? = nil, myr: PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Myr? = nil, nok: PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Nok? = nil, nzd: PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Nzd? = nil, pln: PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Pln? = nil, ron: PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Ron? = nil, sek: PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Sek? = nil, sgd: PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Sgd? = nil, usd: PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Usd? = nil) {
         self.init()
         (self.aed, self.aud) = (aed, aud)
         (self.cad, self.chf) = (cad, chf)
@@ -571,32 +500,32 @@ public extension PostTerminalConfigurationsConfigurationRequestBodyTippingVarian
 
 extension PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0 {
     mutating func sdkDecodeFieldsPart1(_ container: KeyedDecodingContainer<CodingKeys>) throws {
-        aed = try container.sdkDecodeIfPresent(.aed)
-        aud = try container.sdkDecodeIfPresent(.aud)
-        cad = try container.sdkDecodeIfPresent(.cad)
-        chf = try container.sdkDecodeIfPresent(.chf)
-        czk = try container.sdkDecodeIfPresent(.czk)
-        dkk = try container.sdkDecodeIfPresent(.dkk)
-        eur = try container.sdkDecodeIfPresent(.eur)
-        gbp = try container.sdkDecodeIfPresent(.gbp)
-        gip = try container.sdkDecodeIfPresent(.gip)
-        hkd = try container.sdkDecodeIfPresent(.hkd)
-        huf = try container.sdkDecodeIfPresent(.huf)
-        jpy = try container.sdkDecodeIfPresent(.jpy)
+        self.aed = try container.sdkDecodeIfPresent(.aed)
+        self.aud = try container.sdkDecodeIfPresent(.aud)
+        self.cad = try container.sdkDecodeIfPresent(.cad)
+        self.chf = try container.sdkDecodeIfPresent(.chf)
+        self.czk = try container.sdkDecodeIfPresent(.czk)
+        self.dkk = try container.sdkDecodeIfPresent(.dkk)
+        self.eur = try container.sdkDecodeIfPresent(.eur)
+        self.gbp = try container.sdkDecodeIfPresent(.gbp)
+        self.gip = try container.sdkDecodeIfPresent(.gip)
+        self.hkd = try container.sdkDecodeIfPresent(.hkd)
+        self.huf = try container.sdkDecodeIfPresent(.huf)
+        self.jpy = try container.sdkDecodeIfPresent(.jpy)
     }
 }
 
 extension PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0 {
     mutating func sdkDecodeFieldsPart2(_ container: KeyedDecodingContainer<CodingKeys>) throws {
-        mxn = try container.sdkDecodeIfPresent(.mxn)
-        myr = try container.sdkDecodeIfPresent(.myr)
-        nok = try container.sdkDecodeIfPresent(.nok)
-        nzd = try container.sdkDecodeIfPresent(.nzd)
-        pln = try container.sdkDecodeIfPresent(.pln)
-        ron = try container.sdkDecodeIfPresent(.ron)
-        sek = try container.sdkDecodeIfPresent(.sek)
-        sgd = try container.sdkDecodeIfPresent(.sgd)
-        usd = try container.sdkDecodeIfPresent(.usd)
+        self.mxn = try container.sdkDecodeIfPresent(.mxn)
+        self.myr = try container.sdkDecodeIfPresent(.myr)
+        self.nok = try container.sdkDecodeIfPresent(.nok)
+        self.nzd = try container.sdkDecodeIfPresent(.nzd)
+        self.pln = try container.sdkDecodeIfPresent(.pln)
+        self.ron = try container.sdkDecodeIfPresent(.ron)
+        self.sek = try container.sdkDecodeIfPresent(.sek)
+        self.sgd = try container.sdkDecodeIfPresent(.sgd)
+        self.usd = try container.sdkDecodeIfPresent(.usd)
     }
 }
 
@@ -612,21 +541,21 @@ public struct PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0H
     }
 
     init() {
-        (fixedAmounts, percentages, smartTipThreshold) = (nil, nil, nil)
+        (self.fixedAmounts, self.percentages, self.smartTipThreshold) = (nil, nil, nil)
     }
 }
 
-public extension PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Huf {
-    init(from decoder: Decoder) throws {
+extension PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Huf {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        fixedAmounts = try container.sdkDecodeIfPresent(.fixedAmounts)
-        percentages = try container.sdkDecodeIfPresent(.percentages)
-        smartTipThreshold = try container.sdkDecodeIfPresent(.smartTipThreshold)
+        self.fixedAmounts = try container.sdkDecodeIfPresent(.fixedAmounts)
+        self.percentages = try container.sdkDecodeIfPresent(.percentages)
+        self.smartTipThreshold = try container.sdkDecodeIfPresent(.smartTipThreshold)
     }
 }
 
-public extension PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Huf {
-    init(fixedAmounts: [Int]? = nil, percentages: [Int]? = nil, smartTipThreshold: Int? = nil) {
+extension PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Huf {
+    public init(fixedAmounts: [Int]? = nil, percentages: [Int]? = nil, smartTipThreshold: Int? = nil) {
         self.init()
         (self.fixedAmounts, self.percentages) = (fixedAmounts, percentages)
         self.smartTipThreshold = smartTipThreshold

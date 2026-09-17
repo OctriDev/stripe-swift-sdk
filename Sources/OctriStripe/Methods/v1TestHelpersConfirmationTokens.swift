@@ -24,38 +24,13 @@ public enum V1TestHelpersConfirmationTokensMethods {
     ///   PaymentIntent's Customer, if present, after the PaymentIntent is confirmed
     ///   and any required actions from the user are complete.
     /// - shipping: Shipping information for this ConfirmationToken.
-    public static func postTestHelpersConfirmationTokens(
-        config: ClientConfig,
-        expand: [String]?,
-        paymentMethod: String?,
-        paymentMethodData: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodData?,
-        paymentMethodOptions: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodOptions?,
-        returnUrl: String?,
-        setupFutureUsage: PostTestHelpersConfirmationTokensRequestBodySetupFutureUsage?,
-        shipping: PostTestHelpersConfirmationTokensRequestBodyShipping?
-    ) async throws -> ConfirmationToken {
-        if let paymentMethod {
+    public static func postTestHelpersConfirmationTokens(config: ClientConfig, expand: [String]?, paymentMethod: String?, paymentMethodData: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodData?, paymentMethodOptions: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodOptions?, returnUrl: String?, setupFutureUsage: PostTestHelpersConfirmationTokensRequestBodySetupFutureUsage?, shipping: PostTestHelpersConfirmationTokensRequestBodyShipping?) async throws -> ConfirmationToken {
+        if let paymentMethod = paymentMethod {
             try validateLength("payment_method", paymentMethod, max: 5000)
         }
 
-        let requestBody = PostTestHelpersConfirmationTokensRequestBody(
-            expand: expand,
-            paymentMethod: paymentMethod,
-            paymentMethodData: paymentMethodData,
-            paymentMethodOptions: paymentMethodOptions,
-            returnUrl: returnUrl,
-            setupFutureUsage: setupFutureUsage,
-            shipping: shipping
-        )
+        let requestBody = PostTestHelpersConfirmationTokensRequestBody(expand: expand, paymentMethod: paymentMethod, paymentMethodData: paymentMethodData, paymentMethodOptions: paymentMethodOptions, returnUrl: returnUrl, setupFutureUsage: setupFutureUsage, shipping: shipping)
 
-        return try await (sdkRequest(
-            "POST",
-            "/v1/test_helpers/confirmation_tokens",
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostTestHelpersConfirmationTokens"
-        )).data
+        return try (await sdkRequest("POST", "/v1/test_helpers/confirmation_tokens", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTestHelpersConfirmationTokens")).data
     }
 }

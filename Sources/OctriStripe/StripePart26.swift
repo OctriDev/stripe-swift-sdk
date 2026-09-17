@@ -9,71 +9,30 @@ public class V1TaxRegistrationsNamespace {
         self.config = config
     }
 
-    /// Lists Tax Registration objects for the merchant. Use `status` to filter registrations and `ending_before` or
-    /// `starting_after` with `limit` to paginate the collection.
+/// Lists Tax Registration objects for the merchant. Use `status` to filter registrations and `ending_before` or `starting_after` with `limit` to paginate the collection.
     ///
     /// Returns a list of Tax Registration objects.
-    public func getTax(
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        startingAfter: String?,
-        status: GetTaxRegistrationsParameter?
-    ) async throws -> GetTaxRegistrationsResponse {
-        try await V1TaxRegistrationsMethods.getTaxRegistrations(
-            config: config,
-            endingBefore: endingBefore,
-            expand: expand,
-            limit: limit,
-            startingAfter: startingAfter,
-            status: status
-        )
+    public func getTax(endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?, status: GetTaxRegistrationsParameter?) async throws -> GetTaxRegistrationsResponse {
+        return try await V1TaxRegistrationsMethods.getTaxRegistrations(config: config, endingBefore: endingBefore, expand: expand, limit: limit, startingAfter: startingAfter, status: status)
     }
 
-    /// Creates a new Tax Registration object.
-    public func postTax(
-        activeFrom: PostTaxRegistrationsRequestBodyActiveFrom,
-        country: String,
-        countryOptions: PostTaxRegistrationsRequestBodyCountryOptions,
-        expand: [String]?,
-        expiresAt: Int?
-    ) async throws -> TaxRegistration {
-        try await V1TaxRegistrationsMethods.postTaxRegistrations(
-            config: config,
-            activeFrom: activeFrom,
-            country: country,
-            countryOptions: countryOptions,
-            expand: expand,
-            expiresAt: expiresAt
-        )
+/// Creates a new Tax Registration object.
+    public func postTax(activeFrom: PostTaxRegistrationsRequestBodyActiveFrom, country: String, countryOptions: PostTaxRegistrationsRequestBodyCountryOptions, expand: [String]?, expiresAt: Int?) async throws -> TaxRegistration {
+        return try await V1TaxRegistrationsMethods.postTaxRegistrations(config: config, activeFrom: activeFrom, country: country, countryOptions: countryOptions, expand: expand, expiresAt: expiresAt)
     }
 
-    /// Retrieves a Tax Registration object by its identifier. Use `expand` when you need selected response fields
-    /// expanded instead of returned as references.
+/// Retrieves a Tax Registration object by its identifier. Use `expand` when you need selected response fields expanded instead of returned as references.
     ///
     /// Returns a Tax Registration object.
     public func getTaxId(id: String, expand: [String]?) async throws -> TaxRegistration {
-        try await V1TaxRegistrationsMethods.getTaxRegistrationsId(config: config, id: id, expand: expand)
+        return try await V1TaxRegistrationsMethods.getTaxRegistrationsId(config: config, id: id, expand: expand)
     }
 
-    /// Updates an existing Tax Registration object. Use `active_from` to set when the registration becomes active and
-    /// `expires_at` to end it; registrations cannot be deleted after creation.
+/// Updates an existing Tax Registration object. Use `active_from` to set when the registration becomes active and `expires_at` to end it; registrations cannot be deleted after creation.
     ///
-    /// Updates an existing Tax Registration object. A registration cannot be deleted after it has been created. If you
-    /// wish to end a registration you may do so by setting expires_at .
-    public func postTaxId(
-        id: String,
-        activeFrom: PostTaxRegistrationsIdRequestBodyActiveFrom?,
-        expand: [String]?,
-        expiresAt: PostTaxRegistrationsIdRequestBodyExpiresAt?
-    ) async throws -> TaxRegistration {
-        try await V1TaxRegistrationsMethods.postTaxRegistrationsId(
-            config: config,
-            id: id,
-            activeFrom: activeFrom,
-            expand: expand,
-            expiresAt: expiresAt
-        )
+    /// Updates an existing Tax Registration object. A registration cannot be deleted after it has been created. If you wish to end a registration you may do so by setting expires_at .
+    public func postTaxId(id: String, activeFrom: PostTaxRegistrationsIdRequestBodyActiveFrom?, expand: [String]?, expiresAt: PostTaxRegistrationsIdRequestBodyExpiresAt?) async throws -> TaxRegistration {
+        return try await V1TaxRegistrationsMethods.postTaxRegistrationsId(config: config, id: id, activeFrom: activeFrom, expand: expand, expiresAt: expiresAt)
     }
 }
 
@@ -83,27 +42,16 @@ public class V1TaxSettingsNamespace {
         self.config = config
     }
 
-    /// Retrieves the Tax Settings for a merchant. Use `expand` when you need selected fields expanded in the returned
-    /// configuration, including the defaults and current status details.
+/// Retrieves the Tax Settings for a merchant. Use `expand` when you need selected fields expanded in the returned configuration, including the defaults and current status details.
     ///
     /// Retrieves Tax Settings for a merchant.
     public func getTax(expand: [String]?) async throws -> TaxSettings {
-        try await V1TaxSettingsMethods.getTaxSettings(config: config, expand: expand)
+        return try await V1TaxSettingsMethods.getTaxSettings(config: config, expand: expand)
     }
 
-    /// Updates Tax Settings parameters used in tax calculations. All parameters are editable but none can be removed
-    /// once set.
-    public func postTax(
-        defaults: PostTaxSettingsRequestBodyDefaults?,
-        expand: [String]?,
-        headOffice: PostTaxSettingsRequestBodyHeadOffice?
-    ) async throws -> TaxSettings {
-        try await V1TaxSettingsMethods.postTaxSettings(
-            config: config,
-            defaults: defaults,
-            expand: expand,
-            headOffice: headOffice
-        )
+/// Updates Tax Settings parameters used in tax calculations. All parameters are editable but none can be removed once set.
+    public func postTax(defaults: PostTaxSettingsRequestBodyDefaults?, expand: [String]?, headOffice: PostTaxSettingsRequestBodyHeadOffice?) async throws -> TaxSettings {
+        return try await V1TaxSettingsMethods.postTaxSettings(config: config, defaults: defaults, expand: expand, headOffice: headOffice)
     }
 }
 
@@ -113,23 +61,9 @@ public class V1TaxTransactionsCreateFromCalculationNamespace {
         self.config = config
     }
 
-    /// Creates a Tax Transaction from a calculation, if that calculation hasn’t expired. Calculations expire after 90
-    /// days.
-    public func postTaxTransactions(
-        calculation: String,
-        reference: String,
-        expand: [String]?,
-        metadata: [String: String]?,
-        postedAt: Int?
-    ) async throws -> TaxTransaction {
-        try await V1TaxTransactionsCreateFromCalculationMethods.postTaxTransactionsCreateFromCalculation(
-            config: config,
-            calculation: calculation,
-            reference: reference,
-            expand: expand,
-            metadata: metadata,
-            postedAt: postedAt
-        )
+/// Creates a Tax Transaction from a calculation, if that calculation hasn’t expired. Calculations expire after 90 days.
+    public func postTaxTransactions(calculation: String, reference: String, expand: [String]?, metadata: [String: String]?, postedAt: Int?) async throws -> TaxTransaction {
+        return try await V1TaxTransactionsCreateFromCalculationMethods.postTaxTransactionsCreateFromCalculation(config: config, calculation: calculation, reference: reference, expand: expand, metadata: metadata, postedAt: postedAt)
     }
 }
 
@@ -139,13 +73,9 @@ public class V1TaxTransactionsCreateReversalNamespace {
         self.config = config
     }
 
-    /// Partially or fully reverses a previously created Transaction .
-    public func postTaxTransactions(options: V1TaxTransactionsCreateReversalMethods
-        .PostTaxTransactionsCreateReversalOptions) async throws -> TaxTransaction {
-        try await V1TaxTransactionsCreateReversalMethods.postTaxTransactionsCreateReversal(
-            config: config,
-            options: options
-        )
+/// Partially or fully reverses a previously created Transaction .
+    public func postTaxTransactions(options: V1TaxTransactionsCreateReversalMethods.PostTaxTransactionsCreateReversalOptions) async throws -> TaxTransaction {
+        return try await V1TaxTransactionsCreateReversalMethods.postTaxTransactionsCreateReversal(config: config, options: options)
     }
 }
 
@@ -155,26 +85,11 @@ public class V1TaxTransactionsLineItemsNamespace {
         self.config = config
     }
 
-    /// Lists the line items for a committed standalone tax transaction. Use `transaction` to identify the transaction
-    /// and `starting_after` or `ending_before` to navigate the collection. Set `limit` to control the page size and use
-    /// `expand` when you need expanded response fields.
+/// Lists the line items for a committed standalone tax transaction. Use `transaction` to identify the transaction and `starting_after` or `ending_before` to navigate the collection. Set `limit` to control the page size and use `expand` when you need expanded response fields.
     ///
     /// Retrieves the line items of a committed standalone transaction as a collection.
-    public func getTaxTransactionsTransaction(
-        transaction: String,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        startingAfter: String?
-    ) async throws -> GetTaxTransactionsTransactionLineItemsResponse {
-        try await V1TaxTransactionsLineItemsMethods.getTaxTransactionsTransactionLineItems(
-            config: config,
-            transaction: transaction,
-            endingBefore: endingBefore,
-            expand: expand,
-            limit: limit,
-            startingAfter: startingAfter
-        )
+    public func getTaxTransactionsTransaction(transaction: String, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetTaxTransactionsTransactionLineItemsResponse {
+        return try await V1TaxTransactionsLineItemsMethods.getTaxTransactionsTransactionLineItems(config: config, transaction: transaction, endingBefore: endingBefore, expand: expand, limit: limit, startingAfter: startingAfter)
     }
 }
 
@@ -190,16 +105,11 @@ public class V1TaxTransactionsNamespace {
         lineItems = V1TaxTransactionsLineItemsNamespace(config: config)
     }
 
-    /// Retrieves a Tax Transaction object by its identifier. Use `expand` to request expanded response fields, and use
-    /// the transaction details to inspect tax collected or refunded for the customer.
+/// Retrieves a Tax Transaction object by its identifier. Use `expand` to request expanded response fields, and use the transaction details to inspect tax collected or refunded for the customer.
     ///
     /// Retrieves a Tax Transaction object.
     public func getTaxTransaction(transaction: String, expand: [String]?) async throws -> TaxTransaction {
-        try await V1TaxTransactionsMethods.getTaxTransactionsTransaction(
-            config: config,
-            transaction: transaction,
-            expand: expand
-        )
+        return try await V1TaxTransactionsMethods.getTaxTransactionsTransaction(config: config, transaction: transaction, expand: expand)
     }
 }
 
@@ -224,33 +134,18 @@ public class V1TaxCodesNamespace {
         self.config = config
     }
 
-    /// Lists all tax codes available for assignment to products. Use `starting_after` or `ending_before` to navigate
-    /// through the collection and `limit` to control the number of results per page. Use `expand` when you need
-    /// expanded response fields.
+/// Lists all tax codes available for assignment to products. Use `starting_after` or `ending_before` to navigate through the collection and `limit` to control the number of results per page. Use `expand` when you need expanded response fields.
     ///
     /// A list of all tax codes available to add to Products in order to allow specific tax calculations.
-    public func get(
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        startingAfter: String?
-    ) async throws -> GetTaxCodesResponse {
-        try await V1TaxCodesMethods.getTaxCodes(
-            config: config,
-            endingBefore: endingBefore,
-            expand: expand,
-            limit: limit,
-            startingAfter: startingAfter
-        )
+    public func get(endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetTaxCodesResponse {
+        return try await V1TaxCodesMethods.getTaxCodes(config: config, endingBefore: endingBefore, expand: expand, limit: limit, startingAfter: startingAfter)
     }
 
-    /// Retrieves a tax code by its unique identifier. Use `id` to select the tax code and `expand` when you need
-    /// expanded response fields. The response contains the tax code's name and description.
+/// Retrieves a tax code by its unique identifier. Use `id` to select the tax code and `expand` when you need expanded response fields. The response contains the tax code's name and description.
     ///
-    /// Retrieves the details of an existing tax code. Supply the unique tax code ID and Stripe will return the
-    /// corresponding tax code information.
+    /// Retrieves the details of an existing tax code. Supply the unique tax code ID and Stripe will return the corresponding tax code information.
     public func getId(id: String, expand: [String]?) async throws -> TaxCode {
-        try await V1TaxCodesMethods.getTaxCodesId(config: config, id: id, expand: expand)
+        return try await V1TaxCodesMethods.getTaxCodesId(config: config, id: id, expand: expand)
     }
 }
 
@@ -260,52 +155,29 @@ public class V1TaxIdsNamespace {
         self.config = config
     }
 
-    /// Lists tax IDs belonging to an account or customer. Use `owner` to scope the collection, `starting_after` or
-    /// `ending_before` to paginate, and `limit` to control the page size. Use `expand` when you need expanded response
-    /// fields.
+/// Lists tax IDs belonging to an account or customer. Use `owner` to scope the collection, `starting_after` or `ending_before` to paginate, and `limit` to control the page size. Use `expand` when you need expanded response fields.
     ///
     /// Returns a list of tax IDs.
-    public func get(
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        owner: GetTaxIdsParameter?,
-        startingAfter: String?
-    ) async throws -> GetTaxIdsResponse {
-        try await V1TaxIdsMethods.getTaxIds(
-            config: config,
-            endingBefore: endingBefore,
-            expand: expand,
-            limit: limit,
-            owner: owner,
-            startingAfter: startingAfter
-        )
+    public func get(endingBefore: String?, expand: [String]?, limit: Int?, owner: GetTaxIdsParameter?, startingAfter: String?) async throws -> GetTaxIdsResponse {
+        return try await V1TaxIdsMethods.getTaxIds(config: config, endingBefore: endingBefore, expand: expand, limit: limit, owner: owner, startingAfter: startingAfter)
     }
 
-    /// Creates a new account or customer tax_id object.
-    public func post(
-        type: PostTaxIdsRequestBodyType,
-        value: String,
-        expand: [String]?,
-        owner: PostTaxIdsRequestBodyOwner?
-    ) async throws -> TaxId {
-        try await V1TaxIdsMethods.postTaxIds(config: config, type: type, value: value, expand: expand, owner: owner)
+/// Creates a new account or customer tax_id object.
+    public func post(type: PostTaxIdsRequestBodyType, value: String, expand: [String]?, owner: PostTaxIdsRequestBodyOwner?) async throws -> TaxId {
+        return try await V1TaxIdsMethods.postTaxIds(config: config, type: type, value: value, expand: expand, owner: owner)
     }
 
-    /// Deletes an existing account or customer tax ID. Use `id` to identify the tax ID to remove. The operation returns
-    /// a deletion confirmation object for the specified tax ID.
+/// Deletes an existing account or customer tax ID. Use `id` to identify the tax ID to remove. The operation returns a deletion confirmation object for the specified tax ID.
     ///
     /// Deletes an existing account or customer tax_id object.
     public func deleteId(id: String) async throws -> DeletedTaxId {
-        try await V1TaxIdsMethods.deleteTaxIdsId(config: config, id: id)
+        return try await V1TaxIdsMethods.deleteTaxIdsId(config: config, id: id)
     }
 
-    /// Retrieves an account or customer tax ID by its unique identifier. Use `id` to select the tax ID and `expand`
-    /// when you need expanded response fields. The response includes the tax ID value, type, owner information, and
-    /// verification details when available.
+/// Retrieves an account or customer tax ID by its unique identifier. Use `id` to select the tax ID and `expand` when you need expanded response fields. The response includes the tax ID value, type, owner information, and verification details when available.
     ///
     /// Retrieves an account or customer tax_id object.
     public func getId(id: String, expand: [String]?) async throws -> TaxId {
-        try await V1TaxIdsMethods.getTaxIdsId(config: config, id: id, expand: expand)
+        return try await V1TaxIdsMethods.getTaxIdsId(config: config, id: id, expand: expand)
     }
 }

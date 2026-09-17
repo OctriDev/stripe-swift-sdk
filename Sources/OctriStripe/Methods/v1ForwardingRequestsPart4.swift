@@ -6,31 +6,18 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1ForwardingRequestsMethods {
-    /// Retrieves a ForwardingRequest by its identifier. Use `expand` to request expanded fields in the returned object.
-    /// The response includes the destination URL, payment method, replacement configuration, and redacted request and
-    /// response details.
+extension V1ForwardingRequestsMethods {
+    /// Retrieves a ForwardingRequest by its identifier. Use `expand` to request expanded fields in the returned object. The response includes the destination URL, payment method, replacement configuration, and redacted request and response details.
     ///
     /// Retrieves a ForwardingRequest object.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    static func getForwardingRequestsId(
-        config: ClientConfig,
-        id: String,
-        expand: [String]?
-    ) async throws -> ForwardingRequest {
+    public static func getForwardingRequestsId(config: ClientConfig, id: String, expand: [String]?) async throws -> ForwardingRequest {
         try validateLength("id", id, max: 5000)
 
-        return try await (sdkRequest(
-            "GET",
-            ["/v1/forwarding/requests/", sdkEncodePathSegment(sdkWireString(id))].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .json,
-            operationId: "GetForwardingRequestsId"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/forwarding/requests/", sdkEncodePathSegment(sdkWireString(id))].joined(), config: config, query: [
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .json, operationId: "GetForwardingRequestsId")).data
     }
 }

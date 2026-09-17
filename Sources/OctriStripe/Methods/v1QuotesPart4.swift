@@ -6,26 +6,18 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1QuotesMethods {
-    /// Retrieves a quote by its identifier. Use `expand` to include additional fields in the response when needed. The
-    /// quote includes pricing, customer, tax, collection, and lifecycle information.
+extension V1QuotesMethods {
+    /// Retrieves a quote by its identifier. Use `expand` to include additional fields in the response when needed. The quote includes pricing, customer, tax, collection, and lifecycle information.
     ///
     /// Retrieves the quote with the given ID.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    static func getQuotesQuote(config: ClientConfig, quote: String, expand: [String]?) async throws -> Quote {
+    public static func getQuotesQuote(config: ClientConfig, quote: String, expand: [String]?) async throws -> Quote {
         try validateLength("quote", quote, max: 5000)
 
-        return try await (sdkRequest(
-            "GET",
-            ["/v1/quotes/", sdkEncodePathSegment(sdkWireString(quote))].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .json,
-            operationId: "GetQuotesQuote"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/quotes/", sdkEncodePathSegment(sdkWireString(quote))].joined(), config: config, query: [
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .json, operationId: "GetQuotesQuote")).data
     }
 }

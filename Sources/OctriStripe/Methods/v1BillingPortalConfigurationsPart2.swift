@@ -6,9 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1BillingPortalConfigurationsMethods {
-    /// Lists customer portal configurations. Filter the results by `active` or `is_default`, and use `starting_after`
-    /// or `ending_before` with `limit` to paginate the configurations.
+extension V1BillingPortalConfigurationsMethods {
+    /// Lists customer portal configurations. Filter the results by `active` or `is_default`, and use `starting_after` or `ending_before` with `limit` to paginate the configurations.
     ///
     /// Returns a list of configurations that describe the functionality of the customer portal.
     ///
@@ -30,24 +29,16 @@ public extension V1BillingPortalConfigurationsMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    static func getBillingPortalConfigurations(
-        config: ClientConfig,
-        active: Bool?,
-        endingBefore: String?,
-        expand: [String]?,
-        isDefault: Bool?,
-        limit: Int?,
-        startingAfter: String?
-    ) async throws -> GetBillingPortalConfigurationsResponse {
-        if let endingBefore {
+    public static func getBillingPortalConfigurations(config: ClientConfig, active: Bool?, endingBefore: String?, expand: [String]?, isDefault: Bool?, limit: Int?, startingAfter: String?) async throws -> GetBillingPortalConfigurationsResponse {
+        if let endingBefore = endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let startingAfter {
+        if let startingAfter = startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try await (sdkRequest("GET", "/v1/billing_portal/configurations", config: config, query: [
+        return try (await sdkRequest("GET", "/v1/billing_portal/configurations", config: config, query: [
             SdkQueryParameter("active", value: active),
             SdkQueryParameter("ending_before", value: endingBefore),
             SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),

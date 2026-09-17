@@ -231,8 +231,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testGetBillingCreditBalanceTransactionsGetBillingCreditBalanceTransactionsReachesMockAndDecodesResponse(
-    ) async throws {
+    func testGetBillingCreditBalanceTransactionsGetBillingCreditBalanceTransactionsReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -257,8 +256,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testGetBillingCreditBalanceTransactionsIdGetBillingCreditBalanceTX84a4c602c5ReachesMockAndDecodesResponse(
-    ) async throws {
+    func testGetBillingCreditBalanceTransactionsIdGetBillingCreditBalanceTX84a4c602c5ReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -393,12 +391,7 @@ extension SdkMethodTests {
             return
         }
         _ = client
-        var options = try V1BillingMetersEventSummariesMethods.GetBillingMetersIdEventSummariesOptions(
-            id: decoded("\"id-1\""),
-            customer: decoded("\"sample\""),
-            endTime: decoded("\"sample\""),
-            startTime: decoded("\"sample\"")
-        )
+        var options = try V1BillingMetersEventSummariesMethods.GetBillingMetersIdEventSummariesOptions(id: decoded("\"id-1\""), customer: decoded("\"sample\""), endTime: decoded("\"sample\""), startTime: decoded("\"sample\""))
         options.expand = try decoded("[\"expand\"]")
         let actual = try await client.v1.billing.meters.eventSummaries.getBillingMetersId(
             options: options
@@ -414,18 +407,12 @@ extension SdkMethodTests {
         )
     }
 
-    func testGetBillingMetersIdEventSummariesGetBillingMetersIdEventSummariesReachesMockAndDecodesResponse(
-    ) async throws {
+    func testGetBillingMetersIdEventSummariesGetBillingMetersIdEventSummariesReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        var options = try V1BillingMetersEventSummariesMethods.GetBillingMetersIdEventSummariesOptions(
-            id: decoded("\"id-1\""),
-            customer: decoded("\"customer\""),
-            endTime: decoded("1"),
-            startTime: decoded("1")
-        )
+        var options = try V1BillingMetersEventSummariesMethods.GetBillingMetersIdEventSummariesOptions(id: decoded("\"id-1\""), customer: decoded("\"customer\""), endTime: decoded("1"), startTime: decoded("1"))
         options.endingBefore = try decoded("\"ending_before\"")
         options.expand = try decoded("[\"expand\"]")
         options.limit = try decoded("1")
@@ -469,8 +456,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testGetBillingPortalConfigurationsConfigurationGetBillingPortalCoX5d93ff357fReachesMockAndDecodesResponse(
-    ) async throws {
+    func testGetBillingPortalConfigurationsConfigurationGetBillingPortalCoX5d93ff357fReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }

@@ -6,15 +6,10 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1CustomersCardsMethods {
-    /// Creates a new card or other payment source for a customer. Provide a token or the payment details in `card` or
-    /// `bank_account`, and use `metadata` or `expand` when needed. If the customer has no default card, the new card
-    /// becomes the default payment source.
+extension V1CustomersCardsMethods {
+    /// Creates a new card or other payment source for a customer. Provide a token or the payment details in `card` or `bank_account`, and use `metadata` or `expand` when needed. If the customer has no default card, the new card becomes the default payment source.
     ///
-    /// When you create a new credit card, you must specify a customer or recipient on which to create it. If the card’s
-    /// owner has no default card, then the new card will become the default. However, if the owner already has a
-    /// default, then it will not change. To change the default, you should update the customer to have a new
-    /// default_source .
+    /// When you create a new credit card, you must specify a customer or recipient on which to create it. If the card’s owner has no default card, then the new card will become the default. However, if the owner already has a default, then it will not change. To change the default, you should update the customer to have a new default_source .
     ///
     /// - Parameters:
     /// - alipayAccount: A token returned by [Stripe.js](https://stripe.com/docs/js)
@@ -32,43 +27,19 @@ public extension V1CustomersCardsMethods {
     ///   empty value to `metadata`.
     /// - source: Please refer to full [documentation](https://api.stripe.com)
     ///   instead.
-    static func postCustomersCustomerCards(
-        config: ClientConfig,
-        customer: String,
-        alipayAccount: String?,
-        bankAccount: PostCustomersCustomerCardsRequestBodyBankAccount?,
-        card: PostCustomersCustomerCardsRequestBodyCard?,
-        expand: [String]?,
-        metadata: [String: String]?,
-        source: String?
-    ) async throws -> PaymentSource {
+    public static func postCustomersCustomerCards(config: ClientConfig, customer: String, alipayAccount: String?, bankAccount: PostCustomersCustomerCardsRequestBodyBankAccount?, card: PostCustomersCustomerCardsRequestBodyCard?, expand: [String]?, metadata: [String: String]?, source: String?) async throws -> PaymentSource {
         try validateLength("customer", customer, max: 5000)
 
-        if let alipayAccount {
+        if let alipayAccount = alipayAccount {
             try validateLength("alipay_account", alipayAccount, max: 5000)
         }
 
-        if let source {
+        if let source = source {
             try validateLength("source", source, max: 5000)
         }
 
-        let requestBody = PostCustomersCustomerCardsRequestBody(
-            alipayAccount: alipayAccount,
-            bankAccount: bankAccount,
-            card: card,
-            expand: expand,
-            metadata: metadata,
-            source: source
-        )
+        let requestBody = PostCustomersCustomerCardsRequestBody(alipayAccount: alipayAccount, bankAccount: bankAccount, card: card, expand: expand, metadata: metadata, source: source)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/customers/", sdkEncodePathSegment(sdkWireString(customer)), "/cards"].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostCustomersCustomerCards"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/customers/", sdkEncodePathSegment(sdkWireString(customer)), "/cards"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostCustomersCustomerCards")).data
     }
 }

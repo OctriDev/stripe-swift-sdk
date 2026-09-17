@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1Inbound domain models
+// V1Inbound domain models
 /// Typed representation of the `InboundTransfers` API schema.
 public struct InboundTransfers: Codable {
     /// Required object value serialized in the `billing_details` wire field.
@@ -19,44 +19,36 @@ public struct InboundTransfers: Codable {
         case usBankAccount = "us_bank_account"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension InboundTransfers {
-    init(from decoder: Decoder) throws {
+extension InboundTransfers {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.billingDetails) else {
-            throw SdkValidationError(
-                field: "billing_details",
-                code: "required",
-                message: "Validation failed for 'billing_details': value is required"
-            )
+            throw SdkValidationError(field: "billing_details", code: "required", message: "Validation failed for 'billing_details': value is required")
         }
         guard container.contains(.type) else {
-            throw SdkValidationError(
-                field: "type",
-                code: "required",
-                message: "Validation failed for 'type': value is required"
-            )
+            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
         }
-        billingDetails = try container.sdkDecodeRequired(.billingDetails)
-        type = try container.sdkDecodeRequired(.type)
-        usBankAccount = try container.sdkDecodeIfPresent(.usBankAccount)
+        self.billingDetails = try container.sdkDecodeRequired(.billingDetails)
+        self.type = try container.sdkDecodeRequired(.type)
+        self.usBankAccount = try container.sdkDecodeIfPresent(.usBankAccount)
     }
 }
 
-public extension InboundTransfers {
-    init(
-        billingDetails: TreasurySharedResourceBillingDetails,
-        type: InboundTransfersType,
-        usBankAccount: InboundTransfersPaymentMethodDetailsUsBankAccount? = nil
-    ) {
+extension InboundTransfers {
+    public init(billingDetails: TreasurySharedResourceBillingDetails, type: InboundTransfersType, usBankAccount: InboundTransfersPaymentMethodDetailsUsBankAccount? = nil) {
         (self.billingDetails, self.type) = (billingDetails, type)
         self.usBankAccount = usBankAccount
     }
 }
+
+
+
+
+
+
 
 /// Typed representation of the `InboundTransfersPaymentMethodDetailsUsBankAccount` API schema.
 public struct InboundTransfersPaymentMethodDetailsUsBankAccount: Codable {
@@ -89,55 +81,40 @@ public struct InboundTransfersPaymentMethodDetailsUsBankAccount: Codable {
         case routingNumber = "routing_number"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension InboundTransfersPaymentMethodDetailsUsBankAccount {
-    init(from decoder: Decoder) throws {
+extension InboundTransfersPaymentMethodDetailsUsBankAccount {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.network) else {
-            throw SdkValidationError(
-                field: "network",
-                code: "required",
-                message: "Validation failed for 'network': value is required"
-            )
+            throw SdkValidationError(field: "network", code: "required", message: "Validation failed for 'network': value is required")
         }
-        network = try container.sdkDecodeRequired(.network)
-        accountHolderType = try container.sdkDecodeIfPresent(.accountHolderType)
-        accountType = try container.sdkDecodeIfPresent(.accountType)
-        bankName = try container.sdkDecodeIfPresent(.bankName)
-        fingerprint = try container.sdkDecodeIfPresent(.fingerprint)
-        last4 = try container.sdkDecodeIfPresent(.last4)
-        mandate = try container.sdkDecodeIfPresent(.mandate)
-        routingNumber = try container.sdkDecodeIfPresent(.routingNumber)
-        if let value = bankName {
+        self.network = try container.sdkDecodeRequired(.network)
+        self.accountHolderType = try container.sdkDecodeIfPresent(.accountHolderType)
+        self.accountType = try container.sdkDecodeIfPresent(.accountType)
+        self.bankName = try container.sdkDecodeIfPresent(.bankName)
+        self.fingerprint = try container.sdkDecodeIfPresent(.fingerprint)
+        self.last4 = try container.sdkDecodeIfPresent(.last4)
+        self.mandate = try container.sdkDecodeIfPresent(.mandate)
+        self.routingNumber = try container.sdkDecodeIfPresent(.routingNumber)
+        if let value = self.bankName {
             try validateLength("bank_name", value, min: nil, max: 5000)
         }
-        if let value = fingerprint {
+        if let value = self.fingerprint {
             try validateLength("fingerprint", value, min: nil, max: 5000)
         }
-        if let value = last4 {
+        if let value = self.last4 {
             try validateLength("last4", value, min: nil, max: 5000)
         }
-        if let value = routingNumber {
+        if let value = self.routingNumber {
             try validateLength("routing_number", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension InboundTransfersPaymentMethodDetailsUsBankAccount {
-    init(
-        network: InboundTransfersPaymentMethodDetailsUsBankAccountNetwork,
-        accountHolderType: InboundTransfersPaymentMethodDetailsUsBankAccountAccountHolderType? = nil,
-        accountType: InboundTransfersPaymentMethodDetailsUsBankAccountAccountType? = nil,
-        bankName: String? = nil,
-        fingerprint: String? = nil,
-        last4: String? = nil,
-        mandate: InboundTransfersPaymentMethodDetailsUsBankAccountMandate? = nil,
-        routingNumber: String? = nil
-    ) throws {
+extension InboundTransfersPaymentMethodDetailsUsBankAccount {
+    public init(network: InboundTransfersPaymentMethodDetailsUsBankAccountNetwork, accountHolderType: InboundTransfersPaymentMethodDetailsUsBankAccountAccountHolderType? = nil, accountType: InboundTransfersPaymentMethodDetailsUsBankAccountAccountType? = nil, bankName: String? = nil, fingerprint: String? = nil, last4: String? = nil, mandate: InboundTransfersPaymentMethodDetailsUsBankAccountMandate? = nil, routingNumber: String? = nil) throws {
         (self.network, self.accountHolderType) = (network, accountHolderType)
         (self.accountType, self.bankName) = (accountType, bankName)
         (self.fingerprint, self.last4) = (fingerprint, last4)
@@ -163,31 +140,21 @@ public enum InboundTransfersPaymentMethodDetailsUsBankAccountMandate {
 }
 
 extension InboundTransfersPaymentMethodDetailsUsBankAccountMandate: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for InboundTransfersPaymentMethodDetailsUsBankAccountMandate"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for InboundTransfersPaymentMethodDetailsUsBankAccountMandate")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(Mandate.self) {
-            return .mandate(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(Mandate.self) { return .mandate(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -197,21 +164,19 @@ extension InboundTransfersPaymentMethodDetailsUsBankAccountMandate: Codable {
         case let .mandate(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// The type of the payment method used in the InboundTransfer.
 public struct InboundTransfersType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let usBankAccount = InboundTransfersType(rawValue: "us_bank_account")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -221,21 +186,16 @@ public struct InboundTransfersType: RawRepresentable, Hashable, Codable, Sendabl
 }
 
 /// Account holder type: individual or company.
-public struct InboundTransfersPaymentMethodDetailsUsBankAccountAccountHolderType: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct InboundTransfersPaymentMethodDetailsUsBankAccountAccountHolderType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let company = InboundTransfersPaymentMethodDetailsUsBankAccountAccountHolderType(rawValue: "company")
-    public static let individual =
-        InboundTransfersPaymentMethodDetailsUsBankAccountAccountHolderType(rawValue: "individual")
+    public static let individual = InboundTransfersPaymentMethodDetailsUsBankAccountAccountHolderType(rawValue: "individual")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -245,19 +205,15 @@ public struct InboundTransfersPaymentMethodDetailsUsBankAccountAccountHolderType
 }
 
 /// The network rails used. See the docs to learn more about money movement timelines for each network type.
-public struct InboundTransfersPaymentMethodDetailsUsBankAccountNetwork: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct InboundTransfersPaymentMethodDetailsUsBankAccountNetwork: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let ach = InboundTransfersPaymentMethodDetailsUsBankAccountNetwork(rawValue: "ach")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -267,20 +223,16 @@ public struct InboundTransfersPaymentMethodDetailsUsBankAccountNetwork: RawRepre
 }
 
 /// Account type: checkings or savings. Defaults to checking if omitted.
-public struct InboundTransfersPaymentMethodDetailsUsBankAccountAccountType: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct InboundTransfersPaymentMethodDetailsUsBankAccountAccountType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let checking = InboundTransfersPaymentMethodDetailsUsBankAccountAccountType(rawValue: "checking")
     public static let savings = InboundTransfersPaymentMethodDetailsUsBankAccountAccountType(rawValue: "savings")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

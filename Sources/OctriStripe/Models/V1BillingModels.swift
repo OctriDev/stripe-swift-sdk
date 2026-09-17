@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1Billing domain models
+// V1Billing domain models
 /// A billing alert is a resource that notifies you when a certain usage threshold on a meter is crossed. For
 /// example, you might create a billing alert to notify you when a certain user made 100 API requests.
 public struct BillingAlert: Codable {
@@ -33,77 +33,47 @@ public struct BillingAlert: Codable {
         case usageThreshold = "usage_threshold"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension BillingAlert {
-    init(from decoder: Decoder) throws {
+extension BillingAlert {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.alertType) else {
-            throw SdkValidationError(
-                field: "alert_type",
-                code: "required",
-                message: "Validation failed for 'alert_type': value is required"
-            )
+            throw SdkValidationError(field: "alert_type", code: "required", message: "Validation failed for 'alert_type': value is required")
         }
         guard container.contains(.id) else {
-            throw SdkValidationError(
-                field: "id",
-                code: "required",
-                message: "Validation failed for 'id': value is required"
-            )
+            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
         }
         guard container.contains(.livemode) else {
-            throw SdkValidationError(
-                field: "livemode",
-                code: "required",
-                message: "Validation failed for 'livemode': value is required"
-            )
+            throw SdkValidationError(field: "livemode", code: "required", message: "Validation failed for 'livemode': value is required")
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(
-                field: "object",
-                code: "required",
-                message: "Validation failed for 'object': value is required"
-            )
+            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
         }
         guard container.contains(.title) else {
-            throw SdkValidationError(
-                field: "title",
-                code: "required",
-                message: "Validation failed for 'title': value is required"
-            )
+            throw SdkValidationError(field: "title", code: "required", message: "Validation failed for 'title': value is required")
         }
-        alertType = try container.sdkDecodeRequired(.alertType)
-        id = try container.sdkDecodeRequired(.id)
-        livemode = try container.sdkDecodeRequired(.livemode)
-        object = try container.sdkDecodeRequired(.object)
-        title = try container.sdkDecodeRequired(.title)
-        status = try container.sdkDecodeIfPresent(.status)
-        usageThreshold = try container.sdkDecodeIfPresent(.usageThreshold)
-        try validateLength("id", id, min: nil, max: 5000)
-        try validateLength("title", title, min: nil, max: 5000)
+        self.alertType = try container.sdkDecodeRequired(.alertType)
+        self.id = try container.sdkDecodeRequired(.id)
+        self.livemode = try container.sdkDecodeRequired(.livemode)
+        self.object = try container.sdkDecodeRequired(.object)
+        self.title = try container.sdkDecodeRequired(.title)
+        self.status = try container.sdkDecodeIfPresent(.status)
+        self.usageThreshold = try container.sdkDecodeIfPresent(.usageThreshold)
+            try validateLength("id", self.id, min: nil, max: 5000)
+            try validateLength("title", self.title, min: nil, max: 5000)
     }
 }
 
-public extension BillingAlert {
-    init(
-        alertType: BillingAlertAlertType,
-        id: String,
-        livemode: Bool,
-        object: BillingAlertObject,
-        title: String,
-        status: BillingAlertStatus? = nil,
-        usageThreshold: BillingAlertUsageThreshold? = nil
-    ) throws {
+extension BillingAlert {
+    public init(alertType: BillingAlertAlertType, id: String, livemode: Bool, object: BillingAlertObject, title: String, status: BillingAlertStatus? = nil, usageThreshold: BillingAlertUsageThreshold? = nil) throws {
         (self.alertType, self.id) = (alertType, id)
         (self.livemode, self.object) = (livemode, object)
         (self.title, self.status) = (title, status)
         self.usageThreshold = usageThreshold
-        try validateLength("id", self.id, min: nil, max: 5000)
-        try validateLength("title", self.title, min: nil, max: 5000)
+            try validateLength("id", self.id, min: nil, max: 5000)
+            try validateLength("title", self.title, min: nil, max: 5000)
     }
 }
 
@@ -112,30 +82,24 @@ public enum BillingAlertUsageThreshold {
 }
 
 extension BillingAlertUsageThreshold: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for BillingAlertUsageThreshold"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for BillingAlertUsageThreshold")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             ThresholdsResourceUsageThresholdConfig.self
         ) {
-            return .thresholdsResourceUsageThresholdConfig(value)
+            return             .thresholdsResourceUsageThresholdConfig(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -144,6 +108,7 @@ extension BillingAlertUsageThreshold: Codable {
         case let .thresholdsResourceUsageThresholdConfig(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// Typed representation of the `BillingDetails` API schema.
@@ -168,41 +133,35 @@ public struct BillingDetails: Codable {
     }
 
     init() {
-        (address, email, name, phone, taxId) = (nil, nil, nil, nil, nil)
+        (self.address, self.email, self.name, self.phone, self.taxId) = (nil, nil, nil, nil, nil)
     }
 }
 
-public extension BillingDetails {
-    init(from decoder: Decoder) throws {
+extension BillingDetails {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        address = try container.sdkDecodeIfPresent(.address)
-        email = try container.sdkDecodeIfPresent(.email)
-        name = try container.sdkDecodeIfPresent(.name)
-        phone = try container.sdkDecodeIfPresent(.phone)
-        taxId = try container.sdkDecodeIfPresent(.taxId)
-        if let value = email {
+        self.address = try container.sdkDecodeIfPresent(.address)
+        self.email = try container.sdkDecodeIfPresent(.email)
+        self.name = try container.sdkDecodeIfPresent(.name)
+        self.phone = try container.sdkDecodeIfPresent(.phone)
+        self.taxId = try container.sdkDecodeIfPresent(.taxId)
+        if let value = self.email {
             try validateLength("email", value, min: nil, max: 5000)
         }
-        if let value = name {
+        if let value = self.name {
             try validateLength("name", value, min: nil, max: 5000)
         }
-        if let value = phone {
+        if let value = self.phone {
             try validateLength("phone", value, min: nil, max: 5000)
         }
-        if let value = taxId {
+        if let value = self.taxId {
             try validateLength("tax_id", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension BillingDetails {
-    init(
-        address: BillingDetailsAddress? = nil,
-        email: String? = nil,
-        name: String? = nil,
-        phone: String? = nil,
-        taxId: String? = nil
-    ) throws {
+extension BillingDetails {
+    public init(address: BillingDetailsAddress? = nil, email: String? = nil, name: String? = nil, phone: String? = nil, taxId: String? = nil) throws {
         self.init()
         (self.address, self.email) = (address, email)
         (self.name, self.phone) = (name, phone)
@@ -227,28 +186,20 @@ public enum BillingDetailsAddress {
 }
 
 extension BillingDetailsAddress: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for BillingDetailsAddress"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for BillingDetailsAddress")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(Address.self) {
-            return .address(value)
-        }
+        if let value = try? container.decode(Address.self) { return .address(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -257,7 +208,12 @@ extension BillingDetailsAddress: Codable {
         case let .address(value): try container.encode(value); return true
         }
     }
+
 }
+
+
+
+
 
 /// A resource for the feedback options model (for custom cancellation reasons)
 public struct BillingFeedbackOption: Codable {
@@ -284,81 +240,48 @@ public struct BillingFeedbackOption: Codable {
         case statusTransitions = "status_transitions"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension BillingFeedbackOption {
-    init(from decoder: Decoder) throws {
+extension BillingFeedbackOption {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.description) else {
-            throw SdkValidationError(
-                field: "description",
-                code: "required",
-                message: "Validation failed for 'description': value is required"
-            )
+            throw SdkValidationError(field: "description", code: "required", message: "Validation failed for 'description': value is required")
         }
         guard container.contains(.id) else {
-            throw SdkValidationError(
-                field: "id",
-                code: "required",
-                message: "Validation failed for 'id': value is required"
-            )
+            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
         }
         guard container.contains(.livemode) else {
-            throw SdkValidationError(
-                field: "livemode",
-                code: "required",
-                message: "Validation failed for 'livemode': value is required"
-            )
+            throw SdkValidationError(field: "livemode", code: "required", message: "Validation failed for 'livemode': value is required")
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(
-                field: "object",
-                code: "required",
-                message: "Validation failed for 'object': value is required"
-            )
+            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
         }
         guard container.contains(.status) else {
-            throw SdkValidationError(
-                field: "status",
-                code: "required",
-                message: "Validation failed for 'status': value is required"
-            )
+            throw SdkValidationError(field: "status", code: "required", message: "Validation failed for 'status': value is required")
         }
         guard container.contains(.statusTransitions) else {
-            throw SdkValidationError(
-                field: "status_transitions",
-                code: "required",
-                message: "Validation failed for 'status_transitions': value is required"
-            )
+            throw SdkValidationError(field: "status_transitions", code: "required", message: "Validation failed for 'status_transitions': value is required")
         }
-        description = try container.sdkDecodeRequired(.description)
-        id = try container.sdkDecodeRequired(.id)
-        livemode = try container.sdkDecodeRequired(.livemode)
-        object = try container.sdkDecodeRequired(.object)
-        status = try container.sdkDecodeRequired(.status)
-        statusTransitions = try container.sdkDecodeRequired(.statusTransitions)
-        try validateLength("description", description, min: nil, max: 5000)
-        try validateLength("id", id, min: nil, max: 5000)
+        self.description = try container.sdkDecodeRequired(.description)
+        self.id = try container.sdkDecodeRequired(.id)
+        self.livemode = try container.sdkDecodeRequired(.livemode)
+        self.object = try container.sdkDecodeRequired(.object)
+        self.status = try container.sdkDecodeRequired(.status)
+        self.statusTransitions = try container.sdkDecodeRequired(.statusTransitions)
+            try validateLength("description", self.description, min: nil, max: 5000)
+            try validateLength("id", self.id, min: nil, max: 5000)
     }
 }
 
-public extension BillingFeedbackOption {
-    init(
-        description: String,
-        id: String,
-        livemode: Bool,
-        object: BillingFeedbackOptionObject,
-        status: BillingFeedbackOptionStatus,
-        statusTransitions: FeedbackOptionsStatusTransitions
-    ) throws {
+extension BillingFeedbackOption {
+    public init(description: String, id: String, livemode: Bool, object: BillingFeedbackOptionObject, status: BillingFeedbackOptionStatus, statusTransitions: FeedbackOptionsStatusTransitions) throws {
         (self.description, self.id) = (description, id)
         (self.livemode, self.object) = (livemode, object)
         (self.status, self.statusTransitions) = (status, statusTransitions)
-        try validateLength("description", self.description, min: nil, max: 5000)
-        try validateLength("id", self.id, min: nil, max: 5000)
+            try validateLength("description", self.description, min: nil, max: 5000)
+            try validateLength("id", self.id, min: nil, max: 5000)
     }
 }
 
@@ -366,15 +289,12 @@ public extension BillingFeedbackOption {
 public struct BillingAlertAlertType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let usageThreshold = BillingAlertAlertType(rawValue: "usage_threshold")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -387,16 +307,13 @@ public struct BillingAlertAlertType: RawRepresentable, Hashable, Codable, Sendab
 public struct BillingFeedbackOptionStatus: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let active = BillingFeedbackOptionStatus(rawValue: "active")
     public static let inactive = BillingFeedbackOptionStatus(rawValue: "inactive")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -409,15 +326,12 @@ public struct BillingFeedbackOptionStatus: RawRepresentable, Hashable, Codable, 
 public struct BillingAlertObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let billingAlert = BillingAlertObject(rawValue: "billing.alert")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -430,15 +344,12 @@ public struct BillingAlertObject: RawRepresentable, Hashable, Codable, Sendable,
 public struct BillingFeedbackOptionObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let billingFeedbackOption = BillingFeedbackOptionObject(rawValue: "billing.feedback_option")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -451,17 +362,14 @@ public struct BillingFeedbackOptionObject: RawRepresentable, Hashable, Codable, 
 public struct BillingAlertStatus: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let active = BillingAlertStatus(rawValue: "active")
     public static let archived = BillingAlertStatus(rawValue: "archived")
     public static let inactive = BillingAlertStatus(rawValue: "inactive")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

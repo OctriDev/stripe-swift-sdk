@@ -3,17 +3,9 @@
 
 import Foundation
 
-/// V1 domain models
-public extension PaymentMethodDetailsIdeal {
-    init(
-        bank: PaymentMethodDetailsIdealBank? = nil,
-        bic: PaymentMethodDetailsIdealBic? = nil,
-        generatedSepaDebit: PaymentMethodDetailsIdealGeneratedSepaDebit? = nil,
-        generatedSepaDebitMandate: PaymentMethodDetailsIdealGeneratedSepaDebitMandate? = nil,
-        ibanLast4: String? = nil,
-        transactionId: String? = nil,
-        verifiedName: String? = nil
-    ) throws {
+// V1 domain models
+extension PaymentMethodDetailsIdeal {
+    public init(bank: PaymentMethodDetailsIdealBank? = nil, bic: PaymentMethodDetailsIdealBic? = nil, generatedSepaDebit: PaymentMethodDetailsIdealGeneratedSepaDebit? = nil, generatedSepaDebitMandate: PaymentMethodDetailsIdealGeneratedSepaDebitMandate? = nil, ibanLast4: String? = nil, transactionId: String? = nil, verifiedName: String? = nil) throws {
         self.init()
         (self.bank, self.bic) = (bank, bic)
         self.generatedSepaDebit = generatedSepaDebit
@@ -31,37 +23,27 @@ public extension PaymentMethodDetailsIdeal {
     }
 }
 
-public enum PaymentMethodDetailsIdealGeneratedSepaDebit {
+public indirect enum PaymentMethodDetailsIdealGeneratedSepaDebit {
     case stringValue(String)
     case paymentMethod(PaymentMethod)
 }
 
 extension PaymentMethodDetailsIdealGeneratedSepaDebit: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PaymentMethodDetailsIdealGeneratedSepaDebit"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentMethodDetailsIdealGeneratedSepaDebit")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(PaymentMethod.self) {
-            return .paymentMethod(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(PaymentMethod.self) { return .paymentMethod(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -71,39 +53,30 @@ extension PaymentMethodDetailsIdealGeneratedSepaDebit: Codable {
         case let .paymentMethod(value): try container.encode(value); return true
         }
     }
+
 }
 
-public enum PaymentMethodDetailsIdealGeneratedSepaDebitMandate {
+public indirect enum PaymentMethodDetailsIdealGeneratedSepaDebitMandate {
     case stringValue(String)
     case mandate(Mandate)
 }
 
 extension PaymentMethodDetailsIdealGeneratedSepaDebitMandate: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PaymentMethodDetailsIdealGeneratedSepaDebitMandate"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentMethodDetailsIdealGeneratedSepaDebitMandate")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(Mandate.self) {
-            return .mandate(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(Mandate.self) { return .mandate(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -113,6 +86,7 @@ extension PaymentMethodDetailsIdealGeneratedSepaDebitMandate: Codable {
         case let .mandate(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// Typed representation of the `PaymentMethodDetailsPaymentRecordBancontact` API schema.
@@ -148,51 +122,42 @@ public struct PaymentMethodDetailsPaymentRecordBancontact: Codable {
     }
 
     init() {
-        (bankCode, bankName, bic, generatedSepaDebit, generatedSepaDebitMandate) = (nil, nil, nil, nil, nil)
-        (ibanLast4, preferredLanguage, verifiedName) = (nil, nil, nil)
+        (self.bankCode, self.bankName, self.bic, self.generatedSepaDebit, self.generatedSepaDebitMandate) = (nil, nil, nil, nil, nil)
+        (self.ibanLast4, self.preferredLanguage, self.verifiedName) = (nil, nil, nil)
     }
 }
 
-public extension PaymentMethodDetailsPaymentRecordBancontact {
-    init(from decoder: Decoder) throws {
+extension PaymentMethodDetailsPaymentRecordBancontact {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        bankCode = try container.sdkDecodeIfPresent(.bankCode)
-        bankName = try container.sdkDecodeIfPresent(.bankName)
-        bic = try container.sdkDecodeIfPresent(.bic)
-        generatedSepaDebit = try container.sdkDecodeIfPresent(.generatedSepaDebit)
-        generatedSepaDebitMandate = try container.sdkDecodeIfPresent(.generatedSepaDebitMandate)
-        ibanLast4 = try container.sdkDecodeIfPresent(.ibanLast4)
-        preferredLanguage = try container.sdkDecodeIfPresent(.preferredLanguage)
-        verifiedName = try container.sdkDecodeIfPresent(.verifiedName)
-        if let value = bankCode {
+        self.bankCode = try container.sdkDecodeIfPresent(.bankCode)
+        self.bankName = try container.sdkDecodeIfPresent(.bankName)
+        self.bic = try container.sdkDecodeIfPresent(.bic)
+        self.generatedSepaDebit = try container.sdkDecodeIfPresent(.generatedSepaDebit)
+        self.generatedSepaDebitMandate = try container.sdkDecodeIfPresent(.generatedSepaDebitMandate)
+        self.ibanLast4 = try container.sdkDecodeIfPresent(.ibanLast4)
+        self.preferredLanguage = try container.sdkDecodeIfPresent(.preferredLanguage)
+        self.verifiedName = try container.sdkDecodeIfPresent(.verifiedName)
+        if let value = self.bankCode {
             try validateLength("bank_code", value, min: nil, max: 5000)
         }
-        if let value = bankName {
+        if let value = self.bankName {
             try validateLength("bank_name", value, min: nil, max: 5000)
         }
-        if let value = bic {
+        if let value = self.bic {
             try validateLength("bic", value, min: nil, max: 5000)
         }
-        if let value = ibanLast4 {
+        if let value = self.ibanLast4 {
             try validateLength("iban_last4", value, min: nil, max: 5000)
         }
-        if let value = verifiedName {
+        if let value = self.verifiedName {
             try validateLength("verified_name", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PaymentMethodDetailsPaymentRecordBancontact {
-    init(
-        bankCode: String? = nil,
-        bankName: String? = nil,
-        bic: String? = nil,
-        generatedSepaDebit: PaymentMethodDetailsPaymentRecordBancontactGeneratedSepaDebit? = nil,
-        generatedSepaDebitMandate: PaymentMethodDetailsPaymentRecordBancontactGeneratedSepaDebitMandate? = nil,
-        ibanLast4: String? = nil,
-        preferredLanguage: PaymentMethodDetailsPaymentRecordBancontactPreferredLanguage? = nil,
-        verifiedName: String? = nil
-    ) throws {
+extension PaymentMethodDetailsPaymentRecordBancontact {
+    public init(bankCode: String? = nil, bankName: String? = nil, bic: String? = nil, generatedSepaDebit: PaymentMethodDetailsPaymentRecordBancontactGeneratedSepaDebit? = nil, generatedSepaDebitMandate: PaymentMethodDetailsPaymentRecordBancontactGeneratedSepaDebitMandate? = nil, ibanLast4: String? = nil, preferredLanguage: PaymentMethodDetailsPaymentRecordBancontactPreferredLanguage? = nil, verifiedName: String? = nil) throws {
         self.init()
         (self.bankCode, self.bankName) = (bankCode, bankName)
         (self.bic, self.generatedSepaDebit) = (bic, generatedSepaDebit)
@@ -222,31 +187,21 @@ public enum PaymentMethodDetailsPaymentRecordBancontactGeneratedSepaDebit {
 }
 
 extension PaymentMethodDetailsPaymentRecordBancontactGeneratedSepaDebit: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PaymentMethodDetailsPaymentRecordBancontactGeneratedSepaDebit"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentMethodDetailsPaymentRecordBancontactGeneratedSepaDebit")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(PaymentMethod.self) {
-            return .paymentMethod(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(PaymentMethod.self) { return .paymentMethod(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -256,6 +211,7 @@ extension PaymentMethodDetailsPaymentRecordBancontactGeneratedSepaDebit: Codable
         case let .paymentMethod(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum PaymentMethodDetailsPaymentRecordBancontactGeneratedSepaDebitMandate {
@@ -264,31 +220,21 @@ public enum PaymentMethodDetailsPaymentRecordBancontactGeneratedSepaDebitMandate
 }
 
 extension PaymentMethodDetailsPaymentRecordBancontactGeneratedSepaDebitMandate: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PaymentMethodDetailsPaymentRecordBancontactGeneratedSepaDebitMandate"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentMethodDetailsPaymentRecordBancontactGeneratedSepaDebitMandate")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(Mandate.self) {
-            return .mandate(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(Mandate.self) { return .mandate(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -298,6 +244,7 @@ extension PaymentMethodDetailsPaymentRecordBancontactGeneratedSepaDebitMandate: 
         case let .mandate(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// Typed representation of the `PaymentMethodDetailsPaymentRecordIdeal` API schema.
@@ -331,43 +278,35 @@ public struct PaymentMethodDetailsPaymentRecordIdeal: Codable {
     }
 
     init() {
-        (bank, bic, generatedSepaDebit, generatedSepaDebitMandate, ibanLast4) = (nil, nil, nil, nil, nil)
-        (transactionId, verifiedName) = (nil, nil)
+        (self.bank, self.bic, self.generatedSepaDebit, self.generatedSepaDebitMandate, self.ibanLast4) = (nil, nil, nil, nil, nil)
+        (self.transactionId, self.verifiedName) = (nil, nil)
     }
 }
 
-public extension PaymentMethodDetailsPaymentRecordIdeal {
-    init(from decoder: Decoder) throws {
+extension PaymentMethodDetailsPaymentRecordIdeal {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        bank = try container.sdkDecodeIfPresent(.bank)
-        bic = try container.sdkDecodeIfPresent(.bic)
-        generatedSepaDebit = try container.sdkDecodeIfPresent(.generatedSepaDebit)
-        generatedSepaDebitMandate = try container.sdkDecodeIfPresent(.generatedSepaDebitMandate)
-        ibanLast4 = try container.sdkDecodeIfPresent(.ibanLast4)
-        transactionId = try container.sdkDecodeIfPresent(.transactionId)
-        verifiedName = try container.sdkDecodeIfPresent(.verifiedName)
-        if let value = ibanLast4 {
+        self.bank = try container.sdkDecodeIfPresent(.bank)
+        self.bic = try container.sdkDecodeIfPresent(.bic)
+        self.generatedSepaDebit = try container.sdkDecodeIfPresent(.generatedSepaDebit)
+        self.generatedSepaDebitMandate = try container.sdkDecodeIfPresent(.generatedSepaDebitMandate)
+        self.ibanLast4 = try container.sdkDecodeIfPresent(.ibanLast4)
+        self.transactionId = try container.sdkDecodeIfPresent(.transactionId)
+        self.verifiedName = try container.sdkDecodeIfPresent(.verifiedName)
+        if let value = self.ibanLast4 {
             try validateLength("iban_last4", value, min: nil, max: 5000)
         }
-        if let value = transactionId {
+        if let value = self.transactionId {
             try validateLength("transaction_id", value, min: nil, max: 5000)
         }
-        if let value = verifiedName {
+        if let value = self.verifiedName {
             try validateLength("verified_name", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PaymentMethodDetailsPaymentRecordIdeal {
-    init(
-        bank: PaymentMethodDetailsPaymentRecordIdealBank? = nil,
-        bic: PaymentMethodDetailsPaymentRecordIdealBic? = nil,
-        generatedSepaDebit: PaymentMethodDetailsPaymentRecordIdealGeneratedSepaDebit? = nil,
-        generatedSepaDebitMandate: PaymentMethodDetailsPaymentRecordIdealGeneratedSepaDebitMandate? = nil,
-        ibanLast4: String? = nil,
-        transactionId: String? = nil,
-        verifiedName: String? = nil
-    ) throws {
+extension PaymentMethodDetailsPaymentRecordIdeal {
+    public init(bank: PaymentMethodDetailsPaymentRecordIdealBank? = nil, bic: PaymentMethodDetailsPaymentRecordIdealBic? = nil, generatedSepaDebit: PaymentMethodDetailsPaymentRecordIdealGeneratedSepaDebit? = nil, generatedSepaDebitMandate: PaymentMethodDetailsPaymentRecordIdealGeneratedSepaDebitMandate? = nil, ibanLast4: String? = nil, transactionId: String? = nil, verifiedName: String? = nil) throws {
         self.init()
         (self.bank, self.bic) = (bank, bic)
         self.generatedSepaDebit = generatedSepaDebit
@@ -391,31 +330,21 @@ public enum PaymentMethodDetailsPaymentRecordIdealGeneratedSepaDebit {
 }
 
 extension PaymentMethodDetailsPaymentRecordIdealGeneratedSepaDebit: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PaymentMethodDetailsPaymentRecordIdealGeneratedSepaDebit"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentMethodDetailsPaymentRecordIdealGeneratedSepaDebit")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(PaymentMethod.self) {
-            return .paymentMethod(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(PaymentMethod.self) { return .paymentMethod(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -425,6 +354,7 @@ extension PaymentMethodDetailsPaymentRecordIdealGeneratedSepaDebit: Codable {
         case let .paymentMethod(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum PaymentMethodDetailsPaymentRecordIdealGeneratedSepaDebitMandate {
@@ -433,31 +363,21 @@ public enum PaymentMethodDetailsPaymentRecordIdealGeneratedSepaDebitMandate {
 }
 
 extension PaymentMethodDetailsPaymentRecordIdealGeneratedSepaDebitMandate: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PaymentMethodDetailsPaymentRecordIdealGeneratedSepaDebitMandate"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentMethodDetailsPaymentRecordIdealGeneratedSepaDebitMandate")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(Mandate.self) {
-            return .mandate(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(Mandate.self) { return .mandate(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -467,6 +387,7 @@ extension PaymentMethodDetailsPaymentRecordIdealGeneratedSepaDebitMandate: Codab
         case let .mandate(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// Typed representation of the `PaymentMethodDetailsPaymentRecordSofort` API schema.
@@ -505,56 +426,46 @@ public struct PaymentMethodDetailsPaymentRecordSofort: Codable {
     }
 
     init() {
-        (bankCode, bankName, bic, country, generatedSepaDebit) = (nil, nil, nil, nil, nil)
-        (generatedSepaDebitMandate, ibanLast4, preferredLanguage, verifiedName) = (nil, nil, nil, nil)
+        (self.bankCode, self.bankName, self.bic, self.country, self.generatedSepaDebit) = (nil, nil, nil, nil, nil)
+        (self.generatedSepaDebitMandate, self.ibanLast4, self.preferredLanguage, self.verifiedName) = (nil, nil, nil, nil)
     }
 }
 
-public extension PaymentMethodDetailsPaymentRecordSofort {
-    init(from decoder: Decoder) throws {
+extension PaymentMethodDetailsPaymentRecordSofort {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        bankCode = try container.sdkDecodeIfPresent(.bankCode)
-        bankName = try container.sdkDecodeIfPresent(.bankName)
-        bic = try container.sdkDecodeIfPresent(.bic)
-        country = try container.sdkDecodeIfPresent(.country)
-        generatedSepaDebit = try container.sdkDecodeIfPresent(.generatedSepaDebit)
-        generatedSepaDebitMandate = try container.sdkDecodeIfPresent(.generatedSepaDebitMandate)
-        ibanLast4 = try container.sdkDecodeIfPresent(.ibanLast4)
-        preferredLanguage = try container.sdkDecodeIfPresent(.preferredLanguage)
-        verifiedName = try container.sdkDecodeIfPresent(.verifiedName)
-        if let value = bankCode {
+        self.bankCode = try container.sdkDecodeIfPresent(.bankCode)
+        self.bankName = try container.sdkDecodeIfPresent(.bankName)
+        self.bic = try container.sdkDecodeIfPresent(.bic)
+        self.country = try container.sdkDecodeIfPresent(.country)
+        self.generatedSepaDebit = try container.sdkDecodeIfPresent(.generatedSepaDebit)
+        self.generatedSepaDebitMandate = try container.sdkDecodeIfPresent(.generatedSepaDebitMandate)
+        self.ibanLast4 = try container.sdkDecodeIfPresent(.ibanLast4)
+        self.preferredLanguage = try container.sdkDecodeIfPresent(.preferredLanguage)
+        self.verifiedName = try container.sdkDecodeIfPresent(.verifiedName)
+        if let value = self.bankCode {
             try validateLength("bank_code", value, min: nil, max: 5000)
         }
-        if let value = bankName {
+        if let value = self.bankName {
             try validateLength("bank_name", value, min: nil, max: 5000)
         }
-        if let value = bic {
+        if let value = self.bic {
             try validateLength("bic", value, min: nil, max: 5000)
         }
-        if let value = country {
+        if let value = self.country {
             try validateLength("country", value, min: nil, max: 5000)
         }
-        if let value = ibanLast4 {
+        if let value = self.ibanLast4 {
             try validateLength("iban_last4", value, min: nil, max: 5000)
         }
-        if let value = verifiedName {
+        if let value = self.verifiedName {
             try validateLength("verified_name", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PaymentMethodDetailsPaymentRecordSofort {
-    init(
-        bankCode: String? = nil,
-        bankName: String? = nil,
-        bic: String? = nil,
-        country: String? = nil,
-        generatedSepaDebit: PaymentMethodDetailsPaymentRecordSofortGeneratedSepaDebit? = nil,
-        generatedSepaDebitMandate: PaymentMethodDetailsPaymentRecordSofortGeneratedSepaDebitMandate? = nil,
-        ibanLast4: String? = nil,
-        preferredLanguage: PaymentMethodDetailsPaymentRecordSofortPreferredLanguage? = nil,
-        verifiedName: String? = nil
-    ) throws {
+extension PaymentMethodDetailsPaymentRecordSofort {
+    public init(bankCode: String? = nil, bankName: String? = nil, bic: String? = nil, country: String? = nil, generatedSepaDebit: PaymentMethodDetailsPaymentRecordSofortGeneratedSepaDebit? = nil, generatedSepaDebitMandate: PaymentMethodDetailsPaymentRecordSofortGeneratedSepaDebitMandate? = nil, ibanLast4: String? = nil, preferredLanguage: PaymentMethodDetailsPaymentRecordSofortPreferredLanguage? = nil, verifiedName: String? = nil) throws {
         self.init()
         (self.bankCode, self.bankName) = (bankCode, bankName)
         (self.bic, self.country) = (bic, country)
@@ -588,31 +499,21 @@ public enum PaymentMethodDetailsPaymentRecordSofortGeneratedSepaDebit {
 }
 
 extension PaymentMethodDetailsPaymentRecordSofortGeneratedSepaDebit: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PaymentMethodDetailsPaymentRecordSofortGeneratedSepaDebit"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentMethodDetailsPaymentRecordSofortGeneratedSepaDebit")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(PaymentMethod.self) {
-            return .paymentMethod(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(PaymentMethod.self) { return .paymentMethod(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -622,6 +523,7 @@ extension PaymentMethodDetailsPaymentRecordSofortGeneratedSepaDebit: Codable {
         case let .paymentMethod(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum PaymentMethodDetailsPaymentRecordSofortGeneratedSepaDebitMandate {

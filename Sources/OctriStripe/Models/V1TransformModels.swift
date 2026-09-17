@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1Transform domain models
+// V1Transform domain models
 /// Typed representation of the `TransformQuantity` API schema.
 public struct TransformQuantity: Codable {
     /// Divide usage by this number.
@@ -16,35 +16,25 @@ public struct TransformQuantity: Codable {
         case round
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension TransformQuantity {
-    init(from decoder: Decoder) throws {
+extension TransformQuantity {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.divideBy) else {
-            throw SdkValidationError(
-                field: "divide_by",
-                code: "required",
-                message: "Validation failed for 'divide_by': value is required"
-            )
+            throw SdkValidationError(field: "divide_by", code: "required", message: "Validation failed for 'divide_by': value is required")
         }
         guard container.contains(.round) else {
-            throw SdkValidationError(
-                field: "round",
-                code: "required",
-                message: "Validation failed for 'round': value is required"
-            )
+            throw SdkValidationError(field: "round", code: "required", message: "Validation failed for 'round': value is required")
         }
-        divideBy = try container.sdkDecodeRequired(.divideBy)
-        round = try container.sdkDecodeRequired(.round)
+        self.divideBy = try container.sdkDecodeRequired(.divideBy)
+        self.round = try container.sdkDecodeRequired(.round)
     }
 }
 
-public extension TransformQuantity {
-    init(divideBy: Int, round: TransformQuantityRound) {
+extension TransformQuantity {
+    public init(divideBy: Int, round: TransformQuantityRound) {
         (self.divideBy, self.round) = (divideBy, round)
     }
 }
@@ -61,35 +51,25 @@ public struct TransformUsage: Codable {
         case round
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension TransformUsage {
-    init(from decoder: Decoder) throws {
+extension TransformUsage {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.divideBy) else {
-            throw SdkValidationError(
-                field: "divide_by",
-                code: "required",
-                message: "Validation failed for 'divide_by': value is required"
-            )
+            throw SdkValidationError(field: "divide_by", code: "required", message: "Validation failed for 'divide_by': value is required")
         }
         guard container.contains(.round) else {
-            throw SdkValidationError(
-                field: "round",
-                code: "required",
-                message: "Validation failed for 'round': value is required"
-            )
+            throw SdkValidationError(field: "round", code: "required", message: "Validation failed for 'round': value is required")
         }
-        divideBy = try container.sdkDecodeRequired(.divideBy)
-        round = try container.sdkDecodeRequired(.round)
+        self.divideBy = try container.sdkDecodeRequired(.divideBy)
+        self.round = try container.sdkDecodeRequired(.round)
     }
 }
 
-public extension TransformUsage {
-    init(divideBy: Int, round: TransformUsageRound) {
+extension TransformUsage {
+    public init(divideBy: Int, round: TransformUsageRound) {
         (self.divideBy, self.round) = (divideBy, round)
     }
 }
@@ -98,16 +78,13 @@ public extension TransformUsage {
 public struct TransformUsageRound: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let down = TransformUsageRound(rawValue: "down")
     public static let up = TransformUsageRound(rawValue: "up")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -120,16 +97,13 @@ public struct TransformUsageRound: RawRepresentable, Hashable, Codable, Sendable
 public struct TransformQuantityRound: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let down = TransformQuantityRound(rawValue: "down")
     public static let up = TransformQuantityRound(rawValue: "up")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

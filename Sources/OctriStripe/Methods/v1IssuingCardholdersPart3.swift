@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1IssuingCardholdersMethods {
-    struct PostIssuingCardholdersOptions: Codable {
+extension V1IssuingCardholdersMethods {
+    public struct PostIssuingCardholdersOptions: Codable {
         public var billing: PostIssuingCardholdersRequestBodyBilling
         public var name: String
         public var company: PostIssuingCardholdersRequestBodyCompany?
@@ -63,20 +63,9 @@ public extension V1IssuingCardholdersMethods {
     /// - type: One of `individual` or `company`. See [Choose a cardholder
     ///   type](https://docs.stripe.com/issuing/other/choose-cardholder) for more
     ///   details.
-    static func postIssuingCardholders(
-        config: ClientConfig,
-        options: PostIssuingCardholdersOptions
-    ) async throws -> IssuingCardholder {
+    public static func postIssuingCardholders(config: ClientConfig, options: PostIssuingCardholdersOptions) async throws -> IssuingCardholder {
         let requestBody = PostIssuingCardholdersRequestBody(options: options)
 
-        return try await (sdkRequest(
-            "POST",
-            "/v1/issuing/cardholders",
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostIssuingCardholders"
-        )).data
+        return try (await sdkRequest("POST", "/v1/issuing/cardholders", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostIssuingCardholders")).data
     }
 }

@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1IdentityVerificationSessionsMethods {
-    struct PostIdentityVerificationSessionsOptions: Codable {
+extension V1IdentityVerificationSessionsMethods {
+    public struct PostIdentityVerificationSessionsOptions: Codable {
         public var clientReferenceId: String?
         public var expand: [String]?
         public var metadata: [String: String]?
@@ -23,10 +23,7 @@ public extension V1IdentityVerificationSessionsMethods {
         public init() {}
     }
 
-    /// Creates a VerificationSession object. After the VerificationSession is created, display a verification modal
-    /// using the session client_secret or send your users to the session’s url . If your API key is in test mode,
-    /// verification checks won’t actually process, though everything else will occur as if in live mode. Related guide:
-    /// Verify your users’ identity documents
+    /// Creates a VerificationSession object. After the VerificationSession is created, display a verification modal using the session client_secret or send your users to the session’s url . If your API key is in test mode, verification checks won’t actually process, though everything else will occur as if in live mode. Related guide: Verify your users’ identity documents
     ///
     /// - Parameters:
     /// - clientReferenceId: A string to reference this user. This can be a customer
@@ -52,10 +49,7 @@ public extension V1IdentityVerificationSessionsMethods {
     ///   performed. You must provide a `type` if not passing `verification_flow`.
     /// - verificationFlow: The ID of a verification flow from the Dashboard. See
     ///   https://docs.stripe.com/identity/verification-flows.
-    static func postIdentityVerificationSessions(
-        config: ClientConfig,
-        options: PostIdentityVerificationSessionsOptions
-    ) async throws -> IdentityVerificationSession {
+    public static func postIdentityVerificationSessions(config: ClientConfig, options: PostIdentityVerificationSessionsOptions) async throws -> IdentityVerificationSession {
         if let clientReferenceId = options.clientReferenceId {
             try validateLength("client_reference_id", clientReferenceId, max: 5000)
         }
@@ -74,14 +68,6 @@ public extension V1IdentityVerificationSessionsMethods {
 
         let requestBody = PostIdentityVerificationSessionsRequestBody(options: options)
 
-        return try await (sdkRequest(
-            "POST",
-            "/v1/identity/verification_sessions",
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostIdentityVerificationSessions"
-        )).data
+        return try (await sdkRequest("POST", "/v1/identity/verification_sessions", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostIdentityVerificationSessions")).data
     }
 }

@@ -6,10 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1TreasuryFinancialAccountsMethods {
-    /// Updates the configurable details of a FinancialAccount. Supply only the account properties you want to change,
-    /// such as `nickname`, `metadata`, `features`, or `platform_restrictions`; use `forwarding_settings` when
-    /// closing-account funds must be routed elsewhere.
+extension V1TreasuryFinancialAccountsMethods {
+    /// Updates the configurable details of a FinancialAccount. Supply only the account properties you want to change, such as `nickname`, `metadata`, `features`, or `platform_restrictions`; use `forwarding_settings` when closing-account funds must be routed elsewhere.
     ///
     /// Updates the details of a FinancialAccount.
     ///
@@ -28,35 +26,11 @@ public extension V1TreasuryFinancialAccountsMethods {
     /// - nickname: The nickname for the FinancialAccount.
     /// - platformRestrictions: The set of functionalities that the platform can
     ///   restrict on the FinancialAccount.
-    static func postTreasuryFinancialAccountsFinancialAccount(
-        config: ClientConfig,
-        financialAccount: String,
-        expand: [String]?,
-        features: PostTreasuryFinancialAccountsFinancialAccountRequestBodyFeatures?,
-        forwardingSettings: PostTreasuryFinancialAccountsFinancialAccountRequestBodyForwaXf6592c1c96?,
-        metadata: [String: String]?,
-        nickname: PostTreasuryFinancialAccountsFinancialAccountRequestBodyNicknameVariant1?,
-        platformRestrictions: PostTreasuryFinancialAccountsFinancialAccountRequestBodyPlatfXc3ed04ee46?
-    ) async throws -> TreasuryFinancialAccount {
+    public static func postTreasuryFinancialAccountsFinancialAccount(config: ClientConfig, financialAccount: String, expand: [String]?, features: PostTreasuryFinancialAccountsFinancialAccountRequestBodyFeatures?, forwardingSettings: PostTreasuryFinancialAccountsFinancialAccountRequestBodyForwaXf6592c1c96?, metadata: [String: String]?, nickname: PostTreasuryFinancialAccountsFinancialAccountRequestBodyNicknameVariant1?, platformRestrictions: PostTreasuryFinancialAccountsFinancialAccountRequestBodyPlatfXc3ed04ee46?) async throws -> TreasuryFinancialAccount {
         try validateLength("financial_account", financialAccount, max: 5000)
 
-        let requestBody = PostTreasuryFinancialAccountsFinancialAccountRequestBody(
-            expand: expand,
-            features: features,
-            forwardingSettings: forwardingSettings,
-            metadata: metadata,
-            nickname: nickname,
-            platformRestrictions: platformRestrictions
-        )
+        let requestBody = PostTreasuryFinancialAccountsFinancialAccountRequestBody(expand: expand, features: features, forwardingSettings: forwardingSettings, metadata: metadata, nickname: nickname, platformRestrictions: platformRestrictions)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/treasury/financial_accounts/", sdkEncodePathSegment(sdkWireString(financialAccount))].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostTreasuryFinancialAccountsFinancialAccount"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/treasury/financial_accounts/", sdkEncodePathSegment(sdkWireString(financialAccount))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTreasuryFinancialAccountsFinancialAccount")).data
     }
 }

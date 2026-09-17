@@ -3,12 +3,12 @@
 
 import Foundation
 
-/// V1PaymentPages domain models
-public typealias PaymentPagesPrivateCardPaymentMethodOptionsResourceRestrictioX9ad153d1c3 =
-    [PaymentPagesPrivateCardPaymentMethodOptionsResourceRestrictioXbc6af3d1b4]
+// V1PaymentPages domain models
+public typealias PaymentPagesPrivateCardPaymentMethodOptionsResourceRestrictioX9ad153d1c3 = [PaymentPagesPrivateCardPaymentMethodOptionsResourceRestrictioXbc6af3d1b4]
 
-public typealias PaymentPagesPrivateCardPaymentMethodOptionsResourceRestrictioX9f6dfccfd2 =
-    [PaymentPagesPrivateCardPaymentMethodOptionsResourceRestrictioXcb87079196]
+
+
+public typealias PaymentPagesPrivateCardPaymentMethodOptionsResourceRestrictioX9f6dfccfd2 = [PaymentPagesPrivateCardPaymentMethodOptionsResourceRestrictioXcb87079196]
 
 /// Typed representation of the `PaymentPagesPrivateCardPaymentMethodOptionsResourceRestrictions` API schema.
 public struct PaymentPagesPrivateCardPaymentMethodOptionsResourceRestrictions: Codable {
@@ -25,48 +25,38 @@ public struct PaymentPagesPrivateCardPaymentMethodOptionsResourceRestrictions: C
     }
 
     init() {
-        (brandsBlocked, fundingTypesBlocked) = (nil, nil)
+        (self.brandsBlocked, self.fundingTypesBlocked) = (nil, nil)
     }
 }
 
-public extension PaymentPagesPrivateCardPaymentMethodOptionsResourceRestrictions {
-    init(from decoder: Decoder) throws {
+extension PaymentPagesPrivateCardPaymentMethodOptionsResourceRestrictions {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        brandsBlocked = try container.sdkDecodeIfPresent(.brandsBlocked)
-        fundingTypesBlocked = try container.sdkDecodeIfPresent(.fundingTypesBlocked)
+        self.brandsBlocked = try container.sdkDecodeIfPresent(.brandsBlocked)
+        self.fundingTypesBlocked = try container.sdkDecodeIfPresent(.fundingTypesBlocked)
     }
 }
 
-public extension PaymentPagesPrivateCardPaymentMethodOptionsResourceRestrictions {
-    init(
-        brandsBlocked: PaymentPagesPrivateCardPaymentMethodOptionsResourceRestrictioX9ad153d1c3? = nil,
-        fundingTypesBlocked: PaymentPagesPrivateCardPaymentMethodOptionsResourceRestrictioX9f6dfccfd2? = nil
-    ) {
+extension PaymentPagesPrivateCardPaymentMethodOptionsResourceRestrictions {
+    public init(brandsBlocked: PaymentPagesPrivateCardPaymentMethodOptionsResourceRestrictioX9ad153d1c3? = nil, fundingTypesBlocked: PaymentPagesPrivateCardPaymentMethodOptionsResourceRestrictioX9f6dfccfd2? = nil) {
         self.init()
         (self.brandsBlocked, self.fundingTypesBlocked) = (brandsBlocked, fundingTypesBlocked)
     }
 }
 
 /// Required enumerated value serialized in the `brands_blocked[]` wire field.
-public struct PaymentPagesPrivateCardPaymentMethodOptionsResourceRestrictioXbc6af3d1b4: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PaymentPagesPrivateCardPaymentMethodOptionsResourceRestrictioXbc6af3d1b4: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let americanExpress =
-        PaymentPagesPrivateCardPaymentMethodOptionsResourceRestrictioXbc6af3d1b4(rawValue: "american_express")
-    public static let discoverGlobalNetwork =
-        PaymentPagesPrivateCardPaymentMethodOptionsResourceRestrictioXbc6af3d1b4(rawValue: "discover_global_network")
-    public static let primarycard =
-        PaymentPagesPrivateCardPaymentMethodOptionsResourceRestrictioXbc6af3d1b4(rawValue: "mastercard")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let americanExpress = PaymentPagesPrivateCardPaymentMethodOptionsResourceRestrictioXbc6af3d1b4(rawValue: "american_express")
+    public static let discoverGlobalNetwork = PaymentPagesPrivateCardPaymentMethodOptionsResourceRestrictioXbc6af3d1b4(rawValue: "discover_global_network")
+    public static let primarycard = PaymentPagesPrivateCardPaymentMethodOptionsResourceRestrictioXbc6af3d1b4(rawValue: "mastercard")
     public static let visa = PaymentPagesPrivateCardPaymentMethodOptionsResourceRestrictioXbc6af3d1b4(rawValue: "visa")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -76,24 +66,17 @@ public struct PaymentPagesPrivateCardPaymentMethodOptionsResourceRestrictioXbc6a
 }
 
 /// Required enumerated value serialized in the `funding_types_blocked[]` wire field.
-public struct PaymentPagesPrivateCardPaymentMethodOptionsResourceRestrictioXcb87079196: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PaymentPagesPrivateCardPaymentMethodOptionsResourceRestrictioXcb87079196: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let credit =
-        PaymentPagesPrivateCardPaymentMethodOptionsResourceRestrictioXcb87079196(rawValue: "credit")
-    public static let debit =
-        PaymentPagesPrivateCardPaymentMethodOptionsResourceRestrictioXcb87079196(rawValue: "debit")
-    public static let prepaid =
-        PaymentPagesPrivateCardPaymentMethodOptionsResourceRestrictioXcb87079196(rawValue: "prepaid")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let credit = PaymentPagesPrivateCardPaymentMethodOptionsResourceRestrictioXcb87079196(rawValue: "credit")
+    public static let debit = PaymentPagesPrivateCardPaymentMethodOptionsResourceRestrictioXcb87079196(rawValue: "debit")
+    public static let prepaid = PaymentPagesPrivateCardPaymentMethodOptionsResourceRestrictioXcb87079196(rawValue: "prepaid")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

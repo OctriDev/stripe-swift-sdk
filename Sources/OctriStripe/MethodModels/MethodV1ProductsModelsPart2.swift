@@ -7,34 +7,23 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1Products operation model declarations
+// Canonical v1Products operation model declarations
 extension GetProductsParameter: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for GetProductsParameter"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for GetProductsParameter")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container
-            .decode(GetProductsParameterVariant0.self) {
-            return .getProductsParameterVariant0(value)
-        }
-        if let value = try? container.decode(Int.self) {
-            return .intValue(value)
-        }
+        if let value = try? container.decode(GetProductsParameterVariant0.self) { return .getProductsParameterVariant0(value) }
+        if let value = try? container.decode(Int.self) { return .intValue(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -44,6 +33,7 @@ extension GetProductsParameter: Codable {
         case let .intValue(value): try container.encode(value); return true
         }
     }
+
 }
 
 public struct PostProductsIdRequestBodyMarketingFeaturesVariant0Item: Codable {
@@ -53,30 +43,24 @@ public struct PostProductsIdRequestBodyMarketingFeaturesVariant0Item: Codable {
         case name
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostProductsIdRequestBodyMarketingFeaturesVariant0Item {
-    init(from decoder: Decoder) throws {
+extension PostProductsIdRequestBodyMarketingFeaturesVariant0Item {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.name) else {
-            throw SdkValidationError(
-                field: "name",
-                code: "required",
-                message: "Validation failed for 'name': value is required"
-            )
+            throw SdkValidationError(field: "name", code: "required", message: "Validation failed for 'name': value is required")
         }
-        name = try container.sdkDecodeRequired(.name)
-        try validateLength("name", name, min: nil, max: 5000)
+        self.name = try container.sdkDecodeRequired(.name)
+            try validateLength("name", self.name, min: nil, max: 5000)
     }
 }
 
-public extension PostProductsIdRequestBodyMarketingFeaturesVariant0Item {
-    init(name: String) throws {
+extension PostProductsIdRequestBodyMarketingFeaturesVariant0Item {
+    public init(name: String) throws {
         self.name = name
-        try validateLength("name", self.name, min: nil, max: 5000)
+            try validateLength("name", self.name, min: nil, max: 5000)
     }
 }
 
@@ -93,30 +77,24 @@ public struct PostProductsRequestBodyDefaultPriceDataCurrencyOptionsValueCuXb0d7
         case preset
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostProductsRequestBodyDefaultPriceDataCurrencyOptionsValueCuXb0d70c3a45 {
-    init(from decoder: Decoder) throws {
+extension PostProductsRequestBodyDefaultPriceDataCurrencyOptionsValueCuXb0d70c3a45 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.enabled) else {
-            throw SdkValidationError(
-                field: "enabled",
-                code: "required",
-                message: "Validation failed for 'enabled': value is required"
-            )
+            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
         }
-        enabled = try container.sdkDecodeRequired(.enabled)
-        maximum = try container.sdkDecodeIfPresent(.maximum)
-        minimum = try container.sdkDecodeIfPresent(.minimum)
-        preset = try container.sdkDecodeIfPresent(.preset)
+        self.enabled = try container.sdkDecodeRequired(.enabled)
+        self.maximum = try container.sdkDecodeIfPresent(.maximum)
+        self.minimum = try container.sdkDecodeIfPresent(.minimum)
+        self.preset = try container.sdkDecodeIfPresent(.preset)
     }
 }
 
-public extension PostProductsRequestBodyDefaultPriceDataCurrencyOptionsValueCuXb0d70c3a45 {
-    init(enabled: Bool, maximum: Int? = nil, minimum: Int? = nil, preset: Int? = nil) {
+extension PostProductsRequestBodyDefaultPriceDataCurrencyOptionsValueCuXb0d70c3a45 {
+    public init(enabled: Bool, maximum: Int? = nil, minimum: Int? = nil, preset: Int? = nil) {
         (self.enabled, self.maximum) = (enabled, maximum)
         (self.minimum, self.preset) = (minimum, preset)
     }
@@ -137,37 +115,25 @@ public struct PostProductsRequestBodyDefaultPriceDataCurrencyOptionsValueTiersIt
         case unitAmountDecimal = "unit_amount_decimal"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostProductsRequestBodyDefaultPriceDataCurrencyOptionsValueTiersItem {
-    init(from decoder: Decoder) throws {
+extension PostProductsRequestBodyDefaultPriceDataCurrencyOptionsValueTiersItem {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.upTo) else {
-            throw SdkValidationError(
-                field: "up_to",
-                code: "required",
-                message: "Validation failed for 'up_to': value is required"
-            )
+            throw SdkValidationError(field: "up_to", code: "required", message: "Validation failed for 'up_to': value is required")
         }
-        upTo = try container.sdkDecodeRequired(.upTo)
-        flatAmount = try container.sdkDecodeIfPresent(.flatAmount)
-        flatAmountDecimal = try container.sdkDecodeIfPresent(.flatAmountDecimal)
-        unitAmount = try container.sdkDecodeIfPresent(.unitAmount)
-        unitAmountDecimal = try container.sdkDecodeIfPresent(.unitAmountDecimal)
+        self.upTo = try container.sdkDecodeRequired(.upTo)
+        self.flatAmount = try container.sdkDecodeIfPresent(.flatAmount)
+        self.flatAmountDecimal = try container.sdkDecodeIfPresent(.flatAmountDecimal)
+        self.unitAmount = try container.sdkDecodeIfPresent(.unitAmount)
+        self.unitAmountDecimal = try container.sdkDecodeIfPresent(.unitAmountDecimal)
     }
 }
 
-public extension PostProductsRequestBodyDefaultPriceDataCurrencyOptionsValueTiersItem {
-    init(
-        upTo: PostProductsRequestBodyDefaultPriceDataCurrencyOptionsValueTiersItemUpTo,
-        flatAmount: Int? = nil,
-        flatAmountDecimal: String? = nil,
-        unitAmount: Int? = nil,
-        unitAmountDecimal: String? = nil
-    ) {
+extension PostProductsRequestBodyDefaultPriceDataCurrencyOptionsValueTiersItem {
+    public init(upTo: PostProductsRequestBodyDefaultPriceDataCurrencyOptionsValueTiersItemUpTo, flatAmount: Int? = nil, flatAmountDecimal: String? = nil, unitAmount: Int? = nil, unitAmountDecimal: String? = nil) {
         (self.upTo, self.flatAmount) = (upTo, flatAmount)
         (self.flatAmountDecimal, self.unitAmount) = (flatAmountDecimal, unitAmount)
         self.unitAmountDecimal = unitAmountDecimal
@@ -187,58 +153,39 @@ public struct PostProductsIdRequestBodyPackageDimensionsVariant0: Codable {
         case width
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostProductsIdRequestBodyPackageDimensionsVariant0 {
-    init(from decoder: Decoder) throws {
+extension PostProductsIdRequestBodyPackageDimensionsVariant0 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.height) else {
-            throw SdkValidationError(
-                field: "height",
-                code: "required",
-                message: "Validation failed for 'height': value is required"
-            )
+            throw SdkValidationError(field: "height", code: "required", message: "Validation failed for 'height': value is required")
         }
         guard container.contains(.length) else {
-            throw SdkValidationError(
-                field: "length",
-                code: "required",
-                message: "Validation failed for 'length': value is required"
-            )
+            throw SdkValidationError(field: "length", code: "required", message: "Validation failed for 'length': value is required")
         }
         guard container.contains(.weight) else {
-            throw SdkValidationError(
-                field: "weight",
-                code: "required",
-                message: "Validation failed for 'weight': value is required"
-            )
+            throw SdkValidationError(field: "weight", code: "required", message: "Validation failed for 'weight': value is required")
         }
         guard container.contains(.width) else {
-            throw SdkValidationError(
-                field: "width",
-                code: "required",
-                message: "Validation failed for 'width': value is required"
-            )
+            throw SdkValidationError(field: "width", code: "required", message: "Validation failed for 'width': value is required")
         }
-        height = try container.sdkDecodeRequired(.height)
-        length = try container.sdkDecodeRequired(.length)
-        weight = try container.sdkDecodeRequired(.weight)
-        width = try container.sdkDecodeRequired(.width)
+        self.height = try container.sdkDecodeRequired(.height)
+        self.length = try container.sdkDecodeRequired(.length)
+        self.weight = try container.sdkDecodeRequired(.weight)
+        self.width = try container.sdkDecodeRequired(.width)
     }
 }
 
-public extension PostProductsIdRequestBodyPackageDimensionsVariant0 {
-    init(height: Double, length: Double, weight: Double, width: Double) {
+extension PostProductsIdRequestBodyPackageDimensionsVariant0 {
+    public init(height: Double, length: Double, weight: Double, width: Double) {
         (self.height, self.length) = (height, length)
         (self.weight, self.width) = (weight, width)
     }
 }
 
-public typealias PostProductsRequestBodyDefaultPriceDataCurrencyOptionsValueTiersList =
-    [PostProductsRequestBodyDefaultPriceDataCurrencyOptionsValueTiersItem]
+public typealias PostProductsRequestBodyDefaultPriceDataCurrencyOptionsValueTiersList = [PostProductsRequestBodyDefaultPriceDataCurrencyOptionsValueTiersItem]
 
 public struct PostProductsRequestBodyDefaultPriceDataCurrencyOptionsValue: Codable {
     /// custom_unit_amount
@@ -257,29 +204,23 @@ public struct PostProductsRequestBodyDefaultPriceDataCurrencyOptionsValue: Codab
     }
 
     init() {
-        (customUnitAmount, taxBehavior, tiers, unitAmount, unitAmountDecimal) = (nil, nil, nil, nil, nil)
+        (self.customUnitAmount, self.taxBehavior, self.tiers, self.unitAmount, self.unitAmountDecimal) = (nil, nil, nil, nil, nil)
     }
 }
 
-public extension PostProductsRequestBodyDefaultPriceDataCurrencyOptionsValue {
-    init(from decoder: Decoder) throws {
+extension PostProductsRequestBodyDefaultPriceDataCurrencyOptionsValue {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        customUnitAmount = try container.sdkDecodeIfPresent(.customUnitAmount)
-        taxBehavior = try container.sdkDecodeIfPresent(.taxBehavior)
-        tiers = try container.sdkDecodeIfPresent(.tiers)
-        unitAmount = try container.sdkDecodeIfPresent(.unitAmount)
-        unitAmountDecimal = try container.sdkDecodeIfPresent(.unitAmountDecimal)
+        self.customUnitAmount = try container.sdkDecodeIfPresent(.customUnitAmount)
+        self.taxBehavior = try container.sdkDecodeIfPresent(.taxBehavior)
+        self.tiers = try container.sdkDecodeIfPresent(.tiers)
+        self.unitAmount = try container.sdkDecodeIfPresent(.unitAmount)
+        self.unitAmountDecimal = try container.sdkDecodeIfPresent(.unitAmountDecimal)
     }
 }
 
-public extension PostProductsRequestBodyDefaultPriceDataCurrencyOptionsValue {
-    init(
-        customUnitAmount: PostProductsRequestBodyDefaultPriceDataCurrencyOptionsValueCuXb0d70c3a45? = nil,
-        taxBehavior: PostProductsRequestBodyDefaultPriceDataCurrencyOptionsValueTaxBehavior? = nil,
-        tiers: PostProductsRequestBodyDefaultPriceDataCurrencyOptionsValueTiersList? = nil,
-        unitAmount: Int? = nil,
-        unitAmountDecimal: String? = nil
-    ) {
+extension PostProductsRequestBodyDefaultPriceDataCurrencyOptionsValue {
+    public init(customUnitAmount: PostProductsRequestBodyDefaultPriceDataCurrencyOptionsValueCuXb0d70c3a45? = nil, taxBehavior: PostProductsRequestBodyDefaultPriceDataCurrencyOptionsValueTaxBehavior? = nil, tiers: PostProductsRequestBodyDefaultPriceDataCurrencyOptionsValueTiersList? = nil, unitAmount: Int? = nil, unitAmountDecimal: String? = nil) {
         self.init()
         (self.customUnitAmount, self.taxBehavior) = (customUnitAmount, taxBehavior)
         (self.tiers, self.unitAmount) = (tiers, unitAmount)

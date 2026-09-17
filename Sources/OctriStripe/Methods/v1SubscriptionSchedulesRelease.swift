@@ -7,40 +7,19 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1SubscriptionSchedulesReleaseMethods {
-    /// Releases a subscription schedule immediately and stops the schedule from applying future phases. The associated
-    /// subscription remains in place, and its identifier moves to `released_subscription` when the schedule is
-    /// currently associated with one. You can release only a schedule whose status is `not_started` or `active`.
+    /// Releases a subscription schedule immediately and stops the schedule from applying future phases. The associated subscription remains in place, and its identifier moves to `released_subscription` when the schedule is currently associated with one. You can release only a schedule whose status is `not_started` or `active`.
     ///
-    /// Releases the subscription schedule immediately, which will stop scheduling of its phases, but leave any existing
-    /// subscription in place. A schedule can only be released if its status is not_started or active . If the
-    /// subscription schedule is currently associated with a subscription, releasing it will remove its subscription
-    /// property and set the subscription’s ID to the released_subscription property.
+    /// Releases the subscription schedule immediately, which will stop scheduling of its phases, but leave any existing subscription in place. A schedule can only be released if its status is not_started or active . If the subscription schedule is currently associated with a subscription, releasing it will remove its subscription property and set the subscription’s ID to the released_subscription property.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
     /// - preserveCancelDate: Keep any cancellation on the subscription that the
     ///   schedule has set
-    public static func postSubscriptionSchedulesScheduleRelease(
-        config: ClientConfig,
-        schedule: String,
-        expand: [String]?,
-        preserveCancelDate: Bool?
-    ) async throws -> SubscriptionSchedule {
+    public static func postSubscriptionSchedulesScheduleRelease(config: ClientConfig, schedule: String, expand: [String]?, preserveCancelDate: Bool?) async throws -> SubscriptionSchedule {
         try validateLength("schedule", schedule, max: 5000)
 
-        let requestBody = PostSubscriptionSchedulesScheduleReleaseRequestBody(
-            expand: expand,
-            preserveCancelDate: preserveCancelDate
-        )
+        let requestBody = PostSubscriptionSchedulesScheduleReleaseRequestBody(expand: expand, preserveCancelDate: preserveCancelDate)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/subscription_schedules/", sdkEncodePathSegment(sdkWireString(schedule)), "/release"].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostSubscriptionSchedulesScheduleRelease"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/subscription_schedules/", sdkEncodePathSegment(sdkWireString(schedule)), "/release"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostSubscriptionSchedulesScheduleRelease")).data
     }
 }

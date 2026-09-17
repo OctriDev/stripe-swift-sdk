@@ -7,8 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1AccountSessionsMethods {
-    /// Creates a AccountSession object that includes a single-use token that the platform can use on their front-end to
-    /// grant client-side API access.
+    /// Creates a AccountSession object that includes a single-use token that the platform can use on their front-end to grant client-side API access.
     ///
     /// - Parameters:
     /// - account: The identifier of the account to create an Account Session for.
@@ -16,22 +15,9 @@ public enum V1AccountSessionsMethods {
     ///   and each embedded component maps to its configuration (e.g. whether it has
     ///   been enabled or not).
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postAccountSessions(
-        config: ClientConfig,
-        account: String,
-        components: PostAccountSessionsRequestBodyComponents,
-        expand: [String]?
-    ) async throws -> AccountSession {
+    public static func postAccountSessions(config: ClientConfig, account: String, components: PostAccountSessionsRequestBodyComponents, expand: [String]?) async throws -> AccountSession {
         let requestBody = PostAccountSessionsRequestBody(account: account, components: components, expand: expand)
 
-        return try await (sdkRequest(
-            "POST",
-            "/v1/account_sessions",
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostAccountSessions"
-        )).data
+        return try (await sdkRequest("POST", "/v1/account_sessions", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostAccountSessions")).data
     }
 }

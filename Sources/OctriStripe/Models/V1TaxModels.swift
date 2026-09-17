@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1Tax domain models
+// V1Tax domain models
 /// A Tax Association exposes the Tax Transactions that Stripe attempted to create on your behalf based on the
 /// PaymentIntent input
 public struct TaxAssociation: Codable {
@@ -26,67 +26,43 @@ public struct TaxAssociation: Codable {
         case taxTransactionAttempts = "tax_transaction_attempts"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension TaxAssociation {
-    init(from decoder: Decoder) throws {
+extension TaxAssociation {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.calculation) else {
-            throw SdkValidationError(
-                field: "calculation",
-                code: "required",
-                message: "Validation failed for 'calculation': value is required"
-            )
+            throw SdkValidationError(field: "calculation", code: "required", message: "Validation failed for 'calculation': value is required")
         }
         guard container.contains(.id) else {
-            throw SdkValidationError(
-                field: "id",
-                code: "required",
-                message: "Validation failed for 'id': value is required"
-            )
+            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(
-                field: "object",
-                code: "required",
-                message: "Validation failed for 'object': value is required"
-            )
+            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
         }
         guard container.contains(.paymentIntent) else {
-            throw SdkValidationError(
-                field: "payment_intent",
-                code: "required",
-                message: "Validation failed for 'payment_intent': value is required"
-            )
+            throw SdkValidationError(field: "payment_intent", code: "required", message: "Validation failed for 'payment_intent': value is required")
         }
-        calculation = try container.sdkDecodeRequired(.calculation)
-        id = try container.sdkDecodeRequired(.id)
-        object = try container.sdkDecodeRequired(.object)
-        paymentIntent = try container.sdkDecodeRequired(.paymentIntent)
-        taxTransactionAttempts = try container.sdkDecodeIfPresent(.taxTransactionAttempts)
-        try validateLength("calculation", calculation, min: nil, max: 5000)
-        try validateLength("id", id, min: nil, max: 5000)
-        try validateLength("payment_intent", paymentIntent, min: nil, max: 5000)
+        self.calculation = try container.sdkDecodeRequired(.calculation)
+        self.id = try container.sdkDecodeRequired(.id)
+        self.object = try container.sdkDecodeRequired(.object)
+        self.paymentIntent = try container.sdkDecodeRequired(.paymentIntent)
+        self.taxTransactionAttempts = try container.sdkDecodeIfPresent(.taxTransactionAttempts)
+            try validateLength("calculation", self.calculation, min: nil, max: 5000)
+            try validateLength("id", self.id, min: nil, max: 5000)
+            try validateLength("payment_intent", self.paymentIntent, min: nil, max: 5000)
     }
 }
 
-public extension TaxAssociation {
-    init(
-        calculation: String,
-        id: String,
-        object: TaxAssociationObject,
-        paymentIntent: String,
-        taxTransactionAttempts: [TaxProductResourceTaxAssociationTransactionAttempts]? = nil
-    ) throws {
+extension TaxAssociation {
+    public init(calculation: String, id: String, object: TaxAssociationObject, paymentIntent: String, taxTransactionAttempts: [TaxProductResourceTaxAssociationTransactionAttempts]? = nil) throws {
         (self.calculation, self.id) = (calculation, id)
         (self.object, self.paymentIntent) = (object, paymentIntent)
         self.taxTransactionAttempts = taxTransactionAttempts
-        try validateLength("calculation", self.calculation, min: nil, max: 5000)
-        try validateLength("id", self.id, min: nil, max: 5000)
-        try validateLength("payment_intent", self.paymentIntent, min: nil, max: 5000)
+            try validateLength("calculation", self.calculation, min: nil, max: 5000)
+            try validateLength("id", self.id, min: nil, max: 5000)
+            try validateLength("payment_intent", self.paymentIntent, min: nil, max: 5000)
     }
 }
 
@@ -108,59 +84,41 @@ public struct TaxCode: Codable {
         case object
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension TaxCode {
-    init(from decoder: Decoder) throws {
+extension TaxCode {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.description) else {
-            throw SdkValidationError(
-                field: "description",
-                code: "required",
-                message: "Validation failed for 'description': value is required"
-            )
+            throw SdkValidationError(field: "description", code: "required", message: "Validation failed for 'description': value is required")
         }
         guard container.contains(.id) else {
-            throw SdkValidationError(
-                field: "id",
-                code: "required",
-                message: "Validation failed for 'id': value is required"
-            )
+            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
         }
         guard container.contains(.name) else {
-            throw SdkValidationError(
-                field: "name",
-                code: "required",
-                message: "Validation failed for 'name': value is required"
-            )
+            throw SdkValidationError(field: "name", code: "required", message: "Validation failed for 'name': value is required")
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(
-                field: "object",
-                code: "required",
-                message: "Validation failed for 'object': value is required"
-            )
+            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
         }
-        description = try container.sdkDecodeRequired(.description)
-        id = try container.sdkDecodeRequired(.id)
-        name = try container.sdkDecodeRequired(.name)
-        object = try container.sdkDecodeRequired(.object)
-        try validateLength("description", description, min: nil, max: 5000)
-        try validateLength("id", id, min: nil, max: 5000)
-        try validateLength("name", name, min: nil, max: 5000)
+        self.description = try container.sdkDecodeRequired(.description)
+        self.id = try container.sdkDecodeRequired(.id)
+        self.name = try container.sdkDecodeRequired(.name)
+        self.object = try container.sdkDecodeRequired(.object)
+            try validateLength("description", self.description, min: nil, max: 5000)
+            try validateLength("id", self.id, min: nil, max: 5000)
+            try validateLength("name", self.name, min: nil, max: 5000)
     }
 }
 
-public extension TaxCode {
-    init(description: String, id: String, name: String, object: TaxCodeObject) throws {
+extension TaxCode {
+    public init(description: String, id: String, name: String, object: TaxCodeObject) throws {
         (self.description, self.id) = (description, id)
         (self.name, self.object) = (name, object)
-        try validateLength("description", self.description, min: nil, max: 5000)
-        try validateLength("id", self.id, min: nil, max: 5000)
-        try validateLength("name", self.name, min: nil, max: 5000)
+            try validateLength("description", self.description, min: nil, max: 5000)
+            try validateLength("id", self.id, min: nil, max: 5000)
+            try validateLength("name", self.name, min: nil, max: 5000)
     }
 }
 
@@ -185,74 +143,50 @@ public struct TaxDeductedAtSource: Codable {
         case taxDeductionAccountNumber = "tax_deduction_account_number"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension TaxDeductedAtSource {
-    init(from decoder: Decoder) throws {
+extension TaxDeductedAtSource {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.id) else {
-            throw SdkValidationError(
-                field: "id",
-                code: "required",
-                message: "Validation failed for 'id': value is required"
-            )
+            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(
-                field: "object",
-                code: "required",
-                message: "Validation failed for 'object': value is required"
-            )
+            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
         }
         guard container.contains(.periodEnd) else {
-            throw SdkValidationError(
-                field: "period_end",
-                code: "required",
-                message: "Validation failed for 'period_end': value is required"
-            )
+            throw SdkValidationError(field: "period_end", code: "required", message: "Validation failed for 'period_end': value is required")
         }
         guard container.contains(.periodStart) else {
-            throw SdkValidationError(
-                field: "period_start",
-                code: "required",
-                message: "Validation failed for 'period_start': value is required"
-            )
+            throw SdkValidationError(field: "period_start", code: "required", message: "Validation failed for 'period_start': value is required")
         }
         guard container.contains(.taxDeductionAccountNumber) else {
-            throw SdkValidationError(
-                field: "tax_deduction_account_number",
-                code: "required",
-                message: "Validation failed for 'tax_deduction_account_number': value is required"
-            )
+            throw SdkValidationError(field: "tax_deduction_account_number", code: "required", message: "Validation failed for 'tax_deduction_account_number': value is required")
         }
-        id = try container.sdkDecodeRequired(.id)
-        object = try container.sdkDecodeRequired(.object)
-        periodEnd = try container.sdkDecodeRequired(.periodEnd)
-        periodStart = try container.sdkDecodeRequired(.periodStart)
-        taxDeductionAccountNumber = try container.sdkDecodeRequired(.taxDeductionAccountNumber)
-        try validateLength("id", id, min: nil, max: 5000)
-        try validateLength("tax_deduction_account_number", taxDeductionAccountNumber, min: nil, max: 5000)
+        self.id = try container.sdkDecodeRequired(.id)
+        self.object = try container.sdkDecodeRequired(.object)
+        self.periodEnd = try container.sdkDecodeRequired(.periodEnd)
+        self.periodStart = try container.sdkDecodeRequired(.periodStart)
+        self.taxDeductionAccountNumber = try container.sdkDecodeRequired(.taxDeductionAccountNumber)
+            try validateLength("id", self.id, min: nil, max: 5000)
+            try validateLength("tax_deduction_account_number", self.taxDeductionAccountNumber, min: nil, max: 5000)
     }
 }
 
-public extension TaxDeductedAtSource {
-    init(
-        id: String,
-        object: TaxDeductedAtSourceObject,
-        periodEnd: Int,
-        periodStart: Int,
-        taxDeductionAccountNumber: String
-    ) throws {
+extension TaxDeductedAtSource {
+    public init(id: String, object: TaxDeductedAtSourceObject, periodEnd: Int, periodStart: Int, taxDeductionAccountNumber: String) throws {
         (self.id, self.object) = (id, object)
         (self.periodEnd, self.periodStart) = (periodEnd, periodStart)
         self.taxDeductionAccountNumber = taxDeductionAccountNumber
-        try validateLength("id", self.id, min: nil, max: 5000)
-        try validateLength("tax_deduction_account_number", self.taxDeductionAccountNumber, min: nil, max: 5000)
+            try validateLength("id", self.id, min: nil, max: 5000)
+            try validateLength("tax_deduction_account_number", self.taxDeductionAccountNumber, min: nil, max: 5000)
     }
 }
+
+
+
+
 
 /// A Tax `Registration` lets us know that your business is registered to collect tax on payments within a region,
 /// enabling you to automatically collect tax. Stripe doesn't register on your behalf with the relevant authorities
@@ -293,49 +227,41 @@ public struct TaxRegistration: Codable {
         case expiresAt = "expires_at"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension TaxRegistration {
-    init(from decoder: Decoder) throws {
+extension TaxRegistration {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        activeFrom = try container.sdkDecodeRequired(.activeFrom)
-        country = try container.sdkDecodeRequired(.country)
-        countryOptions = try container.sdkDecodeRequired(.countryOptions)
-        created = try container.sdkDecodeRequired(.created)
-        id = try container.sdkDecodeRequired(.id)
-        livemode = try container.sdkDecodeRequired(.livemode)
-        object = try container.sdkDecodeRequired(.object)
-        status = try container.sdkDecodeRequired(.status)
-        expiresAt = try container.sdkDecodeIfPresent(.expiresAt)
-        try validateLength("country", country, min: nil, max: 5000)
-        try validateLength("id", id, min: nil, max: 5000)
+        self.activeFrom = try container.sdkDecodeRequired(.activeFrom)
+        self.country = try container.sdkDecodeRequired(.country)
+        self.countryOptions = try container.sdkDecodeRequired(.countryOptions)
+        self.created = try container.sdkDecodeRequired(.created)
+        self.id = try container.sdkDecodeRequired(.id)
+        self.livemode = try container.sdkDecodeRequired(.livemode)
+        self.object = try container.sdkDecodeRequired(.object)
+        self.status = try container.sdkDecodeRequired(.status)
+        self.expiresAt = try container.sdkDecodeIfPresent(.expiresAt)
+            try validateLength("country", self.country, min: nil, max: 5000)
+            try validateLength("id", self.id, min: nil, max: 5000)
     }
 }
 
-public extension TaxRegistration {
-    init(
-        activeFrom: Int,
-        country: String,
-        countryOptions: TaxProductRegistrationsResourceCountryOptions,
-        created: Int,
-        id: String,
-        livemode: Bool,
-        object: TaxRegistrationObject,
-        status: TaxRegistrationStatus,
-        expiresAt: Int? = nil
-    ) throws {
+extension TaxRegistration {
+    public init(activeFrom: Int, country: String, countryOptions: TaxProductRegistrationsResourceCountryOptions, created: Int, id: String, livemode: Bool, object: TaxRegistrationObject, status: TaxRegistrationStatus, expiresAt: Int? = nil) throws {
         (self.activeFrom, self.country) = (activeFrom, country)
         (self.countryOptions, self.created) = (countryOptions, created)
         (self.id, self.livemode) = (id, livemode)
         (self.object, self.status) = (object, status)
         self.expiresAt = expiresAt
-        try validateLength("country", self.country, min: nil, max: 5000)
-        try validateLength("id", self.id, min: nil, max: 5000)
+            try validateLength("country", self.country, min: nil, max: 5000)
+            try validateLength("id", self.id, min: nil, max: 5000)
     }
 }
+
+
+
+
 
 /// You can use Tax `Settings` to manage configurations used by Stripe Tax calculations. Related guide: Using the
 /// Settings API
@@ -363,67 +289,38 @@ public struct TaxSettings: Codable {
         case headOffice = "head_office"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension TaxSettings {
-    init(from decoder: Decoder) throws {
+extension TaxSettings {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.defaults) else {
-            throw SdkValidationError(
-                field: "defaults",
-                code: "required",
-                message: "Validation failed for 'defaults': value is required"
-            )
+            throw SdkValidationError(field: "defaults", code: "required", message: "Validation failed for 'defaults': value is required")
         }
         guard container.contains(.livemode) else {
-            throw SdkValidationError(
-                field: "livemode",
-                code: "required",
-                message: "Validation failed for 'livemode': value is required"
-            )
+            throw SdkValidationError(field: "livemode", code: "required", message: "Validation failed for 'livemode': value is required")
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(
-                field: "object",
-                code: "required",
-                message: "Validation failed for 'object': value is required"
-            )
+            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
         }
         guard container.contains(.status) else {
-            throw SdkValidationError(
-                field: "status",
-                code: "required",
-                message: "Validation failed for 'status': value is required"
-            )
+            throw SdkValidationError(field: "status", code: "required", message: "Validation failed for 'status': value is required")
         }
         guard container.contains(.statusDetails) else {
-            throw SdkValidationError(
-                field: "status_details",
-                code: "required",
-                message: "Validation failed for 'status_details': value is required"
-            )
+            throw SdkValidationError(field: "status_details", code: "required", message: "Validation failed for 'status_details': value is required")
         }
-        defaults = try container.sdkDecodeRequired(.defaults)
-        livemode = try container.sdkDecodeRequired(.livemode)
-        object = try container.sdkDecodeRequired(.object)
-        status = try container.sdkDecodeRequired(.status)
-        statusDetails = try container.sdkDecodeRequired(.statusDetails)
-        headOffice = try container.sdkDecodeIfPresent(.headOffice)
+        self.defaults = try container.sdkDecodeRequired(.defaults)
+        self.livemode = try container.sdkDecodeRequired(.livemode)
+        self.object = try container.sdkDecodeRequired(.object)
+        self.status = try container.sdkDecodeRequired(.status)
+        self.statusDetails = try container.sdkDecodeRequired(.statusDetails)
+        self.headOffice = try container.sdkDecodeIfPresent(.headOffice)
     }
 }
 
-public extension TaxSettings {
-    init(
-        defaults: TaxProductResourceTaxSettingsDefaults,
-        livemode: Bool,
-        object: TaxSettingsObject,
-        status: TaxSettingsStatus,
-        statusDetails: TaxProductResourceTaxSettingsStatusDetails,
-        headOffice: TaxSettingsHeadOffice? = nil
-    ) {
+extension TaxSettings {
+    public init(defaults: TaxProductResourceTaxSettingsDefaults, livemode: Bool, object: TaxSettingsObject, status: TaxSettingsStatus, statusDetails: TaxProductResourceTaxSettingsStatusDetails, headOffice: TaxSettingsHeadOffice? = nil) {
         (self.defaults, self.livemode) = (defaults, livemode)
         (self.object, self.status) = (object, status)
         (self.statusDetails, self.headOffice) = (statusDetails, headOffice)
@@ -435,30 +332,24 @@ public enum TaxSettingsHeadOffice {
 }
 
 extension TaxSettingsHeadOffice: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for TaxSettingsHeadOffice"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for TaxSettingsHeadOffice")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             TaxProductResourceTaxSettingsHeadOffice.self
         ) {
-            return .taxProductResourceTaxSettingsHeadOffice(value)
+            return             .taxProductResourceTaxSettingsHeadOffice(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -467,21 +358,19 @@ extension TaxSettingsHeadOffice: Codable {
         case let .taxProductResourceTaxSettingsHeadOffice(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// String representing the object's type. Objects of the same type share the same value.
 public struct TaxAssociationObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let taxAssociation = TaxAssociationObject(rawValue: "tax.association")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -495,17 +384,14 @@ public struct TaxAssociationObject: RawRepresentable, Hashable, Codable, Sendabl
 public struct TaxRegistrationStatus: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let active = TaxRegistrationStatus(rawValue: "active")
     public static let expired = TaxRegistrationStatus(rawValue: "expired")
     public static let scheduled = TaxRegistrationStatus(rawValue: "scheduled")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -518,15 +404,12 @@ public struct TaxRegistrationStatus: RawRepresentable, Hashable, Codable, Sendab
 public struct TaxCodeObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let taxCode = TaxCodeObject(rawValue: "tax_code")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -539,15 +422,12 @@ public struct TaxCodeObject: RawRepresentable, Hashable, Codable, Sendable, SdkW
 public struct TaxDeductedAtSourceObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let taxDeductedAtSource = TaxDeductedAtSourceObject(rawValue: "tax_deducted_at_source")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -560,15 +440,12 @@ public struct TaxDeductedAtSourceObject: RawRepresentable, Hashable, Codable, Se
 public struct TaxSettingsObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let taxSettings = TaxSettingsObject(rawValue: "tax.settings")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -581,15 +458,12 @@ public struct TaxSettingsObject: RawRepresentable, Hashable, Codable, Sendable, 
 public struct TaxRegistrationObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let taxRegistration = TaxRegistrationObject(rawValue: "tax.registration")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -602,16 +476,13 @@ public struct TaxRegistrationObject: RawRepresentable, Hashable, Codable, Sendab
 public struct TaxSettingsStatus: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let active = TaxSettingsStatus(rawValue: "active")
     public static let pending = TaxSettingsStatus(rawValue: "pending")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

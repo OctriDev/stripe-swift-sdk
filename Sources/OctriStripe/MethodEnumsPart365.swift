@@ -8,19 +8,15 @@ import Foundation
 #endif
 /// String representing the object's type. Objects of the same type share the same value. Always has the value
 /// `list`.
-public struct GetTreasuryDebitReversalsResponseObject: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct GetTreasuryDebitReversalsResponseObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let list = GetTreasuryDebitReversalsResponseObject(rawValue: "list")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -29,20 +25,16 @@ public struct GetTreasuryDebitReversalsResponseObject: RawRepresentable, Hashabl
     }
 }
 
-public struct GetTreasuryFinancialAccountsParameterXa3b321d7: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct GetTreasuryFinancialAccountsParameterXa3b321d7: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let closed = GetTreasuryFinancialAccountsParameterXa3b321d7(rawValue: "closed")
     public static let open = GetTreasuryFinancialAccountsParameterXa3b321d7(rawValue: "open")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -53,19 +45,15 @@ public struct GetTreasuryFinancialAccountsParameterXa3b321d7: RawRepresentable, 
 
 /// String representing the object's type. Objects of the same type share the same value. Always has the value
 /// `list`.
-public struct GetTreasuryFinancialAccountsResponseObject: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct GetTreasuryFinancialAccountsResponseObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let list = GetTreasuryFinancialAccountsResponseObject(rawValue: "list")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -74,19 +62,15 @@ public struct GetTreasuryFinancialAccountsResponseObject: RawRepresentable, Hash
     }
 }
 
-public struct PostTreasuryFinancialAccountsRequestBodyNicknameVariant1: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostTreasuryFinancialAccountsRequestBodyNicknameVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostTreasuryFinancialAccountsRequestBodyNicknameVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -95,22 +79,16 @@ public struct PostTreasuryFinancialAccountsRequestBodyNicknameVariant1: RawRepre
     }
 }
 
-public struct PostTreasuryFinancialAccountsRequestBodyPlatformRestrictionsInboundFlows: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostTreasuryFinancialAccountsRequestBodyPlatformRestrictionsInboundFlows: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let restricted =
-        PostTreasuryFinancialAccountsRequestBodyPlatformRestrictionsInboundFlows(rawValue: "restricted")
-    public static let unrestricted =
-        PostTreasuryFinancialAccountsRequestBodyPlatformRestrictionsInboundFlows(rawValue: "unrestricted")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let restricted = PostTreasuryFinancialAccountsRequestBodyPlatformRestrictionsInboundFlows(rawValue: "restricted")
+    public static let unrestricted = PostTreasuryFinancialAccountsRequestBodyPlatformRestrictionsInboundFlows(rawValue: "unrestricted")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -119,22 +97,16 @@ public struct PostTreasuryFinancialAccountsRequestBodyPlatformRestrictionsInboun
     }
 }
 
-public struct PostTreasuryFinancialAccountsRequestBodyPlatformRestrictionsOX5adc2df3ae: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostTreasuryFinancialAccountsRequestBodyPlatformRestrictionsOX5adc2df3ae: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let restricted =
-        PostTreasuryFinancialAccountsRequestBodyPlatformRestrictionsOX5adc2df3ae(rawValue: "restricted")
-    public static let unrestricted =
-        PostTreasuryFinancialAccountsRequestBodyPlatformRestrictionsOX5adc2df3ae(rawValue: "unrestricted")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let restricted = PostTreasuryFinancialAccountsRequestBodyPlatformRestrictionsOX5adc2df3ae(rawValue: "restricted")
+    public static let unrestricted = PostTreasuryFinancialAccountsRequestBodyPlatformRestrictionsOX5adc2df3ae(rawValue: "unrestricted")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -143,22 +115,16 @@ public struct PostTreasuryFinancialAccountsRequestBodyPlatformRestrictionsOX5adc
     }
 }
 
-public struct PostTreasuryFinancialAccountsFinancialAccountRequestBodyForwaX53a854763a: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostTreasuryFinancialAccountsFinancialAccountRequestBodyForwaX53a854763a: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let financialAccount =
-        PostTreasuryFinancialAccountsFinancialAccountRequestBodyForwaX53a854763a(rawValue: "financial_account")
-    public static let paymentMethod =
-        PostTreasuryFinancialAccountsFinancialAccountRequestBodyForwaX53a854763a(rawValue: "payment_method")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let financialAccount = PostTreasuryFinancialAccountsFinancialAccountRequestBodyForwaX53a854763a(rawValue: "financial_account")
+    public static let paymentMethod = PostTreasuryFinancialAccountsFinancialAccountRequestBodyForwaX53a854763a(rawValue: "payment_method")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -167,19 +133,15 @@ public struct PostTreasuryFinancialAccountsFinancialAccountRequestBodyForwaX53a8
     }
 }
 
-public struct PostTreasuryFinancialAccountsFinancialAccountRequestBodyNicknameVariant1: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostTreasuryFinancialAccountsFinancialAccountRequestBodyNicknameVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostTreasuryFinancialAccountsFinancialAccountRequestBodyNicknameVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -188,22 +150,16 @@ public struct PostTreasuryFinancialAccountsFinancialAccountRequestBodyNicknameVa
     }
 }
 
-public struct PostTreasuryFinancialAccountsFinancialAccountRequestBodyPlatfX0ad5c194d8: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostTreasuryFinancialAccountsFinancialAccountRequestBodyPlatfX0ad5c194d8: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let restricted =
-        PostTreasuryFinancialAccountsFinancialAccountRequestBodyPlatfX0ad5c194d8(rawValue: "restricted")
-    public static let unrestricted =
-        PostTreasuryFinancialAccountsFinancialAccountRequestBodyPlatfX0ad5c194d8(rawValue: "unrestricted")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let restricted = PostTreasuryFinancialAccountsFinancialAccountRequestBodyPlatfX0ad5c194d8(rawValue: "restricted")
+    public static let unrestricted = PostTreasuryFinancialAccountsFinancialAccountRequestBodyPlatfX0ad5c194d8(rawValue: "unrestricted")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -212,22 +168,16 @@ public struct PostTreasuryFinancialAccountsFinancialAccountRequestBodyPlatfX0ad5
     }
 }
 
-public struct PostTreasuryFinancialAccountsFinancialAccountRequestBodyPlatfX33ab148713: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostTreasuryFinancialAccountsFinancialAccountRequestBodyPlatfX33ab148713: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let restricted =
-        PostTreasuryFinancialAccountsFinancialAccountRequestBodyPlatfX33ab148713(rawValue: "restricted")
-    public static let unrestricted =
-        PostTreasuryFinancialAccountsFinancialAccountRequestBodyPlatfX33ab148713(rawValue: "unrestricted")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let restricted = PostTreasuryFinancialAccountsFinancialAccountRequestBodyPlatfX33ab148713(rawValue: "restricted")
+    public static let unrestricted = PostTreasuryFinancialAccountsFinancialAccountRequestBodyPlatfX33ab148713(rawValue: "unrestricted")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -236,22 +186,16 @@ public struct PostTreasuryFinancialAccountsFinancialAccountRequestBodyPlatfX33ab
     }
 }
 
-public struct PostTreasuryFinancialAccountsFinancialAccountCloseRequestBodyX96a2f4a961: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostTreasuryFinancialAccountsFinancialAccountCloseRequestBodyX96a2f4a961: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let financialAccount =
-        PostTreasuryFinancialAccountsFinancialAccountCloseRequestBodyX96a2f4a961(rawValue: "financial_account")
-    public static let paymentMethod =
-        PostTreasuryFinancialAccountsFinancialAccountCloseRequestBodyX96a2f4a961(rawValue: "payment_method")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let financialAccount = PostTreasuryFinancialAccountsFinancialAccountCloseRequestBodyX96a2f4a961(rawValue: "financial_account")
+    public static let paymentMethod = PostTreasuryFinancialAccountsFinancialAccountCloseRequestBodyX96a2f4a961(rawValue: "payment_method")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

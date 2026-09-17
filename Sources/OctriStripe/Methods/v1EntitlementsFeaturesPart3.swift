@@ -6,10 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1EntitlementsFeaturesMethods {
-    /// Creates an entitlement feature that you can assign to products and use to represent a monetizable ability or
-    /// functionality. Supply `lookup_key` and `name`, and optionally attach `metadata` or request expanded response
-    /// fields.
+extension V1EntitlementsFeaturesMethods {
+    /// Creates an entitlement feature that you can assign to products and use to represent a monetizable ability or functionality. Supply `lookup_key` and `name`, and optionally attach `metadata` or request expanded response fields.
     ///
     /// Creates a feature
     ///
@@ -22,59 +20,28 @@ public extension V1EntitlementsFeaturesMethods {
     /// - metadata: Set of key-value pairs that you can attach to an object. This
     ///   can be useful for storing additional information about the object in a
     ///   structured format.
-    static func postEntitlementsFeatures(
-        config: ClientConfig,
-        lookupKey: String,
-        name: String,
-        expand: [String]?,
-        metadata: [String: String]?
-    ) async throws -> EntitlementsFeature {
+    public static func postEntitlementsFeatures(config: ClientConfig, lookupKey: String, name: String, expand: [String]?, metadata: [String: String]?) async throws -> EntitlementsFeature {
         try validateLength("lookup_key", lookupKey, max: 80)
 
         try validateLength("name", name, max: 80)
 
-        let requestBody = PostEntitlementsFeaturesRequestBody(
-            lookupKey: lookupKey,
-            name: name,
-            expand: expand,
-            metadata: metadata
-        )
+        let requestBody = PostEntitlementsFeaturesRequestBody(lookupKey: lookupKey, name: name, expand: expand, metadata: metadata)
 
-        return try await (sdkRequest(
-            "POST",
-            "/v1/entitlements/features",
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostEntitlementsFeatures"
-        )).data
+        return try (await sdkRequest("POST", "/v1/entitlements/features", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostEntitlementsFeatures")).data
     }
 
-    /// Retrieves a feature by its identifier. Use `id` to select the feature and `expand` to request additional
-    /// response fields; the feature response includes its activation state, lookup key, name, and metadata.
+    /// Retrieves a feature by its identifier. Use `id` to select the feature and `expand` to request additional response fields; the feature response includes its activation state, lookup key, name, and metadata.
     ///
     /// Retrieves a feature
     ///
     /// - Parameters:
     /// - id: The ID of the feature.
     /// - expand: Specifies which fields in the response should be expanded.
-    static func getEntitlementsFeaturesId(
-        config: ClientConfig,
-        id: String,
-        expand: [String]?
-    ) async throws -> EntitlementsFeature {
+    public static func getEntitlementsFeaturesId(config: ClientConfig, id: String, expand: [String]?) async throws -> EntitlementsFeature {
         try validateLength("id", id, max: 5000)
 
-        return try await (sdkRequest(
-            "GET",
-            ["/v1/entitlements/features/", sdkEncodePathSegment(sdkWireString(id))].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .json,
-            operationId: "GetEntitlementsFeaturesId"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/entitlements/features/", sdkEncodePathSegment(sdkWireString(id))].joined(), config: config, query: [
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .json, operationId: "GetEntitlementsFeaturesId")).data
     }
 }

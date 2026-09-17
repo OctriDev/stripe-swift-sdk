@@ -22,33 +22,33 @@ struct PostSubscriptionItemsItemRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(billingThresholds, forKey: SdkCodingKey("billing_thresholds"))
-        try keyedContainer.encodeIfPresent(discounts, forKey: SdkCodingKey("discounts"))
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
-        try keyedContainer.encodeIfPresent(offSession, forKey: SdkCodingKey("off_session"))
-        try keyedContainer.encodeIfPresent(paymentBehavior, forKey: SdkCodingKey("payment_behavior"))
-        try keyedContainer.encodeIfPresent(price, forKey: SdkCodingKey("price"))
-        try keyedContainer.encodeIfPresent(priceData, forKey: SdkCodingKey("price_data"))
-        try keyedContainer.encodeIfPresent(prorationBehavior, forKey: SdkCodingKey("proration_behavior"))
-        try keyedContainer.encodeIfPresent(prorationDate, forKey: SdkCodingKey("proration_date"))
-        try keyedContainer.encodeIfPresent(quantity, forKey: SdkCodingKey("quantity"))
-        try keyedContainer.encodeIfPresent(taxRates, forKey: SdkCodingKey("tax_rates"))
+        try keyedContainer.encodeIfPresent(self.billingThresholds, forKey: SdkCodingKey("billing_thresholds"))
+        try keyedContainer.encodeIfPresent(self.discounts, forKey: SdkCodingKey("discounts"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encodeIfPresent(self.offSession, forKey: SdkCodingKey("off_session"))
+        try keyedContainer.encodeIfPresent(self.paymentBehavior, forKey: SdkCodingKey("payment_behavior"))
+        try keyedContainer.encodeIfPresent(self.price, forKey: SdkCodingKey("price"))
+        try keyedContainer.encodeIfPresent(self.priceData, forKey: SdkCodingKey("price_data"))
+        try keyedContainer.encodeIfPresent(self.prorationBehavior, forKey: SdkCodingKey("proration_behavior"))
+        try keyedContainer.encodeIfPresent(self.prorationDate, forKey: SdkCodingKey("proration_date"))
+        try keyedContainer.encodeIfPresent(self.quantity, forKey: SdkCodingKey("quantity"))
+        try keyedContainer.encodeIfPresent(self.taxRates, forKey: SdkCodingKey("tax_rates"))
     }
 
     init(options: V1SubscriptionItemsMethods.PostSubscriptionItemsItemOptions) {
-        billingThresholds = options.billingThresholds
-        discounts = options.discounts
-        expand = options.expand
-        metadata = options.metadata
-        offSession = options.offSession
-        paymentBehavior = options.paymentBehavior
-        price = options.price
-        priceData = options.priceData
-        prorationBehavior = options.prorationBehavior
-        prorationDate = options.prorationDate
-        quantity = options.quantity
-        taxRates = options.taxRates
+        self.billingThresholds = options.billingThresholds
+        self.discounts = options.discounts
+        self.expand = options.expand
+        self.metadata = options.metadata
+        self.offSession = options.offSession
+        self.paymentBehavior = options.paymentBehavior
+        self.price = options.price
+        self.priceData = options.priceData
+        self.prorationBehavior = options.prorationBehavior
+        self.prorationDate = options.prorationDate
+        self.quantity = options.quantity
+        self.taxRates = options.taxRates
     }
 }
 
@@ -66,29 +66,29 @@ struct PostSubscriptionSchedulesRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(billingMode, forKey: SdkCodingKey("billing_mode"))
-        try keyedContainer.encodeIfPresent(customer, forKey: SdkCodingKey("customer"))
-        try keyedContainer.encodeIfPresent(customerAccount, forKey: SdkCodingKey("customer_account"))
-        try keyedContainer.encodeIfPresent(defaultSettings, forKey: SdkCodingKey("default_settings"))
-        try keyedContainer.encodeIfPresent(endBehavior, forKey: SdkCodingKey("end_behavior"))
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(fromSubscription, forKey: SdkCodingKey("from_subscription"))
-        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
-        try keyedContainer.encodeIfPresent(phases, forKey: SdkCodingKey("phases"))
-        try keyedContainer.encodeIfPresent(startDate, forKey: SdkCodingKey("start_date"))
+        try keyedContainer.encodeIfPresent(self.billingMode, forKey: SdkCodingKey("billing_mode"))
+        try keyedContainer.encodeIfPresent(self.customer, forKey: SdkCodingKey("customer"))
+        try keyedContainer.encodeIfPresent(self.customerAccount, forKey: SdkCodingKey("customer_account"))
+        try keyedContainer.encodeIfPresent(self.defaultSettings, forKey: SdkCodingKey("default_settings"))
+        try keyedContainer.encodeIfPresent(self.endBehavior, forKey: SdkCodingKey("end_behavior"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.fromSubscription, forKey: SdkCodingKey("from_subscription"))
+        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encodeIfPresent(self.phases, forKey: SdkCodingKey("phases"))
+        try keyedContainer.encodeIfPresent(self.startDate, forKey: SdkCodingKey("start_date"))
     }
 
     init(options: V1SubscriptionSchedulesMethods.PostSubscriptionSchedulesOptions) {
-        billingMode = options.billingMode
-        customer = options.customer
-        customerAccount = options.customerAccount
-        defaultSettings = options.defaultSettings
-        endBehavior = options.endBehavior
-        expand = options.expand
-        fromSubscription = options.fromSubscription
-        metadata = options.metadata
-        phases = options.phases
-        startDate = options.startDate
+        self.billingMode = options.billingMode
+        self.customer = options.customer
+        self.customerAccount = options.customerAccount
+        self.defaultSettings = options.defaultSettings
+        self.endBehavior = options.endBehavior
+        self.expand = options.expand
+        self.fromSubscription = options.fromSubscription
+        self.metadata = options.metadata
+        self.phases = options.phases
+        self.startDate = options.startDate
     }
 }
 
@@ -102,12 +102,12 @@ struct PostSubscriptionSchedulesScheduleRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(defaultSettings, forKey: SdkCodingKey("default_settings"))
-        try keyedContainer.encodeIfPresent(endBehavior, forKey: SdkCodingKey("end_behavior"))
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
-        try keyedContainer.encodeIfPresent(phases, forKey: SdkCodingKey("phases"))
-        try keyedContainer.encodeIfPresent(prorationBehavior, forKey: SdkCodingKey("proration_behavior"))
+        try keyedContainer.encodeIfPresent(self.defaultSettings, forKey: SdkCodingKey("default_settings"))
+        try keyedContainer.encodeIfPresent(self.endBehavior, forKey: SdkCodingKey("end_behavior"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encodeIfPresent(self.phases, forKey: SdkCodingKey("phases"))
+        try keyedContainer.encodeIfPresent(self.prorationBehavior, forKey: SdkCodingKey("proration_behavior"))
     }
 }
 
@@ -118,9 +118,9 @@ struct PostSubscriptionSchedulesScheduleCancelRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(invoiceNow, forKey: SdkCodingKey("invoice_now"))
-        try keyedContainer.encodeIfPresent(prorate, forKey: SdkCodingKey("prorate"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.invoiceNow, forKey: SdkCodingKey("invoice_now"))
+        try keyedContainer.encodeIfPresent(self.prorate, forKey: SdkCodingKey("prorate"))
     }
 }
 
@@ -130,7 +130,7 @@ struct PostSubscriptionSchedulesScheduleReleaseRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(preserveCancelDate, forKey: SdkCodingKey("preserve_cancel_date"))
+        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(self.preserveCancelDate, forKey: SdkCodingKey("preserve_cancel_date"))
     }
 }

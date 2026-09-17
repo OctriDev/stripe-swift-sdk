@@ -9,23 +9,11 @@ public class V1TestHelpersIssuingPersonalizationDesignsRejectNamespace {
         self.config = config
     }
 
-    /// Rejects a test-mode personalization design by changing its status to `rejected`. Provide the
-    /// `personalization_design` identifier and the rejection reasons that explain why the design cannot be used. You
-    /// can use `expand` to include additional response fields.
+/// Rejects a test-mode personalization design by changing its status to `rejected`. Provide the `personalization_design` identifier and the rejection reasons that explain why the design cannot be used. You can use `expand` to include additional response fields.
     ///
     /// Updates the status of the specified testmode personalization design object to rejected .
-    public func postTestHelpersIssuingPersonalizationDesignsPersonalizationDesign(
-        personalizationDesign: String,
-        rejectionReasons: PostTestHelpersIssuingPersonalizationDesignsPersonalizationDeXbf9fda67d9,
-        expand: [String]?
-    ) async throws -> IssuingPersonalizationDesign {
-        try await V1TestHelpersIssuingPersonalizationDesignsRejectMethods
-            .postTestHelpersIssuingPersonalizationDesignsPersonalizationDesignReject(
-                config: config,
-                personalizationDesign: personalizationDesign,
-                rejectionReasons: rejectionReasons,
-                expand: expand
-            )
+    public func postTestHelpersIssuingPersonalizationDesignsPersonalizationDesign(personalizationDesign: String, rejectionReasons: PostTestHelpersIssuingPersonalizationDesignsPersonalizationDeXbf9fda67d9, expand: [String]?) async throws -> IssuingPersonalizationDesign {
+        return try await V1TestHelpersIssuingPersonalizationDesignsRejectMethods.postTestHelpersIssuingPersonalizationDesignsPersonalizationDesignReject(config: config, personalizationDesign: personalizationDesign, rejectionReasons: rejectionReasons, expand: expand)
     }
 }
 
@@ -46,16 +34,9 @@ public class V1TestHelpersIssuingSettlementsCompleteNamespace {
         self.config = config
     }
 
-    /// Allows the user to mark an Issuing settlement as complete.
-    public func postTestHelpersIssuingSettlementsSettlement(
-        settlement: String,
-        expand: [String]?
-    ) async throws -> IssuingSettlement {
-        try await V1TestHelpersIssuingSettlementsCompleteMethods.postTestHelpersIssuingSettlementsSettlementComplete(
-            config: config,
-            settlement: settlement,
-            expand: expand
-        )
+/// Allows the user to mark an Issuing settlement as complete.
+    public func postTestHelpersIssuingSettlementsSettlement(settlement: String, expand: [String]?) async throws -> IssuingSettlement {
+        return try await V1TestHelpersIssuingSettlementsCompleteMethods.postTestHelpersIssuingSettlementsSettlementComplete(config: config, settlement: settlement, expand: expand)
     }
 }
 
@@ -67,13 +48,9 @@ public class V1TestHelpersIssuingSettlementsNamespace {
         complete = V1TestHelpersIssuingSettlementsCompleteNamespace(config: config)
     }
 
-    /// Allows the user to create an Issuing settlement.
-    public func postTestHelpersIssuing(options: V1TestHelpersIssuingSettlementsMethods
-        .PostTestHelpersIssuingSettlementsOptions) async throws -> IssuingSettlement {
-        try await V1TestHelpersIssuingSettlementsMethods.postTestHelpersIssuingSettlements(
-            config: config,
-            options: options
-        )
+/// Allows the user to create an Issuing settlement.
+    public func postTestHelpersIssuing(options: V1TestHelpersIssuingSettlementsMethods.PostTestHelpersIssuingSettlementsOptions) async throws -> IssuingSettlement {
+        return try await V1TestHelpersIssuingSettlementsMethods.postTestHelpersIssuingSettlements(config: config, options: options)
     }
 }
 
@@ -83,25 +60,9 @@ public class V1TestHelpersIssuingTransactionsCreateForceCaptureNamespace {
         self.config = config
     }
 
-    /// Allows the user to capture an arbitrary amount, also known as a forced capture.
-    public func postTestHelpersIssuingTransactions(
-        amount: Int,
-        card: String,
-        currency: String?,
-        expand: [String]?,
-        merchantData: PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXb2216bfa73?,
-        purchaseDetails: PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXf0b3163d09?
-    ) async throws -> IssuingTransaction {
-        try await V1TestHelpersIssuingTransactionsCreateForceCaptureMethods
-            .postTestHelpersIssuingTransactionsCreateForceCapture(
-                config: config,
-                amount: amount,
-                card: card,
-                currency: currency,
-                expand: expand,
-                merchantData: merchantData,
-                purchaseDetails: purchaseDetails
-            )
+/// Allows the user to capture an arbitrary amount, also known as a forced capture.
+    public func postTestHelpersIssuingTransactions(amount: Int, card: String, currency: String?, expand: [String]?, merchantData: PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXb2216bfa73?, purchaseDetails: PostTestHelpersIssuingTransactionsCreateForceCaptureRequestBoXf0b3163d09?) async throws -> IssuingTransaction {
+        return try await V1TestHelpersIssuingTransactionsCreateForceCaptureMethods.postTestHelpersIssuingTransactionsCreateForceCapture(config: config, amount: amount, card: card, currency: currency, expand: expand, merchantData: merchantData, purchaseDetails: purchaseDetails)
     }
 }
 
@@ -111,25 +72,9 @@ public class V1TestHelpersIssuingTransactionsCreateUnlinkedRefundNamespace {
         self.config = config
     }
 
-    /// Allows the user to refund an arbitrary amount, also known as a unlinked refund.
-    public func postTestHelpersIssuingTransactions(
-        amount: Int,
-        card: String,
-        currency: String?,
-        expand: [String]?,
-        merchantData: PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestXa21a1acd5b?,
-        purchaseDetails: PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestXe8df3d9918?
-    ) async throws -> IssuingTransaction {
-        try await V1TestHelpersIssuingTransactionsCreateUnlinkedRefundMethods
-            .postTestHelpersIssuingTransactionsCreateUnlinkedRefund(
-                config: config,
-                amount: amount,
-                card: card,
-                currency: currency,
-                expand: expand,
-                merchantData: merchantData,
-                purchaseDetails: purchaseDetails
-            )
+/// Allows the user to refund an arbitrary amount, also known as a unlinked refund.
+    public func postTestHelpersIssuingTransactions(amount: Int, card: String, currency: String?, expand: [String]?, merchantData: PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestXa21a1acd5b?, purchaseDetails: PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestXe8df3d9918?) async throws -> IssuingTransaction {
+        return try await V1TestHelpersIssuingTransactionsCreateUnlinkedRefundMethods.postTestHelpersIssuingTransactionsCreateUnlinkedRefund(config: config, amount: amount, card: card, currency: currency, expand: expand, merchantData: merchantData, purchaseDetails: purchaseDetails)
     }
 }
 
@@ -139,22 +84,11 @@ public class V1TestHelpersIssuingTransactionsRefundNamespace {
         self.config = config
     }
 
-    /// Refunds a test-mode Issuing transaction by creating a refund for the specified transaction. Provide the
-    /// `transaction` identifier and optionally set `refund_amount` when you want to refund a specific amount. You can
-    /// use `expand` to include additional response fields.
+/// Refunds a test-mode Issuing transaction by creating a refund for the specified transaction. Provide the `transaction` identifier and optionally set `refund_amount` when you want to refund a specific amount. You can use `expand` to include additional response fields.
     ///
     /// Refund a test-mode Transaction.
-    public func postTestHelpersIssuingTransactionsTransaction(
-        transaction: String,
-        expand: [String]?,
-        refundAmount: Int?
-    ) async throws -> IssuingTransaction {
-        try await V1TestHelpersIssuingTransactionsRefundMethods.postTestHelpersIssuingTransactionsTransactionRefund(
-            config: config,
-            transaction: transaction,
-            expand: expand,
-            refundAmount: refundAmount
-        )
+    public func postTestHelpersIssuingTransactionsTransaction(transaction: String, expand: [String]?, refundAmount: Int?) async throws -> IssuingTransaction {
+        return try await V1TestHelpersIssuingTransactionsRefundMethods.postTestHelpersIssuingTransactionsTransactionRefund(config: config, transaction: transaction, expand: expand, refundAmount: refundAmount)
     }
 }
 
@@ -190,16 +124,11 @@ public class V1TestHelpersRefundsExpireNamespace {
         self.config = config
     }
 
-    /// Expires a pending refund by changing a refund with status `requires_action` to an expired state. Provide the
-    /// `refund` identifier for the refund to expire. You can use `expand` to include additional response fields.
+/// Expires a pending refund by changing a refund with status `requires_action` to an expired state. Provide the `refund` identifier for the refund to expire. You can use `expand` to include additional response fields.
     ///
     /// Expire a refund with a status of requires_action .
     public func postTestHelpersRefundsRefund(refund: String, expand: [String]?) async throws -> Refund {
-        try await V1TestHelpersRefundsExpireMethods.postTestHelpersRefundsRefundExpire(
-            config: config,
-            refund: refund,
-            expand: expand
-        )
+        return try await V1TestHelpersRefundsExpireMethods.postTestHelpersRefundsRefundExpire(config: config, refund: refund, expand: expand)
     }
 }
 
@@ -216,32 +145,11 @@ public class V1TestHelpersTerminalReadersPresentPaymentMethodNamespace {
         self.config = config
     }
 
-    /// Triggers presentation of a simulated payment method on a Terminal reader. Use the request body to simulate
-    /// accepting a payment, saving a card, or refunding a transaction, and provide the payment data required by the
-    /// selected method.
+/// Triggers presentation of a simulated payment method on a Terminal reader. Use the request body to simulate accepting a payment, saving a card, or refunding a transaction, and provide the payment data required by the selected method.
     ///
-    /// Presents a payment method on a simulated reader. Can be used to simulate accepting a payment, saving a card or
-    /// refunding a transaction.
-    public func postTestHelpersTerminalReadersReader(
-        reader: String,
-        amountTip: Int?,
-        card: PostTestHelpersTerminalReadersReaderPresentPaymentMethodRequestBodyCard?,
-        cardPresent: PostTestHelpersTerminalReadersReaderPresentPaymentMethodRequeX78e0a8e86f?,
-        expand: [String]?,
-        interacPresent: PostTestHelpersTerminalReadersReaderPresentPaymentMethodRequeX3805a0d5ab?,
-        type: PostTestHelpersTerminalReadersReaderPresentPaymentMethodRequestBodyType?
-    ) async throws -> TerminalReader {
-        try await V1TestHelpersTerminalReadersPresentPaymentMethodMethods
-            .postTestHelpersTerminalReadersReaderPresentPaymentMethod(
-                config: config,
-                reader: reader,
-                amountTip: amountTip,
-                card: card,
-                cardPresent: cardPresent,
-                expand: expand,
-                interacPresent: interacPresent,
-                type: type
-            )
+    /// Presents a payment method on a simulated reader. Can be used to simulate accepting a payment, saving a card or refunding a transaction.
+    public func postTestHelpersTerminalReadersReader(reader: String, amountTip: Int?, card: PostTestHelpersTerminalReadersReaderPresentPaymentMethodRequestBodyCard?, cardPresent: PostTestHelpersTerminalReadersReaderPresentPaymentMethodRequeX78e0a8e86f?, expand: [String]?, interacPresent: PostTestHelpersTerminalReadersReaderPresentPaymentMethodRequeX3805a0d5ab?, type: PostTestHelpersTerminalReadersReaderPresentPaymentMethodRequestBodyType?) async throws -> TerminalReader {
+        return try await V1TestHelpersTerminalReadersPresentPaymentMethodMethods.postTestHelpersTerminalReadersReaderPresentPaymentMethod(config: config, reader: reader, amountTip: amountTip, card: card, cardPresent: cardPresent, expand: expand, interacPresent: interacPresent, type: type)
     }
 }
 
@@ -251,23 +159,11 @@ public class V1TestHelpersTerminalReadersSucceedInputCollectionNamespace {
         self.config = config
     }
 
-    /// Triggers a successful input-collection result on a simulated Terminal reader. Use this test helper to complete
-    /// an input collection without simulating a payment-method presentation, optionally controlling how non-required
-    /// inputs are skipped.
+/// Triggers a successful input-collection result on a simulated Terminal reader. Use this test helper to complete an input collection without simulating a payment-method presentation, optionally controlling how non-required inputs are skipped.
     ///
     /// Use this endpoint to trigger a successful input collection on a simulated reader.
-    public func postTestHelpersTerminalReadersReader(
-        reader: String,
-        expand: [String]?,
-        skipNonRequiredInputs: PostTestHelpersTerminalReadersReaderSucceedInputCollectionReqX8ca3114b86?
-    ) async throws -> TerminalReader {
-        try await V1TestHelpersTerminalReadersSucceedInputCollectionMethods
-            .postTestHelpersTerminalReadersReaderSucceedInputCollection(
-                config: config,
-                reader: reader,
-                expand: expand,
-                skipNonRequiredInputs: skipNonRequiredInputs
-            )
+    public func postTestHelpersTerminalReadersReader(reader: String, expand: [String]?, skipNonRequiredInputs: PostTestHelpersTerminalReadersReaderSucceedInputCollectionReqX8ca3114b86?) async throws -> TerminalReader {
+        return try await V1TestHelpersTerminalReadersSucceedInputCollectionMethods.postTestHelpersTerminalReadersReaderSucceedInputCollection(config: config, reader: reader, expand: expand, skipNonRequiredInputs: skipNonRequiredInputs)
     }
 }
 
@@ -277,17 +173,11 @@ public class V1TestHelpersTerminalReadersTimeoutInputCollectionNamespace {
         self.config = config
     }
 
-    /// Triggers a timeout result for an input collection on a simulated Terminal reader. Use this test helper to
-    /// complete the collection with a timeout error and optionally expand fields in the returned Reader object.
+/// Triggers a timeout result for an input collection on a simulated Terminal reader. Use this test helper to complete the collection with a timeout error and optionally expand fields in the returned Reader object.
     ///
     /// Use this endpoint to complete an input collection with a timeout error on a simulated reader.
     public func postTestHelpersTerminalReadersReader(reader: String, expand: [String]?) async throws -> TerminalReader {
-        try await V1TestHelpersTerminalReadersTimeoutInputCollectionMethods
-            .postTestHelpersTerminalReadersReaderTimeoutInputCollection(
-                config: config,
-                reader: reader,
-                expand: expand
-            )
+        return try await V1TestHelpersTerminalReadersTimeoutInputCollectionMethods.postTestHelpersTerminalReadersReaderTimeoutInputCollection(config: config, reader: reader, expand: expand)
     }
 }
 

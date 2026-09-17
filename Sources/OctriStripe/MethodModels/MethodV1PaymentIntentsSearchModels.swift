@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1PaymentIntentsSearch operation model declarations
+// Canonical v1PaymentIntentsSearch operation model declarations
 public struct GetPaymentIntentsSearchResponse: Codable {
     public var data: [PaymentIntent]
     public var hasMore: Bool
@@ -27,68 +27,43 @@ public struct GetPaymentIntentsSearchResponse: Codable {
         case totalCount = "total_count"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension GetPaymentIntentsSearchResponse {
-    init(from decoder: Decoder) throws {
+extension GetPaymentIntentsSearchResponse {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.data) else {
-            throw SdkValidationError(
-                field: "data",
-                code: "required",
-                message: "Validation failed for 'data': value is required"
-            )
+            throw SdkValidationError(field: "data", code: "required", message: "Validation failed for 'data': value is required")
         }
         guard container.contains(.hasMore) else {
-            throw SdkValidationError(
-                field: "has_more",
-                code: "required",
-                message: "Validation failed for 'has_more': value is required"
-            )
+            throw SdkValidationError(field: "has_more", code: "required", message: "Validation failed for 'has_more': value is required")
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(
-                field: "object",
-                code: "required",
-                message: "Validation failed for 'object': value is required"
-            )
+            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
         }
         guard container.contains(.url) else {
-            throw SdkValidationError(
-                field: "url",
-                code: "required",
-                message: "Validation failed for 'url': value is required"
-            )
+            throw SdkValidationError(field: "url", code: "required", message: "Validation failed for 'url': value is required")
         }
-        data = try container.sdkDecodeRequired(.data)
-        hasMore = try container.sdkDecodeRequired(.hasMore)
-        object = try container.sdkDecodeRequired(.object)
-        url = try container.sdkDecodeRequired(.url)
-        nextPage = try container.sdkDecodeIfPresent(.nextPage)
-        totalCount = try container.sdkDecodeIfPresent(.totalCount)
-        try validateLength("url", url, min: nil, max: 5000)
-        if let value = nextPage {
+        self.data = try container.sdkDecodeRequired(.data)
+        self.hasMore = try container.sdkDecodeRequired(.hasMore)
+        self.object = try container.sdkDecodeRequired(.object)
+        self.url = try container.sdkDecodeRequired(.url)
+        self.nextPage = try container.sdkDecodeIfPresent(.nextPage)
+        self.totalCount = try container.sdkDecodeIfPresent(.totalCount)
+            try validateLength("url", self.url, min: nil, max: 5000)
+        if let value = self.nextPage {
             try validateLength("next_page", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension GetPaymentIntentsSearchResponse {
-    init(
-        data: [PaymentIntent],
-        hasMore: Bool,
-        object: GetPaymentIntentsSearchResponseObject,
-        url: String,
-        nextPage: String? = nil,
-        totalCount: Int? = nil
-    ) throws {
+extension GetPaymentIntentsSearchResponse {
+    public init(data: [PaymentIntent], hasMore: Bool, object: GetPaymentIntentsSearchResponseObject, url: String, nextPage: String? = nil, totalCount: Int? = nil) throws {
         (self.data, self.hasMore) = (data, hasMore)
         (self.object, self.url) = (object, url)
         (self.nextPage, self.totalCount) = (nextPage, totalCount)
-        try validateLength("url", self.url, min: nil, max: 5000)
+            try validateLength("url", self.url, min: nil, max: 5000)
         if let value = self.nextPage {
             try validateLength("next_page", value, min: nil, max: 5000)
         }

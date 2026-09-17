@@ -153,35 +153,26 @@ extension PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory {
 extension PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory: CaseIterable {
     public static var allCases: [PostTestHelpersIssuingAuthorizationsRequestBodyMerchantDataCategory] {
         allCasesPart1
-            + allCasesPart2
-            + allCasesPart3
-            + allCasesPart4
+        +         allCasesPart2
+        +         allCasesPart3
+        +         allCasesPart4
     }
 }
 
-public struct PostTestHelpersIssuingAuthorizationsRequestBodyRiskAssessmentXa42f2c556f: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostTestHelpersIssuingAuthorizationsRequestBodyRiskAssessmentXa42f2c556f: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let elevated =
-        PostTestHelpersIssuingAuthorizationsRequestBodyRiskAssessmentXa42f2c556f(rawValue: "elevated")
-    public static let highest =
-        PostTestHelpersIssuingAuthorizationsRequestBodyRiskAssessmentXa42f2c556f(rawValue: "highest")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let elevated = PostTestHelpersIssuingAuthorizationsRequestBodyRiskAssessmentXa42f2c556f(rawValue: "elevated")
+    public static let highest = PostTestHelpersIssuingAuthorizationsRequestBodyRiskAssessmentXa42f2c556f(rawValue: "highest")
     public static let low = PostTestHelpersIssuingAuthorizationsRequestBodyRiskAssessmentXa42f2c556f(rawValue: "low")
-    public static let normal =
-        PostTestHelpersIssuingAuthorizationsRequestBodyRiskAssessmentXa42f2c556f(rawValue: "normal")
-    public static let notAssessed =
-        PostTestHelpersIssuingAuthorizationsRequestBodyRiskAssessmentXa42f2c556f(rawValue: "not_assessed")
-    public static let unknown =
-        PostTestHelpersIssuingAuthorizationsRequestBodyRiskAssessmentXa42f2c556f(rawValue: "unknown")
+    public static let normal = PostTestHelpersIssuingAuthorizationsRequestBodyRiskAssessmentXa42f2c556f(rawValue: "normal")
+    public static let notAssessed = PostTestHelpersIssuingAuthorizationsRequestBodyRiskAssessmentXa42f2c556f(rawValue: "not_assessed")
+    public static let unknown = PostTestHelpersIssuingAuthorizationsRequestBodyRiskAssessmentXa42f2c556f(rawValue: "unknown")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -190,29 +181,20 @@ public struct PostTestHelpersIssuingAuthorizationsRequestBodyRiskAssessmentXa42f
     }
 }
 
-public struct PostTestHelpersIssuingAuthorizationsRequestBodyRiskAssessmentX9bb4514d96: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostTestHelpersIssuingAuthorizationsRequestBodyRiskAssessmentX9bb4514d96: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let elevated =
-        PostTestHelpersIssuingAuthorizationsRequestBodyRiskAssessmentX9bb4514d96(rawValue: "elevated")
-    public static let highest =
-        PostTestHelpersIssuingAuthorizationsRequestBodyRiskAssessmentX9bb4514d96(rawValue: "highest")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let elevated = PostTestHelpersIssuingAuthorizationsRequestBodyRiskAssessmentX9bb4514d96(rawValue: "elevated")
+    public static let highest = PostTestHelpersIssuingAuthorizationsRequestBodyRiskAssessmentX9bb4514d96(rawValue: "highest")
     public static let low = PostTestHelpersIssuingAuthorizationsRequestBodyRiskAssessmentX9bb4514d96(rawValue: "low")
-    public static let normal =
-        PostTestHelpersIssuingAuthorizationsRequestBodyRiskAssessmentX9bb4514d96(rawValue: "normal")
-    public static let notAssessed =
-        PostTestHelpersIssuingAuthorizationsRequestBodyRiskAssessmentX9bb4514d96(rawValue: "not_assessed")
-    public static let unknown =
-        PostTestHelpersIssuingAuthorizationsRequestBodyRiskAssessmentX9bb4514d96(rawValue: "unknown")
+    public static let normal = PostTestHelpersIssuingAuthorizationsRequestBodyRiskAssessmentX9bb4514d96(rawValue: "normal")
+    public static let notAssessed = PostTestHelpersIssuingAuthorizationsRequestBodyRiskAssessmentX9bb4514d96(rawValue: "not_assessed")
+    public static let unknown = PostTestHelpersIssuingAuthorizationsRequestBodyRiskAssessmentX9bb4514d96(rawValue: "unknown")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

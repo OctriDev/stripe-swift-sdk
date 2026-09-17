@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1TopupsMethods {
-    struct PostTopupsOptions: Codable {
+extension V1TopupsMethods {
+    public struct PostTopupsOptions: Codable {
         public var amount: Int
         public var currency: String
         public var description: String?
@@ -25,9 +25,7 @@ public extension V1TopupsMethods {
         }
     }
 
-    /// Creates a top-up to add funds to the account balance. Supply `amount` and `currency`, and provide a
-    /// `payment_method` or `source` when the funding method must be selected explicitly. The response includes the
-    /// created top-up and its processing status.
+    /// Creates a top-up to add funds to the account balance. Supply `amount` and `currency`, and provide a `payment_method` or `source` when the funding method must be selected explicitly. The response includes the created top-up and its processing status.
     ///
     /// Top up the balance of an account
     ///
@@ -57,7 +55,7 @@ public extension V1TopupsMethods {
     /// - statementDescriptor: Extra information about a top-up for the source's
     ///   bank statement. Limited to 15 ASCII characters.
     /// - transferGroup: A string that identifies this top-up as part of a group.
-    static func postTopups(config: ClientConfig, options: PostTopupsOptions) async throws -> Topup {
+    public static func postTopups(config: ClientConfig, options: PostTopupsOptions) async throws -> Topup {
         if let description = options.description {
             try validateLength("description", description, max: 5000)
         }
@@ -76,14 +74,6 @@ public extension V1TopupsMethods {
 
         let requestBody = PostTopupsRequestBody(options: options)
 
-        return try await (sdkRequest(
-            "POST",
-            "/v1/topups",
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostTopups"
-        )).data
+        return try (await sdkRequest("POST", "/v1/topups", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTopups")).data
     }
 }

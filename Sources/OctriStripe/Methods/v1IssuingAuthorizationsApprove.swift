@@ -7,13 +7,9 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1IssuingAuthorizationsApproveMethods {
-    /// Approves a pending Issuing authorization for a purchase. Use `authorization` within the real-time authorization
-    /// timeout window and provide `amount` when the authorization permits amount control. This operation is deprecated;
-    /// respond directly to the authorization webhook instead.
+    /// Approves a pending Issuing authorization for a purchase. Use `authorization` within the real-time authorization timeout window and provide `amount` when the authorization permits amount control. This operation is deprecated; respond directly to the authorization webhook instead.
     ///
-    /// [Deprecated] Approves a pending Issuing Authorization object. This request should be made within the timeout
-    /// window of the real-time authorization flow. This method is deprecated. Instead, respond directly to the webhook
-    /// request to approve an authorization.
+    /// [Deprecated] Approves a pending Issuing Authorization object. This request should be made within the timeout window of the real-time authorization flow. This method is deprecated. Instead, respond directly to the webhook request to approve an authorization.
     ///
     /// - Parameters:
     /// - amount: If the authorization's `pending_request.is_amount_controllable`
@@ -29,29 +25,11 @@ public enum V1IssuingAuthorizationsApproveMethods {
     ///   empty value to `metadata`.
     ///
     /// - Warning: This operation is deprecated and may be removed in a future release.
-    public static func postIssuingAuthorizationsAuthorizationApprove(
-        config: ClientConfig,
-        authorization: String,
-        amount: Int?,
-        expand: [String]?,
-        metadata: PostIssuingAuthorizationsAuthorizationApproveRequestBodyMetadata?
-    ) async throws -> IssuingAuthorization {
+    public static func postIssuingAuthorizationsAuthorizationApprove(config: ClientConfig, authorization: String, amount: Int?, expand: [String]?, metadata: PostIssuingAuthorizationsAuthorizationApproveRequestBodyMetadata?) async throws -> IssuingAuthorization {
         try validateLength("authorization", authorization, max: 5000)
 
-        let requestBody = PostIssuingAuthorizationsAuthorizationApproveRequestBody(
-            amount: amount,
-            expand: expand,
-            metadata: metadata
-        )
+        let requestBody = PostIssuingAuthorizationsAuthorizationApproveRequestBody(amount: amount, expand: expand, metadata: metadata)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/issuing/authorizations/", sdkEncodePathSegment(sdkWireString(authorization)), "/approve"].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostIssuingAuthorizationsAuthorizationApprove"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/issuing/authorizations/", sdkEncodePathSegment(sdkWireString(authorization)), "/approve"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostIssuingAuthorizationsAuthorizationApprove")).data
     }
 }

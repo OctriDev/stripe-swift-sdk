@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1TerminalReadersProcessPaymentIntent operation model declarations
+// Canonical v1TerminalReadersProcessPaymentIntent operation model declarations
 public struct PostTerminalReadersReaderProcessPaymentIntentRequestBodyProceXef5f1c9295: Codable {
     public var amountEligible: Int?
 
@@ -16,19 +16,19 @@ public struct PostTerminalReadersReaderProcessPaymentIntentRequestBodyProceXef5f
     }
 
     init() {
-        amountEligible = nil
+        self.amountEligible = nil
     }
 }
 
-public extension PostTerminalReadersReaderProcessPaymentIntentRequestBodyProceXef5f1c9295 {
-    init(from decoder: Decoder) throws {
+extension PostTerminalReadersReaderProcessPaymentIntentRequestBodyProceXef5f1c9295 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        amountEligible = try container.sdkDecodeIfPresent(.amountEligible)
+        self.amountEligible = try container.sdkDecodeIfPresent(.amountEligible)
     }
 }
 
-public extension PostTerminalReadersReaderProcessPaymentIntentRequestBodyProceXef5f1c9295 {
-    init(amountEligible: Int? = nil) {
+extension PostTerminalReadersReaderProcessPaymentIntentRequestBodyProceXef5f1c9295 {
+    public init(amountEligible: Int? = nil) {
         self.init()
         self.amountEligible = amountEligible
     }
@@ -52,29 +52,23 @@ public struct PostTerminalReadersReaderProcessPaymentIntentRequestBodyProcessCon
     }
 
     init() {
-        (allowRedisplay, enableCustomerCancellation, returnUrl, skipTipping, tipping) = (nil, nil, nil, nil, nil)
+        (self.allowRedisplay, self.enableCustomerCancellation, self.returnUrl, self.skipTipping, self.tipping) = (nil, nil, nil, nil, nil)
     }
 }
 
-public extension PostTerminalReadersReaderProcessPaymentIntentRequestBodyProcessConfig {
-    init(from decoder: Decoder) throws {
+extension PostTerminalReadersReaderProcessPaymentIntentRequestBodyProcessConfig {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        allowRedisplay = try container.sdkDecodeIfPresent(.allowRedisplay)
-        enableCustomerCancellation = try container.sdkDecodeIfPresent(.enableCustomerCancellation)
-        returnUrl = try container.sdkDecodeIfPresent(.returnUrl)
-        skipTipping = try container.sdkDecodeIfPresent(.skipTipping)
-        tipping = try container.sdkDecodeIfPresent(.tipping)
+        self.allowRedisplay = try container.sdkDecodeIfPresent(.allowRedisplay)
+        self.enableCustomerCancellation = try container.sdkDecodeIfPresent(.enableCustomerCancellation)
+        self.returnUrl = try container.sdkDecodeIfPresent(.returnUrl)
+        self.skipTipping = try container.sdkDecodeIfPresent(.skipTipping)
+        self.tipping = try container.sdkDecodeIfPresent(.tipping)
     }
 }
 
-public extension PostTerminalReadersReaderProcessPaymentIntentRequestBodyProcessConfig {
-    init(
-        allowRedisplay: PostTerminalReadersReaderProcessPaymentIntentRequestBodyProceXcc98200e2d? = nil,
-        enableCustomerCancellation: Bool? = nil,
-        returnUrl: String? = nil,
-        skipTipping: Bool? = nil,
-        tipping: PostTerminalReadersReaderProcessPaymentIntentRequestBodyProceXef5f1c9295? = nil
-    ) {
+extension PostTerminalReadersReaderProcessPaymentIntentRequestBodyProcessConfig {
+    public init(allowRedisplay: PostTerminalReadersReaderProcessPaymentIntentRequestBodyProceXcc98200e2d? = nil, enableCustomerCancellation: Bool? = nil, returnUrl: String? = nil, skipTipping: Bool? = nil, tipping: PostTerminalReadersReaderProcessPaymentIntentRequestBodyProceXef5f1c9295? = nil) {
         self.init()
         self.allowRedisplay = allowRedisplay
         (self.enableCustomerCancellation, self.returnUrl) = (enableCustomerCancellation, returnUrl)

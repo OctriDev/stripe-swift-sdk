@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1CreditNotesMethods {
-    struct GetCreditNotesOptions: Codable {
+extension V1CreditNotesMethods {
+    public struct GetCreditNotesOptions: Codable {
         public var created: GetCreditNotesParameter?
         public var customer: String?
         public var customerAccount: String?
@@ -20,8 +20,7 @@ public extension V1CreditNotesMethods {
         public init() {}
     }
 
-    /// Lists credit notes that match the supplied filters. Filter by creation interval, customer, customer account, or
-    /// invoice, and use `starting_after` or `ending_before` to paginate the results.
+    /// Lists credit notes that match the supplied filters. Filter by creation interval, customer, customer account, or invoice, and use `starting_after` or `ending_before` to paginate the results.
     ///
     /// Returns a list of credit notes.
     ///
@@ -47,10 +46,7 @@ public extension V1CreditNotesMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    static func getCreditNotes(
-        config: ClientConfig,
-        options: GetCreditNotesOptions
-    ) async throws -> GetCreditNotesResponse {
+    public static func getCreditNotes(config: ClientConfig, options: GetCreditNotesOptions) async throws -> GetCreditNotesResponse {
         if let customer = options.customer {
             try validateLength("customer", customer, max: 5000)
         }
@@ -71,7 +67,7 @@ public extension V1CreditNotesMethods {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try await (sdkRequest("GET", "/v1/credit_notes", config: config, query: [
+        return try (await sdkRequest("GET", "/v1/credit_notes", config: config, query: [
             SdkQueryParameter("created", value: options.created),
             SdkQueryParameter("customer", value: options.customer),
             SdkQueryParameter("customer_account", value: options.customerAccount),

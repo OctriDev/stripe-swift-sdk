@@ -6,9 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1CustomersBalanceTransactionsMethods {
-    /// Creates an immutable transaction that changes a customer's credit balance. Supply `amount` and `currency`, and
-    /// optionally add a `description` or `metadata` to explain or categorize the adjustment.
+extension V1CustomersBalanceTransactionsMethods {
+    /// Creates an immutable transaction that changes a customer's credit balance. Supply `amount` and `currency`, and optionally add a `description` or `metadata` to explain or categorize the adjustment.
     ///
     /// Creates an immutable transaction that updates the customer’s credit balance.
     ///
@@ -29,37 +28,15 @@ public extension V1CustomersBalanceTransactionsMethods {
     ///   information about the object in a structured format. Individual keys can be
     ///   unset by posting an empty value to them. All keys can be unset by posting an
     ///   empty value to `metadata`.
-    static func postCustomersCustomerBalanceTransactions(
-        config: ClientConfig,
-        customer: String,
-        amount: Int,
-        currency: String,
-        description: String?,
-        expand: [String]?,
-        metadata: PostCustomersCustomerBalanceTransactionsRequestBodyMetadata?
-    ) async throws -> CustomerBalanceTransaction {
+    public static func postCustomersCustomerBalanceTransactions(config: ClientConfig, customer: String, amount: Int, currency: String, description: String?, expand: [String]?, metadata: PostCustomersCustomerBalanceTransactionsRequestBodyMetadata?) async throws -> CustomerBalanceTransaction {
         try validateLength("customer", customer, max: 5000)
 
-        if let description {
+        if let description = description {
             try validateLength("description", description, max: 350)
         }
 
-        let requestBody = PostCustomersCustomerBalanceTransactionsRequestBody(
-            amount: amount,
-            currency: currency,
-            description: description,
-            expand: expand,
-            metadata: metadata
-        )
+        let requestBody = PostCustomersCustomerBalanceTransactionsRequestBody(amount: amount, currency: currency, description: description, expand: expand, metadata: metadata)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/customers/", sdkEncodePathSegment(sdkWireString(customer)), "/balance_transactions"].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostCustomersCustomerBalanceTransactions"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/customers/", sdkEncodePathSegment(sdkWireString(customer)), "/balance_transactions"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostCustomersCustomerBalanceTransactions")).data
     }
 }

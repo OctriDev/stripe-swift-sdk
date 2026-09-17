@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1PaymentLinks operation model declarations
+// Canonical v1PaymentLinks operation model declarations
 public struct PostPaymentLinksRequestBodySubscriptionDataInvoiceSettings: Codable {
     /// param
     public var issuer: PostPaymentLinksRequestBodySubscriptionDataInvoiceSettingsIssuer?
@@ -17,19 +17,19 @@ public struct PostPaymentLinksRequestBodySubscriptionDataInvoiceSettings: Codabl
     }
 
     init() {
-        issuer = nil
+        self.issuer = nil
     }
 }
 
-public extension PostPaymentLinksRequestBodySubscriptionDataInvoiceSettings {
-    init(from decoder: Decoder) throws {
+extension PostPaymentLinksRequestBodySubscriptionDataInvoiceSettings {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        issuer = try container.sdkDecodeIfPresent(.issuer)
+        self.issuer = try container.sdkDecodeIfPresent(.issuer)
     }
 }
 
-public extension PostPaymentLinksRequestBodySubscriptionDataInvoiceSettings {
-    init(issuer: PostPaymentLinksRequestBodySubscriptionDataInvoiceSettingsIssuer? = nil) {
+extension PostPaymentLinksRequestBodySubscriptionDataInvoiceSettings {
+    public init(issuer: PostPaymentLinksRequestBodySubscriptionDataInvoiceSettingsIssuer? = nil) {
         self.init()
         self.issuer = issuer
     }
@@ -43,22 +43,22 @@ public struct PostPaymentLinksPaymentLinkRequestBodyShippingOptionsVariant0Item:
     }
 
     init() {
-        shippingRate = nil
+        self.shippingRate = nil
     }
 }
 
-public extension PostPaymentLinksPaymentLinkRequestBodyShippingOptionsVariant0Item {
-    init(from decoder: Decoder) throws {
+extension PostPaymentLinksPaymentLinkRequestBodyShippingOptionsVariant0Item {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        shippingRate = try container.sdkDecodeIfPresent(.shippingRate)
-        if let value = shippingRate {
+        self.shippingRate = try container.sdkDecodeIfPresent(.shippingRate)
+        if let value = self.shippingRate {
             try validateLength("shipping_rate", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PostPaymentLinksPaymentLinkRequestBodyShippingOptionsVariant0Item {
-    init(shippingRate: String? = nil) throws {
+extension PostPaymentLinksPaymentLinkRequestBodyShippingOptionsVariant0Item {
+    public init(shippingRate: String? = nil) throws {
         self.init()
         self.shippingRate = shippingRate
         if let value = self.shippingRate {
@@ -78,28 +78,22 @@ public struct PostPaymentLinksRequestBodyTransferData: Codable {
         case amount
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostPaymentLinksRequestBodyTransferData {
-    init(from decoder: Decoder) throws {
+extension PostPaymentLinksRequestBodyTransferData {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.destination) else {
-            throw SdkValidationError(
-                field: "destination",
-                code: "required",
-                message: "Validation failed for 'destination': value is required"
-            )
+            throw SdkValidationError(field: "destination", code: "required", message: "Validation failed for 'destination': value is required")
         }
-        destination = try container.sdkDecodeRequired(.destination)
-        amount = try container.sdkDecodeIfPresent(.amount)
+        self.destination = try container.sdkDecodeRequired(.destination)
+        self.amount = try container.sdkDecodeIfPresent(.amount)
     }
 }
 
-public extension PostPaymentLinksRequestBodyTransferData {
-    init(destination: String, amount: Int? = nil) {
+extension PostPaymentLinksRequestBodyTransferData {
+    public init(destination: String, amount: Int? = nil) {
         (self.destination, self.amount) = (destination, amount)
     }
 }
@@ -116,24 +110,24 @@ public struct PostPaymentLinksRequestBodyCustomFieldsItemText: Codable {
     }
 
     init() {
-        (defaultValue, maximumLength, minimumLength) = (nil, nil, nil)
+        (self.defaultValue, self.maximumLength, self.minimumLength) = (nil, nil, nil)
     }
 }
 
-public extension PostPaymentLinksRequestBodyCustomFieldsItemText {
-    init(from decoder: Decoder) throws {
+extension PostPaymentLinksRequestBodyCustomFieldsItemText {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        defaultValue = try container.sdkDecodeIfPresent(.defaultValue)
-        maximumLength = try container.sdkDecodeIfPresent(.maximumLength)
-        minimumLength = try container.sdkDecodeIfPresent(.minimumLength)
-        if let value = defaultValue {
+        self.defaultValue = try container.sdkDecodeIfPresent(.defaultValue)
+        self.maximumLength = try container.sdkDecodeIfPresent(.maximumLength)
+        self.minimumLength = try container.sdkDecodeIfPresent(.minimumLength)
+        if let value = self.defaultValue {
             try validateLength("default_value", value, min: nil, max: 255)
         }
     }
 }
 
-public extension PostPaymentLinksRequestBodyCustomFieldsItemText {
-    init(defaultValue: String? = nil, maximumLength: Int? = nil, minimumLength: Int? = nil) throws {
+extension PostPaymentLinksRequestBodyCustomFieldsItemText {
+    public init(defaultValue: String? = nil, maximumLength: Int? = nil, minimumLength: Int? = nil) throws {
         self.init()
         (self.defaultValue, self.maximumLength) = (defaultValue, maximumLength)
         self.minimumLength = minimumLength
@@ -164,40 +158,32 @@ public struct PostPaymentLinksPaymentLinkRequestBodyInvoiceCreationInvoiceData: 
     }
 
     init() {
-        (accountTaxIds, customFields, description, footer, issuer) = (nil, nil, nil, nil, nil)
-        (metadata, renderingOptions) = (nil, nil)
+        (self.accountTaxIds, self.customFields, self.description, self.footer, self.issuer) = (nil, nil, nil, nil, nil)
+        (self.metadata, self.renderingOptions) = (nil, nil)
     }
 }
 
-public extension PostPaymentLinksPaymentLinkRequestBodyInvoiceCreationInvoiceData {
-    init(from decoder: Decoder) throws {
+extension PostPaymentLinksPaymentLinkRequestBodyInvoiceCreationInvoiceData {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        accountTaxIds = try container.sdkDecodeIfPresent(.accountTaxIds)
-        customFields = try container.sdkDecodeIfPresent(.customFields)
-        description = try container.sdkDecodeIfPresent(.description)
-        footer = try container.sdkDecodeIfPresent(.footer)
-        issuer = try container.sdkDecodeIfPresent(.issuer)
-        metadata = try container.sdkDecodeIfPresent(.metadata)
-        renderingOptions = try container.sdkDecodeIfPresent(.renderingOptions)
-        if let value = description {
+        self.accountTaxIds = try container.sdkDecodeIfPresent(.accountTaxIds)
+        self.customFields = try container.sdkDecodeIfPresent(.customFields)
+        self.description = try container.sdkDecodeIfPresent(.description)
+        self.footer = try container.sdkDecodeIfPresent(.footer)
+        self.issuer = try container.sdkDecodeIfPresent(.issuer)
+        self.metadata = try container.sdkDecodeIfPresent(.metadata)
+        self.renderingOptions = try container.sdkDecodeIfPresent(.renderingOptions)
+        if let value = self.description {
             try validateLength("description", value, min: nil, max: 1500)
         }
-        if let value = footer {
+        if let value = self.footer {
             try validateLength("footer", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PostPaymentLinksPaymentLinkRequestBodyInvoiceCreationInvoiceData {
-    init(
-        accountTaxIds: PostPaymentLinksPaymentLinkRequestBodyInvoiceCreationInvoiceDXb9a4ca83f0? = nil,
-        customFields: PostPaymentLinksPaymentLinkRequestBodyInvoiceCreationInvoiceDXffde389770? = nil,
-        description: String? = nil,
-        footer: String? = nil,
-        issuer: PostPaymentLinksPaymentLinkRequestBodyInvoiceCreationInvoiceDataIssuer? = nil,
-        metadata: PostPaymentLinksPaymentLinkRequestBodyInvoiceCreationInvoiceDataMetadata? = nil,
-        renderingOptions: PostPaymentLinksPaymentLinkRequestBodyInvoiceCreationInvoiceDXe1f2909b87? = nil
-    ) throws {
+extension PostPaymentLinksPaymentLinkRequestBodyInvoiceCreationInvoiceData {
+    public init(accountTaxIds: PostPaymentLinksPaymentLinkRequestBodyInvoiceCreationInvoiceDXb9a4ca83f0? = nil, customFields: PostPaymentLinksPaymentLinkRequestBodyInvoiceCreationInvoiceDXffde389770? = nil, description: String? = nil, footer: String? = nil, issuer: PostPaymentLinksPaymentLinkRequestBodyInvoiceCreationInvoiceDataIssuer? = nil, metadata: PostPaymentLinksPaymentLinkRequestBodyInvoiceCreationInvoiceDataMetadata? = nil, renderingOptions: PostPaymentLinksPaymentLinkRequestBodyInvoiceCreationInvoiceDXe1f2909b87? = nil) throws {
         self.init()
         (self.accountTaxIds, self.customFields) = (accountTaxIds, customFields)
         (self.description, self.footer) = (description, footer)
@@ -213,50 +199,40 @@ public extension PostPaymentLinksPaymentLinkRequestBodyInvoiceCreationInvoiceDat
 }
 
 public enum PostPaymentLinksPaymentLinkRequestBodyNameCollection {
-    case postPaymentLinksPaymentLinkRequestBodyNameCollectionVariant0(
-        PostPaymentLinksPaymentLinkRequestBodyNameCollectionVariant0
-    )
+    case postPaymentLinksPaymentLinkRequestBodyNameCollectionVariant0(PostPaymentLinksPaymentLinkRequestBodyNameCollectionVariant0)
     case stringValue(String)
 }
 
 extension PostPaymentLinksPaymentLinkRequestBodyNameCollection: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostPaymentLinksPaymentLinkRequestBodyNameCollection"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostPaymentLinksPaymentLinkRequestBodyNameCollection")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PostPaymentLinksPaymentLinkRequestBodyNameCollectionVariant0.self
         ) {
-            return .postPaymentLinksPaymentLinkRequestBodyNameCollectionVariant0(value)
+            return             .postPaymentLinksPaymentLinkRequestBodyNameCollectionVariant0(value)
         }
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .postPaymentLinksPaymentLinkRequestBodyNameCollectionVariant0(value): try container
-            .encode(value); return true
+        case let .postPaymentLinksPaymentLinkRequestBodyNameCollectionVariant0(value): try container.encode(value); return true
         case let .stringValue(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum PostPaymentLinksPaymentLinkRequestBodyOptionalItems {
@@ -267,43 +243,35 @@ public enum PostPaymentLinksPaymentLinkRequestBodyOptionalItems {
 }
 
 extension PostPaymentLinksPaymentLinkRequestBodyOptionalItems: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostPaymentLinksPaymentLinkRequestBodyOptionalItems"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostPaymentLinksPaymentLinkRequestBodyOptionalItems")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             [PostPaymentLinksPaymentLinkRequestBodyOptionalItemsVariant0Item].self
         ) {
-            return .postPaymentLinksPaymentLinkRequestBodyOptionalItemsVariant0ItemList(value)
+            return             .postPaymentLinksPaymentLinkRequestBodyOptionalItemsVariant0ItemList(value)
         }
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .postPaymentLinksPaymentLinkRequestBodyOptionalItemsVariant0ItemList(value): try container
-            .encode(value); return true
+        case let .postPaymentLinksPaymentLinkRequestBodyOptionalItemsVariant0ItemList(value): try container.encode(value); return true
         case let .stringValue(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum PostPaymentLinksPaymentLinkRequestBodyInactiveMessage {
@@ -312,31 +280,21 @@ public enum PostPaymentLinksPaymentLinkRequestBodyInactiveMessage {
 }
 
 extension PostPaymentLinksPaymentLinkRequestBodyInactiveMessage: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostPaymentLinksPaymentLinkRequestBodyInactiveMessage"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostPaymentLinksPaymentLinkRequestBodyInactiveMessage")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(String.self) {
-            return .stringValue1(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(String.self) { return .stringValue1(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -346,6 +304,7 @@ extension PostPaymentLinksPaymentLinkRequestBodyInactiveMessage: Codable {
         case let .stringValue1(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// A subset of parameters to be passed to PaymentIntent creation for Checkout Sessions in `payment` mode.
@@ -367,38 +326,25 @@ public struct PostPaymentLinksPaymentLinkRequestBodyPaymentIntentData: Codable {
     }
 
     init() {
-        (description, metadata, setupFutureUsage, statementDescriptor, statementDescriptorSuffix) = (
-            nil,
-            nil,
-            nil,
-            nil,
-            nil
-        )
-        transferGroup = nil
+        (self.description, self.metadata, self.setupFutureUsage, self.statementDescriptor, self.statementDescriptorSuffix) = (nil, nil, nil, nil, nil)
+        self.transferGroup = nil
     }
 }
 
-public extension PostPaymentLinksPaymentLinkRequestBodyPaymentIntentData {
-    init(from decoder: Decoder) throws {
+extension PostPaymentLinksPaymentLinkRequestBodyPaymentIntentData {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        description = try container.sdkDecodeIfPresent(.description)
-        metadata = try container.sdkDecodeIfPresent(.metadata)
-        setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
-        statementDescriptor = try container.sdkDecodeIfPresent(.statementDescriptor)
-        statementDescriptorSuffix = try container.sdkDecodeIfPresent(.statementDescriptorSuffix)
-        transferGroup = try container.sdkDecodeIfPresent(.transferGroup)
+        self.description = try container.sdkDecodeIfPresent(.description)
+        self.metadata = try container.sdkDecodeIfPresent(.metadata)
+        self.setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
+        self.statementDescriptor = try container.sdkDecodeIfPresent(.statementDescriptor)
+        self.statementDescriptorSuffix = try container.sdkDecodeIfPresent(.statementDescriptorSuffix)
+        self.transferGroup = try container.sdkDecodeIfPresent(.transferGroup)
     }
 }
 
-public extension PostPaymentLinksPaymentLinkRequestBodyPaymentIntentData {
-    init(
-        description: PostPaymentLinksPaymentLinkRequestBodyPaymentIntentDataDescription? = nil,
-        metadata: PostPaymentLinksPaymentLinkRequestBodyPaymentIntentDataMetadata? = nil,
-        setupFutureUsage: PostPaymentLinksPaymentLinkRequestBodyPaymentIntentDataSetupFutureUsage? = nil,
-        statementDescriptor: PostPaymentLinksPaymentLinkRequestBodyPaymentIntentDataStatemX1b9013791c? = nil,
-        statementDescriptorSuffix: PostPaymentLinksPaymentLinkRequestBodyPaymentIntentDataStatemXa2e79a2d68? = nil,
-        transferGroup: PostPaymentLinksPaymentLinkRequestBodyPaymentIntentDataTransferGroup? = nil
-    ) {
+extension PostPaymentLinksPaymentLinkRequestBodyPaymentIntentData {
+    public init(description: PostPaymentLinksPaymentLinkRequestBodyPaymentIntentDataDescription? = nil, metadata: PostPaymentLinksPaymentLinkRequestBodyPaymentIntentDataMetadata? = nil, setupFutureUsage: PostPaymentLinksPaymentLinkRequestBodyPaymentIntentDataSetupFutureUsage? = nil, statementDescriptor: PostPaymentLinksPaymentLinkRequestBodyPaymentIntentDataStatemX1b9013791c? = nil, statementDescriptorSuffix: PostPaymentLinksPaymentLinkRequestBodyPaymentIntentDataStatemXa2e79a2d68? = nil, transferGroup: PostPaymentLinksPaymentLinkRequestBodyPaymentIntentDataTransferGroup? = nil) {
         self.init()
         (self.description, self.metadata) = (description, metadata)
         (self.setupFutureUsage, self.statementDescriptor) = (setupFutureUsage, statementDescriptor)
@@ -413,30 +359,24 @@ public struct PostPaymentLinksRequestBodyCustomTextTermsOfServiceAcceptanceVaria
         case message
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostPaymentLinksRequestBodyCustomTextTermsOfServiceAcceptanceVariant0 {
-    init(from decoder: Decoder) throws {
+extension PostPaymentLinksRequestBodyCustomTextTermsOfServiceAcceptanceVariant0 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.message) else {
-            throw SdkValidationError(
-                field: "message",
-                code: "required",
-                message: "Validation failed for 'message': value is required"
-            )
+            throw SdkValidationError(field: "message", code: "required", message: "Validation failed for 'message': value is required")
         }
-        message = try container.sdkDecodeRequired(.message)
-        try validateLength("message", message, min: nil, max: 1200)
+        self.message = try container.sdkDecodeRequired(.message)
+            try validateLength("message", self.message, min: nil, max: 1200)
     }
 }
 
-public extension PostPaymentLinksRequestBodyCustomTextTermsOfServiceAcceptanceVariant0 {
-    init(message: String) throws {
+extension PostPaymentLinksRequestBodyCustomTextTermsOfServiceAcceptanceVariant0 {
+    public init(message: String) throws {
         self.message = message
-        try validateLength("message", self.message, min: nil, max: 1200)
+            try validateLength("message", self.message, min: nil, max: 1200)
     }
 }
 
@@ -449,28 +389,22 @@ public struct PostPaymentLinksPaymentLinkRequestBodyTransferDataVariant0: Codabl
         case amount
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostPaymentLinksPaymentLinkRequestBodyTransferDataVariant0 {
-    init(from decoder: Decoder) throws {
+extension PostPaymentLinksPaymentLinkRequestBodyTransferDataVariant0 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.destination) else {
-            throw SdkValidationError(
-                field: "destination",
-                code: "required",
-                message: "Validation failed for 'destination': value is required"
-            )
+            throw SdkValidationError(field: "destination", code: "required", message: "Validation failed for 'destination': value is required")
         }
-        destination = try container.sdkDecodeRequired(.destination)
-        amount = try container.sdkDecodeIfPresent(.amount)
+        self.destination = try container.sdkDecodeRequired(.destination)
+        self.amount = try container.sdkDecodeIfPresent(.amount)
     }
 }
 
-public extension PostPaymentLinksPaymentLinkRequestBodyTransferDataVariant0 {
-    init(destination: String, amount: PostPaymentLinksPaymentLinkRequestBodyTransferDataVariant0Amount? = nil) {
+extension PostPaymentLinksPaymentLinkRequestBodyTransferDataVariant0 {
+    public init(destination: String, amount: PostPaymentLinksPaymentLinkRequestBodyTransferDataVariant0Amount? = nil) {
         (self.destination, self.amount) = (destination, amount)
     }
 }
@@ -491,27 +425,22 @@ public struct PostPaymentLinksRequestBodyCustomText: Codable {
     }
 
     init() {
-        (afterSubmit, shippingAddress, submit, termsOfServiceAcceptance) = (nil, nil, nil, nil)
+        (self.afterSubmit, self.shippingAddress, self.submit, self.termsOfServiceAcceptance) = (nil, nil, nil, nil)
     }
 }
 
-public extension PostPaymentLinksRequestBodyCustomText {
-    init(from decoder: Decoder) throws {
+extension PostPaymentLinksRequestBodyCustomText {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        afterSubmit = try container.sdkDecodeIfPresent(.afterSubmit)
-        shippingAddress = try container.sdkDecodeIfPresent(.shippingAddress)
-        submit = try container.sdkDecodeIfPresent(.submit)
-        termsOfServiceAcceptance = try container.sdkDecodeIfPresent(.termsOfServiceAcceptance)
+        self.afterSubmit = try container.sdkDecodeIfPresent(.afterSubmit)
+        self.shippingAddress = try container.sdkDecodeIfPresent(.shippingAddress)
+        self.submit = try container.sdkDecodeIfPresent(.submit)
+        self.termsOfServiceAcceptance = try container.sdkDecodeIfPresent(.termsOfServiceAcceptance)
     }
 }
 
-public extension PostPaymentLinksRequestBodyCustomText {
-    init(
-        afterSubmit: PostPaymentLinksRequestBodyCustomTextAfterSubmit? = nil,
-        shippingAddress: PostPaymentLinksRequestBodyCustomTextShippingAddress? = nil,
-        submit: PostPaymentLinksRequestBodyCustomTextSubmit? = nil,
-        termsOfServiceAcceptance: PostPaymentLinksRequestBodyCustomTextTermsOfServiceAcceptance? = nil
-    ) {
+extension PostPaymentLinksRequestBodyCustomText {
+    public init(afterSubmit: PostPaymentLinksRequestBodyCustomTextAfterSubmit? = nil, shippingAddress: PostPaymentLinksRequestBodyCustomTextShippingAddress? = nil, submit: PostPaymentLinksRequestBodyCustomTextSubmit? = nil, termsOfServiceAcceptance: PostPaymentLinksRequestBodyCustomTextTermsOfServiceAcceptance? = nil) {
         self.init()
         (self.afterSubmit, self.shippingAddress) = (afterSubmit, shippingAddress)
         (self.submit, self.termsOfServiceAcceptance) = (submit, termsOfServiceAcceptance)
@@ -526,19 +455,19 @@ public struct PostPaymentLinksPaymentLinkRequestBodyPaymentMethodOptionsVarXa7e0
     }
 
     init() {
-        brandsBlocked = nil
+        self.brandsBlocked = nil
     }
 }
 
-public extension PostPaymentLinksPaymentLinkRequestBodyPaymentMethodOptionsVarXa7e0ae7ef4 {
-    init(from decoder: Decoder) throws {
+extension PostPaymentLinksPaymentLinkRequestBodyPaymentMethodOptionsVarXa7e0ae7ef4 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        brandsBlocked = try container.sdkDecodeIfPresent(.brandsBlocked)
+        self.brandsBlocked = try container.sdkDecodeIfPresent(.brandsBlocked)
     }
 }
 
-public extension PostPaymentLinksPaymentLinkRequestBodyPaymentMethodOptionsVarXa7e0ae7ef4 {
-    init(brandsBlocked: PostPaymentLinksPaymentLinkRequestBodyPaymentMethodOptionsVarX766de35b1f? = nil) {
+extension PostPaymentLinksPaymentLinkRequestBodyPaymentMethodOptionsVarXa7e0ae7ef4 {
+    public init(brandsBlocked: PostPaymentLinksPaymentLinkRequestBodyPaymentMethodOptionsVarX766de35b1f? = nil) {
         self.init()
         self.brandsBlocked = brandsBlocked
     }
@@ -552,43 +481,35 @@ public enum PostPaymentLinksRequestBodyInvoiceCreationInvoiceDataRenderingOption
 }
 
 extension PostPaymentLinksRequestBodyInvoiceCreationInvoiceDataRenderingOptions: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostPaymentLinksRequestBodyInvoiceCreationInvoiceDataRenderingOptions"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostPaymentLinksRequestBodyInvoiceCreationInvoiceDataRenderingOptions")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PostPaymentLinksRequestBodyInvoiceCreationInvoiceDataRenderinX74f1e4999c.self
         ) {
-            return .postPaymentLinksRequestBodyInvoiceCreationInvoiceDataRenderinX74f1e4999c(value)
+            return             .postPaymentLinksRequestBodyInvoiceCreationInvoiceDataRenderinX74f1e4999c(value)
         }
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .postPaymentLinksRequestBodyInvoiceCreationInvoiceDataRenderinX74f1e4999c(value): try container
-            .encode(value); return true
+        case let .postPaymentLinksRequestBodyInvoiceCreationInvoiceDataRenderinX74f1e4999c(value): try container.encode(value); return true
         case let .stringValue(value): try container.encode(value); return true
         }
     }
+
 }
 
 public struct PostPaymentLinksRequestBodyCustomFieldsItem: Codable {
@@ -614,7 +535,5 @@ public struct PostPaymentLinksRequestBodyCustomFieldsItem: Codable {
         case text
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }

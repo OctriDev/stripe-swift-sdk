@@ -68,8 +68,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testGetReportingReportTypesReportTypeGetReportingReportTypesReportTypeReachesMockAndDecodesResponse(
-    ) async throws {
+    func testGetReportingReportTypesReportTypeGetReportingReportTypesReportTypeReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -231,8 +230,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testGetShippingRatesShippingRateTokenGetShippingRatesShippingRateTokenReachesMockAndDecodesResponse(
-    ) async throws {
+    func testGetShippingRatesShippingRateTokenGetShippingRatesShippingRateTokenReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -274,8 +272,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testGetSigmaScheduledQueryRunsScheduledQueryRunGetSigmaScheduledQX9d7340124bReachesMockAndDecodesResponse(
-    ) async throws {
+    func testGetSigmaScheduledQueryRunsScheduledQueryRunGetSigmaScheduledQX9d7340124bReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -318,8 +315,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testGetSourcesSourceMandateNotificationsMandateNotificationGetSouX71f1de37b6ReachesMockAndDecodesResponse(
-    ) async throws {
+    func testGetSourcesSourceMandateNotificationsMandateNotificationGetSouX71f1de37b6ReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -340,8 +336,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testGetSourcesSourceSourceTransactionsGetSourcesSourceSourceTransactionsReachesMockAndDecodesResponse(
-    ) async throws {
+    func testGetSourcesSourceSourceTransactionsGetSourcesSourceSourceTransactionsReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -364,8 +359,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testGetSourcesSourceSourceTransactionsSourceTransactionGetSourcesX8ecb004d85ReachesMockAndDecodesResponse(
-    ) async throws {
+    func testGetSourcesSourceSourceTransactionsSourceTransactionGetSourcesX8ecb004d85ReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -482,8 +476,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testGetSubscriptionSchedulesScheduleGetSubscriptionSchedulesScheduleReachesMockAndDecodesResponse(
-    ) async throws {
+    func testGetSubscriptionSchedulesScheduleGetSubscriptionSchedulesScheduleReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -525,8 +518,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testGetSubscriptionsSubscriptionExposedIdGetSubscriptionsSubscripX955a039508ReachesMockAndDecodesResponse(
-    ) async throws {
+    func testGetSubscriptionsSubscriptionExposedIdGetSubscriptionsSubscripX955a039508ReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }

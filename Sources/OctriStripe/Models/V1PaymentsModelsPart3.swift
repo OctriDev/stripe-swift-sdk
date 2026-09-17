@@ -3,30 +3,26 @@
 
 import Foundation
 
-/// V1Payments domain models
-public extension PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCustomDetails {
-    init(from decoder: Decoder) throws {
+// V1Payments domain models
+extension PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCustomDetails {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.displayName) else {
-            throw SdkValidationError(
-                field: "display_name",
-                code: "required",
-                message: "Validation failed for 'display_name': value is required"
-            )
+            throw SdkValidationError(field: "display_name", code: "required", message: "Validation failed for 'display_name': value is required")
         }
-        displayName = try container.sdkDecodeRequired(.displayName)
-        type = try container.sdkDecodeIfPresent(.type)
-        try validateLength("display_name", displayName, min: nil, max: 5000)
-        if let value = type {
+        self.displayName = try container.sdkDecodeRequired(.displayName)
+        self.type = try container.sdkDecodeIfPresent(.type)
+            try validateLength("display_name", self.displayName, min: nil, max: 5000)
+        if let value = self.type {
             try validateLength("type", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCustomDetails {
-    init(displayName: String, type: String? = nil) throws {
+extension PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCustomDetails {
+    public init(displayName: String, type: String? = nil) throws {
         (self.displayName, self.type) = (displayName, type)
-        try validateLength("display_name", self.displayName, min: nil, max: 5000)
+            try validateLength("display_name", self.displayName, min: nil, max: 5000)
         if let value = self.type {
             try validateLength("type", value, min: nil, max: 5000)
         }
@@ -44,19 +40,19 @@ public struct PaymentsPrimitivesPaymentRecordsResourcePaymentMethodKlarnaDeX4de8
     }
 
     init() {
-        address = nil
+        self.address = nil
     }
 }
 
-public extension PaymentsPrimitivesPaymentRecordsResourcePaymentMethodKlarnaDeX4de8b488a7 {
-    init(from decoder: Decoder) throws {
+extension PaymentsPrimitivesPaymentRecordsResourcePaymentMethodKlarnaDeX4de8b488a7 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        address = try container.sdkDecodeIfPresent(.address)
+        self.address = try container.sdkDecodeIfPresent(.address)
     }
 }
 
-public extension PaymentsPrimitivesPaymentRecordsResourcePaymentMethodKlarnaDeX4de8b488a7 {
-    init(address: PaymentsPrimitivesPaymentRecordsResourcePaymentMethodKlarnaDeX20ad0e5f7d? = nil) {
+extension PaymentsPrimitivesPaymentRecordsResourcePaymentMethodKlarnaDeX4de8b488a7 {
+    public init(address: PaymentsPrimitivesPaymentRecordsResourcePaymentMethodKlarnaDeX20ad0e5f7d? = nil) {
         self.init()
         self.address = address
     }
@@ -69,39 +65,33 @@ public enum PaymentsPrimitivesPaymentRecordsResourcePaymentMethodKlarnaDeX20ad0e
 }
 
 extension PaymentsPrimitivesPaymentRecordsResourcePaymentMethodKlarnaDeX20ad0e5f7d: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PaymentsPrimitivesPaymentRecordsResourcePaymentMethodKlarnaDeX20ad0e5f7d"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentsPrimitivesPaymentRecordsResourcePaymentMethodKlarnaDeX20ad0e5f7d")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PaymentsPrimitivesPaymentRecordsResourcePaymentMethodKlarnaDeX7ca6a77caf.self
         ) {
-            return .paymentsPrimitivesPaymentRecordsResourcePaymentMethodKlarnaDeX7ca6a77caf(value)
+            return             .paymentsPrimitivesPaymentRecordsResourcePaymentMethodKlarnaDeX7ca6a77caf(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .paymentsPrimitivesPaymentRecordsResourcePaymentMethodKlarnaDeX7ca6a77caf(value): try container
-            .encode(value); return true
+        case let .paymentsPrimitivesPaymentRecordsResourcePaymentMethodKlarnaDeX7ca6a77caf(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// Typed representation of the
@@ -116,22 +106,22 @@ public struct PaymentsPrimitivesPaymentRecordsResourcePaymentMethodKlarnaDeX7ca6
     }
 
     init() {
-        country = nil
+        self.country = nil
     }
 }
 
-public extension PaymentsPrimitivesPaymentRecordsResourcePaymentMethodKlarnaDeX7ca6a77caf {
-    init(from decoder: Decoder) throws {
+extension PaymentsPrimitivesPaymentRecordsResourcePaymentMethodKlarnaDeX7ca6a77caf {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        country = try container.sdkDecodeIfPresent(.country)
-        if let value = country {
+        self.country = try container.sdkDecodeIfPresent(.country)
+        if let value = self.country {
             try validateLength("country", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PaymentsPrimitivesPaymentRecordsResourcePaymentMethodKlarnaDeX7ca6a77caf {
-    init(country: String? = nil) throws {
+extension PaymentsPrimitivesPaymentRecordsResourcePaymentMethodKlarnaDeX7ca6a77caf {
+    public init(country: String? = nil) throws {
         self.init()
         self.country = country
         if let value = self.country {
@@ -151,19 +141,19 @@ public struct PaymentsPrimitivesPaymentRecordsResourcePaymentMethodKonbiniDXd993
     }
 
     init() {
-        chain = nil
+        self.chain = nil
     }
 }
 
-public extension PaymentsPrimitivesPaymentRecordsResourcePaymentMethodKonbiniDXd993f8cba9 {
-    init(from decoder: Decoder) throws {
+extension PaymentsPrimitivesPaymentRecordsResourcePaymentMethodKonbiniDXd993f8cba9 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        chain = try container.sdkDecodeIfPresent(.chain)
+        self.chain = try container.sdkDecodeIfPresent(.chain)
     }
 }
 
-public extension PaymentsPrimitivesPaymentRecordsResourcePaymentMethodKonbiniDXd993f8cba9 {
-    init(chain: PaymentsPrimitivesPaymentRecordsResourcePaymentMethodKonbiniDX8f82d7c554? = nil) {
+extension PaymentsPrimitivesPaymentRecordsResourcePaymentMethodKonbiniDXd993f8cba9 {
+    public init(chain: PaymentsPrimitivesPaymentRecordsResourcePaymentMethodKonbiniDX8f82d7c554? = nil) {
         self.init()
         self.chain = chain
     }
@@ -192,38 +182,32 @@ public struct PaymentsPrimitivesPaymentRecordsResourcePaymentMethodMobilepaX6f5f
     }
 
     init() {
-        (brand, country, expMonth, expYear, last4) = (nil, nil, nil, nil, nil)
+        (self.brand, self.country, self.expMonth, self.expYear, self.last4) = (nil, nil, nil, nil, nil)
     }
 }
 
-public extension PaymentsPrimitivesPaymentRecordsResourcePaymentMethodMobilepaX6f5f18f2fd {
-    init(from decoder: Decoder) throws {
+extension PaymentsPrimitivesPaymentRecordsResourcePaymentMethodMobilepaX6f5f18f2fd {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        brand = try container.sdkDecodeIfPresent(.brand)
-        country = try container.sdkDecodeIfPresent(.country)
-        expMonth = try container.sdkDecodeIfPresent(.expMonth)
-        expYear = try container.sdkDecodeIfPresent(.expYear)
-        last4 = try container.sdkDecodeIfPresent(.last4)
-        if let value = brand {
+        self.brand = try container.sdkDecodeIfPresent(.brand)
+        self.country = try container.sdkDecodeIfPresent(.country)
+        self.expMonth = try container.sdkDecodeIfPresent(.expMonth)
+        self.expYear = try container.sdkDecodeIfPresent(.expYear)
+        self.last4 = try container.sdkDecodeIfPresent(.last4)
+        if let value = self.brand {
             try validateLength("brand", value, min: nil, max: 5000)
         }
-        if let value = country {
+        if let value = self.country {
             try validateLength("country", value, min: nil, max: 5000)
         }
-        if let value = last4 {
+        if let value = self.last4 {
             try validateLength("last4", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PaymentsPrimitivesPaymentRecordsResourcePaymentMethodMobilepaX6f5f18f2fd {
-    init(
-        brand: String? = nil,
-        country: String? = nil,
-        expMonth: Int? = nil,
-        expYear: Int? = nil,
-        last4: String? = nil
-    ) throws {
+extension PaymentsPrimitivesPaymentRecordsResourcePaymentMethodMobilepaX6f5f18f2fd {
+    public init(brand: String? = nil, country: String? = nil, expMonth: Int? = nil, expYear: Int? = nil, last4: String? = nil) throws {
         self.init()
         (self.brand, self.country) = (brand, country)
         (self.expMonth, self.expYear) = (expMonth, expYear)
@@ -254,23 +238,20 @@ public struct PaymentsPrimitivesPaymentRecordsResourcePaymentMethodRevolutPXebdb
     }
 
     init() {
-        (card, type) = (nil, nil)
+        (self.card, self.type) = (nil, nil)
     }
 }
 
-public extension PaymentsPrimitivesPaymentRecordsResourcePaymentMethodRevolutPXebdb43d791 {
-    init(from decoder: Decoder) throws {
+extension PaymentsPrimitivesPaymentRecordsResourcePaymentMethodRevolutPXebdb43d791 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        card = try container.sdkDecodeIfPresent(.card)
-        type = try container.sdkDecodeIfPresent(.type)
+        self.card = try container.sdkDecodeIfPresent(.card)
+        self.type = try container.sdkDecodeIfPresent(.type)
     }
 }
 
-public extension PaymentsPrimitivesPaymentRecordsResourcePaymentMethodRevolutPXebdb43d791 {
-    init(
-        card: PaymentsPrimitivesPaymentRecordsResourcePaymentMethodRevolutPXc70cd414f5? = nil,
-        type: PaymentsPrimitivesPaymentRecordsResourcePaymentMethodRevolutPX6d061eb5f2? = nil
-    ) {
+extension PaymentsPrimitivesPaymentRecordsResourcePaymentMethodRevolutPXebdb43d791 {
+    public init(card: PaymentsPrimitivesPaymentRecordsResourcePaymentMethodRevolutPXc70cd414f5? = nil, type: PaymentsPrimitivesPaymentRecordsResourcePaymentMethodRevolutPX6d061eb5f2? = nil) {
         self.init()
         (self.card, self.type) = (card, type)
     }
@@ -305,44 +286,37 @@ public struct PaymentsPrimitivesPaymentRecordsResourcePaymentMethodRevolutPXc70c
     }
 
     init() {
-        (brand, country, expMonth, expYear, funding) = (nil, nil, nil, nil, nil)
-        last4 = nil
+        (self.brand, self.country, self.expMonth, self.expYear, self.funding) = (nil, nil, nil, nil, nil)
+        self.last4 = nil
     }
 }
 
-public extension PaymentsPrimitivesPaymentRecordsResourcePaymentMethodRevolutPXc70cd414f5 {
-    init(from decoder: Decoder) throws {
+extension PaymentsPrimitivesPaymentRecordsResourcePaymentMethodRevolutPXc70cd414f5 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        brand = try container.sdkDecodeIfPresent(.brand)
-        country = try container.sdkDecodeIfPresent(.country)
-        expMonth = try container.sdkDecodeIfPresent(.expMonth)
-        expYear = try container.sdkDecodeIfPresent(.expYear)
-        funding = try container.sdkDecodeIfPresent(.funding)
-        last4 = try container.sdkDecodeIfPresent(.last4)
-        if let value = brand {
+        self.brand = try container.sdkDecodeIfPresent(.brand)
+        self.country = try container.sdkDecodeIfPresent(.country)
+        self.expMonth = try container.sdkDecodeIfPresent(.expMonth)
+        self.expYear = try container.sdkDecodeIfPresent(.expYear)
+        self.funding = try container.sdkDecodeIfPresent(.funding)
+        self.last4 = try container.sdkDecodeIfPresent(.last4)
+        if let value = self.brand {
             try validateLength("brand", value, min: nil, max: 5000)
         }
-        if let value = country {
+        if let value = self.country {
             try validateLength("country", value, min: nil, max: 5000)
         }
-        if let value = funding {
+        if let value = self.funding {
             try validateLength("funding", value, min: nil, max: 5000)
         }
-        if let value = last4 {
+        if let value = self.last4 {
             try validateLength("last4", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PaymentsPrimitivesPaymentRecordsResourcePaymentMethodRevolutPXc70cd414f5 {
-    init(
-        brand: String? = nil,
-        country: String? = nil,
-        expMonth: Int? = nil,
-        expYear: Int? = nil,
-        funding: String? = nil,
-        last4: String? = nil
-    ) throws {
+extension PaymentsPrimitivesPaymentRecordsResourcePaymentMethodRevolutPXc70cd414f5 {
+    public init(brand: String? = nil, country: String? = nil, expMonth: Int? = nil, expYear: Int? = nil, funding: String? = nil, last4: String? = nil) throws {
         self.init()
         (self.brand, self.country) = (brand, country)
         (self.expMonth, self.expYear) = (expMonth, expYear)
@@ -375,31 +349,22 @@ public struct PaymentsPrimitivesPaymentRecordsResourceProcessorDetails: Codable 
         case custom
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PaymentsPrimitivesPaymentRecordsResourceProcessorDetails {
-    init(from decoder: Decoder) throws {
+extension PaymentsPrimitivesPaymentRecordsResourceProcessorDetails {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.type) else {
-            throw SdkValidationError(
-                field: "type",
-                code: "required",
-                message: "Validation failed for 'type': value is required"
-            )
+            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
         }
-        type = try container.sdkDecodeRequired(.type)
-        custom = try container.sdkDecodeIfPresent(.custom)
+        self.type = try container.sdkDecodeRequired(.type)
+        self.custom = try container.sdkDecodeIfPresent(.custom)
     }
 }
 
-public extension PaymentsPrimitivesPaymentRecordsResourceProcessorDetails {
-    init(
-        type: PaymentsPrimitivesPaymentRecordsResourceProcessorDetailsType,
-        custom: PaymentsPrimitivesPaymentRecordsResourceProcessorDetailsResouXd4981f626f? = nil
-    ) {
+extension PaymentsPrimitivesPaymentRecordsResourceProcessorDetails {
+    public init(type: PaymentsPrimitivesPaymentRecordsResourceProcessorDetailsType, custom: PaymentsPrimitivesPaymentRecordsResourceProcessorDetailsResouXd4981f626f? = nil) {
         (self.type, self.custom) = (type, custom)
     }
 }
@@ -416,22 +381,22 @@ public struct PaymentsPrimitivesPaymentRecordsResourceProcessorDetailsResouXd498
     }
 
     init() {
-        paymentReference = nil
+        self.paymentReference = nil
     }
 }
 
-public extension PaymentsPrimitivesPaymentRecordsResourceProcessorDetailsResouXd4981f626f {
-    init(from decoder: Decoder) throws {
+extension PaymentsPrimitivesPaymentRecordsResourceProcessorDetailsResouXd4981f626f {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        paymentReference = try container.sdkDecodeIfPresent(.paymentReference)
-        if let value = paymentReference {
+        self.paymentReference = try container.sdkDecodeIfPresent(.paymentReference)
+        if let value = self.paymentReference {
             try validateLength("payment_reference", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PaymentsPrimitivesPaymentRecordsResourceProcessorDetailsResouXd4981f626f {
-    init(paymentReference: String? = nil) throws {
+extension PaymentsPrimitivesPaymentRecordsResourceProcessorDetailsResouXd4981f626f {
+    public init(paymentReference: String? = nil) throws {
         self.init()
         self.paymentReference = paymentReference
         if let value = self.paymentReference {
@@ -455,35 +420,29 @@ public struct PaymentsPrimitivesPaymentRecordsResourceShippingDetails: Codable {
         case phone
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PaymentsPrimitivesPaymentRecordsResourceShippingDetails {
-    init(from decoder: Decoder) throws {
+extension PaymentsPrimitivesPaymentRecordsResourceShippingDetails {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.address) else {
-            throw SdkValidationError(
-                field: "address",
-                code: "required",
-                message: "Validation failed for 'address': value is required"
-            )
+            throw SdkValidationError(field: "address", code: "required", message: "Validation failed for 'address': value is required")
         }
-        address = try container.sdkDecodeRequired(.address)
-        name = try container.sdkDecodeIfPresent(.name)
-        phone = try container.sdkDecodeIfPresent(.phone)
-        if let value = name {
+        self.address = try container.sdkDecodeRequired(.address)
+        self.name = try container.sdkDecodeIfPresent(.name)
+        self.phone = try container.sdkDecodeIfPresent(.phone)
+        if let value = self.name {
             try validateLength("name", value, min: nil, max: 5000)
         }
-        if let value = phone {
+        if let value = self.phone {
             try validateLength("phone", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PaymentsPrimitivesPaymentRecordsResourceShippingDetails {
-    init(address: PaymentsPrimitivesPaymentRecordsResourceAddress, name: String? = nil, phone: String? = nil) throws {
+extension PaymentsPrimitivesPaymentRecordsResourceShippingDetails {
+    public init(address: PaymentsPrimitivesPaymentRecordsResourceAddress, name: String? = nil, phone: String? = nil) throws {
         (self.address, self.name) = (address, name)
         self.phone = phone
         if let value = self.name {
@@ -496,22 +455,16 @@ public extension PaymentsPrimitivesPaymentRecordsResourceShippingDetails {
 }
 
 /// For authenticated transactions: Indicates how the issuing bank authenticated the customer.
-public struct PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetaX64dea4f2c1: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetaX64dea4f2c1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let challenge =
-        PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetaX64dea4f2c1(rawValue: "challenge")
-    public static let frictionless =
-        PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetaX64dea4f2c1(rawValue: "frictionless")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let challenge = PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetaX64dea4f2c1(rawValue: "challenge")
+    public static let frictionless = PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetaX64dea4f2c1(rawValue: "frictionless")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -522,24 +475,18 @@ public struct PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetaX64de
 
 /// If you provide a address postal code, the check result is one of `pass`, `fail`, `unavailable`, or
 /// `unchecked`.
-public struct PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetaX3ba72ca597: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetaX3ba72ca597: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let fail = PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetaX3ba72ca597(rawValue: "fail")
     public static let pass = PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetaX3ba72ca597(rawValue: "pass")
-    public static let unavailable =
-        PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetaX3ba72ca597(rawValue: "unavailable")
-    public static let unchecked =
-        PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetaX3ba72ca597(rawValue: "unchecked")
+    public static let unavailable = PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetaX3ba72ca597(rawValue: "unavailable")
+    public static let unchecked = PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetaX3ba72ca597(rawValue: "unchecked")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -550,38 +497,26 @@ public struct PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetaX3ba7
 
 /// Card brand. Can be `amex`, `cartes_bancaires`, `diners`, `discover`, `eftpos_au`, `jcb`, `link`,
 /// `mastercard`, `unionpay`, `visa` or `unknown`.
-public struct PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetailsBrand: RawRepresentable, Hashable,
-    Codable,
-    Sendable, SdkWireConvertible {
+public struct PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetailsBrand: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let amex = PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetailsBrand(rawValue: "amex")
-    public static let cartesBancaires =
-        PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetailsBrand(rawValue: "cartes_bancaires")
+    public static let cartesBancaires = PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetailsBrand(rawValue: "cartes_bancaires")
     public static let diners = PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetailsBrand(rawValue: "diners")
-    public static let discover =
-        PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetailsBrand(rawValue: "discover")
-    public static let eftposAu =
-        PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetailsBrand(rawValue: "eftpos_au")
-    public static let interac =
-        PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetailsBrand(rawValue: "interac")
+    public static let discover = PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetailsBrand(rawValue: "discover")
+    public static let eftposAu = PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetailsBrand(rawValue: "eftpos_au")
+    public static let interac = PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetailsBrand(rawValue: "interac")
     public static let jcb = PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetailsBrand(rawValue: "jcb")
     public static let link = PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetailsBrand(rawValue: "link")
-    public static let primarycard =
-        PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetailsBrand(rawValue: "mastercard")
-    public static let unionpay =
-        PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetailsBrand(rawValue: "unionpay")
-    public static let unknown =
-        PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetailsBrand(rawValue: "unknown")
+    public static let primarycard = PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetailsBrand(rawValue: "mastercard")
+    public static let unionpay = PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetailsBrand(rawValue: "unionpay")
+    public static let unknown = PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetailsBrand(rawValue: "unknown")
     public static let visa = PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetailsBrand(rawValue: "visa")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

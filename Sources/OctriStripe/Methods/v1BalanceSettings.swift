@@ -7,40 +7,26 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1BalanceSettingsMethods {
-    /// Retrieves balance settings for a connected account. Use `expand` when you need additional response fields
-    /// included in the returned settings.
+    /// Retrieves balance settings for a connected account. Use `expand` when you need additional response fields included in the returned settings.
     ///
     /// Retrieves balance settings for a given connected account. Related guide: Making API calls for connected accounts
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
     public static func getBalanceSettings(config: ClientConfig, expand: [String]?) async throws -> BalanceSettings {
-        try await (sdkRequest("GET", "/v1/balance_settings", config: config, query: [
+        return try (await sdkRequest("GET", "/v1/balance_settings", config: config, query: [
             SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
         ], decoder: .json, operationId: "GetBalanceSettings")).data
     }
-
     /// Updates balance settings for a given connected account. Related guide: Making API calls for connected accounts
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
     /// - payments: Settings that apply to the [Payments
     ///   Balance](https://docs.stripe.com/api/balance).
-    public static func postBalanceSettings(
-        config: ClientConfig,
-        expand: [String]?,
-        payments: PostBalanceSettingsRequestBodyPayments?
-    ) async throws -> BalanceSettings {
+    public static func postBalanceSettings(config: ClientConfig, expand: [String]?, payments: PostBalanceSettingsRequestBodyPayments?) async throws -> BalanceSettings {
         let requestBody = PostBalanceSettingsRequestBody(expand: expand, payments: payments)
 
-        return try await (sdkRequest(
-            "POST",
-            "/v1/balance_settings",
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostBalanceSettings"
-        )).data
+        return try (await sdkRequest("POST", "/v1/balance_settings", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostBalanceSettings")).data
     }
 }

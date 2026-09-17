@@ -6,19 +6,15 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public struct PostPaymentIntentsIntentCaptureRequestBodyAmountDetailsTaxVariant1: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct PostPaymentIntentsIntentCaptureRequestBodyAmountDetailsTaxVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostPaymentIntentsIntentCaptureRequestBodyAmountDetailsTaxVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -27,19 +23,15 @@ public struct PostPaymentIntentsIntentCaptureRequestBodyAmountDetailsTaxVariant1
     }
 }
 
-public struct PostPaymentIntentsIntentCaptureRequestBodyHooksInputsTaxCalcuXe573395eb1: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostPaymentIntentsIntentCaptureRequestBodyHooksInputsTaxCalcuXe573395eb1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostPaymentIntentsIntentCaptureRequestBodyHooksInputsTaxCalcuXe573395eb1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -48,19 +40,15 @@ public struct PostPaymentIntentsIntentCaptureRequestBodyHooksInputsTaxCalcuXe573
     }
 }
 
-public struct PostPaymentIntentsIntentCaptureRequestBodyMetadataVariant1: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostPaymentIntentsIntentCaptureRequestBodyMetadataVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostPaymentIntentsIntentCaptureRequestBodyMetadataVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -69,19 +57,15 @@ public struct PostPaymentIntentsIntentCaptureRequestBodyMetadataVariant1: RawRep
     }
 }
 
-public struct PostPaymentIntentsIntentCaptureRequestBodyPaymentDetailsVariaX3fef91159c: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostPaymentIntentsIntentCaptureRequestBodyPaymentDetailsVariaX3fef91159c: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostPaymentIntentsIntentCaptureRequestBodyPaymentDetailsVariaX3fef91159c(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -90,19 +74,15 @@ public struct PostPaymentIntentsIntentCaptureRequestBodyPaymentDetailsVariaX3fef
     }
 }
 
-public struct PostPaymentIntentsIntentCaptureRequestBodyPaymentDetailsVariaXed8ab02336: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostPaymentIntentsIntentCaptureRequestBodyPaymentDetailsVariaXed8ab02336: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostPaymentIntentsIntentCaptureRequestBodyPaymentDetailsVariaXed8ab02336(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -111,19 +91,15 @@ public struct PostPaymentIntentsIntentCaptureRequestBodyPaymentDetailsVariaXed8a
     }
 }
 
-public struct PostPaymentIntentsIntentCaptureRequestBodyPaymentDetailsVariant1: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct PostPaymentIntentsIntentCaptureRequestBodyPaymentDetailsVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostPaymentIntentsIntentCaptureRequestBodyPaymentDetailsVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -132,186 +108,111 @@ public struct PostPaymentIntentsIntentCaptureRequestBodyPaymentDetailsVariant1: 
     }
 }
 
-public struct PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let acssDebit =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "acss_debit")
-    public static let affirm =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "affirm")
-    public static let afterpayClearpay =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "afterpay_clearpay")
-    public static let alipay =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "alipay")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let acssDebit = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "acss_debit")
+    public static let affirm = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "affirm")
+    public static let afterpayClearpay = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "afterpay_clearpay")
+    public static let alipay = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "alipay")
     public static let alma = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "alma")
-    public static let amazonPay =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "amazon_pay")
-    public static let auBecsDebit =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "au_becs_debit")
-    public static let bacsDebit =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "bacs_debit")
-    public static let bancontact =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "bancontact")
-    public static let billie =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "billie")
+    public static let amazonPay = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "amazon_pay")
+    public static let auBecsDebit = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "au_becs_debit")
+    public static let bacsDebit = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "bacs_debit")
+    public static let bancontact = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "bancontact")
+    public static let billie = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "billie")
     public static let bizum = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "bizum")
     public static let blik = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "blik")
-    public static let bokuPromptpay =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "boku_promptpay")
-    public static let boleto =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "boleto")
-    public static let capchasePay =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "capchase_pay")
+    public static let bokuPromptpay = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "boku_promptpay")
+    public static let boleto = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "boleto")
+    public static let capchasePay = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "capchase_pay")
     public static let card = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "card")
-    public static let cashapp =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "cashapp")
-    public static let checkScan =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "check_scan")
-    public static let clickToPay =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "click_to_pay")
-    public static let crypto =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "crypto")
-    public static let customerBalance =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "customer_balance")
-    public static let demoPay =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "demo_pay")
-    public static let duitnow =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "duitnow")
-    public static let dummyAuthPush =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "dummy_auth_push")
-    public static let dummyPassthroughCard =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "dummy_passthrough_card")
-    public static let edenred =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "edenred")
+    public static let cashapp = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "cashapp")
+    public static let checkScan = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "check_scan")
+    public static let clickToPay = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "click_to_pay")
+    public static let crypto = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "crypto")
+    public static let customerBalance = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "customer_balance")
+    public static let demoPay = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "demo_pay")
+    public static let duitnow = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "duitnow")
+    public static let dummyAuthPush = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "dummy_auth_push")
+    public static let dummyPassthroughCard = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "dummy_passthrough_card")
+    public static let edenred = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "edenred")
     public static let eps = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "eps")
     public static let fpx = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "fpx")
     public static let gcash = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "gcash")
-    public static let getbalance =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "getbalance")
-    public static let giftCard =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "gift_card")
-    public static let giropay =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "giropay")
+    public static let getbalance = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "getbalance")
+    public static let giftCard = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "gift_card")
+    public static let giropay = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "giropay")
     public static let gopay = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "gopay")
-    public static let grabpay =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "grabpay")
-    public static let idBankTransfer =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "id_bank_transfer")
+    public static let grabpay = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "grabpay")
+    public static let idBankTransfer = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "id_bank_transfer")
     public static let ideal = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "ideal")
-    public static let kakaoPay =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "kakao_pay")
-    public static let klarna =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "klarna")
+    public static let kakaoPay = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "kakao_pay")
+    public static let klarna = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "klarna")
     public static let knet = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "knet")
-    public static let konbini =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "konbini")
-    public static let krCard =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "kr_card")
-    public static let krMarket =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "kr_market")
+    public static let konbini = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "konbini")
+    public static let krCard = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "kr_card")
+    public static let krMarket = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "kr_market")
     public static let kriya = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "kriya")
     public static let link = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "link")
-    public static let mbWay =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "mb_way")
-    public static let mobilepay =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "mobilepay")
+    public static let mbWay = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "mb_way")
+    public static let mobilepay = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "mobilepay")
     public static let momo = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "momo")
     public static let mondu = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "mondu")
-    public static let multibanco =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "multibanco")
-    public static let naverPay =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "naver_pay")
-    public static let netbanking =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "netbanking")
-    public static let ngBank =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "ng_bank")
-    public static let ngBankTransfer =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "ng_bank_transfer")
-    public static let ngCard =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "ng_card")
-    public static let ngMarket =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "ng_market")
-    public static let ngUssd =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "ng_ussd")
-    public static let ngWallet =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "ng_wallet")
-    public static let nzBankAccount =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "nz_bank_account")
-    public static let octopus =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "octopus")
+    public static let multibanco = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "multibanco")
+    public static let naverPay = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "naver_pay")
+    public static let netbanking = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "netbanking")
+    public static let ngBank = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "ng_bank")
+    public static let ngBankTransfer = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "ng_bank_transfer")
+    public static let ngCard = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "ng_card")
+    public static let ngMarket = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "ng_market")
+    public static let ngUssd = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "ng_ussd")
+    public static let ngWallet = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "ng_wallet")
+    public static let nzBankAccount = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "nz_bank_account")
+    public static let octopus = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "octopus")
     public static let oxxo = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "oxxo")
     public static let p24 = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "p24")
-    public static let paperCheck =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "paper_check")
-    public static let payByBank =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "pay_by_bank")
+    public static let paperCheck = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "paper_check")
+    public static let payByBank = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "pay_by_bank")
     public static let payco = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "payco")
-    public static let paynow =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "paynow")
-    public static let paypal =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "paypal")
-    public static let paypay =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "paypay")
+    public static let paynow = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "paynow")
+    public static let paypal = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "paypal")
+    public static let paypay = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "paypay")
     public static let payto = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "payto")
     public static let pix = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "pix")
-    public static let promptpay =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "promptpay")
+    public static let promptpay = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "promptpay")
     public static let qris = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "qris")
-    public static let rechnung =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "rechnung")
-    public static let revolutPay =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "revolut_pay")
-    public static let samsungPay =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "samsung_pay")
-    public static let satispay =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "satispay")
-    public static let scalapay =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "scalapay")
-    public static let sepaDebit =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "sepa_debit")
-    public static let sequra =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "sequra")
-    public static let shopPay =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "shop_pay")
-    public static let shopeepay =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "shopeepay")
-    public static let sofort =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "sofort")
-    public static let southKoreaMarket =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "south_korea_market")
-    public static let stripeBalance =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "stripe_balance")
-    public static let sunbit =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "sunbit")
+    public static let rechnung = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "rechnung")
+    public static let revolutPay = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "revolut_pay")
+    public static let samsungPay = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "samsung_pay")
+    public static let satispay = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "satispay")
+    public static let scalapay = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "scalapay")
+    public static let sepaDebit = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "sepa_debit")
+    public static let sequra = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "sequra")
+    public static let shopPay = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "shop_pay")
+    public static let shopeepay = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "shopeepay")
+    public static let sofort = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "sofort")
+    public static let southKoreaMarket = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "south_korea_market")
+    public static let stripeBalance = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "stripe_balance")
+    public static let sunbit = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "sunbit")
     public static let swish = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "swish")
-    public static let tamara =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "tamara")
-    public static let testPay =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "test_pay")
-    public static let touchNGo =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "touch_n_go")
-    public static let truemoney =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "truemoney")
+    public static let tamara = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "tamara")
+    public static let testPay = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "test_pay")
+    public static let touchNGo = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "touch_n_go")
+    public static let truemoney = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "truemoney")
     public static let twint = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "twint")
     public static let upi = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "upi")
-    public static let usBankAccount =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "us_bank_account")
-    public static let usCashVoucher =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "us_cash_voucher")
+    public static let usBankAccount = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "us_bank_account")
+    public static let usCashVoucher = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "us_cash_voucher")
     public static let vipps = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "vipps")
-    public static let wechatPay =
-        PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "wechat_pay")
+    public static let wechatPay = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "wechat_pay")
     public static let wero = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "wero")
     public static let zip = PostPaymentIntentsIntentConfirmRequestBodyAllowedPaymentMethodTypesItem(rawValue: "zip")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

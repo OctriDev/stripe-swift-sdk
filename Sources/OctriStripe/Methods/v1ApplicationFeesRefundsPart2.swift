@@ -6,47 +6,26 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1ApplicationFeesRefundsMethods {
-    /// Retrieves a specific refund for an application fee. Use `fee` and `id` to identify the parent application fee
-    /// and refund, and use `expand` to include additional response fields.
+extension V1ApplicationFeesRefundsMethods {
+    /// Retrieves a specific refund for an application fee. Use `fee` and `id` to identify the parent application fee and refund, and use `expand` to include additional response fields.
     ///
-    /// By default, you can see the 10 most recent refunds stored directly on the application fee object, but you can
-    /// also retrieve details about a specific refund stored on the application fee.
+    /// By default, you can see the 10 most recent refunds stored directly on the application fee object, but you can also retrieve details about a specific refund stored on the application fee.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    static func getApplicationFeesFeeRefundsId(
-        config: ClientConfig,
-        fee: String,
-        id: String,
-        expand: [String]?
-    ) async throws -> FeeRefund {
+    public static func getApplicationFeesFeeRefundsId(config: ClientConfig, fee: String, id: String, expand: [String]?) async throws -> FeeRefund {
         try validateLength("fee", fee, max: 5000)
 
         try validateLength("id", id, max: 5000)
 
-        return try await (sdkRequest(
-            "GET",
-            [
-                "/v1/application_fees/",
-                sdkEncodePathSegment(sdkWireString(fee)),
-                "/refunds/",
-                sdkEncodePathSegment(sdkWireString(id)),
-            ].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .json,
-            operationId: "GetApplicationFeesFeeRefundsId"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/application_fees/", sdkEncodePathSegment(sdkWireString(fee)), "/refunds/", sdkEncodePathSegment(sdkWireString(id))].joined(), config: config, query: [
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .json, operationId: "GetApplicationFeesFeeRefundsId")).data
     }
 
-    /// Updates metadata on a specific application fee refund without changing other refund properties. Use `fee` and
-    /// `id` to identify the refund, and provide `metadata` to set, update, or clear metadata entries.
+    /// Updates metadata on a specific application fee refund without changing other refund properties. Use `fee` and `id` to identify the refund, and provide `metadata` to set, update, or clear metadata entries.
     ///
-    /// Updates the specified application fee refund by setting the values of the parameters passed. Any parameters not
-    /// provided will be left unchanged. This request only accepts metadata as an argument.
+    /// Updates the specified application fee refund by setting the values of the parameters passed. Any parameters not provided will be left unchanged. This request only accepts metadata as an argument.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
@@ -55,32 +34,13 @@ public extension V1ApplicationFeesRefundsMethods {
     ///   information about the object in a structured format. Individual keys can be
     ///   unset by posting an empty value to them. All keys can be unset by posting an
     ///   empty value to `metadata`.
-    static func postApplicationFeesFeeRefundsId(
-        config: ClientConfig,
-        fee: String,
-        id: String,
-        expand: [String]?,
-        metadata: PostApplicationFeesFeeRefundsIdRequestBodyMetadata?
-    ) async throws -> FeeRefund {
+    public static func postApplicationFeesFeeRefundsId(config: ClientConfig, fee: String, id: String, expand: [String]?, metadata: PostApplicationFeesFeeRefundsIdRequestBodyMetadata?) async throws -> FeeRefund {
         try validateLength("fee", fee, max: 5000)
 
         try validateLength("id", id, max: 5000)
 
         let requestBody = PostApplicationFeesFeeRefundsIdRequestBody(expand: expand, metadata: metadata)
 
-        return try await (sdkRequest(
-            "POST",
-            [
-                "/v1/application_fees/",
-                sdkEncodePathSegment(sdkWireString(fee)),
-                "/refunds/",
-                sdkEncodePathSegment(sdkWireString(id)),
-            ].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostApplicationFeesFeeRefundsId"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/application_fees/", sdkEncodePathSegment(sdkWireString(fee)), "/refunds/", sdkEncodePathSegment(sdkWireString(id))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostApplicationFeesFeeRefundsId")).data
     }
 }

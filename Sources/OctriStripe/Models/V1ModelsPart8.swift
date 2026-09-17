@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1 domain models
+// V1 domain models
 /// The `Charge` object represents a single attempt to move money into your Stripe account. PaymentIntent
 /// confirmation is the most common way to create Charges, but Account Debits may also create Charges. Some legacy
 /// payment flows create Charges directly, which is not recommended for new integrations.
@@ -173,111 +173,63 @@ public struct Charge: Codable {
         case transferGroup = "transfer_group"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension Charge {
-    init(from decoder: Decoder) throws {
+extension Charge {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        amount = try container.sdkDecodeRequired(.amount)
-        amountCaptured = try container.sdkDecodeRequired(.amountCaptured)
-        amountRefunded = try container.sdkDecodeRequired(.amountRefunded)
-        billingDetails = try container.sdkDecodeRequired(.billingDetails)
-        captured = try container.sdkDecodeRequired(.captured)
-        created = try container.sdkDecodeRequired(.created)
-        currency = try container.sdkDecodeRequired(.currency)
-        disputed = try container.sdkDecodeRequired(.disputed)
-        id = try container.sdkDecodeRequired(.id)
-        livemode = try container.sdkDecodeRequired(.livemode)
-        metadata = try container.sdkDecodeRequired(.metadata)
-        object = try container.sdkDecodeRequired(.object)
-        paid = try container.sdkDecodeRequired(.paid)
-        refunded = try container.sdkDecodeRequired(.refunded)
-        status = try container.sdkDecodeRequired(.status)
-        application = try container.sdkDecodeIfPresent(.application)
-        applicationFee = try container.sdkDecodeIfPresent(.applicationFee)
-        applicationFeeAmount = try container.sdkDecodeIfPresent(.applicationFeeAmount)
-        balanceTransaction = try container.sdkDecodeIfPresent(.balanceTransaction)
-        calculatedStatementDescriptor = try container.sdkDecodeIfPresent(.calculatedStatementDescriptor)
-        customer = try container.sdkDecodeIfPresent(.customer)
-        description = try container.sdkDecodeIfPresent(.description)
-        failureBalanceTransaction = try container.sdkDecodeIfPresent(.failureBalanceTransaction)
-        failureCode = try container.sdkDecodeIfPresent(.failureCode)
-        failureMessage = try container.sdkDecodeIfPresent(.failureMessage)
-        fraudDetails = try container.sdkDecodeIfPresent(.fraudDetails)
-        onBehalfOf = try container.sdkDecodeIfPresent(.onBehalfOf)
-        outcome = try container.sdkDecodeIfPresent(.outcome)
-        paymentIntent = try container.sdkDecodeIfPresent(.paymentIntent)
-        paymentMethod = try container.sdkDecodeIfPresent(.paymentMethod)
-        paymentMethodDetails = try container.sdkDecodeIfPresent(.paymentMethodDetails)
-        presentmentDetails = try container.sdkDecodeIfPresent(.presentmentDetails)
-        radarOptions = try container.sdkDecodeIfPresent(.radarOptions)
-        receiptEmail = try container.sdkDecodeIfPresent(.receiptEmail)
-        receiptNumber = try container.sdkDecodeIfPresent(.receiptNumber)
-        receiptUrl = try container.sdkDecodeIfPresent(.receiptUrl)
-        refunds = try container.sdkDecodeIfPresent(.refunds)
-        review = try container.sdkDecodeIfPresent(.review)
-        shipping = try container.sdkDecodeIfPresent(.shipping)
-        sourceTransfer = try container.sdkDecodeIfPresent(.sourceTransfer)
-        statementDescriptor = try container.sdkDecodeIfPresent(.statementDescriptor)
-        statementDescriptorSuffix = try container.sdkDecodeIfPresent(.statementDescriptorSuffix)
-        transfer = try container.sdkDecodeIfPresent(.transfer)
-        transferData = try container.sdkDecodeIfPresent(.transferData)
-        transferGroup = try container.sdkDecodeIfPresent(.transferGroup)
+        self.amount = try container.sdkDecodeRequired(.amount)
+        self.amountCaptured = try container.sdkDecodeRequired(.amountCaptured)
+        self.amountRefunded = try container.sdkDecodeRequired(.amountRefunded)
+        self.billingDetails = try container.sdkDecodeRequired(.billingDetails)
+        self.captured = try container.sdkDecodeRequired(.captured)
+        self.created = try container.sdkDecodeRequired(.created)
+        self.currency = try container.sdkDecodeRequired(.currency)
+        self.disputed = try container.sdkDecodeRequired(.disputed)
+        self.id = try container.sdkDecodeRequired(.id)
+        self.livemode = try container.sdkDecodeRequired(.livemode)
+        self.metadata = try container.sdkDecodeRequired(.metadata)
+        self.object = try container.sdkDecodeRequired(.object)
+        self.paid = try container.sdkDecodeRequired(.paid)
+        self.refunded = try container.sdkDecodeRequired(.refunded)
+        self.status = try container.sdkDecodeRequired(.status)
+        self.application = try container.sdkDecodeIfPresent(.application)
+        self.applicationFee = try container.sdkDecodeIfPresent(.applicationFee)
+        self.applicationFeeAmount = try container.sdkDecodeIfPresent(.applicationFeeAmount)
+        self.balanceTransaction = try container.sdkDecodeIfPresent(.balanceTransaction)
+        self.calculatedStatementDescriptor = try container.sdkDecodeIfPresent(.calculatedStatementDescriptor)
+        self.customer = try container.sdkDecodeIfPresent(.customer)
+        self.description = try container.sdkDecodeIfPresent(.description)
+        self.failureBalanceTransaction = try container.sdkDecodeIfPresent(.failureBalanceTransaction)
+        self.failureCode = try container.sdkDecodeIfPresent(.failureCode)
+        self.failureMessage = try container.sdkDecodeIfPresent(.failureMessage)
+        self.fraudDetails = try container.sdkDecodeIfPresent(.fraudDetails)
+        self.onBehalfOf = try container.sdkDecodeIfPresent(.onBehalfOf)
+        self.outcome = try container.sdkDecodeIfPresent(.outcome)
+        self.paymentIntent = try container.sdkDecodeIfPresent(.paymentIntent)
+        self.paymentMethod = try container.sdkDecodeIfPresent(.paymentMethod)
+        self.paymentMethodDetails = try container.sdkDecodeIfPresent(.paymentMethodDetails)
+        self.presentmentDetails = try container.sdkDecodeIfPresent(.presentmentDetails)
+        self.radarOptions = try container.sdkDecodeIfPresent(.radarOptions)
+        self.receiptEmail = try container.sdkDecodeIfPresent(.receiptEmail)
+        self.receiptNumber = try container.sdkDecodeIfPresent(.receiptNumber)
+        self.receiptUrl = try container.sdkDecodeIfPresent(.receiptUrl)
+        self.refunds = try container.sdkDecodeIfPresent(.refunds)
+        self.review = try container.sdkDecodeIfPresent(.review)
+        self.shipping = try container.sdkDecodeIfPresent(.shipping)
+        self.sourceTransfer = try container.sdkDecodeIfPresent(.sourceTransfer)
+        self.statementDescriptor = try container.sdkDecodeIfPresent(.statementDescriptor)
+        self.statementDescriptorSuffix = try container.sdkDecodeIfPresent(.statementDescriptorSuffix)
+        self.transfer = try container.sdkDecodeIfPresent(.transfer)
+        self.transferData = try container.sdkDecodeIfPresent(.transferData)
+        self.transferGroup = try container.sdkDecodeIfPresent(.transferGroup)
         try sdkValidateConstraints()
     }
 }
 
-public extension Charge {
-    init(
-        amount: Int,
-        amountCaptured: Int,
-        amountRefunded: Int,
-        billingDetails: BillingDetails,
-        captured: Bool,
-        created: Int,
-        currency: String,
-        disputed: Bool,
-        id: String,
-        livemode: Bool,
-        metadata: [String: String],
-        object: ChargeObject,
-        paid: Bool,
-        refunded: Bool,
-        status: ChargeStatus,
-        application: ChargeApplication? = nil,
-        applicationFee: ChargeApplicationFee? = nil,
-        applicationFeeAmount: Int? = nil,
-        balanceTransaction: ChargeBalanceTransaction? = nil,
-        calculatedStatementDescriptor: String? = nil,
-        customer: ChargeCustomer? = nil,
-        description: String? = nil,
-        failureBalanceTransaction: ChargeFailureBalanceTransaction? = nil,
-        failureCode: String? = nil,
-        failureMessage: String? = nil,
-        fraudDetails: ChargeFraudDetailsXd3933fa0? = nil,
-        onBehalfOf: ChargeOnBehalfOf? = nil,
-        outcome: ChargeOutcomeX98af5532? = nil,
-        paymentIntent: ChargePaymentIntent? = nil,
-        paymentMethod: String? = nil,
-        paymentMethodDetails: ChargePaymentMethodDetails? = nil,
-        presentmentDetails: PaymentFlowsPaymentIntentPresentmentDetails? = nil,
-        radarOptions: RadarRadarOptions? = nil,
-        receiptEmail: String? = nil,
-        receiptNumber: String? = nil,
-        receiptUrl: String? = nil,
-        refunds: ChargeRefunds? = nil,
-        review: ChargeReview? = nil,
-        shipping: ChargeShipping? = nil,
-        sourceTransfer: ChargeSourceTransfer? = nil,
-        statementDescriptor: String? = nil,
-        statementDescriptorSuffix: String? = nil,
-        transfer: ChargeTransfer? = nil,
-        transferData: ChargeTransferDataXa9a536ab? = nil,
-        transferGroup: String? = nil
-    ) throws {
+extension Charge {
+    public init(amount: Int, amountCaptured: Int, amountRefunded: Int, billingDetails: BillingDetails, captured: Bool, created: Int, currency: String, disputed: Bool, id: String, livemode: Bool, metadata: [String: String], object: ChargeObject, paid: Bool, refunded: Bool, status: ChargeStatus, application: ChargeApplication? = nil, applicationFee: ChargeApplicationFee? = nil, applicationFeeAmount: Int? = nil, balanceTransaction: ChargeBalanceTransaction? = nil, calculatedStatementDescriptor: String? = nil, customer: ChargeCustomer? = nil, description: String? = nil, failureBalanceTransaction: ChargeFailureBalanceTransaction? = nil, failureCode: String? = nil, failureMessage: String? = nil, fraudDetails: ChargeFraudDetailsXd3933fa0? = nil, onBehalfOf: ChargeOnBehalfOf? = nil, outcome: ChargeOutcomeX98af5532? = nil, paymentIntent: ChargePaymentIntent? = nil, paymentMethod: String? = nil, paymentMethodDetails: ChargePaymentMethodDetails? = nil, presentmentDetails: PaymentFlowsPaymentIntentPresentmentDetails? = nil, radarOptions: RadarRadarOptions? = nil, receiptEmail: String? = nil, receiptNumber: String? = nil, receiptUrl: String? = nil, refunds: ChargeRefunds? = nil, review: ChargeReview? = nil, shipping: ChargeShipping? = nil, sourceTransfer: ChargeSourceTransfer? = nil, statementDescriptor: String? = nil, statementDescriptorSuffix: String? = nil, transfer: ChargeTransfer? = nil, transferData: ChargeTransferDataXa9a536ab? = nil, transferGroup: String? = nil) throws {
         (self.amount, self.amountCaptured) = (amount, amountCaptured)
         (self.amountRefunded, self.billingDetails) = (amountRefunded, billingDetails)
         (self.captured, self.created) = (captured, created)
@@ -307,38 +259,38 @@ public extension Charge {
 
 extension Charge {
     func sdkValidateConstraints() throws {
-        try validateLength("id", id, min: nil, max: 5000)
-        if let value = calculatedStatementDescriptor {
+            try validateLength("id", self.id, min: nil, max: 5000)
+        if let value = self.calculatedStatementDescriptor {
             try validateLength("calculated_statement_descriptor", value, min: nil, max: 5000)
         }
-        if let value = description {
+        if let value = self.description {
             try validateLength("description", value, min: nil, max: 40000)
         }
-        if let value = failureCode {
+        if let value = self.failureCode {
             try validateLength("failure_code", value, min: nil, max: 5000)
         }
-        if let value = failureMessage {
+        if let value = self.failureMessage {
             try validateLength("failure_message", value, min: nil, max: 5000)
         }
-        if let value = paymentMethod {
+        if let value = self.paymentMethod {
             try validateLength("payment_method", value, min: nil, max: 5000)
         }
-        if let value = receiptEmail {
+        if let value = self.receiptEmail {
             try validateLength("receipt_email", value, min: nil, max: 5000)
         }
-        if let value = receiptNumber {
+        if let value = self.receiptNumber {
             try validateLength("receipt_number", value, min: nil, max: 5000)
         }
-        if let value = receiptUrl {
+        if let value = self.receiptUrl {
             try validateLength("receipt_url", value, min: nil, max: 5000)
         }
-        if let value = statementDescriptor {
+        if let value = self.statementDescriptor {
             try validateLength("statement_descriptor", value, min: nil, max: 5000)
         }
-        if let value = statementDescriptorSuffix {
+        if let value = self.statementDescriptorSuffix {
             try validateLength("statement_descriptor_suffix", value, min: nil, max: 5000)
         }
-        if let value = transferGroup {
+        if let value = self.transferGroup {
             try validateLength("transfer_group", value, min: nil, max: 5000)
         }
     }
@@ -350,31 +302,21 @@ public enum ChargeApplication {
 }
 
 extension ChargeApplication: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for ChargeApplication"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for ChargeApplication")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(Application.self) {
-            return .application(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(Application.self) { return .application(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -384,39 +326,30 @@ extension ChargeApplication: Codable {
         case let .application(value): try container.encode(value); return true
         }
     }
+
 }
 
-public enum ChargeApplicationFee {
+public indirect enum ChargeApplicationFee {
     case stringValue(String)
     case applicationFee(ApplicationFee)
 }
 
 extension ChargeApplicationFee: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for ChargeApplicationFee"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for ChargeApplicationFee")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(ApplicationFee.self) {
-            return .applicationFee(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(ApplicationFee.self) { return .applicationFee(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -426,39 +359,30 @@ extension ChargeApplicationFee: Codable {
         case let .applicationFee(value): try container.encode(value); return true
         }
     }
+
 }
 
-public enum ChargeBalanceTransaction {
+public indirect enum ChargeBalanceTransaction {
     case stringValue(String)
     case balanceTransaction(BalanceTransaction)
 }
 
 extension ChargeBalanceTransaction: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for ChargeBalanceTransaction"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for ChargeBalanceTransaction")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(BalanceTransaction.self) {
-            return .balanceTransaction(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(BalanceTransaction.self) { return .balanceTransaction(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -468,40 +392,32 @@ extension ChargeBalanceTransaction: Codable {
         case let .balanceTransaction(value): try container.encode(value); return true
         }
     }
+
 }
 
-public enum ChargeCustomer {
+public indirect enum ChargeCustomer {
     case stringValue(String)
     case customer(Customer)
     case deletedCustomer(DeletedCustomer)
 }
 
 extension ChargeCustomer: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
         throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for ChargeCustomer")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(Customer.self) {
-            return .customer(value)
-        }
-        if let value = try? container.decode(DeletedCustomer.self) {
-            return .deletedCustomer(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(Customer.self) { return .customer(value) }
+        if let value = try? container.decode(DeletedCustomer.self) { return .deletedCustomer(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -512,39 +428,30 @@ extension ChargeCustomer: Codable {
         case let .deletedCustomer(value): try container.encode(value); return true
         }
     }
+
 }
 
-public enum ChargeFailureBalanceTransaction {
+public indirect enum ChargeFailureBalanceTransaction {
     case stringValue(String)
     case balanceTransaction(BalanceTransaction)
 }
 
 extension ChargeFailureBalanceTransaction: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for ChargeFailureBalanceTransaction"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for ChargeFailureBalanceTransaction")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(BalanceTransaction.self) {
-            return .balanceTransaction(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(BalanceTransaction.self) { return .balanceTransaction(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -554,6 +461,7 @@ extension ChargeFailureBalanceTransaction: Codable {
         case let .balanceTransaction(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum ChargeFraudDetailsXd3933fa0 {
@@ -561,28 +469,20 @@ public enum ChargeFraudDetailsXd3933fa0 {
 }
 
 extension ChargeFraudDetailsXd3933fa0: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for ChargeFraudDetailsXd3933fa0"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for ChargeFraudDetailsXd3933fa0")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(ChargeFraudDetails.self) {
-            return .chargeFraudDetails(value)
-        }
+        if let value = try? container.decode(ChargeFraudDetails.self) { return .chargeFraudDetails(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -591,6 +491,7 @@ extension ChargeFraudDetailsXd3933fa0: Codable {
         case let .chargeFraudDetails(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum ChargeOnBehalfOf {
@@ -599,31 +500,21 @@ public enum ChargeOnBehalfOf {
 }
 
 extension ChargeOnBehalfOf: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for ChargeOnBehalfOf"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for ChargeOnBehalfOf")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(Account.self) {
-            return .account(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(Account.self) { return .account(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -633,6 +524,7 @@ extension ChargeOnBehalfOf: Codable {
         case let .account(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum ChargeOutcomeX98af5532 {
@@ -640,28 +532,20 @@ public enum ChargeOutcomeX98af5532 {
 }
 
 extension ChargeOutcomeX98af5532: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for ChargeOutcomeX98af5532"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for ChargeOutcomeX98af5532")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(ChargeOutcome.self) {
-            return .chargeOutcome(value)
-        }
+        if let value = try? container.decode(ChargeOutcome.self) { return .chargeOutcome(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -670,4 +554,5 @@ extension ChargeOutcomeX98af5532: Codable {
         case let .chargeOutcome(value): try container.encode(value); return true
         }
     }
+
 }

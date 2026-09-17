@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1Accounts operation model declarations
+// Canonical v1Accounts operation model declarations
 public struct PostAccountsAccountRequestBodyCapabilitiesCardPayments: Codable {
     public var requested: Bool?
 
@@ -16,19 +16,19 @@ public struct PostAccountsAccountRequestBodyCapabilitiesCardPayments: Codable {
     }
 
     init() {
-        requested = nil
+        self.requested = nil
     }
 }
 
-public extension PostAccountsAccountRequestBodyCapabilitiesCardPayments {
-    init(from decoder: Decoder) throws {
+extension PostAccountsAccountRequestBodyCapabilitiesCardPayments {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        requested = try container.sdkDecodeIfPresent(.requested)
+        self.requested = try container.sdkDecodeIfPresent(.requested)
     }
 }
 
-public extension PostAccountsAccountRequestBodyCapabilitiesCardPayments {
-    init(requested: Bool? = nil) {
+extension PostAccountsAccountRequestBodyCapabilitiesCardPayments {
+    public init(requested: Bool? = nil) {
         self.init()
         self.requested = requested
     }
@@ -42,19 +42,19 @@ public struct PostAccountsAccountRequestBodyCapabilitiesNaverPayPayments: Codabl
     }
 
     init() {
-        requested = nil
+        self.requested = nil
     }
 }
 
-public extension PostAccountsAccountRequestBodyCapabilitiesNaverPayPayments {
-    init(from decoder: Decoder) throws {
+extension PostAccountsAccountRequestBodyCapabilitiesNaverPayPayments {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        requested = try container.sdkDecodeIfPresent(.requested)
+        self.requested = try container.sdkDecodeIfPresent(.requested)
     }
 }
 
-public extension PostAccountsAccountRequestBodyCapabilitiesNaverPayPayments {
-    init(requested: Bool? = nil) {
+extension PostAccountsAccountRequestBodyCapabilitiesNaverPayPayments {
+    public init(requested: Bool? = nil) {
         self.init()
         self.requested = requested
     }
@@ -72,25 +72,21 @@ public struct PostAccountsRequestBodySettingsTreasuryTosAcceptance: Codable {
     }
 
     init() {
-        (date, ip, userAgent) = (nil, nil, nil)
+        (self.date, self.ip, self.userAgent) = (nil, nil, nil)
     }
 }
 
-public extension PostAccountsRequestBodySettingsTreasuryTosAcceptance {
-    init(from decoder: Decoder) throws {
+extension PostAccountsRequestBodySettingsTreasuryTosAcceptance {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        date = try container.sdkDecodeIfPresent(.date)
-        ip = try container.sdkDecodeIfPresent(.ip)
-        userAgent = try container.sdkDecodeIfPresent(.userAgent)
+        self.date = try container.sdkDecodeIfPresent(.date)
+        self.ip = try container.sdkDecodeIfPresent(.ip)
+        self.userAgent = try container.sdkDecodeIfPresent(.userAgent)
     }
 }
 
-public extension PostAccountsRequestBodySettingsTreasuryTosAcceptance {
-    init(
-        date: Int? = nil,
-        ip: String? = nil,
-        userAgent: PostAccountsRequestBodySettingsTreasuryTosAcceptanceUserAgent? = nil
-    ) {
+extension PostAccountsRequestBodySettingsTreasuryTosAcceptance {
+    public init(date: Int? = nil, ip: String? = nil, userAgent: PostAccountsRequestBodySettingsTreasuryTosAcceptanceUserAgent? = nil) {
         self.init()
         (self.date, self.ip) = (date, ip)
         self.userAgent = userAgent

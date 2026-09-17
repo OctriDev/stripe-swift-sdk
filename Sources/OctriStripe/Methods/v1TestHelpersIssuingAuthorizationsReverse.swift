@@ -7,8 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1TestHelpersIssuingAuthorizationsReverseMethods {
-    /// Reverses an Issuing authorization in test mode. Use `reverse_amount` to reverse a partial amount or omit it to
-    /// reverse the full authorization amount, and optionally expand fields in the response.
+    /// Reverses an Issuing authorization in test mode. Use `reverse_amount` to reverse a partial amount or omit it to reverse the full authorization amount, and optionally expand fields in the response.
     ///
     /// Reverse a test-mode Authorization.
     ///
@@ -18,28 +17,11 @@ public enum V1TestHelpersIssuingAuthorizationsReverseMethods {
     ///   provided, the full amount of the authorization will be reversed. This amount
     ///   is in the authorization currency and in the [smallest currency
     ///   unit](https://docs.stripe.com/currencies#zero-decimal).
-    public static func postTestHelpersIssuingAuthorizationsAuthorizationReverse(
-        config: ClientConfig,
-        authorization: String,
-        expand: [String]?,
-        reverseAmount: Int?
-    ) async throws -> IssuingAuthorization {
+    public static func postTestHelpersIssuingAuthorizationsAuthorizationReverse(config: ClientConfig, authorization: String, expand: [String]?, reverseAmount: Int?) async throws -> IssuingAuthorization {
         try validateLength("authorization", authorization, max: 5000)
 
-        let requestBody = PostTestHelpersIssuingAuthorizationsAuthorizationReverseRequestBody(
-            expand: expand,
-            reverseAmount: reverseAmount
-        )
+        let requestBody = PostTestHelpersIssuingAuthorizationsAuthorizationReverseRequestBody(expand: expand, reverseAmount: reverseAmount)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/test_helpers/issuing/authorizations/", sdkEncodePathSegment(sdkWireString(authorization)), "/reverse"]
-                .joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostTestHelpersIssuingAuthorizationsAuthorizationReverse"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/test_helpers/issuing/authorizations/", sdkEncodePathSegment(sdkWireString(authorization)), "/reverse"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTestHelpersIssuingAuthorizationsAuthorizationReverse")).data
     }
 }

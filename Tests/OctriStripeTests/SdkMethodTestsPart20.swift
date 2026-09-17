@@ -11,8 +11,7 @@ extension SdkMethodTests {
             return
         }
         _ = client
-        var options = try V1PaymentLinksMethods
-            .PostPaymentLinksPaymentLinkOptions(paymentLink: decoded("\"https://example.com\""))
+        var options = try V1PaymentLinksMethods.PostPaymentLinksPaymentLinkOptions(paymentLink: decoded("\"https://example.com\""))
         options.active = try decoded("false")
         options.afterCompletion = try decoded(sdkMethodFixture441Value1)
         options.allowPromotionCodes = try decoded("false")
@@ -141,14 +140,12 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostPaymentMethodConfigurationsConfigurationPostPaymentMethodXb9981a53b8ReachesMockAndDecodesResponse(
-    ) async throws {
+    func testPostPaymentMethodConfigurationsConfigurationPostPaymentMethodXb9981a53b8ReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        var options = try V1PaymentMethodConfigurationsMethods
-            .PostPaymentMethodConfigurationsConfigurationOptions(configuration: decoded("\"configuration\""))
+        var options = try V1PaymentMethodConfigurationsMethods.PostPaymentMethodConfigurationsConfigurationOptions(configuration: decoded("\"configuration\""))
         options.acssDebit = try decoded("{\"display_preference\":{\"preference\":\"none\"}}")
         options.active = try decoded("false")
         options.affirm = try decoded("{\"display_preference\":{\"preference\":\"none\"}}")
@@ -247,8 +244,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostPaymentMethodDomainsPaymentMethodDomainPostPaymentMethodDX700d586d3fReachesMockAndDecodesResponse(
-    ) async throws {
+    func testPostPaymentMethodDomainsPaymentMethodDomainPostPaymentMethodDX700d586d3fReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -268,8 +264,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostPaymentMethodDomainsPaymentMethodDomainValidatePostPaymenX99bbeffdbcReachesMockAndDecodesResponse(
-    ) async throws {
+    func testPostPaymentMethodDomainsPaymentMethodDomainValidatePostPaymenX99bbeffdbcReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -395,8 +390,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostPaymentMethodsPaymentMethodAttachPostPaymentMethodsPaymenX110b0e328fReachesMockAndDecodesResponse(
-    ) async throws {
+    func testPostPaymentMethodsPaymentMethodAttachPostPaymentMethodsPaymenX110b0e328fReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -418,8 +412,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostPaymentMethodsPaymentMethodDetachPostPaymentMethodsPaymenXd6e18c1b13ReachesMockAndDecodesResponse(
-    ) async throws {
+    func testPostPaymentMethodsPaymentMethodDetachPostPaymentMethodsPaymenXd6e18c1b13ReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -439,16 +432,12 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostPaymentRecordsIdReportPaymentAttemptPostPaymentRecordsIdRXcaef54cd01ReachesMockAndDecodesResponse(
-    ) async throws {
+    func testPostPaymentRecordsIdReportPaymentAttemptPostPaymentRecordsIdRXcaef54cd01ReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        var options = try V1PaymentRecordsReportPaymentAttemptMethods.PostPaymentRecordsIdReportPaymentAttemptOptions(
-            id: decoded("\"id-1\""),
-            initiatedAt: decoded("1")
-        )
+        var options = try V1PaymentRecordsReportPaymentAttemptMethods.PostPaymentRecordsIdReportPaymentAttemptOptions(id: decoded("\"id-1\""), initiatedAt: decoded("1"))
         options.description = try decoded("\"example text\"")
         options.expand = try decoded("[\"expand\"]")
         options.failed = try decoded("{\"failed_at\":1}")
@@ -471,8 +460,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostPaymentRecordsIdReportPaymentAttemptCanceledPostPaymentReX2937e89a17ReachesMockAndDecodesResponse(
-    ) async throws {
+    func testPostPaymentRecordsIdReportPaymentAttemptCanceledPostPaymentReX2937e89a17ReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -494,8 +482,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostPaymentRecordsIdReportPaymentAttemptFailedPostPaymentRecoXb64a7dd93bReachesMockAndDecodesResponse(
-    ) async throws {
+    func testPostPaymentRecordsIdReportPaymentAttemptFailedPostPaymentRecoXb64a7dd93bReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -517,8 +504,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostPaymentRecordsIdReportPaymentAttemptGuaranteedPostPaymentXc6aa4a9f92ReachesMockAndDecodesResponse(
-    ) async throws {
+    func testPostPaymentRecordsIdReportPaymentAttemptGuaranteedPostPaymentXc6aa4a9f92ReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -540,8 +526,7 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostPaymentRecordsIdReportPaymentAttemptInformationalPostPaymX9ba2e6e94cReachesMockAndDecodesResponse(
-    ) async throws {
+    func testPostPaymentRecordsIdReportPaymentAttemptInformationalPostPaymX9ba2e6e94cReachesMockAndDecodesResponse() async throws {
         guard let client = configuredClient() else {
             return
         }

@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1PaymentMethod domain models
+// V1PaymentMethod domain models
 /// Typed representation of the `PaymentMethodAcssDebit` API schema.
 public struct PaymentMethodAcssDebit: Codable {
     /// Name of the bank associated with the bank account.
@@ -27,44 +27,38 @@ public struct PaymentMethodAcssDebit: Codable {
     }
 
     init() {
-        (bankName, fingerprint, institutionNumber, last4, transitNumber) = (nil, nil, nil, nil, nil)
+        (self.bankName, self.fingerprint, self.institutionNumber, self.last4, self.transitNumber) = (nil, nil, nil, nil, nil)
     }
 }
 
-public extension PaymentMethodAcssDebit {
-    init(from decoder: Decoder) throws {
+extension PaymentMethodAcssDebit {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        bankName = try container.sdkDecodeIfPresent(.bankName)
-        fingerprint = try container.sdkDecodeIfPresent(.fingerprint)
-        institutionNumber = try container.sdkDecodeIfPresent(.institutionNumber)
-        last4 = try container.sdkDecodeIfPresent(.last4)
-        transitNumber = try container.sdkDecodeIfPresent(.transitNumber)
-        if let value = bankName {
+        self.bankName = try container.sdkDecodeIfPresent(.bankName)
+        self.fingerprint = try container.sdkDecodeIfPresent(.fingerprint)
+        self.institutionNumber = try container.sdkDecodeIfPresent(.institutionNumber)
+        self.last4 = try container.sdkDecodeIfPresent(.last4)
+        self.transitNumber = try container.sdkDecodeIfPresent(.transitNumber)
+        if let value = self.bankName {
             try validateLength("bank_name", value, min: nil, max: 5000)
         }
-        if let value = fingerprint {
+        if let value = self.fingerprint {
             try validateLength("fingerprint", value, min: nil, max: 5000)
         }
-        if let value = institutionNumber {
+        if let value = self.institutionNumber {
             try validateLength("institution_number", value, min: nil, max: 5000)
         }
-        if let value = last4 {
+        if let value = self.last4 {
             try validateLength("last4", value, min: nil, max: 5000)
         }
-        if let value = transitNumber {
+        if let value = self.transitNumber {
             try validateLength("transit_number", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PaymentMethodAcssDebit {
-    init(
-        bankName: String? = nil,
-        fingerprint: String? = nil,
-        institutionNumber: String? = nil,
-        last4: String? = nil,
-        transitNumber: String? = nil
-    ) throws {
+extension PaymentMethodAcssDebit {
+    public init(bankName: String? = nil, fingerprint: String? = nil, institutionNumber: String? = nil, last4: String? = nil, transitNumber: String? = nil) throws {
         self.init()
         (self.bankName, self.fingerprint) = (bankName, fingerprint)
         (self.institutionNumber, self.last4) = (institutionNumber, last4)
@@ -89,46 +83,46 @@ public extension PaymentMethodAcssDebit {
 
 /// Typed representation of the `PaymentMethodAffirm` API schema.
 public struct PaymentMethodAffirm: Codable {
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PaymentMethodAffirm {
-    init() {}
+extension PaymentMethodAffirm {
+    public init() {
+    }
 }
 
 /// Typed representation of the `PaymentMethodAfterpayClearpay` API schema.
 public struct PaymentMethodAfterpayClearpay: Codable {
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PaymentMethodAfterpayClearpay {
-    init() {}
+extension PaymentMethodAfterpayClearpay {
+    public init() {
+    }
 }
 
 /// Typed representation of the `PaymentMethodAlma` API schema.
 public struct PaymentMethodAlma: Codable {
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PaymentMethodAlma {
-    init() {}
+extension PaymentMethodAlma {
+    public init() {
+    }
 }
 
 /// Typed representation of the `PaymentMethodAmazonPay` API schema.
 public struct PaymentMethodAmazonPay: Codable {
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PaymentMethodAmazonPay {
-    init() {}
+extension PaymentMethodAmazonPay {
+    public init() {
+    }
 }
 
 /// Typed representation of the `PaymentMethodAuBecsDebit` API schema.
@@ -148,30 +142,30 @@ public struct PaymentMethodAuBecsDebit: Codable {
     }
 
     init() {
-        (bsbNumber, fingerprint, last4) = (nil, nil, nil)
+        (self.bsbNumber, self.fingerprint, self.last4) = (nil, nil, nil)
     }
 }
 
-public extension PaymentMethodAuBecsDebit {
-    init(from decoder: Decoder) throws {
+extension PaymentMethodAuBecsDebit {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        bsbNumber = try container.sdkDecodeIfPresent(.bsbNumber)
-        fingerprint = try container.sdkDecodeIfPresent(.fingerprint)
-        last4 = try container.sdkDecodeIfPresent(.last4)
-        if let value = bsbNumber {
+        self.bsbNumber = try container.sdkDecodeIfPresent(.bsbNumber)
+        self.fingerprint = try container.sdkDecodeIfPresent(.fingerprint)
+        self.last4 = try container.sdkDecodeIfPresent(.last4)
+        if let value = self.bsbNumber {
             try validateLength("bsb_number", value, min: nil, max: 5000)
         }
-        if let value = fingerprint {
+        if let value = self.fingerprint {
             try validateLength("fingerprint", value, min: nil, max: 5000)
         }
-        if let value = last4 {
+        if let value = self.last4 {
             try validateLength("last4", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PaymentMethodAuBecsDebit {
-    init(bsbNumber: String? = nil, fingerprint: String? = nil, last4: String? = nil) throws {
+extension PaymentMethodAuBecsDebit {
+    public init(bsbNumber: String? = nil, fingerprint: String? = nil, last4: String? = nil) throws {
         self.init()
         (self.bsbNumber, self.fingerprint) = (bsbNumber, fingerprint)
         self.last4 = last4
@@ -204,30 +198,30 @@ public struct PaymentMethodBacsDebit: Codable {
     }
 
     init() {
-        (fingerprint, last4, sortCode) = (nil, nil, nil)
+        (self.fingerprint, self.last4, self.sortCode) = (nil, nil, nil)
     }
 }
 
-public extension PaymentMethodBacsDebit {
-    init(from decoder: Decoder) throws {
+extension PaymentMethodBacsDebit {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        fingerprint = try container.sdkDecodeIfPresent(.fingerprint)
-        last4 = try container.sdkDecodeIfPresent(.last4)
-        sortCode = try container.sdkDecodeIfPresent(.sortCode)
-        if let value = fingerprint {
+        self.fingerprint = try container.sdkDecodeIfPresent(.fingerprint)
+        self.last4 = try container.sdkDecodeIfPresent(.last4)
+        self.sortCode = try container.sdkDecodeIfPresent(.sortCode)
+        if let value = self.fingerprint {
             try validateLength("fingerprint", value, min: nil, max: 5000)
         }
-        if let value = last4 {
+        if let value = self.last4 {
             try validateLength("last4", value, min: nil, max: 5000)
         }
-        if let value = sortCode {
+        if let value = self.sortCode {
             try validateLength("sort_code", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PaymentMethodBacsDebit {
-    init(fingerprint: String? = nil, last4: String? = nil, sortCode: String? = nil) throws {
+extension PaymentMethodBacsDebit {
+    public init(fingerprint: String? = nil, last4: String? = nil, sortCode: String? = nil) throws {
         self.init()
         (self.fingerprint, self.last4) = (fingerprint, last4)
         self.sortCode = sortCode
@@ -245,24 +239,24 @@ public extension PaymentMethodBacsDebit {
 
 /// Typed representation of the `PaymentMethodBancontact` API schema.
 public struct PaymentMethodBancontact: Codable {
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PaymentMethodBancontact {
-    init() {}
+extension PaymentMethodBancontact {
+    public init() {
+    }
 }
 
 /// Typed representation of the `PaymentMethodBillie` API schema.
 public struct PaymentMethodBillie: Codable {
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PaymentMethodBillie {
-    init() {}
+extension PaymentMethodBillie {
+    public init() {
+    }
 }
 
 /// Typed representation of the `PaymentMethodBizum` API schema.
@@ -275,22 +269,22 @@ public struct PaymentMethodBizum: Codable {
     }
 
     init() {
-        buyerId = nil
+        self.buyerId = nil
     }
 }
 
-public extension PaymentMethodBizum {
-    init(from decoder: Decoder) throws {
+extension PaymentMethodBizum {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        buyerId = try container.sdkDecodeIfPresent(.buyerId)
-        if let value = buyerId {
+        self.buyerId = try container.sdkDecodeIfPresent(.buyerId)
+        if let value = self.buyerId {
             try validateLength("buyer_id", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PaymentMethodBizum {
-    init(buyerId: String? = nil) throws {
+extension PaymentMethodBizum {
+    public init(buyerId: String? = nil) throws {
         self.init()
         self.buyerId = buyerId
         if let value = self.buyerId {
@@ -309,22 +303,22 @@ public struct PaymentMethodBlik: Codable {
     }
 
     init() {
-        buyerId = nil
+        self.buyerId = nil
     }
 }
 
-public extension PaymentMethodBlik {
-    init(from decoder: Decoder) throws {
+extension PaymentMethodBlik {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        buyerId = try container.sdkDecodeIfPresent(.buyerId)
-        if let value = buyerId {
+        self.buyerId = try container.sdkDecodeIfPresent(.buyerId)
+        if let value = self.buyerId {
             try validateLength("buyer_id", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PaymentMethodBlik {
-    init(buyerId: String? = nil) throws {
+extension PaymentMethodBlik {
+    public init(buyerId: String? = nil) throws {
         self.init()
         self.buyerId = buyerId
         if let value = self.buyerId {
@@ -342,30 +336,24 @@ public struct PaymentMethodBoleto: Codable {
         case taxId = "tax_id"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PaymentMethodBoleto {
-    init(from decoder: Decoder) throws {
+extension PaymentMethodBoleto {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.taxId) else {
-            throw SdkValidationError(
-                field: "tax_id",
-                code: "required",
-                message: "Validation failed for 'tax_id': value is required"
-            )
+            throw SdkValidationError(field: "tax_id", code: "required", message: "Validation failed for 'tax_id': value is required")
         }
-        taxId = try container.sdkDecodeRequired(.taxId)
-        try validateLength("tax_id", taxId, min: nil, max: 5000)
+        self.taxId = try container.sdkDecodeRequired(.taxId)
+            try validateLength("tax_id", self.taxId, min: nil, max: 5000)
     }
 }
 
-public extension PaymentMethodBoleto {
-    init(taxId: String) throws {
+extension PaymentMethodBoleto {
+    public init(taxId: String) throws {
         self.taxId = taxId
-        try validateLength("tax_id", self.taxId, min: nil, max: 5000)
+            try validateLength("tax_id", self.taxId, min: nil, max: 5000)
     }
 }
 
@@ -382,26 +370,26 @@ public struct PaymentMethodCashapp: Codable {
     }
 
     init() {
-        (buyerId, cashtag) = (nil, nil)
+        (self.buyerId, self.cashtag) = (nil, nil)
     }
 }
 
-public extension PaymentMethodCashapp {
-    init(from decoder: Decoder) throws {
+extension PaymentMethodCashapp {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        buyerId = try container.sdkDecodeIfPresent(.buyerId)
-        cashtag = try container.sdkDecodeIfPresent(.cashtag)
-        if let value = buyerId {
+        self.buyerId = try container.sdkDecodeIfPresent(.buyerId)
+        self.cashtag = try container.sdkDecodeIfPresent(.cashtag)
+        if let value = self.buyerId {
             try validateLength("buyer_id", value, min: nil, max: 5000)
         }
-        if let value = cashtag {
+        if let value = self.cashtag {
             try validateLength("cashtag", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PaymentMethodCashapp {
-    init(buyerId: String? = nil, cashtag: String? = nil) throws {
+extension PaymentMethodCashapp {
+    public init(buyerId: String? = nil, cashtag: String? = nil) throws {
         self.init()
         (self.buyerId, self.cashtag) = (buyerId, cashtag)
         if let value = self.buyerId {

@@ -7,30 +7,17 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1TerminalReadersCancelActionMethods {
-    /// Triggers cancellation of the current action running on a Terminal reader. Use this operation when you need to
-    /// stop an in-progress reader action, and use `expand` to request expanded response fields.
+    /// Triggers cancellation of the current action running on a Terminal reader. Use this operation when you need to stop an in-progress reader action, and use `expand` to request expanded response fields.
     ///
     /// Cancels the current reader action. See Programmatic Cancellation for more details.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postTerminalReadersReaderCancelAction(
-        config: ClientConfig,
-        reader: String,
-        expand: [String]?
-    ) async throws -> PostTerminalReadersReaderCancelActionResponse {
+    public static func postTerminalReadersReaderCancelAction(config: ClientConfig, reader: String, expand: [String]?) async throws -> PostTerminalReadersReaderCancelActionResponse {
         try validateLength("reader", reader, max: 5000)
 
         let requestBody = PostTerminalReadersReaderCancelActionRequestBody(expand: expand)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/terminal/readers/", sdkEncodePathSegment(sdkWireString(reader)), "/cancel_action"].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostTerminalReadersReaderCancelAction"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/terminal/readers/", sdkEncodePathSegment(sdkWireString(reader)), "/cancel_action"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTerminalReadersReaderCancelAction")).data
     }
 }

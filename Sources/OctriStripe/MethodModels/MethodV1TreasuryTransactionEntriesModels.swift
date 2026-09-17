@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1TreasuryTransactionEntries operation model declarations
+// Canonical v1TreasuryTransactionEntries operation model declarations
 public struct GetTreasuryTransactionEntriesParameterVariant0Xec058860: Codable {
     public var gt: Int?
     public var gte: Int?
@@ -22,22 +22,22 @@ public struct GetTreasuryTransactionEntriesParameterVariant0Xec058860: Codable {
     }
 
     init() {
-        (gt, gte, lt, lte) = (nil, nil, nil, nil)
+        (self.gt, self.gte, self.lt, self.lte) = (nil, nil, nil, nil)
     }
 }
 
-public extension GetTreasuryTransactionEntriesParameterVariant0Xec058860 {
-    init(from decoder: Decoder) throws {
+extension GetTreasuryTransactionEntriesParameterVariant0Xec058860 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        gt = try container.sdkDecodeIfPresent(.gt)
-        gte = try container.sdkDecodeIfPresent(.gte)
-        lt = try container.sdkDecodeIfPresent(.lt)
-        lte = try container.sdkDecodeIfPresent(.lte)
+        self.gt = try container.sdkDecodeIfPresent(.gt)
+        self.gte = try container.sdkDecodeIfPresent(.gte)
+        self.lt = try container.sdkDecodeIfPresent(.lt)
+        self.lte = try container.sdkDecodeIfPresent(.lte)
     }
 }
 
-public extension GetTreasuryTransactionEntriesParameterVariant0Xec058860 {
-    init(gt: Int? = nil, gte: Int? = nil, lt: Int? = nil, lte: Int? = nil) {
+extension GetTreasuryTransactionEntriesParameterVariant0Xec058860 {
+    public init(gt: Int? = nil, gte: Int? = nil, lt: Int? = nil, lte: Int? = nil) {
         self.init()
         (self.gt, self.gte) = (gt, gte)
         (self.lt, self.lte) = (lt, lte)
@@ -62,110 +62,77 @@ public struct GetTreasuryTransactionEntriesResponse: Codable {
         case url
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension GetTreasuryTransactionEntriesResponse {
-    init(from decoder: Decoder) throws {
+extension GetTreasuryTransactionEntriesResponse {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.data) else {
-            throw SdkValidationError(
-                field: "data",
-                code: "required",
-                message: "Validation failed for 'data': value is required"
-            )
+            throw SdkValidationError(field: "data", code: "required", message: "Validation failed for 'data': value is required")
         }
         guard container.contains(.hasMore) else {
-            throw SdkValidationError(
-                field: "has_more",
-                code: "required",
-                message: "Validation failed for 'has_more': value is required"
-            )
+            throw SdkValidationError(field: "has_more", code: "required", message: "Validation failed for 'has_more': value is required")
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(
-                field: "object",
-                code: "required",
-                message: "Validation failed for 'object': value is required"
-            )
+            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
         }
         guard container.contains(.url) else {
-            throw SdkValidationError(
-                field: "url",
-                code: "required",
-                message: "Validation failed for 'url': value is required"
-            )
+            throw SdkValidationError(field: "url", code: "required", message: "Validation failed for 'url': value is required")
         }
-        data = try container.sdkDecodeRequired(.data)
-        hasMore = try container.sdkDecodeRequired(.hasMore)
-        object = try container.sdkDecodeRequired(.object)
-        url = try container.sdkDecodeRequired(.url)
-        try validateLength("url", url, min: nil, max: 5000)
-        try sdkValidatePattern("url", url, sdkPattern8dd585c1f256)
+        self.data = try container.sdkDecodeRequired(.data)
+        self.hasMore = try container.sdkDecodeRequired(.hasMore)
+        self.object = try container.sdkDecodeRequired(.object)
+        self.url = try container.sdkDecodeRequired(.url)
+            try validateLength("url", self.url, min: nil, max: 5000)
+            try sdkValidatePattern("url", self.url, sdkPattern8dd585c1f256)
     }
 }
 
-public extension GetTreasuryTransactionEntriesResponse {
-    init(
-        data: [TreasuryTransactionEntry],
-        hasMore: Bool,
-        object: GetTreasuryTransactionEntriesResponseObject,
-        url: String
-    ) throws {
+extension GetTreasuryTransactionEntriesResponse {
+    public init(data: [TreasuryTransactionEntry], hasMore: Bool, object: GetTreasuryTransactionEntriesResponseObject, url: String) throws {
         (self.data, self.hasMore) = (data, hasMore)
         (self.object, self.url) = (object, url)
-        try validateLength("url", self.url, min: nil, max: 5000)
-        try sdkValidatePattern("url", self.url, sdkPattern8dd585c1f256)
+            try validateLength("url", self.url, min: nil, max: 5000)
+            try sdkValidatePattern("url", self.url, sdkPattern8dd585c1f256)
     }
 }
 
 public enum GetTreasuryTransactionEntriesParameterXf0247d5e {
-    case getTreasuryTransactionEntriesParameterVariant0Xec058860(
-        GetTreasuryTransactionEntriesParameterVariant0Xec058860
-    )
+    case getTreasuryTransactionEntriesParameterVariant0Xec058860(GetTreasuryTransactionEntriesParameterVariant0Xec058860)
     case intValue(Int)
 }
 
 extension GetTreasuryTransactionEntriesParameterXf0247d5e: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for GetTreasuryTransactionEntriesParameterXf0247d5e"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for GetTreasuryTransactionEntriesParameterXf0247d5e")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             GetTreasuryTransactionEntriesParameterVariant0Xec058860.self
         ) {
-            return .getTreasuryTransactionEntriesParameterVariant0Xec058860(value)
+            return             .getTreasuryTransactionEntriesParameterVariant0Xec058860(value)
         }
-        if let value = try? container.decode(Int.self) {
-            return .intValue(value)
-        }
+        if let value = try? container.decode(Int.self) { return .intValue(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .getTreasuryTransactionEntriesParameterVariant0Xec058860(value): try container
-            .encode(value); return true
+        case let .getTreasuryTransactionEntriesParameterVariant0Xec058860(value): try container.encode(value); return true
         case let .intValue(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum GetTreasuryTransactionEntriesParameter {
@@ -174,33 +141,25 @@ public enum GetTreasuryTransactionEntriesParameter {
 }
 
 extension GetTreasuryTransactionEntriesParameter: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for GetTreasuryTransactionEntriesParameter"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for GetTreasuryTransactionEntriesParameter")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             GetTreasuryTransactionEntriesParameterVariant0.self
         ) {
-            return .getTreasuryTransactionEntriesParameterVariant0(value)
+            return             .getTreasuryTransactionEntriesParameterVariant0(value)
         }
-        if let value = try? container.decode(Int.self) {
-            return .intValue(value)
-        }
+        if let value = try? container.decode(Int.self) { return .intValue(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -210,6 +169,7 @@ extension GetTreasuryTransactionEntriesParameter: Codable {
         case let .intValue(value): try container.encode(value); return true
         }
     }
+
 }
 
 public struct GetTreasuryTransactionEntriesParameterVariant0: Codable {
@@ -226,22 +186,22 @@ public struct GetTreasuryTransactionEntriesParameterVariant0: Codable {
     }
 
     init() {
-        (gt, gte, lt, lte) = (nil, nil, nil, nil)
+        (self.gt, self.gte, self.lt, self.lte) = (nil, nil, nil, nil)
     }
 }
 
-public extension GetTreasuryTransactionEntriesParameterVariant0 {
-    init(from decoder: Decoder) throws {
+extension GetTreasuryTransactionEntriesParameterVariant0 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        gt = try container.sdkDecodeIfPresent(.gt)
-        gte = try container.sdkDecodeIfPresent(.gte)
-        lt = try container.sdkDecodeIfPresent(.lt)
-        lte = try container.sdkDecodeIfPresent(.lte)
+        self.gt = try container.sdkDecodeIfPresent(.gt)
+        self.gte = try container.sdkDecodeIfPresent(.gte)
+        self.lt = try container.sdkDecodeIfPresent(.lt)
+        self.lte = try container.sdkDecodeIfPresent(.lte)
     }
 }
 
-public extension GetTreasuryTransactionEntriesParameterVariant0 {
-    init(gt: Int? = nil, gte: Int? = nil, lt: Int? = nil, lte: Int? = nil) {
+extension GetTreasuryTransactionEntriesParameterVariant0 {
+    public init(gt: Int? = nil, gte: Int? = nil, lt: Int? = nil, lte: Int? = nil) {
         self.init()
         (self.gt, self.gte) = (gt, gte)
         (self.lt, self.lte) = (lt, lte)

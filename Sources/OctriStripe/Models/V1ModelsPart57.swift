@@ -3,15 +3,12 @@
 
 import Foundation
 
-/// V1 domain models
+// V1 domain models
 /// The purpose of the uploaded file.
 public struct File2Purpose: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let accountRequirement = File2Purpose(rawValue: "account_requirement")
     public static let additionalVerification = File2Purpose(rawValue: "additional_verification")
     public static let businessIcon = File2Purpose(rawValue: "business_icon")
@@ -36,7 +33,7 @@ public struct File2Purpose: RawRepresentable, Hashable, Codable, Sendable, SdkWi
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -49,21 +46,16 @@ public struct File2Purpose: RawRepresentable, Hashable, Codable, Sendable, SdkWi
 /// subscription is set to the start of the phase when entering the phase. If `automatic` then the billing cycle
 /// anchor is automatically modified as needed when entering the phase. For more information, see the billing
 /// cycle documentation.
-public struct SubscriptionSchedulesResourceDefaultSettingsBillingCycleAnchor: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct SubscriptionSchedulesResourceDefaultSettingsBillingCycleAnchor: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let automatic = SubscriptionSchedulesResourceDefaultSettingsBillingCycleAnchor(rawValue: "automatic")
-    public static let phaseStart =
-        SubscriptionSchedulesResourceDefaultSettingsBillingCycleAnchor(rawValue: "phase_start")
+    public static let phaseStart = SubscriptionSchedulesResourceDefaultSettingsBillingCycleAnchor(rawValue: "phase_start")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -79,16 +71,13 @@ public struct SubscriptionSchedulesResourceDefaultSettingsBillingCycleAnchor: Ra
 public struct SubscriptionCollectionMethod: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let chargeAutomatically = SubscriptionCollectionMethod(rawValue: "charge_automatically")
     public static let sendInvoice = SubscriptionCollectionMethod(rawValue: "send_invoice")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -101,16 +90,13 @@ public struct SubscriptionCollectionMethod: RawRepresentable, Hashable, Codable,
 public struct SetupIntentFlowDirectionsItem: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let inbound = SetupIntentFlowDirectionsItem(rawValue: "inbound")
     public static let outbound = SetupIntentFlowDirectionsItem(rawValue: "outbound")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -120,21 +106,16 @@ public struct SetupIntentFlowDirectionsItem: RawRepresentable, Hashable, Codable
 }
 
 /// The type of parent that generated this invoice
-public struct BillingBillResourceInvoicingParentsInvoiceParentType: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct BillingBillResourceInvoicingParentsInvoiceParentType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let quoteDetails = BillingBillResourceInvoicingParentsInvoiceParentType(rawValue: "quote_details")
-    public static let subscriptionDetails =
-        BillingBillResourceInvoicingParentsInvoiceParentType(rawValue: "subscription_details")
+    public static let subscriptionDetails = BillingBillResourceInvoicingParentsInvoiceParentType(rawValue: "subscription_details")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -147,10 +128,7 @@ public struct BillingBillResourceInvoicingParentsInvoiceParentType: RawRepresent
 public struct AccountBusinessType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let company = AccountBusinessType(rawValue: "company")
     public static let governmentEntity = AccountBusinessType(rawValue: "government_entity")
     public static let individual = AccountBusinessType(rawValue: "individual")
@@ -158,7 +136,7 @@ public struct AccountBusinessType: RawRepresentable, Hashable, Codable, Sendable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -168,20 +146,15 @@ public struct AccountBusinessType: RawRepresentable, Hashable, Codable, Sendable
 }
 
 /// If Stripe disabled automatic tax, this enum describes why.
-public struct SubscriptionAutomaticTaxDisabledReason: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct SubscriptionAutomaticTaxDisabledReason: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let requiresLocationInputs =
-        SubscriptionAutomaticTaxDisabledReason(rawValue: "requires_location_inputs")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let requiresLocationInputs = SubscriptionAutomaticTaxDisabledReason(rawValue: "requires_location_inputs")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -194,16 +167,13 @@ public struct SubscriptionAutomaticTaxDisabledReason: RawRepresentable, Hashable
 public struct PayoutType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let bankAccount = PayoutType(rawValue: "bank_account")
     public static let card = PayoutType(rawValue: "card")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -216,10 +186,7 @@ public struct PayoutType: RawRepresentable, Hashable, Codable, Sendable, SdkWire
 public struct IssuingAuthorizationStatus: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let closed = IssuingAuthorizationStatus(rawValue: "closed")
     public static let expired = IssuingAuthorizationStatus(rawValue: "expired")
     public static let pending = IssuingAuthorizationStatus(rawValue: "pending")
@@ -227,7 +194,7 @@ public struct IssuingAuthorizationStatus: RawRepresentable, Hashable, Codable, S
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -244,10 +211,7 @@ public struct IssuingAuthorizationStatus: RawRepresentable, Hashable, Codable, S
 public struct TaxIdType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let adNrt = TaxIdType(rawValue: "ad_nrt")
     public static let aeTrn = TaxIdType(rawValue: "ae_trn")
     public static let alTin = TaxIdType(rawValue: "al_tin")
@@ -369,7 +333,7 @@ public struct TaxIdType: RawRepresentable, Hashable, Codable, Sendable, SdkWireC
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -383,16 +347,13 @@ public struct TaxIdType: RawRepresentable, Hashable, Codable, Sendable, SdkWireC
 public struct PriceType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let oneTime = PriceType(rawValue: "one_time")
     public static let recurring = PriceType(rawValue: "recurring")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -405,15 +366,12 @@ public struct PriceType: RawRepresentable, Hashable, Codable, Sendable, SdkWireC
 public struct CustomerObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let customer = CustomerObject(rawValue: "customer")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -426,10 +384,7 @@ public struct CustomerObject: RawRepresentable, Hashable, Codable, Sendable, Sdk
 public struct ForwardingRequestReplacementsItem: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let cardCvc = ForwardingRequestReplacementsItem(rawValue: "card_cvc")
     public static let cardExpiry = ForwardingRequestReplacementsItem(rawValue: "card_expiry")
     public static let cardNumber = ForwardingRequestReplacementsItem(rawValue: "card_number")
@@ -438,7 +393,7 @@ public struct ForwardingRequestReplacementsItem: RawRepresentable, Hashable, Cod
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -449,14 +404,10 @@ public struct ForwardingRequestReplacementsItem: RawRepresentable, Hashable, Cod
 
 /// Preferred language of the Bancontact authorization page that the customer is redirected to. Can be one of
 /// `en`, `de`, `fr`, or `nl`
-public struct PaymentMethodDetailsBancontactPreferredLanguage: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PaymentMethodDetailsBancontactPreferredLanguage: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let de = PaymentMethodDetailsBancontactPreferredLanguage(rawValue: "de")
     public static let en = PaymentMethodDetailsBancontactPreferredLanguage(rawValue: "en")
     public static let fr = PaymentMethodDetailsBancontactPreferredLanguage(rawValue: "fr")
@@ -464,7 +415,7 @@ public struct PaymentMethodDetailsBancontactPreferredLanguage: RawRepresentable,
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -477,15 +428,12 @@ public struct PaymentMethodDetailsBancontactPreferredLanguage: RawRepresentable,
 public struct BillingCreditGrantObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let billingCreditGrant = BillingCreditGrantObject(rawValue: "billing.credit_grant")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -498,15 +446,12 @@ public struct BillingCreditGrantObject: RawRepresentable, Hashable, Codable, Sen
 public struct AccountObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let account = AccountObject(rawValue: "account")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -519,15 +464,12 @@ public struct AccountObject: RawRepresentable, Hashable, Codable, Sendable, SdkW
 public struct PromotionCodeObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let promotionCode = PromotionCodeObject(rawValue: "promotion_code")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -540,22 +482,16 @@ public struct PromotionCodeObject: RawRepresentable, Hashable, Codable, Sendable
 /// the underlying subscription at the end of each billing cycle using the default source attached to the
 /// customer. When sending an invoice, Stripe will email your customer an invoice with payment instructions and
 /// mark the subscription as `active`.
-public struct SubscriptionSchedulesResourceDefaultSettingsCollectionMethod: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct SubscriptionSchedulesResourceDefaultSettingsCollectionMethod: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let chargeAutomatically =
-        SubscriptionSchedulesResourceDefaultSettingsCollectionMethod(rawValue: "charge_automatically")
-    public static let sendInvoice =
-        SubscriptionSchedulesResourceDefaultSettingsCollectionMethod(rawValue: "send_invoice")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let chargeAutomatically = SubscriptionSchedulesResourceDefaultSettingsCollectionMethod(rawValue: "charge_automatically")
+    public static let sendInvoice = SubscriptionSchedulesResourceDefaultSettingsCollectionMethod(rawValue: "send_invoice")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -568,15 +504,12 @@ public struct SubscriptionSchedulesResourceDefaultSettingsCollectionMethod: RawR
 public struct TransferReversalObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let transferReversal = TransferReversalObject(rawValue: "transfer_reversal")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -586,20 +519,15 @@ public struct TransferReversalObject: RawRepresentable, Hashable, Codable, Senda
 }
 
 /// If Stripe disabled automatic tax, this enum describes why.
-public struct SubscriptionSchedulesResourceDefaultSettingsAutomaticTaxDisabledReason: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct SubscriptionSchedulesResourceDefaultSettingsAutomaticTaxDisabledReason: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
-    public static let requiresLocationInputs =
-        SubscriptionSchedulesResourceDefaultSettingsAutomaticTaxDisabledReason(rawValue: "requires_location_inputs")
+    public init(rawValue: String) { self.rawValue = rawValue }
+    public static let requiresLocationInputs = SubscriptionSchedulesResourceDefaultSettingsAutomaticTaxDisabledReason(rawValue: "requires_location_inputs")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -612,17 +540,14 @@ public struct SubscriptionSchedulesResourceDefaultSettingsAutomaticTaxDisabledRe
 public struct AutomaticTaxStatus: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let complete = AutomaticTaxStatus(rawValue: "complete")
     public static let failed = AutomaticTaxStatus(rawValue: "failed")
     public static let requiresLocationInputs = AutomaticTaxStatus(rawValue: "requires_location_inputs")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

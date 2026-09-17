@@ -6,20 +6,16 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public struct PostCheckoutSessionsRequestBodyConsentCollectionTermsOfService: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct PostCheckoutSessionsRequestBodyConsentCollectionTermsOfService: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let none = PostCheckoutSessionsRequestBodyConsentCollectionTermsOfService(rawValue: "none")
     public static let required = PostCheckoutSessionsRequestBodyConsentCollectionTermsOfService(rawValue: "required")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -28,19 +24,15 @@ public struct PostCheckoutSessionsRequestBodyConsentCollectionTermsOfService: Ra
     }
 }
 
-public struct PostCheckoutSessionsRequestBodyCustomFieldsItemLabelType: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostCheckoutSessionsRequestBodyCustomFieldsItemLabelType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let custom = PostCheckoutSessionsRequestBodyCustomFieldsItemLabelType(rawValue: "custom")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -49,21 +41,17 @@ public struct PostCheckoutSessionsRequestBodyCustomFieldsItemLabelType: RawRepre
     }
 }
 
-public struct PostCheckoutSessionsRequestBodyCustomFieldsItemType: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostCheckoutSessionsRequestBodyCustomFieldsItemType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let dropdown = PostCheckoutSessionsRequestBodyCustomFieldsItemType(rawValue: "dropdown")
     public static let numeric = PostCheckoutSessionsRequestBodyCustomFieldsItemType(rawValue: "numeric")
     public static let text = PostCheckoutSessionsRequestBodyCustomFieldsItemType(rawValue: "text")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -72,19 +60,15 @@ public struct PostCheckoutSessionsRequestBodyCustomFieldsItemType: RawRepresenta
     }
 }
 
-public struct PostCheckoutSessionsRequestBodyCustomTextAfterSubmitVariant1: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct PostCheckoutSessionsRequestBodyCustomTextAfterSubmitVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostCheckoutSessionsRequestBodyCustomTextAfterSubmitVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -93,19 +77,15 @@ public struct PostCheckoutSessionsRequestBodyCustomTextAfterSubmitVariant1: RawR
     }
 }
 
-public struct PostCheckoutSessionsRequestBodyCustomTextShippingAddressVariant1: RawRepresentable, Hashable, Codable,
-    Sendable, SdkWireConvertible {
+public struct PostCheckoutSessionsRequestBodyCustomTextShippingAddressVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostCheckoutSessionsRequestBodyCustomTextShippingAddressVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -114,19 +94,15 @@ public struct PostCheckoutSessionsRequestBodyCustomTextShippingAddressVariant1: 
     }
 }
 
-public struct PostCheckoutSessionsRequestBodyCustomTextSubmitVariant1: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostCheckoutSessionsRequestBodyCustomTextSubmitVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostCheckoutSessionsRequestBodyCustomTextSubmitVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -135,19 +111,15 @@ public struct PostCheckoutSessionsRequestBodyCustomTextSubmitVariant1: RawRepres
     }
 }
 
-public struct PostCheckoutSessionsRequestBodyCustomTextTermsOfServiceAcceptX404ce26f37: RawRepresentable, Hashable,
-    Codable, Sendable, SdkWireConvertible {
+public struct PostCheckoutSessionsRequestBodyCustomTextTermsOfServiceAcceptX404ce26f37: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let unknown = PostCheckoutSessionsRequestBodyCustomTextTermsOfServiceAcceptX404ce26f37(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -161,20 +133,16 @@ public struct PostCheckoutSessionsRequestBodyCustomTextTermsOfServiceAcceptX404c
 /// customer_details. Sessions that don't create Customers instead are grouped by guest customers in the
 /// Dashboard. Promotion codes limited to first time customers will return invalid for these Sessions. Can only
 /// be set in `payment` and `setup` mode.
-public struct PostCheckoutSessionsRequestBodyCustomerCreation: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostCheckoutSessionsRequestBodyCustomerCreation: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let always = PostCheckoutSessionsRequestBodyCustomerCreation(rawValue: "always")
     public static let ifRequired = PostCheckoutSessionsRequestBodyCustomerCreation(rawValue: "if_required")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -183,20 +151,16 @@ public struct PostCheckoutSessionsRequestBodyCustomerCreation: RawRepresentable,
     }
 }
 
-public struct PostCheckoutSessionsRequestBodyCustomerUpdateAddress: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostCheckoutSessionsRequestBodyCustomerUpdateAddress: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let auto = PostCheckoutSessionsRequestBodyCustomerUpdateAddress(rawValue: "auto")
     public static let never = PostCheckoutSessionsRequestBodyCustomerUpdateAddress(rawValue: "never")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -205,20 +169,16 @@ public struct PostCheckoutSessionsRequestBodyCustomerUpdateAddress: RawRepresent
     }
 }
 
-public struct PostCheckoutSessionsRequestBodyCustomerUpdateName: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostCheckoutSessionsRequestBodyCustomerUpdateName: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let auto = PostCheckoutSessionsRequestBodyCustomerUpdateName(rawValue: "auto")
     public static let never = PostCheckoutSessionsRequestBodyCustomerUpdateName(rawValue: "never")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -227,20 +187,16 @@ public struct PostCheckoutSessionsRequestBodyCustomerUpdateName: RawRepresentabl
     }
 }
 
-public struct PostCheckoutSessionsRequestBodyCustomerUpdateShipping: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct PostCheckoutSessionsRequestBodyCustomerUpdateShipping: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let auto = PostCheckoutSessionsRequestBodyCustomerUpdateShipping(rawValue: "auto")
     public static let never = PostCheckoutSessionsRequestBodyCustomerUpdateShipping(rawValue: "never")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

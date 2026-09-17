@@ -6,74 +6,36 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1CustomersBankAccountsMethods {
-    /// Deletes a payment source from a customer. Use `expand` if the deleted source response needs selected related
-    /// fields expanded, and treat the deletion as a permanent removal from the customer's sources.
+extension V1CustomersBankAccountsMethods {
+    /// Deletes a payment source from a customer. Use `expand` if the deleted source response needs selected related fields expanded, and treat the deletion as a permanent removal from the customer's sources.
     ///
     /// Delete a specified source for a given customer.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    static func deleteCustomersCustomerBankAccountsId(
-        config: ClientConfig,
-        customer: String,
-        id: String,
-        expand: [String]?
-    ) async throws -> DeleteCustomersCustomerBankAccountsIdResponse {
+    public static func deleteCustomersCustomerBankAccountsId(config: ClientConfig, customer: String, id: String, expand: [String]?) async throws -> DeleteCustomersCustomerBankAccountsIdResponse {
         try validateLength("customer", customer, max: 5000)
 
         let requestBody = DeleteCustomersCustomerBankAccountsIdRequestBody(expand: expand)
 
-        return try await (sdkRequest(
-            "DELETE",
-            [
-                "/v1/customers/",
-                sdkEncodePathSegment(sdkWireString(customer)),
-                "/bank_accounts/",
-                sdkEncodePathSegment(sdkWireString(id)),
-            ].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "DeleteCustomersCustomerBankAccountsId"
-        )).data
+        return try (await sdkRequest("DELETE", ["/v1/customers/", sdkEncodePathSegment(sdkWireString(customer)), "/bank_accounts/", sdkEncodePathSegment(sdkWireString(id))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "DeleteCustomersCustomerBankAccountsId")).data
     }
 
-    /// Retrieves a specific bank account associated with a customer. Use `expand` to request selected fields in
-    /// expanded form when additional related object details are needed.
+    /// Retrieves a specific bank account associated with a customer. Use `expand` to request selected fields in expanded form when additional related object details are needed.
     ///
-    /// By default, you can see the 10 most recent sources stored on a Customer directly on the object, but you can also
-    /// retrieve details about a specific bank account stored on the Stripe account.
+    /// By default, you can see the 10 most recent sources stored on a Customer directly on the object, but you can also retrieve details about a specific bank account stored on the Stripe account.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
     ///
     /// - Warning: This operation is deprecated and may be removed in a future release.
-    static func getCustomersCustomerBankAccountsId(
-        config: ClientConfig,
-        customer: String,
-        id: String,
-        expand: [String]?
-    ) async throws -> BankAccount {
+    public static func getCustomersCustomerBankAccountsId(config: ClientConfig, customer: String, id: String, expand: [String]?) async throws -> BankAccount {
         try validateLength("customer", customer, max: 5000)
 
         try validateLength("id", id, max: 5000)
 
-        return try await (sdkRequest(
-            "GET",
-            [
-                "/v1/customers/",
-                sdkEncodePathSegment(sdkWireString(customer)),
-                "/bank_accounts/",
-                sdkEncodePathSegment(sdkWireString(id)),
-            ].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            ],
-            decoder: .json,
-            operationId: "GetCustomersCustomerBankAccountsId"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/customers/", sdkEncodePathSegment(sdkWireString(customer)), "/bank_accounts/", sdkEncodePathSegment(sdkWireString(id))].joined(), config: config, query: [
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+        ], decoder: .json, operationId: "GetCustomersCustomerBankAccountsId")).data
     }
 }

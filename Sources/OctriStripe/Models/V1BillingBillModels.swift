@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1BillingBill domain models
+// V1BillingBill domain models
 /// Typed representation of the `BillingBillResourceInvoiceItemParentsInvoiceItemParent` API schema.
 public struct BillingBillResourceInvoiceItemParentsInvoiceItemParent: Codable {
     /// The type of parent that generated this invoice item
@@ -16,31 +16,22 @@ public struct BillingBillResourceInvoiceItemParentsInvoiceItemParent: Codable {
         case subscriptionDetails = "subscription_details"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension BillingBillResourceInvoiceItemParentsInvoiceItemParent {
-    init(from decoder: Decoder) throws {
+extension BillingBillResourceInvoiceItemParentsInvoiceItemParent {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.type) else {
-            throw SdkValidationError(
-                field: "type",
-                code: "required",
-                message: "Validation failed for 'type': value is required"
-            )
+            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
         }
-        type = try container.sdkDecodeRequired(.type)
-        subscriptionDetails = try container.sdkDecodeIfPresent(.subscriptionDetails)
+        self.type = try container.sdkDecodeRequired(.type)
+        self.subscriptionDetails = try container.sdkDecodeIfPresent(.subscriptionDetails)
     }
 }
 
-public extension BillingBillResourceInvoiceItemParentsInvoiceItemParent {
-    init(
-        type: BillingBillResourceInvoiceItemParentsInvoiceItemParentType,
-        subscriptionDetails: BillingBillResourceInvoiceItemParentsInvoiceItemParentSubscriX716cc748e5? = nil
-    ) {
+extension BillingBillResourceInvoiceItemParentsInvoiceItemParent {
+    public init(type: BillingBillResourceInvoiceItemParentsInvoiceItemParentType, subscriptionDetails: BillingBillResourceInvoiceItemParentsInvoiceItemParentSubscriX716cc748e5? = nil) {
         (self.type, self.subscriptionDetails) = (type, subscriptionDetails)
     }
 }
@@ -52,39 +43,33 @@ public enum BillingBillResourceInvoiceItemParentsInvoiceItemParentSubscriX716cc7
 }
 
 extension BillingBillResourceInvoiceItemParentsInvoiceItemParentSubscriX716cc748e5: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for BillingBillResourceInvoiceItemParentsInvoiceItemParentSubscriX716cc748e5"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for BillingBillResourceInvoiceItemParentsInvoiceItemParentSubscriX716cc748e5")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             BillingBillResourceInvoiceItemParentsInvoiceItemSubscriptionParent.self
         ) {
-            return .billingBillResourceInvoiceItemParentsInvoiceItemSubscriptionParent(value)
+            return             .billingBillResourceInvoiceItemParentsInvoiceItemSubscriptionParent(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .billingBillResourceInvoiceItemParentsInvoiceItemSubscriptionParent(value): try container
-            .encode(value); return true
+        case let .billingBillResourceInvoiceItemParentsInvoiceItemSubscriptionParent(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// Typed representation of the `BillingBillResourceInvoiceItemParentsInvoiceItemSubscriptionParent` API schema.
@@ -99,34 +84,28 @@ public struct BillingBillResourceInvoiceItemParentsInvoiceItemSubscriptionParent
         case subscriptionItem = "subscription_item"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension BillingBillResourceInvoiceItemParentsInvoiceItemSubscriptionParent {
-    init(from decoder: Decoder) throws {
+extension BillingBillResourceInvoiceItemParentsInvoiceItemSubscriptionParent {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.subscription) else {
-            throw SdkValidationError(
-                field: "subscription",
-                code: "required",
-                message: "Validation failed for 'subscription': value is required"
-            )
+            throw SdkValidationError(field: "subscription", code: "required", message: "Validation failed for 'subscription': value is required")
         }
-        subscription = try container.sdkDecodeRequired(.subscription)
-        subscriptionItem = try container.sdkDecodeIfPresent(.subscriptionItem)
-        try validateLength("subscription", subscription, min: nil, max: 5000)
-        if let value = subscriptionItem {
+        self.subscription = try container.sdkDecodeRequired(.subscription)
+        self.subscriptionItem = try container.sdkDecodeIfPresent(.subscriptionItem)
+            try validateLength("subscription", self.subscription, min: nil, max: 5000)
+        if let value = self.subscriptionItem {
             try validateLength("subscription_item", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension BillingBillResourceInvoiceItemParentsInvoiceItemSubscriptionParent {
-    init(subscription: String, subscriptionItem: String? = nil) throws {
+extension BillingBillResourceInvoiceItemParentsInvoiceItemSubscriptionParent {
+    public init(subscription: String, subscriptionItem: String? = nil) throws {
         (self.subscription, self.subscriptionItem) = (subscription, subscriptionItem)
-        try validateLength("subscription", self.subscription, min: nil, max: 5000)
+            try validateLength("subscription", self.subscription, min: nil, max: 5000)
         if let value = self.subscriptionItem {
             try validateLength("subscription_item", value, min: nil, max: 5000)
         }
@@ -145,38 +124,28 @@ public struct BillingBillResourceInvoicingLinesCommonCreditedItems: Codable {
         case invoiceLineItems = "invoice_line_items"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension BillingBillResourceInvoicingLinesCommonCreditedItems {
-    init(from decoder: Decoder) throws {
+extension BillingBillResourceInvoicingLinesCommonCreditedItems {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.invoice) else {
-            throw SdkValidationError(
-                field: "invoice",
-                code: "required",
-                message: "Validation failed for 'invoice': value is required"
-            )
+            throw SdkValidationError(field: "invoice", code: "required", message: "Validation failed for 'invoice': value is required")
         }
         guard container.contains(.invoiceLineItems) else {
-            throw SdkValidationError(
-                field: "invoice_line_items",
-                code: "required",
-                message: "Validation failed for 'invoice_line_items': value is required"
-            )
+            throw SdkValidationError(field: "invoice_line_items", code: "required", message: "Validation failed for 'invoice_line_items': value is required")
         }
-        invoice = try container.sdkDecodeRequired(.invoice)
-        invoiceLineItems = try container.sdkDecodeRequired(.invoiceLineItems)
-        try validateLength("invoice", invoice, min: nil, max: 5000)
+        self.invoice = try container.sdkDecodeRequired(.invoice)
+        self.invoiceLineItems = try container.sdkDecodeRequired(.invoiceLineItems)
+            try validateLength("invoice", self.invoice, min: nil, max: 5000)
     }
 }
 
-public extension BillingBillResourceInvoicingLinesCommonCreditedItems {
-    init(invoice: String, invoiceLineItems: [String]) throws {
+extension BillingBillResourceInvoicingLinesCommonCreditedItems {
+    public init(invoice: String, invoiceLineItems: [String]) throws {
         (self.invoice, self.invoiceLineItems) = (invoice, invoiceLineItems)
-        try validateLength("invoice", self.invoice, min: nil, max: 5000)
+            try validateLength("invoice", self.invoice, min: nil, max: 5000)
     }
 }
 
@@ -190,19 +159,19 @@ public struct BillingBillResourceInvoicingLinesCommonProrationDetails: Codable {
     }
 
     init() {
-        creditedItems = nil
+        self.creditedItems = nil
     }
 }
 
-public extension BillingBillResourceInvoicingLinesCommonProrationDetails {
-    init(from decoder: Decoder) throws {
+extension BillingBillResourceInvoicingLinesCommonProrationDetails {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        creditedItems = try container.sdkDecodeIfPresent(.creditedItems)
+        self.creditedItems = try container.sdkDecodeIfPresent(.creditedItems)
     }
 }
 
-public extension BillingBillResourceInvoicingLinesCommonProrationDetails {
-    init(creditedItems: BillingBillResourceInvoicingLinesCommonProrationDetailsCreditedItems? = nil) {
+extension BillingBillResourceInvoicingLinesCommonProrationDetails {
+    public init(creditedItems: BillingBillResourceInvoicingLinesCommonProrationDetailsCreditedItems? = nil) {
         self.init()
         self.creditedItems = creditedItems
     }
@@ -213,30 +182,24 @@ public enum BillingBillResourceInvoicingLinesCommonProrationDetailsCreditedItems
 }
 
 extension BillingBillResourceInvoicingLinesCommonProrationDetailsCreditedItems: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for BillingBillResourceInvoicingLinesCommonProrationDetailsCreditedItems"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for BillingBillResourceInvoicingLinesCommonProrationDetailsCreditedItems")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             BillingBillResourceInvoicingLinesCommonCreditedItems.self
         ) {
-            return .billingBillResourceInvoicingLinesCommonCreditedItems(value)
+            return             .billingBillResourceInvoicingLinesCommonCreditedItems(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -245,6 +208,7 @@ extension BillingBillResourceInvoicingLinesCommonProrationDetailsCreditedItems: 
         case let .billingBillResourceInvoicingLinesCommonCreditedItems(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// Typed representation of the `BillingBillResourceInvoicingLinesParentsInvoiceLineItemInvoiceItemParent` API
@@ -266,49 +230,34 @@ public struct BillingBillResourceInvoicingLinesParentsInvoiceLineItemInvoiceItem
         case subscription
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension BillingBillResourceInvoicingLinesParentsInvoiceLineItemInvoiceItemParent {
-    init(from decoder: Decoder) throws {
+extension BillingBillResourceInvoicingLinesParentsInvoiceLineItemInvoiceItemParent {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.invoiceItem) else {
-            throw SdkValidationError(
-                field: "invoice_item",
-                code: "required",
-                message: "Validation failed for 'invoice_item': value is required"
-            )
+            throw SdkValidationError(field: "invoice_item", code: "required", message: "Validation failed for 'invoice_item': value is required")
         }
         guard container.contains(.proration) else {
-            throw SdkValidationError(
-                field: "proration",
-                code: "required",
-                message: "Validation failed for 'proration': value is required"
-            )
+            throw SdkValidationError(field: "proration", code: "required", message: "Validation failed for 'proration': value is required")
         }
-        invoiceItem = try container.sdkDecodeRequired(.invoiceItem)
-        proration = try container.sdkDecodeRequired(.proration)
-        prorationDetails = try container.sdkDecodeIfPresent(.prorationDetails)
-        subscription = try container.sdkDecodeIfPresent(.subscription)
-        try validateLength("invoice_item", invoiceItem, min: nil, max: 5000)
-        if let value = subscription {
+        self.invoiceItem = try container.sdkDecodeRequired(.invoiceItem)
+        self.proration = try container.sdkDecodeRequired(.proration)
+        self.prorationDetails = try container.sdkDecodeIfPresent(.prorationDetails)
+        self.subscription = try container.sdkDecodeIfPresent(.subscription)
+            try validateLength("invoice_item", self.invoiceItem, min: nil, max: 5000)
+        if let value = self.subscription {
             try validateLength("subscription", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension BillingBillResourceInvoicingLinesParentsInvoiceLineItemInvoiceItemParent {
-    init(
-        invoiceItem: String,
-        proration: Bool,
-        prorationDetails: BillingBillResourceInvoicingLinesParentsInvoiceLineItemInvoicX7fca30909f? = nil,
-        subscription: String? = nil
-    ) throws {
+extension BillingBillResourceInvoicingLinesParentsInvoiceLineItemInvoiceItemParent {
+    public init(invoiceItem: String, proration: Bool, prorationDetails: BillingBillResourceInvoicingLinesParentsInvoiceLineItemInvoicX7fca30909f? = nil, subscription: String? = nil) throws {
         (self.invoiceItem, self.proration) = (invoiceItem, proration)
         (self.prorationDetails, self.subscription) = (prorationDetails, subscription)
-        try validateLength("invoice_item", self.invoiceItem, min: nil, max: 5000)
+            try validateLength("invoice_item", self.invoiceItem, min: nil, max: 5000)
         if let value = self.subscription {
             try validateLength("subscription", value, min: nil, max: 5000)
         }
@@ -316,45 +265,37 @@ public extension BillingBillResourceInvoicingLinesParentsInvoiceLineItemInvoiceI
 }
 
 public enum BillingBillResourceInvoicingLinesParentsInvoiceLineItemInvoicX7fca30909f {
-    case billingBillResourceInvoicingLinesCommonProrationDetails(
-        BillingBillResourceInvoicingLinesCommonProrationDetails
-    )
+    case billingBillResourceInvoicingLinesCommonProrationDetails(BillingBillResourceInvoicingLinesCommonProrationDetails)
 }
 
 extension BillingBillResourceInvoicingLinesParentsInvoiceLineItemInvoicX7fca30909f: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for BillingBillResourceInvoicingLinesParentsInvoiceLineItemInvoicX7fca30909f"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for BillingBillResourceInvoicingLinesParentsInvoiceLineItemInvoicX7fca30909f")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             BillingBillResourceInvoicingLinesCommonProrationDetails.self
         ) {
-            return .billingBillResourceInvoicingLinesCommonProrationDetails(value)
+            return             .billingBillResourceInvoicingLinesCommonProrationDetails(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .billingBillResourceInvoicingLinesCommonProrationDetails(value): try container
-            .encode(value); return true
+        case let .billingBillResourceInvoicingLinesCommonProrationDetails(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// Typed representation of the `BillingBillResourceInvoicingLinesParentsInvoiceLineItemParent` API schema.
@@ -372,33 +313,23 @@ public struct BillingBillResourceInvoicingLinesParentsInvoiceLineItemParent: Cod
         case subscriptionItemDetails = "subscription_item_details"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension BillingBillResourceInvoicingLinesParentsInvoiceLineItemParent {
-    init(from decoder: Decoder) throws {
+extension BillingBillResourceInvoicingLinesParentsInvoiceLineItemParent {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.type) else {
-            throw SdkValidationError(
-                field: "type",
-                code: "required",
-                message: "Validation failed for 'type': value is required"
-            )
+            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
         }
-        type = try container.sdkDecodeRequired(.type)
-        invoiceItemDetails = try container.sdkDecodeIfPresent(.invoiceItemDetails)
-        subscriptionItemDetails = try container.sdkDecodeIfPresent(.subscriptionItemDetails)
+        self.type = try container.sdkDecodeRequired(.type)
+        self.invoiceItemDetails = try container.sdkDecodeIfPresent(.invoiceItemDetails)
+        self.subscriptionItemDetails = try container.sdkDecodeIfPresent(.subscriptionItemDetails)
     }
 }
 
-public extension BillingBillResourceInvoicingLinesParentsInvoiceLineItemParent {
-    init(
-        type: BillingBillResourceInvoicingLinesParentsInvoiceLineItemParentType,
-        invoiceItemDetails: BillingBillResourceInvoicingLinesParentsInvoiceLineItemParentXf1e9e6f275? = nil,
-        subscriptionItemDetails: BillingBillResourceInvoicingLinesParentsInvoiceLineItemParentXaad0cbb1c5? = nil
-    ) {
+extension BillingBillResourceInvoicingLinesParentsInvoiceLineItemParent {
+    public init(type: BillingBillResourceInvoicingLinesParentsInvoiceLineItemParentType, invoiceItemDetails: BillingBillResourceInvoicingLinesParentsInvoiceLineItemParentXf1e9e6f275? = nil, subscriptionItemDetails: BillingBillResourceInvoicingLinesParentsInvoiceLineItemParentXaad0cbb1c5? = nil) {
         (self.type, self.invoiceItemDetails) = (type, invoiceItemDetails)
         self.subscriptionItemDetails = subscriptionItemDetails
     }
@@ -411,39 +342,33 @@ public enum BillingBillResourceInvoicingLinesParentsInvoiceLineItemParentXf1e9e6
 }
 
 extension BillingBillResourceInvoicingLinesParentsInvoiceLineItemParentXf1e9e6f275: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for BillingBillResourceInvoicingLinesParentsInvoiceLineItemParentXf1e9e6f275"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for BillingBillResourceInvoicingLinesParentsInvoiceLineItemParentXf1e9e6f275")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             BillingBillResourceInvoicingLinesParentsInvoiceLineItemInvoiceItemParent.self
         ) {
-            return .billingBillResourceInvoicingLinesParentsInvoiceLineItemInvoiceItemParent(value)
+            return             .billingBillResourceInvoicingLinesParentsInvoiceLineItemInvoiceItemParent(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .billingBillResourceInvoicingLinesParentsInvoiceLineItemInvoiceItemParent(value): try container
-            .encode(value); return true
+        case let .billingBillResourceInvoicingLinesParentsInvoiceLineItemInvoiceItemParent(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum BillingBillResourceInvoicingLinesParentsInvoiceLineItemParentXaad0cbb1c5 {
@@ -453,39 +378,33 @@ public enum BillingBillResourceInvoicingLinesParentsInvoiceLineItemParentXaad0cb
 }
 
 extension BillingBillResourceInvoicingLinesParentsInvoiceLineItemParentXaad0cbb1c5: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for BillingBillResourceInvoicingLinesParentsInvoiceLineItemParentXaad0cbb1c5"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for BillingBillResourceInvoicingLinesParentsInvoiceLineItemParentXaad0cbb1c5")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             BillingBillResourceInvoicingLinesParentsInvoiceLineItemSubscrXe69b0f13e2.self
         ) {
-            return .billingBillResourceInvoicingLinesParentsInvoiceLineItemSubscrXe69b0f13e2(value)
+            return             .billingBillResourceInvoicingLinesParentsInvoiceLineItemSubscrXe69b0f13e2(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .billingBillResourceInvoicingLinesParentsInvoiceLineItemSubscrXe69b0f13e2(value): try container
-            .encode(value); return true
+        case let .billingBillResourceInvoicingLinesParentsInvoiceLineItemSubscrXe69b0f13e2(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// Typed representation of the `BillingBillResourceInvoicingLinesParentsInvoiceLineItemSubscriptionItemParent` API
@@ -510,55 +429,39 @@ public struct BillingBillResourceInvoicingLinesParentsInvoiceLineItemSubscrXe69b
         case subscription
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension BillingBillResourceInvoicingLinesParentsInvoiceLineItemSubscrXe69b0f13e2 {
-    init(from decoder: Decoder) throws {
+extension BillingBillResourceInvoicingLinesParentsInvoiceLineItemSubscrXe69b0f13e2 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.proration) else {
-            throw SdkValidationError(
-                field: "proration",
-                code: "required",
-                message: "Validation failed for 'proration': value is required"
-            )
+            throw SdkValidationError(field: "proration", code: "required", message: "Validation failed for 'proration': value is required")
         }
         guard container.contains(.subscriptionItem) else {
-            throw SdkValidationError(
-                field: "subscription_item",
-                code: "required",
-                message: "Validation failed for 'subscription_item': value is required"
-            )
+            throw SdkValidationError(field: "subscription_item", code: "required", message: "Validation failed for 'subscription_item': value is required")
         }
-        proration = try container.sdkDecodeRequired(.proration)
-        subscriptionItem = try container.sdkDecodeRequired(.subscriptionItem)
-        invoiceItem = try container.sdkDecodeIfPresent(.invoiceItem)
-        prorationDetails = try container.sdkDecodeIfPresent(.prorationDetails)
-        subscription = try container.sdkDecodeIfPresent(.subscription)
-        try validateLength("subscription_item", subscriptionItem, min: nil, max: 5000)
-        if let value = invoiceItem {
+        self.proration = try container.sdkDecodeRequired(.proration)
+        self.subscriptionItem = try container.sdkDecodeRequired(.subscriptionItem)
+        self.invoiceItem = try container.sdkDecodeIfPresent(.invoiceItem)
+        self.prorationDetails = try container.sdkDecodeIfPresent(.prorationDetails)
+        self.subscription = try container.sdkDecodeIfPresent(.subscription)
+            try validateLength("subscription_item", self.subscriptionItem, min: nil, max: 5000)
+        if let value = self.invoiceItem {
             try validateLength("invoice_item", value, min: nil, max: 5000)
         }
-        if let value = subscription {
+        if let value = self.subscription {
             try validateLength("subscription", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension BillingBillResourceInvoicingLinesParentsInvoiceLineItemSubscrXe69b0f13e2 {
-    init(
-        proration: Bool,
-        subscriptionItem: String,
-        invoiceItem: String? = nil,
-        prorationDetails: BillingBillResourceInvoicingLinesParentsInvoiceLineItemSubscrX09697b2b63? = nil,
-        subscription: String? = nil
-    ) throws {
+extension BillingBillResourceInvoicingLinesParentsInvoiceLineItemSubscrXe69b0f13e2 {
+    public init(proration: Bool, subscriptionItem: String, invoiceItem: String? = nil, prorationDetails: BillingBillResourceInvoicingLinesParentsInvoiceLineItemSubscrX09697b2b63? = nil, subscription: String? = nil) throws {
         (self.proration, self.subscriptionItem) = (proration, subscriptionItem)
         (self.invoiceItem, self.prorationDetails) = (invoiceItem, prorationDetails)
         self.subscription = subscription
-        try validateLength("subscription_item", self.subscriptionItem, min: nil, max: 5000)
+            try validateLength("subscription_item", self.subscriptionItem, min: nil, max: 5000)
         if let value = self.invoiceItem {
             try validateLength("invoice_item", value, min: nil, max: 5000)
         }
@@ -569,45 +472,37 @@ public extension BillingBillResourceInvoicingLinesParentsInvoiceLineItemSubscrXe
 }
 
 public enum BillingBillResourceInvoicingLinesParentsInvoiceLineItemSubscrX09697b2b63 {
-    case billingBillResourceInvoicingLinesCommonProrationDetails(
-        BillingBillResourceInvoicingLinesCommonProrationDetails
-    )
+    case billingBillResourceInvoicingLinesCommonProrationDetails(BillingBillResourceInvoicingLinesCommonProrationDetails)
 }
 
 extension BillingBillResourceInvoicingLinesParentsInvoiceLineItemSubscrX09697b2b63: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for BillingBillResourceInvoicingLinesParentsInvoiceLineItemSubscrX09697b2b63"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for BillingBillResourceInvoicingLinesParentsInvoiceLineItemSubscrX09697b2b63")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             BillingBillResourceInvoicingLinesCommonProrationDetails.self
         ) {
-            return .billingBillResourceInvoicingLinesCommonProrationDetails(value)
+            return             .billingBillResourceInvoicingLinesCommonProrationDetails(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .billingBillResourceInvoicingLinesCommonProrationDetails(value): try container
-            .encode(value); return true
+        case let .billingBillResourceInvoicingLinesCommonProrationDetails(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// Typed representation of the `BillingBillResourceInvoicingParentsInvoiceQuoteParent` API schema.
@@ -619,22 +514,16 @@ public struct BillingBillResourceInvoicingParentsInvoiceQuoteParent: Codable {
         case quote
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension BillingBillResourceInvoicingParentsInvoiceQuoteParent {
-    init(from decoder: Decoder) throws {
+extension BillingBillResourceInvoicingParentsInvoiceQuoteParent {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.quote) else {
-            throw SdkValidationError(
-                field: "quote",
-                code: "required",
-                message: "Validation failed for 'quote': value is required"
-            )
+            throw SdkValidationError(field: "quote", code: "required", message: "Validation failed for 'quote': value is required")
         }
-        quote = try container.sdkDecodeRequired(.quote)
-        try validateLength("quote", quote, min: nil, max: 5000)
+        self.quote = try container.sdkDecodeRequired(.quote)
+            try validateLength("quote", self.quote, min: nil, max: 5000)
     }
 }

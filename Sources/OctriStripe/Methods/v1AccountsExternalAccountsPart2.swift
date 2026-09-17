@@ -6,10 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1AccountsExternalAccountsMethods {
-    /// Lists the external accounts attached to a connected account. Results can include bank accounts and cards, and
-    /// you can filter them by object type. Use cursor parameters to retrieve adjacent pages and `limit` to control the
-    /// page size.
+extension V1AccountsExternalAccountsMethods {
+    /// Lists the external accounts attached to a connected account. Results can include bank accounts and cards, and you can filter them by object type. Use cursor parameters to retrieve adjacent pages and `limit` to control the page size.
     ///
     /// List external accounts for an account.
     ///
@@ -28,34 +26,19 @@ public extension V1AccountsExternalAccountsMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    static func getAccountsAccountExternalAccounts(
-        config: ClientConfig,
-        account: String,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        object: GetAccountsAccountExternalAccountsParameter?,
-        startingAfter: String?
-    ) async throws -> GetAccountsAccountExternalAccountsResponse {
+    public static func getAccountsAccountExternalAccounts(config: ClientConfig, account: String, endingBefore: String?, expand: [String]?, limit: Int?, object: GetAccountsAccountExternalAccountsParameter?, startingAfter: String?) async throws -> GetAccountsAccountExternalAccountsResponse {
         try validateLength("account", account, max: 5000)
 
-        if let object {
+        if let object = object {
             try validateLength("object", object.rawValue, max: 5000)
         }
 
-        return try await (sdkRequest(
-            "GET",
-            ["/v1/accounts/", sdkEncodePathSegment(sdkWireString(account)), "/external_accounts"].joined(),
-            config: config,
-            query: [
-                SdkQueryParameter("ending_before", value: endingBefore),
-                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-                SdkQueryParameter("limit", value: limit),
-                SdkQueryParameter("object", value: object),
-                SdkQueryParameter("starting_after", value: startingAfter),
-            ],
-            decoder: .json,
-            operationId: "GetAccountsAccountExternalAccounts"
-        )).data
+        return try (await sdkRequest("GET", ["/v1/accounts/", sdkEncodePathSegment(sdkWireString(account)), "/external_accounts"].joined(), config: config, query: [
+            SdkQueryParameter("ending_before", value: endingBefore),
+            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+            SdkQueryParameter("limit", value: limit),
+            SdkQueryParameter("object", value: object),
+            SdkQueryParameter("starting_after", value: startingAfter),
+        ], decoder: .json, operationId: "GetAccountsAccountExternalAccounts")).data
     }
 }

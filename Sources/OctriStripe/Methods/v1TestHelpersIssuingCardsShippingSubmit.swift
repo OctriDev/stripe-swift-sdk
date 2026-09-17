@@ -7,32 +7,17 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1TestHelpersIssuingCardsShippingSubmitMethods {
-    /// Submits a test-mode Issuing card for shipping by changing its shipping status to `submitted`. Provide the `card`
-    /// identifier and use Stripe Version `2024-09-30.acacia` or later. You can use `expand` to include additional
-    /// response fields.
+    /// Submits a test-mode Issuing card for shipping by changing its shipping status to `submitted`. Provide the `card` identifier and use Stripe Version `2024-09-30.acacia` or later. You can use `expand` to include additional response fields.
     ///
-    /// Updates the shipping status of the specified Issuing Card object to submitted . This method requires Stripe
-    /// Version ‘2024-09-30.acacia’ or later.
+    /// Updates the shipping status of the specified Issuing Card object to submitted . This method requires Stripe Version ‘2024-09-30.acacia’ or later.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postTestHelpersIssuingCardsCardShippingSubmit(
-        config: ClientConfig,
-        card: String,
-        expand: [String]?
-    ) async throws -> IssuingCard {
+    public static func postTestHelpersIssuingCardsCardShippingSubmit(config: ClientConfig, card: String, expand: [String]?) async throws -> IssuingCard {
         try validateLength("card", card, max: 5000)
 
         let requestBody = PostTestHelpersIssuingCardsCardShippingSubmitRequestBody(expand: expand)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/test_helpers/issuing/cards/", sdkEncodePathSegment(sdkWireString(card)), "/shipping/submit"].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostTestHelpersIssuingCardsCardShippingSubmit"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/test_helpers/issuing/cards/", sdkEncodePathSegment(sdkWireString(card)), "/shipping/submit"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTestHelpersIssuingCardsCardShippingSubmit")).data
     }
 }

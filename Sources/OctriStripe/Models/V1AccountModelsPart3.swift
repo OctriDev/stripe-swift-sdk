@@ -3,66 +3,66 @@
 
 import Foundation
 
-/// V1Account domain models
+// V1Account domain models
 extension AccountCapabilities {
     mutating func sdkDecodeFieldsPart3(_ container: KeyedDecodingContainer<CodingKeys>) throws {
-        idealPayments = try container.sdkDecodeIfPresent(.idealPayments)
-        indiaInternationalPayments = try container.sdkDecodeIfPresent(.indiaInternationalPayments)
-        jcbPayments = try container.sdkDecodeIfPresent(.jcbPayments)
-        jpBankTransferPayments = try container.sdkDecodeIfPresent(.jpBankTransferPayments)
-        kakaoPayPayments = try container.sdkDecodeIfPresent(.kakaoPayPayments)
-        klarnaPayments = try container.sdkDecodeIfPresent(.klarnaPayments)
-        konbiniPayments = try container.sdkDecodeIfPresent(.konbiniPayments)
-        krCardPayments = try container.sdkDecodeIfPresent(.krCardPayments)
-        legacyPayments = try container.sdkDecodeIfPresent(.legacyPayments)
-        linkPayments = try container.sdkDecodeIfPresent(.linkPayments)
-        mbWayPayments = try container.sdkDecodeIfPresent(.mbWayPayments)
-        mobilepayPayments = try container.sdkDecodeIfPresent(.mobilepayPayments)
+        self.idealPayments = try container.sdkDecodeIfPresent(.idealPayments)
+        self.indiaInternationalPayments = try container.sdkDecodeIfPresent(.indiaInternationalPayments)
+        self.jcbPayments = try container.sdkDecodeIfPresent(.jcbPayments)
+        self.jpBankTransferPayments = try container.sdkDecodeIfPresent(.jpBankTransferPayments)
+        self.kakaoPayPayments = try container.sdkDecodeIfPresent(.kakaoPayPayments)
+        self.klarnaPayments = try container.sdkDecodeIfPresent(.klarnaPayments)
+        self.konbiniPayments = try container.sdkDecodeIfPresent(.konbiniPayments)
+        self.krCardPayments = try container.sdkDecodeIfPresent(.krCardPayments)
+        self.legacyPayments = try container.sdkDecodeIfPresent(.legacyPayments)
+        self.linkPayments = try container.sdkDecodeIfPresent(.linkPayments)
+        self.mbWayPayments = try container.sdkDecodeIfPresent(.mbWayPayments)
+        self.mobilepayPayments = try container.sdkDecodeIfPresent(.mobilepayPayments)
     }
 }
 
 extension AccountCapabilities {
     mutating func sdkDecodeFieldsPart4(_ container: KeyedDecodingContainer<CodingKeys>) throws {
-        multibancoPayments = try container.sdkDecodeIfPresent(.multibancoPayments)
-        mxBankTransferPayments = try container.sdkDecodeIfPresent(.mxBankTransferPayments)
-        naverPayPayments = try container.sdkDecodeIfPresent(.naverPayPayments)
-        nzBankAccountBecsDebitPayments = try container.sdkDecodeIfPresent(.nzBankAccountBecsDebitPayments)
-        oxxoPayments = try container.sdkDecodeIfPresent(.oxxoPayments)
-        p24Payments = try container.sdkDecodeIfPresent(.p24Payments)
-        payByBankPayments = try container.sdkDecodeIfPresent(.payByBankPayments)
-        paycoPayments = try container.sdkDecodeIfPresent(.paycoPayments)
-        paynowPayments = try container.sdkDecodeIfPresent(.paynowPayments)
-        paytoPayments = try container.sdkDecodeIfPresent(.paytoPayments)
-        pixPayments = try container.sdkDecodeIfPresent(.pixPayments)
-        promptpayPayments = try container.sdkDecodeIfPresent(.promptpayPayments)
+        self.multibancoPayments = try container.sdkDecodeIfPresent(.multibancoPayments)
+        self.mxBankTransferPayments = try container.sdkDecodeIfPresent(.mxBankTransferPayments)
+        self.naverPayPayments = try container.sdkDecodeIfPresent(.naverPayPayments)
+        self.nzBankAccountBecsDebitPayments = try container.sdkDecodeIfPresent(.nzBankAccountBecsDebitPayments)
+        self.oxxoPayments = try container.sdkDecodeIfPresent(.oxxoPayments)
+        self.p24Payments = try container.sdkDecodeIfPresent(.p24Payments)
+        self.payByBankPayments = try container.sdkDecodeIfPresent(.payByBankPayments)
+        self.paycoPayments = try container.sdkDecodeIfPresent(.paycoPayments)
+        self.paynowPayments = try container.sdkDecodeIfPresent(.paynowPayments)
+        self.paytoPayments = try container.sdkDecodeIfPresent(.paytoPayments)
+        self.pixPayments = try container.sdkDecodeIfPresent(.pixPayments)
+        self.promptpayPayments = try container.sdkDecodeIfPresent(.promptpayPayments)
     }
 }
 
 extension AccountCapabilities {
     mutating func sdkDecodeFieldsPart5(_ container: KeyedDecodingContainer<CodingKeys>) throws {
-        revolutPayPayments = try container.sdkDecodeIfPresent(.revolutPayPayments)
-        samsungPayPayments = try container.sdkDecodeIfPresent(.samsungPayPayments)
-        satispayPayments = try container.sdkDecodeIfPresent(.satispayPayments)
-        scalapayPayments = try container.sdkDecodeIfPresent(.scalapayPayments)
-        sepaBankTransferPayments = try container.sdkDecodeIfPresent(.sepaBankTransferPayments)
-        sepaDebitPayments = try container.sdkDecodeIfPresent(.sepaDebitPayments)
-        sofortPayments = try container.sdkDecodeIfPresent(.sofortPayments)
-        sunbitPayments = try container.sdkDecodeIfPresent(.sunbitPayments)
-        swishPayments = try container.sdkDecodeIfPresent(.swishPayments)
-        taxReportingUs1099K = try container.sdkDecodeIfPresent(.taxReportingUs1099K)
-        taxReportingUs1099Misc = try container.sdkDecodeIfPresent(.taxReportingUs1099Misc)
-        transfers = try container.sdkDecodeIfPresent(.transfers)
+        self.revolutPayPayments = try container.sdkDecodeIfPresent(.revolutPayPayments)
+        self.samsungPayPayments = try container.sdkDecodeIfPresent(.samsungPayPayments)
+        self.satispayPayments = try container.sdkDecodeIfPresent(.satispayPayments)
+        self.scalapayPayments = try container.sdkDecodeIfPresent(.scalapayPayments)
+        self.sepaBankTransferPayments = try container.sdkDecodeIfPresent(.sepaBankTransferPayments)
+        self.sepaDebitPayments = try container.sdkDecodeIfPresent(.sepaDebitPayments)
+        self.sofortPayments = try container.sdkDecodeIfPresent(.sofortPayments)
+        self.sunbitPayments = try container.sdkDecodeIfPresent(.sunbitPayments)
+        self.swishPayments = try container.sdkDecodeIfPresent(.swishPayments)
+        self.taxReportingUs1099K = try container.sdkDecodeIfPresent(.taxReportingUs1099K)
+        self.taxReportingUs1099Misc = try container.sdkDecodeIfPresent(.taxReportingUs1099Misc)
+        self.transfers = try container.sdkDecodeIfPresent(.transfers)
     }
 }
 
 extension AccountCapabilities {
     mutating func sdkDecodeFieldsPart6(_ container: KeyedDecodingContainer<CodingKeys>) throws {
-        treasury = try container.sdkDecodeIfPresent(.treasury)
-        twintPayments = try container.sdkDecodeIfPresent(.twintPayments)
-        upiPayments = try container.sdkDecodeIfPresent(.upiPayments)
-        usBankAccountAchPayments = try container.sdkDecodeIfPresent(.usBankAccountAchPayments)
-        usBankTransferPayments = try container.sdkDecodeIfPresent(.usBankTransferPayments)
-        zipPayments = try container.sdkDecodeIfPresent(.zipPayments)
+        self.treasury = try container.sdkDecodeIfPresent(.treasury)
+        self.twintPayments = try container.sdkDecodeIfPresent(.twintPayments)
+        self.upiPayments = try container.sdkDecodeIfPresent(.upiPayments)
+        self.usBankAccountAchPayments = try container.sdkDecodeIfPresent(.usBankAccountAchPayments)
+        self.usBankTransferPayments = try container.sdkDecodeIfPresent(.usBankTransferPayments)
+        self.zipPayments = try container.sdkDecodeIfPresent(.zipPayments)
     }
 }
 
@@ -109,71 +109,40 @@ public struct AccountCapabilityFutureRequirements: Codable {
         case disabledReason = "disabled_reason"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension AccountCapabilityFutureRequirements {
-    init(from decoder: Decoder) throws {
+extension AccountCapabilityFutureRequirements {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.currentlyDue) else {
-            throw SdkValidationError(
-                field: "currently_due",
-                code: "required",
-                message: "Validation failed for 'currently_due': value is required"
-            )
+            throw SdkValidationError(field: "currently_due", code: "required", message: "Validation failed for 'currently_due': value is required")
         }
         guard container.contains(.errors) else {
-            throw SdkValidationError(
-                field: "errors",
-                code: "required",
-                message: "Validation failed for 'errors': value is required"
-            )
+            throw SdkValidationError(field: "errors", code: "required", message: "Validation failed for 'errors': value is required")
         }
         guard container.contains(.eventuallyDue) else {
-            throw SdkValidationError(
-                field: "eventually_due",
-                code: "required",
-                message: "Validation failed for 'eventually_due': value is required"
-            )
+            throw SdkValidationError(field: "eventually_due", code: "required", message: "Validation failed for 'eventually_due': value is required")
         }
         guard container.contains(.pastDue) else {
-            throw SdkValidationError(
-                field: "past_due",
-                code: "required",
-                message: "Validation failed for 'past_due': value is required"
-            )
+            throw SdkValidationError(field: "past_due", code: "required", message: "Validation failed for 'past_due': value is required")
         }
         guard container.contains(.pendingVerification) else {
-            throw SdkValidationError(
-                field: "pending_verification",
-                code: "required",
-                message: "Validation failed for 'pending_verification': value is required"
-            )
+            throw SdkValidationError(field: "pending_verification", code: "required", message: "Validation failed for 'pending_verification': value is required")
         }
-        currentlyDue = try container.sdkDecodeRequired(.currentlyDue)
-        errors = try container.sdkDecodeRequired(.errors)
-        eventuallyDue = try container.sdkDecodeRequired(.eventuallyDue)
-        pastDue = try container.sdkDecodeRequired(.pastDue)
-        pendingVerification = try container.sdkDecodeRequired(.pendingVerification)
-        alternatives = try container.sdkDecodeIfPresent(.alternatives)
-        currentDeadline = try container.sdkDecodeIfPresent(.currentDeadline)
-        disabledReason = try container.sdkDecodeIfPresent(.disabledReason)
+        self.currentlyDue = try container.sdkDecodeRequired(.currentlyDue)
+        self.errors = try container.sdkDecodeRequired(.errors)
+        self.eventuallyDue = try container.sdkDecodeRequired(.eventuallyDue)
+        self.pastDue = try container.sdkDecodeRequired(.pastDue)
+        self.pendingVerification = try container.sdkDecodeRequired(.pendingVerification)
+        self.alternatives = try container.sdkDecodeIfPresent(.alternatives)
+        self.currentDeadline = try container.sdkDecodeIfPresent(.currentDeadline)
+        self.disabledReason = try container.sdkDecodeIfPresent(.disabledReason)
     }
 }
 
-public extension AccountCapabilityFutureRequirements {
-    init(
-        currentlyDue: [String],
-        errors: [AccountRequirementsError],
-        eventuallyDue: [String],
-        pastDue: [String],
-        pendingVerification: [String],
-        alternatives: [AccountRequirementsAlternative]? = nil,
-        currentDeadline: Int? = nil,
-        disabledReason: AccountCapabilityFutureRequirementsDisabledReason? = nil
-    ) {
+extension AccountCapabilityFutureRequirements {
+    public init(currentlyDue: [String], errors: [AccountRequirementsError], eventuallyDue: [String], pastDue: [String], pendingVerification: [String], alternatives: [AccountRequirementsAlternative]? = nil, currentDeadline: Int? = nil, disabledReason: AccountCapabilityFutureRequirementsDisabledReason? = nil) {
         (self.currentlyDue, self.errors) = (currentlyDue, errors)
         (self.eventuallyDue, self.pastDue) = (eventuallyDue, pastDue)
         (self.pendingVerification, self.alternatives) = (pendingVerification, alternatives)
@@ -223,71 +192,40 @@ public struct AccountCapabilityRequirements: Codable {
         case disabledReason = "disabled_reason"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension AccountCapabilityRequirements {
-    init(from decoder: Decoder) throws {
+extension AccountCapabilityRequirements {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.currentlyDue) else {
-            throw SdkValidationError(
-                field: "currently_due",
-                code: "required",
-                message: "Validation failed for 'currently_due': value is required"
-            )
+            throw SdkValidationError(field: "currently_due", code: "required", message: "Validation failed for 'currently_due': value is required")
         }
         guard container.contains(.errors) else {
-            throw SdkValidationError(
-                field: "errors",
-                code: "required",
-                message: "Validation failed for 'errors': value is required"
-            )
+            throw SdkValidationError(field: "errors", code: "required", message: "Validation failed for 'errors': value is required")
         }
         guard container.contains(.eventuallyDue) else {
-            throw SdkValidationError(
-                field: "eventually_due",
-                code: "required",
-                message: "Validation failed for 'eventually_due': value is required"
-            )
+            throw SdkValidationError(field: "eventually_due", code: "required", message: "Validation failed for 'eventually_due': value is required")
         }
         guard container.contains(.pastDue) else {
-            throw SdkValidationError(
-                field: "past_due",
-                code: "required",
-                message: "Validation failed for 'past_due': value is required"
-            )
+            throw SdkValidationError(field: "past_due", code: "required", message: "Validation failed for 'past_due': value is required")
         }
         guard container.contains(.pendingVerification) else {
-            throw SdkValidationError(
-                field: "pending_verification",
-                code: "required",
-                message: "Validation failed for 'pending_verification': value is required"
-            )
+            throw SdkValidationError(field: "pending_verification", code: "required", message: "Validation failed for 'pending_verification': value is required")
         }
-        currentlyDue = try container.sdkDecodeRequired(.currentlyDue)
-        errors = try container.sdkDecodeRequired(.errors)
-        eventuallyDue = try container.sdkDecodeRequired(.eventuallyDue)
-        pastDue = try container.sdkDecodeRequired(.pastDue)
-        pendingVerification = try container.sdkDecodeRequired(.pendingVerification)
-        alternatives = try container.sdkDecodeIfPresent(.alternatives)
-        currentDeadline = try container.sdkDecodeIfPresent(.currentDeadline)
-        disabledReason = try container.sdkDecodeIfPresent(.disabledReason)
+        self.currentlyDue = try container.sdkDecodeRequired(.currentlyDue)
+        self.errors = try container.sdkDecodeRequired(.errors)
+        self.eventuallyDue = try container.sdkDecodeRequired(.eventuallyDue)
+        self.pastDue = try container.sdkDecodeRequired(.pastDue)
+        self.pendingVerification = try container.sdkDecodeRequired(.pendingVerification)
+        self.alternatives = try container.sdkDecodeIfPresent(.alternatives)
+        self.currentDeadline = try container.sdkDecodeIfPresent(.currentDeadline)
+        self.disabledReason = try container.sdkDecodeIfPresent(.disabledReason)
     }
 }
 
-public extension AccountCapabilityRequirements {
-    init(
-        currentlyDue: [String],
-        errors: [AccountRequirementsError],
-        eventuallyDue: [String],
-        pastDue: [String],
-        pendingVerification: [String],
-        alternatives: [AccountRequirementsAlternative]? = nil,
-        currentDeadline: Int? = nil,
-        disabledReason: AccountCapabilityRequirementsDisabledReason? = nil
-    ) {
+extension AccountCapabilityRequirements {
+    public init(currentlyDue: [String], errors: [AccountRequirementsError], eventuallyDue: [String], pastDue: [String], pendingVerification: [String], alternatives: [AccountRequirementsAlternative]? = nil, currentDeadline: Int? = nil, disabledReason: AccountCapabilityRequirementsDisabledReason? = nil) {
         (self.currentlyDue, self.errors) = (currentlyDue, errors)
         (self.eventuallyDue, self.pastDue) = (eventuallyDue, pastDue)
         (self.pendingVerification, self.alternatives) = (pendingVerification, alternatives)
@@ -305,19 +243,19 @@ public struct AccountCardIssuingSettings: Codable {
     }
 
     init() {
-        tosAcceptance = nil
+        self.tosAcceptance = nil
     }
 }
 
-public extension AccountCardIssuingSettings {
-    init(from decoder: Decoder) throws {
+extension AccountCardIssuingSettings {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        tosAcceptance = try container.sdkDecodeIfPresent(.tosAcceptance)
+        self.tosAcceptance = try container.sdkDecodeIfPresent(.tosAcceptance)
     }
 }
 
-public extension AccountCardIssuingSettings {
-    init(tosAcceptance: CardIssuingAccountTermsOfService? = nil) {
+extension AccountCardIssuingSettings {
+    public init(tosAcceptance: CardIssuingAccountTermsOfService? = nil) {
         self.init()
         self.tosAcceptance = tosAcceptance
     }
@@ -348,41 +286,31 @@ public struct AccountCardPaymentsSettings: Codable {
     }
 
     init() {
-        (declineOn, statementDescriptorPrefix, statementDescriptorPrefixKana, statementDescriptorPrefixKanji) = (
-            nil,
-            nil,
-            nil,
-            nil
-        )
+        (self.declineOn, self.statementDescriptorPrefix, self.statementDescriptorPrefixKana, self.statementDescriptorPrefixKanji) = (nil, nil, nil, nil)
     }
 }
 
-public extension AccountCardPaymentsSettings {
-    init(from decoder: Decoder) throws {
+extension AccountCardPaymentsSettings {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        declineOn = try container.sdkDecodeIfPresent(.declineOn)
-        statementDescriptorPrefix = try container.sdkDecodeIfPresent(.statementDescriptorPrefix)
-        statementDescriptorPrefixKana = try container.sdkDecodeIfPresent(.statementDescriptorPrefixKana)
-        statementDescriptorPrefixKanji = try container.sdkDecodeIfPresent(.statementDescriptorPrefixKanji)
-        if let value = statementDescriptorPrefix {
+        self.declineOn = try container.sdkDecodeIfPresent(.declineOn)
+        self.statementDescriptorPrefix = try container.sdkDecodeIfPresent(.statementDescriptorPrefix)
+        self.statementDescriptorPrefixKana = try container.sdkDecodeIfPresent(.statementDescriptorPrefixKana)
+        self.statementDescriptorPrefixKanji = try container.sdkDecodeIfPresent(.statementDescriptorPrefixKanji)
+        if let value = self.statementDescriptorPrefix {
             try validateLength("statement_descriptor_prefix", value, min: nil, max: 5000)
         }
-        if let value = statementDescriptorPrefixKana {
+        if let value = self.statementDescriptorPrefixKana {
             try validateLength("statement_descriptor_prefix_kana", value, min: nil, max: 5000)
         }
-        if let value = statementDescriptorPrefixKanji {
+        if let value = self.statementDescriptorPrefixKanji {
             try validateLength("statement_descriptor_prefix_kanji", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension AccountCardPaymentsSettings {
-    init(
-        declineOn: AccountDeclineChargeOn? = nil,
-        statementDescriptorPrefix: String? = nil,
-        statementDescriptorPrefixKana: String? = nil,
-        statementDescriptorPrefixKanji: String? = nil
-    ) throws {
+extension AccountCardPaymentsSettings {
+    public init(declineOn: AccountDeclineChargeOn? = nil, statementDescriptorPrefix: String? = nil, statementDescriptorPrefixKana: String? = nil, statementDescriptorPrefixKanji: String? = nil) throws {
         self.init()
         (self.declineOn, self.statementDescriptorPrefix) = (declineOn, statementDescriptorPrefix)
         self.statementDescriptorPrefixKana = statementDescriptorPrefixKana
@@ -413,26 +341,26 @@ public struct AccountDashboardSettings: Codable {
     }
 
     init() {
-        (displayName, timezone) = (nil, nil)
+        (self.displayName, self.timezone) = (nil, nil)
     }
 }
 
-public extension AccountDashboardSettings {
-    init(from decoder: Decoder) throws {
+extension AccountDashboardSettings {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        displayName = try container.sdkDecodeIfPresent(.displayName)
-        timezone = try container.sdkDecodeIfPresent(.timezone)
-        if let value = displayName {
+        self.displayName = try container.sdkDecodeIfPresent(.displayName)
+        self.timezone = try container.sdkDecodeIfPresent(.timezone)
+        if let value = self.displayName {
             try validateLength("display_name", value, min: nil, max: 5000)
         }
-        if let value = timezone {
+        if let value = self.timezone {
             try validateLength("timezone", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension AccountDashboardSettings {
-    init(displayName: String? = nil, timezone: String? = nil) throws {
+extension AccountDashboardSettings {
+    public init(displayName: String? = nil, timezone: String? = nil) throws {
         self.init()
         (self.displayName, self.timezone) = (displayName, timezone)
         if let value = self.displayName {
@@ -458,35 +386,25 @@ public struct AccountDeclineChargeOn: Codable {
         case cvcFailure = "cvc_failure"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension AccountDeclineChargeOn {
-    init(from decoder: Decoder) throws {
+extension AccountDeclineChargeOn {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.avsFailure) else {
-            throw SdkValidationError(
-                field: "avs_failure",
-                code: "required",
-                message: "Validation failed for 'avs_failure': value is required"
-            )
+            throw SdkValidationError(field: "avs_failure", code: "required", message: "Validation failed for 'avs_failure': value is required")
         }
         guard container.contains(.cvcFailure) else {
-            throw SdkValidationError(
-                field: "cvc_failure",
-                code: "required",
-                message: "Validation failed for 'cvc_failure': value is required"
-            )
+            throw SdkValidationError(field: "cvc_failure", code: "required", message: "Validation failed for 'cvc_failure': value is required")
         }
-        avsFailure = try container.sdkDecodeRequired(.avsFailure)
-        cvcFailure = try container.sdkDecodeRequired(.cvcFailure)
+        self.avsFailure = try container.sdkDecodeRequired(.avsFailure)
+        self.cvcFailure = try container.sdkDecodeRequired(.cvcFailure)
     }
 }
 
-public extension AccountDeclineChargeOn {
-    init(avsFailure: Bool, cvcFailure: Bool) {
+extension AccountDeclineChargeOn {
+    public init(avsFailure: Bool, cvcFailure: Bool) {
         (self.avsFailure, self.cvcFailure) = (avsFailure, cvcFailure)
     }
 }
@@ -533,36 +451,27 @@ public struct AccountFutureRequirements: Codable {
     }
 
     init() {
-        (alternatives, currentDeadline, currentlyDue, disabledReason, errors) = (nil, nil, nil, nil, nil)
-        (eventuallyDue, pastDue, pendingVerification) = (nil, nil, nil)
+        (self.alternatives, self.currentDeadline, self.currentlyDue, self.disabledReason, self.errors) = (nil, nil, nil, nil, nil)
+        (self.eventuallyDue, self.pastDue, self.pendingVerification) = (nil, nil, nil)
     }
 }
 
-public extension AccountFutureRequirements {
-    init(from decoder: Decoder) throws {
+extension AccountFutureRequirements {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        alternatives = try container.sdkDecodeIfPresent(.alternatives)
-        currentDeadline = try container.sdkDecodeIfPresent(.currentDeadline)
-        currentlyDue = try container.sdkDecodeIfPresent(.currentlyDue)
-        disabledReason = try container.sdkDecodeIfPresent(.disabledReason)
-        errors = try container.sdkDecodeIfPresent(.errors)
-        eventuallyDue = try container.sdkDecodeIfPresent(.eventuallyDue)
-        pastDue = try container.sdkDecodeIfPresent(.pastDue)
-        pendingVerification = try container.sdkDecodeIfPresent(.pendingVerification)
+        self.alternatives = try container.sdkDecodeIfPresent(.alternatives)
+        self.currentDeadline = try container.sdkDecodeIfPresent(.currentDeadline)
+        self.currentlyDue = try container.sdkDecodeIfPresent(.currentlyDue)
+        self.disabledReason = try container.sdkDecodeIfPresent(.disabledReason)
+        self.errors = try container.sdkDecodeIfPresent(.errors)
+        self.eventuallyDue = try container.sdkDecodeIfPresent(.eventuallyDue)
+        self.pastDue = try container.sdkDecodeIfPresent(.pastDue)
+        self.pendingVerification = try container.sdkDecodeIfPresent(.pendingVerification)
     }
 }
 
-public extension AccountFutureRequirements {
-    init(
-        alternatives: [AccountRequirementsAlternative]? = nil,
-        currentDeadline: Int? = nil,
-        currentlyDue: [String]? = nil,
-        disabledReason: AccountFutureRequirementsDisabledReason? = nil,
-        errors: [AccountRequirementsError]? = nil,
-        eventuallyDue: [String]? = nil,
-        pastDue: [String]? = nil,
-        pendingVerification: [String]? = nil
-    ) {
+extension AccountFutureRequirements {
+    public init(alternatives: [AccountRequirementsAlternative]? = nil, currentDeadline: Int? = nil, currentlyDue: [String]? = nil, disabledReason: AccountFutureRequirementsDisabledReason? = nil, errors: [AccountRequirementsError]? = nil, eventuallyDue: [String]? = nil, pastDue: [String]? = nil, pendingVerification: [String]? = nil) {
         self.init()
         (self.alternatives, self.currentDeadline) = (alternatives, currentDeadline)
         (self.currentlyDue, self.disabledReason) = (currentlyDue, disabledReason)
@@ -582,22 +491,22 @@ public struct AccountGroupMembership: Codable {
     }
 
     init() {
-        paymentsPricing = nil
+        self.paymentsPricing = nil
     }
 }
 
-public extension AccountGroupMembership {
-    init(from decoder: Decoder) throws {
+extension AccountGroupMembership {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        paymentsPricing = try container.sdkDecodeIfPresent(.paymentsPricing)
-        if let value = paymentsPricing {
+        self.paymentsPricing = try container.sdkDecodeIfPresent(.paymentsPricing)
+        if let value = self.paymentsPricing {
             try validateLength("payments_pricing", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension AccountGroupMembership {
-    init(paymentsPricing: String? = nil) throws {
+extension AccountGroupMembership {
+    public init(paymentsPricing: String? = nil) throws {
         self.init()
         self.paymentsPricing = paymentsPricing
         if let value = self.paymentsPricing {

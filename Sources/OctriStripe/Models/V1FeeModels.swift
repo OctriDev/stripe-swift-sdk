@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1Fee domain models
+// V1Fee domain models
 /// Typed representation of the `Fee` API schema.
 public struct Fee: Codable {
     /// Amount of the fee, in cents.
@@ -26,56 +26,42 @@ public struct Fee: Codable {
         case description
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension Fee {
-    init(from decoder: Decoder) throws {
+extension Fee {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.amount) else {
-            throw SdkValidationError(
-                field: "amount",
-                code: "required",
-                message: "Validation failed for 'amount': value is required"
-            )
+            throw SdkValidationError(field: "amount", code: "required", message: "Validation failed for 'amount': value is required")
         }
         guard container.contains(.currency) else {
-            throw SdkValidationError(
-                field: "currency",
-                code: "required",
-                message: "Validation failed for 'currency': value is required"
-            )
+            throw SdkValidationError(field: "currency", code: "required", message: "Validation failed for 'currency': value is required")
         }
         guard container.contains(.type) else {
-            throw SdkValidationError(
-                field: "type",
-                code: "required",
-                message: "Validation failed for 'type': value is required"
-            )
+            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
         }
-        amount = try container.sdkDecodeRequired(.amount)
-        currency = try container.sdkDecodeRequired(.currency)
-        type = try container.sdkDecodeRequired(.type)
-        application = try container.sdkDecodeIfPresent(.application)
-        description = try container.sdkDecodeIfPresent(.description)
-        try validateLength("type", type, min: nil, max: 5000)
-        if let value = application {
+        self.amount = try container.sdkDecodeRequired(.amount)
+        self.currency = try container.sdkDecodeRequired(.currency)
+        self.type = try container.sdkDecodeRequired(.type)
+        self.application = try container.sdkDecodeIfPresent(.application)
+        self.description = try container.sdkDecodeIfPresent(.description)
+            try validateLength("type", self.type, min: nil, max: 5000)
+        if let value = self.application {
             try validateLength("application", value, min: nil, max: 5000)
         }
-        if let value = description {
+        if let value = self.description {
             try validateLength("description", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension Fee {
-    init(amount: Int, currency: String, type: String, application: String? = nil, description: String? = nil) throws {
+extension Fee {
+    public init(amount: Int, currency: String, type: String, application: String? = nil, description: String? = nil) throws {
         (self.amount, self.currency) = (amount, currency)
         (self.type, self.application) = (type, application)
         self.description = description
-        try validateLength("type", self.type, min: nil, max: 5000)
+            try validateLength("type", self.type, min: nil, max: 5000)
         if let value = self.application {
             try validateLength("application", value, min: nil, max: 5000)
         }

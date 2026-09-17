@@ -6,9 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1BillingAlertsMethods {
-    /// Lists active and inactive billing alerts. Use `alert_type` and `meter` to filter the alerts, and use cursor
-    /// parameters to paginate through the results.
+extension V1BillingAlertsMethods {
+    /// Lists active and inactive billing alerts. Use `alert_type` and `meter` to filter the alerts, and use cursor parameters to paginate through the results.
     ///
     /// Lists billing active and inactive alerts
     ///
@@ -28,28 +27,20 @@ public extension V1BillingAlertsMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    static func getBillingAlerts(
-        config: ClientConfig,
-        alertType: GetBillingAlertsParameter?,
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        meter: String?,
-        startingAfter: String?
-    ) async throws -> GetBillingAlertsResponse {
-        if let endingBefore {
+    public static func getBillingAlerts(config: ClientConfig, alertType: GetBillingAlertsParameter?, endingBefore: String?, expand: [String]?, limit: Int?, meter: String?, startingAfter: String?) async throws -> GetBillingAlertsResponse {
+        if let endingBefore = endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let meter {
+        if let meter = meter {
             try validateLength("meter", meter, max: 5000)
         }
 
-        if let startingAfter {
+        if let startingAfter = startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try await (sdkRequest("GET", "/v1/billing/alerts", config: config, query: [
+        return try (await sdkRequest("GET", "/v1/billing/alerts", config: config, query: [
             SdkQueryParameter("alert_type", value: alertType),
             SdkQueryParameter("ending_before", value: endingBefore),
             SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),

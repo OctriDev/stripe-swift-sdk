@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1Quotes domain models
+// V1Quotes domain models
 /// Typed representation of the `QuotesResourceAutomaticTax` API schema.
 public struct QuotesResourceAutomaticTax: Codable {
     /// Automatically calculate taxes
@@ -24,38 +24,27 @@ public struct QuotesResourceAutomaticTax: Codable {
         case status
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension QuotesResourceAutomaticTax {
-    init(from decoder: Decoder) throws {
+extension QuotesResourceAutomaticTax {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.enabled) else {
-            throw SdkValidationError(
-                field: "enabled",
-                code: "required",
-                message: "Validation failed for 'enabled': value is required"
-            )
+            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
         }
-        enabled = try container.sdkDecodeRequired(.enabled)
-        liability = try container.sdkDecodeIfPresent(.liability)
-        provider = try container.sdkDecodeIfPresent(.provider)
-        status = try container.sdkDecodeIfPresent(.status)
-        if let value = provider {
+        self.enabled = try container.sdkDecodeRequired(.enabled)
+        self.liability = try container.sdkDecodeIfPresent(.liability)
+        self.provider = try container.sdkDecodeIfPresent(.provider)
+        self.status = try container.sdkDecodeIfPresent(.status)
+        if let value = self.provider {
             try validateLength("provider", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension QuotesResourceAutomaticTax {
-    init(
-        enabled: Bool,
-        liability: QuotesResourceAutomaticTaxLiability? = nil,
-        provider: String? = nil,
-        status: QuotesResourceAutomaticTaxStatus? = nil
-    ) throws {
+extension QuotesResourceAutomaticTax {
+    public init(enabled: Bool, liability: QuotesResourceAutomaticTaxLiability? = nil, provider: String? = nil, status: QuotesResourceAutomaticTaxStatus? = nil) throws {
         (self.enabled, self.liability) = (enabled, liability)
         (self.provider, self.status) = (provider, status)
         if let value = self.provider {
@@ -69,28 +58,20 @@ public enum QuotesResourceAutomaticTaxLiability {
 }
 
 extension QuotesResourceAutomaticTaxLiability: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for QuotesResourceAutomaticTaxLiability"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for QuotesResourceAutomaticTaxLiability")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(ConnectAccountReference.self) {
-            return .connectAccountReference(value)
-        }
+        if let value = try? container.decode(ConnectAccountReference.self) { return .connectAccountReference(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -99,6 +80,7 @@ extension QuotesResourceAutomaticTaxLiability: Codable {
         case let .connectAccountReference(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// Typed representation of the `QuotesResourceComputed` API schema.
@@ -115,28 +97,22 @@ public struct QuotesResourceComputed: Codable {
         case recurring
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension QuotesResourceComputed {
-    init(from decoder: Decoder) throws {
+extension QuotesResourceComputed {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.upfront) else {
-            throw SdkValidationError(
-                field: "upfront",
-                code: "required",
-                message: "Validation failed for 'upfront': value is required"
-            )
+            throw SdkValidationError(field: "upfront", code: "required", message: "Validation failed for 'upfront': value is required")
         }
-        upfront = try container.sdkDecodeRequired(.upfront)
-        recurring = try container.sdkDecodeIfPresent(.recurring)
+        self.upfront = try container.sdkDecodeRequired(.upfront)
+        self.recurring = try container.sdkDecodeIfPresent(.recurring)
     }
 }
 
-public extension QuotesResourceComputed {
-    init(upfront: QuotesResourceUpfront, recurring: QuotesResourceComputedRecurring? = nil) {
+extension QuotesResourceComputed {
+    public init(upfront: QuotesResourceUpfront, recurring: QuotesResourceComputedRecurring? = nil) {
         (self.upfront, self.recurring) = (upfront, recurring)
     }
 }
@@ -146,28 +122,20 @@ public enum QuotesResourceComputedRecurring {
 }
 
 extension QuotesResourceComputedRecurring: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for QuotesResourceComputedRecurring"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for QuotesResourceComputedRecurring")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(QuotesResourceRecurring.self) {
-            return .quotesResourceRecurring(value)
-        }
+        if let value = try? container.decode(QuotesResourceRecurring.self) { return .quotesResourceRecurring(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -176,6 +144,7 @@ extension QuotesResourceComputedRecurring: Codable {
         case let .quotesResourceRecurring(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// Typed representation of the `QuotesResourceRecurring` API schema.
@@ -200,65 +169,37 @@ public struct QuotesResourceRecurring: Codable {
         case totalDetails = "total_details"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension QuotesResourceRecurring {
-    init(from decoder: Decoder) throws {
+extension QuotesResourceRecurring {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.amountSubtotal) else {
-            throw SdkValidationError(
-                field: "amount_subtotal",
-                code: "required",
-                message: "Validation failed for 'amount_subtotal': value is required"
-            )
+            throw SdkValidationError(field: "amount_subtotal", code: "required", message: "Validation failed for 'amount_subtotal': value is required")
         }
         guard container.contains(.amountTotal) else {
-            throw SdkValidationError(
-                field: "amount_total",
-                code: "required",
-                message: "Validation failed for 'amount_total': value is required"
-            )
+            throw SdkValidationError(field: "amount_total", code: "required", message: "Validation failed for 'amount_total': value is required")
         }
         guard container.contains(.interval) else {
-            throw SdkValidationError(
-                field: "interval",
-                code: "required",
-                message: "Validation failed for 'interval': value is required"
-            )
+            throw SdkValidationError(field: "interval", code: "required", message: "Validation failed for 'interval': value is required")
         }
         guard container.contains(.intervalCount) else {
-            throw SdkValidationError(
-                field: "interval_count",
-                code: "required",
-                message: "Validation failed for 'interval_count': value is required"
-            )
+            throw SdkValidationError(field: "interval_count", code: "required", message: "Validation failed for 'interval_count': value is required")
         }
         guard container.contains(.totalDetails) else {
-            throw SdkValidationError(
-                field: "total_details",
-                code: "required",
-                message: "Validation failed for 'total_details': value is required"
-            )
+            throw SdkValidationError(field: "total_details", code: "required", message: "Validation failed for 'total_details': value is required")
         }
-        amountSubtotal = try container.sdkDecodeRequired(.amountSubtotal)
-        amountTotal = try container.sdkDecodeRequired(.amountTotal)
-        interval = try container.sdkDecodeRequired(.interval)
-        intervalCount = try container.sdkDecodeRequired(.intervalCount)
-        totalDetails = try container.sdkDecodeRequired(.totalDetails)
+        self.amountSubtotal = try container.sdkDecodeRequired(.amountSubtotal)
+        self.amountTotal = try container.sdkDecodeRequired(.amountTotal)
+        self.interval = try container.sdkDecodeRequired(.interval)
+        self.intervalCount = try container.sdkDecodeRequired(.intervalCount)
+        self.totalDetails = try container.sdkDecodeRequired(.totalDetails)
     }
 }
 
-public extension QuotesResourceRecurring {
-    init(
-        amountSubtotal: Int,
-        amountTotal: Int,
-        interval: QuotesResourceRecurringInterval,
-        intervalCount: Int,
-        totalDetails: QuotesResourceTotalDetails
-    ) {
+extension QuotesResourceRecurring {
+    public init(amountSubtotal: Int, amountTotal: Int, interval: QuotesResourceRecurringInterval, intervalCount: Int, totalDetails: QuotesResourceTotalDetails) {
         (self.amountSubtotal, self.amountTotal) = (amountSubtotal, amountTotal)
         (self.interval, self.intervalCount) = (interval, intervalCount)
         self.totalDetails = totalDetails
@@ -281,21 +222,21 @@ public struct QuotesResourceStatusTransitions: Codable {
     }
 
     init() {
-        (acceptedAt, canceledAt, finalizedAt) = (nil, nil, nil)
+        (self.acceptedAt, self.canceledAt, self.finalizedAt) = (nil, nil, nil)
     }
 }
 
-public extension QuotesResourceStatusTransitions {
-    init(from decoder: Decoder) throws {
+extension QuotesResourceStatusTransitions {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        acceptedAt = try container.sdkDecodeIfPresent(.acceptedAt)
-        canceledAt = try container.sdkDecodeIfPresent(.canceledAt)
-        finalizedAt = try container.sdkDecodeIfPresent(.finalizedAt)
+        self.acceptedAt = try container.sdkDecodeIfPresent(.acceptedAt)
+        self.canceledAt = try container.sdkDecodeIfPresent(.canceledAt)
+        self.finalizedAt = try container.sdkDecodeIfPresent(.finalizedAt)
     }
 }
 
-public extension QuotesResourceStatusTransitions {
-    init(acceptedAt: Int? = nil, canceledAt: Int? = nil, finalizedAt: Int? = nil) {
+extension QuotesResourceStatusTransitions {
+    public init(acceptedAt: Int? = nil, canceledAt: Int? = nil, finalizedAt: Int? = nil) {
         self.init()
         (self.acceptedAt, self.canceledAt) = (acceptedAt, canceledAt)
         self.finalizedAt = finalizedAt
@@ -314,31 +255,22 @@ public struct QuotesResourceSubscriptionDataBillingMode: Codable {
         case flexible
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension QuotesResourceSubscriptionDataBillingMode {
-    init(from decoder: Decoder) throws {
+extension QuotesResourceSubscriptionDataBillingMode {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.type) else {
-            throw SdkValidationError(
-                field: "type",
-                code: "required",
-                message: "Validation failed for 'type': value is required"
-            )
+            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
         }
-        type = try container.sdkDecodeRequired(.type)
-        flexible = try container.sdkDecodeIfPresent(.flexible)
+        self.type = try container.sdkDecodeRequired(.type)
+        self.flexible = try container.sdkDecodeIfPresent(.flexible)
     }
 }
 
-public extension QuotesResourceSubscriptionDataBillingMode {
-    init(
-        type: QuotesResourceSubscriptionDataBillingModeType,
-        flexible: SubscriptionsResourceBillingModeFlexible? = nil
-    ) {
+extension QuotesResourceSubscriptionDataBillingMode {
+    public init(type: QuotesResourceSubscriptionDataBillingModeType, flexible: SubscriptionsResourceBillingModeFlexible? = nil) {
         (self.type, self.flexible) = (type, flexible)
     }
 }
@@ -371,40 +303,28 @@ public struct QuotesResourceSubscriptionDataSubscriptionData: Codable {
         case trialPeriodDays = "trial_period_days"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension QuotesResourceSubscriptionDataSubscriptionData {
-    init(from decoder: Decoder) throws {
+extension QuotesResourceSubscriptionDataSubscriptionData {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.billingMode) else {
-            throw SdkValidationError(
-                field: "billing_mode",
-                code: "required",
-                message: "Validation failed for 'billing_mode': value is required"
-            )
+            throw SdkValidationError(field: "billing_mode", code: "required", message: "Validation failed for 'billing_mode': value is required")
         }
-        billingMode = try container.sdkDecodeRequired(.billingMode)
-        description = try container.sdkDecodeIfPresent(.description)
-        effectiveDate = try container.sdkDecodeIfPresent(.effectiveDate)
-        metadata = try container.sdkDecodeIfPresent(.metadata)
-        trialPeriodDays = try container.sdkDecodeIfPresent(.trialPeriodDays)
-        if let value = description {
+        self.billingMode = try container.sdkDecodeRequired(.billingMode)
+        self.description = try container.sdkDecodeIfPresent(.description)
+        self.effectiveDate = try container.sdkDecodeIfPresent(.effectiveDate)
+        self.metadata = try container.sdkDecodeIfPresent(.metadata)
+        self.trialPeriodDays = try container.sdkDecodeIfPresent(.trialPeriodDays)
+        if let value = self.description {
             try validateLength("description", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension QuotesResourceSubscriptionDataSubscriptionData {
-    init(
-        billingMode: QuotesResourceSubscriptionDataBillingMode,
-        description: String? = nil,
-        effectiveDate: Int? = nil,
-        metadata: [String: String]? = nil,
-        trialPeriodDays: Int? = nil
-    ) throws {
+extension QuotesResourceSubscriptionDataSubscriptionData {
+    public init(billingMode: QuotesResourceSubscriptionDataBillingMode, description: String? = nil, effectiveDate: Int? = nil, metadata: [String: String]? = nil, trialPeriodDays: Int? = nil) throws {
         (self.billingMode, self.description) = (billingMode, description)
         (self.effectiveDate, self.metadata) = (effectiveDate, metadata)
         self.trialPeriodDays = trialPeriodDays
@@ -432,42 +352,27 @@ public struct QuotesResourceTotalDetails: Codable {
         case breakdown
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension QuotesResourceTotalDetails {
-    init(from decoder: Decoder) throws {
+extension QuotesResourceTotalDetails {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.amountDiscount) else {
-            throw SdkValidationError(
-                field: "amount_discount",
-                code: "required",
-                message: "Validation failed for 'amount_discount': value is required"
-            )
+            throw SdkValidationError(field: "amount_discount", code: "required", message: "Validation failed for 'amount_discount': value is required")
         }
         guard container.contains(.amountTax) else {
-            throw SdkValidationError(
-                field: "amount_tax",
-                code: "required",
-                message: "Validation failed for 'amount_tax': value is required"
-            )
+            throw SdkValidationError(field: "amount_tax", code: "required", message: "Validation failed for 'amount_tax': value is required")
         }
-        amountDiscount = try container.sdkDecodeRequired(.amountDiscount)
-        amountTax = try container.sdkDecodeRequired(.amountTax)
-        amountShipping = try container.sdkDecodeIfPresent(.amountShipping)
-        breakdown = try container.sdkDecodeIfPresent(.breakdown)
+        self.amountDiscount = try container.sdkDecodeRequired(.amountDiscount)
+        self.amountTax = try container.sdkDecodeRequired(.amountTax)
+        self.amountShipping = try container.sdkDecodeIfPresent(.amountShipping)
+        self.breakdown = try container.sdkDecodeIfPresent(.breakdown)
     }
 }
 
-public extension QuotesResourceTotalDetails {
-    init(
-        amountDiscount: Int,
-        amountTax: Int,
-        amountShipping: Int? = nil,
-        breakdown: QuotesResourceTotalDetailsResourceBreakdown? = nil
-    ) {
+extension QuotesResourceTotalDetails {
+    public init(amountDiscount: Int, amountTax: Int, amountShipping: Int? = nil, breakdown: QuotesResourceTotalDetailsResourceBreakdown? = nil) {
         (self.amountDiscount, self.amountTax) = (amountDiscount, amountTax)
         (self.amountShipping, self.breakdown) = (amountShipping, breakdown)
     }
@@ -485,35 +390,25 @@ public struct QuotesResourceTotalDetailsResourceBreakdown: Codable {
         case taxes
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension QuotesResourceTotalDetailsResourceBreakdown {
-    init(from decoder: Decoder) throws {
+extension QuotesResourceTotalDetailsResourceBreakdown {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.discounts) else {
-            throw SdkValidationError(
-                field: "discounts",
-                code: "required",
-                message: "Validation failed for 'discounts': value is required"
-            )
+            throw SdkValidationError(field: "discounts", code: "required", message: "Validation failed for 'discounts': value is required")
         }
         guard container.contains(.taxes) else {
-            throw SdkValidationError(
-                field: "taxes",
-                code: "required",
-                message: "Validation failed for 'taxes': value is required"
-            )
+            throw SdkValidationError(field: "taxes", code: "required", message: "Validation failed for 'taxes': value is required")
         }
-        discounts = try container.sdkDecodeRequired(.discounts)
-        taxes = try container.sdkDecodeRequired(.taxes)
+        self.discounts = try container.sdkDecodeRequired(.discounts)
+        self.taxes = try container.sdkDecodeRequired(.taxes)
     }
 }
 
-public extension QuotesResourceTotalDetailsResourceBreakdown {
-    init(discounts: [LineItemsDiscountAmount], taxes: [LineItemsTaxAmount]) {
+extension QuotesResourceTotalDetailsResourceBreakdown {
+    public init(discounts: [LineItemsDiscountAmount], taxes: [LineItemsTaxAmount]) {
         (self.discounts, self.taxes) = (discounts, taxes)
     }
 }
@@ -536,29 +431,23 @@ public struct QuotesResourceTransferData: Codable {
         case amountPercent = "amount_percent"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension QuotesResourceTransferData {
-    init(from decoder: Decoder) throws {
+extension QuotesResourceTransferData {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.destination) else {
-            throw SdkValidationError(
-                field: "destination",
-                code: "required",
-                message: "Validation failed for 'destination': value is required"
-            )
+            throw SdkValidationError(field: "destination", code: "required", message: "Validation failed for 'destination': value is required")
         }
-        destination = try container.sdkDecodeRequired(.destination)
-        amount = try container.sdkDecodeIfPresent(.amount)
-        amountPercent = try container.sdkDecodeIfPresent(.amountPercent)
+        self.destination = try container.sdkDecodeRequired(.destination)
+        self.amount = try container.sdkDecodeIfPresent(.amount)
+        self.amountPercent = try container.sdkDecodeIfPresent(.amountPercent)
     }
 }
 
-public extension QuotesResourceTransferData {
-    init(destination: QuotesResourceTransferDataDestination, amount: Int? = nil, amountPercent: Double? = nil) {
+extension QuotesResourceTransferData {
+    public init(destination: QuotesResourceTransferDataDestination, amount: Int? = nil, amountPercent: Double? = nil) {
         (self.destination, self.amount) = (destination, amount)
         self.amountPercent = amountPercent
     }
@@ -570,31 +459,21 @@ public enum QuotesResourceTransferDataDestination {
 }
 
 extension QuotesResourceTransferDataDestination: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for QuotesResourceTransferDataDestination"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for QuotesResourceTransferDataDestination")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(Account.self) {
-            return .account(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(Account.self) { return .account(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -604,6 +483,7 @@ extension QuotesResourceTransferDataDestination: Codable {
         case let .account(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// Typed representation of the `QuotesResourceUpfront` API schema.
@@ -625,7 +505,5 @@ public struct QuotesResourceUpfront: Codable {
         case lineItems = "line_items"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }

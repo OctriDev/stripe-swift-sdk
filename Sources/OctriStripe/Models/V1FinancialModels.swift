@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1Financial domain models
+// V1Financial domain models
 /// A Financial Connections Account represents an account that exists outside of Stripe, to which you have been
 /// granted some degree of access.
 public struct FinancialConnectionsAccount: Codable {
@@ -78,70 +78,46 @@ public struct FinancialConnectionsAccount: Codable {
         case transactionRefresh = "transaction_refresh"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension FinancialConnectionsAccount {
-    init(from decoder: Decoder) throws {
+extension FinancialConnectionsAccount {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        category = try container.sdkDecodeRequired(.category)
-        created = try container.sdkDecodeRequired(.created)
-        id = try container.sdkDecodeRequired(.id)
-        institutionName = try container.sdkDecodeRequired(.institutionName)
-        livemode = try container.sdkDecodeRequired(.livemode)
-        object = try container.sdkDecodeRequired(.object)
-        status = try container.sdkDecodeRequired(.status)
-        subcategory = try container.sdkDecodeRequired(.subcategory)
-        supportedPaymentMethodTypes = try container.sdkDecodeRequired(.supportedPaymentMethodTypes)
-        accountHolder = try container.sdkDecodeIfPresent(.accountHolder)
-        accountNumbers = try container.sdkDecodeIfPresent(.accountNumbers)
-        balance = try container.sdkDecodeIfPresent(.balance)
-        balanceRefresh = try container.sdkDecodeIfPresent(.balanceRefresh)
-        displayName = try container.sdkDecodeIfPresent(.displayName)
-        last4 = try container.sdkDecodeIfPresent(.last4)
-        ownership = try container.sdkDecodeIfPresent(.ownership)
-        ownershipRefresh = try container.sdkDecodeIfPresent(.ownershipRefresh)
-        permissions = try container.sdkDecodeIfPresent(.permissions)
-        statusDetails = try container.sdkDecodeIfPresent(.statusDetails)
-        subscriptions = try container.sdkDecodeIfPresent(.subscriptions)
-        transactionRefresh = try container.sdkDecodeIfPresent(.transactionRefresh)
-        try validateLength("id", id, min: nil, max: 5000)
-        try validateLength("institution_name", institutionName, min: nil, max: 5000)
-        if let value = displayName {
+        self.category = try container.sdkDecodeRequired(.category)
+        self.created = try container.sdkDecodeRequired(.created)
+        self.id = try container.sdkDecodeRequired(.id)
+        self.institutionName = try container.sdkDecodeRequired(.institutionName)
+        self.livemode = try container.sdkDecodeRequired(.livemode)
+        self.object = try container.sdkDecodeRequired(.object)
+        self.status = try container.sdkDecodeRequired(.status)
+        self.subcategory = try container.sdkDecodeRequired(.subcategory)
+        self.supportedPaymentMethodTypes = try container.sdkDecodeRequired(.supportedPaymentMethodTypes)
+        self.accountHolder = try container.sdkDecodeIfPresent(.accountHolder)
+        self.accountNumbers = try container.sdkDecodeIfPresent(.accountNumbers)
+        self.balance = try container.sdkDecodeIfPresent(.balance)
+        self.balanceRefresh = try container.sdkDecodeIfPresent(.balanceRefresh)
+        self.displayName = try container.sdkDecodeIfPresent(.displayName)
+        self.last4 = try container.sdkDecodeIfPresent(.last4)
+        self.ownership = try container.sdkDecodeIfPresent(.ownership)
+        self.ownershipRefresh = try container.sdkDecodeIfPresent(.ownershipRefresh)
+        self.permissions = try container.sdkDecodeIfPresent(.permissions)
+        self.statusDetails = try container.sdkDecodeIfPresent(.statusDetails)
+        self.subscriptions = try container.sdkDecodeIfPresent(.subscriptions)
+        self.transactionRefresh = try container.sdkDecodeIfPresent(.transactionRefresh)
+            try validateLength("id", self.id, min: nil, max: 5000)
+            try validateLength("institution_name", self.institutionName, min: nil, max: 5000)
+        if let value = self.displayName {
             try validateLength("display_name", value, min: nil, max: 5000)
         }
-        if let value = last4 {
+        if let value = self.last4 {
             try validateLength("last4", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension FinancialConnectionsAccount {
-    init(
-        category: FinancialConnectionsAccountCategory,
-        created: Int,
-        id: String,
-        institutionName: String,
-        livemode: Bool,
-        object: FinancialConnectionsAccountObject,
-        status: FinancialConnectionsAccountStatus,
-        subcategory: FinancialConnectionsAccountSubcategory,
-        supportedPaymentMethodTypes: [FinancialConnectionsAccountSupportedPaymentMethodTypesItem],
-        accountHolder: FinancialConnectionsAccountAccountHolder? = nil,
-        accountNumbers: [BankConnectionsResourceAccountNumberDetails]? = nil,
-        balance: FinancialConnectionsAccountBalance? = nil,
-        balanceRefresh: FinancialConnectionsAccountBalanceRefresh? = nil,
-        displayName: String? = nil,
-        last4: String? = nil,
-        ownership: FinancialConnectionsAccountOwnershipXb3b4475b? = nil,
-        ownershipRefresh: FinancialConnectionsAccountOwnershipRefresh? = nil,
-        permissions: [FinancialConnectionsAccountPermissionsItem]? = nil,
-        statusDetails: BankConnectionsResourceAccountStatusDetails? = nil,
-        subscriptions: [FinancialConnectionsAccountSubscriptionsItem]? = nil,
-        transactionRefresh: FinancialConnectionsAccountTransactionRefresh? = nil
-    ) throws {
+extension FinancialConnectionsAccount {
+    public init(category: FinancialConnectionsAccountCategory, created: Int, id: String, institutionName: String, livemode: Bool, object: FinancialConnectionsAccountObject, status: FinancialConnectionsAccountStatus, subcategory: FinancialConnectionsAccountSubcategory, supportedPaymentMethodTypes: [FinancialConnectionsAccountSupportedPaymentMethodTypesItem], accountHolder: FinancialConnectionsAccountAccountHolder? = nil, accountNumbers: [BankConnectionsResourceAccountNumberDetails]? = nil, balance: FinancialConnectionsAccountBalance? = nil, balanceRefresh: FinancialConnectionsAccountBalanceRefresh? = nil, displayName: String? = nil, last4: String? = nil, ownership: FinancialConnectionsAccountOwnershipXb3b4475b? = nil, ownershipRefresh: FinancialConnectionsAccountOwnershipRefresh? = nil, permissions: [FinancialConnectionsAccountPermissionsItem]? = nil, statusDetails: BankConnectionsResourceAccountStatusDetails? = nil, subscriptions: [FinancialConnectionsAccountSubscriptionsItem]? = nil, transactionRefresh: FinancialConnectionsAccountTransactionRefresh? = nil) throws {
         (self.category, self.created) = (category, created)
         (self.id, self.institutionName) = (id, institutionName)
         (self.livemode, self.object) = (livemode, object)
@@ -153,8 +129,8 @@ public extension FinancialConnectionsAccount {
         (self.ownership, self.ownershipRefresh) = (ownership, ownershipRefresh)
         (self.permissions, self.statusDetails) = (permissions, statusDetails)
         (self.subscriptions, self.transactionRefresh) = (subscriptions, transactionRefresh)
-        try validateLength("id", self.id, min: nil, max: 5000)
-        try validateLength("institution_name", self.institutionName, min: nil, max: 5000)
+            try validateLength("id", self.id, min: nil, max: 5000)
+            try validateLength("institution_name", self.institutionName, min: nil, max: 5000)
         if let value = self.displayName {
             try validateLength("display_name", value, min: nil, max: 5000)
         }
@@ -169,30 +145,24 @@ public enum FinancialConnectionsAccountAccountHolder {
 }
 
 extension FinancialConnectionsAccountAccountHolder: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for FinancialConnectionsAccountAccountHolder"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for FinancialConnectionsAccountAccountHolder")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             BankConnectionsResourceAccountholder.self
         ) {
-            return .bankConnectionsResourceAccountholder(value)
+            return             .bankConnectionsResourceAccountholder(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -201,6 +171,7 @@ extension FinancialConnectionsAccountAccountHolder: Codable {
         case let .bankConnectionsResourceAccountholder(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum FinancialConnectionsAccountBalance {
@@ -208,29 +179,20 @@ public enum FinancialConnectionsAccountBalance {
 }
 
 extension FinancialConnectionsAccountBalance: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for FinancialConnectionsAccountBalance"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for FinancialConnectionsAccountBalance")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container
-            .decode(BankConnectionsResourceBalance.self) {
-            return .bankConnectionsResourceBalance(value)
-        }
+        if let value = try? container.decode(BankConnectionsResourceBalance.self) { return .bankConnectionsResourceBalance(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -239,6 +201,7 @@ extension FinancialConnectionsAccountBalance: Codable {
         case let .bankConnectionsResourceBalance(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum FinancialConnectionsAccountBalanceRefresh {
@@ -246,30 +209,24 @@ public enum FinancialConnectionsAccountBalanceRefresh {
 }
 
 extension FinancialConnectionsAccountBalanceRefresh: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for FinancialConnectionsAccountBalanceRefresh"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for FinancialConnectionsAccountBalanceRefresh")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             BankConnectionsResourceBalanceRefresh.self
         ) {
-            return .bankConnectionsResourceBalanceRefresh(value)
+            return             .bankConnectionsResourceBalanceRefresh(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -278,6 +235,7 @@ extension FinancialConnectionsAccountBalanceRefresh: Codable {
         case let .bankConnectionsResourceBalanceRefresh(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum FinancialConnectionsAccountOwnershipXb3b4475b {
@@ -286,33 +244,25 @@ public enum FinancialConnectionsAccountOwnershipXb3b4475b {
 }
 
 extension FinancialConnectionsAccountOwnershipXb3b4475b: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for FinancialConnectionsAccountOwnershipXb3b4475b"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for FinancialConnectionsAccountOwnershipXb3b4475b")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
         if let value = try? container.decode(
             FinancialConnectionsAccountOwnership.self
         ) {
-            return .financialConnectionsAccountOwnership(value)
+            return             .financialConnectionsAccountOwnership(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -322,6 +272,7 @@ extension FinancialConnectionsAccountOwnershipXb3b4475b: Codable {
         case let .financialConnectionsAccountOwnership(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum FinancialConnectionsAccountOwnershipRefresh {
@@ -329,30 +280,24 @@ public enum FinancialConnectionsAccountOwnershipRefresh {
 }
 
 extension FinancialConnectionsAccountOwnershipRefresh: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for FinancialConnectionsAccountOwnershipRefresh"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for FinancialConnectionsAccountOwnershipRefresh")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             BankConnectionsResourceOwnershipRefresh.self
         ) {
-            return .bankConnectionsResourceOwnershipRefresh(value)
+            return             .bankConnectionsResourceOwnershipRefresh(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -361,6 +306,7 @@ extension FinancialConnectionsAccountOwnershipRefresh: Codable {
         case let .bankConnectionsResourceOwnershipRefresh(value): try container.encode(value); return true
         }
     }
+
 }
 
 public enum FinancialConnectionsAccountTransactionRefresh {
@@ -368,30 +314,24 @@ public enum FinancialConnectionsAccountTransactionRefresh {
 }
 
 extension FinancialConnectionsAccountTransactionRefresh: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for FinancialConnectionsAccountTransactionRefresh"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for FinancialConnectionsAccountTransactionRefresh")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             BankConnectionsResourceTransactionRefresh.self
         ) {
-            return .bankConnectionsResourceTransactionRefresh(value)
+            return             .bankConnectionsResourceTransactionRefresh(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -400,6 +340,7 @@ extension FinancialConnectionsAccountTransactionRefresh: Codable {
         case let .bankConnectionsResourceTransactionRefresh(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// Describes an owner of an account.
@@ -432,83 +373,56 @@ public struct FinancialConnectionsAccountOwner: Codable {
         case refreshedAt = "refreshed_at"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension FinancialConnectionsAccountOwner {
-    init(from decoder: Decoder) throws {
+extension FinancialConnectionsAccountOwner {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.id) else {
-            throw SdkValidationError(
-                field: "id",
-                code: "required",
-                message: "Validation failed for 'id': value is required"
-            )
+            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
         }
         guard container.contains(.name) else {
-            throw SdkValidationError(
-                field: "name",
-                code: "required",
-                message: "Validation failed for 'name': value is required"
-            )
+            throw SdkValidationError(field: "name", code: "required", message: "Validation failed for 'name': value is required")
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(
-                field: "object",
-                code: "required",
-                message: "Validation failed for 'object': value is required"
-            )
+            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
         }
         guard container.contains(.ownership) else {
-            throw SdkValidationError(
-                field: "ownership",
-                code: "required",
-                message: "Validation failed for 'ownership': value is required"
-            )
+            throw SdkValidationError(field: "ownership", code: "required", message: "Validation failed for 'ownership': value is required")
         }
-        id = try container.sdkDecodeRequired(.id)
-        name = try container.sdkDecodeRequired(.name)
-        object = try container.sdkDecodeRequired(.object)
-        ownership = try container.sdkDecodeRequired(.ownership)
-        email = try container.sdkDecodeIfPresent(.email)
-        phone = try container.sdkDecodeIfPresent(.phone)
-        rawAddress = try container.sdkDecodeIfPresent(.rawAddress)
-        refreshedAt = try container.sdkDecodeIfPresent(.refreshedAt)
-        try validateLength("id", id, min: nil, max: 5000)
-        try validateLength("name", name, min: nil, max: 5000)
-        try validateLength("ownership", ownership, min: nil, max: 5000)
-        if let value = email {
+        self.id = try container.sdkDecodeRequired(.id)
+        self.name = try container.sdkDecodeRequired(.name)
+        self.object = try container.sdkDecodeRequired(.object)
+        self.ownership = try container.sdkDecodeRequired(.ownership)
+        self.email = try container.sdkDecodeIfPresent(.email)
+        self.phone = try container.sdkDecodeIfPresent(.phone)
+        self.rawAddress = try container.sdkDecodeIfPresent(.rawAddress)
+        self.refreshedAt = try container.sdkDecodeIfPresent(.refreshedAt)
+            try validateLength("id", self.id, min: nil, max: 5000)
+            try validateLength("name", self.name, min: nil, max: 5000)
+            try validateLength("ownership", self.ownership, min: nil, max: 5000)
+        if let value = self.email {
             try validateLength("email", value, min: nil, max: 5000)
         }
-        if let value = phone {
+        if let value = self.phone {
             try validateLength("phone", value, min: nil, max: 5000)
         }
-        if let value = rawAddress {
+        if let value = self.rawAddress {
             try validateLength("raw_address", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension FinancialConnectionsAccountOwner {
-    init(
-        id: String,
-        name: String,
-        object: FinancialConnectionsAccountOwnerObject,
-        ownership: String,
-        email: String? = nil,
-        phone: String? = nil,
-        rawAddress: String? = nil,
-        refreshedAt: Int? = nil
-    ) throws {
+extension FinancialConnectionsAccountOwner {
+    public init(id: String, name: String, object: FinancialConnectionsAccountOwnerObject, ownership: String, email: String? = nil, phone: String? = nil, rawAddress: String? = nil, refreshedAt: Int? = nil) throws {
         (self.id, self.name) = (id, name)
         (self.object, self.ownership) = (object, ownership)
         (self.email, self.phone) = (email, phone)
         (self.rawAddress, self.refreshedAt) = (rawAddress, refreshedAt)
-        try validateLength("id", self.id, min: nil, max: 5000)
-        try validateLength("name", self.name, min: nil, max: 5000)
-        try validateLength("ownership", self.ownership, min: nil, max: 5000)
+            try validateLength("id", self.id, min: nil, max: 5000)
+            try validateLength("name", self.name, min: nil, max: 5000)
+            try validateLength("ownership", self.ownership, min: nil, max: 5000)
         if let value = self.email {
             try validateLength("email", value, min: nil, max: 5000)
         }
@@ -539,60 +453,37 @@ public struct FinancialConnectionsAccountOwnership: Codable {
         case owners
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension FinancialConnectionsAccountOwnership {
-    init(from decoder: Decoder) throws {
+extension FinancialConnectionsAccountOwnership {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.created) else {
-            throw SdkValidationError(
-                field: "created",
-                code: "required",
-                message: "Validation failed for 'created': value is required"
-            )
+            throw SdkValidationError(field: "created", code: "required", message: "Validation failed for 'created': value is required")
         }
         guard container.contains(.id) else {
-            throw SdkValidationError(
-                field: "id",
-                code: "required",
-                message: "Validation failed for 'id': value is required"
-            )
+            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(
-                field: "object",
-                code: "required",
-                message: "Validation failed for 'object': value is required"
-            )
+            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
         }
         guard container.contains(.owners) else {
-            throw SdkValidationError(
-                field: "owners",
-                code: "required",
-                message: "Validation failed for 'owners': value is required"
-            )
+            throw SdkValidationError(field: "owners", code: "required", message: "Validation failed for 'owners': value is required")
         }
-        created = try container.sdkDecodeRequired(.created)
-        id = try container.sdkDecodeRequired(.id)
-        object = try container.sdkDecodeRequired(.object)
-        owners = try container.sdkDecodeRequired(.owners)
-        try validateLength("id", id, min: nil, max: 5000)
+        self.created = try container.sdkDecodeRequired(.created)
+        self.id = try container.sdkDecodeRequired(.id)
+        self.object = try container.sdkDecodeRequired(.object)
+        self.owners = try container.sdkDecodeRequired(.owners)
+            try validateLength("id", self.id, min: nil, max: 5000)
     }
 }
 
-public extension FinancialConnectionsAccountOwnership {
-    init(
-        created: Int,
-        id: String,
-        object: FinancialConnectionsAccountOwnershipObject,
-        owners: FinancialConnectionsAccountOwnershipOwners
-    ) throws {
+extension FinancialConnectionsAccountOwnership {
+    public init(created: Int, id: String, object: FinancialConnectionsAccountOwnershipObject, owners: FinancialConnectionsAccountOwnershipOwners) throws {
         (self.created, self.id) = (created, id)
         (self.object, self.owners) = (object, owners)
-        try validateLength("id", self.id, min: nil, max: 5000)
+            try validateLength("id", self.id, min: nil, max: 5000)
     }
 }
 
@@ -615,7 +506,5 @@ public struct FinancialConnectionsAccountOwnershipOwners: Codable {
         case url
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }

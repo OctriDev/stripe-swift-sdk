@@ -7,9 +7,9 @@ import Foundation
     import FoundationNetworking
 #endif
 
-/// Canonical v1Customers operation model declarations
-public extension PostCustomersRequestBodyCashBalanceSettings {
-    init(reconciliationMode: PostCustomersRequestBodyCashBalanceSettingsReconciliationMode? = nil) {
+// Canonical v1Customers operation model declarations
+extension PostCustomersRequestBodyCashBalanceSettings {
+    public init(reconciliationMode: PostCustomersRequestBodyCashBalanceSettingsReconciliationMode? = nil) {
         self.init()
         self.reconciliationMode = reconciliationMode
     }
@@ -24,38 +24,28 @@ public struct PostCustomersRequestBodyTaxIdDataItem: Codable {
         case value
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostCustomersRequestBodyTaxIdDataItem {
-    init(from decoder: Decoder) throws {
+extension PostCustomersRequestBodyTaxIdDataItem {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.type) else {
-            throw SdkValidationError(
-                field: "type",
-                code: "required",
-                message: "Validation failed for 'type': value is required"
-            )
+            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
         }
         guard container.contains(.value) else {
-            throw SdkValidationError(
-                field: "value",
-                code: "required",
-                message: "Validation failed for 'value': value is required"
-            )
+            throw SdkValidationError(field: "value", code: "required", message: "Validation failed for 'value': value is required")
         }
-        type = try container.sdkDecodeRequired(.type)
-        value = try container.sdkDecodeRequired(.value)
-        try validateLength("type", sdkWireString(type), min: nil, max: 5000)
+        self.type = try container.sdkDecodeRequired(.type)
+        self.value = try container.sdkDecodeRequired(.value)
+            try validateLength("type", sdkWireString(self.type), min: nil, max: 5000)
     }
 }
 
-public extension PostCustomersRequestBodyTaxIdDataItem {
-    init(type: PostCustomersRequestBodyTaxIdDataItemType, value: String) throws {
+extension PostCustomersRequestBodyTaxIdDataItem {
+    public init(type: PostCustomersRequestBodyTaxIdDataItemType, value: String) throws {
         (self.type, self.value) = (type, value)
-        try validateLength("type", sdkWireString(self.type), min: nil, max: 5000)
+            try validateLength("type", sdkWireString(self.type), min: nil, max: 5000)
     }
 }
 
@@ -97,74 +87,43 @@ public struct PostCustomersCustomerRequestBodyCardVariant0: Codable {
         case swipeData = "swipe_data"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostCustomersCustomerRequestBodyCardVariant0 {
-    init(from decoder: Decoder) throws {
+extension PostCustomersCustomerRequestBodyCardVariant0 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.expMonth) else {
-            throw SdkValidationError(
-                field: "exp_month",
-                code: "required",
-                message: "Validation failed for 'exp_month': value is required"
-            )
+            throw SdkValidationError(field: "exp_month", code: "required", message: "Validation failed for 'exp_month': value is required")
         }
         guard container.contains(.expYear) else {
-            throw SdkValidationError(
-                field: "exp_year",
-                code: "required",
-                message: "Validation failed for 'exp_year': value is required"
-            )
+            throw SdkValidationError(field: "exp_year", code: "required", message: "Validation failed for 'exp_year': value is required")
         }
         guard container.contains(.number) else {
-            throw SdkValidationError(
-                field: "number",
-                code: "required",
-                message: "Validation failed for 'number': value is required"
-            )
+            throw SdkValidationError(field: "number", code: "required", message: "Validation failed for 'number': value is required")
         }
-        expMonth = try container.sdkDecodeRequired(.expMonth)
-        expYear = try container.sdkDecodeRequired(.expYear)
-        number = try container.sdkDecodeRequired(.number)
-        addressCity = try container.sdkDecodeIfPresent(.addressCity)
-        addressCountry = try container.sdkDecodeIfPresent(.addressCountry)
-        addressLine1 = try container.sdkDecodeIfPresent(.addressLine1)
-        addressLine2 = try container.sdkDecodeIfPresent(.addressLine2)
-        addressState = try container.sdkDecodeIfPresent(.addressState)
-        addressZip = try container.sdkDecodeIfPresent(.addressZip)
-        cvc = try container.sdkDecodeIfPresent(.cvc)
-        encrypted = try container.sdkDecodeIfPresent(.encrypted)
-        metadata = try container.sdkDecodeIfPresent(.metadata)
-        name = try container.sdkDecodeIfPresent(.name)
-        networkToken = try container.sdkDecodeIfPresent(.networkToken)
-        object = try container.sdkDecodeIfPresent(.object)
-        swipeData = try container.sdkDecodeIfPresent(.swipeData)
+        self.expMonth = try container.sdkDecodeRequired(.expMonth)
+        self.expYear = try container.sdkDecodeRequired(.expYear)
+        self.number = try container.sdkDecodeRequired(.number)
+        self.addressCity = try container.sdkDecodeIfPresent(.addressCity)
+        self.addressCountry = try container.sdkDecodeIfPresent(.addressCountry)
+        self.addressLine1 = try container.sdkDecodeIfPresent(.addressLine1)
+        self.addressLine2 = try container.sdkDecodeIfPresent(.addressLine2)
+        self.addressState = try container.sdkDecodeIfPresent(.addressState)
+        self.addressZip = try container.sdkDecodeIfPresent(.addressZip)
+        self.cvc = try container.sdkDecodeIfPresent(.cvc)
+        self.encrypted = try container.sdkDecodeIfPresent(.encrypted)
+        self.metadata = try container.sdkDecodeIfPresent(.metadata)
+        self.name = try container.sdkDecodeIfPresent(.name)
+        self.networkToken = try container.sdkDecodeIfPresent(.networkToken)
+        self.object = try container.sdkDecodeIfPresent(.object)
+        self.swipeData = try container.sdkDecodeIfPresent(.swipeData)
         try sdkValidateConstraints()
     }
 }
 
-public extension PostCustomersCustomerRequestBodyCardVariant0 {
-    init(
-        expMonth: Int,
-        expYear: Int,
-        number: String,
-        addressCity: String? = nil,
-        addressCountry: String? = nil,
-        addressLine1: String? = nil,
-        addressLine2: String? = nil,
-        addressState: String? = nil,
-        addressZip: String? = nil,
-        cvc: String? = nil,
-        encrypted: String? = nil,
-        metadata: [String: String]? = nil,
-        name: String? = nil,
-        networkToken: PostCustomersCustomerRequestBodyCardVariant0NetworkToken? = nil,
-        object: PostCustomersCustomerRequestBodyCardVariant0Object? = nil,
-        swipeData: String? = nil
-    ) throws {
+extension PostCustomersCustomerRequestBodyCardVariant0 {
+    public init(expMonth: Int, expYear: Int, number: String, addressCity: String? = nil, addressCountry: String? = nil, addressLine1: String? = nil, addressLine2: String? = nil, addressState: String? = nil, addressZip: String? = nil, cvc: String? = nil, encrypted: String? = nil, metadata: [String: String]? = nil, name: String? = nil, networkToken: PostCustomersCustomerRequestBodyCardVariant0NetworkToken? = nil, object: PostCustomersCustomerRequestBodyCardVariant0Object? = nil, swipeData: String? = nil) throws {
         (self.expMonth, self.expYear) = (expMonth, expYear)
         (self.number, self.addressCity) = (number, addressCity)
         (self.addressCountry, self.addressLine1) = (addressCountry, addressLine1)
@@ -179,38 +138,38 @@ public extension PostCustomersCustomerRequestBodyCardVariant0 {
 
 extension PostCustomersCustomerRequestBodyCardVariant0 {
     func sdkValidateConstraints() throws {
-        try validateLength("number", number, min: nil, max: 5000)
-        if let value = addressCity {
+            try validateLength("number", self.number, min: nil, max: 5000)
+        if let value = self.addressCity {
             try validateLength("address_city", value, min: nil, max: 5000)
         }
-        if let value = addressCountry {
+        if let value = self.addressCountry {
             try validateLength("address_country", value, min: nil, max: 5000)
         }
-        if let value = addressLine1 {
+        if let value = self.addressLine1 {
             try validateLength("address_line1", value, min: nil, max: 5000)
         }
-        if let value = addressLine2 {
+        if let value = self.addressLine2 {
             try validateLength("address_line2", value, min: nil, max: 5000)
         }
-        if let value = addressState {
+        if let value = self.addressState {
             try validateLength("address_state", value, min: nil, max: 5000)
         }
-        if let value = addressZip {
+        if let value = self.addressZip {
             try validateLength("address_zip", value, min: nil, max: 5000)
         }
-        if let value = cvc {
+        if let value = self.cvc {
             try validateLength("cvc", value, min: nil, max: 5000)
         }
-        if let value = encrypted {
+        if let value = self.encrypted {
             try validateLength("encrypted", value, min: nil, max: 5000)
         }
-        if let value = name {
+        if let value = self.name {
             try validateLength("name", value, min: nil, max: 5000)
         }
-        if let value = object {
+        if let value = self.object {
             try validateLength("object", sdkWireString(value), min: nil, max: 5000)
         }
-        if let value = swipeData {
+        if let value = self.swipeData {
             try validateLength("swipe_data", value, min: nil, max: 5000)
         }
     }
@@ -222,31 +181,21 @@ public enum PostCustomersCustomerRequestBodyIndividualName {
 }
 
 extension PostCustomersCustomerRequestBodyIndividualName: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PostCustomersCustomerRequestBodyIndividualName"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostCustomersCustomerRequestBodyIndividualName")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(String.self) {
-            return .stringValue1(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(String.self) { return .stringValue1(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -256,6 +205,7 @@ extension PostCustomersCustomerRequestBodyIndividualName: Codable {
         case let .stringValue1(value): try container.encode(value); return true
         }
     }
+
 }
 
 public struct PostCustomersCustomerRequestBodyShippingVariant0: Codable {
@@ -270,43 +220,33 @@ public struct PostCustomersCustomerRequestBodyShippingVariant0: Codable {
         case phone
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PostCustomersCustomerRequestBodyShippingVariant0 {
-    init(from decoder: Decoder) throws {
+extension PostCustomersCustomerRequestBodyShippingVariant0 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.address) else {
-            throw SdkValidationError(
-                field: "address",
-                code: "required",
-                message: "Validation failed for 'address': value is required"
-            )
+            throw SdkValidationError(field: "address", code: "required", message: "Validation failed for 'address': value is required")
         }
         guard container.contains(.name) else {
-            throw SdkValidationError(
-                field: "name",
-                code: "required",
-                message: "Validation failed for 'name': value is required"
-            )
+            throw SdkValidationError(field: "name", code: "required", message: "Validation failed for 'name': value is required")
         }
-        address = try container.sdkDecodeRequired(.address)
-        name = try container.sdkDecodeRequired(.name)
-        phone = try container.sdkDecodeIfPresent(.phone)
-        try validateLength("name", name, min: nil, max: 5000)
-        if let value = phone {
+        self.address = try container.sdkDecodeRequired(.address)
+        self.name = try container.sdkDecodeRequired(.name)
+        self.phone = try container.sdkDecodeIfPresent(.phone)
+            try validateLength("name", self.name, min: nil, max: 5000)
+        if let value = self.phone {
             try validateLength("phone", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PostCustomersCustomerRequestBodyShippingVariant0 {
-    init(address: PostCustomersCustomerRequestBodyShippingVariant0Address, name: String, phone: String? = nil) throws {
+extension PostCustomersCustomerRequestBodyShippingVariant0 {
+    public init(address: PostCustomersCustomerRequestBodyShippingVariant0Address, name: String, phone: String? = nil) throws {
         (self.address, self.name) = (address, name)
         self.phone = phone
-        try validateLength("name", self.name, min: nil, max: 5000)
+            try validateLength("name", self.name, min: nil, max: 5000)
         if let value = self.phone {
             try validateLength("phone", value, min: nil, max: 5000)
         }
@@ -328,33 +268,28 @@ public struct PostCustomersRequestBodyInvoiceSettings: Codable {
     }
 
     init() {
-        (customFields, defaultPaymentMethod, footer, renderingOptions) = (nil, nil, nil, nil)
+        (self.customFields, self.defaultPaymentMethod, self.footer, self.renderingOptions) = (nil, nil, nil, nil)
     }
 }
 
-public extension PostCustomersRequestBodyInvoiceSettings {
-    init(from decoder: Decoder) throws {
+extension PostCustomersRequestBodyInvoiceSettings {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        customFields = try container.sdkDecodeIfPresent(.customFields)
-        defaultPaymentMethod = try container.sdkDecodeIfPresent(.defaultPaymentMethod)
-        footer = try container.sdkDecodeIfPresent(.footer)
-        renderingOptions = try container.sdkDecodeIfPresent(.renderingOptions)
-        if let value = defaultPaymentMethod {
+        self.customFields = try container.sdkDecodeIfPresent(.customFields)
+        self.defaultPaymentMethod = try container.sdkDecodeIfPresent(.defaultPaymentMethod)
+        self.footer = try container.sdkDecodeIfPresent(.footer)
+        self.renderingOptions = try container.sdkDecodeIfPresent(.renderingOptions)
+        if let value = self.defaultPaymentMethod {
             try validateLength("default_payment_method", value, min: nil, max: 5000)
         }
-        if let value = footer {
+        if let value = self.footer {
             try validateLength("footer", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PostCustomersRequestBodyInvoiceSettings {
-    init(
-        customFields: PostCustomersRequestBodyInvoiceSettingsCustomFields? = nil,
-        defaultPaymentMethod: String? = nil,
-        footer: String? = nil,
-        renderingOptions: PostCustomersRequestBodyInvoiceSettingsRenderingOptions? = nil
-    ) throws {
+extension PostCustomersRequestBodyInvoiceSettings {
+    public init(customFields: PostCustomersRequestBodyInvoiceSettingsCustomFields? = nil, defaultPaymentMethod: String? = nil, footer: String? = nil, renderingOptions: PostCustomersRequestBodyInvoiceSettingsRenderingOptions? = nil) throws {
         self.init()
         (self.customFields, self.defaultPaymentMethod) = (customFields, defaultPaymentMethod)
         (self.footer, self.renderingOptions) = (footer, renderingOptions)
@@ -378,20 +313,20 @@ public struct PostCustomersRequestBodyTax: Codable {
     }
 
     init() {
-        (ipAddress, validateLocation) = (nil, nil)
+        (self.ipAddress, self.validateLocation) = (nil, nil)
     }
 }
 
-public extension PostCustomersRequestBodyTax {
-    init(from decoder: Decoder) throws {
+extension PostCustomersRequestBodyTax {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        ipAddress = try container.sdkDecodeIfPresent(.ipAddress)
-        validateLocation = try container.sdkDecodeIfPresent(.validateLocation)
+        self.ipAddress = try container.sdkDecodeIfPresent(.ipAddress)
+        self.validateLocation = try container.sdkDecodeIfPresent(.validateLocation)
     }
 }
 
-public extension PostCustomersRequestBodyTax {
-    init(ipAddress: String? = nil, validateLocation: PostCustomersRequestBodyTaxValidateLocation? = nil) {
+extension PostCustomersRequestBodyTax {
+    public init(ipAddress: String? = nil, validateLocation: PostCustomersRequestBodyTaxValidateLocation? = nil) {
         self.init()
         (self.ipAddress, self.validateLocation) = (ipAddress, validateLocation)
     }
@@ -407,26 +342,23 @@ public struct PostCustomersRequestBodyInvoiceSettingsRenderingOptionsVariant0: C
     }
 
     init() {
-        (amountTaxDisplay, template) = (nil, nil)
+        (self.amountTaxDisplay, self.template) = (nil, nil)
     }
 }
 
-public extension PostCustomersRequestBodyInvoiceSettingsRenderingOptionsVariant0 {
-    init(from decoder: Decoder) throws {
+extension PostCustomersRequestBodyInvoiceSettingsRenderingOptionsVariant0 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        amountTaxDisplay = try container.sdkDecodeIfPresent(.amountTaxDisplay)
-        template = try container.sdkDecodeIfPresent(.template)
-        if let value = template {
+        self.amountTaxDisplay = try container.sdkDecodeIfPresent(.amountTaxDisplay)
+        self.template = try container.sdkDecodeIfPresent(.template)
+        if let value = self.template {
             try validateLength("template", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PostCustomersRequestBodyInvoiceSettingsRenderingOptionsVariant0 {
-    init(
-        amountTaxDisplay: PostCustomersRequestBodyInvoiceSettingsRenderingOptionsVarianX51caa2abc3? = nil,
-        template: String? = nil
-    ) throws {
+extension PostCustomersRequestBodyInvoiceSettingsRenderingOptionsVariant0 {
+    public init(amountTaxDisplay: PostCustomersRequestBodyInvoiceSettingsRenderingOptionsVarianX51caa2abc3? = nil, template: String? = nil) throws {
         self.init()
         (self.amountTaxDisplay, self.template) = (amountTaxDisplay, template)
         if let value = self.template {
@@ -453,50 +385,43 @@ public struct PostCustomersCustomerRequestBodyShippingVariant0Address: Codable {
     }
 
     init() {
-        (city, country, line1, line2, postalCode) = (nil, nil, nil, nil, nil)
-        state = nil
+        (self.city, self.country, self.line1, self.line2, self.postalCode) = (nil, nil, nil, nil, nil)
+        self.state = nil
     }
 }
 
-public extension PostCustomersCustomerRequestBodyShippingVariant0Address {
-    init(from decoder: Decoder) throws {
+extension PostCustomersCustomerRequestBodyShippingVariant0Address {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        city = try container.sdkDecodeIfPresent(.city)
-        country = try container.sdkDecodeIfPresent(.country)
-        line1 = try container.sdkDecodeIfPresent(.line1)
-        line2 = try container.sdkDecodeIfPresent(.line2)
-        postalCode = try container.sdkDecodeIfPresent(.postalCode)
-        state = try container.sdkDecodeIfPresent(.state)
-        if let value = city {
+        self.city = try container.sdkDecodeIfPresent(.city)
+        self.country = try container.sdkDecodeIfPresent(.country)
+        self.line1 = try container.sdkDecodeIfPresent(.line1)
+        self.line2 = try container.sdkDecodeIfPresent(.line2)
+        self.postalCode = try container.sdkDecodeIfPresent(.postalCode)
+        self.state = try container.sdkDecodeIfPresent(.state)
+        if let value = self.city {
             try validateLength("city", value, min: nil, max: 5000)
         }
-        if let value = country {
+        if let value = self.country {
             try validateLength("country", value, min: nil, max: 5000)
         }
-        if let value = line1 {
+        if let value = self.line1 {
             try validateLength("line1", value, min: nil, max: 5000)
         }
-        if let value = line2 {
+        if let value = self.line2 {
             try validateLength("line2", value, min: nil, max: 5000)
         }
-        if let value = postalCode {
+        if let value = self.postalCode {
             try validateLength("postal_code", value, min: nil, max: 5000)
         }
-        if let value = state {
+        if let value = self.state {
             try validateLength("state", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PostCustomersCustomerRequestBodyShippingVariant0Address {
-    init(
-        city: String? = nil,
-        country: String? = nil,
-        line1: String? = nil,
-        line2: String? = nil,
-        postalCode: String? = nil,
-        state: String? = nil
-    ) throws {
+extension PostCustomersCustomerRequestBodyShippingVariant0Address {
+    public init(city: String? = nil, country: String? = nil, line1: String? = nil, line2: String? = nil, postalCode: String? = nil, state: String? = nil) throws {
         self.init()
         (self.city, self.country) = (city, country)
         (self.line1, self.line2) = (line1, line2)
@@ -540,50 +465,43 @@ public struct PostCustomersRequestBodyAddressVariant0: Codable {
     }
 
     init() {
-        (city, country, line1, line2, postalCode) = (nil, nil, nil, nil, nil)
-        state = nil
+        (self.city, self.country, self.line1, self.line2, self.postalCode) = (nil, nil, nil, nil, nil)
+        self.state = nil
     }
 }
 
-public extension PostCustomersRequestBodyAddressVariant0 {
-    init(from decoder: Decoder) throws {
+extension PostCustomersRequestBodyAddressVariant0 {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        city = try container.sdkDecodeIfPresent(.city)
-        country = try container.sdkDecodeIfPresent(.country)
-        line1 = try container.sdkDecodeIfPresent(.line1)
-        line2 = try container.sdkDecodeIfPresent(.line2)
-        postalCode = try container.sdkDecodeIfPresent(.postalCode)
-        state = try container.sdkDecodeIfPresent(.state)
-        if let value = city {
+        self.city = try container.sdkDecodeIfPresent(.city)
+        self.country = try container.sdkDecodeIfPresent(.country)
+        self.line1 = try container.sdkDecodeIfPresent(.line1)
+        self.line2 = try container.sdkDecodeIfPresent(.line2)
+        self.postalCode = try container.sdkDecodeIfPresent(.postalCode)
+        self.state = try container.sdkDecodeIfPresent(.state)
+        if let value = self.city {
             try validateLength("city", value, min: nil, max: 5000)
         }
-        if let value = country {
+        if let value = self.country {
             try validateLength("country", value, min: nil, max: 5000)
         }
-        if let value = line1 {
+        if let value = self.line1 {
             try validateLength("line1", value, min: nil, max: 5000)
         }
-        if let value = line2 {
+        if let value = self.line2 {
             try validateLength("line2", value, min: nil, max: 5000)
         }
-        if let value = postalCode {
+        if let value = self.postalCode {
             try validateLength("postal_code", value, min: nil, max: 5000)
         }
-        if let value = state {
+        if let value = self.state {
             try validateLength("state", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PostCustomersRequestBodyAddressVariant0 {
-    init(
-        city: String? = nil,
-        country: String? = nil,
-        line1: String? = nil,
-        line2: String? = nil,
-        postalCode: String? = nil,
-        state: String? = nil
-    ) throws {
+extension PostCustomersRequestBodyAddressVariant0 {
+    public init(city: String? = nil, country: String? = nil, line1: String? = nil, line2: String? = nil, postalCode: String? = nil, state: String? = nil) throws {
         self.init()
         (self.city, self.country) = (city, country)
         (self.line1, self.line2) = (line1, line2)
@@ -610,8 +528,6 @@ public extension PostCustomersRequestBodyAddressVariant0 {
 }
 
 public enum PostCustomersRequestBodyInvoiceSettingsRenderingOptions {
-    case postCustomersRequestBodyInvoiceSettingsRenderingOptionsVariant0(
-        PostCustomersRequestBodyInvoiceSettingsRenderingOptionsVariant0
-    )
+    case postCustomersRequestBodyInvoiceSettingsRenderingOptionsVariant0(PostCustomersRequestBodyInvoiceSettingsRenderingOptionsVariant0)
     case stringValue(String)
 }

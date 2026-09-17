@@ -9,99 +9,37 @@ public class V1WebhookEndpointsNamespace {
         self.config = config
     }
 
-    /// Lists webhook endpoints configured for the account. Use cursor parameters to paginate the endpoint collection
-    /// and `expand` to request additional response fields.
+/// Lists webhook endpoints configured for the account. Use cursor parameters to paginate the endpoint collection and `expand` to request additional response fields.
     ///
     /// Returns a list of your webhook endpoints.
-    public func get(
-        endingBefore: String?,
-        expand: [String]?,
-        limit: Int?,
-        startingAfter: String?
-    ) async throws -> GetWebhookEndpointsResponse {
-        try await V1WebhookEndpointsMethods.getWebhookEndpoints(
-            config: config,
-            endingBefore: endingBefore,
-            expand: expand,
-            limit: limit,
-            startingAfter: startingAfter
-        )
+    public func get(endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetWebhookEndpointsResponse {
+        return try await V1WebhookEndpointsMethods.getWebhookEndpoints(config: config, endingBefore: endingBefore, expand: expand, limit: limit, startingAfter: startingAfter)
     }
 
-    /// A webhook endpoint must have a url and a list of enabled_events . You may optionally specify the Boolean connect
-    /// parameter. If set to true, then a Connect webhook endpoint that notifies the specified url about events from all
-    /// connected accounts is created; otherwise an account webhook endpoint that notifies the specified url only about
-    /// events from your account is created. You can also create webhook endpoints in the webhooks settings section of
-    /// the Dashboard.
-    public func post(
-        enabledEvents: [PostWebhookEndpointsRequestBodyEnabledEventsItem],
-        url: String,
-        apiVersion: PostWebhookEndpointsRequestBodyApiVersion?,
-        connect: Bool?,
-        description: PostWebhookEndpointsRequestBodyDescriptionVariant1?,
-        expand: [String]?,
-        metadata: PostWebhookEndpointsRequestBodyMetadata?
-    ) async throws -> WebhookEndpoint {
-        try await V1WebhookEndpointsMethods.postWebhookEndpoints(
-            config: config,
-            enabledEvents: enabledEvents,
-            url: url,
-            apiVersion: apiVersion,
-            connect: connect,
-            description: description,
-            expand: expand,
-            metadata: metadata
-        )
+/// A webhook endpoint must have a url and a list of enabled_events . You may optionally specify the Boolean connect parameter. If set to true, then a Connect webhook endpoint that notifies the specified url about events from all connected accounts is created; otherwise an account webhook endpoint that notifies the specified url only about events from your account is created. You can also create webhook endpoints in the webhooks settings section of the Dashboard.
+    public func post(enabledEvents: [PostWebhookEndpointsRequestBodyEnabledEventsItem], url: String, apiVersion: PostWebhookEndpointsRequestBodyApiVersion?, connect: Bool?, description: PostWebhookEndpointsRequestBodyDescriptionVariant1?, expand: [String]?, metadata: PostWebhookEndpointsRequestBodyMetadata?) async throws -> WebhookEndpoint {
+        return try await V1WebhookEndpointsMethods.postWebhookEndpoints(config: config, enabledEvents: enabledEvents, url: url, apiVersion: apiVersion, connect: connect, description: description, expand: expand, metadata: metadata)
     }
 
-    /// Deletes the webhook endpoint identified by its ID. Use this operation when you no longer want the endpoint to
-    /// receive event notifications. The response confirms that the webhook endpoint was deleted.
+/// Deletes the webhook endpoint identified by its ID. Use this operation when you no longer want the endpoint to receive event notifications. The response confirms that the webhook endpoint was deleted.
     ///
     /// You can also delete webhook endpoints via the webhook endpoint management page of the Stripe dashboard.
     public func deleteWebhookEndpoint(webhookEndpoint: String) async throws -> DeletedWebhookEndpoint {
-        try await V1WebhookEndpointsMethods.deleteWebhookEndpointsWebhookEndpoint(
-            config: config,
-            webhookEndpoint: webhookEndpoint
-        )
+        return try await V1WebhookEndpointsMethods.deleteWebhookEndpointsWebhookEndpoint(config: config, webhookEndpoint: webhookEndpoint)
     }
 
-    /// Retrieves the webhook endpoint identified by its ID. Use `expand` to include additional fields in the response
-    /// when needed.
+/// Retrieves the webhook endpoint identified by its ID. Use `expand` to include additional fields in the response when needed.
     ///
     /// Retrieves the webhook endpoint with the given ID.
     public func getWebhookEndpoint(webhookEndpoint: String, expand: [String]?) async throws -> WebhookEndpoint {
-        try await V1WebhookEndpointsMethods.getWebhookEndpointsWebhookEndpoint(
-            config: config,
-            webhookEndpoint: webhookEndpoint,
-            expand: expand
-        )
+        return try await V1WebhookEndpointsMethods.getWebhookEndpointsWebhookEndpoint(config: config, webhookEndpoint: webhookEndpoint, expand: expand)
     }
 
-    /// Updates the configuration of an existing webhook endpoint. Use `url`, `enabled_events`, `disabled`,
-    /// `description`, or `metadata` to change the endpoint, and use `expand` to include additional response fields. The
-    /// response contains the updated webhook endpoint.
+/// Updates the configuration of an existing webhook endpoint. Use `url`, `enabled_events`, `disabled`, `description`, or `metadata` to change the endpoint, and use `expand` to include additional response fields. The response contains the updated webhook endpoint.
     ///
-    /// Updates the webhook endpoint. You may edit the url , the list of enabled_events , and the status of your
-    /// endpoint.
-    public func postWebhookEndpoint(
-        webhookEndpoint: String,
-        description: PostWebhookEndpointsWebhookEndpointRequestBodyDescriptionVariant1?,
-        disabled: Bool?,
-        enabledEvents: [PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem]?,
-        expand: [String]?,
-        metadata: PostWebhookEndpointsWebhookEndpointRequestBodyMetadata?,
-        url: String?
-    ) async throws -> WebhookEndpoint {
-        try await V1WebhookEndpointsMethods.postWebhookEndpointsWebhookEndpoint(
-            config: config,
-            webhookEndpoint: webhookEndpoint,
-            description: description,
-            disabled: disabled,
-            enabledEvents: enabledEvents,
-            expand: expand,
-            metadata: metadata,
-            url: url
-        )
+    /// Updates the webhook endpoint. You may edit the url , the list of enabled_events , and the status of your endpoint.
+    public func postWebhookEndpoint(webhookEndpoint: String, description: PostWebhookEndpointsWebhookEndpointRequestBodyDescriptionVariant1?, disabled: Bool?, enabledEvents: [PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEventsItem]?, expand: [String]?, metadata: PostWebhookEndpointsWebhookEndpointRequestBodyMetadata?, url: String?) async throws -> WebhookEndpoint {
+        return try await V1WebhookEndpointsMethods.postWebhookEndpointsWebhookEndpoint(config: config, webhookEndpoint: webhookEndpoint, description: description, disabled: disabled, enabledEvents: enabledEvents, expand: expand, metadata: metadata, url: url)
     }
 }
 
@@ -264,6 +202,6 @@ public class V1Namespace {
 
 extension Stripe {
     static func sdkMakeNamespacesPart1(_ config: ClientConfig) -> V1Namespace {
-        V1Namespace(config: config)
+        return V1Namespace(config: config)
     }
 }

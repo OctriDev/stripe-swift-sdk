@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public extension V1CustomersMethods {
-    struct PostCustomersOptions: Codable {
+extension V1CustomersMethods {
+    public struct PostCustomersOptions: Codable {
         public var address: PostCustomersRequestBodyAddress?
         public var balance: Int?
         public var businessName: PostCustomersRequestBodyBusinessNameVariant1?
@@ -34,9 +34,7 @@ public extension V1CustomersMethods {
         public init() {}
     }
 
-    /// Creates a new customer record. Supply customer identity, contact, billing, balance, payment, and invoice
-    /// settings as needed for the customer account. The response returns the created customer object with its generated
-    /// identifier and current configuration.
+    /// Creates a new customer record. Supply customer identity, contact, billing, balance, payment, and invoice settings as needed for the customer account. The response returns the created customer object with its generated identifier and current configuration.
     ///
     /// Creates a new customer object.
     ///
@@ -81,7 +79,7 @@ public extension V1CustomersMethods {
     ///   `reverse`.
     /// - taxIdData: The customer's tax IDs.
     /// - testClock: ID of the test clock to attach to the customer.
-    static func postCustomers(config: ClientConfig, options: PostCustomersOptions) async throws -> Customer {
+    public static func postCustomers(config: ClientConfig, options: PostCustomersOptions) async throws -> Customer {
         if let description = options.description {
             try validateLength("description", description, max: 5000)
         }
@@ -116,14 +114,6 @@ public extension V1CustomersMethods {
 
         let requestBody = PostCustomersRequestBody(options: options)
 
-        return try await (sdkRequest(
-            "POST",
-            "/v1/customers",
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostCustomers"
-        )).data
+        return try (await sdkRequest("POST", "/v1/customers", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostCustomers")).data
     }
 }

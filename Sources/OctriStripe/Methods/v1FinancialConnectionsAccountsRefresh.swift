@@ -7,33 +7,18 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1FinancialConnectionsAccountsRefreshMethods {
-    /// Triggers a refresh of selected data for a Financial Connections account. Supply `features` to specify which
-    /// account data to refresh, and use `expand` to request expanded response fields. The response includes the account
-    /// and the state of the latest refresh operations.
+    /// Triggers a refresh of selected data for a Financial Connections account. Supply `features` to specify which account data to refresh, and use `expand` to request expanded response fields. The response includes the account and the state of the latest refresh operations.
     ///
     /// Refreshes the data associated with a Financial Connections Account .
     ///
     /// - Parameters:
     /// - features: The list of account features that you would like to refresh.
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postFinancialConnectionsAccountsAccountRefresh(
-        config: ClientConfig,
-        account: String,
-        features: [PostFinancialConnectionsAccountsAccountRefreshRequestBodyFeaturesItem],
-        expand: [String]?
-    ) async throws -> FinancialConnectionsAccount {
+    public static func postFinancialConnectionsAccountsAccountRefresh(config: ClientConfig, account: String, features: [PostFinancialConnectionsAccountsAccountRefreshRequestBodyFeaturesItem], expand: [String]?) async throws -> FinancialConnectionsAccount {
         try validateLength("account", account, max: 5000)
 
         let requestBody = PostFinancialConnectionsAccountsAccountRefreshRequestBody(features: features, expand: expand)
 
-        return try await (sdkRequest(
-            "POST",
-            ["/v1/financial_connections/accounts/", sdkEncodePathSegment(sdkWireString(account)), "/refresh"].joined(),
-            config: config,
-            body: requestBody,
-            contentType: "application/x-www-form-urlencoded",
-            decoder: .json,
-            operationId: "PostFinancialConnectionsAccountsAccountRefresh"
-        )).data
+        return try (await sdkRequest("POST", ["/v1/financial_connections/accounts/", sdkEncodePathSegment(sdkWireString(account)), "/refresh"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostFinancialConnectionsAccountsAccountRefresh")).data
     }
 }

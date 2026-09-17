@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1IssuingCard domain models
+// V1IssuingCard domain models
 extension IssuingCardAuthorizationControlsBlockedCategoriesItem {
     static let allCasesPart2: [IssuingCardAuthorizationControlsBlockedCategoriesItem] = [
         .danceHallStudiosSchools,
@@ -237,9 +237,9 @@ extension IssuingCardAuthorizationControlsBlockedCategoriesItem {
 extension IssuingCardAuthorizationControlsBlockedCategoriesItem: CaseIterable {
     public static var allCases: [IssuingCardAuthorizationControlsBlockedCategoriesItem] {
         allCasesPart1
-            + allCasesPart2
-            + allCasesPart3
-            + allCasesPart4
+        +         allCasesPart2
+        +         allCasesPart3
+        +         allCasesPart4
     }
 }
 
@@ -247,10 +247,7 @@ extension IssuingCardAuthorizationControlsBlockedCategoriesItem: CaseIterable {
 public struct IssuingCardCancellationReason: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let designRejected = IssuingCardCancellationReason(rawValue: "design_rejected")
     public static let fulfillmentError = IssuingCardCancellationReason(rawValue: "fulfillment_error")
     public static let lost = IssuingCardCancellationReason(rawValue: "lost")
@@ -258,7 +255,7 @@ public struct IssuingCardCancellationReason: RawRepresentable, Hashable, Codable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -271,16 +268,13 @@ public struct IssuingCardCancellationReason: RawRepresentable, Hashable, Codable
 public struct IssuingCardType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let physical = IssuingCardType(rawValue: "physical")
     public static let virtual = IssuingCardType(rawValue: "virtual")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -290,20 +284,16 @@ public struct IssuingCardType: RawRepresentable, Hashable, Codable, Sendable, Sd
 }
 
 /// Required enumerated value serialized in the `allowed_card_presences[]` wire field.
-public struct IssuingCardAuthorizationControlsAllowedCardPresencesItem: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct IssuingCardAuthorizationControlsAllowedCardPresencesItem: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let notPresent = IssuingCardAuthorizationControlsAllowedCardPresencesItem(rawValue: "not_present")
     public static let present = IssuingCardAuthorizationControlsAllowedCardPresencesItem(rawValue: "present")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -316,16 +306,13 @@ public struct IssuingCardAuthorizationControlsAllowedCardPresencesItem: RawRepre
 public struct IssuingCardShippingType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let bulk = IssuingCardShippingType(rawValue: "bulk")
     public static let individual = IssuingCardShippingType(rawValue: "individual")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -338,18 +325,14 @@ public struct IssuingCardShippingType: RawRepresentable, Hashable, Codable, Send
 public struct IssuingCardGooglePayIneligibleReason: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let missingAgreement = IssuingCardGooglePayIneligibleReason(rawValue: "missing_agreement")
-    public static let missingCardholderContact =
-        IssuingCardGooglePayIneligibleReason(rawValue: "missing_cardholder_contact")
+    public static let missingCardholderContact = IssuingCardGooglePayIneligibleReason(rawValue: "missing_cardholder_contact")
     public static let unsupportedRegion = IssuingCardGooglePayIneligibleReason(rawValue: "unsupported_region")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -359,22 +342,17 @@ public struct IssuingCardGooglePayIneligibleReason: RawRepresentable, Hashable, 
 }
 
 /// The address validation capabilities to use.
-public struct IssuingCardShippingAddressValidationMode: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct IssuingCardShippingAddressValidationMode: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let disabled = IssuingCardShippingAddressValidationMode(rawValue: "disabled")
     public static let normalizationOnly = IssuingCardShippingAddressValidationMode(rawValue: "normalization_only")
-    public static let validationAndNormalization =
-        IssuingCardShippingAddressValidationMode(rawValue: "validation_and_normalization")
+    public static let validationAndNormalization = IssuingCardShippingAddressValidationMode(rawValue: "validation_and_normalization")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -388,10 +366,7 @@ public struct IssuingCardShippingAddressValidationMode: RawRepresentable, Hashab
 public struct IssuingCardFraudWarningType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let cardTestingExposure = IssuingCardFraudWarningType(rawValue: "card_testing_exposure")
     public static let fraudDisputeFiled = IssuingCardFraudWarningType(rawValue: "fraud_dispute_filed")
     public static let thirdPartyReported = IssuingCardFraudWarningType(rawValue: "third_party_reported")
@@ -399,7 +374,7 @@ public struct IssuingCardFraudWarningType: RawRepresentable, Hashable, Codable, 
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -412,10 +387,7 @@ public struct IssuingCardFraudWarningType: RawRepresentable, Hashable, Codable, 
 public struct IssuingCardReplacementReason: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let damaged = IssuingCardReplacementReason(rawValue: "damaged")
     public static let expired = IssuingCardReplacementReason(rawValue: "expired")
     public static let fulfillmentError = IssuingCardReplacementReason(rawValue: "fulfillment_error")
@@ -424,7 +396,7 @@ public struct IssuingCardReplacementReason: RawRepresentable, Hashable, Codable,
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -437,10 +409,7 @@ public struct IssuingCardReplacementReason: RawRepresentable, Hashable, Codable,
 public struct IssuingCardShippingCarrier: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let correos = IssuingCardShippingCarrier(rawValue: "correos")
     public static let dhl = IssuingCardShippingCarrier(rawValue: "dhl")
     public static let fedex = IssuingCardShippingCarrier(rawValue: "fedex")
@@ -449,7 +418,7 @@ public struct IssuingCardShippingCarrier: RawRepresentable, Hashable, Codable, S
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -463,17 +432,14 @@ public struct IssuingCardShippingCarrier: RawRepresentable, Hashable, Codable, S
 public struct IssuingCardStatus: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let active = IssuingCardStatus(rawValue: "active")
     public static let canceled = IssuingCardStatus(rawValue: "canceled")
     public static let inactive = IssuingCardStatus(rawValue: "inactive")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -486,10 +452,7 @@ public struct IssuingCardStatus: RawRepresentable, Hashable, Codable, Sendable, 
 public struct IssuingCardShippingStatus: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let canceled = IssuingCardShippingStatus(rawValue: "canceled")
     public static let delivered = IssuingCardShippingStatus(rawValue: "delivered")
     public static let failure = IssuingCardShippingStatus(rawValue: "failure")
@@ -500,7 +463,7 @@ public struct IssuingCardShippingStatus: RawRepresentable, Hashable, Codable, Se
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -510,17 +473,14 @@ public struct IssuingCardShippingStatus: RawRepresentable, Hashable, Codable, Se
 }
 
 /// Required enumerated value serialized in the `allowed_categories[]` wire field.
-public struct IssuingCardAuthorizationControlsAllowedCategoriesItem: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct IssuingCardAuthorizationControlsAllowedCategoriesItem: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
+    public init(rawValue: String) { self.rawValue = rawValue }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

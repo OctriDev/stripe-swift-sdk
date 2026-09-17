@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// V1Promotion domain models
+// V1Promotion domain models
 /// Typed representation of the `PromotionCodeCurrencyOption` API schema.
 public struct PromotionCodeCurrencyOption: Codable {
     /// Minimum amount required to redeem this Promotion Code into a Coupon (e.g., a purchase must be $100 or more
@@ -14,27 +14,21 @@ public struct PromotionCodeCurrencyOption: Codable {
         case minimumAmount = "minimum_amount"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PromotionCodeCurrencyOption {
-    init(from decoder: Decoder) throws {
+extension PromotionCodeCurrencyOption {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.minimumAmount) else {
-            throw SdkValidationError(
-                field: "minimum_amount",
-                code: "required",
-                message: "Validation failed for 'minimum_amount': value is required"
-            )
+            throw SdkValidationError(field: "minimum_amount", code: "required", message: "Validation failed for 'minimum_amount': value is required")
         }
-        minimumAmount = try container.sdkDecodeRequired(.minimumAmount)
+        self.minimumAmount = try container.sdkDecodeRequired(.minimumAmount)
     }
 }
 
-public extension PromotionCodeCurrencyOption {
-    init(minimumAmount: Int) {
+extension PromotionCodeCurrencyOption {
+    public init(minimumAmount: Int) {
         self.minimumAmount = minimumAmount
     }
 }
@@ -51,28 +45,22 @@ public struct PromotionCodesResourcePromotion: Codable {
         case coupon
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PromotionCodesResourcePromotion {
-    init(from decoder: Decoder) throws {
+extension PromotionCodesResourcePromotion {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.type) else {
-            throw SdkValidationError(
-                field: "type",
-                code: "required",
-                message: "Validation failed for 'type': value is required"
-            )
+            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
         }
-        type = try container.sdkDecodeRequired(.type)
-        coupon = try container.sdkDecodeIfPresent(.coupon)
+        self.type = try container.sdkDecodeRequired(.type)
+        self.coupon = try container.sdkDecodeIfPresent(.coupon)
     }
 }
 
-public extension PromotionCodesResourcePromotion {
-    init(type: PromotionCodesResourcePromotionType, coupon: PromotionCodesResourcePromotionCoupon? = nil) {
+extension PromotionCodesResourcePromotion {
+    public init(type: PromotionCodesResourcePromotionType, coupon: PromotionCodesResourcePromotionCoupon? = nil) {
         (self.type, self.coupon) = (type, coupon)
     }
 }
@@ -83,31 +71,21 @@ public enum PromotionCodesResourcePromotionCoupon {
 }
 
 extension PromotionCodesResourcePromotionCoupon: Codable {
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) {
-            self = value; return
-        }
-        throw DecodingError.dataCorruptedError(
-            in: container,
-            debugDescription: "No variant matched for PromotionCodesResourcePromotionCoupon"
-        )
+        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PromotionCodesResourcePromotionCoupon")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) {
-            return .stringValue(value)
-        }
-        if let value = try? container.decode(Coupon.self) {
-            return .coupon(value)
-        }
+        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(Coupon.self) { return .coupon(value) }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) {
-            return
-        }
+        if try encodeGroup1(to: encoder) { return }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -117,6 +95,7 @@ extension PromotionCodesResourcePromotionCoupon: Codable {
         case let .coupon(value): try container.encode(value); return true
         }
     }
+
 }
 
 /// Typed representation of the `PromotionCodesResourceRestrictions` API schema.
@@ -140,38 +119,27 @@ public struct PromotionCodesResourceRestrictions: Codable {
         case minimumAmountCurrency = "minimum_amount_currency"
     }
 
-    private init(sdkCopy value: Self) {
-        self = value
-    }
+    private init(sdkCopy value: Self) { self = value }
 }
 
-public extension PromotionCodesResourceRestrictions {
-    init(from decoder: Decoder) throws {
+extension PromotionCodesResourceRestrictions {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.firstTimeTransaction) else {
-            throw SdkValidationError(
-                field: "first_time_transaction",
-                code: "required",
-                message: "Validation failed for 'first_time_transaction': value is required"
-            )
+            throw SdkValidationError(field: "first_time_transaction", code: "required", message: "Validation failed for 'first_time_transaction': value is required")
         }
-        firstTimeTransaction = try container.sdkDecodeRequired(.firstTimeTransaction)
-        currencyOptions = try container.sdkDecodeIfPresent(.currencyOptions)
-        minimumAmount = try container.sdkDecodeIfPresent(.minimumAmount)
-        minimumAmountCurrency = try container.sdkDecodeIfPresent(.minimumAmountCurrency)
-        if let value = minimumAmountCurrency {
+        self.firstTimeTransaction = try container.sdkDecodeRequired(.firstTimeTransaction)
+        self.currencyOptions = try container.sdkDecodeIfPresent(.currencyOptions)
+        self.minimumAmount = try container.sdkDecodeIfPresent(.minimumAmount)
+        self.minimumAmountCurrency = try container.sdkDecodeIfPresent(.minimumAmountCurrency)
+        if let value = self.minimumAmountCurrency {
             try validateLength("minimum_amount_currency", value, min: nil, max: 5000)
         }
     }
 }
 
-public extension PromotionCodesResourceRestrictions {
-    init(
-        firstTimeTransaction: Bool,
-        currencyOptions: [String: PromotionCodeCurrencyOption]? = nil,
-        minimumAmount: Int? = nil,
-        minimumAmountCurrency: String? = nil
-    ) throws {
+extension PromotionCodesResourceRestrictions {
+    public init(firstTimeTransaction: Bool, currencyOptions: [String: PromotionCodeCurrencyOption]? = nil, minimumAmount: Int? = nil, minimumAmountCurrency: String? = nil) throws {
         (self.firstTimeTransaction, self.currencyOptions) = (firstTimeTransaction, currencyOptions)
         (self.minimumAmount, self.minimumAmountCurrency) = (minimumAmount, minimumAmountCurrency)
         if let value = self.minimumAmountCurrency {
@@ -184,15 +152,12 @@ public extension PromotionCodesResourceRestrictions {
 public struct PromotionCodesResourcePromotionType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let coupon = PromotionCodesResourcePromotionType(rawValue: "coupon")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

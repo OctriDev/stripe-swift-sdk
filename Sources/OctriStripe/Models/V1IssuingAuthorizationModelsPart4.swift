@@ -3,23 +3,19 @@
 
 import Foundation
 
-/// V1IssuingAuthorization domain models
+// V1IssuingAuthorization domain models
 /// Whether the cardholder provided a CVC and if it matched Stripe’s record.
-public struct IssuingAuthorizationVerificationDataCvcCheck: RawRepresentable, Hashable, Codable, Sendable,
-    SdkWireConvertible {
+public struct IssuingAuthorizationVerificationDataCvcCheck: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-
+    public init(rawValue: String) { self.rawValue = rawValue }
     public static let match = IssuingAuthorizationVerificationDataCvcCheck(rawValue: "match")
     public static let mismatch = IssuingAuthorizationVerificationDataCvcCheck(rawValue: "mismatch")
     public static let notProvided = IssuingAuthorizationVerificationDataCvcCheck(rawValue: "not_provided")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        try self.init(rawValue: container.decode(String.self))
+        self.init(rawValue: try container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
