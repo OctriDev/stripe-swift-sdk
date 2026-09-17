@@ -7,7 +7,8 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1TaxTransactionsCreateFromCalculationMethods {
-    /// Creates a Tax Transaction from a calculation, if that calculation hasn’t expired. Calculations expire after 90 days.
+    /// Creates a Tax Transaction from a calculation, if that calculation hasn’t expired. Calculations expire after 90
+    /// days.
     ///
     /// - Parameters:
     /// - calculation: Tax Calculation ID to be used as input when creating the
@@ -25,13 +26,34 @@ public enum V1TaxTransactionsCreateFromCalculationMethods {
     ///   handling in tax liability reports. The timestamp must fall within the
     ///   `tax_date` and the current time, unless the `tax_date` is scheduled in
     ///   advance. Defaults to the current time.
-    public static func postTaxTransactionsCreateFromCalculation(config: ClientConfig, calculation: String, reference: String, expand: [String]?, metadata: [String: String]?, postedAt: Int?) async throws -> TaxTransaction {
+    public static func postTaxTransactionsCreateFromCalculation(
+        config: ClientConfig,
+        calculation: String,
+        reference: String,
+        expand: [String]?,
+        metadata: [String: String]?,
+        postedAt: Int?
+    ) async throws -> TaxTransaction {
         try validateLength("calculation", calculation, max: 5000)
 
         try validateLength("reference", reference, max: 500)
 
-        let requestBody = PostTaxTransactionsCreateFromCalculationRequestBody(calculation: calculation, reference: reference, expand: expand, metadata: metadata, postedAt: postedAt)
+        let requestBody = PostTaxTransactionsCreateFromCalculationRequestBody(
+            calculation: calculation,
+            reference: reference,
+            expand: expand,
+            metadata: metadata,
+            postedAt: postedAt
+        )
 
-        return try (await sdkRequest("POST", "/v1/tax/transactions/create_from_calculation", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTaxTransactionsCreateFromCalculation")).data
+        return try await (sdkRequest(
+            "POST",
+            "/v1/tax/transactions/create_from_calculation",
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostTaxTransactionsCreateFromCalculation"
+        )).data
     }
 }

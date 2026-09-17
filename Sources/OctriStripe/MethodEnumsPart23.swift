@@ -6,15 +6,19 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public struct PostChargesChargeDisputeRequestBodyEvidenceEnhancedEvidenceVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostChargesChargeDisputeRequestBodyEvidenceEnhancedEvidenceVariant1: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostChargesChargeDisputeRequestBodyEvidenceEnhancedEvidenceVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -23,15 +27,19 @@ public struct PostChargesChargeDisputeRequestBodyEvidenceEnhancedEvidenceVariant
     }
 }
 
-public struct PostChargesChargeDisputeRequestBodyMetadataVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostChargesChargeDisputeRequestBodyMetadataVariant1: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostChargesChargeDisputeRequestBodyMetadataVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -40,15 +48,19 @@ public struct PostChargesChargeDisputeRequestBodyMetadataVariant1: RawRepresenta
     }
 }
 
-public struct PostChargesChargeRefundRequestBodyMetadataVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostChargesChargeRefundRequestBodyMetadataVariant1: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostChargesChargeRefundRequestBodyMetadataVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -61,17 +73,21 @@ public struct PostChargesChargeRefundRequestBodyMetadataVariant1: RawRepresentab
 /// `requested_by_customer`. If you believe the charge to be fraudulent, specifying `fraudulent` as the reason
 /// will add the associated card and email to your block lists, and will also help us improve our fraud
 /// detection algorithms.
-public struct PostChargesChargeRefundRequestBodyReason: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostChargesChargeRefundRequestBodyReason: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let duplicate = PostChargesChargeRefundRequestBodyReason(rawValue: "duplicate")
     public static let fraudulent = PostChargesChargeRefundRequestBodyReason(rawValue: "fraudulent")
     public static let requestedByCustomer = PostChargesChargeRefundRequestBodyReason(rawValue: "requested_by_customer")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -85,12 +101,15 @@ public struct PostChargesChargeRefundRequestBodyReason: RawRepresentable, Hashab
 public struct GetChargesChargeRefundsResponseObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let list = GetChargesChargeRefundsResponseObject(rawValue: "list")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -99,15 +118,19 @@ public struct GetChargesChargeRefundsResponseObject: RawRepresentable, Hashable,
     }
 }
 
-public struct PostChargesChargeRefundsRequestBodyMetadataVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostChargesChargeRefundsRequestBodyMetadataVariant1: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostChargesChargeRefundsRequestBodyMetadataVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -117,15 +140,19 @@ public struct PostChargesChargeRefundsRequestBodyMetadataVariant1: RawRepresenta
 }
 
 /// Origin of the refund
-public struct PostChargesChargeRefundsRequestBodyOrigin: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostChargesChargeRefundsRequestBodyOrigin: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let customerBalance = PostChargesChargeRefundsRequestBodyOrigin(rawValue: "customer_balance")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -138,17 +165,21 @@ public struct PostChargesChargeRefundsRequestBodyOrigin: RawRepresentable, Hasha
 /// `requested_by_customer`. If you believe the charge to be fraudulent, specifying `fraudulent` as the reason
 /// will add the associated card and email to your block lists, and will also help us improve our fraud
 /// detection algorithms.
-public struct PostChargesChargeRefundsRequestBodyReason: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostChargesChargeRefundsRequestBodyReason: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let duplicate = PostChargesChargeRefundsRequestBodyReason(rawValue: "duplicate")
     public static let fraudulent = PostChargesChargeRefundsRequestBodyReason(rawValue: "fraudulent")
     public static let requestedByCustomer = PostChargesChargeRefundsRequestBodyReason(rawValue: "requested_by_customer")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -157,15 +188,19 @@ public struct PostChargesChargeRefundsRequestBodyReason: RawRepresentable, Hasha
     }
 }
 
-public struct PostChargesChargeRefundsRefundRequestBodyMetadataVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostChargesChargeRefundsRefundRequestBodyMetadataVariant1: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostChargesChargeRefundsRefundRequestBodyMetadataVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -177,14 +212,17 @@ public struct PostChargesChargeRefundsRefundRequestBodyMetadataVariant1: RawRepr
 public struct GetCheckoutSessionsParameterX21117214: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let complete = GetCheckoutSessionsParameterX21117214(rawValue: "complete")
     public static let expired = GetCheckoutSessionsParameterX21117214(rawValue: "expired")
     public static let open = GetCheckoutSessionsParameterX21117214(rawValue: "open")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -198,12 +236,15 @@ public struct GetCheckoutSessionsParameterX21117214: RawRepresentable, Hashable,
 public struct GetCheckoutSessionsResponseObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let list = GetCheckoutSessionsResponseObject(rawValue: "list")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

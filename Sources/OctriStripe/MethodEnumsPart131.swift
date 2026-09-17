@@ -69,26 +69,34 @@ extension PostIssuingCardsRequestBodySpendingControlsSpendingLimitsItemX556825da
 extension PostIssuingCardsRequestBodySpendingControlsSpendingLimitsItemX556825da5b: CaseIterable {
     public static var allCases: [PostIssuingCardsRequestBodySpendingControlsSpendingLimitsItemX556825da5b] {
         allCasesPart1
-        +         allCasesPart2
-        +         allCasesPart3
-        +         allCasesPart4
+            + allCasesPart2
+            + allCasesPart3
+            + allCasesPart4
     }
 }
 
-public struct PostIssuingCardsRequestBodySpendingControlsSpendingLimitsItemInterval: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostIssuingCardsRequestBodySpendingControlsSpendingLimitsItemInterval: RawRepresentable, Hashable,
+    Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let allTime = PostIssuingCardsRequestBodySpendingControlsSpendingLimitsItemInterval(rawValue: "all_time")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let allTime =
+        PostIssuingCardsRequestBodySpendingControlsSpendingLimitsItemInterval(rawValue: "all_time")
     public static let daily = PostIssuingCardsRequestBodySpendingControlsSpendingLimitsItemInterval(rawValue: "daily")
-    public static let monthly = PostIssuingCardsRequestBodySpendingControlsSpendingLimitsItemInterval(rawValue: "monthly")
-    public static let perAuthorization = PostIssuingCardsRequestBodySpendingControlsSpendingLimitsItemInterval(rawValue: "per_authorization")
+    public static let monthly =
+        PostIssuingCardsRequestBodySpendingControlsSpendingLimitsItemInterval(rawValue: "monthly")
+    public static let perAuthorization =
+        PostIssuingCardsRequestBodySpendingControlsSpendingLimitsItemInterval(rawValue: "per_authorization")
     public static let weekly = PostIssuingCardsRequestBodySpendingControlsSpendingLimitsItemInterval(rawValue: "weekly")
     public static let yearly = PostIssuingCardsRequestBodySpendingControlsSpendingLimitsItemInterval(rawValue: "yearly")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -102,13 +110,16 @@ public struct PostIssuingCardsRequestBodySpendingControlsSpendingLimitsItemInter
 public struct PostIssuingCardsRequestBodyStatus: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let active = PostIssuingCardsRequestBodyStatus(rawValue: "active")
     public static let inactive = PostIssuingCardsRequestBodyStatus(rawValue: "inactive")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -121,13 +132,16 @@ public struct PostIssuingCardsRequestBodyStatus: RawRepresentable, Hashable, Cod
 public struct PostIssuingCardsRequestBodyType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let physical = PostIssuingCardsRequestBodyType(rawValue: "physical")
     public static let virtual = PostIssuingCardsRequestBodyType(rawValue: "virtual")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -137,16 +151,20 @@ public struct PostIssuingCardsRequestBodyType: RawRepresentable, Hashable, Codab
 }
 
 /// Reason why the `status` of this card is `canceled`.
-public struct PostIssuingCardsCardRequestBodyCancellationReason: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostIssuingCardsCardRequestBodyCancellationReason: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let lost = PostIssuingCardsCardRequestBodyCancellationReason(rawValue: "lost")
     public static let stolen = PostIssuingCardsCardRequestBodyCancellationReason(rawValue: "stolen")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -155,15 +173,19 @@ public struct PostIssuingCardsCardRequestBodyCancellationReason: RawRepresentabl
     }
 }
 
-public struct PostIssuingCardsCardRequestBodyMetadataVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostIssuingCardsCardRequestBodyMetadataVariant1: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostIssuingCardsCardRequestBodyMetadataVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -172,17 +194,23 @@ public struct PostIssuingCardsCardRequestBodyMetadataVariant1: RawRepresentable,
     }
 }
 
-public struct PostIssuingCardsCardRequestBodyShippingAddressValidationMode: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostIssuingCardsCardRequestBodyShippingAddressValidationMode: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let disabled = PostIssuingCardsCardRequestBodyShippingAddressValidationMode(rawValue: "disabled")
-    public static let normalizationOnly = PostIssuingCardsCardRequestBodyShippingAddressValidationMode(rawValue: "normalization_only")
-    public static let validationAndNormalization = PostIssuingCardsCardRequestBodyShippingAddressValidationMode(rawValue: "validation_and_normalization")
+    public static let normalizationOnly =
+        PostIssuingCardsCardRequestBodyShippingAddressValidationMode(rawValue: "normalization_only")
+    public static let validationAndNormalization =
+        PostIssuingCardsCardRequestBodyShippingAddressValidationMode(rawValue: "validation_and_normalization")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -191,17 +219,21 @@ public struct PostIssuingCardsCardRequestBodyShippingAddressValidationMode: RawR
     }
 }
 
-public struct PostIssuingCardsCardRequestBodyShippingService: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostIssuingCardsCardRequestBodyShippingService: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let express = PostIssuingCardsCardRequestBodyShippingService(rawValue: "express")
     public static let priority = PostIssuingCardsCardRequestBodyShippingService(rawValue: "priority")
     public static let standard = PostIssuingCardsCardRequestBodyShippingService(rawValue: "standard")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

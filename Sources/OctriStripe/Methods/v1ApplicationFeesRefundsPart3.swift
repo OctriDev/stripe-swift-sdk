@@ -6,10 +6,13 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1ApplicationFeesRefundsMethods {
-    /// Lists refunds belonging to a specific application fee. Use `limit`, `starting_after`, and `ending_before` to page through refunds beyond the most recent entries included on the application fee object.
+public extension V1ApplicationFeesRefundsMethods {
+    /// Lists refunds belonging to a specific application fee. Use `limit`, `starting_after`, and `ending_before` to
+    /// page through refunds beyond the most recent entries included on the application fee object.
     ///
-    /// You can see a list of the refunds belonging to a specific application fee. Note that the 10 most recent refunds are always available by default on the application fee object. If you need more than those 10, you can use this API method and the limit and starting_after parameters to page through additional refunds.
+    /// You can see a list of the refunds belonging to a specific application fee. Note that the 10 most recent refunds
+    /// are always available by default on the application fee object. If you need more than those 10, you can use this
+    /// API method and the limit and starting_after parameters to page through additional refunds.
     ///
     /// - Parameters:
     /// - endingBefore: A cursor for use in pagination. `ending_before` is an object
@@ -25,22 +28,36 @@ extension V1ApplicationFeesRefundsMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    public static func getApplicationFeesIdRefunds(config: ClientConfig, id: String, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetApplicationFeesIdRefundsResponse {
+    static func getApplicationFeesIdRefunds(
+        config: ClientConfig,
+        id: String,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        startingAfter: String?
+    ) async throws -> GetApplicationFeesIdRefundsResponse {
         try validateLength("id", id, max: 5000)
 
-        if let endingBefore = endingBefore {
+        if let endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let startingAfter = startingAfter {
+        if let startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try (await sdkRequest("GET", ["/v1/application_fees/", sdkEncodePathSegment(sdkWireString(id)), "/refunds"].joined(), config: config, query: [
-            SdkQueryParameter("ending_before", value: endingBefore),
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            SdkQueryParameter("limit", value: limit),
-            SdkQueryParameter("starting_after", value: startingAfter),
-        ], decoder: .json, operationId: "GetApplicationFeesIdRefunds")).data
+        return try await (sdkRequest(
+            "GET",
+            ["/v1/application_fees/", sdkEncodePathSegment(sdkWireString(id)), "/refunds"].joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("ending_before", value: endingBefore),
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+                SdkQueryParameter("limit", value: limit),
+                SdkQueryParameter("starting_after", value: startingAfter),
+            ],
+            decoder: .json,
+            operationId: "GetApplicationFeesIdRefunds"
+        )).data
     }
 }

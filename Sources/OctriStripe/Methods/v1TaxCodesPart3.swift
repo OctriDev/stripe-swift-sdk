@@ -6,18 +6,27 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1TaxCodesMethods {
-    /// Retrieves a tax code by its unique identifier. Use `id` to select the tax code and `expand` when you need expanded response fields. The response contains the tax code's name and description.
+public extension V1TaxCodesMethods {
+    /// Retrieves a tax code by its unique identifier. Use `id` to select the tax code and `expand` when you need
+    /// expanded response fields. The response contains the tax code's name and description.
     ///
-    /// Retrieves the details of an existing tax code. Supply the unique tax code ID and Stripe will return the corresponding tax code information.
+    /// Retrieves the details of an existing tax code. Supply the unique tax code ID and Stripe will return the
+    /// corresponding tax code information.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func getTaxCodesId(config: ClientConfig, id: String, expand: [String]?) async throws -> TaxCode {
+    static func getTaxCodesId(config: ClientConfig, id: String, expand: [String]?) async throws -> TaxCode {
         try validateLength("id", id, max: 5000)
 
-        return try (await sdkRequest("GET", ["/v1/tax_codes/", sdkEncodePathSegment(sdkWireString(id))].joined(), config: config, query: [
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-        ], decoder: .json, operationId: "GetTaxCodesId")).data
+        return try await (sdkRequest(
+            "GET",
+            ["/v1/tax_codes/", sdkEncodePathSegment(sdkWireString(id))].joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+            ],
+            decoder: .json,
+            operationId: "GetTaxCodesId"
+        )).data
     }
 }

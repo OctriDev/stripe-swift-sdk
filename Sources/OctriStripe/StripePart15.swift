@@ -33,37 +33,50 @@ public class V1InvoicesNamespace {
         void = V1InvoicesVoidNamespace(config: config)
     }
 
-/// Lists invoices ordered by creation date, with the newest invoices first. Filter by customer, subscription, collection method, due date, creation date, or invoice `status`, and use `starting_after` or `ending_before` to paginate the results.
+    /// Lists invoices ordered by creation date, with the newest invoices first. Filter by customer, subscription,
+    /// collection method, due date, creation date, or invoice `status`, and use `starting_after` or `ending_before` to
+    /// paginate the results.
     ///
-    /// You can list all invoices, or list the invoices for a specific customer. The invoices are returned sorted by creation date, with the most recently created invoices appearing first.
+    /// You can list all invoices, or list the invoices for a specific customer. The invoices are returned sorted by
+    /// creation date, with the most recently created invoices appearing first.
     public func get(options: V1InvoicesMethods.GetInvoicesOptions) async throws -> GetInvoicesResponse {
-        return try await V1InvoicesMethods.getInvoices(config: config, options: options)
+        try await V1InvoicesMethods.getInvoices(config: config, options: options)
     }
 
-/// This endpoint creates a draft invoice for a given customer. The invoice remains a draft until you finalize the invoice, which allows you to pay or send the invoice to your customers.
+    /// This endpoint creates a draft invoice for a given customer. The invoice remains a draft until you finalize the
+    /// invoice, which allows you to pay or send the invoice to your customers.
     public func post(options: V1InvoicesMethods.PostInvoicesOptions) async throws -> Invoice {
-        return try await V1InvoicesMethods.postInvoices(config: config, options: options)
+        try await V1InvoicesMethods.postInvoices(config: config, options: options)
     }
 
-/// Deletes a draft one-off invoice permanently. Use this operation only for invoices that are still in draft state; finalized or subscription invoices must be voided instead, and deletion cannot be undone.
+    /// Deletes a draft one-off invoice permanently. Use this operation only for invoices that are still in draft state;
+    /// finalized or subscription invoices must be voided instead, and deletion cannot be undone.
     ///
-    /// Permanently deletes a one-off invoice draft. This cannot be undone. Attempts to delete invoices that are no longer in a draft state will fail; once an invoice has been finalized or if an invoice is for a subscription, it must be voided.
+    /// Permanently deletes a one-off invoice draft. This cannot be undone. Attempts to delete invoices that are no
+    /// longer in a draft state will fail; once an invoice has been finalized or if an invoice is for a subscription, it
+    /// must be voided.
     public func deleteInvoice(invoice: String) async throws -> DeletedInvoice {
-        return try await V1InvoicesMethods.deleteInvoicesInvoice(config: config, invoice: invoice)
+        try await V1InvoicesMethods.deleteInvoicesInvoice(config: config, invoice: invoice)
     }
 
-/// Retrieves a specific invoice by its identifier. Use `invoice` to select the invoice, and use `expand` when you need additional response fields included inline.
+    /// Retrieves a specific invoice by its identifier. Use `invoice` to select the invoice, and use `expand` when you
+    /// need additional response fields included inline.
     ///
     /// Retrieves the invoice with the given ID.
     public func getInvoice(invoice: String, expand: [String]?) async throws -> Invoice {
-        return try await V1InvoicesMethods.getInvoicesInvoice(config: config, invoice: invoice, expand: expand)
+        try await V1InvoicesMethods.getInvoicesInvoice(config: config, invoice: invoice, expand: expand)
     }
 
-/// Updates an existing invoice with editable invoice attributes. Draft invoices are fully editable, while finalized invoices cannot change monetary values or `collection_method`; set `auto_advance` to false to stop automatic invoice advancement and collection behaviour.
+    /// Updates an existing invoice with editable invoice attributes. Draft invoices are fully editable, while finalized
+    /// invoices cannot change monetary values or `collection_method`; set `auto_advance` to false to stop automatic
+    /// invoice advancement and collection behaviour.
     ///
-    /// Draft invoices are fully editable. Once an invoice is finalized, monetary values, as well as collection_method , become uneditable. If you would like to stop the Stripe Billing engine from automatically finalizing, reattempting payments on, sending reminders for, or automatically reconciling invoices, pass auto_advance=false .
+    /// Draft invoices are fully editable. Once an invoice is finalized, monetary values, as well as collection_method ,
+    /// become uneditable. If you would like to stop the Stripe Billing engine from automatically finalizing,
+    /// reattempting payments on, sending reminders for, or automatically reconciling invoices, pass auto_advance=false
+    /// .
     public func postInvoice(options: V1InvoicesMethods.PostInvoicesInvoiceOptions) async throws -> Invoice {
-        return try await V1InvoicesMethods.postInvoicesInvoice(config: config, options: options)
+        try await V1InvoicesMethods.postInvoicesInvoice(config: config, options: options)
     }
 }
 
@@ -73,13 +86,28 @@ public class V1IssuingAuthorizationsApproveNamespace {
         self.config = config
     }
 
-/// Approves a pending Issuing authorization for a purchase. Use `authorization` within the real-time authorization timeout window and provide `amount` when the authorization permits amount control. This operation is deprecated; respond directly to the authorization webhook instead.
+    /// Approves a pending Issuing authorization for a purchase. Use `authorization` within the real-time authorization
+    /// timeout window and provide `amount` when the authorization permits amount control. This operation is deprecated;
+    /// respond directly to the authorization webhook instead.
     ///
-    /// [Deprecated] Approves a pending Issuing Authorization object. This request should be made within the timeout window of the real-time authorization flow. This method is deprecated. Instead, respond directly to the webhook request to approve an authorization.
+    /// [Deprecated] Approves a pending Issuing Authorization object. This request should be made within the timeout
+    /// window of the real-time authorization flow. This method is deprecated. Instead, respond directly to the webhook
+    /// request to approve an authorization.
     ///
     /// - Warning: This operation is deprecated and may be removed in a future release.
-    public func postIssuingAuthorizationsAuthorization(authorization: String, amount: Int?, expand: [String]?, metadata: PostIssuingAuthorizationsAuthorizationApproveRequestBodyMetadata?) async throws -> IssuingAuthorization {
-        return try await V1IssuingAuthorizationsApproveMethods.postIssuingAuthorizationsAuthorizationApprove(config: config, authorization: authorization, amount: amount, expand: expand, metadata: metadata)
+    public func postIssuingAuthorizationsAuthorization(
+        authorization: String,
+        amount: Int?,
+        expand: [String]?,
+        metadata: PostIssuingAuthorizationsAuthorizationApproveRequestBodyMetadata?
+    ) async throws -> IssuingAuthorization {
+        try await V1IssuingAuthorizationsApproveMethods.postIssuingAuthorizationsAuthorizationApprove(
+            config: config,
+            authorization: authorization,
+            amount: amount,
+            expand: expand,
+            metadata: metadata
+        )
     }
 }
 
@@ -89,13 +117,26 @@ public class V1IssuingAuthorizationsDeclineNamespace {
         self.config = config
     }
 
-/// Declines a pending Issuing authorization for a purchase. Use `authorization` within the real-time authorization timeout window when the purchase must not be approved. This operation is deprecated; respond directly to the authorization webhook instead.
+    /// Declines a pending Issuing authorization for a purchase. Use `authorization` within the real-time authorization
+    /// timeout window when the purchase must not be approved. This operation is deprecated; respond directly to the
+    /// authorization webhook instead.
     ///
-    /// [Deprecated] Declines a pending Issuing Authorization object. This request should be made within the timeout window of the real time authorization flow. This method is deprecated. Instead, respond directly to the webhook request to decline an authorization.
+    /// [Deprecated] Declines a pending Issuing Authorization object. This request should be made within the timeout
+    /// window of the real time authorization flow. This method is deprecated. Instead, respond directly to the webhook
+    /// request to decline an authorization.
     ///
     /// - Warning: This operation is deprecated and may be removed in a future release.
-    public func postIssuingAuthorizationsAuthorization(authorization: String, expand: [String]?, metadata: PostIssuingAuthorizationsAuthorizationDeclineRequestBodyMetadata?) async throws -> IssuingAuthorization {
-        return try await V1IssuingAuthorizationsDeclineMethods.postIssuingAuthorizationsAuthorizationDecline(config: config, authorization: authorization, expand: expand, metadata: metadata)
+    public func postIssuingAuthorizationsAuthorization(
+        authorization: String,
+        expand: [String]?,
+        metadata: PostIssuingAuthorizationsAuthorizationDeclineRequestBodyMetadata?
+    ) async throws -> IssuingAuthorization {
+        try await V1IssuingAuthorizationsDeclineMethods.postIssuingAuthorizationsAuthorizationDecline(
+            config: config,
+            authorization: authorization,
+            expand: expand,
+            metadata: metadata
+        )
     }
 }
 
@@ -109,25 +150,47 @@ public class V1IssuingAuthorizationsNamespace {
         decline = V1IssuingAuthorizationsDeclineNamespace(config: config)
     }
 
-/// Lists Issuing authorizations, ordered from newest to oldest by creation date. Use `card`, `cardholder`, `created`, and `status` to filter the results, and use cursor parameters to navigate between pages. Set `limit` between 1 and 100; it defaults to 10 when omitted.
+    /// Lists Issuing authorizations, ordered from newest to oldest by creation date. Use `card`, `cardholder`,
+    /// `created`, and `status` to filter the results, and use cursor parameters to navigate between pages. Set `limit`
+    /// between 1 and 100; it defaults to 10 when omitted.
     ///
-    /// Returns a list of Issuing Authorization objects. The objects are sorted in descending order by creation date, with the most recently created object appearing first.
-    public func getIssuing(options: V1IssuingAuthorizationsMethods.GetIssuingAuthorizationsOptions) async throws -> GetIssuingAuthorizationsResponse {
-        return try await V1IssuingAuthorizationsMethods.getIssuingAuthorizations(config: config, options: options)
+    /// Returns a list of Issuing Authorization objects. The objects are sorted in descending order by creation date,
+    /// with the most recently created object appearing first.
+    public func getIssuing(options: V1IssuingAuthorizationsMethods
+        .GetIssuingAuthorizationsOptions) async throws -> GetIssuingAuthorizationsResponse {
+        try await V1IssuingAuthorizationsMethods.getIssuingAuthorizations(config: config, options: options)
     }
 
-/// Retrieves a single Issuing authorization by its identifier. Supply `authorization` to return the authorization details, including its approval state, card, amount, currency, and related balance transactions. Use `expand` when you need additional nested fields in the response.
+    /// Retrieves a single Issuing authorization by its identifier. Supply `authorization` to return the authorization
+    /// details, including its approval state, card, amount, currency, and related balance transactions. Use `expand`
+    /// when you need additional nested fields in the response.
     ///
     /// Retrieves an Issuing Authorization object.
     public func getIssuingAuthorization(authorization: String, expand: [String]?) async throws -> IssuingAuthorization {
-        return try await V1IssuingAuthorizationsMethods.getIssuingAuthorizationsAuthorization(config: config, authorization: authorization, expand: expand)
+        try await V1IssuingAuthorizationsMethods.getIssuingAuthorizationsAuthorization(
+            config: config,
+            authorization: authorization,
+            expand: expand
+        )
     }
 
-/// Updates an Issuing authorization without changing parameters that you omit. Supply `authorization` and optionally provide `metadata` or `expand` to modify metadata or control the returned representation. The updated authorization remains associated with its existing card, cardholder, and transaction details.
+    /// Updates an Issuing authorization without changing parameters that you omit. Supply `authorization` and
+    /// optionally provide `metadata` or `expand` to modify metadata or control the returned representation. The updated
+    /// authorization remains associated with its existing card, cardholder, and transaction details.
     ///
-    /// Updates the specified Issuing Authorization object by setting the values of the parameters passed. Any parameters not provided will be left unchanged.
-    public func postIssuingAuthorization(authorization: String, expand: [String]?, metadata: PostIssuingAuthorizationsAuthorizationRequestBodyMetadata?) async throws -> IssuingAuthorization {
-        return try await V1IssuingAuthorizationsMethods.postIssuingAuthorizationsAuthorization(config: config, authorization: authorization, expand: expand, metadata: metadata)
+    /// Updates the specified Issuing Authorization object by setting the values of the parameters passed. Any
+    /// parameters not provided will be left unchanged.
+    public func postIssuingAuthorization(
+        authorization: String,
+        expand: [String]?,
+        metadata: PostIssuingAuthorizationsAuthorizationRequestBodyMetadata?
+    ) async throws -> IssuingAuthorization {
+        try await V1IssuingAuthorizationsMethods.postIssuingAuthorizationsAuthorization(
+            config: config,
+            authorization: authorization,
+            expand: expand,
+            metadata: metadata
+        )
     }
 }
 
@@ -137,30 +200,46 @@ public class V1IssuingCardholdersNamespace {
         self.config = config
     }
 
-/// Lists Issuing cardholders in descending creation order, with the newest cardholders first. Use the available filters to narrow results by creation interval, email, phone number, status, or type, and use cursor parameters to retrieve additional pages.
+    /// Lists Issuing cardholders in descending creation order, with the newest cardholders first. Use the available
+    /// filters to narrow results by creation interval, email, phone number, status, or type, and use cursor parameters
+    /// to retrieve additional pages.
     ///
-    /// Returns a list of Issuing Cardholder objects. The objects are sorted in descending order by creation date, with the most recently created object appearing first.
-    public func getIssuing(options: V1IssuingCardholdersMethods.GetIssuingCardholdersOptions) async throws -> GetIssuingCardholdersResponse {
-        return try await V1IssuingCardholdersMethods.getIssuingCardholders(config: config, options: options)
+    /// Returns a list of Issuing Cardholder objects. The objects are sorted in descending order by creation date, with
+    /// the most recently created object appearing first.
+    public func getIssuing(options: V1IssuingCardholdersMethods
+        .GetIssuingCardholdersOptions) async throws -> GetIssuingCardholdersResponse {
+        try await V1IssuingCardholdersMethods.getIssuingCardholders(config: config, options: options)
     }
 
-/// Creates a new Issuing Cardholder object that can be issued cards.
-    public func postIssuing(options: V1IssuingCardholdersMethods.PostIssuingCardholdersOptions) async throws -> IssuingCardholder {
-        return try await V1IssuingCardholdersMethods.postIssuingCardholders(config: config, options: options)
+    /// Creates a new Issuing Cardholder object that can be issued cards.
+    public func postIssuing(options: V1IssuingCardholdersMethods
+        .PostIssuingCardholdersOptions) async throws -> IssuingCardholder {
+        try await V1IssuingCardholdersMethods.postIssuingCardholders(config: config, options: options)
     }
 
-/// Retrieves an Issuing cardholder by its identifier. Use `expand` when you need selected nested fields included in the response rather than returned as identifiers. The response contains the cardholder's identity, billing information, status, requirements, and spending controls.
+    /// Retrieves an Issuing cardholder by its identifier. Use `expand` when you need selected nested fields included in
+    /// the response rather than returned as identifiers. The response contains the cardholder's identity, billing
+    /// information, status, requirements, and spending controls.
     ///
     /// Retrieves an Issuing Cardholder object.
     public func getIssuingCardholder(cardholder: String, expand: [String]?) async throws -> IssuingCardholder {
-        return try await V1IssuingCardholdersMethods.getIssuingCardholdersCardholder(config: config, cardholder: cardholder, expand: expand)
+        try await V1IssuingCardholdersMethods.getIssuingCardholdersCardholder(
+            config: config,
+            cardholder: cardholder,
+            expand: expand
+        )
     }
 
-/// Updates an Issuing cardholder by changing only the fields included in the request. Use nested fields such as `billing`, `company`, `individual`, or `spending_controls` to modify corresponding cardholder information, while omitted fields remain unchanged. Set `status` to control whether authorizations are permitted on the cardholder's cards.
+    /// Updates an Issuing cardholder by changing only the fields included in the request. Use nested fields such as
+    /// `billing`, `company`, `individual`, or `spending_controls` to modify corresponding cardholder information, while
+    /// omitted fields remain unchanged. Set `status` to control whether authorizations are permitted on the
+    /// cardholder's cards.
     ///
-    /// Updates the specified Issuing Cardholder object by setting the values of the parameters passed. Any parameters not provided will be left unchanged.
-    public func postIssuingCardholder(options: V1IssuingCardholdersMethods.PostIssuingCardholdersCardholderOptions) async throws -> IssuingCardholder {
-        return try await V1IssuingCardholdersMethods.postIssuingCardholdersCardholder(config: config, options: options)
+    /// Updates the specified Issuing Cardholder object by setting the values of the parameters passed. Any parameters
+    /// not provided will be left unchanged.
+    public func postIssuingCardholder(options: V1IssuingCardholdersMethods
+        .PostIssuingCardholdersCardholderOptions) async throws -> IssuingCardholder {
+        try await V1IssuingCardholdersMethods.postIssuingCardholdersCardholder(config: config, options: options)
     }
 }
 
@@ -170,30 +249,41 @@ public class V1IssuingCardsNamespace {
         self.config = config
     }
 
-/// Lists Issuing cards in descending creation order, with the newest cards first. Filter results by cardholder, creation time, expiration, last four digits, personalization design, status, or type, and use cursor parameters to paginate the collection.
+    /// Lists Issuing cards in descending creation order, with the newest cards first. Filter results by cardholder,
+    /// creation time, expiration, last four digits, personalization design, status, or type, and use cursor parameters
+    /// to paginate the collection.
     ///
-    /// Returns a list of Issuing Card objects. The objects are sorted in descending order by creation date, with the most recently created object appearing first.
-    public func getIssuing(options: V1IssuingCardsMethods.GetIssuingCardsOptions) async throws -> GetIssuingCardsResponse {
-        return try await V1IssuingCardsMethods.getIssuingCards(config: config, options: options)
+    /// Returns a list of Issuing Card objects. The objects are sorted in descending order by creation date, with the
+    /// most recently created object appearing first.
+    public func getIssuing(options: V1IssuingCardsMethods
+        .GetIssuingCardsOptions) async throws -> GetIssuingCardsResponse {
+        try await V1IssuingCardsMethods.getIssuingCards(config: config, options: options)
     }
 
-/// Creates an Issuing Card object.
+    /// Creates an Issuing Card object.
     public func postIssuing(options: V1IssuingCardsMethods.PostIssuingCardsOptions) async throws -> IssuingCard {
-        return try await V1IssuingCardsMethods.postIssuingCards(config: config, options: options)
+        try await V1IssuingCardsMethods.postIssuingCards(config: config, options: options)
     }
 
-/// Retrieves an Issuing card by its identifier. Use `expand` when you need selected nested fields, such as the virtual card's CVC, included in the response. The response contains the cardholder, card status, currency, expiration details, last four digits, and spending controls.
+    /// Retrieves an Issuing card by its identifier. Use `expand` when you need selected nested fields, such as the
+    /// virtual card's CVC, included in the response. The response contains the cardholder, card status, currency,
+    /// expiration details, last four digits, and spending controls.
     ///
     /// Retrieves an Issuing Card object.
     public func getIssuingCard(card: String, expand: [String]?) async throws -> IssuingCard {
-        return try await V1IssuingCardsMethods.getIssuingCardsCard(config: config, card: card, expand: expand)
+        try await V1IssuingCardsMethods.getIssuingCardsCard(config: config, card: card, expand: expand)
     }
 
-/// Updates an Issuing card by changing only the fields included in the request. Use `status` to activate, deactivate, or cancel the card, and provide `cancellation_reason` when canceling it because it was lost or stolen. You can also update the PIN, shipping information, personalization design, metadata, and spending controls.
+    /// Updates an Issuing card by changing only the fields included in the request. Use `status` to activate,
+    /// deactivate, or cancel the card, and provide `cancellation_reason` when canceling it because it was lost or
+    /// stolen. You can also update the PIN, shipping information, personalization design, metadata, and spending
+    /// controls.
     ///
-    /// Updates the specified Issuing Card object by setting the values of the parameters passed. Any parameters not provided will be left unchanged.
-    public func postIssuingCard(options: V1IssuingCardsMethods.PostIssuingCardsCardOptions) async throws -> IssuingCard {
-        return try await V1IssuingCardsMethods.postIssuingCardsCard(config: config, options: options)
+    /// Updates the specified Issuing Card object by setting the values of the parameters passed. Any parameters not
+    /// provided will be left unchanged.
+    public func postIssuingCard(options: V1IssuingCardsMethods
+        .PostIssuingCardsCardOptions) async throws -> IssuingCard {
+        try await V1IssuingCardsMethods.postIssuingCardsCard(config: config, options: options)
     }
 }
 
@@ -203,10 +293,22 @@ public class V1IssuingDisputesSubmitNamespace {
         self.config = config
     }
 
-/// Submits an Issuing dispute to the card network for review. The API validates that the evidence required for the dispute's reason is present before submission. Use `expand` or `metadata` to control the returned representation or attach metadata to the request.
+    /// Submits an Issuing dispute to the card network for review. The API validates that the evidence required for the
+    /// dispute's reason is present before submission. Use `expand` or `metadata` to control the returned representation
+    /// or attach metadata to the request.
     ///
-    /// Submits an Issuing Dispute to the card network. Stripe validates that all evidence fields required for the dispute’s reason are present. For more details, see Dispute reasons and evidence.
-    public func postIssuingDisputesDispute(dispute: String, expand: [String]?, metadata: PostIssuingDisputesDisputeSubmitRequestBodyMetadata?) async throws -> IssuingDispute {
-        return try await V1IssuingDisputesSubmitMethods.postIssuingDisputesDisputeSubmit(config: config, dispute: dispute, expand: expand, metadata: metadata)
+    /// Submits an Issuing Dispute to the card network. Stripe validates that all evidence fields required for the
+    /// dispute’s reason are present. For more details, see Dispute reasons and evidence.
+    public func postIssuingDisputesDispute(
+        dispute: String,
+        expand: [String]?,
+        metadata: PostIssuingDisputesDisputeSubmitRequestBodyMetadata?
+    ) async throws -> IssuingDispute {
+        try await V1IssuingDisputesSubmitMethods.postIssuingDisputesDisputeSubmit(
+            config: config,
+            dispute: dispute,
+            expand: expand,
+            metadata: metadata
+        )
     }
 }

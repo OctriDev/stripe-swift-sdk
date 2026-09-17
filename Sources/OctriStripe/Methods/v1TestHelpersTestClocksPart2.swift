@@ -6,8 +6,10 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1TestHelpersTestClocksMethods {
-    /// Lists test clocks available in the test environment. Use `starting_after` and `ending_before` to navigate the collection, and `limit` to control the number of clocks returned per page. Use `page` and `per_page` to paginate the results.
+public extension V1TestHelpersTestClocksMethods {
+    /// Lists test clocks available in the test environment. Use `starting_after` and `ending_before` to navigate the
+    /// collection, and `limit` to control the number of clocks returned per page. Use `page` and `per_page` to paginate
+    /// the results.
     ///
     /// Returns a list of your test clocks.
     ///
@@ -25,16 +27,22 @@ extension V1TestHelpersTestClocksMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    public static func getTestHelpersTestClocks(config: ClientConfig, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetTestHelpersTestClocksResponse {
-        if let endingBefore = endingBefore {
+    static func getTestHelpersTestClocks(
+        config: ClientConfig,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        startingAfter: String?
+    ) async throws -> GetTestHelpersTestClocksResponse {
+        if let endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let startingAfter = startingAfter {
+        if let startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try (await sdkRequest("GET", "/v1/test_helpers/test_clocks", config: config, query: [
+        return try await (sdkRequest("GET", "/v1/test_helpers/test_clocks", config: config, query: [
             SdkQueryParameter("ending_before", value: endingBefore),
             SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
             SdkQueryParameter("limit", value: limit),

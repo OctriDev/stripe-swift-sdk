@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1Shipping domain models
+/// V1Shipping domain models
 /// Typed representation of the `Shipping` API schema.
 public struct Shipping: Codable {
     /// Optional object value serialized in the `address` wire field.
@@ -27,35 +27,41 @@ public struct Shipping: Codable {
     }
 
     init() {
-        (self.address, self.carrier, self.name, self.phone, self.trackingNumber) = (nil, nil, nil, nil, nil)
+        (address, carrier, name, phone, trackingNumber) = (nil, nil, nil, nil, nil)
     }
 }
 
-extension Shipping {
-    public init(from decoder: Decoder) throws {
+public extension Shipping {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.address = try container.sdkDecodeIfPresent(.address)
-        self.carrier = try container.sdkDecodeIfPresent(.carrier)
-        self.name = try container.sdkDecodeIfPresent(.name)
-        self.phone = try container.sdkDecodeIfPresent(.phone)
-        self.trackingNumber = try container.sdkDecodeIfPresent(.trackingNumber)
-        if let value = self.carrier {
+        address = try container.sdkDecodeIfPresent(.address)
+        carrier = try container.sdkDecodeIfPresent(.carrier)
+        name = try container.sdkDecodeIfPresent(.name)
+        phone = try container.sdkDecodeIfPresent(.phone)
+        trackingNumber = try container.sdkDecodeIfPresent(.trackingNumber)
+        if let value = carrier {
             try validateLength("carrier", value, min: nil, max: 5000)
         }
-        if let value = self.name {
+        if let value = name {
             try validateLength("name", value, min: nil, max: 5000)
         }
-        if let value = self.phone {
+        if let value = phone {
             try validateLength("phone", value, min: nil, max: 5000)
         }
-        if let value = self.trackingNumber {
+        if let value = trackingNumber {
             try validateLength("tracking_number", value, min: nil, max: 5000)
         }
     }
 }
 
-extension Shipping {
-    public init(address: Address? = nil, carrier: String? = nil, name: String? = nil, phone: String? = nil, trackingNumber: String? = nil) throws {
+public extension Shipping {
+    init(
+        address: Address? = nil,
+        carrier: String? = nil,
+        name: String? = nil,
+        phone: String? = nil,
+        trackingNumber: String? = nil
+    ) throws {
         self.init()
         (self.address, self.carrier) = (address, carrier)
         (self.name, self.phone) = (name, phone)
@@ -123,61 +129,104 @@ public struct ShippingRate: Codable {
         case taxCode = "tax_code"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension ShippingRate {
-    public init(from decoder: Decoder) throws {
+public extension ShippingRate {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.active) else {
-            throw SdkValidationError(field: "active", code: "required", message: "Validation failed for 'active': value is required")
+            throw SdkValidationError(
+                field: "active",
+                code: "required",
+                message: "Validation failed for 'active': value is required"
+            )
         }
         guard container.contains(.created) else {
-            throw SdkValidationError(field: "created", code: "required", message: "Validation failed for 'created': value is required")
+            throw SdkValidationError(
+                field: "created",
+                code: "required",
+                message: "Validation failed for 'created': value is required"
+            )
         }
         guard container.contains(.id) else {
-            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
+            throw SdkValidationError(
+                field: "id",
+                code: "required",
+                message: "Validation failed for 'id': value is required"
+            )
         }
         guard container.contains(.livemode) else {
-            throw SdkValidationError(field: "livemode", code: "required", message: "Validation failed for 'livemode': value is required")
+            throw SdkValidationError(
+                field: "livemode",
+                code: "required",
+                message: "Validation failed for 'livemode': value is required"
+            )
         }
         guard container.contains(.metadata) else {
-            throw SdkValidationError(field: "metadata", code: "required", message: "Validation failed for 'metadata': value is required")
+            throw SdkValidationError(
+                field: "metadata",
+                code: "required",
+                message: "Validation failed for 'metadata': value is required"
+            )
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
         }
         guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
         }
-        self.active = try container.sdkDecodeRequired(.active)
-        self.created = try container.sdkDecodeRequired(.created)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.livemode = try container.sdkDecodeRequired(.livemode)
-        self.metadata = try container.sdkDecodeRequired(.metadata)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.type = try container.sdkDecodeRequired(.type)
-        self.deliveryEstimate = try container.sdkDecodeIfPresent(.deliveryEstimate)
-        self.displayName = try container.sdkDecodeIfPresent(.displayName)
-        self.fixedAmount = try container.sdkDecodeIfPresent(.fixedAmount)
-        self.taxBehavior = try container.sdkDecodeIfPresent(.taxBehavior)
-        self.taxCode = try container.sdkDecodeIfPresent(.taxCode)
-            try validateLength("id", self.id, min: nil, max: 5000)
-        if let value = self.displayName {
+        active = try container.sdkDecodeRequired(.active)
+        created = try container.sdkDecodeRequired(.created)
+        id = try container.sdkDecodeRequired(.id)
+        livemode = try container.sdkDecodeRequired(.livemode)
+        metadata = try container.sdkDecodeRequired(.metadata)
+        object = try container.sdkDecodeRequired(.object)
+        type = try container.sdkDecodeRequired(.type)
+        deliveryEstimate = try container.sdkDecodeIfPresent(.deliveryEstimate)
+        displayName = try container.sdkDecodeIfPresent(.displayName)
+        fixedAmount = try container.sdkDecodeIfPresent(.fixedAmount)
+        taxBehavior = try container.sdkDecodeIfPresent(.taxBehavior)
+        taxCode = try container.sdkDecodeIfPresent(.taxCode)
+        try validateLength("id", id, min: nil, max: 5000)
+        if let value = displayName {
             try validateLength("display_name", value, min: nil, max: 5000)
         }
     }
 }
 
-extension ShippingRate {
-    public init(active: Bool, created: Int, id: String, livemode: Bool, metadata: [String: String], object: ShippingRateObject, type: ShippingRateType, deliveryEstimate: ShippingRateDeliveryEstimateX67f5978b? = nil, displayName: String? = nil, fixedAmount: ShippingRateFixedAmount? = nil, taxBehavior: ShippingRateTaxBehavior? = nil, taxCode: ShippingRateTaxCode? = nil) throws {
+public extension ShippingRate {
+    init(
+        active: Bool,
+        created: Int,
+        id: String,
+        livemode: Bool,
+        metadata: [String: String],
+        object: ShippingRateObject,
+        type: ShippingRateType,
+        deliveryEstimate: ShippingRateDeliveryEstimateX67f5978b? = nil,
+        displayName: String? = nil,
+        fixedAmount: ShippingRateFixedAmount? = nil,
+        taxBehavior: ShippingRateTaxBehavior? = nil,
+        taxCode: ShippingRateTaxCode? = nil
+    ) throws {
         (self.active, self.created) = (active, created)
         (self.id, self.livemode) = (id, livemode)
         (self.metadata, self.object) = (metadata, object)
         (self.type, self.deliveryEstimate) = (type, deliveryEstimate)
         (self.displayName, self.fixedAmount) = (displayName, fixedAmount)
         (self.taxBehavior, self.taxCode) = (taxBehavior, taxCode)
-            try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
         if let value = self.displayName {
             try validateLength("display_name", value, min: nil, max: 5000)
         }
@@ -189,20 +238,29 @@ public enum ShippingRateDeliveryEstimateX67f5978b {
 }
 
 extension ShippingRateDeliveryEstimateX67f5978b: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for ShippingRateDeliveryEstimateX67f5978b")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for ShippingRateDeliveryEstimateX67f5978b"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(ShippingRateDeliveryEstimate.self) { return .shippingRateDeliveryEstimate(value) }
+        if let value = try? container
+            .decode(ShippingRateDeliveryEstimate.self) {
+            return .shippingRateDeliveryEstimate(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -211,7 +269,6 @@ extension ShippingRateDeliveryEstimateX67f5978b: Codable {
         case let .shippingRateDeliveryEstimate(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum ShippingRateTaxCode {
@@ -220,21 +277,31 @@ public enum ShippingRateTaxCode {
 }
 
 extension ShippingRateTaxCode: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for ShippingRateTaxCode")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for ShippingRateTaxCode"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(TaxCode.self) { return .taxCode(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(TaxCode.self) {
+            return .taxCode(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -244,7 +311,6 @@ extension ShippingRateTaxCode: Codable {
         case let .taxCode(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Typed representation of the `ShippingRateCurrencyOption` API schema.
@@ -260,25 +326,35 @@ public struct ShippingRateCurrencyOption: Codable {
         case taxBehavior = "tax_behavior"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension ShippingRateCurrencyOption {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.amount) else {
-            throw SdkValidationError(field: "amount", code: "required", message: "Validation failed for 'amount': value is required")
-        }
-        guard container.contains(.taxBehavior) else {
-            throw SdkValidationError(field: "tax_behavior", code: "required", message: "Validation failed for 'tax_behavior': value is required")
-        }
-        self.amount = try container.sdkDecodeRequired(.amount)
-        self.taxBehavior = try container.sdkDecodeRequired(.taxBehavior)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension ShippingRateCurrencyOption {
-    public init(amount: Int, taxBehavior: ShippingRateCurrencyOptionTaxBehavior) {
+public extension ShippingRateCurrencyOption {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.amount) else {
+            throw SdkValidationError(
+                field: "amount",
+                code: "required",
+                message: "Validation failed for 'amount': value is required"
+            )
+        }
+        guard container.contains(.taxBehavior) else {
+            throw SdkValidationError(
+                field: "tax_behavior",
+                code: "required",
+                message: "Validation failed for 'tax_behavior': value is required"
+            )
+        }
+        amount = try container.sdkDecodeRequired(.amount)
+        taxBehavior = try container.sdkDecodeRequired(.taxBehavior)
+    }
+}
+
+public extension ShippingRateCurrencyOption {
+    init(amount: Int, taxBehavior: ShippingRateCurrencyOptionTaxBehavior) {
         (self.amount, self.taxBehavior) = (amount, taxBehavior)
     }
 }
@@ -296,20 +372,20 @@ public struct ShippingRateDeliveryEstimate: Codable {
     }
 
     init() {
-        (self.maximum, self.minimum) = (nil, nil)
+        (maximum, minimum) = (nil, nil)
     }
 }
 
-extension ShippingRateDeliveryEstimate {
-    public init(from decoder: Decoder) throws {
+public extension ShippingRateDeliveryEstimate {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.maximum = try container.sdkDecodeIfPresent(.maximum)
-        self.minimum = try container.sdkDecodeIfPresent(.minimum)
+        maximum = try container.sdkDecodeIfPresent(.maximum)
+        minimum = try container.sdkDecodeIfPresent(.minimum)
     }
 }
 
-extension ShippingRateDeliveryEstimate {
-    public init(maximum: ShippingRateDeliveryEstimateMaximum? = nil, minimum: ShippingRateDeliveryEstimateMinimum? = nil) {
+public extension ShippingRateDeliveryEstimate {
+    init(maximum: ShippingRateDeliveryEstimateMaximum? = nil, minimum: ShippingRateDeliveryEstimateMinimum? = nil) {
         self.init()
         (self.maximum, self.minimum) = (maximum, minimum)
     }
@@ -320,20 +396,29 @@ public enum ShippingRateDeliveryEstimateMaximum {
 }
 
 extension ShippingRateDeliveryEstimateMaximum: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for ShippingRateDeliveryEstimateMaximum")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for ShippingRateDeliveryEstimateMaximum"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(ShippingRateDeliveryEstimateBound.self) { return .shippingRateDeliveryEstimateBound(value) }
+        if let value = try? container
+            .decode(ShippingRateDeliveryEstimateBound.self) {
+            return .shippingRateDeliveryEstimateBound(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -342,7 +427,6 @@ extension ShippingRateDeliveryEstimateMaximum: Codable {
         case let .shippingRateDeliveryEstimateBound(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum ShippingRateDeliveryEstimateMinimum {
@@ -350,20 +434,29 @@ public enum ShippingRateDeliveryEstimateMinimum {
 }
 
 extension ShippingRateDeliveryEstimateMinimum: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for ShippingRateDeliveryEstimateMinimum")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for ShippingRateDeliveryEstimateMinimum"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(ShippingRateDeliveryEstimateBound.self) { return .shippingRateDeliveryEstimateBound(value) }
+        if let value = try? container
+            .decode(ShippingRateDeliveryEstimateBound.self) {
+            return .shippingRateDeliveryEstimateBound(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -372,7 +465,6 @@ extension ShippingRateDeliveryEstimateMinimum: Codable {
         case let .shippingRateDeliveryEstimateBound(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Typed representation of the `ShippingRateDeliveryEstimateBound` API schema.
@@ -387,25 +479,35 @@ public struct ShippingRateDeliveryEstimateBound: Codable {
         case value
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension ShippingRateDeliveryEstimateBound {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.unit) else {
-            throw SdkValidationError(field: "unit", code: "required", message: "Validation failed for 'unit': value is required")
-        }
-        guard container.contains(.value) else {
-            throw SdkValidationError(field: "value", code: "required", message: "Validation failed for 'value': value is required")
-        }
-        self.unit = try container.sdkDecodeRequired(.unit)
-        self.value = try container.sdkDecodeRequired(.value)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension ShippingRateDeliveryEstimateBound {
-    public init(unit: ShippingRateDeliveryEstimateBoundUnit, value: Int) {
+public extension ShippingRateDeliveryEstimateBound {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.unit) else {
+            throw SdkValidationError(
+                field: "unit",
+                code: "required",
+                message: "Validation failed for 'unit': value is required"
+            )
+        }
+        guard container.contains(.value) else {
+            throw SdkValidationError(
+                field: "value",
+                code: "required",
+                message: "Validation failed for 'value': value is required"
+            )
+        }
+        unit = try container.sdkDecodeRequired(.unit)
+        value = try container.sdkDecodeRequired(.value)
+    }
+}
+
+public extension ShippingRateDeliveryEstimateBound {
+    init(unit: ShippingRateDeliveryEstimateBoundUnit, value: Int) {
         (self.unit, self.value) = (unit, value)
     }
 }
@@ -426,26 +528,36 @@ public struct ShippingRateFixedAmount: Codable {
         case currencyOptions = "currency_options"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension ShippingRateFixedAmount {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.amount) else {
-            throw SdkValidationError(field: "amount", code: "required", message: "Validation failed for 'amount': value is required")
-        }
-        guard container.contains(.currency) else {
-            throw SdkValidationError(field: "currency", code: "required", message: "Validation failed for 'currency': value is required")
-        }
-        self.amount = try container.sdkDecodeRequired(.amount)
-        self.currency = try container.sdkDecodeRequired(.currency)
-        self.currencyOptions = try container.sdkDecodeIfPresent(.currencyOptions)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension ShippingRateFixedAmount {
-    public init(amount: Int, currency: String, currencyOptions: [String: ShippingRateCurrencyOption]? = nil) {
+public extension ShippingRateFixedAmount {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.amount) else {
+            throw SdkValidationError(
+                field: "amount",
+                code: "required",
+                message: "Validation failed for 'amount': value is required"
+            )
+        }
+        guard container.contains(.currency) else {
+            throw SdkValidationError(
+                field: "currency",
+                code: "required",
+                message: "Validation failed for 'currency': value is required"
+            )
+        }
+        amount = try container.sdkDecodeRequired(.amount)
+        currency = try container.sdkDecodeRequired(.currency)
+        currencyOptions = try container.sdkDecodeIfPresent(.currencyOptions)
+    }
+}
+
+public extension ShippingRateFixedAmount {
+    init(amount: Int, currency: String, currencyOptions: [String: ShippingRateCurrencyOption]? = nil) {
         (self.amount, self.currency) = (amount, currency)
         self.currencyOptions = currencyOptions
     }
@@ -455,12 +567,15 @@ extension ShippingRateFixedAmount {
 public struct ShippingRateType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let fixedAmount = ShippingRateType(rawValue: "fixed_amount")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -474,14 +589,17 @@ public struct ShippingRateType: RawRepresentable, Hashable, Codable, Sendable, S
 public struct ShippingRateTaxBehavior: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let exclusive = ShippingRateTaxBehavior(rawValue: "exclusive")
     public static let inclusive = ShippingRateTaxBehavior(rawValue: "inclusive")
     public static let unspecified = ShippingRateTaxBehavior(rawValue: "unspecified")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -494,7 +612,10 @@ public struct ShippingRateTaxBehavior: RawRepresentable, Hashable, Codable, Send
 public struct ShippingRateDeliveryEstimateBoundUnit: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let businessDay = ShippingRateDeliveryEstimateBoundUnit(rawValue: "business_day")
     public static let day = ShippingRateDeliveryEstimateBoundUnit(rawValue: "day")
     public static let hour = ShippingRateDeliveryEstimateBoundUnit(rawValue: "hour")
@@ -503,7 +624,7 @@ public struct ShippingRateDeliveryEstimateBoundUnit: RawRepresentable, Hashable,
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -516,12 +637,15 @@ public struct ShippingRateDeliveryEstimateBoundUnit: RawRepresentable, Hashable,
 public struct ShippingRateObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let shippingRate = ShippingRateObject(rawValue: "shipping_rate")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

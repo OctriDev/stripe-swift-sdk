@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1TestHelpersIssuingAuthorizationsFinalizeAmount operation model declarations
+/// Canonical v1TestHelpersIssuingAuthorizationsFinalizeAmount operation model declarations
 public struct PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX2a801e0a15: Codable {
     public var driverId: String?
     public var odometer: Int?
@@ -24,35 +24,41 @@ public struct PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX2a80
     }
 
     init() {
-        (self.driverId, self.odometer, self.unspecifiedId, self.userId, self.vehicleNumber) = (nil, nil, nil, nil, nil)
+        (driverId, odometer, unspecifiedId, userId, vehicleNumber) = (nil, nil, nil, nil, nil)
     }
 }
 
-extension PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX2a801e0a15 {
-    public init(from decoder: Decoder) throws {
+public extension PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX2a801e0a15 {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.driverId = try container.sdkDecodeIfPresent(.driverId)
-        self.odometer = try container.sdkDecodeIfPresent(.odometer)
-        self.unspecifiedId = try container.sdkDecodeIfPresent(.unspecifiedId)
-        self.userId = try container.sdkDecodeIfPresent(.userId)
-        self.vehicleNumber = try container.sdkDecodeIfPresent(.vehicleNumber)
-        if let value = self.driverId {
+        driverId = try container.sdkDecodeIfPresent(.driverId)
+        odometer = try container.sdkDecodeIfPresent(.odometer)
+        unspecifiedId = try container.sdkDecodeIfPresent(.unspecifiedId)
+        userId = try container.sdkDecodeIfPresent(.userId)
+        vehicleNumber = try container.sdkDecodeIfPresent(.vehicleNumber)
+        if let value = driverId {
             try validateLength("driver_id", value, min: nil, max: 5000)
         }
-        if let value = self.unspecifiedId {
+        if let value = unspecifiedId {
             try validateLength("unspecified_id", value, min: nil, max: 5000)
         }
-        if let value = self.userId {
+        if let value = userId {
             try validateLength("user_id", value, min: nil, max: 5000)
         }
-        if let value = self.vehicleNumber {
+        if let value = vehicleNumber {
             try validateLength("vehicle_number", value, min: nil, max: 5000)
         }
     }
 }
 
-extension PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX2a801e0a15 {
-    public init(driverId: String? = nil, odometer: Int? = nil, unspecifiedId: String? = nil, userId: String? = nil, vehicleNumber: String? = nil) throws {
+public extension PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX2a801e0a15 {
+    init(
+        driverId: String? = nil,
+        odometer: Int? = nil,
+        unspecifiedId: String? = nil,
+        userId: String? = nil,
+        vehicleNumber: String? = nil
+    ) throws {
         self.init()
         (self.driverId, self.odometer) = (driverId, odometer)
         (self.unspecifiedId, self.userId) = (unspecifiedId, userId)
@@ -82,20 +88,20 @@ public struct PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX3fab
     }
 
     init() {
-        (self.localAmountDecimal, self.nationalAmountDecimal) = (nil, nil)
+        (localAmountDecimal, nationalAmountDecimal) = (nil, nil)
     }
 }
 
-extension PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX3faba9a7d4 {
-    public init(from decoder: Decoder) throws {
+public extension PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX3faba9a7d4 {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.localAmountDecimal = try container.sdkDecodeIfPresent(.localAmountDecimal)
-        self.nationalAmountDecimal = try container.sdkDecodeIfPresent(.nationalAmountDecimal)
+        localAmountDecimal = try container.sdkDecodeIfPresent(.localAmountDecimal)
+        nationalAmountDecimal = try container.sdkDecodeIfPresent(.nationalAmountDecimal)
     }
 }
 
-extension PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX3faba9a7d4 {
-    public init(localAmountDecimal: String? = nil, nationalAmountDecimal: String? = nil) {
+public extension PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX3faba9a7d4 {
+    init(localAmountDecimal: String? = nil, nationalAmountDecimal: String? = nil) {
         self.init()
         (self.localAmountDecimal, self.nationalAmountDecimal) = (localAmountDecimal, nationalAmountDecimal)
     }
@@ -109,19 +115,19 @@ public struct PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX15fb
     }
 
     init() {
-        self.grossAmountDecimal = nil
+        grossAmountDecimal = nil
     }
 }
 
-extension PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX15fbbdaac4 {
-    public init(from decoder: Decoder) throws {
+public extension PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX15fbbdaac4 {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.grossAmountDecimal = try container.sdkDecodeIfPresent(.grossAmountDecimal)
+        grossAmountDecimal = try container.sdkDecodeIfPresent(.grossAmountDecimal)
     }
 }
 
-extension PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX15fbbdaac4 {
-    public init(grossAmountDecimal: String? = nil) {
+public extension PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX15fbbdaac4 {
+    init(grossAmountDecimal: String? = nil) {
         self.init()
         self.grossAmountDecimal = grossAmountDecimal
     }
@@ -142,30 +148,30 @@ public struct PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX5a92
     }
 
     init() {
-        (self.fuel, self.nonFuel, self.tax) = (nil, nil, nil)
+        (fuel, nonFuel, tax) = (nil, nil, nil)
     }
 }
 
-extension PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX5a92c4919e {
-    public init(from decoder: Decoder) throws {
+public extension PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX5a92c4919e {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.fuel = try container.sdkDecodeIfPresent(.fuel)
-        self.nonFuel = try container.sdkDecodeIfPresent(.nonFuel)
-        self.tax = try container.sdkDecodeIfPresent(.tax)
+        fuel = try container.sdkDecodeIfPresent(.fuel)
+        nonFuel = try container.sdkDecodeIfPresent(.nonFuel)
+        tax = try container.sdkDecodeIfPresent(.tax)
     }
 }
 
-extension PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX5a92c4919e {
-    public init(fuel: PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX291a4e1830? = nil, nonFuel: PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX15fbbdaac4? = nil, tax: PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX3faba9a7d4? = nil) {
+public extension PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX5a92c4919e {
+    init(
+        fuel: PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX291a4e1830? = nil,
+        nonFuel: PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX15fbbdaac4? = nil,
+        tax: PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX3faba9a7d4? = nil
+    ) {
         self.init()
         (self.fuel, self.nonFuel) = (fuel, nonFuel)
         self.tax = tax
     }
 }
-
-
-
-
 
 /// Fleet-specific information for authorizations using Fleet cards.
 public struct PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX41b490a2e9: Codable {
@@ -184,28 +190,33 @@ public struct PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX41b4
     }
 
     init() {
-        (self.cardholderPromptData, self.purchaseType, self.reportedBreakdown, self.serviceType) = (nil, nil, nil, nil)
+        (cardholderPromptData, purchaseType, reportedBreakdown, serviceType) = (nil, nil, nil, nil)
     }
 }
 
-extension PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX41b490a2e9 {
-    public init(from decoder: Decoder) throws {
+public extension PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX41b490a2e9 {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.cardholderPromptData = try container.sdkDecodeIfPresent(.cardholderPromptData)
-        self.purchaseType = try container.sdkDecodeIfPresent(.purchaseType)
-        self.reportedBreakdown = try container.sdkDecodeIfPresent(.reportedBreakdown)
-        self.serviceType = try container.sdkDecodeIfPresent(.serviceType)
-        if let value = self.purchaseType {
+        cardholderPromptData = try container.sdkDecodeIfPresent(.cardholderPromptData)
+        purchaseType = try container.sdkDecodeIfPresent(.purchaseType)
+        reportedBreakdown = try container.sdkDecodeIfPresent(.reportedBreakdown)
+        serviceType = try container.sdkDecodeIfPresent(.serviceType)
+        if let value = purchaseType {
             try validateLength("purchase_type", sdkWireString(value), min: nil, max: 5000)
         }
-        if let value = self.serviceType {
+        if let value = serviceType {
             try validateLength("service_type", sdkWireString(value), min: nil, max: 5000)
         }
     }
 }
 
-extension PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX41b490a2e9 {
-    public init(cardholderPromptData: PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX2a801e0a15? = nil, purchaseType: PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX30d88472c7? = nil, reportedBreakdown: PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX5a92c4919e? = nil, serviceType: PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX30f9231878? = nil) throws {
+public extension PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX41b490a2e9 {
+    init(
+        cardholderPromptData: PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX2a801e0a15? = nil,
+        purchaseType: PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX30d88472c7? = nil,
+        reportedBreakdown: PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX5a92c4919e? = nil,
+        serviceType: PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX30f9231878? = nil
+    ) throws {
         self.init()
         (self.cardholderPromptData, self.purchaseType) = (cardholderPromptData, purchaseType)
         (self.reportedBreakdown, self.serviceType) = (reportedBreakdown, serviceType)
@@ -226,27 +237,23 @@ public struct PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX291a
     }
 
     init() {
-        self.grossAmountDecimal = nil
+        grossAmountDecimal = nil
     }
 }
 
-extension PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX291a4e1830 {
-    public init(from decoder: Decoder) throws {
+public extension PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX291a4e1830 {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.grossAmountDecimal = try container.sdkDecodeIfPresent(.grossAmountDecimal)
+        grossAmountDecimal = try container.sdkDecodeIfPresent(.grossAmountDecimal)
     }
 }
 
-extension PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX291a4e1830 {
-    public init(grossAmountDecimal: String? = nil) {
+public extension PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX291a4e1830 {
+    init(grossAmountDecimal: String? = nil) {
         self.init()
         self.grossAmountDecimal = grossAmountDecimal
     }
 }
-
-
-
-
 
 /// Information about fuel that was purchased with this transaction.
 public struct PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX27f1047fe4: Codable {
@@ -265,32 +272,38 @@ public struct PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX27f1
     }
 
     init() {
-        (self.industryProductCode, self.quantityDecimal, self.type, self.unit, self.unitCostDecimal) = (nil, nil, nil, nil, nil)
+        (industryProductCode, quantityDecimal, type, unit, unitCostDecimal) = (nil, nil, nil, nil, nil)
     }
 }
 
-extension PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX27f1047fe4 {
-    public init(from decoder: Decoder) throws {
+public extension PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX27f1047fe4 {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.industryProductCode = try container.sdkDecodeIfPresent(.industryProductCode)
-        self.quantityDecimal = try container.sdkDecodeIfPresent(.quantityDecimal)
-        self.type = try container.sdkDecodeIfPresent(.type)
-        self.unit = try container.sdkDecodeIfPresent(.unit)
-        self.unitCostDecimal = try container.sdkDecodeIfPresent(.unitCostDecimal)
-        if let value = self.industryProductCode {
+        industryProductCode = try container.sdkDecodeIfPresent(.industryProductCode)
+        quantityDecimal = try container.sdkDecodeIfPresent(.quantityDecimal)
+        type = try container.sdkDecodeIfPresent(.type)
+        unit = try container.sdkDecodeIfPresent(.unit)
+        unitCostDecimal = try container.sdkDecodeIfPresent(.unitCostDecimal)
+        if let value = industryProductCode {
             try validateLength("industry_product_code", value, min: nil, max: 5000)
         }
-        if let value = self.type {
+        if let value = type {
             try validateLength("type", sdkWireString(value), min: nil, max: 5000)
         }
-        if let value = self.unit {
+        if let value = unit {
             try validateLength("unit", sdkWireString(value), min: nil, max: 5000)
         }
     }
 }
 
-extension PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX27f1047fe4 {
-    public init(industryProductCode: String? = nil, quantityDecimal: String? = nil, type: PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX2ca1511f0f? = nil, unit: PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX9500d50715? = nil, unitCostDecimal: String? = nil) throws {
+public extension PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX27f1047fe4 {
+    init(
+        industryProductCode: String? = nil,
+        quantityDecimal: String? = nil,
+        type: PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX2ca1511f0f? = nil,
+        unit: PostTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmouX9500d50715? = nil,
+        unitCostDecimal: String? = nil
+    ) throws {
         self.init()
         (self.industryProductCode, self.quantityDecimal) = (industryProductCode, quantityDecimal)
         (self.type, self.unit) = (type, unit)

@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1IssuingCardholders operation model declarations
+/// Canonical v1IssuingCardholders operation model declarations
 public struct PostIssuingCardholdersCardholderRequestBodyIndividualVerificaX46de8cead6: Codable {
     public var back: String?
     public var front: String?
@@ -18,26 +18,26 @@ public struct PostIssuingCardholdersCardholderRequestBodyIndividualVerificaX46de
     }
 
     init() {
-        (self.back, self.front) = (nil, nil)
+        (back, front) = (nil, nil)
     }
 }
 
-extension PostIssuingCardholdersCardholderRequestBodyIndividualVerificaX46de8cead6 {
-    public init(from decoder: Decoder) throws {
+public extension PostIssuingCardholdersCardholderRequestBodyIndividualVerificaX46de8cead6 {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.back = try container.sdkDecodeIfPresent(.back)
-        self.front = try container.sdkDecodeIfPresent(.front)
-        if let value = self.back {
+        back = try container.sdkDecodeIfPresent(.back)
+        front = try container.sdkDecodeIfPresent(.front)
+        if let value = back {
             try validateLength("back", value, min: nil, max: 5000)
         }
-        if let value = self.front {
+        if let value = front {
             try validateLength("front", value, min: nil, max: 5000)
         }
     }
 }
 
-extension PostIssuingCardholdersCardholderRequestBodyIndividualVerificaX46de8cead6 {
-    public init(back: String? = nil, front: String? = nil) throws {
+public extension PostIssuingCardholdersCardholderRequestBodyIndividualVerificaX46de8cead6 {
+    init(back: String? = nil, front: String? = nil) throws {
         self.init()
         (self.back, self.front) = (back, front)
         if let value = self.back {
@@ -49,15 +49,20 @@ extension PostIssuingCardholdersCardholderRequestBodyIndividualVerificaX46de8cea
     }
 }
 
-public typealias PostIssuingCardholdersRequestBodySpendingControlsAllowedCardPXb23e22934f = [PostIssuingCardholdersRequestBodySpendingControlsAllowedCardPX2cd732622f]
+public typealias PostIssuingCardholdersRequestBodySpendingControlsAllowedCardPXb23e22934f =
+    [PostIssuingCardholdersRequestBodySpendingControlsAllowedCardPX2cd732622f]
 
-public typealias PostIssuingCardholdersRequestBodySpendingControlsAllowedCategoriesList = [PostIssuingCardholdersRequestBodySpendingControlsAllowedCategoriesItem]
+public typealias PostIssuingCardholdersRequestBodySpendingControlsAllowedCategoriesList =
+    [PostIssuingCardholdersRequestBodySpendingControlsAllowedCategoriesItem]
 
-public typealias PostIssuingCardholdersRequestBodySpendingControlsBlockedCardPXe9aacf918b = [PostIssuingCardholdersRequestBodySpendingControlsBlockedCardPXfe3e8ce0ff]
+public typealias PostIssuingCardholdersRequestBodySpendingControlsBlockedCardPXe9aacf918b =
+    [PostIssuingCardholdersRequestBodySpendingControlsBlockedCardPXfe3e8ce0ff]
 
-public typealias PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesList = [PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem]
+public typealias PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesList =
+    [PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem]
 
-public typealias PostIssuingCardholdersRequestBodySpendingControlsSpendingLimitsList = [PostIssuingCardholdersRequestBodySpendingControlsSpendingLimitsItem]
+public typealias PostIssuingCardholdersRequestBodySpendingControlsSpendingLimitsList =
+    [PostIssuingCardholdersRequestBodySpendingControlsSpendingLimitsItem]
 
 /// Rules that control spending across this cardholder's cards. Refer to our documentation for more details.
 public struct PostIssuingCardholdersRequestBodySpendingControls: Codable {
@@ -82,27 +87,42 @@ public struct PostIssuingCardholdersRequestBodySpendingControls: Codable {
     }
 
     init() {
-        (self.allowedCardPresences, self.allowedCategories, self.allowedMerchantCountries, self.blockedCardPresences, self.blockedCategories) = (nil, nil, nil, nil, nil)
-        (self.blockedMerchantCountries, self.spendingLimits, self.spendingLimitsCurrency) = (nil, nil, nil)
+        (allowedCardPresences, allowedCategories, allowedMerchantCountries, blockedCardPresences, blockedCategories) = (
+            nil,
+            nil,
+            nil,
+            nil,
+            nil
+        )
+        (blockedMerchantCountries, spendingLimits, spendingLimitsCurrency) = (nil, nil, nil)
     }
 }
 
-extension PostIssuingCardholdersRequestBodySpendingControls {
-    public init(from decoder: Decoder) throws {
+public extension PostIssuingCardholdersRequestBodySpendingControls {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.allowedCardPresences = try container.sdkDecodeIfPresent(.allowedCardPresences)
-        self.allowedCategories = try container.sdkDecodeIfPresent(.allowedCategories)
-        self.allowedMerchantCountries = try container.sdkDecodeIfPresent(.allowedMerchantCountries)
-        self.blockedCardPresences = try container.sdkDecodeIfPresent(.blockedCardPresences)
-        self.blockedCategories = try container.sdkDecodeIfPresent(.blockedCategories)
-        self.blockedMerchantCountries = try container.sdkDecodeIfPresent(.blockedMerchantCountries)
-        self.spendingLimits = try container.sdkDecodeIfPresent(.spendingLimits)
-        self.spendingLimitsCurrency = try container.sdkDecodeIfPresent(.spendingLimitsCurrency)
+        allowedCardPresences = try container.sdkDecodeIfPresent(.allowedCardPresences)
+        allowedCategories = try container.sdkDecodeIfPresent(.allowedCategories)
+        allowedMerchantCountries = try container.sdkDecodeIfPresent(.allowedMerchantCountries)
+        blockedCardPresences = try container.sdkDecodeIfPresent(.blockedCardPresences)
+        blockedCategories = try container.sdkDecodeIfPresent(.blockedCategories)
+        blockedMerchantCountries = try container.sdkDecodeIfPresent(.blockedMerchantCountries)
+        spendingLimits = try container.sdkDecodeIfPresent(.spendingLimits)
+        spendingLimitsCurrency = try container.sdkDecodeIfPresent(.spendingLimitsCurrency)
     }
 }
 
-extension PostIssuingCardholdersRequestBodySpendingControls {
-    public init(allowedCardPresences: PostIssuingCardholdersRequestBodySpendingControlsAllowedCardPXb23e22934f? = nil, allowedCategories: PostIssuingCardholdersRequestBodySpendingControlsAllowedCategoriesList? = nil, allowedMerchantCountries: [String]? = nil, blockedCardPresences: PostIssuingCardholdersRequestBodySpendingControlsBlockedCardPXe9aacf918b? = nil, blockedCategories: PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesList? = nil, blockedMerchantCountries: [String]? = nil, spendingLimits: PostIssuingCardholdersRequestBodySpendingControlsSpendingLimitsList? = nil, spendingLimitsCurrency: String? = nil) {
+public extension PostIssuingCardholdersRequestBodySpendingControls {
+    init(
+        allowedCardPresences: PostIssuingCardholdersRequestBodySpendingControlsAllowedCardPXb23e22934f? = nil,
+        allowedCategories: PostIssuingCardholdersRequestBodySpendingControlsAllowedCategoriesList? = nil,
+        allowedMerchantCountries: [String]? = nil,
+        blockedCardPresences: PostIssuingCardholdersRequestBodySpendingControlsBlockedCardPXe9aacf918b? = nil,
+        blockedCategories: PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesList? = nil,
+        blockedMerchantCountries: [String]? = nil,
+        spendingLimits: PostIssuingCardholdersRequestBodySpendingControlsSpendingLimitsList? = nil,
+        spendingLimitsCurrency: String? = nil
+    ) {
         self.init()
         (self.allowedCardPresences, self.allowedCategories) = (allowedCardPresences, allowedCategories)
         self.allowedMerchantCountries = allowedMerchantCountries
@@ -112,7 +132,8 @@ extension PostIssuingCardholdersRequestBodySpendingControls {
     }
 }
 
-public typealias PostIssuingCardholdersRequestBodySpendingControlsSpendingLimiX11e41d8c3e = [PostIssuingCardholdersRequestBodySpendingControlsSpendingLimiXc317383fbc]
+public typealias PostIssuingCardholdersRequestBodySpendingControlsSpendingLimiX11e41d8c3e =
+    [PostIssuingCardholdersRequestBodySpendingControlsSpendingLimiXc317383fbc]
 
 public struct PostIssuingCardholdersRequestBodySpendingControlsSpendingLimitsItem: Codable {
     public var amount: Int
@@ -125,26 +146,40 @@ public struct PostIssuingCardholdersRequestBodySpendingControlsSpendingLimitsIte
         case categories
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension PostIssuingCardholdersRequestBodySpendingControlsSpendingLimitsItem {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.amount) else {
-            throw SdkValidationError(field: "amount", code: "required", message: "Validation failed for 'amount': value is required")
-        }
-        guard container.contains(.interval) else {
-            throw SdkValidationError(field: "interval", code: "required", message: "Validation failed for 'interval': value is required")
-        }
-        self.amount = try container.sdkDecodeRequired(.amount)
-        self.interval = try container.sdkDecodeRequired(.interval)
-        self.categories = try container.sdkDecodeIfPresent(.categories)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension PostIssuingCardholdersRequestBodySpendingControlsSpendingLimitsItem {
-    public init(amount: Int, interval: PostIssuingCardholdersRequestBodySpendingControlsSpendingLimiX8ea92942fa, categories: PostIssuingCardholdersRequestBodySpendingControlsSpendingLimiX11e41d8c3e? = nil) {
+public extension PostIssuingCardholdersRequestBodySpendingControlsSpendingLimitsItem {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.amount) else {
+            throw SdkValidationError(
+                field: "amount",
+                code: "required",
+                message: "Validation failed for 'amount': value is required"
+            )
+        }
+        guard container.contains(.interval) else {
+            throw SdkValidationError(
+                field: "interval",
+                code: "required",
+                message: "Validation failed for 'interval': value is required"
+            )
+        }
+        amount = try container.sdkDecodeRequired(.amount)
+        interval = try container.sdkDecodeRequired(.interval)
+        categories = try container.sdkDecodeIfPresent(.categories)
+    }
+}
+
+public extension PostIssuingCardholdersRequestBodySpendingControlsSpendingLimitsItem {
+    init(
+        amount: Int,
+        interval: PostIssuingCardholdersRequestBodySpendingControlsSpendingLimiX8ea92942fa,
+        categories: PostIssuingCardholdersRequestBodySpendingControlsSpendingLimiX11e41d8c3e? = nil
+    ) {
         (self.amount, self.interval) = (amount, interval)
         self.categories = categories
     }
@@ -159,19 +194,19 @@ public struct PostIssuingCardholdersRequestBodyIndividualVerification: Codable {
     }
 
     init() {
-        self.document = nil
+        document = nil
     }
 }
 
-extension PostIssuingCardholdersRequestBodyIndividualVerification {
-    public init(from decoder: Decoder) throws {
+public extension PostIssuingCardholdersRequestBodyIndividualVerification {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.document = try container.sdkDecodeIfPresent(.document)
+        document = try container.sdkDecodeIfPresent(.document)
     }
 }
 
-extension PostIssuingCardholdersRequestBodyIndividualVerification {
-    public init(document: PostIssuingCardholdersRequestBodyIndividualVerificationDocument? = nil) {
+public extension PostIssuingCardholdersRequestBodyIndividualVerification {
+    init(document: PostIssuingCardholdersRequestBodyIndividualVerificationDocument? = nil) {
         self.init()
         self.document = document
     }
@@ -186,19 +221,19 @@ public struct PostIssuingCardholdersRequestBodyIndividualCardIssuing: Codable {
     }
 
     init() {
-        self.userTermsAcceptance = nil
+        userTermsAcceptance = nil
     }
 }
 
-extension PostIssuingCardholdersRequestBodyIndividualCardIssuing {
-    public init(from decoder: Decoder) throws {
+public extension PostIssuingCardholdersRequestBodyIndividualCardIssuing {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.userTermsAcceptance = try container.sdkDecodeIfPresent(.userTermsAcceptance)
+        userTermsAcceptance = try container.sdkDecodeIfPresent(.userTermsAcceptance)
     }
 }
 
-extension PostIssuingCardholdersRequestBodyIndividualCardIssuing {
-    public init(userTermsAcceptance: PostIssuingCardholdersRequestBodyIndividualCardIssuingUserTerX5a21c05975? = nil) {
+public extension PostIssuingCardholdersRequestBodyIndividualCardIssuing {
+    init(userTermsAcceptance: PostIssuingCardholdersRequestBodyIndividualCardIssuingUserTerX5a21c05975? = nil) {
         self.init()
         self.userTermsAcceptance = userTermsAcceptance
     }
@@ -213,22 +248,22 @@ public struct PostIssuingCardholdersCardholderRequestBodyCompany: Codable {
     }
 
     init() {
-        self.taxId = nil
+        taxId = nil
     }
 }
 
-extension PostIssuingCardholdersCardholderRequestBodyCompany {
-    public init(from decoder: Decoder) throws {
+public extension PostIssuingCardholdersCardholderRequestBodyCompany {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.taxId = try container.sdkDecodeIfPresent(.taxId)
-        if let value = self.taxId {
+        taxId = try container.sdkDecodeIfPresent(.taxId)
+        if let value = taxId {
             try validateLength("tax_id", value, min: nil, max: 5000)
         }
     }
 }
 
-extension PostIssuingCardholdersCardholderRequestBodyCompany {
-    public init(taxId: String? = nil) throws {
+public extension PostIssuingCardholdersCardholderRequestBodyCompany {
+    init(taxId: String? = nil) throws {
         self.init()
         self.taxId = taxId
         if let value = self.taxId {
@@ -237,7 +272,8 @@ extension PostIssuingCardholdersCardholderRequestBodyCompany {
     }
 }
 
-public typealias PostIssuingCardholdersCardholderRequestBodySpendingControlsSpXa88da84392 = [PostIssuingCardholdersCardholderRequestBodySpendingControlsSpXb8adf49d6d]
+public typealias PostIssuingCardholdersCardholderRequestBodySpendingControlsSpXa88da84392 =
+    [PostIssuingCardholdersCardholderRequestBodySpendingControlsSpXb8adf49d6d]
 
 public struct PostIssuingCardholdersCardholderRequestBodySpendingControlsSpXc9b4c9bc97: Codable {
     public var amount: Int
@@ -250,26 +286,40 @@ public struct PostIssuingCardholdersCardholderRequestBodySpendingControlsSpXc9b4
         case categories
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension PostIssuingCardholdersCardholderRequestBodySpendingControlsSpXc9b4c9bc97 {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.amount) else {
-            throw SdkValidationError(field: "amount", code: "required", message: "Validation failed for 'amount': value is required")
-        }
-        guard container.contains(.interval) else {
-            throw SdkValidationError(field: "interval", code: "required", message: "Validation failed for 'interval': value is required")
-        }
-        self.amount = try container.sdkDecodeRequired(.amount)
-        self.interval = try container.sdkDecodeRequired(.interval)
-        self.categories = try container.sdkDecodeIfPresent(.categories)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension PostIssuingCardholdersCardholderRequestBodySpendingControlsSpXc9b4c9bc97 {
-    public init(amount: Int, interval: PostIssuingCardholdersCardholderRequestBodySpendingControlsSpX9309b43b77, categories: PostIssuingCardholdersCardholderRequestBodySpendingControlsSpXa88da84392? = nil) {
+public extension PostIssuingCardholdersCardholderRequestBodySpendingControlsSpXc9b4c9bc97 {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.amount) else {
+            throw SdkValidationError(
+                field: "amount",
+                code: "required",
+                message: "Validation failed for 'amount': value is required"
+            )
+        }
+        guard container.contains(.interval) else {
+            throw SdkValidationError(
+                field: "interval",
+                code: "required",
+                message: "Validation failed for 'interval': value is required"
+            )
+        }
+        amount = try container.sdkDecodeRequired(.amount)
+        interval = try container.sdkDecodeRequired(.interval)
+        categories = try container.sdkDecodeIfPresent(.categories)
+    }
+}
+
+public extension PostIssuingCardholdersCardholderRequestBodySpendingControlsSpXc9b4c9bc97 {
+    init(
+        amount: Int,
+        interval: PostIssuingCardholdersCardholderRequestBodySpendingControlsSpX9309b43b77,
+        categories: PostIssuingCardholdersCardholderRequestBodySpendingControlsSpXa88da84392? = nil
+    ) {
         (self.amount, self.interval) = (amount, interval)
         self.categories = categories
     }
@@ -292,52 +342,77 @@ public struct PostIssuingCardholdersCardholderRequestBodyBillingAddress: Codable
         case state
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension PostIssuingCardholdersCardholderRequestBodyBillingAddress {
-    public init(from decoder: Decoder) throws {
+public extension PostIssuingCardholdersCardholderRequestBodyBillingAddress {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.city) else {
-            throw SdkValidationError(field: "city", code: "required", message: "Validation failed for 'city': value is required")
+            throw SdkValidationError(
+                field: "city",
+                code: "required",
+                message: "Validation failed for 'city': value is required"
+            )
         }
         guard container.contains(.country) else {
-            throw SdkValidationError(field: "country", code: "required", message: "Validation failed for 'country': value is required")
+            throw SdkValidationError(
+                field: "country",
+                code: "required",
+                message: "Validation failed for 'country': value is required"
+            )
         }
         guard container.contains(.line1) else {
-            throw SdkValidationError(field: "line1", code: "required", message: "Validation failed for 'line1': value is required")
+            throw SdkValidationError(
+                field: "line1",
+                code: "required",
+                message: "Validation failed for 'line1': value is required"
+            )
         }
         guard container.contains(.postalCode) else {
-            throw SdkValidationError(field: "postal_code", code: "required", message: "Validation failed for 'postal_code': value is required")
+            throw SdkValidationError(
+                field: "postal_code",
+                code: "required",
+                message: "Validation failed for 'postal_code': value is required"
+            )
         }
-        self.city = try container.sdkDecodeRequired(.city)
-        self.country = try container.sdkDecodeRequired(.country)
-        self.line1 = try container.sdkDecodeRequired(.line1)
-        self.postalCode = try container.sdkDecodeRequired(.postalCode)
-        self.line2 = try container.sdkDecodeIfPresent(.line2)
-        self.state = try container.sdkDecodeIfPresent(.state)
-            try validateLength("city", self.city, min: nil, max: 5000)
-            try validateLength("country", self.country, min: nil, max: 5000)
-            try validateLength("line1", self.line1, min: nil, max: 5000)
-            try validateLength("postal_code", self.postalCode, min: nil, max: 5000)
-        if let value = self.line2 {
+        city = try container.sdkDecodeRequired(.city)
+        country = try container.sdkDecodeRequired(.country)
+        line1 = try container.sdkDecodeRequired(.line1)
+        postalCode = try container.sdkDecodeRequired(.postalCode)
+        line2 = try container.sdkDecodeIfPresent(.line2)
+        state = try container.sdkDecodeIfPresent(.state)
+        try validateLength("city", city, min: nil, max: 5000)
+        try validateLength("country", country, min: nil, max: 5000)
+        try validateLength("line1", line1, min: nil, max: 5000)
+        try validateLength("postal_code", postalCode, min: nil, max: 5000)
+        if let value = line2 {
             try validateLength("line2", value, min: nil, max: 5000)
         }
-        if let value = self.state {
+        if let value = state {
             try validateLength("state", value, min: nil, max: 5000)
         }
     }
 }
 
-extension PostIssuingCardholdersCardholderRequestBodyBillingAddress {
-    public init(city: String, country: String, line1: String, postalCode: String, line2: String? = nil, state: String? = nil) throws {
+public extension PostIssuingCardholdersCardholderRequestBodyBillingAddress {
+    init(
+        city: String,
+        country: String,
+        line1: String,
+        postalCode: String,
+        line2: String? = nil,
+        state: String? = nil
+    ) throws {
         (self.city, self.country) = (city, country)
         (self.line1, self.postalCode) = (line1, postalCode)
         (self.line2, self.state) = (line2, state)
-            try validateLength("city", self.city, min: nil, max: 5000)
-            try validateLength("country", self.country, min: nil, max: 5000)
-            try validateLength("line1", self.line1, min: nil, max: 5000)
-            try validateLength("postal_code", self.postalCode, min: nil, max: 5000)
+        try validateLength("city", self.city, min: nil, max: 5000)
+        try validateLength("country", self.country, min: nil, max: 5000)
+        try validateLength("line1", self.line1, min: nil, max: 5000)
+        try validateLength("postal_code", self.postalCode, min: nil, max: 5000)
         if let value = self.line2 {
             try validateLength("line2", value, min: nil, max: 5000)
         }
@@ -367,23 +442,29 @@ public struct PostIssuingCardholdersCardholderRequestBodyIndividual: Codable {
     }
 
     init() {
-        (self.cardIssuing, self.dob, self.firstName, self.lastName, self.verification) = (nil, nil, nil, nil, nil)
+        (cardIssuing, dob, firstName, lastName, verification) = (nil, nil, nil, nil, nil)
     }
 }
 
-extension PostIssuingCardholdersCardholderRequestBodyIndividual {
-    public init(from decoder: Decoder) throws {
+public extension PostIssuingCardholdersCardholderRequestBodyIndividual {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.cardIssuing = try container.sdkDecodeIfPresent(.cardIssuing)
-        self.dob = try container.sdkDecodeIfPresent(.dob)
-        self.firstName = try container.sdkDecodeIfPresent(.firstName)
-        self.lastName = try container.sdkDecodeIfPresent(.lastName)
-        self.verification = try container.sdkDecodeIfPresent(.verification)
+        cardIssuing = try container.sdkDecodeIfPresent(.cardIssuing)
+        dob = try container.sdkDecodeIfPresent(.dob)
+        firstName = try container.sdkDecodeIfPresent(.firstName)
+        lastName = try container.sdkDecodeIfPresent(.lastName)
+        verification = try container.sdkDecodeIfPresent(.verification)
     }
 }
 
-extension PostIssuingCardholdersCardholderRequestBodyIndividual {
-    public init(cardIssuing: PostIssuingCardholdersCardholderRequestBodyIndividualCardIssuing? = nil, dob: PostIssuingCardholdersCardholderRequestBodyIndividualDob? = nil, firstName: String? = nil, lastName: String? = nil, verification: PostIssuingCardholdersCardholderRequestBodyIndividualVerification? = nil) {
+public extension PostIssuingCardholdersCardholderRequestBodyIndividual {
+    init(
+        cardIssuing: PostIssuingCardholdersCardholderRequestBodyIndividualCardIssuing? = nil,
+        dob: PostIssuingCardholdersCardholderRequestBodyIndividualDob? = nil,
+        firstName: String? = nil,
+        lastName: String? = nil,
+        verification: PostIssuingCardholdersCardholderRequestBodyIndividualVerification? = nil
+    ) {
         self.init()
         (self.cardIssuing, self.dob) = (cardIssuing, dob)
         (self.firstName, self.lastName) = (firstName, lastName)
@@ -400,22 +481,22 @@ public struct PostIssuingCardholdersRequestBodyCompany: Codable {
     }
 
     init() {
-        self.taxId = nil
+        taxId = nil
     }
 }
 
-extension PostIssuingCardholdersRequestBodyCompany {
-    public init(from decoder: Decoder) throws {
+public extension PostIssuingCardholdersRequestBodyCompany {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.taxId = try container.sdkDecodeIfPresent(.taxId)
-        if let value = self.taxId {
+        taxId = try container.sdkDecodeIfPresent(.taxId)
+        if let value = taxId {
             try validateLength("tax_id", value, min: nil, max: 5000)
         }
     }
 }
 
-extension PostIssuingCardholdersRequestBodyCompany {
-    public init(taxId: String? = nil) throws {
+public extension PostIssuingCardholdersRequestBodyCompany {
+    init(taxId: String? = nil) throws {
         self.init()
         self.taxId = taxId
         if let value = self.taxId {
@@ -444,23 +525,29 @@ public struct PostIssuingCardholdersRequestBodyIndividual: Codable {
     }
 
     init() {
-        (self.cardIssuing, self.dob, self.firstName, self.lastName, self.verification) = (nil, nil, nil, nil, nil)
+        (cardIssuing, dob, firstName, lastName, verification) = (nil, nil, nil, nil, nil)
     }
 }
 
-extension PostIssuingCardholdersRequestBodyIndividual {
-    public init(from decoder: Decoder) throws {
+public extension PostIssuingCardholdersRequestBodyIndividual {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.cardIssuing = try container.sdkDecodeIfPresent(.cardIssuing)
-        self.dob = try container.sdkDecodeIfPresent(.dob)
-        self.firstName = try container.sdkDecodeIfPresent(.firstName)
-        self.lastName = try container.sdkDecodeIfPresent(.lastName)
-        self.verification = try container.sdkDecodeIfPresent(.verification)
+        cardIssuing = try container.sdkDecodeIfPresent(.cardIssuing)
+        dob = try container.sdkDecodeIfPresent(.dob)
+        firstName = try container.sdkDecodeIfPresent(.firstName)
+        lastName = try container.sdkDecodeIfPresent(.lastName)
+        verification = try container.sdkDecodeIfPresent(.verification)
     }
 }
 
-extension PostIssuingCardholdersRequestBodyIndividual {
-    public init(cardIssuing: PostIssuingCardholdersRequestBodyIndividualCardIssuing? = nil, dob: PostIssuingCardholdersRequestBodyIndividualDob? = nil, firstName: String? = nil, lastName: String? = nil, verification: PostIssuingCardholdersRequestBodyIndividualVerification? = nil) {
+public extension PostIssuingCardholdersRequestBodyIndividual {
+    init(
+        cardIssuing: PostIssuingCardholdersRequestBodyIndividualCardIssuing? = nil,
+        dob: PostIssuingCardholdersRequestBodyIndividualDob? = nil,
+        firstName: String? = nil,
+        lastName: String? = nil,
+        verification: PostIssuingCardholdersRequestBodyIndividualVerification? = nil
+    ) {
         self.init()
         (self.cardIssuing, self.dob) = (cardIssuing, dob)
         (self.firstName, self.lastName) = (firstName, lastName)
@@ -477,21 +564,27 @@ public struct PostIssuingCardholdersRequestBodyBilling: Codable {
         case address
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension PostIssuingCardholdersRequestBodyBilling {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.address) else {
-            throw SdkValidationError(field: "address", code: "required", message: "Validation failed for 'address': value is required")
-        }
-        self.address = try container.sdkDecodeRequired(.address)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension PostIssuingCardholdersRequestBodyBilling {
-    public init(address: PostIssuingCardholdersRequestBodyBillingAddress) {
+public extension PostIssuingCardholdersRequestBodyBilling {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.address) else {
+            throw SdkValidationError(
+                field: "address",
+                code: "required",
+                message: "Validation failed for 'address': value is required"
+            )
+        }
+        address = try container.sdkDecodeRequired(.address)
+    }
+}
+
+public extension PostIssuingCardholdersRequestBodyBilling {
+    init(address: PostIssuingCardholdersRequestBodyBillingAddress) {
         self.address = address
     }
 }
@@ -507,5 +600,7 @@ public struct PostIssuingCardholdersRequestBodyIndividualDob: Codable {
         case year
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }

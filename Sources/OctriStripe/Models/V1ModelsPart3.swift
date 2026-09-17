@@ -3,42 +3,62 @@
 
 import Foundation
 
-// V1 domain models
-extension ApplePayDomain {
-    public init(from decoder: Decoder) throws {
+/// V1 domain models
+public extension ApplePayDomain {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.created) else {
-            throw SdkValidationError(field: "created", code: "required", message: "Validation failed for 'created': value is required")
+            throw SdkValidationError(
+                field: "created",
+                code: "required",
+                message: "Validation failed for 'created': value is required"
+            )
         }
         guard container.contains(.domainName) else {
-            throw SdkValidationError(field: "domain_name", code: "required", message: "Validation failed for 'domain_name': value is required")
+            throw SdkValidationError(
+                field: "domain_name",
+                code: "required",
+                message: "Validation failed for 'domain_name': value is required"
+            )
         }
         guard container.contains(.id) else {
-            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
+            throw SdkValidationError(
+                field: "id",
+                code: "required",
+                message: "Validation failed for 'id': value is required"
+            )
         }
         guard container.contains(.livemode) else {
-            throw SdkValidationError(field: "livemode", code: "required", message: "Validation failed for 'livemode': value is required")
+            throw SdkValidationError(
+                field: "livemode",
+                code: "required",
+                message: "Validation failed for 'livemode': value is required"
+            )
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
         }
-        self.created = try container.sdkDecodeRequired(.created)
-        self.domainName = try container.sdkDecodeRequired(.domainName)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.livemode = try container.sdkDecodeRequired(.livemode)
-        self.object = try container.sdkDecodeRequired(.object)
-            try validateLength("domain_name", self.domainName, min: nil, max: 5000)
-            try validateLength("id", self.id, min: nil, max: 5000)
+        created = try container.sdkDecodeRequired(.created)
+        domainName = try container.sdkDecodeRequired(.domainName)
+        id = try container.sdkDecodeRequired(.id)
+        livemode = try container.sdkDecodeRequired(.livemode)
+        object = try container.sdkDecodeRequired(.object)
+        try validateLength("domain_name", domainName, min: nil, max: 5000)
+        try validateLength("id", id, min: nil, max: 5000)
     }
 }
 
-extension ApplePayDomain {
-    public init(created: Int, domainName: String, id: String, livemode: Bool, object: ApplePayDomainObject) throws {
+public extension ApplePayDomain {
+    init(created: Int, domainName: String, id: String, livemode: Bool, object: ApplePayDomainObject) throws {
         (self.created, self.domainName) = (created, domainName)
         (self.id, self.livemode) = (id, livemode)
         self.object = object
-            try validateLength("domain_name", self.domainName, min: nil, max: 5000)
-            try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("domain_name", self.domainName, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
     }
 }
 
@@ -99,33 +119,51 @@ public struct ApplicationFee: Codable {
         case originatingTransaction = "originating_transaction"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension ApplicationFee {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.account = try container.sdkDecodeRequired(.account)
-        self.amount = try container.sdkDecodeRequired(.amount)
-        self.amountRefunded = try container.sdkDecodeRequired(.amountRefunded)
-        self.application = try container.sdkDecodeRequired(.application)
-        self.charge = try container.sdkDecodeRequired(.charge)
-        self.created = try container.sdkDecodeRequired(.created)
-        self.currency = try container.sdkDecodeRequired(.currency)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.livemode = try container.sdkDecodeRequired(.livemode)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.refunded = try container.sdkDecodeRequired(.refunded)
-        self.refunds = try container.sdkDecodeRequired(.refunds)
-        self.balanceTransaction = try container.sdkDecodeIfPresent(.balanceTransaction)
-        self.feeSource = try container.sdkDecodeIfPresent(.feeSource)
-        self.originatingTransaction = try container.sdkDecodeIfPresent(.originatingTransaction)
-            try validateLength("id", self.id, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension ApplicationFee {
-    public init(account: ApplicationFeeAccount, amount: Int, amountRefunded: Int, application: ApplicationFeeApplication, charge: ApplicationFeeCharge, created: Int, currency: String, id: String, livemode: Bool, object: ApplicationFeeObject, refunded: Bool, refunds: ApplicationFeeRefunds, balanceTransaction: ApplicationFeeBalanceTransaction? = nil, feeSource: ApplicationFeeFeeSource? = nil, originatingTransaction: ApplicationFeeOriginatingTransaction? = nil) throws {
+public extension ApplicationFee {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        account = try container.sdkDecodeRequired(.account)
+        amount = try container.sdkDecodeRequired(.amount)
+        amountRefunded = try container.sdkDecodeRequired(.amountRefunded)
+        application = try container.sdkDecodeRequired(.application)
+        charge = try container.sdkDecodeRequired(.charge)
+        created = try container.sdkDecodeRequired(.created)
+        currency = try container.sdkDecodeRequired(.currency)
+        id = try container.sdkDecodeRequired(.id)
+        livemode = try container.sdkDecodeRequired(.livemode)
+        object = try container.sdkDecodeRequired(.object)
+        refunded = try container.sdkDecodeRequired(.refunded)
+        refunds = try container.sdkDecodeRequired(.refunds)
+        balanceTransaction = try container.sdkDecodeIfPresent(.balanceTransaction)
+        feeSource = try container.sdkDecodeIfPresent(.feeSource)
+        originatingTransaction = try container.sdkDecodeIfPresent(.originatingTransaction)
+        try validateLength("id", id, min: nil, max: 5000)
+    }
+}
+
+public extension ApplicationFee {
+    init(
+        account: ApplicationFeeAccount,
+        amount: Int,
+        amountRefunded: Int,
+        application: ApplicationFeeApplication,
+        charge: ApplicationFeeCharge,
+        created: Int,
+        currency: String,
+        id: String,
+        livemode: Bool,
+        object: ApplicationFeeObject,
+        refunded: Bool,
+        refunds: ApplicationFeeRefunds,
+        balanceTransaction: ApplicationFeeBalanceTransaction? = nil,
+        feeSource: ApplicationFeeFeeSource? = nil,
+        originatingTransaction: ApplicationFeeOriginatingTransaction? = nil
+    ) throws {
         (self.account, self.amount) = (account, amount)
         (self.amountRefunded, self.application) = (amountRefunded, application)
         (self.charge, self.created) = (charge, created)
@@ -134,7 +172,7 @@ extension ApplicationFee {
         (self.refunded, self.refunds) = (refunded, refunds)
         (self.balanceTransaction, self.feeSource) = (balanceTransaction, feeSource)
         self.originatingTransaction = originatingTransaction
-            try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
     }
 }
 
@@ -144,21 +182,31 @@ public enum ApplicationFeeAccount {
 }
 
 extension ApplicationFeeAccount: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for ApplicationFeeAccount")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for ApplicationFeeAccount"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(Account.self) { return .account(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(Account.self) {
+            return .account(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -168,7 +216,6 @@ extension ApplicationFeeAccount: Codable {
         case let .account(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum ApplicationFeeApplication {
@@ -177,21 +224,31 @@ public enum ApplicationFeeApplication {
 }
 
 extension ApplicationFeeApplication: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for ApplicationFeeApplication")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for ApplicationFeeApplication"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(Application.self) { return .application(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(Application.self) {
+            return .application(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -201,7 +258,6 @@ extension ApplicationFeeApplication: Codable {
         case let .application(value): try container.encode(value); return true
         }
     }
-
 }
 
 public indirect enum ApplicationFeeBalanceTransaction {
@@ -210,21 +266,31 @@ public indirect enum ApplicationFeeBalanceTransaction {
 }
 
 extension ApplicationFeeBalanceTransaction: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for ApplicationFeeBalanceTransaction")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for ApplicationFeeBalanceTransaction"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(BalanceTransaction.self) { return .balanceTransaction(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(BalanceTransaction.self) {
+            return .balanceTransaction(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -234,7 +300,6 @@ extension ApplicationFeeBalanceTransaction: Codable {
         case let .balanceTransaction(value): try container.encode(value); return true
         }
     }
-
 }
 
 public indirect enum ApplicationFeeCharge {
@@ -243,21 +308,31 @@ public indirect enum ApplicationFeeCharge {
 }
 
 extension ApplicationFeeCharge: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for ApplicationFeeCharge")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for ApplicationFeeCharge"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(Charge.self) { return .charge(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(Charge.self) {
+            return .charge(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -267,7 +342,6 @@ extension ApplicationFeeCharge: Codable {
         case let .charge(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum ApplicationFeeFeeSource {
@@ -275,20 +349,28 @@ public enum ApplicationFeeFeeSource {
 }
 
 extension ApplicationFeeFeeSource: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for ApplicationFeeFeeSource")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for ApplicationFeeFeeSource"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(PlatformEarningFeeSource.self) { return .platformEarningFeeSource(value) }
+        if let value = try? container.decode(PlatformEarningFeeSource.self) {
+            return .platformEarningFeeSource(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -297,7 +379,6 @@ extension ApplicationFeeFeeSource: Codable {
         case let .platformEarningFeeSource(value): try container.encode(value); return true
         }
     }
-
 }
 
 public indirect enum ApplicationFeeOriginatingTransaction {
@@ -306,21 +387,31 @@ public indirect enum ApplicationFeeOriginatingTransaction {
 }
 
 extension ApplicationFeeOriginatingTransaction: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for ApplicationFeeOriginatingTransaction")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for ApplicationFeeOriginatingTransaction"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(Charge.self) { return .charge(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(Charge.self) {
+            return .charge(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -330,7 +421,6 @@ extension ApplicationFeeOriginatingTransaction: Codable {
         case let .charge(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// A list of refunds that have been applied to the fee.
@@ -352,37 +442,55 @@ public struct ApplicationFeeRefunds: Codable {
         case url
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension ApplicationFeeRefunds {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.data) else {
-            throw SdkValidationError(field: "data", code: "required", message: "Validation failed for 'data': value is required")
-        }
-        guard container.contains(.hasMore) else {
-            throw SdkValidationError(field: "has_more", code: "required", message: "Validation failed for 'has_more': value is required")
-        }
-        guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
-        }
-        guard container.contains(.url) else {
-            throw SdkValidationError(field: "url", code: "required", message: "Validation failed for 'url': value is required")
-        }
-        self.data = try container.sdkDecodeRequired(.data)
-        self.hasMore = try container.sdkDecodeRequired(.hasMore)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.url = try container.sdkDecodeRequired(.url)
-            try validateLength("url", self.url, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension ApplicationFeeRefunds {
-    public init(data: [FeeRefund], hasMore: Bool, object: ApplicationFeeRefundsObject, url: String) throws {
+public extension ApplicationFeeRefunds {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.data) else {
+            throw SdkValidationError(
+                field: "data",
+                code: "required",
+                message: "Validation failed for 'data': value is required"
+            )
+        }
+        guard container.contains(.hasMore) else {
+            throw SdkValidationError(
+                field: "has_more",
+                code: "required",
+                message: "Validation failed for 'has_more': value is required"
+            )
+        }
+        guard container.contains(.object) else {
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
+        }
+        guard container.contains(.url) else {
+            throw SdkValidationError(
+                field: "url",
+                code: "required",
+                message: "Validation failed for 'url': value is required"
+            )
+        }
+        data = try container.sdkDecodeRequired(.data)
+        hasMore = try container.sdkDecodeRequired(.hasMore)
+        object = try container.sdkDecodeRequired(.object)
+        url = try container.sdkDecodeRequired(.url)
+        try validateLength("url", url, min: nil, max: 5000)
+    }
+}
+
+public extension ApplicationFeeRefunds {
+    init(data: [FeeRefund], hasMore: Bool, object: ApplicationFeeRefundsObject, url: String) throws {
         (self.data, self.hasMore) = (data, hasMore)
         (self.object, self.url) = (object, url)
-            try validateLength("url", self.url, min: nil, max: 5000)
+        try validateLength("url", self.url, min: nil, max: 5000)
     }
 }
 
@@ -424,56 +532,92 @@ public struct AppsSecret: Codable {
         case payload
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension AppsSecret {
-    public init(from decoder: Decoder) throws {
+public extension AppsSecret {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.created) else {
-            throw SdkValidationError(field: "created", code: "required", message: "Validation failed for 'created': value is required")
+            throw SdkValidationError(
+                field: "created",
+                code: "required",
+                message: "Validation failed for 'created': value is required"
+            )
         }
         guard container.contains(.id) else {
-            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
+            throw SdkValidationError(
+                field: "id",
+                code: "required",
+                message: "Validation failed for 'id': value is required"
+            )
         }
         guard container.contains(.livemode) else {
-            throw SdkValidationError(field: "livemode", code: "required", message: "Validation failed for 'livemode': value is required")
+            throw SdkValidationError(
+                field: "livemode",
+                code: "required",
+                message: "Validation failed for 'livemode': value is required"
+            )
         }
         guard container.contains(.name) else {
-            throw SdkValidationError(field: "name", code: "required", message: "Validation failed for 'name': value is required")
+            throw SdkValidationError(
+                field: "name",
+                code: "required",
+                message: "Validation failed for 'name': value is required"
+            )
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
         }
         guard container.contains(.scope) else {
-            throw SdkValidationError(field: "scope", code: "required", message: "Validation failed for 'scope': value is required")
+            throw SdkValidationError(
+                field: "scope",
+                code: "required",
+                message: "Validation failed for 'scope': value is required"
+            )
         }
-        self.created = try container.sdkDecodeRequired(.created)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.livemode = try container.sdkDecodeRequired(.livemode)
-        self.name = try container.sdkDecodeRequired(.name)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.scope = try container.sdkDecodeRequired(.scope)
-        self.deleted = try container.sdkDecodeIfPresent(.deleted)
-        self.expiresAt = try container.sdkDecodeIfPresent(.expiresAt)
-        self.payload = try container.sdkDecodeIfPresent(.payload)
-            try validateLength("id", self.id, min: nil, max: 5000)
-            try validateLength("name", self.name, min: nil, max: 5000)
-        if let value = self.payload {
+        created = try container.sdkDecodeRequired(.created)
+        id = try container.sdkDecodeRequired(.id)
+        livemode = try container.sdkDecodeRequired(.livemode)
+        name = try container.sdkDecodeRequired(.name)
+        object = try container.sdkDecodeRequired(.object)
+        scope = try container.sdkDecodeRequired(.scope)
+        deleted = try container.sdkDecodeIfPresent(.deleted)
+        expiresAt = try container.sdkDecodeIfPresent(.expiresAt)
+        payload = try container.sdkDecodeIfPresent(.payload)
+        try validateLength("id", id, min: nil, max: 5000)
+        try validateLength("name", name, min: nil, max: 5000)
+        if let value = payload {
             try validateLength("payload", value, min: nil, max: 5000)
         }
     }
 }
 
-extension AppsSecret {
-    public init(created: Int, id: String, livemode: Bool, name: String, object: AppsSecretObject, scope: SecretServiceResourceScope, deleted: Bool? = nil, expiresAt: Int? = nil, payload: String? = nil) throws {
+public extension AppsSecret {
+    init(
+        created: Int,
+        id: String,
+        livemode: Bool,
+        name: String,
+        object: AppsSecretObject,
+        scope: SecretServiceResourceScope,
+        deleted: Bool? = nil,
+        expiresAt: Int? = nil,
+        payload: String? = nil
+    ) throws {
         (self.created, self.id) = (created, id)
         (self.livemode, self.name) = (livemode, name)
         (self.object, self.scope) = (object, scope)
         (self.deleted, self.expiresAt) = (deleted, expiresAt)
         self.payload = payload
-            try validateLength("id", self.id, min: nil, max: 5000)
-            try validateLength("name", self.name, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("name", self.name, min: nil, max: 5000)
         if let value = self.payload {
             try validateLength("payload", value, min: nil, max: 5000)
         }
@@ -505,5 +649,7 @@ public struct AutomaticTax: Codable {
         case status
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }

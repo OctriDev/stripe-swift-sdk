@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1CheckoutAcss domain models
+/// V1CheckoutAcss domain models
 /// Typed representation of the `CheckoutAcssDebitMandateOptions` API schema.
 public struct CheckoutAcssDebitMandateOptions: Codable {
     /// A URL for custom mandate text
@@ -27,29 +27,41 @@ public struct CheckoutAcssDebitMandateOptions: Codable {
     }
 
     init() {
-        (self.customMandateUrl, self.defaultFor, self.intervalDescription, self.paymentSchedule, self.transactionType) = (nil, nil, nil, nil, nil)
+        (customMandateUrl, defaultFor, intervalDescription, paymentSchedule, transactionType) = (
+            nil,
+            nil,
+            nil,
+            nil,
+            nil
+        )
     }
 }
 
-extension CheckoutAcssDebitMandateOptions {
-    public init(from decoder: Decoder) throws {
+public extension CheckoutAcssDebitMandateOptions {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.customMandateUrl = try container.sdkDecodeIfPresent(.customMandateUrl)
-        self.defaultFor = try container.sdkDecodeIfPresent(.defaultFor)
-        self.intervalDescription = try container.sdkDecodeIfPresent(.intervalDescription)
-        self.paymentSchedule = try container.sdkDecodeIfPresent(.paymentSchedule)
-        self.transactionType = try container.sdkDecodeIfPresent(.transactionType)
-        if let value = self.customMandateUrl {
+        customMandateUrl = try container.sdkDecodeIfPresent(.customMandateUrl)
+        defaultFor = try container.sdkDecodeIfPresent(.defaultFor)
+        intervalDescription = try container.sdkDecodeIfPresent(.intervalDescription)
+        paymentSchedule = try container.sdkDecodeIfPresent(.paymentSchedule)
+        transactionType = try container.sdkDecodeIfPresent(.transactionType)
+        if let value = customMandateUrl {
             try validateLength("custom_mandate_url", value, min: nil, max: 5000)
         }
-        if let value = self.intervalDescription {
+        if let value = intervalDescription {
             try validateLength("interval_description", value, min: nil, max: 5000)
         }
     }
 }
 
-extension CheckoutAcssDebitMandateOptions {
-    public init(customMandateUrl: String? = nil, defaultFor: [CheckoutAcssDebitMandateOptionsDefaultForItem]? = nil, intervalDescription: String? = nil, paymentSchedule: CheckoutAcssDebitMandateOptionsPaymentSchedule? = nil, transactionType: CheckoutAcssDebitMandateOptionsTransactionType? = nil) throws {
+public extension CheckoutAcssDebitMandateOptions {
+    init(
+        customMandateUrl: String? = nil,
+        defaultFor: [CheckoutAcssDebitMandateOptionsDefaultForItem]? = nil,
+        intervalDescription: String? = nil,
+        paymentSchedule: CheckoutAcssDebitMandateOptionsPaymentSchedule? = nil,
+        transactionType: CheckoutAcssDebitMandateOptionsTransactionType? = nil
+    ) throws {
         self.init()
         (self.customMandateUrl, self.defaultFor) = (customMandateUrl, defaultFor)
         (self.intervalDescription, self.paymentSchedule) = (intervalDescription, paymentSchedule)
@@ -62,12 +74,6 @@ extension CheckoutAcssDebitMandateOptions {
         }
     }
 }
-
-
-
-
-
-
 
 /// Typed representation of the `CheckoutAcssDebitPaymentMethodOptions` API schema.
 public struct CheckoutAcssDebitPaymentMethodOptions: Codable {
@@ -96,26 +102,32 @@ public struct CheckoutAcssDebitPaymentMethodOptions: Codable {
     }
 
     init() {
-        (self.currency, self.mandateOptions, self.setupFutureUsage, self.targetDate, self.verificationMethod) = (nil, nil, nil, nil, nil)
+        (currency, mandateOptions, setupFutureUsage, targetDate, verificationMethod) = (nil, nil, nil, nil, nil)
     }
 }
 
-extension CheckoutAcssDebitPaymentMethodOptions {
-    public init(from decoder: Decoder) throws {
+public extension CheckoutAcssDebitPaymentMethodOptions {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.currency = try container.sdkDecodeIfPresent(.currency)
-        self.mandateOptions = try container.sdkDecodeIfPresent(.mandateOptions)
-        self.setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
-        self.targetDate = try container.sdkDecodeIfPresent(.targetDate)
-        self.verificationMethod = try container.sdkDecodeIfPresent(.verificationMethod)
-        if let value = self.targetDate {
+        currency = try container.sdkDecodeIfPresent(.currency)
+        mandateOptions = try container.sdkDecodeIfPresent(.mandateOptions)
+        setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
+        targetDate = try container.sdkDecodeIfPresent(.targetDate)
+        verificationMethod = try container.sdkDecodeIfPresent(.verificationMethod)
+        if let value = targetDate {
             try validateLength("target_date", value, min: nil, max: 5000)
         }
     }
 }
 
-extension CheckoutAcssDebitPaymentMethodOptions {
-    public init(currency: CheckoutAcssDebitPaymentMethodOptionsCurrency? = nil, mandateOptions: CheckoutAcssDebitMandateOptions? = nil, setupFutureUsage: CheckoutAcssDebitPaymentMethodOptionsSetupFutureUsage? = nil, targetDate: String? = nil, verificationMethod: CheckoutAcssDebitPaymentMethodOptionsVerificationMethod? = nil) throws {
+public extension CheckoutAcssDebitPaymentMethodOptions {
+    init(
+        currency: CheckoutAcssDebitPaymentMethodOptionsCurrency? = nil,
+        mandateOptions: CheckoutAcssDebitMandateOptions? = nil,
+        setupFutureUsage: CheckoutAcssDebitPaymentMethodOptionsSetupFutureUsage? = nil,
+        targetDate: String? = nil,
+        verificationMethod: CheckoutAcssDebitPaymentMethodOptionsVerificationMethod? = nil
+    ) throws {
         self.init()
         (self.currency, self.mandateOptions) = (currency, mandateOptions)
         (self.setupFutureUsage, self.targetDate) = (setupFutureUsage, targetDate)
@@ -127,17 +139,21 @@ extension CheckoutAcssDebitPaymentMethodOptions {
 }
 
 /// Bank account verification method. The default value is `automatic`.
-public struct CheckoutAcssDebitPaymentMethodOptionsVerificationMethod: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct CheckoutAcssDebitPaymentMethodOptionsVerificationMethod: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let automatic = CheckoutAcssDebitPaymentMethodOptionsVerificationMethod(rawValue: "automatic")
     public static let instant = CheckoutAcssDebitPaymentMethodOptionsVerificationMethod(rawValue: "instant")
     public static let microdeposits = CheckoutAcssDebitPaymentMethodOptionsVerificationMethod(rawValue: "microdeposits")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -151,17 +167,21 @@ public struct CheckoutAcssDebitPaymentMethodOptionsVerificationMethod: RawRepres
 /// after the PaymentIntent is confirmed and the customer completes any required actions. If you don't provide a
 /// Customer, you can still attach the payment method to a Customer after the transaction completes. If the
 /// payment method is `card_present` and isn't a digital…
-public struct CheckoutAcssDebitPaymentMethodOptionsSetupFutureUsage: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct CheckoutAcssDebitPaymentMethodOptionsSetupFutureUsage: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let none = CheckoutAcssDebitPaymentMethodOptionsSetupFutureUsage(rawValue: "none")
     public static let offSession = CheckoutAcssDebitPaymentMethodOptionsSetupFutureUsage(rawValue: "off_session")
     public static let onSession = CheckoutAcssDebitPaymentMethodOptionsSetupFutureUsage(rawValue: "on_session")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -171,16 +191,20 @@ public struct CheckoutAcssDebitPaymentMethodOptionsSetupFutureUsage: RawRepresen
 }
 
 /// Transaction type of the mandate.
-public struct CheckoutAcssDebitMandateOptionsTransactionType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct CheckoutAcssDebitMandateOptionsTransactionType: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let business = CheckoutAcssDebitMandateOptionsTransactionType(rawValue: "business")
     public static let personal = CheckoutAcssDebitMandateOptionsTransactionType(rawValue: "personal")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -190,16 +214,20 @@ public struct CheckoutAcssDebitMandateOptionsTransactionType: RawRepresentable, 
 }
 
 /// Required enumerated value serialized in the `default_for[]` wire field.
-public struct CheckoutAcssDebitMandateOptionsDefaultForItem: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct CheckoutAcssDebitMandateOptionsDefaultForItem: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let invoice = CheckoutAcssDebitMandateOptionsDefaultForItem(rawValue: "invoice")
     public static let subscription = CheckoutAcssDebitMandateOptionsDefaultForItem(rawValue: "subscription")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -209,16 +237,20 @@ public struct CheckoutAcssDebitMandateOptionsDefaultForItem: RawRepresentable, H
 }
 
 /// Currency supported by the bank account. Returned when the Session is in `setup` mode.
-public struct CheckoutAcssDebitPaymentMethodOptionsCurrency: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct CheckoutAcssDebitPaymentMethodOptionsCurrency: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let cad = CheckoutAcssDebitPaymentMethodOptionsCurrency(rawValue: "cad")
     public static let usd = CheckoutAcssDebitPaymentMethodOptionsCurrency(rawValue: "usd")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -228,17 +260,21 @@ public struct CheckoutAcssDebitPaymentMethodOptionsCurrency: RawRepresentable, H
 }
 
 /// Payment schedule for the mandate.
-public struct CheckoutAcssDebitMandateOptionsPaymentSchedule: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct CheckoutAcssDebitMandateOptionsPaymentSchedule: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let combined = CheckoutAcssDebitMandateOptionsPaymentSchedule(rawValue: "combined")
     public static let interval = CheckoutAcssDebitMandateOptionsPaymentSchedule(rawValue: "interval")
     public static let sporadic = CheckoutAcssDebitMandateOptionsPaymentSchedule(rawValue: "sporadic")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

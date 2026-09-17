@@ -6,16 +6,20 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public struct GetTreasuryTransactionEntriesParameterX7d557c91: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct GetTreasuryTransactionEntriesParameterX7d557c91: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let created = GetTreasuryTransactionEntriesParameterX7d557c91(rawValue: "created")
     public static let effectiveAt = GetTreasuryTransactionEntriesParameterX7d557c91(rawValue: "effective_at")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -26,15 +30,19 @@ public struct GetTreasuryTransactionEntriesParameterX7d557c91: RawRepresentable,
 
 /// String representing the object's type. Objects of the same type share the same value. Always has the value
 /// `list`.
-public struct GetTreasuryTransactionEntriesResponseObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct GetTreasuryTransactionEntriesResponseObject: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let list = GetTreasuryTransactionEntriesResponseObject(rawValue: "list")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -43,16 +51,20 @@ public struct GetTreasuryTransactionEntriesResponseObject: RawRepresentable, Has
     }
 }
 
-public struct GetTreasuryTransactionsParameterX3b1babb4: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct GetTreasuryTransactionsParameterX3b1babb4: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let created = GetTreasuryTransactionsParameterX3b1babb4(rawValue: "created")
     public static let postedAt = GetTreasuryTransactionsParameterX3b1babb4(rawValue: "posted_at")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -61,17 +73,21 @@ public struct GetTreasuryTransactionsParameterX3b1babb4: RawRepresentable, Hasha
     }
 }
 
-public struct GetTreasuryTransactionsParameterX9859597d: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct GetTreasuryTransactionsParameterX9859597d: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let open = GetTreasuryTransactionsParameterX9859597d(rawValue: "open")
     public static let posted = GetTreasuryTransactionsParameterX9859597d(rawValue: "posted")
     public static let void = GetTreasuryTransactionsParameterX9859597d(rawValue: "void")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -85,12 +101,15 @@ public struct GetTreasuryTransactionsParameterX9859597d: RawRepresentable, Hasha
 public struct GetTreasuryTransactionsResponseObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let list = GetTreasuryTransactionsResponseObject(rawValue: "list")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -104,12 +123,15 @@ public struct GetTreasuryTransactionsResponseObject: RawRepresentable, Hashable,
 public struct GetWebhookEndpointsResponseObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let list = GetWebhookEndpointsResponseObject(rawValue: "list")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

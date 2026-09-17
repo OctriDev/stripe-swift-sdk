@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1Portal domain models
+/// V1Portal domain models
 /// Typed representation of the `PortalBusinessProfile` API schema.
 public struct PortalBusinessProfile: Codable {
     /// The messaging shown to customers in the portal.
@@ -20,30 +20,30 @@ public struct PortalBusinessProfile: Codable {
     }
 
     init() {
-        (self.headline, self.privacyPolicyUrl, self.termsOfServiceUrl) = (nil, nil, nil)
+        (headline, privacyPolicyUrl, termsOfServiceUrl) = (nil, nil, nil)
     }
 }
 
-extension PortalBusinessProfile {
-    public init(from decoder: Decoder) throws {
+public extension PortalBusinessProfile {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.headline = try container.sdkDecodeIfPresent(.headline)
-        self.privacyPolicyUrl = try container.sdkDecodeIfPresent(.privacyPolicyUrl)
-        self.termsOfServiceUrl = try container.sdkDecodeIfPresent(.termsOfServiceUrl)
-        if let value = self.headline {
+        headline = try container.sdkDecodeIfPresent(.headline)
+        privacyPolicyUrl = try container.sdkDecodeIfPresent(.privacyPolicyUrl)
+        termsOfServiceUrl = try container.sdkDecodeIfPresent(.termsOfServiceUrl)
+        if let value = headline {
             try validateLength("headline", value, min: nil, max: 5000)
         }
-        if let value = self.privacyPolicyUrl {
+        if let value = privacyPolicyUrl {
             try validateLength("privacy_policy_url", value, min: nil, max: 5000)
         }
-        if let value = self.termsOfServiceUrl {
+        if let value = termsOfServiceUrl {
             try validateLength("terms_of_service_url", value, min: nil, max: 5000)
         }
     }
 }
 
-extension PortalBusinessProfile {
-    public init(headline: String? = nil, privacyPolicyUrl: String? = nil, termsOfServiceUrl: String? = nil) throws {
+public extension PortalBusinessProfile {
+    init(headline: String? = nil, privacyPolicyUrl: String? = nil, termsOfServiceUrl: String? = nil) throws {
         self.init()
         (self.headline, self.privacyPolicyUrl) = (headline, privacyPolicyUrl)
         self.termsOfServiceUrl = termsOfServiceUrl
@@ -71,25 +71,35 @@ public struct PortalCustomerUpdate: Codable {
         case enabled
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension PortalCustomerUpdate {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.allowedUpdates) else {
-            throw SdkValidationError(field: "allowed_updates", code: "required", message: "Validation failed for 'allowed_updates': value is required")
-        }
-        guard container.contains(.enabled) else {
-            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
-        }
-        self.allowedUpdates = try container.sdkDecodeRequired(.allowedUpdates)
-        self.enabled = try container.sdkDecodeRequired(.enabled)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension PortalCustomerUpdate {
-    public init(allowedUpdates: [PortalCustomerUpdateAllowedUpdatesItem], enabled: Bool) {
+public extension PortalCustomerUpdate {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.allowedUpdates) else {
+            throw SdkValidationError(
+                field: "allowed_updates",
+                code: "required",
+                message: "Validation failed for 'allowed_updates': value is required"
+            )
+        }
+        guard container.contains(.enabled) else {
+            throw SdkValidationError(
+                field: "enabled",
+                code: "required",
+                message: "Validation failed for 'enabled': value is required"
+            )
+        }
+        allowedUpdates = try container.sdkDecodeRequired(.allowedUpdates)
+        enabled = try container.sdkDecodeRequired(.enabled)
+    }
+}
+
+public extension PortalCustomerUpdate {
+    init(allowedUpdates: [PortalCustomerUpdateAllowedUpdatesItem], enabled: Bool) {
         (self.allowedUpdates, self.enabled) = (allowedUpdates, enabled)
     }
 }
@@ -115,37 +125,65 @@ public struct PortalFeatures: Codable {
         case subscriptionUpdate = "subscription_update"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension PortalFeatures {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.customerUpdate) else {
-            throw SdkValidationError(field: "customer_update", code: "required", message: "Validation failed for 'customer_update': value is required")
-        }
-        guard container.contains(.invoiceHistory) else {
-            throw SdkValidationError(field: "invoice_history", code: "required", message: "Validation failed for 'invoice_history': value is required")
-        }
-        guard container.contains(.paymentMethodUpdate) else {
-            throw SdkValidationError(field: "payment_method_update", code: "required", message: "Validation failed for 'payment_method_update': value is required")
-        }
-        guard container.contains(.subscriptionCancel) else {
-            throw SdkValidationError(field: "subscription_cancel", code: "required", message: "Validation failed for 'subscription_cancel': value is required")
-        }
-        guard container.contains(.subscriptionUpdate) else {
-            throw SdkValidationError(field: "subscription_update", code: "required", message: "Validation failed for 'subscription_update': value is required")
-        }
-        self.customerUpdate = try container.sdkDecodeRequired(.customerUpdate)
-        self.invoiceHistory = try container.sdkDecodeRequired(.invoiceHistory)
-        self.paymentMethodUpdate = try container.sdkDecodeRequired(.paymentMethodUpdate)
-        self.subscriptionCancel = try container.sdkDecodeRequired(.subscriptionCancel)
-        self.subscriptionUpdate = try container.sdkDecodeRequired(.subscriptionUpdate)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension PortalFeatures {
-    public init(customerUpdate: PortalCustomerUpdate, invoiceHistory: PortalInvoiceList, paymentMethodUpdate: PortalPaymentMethodUpdate, subscriptionCancel: PortalSubscriptionCancel, subscriptionUpdate: PortalSubscriptionUpdate) {
+public extension PortalFeatures {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.customerUpdate) else {
+            throw SdkValidationError(
+                field: "customer_update",
+                code: "required",
+                message: "Validation failed for 'customer_update': value is required"
+            )
+        }
+        guard container.contains(.invoiceHistory) else {
+            throw SdkValidationError(
+                field: "invoice_history",
+                code: "required",
+                message: "Validation failed for 'invoice_history': value is required"
+            )
+        }
+        guard container.contains(.paymentMethodUpdate) else {
+            throw SdkValidationError(
+                field: "payment_method_update",
+                code: "required",
+                message: "Validation failed for 'payment_method_update': value is required"
+            )
+        }
+        guard container.contains(.subscriptionCancel) else {
+            throw SdkValidationError(
+                field: "subscription_cancel",
+                code: "required",
+                message: "Validation failed for 'subscription_cancel': value is required"
+            )
+        }
+        guard container.contains(.subscriptionUpdate) else {
+            throw SdkValidationError(
+                field: "subscription_update",
+                code: "required",
+                message: "Validation failed for 'subscription_update': value is required"
+            )
+        }
+        customerUpdate = try container.sdkDecodeRequired(.customerUpdate)
+        invoiceHistory = try container.sdkDecodeRequired(.invoiceHistory)
+        paymentMethodUpdate = try container.sdkDecodeRequired(.paymentMethodUpdate)
+        subscriptionCancel = try container.sdkDecodeRequired(.subscriptionCancel)
+        subscriptionUpdate = try container.sdkDecodeRequired(.subscriptionUpdate)
+    }
+}
+
+public extension PortalFeatures {
+    init(
+        customerUpdate: PortalCustomerUpdate,
+        invoiceHistory: PortalInvoiceList,
+        paymentMethodUpdate: PortalPaymentMethodUpdate,
+        subscriptionCancel: PortalSubscriptionCancel,
+        subscriptionUpdate: PortalSubscriptionUpdate
+    ) {
         (self.customerUpdate, self.invoiceHistory) = (customerUpdate, invoiceHistory)
         (self.paymentMethodUpdate, self.subscriptionCancel) = (paymentMethodUpdate, subscriptionCancel)
         self.subscriptionUpdate = subscriptionUpdate
@@ -162,22 +200,22 @@ public struct PortalFlowsAfterCompletionHostedConfirmation: Codable {
     }
 
     init() {
-        self.customMessage = nil
+        customMessage = nil
     }
 }
 
-extension PortalFlowsAfterCompletionHostedConfirmation {
-    public init(from decoder: Decoder) throws {
+public extension PortalFlowsAfterCompletionHostedConfirmation {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.customMessage = try container.sdkDecodeIfPresent(.customMessage)
-        if let value = self.customMessage {
+        customMessage = try container.sdkDecodeIfPresent(.customMessage)
+        if let value = customMessage {
             try validateLength("custom_message", value, min: nil, max: 5000)
         }
     }
 }
 
-extension PortalFlowsAfterCompletionHostedConfirmation {
-    public init(customMessage: String? = nil) throws {
+public extension PortalFlowsAfterCompletionHostedConfirmation {
+    init(customMessage: String? = nil) throws {
         self.init()
         self.customMessage = customMessage
         if let value = self.customMessage {
@@ -195,24 +233,30 @@ public struct PortalFlowsAfterCompletionRedirect: Codable {
         case returnUrl = "return_url"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension PortalFlowsAfterCompletionRedirect {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.returnUrl) else {
-            throw SdkValidationError(field: "return_url", code: "required", message: "Validation failed for 'return_url': value is required")
-        }
-        self.returnUrl = try container.sdkDecodeRequired(.returnUrl)
-            try validateLength("return_url", self.returnUrl, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension PortalFlowsAfterCompletionRedirect {
-    public init(returnUrl: String) throws {
+public extension PortalFlowsAfterCompletionRedirect {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.returnUrl) else {
+            throw SdkValidationError(
+                field: "return_url",
+                code: "required",
+                message: "Validation failed for 'return_url': value is required"
+            )
+        }
+        returnUrl = try container.sdkDecodeRequired(.returnUrl)
+        try validateLength("return_url", returnUrl, min: nil, max: 5000)
+    }
+}
+
+public extension PortalFlowsAfterCompletionRedirect {
+    init(returnUrl: String) throws {
         self.returnUrl = returnUrl
-            try validateLength("return_url", self.returnUrl, min: nil, max: 5000)
+        try validateLength("return_url", self.returnUrl, min: nil, max: 5000)
     }
 }
 
@@ -225,24 +269,30 @@ public struct PortalFlowsCouponOffer: Codable {
         case coupon
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension PortalFlowsCouponOffer {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.coupon) else {
-            throw SdkValidationError(field: "coupon", code: "required", message: "Validation failed for 'coupon': value is required")
-        }
-        self.coupon = try container.sdkDecodeRequired(.coupon)
-            try validateLength("coupon", self.coupon, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension PortalFlowsCouponOffer {
-    public init(coupon: String) throws {
+public extension PortalFlowsCouponOffer {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.coupon) else {
+            throw SdkValidationError(
+                field: "coupon",
+                code: "required",
+                message: "Validation failed for 'coupon': value is required"
+            )
+        }
+        coupon = try container.sdkDecodeRequired(.coupon)
+        try validateLength("coupon", coupon, min: nil, max: 5000)
+    }
+}
+
+public extension PortalFlowsCouponOffer {
+    init(coupon: String) throws {
         self.coupon = coupon
-            try validateLength("coupon", self.coupon, min: nil, max: 5000)
+        try validateLength("coupon", self.coupon, min: nil, max: 5000)
     }
 }
 
@@ -270,29 +320,46 @@ public struct PortalFlowsFlow: Codable {
         case subscriptionUpdateConfirm = "subscription_update_confirm"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension PortalFlowsFlow {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.afterCompletion) else {
-            throw SdkValidationError(field: "after_completion", code: "required", message: "Validation failed for 'after_completion': value is required")
-        }
-        guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
-        }
-        self.afterCompletion = try container.sdkDecodeRequired(.afterCompletion)
-        self.type = try container.sdkDecodeRequired(.type)
-        self.customerUpdate = try container.sdkDecodeIfPresent(.customerUpdate)
-        self.subscriptionCancel = try container.sdkDecodeIfPresent(.subscriptionCancel)
-        self.subscriptionUpdate = try container.sdkDecodeIfPresent(.subscriptionUpdate)
-        self.subscriptionUpdateConfirm = try container.sdkDecodeIfPresent(.subscriptionUpdateConfirm)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension PortalFlowsFlow {
-    public init(afterCompletion: PortalFlowsFlowAfterCompletion, type: PortalFlowsFlowType, customerUpdate: PortalFlowsFlowCustomerUpdateXdced9bd4? = nil, subscriptionCancel: PortalFlowsFlowSubscriptionCancelX251fdc8e? = nil, subscriptionUpdate: PortalFlowsFlowSubscriptionUpdateX441ef3c4? = nil, subscriptionUpdateConfirm: PortalFlowsFlowSubscriptionUpdateConfirmX6c514bf1? = nil) {
+public extension PortalFlowsFlow {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.afterCompletion) else {
+            throw SdkValidationError(
+                field: "after_completion",
+                code: "required",
+                message: "Validation failed for 'after_completion': value is required"
+            )
+        }
+        guard container.contains(.type) else {
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
+        }
+        afterCompletion = try container.sdkDecodeRequired(.afterCompletion)
+        type = try container.sdkDecodeRequired(.type)
+        customerUpdate = try container.sdkDecodeIfPresent(.customerUpdate)
+        subscriptionCancel = try container.sdkDecodeIfPresent(.subscriptionCancel)
+        subscriptionUpdate = try container.sdkDecodeIfPresent(.subscriptionUpdate)
+        subscriptionUpdateConfirm = try container.sdkDecodeIfPresent(.subscriptionUpdateConfirm)
+    }
+}
+
+public extension PortalFlowsFlow {
+    init(
+        afterCompletion: PortalFlowsFlowAfterCompletion,
+        type: PortalFlowsFlowType,
+        customerUpdate: PortalFlowsFlowCustomerUpdateXdced9bd4? = nil,
+        subscriptionCancel: PortalFlowsFlowSubscriptionCancelX251fdc8e? = nil,
+        subscriptionUpdate: PortalFlowsFlowSubscriptionUpdateX441ef3c4? = nil,
+        subscriptionUpdateConfirm: PortalFlowsFlowSubscriptionUpdateConfirmX6c514bf1? = nil
+    ) {
         (self.afterCompletion, self.type) = (afterCompletion, type)
         (self.customerUpdate, self.subscriptionCancel) = (customerUpdate, subscriptionCancel)
         self.subscriptionUpdate = subscriptionUpdate
@@ -305,20 +372,29 @@ public enum PortalFlowsFlowCustomerUpdateXdced9bd4 {
 }
 
 extension PortalFlowsFlowCustomerUpdateXdced9bd4: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PortalFlowsFlowCustomerUpdateXdced9bd4")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PortalFlowsFlowCustomerUpdateXdced9bd4"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(PortalFlowsFlowCustomerUpdate.self) { return .portalFlowsFlowCustomerUpdate(value) }
+        if let value = try? container
+            .decode(PortalFlowsFlowCustomerUpdate.self) {
+            return .portalFlowsFlowCustomerUpdate(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -327,7 +403,6 @@ extension PortalFlowsFlowCustomerUpdateXdced9bd4: Codable {
         case let .portalFlowsFlowCustomerUpdate(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum PortalFlowsFlowSubscriptionCancelX251fdc8e {
@@ -335,20 +410,29 @@ public enum PortalFlowsFlowSubscriptionCancelX251fdc8e {
 }
 
 extension PortalFlowsFlowSubscriptionCancelX251fdc8e: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PortalFlowsFlowSubscriptionCancelX251fdc8e")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PortalFlowsFlowSubscriptionCancelX251fdc8e"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(PortalFlowsFlowSubscriptionCancel.self) { return .portalFlowsFlowSubscriptionCancel(value) }
+        if let value = try? container
+            .decode(PortalFlowsFlowSubscriptionCancel.self) {
+            return .portalFlowsFlowSubscriptionCancel(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -357,7 +441,6 @@ extension PortalFlowsFlowSubscriptionCancelX251fdc8e: Codable {
         case let .portalFlowsFlowSubscriptionCancel(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum PortalFlowsFlowSubscriptionUpdateX441ef3c4 {
@@ -365,20 +448,29 @@ public enum PortalFlowsFlowSubscriptionUpdateX441ef3c4 {
 }
 
 extension PortalFlowsFlowSubscriptionUpdateX441ef3c4: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PortalFlowsFlowSubscriptionUpdateX441ef3c4")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PortalFlowsFlowSubscriptionUpdateX441ef3c4"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(PortalFlowsFlowSubscriptionUpdate.self) { return .portalFlowsFlowSubscriptionUpdate(value) }
+        if let value = try? container
+            .decode(PortalFlowsFlowSubscriptionUpdate.self) {
+            return .portalFlowsFlowSubscriptionUpdate(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -387,7 +479,6 @@ extension PortalFlowsFlowSubscriptionUpdateX441ef3c4: Codable {
         case let .portalFlowsFlowSubscriptionUpdate(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum PortalFlowsFlowSubscriptionUpdateConfirmX6c514bf1 {
@@ -395,24 +486,30 @@ public enum PortalFlowsFlowSubscriptionUpdateConfirmX6c514bf1 {
 }
 
 extension PortalFlowsFlowSubscriptionUpdateConfirmX6c514bf1: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PortalFlowsFlowSubscriptionUpdateConfirmX6c514bf1")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PortalFlowsFlowSubscriptionUpdateConfirmX6c514bf1"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PortalFlowsFlowSubscriptionUpdateConfirm.self
         ) {
-            return             .portalFlowsFlowSubscriptionUpdateConfirm(value)
+            return .portalFlowsFlowSubscriptionUpdateConfirm(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -421,7 +518,6 @@ extension PortalFlowsFlowSubscriptionUpdateConfirmX6c514bf1: Codable {
         case let .portalFlowsFlowSubscriptionUpdateConfirm(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Typed representation of the `PortalFlowsFlowAfterCompletion` API schema.
@@ -439,23 +535,33 @@ public struct PortalFlowsFlowAfterCompletion: Codable {
         case redirect
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension PortalFlowsFlowAfterCompletion {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
-        }
-        self.type = try container.sdkDecodeRequired(.type)
-        self.hostedConfirmation = try container.sdkDecodeIfPresent(.hostedConfirmation)
-        self.redirect = try container.sdkDecodeIfPresent(.redirect)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension PortalFlowsFlowAfterCompletion {
-    public init(type: PortalFlowsFlowAfterCompletionType, hostedConfirmation: PortalFlowsFlowAfterCompletionHostedConfirmation? = nil, redirect: PortalFlowsFlowAfterCompletionRedirect? = nil) {
+public extension PortalFlowsFlowAfterCompletion {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.type) else {
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
+        }
+        type = try container.sdkDecodeRequired(.type)
+        hostedConfirmation = try container.sdkDecodeIfPresent(.hostedConfirmation)
+        redirect = try container.sdkDecodeIfPresent(.redirect)
+    }
+}
+
+public extension PortalFlowsFlowAfterCompletion {
+    init(
+        type: PortalFlowsFlowAfterCompletionType,
+        hostedConfirmation: PortalFlowsFlowAfterCompletionHostedConfirmation? = nil,
+        redirect: PortalFlowsFlowAfterCompletionRedirect? = nil
+    ) {
         (self.type, self.hostedConfirmation) = (type, hostedConfirmation)
         self.redirect = redirect
     }
@@ -466,24 +572,30 @@ public enum PortalFlowsFlowAfterCompletionHostedConfirmation {
 }
 
 extension PortalFlowsFlowAfterCompletionHostedConfirmation: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PortalFlowsFlowAfterCompletionHostedConfirmation")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PortalFlowsFlowAfterCompletionHostedConfirmation"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PortalFlowsAfterCompletionHostedConfirmation.self
         ) {
-            return             .portalFlowsAfterCompletionHostedConfirmation(value)
+            return .portalFlowsAfterCompletionHostedConfirmation(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -492,7 +604,6 @@ extension PortalFlowsFlowAfterCompletionHostedConfirmation: Codable {
         case let .portalFlowsAfterCompletionHostedConfirmation(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum PortalFlowsFlowAfterCompletionRedirect {
@@ -500,20 +611,29 @@ public enum PortalFlowsFlowAfterCompletionRedirect {
 }
 
 extension PortalFlowsFlowAfterCompletionRedirect: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PortalFlowsFlowAfterCompletionRedirect")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PortalFlowsFlowAfterCompletionRedirect"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(PortalFlowsAfterCompletionRedirect.self) { return .portalFlowsAfterCompletionRedirect(value) }
+        if let value = try? container
+            .decode(PortalFlowsAfterCompletionRedirect.self) {
+            return .portalFlowsAfterCompletionRedirect(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -522,5 +642,4 @@ extension PortalFlowsFlowAfterCompletionRedirect: Codable {
         case let .portalFlowsAfterCompletionRedirect(value): try container.encode(value); return true
         }
     }
-
 }

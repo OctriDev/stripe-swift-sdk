@@ -9,39 +9,78 @@ public class V1AccountsPersonsNamespace {
         self.config = config
     }
 
-/// Lists people associated with an account's legal entity. Use `relationship` to filter people and `starting_after` or `ending_before` to navigate the results; results are sorted with the most recently created people first. Use `limit` to control the page size.
+    /// Lists people associated with an account's legal entity. Use `relationship` to filter people and `starting_after`
+    /// or `ending_before` to navigate the results; results are sorted with the most recently created people first. Use
+    /// `limit` to control the page size.
     ///
-    /// Returns a list of people associated with the account’s legal entity. The people are returned sorted by creation date, with the most recent people appearing first.
-    public func getAccountsAccount(account: String, endingBefore: String?, expand: [String]?, limit: Int?, relationship: GetAccountsAccountPersonsParameter?, startingAfter: String?) async throws -> GetAccountsAccountPersonsResponse {
-        return try await V1AccountsPersonsMethods.getAccountsAccountPersons(config: config, account: account, endingBefore: endingBefore, expand: expand, limit: limit, relationship: relationship, startingAfter: startingAfter)
+    /// Returns a list of people associated with the account’s legal entity. The people are returned sorted by creation
+    /// date, with the most recent people appearing first.
+    public func getAccountsAccount(
+        account: String,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        relationship: GetAccountsAccountPersonsParameter?,
+        startingAfter: String?
+    ) async throws -> GetAccountsAccountPersonsResponse {
+        try await V1AccountsPersonsMethods.getAccountsAccountPersons(
+            config: config,
+            account: account,
+            endingBefore: endingBefore,
+            expand: expand,
+            limit: limit,
+            relationship: relationship,
+            startingAfter: startingAfter
+        )
     }
 
-/// Creates a new person associated with an account's legal entity. Supply the person's identifying, address, relationship, date-of-birth, and verification information as needed, and use `expand` to expand response fields. Nested address, date-of-birth, document, and acceptance data must use the structures defined for those fields.
+    /// Creates a new person associated with an account's legal entity. Supply the person's identifying, address,
+    /// relationship, date-of-birth, and verification information as needed, and use `expand` to expand response fields.
+    /// Nested address, date-of-birth, document, and acceptance data must use the structures defined for those fields.
     ///
     /// Creates a new person.
-    public func postAccountsAccount(options: V1AccountsPersonsMethods.PostAccountsAccountPersonsOptions) async throws -> Person {
-        return try await V1AccountsPersonsMethods.postAccountsAccountPersons(config: config, options: options)
+    public func postAccountsAccount(options: V1AccountsPersonsMethods
+        .PostAccountsAccountPersonsOptions) async throws -> Person {
+        try await V1AccountsPersonsMethods.postAccountsAccountPersons(config: config, options: options)
     }
 
-/// Deletes a person’s relationship to an account’s legal entity. Use `account` and `person` to identify the account and person to remove; you cannot remove the representative or the only verified executive when executive requirements apply.
+    /// Deletes a person’s relationship to an account’s legal entity. Use `account` and `person` to identify the account
+    /// and person to remove; you cannot remove the representative or the only verified executive when executive
+    /// requirements apply.
     ///
-    /// Deletes an existing person’s relationship to the account’s legal entity. Any person with a relationship for an account can be deleted through the API, except if the person is the representative . If your integration is using the executive parameter, you cannot delete the only verified executive on file.
+    /// Deletes an existing person’s relationship to the account’s legal entity. Any person with a relationship for an
+    /// account can be deleted through the API, except if the person is the representative . If your integration is
+    /// using the executive parameter, you cannot delete the only verified executive on file.
     public func deleteAccountsAccountPerson(account: String, person: String) async throws -> DeletedPerson {
-        return try await V1AccountsPersonsMethods.deleteAccountsAccountPersonsPerson(config: config, account: account, person: person)
+        try await V1AccountsPersonsMethods.deleteAccountsAccountPersonsPerson(
+            config: config,
+            account: account,
+            person: person
+        )
     }
 
-/// Retrieves a person associated with an account's legal entity. Provide both `account` and `person` to identify the account-person relationship, and optionally use `expand` for additional response fields. The response contains the person's account, identifier, creation time, and available legal-entity information.
+    /// Retrieves a person associated with an account's legal entity. Provide both `account` and `person` to identify
+    /// the account-person relationship, and optionally use `expand` for additional response fields. The response
+    /// contains the person's account, identifier, creation time, and available legal-entity information.
     ///
     /// Retrieves an existing person.
     public func getAccountsAccountPerson(account: String, person: String, expand: [String]?) async throws -> Person {
-        return try await V1AccountsPersonsMethods.getAccountsAccountPersonsPerson(config: config, account: account, person: person, expand: expand)
+        try await V1AccountsPersonsMethods.getAccountsAccountPersonsPerson(
+            config: config,
+            account: account,
+            person: person,
+            expand: expand
+        )
     }
 
-/// Updates an existing person associated with an account's legal entity. Identify the relationship with `account` and `person`, then submit only the person details you want to change. Use nested address, date-of-birth, document, relationship, and verification structures according to their defined schemas.
+    /// Updates an existing person associated with an account's legal entity. Identify the relationship with `account`
+    /// and `person`, then submit only the person details you want to change. Use nested address, date-of-birth,
+    /// document, relationship, and verification structures according to their defined schemas.
     ///
     /// Updates an existing person.
-    public func postAccountsAccountPerson(options: V1AccountsPersonsMethods.PostAccountsAccountPersonsPersonOptions) async throws -> Person {
-        return try await V1AccountsPersonsMethods.postAccountsAccountPersonsPerson(config: config, options: options)
+    public func postAccountsAccountPerson(options: V1AccountsPersonsMethods
+        .PostAccountsAccountPersonsPersonOptions) async throws -> Person {
+        try await V1AccountsPersonsMethods.postAccountsAccountPersonsPerson(config: config, options: options)
     }
 }
 
@@ -51,11 +90,25 @@ public class V1AccountsRejectNamespace {
         self.config = config
     }
 
-/// Rejects an account that your platform has flagged as suspicious. Use `account` to identify an eligible Custom or Express account, and provide `reason` to explain the rejection; `payouts_action` controls whether payouts are paused.
+    /// Rejects an account that your platform has flagged as suspicious. Use `account` to identify an eligible Custom or
+    /// Express account, and provide `reason` to explain the rejection; `payouts_action` controls whether payouts are
+    /// paused.
     ///
-    /// With Connect, you can reject accounts that you have flagged as suspicious. Only accounts where your platform is liable for negative account balances, which includes Custom and Express accounts, can be rejected.
-    public func postAccountsAccount(account: String, reason: String, expand: [String]?, payoutsAction: PostAccountsAccountRejectRequestBodyPayoutsAction?) async throws -> Account {
-        return try await V1AccountsRejectMethods.postAccountsAccountReject(config: config, account: account, reason: reason, expand: expand, payoutsAction: payoutsAction)
+    /// With Connect, you can reject accounts that you have flagged as suspicious. Only accounts where your platform is
+    /// liable for negative account balances, which includes Custom and Express accounts, can be rejected.
+    public func postAccountsAccount(
+        account: String,
+        reason: String,
+        expand: [String]?,
+        payoutsAction: PostAccountsAccountRejectRequestBodyPayoutsAction?
+    ) async throws -> Account {
+        try await V1AccountsRejectMethods.postAccountsAccountReject(
+            config: config,
+            account: account,
+            reason: reason,
+            expand: expand,
+            payoutsAction: payoutsAction
+        )
     }
 }
 
@@ -65,11 +118,20 @@ public class V1AccountsUnrejectNamespace {
         self.config = config
     }
 
-/// Unrejects an account that your platform previously rejected. Use `account` to identify the account; unrejection can restore charges or payouts only when no separate restrictions remain.
+    /// Unrejects an account that your platform previously rejected. Use `account` to identify the account; unrejection
+    /// can restore charges or payouts only when no separate restrictions remain.
     ///
-    /// With Connect, you can unreject accounts that you have previously rejected. Only accounts that were rejected by your platform can be unrejected. This API cannot be used to unreject accounts that were rejected by Stripe. Unreject will only enable charges and/or payouts if there are no other restrictions other than those placed by a previous rejection. If you have separately paused charges and/or payouts outside of rejection, those pauses will remain in place after unrejection.
+    /// With Connect, you can unreject accounts that you have previously rejected. Only accounts that were rejected by
+    /// your platform can be unrejected. This API cannot be used to unreject accounts that were rejected by Stripe.
+    /// Unreject will only enable charges and/or payouts if there are no other restrictions other than those placed by a
+    /// previous rejection. If you have separately paused charges and/or payouts outside of rejection, those pauses will
+    /// remain in place after unrejection.
     public func postAccountsAccount(account: String, expand: [String]?) async throws -> Account {
-        return try await V1AccountsUnrejectMethods.postAccountsAccountUnreject(config: config, account: account, expand: expand)
+        try await V1AccountsUnrejectMethods.postAccountsAccountUnreject(
+            config: config,
+            account: account,
+            expand: expand
+        )
     }
 }
 
@@ -95,37 +157,67 @@ public class V1AccountsNamespace {
         unreject = V1AccountsUnrejectNamespace(config: config)
     }
 
-/// Lists connected accounts associated with the authenticated user's platform. Use the cursor parameters to move through the result set, `created` to filter by creation time, and `limit` to control the page size.
+    /// Lists connected accounts associated with the authenticated user's platform. Use the cursor parameters to move
+    /// through the result set, `created` to filter by creation time, and `limit` to control the page size.
     ///
     /// Returns a list of accounts connected to your platform via Connect. If you’re not a platform, the list is empty.
-    public func get(created: GetAccountsParameter?, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetAccountsResponse {
-        return try await V1AccountsMethods.getAccounts(config: config, created: created, endingBefore: endingBefore, expand: expand, limit: limit, startingAfter: startingAfter)
+    public func get(
+        created: GetAccountsParameter?,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        startingAfter: String?
+    ) async throws -> GetAccountsResponse {
+        try await V1AccountsMethods.getAccounts(
+            config: config,
+            created: created,
+            endingBefore: endingBefore,
+            expand: expand,
+            limit: limit,
+            startingAfter: startingAfter
+        )
     }
 
-/// With Connect, you can create Stripe accounts for your users. To do this, you’ll first need to register your platform. If you’ve already collected information for your connected accounts, you can prefill that information when creating the account. Connect Onboarding won’t ask for the prefilled information during account onboarding. You can prefill any information on the account.
+    /// With Connect, you can create Stripe accounts for your users. To do this, you’ll first need to register your
+    /// platform. If you’ve already collected information for your connected accounts, you can prefill that information
+    /// when creating the account. Connect Onboarding won’t ask for the prefilled information during account onboarding.
+    /// You can prefill any information on the account.
     public func post(options: V1AccountsMethods.PostAccountsOptions) async throws -> Account {
-        return try await V1AccountsMethods.postAccounts(config: config, options: options)
+        try await V1AccountsMethods.postAccounts(config: config, options: options)
     }
 
-/// Deletes a connected account managed by the authenticated user's platform. Test-mode accounts can be deleted at any time, while eligible live-mode accounts must have zero balances before deletion.
+    /// Deletes a connected account managed by the authenticated user's platform. Test-mode accounts can be deleted at
+    /// any time, while eligible live-mode accounts must have zero balances before deletion.
     ///
-    /// With Connect, you can delete accounts you manage. Test-mode accounts can be deleted at any time. Live-mode accounts that have access to the standard dashboard and Stripe is responsible for negative account balances cannot be deleted, which includes Standard accounts. All other Live-mode accounts, can be deleted when all balances are zero. If you want to delete your own account, use the account information tab in your account settings instead.
+    /// With Connect, you can delete accounts you manage. Test-mode accounts can be deleted at any time. Live-mode
+    /// accounts that have access to the standard dashboard and Stripe is responsible for negative account balances
+    /// cannot be deleted, which includes Standard accounts. All other Live-mode accounts, can be deleted when all
+    /// balances are zero. If you want to delete your own account, use the account information tab in your account
+    /// settings instead.
     public func deleteAccount(account: String) async throws -> DeletedAccount {
-        return try await V1AccountsMethods.deleteAccountsAccount(config: config, account: account)
+        try await V1AccountsMethods.deleteAccountsAccount(config: config, account: account)
     }
 
-/// Retrieves the details of a connected account identified by `account`. Use `expand` to include additional nested fields in the account response when needed.
+    /// Retrieves the details of a connected account identified by `account`. Use `expand` to include additional nested
+    /// fields in the account response when needed.
     ///
     /// Retrieves the details of an account.
     public func getAccount(account: String, expand: [String]?) async throws -> Account {
-        return try await V1AccountsMethods.getAccountsAccount(config: config, account: account, expand: expand)
+        try await V1AccountsMethods.getAccountsAccount(config: config, account: account, expand: expand)
     }
 
-/// Updates a connected account by changing only the fields included in the request. Use the account-specific fields to update business information, capabilities, payout details, metadata, or terms-of-service acceptance. Some account properties can no longer be updated after Connect onboarding begins.
+    /// Updates a connected account by changing only the fields included in the request. Use the account-specific fields
+    /// to update business information, capabilities, payout details, metadata, or terms-of-service acceptance. Some
+    /// account properties can no longer be updated after Connect onboarding begins.
     ///
-    /// Updates a connected account by setting the values of the parameters passed. Any parameters not provided are left unchanged. For accounts where controller.requirement_collection is application , which includes Custom accounts, you can update any information on the account. For accounts where controller.requirement_collection is stripe , which includes Standard and Express accounts, you can update all information until you create an Account Link or Account Session to start Connect onboarding, after which some properties can no longer be updated. To update your own account, use the Dashboard. Refer to our Connect documentation to learn more about updating accounts.
+    /// Updates a connected account by setting the values of the parameters passed. Any parameters not provided are left
+    /// unchanged. For accounts where controller.requirement_collection is application , which includes Custom accounts,
+    /// you can update any information on the account. For accounts where controller.requirement_collection is stripe ,
+    /// which includes Standard and Express accounts, you can update all information until you create an Account Link or
+    /// Account Session to start Connect onboarding, after which some properties can no longer be updated. To update
+    /// your own account, use the Dashboard. Refer to our Connect documentation to learn more about updating accounts.
     public func postAccount(options: V1AccountsMethods.PostAccountsAccountOptions) async throws -> Account {
-        return try await V1AccountsMethods.postAccountsAccount(config: config, options: options)
+        try await V1AccountsMethods.postAccountsAccount(config: config, options: options)
     }
 }
 
@@ -135,32 +227,49 @@ public class V1ApplePayDomainsNamespace {
         self.config = config
     }
 
-/// Lists Apple Pay domains registered for your account. Use `domain_name` to filter the results and `starting_after` or `ending_before` to navigate the cursor-based list; set `limit` to control the page size.
+    /// Lists Apple Pay domains registered for your account. Use `domain_name` to filter the results and
+    /// `starting_after` or `ending_before` to navigate the cursor-based list; set `limit` to control the page size.
     ///
     /// List apple pay domains.
-    public func getApplePay(domainName: String?, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetApplePayDomainsResponse {
-        return try await V1ApplePayDomainsMethods.getApplePayDomains(config: config, domainName: domainName, endingBefore: endingBefore, expand: expand, limit: limit, startingAfter: startingAfter)
+    public func getApplePay(
+        domainName: String?,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        startingAfter: String?
+    ) async throws -> GetApplePayDomainsResponse {
+        try await V1ApplePayDomainsMethods.getApplePayDomains(
+            config: config,
+            domainName: domainName,
+            endingBefore: endingBefore,
+            expand: expand,
+            limit: limit,
+            startingAfter: startingAfter
+        )
     }
 
-/// Creates an Apple Pay domain registration. Supply `domain_name` to identify the domain you want to register, and use `expand` when you need additional response fields included.
+    /// Creates an Apple Pay domain registration. Supply `domain_name` to identify the domain you want to register, and
+    /// use `expand` when you need additional response fields included.
     ///
     /// Create an apple pay domain.
     public func postApplePay(domainName: String, expand: [String]?) async throws -> ApplePayDomain {
-        return try await V1ApplePayDomainsMethods.postApplePayDomains(config: config, domainName: domainName, expand: expand)
+        try await V1ApplePayDomainsMethods.postApplePayDomains(config: config, domainName: domainName, expand: expand)
     }
 
-/// Deletes a registered Apple Pay domain. Use `domain` to identify the domain registration you want to remove from your account.
+    /// Deletes a registered Apple Pay domain. Use `domain` to identify the domain registration you want to remove from
+    /// your account.
     ///
     /// Delete an apple pay domain.
     public func deleteApplePayDomain(domain: String) async throws -> DeletedApplePayDomain {
-        return try await V1ApplePayDomainsMethods.deleteApplePayDomainsDomain(config: config, domain: domain)
+        try await V1ApplePayDomainsMethods.deleteApplePayDomainsDomain(config: config, domain: domain)
     }
 
-/// Retrieves a registered Apple Pay domain by its identifier. Use `expand` to include additional response fields when retrieving the domain.
+    /// Retrieves a registered Apple Pay domain by its identifier. Use `expand` to include additional response fields
+    /// when retrieving the domain.
     ///
     /// Retrieve an apple pay domain.
     public func getApplePayDomain(domain: String, expand: [String]?) async throws -> ApplePayDomain {
-        return try await V1ApplePayDomainsMethods.getApplePayDomainsDomain(config: config, domain: domain, expand: expand)
+        try await V1ApplePayDomainsMethods.getApplePayDomainsDomain(config: config, domain: domain, expand: expand)
     }
 }
 
@@ -177,31 +286,84 @@ public class V1ApplicationFeesRefundsNamespace {
         self.config = config
     }
 
-/// Retrieves a specific refund for an application fee. Use `fee` and `id` to identify the parent application fee and refund, and use `expand` to include additional response fields.
+    /// Retrieves a specific refund for an application fee. Use `fee` and `id` to identify the parent application fee
+    /// and refund, and use `expand` to include additional response fields.
     ///
-    /// By default, you can see the 10 most recent refunds stored directly on the application fee object, but you can also retrieve details about a specific refund stored on the application fee.
+    /// By default, you can see the 10 most recent refunds stored directly on the application fee object, but you can
+    /// also retrieve details about a specific refund stored on the application fee.
     public func getApplicationFeesFeeId(fee: String, id: String, expand: [String]?) async throws -> FeeRefund {
-        return try await V1ApplicationFeesRefundsMethods.getApplicationFeesFeeRefundsId(config: config, fee: fee, id: id, expand: expand)
+        try await V1ApplicationFeesRefundsMethods.getApplicationFeesFeeRefundsId(
+            config: config,
+            fee: fee,
+            id: id,
+            expand: expand
+        )
     }
 
-/// Updates metadata on a specific application fee refund without changing other refund properties. Use `fee` and `id` to identify the refund, and provide `metadata` to set, update, or clear metadata entries.
+    /// Updates metadata on a specific application fee refund without changing other refund properties. Use `fee` and
+    /// `id` to identify the refund, and provide `metadata` to set, update, or clear metadata entries.
     ///
-    /// Updates the specified application fee refund by setting the values of the parameters passed. Any parameters not provided will be left unchanged. This request only accepts metadata as an argument.
-    public func postApplicationFeesFeeId(fee: String, id: String, expand: [String]?, metadata: PostApplicationFeesFeeRefundsIdRequestBodyMetadata?) async throws -> FeeRefund {
-        return try await V1ApplicationFeesRefundsMethods.postApplicationFeesFeeRefundsId(config: config, fee: fee, id: id, expand: expand, metadata: metadata)
+    /// Updates the specified application fee refund by setting the values of the parameters passed. Any parameters not
+    /// provided will be left unchanged. This request only accepts metadata as an argument.
+    public func postApplicationFeesFeeId(
+        fee: String,
+        id: String,
+        expand: [String]?,
+        metadata: PostApplicationFeesFeeRefundsIdRequestBodyMetadata?
+    ) async throws -> FeeRefund {
+        try await V1ApplicationFeesRefundsMethods.postApplicationFeesFeeRefundsId(
+            config: config,
+            fee: fee,
+            id: id,
+            expand: expand,
+            metadata: metadata
+        )
     }
 
-/// Lists refunds belonging to a specific application fee. Use `limit`, `starting_after`, and `ending_before` to page through refunds beyond the most recent entries included on the application fee object.
+    /// Lists refunds belonging to a specific application fee. Use `limit`, `starting_after`, and `ending_before` to
+    /// page through refunds beyond the most recent entries included on the application fee object.
     ///
-    /// You can see a list of the refunds belonging to a specific application fee. Note that the 10 most recent refunds are always available by default on the application fee object. If you need more than those 10, you can use this API method and the limit and starting_after parameters to page through additional refunds.
-    public func getApplicationFeesId(id: String, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetApplicationFeesIdRefundsResponse {
-        return try await V1ApplicationFeesRefundsMethods.getApplicationFeesIdRefunds(config: config, id: id, endingBefore: endingBefore, expand: expand, limit: limit, startingAfter: startingAfter)
+    /// You can see a list of the refunds belonging to a specific application fee. Note that the 10 most recent refunds
+    /// are always available by default on the application fee object. If you need more than those 10, you can use this
+    /// API method and the limit and starting_after parameters to page through additional refunds.
+    public func getApplicationFeesId(
+        id: String,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        startingAfter: String?
+    ) async throws -> GetApplicationFeesIdRefundsResponse {
+        try await V1ApplicationFeesRefundsMethods.getApplicationFeesIdRefunds(
+            config: config,
+            id: id,
+            endingBefore: endingBefore,
+            expand: expand,
+            limit: limit,
+            startingAfter: startingAfter
+        )
     }
 
-/// Creates a refund for an application fee that was previously collected. Supply `amount` to issue a partial refund, and use `metadata` to attach structured key-value information to the refund. You can issue multiple partial refunds until the full fee has been refunded.
+    /// Creates a refund for an application fee that was previously collected. Supply `amount` to issue a partial
+    /// refund, and use `metadata` to attach structured key-value information to the refund. You can issue multiple
+    /// partial refunds until the full fee has been refunded.
     ///
-    /// Refunds an application fee that has previously been collected but not yet refunded. Funds will be refunded to the Stripe account from which the fee was originally collected. You can optionally refund only part of an application fee. You can do so multiple times, until the entire fee has been refunded. Once entirely refunded, an application fee can’t be refunded again. This method will raise an error when called on an already-refunded application fee, or when trying to refund more money than is left on an application fee.
-    public func postApplicationFeesId(id: String, amount: Int?, expand: [String]?, metadata: [String: String]?) async throws -> FeeRefund {
-        return try await V1ApplicationFeesRefundsMethods.postApplicationFeesIdRefunds(config: config, id: id, amount: amount, expand: expand, metadata: metadata)
+    /// Refunds an application fee that has previously been collected but not yet refunded. Funds will be refunded to
+    /// the Stripe account from which the fee was originally collected. You can optionally refund only part of an
+    /// application fee. You can do so multiple times, until the entire fee has been refunded. Once entirely refunded,
+    /// an application fee can’t be refunded again. This method will raise an error when called on an already-refunded
+    /// application fee, or when trying to refund more money than is left on an application fee.
+    public func postApplicationFeesId(
+        id: String,
+        amount: Int?,
+        expand: [String]?,
+        metadata: [String: String]?
+    ) async throws -> FeeRefund {
+        try await V1ApplicationFeesRefundsMethods.postApplicationFeesIdRefunds(
+            config: config,
+            id: id,
+            amount: amount,
+            expand: expand,
+            metadata: metadata
+        )
     }
 }

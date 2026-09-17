@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1BalanceTransactionsMethods {
-    public struct GetBalanceTransactionsOptions: Codable {
+public extension V1BalanceTransactionsMethods {
+    struct GetBalanceTransactionsOptions: Codable {
         public var created: GetBalanceTransactionsParameter?
         public var currency: String?
         public var endingBefore: String?
@@ -21,9 +21,13 @@ extension V1BalanceTransactionsMethods {
         public init() {}
     }
 
-    /// Lists balance transactions that contribute to the account balance, with the newest transactions returned first. Use `created`, `currency`, `payout`, `source`, and `type` to filter results, and use cursor parameters to paginate the list.
+    /// Lists balance transactions that contribute to the account balance, with the newest transactions returned first.
+    /// Use `created`, `currency`, `payout`, `source`, and `type` to filter results, and use cursor parameters to
+    /// paginate the list.
     ///
-    /// Returns a list of transactions that have contributed to the Stripe account balance (for example, charges, transfers, and so on). The transactions return in sorted order, with the most recent transactions appearing first. The previous name of this endpoint was “Balance history,” and it used the path /v1/balance/history .
+    /// Returns a list of transactions that have contributed to the Stripe account balance (for example, charges,
+    /// transfers, and so on). The transactions return in sorted order, with the most recent transactions appearing
+    /// first. The previous name of this endpoint was “Balance history,” and it used the path /v1/balance/history .
     ///
     /// - Parameters:
     /// - created: Only return transactions that were created during the given date
@@ -65,7 +69,10 @@ extension V1BalanceTransactionsMethods {
     ///   `stripe_balance_payment_debit`, `stripe_balance_payment_debit_reversal`,
     ///   `tax_fee`, `topup`, `topup_reversal`, `transfer`, `transfer_cancel`,
     ///   `transfer_failure`, `transfer_refund`, or `fee_credit_funding`.
-    public static func getBalanceTransactions(config: ClientConfig, options: GetBalanceTransactionsOptions) async throws -> GetBalanceTransactionsResponse {
+    static func getBalanceTransactions(
+        config: ClientConfig,
+        options: GetBalanceTransactionsOptions
+    ) async throws -> GetBalanceTransactionsResponse {
         if let endingBefore = options.endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
@@ -86,7 +93,7 @@ extension V1BalanceTransactionsMethods {
             try validateLength("type", type, max: 5000)
         }
 
-        return try (await sdkRequest("GET", "/v1/balance_transactions", config: config, query: [
+        return try await (sdkRequest("GET", "/v1/balance_transactions", config: config, query: [
             SdkQueryParameter("created", value: options.created),
             SdkQueryParameter("currency", value: options.currency),
             SdkQueryParameter("ending_before", value: options.endingBefore),

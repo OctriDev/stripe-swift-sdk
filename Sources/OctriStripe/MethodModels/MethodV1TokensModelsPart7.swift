@@ -7,23 +7,33 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1Tokens operation model declarations
+/// Canonical v1Tokens operation model declarations
 extension PostTokensRequestBodyAccountIndividualMetadata: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostTokensRequestBodyAccountIndividualMetadata")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PostTokensRequestBodyAccountIndividualMetadata"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode([String: String].self) { return .dictionary(value) }
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode([String: String].self) {
+            return .dictionary(value)
+        }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -33,7 +43,6 @@ extension PostTokensRequestBodyAccountIndividualMetadata: Codable {
         case let .stringValue(value): try container.encode(value); return true
         }
     }
-
 }
 
 public struct PostTokensRequestBodyAccountIndividualAddressKana: Codable {
@@ -56,27 +65,35 @@ public struct PostTokensRequestBodyAccountIndividualAddressKana: Codable {
     }
 
     init() {
-        (self.city, self.country, self.line1, self.line2, self.postalCode) = (nil, nil, nil, nil, nil)
-        (self.state, self.town) = (nil, nil)
+        (city, country, line1, line2, postalCode) = (nil, nil, nil, nil, nil)
+        (state, town) = (nil, nil)
     }
 }
 
-extension PostTokensRequestBodyAccountIndividualAddressKana {
-    public init(from decoder: Decoder) throws {
+public extension PostTokensRequestBodyAccountIndividualAddressKana {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.city = try container.sdkDecodeIfPresent(.city)
-        self.country = try container.sdkDecodeIfPresent(.country)
-        self.line1 = try container.sdkDecodeIfPresent(.line1)
-        self.line2 = try container.sdkDecodeIfPresent(.line2)
-        self.postalCode = try container.sdkDecodeIfPresent(.postalCode)
-        self.state = try container.sdkDecodeIfPresent(.state)
-        self.town = try container.sdkDecodeIfPresent(.town)
+        city = try container.sdkDecodeIfPresent(.city)
+        country = try container.sdkDecodeIfPresent(.country)
+        line1 = try container.sdkDecodeIfPresent(.line1)
+        line2 = try container.sdkDecodeIfPresent(.line2)
+        postalCode = try container.sdkDecodeIfPresent(.postalCode)
+        state = try container.sdkDecodeIfPresent(.state)
+        town = try container.sdkDecodeIfPresent(.town)
         try sdkValidateConstraints()
     }
 }
 
-extension PostTokensRequestBodyAccountIndividualAddressKana {
-    public init(city: String? = nil, country: String? = nil, line1: String? = nil, line2: String? = nil, postalCode: String? = nil, state: String? = nil, town: String? = nil) throws {
+public extension PostTokensRequestBodyAccountIndividualAddressKana {
+    init(
+        city: String? = nil,
+        country: String? = nil,
+        line1: String? = nil,
+        line2: String? = nil,
+        postalCode: String? = nil,
+        state: String? = nil,
+        town: String? = nil
+    ) throws {
         self.init()
         (self.city, self.country) = (city, country)
         (self.line1, self.line2) = (line1, line2)
@@ -88,25 +105,25 @@ extension PostTokensRequestBodyAccountIndividualAddressKana {
 
 extension PostTokensRequestBodyAccountIndividualAddressKana {
     func sdkValidateConstraints() throws {
-        if let value = self.city {
+        if let value = city {
             try validateLength("city", value, min: nil, max: 5000)
         }
-        if let value = self.country {
+        if let value = country {
             try validateLength("country", value, min: nil, max: 5000)
         }
-        if let value = self.line1 {
+        if let value = line1 {
             try validateLength("line1", value, min: nil, max: 5000)
         }
-        if let value = self.line2 {
+        if let value = line2 {
             try validateLength("line2", value, min: nil, max: 5000)
         }
-        if let value = self.postalCode {
+        if let value = postalCode {
             try validateLength("postal_code", value, min: nil, max: 5000)
         }
-        if let value = self.state {
+        if let value = state {
             try validateLength("state", value, min: nil, max: 5000)
         }
-        if let value = self.town {
+        if let value = town {
             try validateLength("town", value, min: nil, max: 5000)
         }
     }

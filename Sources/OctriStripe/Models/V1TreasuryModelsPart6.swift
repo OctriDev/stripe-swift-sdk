@@ -3,19 +3,22 @@
 
 import Foundation
 
-// V1Treasury domain models
+/// V1Treasury domain models
 /// Status of the Transaction.
 public struct TreasuryTransactionStatus: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let open = TreasuryTransactionStatus(rawValue: "open")
     public static let posted = TreasuryTransactionStatus(rawValue: "posted")
     public static let void = TreasuryTransactionStatus(rawValue: "void")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -25,19 +28,26 @@ public struct TreasuryTransactionStatus: RawRepresentable, Hashable, Codable, Se
 }
 
 /// The type of the source flow that originated the ReceivedCredit.
-public struct TreasuryReceivedCreditsResourceSourceFlowsDetailsType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct TreasuryReceivedCreditsResourceSourceFlowsDetailsType: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let creditReversal = TreasuryReceivedCreditsResourceSourceFlowsDetailsType(rawValue: "credit_reversal")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let creditReversal =
+        TreasuryReceivedCreditsResourceSourceFlowsDetailsType(rawValue: "credit_reversal")
     public static let other = TreasuryReceivedCreditsResourceSourceFlowsDetailsType(rawValue: "other")
-    public static let outboundPayment = TreasuryReceivedCreditsResourceSourceFlowsDetailsType(rawValue: "outbound_payment")
-    public static let outboundTransfer = TreasuryReceivedCreditsResourceSourceFlowsDetailsType(rawValue: "outbound_transfer")
+    public static let outboundPayment =
+        TreasuryReceivedCreditsResourceSourceFlowsDetailsType(rawValue: "outbound_payment")
+    public static let outboundTransfer =
+        TreasuryReceivedCreditsResourceSourceFlowsDetailsType(rawValue: "outbound_transfer")
     public static let payout = TreasuryReceivedCreditsResourceSourceFlowsDetailsType(rawValue: "payout")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -50,14 +60,17 @@ public struct TreasuryReceivedCreditsResourceSourceFlowsDetailsType: RawRepresen
 public struct TreasuryCreditReversalStatus: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let canceled = TreasuryCreditReversalStatus(rawValue: "canceled")
     public static let posted = TreasuryCreditReversalStatus(rawValue: "posted")
     public static let processing = TreasuryCreditReversalStatus(rawValue: "processing")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -70,13 +83,16 @@ public struct TreasuryCreditReversalStatus: RawRepresentable, Hashable, Codable,
 public struct TreasuryCreditReversalNetwork: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let ach = TreasuryCreditReversalNetwork(rawValue: "ach")
     public static let stripe = TreasuryCreditReversalNetwork(rawValue: "stripe")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -92,7 +108,10 @@ public struct TreasuryCreditReversalNetwork: RawRepresentable, Hashable, Codable
 public struct TreasuryOutboundTransferStatus: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let canceled = TreasuryOutboundTransferStatus(rawValue: "canceled")
     public static let failed = TreasuryOutboundTransferStatus(rawValue: "failed")
     public static let posted = TreasuryOutboundTransferStatus(rawValue: "posted")
@@ -101,7 +120,7 @@ public struct TreasuryOutboundTransferStatus: RawRepresentable, Hashable, Codabl
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -114,13 +133,16 @@ public struct TreasuryOutboundTransferStatus: RawRepresentable, Hashable, Codabl
 public struct TreasuryDebitReversalNetwork: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let ach = TreasuryDebitReversalNetwork(rawValue: "ach")
     public static let card = TreasuryDebitReversalNetwork(rawValue: "card")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -133,12 +155,15 @@ public struct TreasuryDebitReversalNetwork: RawRepresentable, Hashable, Codable,
 public struct TreasuryOutboundPaymentObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let treasuryOutboundPayment = TreasuryOutboundPaymentObject(rawValue: "treasury.outbound_payment")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -153,7 +178,10 @@ public struct TreasuryOutboundPaymentObject: RawRepresentable, Hashable, Codable
 public struct TreasuryInboundTransferStatus: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let canceled = TreasuryInboundTransferStatus(rawValue: "canceled")
     public static let failed = TreasuryInboundTransferStatus(rawValue: "failed")
     public static let processing = TreasuryInboundTransferStatus(rawValue: "processing")
@@ -161,7 +189,7 @@ public struct TreasuryInboundTransferStatus: RawRepresentable, Hashable, Codable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -177,7 +205,10 @@ public struct TreasuryInboundTransferStatus: RawRepresentable, Hashable, Codable
 public struct TreasuryOutboundPaymentStatus: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let canceled = TreasuryOutboundPaymentStatus(rawValue: "canceled")
     public static let failed = TreasuryOutboundPaymentStatus(rawValue: "failed")
     public static let posted = TreasuryOutboundPaymentStatus(rawValue: "posted")
@@ -186,7 +217,7 @@ public struct TreasuryOutboundPaymentStatus: RawRepresentable, Hashable, Codable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -200,12 +231,15 @@ public struct TreasuryOutboundPaymentStatus: RawRepresentable, Hashable, Codable
 public struct TreasuryTransactionEntriesObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let list = TreasuryTransactionEntriesObject(rawValue: "list")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1QuotesMethods {
-    public struct PostQuotesOptions: Codable {
+public extension V1QuotesMethods {
+    struct PostQuotesOptions: Codable {
         public var applicationFeeAmount: PostQuotesRequestBodyApplicationFeeAmount?
         public var applicationFeePercent: PostQuotesRequestBodyApplicationFeePercent?
         public var automaticTax: PostQuotesRequestBodyAutomaticTax?
@@ -33,7 +33,8 @@ extension V1QuotesMethods {
         public init() {}
     }
 
-    /// A quote models prices and services for a customer. Default options for header , description , footer , and expires_at can be set in the dashboard via the quote template.
+    /// A quote models prices and services for a customer. Default options for header , description , footer , and
+    /// expires_at can be set in the dashboard via the quote template.
     ///
     /// - Parameters:
     /// - applicationFeeAmount: The amount of the application fee (if any) that will
@@ -98,7 +99,7 @@ extension V1QuotesMethods {
     /// - testClock: ID of the test clock to attach to the quote.
     /// - transferData: The data with which to automatically create a Transfer for
     ///   each of the invoices.
-    public static func postQuotes(config: ClientConfig, options: PostQuotesOptions) async throws -> Quote {
+    static func postQuotes(config: ClientConfig, options: PostQuotesOptions) async throws -> Quote {
         if let customer = options.customer {
             try validateLength("customer", customer, max: 5000)
         }
@@ -113,6 +114,14 @@ extension V1QuotesMethods {
 
         let requestBody = PostQuotesRequestBody(options: options)
 
-        return try (await sdkRequest("POST", "/v1/quotes", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostQuotes")).data
+        return try await (sdkRequest(
+            "POST",
+            "/v1/quotes",
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostQuotes"
+        )).data
     }
 }

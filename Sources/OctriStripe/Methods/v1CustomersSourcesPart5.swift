@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1CustomersSourcesMethods {
-    public struct PostCustomersCustomerSourcesIdOptions: Codable {
+public extension V1CustomersSourcesMethods {
+    struct PostCustomersCustomerSourcesIdOptions: Codable {
         public var customer: String
         public var id: String
         public var accountHolderName: String?
@@ -31,7 +31,8 @@ extension V1CustomersSourcesMethods {
         }
     }
 
-    /// Updates a payment source attached to a customer. Use `customer` and `id` to identify the source, then provide only the card, bank-account, owner, address, expiry, metadata, or expansion fields you want to change.
+    /// Updates a payment source attached to a customer. Use `customer` and `id` to identify the source, then provide
+    /// only the card, bank-account, owner, address, expiry, metadata, or expansion fields you want to change.
     ///
     /// Update a specified source for a given customer.
     ///
@@ -55,7 +56,10 @@ extension V1CustomersSourcesMethods {
     ///   unset by posting an empty value to them. All keys can be unset by posting an
     ///   empty value to `metadata`.
     /// - name: Cardholder name.
-    public static func postCustomersCustomerSourcesId(config: ClientConfig, options: PostCustomersCustomerSourcesIdOptions) async throws -> PostCustomersCustomerSourcesIdResponse {
+    static func postCustomersCustomerSourcesId(
+        config: ClientConfig,
+        options: PostCustomersCustomerSourcesIdOptions
+    ) async throws -> PostCustomersCustomerSourcesIdResponse {
         try validateLength("customer", options.customer, max: 5000)
 
         try validateLength("id", options.id, max: 5000)
@@ -106,6 +110,19 @@ extension V1CustomersSourcesMethods {
 
         let requestBody = PostCustomersCustomerSourcesIdRequestBody(options: options)
 
-        return try (await sdkRequest("POST", ["/v1/customers/", sdkEncodePathSegment(sdkWireString(options.customer)), "/sources/", sdkEncodePathSegment(sdkWireString(options.id))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostCustomersCustomerSourcesId")).data
+        return try await (sdkRequest(
+            "POST",
+            [
+                "/v1/customers/",
+                sdkEncodePathSegment(sdkWireString(options.customer)),
+                "/sources/",
+                sdkEncodePathSegment(sdkWireString(options.id)),
+            ].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostCustomersCustomerSourcesId"
+        )).data
     }
 }

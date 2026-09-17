@@ -6,8 +6,10 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1InvoiceRenderingTemplatesMethods {
-    /// Lists invoice rendering templates ordered by creation date, with the newest template first. Use `starting_after` or `ending_before` to paginate the results, `limit` to control page size, and `status` to filter active or archived templates.
+public extension V1InvoiceRenderingTemplatesMethods {
+    /// Lists invoice rendering templates ordered by creation date, with the newest template first. Use `starting_after`
+    /// or `ending_before` to paginate the results, `limit` to control page size, and `status` to filter active or
+    /// archived templates.
     ///
     /// List all templates, ordered by creation date, with the most recently created template appearing first.
     ///
@@ -25,16 +27,23 @@ extension V1InvoiceRenderingTemplatesMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    public static func getInvoiceRenderingTemplates(config: ClientConfig, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?, status: GetInvoiceRenderingTemplatesParameter?) async throws -> GetInvoiceRenderingTemplatesResponse {
-        if let endingBefore = endingBefore {
+    static func getInvoiceRenderingTemplates(
+        config: ClientConfig,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        startingAfter: String?,
+        status: GetInvoiceRenderingTemplatesParameter?
+    ) async throws -> GetInvoiceRenderingTemplatesResponse {
+        if let endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let startingAfter = startingAfter {
+        if let startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try (await sdkRequest("GET", "/v1/invoice_rendering_templates", config: config, query: [
+        return try await (sdkRequest("GET", "/v1/invoice_rendering_templates", config: config, query: [
             SdkQueryParameter("ending_before", value: endingBefore),
             SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
             SdkQueryParameter("limit", value: limit),

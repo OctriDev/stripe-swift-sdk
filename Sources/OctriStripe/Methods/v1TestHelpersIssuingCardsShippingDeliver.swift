@@ -7,17 +7,31 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1TestHelpersIssuingCardsShippingDeliverMethods {
-    /// Updates the shipping status of a test-mode Issuing card to delivered. Use the card identifier to apply the simulated delivery event, and optionally expand fields in the returned card object.
+    /// Updates the shipping status of a test-mode Issuing card to delivered. Use the card identifier to apply the
+    /// simulated delivery event, and optionally expand fields in the returned card object.
     ///
     /// Updates the shipping status of the specified Issuing Card object to delivered .
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postTestHelpersIssuingCardsCardShippingDeliver(config: ClientConfig, card: String, expand: [String]?) async throws -> IssuingCard {
+    public static func postTestHelpersIssuingCardsCardShippingDeliver(
+        config: ClientConfig,
+        card: String,
+        expand: [String]?
+    ) async throws -> IssuingCard {
         try validateLength("card", card, max: 5000)
 
         let requestBody = PostTestHelpersIssuingCardsCardShippingDeliverRequestBody(expand: expand)
 
-        return try (await sdkRequest("POST", ["/v1/test_helpers/issuing/cards/", sdkEncodePathSegment(sdkWireString(card)), "/shipping/deliver"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTestHelpersIssuingCardsCardShippingDeliver")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/test_helpers/issuing/cards/", sdkEncodePathSegment(sdkWireString(card)), "/shipping/deliver"]
+                .joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostTestHelpersIssuingCardsCardShippingDeliver"
+        )).data
     }
 }

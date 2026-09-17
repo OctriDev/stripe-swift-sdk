@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1Account domain models
+/// V1Account domain models
 /// Account Links are the means by which a Connect platform grants a connected account permission to access
 /// Stripe-hosted applications, such as Connect Onboarding. Related guide: Connect Onboarding
 public struct AccountLink: Codable {
@@ -23,37 +23,55 @@ public struct AccountLink: Codable {
         case url
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension AccountLink {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.created) else {
-            throw SdkValidationError(field: "created", code: "required", message: "Validation failed for 'created': value is required")
-        }
-        guard container.contains(.expiresAt) else {
-            throw SdkValidationError(field: "expires_at", code: "required", message: "Validation failed for 'expires_at': value is required")
-        }
-        guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
-        }
-        guard container.contains(.url) else {
-            throw SdkValidationError(field: "url", code: "required", message: "Validation failed for 'url': value is required")
-        }
-        self.created = try container.sdkDecodeRequired(.created)
-        self.expiresAt = try container.sdkDecodeRequired(.expiresAt)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.url = try container.sdkDecodeRequired(.url)
-            try validateLength("url", self.url, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension AccountLink {
-    public init(created: Int, expiresAt: Int, object: AccountLinkObject, url: String) throws {
+public extension AccountLink {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.created) else {
+            throw SdkValidationError(
+                field: "created",
+                code: "required",
+                message: "Validation failed for 'created': value is required"
+            )
+        }
+        guard container.contains(.expiresAt) else {
+            throw SdkValidationError(
+                field: "expires_at",
+                code: "required",
+                message: "Validation failed for 'expires_at': value is required"
+            )
+        }
+        guard container.contains(.object) else {
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
+        }
+        guard container.contains(.url) else {
+            throw SdkValidationError(
+                field: "url",
+                code: "required",
+                message: "Validation failed for 'url': value is required"
+            )
+        }
+        created = try container.sdkDecodeRequired(.created)
+        expiresAt = try container.sdkDecodeRequired(.expiresAt)
+        object = try container.sdkDecodeRequired(.object)
+        url = try container.sdkDecodeRequired(.url)
+        try validateLength("url", url, min: nil, max: 5000)
+    }
+}
+
+public extension AccountLink {
+    init(created: Int, expiresAt: Int, object: AccountLinkObject, url: String) throws {
         (self.created, self.expiresAt) = (created, expiresAt)
         (self.object, self.url) = (object, url)
-            try validateLength("url", self.url, min: nil, max: 5000)
+        try validateLength("url", self.url, min: nil, max: 5000)
     }
 }
 
@@ -69,25 +87,35 @@ public struct AccountMonthlyEstimatedRevenue: Codable {
         case currency
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension AccountMonthlyEstimatedRevenue {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.amount) else {
-            throw SdkValidationError(field: "amount", code: "required", message: "Validation failed for 'amount': value is required")
-        }
-        guard container.contains(.currency) else {
-            throw SdkValidationError(field: "currency", code: "required", message: "Validation failed for 'currency': value is required")
-        }
-        self.amount = try container.sdkDecodeRequired(.amount)
-        self.currency = try container.sdkDecodeRequired(.currency)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension AccountMonthlyEstimatedRevenue {
-    public init(amount: Int, currency: String) {
+public extension AccountMonthlyEstimatedRevenue {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.amount) else {
+            throw SdkValidationError(
+                field: "amount",
+                code: "required",
+                message: "Validation failed for 'amount': value is required"
+            )
+        }
+        guard container.contains(.currency) else {
+            throw SdkValidationError(
+                field: "currency",
+                code: "required",
+                message: "Validation failed for 'currency': value is required"
+            )
+        }
+        amount = try container.sdkDecodeRequired(.amount)
+        currency = try container.sdkDecodeRequired(.currency)
+    }
+}
+
+public extension AccountMonthlyEstimatedRevenue {
+    init(amount: Int, currency: String) {
         (self.amount, self.currency) = (amount, currency)
     }
 }
@@ -111,30 +139,34 @@ public struct AccountPaymentsSettings: Codable {
     }
 
     init() {
-        (self.statementDescriptor, self.statementDescriptorKana, self.statementDescriptorKanji) = (nil, nil, nil)
+        (statementDescriptor, statementDescriptorKana, statementDescriptorKanji) = (nil, nil, nil)
     }
 }
 
-extension AccountPaymentsSettings {
-    public init(from decoder: Decoder) throws {
+public extension AccountPaymentsSettings {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.statementDescriptor = try container.sdkDecodeIfPresent(.statementDescriptor)
-        self.statementDescriptorKana = try container.sdkDecodeIfPresent(.statementDescriptorKana)
-        self.statementDescriptorKanji = try container.sdkDecodeIfPresent(.statementDescriptorKanji)
-        if let value = self.statementDescriptor {
+        statementDescriptor = try container.sdkDecodeIfPresent(.statementDescriptor)
+        statementDescriptorKana = try container.sdkDecodeIfPresent(.statementDescriptorKana)
+        statementDescriptorKanji = try container.sdkDecodeIfPresent(.statementDescriptorKanji)
+        if let value = statementDescriptor {
             try validateLength("statement_descriptor", value, min: nil, max: 5000)
         }
-        if let value = self.statementDescriptorKana {
+        if let value = statementDescriptorKana {
             try validateLength("statement_descriptor_kana", value, min: nil, max: 5000)
         }
-        if let value = self.statementDescriptorKanji {
+        if let value = statementDescriptorKanji {
             try validateLength("statement_descriptor_kanji", value, min: nil, max: 5000)
         }
     }
 }
 
-extension AccountPaymentsSettings {
-    public init(statementDescriptor: String? = nil, statementDescriptorKana: String? = nil, statementDescriptorKanji: String? = nil) throws {
+public extension AccountPaymentsSettings {
+    init(
+        statementDescriptor: String? = nil,
+        statementDescriptorKana: String? = nil,
+        statementDescriptorKanji: String? = nil
+    ) throws {
         self.init()
         self.statementDescriptor = statementDescriptor
         self.statementDescriptorKana = statementDescriptorKana
@@ -169,29 +201,39 @@ public struct AccountPayoutSettings: Codable {
         case statementDescriptor = "statement_descriptor"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension AccountPayoutSettings {
-    public init(from decoder: Decoder) throws {
+public extension AccountPayoutSettings {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.debitNegativeBalances) else {
-            throw SdkValidationError(field: "debit_negative_balances", code: "required", message: "Validation failed for 'debit_negative_balances': value is required")
+            throw SdkValidationError(
+                field: "debit_negative_balances",
+                code: "required",
+                message: "Validation failed for 'debit_negative_balances': value is required"
+            )
         }
         guard container.contains(.schedule) else {
-            throw SdkValidationError(field: "schedule", code: "required", message: "Validation failed for 'schedule': value is required")
+            throw SdkValidationError(
+                field: "schedule",
+                code: "required",
+                message: "Validation failed for 'schedule': value is required"
+            )
         }
-        self.debitNegativeBalances = try container.sdkDecodeRequired(.debitNegativeBalances)
-        self.schedule = try container.sdkDecodeRequired(.schedule)
-        self.statementDescriptor = try container.sdkDecodeIfPresent(.statementDescriptor)
-        if let value = self.statementDescriptor {
+        debitNegativeBalances = try container.sdkDecodeRequired(.debitNegativeBalances)
+        schedule = try container.sdkDecodeRequired(.schedule)
+        statementDescriptor = try container.sdkDecodeIfPresent(.statementDescriptor)
+        if let value = statementDescriptor {
             try validateLength("statement_descriptor", value, min: nil, max: 5000)
         }
     }
 }
 
-extension AccountPayoutSettings {
-    public init(debitNegativeBalances: Bool, schedule: TransferSchedule, statementDescriptor: String? = nil) throws {
+public extension AccountPayoutSettings {
+    init(debitNegativeBalances: Bool, schedule: TransferSchedule, statementDescriptor: String? = nil) throws {
         (self.debitNegativeBalances, self.schedule) = (debitNegativeBalances, schedule)
         self.statementDescriptor = statementDescriptor
         if let value = self.statementDescriptor {
@@ -241,27 +283,36 @@ public struct AccountRequirements: Codable {
     }
 
     init() {
-        (self.alternatives, self.currentDeadline, self.currentlyDue, self.disabledReason, self.errors) = (nil, nil, nil, nil, nil)
-        (self.eventuallyDue, self.pastDue, self.pendingVerification) = (nil, nil, nil)
+        (alternatives, currentDeadline, currentlyDue, disabledReason, errors) = (nil, nil, nil, nil, nil)
+        (eventuallyDue, pastDue, pendingVerification) = (nil, nil, nil)
     }
 }
 
-extension AccountRequirements {
-    public init(from decoder: Decoder) throws {
+public extension AccountRequirements {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.alternatives = try container.sdkDecodeIfPresent(.alternatives)
-        self.currentDeadline = try container.sdkDecodeIfPresent(.currentDeadline)
-        self.currentlyDue = try container.sdkDecodeIfPresent(.currentlyDue)
-        self.disabledReason = try container.sdkDecodeIfPresent(.disabledReason)
-        self.errors = try container.sdkDecodeIfPresent(.errors)
-        self.eventuallyDue = try container.sdkDecodeIfPresent(.eventuallyDue)
-        self.pastDue = try container.sdkDecodeIfPresent(.pastDue)
-        self.pendingVerification = try container.sdkDecodeIfPresent(.pendingVerification)
+        alternatives = try container.sdkDecodeIfPresent(.alternatives)
+        currentDeadline = try container.sdkDecodeIfPresent(.currentDeadline)
+        currentlyDue = try container.sdkDecodeIfPresent(.currentlyDue)
+        disabledReason = try container.sdkDecodeIfPresent(.disabledReason)
+        errors = try container.sdkDecodeIfPresent(.errors)
+        eventuallyDue = try container.sdkDecodeIfPresent(.eventuallyDue)
+        pastDue = try container.sdkDecodeIfPresent(.pastDue)
+        pendingVerification = try container.sdkDecodeIfPresent(.pendingVerification)
     }
 }
 
-extension AccountRequirements {
-    public init(alternatives: [AccountRequirementsAlternative]? = nil, currentDeadline: Int? = nil, currentlyDue: [String]? = nil, disabledReason: AccountRequirementsDisabledReason? = nil, errors: [AccountRequirementsError]? = nil, eventuallyDue: [String]? = nil, pastDue: [String]? = nil, pendingVerification: [String]? = nil) {
+public extension AccountRequirements {
+    init(
+        alternatives: [AccountRequirementsAlternative]? = nil,
+        currentDeadline: Int? = nil,
+        currentlyDue: [String]? = nil,
+        disabledReason: AccountRequirementsDisabledReason? = nil,
+        errors: [AccountRequirementsError]? = nil,
+        eventuallyDue: [String]? = nil,
+        pastDue: [String]? = nil,
+        pendingVerification: [String]? = nil
+    ) {
         self.init()
         (self.alternatives, self.currentDeadline) = (alternatives, currentDeadline)
         (self.currentlyDue, self.disabledReason) = (currentlyDue, disabledReason)
@@ -282,25 +333,35 @@ public struct AccountRequirementsAlternative: Codable {
         case originalFieldsDue = "original_fields_due"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension AccountRequirementsAlternative {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.alternativeFieldsDue) else {
-            throw SdkValidationError(field: "alternative_fields_due", code: "required", message: "Validation failed for 'alternative_fields_due': value is required")
-        }
-        guard container.contains(.originalFieldsDue) else {
-            throw SdkValidationError(field: "original_fields_due", code: "required", message: "Validation failed for 'original_fields_due': value is required")
-        }
-        self.alternativeFieldsDue = try container.sdkDecodeRequired(.alternativeFieldsDue)
-        self.originalFieldsDue = try container.sdkDecodeRequired(.originalFieldsDue)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension AccountRequirementsAlternative {
-    public init(alternativeFieldsDue: [String], originalFieldsDue: [String]) {
+public extension AccountRequirementsAlternative {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.alternativeFieldsDue) else {
+            throw SdkValidationError(
+                field: "alternative_fields_due",
+                code: "required",
+                message: "Validation failed for 'alternative_fields_due': value is required"
+            )
+        }
+        guard container.contains(.originalFieldsDue) else {
+            throw SdkValidationError(
+                field: "original_fields_due",
+                code: "required",
+                message: "Validation failed for 'original_fields_due': value is required"
+            )
+        }
+        alternativeFieldsDue = try container.sdkDecodeRequired(.alternativeFieldsDue)
+        originalFieldsDue = try container.sdkDecodeRequired(.originalFieldsDue)
+    }
+}
+
+public extension AccountRequirementsAlternative {
+    init(alternativeFieldsDue: [String], originalFieldsDue: [String]) {
         (self.alternativeFieldsDue, self.originalFieldsDue) = (alternativeFieldsDue, originalFieldsDue)
     }
 }
@@ -320,35 +381,49 @@ public struct AccountRequirementsError: Codable {
         case requirement
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension AccountRequirementsError {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.code) else {
-            throw SdkValidationError(field: "code", code: "required", message: "Validation failed for 'code': value is required")
-        }
-        guard container.contains(.reason) else {
-            throw SdkValidationError(field: "reason", code: "required", message: "Validation failed for 'reason': value is required")
-        }
-        guard container.contains(.requirement) else {
-            throw SdkValidationError(field: "requirement", code: "required", message: "Validation failed for 'requirement': value is required")
-        }
-        self.code = try container.sdkDecodeRequired(.code)
-        self.reason = try container.sdkDecodeRequired(.reason)
-        self.requirement = try container.sdkDecodeRequired(.requirement)
-            try validateLength("reason", self.reason, min: nil, max: 5000)
-            try validateLength("requirement", self.requirement, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension AccountRequirementsError {
-    public init(code: AccountRequirementsErrorCode, reason: String, requirement: String) throws {
+public extension AccountRequirementsError {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.code) else {
+            throw SdkValidationError(
+                field: "code",
+                code: "required",
+                message: "Validation failed for 'code': value is required"
+            )
+        }
+        guard container.contains(.reason) else {
+            throw SdkValidationError(
+                field: "reason",
+                code: "required",
+                message: "Validation failed for 'reason': value is required"
+            )
+        }
+        guard container.contains(.requirement) else {
+            throw SdkValidationError(
+                field: "requirement",
+                code: "required",
+                message: "Validation failed for 'requirement': value is required"
+            )
+        }
+        code = try container.sdkDecodeRequired(.code)
+        reason = try container.sdkDecodeRequired(.reason)
+        requirement = try container.sdkDecodeRequired(.requirement)
+        try validateLength("reason", reason, min: nil, max: 5000)
+        try validateLength("requirement", requirement, min: nil, max: 5000)
+    }
+}
+
+public extension AccountRequirementsError {
+    init(code: AccountRequirementsErrorCode, reason: String, requirement: String) throws {
         (self.code, self.reason) = (code, reason)
         self.requirement = requirement
-            try validateLength("reason", self.reason, min: nil, max: 5000)
-            try validateLength("requirement", self.requirement, min: nil, max: 5000)
+        try validateLength("reason", self.reason, min: nil, max: 5000)
+        try validateLength("requirement", self.requirement, min: nil, max: 5000)
     }
 }
 
@@ -362,22 +437,22 @@ public struct AccountSepaDebitPaymentsSettings: Codable {
     }
 
     init() {
-        self.creditorId = nil
+        creditorId = nil
     }
 }
 
-extension AccountSepaDebitPaymentsSettings {
-    public init(from decoder: Decoder) throws {
+public extension AccountSepaDebitPaymentsSettings {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.creditorId = try container.sdkDecodeIfPresent(.creditorId)
-        if let value = self.creditorId {
+        creditorId = try container.sdkDecodeIfPresent(.creditorId)
+        if let value = creditorId {
             try validateLength("creditor_id", value, min: nil, max: 5000)
         }
     }
 }
 
-extension AccountSepaDebitPaymentsSettings {
-    public init(creditorId: String? = nil) throws {
+public extension AccountSepaDebitPaymentsSettings {
+    init(creditorId: String? = nil) throws {
         self.init()
         self.creditorId = creditorId
         if let value = self.creditorId {
@@ -418,48 +493,81 @@ public struct AccountSession: Codable {
         case object
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension AccountSession {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.account) else {
-            throw SdkValidationError(field: "account", code: "required", message: "Validation failed for 'account': value is required")
-        }
-        guard container.contains(.clientSecret) else {
-            throw SdkValidationError(field: "client_secret", code: "required", message: "Validation failed for 'client_secret': value is required")
-        }
-        guard container.contains(.components) else {
-            throw SdkValidationError(field: "components", code: "required", message: "Validation failed for 'components': value is required")
-        }
-        guard container.contains(.expiresAt) else {
-            throw SdkValidationError(field: "expires_at", code: "required", message: "Validation failed for 'expires_at': value is required")
-        }
-        guard container.contains(.livemode) else {
-            throw SdkValidationError(field: "livemode", code: "required", message: "Validation failed for 'livemode': value is required")
-        }
-        guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
-        }
-        self.account = try container.sdkDecodeRequired(.account)
-        self.clientSecret = try container.sdkDecodeRequired(.clientSecret)
-        self.components = try container.sdkDecodeRequired(.components)
-        self.expiresAt = try container.sdkDecodeRequired(.expiresAt)
-        self.livemode = try container.sdkDecodeRequired(.livemode)
-        self.object = try container.sdkDecodeRequired(.object)
-            try validateLength("account", self.account, min: nil, max: 5000)
-            try validateLength("client_secret", self.clientSecret, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension AccountSession {
-    public init(account: String, clientSecret: String, components: ConnectEmbeddedAccountSessionCreateComponents, expiresAt: Int, livemode: Bool, object: AccountSessionObject) throws {
+public extension AccountSession {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.account) else {
+            throw SdkValidationError(
+                field: "account",
+                code: "required",
+                message: "Validation failed for 'account': value is required"
+            )
+        }
+        guard container.contains(.clientSecret) else {
+            throw SdkValidationError(
+                field: "client_secret",
+                code: "required",
+                message: "Validation failed for 'client_secret': value is required"
+            )
+        }
+        guard container.contains(.components) else {
+            throw SdkValidationError(
+                field: "components",
+                code: "required",
+                message: "Validation failed for 'components': value is required"
+            )
+        }
+        guard container.contains(.expiresAt) else {
+            throw SdkValidationError(
+                field: "expires_at",
+                code: "required",
+                message: "Validation failed for 'expires_at': value is required"
+            )
+        }
+        guard container.contains(.livemode) else {
+            throw SdkValidationError(
+                field: "livemode",
+                code: "required",
+                message: "Validation failed for 'livemode': value is required"
+            )
+        }
+        guard container.contains(.object) else {
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
+        }
+        account = try container.sdkDecodeRequired(.account)
+        clientSecret = try container.sdkDecodeRequired(.clientSecret)
+        components = try container.sdkDecodeRequired(.components)
+        expiresAt = try container.sdkDecodeRequired(.expiresAt)
+        livemode = try container.sdkDecodeRequired(.livemode)
+        object = try container.sdkDecodeRequired(.object)
+        try validateLength("account", account, min: nil, max: 5000)
+        try validateLength("client_secret", clientSecret, min: nil, max: 5000)
+    }
+}
+
+public extension AccountSession {
+    init(
+        account: String,
+        clientSecret: String,
+        components: ConnectEmbeddedAccountSessionCreateComponents,
+        expiresAt: Int,
+        livemode: Bool,
+        object: AccountSessionObject
+    ) throws {
         (self.account, self.clientSecret) = (account, clientSecret)
         (self.components, self.expiresAt) = (components, expiresAt)
         (self.livemode, self.object) = (livemode, object)
-            try validateLength("account", self.account, min: nil, max: 5000)
-            try validateLength("client_secret", self.clientSecret, min: nil, max: 5000)
+        try validateLength("account", self.account, min: nil, max: 5000)
+        try validateLength("client_secret", self.clientSecret, min: nil, max: 5000)
     }
 }
 
@@ -479,27 +587,27 @@ public struct AccountTermsOfService: Codable {
     }
 
     init() {
-        (self.date, self.ip, self.userAgent) = (nil, nil, nil)
+        (date, ip, userAgent) = (nil, nil, nil)
     }
 }
 
-extension AccountTermsOfService {
-    public init(from decoder: Decoder) throws {
+public extension AccountTermsOfService {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.date = try container.sdkDecodeIfPresent(.date)
-        self.ip = try container.sdkDecodeIfPresent(.ip)
-        self.userAgent = try container.sdkDecodeIfPresent(.userAgent)
-        if let value = self.ip {
+        date = try container.sdkDecodeIfPresent(.date)
+        ip = try container.sdkDecodeIfPresent(.ip)
+        userAgent = try container.sdkDecodeIfPresent(.userAgent)
+        if let value = ip {
             try validateLength("ip", value, min: nil, max: 5000)
         }
-        if let value = self.userAgent {
+        if let value = userAgent {
             try validateLength("user_agent", value, min: nil, max: 5000)
         }
     }
 }
 
-extension AccountTermsOfService {
-    public init(date: Int? = nil, ip: String? = nil, userAgent: String? = nil) throws {
+public extension AccountTermsOfService {
+    init(date: Int? = nil, ip: String? = nil, userAgent: String? = nil) throws {
         self.init()
         (self.date, self.ip) = (date, ip)
         self.userAgent = userAgent

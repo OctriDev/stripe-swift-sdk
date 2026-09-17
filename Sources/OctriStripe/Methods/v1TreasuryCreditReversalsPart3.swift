@@ -6,7 +6,7 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1TreasuryCreditReversalsMethods {
+public extension V1TreasuryCreditReversalsMethods {
     /// Reverses a ReceivedCredit and creates a CreditReversal object.
     ///
     /// - Parameters:
@@ -17,25 +17,56 @@ extension V1TreasuryCreditReversalsMethods {
     ///   information about the object in a structured format. Individual keys can be
     ///   unset by posting an empty value to them. All keys can be unset by posting an
     ///   empty value to `metadata`.
-    public static func postTreasuryCreditReversals(config: ClientConfig, receivedCredit: String, expand: [String]?, metadata: [String: String]?) async throws -> TreasuryCreditReversal {
+    static func postTreasuryCreditReversals(
+        config: ClientConfig,
+        receivedCredit: String,
+        expand: [String]?,
+        metadata: [String: String]?
+    ) async throws -> TreasuryCreditReversal {
         try validateLength("received_credit", receivedCredit, max: 5000)
 
-        let requestBody = PostTreasuryCreditReversalsRequestBody(receivedCredit: receivedCredit, expand: expand, metadata: metadata)
+        let requestBody = PostTreasuryCreditReversalsRequestBody(
+            receivedCredit: receivedCredit,
+            expand: expand,
+            metadata: metadata
+        )
 
-        return try (await sdkRequest("POST", "/v1/treasury/credit_reversals", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTreasuryCreditReversals")).data
+        return try await (sdkRequest(
+            "POST",
+            "/v1/treasury/credit_reversals",
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostTreasuryCreditReversals"
+        )).data
     }
 
-    /// Retrieves a specific credit reversal by its unique identifier. Use the identifier from a credit reversal creation response or list to view the reversed amount, financial account, received credit, network, and processing status.
+    /// Retrieves a specific credit reversal by its unique identifier. Use the identifier from a credit reversal
+    /// creation response or list to view the reversed amount, financial account, received credit, network, and
+    /// processing status.
     ///
-    /// Retrieves the details of an existing CreditReversal by passing the unique CreditReversal ID from either the CreditReversal creation request or CreditReversal list
+    /// Retrieves the details of an existing CreditReversal by passing the unique CreditReversal ID from either the
+    /// CreditReversal creation request or CreditReversal list
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func getTreasuryCreditReversalsCreditReversal(config: ClientConfig, creditReversal: String, expand: [String]?) async throws -> TreasuryCreditReversal {
+    static func getTreasuryCreditReversalsCreditReversal(
+        config: ClientConfig,
+        creditReversal: String,
+        expand: [String]?
+    ) async throws -> TreasuryCreditReversal {
         try validateLength("credit_reversal", creditReversal, max: 5000)
 
-        return try (await sdkRequest("GET", ["/v1/treasury/credit_reversals/", sdkEncodePathSegment(sdkWireString(creditReversal))].joined(), config: config, query: [
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-        ], decoder: .json, operationId: "GetTreasuryCreditReversalsCreditReversal")).data
+        return try await (sdkRequest(
+            "GET",
+            ["/v1/treasury/credit_reversals/", sdkEncodePathSegment(sdkWireString(creditReversal))].joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+            ],
+            decoder: .json,
+            operationId: "GetTreasuryCreditReversalsCreditReversal"
+        )).data
     }
 }

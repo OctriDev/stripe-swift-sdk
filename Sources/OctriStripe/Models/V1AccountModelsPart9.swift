@@ -3,20 +3,24 @@
 
 import Foundation
 
-// V1Account domain models
+/// V1Account domain models
 /// The status of the Cartes Bancaires payments capability of the account, or whether the account can directly
 /// process Cartes Bancaires card charges in EUR currency.
-public struct AccountCapabilitiesCartesBancairesPayments: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct AccountCapabilitiesCartesBancairesPayments: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let active = AccountCapabilitiesCartesBancairesPayments(rawValue: "active")
     public static let inactive = AccountCapabilitiesCartesBancairesPayments(rawValue: "inactive")
     public static let pending = AccountCapabilitiesCartesBancairesPayments(rawValue: "pending")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -30,14 +34,17 @@ public struct AccountCapabilitiesCartesBancairesPayments: RawRepresentable, Hash
 public struct AccountCapabilitiesKrCardPayments: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let active = AccountCapabilitiesKrCardPayments(rawValue: "active")
     public static let inactive = AccountCapabilitiesKrCardPayments(rawValue: "inactive")
     public static let pending = AccountCapabilitiesKrCardPayments(rawValue: "pending")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

@@ -6,27 +6,49 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1WebhookEndpointsMethods {
-    /// Deletes the webhook endpoint identified by its ID. Use this operation when you no longer want the endpoint to receive event notifications. The response confirms that the webhook endpoint was deleted.
+public extension V1WebhookEndpointsMethods {
+    /// Deletes the webhook endpoint identified by its ID. Use this operation when you no longer want the endpoint to
+    /// receive event notifications. The response confirms that the webhook endpoint was deleted.
     ///
     /// You can also delete webhook endpoints via the webhook endpoint management page of the Stripe dashboard.
-    public static func deleteWebhookEndpointsWebhookEndpoint(config: ClientConfig, webhookEndpoint: String) async throws -> DeletedWebhookEndpoint {
+    static func deleteWebhookEndpointsWebhookEndpoint(
+        config: ClientConfig,
+        webhookEndpoint: String
+    ) async throws -> DeletedWebhookEndpoint {
         try validateLength("webhook_endpoint", webhookEndpoint, max: 5000)
 
-        return try (await sdkRequest("DELETE", ["/v1/webhook_endpoints/", sdkEncodePathSegment(sdkWireString(webhookEndpoint))].joined(), config: config, decoder: .json, operationId: "DeleteWebhookEndpointsWebhookEndpoint")).data
+        return try await (sdkRequest(
+            "DELETE",
+            ["/v1/webhook_endpoints/", sdkEncodePathSegment(sdkWireString(webhookEndpoint))].joined(),
+            config: config,
+            decoder: .json,
+            operationId: "DeleteWebhookEndpointsWebhookEndpoint"
+        )).data
     }
 
-    /// Retrieves the webhook endpoint identified by its ID. Use `expand` to include additional fields in the response when needed.
+    /// Retrieves the webhook endpoint identified by its ID. Use `expand` to include additional fields in the response
+    /// when needed.
     ///
     /// Retrieves the webhook endpoint with the given ID.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func getWebhookEndpointsWebhookEndpoint(config: ClientConfig, webhookEndpoint: String, expand: [String]?) async throws -> WebhookEndpoint {
+    static func getWebhookEndpointsWebhookEndpoint(
+        config: ClientConfig,
+        webhookEndpoint: String,
+        expand: [String]?
+    ) async throws -> WebhookEndpoint {
         try validateLength("webhook_endpoint", webhookEndpoint, max: 5000)
 
-        return try (await sdkRequest("GET", ["/v1/webhook_endpoints/", sdkEncodePathSegment(sdkWireString(webhookEndpoint))].joined(), config: config, query: [
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-        ], decoder: .json, operationId: "GetWebhookEndpointsWebhookEndpoint")).data
+        return try await (sdkRequest(
+            "GET",
+            ["/v1/webhook_endpoints/", sdkEncodePathSegment(sdkWireString(webhookEndpoint))].joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+            ],
+            decoder: .json,
+            operationId: "GetWebhookEndpointsWebhookEndpoint"
+        )).data
     }
 }

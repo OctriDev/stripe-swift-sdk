@@ -7,17 +7,32 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1PaymentMethodsDetachMethods {
-    /// Detaches a PaymentMethod from a Customer. Use `payment_method` to identify the instrument to detach and `expand` to request additional response fields. Detachment is permanent and irreversible, so you cannot use or re-attach the PaymentMethod after this operation.
+    /// Detaches a PaymentMethod from a Customer. Use `payment_method` to identify the instrument to detach and `expand`
+    /// to request additional response fields. Detachment is permanent and irreversible, so you cannot use or re-attach
+    /// the PaymentMethod after this operation.
     ///
-    /// Detaches a PaymentMethod object from a Customer. Detachment is permanent and irreversible — once detached, a PaymentMethod can no longer be used for payments or re-attached to a Customer.
+    /// Detaches a PaymentMethod object from a Customer. Detachment is permanent and irreversible — once detached, a
+    /// PaymentMethod can no longer be used for payments or re-attached to a Customer.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postPaymentMethodsPaymentMethodDetach(config: ClientConfig, paymentMethod: String, expand: [String]?) async throws -> PaymentMethod {
+    public static func postPaymentMethodsPaymentMethodDetach(
+        config: ClientConfig,
+        paymentMethod: String,
+        expand: [String]?
+    ) async throws -> PaymentMethod {
         try validateLength("payment_method", paymentMethod, max: 5000)
 
         let requestBody = PostPaymentMethodsPaymentMethodDetachRequestBody(expand: expand)
 
-        return try (await sdkRequest("POST", ["/v1/payment_methods/", sdkEncodePathSegment(sdkWireString(paymentMethod)), "/detach"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostPaymentMethodsPaymentMethodDetach")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/payment_methods/", sdkEncodePathSegment(sdkWireString(paymentMethod)), "/detach"].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostPaymentMethodsPaymentMethodDetach"
+        )).data
     }
 }

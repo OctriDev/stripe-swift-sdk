@@ -12,8 +12,8 @@ struct PostIssuingDisputesDisputeSubmitRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
     }
 }
 
@@ -30,27 +30,27 @@ struct PostIssuingPersonalizationDesignsRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encode(self.physicalBundle, forKey: SdkCodingKey("physical_bundle"))
-        try keyedContainer.encodeIfPresent(self.cardLogo, forKey: SdkCodingKey("card_logo"))
-        try keyedContainer.encodeIfPresent(self.carrierText, forKey: SdkCodingKey("carrier_text"))
-        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(self.lookupKey, forKey: SdkCodingKey("lookup_key"))
-        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
-        try keyedContainer.encodeIfPresent(self.name, forKey: SdkCodingKey("name"))
-        try keyedContainer.encodeIfPresent(self.preferences, forKey: SdkCodingKey("preferences"))
-        try keyedContainer.encodeIfPresent(self.transferLookupKey, forKey: SdkCodingKey("transfer_lookup_key"))
+        try keyedContainer.encode(physicalBundle, forKey: SdkCodingKey("physical_bundle"))
+        try keyedContainer.encodeIfPresent(cardLogo, forKey: SdkCodingKey("card_logo"))
+        try keyedContainer.encodeIfPresent(carrierText, forKey: SdkCodingKey("carrier_text"))
+        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(lookupKey, forKey: SdkCodingKey("lookup_key"))
+        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encodeIfPresent(name, forKey: SdkCodingKey("name"))
+        try keyedContainer.encodeIfPresent(preferences, forKey: SdkCodingKey("preferences"))
+        try keyedContainer.encodeIfPresent(transferLookupKey, forKey: SdkCodingKey("transfer_lookup_key"))
     }
 
     init(options: V1IssuingPersonalizationDesignsMethods.PostIssuingPersonalizationDesignsOptions) {
-        self.physicalBundle = options.physicalBundle
-        self.cardLogo = options.cardLogo
-        self.carrierText = options.carrierText
-        self.expand = options.expand
-        self.lookupKey = options.lookupKey
-        self.metadata = options.metadata
-        self.name = options.name
-        self.preferences = options.preferences
-        self.transferLookupKey = options.transferLookupKey
+        physicalBundle = options.physicalBundle
+        cardLogo = options.cardLogo
+        carrierText = options.carrierText
+        expand = options.expand
+        lookupKey = options.lookupKey
+        metadata = options.metadata
+        name = options.name
+        preferences = options.preferences
+        transferLookupKey = options.transferLookupKey
     }
 }
 
@@ -67,27 +67,28 @@ struct PostIssuingPersonalizationDesignsPersonalizationDesignRequestBody: Encoda
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(self.cardLogo, forKey: SdkCodingKey("card_logo"))
-        try keyedContainer.encodeIfPresent(self.carrierText, forKey: SdkCodingKey("carrier_text"))
-        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(self.lookupKey, forKey: SdkCodingKey("lookup_key"))
-        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
-        try keyedContainer.encodeIfPresent(self.name, forKey: SdkCodingKey("name"))
-        try keyedContainer.encodeIfPresent(self.physicalBundle, forKey: SdkCodingKey("physical_bundle"))
-        try keyedContainer.encodeIfPresent(self.preferences, forKey: SdkCodingKey("preferences"))
-        try keyedContainer.encodeIfPresent(self.transferLookupKey, forKey: SdkCodingKey("transfer_lookup_key"))
+        try keyedContainer.encodeIfPresent(cardLogo, forKey: SdkCodingKey("card_logo"))
+        try keyedContainer.encodeIfPresent(carrierText, forKey: SdkCodingKey("carrier_text"))
+        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(lookupKey, forKey: SdkCodingKey("lookup_key"))
+        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encodeIfPresent(name, forKey: SdkCodingKey("name"))
+        try keyedContainer.encodeIfPresent(physicalBundle, forKey: SdkCodingKey("physical_bundle"))
+        try keyedContainer.encodeIfPresent(preferences, forKey: SdkCodingKey("preferences"))
+        try keyedContainer.encodeIfPresent(transferLookupKey, forKey: SdkCodingKey("transfer_lookup_key"))
     }
 
-    init(options: V1IssuingPersonalizationDesignsMethods.PostIssuingPersonalizationDesignsPersonalizationDesignOptions) {
-        self.cardLogo = options.cardLogo
-        self.carrierText = options.carrierText
-        self.expand = options.expand
-        self.lookupKey = options.lookupKey
-        self.metadata = options.metadata
-        self.name = options.name
-        self.physicalBundle = options.physicalBundle
-        self.preferences = options.preferences
-        self.transferLookupKey = options.transferLookupKey
+    init(options: V1IssuingPersonalizationDesignsMethods
+        .PostIssuingPersonalizationDesignsPersonalizationDesignOptions) {
+        cardLogo = options.cardLogo
+        carrierText = options.carrierText
+        expand = options.expand
+        lookupKey = options.lookupKey
+        metadata = options.metadata
+        name = options.name
+        physicalBundle = options.physicalBundle
+        preferences = options.preferences
+        transferLookupKey = options.transferLookupKey
     }
 }
 
@@ -97,8 +98,8 @@ struct PostIssuingSettlementsSettlementRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
     }
 }
 
@@ -108,8 +109,8 @@ struct PostIssuingTokensTokenRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encode(self.status, forKey: SdkCodingKey("status"))
-        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encode(status, forKey: SdkCodingKey("status"))
+        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
     }
 }
 
@@ -119,8 +120,8 @@ struct PostIssuingTransactionsTransactionRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
     }
 }
 
@@ -136,25 +137,25 @@ struct PostLinkAccountSessionsRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encode(self.accountHolder, forKey: SdkCodingKey("account_holder"))
-        try keyedContainer.encode(self.permissions, forKey: SdkCodingKey("permissions"))
-        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(self.filters, forKey: SdkCodingKey("filters"))
-        try keyedContainer.encodeIfPresent(self.limits, forKey: SdkCodingKey("limits"))
-        try keyedContainer.encodeIfPresent(self.manualEntry, forKey: SdkCodingKey("manual_entry"))
-        try keyedContainer.encodeIfPresent(self.prefetch, forKey: SdkCodingKey("prefetch"))
-        try keyedContainer.encodeIfPresent(self.returnUrl, forKey: SdkCodingKey("return_url"))
+        try keyedContainer.encode(accountHolder, forKey: SdkCodingKey("account_holder"))
+        try keyedContainer.encode(permissions, forKey: SdkCodingKey("permissions"))
+        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(filters, forKey: SdkCodingKey("filters"))
+        try keyedContainer.encodeIfPresent(limits, forKey: SdkCodingKey("limits"))
+        try keyedContainer.encodeIfPresent(manualEntry, forKey: SdkCodingKey("manual_entry"))
+        try keyedContainer.encodeIfPresent(prefetch, forKey: SdkCodingKey("prefetch"))
+        try keyedContainer.encodeIfPresent(returnUrl, forKey: SdkCodingKey("return_url"))
     }
 
     init(options: V1LinkAccountSessionsMethods.PostLinkAccountSessionsOptions) {
-        self.accountHolder = options.accountHolder
-        self.permissions = options.permissions
-        self.expand = options.expand
-        self.filters = options.filters
-        self.limits = options.limits
-        self.manualEntry = options.manualEntry
-        self.prefetch = options.prefetch
-        self.returnUrl = options.returnUrl
+        accountHolder = options.accountHolder
+        permissions = options.permissions
+        expand = options.expand
+        filters = options.filters
+        limits = options.limits
+        manualEntry = options.manualEntry
+        prefetch = options.prefetch
+        returnUrl = options.returnUrl
     }
 }
 
@@ -163,7 +164,7 @@ struct PostLinkedAccountsAccountDisconnectRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
     }
 }
 
@@ -173,7 +174,7 @@ struct PostLinkedAccountsAccountRefreshRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encode(self.features, forKey: SdkCodingKey("features"))
-        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encode(features, forKey: SdkCodingKey("features"))
+        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
     }
 }

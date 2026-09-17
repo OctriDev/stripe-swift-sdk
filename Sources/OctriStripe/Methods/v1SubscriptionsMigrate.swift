@@ -7,7 +7,9 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1SubscriptionsMigrateMethods {
-    /// Triggers migration of an existing subscription to flexible billing mode. Supply `billing_mode` with its required `type` value and optionally request expanded response fields. The migration updates how prorations and invoices for the subscription are calculated.
+    /// Triggers migration of an existing subscription to flexible billing mode. Supply `billing_mode` with its required
+    /// `type` value and optionally request expanded response fields. The migration updates how prorations and invoices
+    /// for the subscription are calculated.
     ///
     /// Upgrade the billing_mode of an existing subscription.
     ///
@@ -15,11 +17,24 @@ public enum V1SubscriptionsMigrateMethods {
     /// - billingMode: Controls how prorations and invoices for subscriptions are
     ///   calculated and orchestrated.
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postSubscriptionsSubscriptionMigrate(config: ClientConfig, subscription: String, billingMode: PostSubscriptionsSubscriptionMigrateRequestBodyBillingMode, expand: [String]?) async throws -> Subscription {
+    public static func postSubscriptionsSubscriptionMigrate(
+        config: ClientConfig,
+        subscription: String,
+        billingMode: PostSubscriptionsSubscriptionMigrateRequestBodyBillingMode,
+        expand: [String]?
+    ) async throws -> Subscription {
         try validateLength("subscription", subscription, max: 5000)
 
         let requestBody = PostSubscriptionsSubscriptionMigrateRequestBody(billingMode: billingMode, expand: expand)
 
-        return try (await sdkRequest("POST", ["/v1/subscriptions/", sdkEncodePathSegment(sdkWireString(subscription)), "/migrate"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostSubscriptionsSubscriptionMigrate")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/subscriptions/", sdkEncodePathSegment(sdkWireString(subscription)), "/migrate"].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostSubscriptionsSubscriptionMigrate"
+        )).data
     }
 }

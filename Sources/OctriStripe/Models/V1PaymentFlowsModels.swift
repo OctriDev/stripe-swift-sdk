@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1PaymentFlows domain models
+/// V1PaymentFlows domain models
 /// Typed representation of the `PaymentFlowsAmountDetails` API schema.
 public struct PaymentFlowsAmountDetails: Codable {
     /// The total discount applied on the transaction represented in the smallest currency unit. An integer greater
@@ -31,25 +31,32 @@ public struct PaymentFlowsAmountDetails: Codable {
     }
 
     init() {
-        (self.discountAmount, self.error, self.lineItems, self.shipping, self.tax) = (nil, nil, nil, nil, nil)
-        self.tip = nil
+        (discountAmount, error, lineItems, shipping, tax) = (nil, nil, nil, nil, nil)
+        tip = nil
     }
 }
 
-extension PaymentFlowsAmountDetails {
-    public init(from decoder: Decoder) throws {
+public extension PaymentFlowsAmountDetails {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.discountAmount = try container.sdkDecodeIfPresent(.discountAmount)
-        self.error = try container.sdkDecodeIfPresent(.error)
-        self.lineItems = try container.sdkDecodeIfPresent(.lineItems)
-        self.shipping = try container.sdkDecodeIfPresent(.shipping)
-        self.tax = try container.sdkDecodeIfPresent(.tax)
-        self.tip = try container.sdkDecodeIfPresent(.tip)
+        discountAmount = try container.sdkDecodeIfPresent(.discountAmount)
+        error = try container.sdkDecodeIfPresent(.error)
+        lineItems = try container.sdkDecodeIfPresent(.lineItems)
+        shipping = try container.sdkDecodeIfPresent(.shipping)
+        tax = try container.sdkDecodeIfPresent(.tax)
+        tip = try container.sdkDecodeIfPresent(.tip)
     }
 }
 
-extension PaymentFlowsAmountDetails {
-    public init(discountAmount: Int? = nil, error: PaymentFlowsAmountDetailsResourceError? = nil, lineItems: PaymentFlowsAmountDetailsLineItems? = nil, shipping: PaymentFlowsAmountDetailsResourceShipping? = nil, tax: PaymentFlowsAmountDetailsResourceTax? = nil, tip: PaymentFlowsAmountDetailsClientResourceTip? = nil) {
+public extension PaymentFlowsAmountDetails {
+    init(
+        discountAmount: Int? = nil,
+        error: PaymentFlowsAmountDetailsResourceError? = nil,
+        lineItems: PaymentFlowsAmountDetailsLineItems? = nil,
+        shipping: PaymentFlowsAmountDetailsResourceShipping? = nil,
+        tax: PaymentFlowsAmountDetailsResourceTax? = nil,
+        tip: PaymentFlowsAmountDetailsClientResourceTip? = nil
+    ) {
         self.init()
         (self.discountAmount, self.error) = (discountAmount, error)
         (self.lineItems, self.shipping) = (lineItems, shipping)
@@ -77,37 +84,60 @@ public struct PaymentFlowsAmountDetailsLineItems: Codable {
         case url
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension PaymentFlowsAmountDetailsLineItems {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.data) else {
-            throw SdkValidationError(field: "data", code: "required", message: "Validation failed for 'data': value is required")
-        }
-        guard container.contains(.hasMore) else {
-            throw SdkValidationError(field: "has_more", code: "required", message: "Validation failed for 'has_more': value is required")
-        }
-        guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
-        }
-        guard container.contains(.url) else {
-            throw SdkValidationError(field: "url", code: "required", message: "Validation failed for 'url': value is required")
-        }
-        self.data = try container.sdkDecodeRequired(.data)
-        self.hasMore = try container.sdkDecodeRequired(.hasMore)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.url = try container.sdkDecodeRequired(.url)
-            try validateLength("url", self.url, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension PaymentFlowsAmountDetailsLineItems {
-    public init(data: [PaymentIntentAmountDetailsLineItem], hasMore: Bool, object: PaymentFlowsAmountDetailsLineItemsObject, url: String) throws {
+public extension PaymentFlowsAmountDetailsLineItems {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.data) else {
+            throw SdkValidationError(
+                field: "data",
+                code: "required",
+                message: "Validation failed for 'data': value is required"
+            )
+        }
+        guard container.contains(.hasMore) else {
+            throw SdkValidationError(
+                field: "has_more",
+                code: "required",
+                message: "Validation failed for 'has_more': value is required"
+            )
+        }
+        guard container.contains(.object) else {
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
+        }
+        guard container.contains(.url) else {
+            throw SdkValidationError(
+                field: "url",
+                code: "required",
+                message: "Validation failed for 'url': value is required"
+            )
+        }
+        data = try container.sdkDecodeRequired(.data)
+        hasMore = try container.sdkDecodeRequired(.hasMore)
+        object = try container.sdkDecodeRequired(.object)
+        url = try container.sdkDecodeRequired(.url)
+        try validateLength("url", url, min: nil, max: 5000)
+    }
+}
+
+public extension PaymentFlowsAmountDetailsLineItems {
+    init(
+        data: [PaymentIntentAmountDetailsLineItem],
+        hasMore: Bool,
+        object: PaymentFlowsAmountDetailsLineItemsObject,
+        url: String
+    ) throws {
         (self.data, self.hasMore) = (data, hasMore)
         (self.object, self.url) = (object, url)
-            try validateLength("url", self.url, min: nil, max: 5000)
+        try validateLength("url", self.url, min: nil, max: 5000)
     }
 }
 
@@ -121,19 +151,19 @@ public struct PaymentFlowsAmountDetailsClient: Codable {
     }
 
     init() {
-        self.tip = nil
+        tip = nil
     }
 }
 
-extension PaymentFlowsAmountDetailsClient {
-    public init(from decoder: Decoder) throws {
+public extension PaymentFlowsAmountDetailsClient {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.tip = try container.sdkDecodeIfPresent(.tip)
+        tip = try container.sdkDecodeIfPresent(.tip)
     }
 }
 
-extension PaymentFlowsAmountDetailsClient {
-    public init(tip: PaymentFlowsAmountDetailsClientResourceTip? = nil) {
+public extension PaymentFlowsAmountDetailsClient {
+    init(tip: PaymentFlowsAmountDetailsClientResourceTip? = nil) {
         self.init()
         self.tip = tip
     }
@@ -149,19 +179,19 @@ public struct PaymentFlowsAmountDetailsClientResourceTip: Codable {
     }
 
     init() {
-        self.amount = nil
+        amount = nil
     }
 }
 
-extension PaymentFlowsAmountDetailsClientResourceTip {
-    public init(from decoder: Decoder) throws {
+public extension PaymentFlowsAmountDetailsClientResourceTip {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.amount = try container.sdkDecodeIfPresent(.amount)
+        amount = try container.sdkDecodeIfPresent(.amount)
     }
 }
 
-extension PaymentFlowsAmountDetailsClientResourceTip {
-    public init(amount: Int? = nil) {
+public extension PaymentFlowsAmountDetailsClientResourceTip {
+    init(amount: Int? = nil) {
         self.init()
         self.amount = amount
     }
@@ -180,23 +210,23 @@ public struct PaymentFlowsAmountDetailsResourceError: Codable {
     }
 
     init() {
-        (self.code, self.message) = (nil, nil)
+        (code, message) = (nil, nil)
     }
 }
 
-extension PaymentFlowsAmountDetailsResourceError {
-    public init(from decoder: Decoder) throws {
+public extension PaymentFlowsAmountDetailsResourceError {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.code = try container.sdkDecodeIfPresent(.code)
-        self.message = try container.sdkDecodeIfPresent(.message)
-        if let value = self.message {
+        code = try container.sdkDecodeIfPresent(.code)
+        message = try container.sdkDecodeIfPresent(.message)
+        if let value = message {
             try validateLength("message", value, min: nil, max: 5000)
         }
     }
 }
 
-extension PaymentFlowsAmountDetailsResourceError {
-    public init(code: PaymentFlowsAmountDetailsResourceErrorCode? = nil, message: String? = nil) throws {
+public extension PaymentFlowsAmountDetailsResourceError {
+    init(code: PaymentFlowsAmountDetailsResourceErrorCode? = nil, message: String? = nil) throws {
         self.init()
         (self.code, self.message) = (code, message)
         if let value = self.message {
@@ -225,22 +255,27 @@ public struct PaymentFlowsAmountDetailsResourceLineItemsListResourceLineIteX05de
     }
 
     init() {
-        (self.card, self.cardPresent, self.klarna, self.paypal) = (nil, nil, nil, nil)
+        (card, cardPresent, klarna, paypal) = (nil, nil, nil, nil)
     }
 }
 
-extension PaymentFlowsAmountDetailsResourceLineItemsListResourceLineIteX05de09564a {
-    public init(from decoder: Decoder) throws {
+public extension PaymentFlowsAmountDetailsResourceLineItemsListResourceLineIteX05de09564a {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.card = try container.sdkDecodeIfPresent(.card)
-        self.cardPresent = try container.sdkDecodeIfPresent(.cardPresent)
-        self.klarna = try container.sdkDecodeIfPresent(.klarna)
-        self.paypal = try container.sdkDecodeIfPresent(.paypal)
+        card = try container.sdkDecodeIfPresent(.card)
+        cardPresent = try container.sdkDecodeIfPresent(.cardPresent)
+        klarna = try container.sdkDecodeIfPresent(.klarna)
+        paypal = try container.sdkDecodeIfPresent(.paypal)
     }
 }
 
-extension PaymentFlowsAmountDetailsResourceLineItemsListResourceLineIteX05de09564a {
-    public init(card: PaymentFlowsPrivatePaymentMethodsCardPaymentIntentAmountDetaiX7f988d235b? = nil, cardPresent: PaymentFlowsPrivatePaymentMethodsCardPresentAmountDetailsLineX6a4e57089d? = nil, klarna: PaymentFlowsPrivatePaymentMethodsKlarnaPaymentIntentAmountDetXc7e39e34a8? = nil, paypal: PaymentFlowsPrivatePaymentMethodsPaypalAmountDetailsLineItemPX52b4174653? = nil) {
+public extension PaymentFlowsAmountDetailsResourceLineItemsListResourceLineIteX05de09564a {
+    init(
+        card: PaymentFlowsPrivatePaymentMethodsCardPaymentIntentAmountDetaiX7f988d235b? = nil,
+        cardPresent: PaymentFlowsPrivatePaymentMethodsCardPresentAmountDetailsLineX6a4e57089d? = nil,
+        klarna: PaymentFlowsPrivatePaymentMethodsKlarnaPaymentIntentAmountDetXc7e39e34a8? = nil,
+        paypal: PaymentFlowsPrivatePaymentMethodsPaypalAmountDetailsLineItemPX52b4174653? = nil
+    ) {
         self.init()
         (self.card, self.cardPresent) = (card, cardPresent)
         (self.klarna, self.paypal) = (klarna, paypal)
@@ -259,21 +294,27 @@ public struct PaymentFlowsAmountDetailsResourceLineItemsListResourceLineIteXf95f
         case totalTaxAmount = "total_tax_amount"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension PaymentFlowsAmountDetailsResourceLineItemsListResourceLineIteXf95fd11ec2 {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.totalTaxAmount) else {
-            throw SdkValidationError(field: "total_tax_amount", code: "required", message: "Validation failed for 'total_tax_amount': value is required")
-        }
-        self.totalTaxAmount = try container.sdkDecodeRequired(.totalTaxAmount)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension PaymentFlowsAmountDetailsResourceLineItemsListResourceLineIteXf95fd11ec2 {
-    public init(totalTaxAmount: Int) {
+public extension PaymentFlowsAmountDetailsResourceLineItemsListResourceLineIteXf95fd11ec2 {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.totalTaxAmount) else {
+            throw SdkValidationError(
+                field: "total_tax_amount",
+                code: "required",
+                message: "Validation failed for 'total_tax_amount': value is required"
+            )
+        }
+        totalTaxAmount = try container.sdkDecodeRequired(.totalTaxAmount)
+    }
+}
+
+public extension PaymentFlowsAmountDetailsResourceLineItemsListResourceLineIteXf95fd11ec2 {
+    init(totalTaxAmount: Int) {
         self.totalTaxAmount = totalTaxAmount
     }
 }
@@ -297,27 +338,27 @@ public struct PaymentFlowsAmountDetailsResourceShipping: Codable {
     }
 
     init() {
-        (self.amount, self.fromPostalCode, self.toPostalCode) = (nil, nil, nil)
+        (amount, fromPostalCode, toPostalCode) = (nil, nil, nil)
     }
 }
 
-extension PaymentFlowsAmountDetailsResourceShipping {
-    public init(from decoder: Decoder) throws {
+public extension PaymentFlowsAmountDetailsResourceShipping {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.amount = try container.sdkDecodeIfPresent(.amount)
-        self.fromPostalCode = try container.sdkDecodeIfPresent(.fromPostalCode)
-        self.toPostalCode = try container.sdkDecodeIfPresent(.toPostalCode)
-        if let value = self.fromPostalCode {
+        amount = try container.sdkDecodeIfPresent(.amount)
+        fromPostalCode = try container.sdkDecodeIfPresent(.fromPostalCode)
+        toPostalCode = try container.sdkDecodeIfPresent(.toPostalCode)
+        if let value = fromPostalCode {
             try validateLength("from_postal_code", value, min: nil, max: 5000)
         }
-        if let value = self.toPostalCode {
+        if let value = toPostalCode {
             try validateLength("to_postal_code", value, min: nil, max: 5000)
         }
     }
 }
 
-extension PaymentFlowsAmountDetailsResourceShipping {
-    public init(amount: Int? = nil, fromPostalCode: String? = nil, toPostalCode: String? = nil) throws {
+public extension PaymentFlowsAmountDetailsResourceShipping {
+    init(amount: Int? = nil, fromPostalCode: String? = nil, toPostalCode: String? = nil) throws {
         self.init()
         (self.amount, self.fromPostalCode) = (amount, fromPostalCode)
         self.toPostalCode = toPostalCode
@@ -342,19 +383,19 @@ public struct PaymentFlowsAmountDetailsResourceTax: Codable {
     }
 
     init() {
-        self.totalTaxAmount = nil
+        totalTaxAmount = nil
     }
 }
 
-extension PaymentFlowsAmountDetailsResourceTax {
-    public init(from decoder: Decoder) throws {
+public extension PaymentFlowsAmountDetailsResourceTax {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.totalTaxAmount = try container.sdkDecodeIfPresent(.totalTaxAmount)
+        totalTaxAmount = try container.sdkDecodeIfPresent(.totalTaxAmount)
     }
 }
 
-extension PaymentFlowsAmountDetailsResourceTax {
-    public init(totalTaxAmount: Int? = nil) {
+public extension PaymentFlowsAmountDetailsResourceTax {
+    init(totalTaxAmount: Int? = nil) {
         self.init()
         self.totalTaxAmount = totalTaxAmount
     }
@@ -375,22 +416,28 @@ public struct PaymentFlowsAutomaticPaymentMethodsPaymentIntent: Codable {
         case allowRedirects = "allow_redirects"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension PaymentFlowsAutomaticPaymentMethodsPaymentIntent {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.enabled) else {
-            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
-        }
-        self.enabled = try container.sdkDecodeRequired(.enabled)
-        self.allowRedirects = try container.sdkDecodeIfPresent(.allowRedirects)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension PaymentFlowsAutomaticPaymentMethodsPaymentIntent {
-    public init(enabled: Bool, allowRedirects: PaymentFlowsAutomaticPaymentMethodsPaymentIntentAllowRedirects? = nil) {
+public extension PaymentFlowsAutomaticPaymentMethodsPaymentIntent {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.enabled) else {
+            throw SdkValidationError(
+                field: "enabled",
+                code: "required",
+                message: "Validation failed for 'enabled': value is required"
+            )
+        }
+        enabled = try container.sdkDecodeRequired(.enabled)
+        allowRedirects = try container.sdkDecodeIfPresent(.allowRedirects)
+    }
+}
+
+public extension PaymentFlowsAutomaticPaymentMethodsPaymentIntent {
+    init(enabled: Bool, allowRedirects: PaymentFlowsAutomaticPaymentMethodsPaymentIntentAllowRedirects? = nil) {
         (self.enabled, self.allowRedirects) = (enabled, allowRedirects)
     }
 }
@@ -411,20 +458,20 @@ public struct PaymentFlowsAutomaticPaymentMethodsSetupIntent: Codable {
     }
 
     init() {
-        (self.allowRedirects, self.enabled) = (nil, nil)
+        (allowRedirects, enabled) = (nil, nil)
     }
 }
 
-extension PaymentFlowsAutomaticPaymentMethodsSetupIntent {
-    public init(from decoder: Decoder) throws {
+public extension PaymentFlowsAutomaticPaymentMethodsSetupIntent {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.allowRedirects = try container.sdkDecodeIfPresent(.allowRedirects)
-        self.enabled = try container.sdkDecodeIfPresent(.enabled)
+        allowRedirects = try container.sdkDecodeIfPresent(.allowRedirects)
+        enabled = try container.sdkDecodeIfPresent(.enabled)
     }
 }
 
-extension PaymentFlowsAutomaticPaymentMethodsSetupIntent {
-    public init(allowRedirects: PaymentFlowsAutomaticPaymentMethodsSetupIntentAllowRedirects? = nil, enabled: Bool? = nil) {
+public extension PaymentFlowsAutomaticPaymentMethodsSetupIntent {
+    init(allowRedirects: PaymentFlowsAutomaticPaymentMethodsSetupIntentAllowRedirects? = nil, enabled: Bool? = nil) {
         self.init()
         (self.allowRedirects, self.enabled) = (allowRedirects, enabled)
     }
@@ -442,22 +489,28 @@ public struct PaymentFlowsInstallmentOptions: Codable {
         case plan
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension PaymentFlowsInstallmentOptions {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.enabled) else {
-            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
-        }
-        self.enabled = try container.sdkDecodeRequired(.enabled)
-        self.plan = try container.sdkDecodeIfPresent(.plan)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension PaymentFlowsInstallmentOptions {
-    public init(enabled: Bool, plan: PaymentMethodDetailsCardInstallmentsPlan? = nil) {
+public extension PaymentFlowsInstallmentOptions {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.enabled) else {
+            throw SdkValidationError(
+                field: "enabled",
+                code: "required",
+                message: "Validation failed for 'enabled': value is required"
+            )
+        }
+        enabled = try container.sdkDecodeRequired(.enabled)
+        plan = try container.sdkDecodeIfPresent(.plan)
+    }
+}
+
+public extension PaymentFlowsInstallmentOptions {
+    init(enabled: Bool, plan: PaymentMethodDetailsCardInstallmentsPlan? = nil) {
         (self.enabled, self.plan) = (enabled, plan)
     }
 }
@@ -479,26 +532,26 @@ public struct PaymentFlowsPaymentDetails: Codable {
     }
 
     init() {
-        (self.customerReference, self.orderReference) = (nil, nil)
+        (customerReference, orderReference) = (nil, nil)
     }
 }
 
-extension PaymentFlowsPaymentDetails {
-    public init(from decoder: Decoder) throws {
+public extension PaymentFlowsPaymentDetails {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.customerReference = try container.sdkDecodeIfPresent(.customerReference)
-        self.orderReference = try container.sdkDecodeIfPresent(.orderReference)
-        if let value = self.customerReference {
+        customerReference = try container.sdkDecodeIfPresent(.customerReference)
+        orderReference = try container.sdkDecodeIfPresent(.orderReference)
+        if let value = customerReference {
             try validateLength("customer_reference", value, min: nil, max: 5000)
         }
-        if let value = self.orderReference {
+        if let value = orderReference {
             try validateLength("order_reference", value, min: nil, max: 5000)
         }
     }
 }
 
-extension PaymentFlowsPaymentDetails {
-    public init(customerReference: String? = nil, orderReference: String? = nil) throws {
+public extension PaymentFlowsPaymentDetails {
+    init(customerReference: String? = nil, orderReference: String? = nil) throws {
         self.init()
         (self.customerReference, self.orderReference) = (customerReference, orderReference)
         if let value = self.customerReference {
@@ -520,19 +573,19 @@ public struct PaymentFlowsPaymentIntentAsyncWorkflows: Codable {
     }
 
     init() {
-        self.inputs = nil
+        inputs = nil
     }
 }
 
-extension PaymentFlowsPaymentIntentAsyncWorkflows {
-    public init(from decoder: Decoder) throws {
+public extension PaymentFlowsPaymentIntentAsyncWorkflows {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.inputs = try container.sdkDecodeIfPresent(.inputs)
+        inputs = try container.sdkDecodeIfPresent(.inputs)
     }
 }
 
-extension PaymentFlowsPaymentIntentAsyncWorkflows {
-    public init(inputs: PaymentFlowsPaymentIntentAsyncWorkflowsResourceInputs? = nil) {
+public extension PaymentFlowsPaymentIntentAsyncWorkflows {
+    init(inputs: PaymentFlowsPaymentIntentAsyncWorkflowsResourceInputs? = nil) {
         self.init()
         self.inputs = inputs
     }
@@ -548,19 +601,19 @@ public struct PaymentFlowsPaymentIntentAsyncWorkflowsResourceInputs: Codable {
     }
 
     init() {
-        self.tax = nil
+        tax = nil
     }
 }
 
-extension PaymentFlowsPaymentIntentAsyncWorkflowsResourceInputs {
-    public init(from decoder: Decoder) throws {
+public extension PaymentFlowsPaymentIntentAsyncWorkflowsResourceInputs {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.tax = try container.sdkDecodeIfPresent(.tax)
+        tax = try container.sdkDecodeIfPresent(.tax)
     }
 }
 
-extension PaymentFlowsPaymentIntentAsyncWorkflowsResourceInputs {
-    public init(tax: PaymentFlowsPaymentIntentAsyncWorkflowsResourceInputsResourceTax? = nil) {
+public extension PaymentFlowsPaymentIntentAsyncWorkflowsResourceInputs {
+    init(tax: PaymentFlowsPaymentIntentAsyncWorkflowsResourceInputsResourceTax? = nil) {
         self.init()
         self.tax = tax
     }

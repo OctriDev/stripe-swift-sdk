@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1Gelato domain models
+/// V1Gelato domain models
 /// Point in Time
 public struct GelatoDataDocumentReportDateOfBirth: Codable {
     /// Numerical day between 1 and 31.
@@ -20,21 +20,21 @@ public struct GelatoDataDocumentReportDateOfBirth: Codable {
     }
 
     init() {
-        (self.day, self.month, self.year) = (nil, nil, nil)
+        (day, month, year) = (nil, nil, nil)
     }
 }
 
-extension GelatoDataDocumentReportDateOfBirth {
-    public init(from decoder: Decoder) throws {
+public extension GelatoDataDocumentReportDateOfBirth {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.day = try container.sdkDecodeIfPresent(.day)
-        self.month = try container.sdkDecodeIfPresent(.month)
-        self.year = try container.sdkDecodeIfPresent(.year)
+        day = try container.sdkDecodeIfPresent(.day)
+        month = try container.sdkDecodeIfPresent(.month)
+        year = try container.sdkDecodeIfPresent(.year)
     }
 }
 
-extension GelatoDataDocumentReportDateOfBirth {
-    public init(day: Int? = nil, month: Int? = nil, year: Int? = nil) {
+public extension GelatoDataDocumentReportDateOfBirth {
+    init(day: Int? = nil, month: Int? = nil, year: Int? = nil) {
         self.init()
         (self.day, self.month) = (day, month)
         self.year = year
@@ -57,21 +57,21 @@ public struct GelatoDataDocumentReportExpirationDate: Codable {
     }
 
     init() {
-        (self.day, self.month, self.year) = (nil, nil, nil)
+        (day, month, year) = (nil, nil, nil)
     }
 }
 
-extension GelatoDataDocumentReportExpirationDate {
-    public init(from decoder: Decoder) throws {
+public extension GelatoDataDocumentReportExpirationDate {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.day = try container.sdkDecodeIfPresent(.day)
-        self.month = try container.sdkDecodeIfPresent(.month)
-        self.year = try container.sdkDecodeIfPresent(.year)
+        day = try container.sdkDecodeIfPresent(.day)
+        month = try container.sdkDecodeIfPresent(.month)
+        year = try container.sdkDecodeIfPresent(.year)
     }
 }
 
-extension GelatoDataDocumentReportExpirationDate {
-    public init(day: Int? = nil, month: Int? = nil, year: Int? = nil) {
+public extension GelatoDataDocumentReportExpirationDate {
+    init(day: Int? = nil, month: Int? = nil, year: Int? = nil) {
         self.init()
         (self.day, self.month) = (day, month)
         self.year = year
@@ -94,21 +94,21 @@ public struct GelatoDataDocumentReportIssuedDate: Codable {
     }
 
     init() {
-        (self.day, self.month, self.year) = (nil, nil, nil)
+        (day, month, year) = (nil, nil, nil)
     }
 }
 
-extension GelatoDataDocumentReportIssuedDate {
-    public init(from decoder: Decoder) throws {
+public extension GelatoDataDocumentReportIssuedDate {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.day = try container.sdkDecodeIfPresent(.day)
-        self.month = try container.sdkDecodeIfPresent(.month)
-        self.year = try container.sdkDecodeIfPresent(.year)
+        day = try container.sdkDecodeIfPresent(.day)
+        month = try container.sdkDecodeIfPresent(.month)
+        year = try container.sdkDecodeIfPresent(.year)
     }
 }
 
-extension GelatoDataDocumentReportIssuedDate {
-    public init(day: Int? = nil, month: Int? = nil, year: Int? = nil) {
+public extension GelatoDataDocumentReportIssuedDate {
+    init(day: Int? = nil, month: Int? = nil, year: Int? = nil) {
         self.init()
         (self.day, self.month) = (day, month)
         self.year = year
@@ -131,21 +131,21 @@ public struct GelatoDataIdNumberReportDate: Codable {
     }
 
     init() {
-        (self.day, self.month, self.year) = (nil, nil, nil)
+        (day, month, year) = (nil, nil, nil)
     }
 }
 
-extension GelatoDataIdNumberReportDate {
-    public init(from decoder: Decoder) throws {
+public extension GelatoDataIdNumberReportDate {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.day = try container.sdkDecodeIfPresent(.day)
-        self.month = try container.sdkDecodeIfPresent(.month)
-        self.year = try container.sdkDecodeIfPresent(.year)
+        day = try container.sdkDecodeIfPresent(.day)
+        month = try container.sdkDecodeIfPresent(.month)
+        year = try container.sdkDecodeIfPresent(.year)
     }
 }
 
-extension GelatoDataIdNumberReportDate {
-    public init(day: Int? = nil, month: Int? = nil, year: Int? = nil) {
+public extension GelatoDataIdNumberReportDate {
+    init(day: Int? = nil, month: Int? = nil, year: Int? = nil) {
         self.init()
         (self.day, self.month) = (day, month)
         self.year = year
@@ -168,21 +168,21 @@ public struct GelatoDataVerifiedOutputsDate: Codable {
     }
 
     init() {
-        (self.day, self.month, self.year) = (nil, nil, nil)
+        (day, month, year) = (nil, nil, nil)
     }
 }
 
-extension GelatoDataVerifiedOutputsDate {
-    public init(from decoder: Decoder) throws {
+public extension GelatoDataVerifiedOutputsDate {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.day = try container.sdkDecodeIfPresent(.day)
-        self.month = try container.sdkDecodeIfPresent(.month)
-        self.year = try container.sdkDecodeIfPresent(.year)
+        day = try container.sdkDecodeIfPresent(.day)
+        month = try container.sdkDecodeIfPresent(.month)
+        year = try container.sdkDecodeIfPresent(.year)
     }
 }
 
-extension GelatoDataVerifiedOutputsDate {
-    public init(day: Int? = nil, month: Int? = nil, year: Int? = nil) {
+public extension GelatoDataVerifiedOutputsDate {
+    init(day: Int? = nil, month: Int? = nil, year: Int? = nil) {
         self.init()
         (self.day, self.month) = (day, month)
         self.year = year
@@ -240,53 +240,75 @@ public struct GelatoDocumentReport: Codable {
         case unparsedSex = "unparsed_sex"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension GelatoDocumentReport {
-    public init(from decoder: Decoder) throws {
+public extension GelatoDocumentReport {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.status) else {
-            throw SdkValidationError(field: "status", code: "required", message: "Validation failed for 'status': value is required")
+            throw SdkValidationError(
+                field: "status",
+                code: "required",
+                message: "Validation failed for 'status': value is required"
+            )
         }
-        self.status = try container.sdkDecodeRequired(.status)
-        self.address = try container.sdkDecodeIfPresent(.address)
-        self.dob = try container.sdkDecodeIfPresent(.dob)
-        self.error = try container.sdkDecodeIfPresent(.error)
-        self.expirationDate = try container.sdkDecodeIfPresent(.expirationDate)
-        self.files = try container.sdkDecodeIfPresent(.files)
-        self.firstName = try container.sdkDecodeIfPresent(.firstName)
-        self.issuedDate = try container.sdkDecodeIfPresent(.issuedDate)
-        self.issuingCountry = try container.sdkDecodeIfPresent(.issuingCountry)
-        self.lastName = try container.sdkDecodeIfPresent(.lastName)
-        self.number = try container.sdkDecodeIfPresent(.number)
-        self.sex = try container.sdkDecodeIfPresent(.sex)
-        self.type = try container.sdkDecodeIfPresent(.type)
-        self.unparsedPlaceOfBirth = try container.sdkDecodeIfPresent(.unparsedPlaceOfBirth)
-        self.unparsedSex = try container.sdkDecodeIfPresent(.unparsedSex)
-        if let value = self.firstName {
+        status = try container.sdkDecodeRequired(.status)
+        address = try container.sdkDecodeIfPresent(.address)
+        dob = try container.sdkDecodeIfPresent(.dob)
+        error = try container.sdkDecodeIfPresent(.error)
+        expirationDate = try container.sdkDecodeIfPresent(.expirationDate)
+        files = try container.sdkDecodeIfPresent(.files)
+        firstName = try container.sdkDecodeIfPresent(.firstName)
+        issuedDate = try container.sdkDecodeIfPresent(.issuedDate)
+        issuingCountry = try container.sdkDecodeIfPresent(.issuingCountry)
+        lastName = try container.sdkDecodeIfPresent(.lastName)
+        number = try container.sdkDecodeIfPresent(.number)
+        sex = try container.sdkDecodeIfPresent(.sex)
+        type = try container.sdkDecodeIfPresent(.type)
+        unparsedPlaceOfBirth = try container.sdkDecodeIfPresent(.unparsedPlaceOfBirth)
+        unparsedSex = try container.sdkDecodeIfPresent(.unparsedSex)
+        if let value = firstName {
             try validateLength("first_name", value, min: nil, max: 5000)
         }
-        if let value = self.issuingCountry {
+        if let value = issuingCountry {
             try validateLength("issuing_country", value, min: nil, max: 5000)
         }
-        if let value = self.lastName {
+        if let value = lastName {
             try validateLength("last_name", value, min: nil, max: 5000)
         }
-        if let value = self.number {
+        if let value = number {
             try validateLength("number", value, min: nil, max: 5000)
         }
-        if let value = self.unparsedPlaceOfBirth {
+        if let value = unparsedPlaceOfBirth {
             try validateLength("unparsed_place_of_birth", value, min: nil, max: 5000)
         }
-        if let value = self.unparsedSex {
+        if let value = unparsedSex {
             try validateLength("unparsed_sex", value, min: nil, max: 5000)
         }
     }
 }
 
-extension GelatoDocumentReport {
-    public init(status: GelatoDocumentReportStatus, address: GelatoDocumentReportAddress? = nil, dob: GelatoDocumentReportDob? = nil, error: GelatoDocumentReportErrorX27622080? = nil, expirationDate: GelatoDocumentReportExpirationDate? = nil, files: [String]? = nil, firstName: String? = nil, issuedDate: GelatoDocumentReportIssuedDate? = nil, issuingCountry: String? = nil, lastName: String? = nil, number: String? = nil, sex: GelatoDocumentReportSex? = nil, type: GelatoDocumentReportType? = nil, unparsedPlaceOfBirth: String? = nil, unparsedSex: String? = nil) throws {
+public extension GelatoDocumentReport {
+    init(
+        status: GelatoDocumentReportStatus,
+        address: GelatoDocumentReportAddress? = nil,
+        dob: GelatoDocumentReportDob? = nil,
+        error: GelatoDocumentReportErrorX27622080? = nil,
+        expirationDate: GelatoDocumentReportExpirationDate? = nil,
+        files: [String]? = nil,
+        firstName: String? = nil,
+        issuedDate: GelatoDocumentReportIssuedDate? = nil,
+        issuingCountry: String? = nil,
+        lastName: String? = nil,
+        number: String? = nil,
+        sex: GelatoDocumentReportSex? = nil,
+        type: GelatoDocumentReportType? = nil,
+        unparsedPlaceOfBirth: String? = nil,
+        unparsedSex: String? = nil
+    ) throws {
         (self.status, self.address) = (status, address)
         (self.dob, self.error) = (dob, error)
         (self.expirationDate, self.files) = (expirationDate, files)
@@ -321,20 +343,28 @@ public enum GelatoDocumentReportAddress {
 }
 
 extension GelatoDocumentReportAddress: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for GelatoDocumentReportAddress")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for GelatoDocumentReportAddress"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(Address.self) { return .address(value) }
+        if let value = try? container.decode(Address.self) {
+            return .address(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -343,7 +373,6 @@ extension GelatoDocumentReportAddress: Codable {
         case let .address(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum GelatoDocumentReportDob {
@@ -351,24 +380,30 @@ public enum GelatoDocumentReportDob {
 }
 
 extension GelatoDocumentReportDob: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for GelatoDocumentReportDob")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for GelatoDocumentReportDob"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             GelatoDataDocumentReportDateOfBirth.self
         ) {
-            return             .gelatoDataDocumentReportDateOfBirth(value)
+            return .gelatoDataDocumentReportDateOfBirth(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -377,7 +412,6 @@ extension GelatoDocumentReportDob: Codable {
         case let .gelatoDataDocumentReportDateOfBirth(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum GelatoDocumentReportErrorX27622080 {
@@ -385,20 +419,29 @@ public enum GelatoDocumentReportErrorX27622080 {
 }
 
 extension GelatoDocumentReportErrorX27622080: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for GelatoDocumentReportErrorX27622080")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for GelatoDocumentReportErrorX27622080"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(GelatoDocumentReportError.self) { return .gelatoDocumentReportError(value) }
+        if let value = try? container
+            .decode(GelatoDocumentReportError.self) {
+            return .gelatoDocumentReportError(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -407,7 +450,6 @@ extension GelatoDocumentReportErrorX27622080: Codable {
         case let .gelatoDocumentReportError(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum GelatoDocumentReportExpirationDate {
@@ -415,24 +457,30 @@ public enum GelatoDocumentReportExpirationDate {
 }
 
 extension GelatoDocumentReportExpirationDate: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for GelatoDocumentReportExpirationDate")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for GelatoDocumentReportExpirationDate"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             GelatoDataDocumentReportExpirationDate.self
         ) {
-            return             .gelatoDataDocumentReportExpirationDate(value)
+            return .gelatoDataDocumentReportExpirationDate(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -441,7 +489,6 @@ extension GelatoDocumentReportExpirationDate: Codable {
         case let .gelatoDataDocumentReportExpirationDate(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum GelatoDocumentReportIssuedDate {
@@ -449,20 +496,29 @@ public enum GelatoDocumentReportIssuedDate {
 }
 
 extension GelatoDocumentReportIssuedDate: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for GelatoDocumentReportIssuedDate")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for GelatoDocumentReportIssuedDate"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(GelatoDataDocumentReportIssuedDate.self) { return .gelatoDataDocumentReportIssuedDate(value) }
+        if let value = try? container
+            .decode(GelatoDataDocumentReportIssuedDate.self) {
+            return .gelatoDataDocumentReportIssuedDate(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -471,7 +527,6 @@ extension GelatoDocumentReportIssuedDate: Codable {
         case let .gelatoDataDocumentReportIssuedDate(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Typed representation of the `GelatoDocumentReportError` API schema.
@@ -487,23 +542,23 @@ public struct GelatoDocumentReportError: Codable {
     }
 
     init() {
-        (self.code, self.reason) = (nil, nil)
+        (code, reason) = (nil, nil)
     }
 }
 
-extension GelatoDocumentReportError {
-    public init(from decoder: Decoder) throws {
+public extension GelatoDocumentReportError {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.code = try container.sdkDecodeIfPresent(.code)
-        self.reason = try container.sdkDecodeIfPresent(.reason)
-        if let value = self.reason {
+        code = try container.sdkDecodeIfPresent(.code)
+        reason = try container.sdkDecodeIfPresent(.reason)
+        if let value = reason {
             try validateLength("reason", value, min: nil, max: 5000)
         }
     }
 }
 
-extension GelatoDocumentReportError {
-    public init(code: GelatoDocumentReportErrorCode? = nil, reason: String? = nil) throws {
+public extension GelatoDocumentReportError {
+    init(code: GelatoDocumentReportErrorCode? = nil, reason: String? = nil) throws {
         self.init()
         (self.code, self.reason) = (code, reason)
         if let value = self.reason {
@@ -527,26 +582,32 @@ public struct GelatoEmailReport: Codable {
         case error
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension GelatoEmailReport {
-    public init(from decoder: Decoder) throws {
+public extension GelatoEmailReport {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.status) else {
-            throw SdkValidationError(field: "status", code: "required", message: "Validation failed for 'status': value is required")
+            throw SdkValidationError(
+                field: "status",
+                code: "required",
+                message: "Validation failed for 'status': value is required"
+            )
         }
-        self.status = try container.sdkDecodeRequired(.status)
-        self.email = try container.sdkDecodeIfPresent(.email)
-        self.error = try container.sdkDecodeIfPresent(.error)
-        if let value = self.email {
+        status = try container.sdkDecodeRequired(.status)
+        email = try container.sdkDecodeIfPresent(.email)
+        error = try container.sdkDecodeIfPresent(.error)
+        if let value = email {
             try validateLength("email", value, min: nil, max: 5000)
         }
     }
 }
 
-extension GelatoEmailReport {
-    public init(status: GelatoEmailReportStatus, email: String? = nil, error: GelatoEmailReportErrorX62a877fc? = nil) throws {
+public extension GelatoEmailReport {
+    init(status: GelatoEmailReportStatus, email: String? = nil, error: GelatoEmailReportErrorX62a877fc? = nil) throws {
         (self.status, self.email) = (status, email)
         self.error = error
         if let value = self.email {

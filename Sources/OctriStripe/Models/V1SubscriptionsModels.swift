@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1Subscriptions domain models
+/// V1Subscriptions domain models
 /// Typed representation of the `SubscriptionsResourceBillingCycleAnchorConfig` API schema.
 public struct SubscriptionsResourceBillingCycleAnchorConfig: Codable {
     /// The day of the month of the billing_cycle_anchor.
@@ -25,25 +25,31 @@ public struct SubscriptionsResourceBillingCycleAnchorConfig: Codable {
         case second
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension SubscriptionsResourceBillingCycleAnchorConfig {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.dayOfMonth) else {
-            throw SdkValidationError(field: "day_of_month", code: "required", message: "Validation failed for 'day_of_month': value is required")
-        }
-        self.dayOfMonth = try container.sdkDecodeRequired(.dayOfMonth)
-        self.hour = try container.sdkDecodeIfPresent(.hour)
-        self.minute = try container.sdkDecodeIfPresent(.minute)
-        self.month = try container.sdkDecodeIfPresent(.month)
-        self.second = try container.sdkDecodeIfPresent(.second)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension SubscriptionsResourceBillingCycleAnchorConfig {
-    public init(dayOfMonth: Int, hour: Int? = nil, minute: Int? = nil, month: Int? = nil, second: Int? = nil) {
+public extension SubscriptionsResourceBillingCycleAnchorConfig {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.dayOfMonth) else {
+            throw SdkValidationError(
+                field: "day_of_month",
+                code: "required",
+                message: "Validation failed for 'day_of_month': value is required"
+            )
+        }
+        dayOfMonth = try container.sdkDecodeRequired(.dayOfMonth)
+        hour = try container.sdkDecodeIfPresent(.hour)
+        minute = try container.sdkDecodeIfPresent(.minute)
+        month = try container.sdkDecodeIfPresent(.month)
+        second = try container.sdkDecodeIfPresent(.second)
+    }
+}
+
+public extension SubscriptionsResourceBillingCycleAnchorConfig {
+    init(dayOfMonth: Int, hour: Int? = nil, minute: Int? = nil, month: Int? = nil, second: Int? = nil) {
         (self.dayOfMonth, self.hour) = (dayOfMonth, hour)
         (self.minute, self.month) = (minute, month)
         self.second = second
@@ -65,23 +71,33 @@ public struct SubscriptionsResourceBillingMode: Codable {
         case updatedAt = "updated_at"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension SubscriptionsResourceBillingMode {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
-        }
-        self.type = try container.sdkDecodeRequired(.type)
-        self.flexible = try container.sdkDecodeIfPresent(.flexible)
-        self.updatedAt = try container.sdkDecodeIfPresent(.updatedAt)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension SubscriptionsResourceBillingMode {
-    public init(type: SubscriptionsResourceBillingModeType, flexible: SubscriptionsResourceBillingModeFlexibleXfe059304? = nil, updatedAt: Int? = nil) {
+public extension SubscriptionsResourceBillingMode {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.type) else {
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
+        }
+        type = try container.sdkDecodeRequired(.type)
+        flexible = try container.sdkDecodeIfPresent(.flexible)
+        updatedAt = try container.sdkDecodeIfPresent(.updatedAt)
+    }
+}
+
+public extension SubscriptionsResourceBillingMode {
+    init(
+        type: SubscriptionsResourceBillingModeType,
+        flexible: SubscriptionsResourceBillingModeFlexibleXfe059304? = nil,
+        updatedAt: Int? = nil
+    ) {
         (self.type, self.flexible) = (type, flexible)
         self.updatedAt = updatedAt
     }
@@ -92,24 +108,30 @@ public enum SubscriptionsResourceBillingModeFlexibleXfe059304 {
 }
 
 extension SubscriptionsResourceBillingModeFlexibleXfe059304: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for SubscriptionsResourceBillingModeFlexibleXfe059304")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for SubscriptionsResourceBillingModeFlexibleXfe059304"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             SubscriptionsResourceBillingModeFlexible.self
         ) {
-            return             .subscriptionsResourceBillingModeFlexible(value)
+            return .subscriptionsResourceBillingModeFlexible(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -118,7 +140,6 @@ extension SubscriptionsResourceBillingModeFlexibleXfe059304: Codable {
         case let .subscriptionsResourceBillingModeFlexible(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Typed representation of the `SubscriptionsResourceBillingModeFlexible` API schema.
@@ -131,19 +152,19 @@ public struct SubscriptionsResourceBillingModeFlexible: Codable {
     }
 
     init() {
-        self.prorationDiscounts = nil
+        prorationDiscounts = nil
     }
 }
 
-extension SubscriptionsResourceBillingModeFlexible {
-    public init(from decoder: Decoder) throws {
+public extension SubscriptionsResourceBillingModeFlexible {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.prorationDiscounts = try container.sdkDecodeIfPresent(.prorationDiscounts)
+        prorationDiscounts = try container.sdkDecodeIfPresent(.prorationDiscounts)
     }
 }
 
-extension SubscriptionsResourceBillingModeFlexible {
-    public init(prorationDiscounts: SubscriptionsResourceBillingModeFlexibleProrationDiscounts? = nil) {
+public extension SubscriptionsResourceBillingModeFlexible {
+    init(prorationDiscounts: SubscriptionsResourceBillingModeFlexibleProrationDiscounts? = nil) {
         self.init()
         self.prorationDiscounts = prorationDiscounts
     }
@@ -164,30 +185,44 @@ public struct SubscriptionsResourceBillingSchedules: Codable {
         case appliesTo = "applies_to"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension SubscriptionsResourceBillingSchedules {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.billUntil) else {
-            throw SdkValidationError(field: "bill_until", code: "required", message: "Validation failed for 'bill_until': value is required")
-        }
-        guard container.contains(.key) else {
-            throw SdkValidationError(field: "key", code: "required", message: "Validation failed for 'key': value is required")
-        }
-        self.billUntil = try container.sdkDecodeRequired(.billUntil)
-        self.key = try container.sdkDecodeRequired(.key)
-        self.appliesTo = try container.sdkDecodeIfPresent(.appliesTo)
-            try validateLength("key", self.key, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension SubscriptionsResourceBillingSchedules {
-    public init(billUntil: SubscriptionsResourceBillingSchedulesBillUntil, key: String, appliesTo: [SubscriptionsResourceBillingSchedulesAppliesTo]? = nil) throws {
+public extension SubscriptionsResourceBillingSchedules {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.billUntil) else {
+            throw SdkValidationError(
+                field: "bill_until",
+                code: "required",
+                message: "Validation failed for 'bill_until': value is required"
+            )
+        }
+        guard container.contains(.key) else {
+            throw SdkValidationError(
+                field: "key",
+                code: "required",
+                message: "Validation failed for 'key': value is required"
+            )
+        }
+        billUntil = try container.sdkDecodeRequired(.billUntil)
+        key = try container.sdkDecodeRequired(.key)
+        appliesTo = try container.sdkDecodeIfPresent(.appliesTo)
+        try validateLength("key", key, min: nil, max: 5000)
+    }
+}
+
+public extension SubscriptionsResourceBillingSchedules {
+    init(
+        billUntil: SubscriptionsResourceBillingSchedulesBillUntil,
+        key: String,
+        appliesTo: [SubscriptionsResourceBillingSchedulesAppliesTo]? = nil
+    ) throws {
         (self.billUntil, self.key) = (billUntil, key)
         self.appliesTo = appliesTo
-            try validateLength("key", self.key, min: nil, max: 5000)
+        try validateLength("key", self.key, min: nil, max: 5000)
     }
 }
 
@@ -203,22 +238,31 @@ public struct SubscriptionsResourceBillingSchedulesAppliesTo: Codable {
         case price
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension SubscriptionsResourceBillingSchedulesAppliesTo {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
-        }
-        self.type = try container.sdkDecodeRequired(.type)
-        self.price = try container.sdkDecodeIfPresent(.price)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension SubscriptionsResourceBillingSchedulesAppliesTo {
-    public init(type: SubscriptionsResourceBillingSchedulesAppliesToType, price: SubscriptionsResourceBillingSchedulesAppliesToPrice? = nil) {
+public extension SubscriptionsResourceBillingSchedulesAppliesTo {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.type) else {
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
+        }
+        type = try container.sdkDecodeRequired(.type)
+        price = try container.sdkDecodeIfPresent(.price)
+    }
+}
+
+public extension SubscriptionsResourceBillingSchedulesAppliesTo {
+    init(
+        type: SubscriptionsResourceBillingSchedulesAppliesToType,
+        price: SubscriptionsResourceBillingSchedulesAppliesToPrice? = nil
+    ) {
         (self.type, self.price) = (type, price)
     }
 }
@@ -229,21 +273,31 @@ public enum SubscriptionsResourceBillingSchedulesAppliesToPrice {
 }
 
 extension SubscriptionsResourceBillingSchedulesAppliesToPrice: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for SubscriptionsResourceBillingSchedulesAppliesToPrice")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for SubscriptionsResourceBillingSchedulesAppliesToPrice"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(Price.self) { return .price(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(Price.self) {
+            return .price(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -253,7 +307,6 @@ extension SubscriptionsResourceBillingSchedulesAppliesToPrice: Codable {
         case let .price(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Specifies the end of billing period.
@@ -274,27 +327,42 @@ public struct SubscriptionsResourceBillingSchedulesBillUntil: Codable {
         case timestamp
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension SubscriptionsResourceBillingSchedulesBillUntil {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.computedTimestamp) else {
-            throw SdkValidationError(field: "computed_timestamp", code: "required", message: "Validation failed for 'computed_timestamp': value is required")
-        }
-        guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
-        }
-        self.computedTimestamp = try container.sdkDecodeRequired(.computedTimestamp)
-        self.type = try container.sdkDecodeRequired(.type)
-        self.duration = try container.sdkDecodeIfPresent(.duration)
-        self.timestamp = try container.sdkDecodeIfPresent(.timestamp)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension SubscriptionsResourceBillingSchedulesBillUntil {
-    public init(computedTimestamp: Int, type: SubscriptionsResourceBillingSchedulesBillUntilType, duration: SubscriptionsResourceBillingSchedulesBillUntilDurationXcc32e2dc? = nil, timestamp: Int? = nil) {
+public extension SubscriptionsResourceBillingSchedulesBillUntil {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.computedTimestamp) else {
+            throw SdkValidationError(
+                field: "computed_timestamp",
+                code: "required",
+                message: "Validation failed for 'computed_timestamp': value is required"
+            )
+        }
+        guard container.contains(.type) else {
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
+        }
+        computedTimestamp = try container.sdkDecodeRequired(.computedTimestamp)
+        type = try container.sdkDecodeRequired(.type)
+        duration = try container.sdkDecodeIfPresent(.duration)
+        timestamp = try container.sdkDecodeIfPresent(.timestamp)
+    }
+}
+
+public extension SubscriptionsResourceBillingSchedulesBillUntil {
+    init(
+        computedTimestamp: Int,
+        type: SubscriptionsResourceBillingSchedulesBillUntilType,
+        duration: SubscriptionsResourceBillingSchedulesBillUntilDurationXcc32e2dc? = nil,
+        timestamp: Int? = nil
+    ) {
         (self.computedTimestamp, self.type) = (computedTimestamp, type)
         (self.duration, self.timestamp) = (duration, timestamp)
     }
@@ -305,33 +373,39 @@ public enum SubscriptionsResourceBillingSchedulesBillUntilDurationXcc32e2dc {
 }
 
 extension SubscriptionsResourceBillingSchedulesBillUntilDurationXcc32e2dc: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for SubscriptionsResourceBillingSchedulesBillUntilDurationXcc32e2dc")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for SubscriptionsResourceBillingSchedulesBillUntilDurationXcc32e2dc"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             SubscriptionsResourceBillingSchedulesBillUntilDuration.self
         ) {
-            return             .subscriptionsResourceBillingSchedulesBillUntilDuration(value)
+            return .subscriptionsResourceBillingSchedulesBillUntilDuration(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .subscriptionsResourceBillingSchedulesBillUntilDuration(value): try container.encode(value); return true
+        case let .subscriptionsResourceBillingSchedulesBillUntilDuration(value): try container
+            .encode(value); return true
         }
     }
-
 }
 
 /// Configures the `bill_until` date based on the provided `interval` and `interval_count`.
@@ -346,22 +420,28 @@ public struct SubscriptionsResourceBillingSchedulesBillUntilDuration: Codable {
         case intervalCount = "interval_count"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension SubscriptionsResourceBillingSchedulesBillUntilDuration {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.interval) else {
-            throw SdkValidationError(field: "interval", code: "required", message: "Validation failed for 'interval': value is required")
-        }
-        self.interval = try container.sdkDecodeRequired(.interval)
-        self.intervalCount = try container.sdkDecodeIfPresent(.intervalCount)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension SubscriptionsResourceBillingSchedulesBillUntilDuration {
-    public init(interval: SubscriptionsResourceBillingSchedulesBillUntilDurationInterval, intervalCount: Int? = nil) {
+public extension SubscriptionsResourceBillingSchedulesBillUntilDuration {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.interval) else {
+            throw SdkValidationError(
+                field: "interval",
+                code: "required",
+                message: "Validation failed for 'interval': value is required"
+            )
+        }
+        interval = try container.sdkDecodeRequired(.interval)
+        intervalCount = try container.sdkDecodeIfPresent(.intervalCount)
+    }
+}
+
+public extension SubscriptionsResourceBillingSchedulesBillUntilDuration {
+    init(interval: SubscriptionsResourceBillingSchedulesBillUntilDurationInterval, intervalCount: Int? = nil) {
         (self.interval, self.intervalCount) = (interval, intervalCount)
     }
 }
@@ -379,22 +459,28 @@ public struct SubscriptionsResourcePauseCollection: Codable {
         case resumesAt = "resumes_at"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension SubscriptionsResourcePauseCollection {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.behavior) else {
-            throw SdkValidationError(field: "behavior", code: "required", message: "Validation failed for 'behavior': value is required")
-        }
-        self.behavior = try container.sdkDecodeRequired(.behavior)
-        self.resumesAt = try container.sdkDecodeIfPresent(.resumesAt)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension SubscriptionsResourcePauseCollection {
-    public init(behavior: SubscriptionsResourcePauseCollectionBehavior, resumesAt: Int? = nil) {
+public extension SubscriptionsResourcePauseCollection {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.behavior) else {
+            throw SdkValidationError(
+                field: "behavior",
+                code: "required",
+                message: "Validation failed for 'behavior': value is required"
+            )
+        }
+        behavior = try container.sdkDecodeRequired(.behavior)
+        resumesAt = try container.sdkDecodeIfPresent(.resumesAt)
+    }
+}
+
+public extension SubscriptionsResourcePauseCollection {
+    init(behavior: SubscriptionsResourcePauseCollectionBehavior, resumesAt: Int? = nil) {
         (self.behavior, self.resumesAt) = (behavior, resumesAt)
     }
 }
@@ -450,31 +536,43 @@ public struct SubscriptionsResourcePaymentMethodOptions: Codable {
     }
 
     init() {
-        (self.acssDebit, self.bancontact, self.billie, self.card, self.customerBalance) = (nil, nil, nil, nil, nil)
-        (self.konbini, self.payto, self.pix, self.sepaDebit, self.upi) = (nil, nil, nil, nil, nil)
-        self.usBankAccount = nil
+        (acssDebit, bancontact, billie, card, customerBalance) = (nil, nil, nil, nil, nil)
+        (konbini, payto, pix, sepaDebit, upi) = (nil, nil, nil, nil, nil)
+        usBankAccount = nil
     }
 }
 
-extension SubscriptionsResourcePaymentMethodOptions {
-    public init(from decoder: Decoder) throws {
+public extension SubscriptionsResourcePaymentMethodOptions {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.acssDebit = try container.sdkDecodeIfPresent(.acssDebit)
-        self.bancontact = try container.sdkDecodeIfPresent(.bancontact)
-        self.billie = try container.sdkDecodeIfPresent(.billie)
-        self.card = try container.sdkDecodeIfPresent(.card)
-        self.customerBalance = try container.sdkDecodeIfPresent(.customerBalance)
-        self.konbini = try container.sdkDecodeIfPresent(.konbini)
-        self.payto = try container.sdkDecodeIfPresent(.payto)
-        self.pix = try container.sdkDecodeIfPresent(.pix)
-        self.sepaDebit = try container.sdkDecodeIfPresent(.sepaDebit)
-        self.upi = try container.sdkDecodeIfPresent(.upi)
-        self.usBankAccount = try container.sdkDecodeIfPresent(.usBankAccount)
+        acssDebit = try container.sdkDecodeIfPresent(.acssDebit)
+        bancontact = try container.sdkDecodeIfPresent(.bancontact)
+        billie = try container.sdkDecodeIfPresent(.billie)
+        card = try container.sdkDecodeIfPresent(.card)
+        customerBalance = try container.sdkDecodeIfPresent(.customerBalance)
+        konbini = try container.sdkDecodeIfPresent(.konbini)
+        payto = try container.sdkDecodeIfPresent(.payto)
+        pix = try container.sdkDecodeIfPresent(.pix)
+        sepaDebit = try container.sdkDecodeIfPresent(.sepaDebit)
+        upi = try container.sdkDecodeIfPresent(.upi)
+        usBankAccount = try container.sdkDecodeIfPresent(.usBankAccount)
     }
 }
 
-extension SubscriptionsResourcePaymentMethodOptions {
-    public init(acssDebit: SubscriptionsResourcePaymentMethodOptionsAcssDebit? = nil, bancontact: SubscriptionsResourcePaymentMethodOptionsBancontact? = nil, billie: SubscriptionsResourcePaymentMethodOptionsBillie? = nil, card: SubscriptionsResourcePaymentMethodOptionsCard? = nil, customerBalance: SubscriptionsResourcePaymentMethodOptionsCustomerBalance? = nil, konbini: SubscriptionsResourcePaymentMethodOptionsKonbini? = nil, payto: SubscriptionsResourcePaymentMethodOptionsPayto? = nil, pix: SubscriptionsResourcePaymentMethodOptionsPix? = nil, sepaDebit: SubscriptionsResourcePaymentMethodOptionsSepaDebit? = nil, upi: SubscriptionsResourcePaymentMethodOptionsUpi? = nil, usBankAccount: SubscriptionsResourcePaymentMethodOptionsUsBankAccount? = nil) {
+public extension SubscriptionsResourcePaymentMethodOptions {
+    init(
+        acssDebit: SubscriptionsResourcePaymentMethodOptionsAcssDebit? = nil,
+        bancontact: SubscriptionsResourcePaymentMethodOptionsBancontact? = nil,
+        billie: SubscriptionsResourcePaymentMethodOptionsBillie? = nil,
+        card: SubscriptionsResourcePaymentMethodOptionsCard? = nil,
+        customerBalance: SubscriptionsResourcePaymentMethodOptionsCustomerBalance? = nil,
+        konbini: SubscriptionsResourcePaymentMethodOptionsKonbini? = nil,
+        payto: SubscriptionsResourcePaymentMethodOptionsPayto? = nil,
+        pix: SubscriptionsResourcePaymentMethodOptionsPix? = nil,
+        sepaDebit: SubscriptionsResourcePaymentMethodOptionsSepaDebit? = nil,
+        upi: SubscriptionsResourcePaymentMethodOptionsUpi? = nil,
+        usBankAccount: SubscriptionsResourcePaymentMethodOptionsUsBankAccount? = nil
+    ) {
         self.init()
         (self.acssDebit, self.bancontact) = (acssDebit, bancontact)
         (self.billie, self.card) = (billie, card)
@@ -490,24 +588,30 @@ public enum SubscriptionsResourcePaymentMethodOptionsAcssDebit {
 }
 
 extension SubscriptionsResourcePaymentMethodOptionsAcssDebit: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for SubscriptionsResourcePaymentMethodOptionsAcssDebit")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for SubscriptionsResourcePaymentMethodOptionsAcssDebit"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             InvoicePaymentMethodOptionsAcssDebit.self
         ) {
-            return             .invoicePaymentMethodOptionsAcssDebit(value)
+            return .invoicePaymentMethodOptionsAcssDebit(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -516,7 +620,6 @@ extension SubscriptionsResourcePaymentMethodOptionsAcssDebit: Codable {
         case let .invoicePaymentMethodOptionsAcssDebit(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum SubscriptionsResourcePaymentMethodOptionsBancontact {

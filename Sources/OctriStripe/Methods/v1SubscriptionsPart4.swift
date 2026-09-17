@@ -6,10 +6,22 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1SubscriptionsMethods {
-    /// Deletes the current discount from a subscription and cancels the subscription immediately. The subscription will not be charged again for the subscription, although pending invoice items and certain prorations can remain collectible. Use `invoice_now` and `prorate` to control final invoicing and credits, and provide `cancellation_details` when recording the reason.
+public extension V1SubscriptionsMethods {
+    /// Deletes the current discount from a subscription and cancels the subscription immediately. The subscription will
+    /// not be charged again for the subscription, although pending invoice items and certain prorations can remain
+    /// collectible. Use `invoice_now` and `prorate` to control final invoicing and credits, and provide
+    /// `cancellation_details` when recording the reason.
     ///
-    /// Cancels a customer’s subscription immediately. The customer won’t be charged again for the subscription. After it’s canceled, the subscription is largely immutable. You can still update its metadata and cancellation_details . Any pending invoice items that you’ve created are still charged at the end of the period, unless manually deleted. If you’ve set the subscription to cancel at the end of the period, any pending prorations are also left in place and collected at the end of the period. But if the subscription is set to cancel immediately, pending prorations are removed if invoice_now and prorate are both set to false. By default, upon subscription cancellation, Stripe stops automatic collection of all finalized invoices for the customer. This is intended to prevent unexpected payment attempts after the customer has canceled a subscription. However, you can resume automatic collection of the invoices manually after subscription cancellation to have us proceed. Or, you could check for unpaid invoices before allowing the customer to cancel the subscription at all.
+    /// Cancels a customer’s subscription immediately. The customer won’t be charged again for the subscription. After
+    /// it’s canceled, the subscription is largely immutable. You can still update its metadata and cancellation_details
+    /// . Any pending invoice items that you’ve created are still charged at the end of the period, unless manually
+    /// deleted. If you’ve set the subscription to cancel at the end of the period, any pending prorations are also left
+    /// in place and collected at the end of the period. But if the subscription is set to cancel immediately, pending
+    /// prorations are removed if invoice_now and prorate are both set to false. By default, upon subscription
+    /// cancellation, Stripe stops automatic collection of all finalized invoices for the customer. This is intended to
+    /// prevent unexpected payment attempts after the customer has canceled a subscription. However, you can resume
+    /// automatic collection of the invoices manually after subscription cancellation to have us proceed. Or, you could
+    /// check for unpaid invoices before allowing the customer to cancel the subscription at all.
     ///
     /// - Parameters:
     /// - cancellationDetails: Details about why this subscription was cancelled
@@ -19,25 +31,57 @@ extension V1SubscriptionsMethods {
     ///   to `false`.
     /// - prorate: Will generate a proration invoice item that credits remaining
     ///   unused time until the subscription period end. Defaults to `false`.
-    public static func deleteSubscriptionsSubscriptionExposedId(config: ClientConfig, subscriptionExposedId: String, cancellationDetails: DeleteSubscriptionsSubscriptionExposedIdRequestBodyCancellationDetails?, expand: [String]?, invoiceNow: Bool?, prorate: Bool?) async throws -> Subscription {
+    static func deleteSubscriptionsSubscriptionExposedId(
+        config: ClientConfig,
+        subscriptionExposedId: String,
+        cancellationDetails: DeleteSubscriptionsSubscriptionExposedIdRequestBodyCancellationDetails?,
+        expand: [String]?,
+        invoiceNow: Bool?,
+        prorate: Bool?
+    ) async throws -> Subscription {
         try validateLength("subscription_exposed_id", subscriptionExposedId, max: 5000)
 
-        let requestBody = DeleteSubscriptionsSubscriptionExposedIdRequestBody(cancellationDetails: cancellationDetails, expand: expand, invoiceNow: invoiceNow, prorate: prorate)
+        let requestBody = DeleteSubscriptionsSubscriptionExposedIdRequestBody(
+            cancellationDetails: cancellationDetails,
+            expand: expand,
+            invoiceNow: invoiceNow,
+            prorate: prorate
+        )
 
-        return try (await sdkRequest("DELETE", ["/v1/subscriptions/", sdkEncodePathSegment(sdkWireString(subscriptionExposedId))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "DeleteSubscriptionsSubscriptionExposedId")).data
+        return try await (sdkRequest(
+            "DELETE",
+            ["/v1/subscriptions/", sdkEncodePathSegment(sdkWireString(subscriptionExposedId))].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "DeleteSubscriptionsSubscriptionExposedId"
+        )).data
     }
 
-    /// Retrieves a subscription by its exposed identifier. Use `subscription_exposed_id` to select the subscription and `expand` to include expanded related objects in the response. The request body has no defined fields.
+    /// Retrieves a subscription by its exposed identifier. Use `subscription_exposed_id` to select the subscription and
+    /// `expand` to include expanded related objects in the response. The request body has no defined fields.
     ///
     /// Retrieves the subscription with the given ID.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func getSubscriptionsSubscriptionExposedId(config: ClientConfig, subscriptionExposedId: String, expand: [String]?) async throws -> Subscription {
+    static func getSubscriptionsSubscriptionExposedId(
+        config: ClientConfig,
+        subscriptionExposedId: String,
+        expand: [String]?
+    ) async throws -> Subscription {
         try validateLength("subscription_exposed_id", subscriptionExposedId, max: 5000)
 
-        return try (await sdkRequest("GET", ["/v1/subscriptions/", sdkEncodePathSegment(sdkWireString(subscriptionExposedId))].joined(), config: config, query: [
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-        ], decoder: .json, operationId: "GetSubscriptionsSubscriptionExposedId")).data
+        return try await (sdkRequest(
+            "GET",
+            ["/v1/subscriptions/", sdkEncodePathSegment(sdkWireString(subscriptionExposedId))].joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+            ],
+            decoder: .json,
+            operationId: "GetSubscriptionsSubscriptionExposedId"
+        )).data
     }
 }

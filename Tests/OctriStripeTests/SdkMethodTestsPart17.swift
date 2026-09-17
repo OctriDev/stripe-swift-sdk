@@ -216,15 +216,17 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostFinancialConnectionsAccountsAccountDisconnectPostFinanciaX6b79ea8119ReachesMockAndDecodesResponse() async throws {
+    func testPostFinancialConnectionsAccountsAccountDisconnectPostFinanciaX6b79ea8119ReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        let actual = try await client.v1.financialConnections.accounts.disconnect.postFinancialConnectionsAccountsAccount(
-            account: decoded("\"account\""),
-            expand: decoded("[\"expand\"]")
-        )
+        let actual = try await client.v1.financialConnections.accounts.disconnect
+            .postFinancialConnectionsAccountsAccount(
+                account: decoded("\"account\""),
+                expand: decoded("[\"expand\"]")
+            )
         let expected = try JSONSerialization.jsonObject(
             with: Data(sdkMethodFixture387Expected.utf8),
             options: [.fragmentsAllowed]
@@ -236,7 +238,8 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostFinancialConnectionsAccountsAccountRefreshPostFinancialCoXa202d3ef51ReachesMockAndDecodesResponse() async throws {
+    func testPostFinancialConnectionsAccountsAccountRefreshPostFinancialCoXa202d3ef51ReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -257,16 +260,18 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostFinancialConnectionsAccountsAccountSubscribePostFinancialX50075c29cdReachesMockAndDecodesResponse() async throws {
+    func testPostFinancialConnectionsAccountsAccountSubscribePostFinancialX50075c29cdReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        let actual = try await client.v1.financialConnections.accounts.subscribe.postFinancialConnectionsAccountsAccount(
-            account: decoded("\"account\""),
-            features: decoded("[\"transactions\"]"),
-            expand: decoded("[\"expand\"]")
-        )
+        let actual = try await client.v1.financialConnections.accounts.subscribe
+            .postFinancialConnectionsAccountsAccount(
+                account: decoded("\"account\""),
+                features: decoded("[\"transactions\"]"),
+                expand: decoded("[\"expand\"]")
+            )
         let expected = try JSONSerialization.jsonObject(
             with: Data(sdkMethodFixture389Expected.utf8),
             options: [.fragmentsAllowed]
@@ -278,16 +283,18 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostFinancialConnectionsAccountsAccountUnsubscribePostFinanciXefcf8d873cReachesMockAndDecodesResponse() async throws {
+    func testPostFinancialConnectionsAccountsAccountUnsubscribePostFinanciXefcf8d873cReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        let actual = try await client.v1.financialConnections.accounts.unsubscribe.postFinancialConnectionsAccountsAccount(
-            account: decoded("\"account\""),
-            features: decoded("[\"transactions\"]"),
-            expand: decoded("[\"expand\"]")
-        )
+        let actual = try await client.v1.financialConnections.accounts.unsubscribe
+            .postFinancialConnectionsAccountsAccount(
+                account: decoded("\"account\""),
+                features: decoded("[\"transactions\"]"),
+                expand: decoded("[\"expand\"]")
+            )
         let expected = try JSONSerialization.jsonObject(
             with: Data(sdkMethodFixture390Expected.utf8),
             options: [.fragmentsAllowed]
@@ -299,12 +306,16 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostFinancialConnectionsSessionsPostFinancialConnectionsSessionsReachesMockAndDecodesResponse() async throws {
+    func testPostFinancialConnectionsSessionsPostFinancialConnectionsSessionsReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        var options = try V1FinancialConnectionsSessionsMethods.PostFinancialConnectionsSessionsOptions(accountHolder: decoded(sdkMethodFixture391Value1), permissions: decoded("[\"balances\"]"))
+        var options = try V1FinancialConnectionsSessionsMethods.PostFinancialConnectionsSessionsOptions(
+            accountHolder: decoded(sdkMethodFixture391Value1),
+            permissions: decoded("[\"balances\"]")
+        )
         options.expand = try decoded("[\"expand\"]")
         options.filters = try decoded(sdkMethodFixture391Value2)
         options.limits = try decoded("{\"accounts\":1}")
@@ -349,7 +360,8 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostIdentityVerificationSessionsPostIdentityVerificationSessionsReachesMockAndDecodesResponse() async throws {
+    func testPostIdentityVerificationSessionsPostIdentityVerificationSessionsReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -380,7 +392,8 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostIdentityVerificationSessionsSessionPostIdentityVerificatiX364bc77db4ReachesMockAndDecodesResponse() async throws {
+    func testPostIdentityVerificationSessionsSessionPostIdentityVerificatiX364bc77db4ReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -400,7 +413,8 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostIdentityVerificationSessionsSessionCancelPostIdentityVeriXb5be6eb645ReachesMockAndDecodesResponse() async throws {
+    func testPostIdentityVerificationSessionsSessionCancelPostIdentityVeriXb5be6eb645ReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -420,7 +434,8 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostIdentityVerificationSessionsSessionRedactPostIdentityVeriXaefb77d547ReachesMockAndDecodesResponse() async throws {
+    func testPostIdentityVerificationSessionsSessionRedactPostIdentityVeriXaefb77d547ReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -485,7 +500,8 @@ extension SdkMethodTests {
             return
         }
         _ = client
-        var options = try V1InvoiceitemsMethods.PostInvoiceitemsInvoiceitemOptions(invoiceitem: decoded("\"invoiceitem\""))
+        var options = try V1InvoiceitemsMethods
+            .PostInvoiceitemsInvoiceitemOptions(invoiceitem: decoded("\"invoiceitem\""))
         options.amount = try decoded("100")
         options.description = try decoded("\"example text\"")
         options.discountable = try decoded("false")
@@ -515,7 +531,8 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostInvoiceRenderingTemplatesTemplateArchivePostInvoiceRenderX166b48fdfdReachesMockAndDecodesResponse() async throws {
+    func testPostInvoiceRenderingTemplatesTemplateArchivePostInvoiceRenderX166b48fdfdReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }

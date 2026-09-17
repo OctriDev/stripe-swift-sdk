@@ -6,8 +6,10 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1FinancialConnectionsTransactionsMethods {
-    /// Lists transactions associated with a Financial Connections account. Use `account` to select the account and the cursor parameters to navigate through results, and filter by transaction time or refresh token when needed. The response is a list containing transaction objects and pagination metadata.
+public extension V1FinancialConnectionsTransactionsMethods {
+    /// Lists transactions associated with a Financial Connections account. Use `account` to select the account and the
+    /// cursor parameters to navigate through results, and filter by transaction time or refresh token when needed. The
+    /// response is a list containing transaction objects and pagination metadata.
     ///
     /// Returns a list of Financial Connections Transaction objects.
     ///
@@ -33,18 +35,27 @@ extension V1FinancialConnectionsTransactionsMethods {
     /// - transactionRefresh: A filter on the list based on the object
     ///   `transaction_refresh` field. The value can be a dictionary with the
     ///   following options:
-    public static func getFinancialConnectionsTransactions(config: ClientConfig, account: String, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?, transactedAt: GetFinancialConnectionsTransactionsParameter?, transactionRefresh: GetFinancialConnectionsTransactionsParameterXf4fdae2d?) async throws -> GetFinancialConnectionsTransactionsResponse {
+    static func getFinancialConnectionsTransactions(
+        config: ClientConfig,
+        account: String,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        startingAfter: String?,
+        transactedAt: GetFinancialConnectionsTransactionsParameter?,
+        transactionRefresh: GetFinancialConnectionsTransactionsParameterXf4fdae2d?
+    ) async throws -> GetFinancialConnectionsTransactionsResponse {
         try validateLength("account", account, max: 5000)
 
-        if let endingBefore = endingBefore {
+        if let endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let startingAfter = startingAfter {
+        if let startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try (await sdkRequest("GET", "/v1/financial_connections/transactions", config: config, query: [
+        return try await (sdkRequest("GET", "/v1/financial_connections/transactions", config: config, query: [
             SdkQueryParameter("account", value: account),
             SdkQueryParameter("ending_before", value: endingBefore),
             SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),

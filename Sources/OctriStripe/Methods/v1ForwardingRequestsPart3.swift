@@ -6,8 +6,11 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1ForwardingRequestsMethods {
-    /// Creates a ForwardingRequest that sends a request to a configured destination URL on your behalf. Supply `payment_method`, `replacements`, and `url`, and optionally provide request headers, a body, metadata, or response expansions. The forwarding request inserts the payment method into the destination request and replaces the selected sensitive field kinds.
+public extension V1ForwardingRequestsMethods {
+    /// Creates a ForwardingRequest that sends a request to a configured destination URL on your behalf. Supply
+    /// `payment_method`, `replacements`, and `url`, and optionally provide request headers, a body, metadata, or
+    /// response expansions. The forwarding request inserts the payment method into the destination request and replaces
+    /// the selected sensitive field kinds.
     ///
     /// Creates a ForwardingRequest object.
     ///
@@ -25,13 +28,36 @@ extension V1ForwardingRequestsMethods {
     ///   empty value to `metadata`.
     /// - request: The request body and headers to be sent to the destination
     ///   endpoint.
-    public static func postForwardingRequests(config: ClientConfig, paymentMethod: String, replacements: [PostForwardingRequestsRequestBodyReplacementsItem], url: String, expand: [String]?, metadata: [String: String]?, request: PostForwardingRequestsRequestBodyRequest?) async throws -> ForwardingRequest {
+    static func postForwardingRequests(
+        config: ClientConfig,
+        paymentMethod: String,
+        replacements: [PostForwardingRequestsRequestBodyReplacementsItem],
+        url: String,
+        expand: [String]?,
+        metadata: [String: String]?,
+        request: PostForwardingRequestsRequestBodyRequest?
+    ) async throws -> ForwardingRequest {
         try validateLength("payment_method", paymentMethod, max: 5000)
 
         try validateLength("url", url, max: 5000)
 
-        let requestBody = PostForwardingRequestsRequestBody(paymentMethod: paymentMethod, replacements: replacements, url: url, expand: expand, metadata: metadata, request: request)
+        let requestBody = PostForwardingRequestsRequestBody(
+            paymentMethod: paymentMethod,
+            replacements: replacements,
+            url: url,
+            expand: expand,
+            metadata: metadata,
+            request: request
+        )
 
-        return try (await sdkRequest("POST", "/v1/forwarding/requests", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostForwardingRequests")).data
+        return try await (sdkRequest(
+            "POST",
+            "/v1/forwarding/requests",
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostForwardingRequests"
+        )).data
     }
 }

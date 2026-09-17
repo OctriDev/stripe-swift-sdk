@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1InvoicePaymentsMethods {
-    public struct GetInvoicePaymentsOptions: Codable {
+public extension V1InvoicePaymentsMethods {
+    struct GetInvoicePaymentsOptions: Codable {
         public var created: GetInvoicePaymentsParameter?
         public var endingBefore: String?
         public var expand: [String]?
@@ -20,9 +20,11 @@ extension V1InvoicePaymentsMethods {
         public init() {}
     }
 
-    /// Lists payments associated with invoices. Filter by invoice, payment type, payment status, or creation time, and use cursor parameters with `limit` to retrieve the full paginated payment history.
+    /// Lists payments associated with invoices. Filter by invoice, payment type, payment status, or creation time, and
+    /// use cursor parameters with `limit` to retrieve the full paginated payment history.
     ///
-    /// When retrieving an invoice, there is an includable payments property containing the first handful of those items. There is also a URL where you can retrieve the full (paginated) list of payments.
+    /// When retrieving an invoice, there is an includable payments property containing the first handful of those
+    /// items. There is also a URL where you can retrieve the full (paginated) list of payments.
     ///
     /// - Parameters:
     /// - created: Only return invoice payments that were created during the given
@@ -43,7 +45,10 @@ extension V1InvoicePaymentsMethods {
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
     /// - status: The status of the invoice payments to return.
-    public static func getInvoicePayments(config: ClientConfig, options: GetInvoicePaymentsOptions) async throws -> GetInvoicePaymentsResponse {
+    static func getInvoicePayments(
+        config: ClientConfig,
+        options: GetInvoicePaymentsOptions
+    ) async throws -> GetInvoicePaymentsResponse {
         if let endingBefore = options.endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
@@ -56,7 +61,7 @@ extension V1InvoicePaymentsMethods {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try (await sdkRequest("GET", "/v1/invoice_payments", config: config, query: [
+        return try await (sdkRequest("GET", "/v1/invoice_payments", config: config, query: [
             SdkQueryParameter("created", value: options.created),
             SdkQueryParameter("ending_before", value: options.endingBefore),
             SdkQueryParameter("expand", values: options.expand, style: "deepObject", explode: true),

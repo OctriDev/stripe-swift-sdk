@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1IssuingPhysicalBundles operation model declarations
+/// Canonical v1IssuingPhysicalBundles operation model declarations
 public struct GetIssuingPhysicalBundlesResponse: Codable {
     public var data: [IssuingPhysicalBundle]
     /// True if this list has another page of items after this one that can be fetched.
@@ -25,38 +25,61 @@ public struct GetIssuingPhysicalBundlesResponse: Codable {
         case url
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension GetIssuingPhysicalBundlesResponse {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.data) else {
-            throw SdkValidationError(field: "data", code: "required", message: "Validation failed for 'data': value is required")
-        }
-        guard container.contains(.hasMore) else {
-            throw SdkValidationError(field: "has_more", code: "required", message: "Validation failed for 'has_more': value is required")
-        }
-        guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
-        }
-        guard container.contains(.url) else {
-            throw SdkValidationError(field: "url", code: "required", message: "Validation failed for 'url': value is required")
-        }
-        self.data = try container.sdkDecodeRequired(.data)
-        self.hasMore = try container.sdkDecodeRequired(.hasMore)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.url = try container.sdkDecodeRequired(.url)
-            try validateLength("url", self.url, min: nil, max: 5000)
-            try sdkValidatePattern("url", self.url, sdkPattern48fd7b2da94d)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension GetIssuingPhysicalBundlesResponse {
-    public init(data: [IssuingPhysicalBundle], hasMore: Bool, object: GetIssuingPhysicalBundlesResponseObject, url: String) throws {
+public extension GetIssuingPhysicalBundlesResponse {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.data) else {
+            throw SdkValidationError(
+                field: "data",
+                code: "required",
+                message: "Validation failed for 'data': value is required"
+            )
+        }
+        guard container.contains(.hasMore) else {
+            throw SdkValidationError(
+                field: "has_more",
+                code: "required",
+                message: "Validation failed for 'has_more': value is required"
+            )
+        }
+        guard container.contains(.object) else {
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
+        }
+        guard container.contains(.url) else {
+            throw SdkValidationError(
+                field: "url",
+                code: "required",
+                message: "Validation failed for 'url': value is required"
+            )
+        }
+        data = try container.sdkDecodeRequired(.data)
+        hasMore = try container.sdkDecodeRequired(.hasMore)
+        object = try container.sdkDecodeRequired(.object)
+        url = try container.sdkDecodeRequired(.url)
+        try validateLength("url", url, min: nil, max: 5000)
+        try sdkValidatePattern("url", url, sdkPattern48fd7b2da94d)
+    }
+}
+
+public extension GetIssuingPhysicalBundlesResponse {
+    init(
+        data: [IssuingPhysicalBundle],
+        hasMore: Bool,
+        object: GetIssuingPhysicalBundlesResponseObject,
+        url: String
+    ) throws {
         (self.data, self.hasMore) = (data, hasMore)
         (self.object, self.url) = (object, url)
-            try validateLength("url", self.url, min: nil, max: 5000)
-            try sdkValidatePattern("url", self.url, sdkPattern48fd7b2da94d)
+        try validateLength("url", self.url, min: nil, max: 5000)
+        try sdkValidatePattern("url", self.url, sdkPattern48fd7b2da94d)
     }
 }

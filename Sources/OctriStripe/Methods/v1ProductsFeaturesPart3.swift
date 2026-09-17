@@ -6,8 +6,9 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1ProductsFeaturesMethods {
-    /// Creates a feature attachment for a product. Supply the entitlement feature identifier in `entitlement_feature` to associate that feature with `product`. Use `expand` when you need selected response fields expanded.
+public extension V1ProductsFeaturesMethods {
+    /// Creates a feature attachment for a product. Supply the entitlement feature identifier in `entitlement_feature`
+    /// to associate that feature with `product`. Use `expand` when you need selected response fields expanded.
     ///
     /// Creates a product_feature, which represents a feature attachment to a product
     ///
@@ -16,24 +17,53 @@ extension V1ProductsFeaturesMethods {
     ///   [Feature](https://docs.stripe.com/api/entitlements/feature) object attached
     ///   to this product.
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postProductsProductFeatures(config: ClientConfig, product: String, entitlementFeature: String, expand: [String]?) async throws -> ProductFeature {
+    static func postProductsProductFeatures(
+        config: ClientConfig,
+        product: String,
+        entitlementFeature: String,
+        expand: [String]?
+    ) async throws -> ProductFeature {
         try validateLength("product", product, max: 5000)
 
         try validateLength("entitlement_feature", entitlementFeature, max: 5000)
 
         let requestBody = PostProductsProductFeaturesRequestBody(entitlementFeature: entitlementFeature, expand: expand)
 
-        return try (await sdkRequest("POST", ["/v1/products/", sdkEncodePathSegment(sdkWireString(product)), "/features"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostProductsProductFeatures")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/products/", sdkEncodePathSegment(sdkWireString(product)), "/features"].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostProductsProductFeatures"
+        )).data
     }
 
-    /// Deletes a feature attachment from a product. Provide `product` and `id` to identify the relationship that you want to remove.
+    /// Deletes a feature attachment from a product. Provide `product` and `id` to identify the relationship that you
+    /// want to remove.
     ///
     /// Deletes the feature attachment to a product
-    public static func deleteProductsProductFeaturesId(config: ClientConfig, id: String, product: String) async throws -> DeletedProductFeature {
+    static func deleteProductsProductFeaturesId(
+        config: ClientConfig,
+        id: String,
+        product: String
+    ) async throws -> DeletedProductFeature {
         try validateLength("id", id, max: 5000)
 
         try validateLength("product", product, max: 5000)
 
-        return try (await sdkRequest("DELETE", ["/v1/products/", sdkEncodePathSegment(sdkWireString(product)), "/features/", sdkEncodePathSegment(sdkWireString(id))].joined(), config: config, decoder: .json, operationId: "DeleteProductsProductFeaturesId")).data
+        return try await (sdkRequest(
+            "DELETE",
+            [
+                "/v1/products/",
+                sdkEncodePathSegment(sdkWireString(product)),
+                "/features/",
+                sdkEncodePathSegment(sdkWireString(id)),
+            ].joined(),
+            config: config,
+            decoder: .json,
+            operationId: "DeleteProductsProductFeaturesId"
+        )).data
     }
 }

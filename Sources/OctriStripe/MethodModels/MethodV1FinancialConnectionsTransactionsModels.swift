@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1FinancialConnectionsTransactions operation model declarations
+/// Canonical v1FinancialConnectionsTransactions operation model declarations
 public struct GetFinancialConnectionsTransactionsResponse: Codable {
     /// Details about each object.
     public var data: [FinancialConnectionsTransaction]
@@ -26,39 +26,62 @@ public struct GetFinancialConnectionsTransactionsResponse: Codable {
         case url
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension GetFinancialConnectionsTransactionsResponse {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.data) else {
-            throw SdkValidationError(field: "data", code: "required", message: "Validation failed for 'data': value is required")
-        }
-        guard container.contains(.hasMore) else {
-            throw SdkValidationError(field: "has_more", code: "required", message: "Validation failed for 'has_more': value is required")
-        }
-        guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
-        }
-        guard container.contains(.url) else {
-            throw SdkValidationError(field: "url", code: "required", message: "Validation failed for 'url': value is required")
-        }
-        self.data = try container.sdkDecodeRequired(.data)
-        self.hasMore = try container.sdkDecodeRequired(.hasMore)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.url = try container.sdkDecodeRequired(.url)
-            try validateLength("url", self.url, min: nil, max: 5000)
-            try sdkValidatePattern("url", self.url, sdkPattern285b9eb62652)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension GetFinancialConnectionsTransactionsResponse {
-    public init(data: [FinancialConnectionsTransaction], hasMore: Bool, object: GetFinancialConnectionsTransactionsResponseObject, url: String) throws {
+public extension GetFinancialConnectionsTransactionsResponse {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.data) else {
+            throw SdkValidationError(
+                field: "data",
+                code: "required",
+                message: "Validation failed for 'data': value is required"
+            )
+        }
+        guard container.contains(.hasMore) else {
+            throw SdkValidationError(
+                field: "has_more",
+                code: "required",
+                message: "Validation failed for 'has_more': value is required"
+            )
+        }
+        guard container.contains(.object) else {
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
+        }
+        guard container.contains(.url) else {
+            throw SdkValidationError(
+                field: "url",
+                code: "required",
+                message: "Validation failed for 'url': value is required"
+            )
+        }
+        data = try container.sdkDecodeRequired(.data)
+        hasMore = try container.sdkDecodeRequired(.hasMore)
+        object = try container.sdkDecodeRequired(.object)
+        url = try container.sdkDecodeRequired(.url)
+        try validateLength("url", url, min: nil, max: 5000)
+        try sdkValidatePattern("url", url, sdkPattern285b9eb62652)
+    }
+}
+
+public extension GetFinancialConnectionsTransactionsResponse {
+    init(
+        data: [FinancialConnectionsTransaction],
+        hasMore: Bool,
+        object: GetFinancialConnectionsTransactionsResponseObject,
+        url: String
+    ) throws {
         (self.data, self.hasMore) = (data, hasMore)
         (self.object, self.url) = (object, url)
-            try validateLength("url", self.url, min: nil, max: 5000)
-            try sdkValidatePattern("url", self.url, sdkPattern285b9eb62652)
+        try validateLength("url", self.url, min: nil, max: 5000)
+        try sdkValidatePattern("url", self.url, sdkPattern285b9eb62652)
     }
 }
 
@@ -68,25 +91,33 @@ public enum GetFinancialConnectionsTransactionsParameter {
 }
 
 extension GetFinancialConnectionsTransactionsParameter: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for GetFinancialConnectionsTransactionsParameter")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for GetFinancialConnectionsTransactionsParameter"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             GetFinancialConnectionsTransactionsParameterVariant0.self
         ) {
-            return             .getFinancialConnectionsTransactionsParameterVariant0(value)
+            return .getFinancialConnectionsTransactionsParameterVariant0(value)
         }
-        if let value = try? container.decode(Int.self) { return .intValue(value) }
+        if let value = try? container.decode(Int.self) {
+            return .intValue(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -96,7 +127,6 @@ extension GetFinancialConnectionsTransactionsParameter: Codable {
         case let .intValue(value): try container.encode(value); return true
         }
     }
-
 }
 
 public struct GetFinancialConnectionsTransactionsParameterVariant0: Codable {
@@ -113,22 +143,22 @@ public struct GetFinancialConnectionsTransactionsParameterVariant0: Codable {
     }
 
     init() {
-        (self.gt, self.gte, self.lt, self.lte) = (nil, nil, nil, nil)
+        (gt, gte, lt, lte) = (nil, nil, nil, nil)
     }
 }
 
-extension GetFinancialConnectionsTransactionsParameterVariant0 {
-    public init(from decoder: Decoder) throws {
+public extension GetFinancialConnectionsTransactionsParameterVariant0 {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.gt = try container.sdkDecodeIfPresent(.gt)
-        self.gte = try container.sdkDecodeIfPresent(.gte)
-        self.lt = try container.sdkDecodeIfPresent(.lt)
-        self.lte = try container.sdkDecodeIfPresent(.lte)
+        gt = try container.sdkDecodeIfPresent(.gt)
+        gte = try container.sdkDecodeIfPresent(.gte)
+        lt = try container.sdkDecodeIfPresent(.lt)
+        lte = try container.sdkDecodeIfPresent(.lte)
     }
 }
 
-extension GetFinancialConnectionsTransactionsParameterVariant0 {
-    public init(gt: Int? = nil, gte: Int? = nil, lt: Int? = nil, lte: Int? = nil) {
+public extension GetFinancialConnectionsTransactionsParameterVariant0 {
+    init(gt: Int? = nil, gte: Int? = nil, lt: Int? = nil, lte: Int? = nil) {
         self.init()
         (self.gt, self.gte) = (gt, gte)
         (self.lt, self.lte) = (lt, lte)
@@ -142,23 +172,29 @@ public struct GetFinancialConnectionsTransactionsParameterXf4fdae2d: Codable {
         case after
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension GetFinancialConnectionsTransactionsParameterXf4fdae2d {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.after) else {
-            throw SdkValidationError(field: "after", code: "required", message: "Validation failed for 'after': value is required")
-        }
-        self.after = try container.sdkDecodeRequired(.after)
-            try validateLength("after", self.after, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension GetFinancialConnectionsTransactionsParameterXf4fdae2d {
-    public init(after: String) throws {
+public extension GetFinancialConnectionsTransactionsParameterXf4fdae2d {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.after) else {
+            throw SdkValidationError(
+                field: "after",
+                code: "required",
+                message: "Validation failed for 'after': value is required"
+            )
+        }
+        after = try container.sdkDecodeRequired(.after)
+        try validateLength("after", after, min: nil, max: 5000)
+    }
+}
+
+public extension GetFinancialConnectionsTransactionsParameterXf4fdae2d {
+    init(after: String) throws {
         self.after = after
-            try validateLength("after", self.after, min: nil, max: 5000)
+        try validateLength("after", self.after, min: nil, max: 5000)
     }
 }

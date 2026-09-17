@@ -6,18 +6,31 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1LinkAccountSessionsMethods {
-    /// Retrieves the details of a Financial Connections Session. Use `session` to identify the session whose collected account data and client-side authentication details you need, and use `expand` to request expanded response fields.
+public extension V1LinkAccountSessionsMethods {
+    /// Retrieves the details of a Financial Connections Session. Use `session` to identify the session whose collected
+    /// account data and client-side authentication details you need, and use `expand` to request expanded response
+    /// fields.
     ///
     /// Retrieves the details of a Financial Connections Session
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func getLinkAccountSessionsSession(config: ClientConfig, session: String, expand: [String]?) async throws -> FinancialConnectionsSession {
+    static func getLinkAccountSessionsSession(
+        config: ClientConfig,
+        session: String,
+        expand: [String]?
+    ) async throws -> FinancialConnectionsSession {
         try validateLength("session", session, max: 5000)
 
-        return try (await sdkRequest("GET", ["/v1/link_account_sessions/", sdkEncodePathSegment(sdkWireString(session))].joined(), config: config, query: [
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-        ], decoder: .json, operationId: "GetLinkAccountSessionsSession")).data
+        return try await (sdkRequest(
+            "GET",
+            ["/v1/link_account_sessions/", sdkEncodePathSegment(sdkWireString(session))].joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+            ],
+            decoder: .json,
+            operationId: "GetLinkAccountSessionsSession"
+        )).data
     }
 }

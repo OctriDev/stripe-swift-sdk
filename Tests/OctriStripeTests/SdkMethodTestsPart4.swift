@@ -104,7 +104,8 @@ extension SdkMethodTests {
         )
     }
 
-    func testGetCheckoutSessionsSessionLineItemsGetCheckoutSessionsSessionLineItemsReachesMockAndDecodesResponse() async throws {
+    func testGetCheckoutSessionsSessionLineItemsGetCheckoutSessionsSessionLineItemsReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -253,7 +254,8 @@ extension SdkMethodTests {
         )
     }
 
-    func testGetConfirmationTokensConfirmationTokenGetConfirmationTokensCoXe5ce5a4c01ReachesMockAndDecodesResponse() async throws {
+    func testGetConfirmationTokensConfirmationTokenGetConfirmationTokensCoXe5ce5a4c01ReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -427,7 +429,8 @@ extension SdkMethodTests {
             return
         }
         _ = client
-        var options = try V1CreditNotesPreviewLinesMethods.GetCreditNotesPreviewLinesOptions(invoice: decoded("\"invoice\""))
+        var options = try V1CreditNotesPreviewLinesMethods
+            .GetCreditNotesPreviewLinesOptions(invoice: decoded("\"invoice\""))
         options.amount = try decoded("100")
         options.creditAmount = try decoded("100")
         options.effectiveAt = try decoded("1")
@@ -460,7 +463,8 @@ extension SdkMethodTests {
             return
         }
         _ = client
-        var options = try V1CreditNotesPreviewLinesMethods.GetCreditNotesPreviewLinesOptions(invoice: decoded("\"invoice\""))
+        var options = try V1CreditNotesPreviewLinesMethods
+            .GetCreditNotesPreviewLinesOptions(invoice: decoded("\"invoice\""))
         options.amount = try decoded("100")
         options.creditAmount = try decoded("100")
         options.effectiveAt = try decoded("1")
@@ -538,7 +542,8 @@ extension SdkMethodTests {
         )
     }
 
-    func testGetCustomersCustomerBalanceTransactionsGetCustomersCustomerBaX73cd380f2bReachesMockAndDecodesResponse() async throws {
+    func testGetCustomersCustomerBalanceTransactionsGetCustomersCustomerBaX73cd380f2bReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }

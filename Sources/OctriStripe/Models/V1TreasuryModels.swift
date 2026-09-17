@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1Treasury domain models
+/// V1Treasury domain models
 /// You can reverse some ReceivedCredits depending on their network and source flow. Reversing a ReceivedCredit
 /// leads to the creation of a new object known as a CreditReversal.
 public struct TreasuryCreditReversal: Codable {
@@ -56,37 +56,54 @@ public struct TreasuryCreditReversal: Codable {
         case transaction
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension TreasuryCreditReversal {
-    public init(from decoder: Decoder) throws {
+public extension TreasuryCreditReversal {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.amount = try container.sdkDecodeRequired(.amount)
-        self.created = try container.sdkDecodeRequired(.created)
-        self.currency = try container.sdkDecodeRequired(.currency)
-        self.financialAccount = try container.sdkDecodeRequired(.financialAccount)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.livemode = try container.sdkDecodeRequired(.livemode)
-        self.metadata = try container.sdkDecodeRequired(.metadata)
-        self.network = try container.sdkDecodeRequired(.network)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.receivedCredit = try container.sdkDecodeRequired(.receivedCredit)
-        self.status = try container.sdkDecodeRequired(.status)
-        self.statusTransitions = try container.sdkDecodeRequired(.statusTransitions)
-        self.hostedRegulatoryReceiptUrl = try container.sdkDecodeIfPresent(.hostedRegulatoryReceiptUrl)
-        self.transaction = try container.sdkDecodeIfPresent(.transaction)
-            try validateLength("financial_account", self.financialAccount, min: nil, max: 5000)
-            try validateLength("id", self.id, min: nil, max: 5000)
-            try validateLength("received_credit", self.receivedCredit, min: nil, max: 5000)
-        if let value = self.hostedRegulatoryReceiptUrl {
+        amount = try container.sdkDecodeRequired(.amount)
+        created = try container.sdkDecodeRequired(.created)
+        currency = try container.sdkDecodeRequired(.currency)
+        financialAccount = try container.sdkDecodeRequired(.financialAccount)
+        id = try container.sdkDecodeRequired(.id)
+        livemode = try container.sdkDecodeRequired(.livemode)
+        metadata = try container.sdkDecodeRequired(.metadata)
+        network = try container.sdkDecodeRequired(.network)
+        object = try container.sdkDecodeRequired(.object)
+        receivedCredit = try container.sdkDecodeRequired(.receivedCredit)
+        status = try container.sdkDecodeRequired(.status)
+        statusTransitions = try container.sdkDecodeRequired(.statusTransitions)
+        hostedRegulatoryReceiptUrl = try container.sdkDecodeIfPresent(.hostedRegulatoryReceiptUrl)
+        transaction = try container.sdkDecodeIfPresent(.transaction)
+        try validateLength("financial_account", financialAccount, min: nil, max: 5000)
+        try validateLength("id", id, min: nil, max: 5000)
+        try validateLength("received_credit", receivedCredit, min: nil, max: 5000)
+        if let value = hostedRegulatoryReceiptUrl {
             try validateLength("hosted_regulatory_receipt_url", value, min: nil, max: 5000)
         }
     }
 }
 
-extension TreasuryCreditReversal {
-    public init(amount: Int, created: Int, currency: String, financialAccount: String, id: String, livemode: Bool, metadata: [String: String], network: TreasuryCreditReversalNetwork, object: TreasuryCreditReversalObject, receivedCredit: String, status: TreasuryCreditReversalStatus, statusTransitions: TreasuryReceivedCreditsResourceStatusTransitions, hostedRegulatoryReceiptUrl: String? = nil, transaction: TreasuryCreditReversalTransaction? = nil) throws {
+public extension TreasuryCreditReversal {
+    init(
+        amount: Int,
+        created: Int,
+        currency: String,
+        financialAccount: String,
+        id: String,
+        livemode: Bool,
+        metadata: [String: String],
+        network: TreasuryCreditReversalNetwork,
+        object: TreasuryCreditReversalObject,
+        receivedCredit: String,
+        status: TreasuryCreditReversalStatus,
+        statusTransitions: TreasuryReceivedCreditsResourceStatusTransitions,
+        hostedRegulatoryReceiptUrl: String? = nil,
+        transaction: TreasuryCreditReversalTransaction? = nil
+    ) throws {
         (self.amount, self.created) = (amount, created)
         (self.currency, self.financialAccount) = (currency, financialAccount)
         (self.id, self.livemode) = (id, livemode)
@@ -94,9 +111,9 @@ extension TreasuryCreditReversal {
         (self.object, self.receivedCredit) = (object, receivedCredit)
         (self.status, self.statusTransitions) = (status, statusTransitions)
         (self.hostedRegulatoryReceiptUrl, self.transaction) = (hostedRegulatoryReceiptUrl, transaction)
-            try validateLength("financial_account", self.financialAccount, min: nil, max: 5000)
-            try validateLength("id", self.id, min: nil, max: 5000)
-            try validateLength("received_credit", self.receivedCredit, min: nil, max: 5000)
+        try validateLength("financial_account", self.financialAccount, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("received_credit", self.receivedCredit, min: nil, max: 5000)
         if let value = self.hostedRegulatoryReceiptUrl {
             try validateLength("hosted_regulatory_receipt_url", value, min: nil, max: 5000)
         }
@@ -109,21 +126,31 @@ public indirect enum TreasuryCreditReversalTransaction {
 }
 
 extension TreasuryCreditReversalTransaction: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for TreasuryCreditReversalTransaction")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for TreasuryCreditReversalTransaction"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(TreasuryTransaction.self) { return .treasuryTransaction(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(TreasuryTransaction.self) {
+            return .treasuryTransaction(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -133,7 +160,6 @@ extension TreasuryCreditReversalTransaction: Codable {
         case let .treasuryTransaction(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// You can reverse some ReceivedDebits depending on their network and source flow. Reversing a ReceivedDebit leads
@@ -191,40 +217,58 @@ public struct TreasuryDebitReversal: Codable {
         case transaction
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension TreasuryDebitReversal {
-    public init(from decoder: Decoder) throws {
+public extension TreasuryDebitReversal {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.amount = try container.sdkDecodeRequired(.amount)
-        self.created = try container.sdkDecodeRequired(.created)
-        self.currency = try container.sdkDecodeRequired(.currency)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.livemode = try container.sdkDecodeRequired(.livemode)
-        self.metadata = try container.sdkDecodeRequired(.metadata)
-        self.network = try container.sdkDecodeRequired(.network)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.receivedDebit = try container.sdkDecodeRequired(.receivedDebit)
-        self.status = try container.sdkDecodeRequired(.status)
-        self.statusTransitions = try container.sdkDecodeRequired(.statusTransitions)
-        self.financialAccount = try container.sdkDecodeIfPresent(.financialAccount)
-        self.hostedRegulatoryReceiptUrl = try container.sdkDecodeIfPresent(.hostedRegulatoryReceiptUrl)
-        self.linkedFlows = try container.sdkDecodeIfPresent(.linkedFlows)
-        self.transaction = try container.sdkDecodeIfPresent(.transaction)
-            try validateLength("id", self.id, min: nil, max: 5000)
-            try validateLength("received_debit", self.receivedDebit, min: nil, max: 5000)
-        if let value = self.financialAccount {
+        amount = try container.sdkDecodeRequired(.amount)
+        created = try container.sdkDecodeRequired(.created)
+        currency = try container.sdkDecodeRequired(.currency)
+        id = try container.sdkDecodeRequired(.id)
+        livemode = try container.sdkDecodeRequired(.livemode)
+        metadata = try container.sdkDecodeRequired(.metadata)
+        network = try container.sdkDecodeRequired(.network)
+        object = try container.sdkDecodeRequired(.object)
+        receivedDebit = try container.sdkDecodeRequired(.receivedDebit)
+        status = try container.sdkDecodeRequired(.status)
+        statusTransitions = try container.sdkDecodeRequired(.statusTransitions)
+        financialAccount = try container.sdkDecodeIfPresent(.financialAccount)
+        hostedRegulatoryReceiptUrl = try container.sdkDecodeIfPresent(.hostedRegulatoryReceiptUrl)
+        linkedFlows = try container.sdkDecodeIfPresent(.linkedFlows)
+        transaction = try container.sdkDecodeIfPresent(.transaction)
+        try validateLength("id", id, min: nil, max: 5000)
+        try validateLength("received_debit", receivedDebit, min: nil, max: 5000)
+        if let value = financialAccount {
             try validateLength("financial_account", value, min: nil, max: 5000)
         }
-        if let value = self.hostedRegulatoryReceiptUrl {
+        if let value = hostedRegulatoryReceiptUrl {
             try validateLength("hosted_regulatory_receipt_url", value, min: nil, max: 5000)
         }
     }
 }
 
-extension TreasuryDebitReversal {
-    public init(amount: Int, created: Int, currency: String, id: String, livemode: Bool, metadata: [String: String], network: TreasuryDebitReversalNetwork, object: TreasuryDebitReversalObject, receivedDebit: String, status: TreasuryDebitReversalStatus, statusTransitions: TreasuryReceivedDebitsResourceStatusTransitions, financialAccount: String? = nil, hostedRegulatoryReceiptUrl: String? = nil, linkedFlows: TreasuryDebitReversalLinkedFlows? = nil, transaction: TreasuryDebitReversalTransaction? = nil) throws {
+public extension TreasuryDebitReversal {
+    init(
+        amount: Int,
+        created: Int,
+        currency: String,
+        id: String,
+        livemode: Bool,
+        metadata: [String: String],
+        network: TreasuryDebitReversalNetwork,
+        object: TreasuryDebitReversalObject,
+        receivedDebit: String,
+        status: TreasuryDebitReversalStatus,
+        statusTransitions: TreasuryReceivedDebitsResourceStatusTransitions,
+        financialAccount: String? = nil,
+        hostedRegulatoryReceiptUrl: String? = nil,
+        linkedFlows: TreasuryDebitReversalLinkedFlows? = nil,
+        transaction: TreasuryDebitReversalTransaction? = nil
+    ) throws {
         (self.amount, self.created) = (amount, created)
         (self.currency, self.id) = (currency, id)
         (self.livemode, self.metadata) = (livemode, metadata)
@@ -233,8 +277,8 @@ extension TreasuryDebitReversal {
         (self.statusTransitions, self.financialAccount) = (statusTransitions, financialAccount)
         (self.hostedRegulatoryReceiptUrl, self.linkedFlows) = (hostedRegulatoryReceiptUrl, linkedFlows)
         self.transaction = transaction
-            try validateLength("id", self.id, min: nil, max: 5000)
-            try validateLength("received_debit", self.receivedDebit, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("received_debit", self.receivedDebit, min: nil, max: 5000)
         if let value = self.financialAccount {
             try validateLength("financial_account", value, min: nil, max: 5000)
         }
@@ -249,33 +293,39 @@ public enum TreasuryDebitReversalLinkedFlows {
 }
 
 extension TreasuryDebitReversalLinkedFlows: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for TreasuryDebitReversalLinkedFlows")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for TreasuryDebitReversalLinkedFlows"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             TreasuryReceivedDebitsResourceDebitReversalLinkedFlows.self
         ) {
-            return             .treasuryReceivedDebitsResourceDebitReversalLinkedFlows(value)
+            return .treasuryReceivedDebitsResourceDebitReversalLinkedFlows(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .treasuryReceivedDebitsResourceDebitReversalLinkedFlows(value): try container.encode(value); return true
+        case let .treasuryReceivedDebitsResourceDebitReversalLinkedFlows(value): try container
+            .encode(value); return true
         }
     }
-
 }
 
 public indirect enum TreasuryDebitReversalTransaction {
@@ -284,21 +334,31 @@ public indirect enum TreasuryDebitReversalTransaction {
 }
 
 extension TreasuryDebitReversalTransaction: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for TreasuryDebitReversalTransaction")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for TreasuryDebitReversalTransaction"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(TreasuryTransaction.self) { return .treasuryTransaction(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(TreasuryTransaction.self) {
+            return .treasuryTransaction(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -308,7 +368,6 @@ extension TreasuryDebitReversalTransaction: Codable {
         case let .treasuryTransaction(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Use InboundTransfers to add funds to your FinancialAccount via a PaymentMethod that is owned by you. The funds
@@ -385,49 +444,72 @@ public struct TreasuryInboundTransfer: Codable {
         case transaction
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension TreasuryInboundTransfer {
-    public init(from decoder: Decoder) throws {
+public extension TreasuryInboundTransfer {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.amount = try container.sdkDecodeRequired(.amount)
-        self.cancelable = try container.sdkDecodeRequired(.cancelable)
-        self.created = try container.sdkDecodeRequired(.created)
-        self.currency = try container.sdkDecodeRequired(.currency)
-        self.financialAccount = try container.sdkDecodeRequired(.financialAccount)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.linkedFlows = try container.sdkDecodeRequired(.linkedFlows)
-        self.livemode = try container.sdkDecodeRequired(.livemode)
-        self.metadata = try container.sdkDecodeRequired(.metadata)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.statementDescriptor = try container.sdkDecodeRequired(.statementDescriptor)
-        self.status = try container.sdkDecodeRequired(.status)
-        self.statusTransitions = try container.sdkDecodeRequired(.statusTransitions)
-        self.description = try container.sdkDecodeIfPresent(.description)
-        self.failureDetails = try container.sdkDecodeIfPresent(.failureDetails)
-        self.hostedRegulatoryReceiptUrl = try container.sdkDecodeIfPresent(.hostedRegulatoryReceiptUrl)
-        self.originPaymentMethod = try container.sdkDecodeIfPresent(.originPaymentMethod)
-        self.originPaymentMethodDetails = try container.sdkDecodeIfPresent(.originPaymentMethodDetails)
-        self.returned = try container.sdkDecodeIfPresent(.returned)
-        self.transaction = try container.sdkDecodeIfPresent(.transaction)
-            try validateLength("financial_account", self.financialAccount, min: nil, max: 5000)
-            try validateLength("id", self.id, min: nil, max: 5000)
-            try validateLength("statement_descriptor", self.statementDescriptor, min: nil, max: 5000)
-        if let value = self.description {
+        amount = try container.sdkDecodeRequired(.amount)
+        cancelable = try container.sdkDecodeRequired(.cancelable)
+        created = try container.sdkDecodeRequired(.created)
+        currency = try container.sdkDecodeRequired(.currency)
+        financialAccount = try container.sdkDecodeRequired(.financialAccount)
+        id = try container.sdkDecodeRequired(.id)
+        linkedFlows = try container.sdkDecodeRequired(.linkedFlows)
+        livemode = try container.sdkDecodeRequired(.livemode)
+        metadata = try container.sdkDecodeRequired(.metadata)
+        object = try container.sdkDecodeRequired(.object)
+        statementDescriptor = try container.sdkDecodeRequired(.statementDescriptor)
+        status = try container.sdkDecodeRequired(.status)
+        statusTransitions = try container.sdkDecodeRequired(.statusTransitions)
+        description = try container.sdkDecodeIfPresent(.description)
+        failureDetails = try container.sdkDecodeIfPresent(.failureDetails)
+        hostedRegulatoryReceiptUrl = try container.sdkDecodeIfPresent(.hostedRegulatoryReceiptUrl)
+        originPaymentMethod = try container.sdkDecodeIfPresent(.originPaymentMethod)
+        originPaymentMethodDetails = try container.sdkDecodeIfPresent(.originPaymentMethodDetails)
+        returned = try container.sdkDecodeIfPresent(.returned)
+        transaction = try container.sdkDecodeIfPresent(.transaction)
+        try validateLength("financial_account", financialAccount, min: nil, max: 5000)
+        try validateLength("id", id, min: nil, max: 5000)
+        try validateLength("statement_descriptor", statementDescriptor, min: nil, max: 5000)
+        if let value = description {
             try validateLength("description", value, min: nil, max: 5000)
         }
-        if let value = self.hostedRegulatoryReceiptUrl {
+        if let value = hostedRegulatoryReceiptUrl {
             try validateLength("hosted_regulatory_receipt_url", value, min: nil, max: 5000)
         }
-        if let value = self.originPaymentMethod {
+        if let value = originPaymentMethod {
             try validateLength("origin_payment_method", value, min: nil, max: 5000)
         }
     }
 }
 
-extension TreasuryInboundTransfer {
-    public init(amount: Int, cancelable: Bool, created: Int, currency: String, financialAccount: String, id: String, linkedFlows: TreasuryInboundTransfersResourceInboundTransferResourceLinkedFlows, livemode: Bool, metadata: [String: String], object: TreasuryInboundTransferObject, statementDescriptor: String, status: TreasuryInboundTransferStatus, statusTransitions: TreasuryInboundTransfersResourceInboundTransferResourceStatusTransitions, description: String? = nil, failureDetails: TreasuryInboundTransferFailureDetails? = nil, hostedRegulatoryReceiptUrl: String? = nil, originPaymentMethod: String? = nil, originPaymentMethodDetails: TreasuryInboundTransferOriginPaymentMethodDetails? = nil, returned: Bool? = nil, transaction: TreasuryInboundTransferTransaction? = nil) throws {
+public extension TreasuryInboundTransfer {
+    init(
+        amount: Int,
+        cancelable: Bool,
+        created: Int,
+        currency: String,
+        financialAccount: String,
+        id: String,
+        linkedFlows: TreasuryInboundTransfersResourceInboundTransferResourceLinkedFlows,
+        livemode: Bool,
+        metadata: [String: String],
+        object: TreasuryInboundTransferObject,
+        statementDescriptor: String,
+        status: TreasuryInboundTransferStatus,
+        statusTransitions: TreasuryInboundTransfersResourceInboundTransferResourceStatusTransitions,
+        description: String? = nil,
+        failureDetails: TreasuryInboundTransferFailureDetails? = nil,
+        hostedRegulatoryReceiptUrl: String? = nil,
+        originPaymentMethod: String? = nil,
+        originPaymentMethodDetails: TreasuryInboundTransferOriginPaymentMethodDetails? = nil,
+        returned: Bool? = nil,
+        transaction: TreasuryInboundTransferTransaction? = nil
+    ) throws {
         (self.amount, self.cancelable) = (amount, cancelable)
         (self.created, self.currency) = (created, currency)
         (self.financialAccount, self.id) = (financialAccount, id)
@@ -440,9 +522,9 @@ extension TreasuryInboundTransfer {
         self.originPaymentMethod = originPaymentMethod
         (self.originPaymentMethodDetails, self.returned) = (originPaymentMethodDetails, returned)
         self.transaction = transaction
-            try validateLength("financial_account", self.financialAccount, min: nil, max: 5000)
-            try validateLength("id", self.id, min: nil, max: 5000)
-            try validateLength("statement_descriptor", self.statementDescriptor, min: nil, max: 5000)
+        try validateLength("financial_account", self.financialAccount, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("statement_descriptor", self.statementDescriptor, min: nil, max: 5000)
         if let value = self.description {
             try validateLength("description", value, min: nil, max: 5000)
         }
@@ -460,24 +542,30 @@ public enum TreasuryInboundTransferFailureDetails {
 }
 
 extension TreasuryInboundTransferFailureDetails: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for TreasuryInboundTransferFailureDetails")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for TreasuryInboundTransferFailureDetails"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             TreasuryInboundTransfersResourceFailureDetails.self
         ) {
-            return             .treasuryInboundTransfersResourceFailureDetails(value)
+            return .treasuryInboundTransfersResourceFailureDetails(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -486,7 +574,6 @@ extension TreasuryInboundTransferFailureDetails: Codable {
         case let .treasuryInboundTransfersResourceFailureDetails(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum TreasuryInboundTransferOriginPaymentMethodDetails {
@@ -494,20 +581,28 @@ public enum TreasuryInboundTransferOriginPaymentMethodDetails {
 }
 
 extension TreasuryInboundTransferOriginPaymentMethodDetails: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for TreasuryInboundTransferOriginPaymentMethodDetails")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for TreasuryInboundTransferOriginPaymentMethodDetails"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(InboundTransfers.self) { return .inboundTransfers(value) }
+        if let value = try? container.decode(InboundTransfers.self) {
+            return .inboundTransfers(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -516,7 +611,6 @@ extension TreasuryInboundTransferOriginPaymentMethodDetails: Codable {
         case let .inboundTransfers(value): try container.encode(value); return true
         }
     }
-
 }
 
 public indirect enum TreasuryInboundTransferTransaction {
@@ -525,21 +619,31 @@ public indirect enum TreasuryInboundTransferTransaction {
 }
 
 extension TreasuryInboundTransferTransaction: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for TreasuryInboundTransferTransaction")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for TreasuryInboundTransferTransaction"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(TreasuryTransaction.self) { return .treasuryTransaction(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(TreasuryTransaction.self) {
+            return .treasuryTransaction(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -549,5 +653,4 @@ extension TreasuryInboundTransferTransaction: Codable {
         case let .treasuryTransaction(value): try container.encode(value); return true
         }
     }
-
 }

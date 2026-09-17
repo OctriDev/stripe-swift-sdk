@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1PaymentIntentsMethods {
-    public struct PostPaymentIntentsIntentOptions: Codable {
+public extension V1PaymentIntentsMethods {
+    struct PostPaymentIntentsIntentOptions: Codable {
         public var intent: String
         public var allowedPaymentMethodTypes: [PostPaymentIntentsIntentRequestBodyAllowedPaymentMethodTypesItem]?
         public var amount: Int?
@@ -41,9 +41,14 @@ extension V1PaymentIntentsMethods {
         }
     }
 
-    /// Updates properties on an existing PaymentIntent without confirming it. Supply only the properties you want to change; changing `payment_method` requires you to confirm the PaymentIntent again, while updating and confirming together requires the confirm operation.
+    /// Updates properties on an existing PaymentIntent without confirming it. Supply only the properties you want to
+    /// change; changing `payment_method` requires you to confirm the PaymentIntent again, while updating and confirming
+    /// together requires the confirm operation.
     ///
-    /// Updates properties on a PaymentIntent object without confirming. Depending on which properties you update, you might need to confirm the PaymentIntent again. For example, updating the payment_method always requires you to confirm the PaymentIntent again. If you prefer to update and confirm at the same time, we recommend updating properties through the confirm API instead.
+    /// Updates properties on a PaymentIntent object without confirming. Depending on which properties you update, you
+    /// might need to confirm the PaymentIntent again. For example, updating the payment_method always requires you to
+    /// confirm the PaymentIntent again. If you prefer to update and confirm at the same time, we recommend updating
+    /// properties through the confirm API instead.
     ///
     /// - Parameters:
     /// - allowedPaymentMethodTypes: The list of payment method types allowed for
@@ -167,7 +172,10 @@ extension V1PaymentIntentsMethods {
     ///   group. You can only provide `transfer_group` if it hasn't been set. Learn
     ///   more about the [use case for connected
     ///   accounts](https://docs.stripe.com/payments/connected-accounts).
-    public static func postPaymentIntentsIntent(config: ClientConfig, options: PostPaymentIntentsIntentOptions) async throws -> PaymentIntent {
+    static func postPaymentIntentsIntent(
+        config: ClientConfig,
+        options: PostPaymentIntentsIntentOptions
+    ) async throws -> PaymentIntent {
         try validateLength("intent", options.intent, max: 5000)
 
         if let customer = options.customer {
@@ -200,6 +208,14 @@ extension V1PaymentIntentsMethods {
 
         let requestBody = PostPaymentIntentsIntentRequestBody(options: options)
 
-        return try (await sdkRequest("POST", ["/v1/payment_intents/", sdkEncodePathSegment(sdkWireString(options.intent))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostPaymentIntentsIntent")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/payment_intents/", sdkEncodePathSegment(sdkWireString(options.intent))].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostPaymentIntentsIntent"
+        )).data
     }
 }

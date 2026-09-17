@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1PaymentPagesCheckout domain models
+/// V1PaymentPagesCheckout domain models
 /// Typed representation of the `PaymentPagesCheckoutSessionAdaptivePricing` API schema.
 public struct PaymentPagesCheckoutSessionAdaptivePricing: Codable {
     /// If enabled, Adaptive Pricing is available on eligible sessions.
@@ -13,21 +13,27 @@ public struct PaymentPagesCheckoutSessionAdaptivePricing: Codable {
         case enabled
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension PaymentPagesCheckoutSessionAdaptivePricing {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.enabled) else {
-            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
-        }
-        self.enabled = try container.sdkDecodeRequired(.enabled)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension PaymentPagesCheckoutSessionAdaptivePricing {
-    public init(enabled: Bool) {
+public extension PaymentPagesCheckoutSessionAdaptivePricing {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.enabled) else {
+            throw SdkValidationError(
+                field: "enabled",
+                code: "required",
+                message: "Validation failed for 'enabled': value is required"
+            )
+        }
+        enabled = try container.sdkDecodeRequired(.enabled)
+    }
+}
+
+public extension PaymentPagesCheckoutSessionAdaptivePricing {
+    init(enabled: Bool) {
         self.enabled = enabled
     }
 }
@@ -42,19 +48,19 @@ public struct PaymentPagesCheckoutSessionAfterExpiration: Codable {
     }
 
     init() {
-        self.recovery = nil
+        recovery = nil
     }
 }
 
-extension PaymentPagesCheckoutSessionAfterExpiration {
-    public init(from decoder: Decoder) throws {
+public extension PaymentPagesCheckoutSessionAfterExpiration {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.recovery = try container.sdkDecodeIfPresent(.recovery)
+        recovery = try container.sdkDecodeIfPresent(.recovery)
     }
 }
 
-extension PaymentPagesCheckoutSessionAfterExpiration {
-    public init(recovery: PaymentPagesCheckoutSessionAfterExpirationRecoveryX15befef1? = nil) {
+public extension PaymentPagesCheckoutSessionAfterExpiration {
+    init(recovery: PaymentPagesCheckoutSessionAfterExpirationRecoveryX15befef1? = nil) {
         self.init()
         self.recovery = recovery
     }
@@ -65,24 +71,30 @@ public enum PaymentPagesCheckoutSessionAfterExpirationRecoveryX15befef1 {
 }
 
 extension PaymentPagesCheckoutSessionAfterExpirationRecoveryX15befef1: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentPagesCheckoutSessionAfterExpirationRecoveryX15befef1")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PaymentPagesCheckoutSessionAfterExpirationRecoveryX15befef1"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PaymentPagesCheckoutSessionAfterExpirationRecovery.self
         ) {
-            return             .paymentPagesCheckoutSessionAfterExpirationRecovery(value)
+            return .paymentPagesCheckoutSessionAfterExpirationRecovery(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -91,7 +103,6 @@ extension PaymentPagesCheckoutSessionAfterExpirationRecoveryX15befef1: Codable {
         case let .paymentPagesCheckoutSessionAfterExpirationRecovery(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Typed representation of the `PaymentPagesCheckoutSessionAfterExpirationRecovery` API schema.
@@ -113,30 +124,40 @@ public struct PaymentPagesCheckoutSessionAfterExpirationRecovery: Codable {
         case url
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension PaymentPagesCheckoutSessionAfterExpirationRecovery {
-    public init(from decoder: Decoder) throws {
+public extension PaymentPagesCheckoutSessionAfterExpirationRecovery {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.allowPromotionCodes) else {
-            throw SdkValidationError(field: "allow_promotion_codes", code: "required", message: "Validation failed for 'allow_promotion_codes': value is required")
+            throw SdkValidationError(
+                field: "allow_promotion_codes",
+                code: "required",
+                message: "Validation failed for 'allow_promotion_codes': value is required"
+            )
         }
         guard container.contains(.enabled) else {
-            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
+            throw SdkValidationError(
+                field: "enabled",
+                code: "required",
+                message: "Validation failed for 'enabled': value is required"
+            )
         }
-        self.allowPromotionCodes = try container.sdkDecodeRequired(.allowPromotionCodes)
-        self.enabled = try container.sdkDecodeRequired(.enabled)
-        self.expiresAt = try container.sdkDecodeIfPresent(.expiresAt)
-        self.url = try container.sdkDecodeIfPresent(.url)
-        if let value = self.url {
+        allowPromotionCodes = try container.sdkDecodeRequired(.allowPromotionCodes)
+        enabled = try container.sdkDecodeRequired(.enabled)
+        expiresAt = try container.sdkDecodeIfPresent(.expiresAt)
+        url = try container.sdkDecodeIfPresent(.url)
+        if let value = url {
             try validateLength("url", value, min: nil, max: 5000)
         }
     }
 }
 
-extension PaymentPagesCheckoutSessionAfterExpirationRecovery {
-    public init(allowPromotionCodes: Bool, enabled: Bool, expiresAt: Int? = nil, url: String? = nil) throws {
+public extension PaymentPagesCheckoutSessionAfterExpirationRecovery {
+    init(allowPromotionCodes: Bool, enabled: Bool, expiresAt: Int? = nil, url: String? = nil) throws {
         (self.allowPromotionCodes, self.enabled) = (allowPromotionCodes, enabled)
         (self.expiresAt, self.url) = (expiresAt, url)
         if let value = self.url {
@@ -165,27 +186,38 @@ public struct PaymentPagesCheckoutSessionAutomaticTax: Codable {
         case status
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension PaymentPagesCheckoutSessionAutomaticTax {
-    public init(from decoder: Decoder) throws {
+public extension PaymentPagesCheckoutSessionAutomaticTax {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.enabled) else {
-            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
+            throw SdkValidationError(
+                field: "enabled",
+                code: "required",
+                message: "Validation failed for 'enabled': value is required"
+            )
         }
-        self.enabled = try container.sdkDecodeRequired(.enabled)
-        self.liability = try container.sdkDecodeIfPresent(.liability)
-        self.provider = try container.sdkDecodeIfPresent(.provider)
-        self.status = try container.sdkDecodeIfPresent(.status)
-        if let value = self.provider {
+        enabled = try container.sdkDecodeRequired(.enabled)
+        liability = try container.sdkDecodeIfPresent(.liability)
+        provider = try container.sdkDecodeIfPresent(.provider)
+        status = try container.sdkDecodeIfPresent(.status)
+        if let value = provider {
             try validateLength("provider", value, min: nil, max: 5000)
         }
     }
 }
 
-extension PaymentPagesCheckoutSessionAutomaticTax {
-    public init(enabled: Bool, liability: PaymentPagesCheckoutSessionAutomaticTaxLiability? = nil, provider: String? = nil, status: PaymentPagesCheckoutSessionAutomaticTaxStatus? = nil) throws {
+public extension PaymentPagesCheckoutSessionAutomaticTax {
+    init(
+        enabled: Bool,
+        liability: PaymentPagesCheckoutSessionAutomaticTaxLiability? = nil,
+        provider: String? = nil,
+        status: PaymentPagesCheckoutSessionAutomaticTaxStatus? = nil
+    ) throws {
         (self.enabled, self.liability) = (enabled, liability)
         (self.provider, self.status) = (provider, status)
         if let value = self.provider {
@@ -199,20 +231,28 @@ public enum PaymentPagesCheckoutSessionAutomaticTaxLiability {
 }
 
 extension PaymentPagesCheckoutSessionAutomaticTaxLiability: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentPagesCheckoutSessionAutomaticTaxLiability")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PaymentPagesCheckoutSessionAutomaticTaxLiability"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(ConnectAccountReference.self) { return .connectAccountReference(value) }
+        if let value = try? container.decode(ConnectAccountReference.self) {
+            return .connectAccountReference(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -221,7 +261,6 @@ extension PaymentPagesCheckoutSessionAutomaticTaxLiability: Codable {
         case let .connectAccountReference(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Typed representation of the `PaymentPagesCheckoutSessionBrandingSettings` API schema.
@@ -251,51 +290,81 @@ public struct PaymentPagesCheckoutSessionBrandingSettings: Codable {
         case logo
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension PaymentPagesCheckoutSessionBrandingSettings {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.backgroundColor) else {
-            throw SdkValidationError(field: "background_color", code: "required", message: "Validation failed for 'background_color': value is required")
-        }
-        guard container.contains(.borderStyle) else {
-            throw SdkValidationError(field: "border_style", code: "required", message: "Validation failed for 'border_style': value is required")
-        }
-        guard container.contains(.buttonColor) else {
-            throw SdkValidationError(field: "button_color", code: "required", message: "Validation failed for 'button_color': value is required")
-        }
-        guard container.contains(.displayName) else {
-            throw SdkValidationError(field: "display_name", code: "required", message: "Validation failed for 'display_name': value is required")
-        }
-        guard container.contains(.fontFamily) else {
-            throw SdkValidationError(field: "font_family", code: "required", message: "Validation failed for 'font_family': value is required")
-        }
-        self.backgroundColor = try container.sdkDecodeRequired(.backgroundColor)
-        self.borderStyle = try container.sdkDecodeRequired(.borderStyle)
-        self.buttonColor = try container.sdkDecodeRequired(.buttonColor)
-        self.displayName = try container.sdkDecodeRequired(.displayName)
-        self.fontFamily = try container.sdkDecodeRequired(.fontFamily)
-        self.icon = try container.sdkDecodeIfPresent(.icon)
-        self.logo = try container.sdkDecodeIfPresent(.logo)
-            try validateLength("background_color", self.backgroundColor, min: nil, max: 5000)
-            try validateLength("button_color", self.buttonColor, min: nil, max: 5000)
-            try validateLength("display_name", self.displayName, min: nil, max: 5000)
-            try validateLength("font_family", self.fontFamily, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension PaymentPagesCheckoutSessionBrandingSettings {
-    public init(backgroundColor: String, borderStyle: PaymentPagesCheckoutSessionBrandingSettingsBorderStyle, buttonColor: String, displayName: String, fontFamily: String, icon: PaymentPagesCheckoutSessionBrandingSettingsIconX6045a96e? = nil, logo: PaymentPagesCheckoutSessionBrandingSettingsLogoX6dc614a1? = nil) throws {
+public extension PaymentPagesCheckoutSessionBrandingSettings {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.backgroundColor) else {
+            throw SdkValidationError(
+                field: "background_color",
+                code: "required",
+                message: "Validation failed for 'background_color': value is required"
+            )
+        }
+        guard container.contains(.borderStyle) else {
+            throw SdkValidationError(
+                field: "border_style",
+                code: "required",
+                message: "Validation failed for 'border_style': value is required"
+            )
+        }
+        guard container.contains(.buttonColor) else {
+            throw SdkValidationError(
+                field: "button_color",
+                code: "required",
+                message: "Validation failed for 'button_color': value is required"
+            )
+        }
+        guard container.contains(.displayName) else {
+            throw SdkValidationError(
+                field: "display_name",
+                code: "required",
+                message: "Validation failed for 'display_name': value is required"
+            )
+        }
+        guard container.contains(.fontFamily) else {
+            throw SdkValidationError(
+                field: "font_family",
+                code: "required",
+                message: "Validation failed for 'font_family': value is required"
+            )
+        }
+        backgroundColor = try container.sdkDecodeRequired(.backgroundColor)
+        borderStyle = try container.sdkDecodeRequired(.borderStyle)
+        buttonColor = try container.sdkDecodeRequired(.buttonColor)
+        displayName = try container.sdkDecodeRequired(.displayName)
+        fontFamily = try container.sdkDecodeRequired(.fontFamily)
+        icon = try container.sdkDecodeIfPresent(.icon)
+        logo = try container.sdkDecodeIfPresent(.logo)
+        try validateLength("background_color", backgroundColor, min: nil, max: 5000)
+        try validateLength("button_color", buttonColor, min: nil, max: 5000)
+        try validateLength("display_name", displayName, min: nil, max: 5000)
+        try validateLength("font_family", fontFamily, min: nil, max: 5000)
+    }
+}
+
+public extension PaymentPagesCheckoutSessionBrandingSettings {
+    init(
+        backgroundColor: String,
+        borderStyle: PaymentPagesCheckoutSessionBrandingSettingsBorderStyle,
+        buttonColor: String,
+        displayName: String,
+        fontFamily: String,
+        icon: PaymentPagesCheckoutSessionBrandingSettingsIconX6045a96e? = nil,
+        logo: PaymentPagesCheckoutSessionBrandingSettingsLogoX6dc614a1? = nil
+    ) throws {
         (self.backgroundColor, self.borderStyle) = (backgroundColor, borderStyle)
         (self.buttonColor, self.displayName) = (buttonColor, displayName)
         (self.fontFamily, self.icon) = (fontFamily, icon)
         self.logo = logo
-            try validateLength("background_color", self.backgroundColor, min: nil, max: 5000)
-            try validateLength("button_color", self.buttonColor, min: nil, max: 5000)
-            try validateLength("display_name", self.displayName, min: nil, max: 5000)
-            try validateLength("font_family", self.fontFamily, min: nil, max: 5000)
+        try validateLength("background_color", self.backgroundColor, min: nil, max: 5000)
+        try validateLength("button_color", self.buttonColor, min: nil, max: 5000)
+        try validateLength("display_name", self.displayName, min: nil, max: 5000)
+        try validateLength("font_family", self.fontFamily, min: nil, max: 5000)
     }
 }
 
@@ -304,24 +373,30 @@ public enum PaymentPagesCheckoutSessionBrandingSettingsIconX6045a96e {
 }
 
 extension PaymentPagesCheckoutSessionBrandingSettingsIconX6045a96e: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentPagesCheckoutSessionBrandingSettingsIconX6045a96e")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PaymentPagesCheckoutSessionBrandingSettingsIconX6045a96e"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PaymentPagesCheckoutSessionBrandingSettingsIcon.self
         ) {
-            return             .paymentPagesCheckoutSessionBrandingSettingsIcon(value)
+            return .paymentPagesCheckoutSessionBrandingSettingsIcon(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -330,7 +405,6 @@ extension PaymentPagesCheckoutSessionBrandingSettingsIconX6045a96e: Codable {
         case let .paymentPagesCheckoutSessionBrandingSettingsIcon(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum PaymentPagesCheckoutSessionBrandingSettingsLogoX6dc614a1 {
@@ -338,24 +412,30 @@ public enum PaymentPagesCheckoutSessionBrandingSettingsLogoX6dc614a1 {
 }
 
 extension PaymentPagesCheckoutSessionBrandingSettingsLogoX6dc614a1: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentPagesCheckoutSessionBrandingSettingsLogoX6dc614a1")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PaymentPagesCheckoutSessionBrandingSettingsLogoX6dc614a1"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PaymentPagesCheckoutSessionBrandingSettingsLogo.self
         ) {
-            return             .paymentPagesCheckoutSessionBrandingSettingsLogo(value)
+            return .paymentPagesCheckoutSessionBrandingSettingsLogo(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -364,7 +444,6 @@ extension PaymentPagesCheckoutSessionBrandingSettingsLogoX6dc614a1: Codable {
         case let .paymentPagesCheckoutSessionBrandingSettingsLogo(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Typed representation of the `PaymentPagesCheckoutSessionBrandingSettingsIcon` API schema.
@@ -383,29 +462,35 @@ public struct PaymentPagesCheckoutSessionBrandingSettingsIcon: Codable {
         case url
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension PaymentPagesCheckoutSessionBrandingSettingsIcon {
-    public init(from decoder: Decoder) throws {
+public extension PaymentPagesCheckoutSessionBrandingSettingsIcon {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
         }
-        self.type = try container.sdkDecodeRequired(.type)
-        self.file = try container.sdkDecodeIfPresent(.file)
-        self.url = try container.sdkDecodeIfPresent(.url)
-        if let value = self.file {
+        type = try container.sdkDecodeRequired(.type)
+        file = try container.sdkDecodeIfPresent(.file)
+        url = try container.sdkDecodeIfPresent(.url)
+        if let value = file {
             try validateLength("file", value, min: nil, max: 5000)
         }
-        if let value = self.url {
+        if let value = url {
             try validateLength("url", value, min: nil, max: 5000)
         }
     }
 }
 
-extension PaymentPagesCheckoutSessionBrandingSettingsIcon {
-    public init(type: PaymentPagesCheckoutSessionBrandingSettingsIconType, file: String? = nil, url: String? = nil) throws {
+public extension PaymentPagesCheckoutSessionBrandingSettingsIcon {
+    init(type: PaymentPagesCheckoutSessionBrandingSettingsIconType, file: String? = nil, url: String? = nil) throws {
         (self.type, self.file) = (type, file)
         self.url = url
         if let value = self.file {
@@ -433,29 +518,35 @@ public struct PaymentPagesCheckoutSessionBrandingSettingsLogo: Codable {
         case url
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension PaymentPagesCheckoutSessionBrandingSettingsLogo {
-    public init(from decoder: Decoder) throws {
+public extension PaymentPagesCheckoutSessionBrandingSettingsLogo {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
         }
-        self.type = try container.sdkDecodeRequired(.type)
-        self.file = try container.sdkDecodeIfPresent(.file)
-        self.url = try container.sdkDecodeIfPresent(.url)
-        if let value = self.file {
+        type = try container.sdkDecodeRequired(.type)
+        file = try container.sdkDecodeIfPresent(.file)
+        url = try container.sdkDecodeIfPresent(.url)
+        if let value = file {
             try validateLength("file", value, min: nil, max: 5000)
         }
-        if let value = self.url {
+        if let value = url {
             try validateLength("url", value, min: nil, max: 5000)
         }
     }
 }
 
-extension PaymentPagesCheckoutSessionBrandingSettingsLogo {
-    public init(type: PaymentPagesCheckoutSessionBrandingSettingsLogoType, file: String? = nil, url: String? = nil) throws {
+public extension PaymentPagesCheckoutSessionBrandingSettingsLogo {
+    init(type: PaymentPagesCheckoutSessionBrandingSettingsLogoType, file: String? = nil, url: String? = nil) throws {
         (self.type, self.file) = (type, file)
         self.url = url
         if let value = self.file {
@@ -480,25 +571,35 @@ public struct PaymentPagesCheckoutSessionBusinessName: Codable {
         case optional
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension PaymentPagesCheckoutSessionBusinessName {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.enabled) else {
-            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
-        }
-        guard container.contains(.optional) else {
-            throw SdkValidationError(field: "optional", code: "required", message: "Validation failed for 'optional': value is required")
-        }
-        self.enabled = try container.sdkDecodeRequired(.enabled)
-        self.optional = try container.sdkDecodeRequired(.optional)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension PaymentPagesCheckoutSessionBusinessName {
-    public init(enabled: Bool, optional: Bool) {
+public extension PaymentPagesCheckoutSessionBusinessName {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.enabled) else {
+            throw SdkValidationError(
+                field: "enabled",
+                code: "required",
+                message: "Validation failed for 'enabled': value is required"
+            )
+        }
+        guard container.contains(.optional) else {
+            throw SdkValidationError(
+                field: "optional",
+                code: "required",
+                message: "Validation failed for 'optional': value is required"
+            )
+        }
+        enabled = try container.sdkDecodeRequired(.enabled)
+        optional = try container.sdkDecodeRequired(.optional)
+    }
+}
+
+public extension PaymentPagesCheckoutSessionBusinessName {
+    init(enabled: Bool, optional: Bool) {
         (self.enabled, self.optional) = (enabled, optional)
     }
 }
@@ -515,5 +616,7 @@ public struct PaymentPagesCheckoutSessionCheckoutAddressDetails: Codable {
         case name
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }

@@ -8,13 +8,17 @@ import Foundation
 #endif
 public extension PostReportingReportRunsRequestBodyParametersTimezone {
     static let americaBelize = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Belize")
-    static let americaBlancSablon = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Blanc-Sablon")
+    static let americaBlancSablon =
+        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Blanc-Sablon")
     static let americaBoaVista = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Boa_Vista")
     static let americaBogota = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Bogota")
     static let americaBoise = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Boise")
-    static let americaBuenosAires = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Buenos_Aires")
-    static let americaCambridgeBay = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Cambridge_Bay")
-    static let americaCampoGrande = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Campo_Grande")
+    static let americaBuenosAires =
+        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Buenos_Aires")
+    static let americaCambridgeBay =
+        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Cambridge_Bay")
+    static let americaCampoGrande =
+        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Campo_Grande")
     static let americaCancun = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Cancun")
     static let americaCaracas = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Caracas")
     static let americaCatamarca = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Catamarca")
@@ -22,17 +26,21 @@ public extension PostReportingReportRunsRequestBodyParametersTimezone {
     static let americaCayman = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Cayman")
     static let americaChicago = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Chicago")
     static let americaChihuahua = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Chihuahua")
-    static let americaCiudadJuarez = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Ciudad_Juarez")
-    static let americaCoralHarbour = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Coral_Harbour")
+    static let americaCiudadJuarez =
+        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Ciudad_Juarez")
+    static let americaCoralHarbour =
+        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Coral_Harbour")
     static let americaCordoba = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Cordoba")
     static let americaCostaRica = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Costa_Rica")
     static let americaCoyhaique = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Coyhaique")
     static let americaCreston = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Creston")
     static let americaCuiaba = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Cuiaba")
     static let americaCuracao = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Curacao")
-    static let americaDanmarkshavn = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Danmarkshavn")
+    static let americaDanmarkshavn =
+        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Danmarkshavn")
     static let americaDawson = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Dawson")
-    static let americaDawsonCreek = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Dawson_Creek")
+    static let americaDawsonCreek =
+        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Dawson_Creek")
     static let americaDenver = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Denver")
     static let americaDetroit = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Detroit")
     static let americaDominica = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Dominica")
@@ -55,29 +63,41 @@ public extension PostReportingReportRunsRequestBodyParametersTimezone {
     static let americaHalifax = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Halifax")
     static let americaHavana = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Havana")
     static let americaHermosillo = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Hermosillo")
-    static let americaIndianaIndianapolis = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Indiana/Indianapolis")
-    static let americaIndianaKnox = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Indiana/Knox")
-    static let americaIndianaMarengo = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Indiana/Marengo")
-    static let americaIndianaPetersburg = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Indiana/Petersburg")
-    static let americaIndianaTellCity = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Indiana/Tell_City")
-    static let americaIndianaVevay = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Indiana/Vevay")
-    static let americaIndianaVincennes = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Indiana/Vincennes")
-    static let americaIndianaWinamac = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Indiana/Winamac")
-    static let americaIndianapolis = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Indianapolis")
+    static let americaIndianaIndianapolis =
+        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Indiana/Indianapolis")
+    static let americaIndianaKnox =
+        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Indiana/Knox")
+    static let americaIndianaMarengo =
+        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Indiana/Marengo")
+    static let americaIndianaPetersburg =
+        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Indiana/Petersburg")
+    static let americaIndianaTellCity =
+        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Indiana/Tell_City")
+    static let americaIndianaVevay =
+        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Indiana/Vevay")
+    static let americaIndianaVincennes =
+        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Indiana/Vincennes")
+    static let americaIndianaWinamac =
+        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Indiana/Winamac")
+    static let americaIndianapolis =
+        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Indianapolis")
     static let americaInuvik = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Inuvik")
     static let americaIqaluit = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Iqaluit")
     static let americaJamaica = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Jamaica")
     static let americaJujuy = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Jujuy")
     static let americaJuneau = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Juneau")
-    static let americaKentuckyLouisville = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Kentucky/Louisville")
-    static let americaKentuckyMonticello = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Kentucky/Monticello")
+    static let americaKentuckyLouisville =
+        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Kentucky/Louisville")
+    static let americaKentuckyMonticello =
+        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Kentucky/Monticello")
     static let americaKnoxIn = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Knox_IN")
     static let americaKralendijk = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Kralendijk")
     static let americaLaPaz = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/La_Paz")
     static let americaLima = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Lima")
     static let americaLosAngeles = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Los_Angeles")
     static let americaLouisville = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Louisville")
-    static let americaLowerPrinces = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Lower_Princes")
+    static let americaLowerPrinces =
+        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Lower_Princes")
     static let americaMaceio = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Maceio")
     static let americaManagua = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Managua")
     static let americaManaus = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Manaus")
@@ -104,44 +124,58 @@ public extension PostReportingReportRunsRequestBodyParametersTimezone {
     static let americaNipigon = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Nipigon")
     static let americaNome = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Nome")
     static let americaNoronha = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Noronha")
-    static let americaNorthDakotaBeulah = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/North_Dakota/Beulah")
-    static let americaNorthDakotaCenter = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/North_Dakota/Center")
-    static let americaNorthDakotaNewSalem = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/North_Dakota/New_Salem")
+    static let americaNorthDakotaBeulah =
+        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/North_Dakota/Beulah")
+    static let americaNorthDakotaCenter =
+        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/North_Dakota/Center")
+    static let americaNorthDakotaNewSalem =
+        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/North_Dakota/New_Salem")
     static let americaNuuk = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Nuuk")
     static let americaOjinaga = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Ojinaga")
     static let americaPanama = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Panama")
-    static let americaPangnirtung = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Pangnirtung")
+    static let americaPangnirtung =
+        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Pangnirtung")
     static let americaParamaribo = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Paramaribo")
     static let americaPhoenix = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Phoenix")
-    static let americaPortAuPrince = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Port-au-Prince")
-    static let americaPortOfSpain = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Port_of_Spain")
+    static let americaPortAuPrince =
+        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Port-au-Prince")
+    static let americaPortOfSpain =
+        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Port_of_Spain")
     static let americaPortoAcre = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Porto_Acre")
     static let americaPortoVelho = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Porto_Velho")
     static let americaPuertoRico = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Puerto_Rico")
-    static let americaPuntaArenas = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Punta_Arenas")
+    static let americaPuntaArenas =
+        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Punta_Arenas")
     static let americaRainyRiver = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Rainy_River")
-    static let americaRankinInlet = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Rankin_Inlet")
+    static let americaRankinInlet =
+        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Rankin_Inlet")
     static let americaRecife = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Recife")
     static let americaRegina = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Regina")
     static let americaResolute = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Resolute")
     static let americaRioBranco = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Rio_Branco")
     static let americaRosario = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Rosario")
-    static let americaSantaIsabel = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Santa_Isabel")
+    static let americaSantaIsabel =
+        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Santa_Isabel")
     static let americaSantarem = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Santarem")
     static let americaSantiago = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Santiago")
-    static let americaSantoDomingo = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Santo_Domingo")
+    static let americaSantoDomingo =
+        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Santo_Domingo")
     static let americaSaoPaulo = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Sao_Paulo")
-    static let americaScoresbysund = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Scoresbysund")
+    static let americaScoresbysund =
+        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Scoresbysund")
     static let americaShiprock = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Shiprock")
     static let americaSitka = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Sitka")
-    static let americaStBarthelemy = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/St_Barthelemy")
+    static let americaStBarthelemy =
+        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/St_Barthelemy")
     static let americaStJohns = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/St_Johns")
     static let americaStKitts = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/St_Kitts")
     static let americaStLucia = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/St_Lucia")
     static let americaStThomas = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/St_Thomas")
     static let americaStVincent = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/St_Vincent")
-    static let americaSwiftCurrent = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Swift_Current")
-    static let americaTegucigalpa = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Tegucigalpa")
+    static let americaSwiftCurrent =
+        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Swift_Current")
+    static let americaTegucigalpa =
+        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Tegucigalpa")
     static let americaThule = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Thule")
     static let americaThunderBay = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Thunder_Bay")
     static let americaTijuana = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Tijuana")
@@ -152,20 +186,25 @@ public extension PostReportingReportRunsRequestBodyParametersTimezone {
     static let americaWhitehorse = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Whitehorse")
     static let americaWinnipeg = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Winnipeg")
     static let americaYakutat = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Yakutat")
-    static let americaYellowknife = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Yellowknife")
+    static let americaYellowknife =
+        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "America/Yellowknife")
     static let antarcticaCasey = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Antarctica/Casey")
     static let antarcticaDavis = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Antarctica/Davis")
-    static let antarcticaDumontDUrville = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Antarctica/DumontDUrville")
-    static let antarcticaMacquarie = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Antarctica/Macquarie")
+    static let antarcticaDumontDUrville =
+        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Antarctica/DumontDUrville")
+    static let antarcticaMacquarie =
+        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Antarctica/Macquarie")
     static let antarcticaMawson = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Antarctica/Mawson")
     static let antarcticaMcMurdo = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Antarctica/McMurdo")
     static let antarcticaPalmer = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Antarctica/Palmer")
     static let antarcticaRothera = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Antarctica/Rothera")
-    static let antarcticaSouthPole = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Antarctica/South_Pole")
+    static let antarcticaSouthPole =
+        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Antarctica/South_Pole")
     static let antarcticaSyowa = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Antarctica/Syowa")
     static let antarcticaTroll = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Antarctica/Troll")
     static let antarcticaVostok = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Antarctica/Vostok")
-    static let arcticLongyearbyen = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Arctic/Longyearbyen")
+    static let arcticLongyearbyen =
+        PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Arctic/Longyearbyen")
     static let asiaAden = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Asia/Aden")
     static let asiaAlmaty = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Asia/Almaty")
     static let asiaAmman = PostReportingReportRunsRequestBodyParametersTimezone(rawValue: "Asia/Amman")

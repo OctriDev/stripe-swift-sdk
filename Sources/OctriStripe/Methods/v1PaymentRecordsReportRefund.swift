@@ -17,7 +17,11 @@ public enum V1PaymentRecordsReportRefundMethods {
         public var metadata: PostPaymentRecordsIdReportRefundRequestBodyMetadata?
         public var refunded: PostPaymentRecordsIdReportRefundRequestBodyRefunded?
 
-        public init(id: String, outcome: PostPaymentRecordsIdReportRefundRequestBodyOutcome, processorDetails: PostPaymentRecordsIdReportRefundRequestBodyProcessorDetails) {
+        public init(
+            id: String,
+            outcome: PostPaymentRecordsIdReportRefundRequestBodyOutcome,
+            processorDetails: PostPaymentRecordsIdReportRefundRequestBodyProcessorDetails
+        ) {
             self.id = id
             self.outcome = outcome
             self.processorDetails = processorDetails
@@ -43,11 +47,22 @@ public enum V1PaymentRecordsReportRefundMethods {
     ///   unset by posting an empty value to them. All keys can be unset by posting an
     ///   empty value to `metadata`.
     /// - refunded: Information about the payment attempt refund.
-    public static func postPaymentRecordsIdReportRefund(config: ClientConfig, options: PostPaymentRecordsIdReportRefundOptions) async throws -> PaymentRecord {
+    public static func postPaymentRecordsIdReportRefund(
+        config: ClientConfig,
+        options: PostPaymentRecordsIdReportRefundOptions
+    ) async throws -> PaymentRecord {
         try validateLength("id", options.id, max: 5000)
 
         let requestBody = PostPaymentRecordsIdReportRefundRequestBody(options: options)
 
-        return try (await sdkRequest("POST", ["/v1/payment_records/", sdkEncodePathSegment(sdkWireString(options.id)), "/report_refund"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostPaymentRecordsIdReportRefund")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/payment_records/", sdkEncodePathSegment(sdkWireString(options.id)), "/report_refund"].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostPaymentRecordsIdReportRefund"
+        )).data
     }
 }

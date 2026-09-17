@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1CheckoutSessionsMethods {
-    public struct GetCheckoutSessionsOptions: Codable {
+public extension V1CheckoutSessionsMethods {
+    struct GetCheckoutSessionsOptions: Codable {
         public var created: GetCheckoutSessionsParameter?
         public var customer: String?
         public var customerAccount: String?
@@ -24,7 +24,9 @@ extension V1CheckoutSessionsMethods {
         public init() {}
     }
 
-    /// Lists Checkout Sessions, optionally filtered by creation interval, customer, payment relationship, or session status. Use cursor parameters and `limit` to paginate the results, which are returned in the API's list format. You can request expanded fields with `expand`.
+    /// Lists Checkout Sessions, optionally filtered by creation interval, customer, payment relationship, or session
+    /// status. Use cursor parameters and `limit` to paginate the results, which are returned in the API's list format.
+    /// You can request expanded fields with `expand`.
     ///
     /// Returns a list of Checkout Sessions.
     ///
@@ -56,7 +58,10 @@ extension V1CheckoutSessionsMethods {
     /// - status: Only return the Checkout Sessions matching the given status.
     /// - subscription: Only return the Checkout Session for the subscription
     ///   specified.
-    public static func getCheckoutSessions(config: ClientConfig, options: GetCheckoutSessionsOptions) async throws -> GetCheckoutSessionsResponse {
+    static func getCheckoutSessions(
+        config: ClientConfig,
+        options: GetCheckoutSessionsOptions
+    ) async throws -> GetCheckoutSessionsResponse {
         if let customer = options.customer {
             try validateLength("customer", customer, max: 5000)
         }
@@ -85,7 +90,7 @@ extension V1CheckoutSessionsMethods {
             try validateLength("subscription", subscription, max: 5000)
         }
 
-        return try (await sdkRequest("GET", "/v1/checkout/sessions", config: config, query: [
+        return try await (sdkRequest("GET", "/v1/checkout/sessions", config: config, query: [
             SdkQueryParameter("created", value: options.created),
             SdkQueryParameter("customer", value: options.customer),
             SdkQueryParameter("customer_account", value: options.customerAccount),

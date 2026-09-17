@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1InvoicesCreatePreviewMethods {
-    public struct PostInvoicesCreatePreviewOptions: Codable {
+public extension V1InvoicesCreatePreviewMethods {
+    struct PostInvoicesCreatePreviewOptions: Codable {
         public var automaticTax: PostInvoicesCreatePreviewRequestBodyAutomaticTax?
         public var currency: String?
         public var customer: String?
@@ -27,7 +27,19 @@ extension V1InvoicesCreatePreviewMethods {
         public init() {}
     }
 
-    /// At any time, you can preview the upcoming invoice for a subscription or subscription schedule. This will show you all the charges that are pending, including subscription renewal charges, invoice item charges, etc. It will also show you any discounts that are applicable to the invoice. You can also preview the effects of creating or updating a subscription or subscription schedule, including a preview of any prorations that will take place. To ensure that the actual proration is calculated exactly the same as the previewed proration, you should pass the subscription_details.proration_date parameter when doing the actual subscription update. The recommended way to get only the prorations being previewed on the invoice is to consider line items where parent.subscription_item_details.proration is true . Note that when you are viewing an upcoming invoice, you are simply viewing a preview – the invoice has not yet been created. As such, the upcoming invoice will not show up in invoice listing calls, and you cannot use the API to pay or edit the invoice. If you want to change the amount that your customer will be billed, you can add, remove, or update pending invoice items, or update the customer’s discount. Note: Currency conversion calculations use the latest exchange rates. Exchange rates may vary between the time of the preview and the time of the actual invoice creation. Learn more
+    /// At any time, you can preview the upcoming invoice for a subscription or subscription schedule. This will show
+    /// you all the charges that are pending, including subscription renewal charges, invoice item charges, etc. It will
+    /// also show you any discounts that are applicable to the invoice. You can also preview the effects of creating or
+    /// updating a subscription or subscription schedule, including a preview of any prorations that will take place. To
+    /// ensure that the actual proration is calculated exactly the same as the previewed proration, you should pass the
+    /// subscription_details.proration_date parameter when doing the actual subscription update. The recommended way to
+    /// get only the prorations being previewed on the invoice is to consider line items where
+    /// parent.subscription_item_details.proration is true . Note that when you are viewing an upcoming invoice, you are
+    /// simply viewing a preview – the invoice has not yet been created. As such, the upcoming invoice will not show up
+    /// in invoice listing calls, and you cannot use the API to pay or edit the invoice. If you want to change the
+    /// amount that your customer will be billed, you can add, remove, or update pending invoice items, or update the
+    /// customer’s discount. Note: Currency conversion calculations use the latest exchange rates. Exchange rates may
+    /// vary between the time of the preview and the time of the actual invoice creation. Learn more
     ///
     /// - Parameters:
     /// - automaticTax: Settings for automatic tax lookup for this invoice preview.
@@ -76,7 +88,10 @@ extension V1InvoicesCreatePreviewMethods {
     /// - subscriptionDetails: The subscription creation or modification params to
     ///   apply as a preview. Cannot be used with `schedule` or `schedule_details`
     ///   fields.
-    public static func postInvoicesCreatePreview(config: ClientConfig, options: PostInvoicesCreatePreviewOptions) async throws -> Invoice {
+    static func postInvoicesCreatePreview(
+        config: ClientConfig,
+        options: PostInvoicesCreatePreviewOptions
+    ) async throws -> Invoice {
         if let customer = options.customer {
             try validateLength("customer", customer, max: 5000)
         }
@@ -95,6 +110,14 @@ extension V1InvoicesCreatePreviewMethods {
 
         let requestBody = PostInvoicesCreatePreviewRequestBody(options: options)
 
-        return try (await sdkRequest("POST", "/v1/invoices/create_preview", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostInvoicesCreatePreview")).data
+        return try await (sdkRequest(
+            "POST",
+            "/v1/invoices/create_preview",
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostInvoicesCreatePreview"
+        )).data
     }
 }

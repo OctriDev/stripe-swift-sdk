@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1Three domain models
+/// V1Three domain models
 /// Typed representation of the `ThreeDSecureDetails` API schema.
 public struct ThreeDSecureDetails: Codable {
     /// For authenticated transactions: how the customer was authenticated by the issuing bank.
@@ -30,28 +30,41 @@ public struct ThreeDSecureDetails: Codable {
     }
 
     init() {
-        (self.authenticationFlow, self.electronicCommerceIndicator, self.result, self.resultReason, self.transactionId) = (nil, nil, nil, nil, nil)
-        self.version = nil
+        (authenticationFlow, electronicCommerceIndicator, result, resultReason, transactionId) = (
+            nil,
+            nil,
+            nil,
+            nil,
+            nil
+        )
+        version = nil
     }
 }
 
-extension ThreeDSecureDetails {
-    public init(from decoder: Decoder) throws {
+public extension ThreeDSecureDetails {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.authenticationFlow = try container.sdkDecodeIfPresent(.authenticationFlow)
-        self.electronicCommerceIndicator = try container.sdkDecodeIfPresent(.electronicCommerceIndicator)
-        self.result = try container.sdkDecodeIfPresent(.result)
-        self.resultReason = try container.sdkDecodeIfPresent(.resultReason)
-        self.transactionId = try container.sdkDecodeIfPresent(.transactionId)
-        self.version = try container.sdkDecodeIfPresent(.version)
-        if let value = self.transactionId {
+        authenticationFlow = try container.sdkDecodeIfPresent(.authenticationFlow)
+        electronicCommerceIndicator = try container.sdkDecodeIfPresent(.electronicCommerceIndicator)
+        result = try container.sdkDecodeIfPresent(.result)
+        resultReason = try container.sdkDecodeIfPresent(.resultReason)
+        transactionId = try container.sdkDecodeIfPresent(.transactionId)
+        version = try container.sdkDecodeIfPresent(.version)
+        if let value = transactionId {
             try validateLength("transaction_id", value, min: nil, max: 5000)
         }
     }
 }
 
-extension ThreeDSecureDetails {
-    public init(authenticationFlow: ThreeDSecureDetailsAuthenticationFlow? = nil, electronicCommerceIndicator: ThreeDSecureDetailsElectronicCommerceIndicator? = nil, result: ThreeDSecureDetailsResult? = nil, resultReason: ThreeDSecureDetailsResultReason? = nil, transactionId: String? = nil, version: ThreeDSecureDetailsVersion? = nil) throws {
+public extension ThreeDSecureDetails {
+    init(
+        authenticationFlow: ThreeDSecureDetailsAuthenticationFlow? = nil,
+        electronicCommerceIndicator: ThreeDSecureDetailsElectronicCommerceIndicator? = nil,
+        result: ThreeDSecureDetailsResult? = nil,
+        resultReason: ThreeDSecureDetailsResultReason? = nil,
+        transactionId: String? = nil,
+        version: ThreeDSecureDetailsVersion? = nil
+    ) throws {
         self.init()
         self.authenticationFlow = authenticationFlow
         (self.electronicCommerceIndicator, self.result) = (electronicCommerceIndicator, result)
@@ -62,18 +75,6 @@ extension ThreeDSecureDetails {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 /// Typed representation of the `ThreeDSecureDetailsCharge` API schema.
 public struct ThreeDSecureDetailsCharge: Codable {
@@ -108,30 +109,45 @@ public struct ThreeDSecureDetailsCharge: Codable {
     }
 
     init() {
-        (self.authenticationFlow, self.electronicCommerceIndicator, self.exemptionIndicator, self.exemptionIndicatorApplied, self.result) = (nil, nil, nil, nil, nil)
-        (self.resultReason, self.transactionId, self.version) = (nil, nil, nil)
+        (authenticationFlow, electronicCommerceIndicator, exemptionIndicator, exemptionIndicatorApplied, result) = (
+            nil,
+            nil,
+            nil,
+            nil,
+            nil
+        )
+        (resultReason, transactionId, version) = (nil, nil, nil)
     }
 }
 
-extension ThreeDSecureDetailsCharge {
-    public init(from decoder: Decoder) throws {
+public extension ThreeDSecureDetailsCharge {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.authenticationFlow = try container.sdkDecodeIfPresent(.authenticationFlow)
-        self.electronicCommerceIndicator = try container.sdkDecodeIfPresent(.electronicCommerceIndicator)
-        self.exemptionIndicator = try container.sdkDecodeIfPresent(.exemptionIndicator)
-        self.exemptionIndicatorApplied = try container.sdkDecodeIfPresent(.exemptionIndicatorApplied)
-        self.result = try container.sdkDecodeIfPresent(.result)
-        self.resultReason = try container.sdkDecodeIfPresent(.resultReason)
-        self.transactionId = try container.sdkDecodeIfPresent(.transactionId)
-        self.version = try container.sdkDecodeIfPresent(.version)
-        if let value = self.transactionId {
+        authenticationFlow = try container.sdkDecodeIfPresent(.authenticationFlow)
+        electronicCommerceIndicator = try container.sdkDecodeIfPresent(.electronicCommerceIndicator)
+        exemptionIndicator = try container.sdkDecodeIfPresent(.exemptionIndicator)
+        exemptionIndicatorApplied = try container.sdkDecodeIfPresent(.exemptionIndicatorApplied)
+        result = try container.sdkDecodeIfPresent(.result)
+        resultReason = try container.sdkDecodeIfPresent(.resultReason)
+        transactionId = try container.sdkDecodeIfPresent(.transactionId)
+        version = try container.sdkDecodeIfPresent(.version)
+        if let value = transactionId {
             try validateLength("transaction_id", value, min: nil, max: 5000)
         }
     }
 }
 
-extension ThreeDSecureDetailsCharge {
-    public init(authenticationFlow: ThreeDSecureDetailsChargeAuthenticationFlow? = nil, electronicCommerceIndicator: ThreeDSecureDetailsChargeElectronicCommerceIndicator? = nil, exemptionIndicator: ThreeDSecureDetailsChargeExemptionIndicator? = nil, exemptionIndicatorApplied: Bool? = nil, result: ThreeDSecureDetailsChargeResult? = nil, resultReason: ThreeDSecureDetailsChargeResultReason? = nil, transactionId: String? = nil, version: ThreeDSecureDetailsChargeVersion? = nil) throws {
+public extension ThreeDSecureDetailsCharge {
+    init(
+        authenticationFlow: ThreeDSecureDetailsChargeAuthenticationFlow? = nil,
+        electronicCommerceIndicator: ThreeDSecureDetailsChargeElectronicCommerceIndicator? = nil,
+        exemptionIndicator: ThreeDSecureDetailsChargeExemptionIndicator? = nil,
+        exemptionIndicatorApplied: Bool? = nil,
+        result: ThreeDSecureDetailsChargeResult? = nil,
+        resultReason: ThreeDSecureDetailsChargeResultReason? = nil,
+        transactionId: String? = nil,
+        version: ThreeDSecureDetailsChargeVersion? = nil
+    ) throws {
         self.init()
         self.authenticationFlow = authenticationFlow
         self.electronicCommerceIndicator = electronicCommerceIndicator
@@ -154,36 +170,46 @@ public struct ThreeDSecureUsage: Codable {
         case supported
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension ThreeDSecureUsage {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.supported) else {
-            throw SdkValidationError(field: "supported", code: "required", message: "Validation failed for 'supported': value is required")
-        }
-        self.supported = try container.sdkDecodeRequired(.supported)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension ThreeDSecureUsage {
-    public init(supported: Bool) {
+public extension ThreeDSecureUsage {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.supported) else {
+            throw SdkValidationError(
+                field: "supported",
+                code: "required",
+                message: "Validation failed for 'supported': value is required"
+            )
+        }
+        supported = try container.sdkDecodeRequired(.supported)
+    }
+}
+
+public extension ThreeDSecureUsage {
+    init(supported: Bool) {
         self.supported = supported
     }
 }
 
 /// For authenticated transactions: how the customer was authenticated by the issuing bank.
-public struct ThreeDSecureDetailsChargeAuthenticationFlow: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct ThreeDSecureDetailsChargeAuthenticationFlow: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let challenge = ThreeDSecureDetailsChargeAuthenticationFlow(rawValue: "challenge")
     public static let frictionless = ThreeDSecureDetailsChargeAuthenticationFlow(rawValue: "frictionless")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -193,16 +219,20 @@ public struct ThreeDSecureDetailsChargeAuthenticationFlow: RawRepresentable, Has
 }
 
 /// The exemption requested via 3DS and accepted by the issuer at authentication time.
-public struct ThreeDSecureDetailsChargeExemptionIndicator: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct ThreeDSecureDetailsChargeExemptionIndicator: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let lowRisk = ThreeDSecureDetailsChargeExemptionIndicator(rawValue: "low_risk")
     public static let none = ThreeDSecureDetailsChargeExemptionIndicator(rawValue: "none")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -215,7 +245,10 @@ public struct ThreeDSecureDetailsChargeExemptionIndicator: RawRepresentable, Has
 public struct ThreeDSecureDetailsVersion: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let value102 = ThreeDSecureDetailsVersion(rawValue: "1.0.2")
     public static let value210 = ThreeDSecureDetailsVersion(rawValue: "2.1.0")
     public static let value220 = ThreeDSecureDetailsVersion(rawValue: "2.2.0")
@@ -224,7 +257,7 @@ public struct ThreeDSecureDetailsVersion: RawRepresentable, Hashable, Codable, S
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -237,7 +270,10 @@ public struct ThreeDSecureDetailsVersion: RawRepresentable, Hashable, Codable, S
 public struct ThreeDSecureDetailsResult: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let attemptAcknowledged = ThreeDSecureDetailsResult(rawValue: "attempt_acknowledged")
     public static let authenticated = ThreeDSecureDetailsResult(rawValue: "authenticated")
     public static let dataShareOnly = ThreeDSecureDetailsResult(rawValue: "data_share_only")
@@ -248,7 +284,7 @@ public struct ThreeDSecureDetailsResult: RawRepresentable, Hashable, Codable, Se
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -261,7 +297,10 @@ public struct ThreeDSecureDetailsResult: RawRepresentable, Hashable, Codable, Se
 public struct ThreeDSecureDetailsChargeResultReason: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let abandoned = ThreeDSecureDetailsChargeResultReason(rawValue: "abandoned")
     public static let bypassed = ThreeDSecureDetailsChargeResultReason(rawValue: "bypassed")
     public static let canceled = ThreeDSecureDetailsChargeResultReason(rawValue: "canceled")
@@ -272,7 +311,7 @@ public struct ThreeDSecureDetailsChargeResultReason: RawRepresentable, Hashable,
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -285,7 +324,10 @@ public struct ThreeDSecureDetailsChargeResultReason: RawRepresentable, Hashable,
 public struct ThreeDSecureDetailsChargeVersion: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let value102 = ThreeDSecureDetailsChargeVersion(rawValue: "1.0.2")
     public static let value210 = ThreeDSecureDetailsChargeVersion(rawValue: "2.1.0")
     public static let value220 = ThreeDSecureDetailsChargeVersion(rawValue: "2.2.0")
@@ -294,7 +336,7 @@ public struct ThreeDSecureDetailsChargeVersion: RawRepresentable, Hashable, Coda
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -307,13 +349,16 @@ public struct ThreeDSecureDetailsChargeVersion: RawRepresentable, Hashable, Coda
 public struct ThreeDSecureDetailsAuthenticationFlow: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let challenge = ThreeDSecureDetailsAuthenticationFlow(rawValue: "challenge")
     public static let frictionless = ThreeDSecureDetailsAuthenticationFlow(rawValue: "frictionless")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -326,7 +371,10 @@ public struct ThreeDSecureDetailsAuthenticationFlow: RawRepresentable, Hashable,
 public struct ThreeDSecureDetailsResultReason: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let abandoned = ThreeDSecureDetailsResultReason(rawValue: "abandoned")
     public static let bypassed = ThreeDSecureDetailsResultReason(rawValue: "bypassed")
     public static let canceled = ThreeDSecureDetailsResultReason(rawValue: "canceled")
@@ -337,7 +385,7 @@ public struct ThreeDSecureDetailsResultReason: RawRepresentable, Hashable, Codab
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -350,7 +398,10 @@ public struct ThreeDSecureDetailsResultReason: RawRepresentable, Hashable, Codab
 public struct ThreeDSecureDetailsChargeResult: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let attemptAcknowledged = ThreeDSecureDetailsChargeResult(rawValue: "attempt_acknowledged")
     public static let authenticated = ThreeDSecureDetailsChargeResult(rawValue: "authenticated")
     public static let dataShareOnly = ThreeDSecureDetailsChargeResult(rawValue: "data_share_only")
@@ -361,7 +412,7 @@ public struct ThreeDSecureDetailsChargeResult: RawRepresentable, Hashable, Codab
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -372,10 +423,14 @@ public struct ThreeDSecureDetailsChargeResult: RawRepresentable, Hashable, Codab
 
 /// The Electronic Commerce Indicator (ECI). A protocol-level field indicating what degree of authentication was
 /// performed.
-public struct ThreeDSecureDetailsElectronicCommerceIndicator: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct ThreeDSecureDetailsElectronicCommerceIndicator: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let value01 = ThreeDSecureDetailsElectronicCommerceIndicator(rawValue: "01")
     public static let value02 = ThreeDSecureDetailsElectronicCommerceIndicator(rawValue: "02")
     public static let value05 = ThreeDSecureDetailsElectronicCommerceIndicator(rawValue: "05")
@@ -384,7 +439,7 @@ public struct ThreeDSecureDetailsElectronicCommerceIndicator: RawRepresentable, 
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -395,10 +450,14 @@ public struct ThreeDSecureDetailsElectronicCommerceIndicator: RawRepresentable, 
 
 /// The Electronic Commerce Indicator (ECI). A protocol-level field indicating what degree of authentication was
 /// performed.
-public struct ThreeDSecureDetailsChargeElectronicCommerceIndicator: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct ThreeDSecureDetailsChargeElectronicCommerceIndicator: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let value01 = ThreeDSecureDetailsChargeElectronicCommerceIndicator(rawValue: "01")
     public static let value02 = ThreeDSecureDetailsChargeElectronicCommerceIndicator(rawValue: "02")
     public static let value05 = ThreeDSecureDetailsChargeElectronicCommerceIndicator(rawValue: "05")
@@ -407,7 +466,7 @@ public struct ThreeDSecureDetailsChargeElectronicCommerceIndicator: RawRepresent
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

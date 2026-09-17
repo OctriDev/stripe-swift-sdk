@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1AppsSecrets operation model declarations
+/// Canonical v1AppsSecrets operation model declarations
 public struct GetAppsSecretsParameter: Codable {
     public var type: GetAppsSecretsParameterType
     public var user: String?
@@ -17,25 +17,31 @@ public struct GetAppsSecretsParameter: Codable {
         case user
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension GetAppsSecretsParameter {
-    public init(from decoder: Decoder) throws {
+public extension GetAppsSecretsParameter {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
         }
-        self.type = try container.sdkDecodeRequired(.type)
-        self.user = try container.sdkDecodeIfPresent(.user)
-        if let value = self.user {
+        type = try container.sdkDecodeRequired(.type)
+        user = try container.sdkDecodeIfPresent(.user)
+        if let value = user {
             try validateLength("user", value, min: nil, max: 5000)
         }
     }
 }
 
-extension GetAppsSecretsParameter {
-    public init(type: GetAppsSecretsParameterType, user: String? = nil) throws {
+public extension GetAppsSecretsParameter {
+    init(type: GetAppsSecretsParameterType, user: String? = nil) throws {
         (self.type, self.user) = (type, user)
         if let value = self.user {
             try validateLength("user", value, min: nil, max: 5000)
@@ -60,39 +66,57 @@ public struct GetAppsSecretsResponse: Codable {
         case url
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension GetAppsSecretsResponse {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.data) else {
-            throw SdkValidationError(field: "data", code: "required", message: "Validation failed for 'data': value is required")
-        }
-        guard container.contains(.hasMore) else {
-            throw SdkValidationError(field: "has_more", code: "required", message: "Validation failed for 'has_more': value is required")
-        }
-        guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
-        }
-        guard container.contains(.url) else {
-            throw SdkValidationError(field: "url", code: "required", message: "Validation failed for 'url': value is required")
-        }
-        self.data = try container.sdkDecodeRequired(.data)
-        self.hasMore = try container.sdkDecodeRequired(.hasMore)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.url = try container.sdkDecodeRequired(.url)
-            try validateLength("url", self.url, min: nil, max: 5000)
-            try sdkValidatePattern("url", self.url, sdkPattern510996bce39f)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension GetAppsSecretsResponse {
-    public init(data: [AppsSecret], hasMore: Bool, object: GetAppsSecretsResponseObject, url: String) throws {
+public extension GetAppsSecretsResponse {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.data) else {
+            throw SdkValidationError(
+                field: "data",
+                code: "required",
+                message: "Validation failed for 'data': value is required"
+            )
+        }
+        guard container.contains(.hasMore) else {
+            throw SdkValidationError(
+                field: "has_more",
+                code: "required",
+                message: "Validation failed for 'has_more': value is required"
+            )
+        }
+        guard container.contains(.object) else {
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
+        }
+        guard container.contains(.url) else {
+            throw SdkValidationError(
+                field: "url",
+                code: "required",
+                message: "Validation failed for 'url': value is required"
+            )
+        }
+        data = try container.sdkDecodeRequired(.data)
+        hasMore = try container.sdkDecodeRequired(.hasMore)
+        object = try container.sdkDecodeRequired(.object)
+        url = try container.sdkDecodeRequired(.url)
+        try validateLength("url", url, min: nil, max: 5000)
+        try sdkValidatePattern("url", url, sdkPattern510996bce39f)
+    }
+}
+
+public extension GetAppsSecretsResponse {
+    init(data: [AppsSecret], hasMore: Bool, object: GetAppsSecretsResponseObject, url: String) throws {
         (self.data, self.hasMore) = (data, hasMore)
         (self.object, self.url) = (object, url)
-            try validateLength("url", self.url, min: nil, max: 5000)
-            try sdkValidatePattern("url", self.url, sdkPattern510996bce39f)
+        try validateLength("url", self.url, min: nil, max: 5000)
+        try sdkValidatePattern("url", self.url, sdkPattern510996bce39f)
     }
 }
 
@@ -107,25 +131,31 @@ public struct PostAppsSecretsRequestBodyScope: Codable {
         case user
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension PostAppsSecretsRequestBodyScope {
-    public init(from decoder: Decoder) throws {
+public extension PostAppsSecretsRequestBodyScope {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
         }
-        self.type = try container.sdkDecodeRequired(.type)
-        self.user = try container.sdkDecodeIfPresent(.user)
-        if let value = self.user {
+        type = try container.sdkDecodeRequired(.type)
+        user = try container.sdkDecodeIfPresent(.user)
+        if let value = user {
             try validateLength("user", value, min: nil, max: 5000)
         }
     }
 }
 
-extension PostAppsSecretsRequestBodyScope {
-    public init(type: PostAppsSecretsRequestBodyScopeType, user: String? = nil) throws {
+public extension PostAppsSecretsRequestBodyScope {
+    init(type: PostAppsSecretsRequestBodyScopeType, user: String? = nil) throws {
         (self.type, self.user) = (type, user)
         if let value = self.user {
             try validateLength("user", value, min: nil, max: 5000)

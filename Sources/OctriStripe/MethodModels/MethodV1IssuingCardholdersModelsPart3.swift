@@ -7,10 +7,12 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1IssuingCardholders operation model declarations
-public typealias PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX435cb1e31c = [PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744]
+/// Canonical v1IssuingCardholders operation model declarations
+public typealias PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX435cb1e31c =
+    [PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX5296425744]
 
-public typealias PostIssuingCardholdersCardholderRequestBodySpendingControlsSpXe9946cae6e = [PostIssuingCardholdersCardholderRequestBodySpendingControlsSpXc9b4c9bc97]
+public typealias PostIssuingCardholdersCardholderRequestBodySpendingControlsSpXe9946cae6e =
+    [PostIssuingCardholdersCardholderRequestBodySpendingControlsSpXc9b4c9bc97]
 
 /// Rules that control spending across this cardholder's cards. Refer to our documentation for more details.
 public struct PostIssuingCardholdersCardholderRequestBodySpendingControls: Codable {
@@ -35,27 +37,42 @@ public struct PostIssuingCardholdersCardholderRequestBodySpendingControls: Codab
     }
 
     init() {
-        (self.allowedCardPresences, self.allowedCategories, self.allowedMerchantCountries, self.blockedCardPresences, self.blockedCategories) = (nil, nil, nil, nil, nil)
-        (self.blockedMerchantCountries, self.spendingLimits, self.spendingLimitsCurrency) = (nil, nil, nil)
+        (allowedCardPresences, allowedCategories, allowedMerchantCountries, blockedCardPresences, blockedCategories) = (
+            nil,
+            nil,
+            nil,
+            nil,
+            nil
+        )
+        (blockedMerchantCountries, spendingLimits, spendingLimitsCurrency) = (nil, nil, nil)
     }
 }
 
-extension PostIssuingCardholdersCardholderRequestBodySpendingControls {
-    public init(from decoder: Decoder) throws {
+public extension PostIssuingCardholdersCardholderRequestBodySpendingControls {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.allowedCardPresences = try container.sdkDecodeIfPresent(.allowedCardPresences)
-        self.allowedCategories = try container.sdkDecodeIfPresent(.allowedCategories)
-        self.allowedMerchantCountries = try container.sdkDecodeIfPresent(.allowedMerchantCountries)
-        self.blockedCardPresences = try container.sdkDecodeIfPresent(.blockedCardPresences)
-        self.blockedCategories = try container.sdkDecodeIfPresent(.blockedCategories)
-        self.blockedMerchantCountries = try container.sdkDecodeIfPresent(.blockedMerchantCountries)
-        self.spendingLimits = try container.sdkDecodeIfPresent(.spendingLimits)
-        self.spendingLimitsCurrency = try container.sdkDecodeIfPresent(.spendingLimitsCurrency)
+        allowedCardPresences = try container.sdkDecodeIfPresent(.allowedCardPresences)
+        allowedCategories = try container.sdkDecodeIfPresent(.allowedCategories)
+        allowedMerchantCountries = try container.sdkDecodeIfPresent(.allowedMerchantCountries)
+        blockedCardPresences = try container.sdkDecodeIfPresent(.blockedCardPresences)
+        blockedCategories = try container.sdkDecodeIfPresent(.blockedCategories)
+        blockedMerchantCountries = try container.sdkDecodeIfPresent(.blockedMerchantCountries)
+        spendingLimits = try container.sdkDecodeIfPresent(.spendingLimits)
+        spendingLimitsCurrency = try container.sdkDecodeIfPresent(.spendingLimitsCurrency)
     }
 }
 
-extension PostIssuingCardholdersCardholderRequestBodySpendingControls {
-    public init(allowedCardPresences: PostIssuingCardholdersCardholderRequestBodySpendingControlsAlXca1a71bcc3? = nil, allowedCategories: PostIssuingCardholdersCardholderRequestBodySpendingControlsAlX41412fe10b? = nil, allowedMerchantCountries: [String]? = nil, blockedCardPresences: PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX217d217a5f? = nil, blockedCategories: PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX435cb1e31c? = nil, blockedMerchantCountries: [String]? = nil, spendingLimits: PostIssuingCardholdersCardholderRequestBodySpendingControlsSpXe9946cae6e? = nil, spendingLimitsCurrency: String? = nil) {
+public extension PostIssuingCardholdersCardholderRequestBodySpendingControls {
+    init(
+        allowedCardPresences: PostIssuingCardholdersCardholderRequestBodySpendingControlsAlXca1a71bcc3? = nil,
+        allowedCategories: PostIssuingCardholdersCardholderRequestBodySpendingControlsAlX41412fe10b? = nil,
+        allowedMerchantCountries: [String]? = nil,
+        blockedCardPresences: PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX217d217a5f? = nil,
+        blockedCategories: PostIssuingCardholdersCardholderRequestBodySpendingControlsBlX435cb1e31c? = nil,
+        blockedMerchantCountries: [String]? = nil,
+        spendingLimits: PostIssuingCardholdersCardholderRequestBodySpendingControlsSpXe9946cae6e? = nil,
+        spendingLimitsCurrency: String? = nil
+    ) {
         self.init()
         (self.allowedCardPresences, self.allowedCategories) = (allowedCardPresences, allowedCategories)
         self.allowedMerchantCountries = allowedMerchantCountries

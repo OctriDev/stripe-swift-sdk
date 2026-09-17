@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1TaxTransactionsCreateReversal operation model declarations
+/// Canonical v1TaxTransactionsCreateReversal operation model declarations
 public struct PostTaxTransactionsCreateReversalRequestBodyLineItemsItem: Codable {
     public var amount: Int
     public var amountTax: Int
@@ -25,42 +25,67 @@ public struct PostTaxTransactionsCreateReversalRequestBodyLineItemsItem: Codable
         case quantity
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension PostTaxTransactionsCreateReversalRequestBodyLineItemsItem {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.amount) else {
-            throw SdkValidationError(field: "amount", code: "required", message: "Validation failed for 'amount': value is required")
-        }
-        guard container.contains(.amountTax) else {
-            throw SdkValidationError(field: "amount_tax", code: "required", message: "Validation failed for 'amount_tax': value is required")
-        }
-        guard container.contains(.originalLineItem) else {
-            throw SdkValidationError(field: "original_line_item", code: "required", message: "Validation failed for 'original_line_item': value is required")
-        }
-        guard container.contains(.reference) else {
-            throw SdkValidationError(field: "reference", code: "required", message: "Validation failed for 'reference': value is required")
-        }
-        self.amount = try container.sdkDecodeRequired(.amount)
-        self.amountTax = try container.sdkDecodeRequired(.amountTax)
-        self.originalLineItem = try container.sdkDecodeRequired(.originalLineItem)
-        self.reference = try container.sdkDecodeRequired(.reference)
-        self.metadata = try container.sdkDecodeIfPresent(.metadata)
-        self.quantity = try container.sdkDecodeIfPresent(.quantity)
-            try validateLength("original_line_item", self.originalLineItem, min: nil, max: 5000)
-            try validateLength("reference", self.reference, min: nil, max: 500)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension PostTaxTransactionsCreateReversalRequestBodyLineItemsItem {
-    public init(amount: Int, amountTax: Int, originalLineItem: String, reference: String, metadata: [String: String]? = nil, quantity: Int? = nil) throws {
+public extension PostTaxTransactionsCreateReversalRequestBodyLineItemsItem {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.amount) else {
+            throw SdkValidationError(
+                field: "amount",
+                code: "required",
+                message: "Validation failed for 'amount': value is required"
+            )
+        }
+        guard container.contains(.amountTax) else {
+            throw SdkValidationError(
+                field: "amount_tax",
+                code: "required",
+                message: "Validation failed for 'amount_tax': value is required"
+            )
+        }
+        guard container.contains(.originalLineItem) else {
+            throw SdkValidationError(
+                field: "original_line_item",
+                code: "required",
+                message: "Validation failed for 'original_line_item': value is required"
+            )
+        }
+        guard container.contains(.reference) else {
+            throw SdkValidationError(
+                field: "reference",
+                code: "required",
+                message: "Validation failed for 'reference': value is required"
+            )
+        }
+        amount = try container.sdkDecodeRequired(.amount)
+        amountTax = try container.sdkDecodeRequired(.amountTax)
+        originalLineItem = try container.sdkDecodeRequired(.originalLineItem)
+        reference = try container.sdkDecodeRequired(.reference)
+        metadata = try container.sdkDecodeIfPresent(.metadata)
+        quantity = try container.sdkDecodeIfPresent(.quantity)
+        try validateLength("original_line_item", originalLineItem, min: nil, max: 5000)
+        try validateLength("reference", reference, min: nil, max: 500)
+    }
+}
+
+public extension PostTaxTransactionsCreateReversalRequestBodyLineItemsItem {
+    init(
+        amount: Int,
+        amountTax: Int,
+        originalLineItem: String,
+        reference: String,
+        metadata: [String: String]? = nil,
+        quantity: Int? = nil
+    ) throws {
         (self.amount, self.amountTax) = (amount, amountTax)
         (self.originalLineItem, self.reference) = (originalLineItem, reference)
         (self.metadata, self.quantity) = (metadata, quantity)
-            try validateLength("original_line_item", self.originalLineItem, min: nil, max: 5000)
-            try validateLength("reference", self.reference, min: nil, max: 500)
+        try validateLength("original_line_item", self.originalLineItem, min: nil, max: 5000)
+        try validateLength("reference", self.reference, min: nil, max: 500)
     }
 }
 
@@ -74,25 +99,35 @@ public struct PostTaxTransactionsCreateReversalRequestBodyShippingCost: Codable 
         case amountTax = "amount_tax"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension PostTaxTransactionsCreateReversalRequestBodyShippingCost {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.amount) else {
-            throw SdkValidationError(field: "amount", code: "required", message: "Validation failed for 'amount': value is required")
-        }
-        guard container.contains(.amountTax) else {
-            throw SdkValidationError(field: "amount_tax", code: "required", message: "Validation failed for 'amount_tax': value is required")
-        }
-        self.amount = try container.sdkDecodeRequired(.amount)
-        self.amountTax = try container.sdkDecodeRequired(.amountTax)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension PostTaxTransactionsCreateReversalRequestBodyShippingCost {
-    public init(amount: Int, amountTax: Int) {
+public extension PostTaxTransactionsCreateReversalRequestBodyShippingCost {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.amount) else {
+            throw SdkValidationError(
+                field: "amount",
+                code: "required",
+                message: "Validation failed for 'amount': value is required"
+            )
+        }
+        guard container.contains(.amountTax) else {
+            throw SdkValidationError(
+                field: "amount_tax",
+                code: "required",
+                message: "Validation failed for 'amount_tax': value is required"
+            )
+        }
+        amount = try container.sdkDecodeRequired(.amount)
+        amountTax = try container.sdkDecodeRequired(.amountTax)
+    }
+}
+
+public extension PostTaxTransactionsCreateReversalRequestBodyShippingCost {
+    init(amount: Int, amountTax: Int) {
         (self.amount, self.amountTax) = (amount, amountTax)
     }
 }

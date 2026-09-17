@@ -3,12 +3,15 @@
 
 import Foundation
 
-// V1Mandate domain models
+/// V1Mandate domain models
 /// The periodicity at which payments will be collected. Defaults to `adhoc`.
 public struct MandatePaytoPaymentSchedule: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let adhoc = MandatePaytoPaymentSchedule(rawValue: "adhoc")
     public static let annual = MandatePaytoPaymentSchedule(rawValue: "annual")
     public static let daily = MandatePaytoPaymentSchedule(rawValue: "daily")
@@ -20,7 +23,7 @@ public struct MandatePaytoPaymentSchedule: RawRepresentable, Hashable, Codable, 
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -33,7 +36,10 @@ public struct MandatePaytoPaymentSchedule: RawRepresentable, Hashable, Codable, 
 public struct MandateBacsDebitNetworkStatus: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let accepted = MandateBacsDebitNetworkStatus(rawValue: "accepted")
     public static let pending = MandateBacsDebitNetworkStatus(rawValue: "pending")
     public static let refused = MandateBacsDebitNetworkStatus(rawValue: "refused")
@@ -41,7 +47,7 @@ public struct MandateBacsDebitNetworkStatus: RawRepresentable, Hashable, Codable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -54,7 +60,10 @@ public struct MandateBacsDebitNetworkStatus: RawRepresentable, Hashable, Codable
 public struct MandateBacsDebitRevocationReason: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let accountClosed = MandateBacsDebitRevocationReason(rawValue: "account_closed")
     public static let bankAccountRestricted = MandateBacsDebitRevocationReason(rawValue: "bank_account_restricted")
     public static let bankOwnershipChanged = MandateBacsDebitRevocationReason(rawValue: "bank_ownership_changed")
@@ -63,7 +72,7 @@ public struct MandateBacsDebitRevocationReason: RawRepresentable, Hashable, Coda
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -76,13 +85,16 @@ public struct MandateBacsDebitRevocationReason: RawRepresentable, Hashable, Coda
 public struct MandatePixAmountType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let fixed = MandatePixAmountType(rawValue: "fixed")
     public static let maximum = MandatePixAmountType(rawValue: "maximum")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -96,13 +108,16 @@ public struct MandatePixAmountType: RawRepresentable, Hashable, Codable, Sendabl
 public struct MandatePaytoAmountType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let fixed = MandatePaytoAmountType(rawValue: "fixed")
     public static let maximum = MandatePaytoAmountType(rawValue: "maximum")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -116,13 +131,16 @@ public struct MandatePaytoAmountType: RawRepresentable, Hashable, Codable, Senda
 public struct MandateUpiAmountType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let fixed = MandateUpiAmountType(rawValue: "fixed")
     public static let maximum = MandateUpiAmountType(rawValue: "maximum")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -136,13 +154,16 @@ public struct MandateUpiAmountType: RawRepresentable, Hashable, Codable, Sendabl
 public struct MandateOptionsUpiAmountType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let fixed = MandateOptionsUpiAmountType(rawValue: "fixed")
     public static let maximum = MandateOptionsUpiAmountType(rawValue: "maximum")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

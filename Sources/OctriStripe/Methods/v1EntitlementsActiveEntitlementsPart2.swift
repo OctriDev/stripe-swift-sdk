@@ -6,8 +6,9 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1EntitlementsActiveEntitlementsMethods {
-    /// Lists active entitlements for a customer. Supply the customer identifier and use cursor parameters to page through the customer's active feature access.
+public extension V1EntitlementsActiveEntitlementsMethods {
+    /// Lists active entitlements for a customer. Supply the customer identifier and use cursor parameters to page
+    /// through the customer's active feature access.
     ///
     /// Retrieve a list of active entitlements for a customer
     ///
@@ -26,18 +27,25 @@ extension V1EntitlementsActiveEntitlementsMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    public static func getEntitlementsActiveEntitlements(config: ClientConfig, customer: String, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetEntitlementsActiveEntitlementsResponse {
+    static func getEntitlementsActiveEntitlements(
+        config: ClientConfig,
+        customer: String,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        startingAfter: String?
+    ) async throws -> GetEntitlementsActiveEntitlementsResponse {
         try validateLength("customer", customer, max: 5000)
 
-        if let endingBefore = endingBefore {
+        if let endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let startingAfter = startingAfter {
+        if let startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try (await sdkRequest("GET", "/v1/entitlements/active_entitlements", config: config, query: [
+        return try await (sdkRequest("GET", "/v1/entitlements/active_entitlements", config: config, query: [
             SdkQueryParameter("customer", value: customer),
             SdkQueryParameter("ending_before", value: endingBefore),
             SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),

@@ -6,18 +6,30 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1CheckoutSessionsMethods {
-    /// Retrieves a Checkout Session by its identifier. Use `expand` to include selected related fields in the response when needed. The response contains the session's payment, customer, expiration, and Checkout configuration.
+public extension V1CheckoutSessionsMethods {
+    /// Retrieves a Checkout Session by its identifier. Use `expand` to include selected related fields in the response
+    /// when needed. The response contains the session's payment, customer, expiration, and Checkout configuration.
     ///
     /// Retrieves a Checkout Session object.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func getCheckoutSessionsSession(config: ClientConfig, session: String, expand: [String]?) async throws -> CheckoutSession {
+    static func getCheckoutSessionsSession(
+        config: ClientConfig,
+        session: String,
+        expand: [String]?
+    ) async throws -> CheckoutSession {
         try validateLength("session", session, max: 66)
 
-        return try (await sdkRequest("GET", ["/v1/checkout/sessions/", sdkEncodePathSegment(sdkWireString(session))].joined(), config: config, query: [
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-        ], decoder: .json, operationId: "GetCheckoutSessionsSession")).data
+        return try await (sdkRequest(
+            "GET",
+            ["/v1/checkout/sessions/", sdkEncodePathSegment(sdkWireString(session))].joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+            ],
+            decoder: .json,
+            operationId: "GetCheckoutSessionsSession"
+        )).data
     }
 }

@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1SubscriptionSchedulesMethods {
-    public struct PostSubscriptionSchedulesOptions: Codable {
+public extension V1SubscriptionSchedulesMethods {
+    struct PostSubscriptionSchedulesOptions: Codable {
         public var billingMode: PostSubscriptionSchedulesRequestBodyBillingMode?
         public var customer: String?
         public var customerAccount: String?
@@ -60,7 +60,10 @@ extension V1SubscriptionSchedulesMethods {
     ///   backdated or postdated start. You can also use a Unix timestamp to backdate
     ///   the subscription so that it starts on a past date, or set a future date for
     ///   the subscription to start on.
-    public static func postSubscriptionSchedules(config: ClientConfig, options: PostSubscriptionSchedulesOptions) async throws -> SubscriptionSchedule {
+    static func postSubscriptionSchedules(
+        config: ClientConfig,
+        options: PostSubscriptionSchedulesOptions
+    ) async throws -> SubscriptionSchedule {
         if let customer = options.customer {
             try validateLength("customer", customer, max: 5000)
         }
@@ -75,6 +78,14 @@ extension V1SubscriptionSchedulesMethods {
 
         let requestBody = PostSubscriptionSchedulesRequestBody(options: options)
 
-        return try (await sdkRequest("POST", "/v1/subscription_schedules", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostSubscriptionSchedules")).data
+        return try await (sdkRequest(
+            "POST",
+            "/v1/subscription_schedules",
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostSubscriptionSchedules"
+        )).data
     }
 }

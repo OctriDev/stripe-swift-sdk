@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1CustomersSubscriptionsMethods {
-    public struct PostCustomersCustomerSubscriptionsOptions: Codable {
+public extension V1CustomersSubscriptionsMethods {
+    struct PostCustomersCustomerSubscriptionsOptions: Codable {
         public var customer: String
         public var addInvoiceItems: PostCustomersCustomerSubscriptionsAddInvoiceItemsList?
         public var applicationFeePercent: PostCustomersCustomerSubscriptionsRequestBodyApplicationFeePercent?
@@ -44,7 +44,9 @@ extension V1CustomersSubscriptionsMethods {
         }
     }
 
-    /// Creates a new subscription for an existing customer. Provide the subscription items and billing configuration needed for recurring charges, including a supported lowercase `currency` when required. The subscription can also include automatic tax, discounts, invoice items, payment settings, and cancellation settings.
+    /// Creates a new subscription for an existing customer. Provide the subscription items and billing configuration
+    /// needed for recurring charges, including a supported lowercase `currency` when required. The subscription can
+    /// also include automatic tax, discounts, invoice items, payment settings, and cancellation settings.
     ///
     /// Creates a new subscription on an existing customer.
     ///
@@ -162,7 +164,10 @@ extension V1CustomersSubscriptionsMethods {
     ///   subscriptions](https://docs.stripe.com/billing/subscriptions/trials) to
     ///   learn more.
     /// - trialSettings: Settings related to subscription trials.
-    public static func postCustomersCustomerSubscriptions(config: ClientConfig, options: PostCustomersCustomerSubscriptionsOptions) async throws -> Subscription {
+    static func postCustomersCustomerSubscriptions(
+        config: ClientConfig,
+        options: PostCustomersCustomerSubscriptionsOptions
+    ) async throws -> Subscription {
         try validateLength("customer", options.customer, max: 5000)
 
         if let defaultPaymentMethod = options.defaultPaymentMethod {
@@ -175,6 +180,14 @@ extension V1CustomersSubscriptionsMethods {
 
         let requestBody = PostCustomersCustomerSubscriptionsRequestBody(options: options)
 
-        return try (await sdkRequest("POST", ["/v1/customers/", sdkEncodePathSegment(sdkWireString(options.customer)), "/subscriptions"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostCustomersCustomerSubscriptions")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/customers/", sdkEncodePathSegment(sdkWireString(options.customer)), "/subscriptions"].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostCustomersCustomerSubscriptions"
+        )).data
     }
 }

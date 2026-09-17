@@ -19,38 +19,73 @@ public enum V1EphemeralKeysMethods {
     ///   ephemeral keys for Issuing Cards without exchanging sensitive information.
     /// - verificationSession: The ID of the Identity VerificationSession you'd like
     ///   to access using the resulting ephemeral key
-    public static func postEphemeralKeys(config: ClientConfig, customer: String?, expand: [String]?, issuingCard: String?, nonce: String?, verificationSession: String?) async throws -> EphemeralKey {
-        if let customer = customer {
+    public static func postEphemeralKeys(
+        config: ClientConfig,
+        customer: String?,
+        expand: [String]?,
+        issuingCard: String?,
+        nonce: String?,
+        verificationSession: String?
+    ) async throws -> EphemeralKey {
+        if let customer {
             try validateLength("customer", customer, max: 5000)
         }
 
-        if let issuingCard = issuingCard {
+        if let issuingCard {
             try validateLength("issuing_card", issuingCard, max: 5000)
         }
 
-        if let nonce = nonce {
+        if let nonce {
             try validateLength("nonce", nonce, max: 5000)
         }
 
-        if let verificationSession = verificationSession {
+        if let verificationSession {
             try validateLength("verification_session", verificationSession, max: 5000)
         }
 
-        let requestBody = PostEphemeralKeysRequestBody(customer: customer, expand: expand, issuingCard: issuingCard, nonce: nonce, verificationSession: verificationSession)
+        let requestBody = PostEphemeralKeysRequestBody(
+            customer: customer,
+            expand: expand,
+            issuingCard: issuingCard,
+            nonce: nonce,
+            verificationSession: verificationSession
+        )
 
-        return try (await sdkRequest("POST", "/v1/ephemeral_keys", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostEphemeralKeys")).data
+        return try await (sdkRequest(
+            "POST",
+            "/v1/ephemeral_keys",
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostEphemeralKeys"
+        )).data
     }
-    /// Deletes an ephemeral key immediately. Use `key` to identify the short-lived credential that should no longer grant access to its scoped resource.
+
+    /// Deletes an ephemeral key immediately. Use `key` to identify the short-lived credential that should no longer
+    /// grant access to its scoped resource.
     ///
     /// Invalidates a short-lived API key for a given resource.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func deleteEphemeralKeysKey(config: ClientConfig, key: String, expand: [String]?) async throws -> EphemeralKey {
+    public static func deleteEphemeralKeysKey(
+        config: ClientConfig,
+        key: String,
+        expand: [String]?
+    ) async throws -> EphemeralKey {
         try validateLength("key", key, max: 5000)
 
         let requestBody = DeleteEphemeralKeysKeyRequestBody(expand: expand)
 
-        return try (await sdkRequest("DELETE", ["/v1/ephemeral_keys/", sdkEncodePathSegment(sdkWireString(key))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "DeleteEphemeralKeysKey")).data
+        return try await (sdkRequest(
+            "DELETE",
+            ["/v1/ephemeral_keys/", sdkEncodePathSegment(sdkWireString(key))].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "DeleteEphemeralKeysKey"
+        )).data
     }
 }

@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1ExternalAccountsMethods {
-    public struct PostExternalAccountsIdOptions: Codable {
+public extension V1ExternalAccountsMethods {
+    struct PostExternalAccountsIdOptions: Codable {
         public var id: String
         public var accountHolderName: String?
         public var accountHolderType: PostExternalAccountsIdRequestBodyAccountHolderType?
@@ -31,9 +31,16 @@ extension V1ExternalAccountsMethods {
         }
     }
 
-    /// Updates editable details of a bank account belonging to a connected account. Use fields such as `account_holder_name`, `account_holder_type`, `metadata`, or `default_for_currency`; updates are available only when the connected account uses application requirement collection, and an empty update can re-enable a disabled bank account.
+    /// Updates editable details of a bank account belonging to a connected account. Use fields such as
+    /// `account_holder_name`, `account_holder_type`, `metadata`, or `default_for_currency`; updates are available only
+    /// when the connected account uses application requirement collection, and an empty update can re-enable a disabled
+    /// bank account.
     ///
-    /// Updates the metadata, account holder name, account holder type of a bank account belonging to a connected account and optionally sets it as the default for its currency. Other bank account details are not editable by design. You can only update bank accounts when account.controller.requirement_collection is application , which includes Custom accounts. You can re-enable a disabled bank account by performing an update call without providing any arguments or changes.
+    /// Updates the metadata, account holder name, account holder type of a bank account belonging to a connected
+    /// account and optionally sets it as the default for its currency. Other bank account details are not editable by
+    /// design. You can only update bank accounts when account.controller.requirement_collection is application , which
+    /// includes Custom accounts. You can re-enable a disabled bank account by performing an update call without
+    /// providing any arguments or changes.
     ///
     /// - Parameters:
     /// - accountHolderName: The name of the person or business that owns the bank
@@ -61,7 +68,10 @@ extension V1ExternalAccountsMethods {
     ///   unset by posting an empty value to them. All keys can be unset by posting an
     ///   empty value to `metadata`.
     /// - name: Cardholder name.
-    public static func postExternalAccountsId(config: ClientConfig, options: PostExternalAccountsIdOptions) async throws -> ExternalAccount {
+    static func postExternalAccountsId(
+        config: ClientConfig,
+        options: PostExternalAccountsIdOptions
+    ) async throws -> ExternalAccount {
         if let accountHolderName = options.accountHolderName {
             try validateLength("account_holder_name", accountHolderName, max: 5000)
         }
@@ -112,6 +122,14 @@ extension V1ExternalAccountsMethods {
 
         let requestBody = PostExternalAccountsIdRequestBody(options: options)
 
-        return try (await sdkRequest("POST", ["/v1/external_accounts/", sdkEncodePathSegment(sdkWireString(options.id))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostExternalAccountsId")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/external_accounts/", sdkEncodePathSegment(sdkWireString(options.id))].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostExternalAccountsId"
+        )).data
     }
 }

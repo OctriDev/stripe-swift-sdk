@@ -7,32 +7,40 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1ReportingReportRuns operation model declarations
+/// Canonical v1ReportingReportRuns operation model declarations
 public enum GetReportingReportRunsParameter {
     case getReportingReportRunsParameterVariant0(GetReportingReportRunsParameterVariant0)
     case intValue(Int)
 }
 
 extension GetReportingReportRunsParameter: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for GetReportingReportRunsParameter")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for GetReportingReportRunsParameter"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             GetReportingReportRunsParameterVariant0.self
         ) {
-            return             .getReportingReportRunsParameterVariant0(value)
+            return .getReportingReportRunsParameterVariant0(value)
         }
-        if let value = try? container.decode(Int.self) { return .intValue(value) }
+        if let value = try? container.decode(Int.self) {
+            return .intValue(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -42,7 +50,6 @@ extension GetReportingReportRunsParameter: Codable {
         case let .intValue(value): try container.encode(value); return true
         }
     }
-
 }
 
 public struct GetReportingReportRunsParameterVariant0: Codable {
@@ -59,31 +66,27 @@ public struct GetReportingReportRunsParameterVariant0: Codable {
     }
 
     init() {
-        (self.gt, self.gte, self.lt, self.lte) = (nil, nil, nil, nil)
+        (gt, gte, lt, lte) = (nil, nil, nil, nil)
     }
 }
 
-extension GetReportingReportRunsParameterVariant0 {
-    public init(from decoder: Decoder) throws {
+public extension GetReportingReportRunsParameterVariant0 {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.gt = try container.sdkDecodeIfPresent(.gt)
-        self.gte = try container.sdkDecodeIfPresent(.gte)
-        self.lt = try container.sdkDecodeIfPresent(.lt)
-        self.lte = try container.sdkDecodeIfPresent(.lte)
+        gt = try container.sdkDecodeIfPresent(.gt)
+        gte = try container.sdkDecodeIfPresent(.gte)
+        lt = try container.sdkDecodeIfPresent(.lt)
+        lte = try container.sdkDecodeIfPresent(.lte)
     }
 }
 
-extension GetReportingReportRunsParameterVariant0 {
-    public init(gt: Int? = nil, gte: Int? = nil, lt: Int? = nil, lte: Int? = nil) {
+public extension GetReportingReportRunsParameterVariant0 {
+    init(gt: Int? = nil, gte: Int? = nil, lt: Int? = nil, lte: Int? = nil) {
         self.init()
         (self.gt, self.gte) = (gt, gte)
         (self.lt, self.lte) = (lt, lte)
     }
 }
-
-
-
-
 
 /// Parameters specifying how the report should be run. Different Report Types have different required and optional
 /// parameters, listed in the API Access to Reports documentation.
@@ -109,33 +112,42 @@ public struct PostReportingReportRunsRequestBodyParameters: Codable {
     }
 
     init() {
-        (self.columns, self.connectedAccount, self.currency, self.intervalEnd, self.intervalStart) = (nil, nil, nil, nil, nil)
-        (self.payout, self.reportingCategory, self.timezone) = (nil, nil, nil)
+        (columns, connectedAccount, currency, intervalEnd, intervalStart) = (nil, nil, nil, nil, nil)
+        (payout, reportingCategory, timezone) = (nil, nil, nil)
     }
 }
 
-extension PostReportingReportRunsRequestBodyParameters {
-    public init(from decoder: Decoder) throws {
+public extension PostReportingReportRunsRequestBodyParameters {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.columns = try container.sdkDecodeIfPresent(.columns)
-        self.connectedAccount = try container.sdkDecodeIfPresent(.connectedAccount)
-        self.currency = try container.sdkDecodeIfPresent(.currency)
-        self.intervalEnd = try container.sdkDecodeIfPresent(.intervalEnd)
-        self.intervalStart = try container.sdkDecodeIfPresent(.intervalStart)
-        self.payout = try container.sdkDecodeIfPresent(.payout)
-        self.reportingCategory = try container.sdkDecodeIfPresent(.reportingCategory)
-        self.timezone = try container.sdkDecodeIfPresent(.timezone)
-        if let value = self.reportingCategory {
+        columns = try container.sdkDecodeIfPresent(.columns)
+        connectedAccount = try container.sdkDecodeIfPresent(.connectedAccount)
+        currency = try container.sdkDecodeIfPresent(.currency)
+        intervalEnd = try container.sdkDecodeIfPresent(.intervalEnd)
+        intervalStart = try container.sdkDecodeIfPresent(.intervalStart)
+        payout = try container.sdkDecodeIfPresent(.payout)
+        reportingCategory = try container.sdkDecodeIfPresent(.reportingCategory)
+        timezone = try container.sdkDecodeIfPresent(.timezone)
+        if let value = reportingCategory {
             try validateLength("reporting_category", sdkWireString(value), min: nil, max: 5000)
         }
-        if let value = self.timezone {
+        if let value = timezone {
             try validateLength("timezone", sdkWireString(value), min: nil, max: 5000)
         }
     }
 }
 
-extension PostReportingReportRunsRequestBodyParameters {
-    public init(columns: [String]? = nil, connectedAccount: String? = nil, currency: String? = nil, intervalEnd: Int? = nil, intervalStart: Int? = nil, payout: String? = nil, reportingCategory: PostReportingReportRunsRequestBodyParametersReportingCategory? = nil, timezone: PostReportingReportRunsRequestBodyParametersTimezone? = nil) throws {
+public extension PostReportingReportRunsRequestBodyParameters {
+    init(
+        columns: [String]? = nil,
+        connectedAccount: String? = nil,
+        currency: String? = nil,
+        intervalEnd: Int? = nil,
+        intervalStart: Int? = nil,
+        payout: String? = nil,
+        reportingCategory: PostReportingReportRunsRequestBodyParametersReportingCategory? = nil,
+        timezone: PostReportingReportRunsRequestBodyParametersTimezone? = nil
+    ) throws {
         self.init()
         (self.columns, self.connectedAccount) = (columns, connectedAccount)
         (self.currency, self.intervalEnd) = (currency, intervalEnd)
@@ -167,38 +179,56 @@ public struct GetReportingReportRunsResponse: Codable {
         case url
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension GetReportingReportRunsResponse {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.data) else {
-            throw SdkValidationError(field: "data", code: "required", message: "Validation failed for 'data': value is required")
-        }
-        guard container.contains(.hasMore) else {
-            throw SdkValidationError(field: "has_more", code: "required", message: "Validation failed for 'has_more': value is required")
-        }
-        guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
-        }
-        guard container.contains(.url) else {
-            throw SdkValidationError(field: "url", code: "required", message: "Validation failed for 'url': value is required")
-        }
-        self.data = try container.sdkDecodeRequired(.data)
-        self.hasMore = try container.sdkDecodeRequired(.hasMore)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.url = try container.sdkDecodeRequired(.url)
-            try validateLength("url", self.url, min: nil, max: 5000)
-            try sdkValidatePattern("url", self.url, sdkPattern2427f3d5e22e)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension GetReportingReportRunsResponse {
-    public init(data: [ReportingReportRun], hasMore: Bool, object: GetReportingReportRunsResponseObject, url: String) throws {
+public extension GetReportingReportRunsResponse {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.data) else {
+            throw SdkValidationError(
+                field: "data",
+                code: "required",
+                message: "Validation failed for 'data': value is required"
+            )
+        }
+        guard container.contains(.hasMore) else {
+            throw SdkValidationError(
+                field: "has_more",
+                code: "required",
+                message: "Validation failed for 'has_more': value is required"
+            )
+        }
+        guard container.contains(.object) else {
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
+        }
+        guard container.contains(.url) else {
+            throw SdkValidationError(
+                field: "url",
+                code: "required",
+                message: "Validation failed for 'url': value is required"
+            )
+        }
+        data = try container.sdkDecodeRequired(.data)
+        hasMore = try container.sdkDecodeRequired(.hasMore)
+        object = try container.sdkDecodeRequired(.object)
+        url = try container.sdkDecodeRequired(.url)
+        try validateLength("url", url, min: nil, max: 5000)
+        try sdkValidatePattern("url", url, sdkPattern2427f3d5e22e)
+    }
+}
+
+public extension GetReportingReportRunsResponse {
+    init(data: [ReportingReportRun], hasMore: Bool, object: GetReportingReportRunsResponseObject, url: String) throws {
         (self.data, self.hasMore) = (data, hasMore)
         (self.object, self.url) = (object, url)
-            try validateLength("url", self.url, min: nil, max: 5000)
-            try sdkValidatePattern("url", self.url, sdkPattern2427f3d5e22e)
+        try validateLength("url", self.url, min: nil, max: 5000)
+        try sdkValidatePattern("url", self.url, sdkPattern2427f3d5e22e)
     }
 }

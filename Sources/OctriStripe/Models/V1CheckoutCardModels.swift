@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1CheckoutCard domain models
+/// V1CheckoutCard domain models
 /// Typed representation of the `CheckoutCardInstallmentsOptions` API schema.
 public struct CheckoutCardInstallmentsOptions: Codable {
     /// Indicates if installments are enabled
@@ -14,37 +14,23 @@ public struct CheckoutCardInstallmentsOptions: Codable {
     }
 
     init() {
-        self.enabled = nil
+        enabled = nil
     }
 }
 
-extension CheckoutCardInstallmentsOptions {
-    public init(from decoder: Decoder) throws {
+public extension CheckoutCardInstallmentsOptions {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.enabled = try container.sdkDecodeIfPresent(.enabled)
+        enabled = try container.sdkDecodeIfPresent(.enabled)
     }
 }
 
-extension CheckoutCardInstallmentsOptions {
-    public init(enabled: Bool? = nil) {
+public extension CheckoutCardInstallmentsOptions {
+    init(enabled: Bool? = nil) {
         self.init()
         self.enabled = enabled
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /// Typed representation of the `CheckoutCardPaymentMethodOptions` API schema.
 public struct CheckoutCardPaymentMethodOptions: Codable {
@@ -99,37 +85,55 @@ public struct CheckoutCardPaymentMethodOptions: Codable {
         case statementDescriptorSuffixKanji = "statement_descriptor_suffix_kanji"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension CheckoutCardPaymentMethodOptions {
-    public init(from decoder: Decoder) throws {
+public extension CheckoutCardPaymentMethodOptions {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.requestThreeDSecure) else {
-            throw SdkValidationError(field: "request_three_d_secure", code: "required", message: "Validation failed for 'request_three_d_secure': value is required")
+            throw SdkValidationError(
+                field: "request_three_d_secure",
+                code: "required",
+                message: "Validation failed for 'request_three_d_secure': value is required"
+            )
         }
-        self.requestThreeDSecure = try container.sdkDecodeRequired(.requestThreeDSecure)
-        self.captureMethod = try container.sdkDecodeIfPresent(.captureMethod)
-        self.installments = try container.sdkDecodeIfPresent(.installments)
-        self.requestExtendedAuthorization = try container.sdkDecodeIfPresent(.requestExtendedAuthorization)
-        self.requestIncrementalAuthorization = try container.sdkDecodeIfPresent(.requestIncrementalAuthorization)
-        self.requestMulticapture = try container.sdkDecodeIfPresent(.requestMulticapture)
-        self.requestOvercapture = try container.sdkDecodeIfPresent(.requestOvercapture)
-        self.restrictions = try container.sdkDecodeIfPresent(.restrictions)
-        self.setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
-        self.statementDescriptorSuffixKana = try container.sdkDecodeIfPresent(.statementDescriptorSuffixKana)
-        self.statementDescriptorSuffixKanji = try container.sdkDecodeIfPresent(.statementDescriptorSuffixKanji)
-        if let value = self.statementDescriptorSuffixKana {
+        requestThreeDSecure = try container.sdkDecodeRequired(.requestThreeDSecure)
+        captureMethod = try container.sdkDecodeIfPresent(.captureMethod)
+        installments = try container.sdkDecodeIfPresent(.installments)
+        requestExtendedAuthorization = try container.sdkDecodeIfPresent(.requestExtendedAuthorization)
+        requestIncrementalAuthorization = try container.sdkDecodeIfPresent(.requestIncrementalAuthorization)
+        requestMulticapture = try container.sdkDecodeIfPresent(.requestMulticapture)
+        requestOvercapture = try container.sdkDecodeIfPresent(.requestOvercapture)
+        restrictions = try container.sdkDecodeIfPresent(.restrictions)
+        setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
+        statementDescriptorSuffixKana = try container.sdkDecodeIfPresent(.statementDescriptorSuffixKana)
+        statementDescriptorSuffixKanji = try container.sdkDecodeIfPresent(.statementDescriptorSuffixKanji)
+        if let value = statementDescriptorSuffixKana {
             try validateLength("statement_descriptor_suffix_kana", value, min: nil, max: 5000)
         }
-        if let value = self.statementDescriptorSuffixKanji {
+        if let value = statementDescriptorSuffixKanji {
             try validateLength("statement_descriptor_suffix_kanji", value, min: nil, max: 5000)
         }
     }
 }
 
-extension CheckoutCardPaymentMethodOptions {
-    public init(requestThreeDSecure: CheckoutCardPaymentMethodOptionsRequestThreeDSecure, captureMethod: CheckoutCardPaymentMethodOptionsCaptureMethod? = nil, installments: CheckoutCardInstallmentsOptions? = nil, requestExtendedAuthorization: CheckoutCardPaymentMethodOptionsRequestExtendedAuthorization? = nil, requestIncrementalAuthorization: CheckoutCardPaymentMethodOptionsRequestIncrementalAuthorization? = nil, requestMulticapture: CheckoutCardPaymentMethodOptionsRequestMulticapture? = nil, requestOvercapture: CheckoutCardPaymentMethodOptionsRequestOvercapture? = nil, restrictions: PaymentPagesPrivateCardPaymentMethodOptionsResourceRestrictions? = nil, setupFutureUsage: CheckoutCardPaymentMethodOptionsSetupFutureUsage? = nil, statementDescriptorSuffixKana: String? = nil, statementDescriptorSuffixKanji: String? = nil) throws {
+public extension CheckoutCardPaymentMethodOptions {
+    init(
+        requestThreeDSecure: CheckoutCardPaymentMethodOptionsRequestThreeDSecure,
+        captureMethod: CheckoutCardPaymentMethodOptionsCaptureMethod? = nil,
+        installments: CheckoutCardInstallmentsOptions? = nil,
+        requestExtendedAuthorization: CheckoutCardPaymentMethodOptionsRequestExtendedAuthorization? = nil,
+        requestIncrementalAuthorization: CheckoutCardPaymentMethodOptionsRequestIncrementalAuthorization? = nil,
+        requestMulticapture: CheckoutCardPaymentMethodOptionsRequestMulticapture? = nil,
+        requestOvercapture: CheckoutCardPaymentMethodOptionsRequestOvercapture? = nil,
+        restrictions: PaymentPagesPrivateCardPaymentMethodOptionsResourceRestrictions? = nil,
+        setupFutureUsage: CheckoutCardPaymentMethodOptionsSetupFutureUsage? = nil,
+        statementDescriptorSuffixKana: String? = nil,
+        statementDescriptorSuffixKanji: String? = nil
+    ) throws {
         (self.requestThreeDSecure, self.captureMethod) = (requestThreeDSecure, captureMethod)
         self.installments = installments
         self.requestExtendedAuthorization = requestExtendedAuthorization
@@ -148,16 +152,20 @@ extension CheckoutCardPaymentMethodOptions {
 }
 
 /// Request ability to overcapture for this CheckoutSession.
-public struct CheckoutCardPaymentMethodOptionsRequestOvercapture: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct CheckoutCardPaymentMethodOptionsRequestOvercapture: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let ifAvailable = CheckoutCardPaymentMethodOptionsRequestOvercapture(rawValue: "if_available")
     public static let never = CheckoutCardPaymentMethodOptionsRequestOvercapture(rawValue: "never")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -167,16 +175,20 @@ public struct CheckoutCardPaymentMethodOptionsRequestOvercapture: RawRepresentab
 }
 
 /// Request ability to make multiple captures for this CheckoutSession.
-public struct CheckoutCardPaymentMethodOptionsRequestMulticapture: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct CheckoutCardPaymentMethodOptionsRequestMulticapture: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let ifAvailable = CheckoutCardPaymentMethodOptionsRequestMulticapture(rawValue: "if_available")
     public static let never = CheckoutCardPaymentMethodOptionsRequestMulticapture(rawValue: "never")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -190,17 +202,21 @@ public struct CheckoutCardPaymentMethodOptionsRequestMulticapture: RawRepresenta
 /// on logic from your own fraud engine, provide this option. If not provided, this value defaults to
 /// `automatic`. Read our guide on manually requesting 3D Secure for more information on how this configuration
 /// interacts with Radar and our SCA Engine.
-public struct CheckoutCardPaymentMethodOptionsRequestThreeDSecure: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct CheckoutCardPaymentMethodOptionsRequestThreeDSecure: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let any = CheckoutCardPaymentMethodOptionsRequestThreeDSecure(rawValue: "any")
     public static let automatic = CheckoutCardPaymentMethodOptionsRequestThreeDSecure(rawValue: "automatic")
     public static let challenge = CheckoutCardPaymentMethodOptionsRequestThreeDSecure(rawValue: "challenge")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -214,17 +230,21 @@ public struct CheckoutCardPaymentMethodOptionsRequestThreeDSecure: RawRepresenta
 /// after the PaymentIntent is confirmed and the customer completes any required actions. If you don't provide a
 /// Customer, you can still attach the payment method to a Customer after the transaction completes. If the
 /// payment method is `card_present` and isn't a digital…
-public struct CheckoutCardPaymentMethodOptionsSetupFutureUsage: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct CheckoutCardPaymentMethodOptionsSetupFutureUsage: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let none = CheckoutCardPaymentMethodOptionsSetupFutureUsage(rawValue: "none")
     public static let offSession = CheckoutCardPaymentMethodOptionsSetupFutureUsage(rawValue: "off_session")
     public static let onSession = CheckoutCardPaymentMethodOptionsSetupFutureUsage(rawValue: "on_session")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -234,16 +254,21 @@ public struct CheckoutCardPaymentMethodOptionsSetupFutureUsage: RawRepresentable
 }
 
 /// Request ability to capture beyond the standard authorization validity window for this CheckoutSession.
-public struct CheckoutCardPaymentMethodOptionsRequestExtendedAuthorization: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct CheckoutCardPaymentMethodOptionsRequestExtendedAuthorization: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let ifAvailable = CheckoutCardPaymentMethodOptionsRequestExtendedAuthorization(rawValue: "if_available")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let ifAvailable =
+        CheckoutCardPaymentMethodOptionsRequestExtendedAuthorization(rawValue: "if_available")
     public static let never = CheckoutCardPaymentMethodOptionsRequestExtendedAuthorization(rawValue: "never")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -253,15 +278,19 @@ public struct CheckoutCardPaymentMethodOptionsRequestExtendedAuthorization: RawR
 }
 
 /// Controls when the funds will be captured from the customer's account.
-public struct CheckoutCardPaymentMethodOptionsCaptureMethod: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct CheckoutCardPaymentMethodOptionsCaptureMethod: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let manual = CheckoutCardPaymentMethodOptionsCaptureMethod(rawValue: "manual")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -271,16 +300,21 @@ public struct CheckoutCardPaymentMethodOptionsCaptureMethod: RawRepresentable, H
 }
 
 /// Request ability to increment the authorization for this CheckoutSession.
-public struct CheckoutCardPaymentMethodOptionsRequestIncrementalAuthorization: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct CheckoutCardPaymentMethodOptionsRequestIncrementalAuthorization: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let ifAvailable = CheckoutCardPaymentMethodOptionsRequestIncrementalAuthorization(rawValue: "if_available")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let ifAvailable =
+        CheckoutCardPaymentMethodOptionsRequestIncrementalAuthorization(rawValue: "if_available")
     public static let never = CheckoutCardPaymentMethodOptionsRequestIncrementalAuthorization(rawValue: "never")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

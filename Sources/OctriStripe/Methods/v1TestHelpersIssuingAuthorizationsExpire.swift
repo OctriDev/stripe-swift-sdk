@@ -7,17 +7,31 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1TestHelpersIssuingAuthorizationsExpireMethods {
-    /// Expires an Issuing authorization in test mode. Use this action to move the authorization to an expired state before it is captured, optionally expanding selected response fields.
+    /// Expires an Issuing authorization in test mode. Use this action to move the authorization to an expired state
+    /// before it is captured, optionally expanding selected response fields.
     ///
     /// Expire a test-mode Authorization.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postTestHelpersIssuingAuthorizationsAuthorizationExpire(config: ClientConfig, authorization: String, expand: [String]?) async throws -> IssuingAuthorization {
+    public static func postTestHelpersIssuingAuthorizationsAuthorizationExpire(
+        config: ClientConfig,
+        authorization: String,
+        expand: [String]?
+    ) async throws -> IssuingAuthorization {
         try validateLength("authorization", authorization, max: 5000)
 
         let requestBody = PostTestHelpersIssuingAuthorizationsAuthorizationExpireRequestBody(expand: expand)
 
-        return try (await sdkRequest("POST", ["/v1/test_helpers/issuing/authorizations/", sdkEncodePathSegment(sdkWireString(authorization)), "/expire"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTestHelpersIssuingAuthorizationsAuthorizationExpire")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/test_helpers/issuing/authorizations/", sdkEncodePathSegment(sdkWireString(authorization)), "/expire"]
+                .joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostTestHelpersIssuingAuthorizationsAuthorizationExpire"
+        )).data
     }
 }

@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1TerminalReadersProcessSetupIntent operation model declarations
+/// Canonical v1TerminalReadersProcessSetupIntent operation model declarations
 /// Configuration overrides for this setup, such as MOTO and customer cancellation settings.
 public struct PostTerminalReadersReaderProcessSetupIntentRequestBodyProcessConfig: Codable {
     public var enableCustomerCancellation: Bool?
@@ -17,19 +17,19 @@ public struct PostTerminalReadersReaderProcessSetupIntentRequestBodyProcessConfi
     }
 
     init() {
-        self.enableCustomerCancellation = nil
+        enableCustomerCancellation = nil
     }
 }
 
-extension PostTerminalReadersReaderProcessSetupIntentRequestBodyProcessConfig {
-    public init(from decoder: Decoder) throws {
+public extension PostTerminalReadersReaderProcessSetupIntentRequestBodyProcessConfig {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.enableCustomerCancellation = try container.sdkDecodeIfPresent(.enableCustomerCancellation)
+        enableCustomerCancellation = try container.sdkDecodeIfPresent(.enableCustomerCancellation)
     }
 }
 
-extension PostTerminalReadersReaderProcessSetupIntentRequestBodyProcessConfig {
-    public init(enableCustomerCancellation: Bool? = nil) {
+public extension PostTerminalReadersReaderProcessSetupIntentRequestBodyProcessConfig {
+    init(enableCustomerCancellation: Bool? = nil) {
         self.init()
         self.enableCustomerCancellation = enableCustomerCancellation
     }

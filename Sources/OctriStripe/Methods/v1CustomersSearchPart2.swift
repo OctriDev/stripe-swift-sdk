@@ -6,10 +6,15 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1CustomersSearchMethods {
-    /// Searches customers using the customer search query language. Provide `query` to filter the customer collection, and use `page` with the returned `next_page` value to retrieve subsequent result pages. Search results may lag behind recent customer changes and are not suitable for strict read-after-write flows.
+public extension V1CustomersSearchMethods {
+    /// Searches customers using the customer search query language. Provide `query` to filter the customer collection,
+    /// and use `page` with the returned `next_page` value to retrieve subsequent result pages. Search results may lag
+    /// behind recent customer changes and are not suitable for strict read-after-write flows.
     ///
-    /// Search for customers you’ve previously created using Stripe’s Search Query Language. Don’t use search in read-after-write flows where strict consistency is necessary. Under normal operating conditions, data is searchable in less than a minute. Occasionally, propagation of new or updated data can be up to an hour behind during outages. Search functionality is not available to merchants in India.
+    /// Search for customers you’ve previously created using Stripe’s Search Query Language. Don’t use search in
+    /// read-after-write flows where strict consistency is necessary. Under normal operating conditions, data is
+    /// searchable in less than a minute. Occasionally, propagation of new or updated data can be up to an hour behind
+    /// during outages. Search functionality is not available to merchants in India.
     ///
     /// - Parameters:
     /// - query: The search query string. See [search query
@@ -22,14 +27,20 @@ extension V1CustomersSearchMethods {
     /// - page: A cursor for pagination across multiple pages of results. Don't
     ///   include this parameter on the first call. Use the next_page value returned
     ///   in a previous response to request subsequent results.
-    public static func getCustomersSearch(config: ClientConfig, query: String, expand: [String]?, limit: Int?, page: String?) async throws -> GetCustomersSearchResponse {
+    static func getCustomersSearch(
+        config: ClientConfig,
+        query: String,
+        expand: [String]?,
+        limit: Int?,
+        page: String?
+    ) async throws -> GetCustomersSearchResponse {
         try validateLength("query", query, max: 5000)
 
-        if let page = page {
+        if let page {
             try validateLength("page", page, max: 5000)
         }
 
-        return try (await sdkRequest("GET", "/v1/customers/search", config: config, query: [
+        return try await (sdkRequest("GET", "/v1/customers/search", config: config, query: [
             SdkQueryParameter("query", value: query),
             SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
             SdkQueryParameter("limit", value: limit),
@@ -37,9 +48,14 @@ extension V1CustomersSearchMethods {
         ], decoder: .json, operationId: "GetCustomersSearch")).data
     }
 
-    /// Searches customers using the customer search query language. Provide `query` to filter the customer collection, and use `page` with the returned `next_page` value to retrieve subsequent result pages. Search results may lag behind recent customer changes and are not suitable for strict read-after-write flows.
+    /// Searches customers using the customer search query language. Provide `query` to filter the customer collection,
+    /// and use `page` with the returned `next_page` value to retrieve subsequent result pages. Search results may lag
+    /// behind recent customer changes and are not suitable for strict read-after-write flows.
     ///
-    /// Search for customers you’ve previously created using Stripe’s Search Query Language. Don’t use search in read-after-write flows where strict consistency is necessary. Under normal operating conditions, data is searchable in less than a minute. Occasionally, propagation of new or updated data can be up to an hour behind during outages. Search functionality is not available to merchants in India.
+    /// Search for customers you’ve previously created using Stripe’s Search Query Language. Don’t use search in
+    /// read-after-write flows where strict consistency is necessary. Under normal operating conditions, data is
+    /// searchable in less than a minute. Occasionally, propagation of new or updated data can be up to an hour behind
+    /// during outages. Search functionality is not available to merchants in India.
     ///
     /// - Parameters:
     /// - query: The search query string. See [search query
@@ -52,15 +68,34 @@ extension V1CustomersSearchMethods {
     /// - page: A cursor for pagination across multiple pages of results. Don't
     ///   include this parameter on the first call. Use the next_page value returned
     ///   in a previous response to request subsequent results.
-    public static func getCustomersSearchPaginated(config: ClientConfig, query: String, expand: [String]?, limit: Int?, page: String?) -> AsyncThrowingStream<Customer, Swift.Error> {
-        return AsyncThrowingStream<Customer, Swift.Error> { (continuation: AsyncThrowingStream<Customer, Swift.Error>.Continuation) in
+    static func getCustomersSearchPaginated(
+        config: ClientConfig,
+        query: String,
+        expand: [String]?,
+        limit: Int?,
+        page: String?
+    ) -> AsyncThrowingStream<Customer, Swift.Error> {
+        AsyncThrowingStream<Customer, Swift.Error> { (continuation: AsyncThrowingStream<
+            Customer,
+            Swift.Error
+        >.Continuation) in
             let task = _Concurrency.Task {
                 do {
                     var pageCursor = page
                     while true {
-                        let pageResponse = try await getCustomersSearch(config: config, query: query, expand: expand, limit: limit, page: pageCursor)
-                        for item in pageResponse.data { continuation.yield(item) }
-                        if !pageResponse.hasMore { break }
+                        let pageResponse = try await getCustomersSearch(
+                            config: config,
+                            query: query,
+                            expand: expand,
+                            limit: limit,
+                            page: pageCursor
+                        )
+                        for item in pageResponse.data {
+                            continuation.yield(item)
+                        }
+                        if !pageResponse.hasMore {
+                            break
+                        }
                         guard let nextCursor = pageResponse.nextPage else { break }
                         pageCursor = nextCursor
                     }
@@ -74,24 +109,47 @@ extension V1CustomersSearchMethods {
         }
     }
 
-    public struct GetCustomersSearchPage {
+    struct GetCustomersSearchPage {
         public let data: GetCustomersSearchResponse
         public let items: [Customer]
         public let hasMore: Bool
     }
 
-    public static func getCustomersSearchPages(config: ClientConfig, query: String, expand: [String]?, limit: Int?, page: String?) -> AsyncThrowingStream<GetCustomersSearchPage, Swift.Error> {
-        return AsyncThrowingStream<GetCustomersSearchPage, Swift.Error> { (pageContinuation: AsyncThrowingStream<GetCustomersSearchPage, Swift.Error>.Continuation) in
+    static func getCustomersSearchPages(
+        config: ClientConfig,
+        query: String,
+        expand: [String]?,
+        limit: Int?,
+        page: String?
+    ) -> AsyncThrowingStream<GetCustomersSearchPage, Swift.Error> {
+        AsyncThrowingStream<GetCustomersSearchPage, Swift.Error> { (pageContinuation: AsyncThrowingStream<
+            GetCustomersSearchPage,
+            Swift.Error
+        >.Continuation) in
             let task = _Concurrency.Task {
                 do {
                     var pageCursor = page
                     while true {
-                        let pageResponse = try await getCustomersSearch(config: config, query: query, expand: expand, limit: limit, page: pageCursor)
+                        let pageResponse = try await getCustomersSearch(
+                            config: config,
+                            query: query,
+                            expand: expand,
+                            limit: limit,
+                            page: pageCursor
+                        )
                         let pageItems = pageResponse.data
-                        if pageItems.isEmpty { break }
+                        if pageItems.isEmpty {
+                            break
+                        }
                         let hasMore = pageResponse.hasMore && pageResponse.nextPage != nil
-                        pageContinuation.yield(GetCustomersSearchPage(data: pageResponse, items: pageItems, hasMore: hasMore))
-                        if !hasMore { break }
+                        pageContinuation.yield(GetCustomersSearchPage(
+                            data: pageResponse,
+                            items: pageItems,
+                            hasMore: hasMore
+                        ))
+                        if !hasMore {
+                            break
+                        }
                         guard let nextCursor = pageResponse.nextPage else { break }
                         pageCursor = nextCursor
                     }

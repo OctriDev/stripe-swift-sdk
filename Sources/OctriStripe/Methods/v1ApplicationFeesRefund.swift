@@ -7,19 +7,35 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1ApplicationFeesRefundMethods {
-    /// Creates a refund for an application fee that your account previously collected. Use `amount` for a partial refund and omit it when the API should refund the applicable remaining amount; an application fee cannot be refunded beyond its unrefunded amount.
+    /// Creates a refund for an application fee that your account previously collected. Use `amount` for a partial
+    /// refund and omit it when the API should refund the applicable remaining amount; an application fee cannot be
+    /// refunded beyond its unrefunded amount.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postApplicationFeesIdRefund(config: ClientConfig, id: String, amount: Int?, directive: String?, expand: [String]?) async throws -> ApplicationFee {
+    public static func postApplicationFeesIdRefund(
+        config: ClientConfig,
+        id: String,
+        amount: Int?,
+        directive: String?,
+        expand: [String]?
+    ) async throws -> ApplicationFee {
         try validateLength("id", id, max: 5000)
 
-        if let directive = directive {
+        if let directive {
             try validateLength("directive", directive, max: 5000)
         }
 
         let requestBody = PostApplicationFeesIdRefundRequestBody(amount: amount, directive: directive, expand: expand)
 
-        return try (await sdkRequest("POST", ["/v1/application_fees/", sdkEncodePathSegment(sdkWireString(id)), "/refund"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostApplicationFeesIdRefund")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/application_fees/", sdkEncodePathSegment(sdkWireString(id)), "/refund"].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostApplicationFeesIdRefund"
+        )).data
     }
 }

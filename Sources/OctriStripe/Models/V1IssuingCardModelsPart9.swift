@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1IssuingCard domain models
+/// V1IssuingCard domain models
 public extension IssuingCardSpendingLimitCategoriesItem {
     static let danceHallStudiosSchools = IssuingCardSpendingLimitCategoriesItem(rawValue: "dance_hall_studios_schools")
     static let datingEscortServices = IssuingCardSpendingLimitCategoriesItem(rawValue: "dating_escort_services")
@@ -14,21 +14,29 @@ public extension IssuingCardSpendingLimitCategoriesItem {
     static let digitalGoodsGames = IssuingCardSpendingLimitCategoriesItem(rawValue: "digital_goods_games")
     static let digitalGoodsLargeVolume = IssuingCardSpendingLimitCategoriesItem(rawValue: "digital_goods_large_volume")
     static let digitalGoodsMedia = IssuingCardSpendingLimitCategoriesItem(rawValue: "digital_goods_media")
-    static let directMarketingCatalogMerchant = IssuingCardSpendingLimitCategoriesItem(rawValue: "direct_marketing_catalog_merchant")
-    static let directMarketingCombinationCatalogAndRetailMerchant = IssuingCardSpendingLimitCategoriesItem(rawValue: "direct_marketing_combination_catalog_and_retail_merchant")
-    static let directMarketingInboundTelemarketing = IssuingCardSpendingLimitCategoriesItem(rawValue: "direct_marketing_inbound_telemarketing")
-    static let directMarketingInsuranceServices = IssuingCardSpendingLimitCategoriesItem(rawValue: "direct_marketing_insurance_services")
+    static let directMarketingCatalogMerchant =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "direct_marketing_catalog_merchant")
+    static let directMarketingCombinationCatalogAndRetailMerchant =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "direct_marketing_combination_catalog_and_retail_merchant")
+    static let directMarketingInboundTelemarketing =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "direct_marketing_inbound_telemarketing")
+    static let directMarketingInsuranceServices =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "direct_marketing_insurance_services")
     static let directMarketingOther = IssuingCardSpendingLimitCategoriesItem(rawValue: "direct_marketing_other")
-    static let directMarketingOutboundTelemarketing = IssuingCardSpendingLimitCategoriesItem(rawValue: "direct_marketing_outbound_telemarketing")
-    static let directMarketingSubscription = IssuingCardSpendingLimitCategoriesItem(rawValue: "direct_marketing_subscription")
+    static let directMarketingOutboundTelemarketing =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "direct_marketing_outbound_telemarketing")
+    static let directMarketingSubscription =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "direct_marketing_subscription")
     static let directMarketingTravel = IssuingCardSpendingLimitCategoriesItem(rawValue: "direct_marketing_travel")
     static let discountStores = IssuingCardSpendingLimitCategoriesItem(rawValue: "discount_stores")
     static let doctors = IssuingCardSpendingLimitCategoriesItem(rawValue: "doctors")
     static let doorToDoorSales = IssuingCardSpendingLimitCategoriesItem(rawValue: "door_to_door_sales")
-    static let draperyWindowCoveringAndUpholsteryStores = IssuingCardSpendingLimitCategoriesItem(rawValue: "drapery_window_covering_and_upholstery_stores")
+    static let draperyWindowCoveringAndUpholsteryStores =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "drapery_window_covering_and_upholstery_stores")
     static let drinkingPlaces = IssuingCardSpendingLimitCategoriesItem(rawValue: "drinking_places")
     static let drugStoresAndPharmacies = IssuingCardSpendingLimitCategoriesItem(rawValue: "drug_stores_and_pharmacies")
-    static let drugsDrugProprietariesAndDruggistSundries = IssuingCardSpendingLimitCategoriesItem(rawValue: "drugs_drug_proprietaries_and_druggist_sundries")
+    static let drugsDrugProprietariesAndDruggistSundries =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "drugs_drug_proprietaries_and_druggist_sundries")
     static let dryCleaners = IssuingCardSpendingLimitCategoriesItem(rawValue: "dry_cleaners")
     static let durableGoods = IssuingCardSpendingLimitCategoriesItem(rawValue: "durable_goods")
     static let dutyFreeStores = IssuingCardSpendingLimitCategoriesItem(rawValue: "duty_free_stores")
@@ -36,138 +44,208 @@ public extension IssuingCardSpendingLimitCategoriesItem {
     static let educationalServices = IssuingCardSpendingLimitCategoriesItem(rawValue: "educational_services")
     static let electricRazorStores = IssuingCardSpendingLimitCategoriesItem(rawValue: "electric_razor_stores")
     static let electricVehicleCharging = IssuingCardSpendingLimitCategoriesItem(rawValue: "electric_vehicle_charging")
-    static let electricalPartsAndEquipment = IssuingCardSpendingLimitCategoriesItem(rawValue: "electrical_parts_and_equipment")
+    static let electricalPartsAndEquipment =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "electrical_parts_and_equipment")
     static let electricalServices = IssuingCardSpendingLimitCategoriesItem(rawValue: "electrical_services")
     static let electronicsRepairShops = IssuingCardSpendingLimitCategoriesItem(rawValue: "electronics_repair_shops")
     static let electronicsStores = IssuingCardSpendingLimitCategoriesItem(rawValue: "electronics_stores")
-    static let elementarySecondarySchools = IssuingCardSpendingLimitCategoriesItem(rawValue: "elementary_secondary_schools")
-    static let emergencyServicesGcasVisaUseOnly = IssuingCardSpendingLimitCategoriesItem(rawValue: "emergency_services_gcas_visa_use_only")
+    static let elementarySecondarySchools =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "elementary_secondary_schools")
+    static let emergencyServicesGcasVisaUseOnly =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "emergency_services_gcas_visa_use_only")
     static let employmentTempAgencies = IssuingCardSpendingLimitCategoriesItem(rawValue: "employment_temp_agencies")
     static let equipmentRental = IssuingCardSpendingLimitCategoriesItem(rawValue: "equipment_rental")
     static let exterminatingServices = IssuingCardSpendingLimitCategoriesItem(rawValue: "exterminating_services")
     static let familyClothingStores = IssuingCardSpendingLimitCategoriesItem(rawValue: "family_clothing_stores")
     static let fastFoodRestaurants = IssuingCardSpendingLimitCategoriesItem(rawValue: "fast_food_restaurants")
     static let financialInstitutions = IssuingCardSpendingLimitCategoriesItem(rawValue: "financial_institutions")
-    static let finesGovernmentAdministrativeEntities = IssuingCardSpendingLimitCategoriesItem(rawValue: "fines_government_administrative_entities")
-    static let fireplaceFireplaceScreensAndAccessoriesStores = IssuingCardSpendingLimitCategoriesItem(rawValue: "fireplace_fireplace_screens_and_accessories_stores")
+    static let finesGovernmentAdministrativeEntities =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "fines_government_administrative_entities")
+    static let fireplaceFireplaceScreensAndAccessoriesStores =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "fireplace_fireplace_screens_and_accessories_stores")
     static let floorCoveringStores = IssuingCardSpendingLimitCategoriesItem(rawValue: "floor_covering_stores")
     static let florists = IssuingCardSpendingLimitCategoriesItem(rawValue: "florists")
-    static let floristsSuppliesNurseryStockAndFlowers = IssuingCardSpendingLimitCategoriesItem(rawValue: "florists_supplies_nursery_stock_and_flowers")
-    static let freezerAndLockerMeatProvisioners = IssuingCardSpendingLimitCategoriesItem(rawValue: "freezer_and_locker_meat_provisioners")
-    static let fuelDealersNonAutomotive = IssuingCardSpendingLimitCategoriesItem(rawValue: "fuel_dealers_non_automotive")
-    static let funeralServicesCrematories = IssuingCardSpendingLimitCategoriesItem(rawValue: "funeral_services_crematories")
-    static let furnitureHomeFurnishingsAndEquipmentStoresExceptAppliances = IssuingCardSpendingLimitCategoriesItem(rawValue: "furniture_home_furnishings_and_equipment_stores_except_appliances")
-    static let furnitureRepairRefinishing = IssuingCardSpendingLimitCategoriesItem(rawValue: "furniture_repair_refinishing")
+    static let floristsSuppliesNurseryStockAndFlowers =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "florists_supplies_nursery_stock_and_flowers")
+    static let freezerAndLockerMeatProvisioners =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "freezer_and_locker_meat_provisioners")
+    static let fuelDealersNonAutomotive =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "fuel_dealers_non_automotive")
+    static let funeralServicesCrematories =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "funeral_services_crematories")
+    static let furnitureHomeFurnishingsAndEquipmentStoresExceptAppliances =
+        IssuingCardSpendingLimitCategoriesItem(
+            rawValue: "furniture_home_furnishings_and_equipment_stores_except_appliances"
+        )
+    static let furnitureRepairRefinishing =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "furniture_repair_refinishing")
     static let furriersAndFurShops = IssuingCardSpendingLimitCategoriesItem(rawValue: "furriers_and_fur_shops")
     static let generalServices = IssuingCardSpendingLimitCategoriesItem(rawValue: "general_services")
-    static let giftCardNoveltyAndSouvenirShops = IssuingCardSpendingLimitCategoriesItem(rawValue: "gift_card_novelty_and_souvenir_shops")
-    static let glassPaintAndWallpaperStores = IssuingCardSpendingLimitCategoriesItem(rawValue: "glass_paint_and_wallpaper_stores")
+    static let giftCardNoveltyAndSouvenirShops =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "gift_card_novelty_and_souvenir_shops")
+    static let glassPaintAndWallpaperStores =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "glass_paint_and_wallpaper_stores")
     static let glasswareCrystalStores = IssuingCardSpendingLimitCategoriesItem(rawValue: "glassware_crystal_stores")
     static let golfCoursesPublic = IssuingCardSpendingLimitCategoriesItem(rawValue: "golf_courses_public")
-    static let governmentLicensedHorseDogRacingUsRegionOnly = IssuingCardSpendingLimitCategoriesItem(rawValue: "government_licensed_horse_dog_racing_us_region_only")
-    static let governmentLicensedOnlineCasionsOnlineGamblingUsRegionOnly = IssuingCardSpendingLimitCategoriesItem(rawValue: "government_licensed_online_casions_online_gambling_us_region_only")
-    static let governmentOwnedLotteriesNonUsRegion = IssuingCardSpendingLimitCategoriesItem(rawValue: "government_owned_lotteries_non_us_region")
-    static let governmentOwnedLotteriesUsRegionOnly = IssuingCardSpendingLimitCategoriesItem(rawValue: "government_owned_lotteries_us_region_only")
+    static let governmentLicensedHorseDogRacingUsRegionOnly =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "government_licensed_horse_dog_racing_us_region_only")
+    static let governmentLicensedOnlineCasionsOnlineGamblingUsRegionOnly =
+        IssuingCardSpendingLimitCategoriesItem(
+            rawValue: "government_licensed_online_casions_online_gambling_us_region_only"
+        )
+    static let governmentOwnedLotteriesNonUsRegion =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "government_owned_lotteries_non_us_region")
+    static let governmentOwnedLotteriesUsRegionOnly =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "government_owned_lotteries_us_region_only")
     static let governmentServices = IssuingCardSpendingLimitCategoriesItem(rawValue: "government_services")
-    static let groceryStoresSupermarkets = IssuingCardSpendingLimitCategoriesItem(rawValue: "grocery_stores_supermarkets")
-    static let hardwareEquipmentAndSupplies = IssuingCardSpendingLimitCategoriesItem(rawValue: "hardware_equipment_and_supplies")
+    static let groceryStoresSupermarkets =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "grocery_stores_supermarkets")
+    static let hardwareEquipmentAndSupplies =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "hardware_equipment_and_supplies")
     static let hardwareStores = IssuingCardSpendingLimitCategoriesItem(rawValue: "hardware_stores")
     static let healthAndBeautySpas = IssuingCardSpendingLimitCategoriesItem(rawValue: "health_and_beauty_spas")
-    static let hearingAidsSalesAndSupplies = IssuingCardSpendingLimitCategoriesItem(rawValue: "hearing_aids_sales_and_supplies")
+    static let hearingAidsSalesAndSupplies =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "hearing_aids_sales_and_supplies")
     static let heatingPlumbingAC = IssuingCardSpendingLimitCategoriesItem(rawValue: "heating_plumbing_a_c")
     static let hobbyToyAndGameShops = IssuingCardSpendingLimitCategoriesItem(rawValue: "hobby_toy_and_game_shops")
-    static let homeSupplyWarehouseStores = IssuingCardSpendingLimitCategoriesItem(rawValue: "home_supply_warehouse_stores")
+    static let homeSupplyWarehouseStores =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "home_supply_warehouse_stores")
     static let hospitals = IssuingCardSpendingLimitCategoriesItem(rawValue: "hospitals")
     static let hotelsMotelsAndResorts = IssuingCardSpendingLimitCategoriesItem(rawValue: "hotels_motels_and_resorts")
     static let householdApplianceStores = IssuingCardSpendingLimitCategoriesItem(rawValue: "household_appliance_stores")
     static let industrialSupplies = IssuingCardSpendingLimitCategoriesItem(rawValue: "industrial_supplies")
-    static let informationRetrievalServices = IssuingCardSpendingLimitCategoriesItem(rawValue: "information_retrieval_services")
+    static let informationRetrievalServices =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "information_retrieval_services")
     static let insuranceDefault = IssuingCardSpendingLimitCategoriesItem(rawValue: "insurance_default")
-    static let insuranceUnderwritingPremiums = IssuingCardSpendingLimitCategoriesItem(rawValue: "insurance_underwriting_premiums")
+    static let insuranceUnderwritingPremiums =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "insurance_underwriting_premiums")
     static let intraCompanyPurchases = IssuingCardSpendingLimitCategoriesItem(rawValue: "intra_company_purchases")
 }
 
 public extension IssuingCardSpendingLimitCategoriesItem {
-    static let jewelryStoresWatchesClocksAndSilverwareStores = IssuingCardSpendingLimitCategoriesItem(rawValue: "jewelry_stores_watches_clocks_and_silverware_stores")
+    static let jewelryStoresWatchesClocksAndSilverwareStores =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "jewelry_stores_watches_clocks_and_silverware_stores")
     static let landscapingServices = IssuingCardSpendingLimitCategoriesItem(rawValue: "landscaping_services")
     static let laundries = IssuingCardSpendingLimitCategoriesItem(rawValue: "laundries")
     static let laundryCleaningServices = IssuingCardSpendingLimitCategoriesItem(rawValue: "laundry_cleaning_services")
     static let legalServicesAttorneys = IssuingCardSpendingLimitCategoriesItem(rawValue: "legal_services_attorneys")
-    static let luggageAndLeatherGoodsStores = IssuingCardSpendingLimitCategoriesItem(rawValue: "luggage_and_leather_goods_stores")
-    static let lumberBuildingMaterialsStores = IssuingCardSpendingLimitCategoriesItem(rawValue: "lumber_building_materials_stores")
+    static let luggageAndLeatherGoodsStores =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "luggage_and_leather_goods_stores")
+    static let lumberBuildingMaterialsStores =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "lumber_building_materials_stores")
     static let manualCashDisburse = IssuingCardSpendingLimitCategoriesItem(rawValue: "manual_cash_disburse")
-    static let marinasServiceAndSupplies = IssuingCardSpendingLimitCategoriesItem(rawValue: "marinas_service_and_supplies")
+    static let marinasServiceAndSupplies =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "marinas_service_and_supplies")
     static let marketplaces = IssuingCardSpendingLimitCategoriesItem(rawValue: "marketplaces")
-    static let masonryStoneworkAndPlaster = IssuingCardSpendingLimitCategoriesItem(rawValue: "masonry_stonework_and_plaster")
+    static let masonryStoneworkAndPlaster =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "masonry_stonework_and_plaster")
     static let massageParlors = IssuingCardSpendingLimitCategoriesItem(rawValue: "massage_parlors")
     static let medicalAndDentalLabs = IssuingCardSpendingLimitCategoriesItem(rawValue: "medical_and_dental_labs")
-    static let medicalDentalOphthalmicAndHospitalEquipmentAndSupplies = IssuingCardSpendingLimitCategoriesItem(rawValue: "medical_dental_ophthalmic_and_hospital_equipment_and_supplies")
+    static let medicalDentalOphthalmicAndHospitalEquipmentAndSupplies =
+        IssuingCardSpendingLimitCategoriesItem(
+            rawValue: "medical_dental_ophthalmic_and_hospital_equipment_and_supplies"
+        )
     static let medicalServices = IssuingCardSpendingLimitCategoriesItem(rawValue: "medical_services")
     static let membershipOrganizations = IssuingCardSpendingLimitCategoriesItem(rawValue: "membership_organizations")
-    static let mensAndBoysClothingAndAccessoriesStores = IssuingCardSpendingLimitCategoriesItem(rawValue: "mens_and_boys_clothing_and_accessories_stores")
-    static let mensWomensClothingStores = IssuingCardSpendingLimitCategoriesItem(rawValue: "mens_womens_clothing_stores")
+    static let mensAndBoysClothingAndAccessoriesStores =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "mens_and_boys_clothing_and_accessories_stores")
+    static let mensWomensClothingStores =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "mens_womens_clothing_stores")
     static let metalServiceCenters = IssuingCardSpendingLimitCategoriesItem(rawValue: "metal_service_centers")
     static let miscellaneous = IssuingCardSpendingLimitCategoriesItem(rawValue: "miscellaneous")
-    static let miscellaneousApparelAndAccessoryShops = IssuingCardSpendingLimitCategoriesItem(rawValue: "miscellaneous_apparel_and_accessory_shops")
+    static let miscellaneousApparelAndAccessoryShops =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "miscellaneous_apparel_and_accessory_shops")
     static let miscellaneousAutoDealers = IssuingCardSpendingLimitCategoriesItem(rawValue: "miscellaneous_auto_dealers")
-    static let miscellaneousBusinessServices = IssuingCardSpendingLimitCategoriesItem(rawValue: "miscellaneous_business_services")
+    static let miscellaneousBusinessServices =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "miscellaneous_business_services")
     static let miscellaneousFoodStores = IssuingCardSpendingLimitCategoriesItem(rawValue: "miscellaneous_food_stores")
-    static let miscellaneousGeneralMerchandise = IssuingCardSpendingLimitCategoriesItem(rawValue: "miscellaneous_general_merchandise")
-    static let miscellaneousGeneralServices = IssuingCardSpendingLimitCategoriesItem(rawValue: "miscellaneous_general_services")
-    static let miscellaneousHomeFurnishingSpecialtyStores = IssuingCardSpendingLimitCategoriesItem(rawValue: "miscellaneous_home_furnishing_specialty_stores")
-    static let miscellaneousPublishingAndPrinting = IssuingCardSpendingLimitCategoriesItem(rawValue: "miscellaneous_publishing_and_printing")
-    static let miscellaneousRecreationServices = IssuingCardSpendingLimitCategoriesItem(rawValue: "miscellaneous_recreation_services")
+    static let miscellaneousGeneralMerchandise =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "miscellaneous_general_merchandise")
+    static let miscellaneousGeneralServices =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "miscellaneous_general_services")
+    static let miscellaneousHomeFurnishingSpecialtyStores =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "miscellaneous_home_furnishing_specialty_stores")
+    static let miscellaneousPublishingAndPrinting =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "miscellaneous_publishing_and_printing")
+    static let miscellaneousRecreationServices =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "miscellaneous_recreation_services")
     static let miscellaneousRepairShops = IssuingCardSpendingLimitCategoriesItem(rawValue: "miscellaneous_repair_shops")
-    static let miscellaneousSpecialtyRetail = IssuingCardSpendingLimitCategoriesItem(rawValue: "miscellaneous_specialty_retail")
+    static let miscellaneousSpecialtyRetail =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "miscellaneous_specialty_retail")
     static let mobileHomeDealers = IssuingCardSpendingLimitCategoriesItem(rawValue: "mobile_home_dealers")
     static let motionPictureTheaters = IssuingCardSpendingLimitCategoriesItem(rawValue: "motion_picture_theaters")
-    static let motorFreightCarriersAndTrucking = IssuingCardSpendingLimitCategoriesItem(rawValue: "motor_freight_carriers_and_trucking")
+    static let motorFreightCarriersAndTrucking =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "motor_freight_carriers_and_trucking")
     static let motorHomesDealers = IssuingCardSpendingLimitCategoriesItem(rawValue: "motor_homes_dealers")
-    static let motorVehicleSuppliesAndNewParts = IssuingCardSpendingLimitCategoriesItem(rawValue: "motor_vehicle_supplies_and_new_parts")
-    static let motorcycleShopsAndDealers = IssuingCardSpendingLimitCategoriesItem(rawValue: "motorcycle_shops_and_dealers")
+    static let motorVehicleSuppliesAndNewParts =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "motor_vehicle_supplies_and_new_parts")
+    static let motorcycleShopsAndDealers =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "motorcycle_shops_and_dealers")
     static let motorcycleShopsDealers = IssuingCardSpendingLimitCategoriesItem(rawValue: "motorcycle_shops_dealers")
-    static let musicStoresMusicalInstrumentsPianosAndSheetMusic = IssuingCardSpendingLimitCategoriesItem(rawValue: "music_stores_musical_instruments_pianos_and_sheet_music")
-    static let newsDealersAndNewsstands = IssuingCardSpendingLimitCategoriesItem(rawValue: "news_dealers_and_newsstands")
+    static let musicStoresMusicalInstrumentsPianosAndSheetMusic =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "music_stores_musical_instruments_pianos_and_sheet_music")
+    static let newsDealersAndNewsstands =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "news_dealers_and_newsstands")
     static let nonFiMoneyOrders = IssuingCardSpendingLimitCategoriesItem(rawValue: "non_fi_money_orders")
-    static let nonFiStoredValueCardPurchaseLoad = IssuingCardSpendingLimitCategoriesItem(rawValue: "non_fi_stored_value_card_purchase_load")
+    static let nonFiStoredValueCardPurchaseLoad =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "non_fi_stored_value_card_purchase_load")
     static let nondurableGoods = IssuingCardSpendingLimitCategoriesItem(rawValue: "nondurable_goods")
-    static let nurseriesLawnAndGardenSupplyStores = IssuingCardSpendingLimitCategoriesItem(rawValue: "nurseries_lawn_and_garden_supply_stores")
+    static let nurseriesLawnAndGardenSupplyStores =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "nurseries_lawn_and_garden_supply_stores")
     static let nursingPersonalCare = IssuingCardSpendingLimitCategoriesItem(rawValue: "nursing_personal_care")
-    static let officeAndCommercialFurniture = IssuingCardSpendingLimitCategoriesItem(rawValue: "office_and_commercial_furniture")
+    static let officeAndCommercialFurniture =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "office_and_commercial_furniture")
     static let opticiansEyeglasses = IssuingCardSpendingLimitCategoriesItem(rawValue: "opticians_eyeglasses")
-    static let optometristsOphthalmologist = IssuingCardSpendingLimitCategoriesItem(rawValue: "optometrists_ophthalmologist")
-    static let orthopedicGoodsProstheticDevices = IssuingCardSpendingLimitCategoriesItem(rawValue: "orthopedic_goods_prosthetic_devices")
+    static let optometristsOphthalmologist =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "optometrists_ophthalmologist")
+    static let orthopedicGoodsProstheticDevices =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "orthopedic_goods_prosthetic_devices")
     static let osteopaths = IssuingCardSpendingLimitCategoriesItem(rawValue: "osteopaths")
-    static let packageStoresBeerWineAndLiquor = IssuingCardSpendingLimitCategoriesItem(rawValue: "package_stores_beer_wine_and_liquor")
-    static let paintsVarnishesAndSupplies = IssuingCardSpendingLimitCategoriesItem(rawValue: "paints_varnishes_and_supplies")
+    static let packageStoresBeerWineAndLiquor =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "package_stores_beer_wine_and_liquor")
+    static let paintsVarnishesAndSupplies =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "paints_varnishes_and_supplies")
     static let parkingLotsGarages = IssuingCardSpendingLimitCategoriesItem(rawValue: "parking_lots_garages")
     static let passengerRailways = IssuingCardSpendingLimitCategoriesItem(rawValue: "passenger_railways")
     static let pawnShops = IssuingCardSpendingLimitCategoriesItem(rawValue: "pawn_shops")
-    static let petShopsPetFoodAndSupplies = IssuingCardSpendingLimitCategoriesItem(rawValue: "pet_shops_pet_food_and_supplies")
-    static let petroleumAndPetroleumProducts = IssuingCardSpendingLimitCategoriesItem(rawValue: "petroleum_and_petroleum_products")
+    static let petShopsPetFoodAndSupplies =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "pet_shops_pet_food_and_supplies")
+    static let petroleumAndPetroleumProducts =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "petroleum_and_petroleum_products")
     static let photoDeveloping = IssuingCardSpendingLimitCategoriesItem(rawValue: "photo_developing")
-    static let photographicPhotocopyMicrofilmEquipmentAndSupplies = IssuingCardSpendingLimitCategoriesItem(rawValue: "photographic_photocopy_microfilm_equipment_and_supplies")
+    static let photographicPhotocopyMicrofilmEquipmentAndSupplies =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "photographic_photocopy_microfilm_equipment_and_supplies")
     static let photographicStudios = IssuingCardSpendingLimitCategoriesItem(rawValue: "photographic_studios")
     static let pictureVideoProduction = IssuingCardSpendingLimitCategoriesItem(rawValue: "picture_video_production")
-    static let pieceGoodsNotionsAndOtherDryGoods = IssuingCardSpendingLimitCategoriesItem(rawValue: "piece_goods_notions_and_other_dry_goods")
-    static let plumbingHeatingEquipmentAndSupplies = IssuingCardSpendingLimitCategoriesItem(rawValue: "plumbing_heating_equipment_and_supplies")
+    static let pieceGoodsNotionsAndOtherDryGoods =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "piece_goods_notions_and_other_dry_goods")
+    static let plumbingHeatingEquipmentAndSupplies =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "plumbing_heating_equipment_and_supplies")
     static let politicalOrganizations = IssuingCardSpendingLimitCategoriesItem(rawValue: "political_organizations")
-    static let postalServicesGovernmentOnly = IssuingCardSpendingLimitCategoriesItem(rawValue: "postal_services_government_only")
-    static let preciousStonesAndMetalsWatchesAndJewelry = IssuingCardSpendingLimitCategoriesItem(rawValue: "precious_stones_and_metals_watches_and_jewelry")
+    static let postalServicesGovernmentOnly =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "postal_services_government_only")
+    static let preciousStonesAndMetalsWatchesAndJewelry =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "precious_stones_and_metals_watches_and_jewelry")
     static let professionalServices = IssuingCardSpendingLimitCategoriesItem(rawValue: "professional_services")
-    static let publicWarehousingAndStorage = IssuingCardSpendingLimitCategoriesItem(rawValue: "public_warehousing_and_storage")
-    static let quickCopyReproAndBlueprint = IssuingCardSpendingLimitCategoriesItem(rawValue: "quick_copy_repro_and_blueprint")
+    static let publicWarehousingAndStorage =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "public_warehousing_and_storage")
+    static let quickCopyReproAndBlueprint =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "quick_copy_repro_and_blueprint")
     static let railroads = IssuingCardSpendingLimitCategoriesItem(rawValue: "railroads")
-    static let realEstateAgentsAndManagersRentals = IssuingCardSpendingLimitCategoriesItem(rawValue: "real_estate_agents_and_managers_rentals")
+    static let realEstateAgentsAndManagersRentals =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "real_estate_agents_and_managers_rentals")
     static let recordStores = IssuingCardSpendingLimitCategoriesItem(rawValue: "record_stores")
-    static let recreationalVehicleRentals = IssuingCardSpendingLimitCategoriesItem(rawValue: "recreational_vehicle_rentals")
+    static let recreationalVehicleRentals =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "recreational_vehicle_rentals")
     static let religiousGoodsStores = IssuingCardSpendingLimitCategoriesItem(rawValue: "religious_goods_stores")
     static let religiousOrganizations = IssuingCardSpendingLimitCategoriesItem(rawValue: "religious_organizations")
     static let roofingSidingSheetMetal = IssuingCardSpendingLimitCategoriesItem(rawValue: "roofing_siding_sheet_metal")
-    static let secretarialSupportServices = IssuingCardSpendingLimitCategoriesItem(rawValue: "secretarial_support_services")
+    static let secretarialSupportServices =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "secretarial_support_services")
     static let securityBrokersDealers = IssuingCardSpendingLimitCategoriesItem(rawValue: "security_brokers_dealers")
     static let serviceStations = IssuingCardSpendingLimitCategoriesItem(rawValue: "service_stations")
-    static let sewingNeedleworkFabricAndPieceGoodsStores = IssuingCardSpendingLimitCategoriesItem(rawValue: "sewing_needlework_fabric_and_piece_goods_stores")
+    static let sewingNeedleworkFabricAndPieceGoodsStores =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "sewing_needlework_fabric_and_piece_goods_stores")
 }
 
 public extension IssuingCardSpendingLimitCategoriesItem {
@@ -179,19 +257,25 @@ public extension IssuingCardSpendingLimitCategoriesItem {
     static let specialtyCleaning = IssuingCardSpendingLimitCategoriesItem(rawValue: "specialty_cleaning")
     static let sportingGoodsStores = IssuingCardSpendingLimitCategoriesItem(rawValue: "sporting_goods_stores")
     static let sportingRecreationCamps = IssuingCardSpendingLimitCategoriesItem(rawValue: "sporting_recreation_camps")
-    static let sportsAndRidingApparelStores = IssuingCardSpendingLimitCategoriesItem(rawValue: "sports_and_riding_apparel_stores")
+    static let sportsAndRidingApparelStores =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "sports_and_riding_apparel_stores")
     static let sportsClubsFields = IssuingCardSpendingLimitCategoriesItem(rawValue: "sports_clubs_fields")
     static let stampAndCoinStores = IssuingCardSpendingLimitCategoriesItem(rawValue: "stamp_and_coin_stores")
-    static let stationaryOfficeSuppliesPrintingAndWritingPaper = IssuingCardSpendingLimitCategoriesItem(rawValue: "stationary_office_supplies_printing_and_writing_paper")
-    static let stationeryStoresOfficeAndSchoolSupplyStores = IssuingCardSpendingLimitCategoriesItem(rawValue: "stationery_stores_office_and_school_supply_stores")
+    static let stationaryOfficeSuppliesPrintingAndWritingPaper =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "stationary_office_supplies_printing_and_writing_paper")
+    static let stationeryStoresOfficeAndSchoolSupplyStores =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "stationery_stores_office_and_school_supply_stores")
     static let swimmingPoolsSales = IssuingCardSpendingLimitCategoriesItem(rawValue: "swimming_pools_sales")
     static let tUiTravelGermany = IssuingCardSpendingLimitCategoriesItem(rawValue: "t_ui_travel_germany")
     static let tailorsAlterations = IssuingCardSpendingLimitCategoriesItem(rawValue: "tailors_alterations")
-    static let taxPaymentsGovernmentAgencies = IssuingCardSpendingLimitCategoriesItem(rawValue: "tax_payments_government_agencies")
+    static let taxPaymentsGovernmentAgencies =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "tax_payments_government_agencies")
     static let taxPreparationServices = IssuingCardSpendingLimitCategoriesItem(rawValue: "tax_preparation_services")
     static let taxicabsLimousines = IssuingCardSpendingLimitCategoriesItem(rawValue: "taxicabs_limousines")
-    static let telecommunicationEquipmentAndTelephoneSales = IssuingCardSpendingLimitCategoriesItem(rawValue: "telecommunication_equipment_and_telephone_sales")
-    static let telecommunicationServices = IssuingCardSpendingLimitCategoriesItem(rawValue: "telecommunication_services")
+    static let telecommunicationEquipmentAndTelephoneSales =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "telecommunication_equipment_and_telephone_sales")
+    static let telecommunicationServices =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "telecommunication_services")
     static let telegraphServices = IssuingCardSpendingLimitCategoriesItem(rawValue: "telegraph_services")
     static let tentAndAwningShops = IssuingCardSpendingLimitCategoriesItem(rawValue: "tent_and_awning_shops")
     static let testingLaboratories = IssuingCardSpendingLimitCategoriesItem(rawValue: "testing_laboratories")
@@ -199,22 +283,30 @@ public extension IssuingCardSpendingLimitCategoriesItem {
     static let timeshares = IssuingCardSpendingLimitCategoriesItem(rawValue: "timeshares")
     static let tireRetreadingAndRepair = IssuingCardSpendingLimitCategoriesItem(rawValue: "tire_retreading_and_repair")
     static let tollsBridgeFees = IssuingCardSpendingLimitCategoriesItem(rawValue: "tolls_bridge_fees")
-    static let touristAttractionsAndExhibits = IssuingCardSpendingLimitCategoriesItem(rawValue: "tourist_attractions_and_exhibits")
+    static let touristAttractionsAndExhibits =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "tourist_attractions_and_exhibits")
     static let towingServices = IssuingCardSpendingLimitCategoriesItem(rawValue: "towing_services")
     static let trailerParksCampgrounds = IssuingCardSpendingLimitCategoriesItem(rawValue: "trailer_parks_campgrounds")
     static let transportationServices = IssuingCardSpendingLimitCategoriesItem(rawValue: "transportation_services")
-    static let travelAgenciesTourOperators = IssuingCardSpendingLimitCategoriesItem(rawValue: "travel_agencies_tour_operators")
+    static let travelAgenciesTourOperators =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "travel_agencies_tour_operators")
     static let truckStopIteration = IssuingCardSpendingLimitCategoriesItem(rawValue: "truck_stop_iteration")
-    static let truckUtilityTrailerRentals = IssuingCardSpendingLimitCategoriesItem(rawValue: "truck_utility_trailer_rentals")
-    static let typesettingPlateMakingAndRelatedServices = IssuingCardSpendingLimitCategoriesItem(rawValue: "typesetting_plate_making_and_related_services")
+    static let truckUtilityTrailerRentals =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "truck_utility_trailer_rentals")
+    static let typesettingPlateMakingAndRelatedServices =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "typesetting_plate_making_and_related_services")
     static let typewriterStores = IssuingCardSpendingLimitCategoriesItem(rawValue: "typewriter_stores")
-    static let uSFederalGovernmentAgenciesOrDepartments = IssuingCardSpendingLimitCategoriesItem(rawValue: "u_s_federal_government_agencies_or_departments")
-    static let uniformsCommercialClothing = IssuingCardSpendingLimitCategoriesItem(rawValue: "uniforms_commercial_clothing")
-    static let usedMerchandiseAndSecondhandStores = IssuingCardSpendingLimitCategoriesItem(rawValue: "used_merchandise_and_secondhand_stores")
+    static let uSFederalGovernmentAgenciesOrDepartments =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "u_s_federal_government_agencies_or_departments")
+    static let uniformsCommercialClothing =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "uniforms_commercial_clothing")
+    static let usedMerchandiseAndSecondhandStores =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "used_merchandise_and_secondhand_stores")
     static let utilities = IssuingCardSpendingLimitCategoriesItem(rawValue: "utilities")
     static let varietyStores = IssuingCardSpendingLimitCategoriesItem(rawValue: "variety_stores")
     static let veterinaryServices = IssuingCardSpendingLimitCategoriesItem(rawValue: "veterinary_services")
-    static let videoAmusementGameSupplies = IssuingCardSpendingLimitCategoriesItem(rawValue: "video_amusement_game_supplies")
+    static let videoAmusementGameSupplies =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "video_amusement_game_supplies")
     static let videoGameArcades = IssuingCardSpendingLimitCategoriesItem(rawValue: "video_game_arcades")
     static let videoTapeRentalStores = IssuingCardSpendingLimitCategoriesItem(rawValue: "video_tape_rental_stores")
     static let vocationalTradeSchools = IssuingCardSpendingLimitCategoriesItem(rawValue: "vocational_trade_schools")
@@ -223,7 +315,8 @@ public extension IssuingCardSpendingLimitCategoriesItem {
     static let wholesaleClubs = IssuingCardSpendingLimitCategoriesItem(rawValue: "wholesale_clubs")
     static let wigAndToupeeStores = IssuingCardSpendingLimitCategoriesItem(rawValue: "wig_and_toupee_stores")
     static let wiresMoneyOrders = IssuingCardSpendingLimitCategoriesItem(rawValue: "wires_money_orders")
-    static let womensAccessoryAndSpecialtyShops = IssuingCardSpendingLimitCategoriesItem(rawValue: "womens_accessory_and_specialty_shops")
+    static let womensAccessoryAndSpecialtyShops =
+        IssuingCardSpendingLimitCategoriesItem(rawValue: "womens_accessory_and_specialty_shops")
     static let womensReadyToWearStores = IssuingCardSpendingLimitCategoriesItem(rawValue: "womens_ready_to_wear_stores")
     static let wreckingAndSalvageYards = IssuingCardSpendingLimitCategoriesItem(rawValue: "wrecking_and_salvage_yards")
 }

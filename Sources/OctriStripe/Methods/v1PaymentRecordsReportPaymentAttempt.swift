@@ -25,7 +25,8 @@ public enum V1PaymentRecordsReportPaymentAttemptMethods {
         }
     }
 
-    /// Report a new payment attempt on the specified Payment Record. A new payment attempt can only be specified if all other payment attempts are canceled or failed.
+    /// Report a new payment attempt on the specified Payment Record. A new payment attempt can only be specified if all
+    /// other payment attempts are canceled or failed.
     ///
     /// - Parameters:
     /// - id: The ID of the Payment Record.
@@ -45,7 +46,10 @@ public enum V1PaymentRecordsReportPaymentAttemptMethods {
     /// - paymentMethodDetails: Information about the Payment Method debited for
     ///   this payment.
     /// - shippingDetails: Shipping information for this payment.
-    public static func postPaymentRecordsIdReportPaymentAttempt(config: ClientConfig, options: PostPaymentRecordsIdReportPaymentAttemptOptions) async throws -> PaymentRecord {
+    public static func postPaymentRecordsIdReportPaymentAttempt(
+        config: ClientConfig,
+        options: PostPaymentRecordsIdReportPaymentAttemptOptions
+    ) async throws -> PaymentRecord {
         try validateLength("id", options.id, max: 5000)
 
         if let description = options.description {
@@ -54,6 +58,15 @@ public enum V1PaymentRecordsReportPaymentAttemptMethods {
 
         let requestBody = PostPaymentRecordsIdReportPaymentAttemptRequestBody(options: options)
 
-        return try (await sdkRequest("POST", ["/v1/payment_records/", sdkEncodePathSegment(sdkWireString(options.id)), "/report_payment_attempt"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostPaymentRecordsIdReportPaymentAttempt")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/payment_records/", sdkEncodePathSegment(sdkWireString(options.id)), "/report_payment_attempt"]
+                .joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostPaymentRecordsIdReportPaymentAttempt"
+        )).data
     }
 }

@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1CouponsMethods {
-    public struct PostCouponsOptions: Codable {
+public extension V1CouponsMethods {
+    struct PostCouponsOptions: Codable {
         public var amountOff: Int?
         public var appliesTo: PostCouponsRequestBodyAppliesTo?
         public var currency: String?
@@ -25,7 +25,13 @@ extension V1CouponsMethods {
         public init() {}
     }
 
-    /// You can create coupons easily via the coupon management page of the Stripe dashboard. Coupon creation is also accessible via the API if you need to create coupons on the fly. A coupon has either a percent_off or an amount_off and currency . If you set an amount_off , that amount will be subtracted from any invoice’s subtotal. For example, an invoice with a subtotal of <currency>100</currency> will have a final total of <currency>0</currency> if a coupon with an amount_off of <amount>200</amount> is applied to it and an invoice with a subtotal of <currency>300</currency> will have a final total of <currency>100</currency> if a coupon with an amount_off of <amount>200</amount> is applied to it.
+    /// You can create coupons easily via the coupon management page of the Stripe dashboard. Coupon creation is also
+    /// accessible via the API if you need to create coupons on the fly. A coupon has either a percent_off or an
+    /// amount_off and currency . If you set an amount_off , that amount will be subtracted from any invoice’s subtotal.
+    /// For example, an invoice with a subtotal of <currency>100</currency> will have a final total of
+    /// <currency>0</currency> if a coupon with an amount_off of <amount>200</amount> is applied to it and an invoice
+    /// with a subtotal of <currency>300</currency> will have a final total of <currency>100</currency> if a coupon with
+    /// an amount_off of <amount>200</amount> is applied to it.
     ///
     /// - Parameters:
     /// - amountOff: A positive integer representing the amount to subtract from an
@@ -64,7 +70,7 @@ extension V1CouponsMethods {
     /// - redeemBy: Unix timestamp specifying the last time at which the coupon can
     ///   be redeemed (cannot be set to more than 5 years in the future). After the
     ///   redeem_by date, the coupon can no longer be applied to new customers.
-    public static func postCoupons(config: ClientConfig, options: PostCouponsOptions) async throws -> Coupon {
+    static func postCoupons(config: ClientConfig, options: PostCouponsOptions) async throws -> Coupon {
         if let id = options.id {
             try validateLength("id", id, max: 5000)
         }
@@ -75,6 +81,14 @@ extension V1CouponsMethods {
 
         let requestBody = PostCouponsRequestBody(options: options)
 
-        return try (await sdkRequest("POST", "/v1/coupons", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostCoupons")).data
+        return try await (sdkRequest(
+            "POST",
+            "/v1/coupons",
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostCoupons"
+        )).data
     }
 }

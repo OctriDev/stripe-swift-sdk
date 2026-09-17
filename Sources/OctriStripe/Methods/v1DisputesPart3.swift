@@ -6,18 +6,26 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1DisputesMethods {
-    /// Retrieves a specific dispute by its identifier. Use `expand` to request selected fields in expanded form when retrieving the dispute details.
+public extension V1DisputesMethods {
+    /// Retrieves a specific dispute by its identifier. Use `expand` to request selected fields in expanded form when
+    /// retrieving the dispute details.
     ///
     /// Retrieves the dispute with the given ID.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func getDisputesDispute(config: ClientConfig, dispute: String, expand: [String]?) async throws -> Dispute {
+    static func getDisputesDispute(config: ClientConfig, dispute: String, expand: [String]?) async throws -> Dispute {
         try validateLength("dispute", dispute, max: 5000)
 
-        return try (await sdkRequest("GET", ["/v1/disputes/", sdkEncodePathSegment(sdkWireString(dispute))].joined(), config: config, query: [
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-        ], decoder: .json, operationId: "GetDisputesDispute")).data
+        return try await (sdkRequest(
+            "GET",
+            ["/v1/disputes/", sdkEncodePathSegment(sdkWireString(dispute))].joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+            ],
+            decoder: .json,
+            operationId: "GetDisputesDispute"
+        )).data
     }
 }

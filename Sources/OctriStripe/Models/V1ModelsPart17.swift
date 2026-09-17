@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1 domain models
+/// V1 domain models
 /// Typed representation of the `InternalCard` API schema.
 public struct InternalCard: Codable {
     /// Brand of the card used in the transaction
@@ -26,32 +26,38 @@ public struct InternalCard: Codable {
     }
 
     init() {
-        (self.brand, self.country, self.expMonth, self.expYear, self.last4) = (nil, nil, nil, nil, nil)
+        (brand, country, expMonth, expYear, last4) = (nil, nil, nil, nil, nil)
     }
 }
 
-extension InternalCard {
-    public init(from decoder: Decoder) throws {
+public extension InternalCard {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.brand = try container.sdkDecodeIfPresent(.brand)
-        self.country = try container.sdkDecodeIfPresent(.country)
-        self.expMonth = try container.sdkDecodeIfPresent(.expMonth)
-        self.expYear = try container.sdkDecodeIfPresent(.expYear)
-        self.last4 = try container.sdkDecodeIfPresent(.last4)
-        if let value = self.brand {
+        brand = try container.sdkDecodeIfPresent(.brand)
+        country = try container.sdkDecodeIfPresent(.country)
+        expMonth = try container.sdkDecodeIfPresent(.expMonth)
+        expYear = try container.sdkDecodeIfPresent(.expYear)
+        last4 = try container.sdkDecodeIfPresent(.last4)
+        if let value = brand {
             try validateLength("brand", value, min: nil, max: 5000)
         }
-        if let value = self.country {
+        if let value = country {
             try validateLength("country", value, min: nil, max: 5000)
         }
-        if let value = self.last4 {
+        if let value = last4 {
             try validateLength("last4", value, min: nil, max: 5000)
         }
     }
 }
 
-extension InternalCard {
-    public init(brand: String? = nil, country: String? = nil, expMonth: Int? = nil, expYear: Int? = nil, last4: String? = nil) throws {
+public extension InternalCard {
+    init(
+        brand: String? = nil,
+        country: String? = nil,
+        expMonth: Int? = nil,
+        expYear: Int? = nil,
+        last4: String? = nil
+    ) throws {
         self.init()
         (self.brand, self.country) = (brand, country)
         (self.expMonth, self.expYear) = (expMonth, expYear)
@@ -372,97 +378,178 @@ public struct Invoice: Codable {
         case webhooksDeliveredAt = "webhooks_delivered_at"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension Invoice {
-    public init(from decoder: Decoder) throws {
+public extension Invoice {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.amountDue = try container.sdkDecodeRequired(.amountDue)
-        self.amountOverpaid = try container.sdkDecodeRequired(.amountOverpaid)
-        self.amountPaid = try container.sdkDecodeRequired(.amountPaid)
-        self.amountPaidOffStripe = try container.sdkDecodeRequired(.amountPaidOffStripe)
-        self.amountRemaining = try container.sdkDecodeRequired(.amountRemaining)
-        self.amountShipping = try container.sdkDecodeRequired(.amountShipping)
-        self.attemptCount = try container.sdkDecodeRequired(.attemptCount)
-        self.attempted = try container.sdkDecodeRequired(.attempted)
-        self.autoAdvance = try container.sdkDecodeRequired(.autoAdvance)
-        self.automaticTax = try container.sdkDecodeRequired(.automaticTax)
-        self.collectionMethod = try container.sdkDecodeRequired(.collectionMethod)
-        self.created = try container.sdkDecodeRequired(.created)
-        self.currency = try container.sdkDecodeRequired(.currency)
-        self.customer = try container.sdkDecodeRequired(.customer)
-        self.defaultTaxRates = try container.sdkDecodeRequired(.defaultTaxRates)
-        self.discounts = try container.sdkDecodeRequired(.discounts)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.issuer = try container.sdkDecodeRequired(.issuer)
-        self.lines = try container.sdkDecodeRequired(.lines)
-        self.livemode = try container.sdkDecodeRequired(.livemode)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.paymentSettings = try container.sdkDecodeRequired(.paymentSettings)
-        self.periodEnd = try container.sdkDecodeRequired(.periodEnd)
-        self.periodStart = try container.sdkDecodeRequired(.periodStart)
-        self.postPaymentCreditNotesAmount = try container.sdkDecodeRequired(.postPaymentCreditNotesAmount)
-        self.prePaymentCreditNotesAmount = try container.sdkDecodeRequired(.prePaymentCreditNotesAmount)
-        self.startingBalance = try container.sdkDecodeRequired(.startingBalance)
-        self.statusTransitions = try container.sdkDecodeRequired(.statusTransitions)
-        self.subtotal = try container.sdkDecodeRequired(.subtotal)
-        self.total = try container.sdkDecodeRequired(.total)
-        self.accountCountry = try container.sdkDecodeIfPresent(.accountCountry)
-        self.accountName = try container.sdkDecodeIfPresent(.accountName)
-        self.accountTaxIds = try container.sdkDecodeIfPresent(.accountTaxIds)
-        self.application = try container.sdkDecodeIfPresent(.application)
-        self.automaticallyFinalizesAt = try container.sdkDecodeIfPresent(.automaticallyFinalizesAt)
-        self.billingReason = try container.sdkDecodeIfPresent(.billingReason)
-        self.confirmationSecret = try container.sdkDecodeIfPresent(.confirmationSecret)
-        self.customFields = try container.sdkDecodeIfPresent(.customFields)
-        self.customerAccount = try container.sdkDecodeIfPresent(.customerAccount)
-        self.customerAddress = try container.sdkDecodeIfPresent(.customerAddress)
-        self.customerEmail = try container.sdkDecodeIfPresent(.customerEmail)
-        self.customerName = try container.sdkDecodeIfPresent(.customerName)
-        self.customerPhone = try container.sdkDecodeIfPresent(.customerPhone)
-        self.customerShipping = try container.sdkDecodeIfPresent(.customerShipping)
-        self.customerTaxExempt = try container.sdkDecodeIfPresent(.customerTaxExempt)
-        self.customerTaxIds = try container.sdkDecodeIfPresent(.customerTaxIds)
-        self.defaultPaymentMethod = try container.sdkDecodeIfPresent(.defaultPaymentMethod)
-        self.defaultSource = try container.sdkDecodeIfPresent(.defaultSource)
-        self.description = try container.sdkDecodeIfPresent(.description)
-        self.dueDate = try container.sdkDecodeIfPresent(.dueDate)
-        self.effectiveAt = try container.sdkDecodeIfPresent(.effectiveAt)
-        self.endingBalance = try container.sdkDecodeIfPresent(.endingBalance)
-        self.footer = try container.sdkDecodeIfPresent(.footer)
-        self.fromInvoice = try container.sdkDecodeIfPresent(.fromInvoice)
-        self.hostedInvoiceUrl = try container.sdkDecodeIfPresent(.hostedInvoiceUrl)
-        self.invoicePdf = try container.sdkDecodeIfPresent(.invoicePdf)
-        self.lastFinalizationError = try container.sdkDecodeIfPresent(.lastFinalizationError)
-        self.latestRevision = try container.sdkDecodeIfPresent(.latestRevision)
-        self.metadata = try container.sdkDecodeIfPresent(.metadata)
-        self.nextPaymentAttempt = try container.sdkDecodeIfPresent(.nextPaymentAttempt)
-        self.number = try container.sdkDecodeIfPresent(.number)
-        self.onBehalfOf = try container.sdkDecodeIfPresent(.onBehalfOf)
-        self.parent = try container.sdkDecodeIfPresent(.parent)
-        self.payments = try container.sdkDecodeIfPresent(.payments)
-        self.receiptNumber = try container.sdkDecodeIfPresent(.receiptNumber)
-        self.rendering = try container.sdkDecodeIfPresent(.rendering)
-        self.shippingCost = try container.sdkDecodeIfPresent(.shippingCost)
-        self.shippingDetails = try container.sdkDecodeIfPresent(.shippingDetails)
-        self.statementDescriptor = try container.sdkDecodeIfPresent(.statementDescriptor)
-        self.status = try container.sdkDecodeIfPresent(.status)
-        self.subtotalExcludingTax = try container.sdkDecodeIfPresent(.subtotalExcludingTax)
-        self.testClock = try container.sdkDecodeIfPresent(.testClock)
-        self.thresholdReason = try container.sdkDecodeIfPresent(.thresholdReason)
-        self.totalDiscountAmounts = try container.sdkDecodeIfPresent(.totalDiscountAmounts)
-        self.totalExcludingTax = try container.sdkDecodeIfPresent(.totalExcludingTax)
-        self.totalPretaxCreditAmounts = try container.sdkDecodeIfPresent(.totalPretaxCreditAmounts)
-        self.totalTaxes = try container.sdkDecodeIfPresent(.totalTaxes)
-        self.webhooksDeliveredAt = try container.sdkDecodeIfPresent(.webhooksDeliveredAt)
+        amountDue = try container.sdkDecodeRequired(.amountDue)
+        amountOverpaid = try container.sdkDecodeRequired(.amountOverpaid)
+        amountPaid = try container.sdkDecodeRequired(.amountPaid)
+        amountPaidOffStripe = try container.sdkDecodeRequired(.amountPaidOffStripe)
+        amountRemaining = try container.sdkDecodeRequired(.amountRemaining)
+        amountShipping = try container.sdkDecodeRequired(.amountShipping)
+        attemptCount = try container.sdkDecodeRequired(.attemptCount)
+        attempted = try container.sdkDecodeRequired(.attempted)
+        autoAdvance = try container.sdkDecodeRequired(.autoAdvance)
+        automaticTax = try container.sdkDecodeRequired(.automaticTax)
+        collectionMethod = try container.sdkDecodeRequired(.collectionMethod)
+        created = try container.sdkDecodeRequired(.created)
+        currency = try container.sdkDecodeRequired(.currency)
+        customer = try container.sdkDecodeRequired(.customer)
+        defaultTaxRates = try container.sdkDecodeRequired(.defaultTaxRates)
+        discounts = try container.sdkDecodeRequired(.discounts)
+        id = try container.sdkDecodeRequired(.id)
+        issuer = try container.sdkDecodeRequired(.issuer)
+        lines = try container.sdkDecodeRequired(.lines)
+        livemode = try container.sdkDecodeRequired(.livemode)
+        object = try container.sdkDecodeRequired(.object)
+        paymentSettings = try container.sdkDecodeRequired(.paymentSettings)
+        periodEnd = try container.sdkDecodeRequired(.periodEnd)
+        periodStart = try container.sdkDecodeRequired(.periodStart)
+        postPaymentCreditNotesAmount = try container.sdkDecodeRequired(.postPaymentCreditNotesAmount)
+        prePaymentCreditNotesAmount = try container.sdkDecodeRequired(.prePaymentCreditNotesAmount)
+        startingBalance = try container.sdkDecodeRequired(.startingBalance)
+        statusTransitions = try container.sdkDecodeRequired(.statusTransitions)
+        subtotal = try container.sdkDecodeRequired(.subtotal)
+        total = try container.sdkDecodeRequired(.total)
+        accountCountry = try container.sdkDecodeIfPresent(.accountCountry)
+        accountName = try container.sdkDecodeIfPresent(.accountName)
+        accountTaxIds = try container.sdkDecodeIfPresent(.accountTaxIds)
+        application = try container.sdkDecodeIfPresent(.application)
+        automaticallyFinalizesAt = try container.sdkDecodeIfPresent(.automaticallyFinalizesAt)
+        billingReason = try container.sdkDecodeIfPresent(.billingReason)
+        confirmationSecret = try container.sdkDecodeIfPresent(.confirmationSecret)
+        customFields = try container.sdkDecodeIfPresent(.customFields)
+        customerAccount = try container.sdkDecodeIfPresent(.customerAccount)
+        customerAddress = try container.sdkDecodeIfPresent(.customerAddress)
+        customerEmail = try container.sdkDecodeIfPresent(.customerEmail)
+        customerName = try container.sdkDecodeIfPresent(.customerName)
+        customerPhone = try container.sdkDecodeIfPresent(.customerPhone)
+        customerShipping = try container.sdkDecodeIfPresent(.customerShipping)
+        customerTaxExempt = try container.sdkDecodeIfPresent(.customerTaxExempt)
+        customerTaxIds = try container.sdkDecodeIfPresent(.customerTaxIds)
+        defaultPaymentMethod = try container.sdkDecodeIfPresent(.defaultPaymentMethod)
+        defaultSource = try container.sdkDecodeIfPresent(.defaultSource)
+        description = try container.sdkDecodeIfPresent(.description)
+        dueDate = try container.sdkDecodeIfPresent(.dueDate)
+        effectiveAt = try container.sdkDecodeIfPresent(.effectiveAt)
+        endingBalance = try container.sdkDecodeIfPresent(.endingBalance)
+        footer = try container.sdkDecodeIfPresent(.footer)
+        fromInvoice = try container.sdkDecodeIfPresent(.fromInvoice)
+        hostedInvoiceUrl = try container.sdkDecodeIfPresent(.hostedInvoiceUrl)
+        invoicePdf = try container.sdkDecodeIfPresent(.invoicePdf)
+        lastFinalizationError = try container.sdkDecodeIfPresent(.lastFinalizationError)
+        latestRevision = try container.sdkDecodeIfPresent(.latestRevision)
+        metadata = try container.sdkDecodeIfPresent(.metadata)
+        nextPaymentAttempt = try container.sdkDecodeIfPresent(.nextPaymentAttempt)
+        number = try container.sdkDecodeIfPresent(.number)
+        onBehalfOf = try container.sdkDecodeIfPresent(.onBehalfOf)
+        parent = try container.sdkDecodeIfPresent(.parent)
+        payments = try container.sdkDecodeIfPresent(.payments)
+        receiptNumber = try container.sdkDecodeIfPresent(.receiptNumber)
+        rendering = try container.sdkDecodeIfPresent(.rendering)
+        shippingCost = try container.sdkDecodeIfPresent(.shippingCost)
+        shippingDetails = try container.sdkDecodeIfPresent(.shippingDetails)
+        statementDescriptor = try container.sdkDecodeIfPresent(.statementDescriptor)
+        status = try container.sdkDecodeIfPresent(.status)
+        subtotalExcludingTax = try container.sdkDecodeIfPresent(.subtotalExcludingTax)
+        testClock = try container.sdkDecodeIfPresent(.testClock)
+        thresholdReason = try container.sdkDecodeIfPresent(.thresholdReason)
+        totalDiscountAmounts = try container.sdkDecodeIfPresent(.totalDiscountAmounts)
+        totalExcludingTax = try container.sdkDecodeIfPresent(.totalExcludingTax)
+        totalPretaxCreditAmounts = try container.sdkDecodeIfPresent(.totalPretaxCreditAmounts)
+        totalTaxes = try container.sdkDecodeIfPresent(.totalTaxes)
+        webhooksDeliveredAt = try container.sdkDecodeIfPresent(.webhooksDeliveredAt)
         try sdkValidateConstraintsPart1()
         try sdkValidateConstraintsPart2()
     }
 }
 
-extension Invoice {
-    public init(amountDue: Int, amountOverpaid: Int, amountPaid: Int, amountPaidOffStripe: Int, amountRemaining: Int, amountShipping: Int, attemptCount: Int, attempted: Bool, autoAdvance: Bool, automaticTax: AutomaticTax, collectionMethod: InvoiceCollectionMethod, created: Int, currency: String, customer: InvoiceCustomer, defaultTaxRates: [TaxRate], discounts: [InvoiceDiscountsItem], id: String, issuer: ConnectAccountReference, lines: InvoiceLines, livemode: Bool, object: InvoiceObject, paymentSettings: InvoicesPaymentSettings, periodEnd: Int, periodStart: Int, postPaymentCreditNotesAmount: Int, prePaymentCreditNotesAmount: Int, startingBalance: Int, statusTransitions: InvoicesResourceStatusTransitions, subtotal: Int, total: Int, accountCountry: String? = nil, accountName: String? = nil, accountTaxIds: [InvoiceAccountTaxIdsItem]? = nil, application: InvoiceApplication? = nil, automaticallyFinalizesAt: Int? = nil, billingReason: InvoiceBillingReason? = nil, confirmationSecret: InvoiceConfirmationSecret? = nil, customFields: [InvoiceSettingCustomField]? = nil, customerAccount: String? = nil, customerAddress: InvoiceCustomerAddress? = nil, customerEmail: String? = nil, customerName: String? = nil, customerPhone: String? = nil, customerShipping: InvoiceCustomerShipping? = nil, customerTaxExempt: InvoiceCustomerTaxExempt? = nil, customerTaxIds: [InvoicesResourceInvoiceTaxId]? = nil, defaultPaymentMethod: InvoiceDefaultPaymentMethod? = nil, defaultSource: InvoiceDefaultSource? = nil, description: String? = nil, dueDate: Int? = nil, effectiveAt: Int? = nil, endingBalance: Int? = nil, footer: String? = nil, fromInvoice: InvoiceFromInvoice? = nil, hostedInvoiceUrl: String? = nil, invoicePdf: String? = nil, lastFinalizationError: InvoiceLastFinalizationError? = nil, latestRevision: InvoiceLatestRevision? = nil, metadata: [String: String]? = nil, nextPaymentAttempt: Int? = nil, number: String? = nil, onBehalfOf: InvoiceOnBehalfOf? = nil, parent: InvoiceParent? = nil, payments: InvoicePayments? = nil, receiptNumber: String? = nil, rendering: InvoiceRendering? = nil, shippingCost: InvoiceShippingCost? = nil, shippingDetails: InvoiceShippingDetails? = nil, statementDescriptor: String? = nil, status: InvoiceStatus? = nil, subtotalExcludingTax: Int? = nil, testClock: InvoiceTestClock? = nil, thresholdReason: InvoiceThresholdReason? = nil, totalDiscountAmounts: [DiscountsResourceDiscountAmount]? = nil, totalExcludingTax: Int? = nil, totalPretaxCreditAmounts: [InvoicesResourcePretaxCreditAmount]? = nil, totalTaxes: [BillingBillResourceInvoicingTaxesTax]? = nil, webhooksDeliveredAt: Int? = nil) throws {
+public extension Invoice {
+    init(
+        amountDue: Int,
+        amountOverpaid: Int,
+        amountPaid: Int,
+        amountPaidOffStripe: Int,
+        amountRemaining: Int,
+        amountShipping: Int,
+        attemptCount: Int,
+        attempted: Bool,
+        autoAdvance: Bool,
+        automaticTax: AutomaticTax,
+        collectionMethod: InvoiceCollectionMethod,
+        created: Int,
+        currency: String,
+        customer: InvoiceCustomer,
+        defaultTaxRates: [TaxRate],
+        discounts: [InvoiceDiscountsItem],
+        id: String,
+        issuer: ConnectAccountReference,
+        lines: InvoiceLines,
+        livemode: Bool,
+        object: InvoiceObject,
+        paymentSettings: InvoicesPaymentSettings,
+        periodEnd: Int,
+        periodStart: Int,
+        postPaymentCreditNotesAmount: Int,
+        prePaymentCreditNotesAmount: Int,
+        startingBalance: Int,
+        statusTransitions: InvoicesResourceStatusTransitions,
+        subtotal: Int,
+        total: Int,
+        accountCountry: String? = nil,
+        accountName: String? = nil,
+        accountTaxIds: [InvoiceAccountTaxIdsItem]? = nil,
+        application: InvoiceApplication? = nil,
+        automaticallyFinalizesAt: Int? = nil,
+        billingReason: InvoiceBillingReason? = nil,
+        confirmationSecret: InvoiceConfirmationSecret? = nil,
+        customFields: [InvoiceSettingCustomField]? = nil,
+        customerAccount: String? = nil,
+        customerAddress: InvoiceCustomerAddress? = nil,
+        customerEmail: String? = nil,
+        customerName: String? = nil,
+        customerPhone: String? = nil,
+        customerShipping: InvoiceCustomerShipping? = nil,
+        customerTaxExempt: InvoiceCustomerTaxExempt? = nil,
+        customerTaxIds: [InvoicesResourceInvoiceTaxId]? = nil,
+        defaultPaymentMethod: InvoiceDefaultPaymentMethod? = nil,
+        defaultSource: InvoiceDefaultSource? = nil,
+        description: String? = nil,
+        dueDate: Int? = nil,
+        effectiveAt: Int? = nil,
+        endingBalance: Int? = nil,
+        footer: String? = nil,
+        fromInvoice: InvoiceFromInvoice? = nil,
+        hostedInvoiceUrl: String? = nil,
+        invoicePdf: String? = nil,
+        lastFinalizationError: InvoiceLastFinalizationError? = nil,
+        latestRevision: InvoiceLatestRevision? = nil,
+        metadata: [String: String]? = nil,
+        nextPaymentAttempt: Int? = nil,
+        number: String? = nil,
+        onBehalfOf: InvoiceOnBehalfOf? = nil,
+        parent: InvoiceParent? = nil,
+        payments: InvoicePayments? = nil,
+        receiptNumber: String? = nil,
+        rendering: InvoiceRendering? = nil,
+        shippingCost: InvoiceShippingCost? = nil,
+        shippingDetails: InvoiceShippingDetails? = nil,
+        statementDescriptor: String? = nil,
+        status: InvoiceStatus? = nil,
+        subtotalExcludingTax: Int? = nil,
+        testClock: InvoiceTestClock? = nil,
+        thresholdReason: InvoiceThresholdReason? = nil,
+        totalDiscountAmounts: [DiscountsResourceDiscountAmount]? = nil,
+        totalExcludingTax: Int? = nil,
+        totalPretaxCreditAmounts: [InvoicesResourcePretaxCreditAmount]? = nil,
+        totalTaxes: [BillingBillResourceInvoicingTaxesTax]? = nil,
+        webhooksDeliveredAt: Int? = nil
+    ) throws {
         (self.amountDue, self.amountOverpaid) = (amountDue, amountOverpaid)
         (self.amountPaid, self.amountPaidOffStripe) = (amountPaid, amountPaidOffStripe)
         (self.amountRemaining, self.amountShipping) = (amountRemaining, amountShipping)

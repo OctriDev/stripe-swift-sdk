@@ -6,18 +6,30 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1CountrySpecsMethods {
-    /// Retrieves the country specification for a specified country code. Use `expand` to request additional response fields when needed, and ensure `country` identifies the country specification you want to retrieve.
+public extension V1CountrySpecsMethods {
+    /// Retrieves the country specification for a specified country code. Use `expand` to request additional response
+    /// fields when needed, and ensure `country` identifies the country specification you want to retrieve.
     ///
     /// Returns a Country Spec for a given Country code.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func getCountrySpecsCountry(config: ClientConfig, country: String, expand: [String]?) async throws -> CountrySpec {
+    static func getCountrySpecsCountry(
+        config: ClientConfig,
+        country: String,
+        expand: [String]?
+    ) async throws -> CountrySpec {
         try validateLength("country", country, max: 5000)
 
-        return try (await sdkRequest("GET", ["/v1/country_specs/", sdkEncodePathSegment(sdkWireString(country))].joined(), config: config, query: [
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-        ], decoder: .json, operationId: "GetCountrySpecsCountry")).data
+        return try await (sdkRequest(
+            "GET",
+            ["/v1/country_specs/", sdkEncodePathSegment(sdkWireString(country))].joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+            ],
+            decoder: .json,
+            operationId: "GetCountrySpecsCountry"
+        )).data
     }
 }

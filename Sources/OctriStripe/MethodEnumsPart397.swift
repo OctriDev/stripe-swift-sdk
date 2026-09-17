@@ -13,9 +13,9 @@ struct PostPaymentIntentsIntentApplyCustomerBalanceRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(self.amount, forKey: SdkCodingKey("amount"))
-        try keyedContainer.encodeIfPresent(self.currency, forKey: SdkCodingKey("currency"))
-        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(amount, forKey: SdkCodingKey("amount"))
+        try keyedContainer.encodeIfPresent(currency, forKey: SdkCodingKey("currency"))
+        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
     }
 }
 
@@ -25,8 +25,8 @@ struct PostPaymentIntentsIntentCancelRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(self.cancellationReason, forKey: SdkCodingKey("cancellation_reason"))
-        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(cancellationReason, forKey: SdkCodingKey("cancellation_reason"))
+        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
     }
 }
 
@@ -45,31 +45,34 @@ struct PostPaymentIntentsIntentCaptureRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(self.amountDetails, forKey: SdkCodingKey("amount_details"))
-        try keyedContainer.encodeIfPresent(self.amountToCapture, forKey: SdkCodingKey("amount_to_capture"))
-        try keyedContainer.encodeIfPresent(self.applicationFeeAmount, forKey: SdkCodingKey("application_fee_amount"))
-        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(self.finalCapture, forKey: SdkCodingKey("final_capture"))
-        try keyedContainer.encodeIfPresent(self.hooks, forKey: SdkCodingKey("hooks"))
-        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
-        try keyedContainer.encodeIfPresent(self.paymentDetails, forKey: SdkCodingKey("payment_details"))
-        try keyedContainer.encodeIfPresent(self.statementDescriptor, forKey: SdkCodingKey("statement_descriptor"))
-        try keyedContainer.encodeIfPresent(self.statementDescriptorSuffix, forKey: SdkCodingKey("statement_descriptor_suffix"))
-        try keyedContainer.encodeIfPresent(self.transferData, forKey: SdkCodingKey("transfer_data"))
+        try keyedContainer.encodeIfPresent(amountDetails, forKey: SdkCodingKey("amount_details"))
+        try keyedContainer.encodeIfPresent(amountToCapture, forKey: SdkCodingKey("amount_to_capture"))
+        try keyedContainer.encodeIfPresent(applicationFeeAmount, forKey: SdkCodingKey("application_fee_amount"))
+        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(finalCapture, forKey: SdkCodingKey("final_capture"))
+        try keyedContainer.encodeIfPresent(hooks, forKey: SdkCodingKey("hooks"))
+        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encodeIfPresent(paymentDetails, forKey: SdkCodingKey("payment_details"))
+        try keyedContainer.encodeIfPresent(statementDescriptor, forKey: SdkCodingKey("statement_descriptor"))
+        try keyedContainer.encodeIfPresent(
+            statementDescriptorSuffix,
+            forKey: SdkCodingKey("statement_descriptor_suffix")
+        )
+        try keyedContainer.encodeIfPresent(transferData, forKey: SdkCodingKey("transfer_data"))
     }
 
     init(options: V1PaymentIntentsCaptureMethods.PostPaymentIntentsIntentCaptureOptions) {
-        self.amountDetails = options.amountDetails
-        self.amountToCapture = options.amountToCapture
-        self.applicationFeeAmount = options.applicationFeeAmount
-        self.expand = options.expand
-        self.finalCapture = options.finalCapture
-        self.hooks = options.hooks
-        self.metadata = options.metadata
-        self.paymentDetails = options.paymentDetails
-        self.statementDescriptor = options.statementDescriptor
-        self.statementDescriptorSuffix = options.statementDescriptorSuffix
-        self.transferData = options.transferData
+        amountDetails = options.amountDetails
+        amountToCapture = options.amountToCapture
+        applicationFeeAmount = options.applicationFeeAmount
+        expand = options.expand
+        finalCapture = options.finalCapture
+        hooks = options.hooks
+        metadata = options.metadata
+        paymentDetails = options.paymentDetails
+        statementDescriptor = options.statementDescriptor
+        statementDescriptorSuffix = options.statementDescriptorSuffix
+        transferData = options.transferData
     }
 }
 
@@ -101,57 +104,63 @@ struct PostPaymentIntentsIntentConfirmRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(self.allowedPaymentMethodTypes, forKey: SdkCodingKey("allowed_payment_method_types"))
-        try keyedContainer.encodeIfPresent(self.amountDetails, forKey: SdkCodingKey("amount_details"))
-        try keyedContainer.encodeIfPresent(self.amountToConfirm, forKey: SdkCodingKey("amount_to_confirm"))
-        try keyedContainer.encodeIfPresent(self.captureMethod, forKey: SdkCodingKey("capture_method"))
-        try keyedContainer.encodeIfPresent(self.clientSecret, forKey: SdkCodingKey("client_secret"))
-        try keyedContainer.encodeIfPresent(self.confirmationToken, forKey: SdkCodingKey("confirmation_token"))
-        try keyedContainer.encodeIfPresent(self.errorOnRequiresAction, forKey: SdkCodingKey("error_on_requires_action"))
-        try keyedContainer.encodeIfPresent(self.excludedPaymentMethodTypes, forKey: SdkCodingKey("excluded_payment_method_types"))
-        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(self.hooks, forKey: SdkCodingKey("hooks"))
-        try keyedContainer.encodeIfPresent(self.mandate, forKey: SdkCodingKey("mandate"))
-        try keyedContainer.encodeIfPresent(self.mandateData, forKey: SdkCodingKey("mandate_data"))
-        try keyedContainer.encodeIfPresent(self.offSession, forKey: SdkCodingKey("off_session"))
-        try keyedContainer.encodeIfPresent(self.paymentDetails, forKey: SdkCodingKey("payment_details"))
-        try keyedContainer.encodeIfPresent(self.paymentMethod, forKey: SdkCodingKey("payment_method"))
-        try keyedContainer.encodeIfPresent(self.paymentMethodData, forKey: SdkCodingKey("payment_method_data"))
-        try keyedContainer.encodeIfPresent(self.paymentMethodOptions, forKey: SdkCodingKey("payment_method_options"))
-        try keyedContainer.encodeIfPresent(self.paymentMethodTypes, forKey: SdkCodingKey("payment_method_types"))
-        try keyedContainer.encodeIfPresent(self.radarOptions, forKey: SdkCodingKey("radar_options"))
-        try keyedContainer.encodeIfPresent(self.receiptEmail, forKey: SdkCodingKey("receipt_email"))
-        try keyedContainer.encodeIfPresent(self.returnUrl, forKey: SdkCodingKey("return_url"))
-        try keyedContainer.encodeIfPresent(self.setupFutureUsage, forKey: SdkCodingKey("setup_future_usage"))
-        try keyedContainer.encodeIfPresent(self.shipping, forKey: SdkCodingKey("shipping"))
-        try keyedContainer.encodeIfPresent(self.useStripeSdk, forKey: SdkCodingKey("use_stripe_sdk"))
+        try keyedContainer.encodeIfPresent(
+            allowedPaymentMethodTypes,
+            forKey: SdkCodingKey("allowed_payment_method_types")
+        )
+        try keyedContainer.encodeIfPresent(amountDetails, forKey: SdkCodingKey("amount_details"))
+        try keyedContainer.encodeIfPresent(amountToConfirm, forKey: SdkCodingKey("amount_to_confirm"))
+        try keyedContainer.encodeIfPresent(captureMethod, forKey: SdkCodingKey("capture_method"))
+        try keyedContainer.encodeIfPresent(clientSecret, forKey: SdkCodingKey("client_secret"))
+        try keyedContainer.encodeIfPresent(confirmationToken, forKey: SdkCodingKey("confirmation_token"))
+        try keyedContainer.encodeIfPresent(errorOnRequiresAction, forKey: SdkCodingKey("error_on_requires_action"))
+        try keyedContainer.encodeIfPresent(
+            excludedPaymentMethodTypes,
+            forKey: SdkCodingKey("excluded_payment_method_types")
+        )
+        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(hooks, forKey: SdkCodingKey("hooks"))
+        try keyedContainer.encodeIfPresent(mandate, forKey: SdkCodingKey("mandate"))
+        try keyedContainer.encodeIfPresent(mandateData, forKey: SdkCodingKey("mandate_data"))
+        try keyedContainer.encodeIfPresent(offSession, forKey: SdkCodingKey("off_session"))
+        try keyedContainer.encodeIfPresent(paymentDetails, forKey: SdkCodingKey("payment_details"))
+        try keyedContainer.encodeIfPresent(paymentMethod, forKey: SdkCodingKey("payment_method"))
+        try keyedContainer.encodeIfPresent(paymentMethodData, forKey: SdkCodingKey("payment_method_data"))
+        try keyedContainer.encodeIfPresent(paymentMethodOptions, forKey: SdkCodingKey("payment_method_options"))
+        try keyedContainer.encodeIfPresent(paymentMethodTypes, forKey: SdkCodingKey("payment_method_types"))
+        try keyedContainer.encodeIfPresent(radarOptions, forKey: SdkCodingKey("radar_options"))
+        try keyedContainer.encodeIfPresent(receiptEmail, forKey: SdkCodingKey("receipt_email"))
+        try keyedContainer.encodeIfPresent(returnUrl, forKey: SdkCodingKey("return_url"))
+        try keyedContainer.encodeIfPresent(setupFutureUsage, forKey: SdkCodingKey("setup_future_usage"))
+        try keyedContainer.encodeIfPresent(shipping, forKey: SdkCodingKey("shipping"))
+        try keyedContainer.encodeIfPresent(useStripeSdk, forKey: SdkCodingKey("use_stripe_sdk"))
     }
 
     init(options: V1PaymentIntentsConfirmMethods.PostPaymentIntentsIntentConfirmOptions) {
-        self.allowedPaymentMethodTypes = options.allowedPaymentMethodTypes
-        self.amountDetails = options.amountDetails
-        self.amountToConfirm = options.amountToConfirm
-        self.captureMethod = options.captureMethod
-        self.clientSecret = options.clientSecret
-        self.confirmationToken = options.confirmationToken
-        self.errorOnRequiresAction = options.errorOnRequiresAction
-        self.excludedPaymentMethodTypes = options.excludedPaymentMethodTypes
-        self.expand = options.expand
-        self.hooks = options.hooks
-        self.mandate = options.mandate
-        self.mandateData = options.mandateData
-        self.offSession = options.offSession
-        self.paymentDetails = options.paymentDetails
-        self.paymentMethod = options.paymentMethod
-        self.paymentMethodData = options.paymentMethodData
-        self.paymentMethodOptions = options.paymentMethodOptions
-        self.paymentMethodTypes = options.paymentMethodTypes
-        self.radarOptions = options.radarOptions
-        self.receiptEmail = options.receiptEmail
-        self.returnUrl = options.returnUrl
-        self.setupFutureUsage = options.setupFutureUsage
-        self.shipping = options.shipping
-        self.useStripeSdk = options.useStripeSdk
+        allowedPaymentMethodTypes = options.allowedPaymentMethodTypes
+        amountDetails = options.amountDetails
+        amountToConfirm = options.amountToConfirm
+        captureMethod = options.captureMethod
+        clientSecret = options.clientSecret
+        confirmationToken = options.confirmationToken
+        errorOnRequiresAction = options.errorOnRequiresAction
+        excludedPaymentMethodTypes = options.excludedPaymentMethodTypes
+        expand = options.expand
+        hooks = options.hooks
+        mandate = options.mandate
+        mandateData = options.mandateData
+        offSession = options.offSession
+        paymentDetails = options.paymentDetails
+        paymentMethod = options.paymentMethod
+        paymentMethodData = options.paymentMethodData
+        paymentMethodOptions = options.paymentMethodOptions
+        paymentMethodTypes = options.paymentMethodTypes
+        radarOptions = options.radarOptions
+        receiptEmail = options.receiptEmail
+        returnUrl = options.returnUrl
+        setupFutureUsage = options.setupFutureUsage
+        shipping = options.shipping
+        useStripeSdk = options.useStripeSdk
     }
 }
 
@@ -169,29 +178,29 @@ struct PostPaymentIntentsIntentIncrementAuthorizationRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encode(self.amount, forKey: SdkCodingKey("amount"))
-        try keyedContainer.encodeIfPresent(self.amountDetails, forKey: SdkCodingKey("amount_details"))
-        try keyedContainer.encodeIfPresent(self.applicationFeeAmount, forKey: SdkCodingKey("application_fee_amount"))
-        try keyedContainer.encodeIfPresent(self.description, forKey: SdkCodingKey("description"))
-        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(self.hooks, forKey: SdkCodingKey("hooks"))
-        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
-        try keyedContainer.encodeIfPresent(self.paymentDetails, forKey: SdkCodingKey("payment_details"))
-        try keyedContainer.encodeIfPresent(self.statementDescriptor, forKey: SdkCodingKey("statement_descriptor"))
-        try keyedContainer.encodeIfPresent(self.transferData, forKey: SdkCodingKey("transfer_data"))
+        try keyedContainer.encode(amount, forKey: SdkCodingKey("amount"))
+        try keyedContainer.encodeIfPresent(amountDetails, forKey: SdkCodingKey("amount_details"))
+        try keyedContainer.encodeIfPresent(applicationFeeAmount, forKey: SdkCodingKey("application_fee_amount"))
+        try keyedContainer.encodeIfPresent(description, forKey: SdkCodingKey("description"))
+        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(hooks, forKey: SdkCodingKey("hooks"))
+        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encodeIfPresent(paymentDetails, forKey: SdkCodingKey("payment_details"))
+        try keyedContainer.encodeIfPresent(statementDescriptor, forKey: SdkCodingKey("statement_descriptor"))
+        try keyedContainer.encodeIfPresent(transferData, forKey: SdkCodingKey("transfer_data"))
     }
 
     init(options: V1PaymentIntentsIncrementAuthorizationMethods.PostPaymentIntentsIntentIncrementAuthorizationOptions) {
-        self.amount = options.amount
-        self.amountDetails = options.amountDetails
-        self.applicationFeeAmount = options.applicationFeeAmount
-        self.description = options.description
-        self.expand = options.expand
-        self.hooks = options.hooks
-        self.metadata = options.metadata
-        self.paymentDetails = options.paymentDetails
-        self.statementDescriptor = options.statementDescriptor
-        self.transferData = options.transferData
+        amount = options.amount
+        amountDetails = options.amountDetails
+        applicationFeeAmount = options.applicationFeeAmount
+        description = options.description
+        expand = options.expand
+        hooks = options.hooks
+        metadata = options.metadata
+        paymentDetails = options.paymentDetails
+        statementDescriptor = options.statementDescriptor
+        transferData = options.transferData
     }
 }
 
@@ -203,9 +212,9 @@ struct PostPaymentIntentsIntentVerifyMicrodepositsRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(self.amounts, forKey: SdkCodingKey("amounts"))
-        try keyedContainer.encodeIfPresent(self.clientSecret, forKey: SdkCodingKey("client_secret"))
-        try keyedContainer.encodeIfPresent(self.descriptorCode, forKey: SdkCodingKey("descriptor_code"))
-        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(amounts, forKey: SdkCodingKey("amounts"))
+        try keyedContainer.encodeIfPresent(clientSecret, forKey: SdkCodingKey("client_secret"))
+        try keyedContainer.encodeIfPresent(descriptorCode, forKey: SdkCodingKey("descriptor_code"))
+        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
     }
 }

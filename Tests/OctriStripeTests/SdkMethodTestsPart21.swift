@@ -6,12 +6,17 @@ import Foundation
 import XCTest
 
 extension SdkMethodTests {
-    func testPostPaymentRecordsIdReportRefundPostPaymentRecordsIdReportRefundReachesMockAndDecodesResponse() async throws {
+    func testPostPaymentRecordsIdReportRefundPostPaymentRecordsIdReportRefundReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        var options = try V1PaymentRecordsReportRefundMethods.PostPaymentRecordsIdReportRefundOptions(id: decoded("\"id-1\""), outcome: decoded("\"refunded\""), processorDetails: decoded(sdkMethodFixture456Value1))
+        var options = try V1PaymentRecordsReportRefundMethods.PostPaymentRecordsIdReportRefundOptions(
+            id: decoded("\"id-1\""),
+            outcome: decoded("\"refunded\""),
+            processorDetails: decoded(sdkMethodFixture456Value1)
+        )
         options.amount = try decoded("{\"currency\":\"currency\",\"value\":1}")
         options.expand = try decoded("[\"expand\"]")
         options.initiatedAt = try decoded("1")
@@ -36,7 +41,11 @@ extension SdkMethodTests {
             return
         }
         _ = client
-        var options = try V1PaymentRecordsReportPaymentMethods.PostPaymentRecordsReportPaymentOptions(amountRequested: decoded("{\"currency\":\"currency\",\"value\":1}"), initiatedAt: decoded("1"), paymentMethodDetails: decoded(sdkMethodFixture457Value1))
+        var options = try V1PaymentRecordsReportPaymentMethods.PostPaymentRecordsReportPaymentOptions(
+            amountRequested: decoded("{\"currency\":\"currency\",\"value\":1}"),
+            initiatedAt: decoded("1"),
+            paymentMethodDetails: decoded(sdkMethodFixture457Value1)
+        )
         options.customerDetails = try decoded(sdkMethodFixture457Value2)
         options.customerPresence = try decoded("\"off_session\"")
         options.description = try decoded("\"example text\"")
@@ -155,7 +164,10 @@ extension SdkMethodTests {
             return
         }
         _ = client
-        var options = try V1PlansMethods.PostPlansOptions(currency: decoded("\"currency\""), interval: decoded("\"day\""))
+        var options = try V1PlansMethods.PostPlansOptions(
+            currency: decoded("\"currency\""),
+            interval: decoded("\"day\"")
+        )
         options.active = try decoded("false")
         options.amount = try decoded("100")
         options.amountDecimal = try decoded("\"amount_decimal\"")
@@ -371,7 +383,8 @@ extension SdkMethodTests {
             return
         }
         _ = client
-        var options = try V1PromotionCodesMethods.PostPromotionCodesOptions(promotion: decoded("{\"coupon\":\"coupon\",\"type\":\"coupon\"}"))
+        var options = try V1PromotionCodesMethods
+            .PostPromotionCodesOptions(promotion: decoded("{\"coupon\":\"coupon\",\"type\":\"coupon\"}"))
         options.active = try decoded("false")
         options.code = try decoded("\"code\"")
         options.customer = try decoded("\"customer\"")

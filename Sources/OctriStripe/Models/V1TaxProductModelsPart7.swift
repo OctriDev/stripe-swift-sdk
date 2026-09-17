@@ -3,19 +3,24 @@
 
 import Foundation
 
-// V1TaxProduct domain models
+/// V1TaxProduct domain models
 /// Type of registration in Canada.
-public struct TaxProductRegistrationsResourceCountryOptionsCanadaType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct TaxProductRegistrationsResourceCountryOptionsCanadaType: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let provinceStandard = TaxProductRegistrationsResourceCountryOptionsCanadaType(rawValue: "province_standard")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let provinceStandard =
+        TaxProductRegistrationsResourceCountryOptionsCanadaType(rawValue: "province_standard")
     public static let simplified = TaxProductRegistrationsResourceCountryOptionsCanadaType(rawValue: "simplified")
     public static let standard = TaxProductRegistrationsResourceCountryOptionsCanadaType(rawValue: "standard")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -25,10 +30,14 @@ public struct TaxProductRegistrationsResourceCountryOptionsCanadaType: RawRepres
 }
 
 /// The tax calculation provider this account uses. Defaults to `stripe` when not using a third-party provider.
-public struct TaxProductResourceTaxSettingsDefaultsProvider: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct TaxProductResourceTaxSettingsDefaultsProvider: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let anrok = TaxProductResourceTaxSettingsDefaultsProvider(rawValue: "anrok")
     public static let avalara = TaxProductResourceTaxSettingsDefaultsProvider(rawValue: "avalara")
     public static let sphere = TaxProductResourceTaxSettingsDefaultsProvider(rawValue: "sphere")
@@ -36,7 +45,7 @@ public struct TaxProductResourceTaxSettingsDefaultsProvider: RawRepresentable, H
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -47,29 +56,41 @@ public struct TaxProductResourceTaxSettingsDefaultsProvider: RawRepresentable, H
 
 /// The reasoning behind this tax, for example, if the product is tax exempt. The possible values for this field
 /// may be extended as new tax rules are supported.
-public struct TaxProductResourceLineItemTaxBreakdownTaxabilityReason: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct TaxProductResourceLineItemTaxBreakdownTaxabilityReason: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let customerExempt = TaxProductResourceLineItemTaxBreakdownTaxabilityReason(rawValue: "customer_exempt")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let customerExempt =
+        TaxProductResourceLineItemTaxBreakdownTaxabilityReason(rawValue: "customer_exempt")
     public static let notCollecting = TaxProductResourceLineItemTaxBreakdownTaxabilityReason(rawValue: "not_collecting")
-    public static let notSubjectToTax = TaxProductResourceLineItemTaxBreakdownTaxabilityReason(rawValue: "not_subject_to_tax")
+    public static let notSubjectToTax =
+        TaxProductResourceLineItemTaxBreakdownTaxabilityReason(rawValue: "not_subject_to_tax")
     public static let notSupported = TaxProductResourceLineItemTaxBreakdownTaxabilityReason(rawValue: "not_supported")
-    public static let portionProductExempt = TaxProductResourceLineItemTaxBreakdownTaxabilityReason(rawValue: "portion_product_exempt")
-    public static let portionReducedRated = TaxProductResourceLineItemTaxBreakdownTaxabilityReason(rawValue: "portion_reduced_rated")
-    public static let portionStandardRated = TaxProductResourceLineItemTaxBreakdownTaxabilityReason(rawValue: "portion_standard_rated")
+    public static let portionProductExempt =
+        TaxProductResourceLineItemTaxBreakdownTaxabilityReason(rawValue: "portion_product_exempt")
+    public static let portionReducedRated =
+        TaxProductResourceLineItemTaxBreakdownTaxabilityReason(rawValue: "portion_reduced_rated")
+    public static let portionStandardRated =
+        TaxProductResourceLineItemTaxBreakdownTaxabilityReason(rawValue: "portion_standard_rated")
     public static let productExempt = TaxProductResourceLineItemTaxBreakdownTaxabilityReason(rawValue: "product_exempt")
-    public static let productExemptHoliday = TaxProductResourceLineItemTaxBreakdownTaxabilityReason(rawValue: "product_exempt_holiday")
-    public static let proportionallyRated = TaxProductResourceLineItemTaxBreakdownTaxabilityReason(rawValue: "proportionally_rated")
+    public static let productExemptHoliday =
+        TaxProductResourceLineItemTaxBreakdownTaxabilityReason(rawValue: "product_exempt_holiday")
+    public static let proportionallyRated =
+        TaxProductResourceLineItemTaxBreakdownTaxabilityReason(rawValue: "proportionally_rated")
     public static let reducedRated = TaxProductResourceLineItemTaxBreakdownTaxabilityReason(rawValue: "reduced_rated")
     public static let reverseCharge = TaxProductResourceLineItemTaxBreakdownTaxabilityReason(rawValue: "reverse_charge")
     public static let standardRated = TaxProductResourceLineItemTaxBreakdownTaxabilityReason(rawValue: "standard_rated")
-    public static let taxableBasisReduced = TaxProductResourceLineItemTaxBreakdownTaxabilityReason(rawValue: "taxable_basis_reduced")
+    public static let taxableBasisReduced =
+        TaxProductResourceLineItemTaxBreakdownTaxabilityReason(rawValue: "taxable_basis_reduced")
     public static let zeroRated = TaxProductResourceLineItemTaxBreakdownTaxabilityReason(rawValue: "zero_rated")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -79,16 +100,20 @@ public struct TaxProductResourceLineItemTaxBreakdownTaxabilityReason: RawReprese
 }
 
 /// Specifies whether the `amount` includes taxes. If `tax_behavior=inclusive`, then the amount includes taxes.
-public struct TaxProductResourceTaxCalculationShippingCostTaxBehavior: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct TaxProductResourceTaxCalculationShippingCostTaxBehavior: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let exclusive = TaxProductResourceTaxCalculationShippingCostTaxBehavior(rawValue: "exclusive")
     public static let inclusive = TaxProductResourceTaxCalculationShippingCostTaxBehavior(rawValue: "inclusive")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

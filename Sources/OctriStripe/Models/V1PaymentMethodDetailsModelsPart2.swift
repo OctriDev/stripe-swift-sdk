@@ -3,35 +3,41 @@
 
 import Foundation
 
-// V1PaymentMethodDetails domain models
-extension PaymentMethodDetailsBacsDebit {
-    public init(from decoder: Decoder) throws {
+/// V1PaymentMethodDetails domain models
+public extension PaymentMethodDetailsBacsDebit {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.expectedDebitDate = try container.sdkDecodeIfPresent(.expectedDebitDate)
-        self.fingerprint = try container.sdkDecodeIfPresent(.fingerprint)
-        self.last4 = try container.sdkDecodeIfPresent(.last4)
-        self.mandate = try container.sdkDecodeIfPresent(.mandate)
-        self.sortCode = try container.sdkDecodeIfPresent(.sortCode)
-        if let value = self.expectedDebitDate {
+        expectedDebitDate = try container.sdkDecodeIfPresent(.expectedDebitDate)
+        fingerprint = try container.sdkDecodeIfPresent(.fingerprint)
+        last4 = try container.sdkDecodeIfPresent(.last4)
+        mandate = try container.sdkDecodeIfPresent(.mandate)
+        sortCode = try container.sdkDecodeIfPresent(.sortCode)
+        if let value = expectedDebitDate {
             try validateLength("expected_debit_date", value, min: nil, max: 5000)
         }
-        if let value = self.fingerprint {
+        if let value = fingerprint {
             try validateLength("fingerprint", value, min: nil, max: 5000)
         }
-        if let value = self.last4 {
+        if let value = last4 {
             try validateLength("last4", value, min: nil, max: 5000)
         }
-        if let value = self.mandate {
+        if let value = mandate {
             try validateLength("mandate", value, min: nil, max: 5000)
         }
-        if let value = self.sortCode {
+        if let value = sortCode {
             try validateLength("sort_code", value, min: nil, max: 5000)
         }
     }
 }
 
-extension PaymentMethodDetailsBacsDebit {
-    public init(expectedDebitDate: String? = nil, fingerprint: String? = nil, last4: String? = nil, mandate: String? = nil, sortCode: String? = nil) throws {
+public extension PaymentMethodDetailsBacsDebit {
+    init(
+        expectedDebitDate: String? = nil,
+        fingerprint: String? = nil,
+        last4: String? = nil,
+        mandate: String? = nil,
+        sortCode: String? = nil
+    ) throws {
         self.init()
         (self.expectedDebitDate, self.fingerprint) = (expectedDebitDate, fingerprint)
         (self.last4, self.mandate) = (last4, mandate)
@@ -64,22 +70,22 @@ public struct PaymentMethodDetailsBillie: Codable {
     }
 
     init() {
-        self.transactionId = nil
+        transactionId = nil
     }
 }
 
-extension PaymentMethodDetailsBillie {
-    public init(from decoder: Decoder) throws {
+public extension PaymentMethodDetailsBillie {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.transactionId = try container.sdkDecodeIfPresent(.transactionId)
-        if let value = self.transactionId {
+        transactionId = try container.sdkDecodeIfPresent(.transactionId)
+        if let value = transactionId {
             try validateLength("transaction_id", value, min: nil, max: 5000)
         }
     }
 }
 
-extension PaymentMethodDetailsBillie {
-    public init(transactionId: String? = nil) throws {
+public extension PaymentMethodDetailsBillie {
+    init(transactionId: String? = nil) throws {
         self.init()
         self.transactionId = transactionId
         if let value = self.transactionId {
@@ -101,26 +107,26 @@ public struct PaymentMethodDetailsBizum: Codable {
     }
 
     init() {
-        (self.buyerId, self.transactionId) = (nil, nil)
+        (buyerId, transactionId) = (nil, nil)
     }
 }
 
-extension PaymentMethodDetailsBizum {
-    public init(from decoder: Decoder) throws {
+public extension PaymentMethodDetailsBizum {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.buyerId = try container.sdkDecodeIfPresent(.buyerId)
-        self.transactionId = try container.sdkDecodeIfPresent(.transactionId)
-        if let value = self.buyerId {
+        buyerId = try container.sdkDecodeIfPresent(.buyerId)
+        transactionId = try container.sdkDecodeIfPresent(.transactionId)
+        if let value = buyerId {
             try validateLength("buyer_id", value, min: nil, max: 5000)
         }
-        if let value = self.transactionId {
+        if let value = transactionId {
             try validateLength("transaction_id", value, min: nil, max: 5000)
         }
     }
 }
 
-extension PaymentMethodDetailsBizum {
-    public init(buyerId: String? = nil, transactionId: String? = nil) throws {
+public extension PaymentMethodDetailsBizum {
+    init(buyerId: String? = nil, transactionId: String? = nil) throws {
         self.init()
         (self.buyerId, self.transactionId) = (buyerId, transactionId)
         if let value = self.buyerId {
@@ -142,22 +148,22 @@ public struct PaymentMethodDetailsBlik: Codable {
     }
 
     init() {
-        self.buyerId = nil
+        buyerId = nil
     }
 }
 
-extension PaymentMethodDetailsBlik {
-    public init(from decoder: Decoder) throws {
+public extension PaymentMethodDetailsBlik {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.buyerId = try container.sdkDecodeIfPresent(.buyerId)
-        if let value = self.buyerId {
+        buyerId = try container.sdkDecodeIfPresent(.buyerId)
+        if let value = buyerId {
             try validateLength("buyer_id", value, min: nil, max: 5000)
         }
     }
 }
 
-extension PaymentMethodDetailsBlik {
-    public init(buyerId: String? = nil) throws {
+public extension PaymentMethodDetailsBlik {
+    init(buyerId: String? = nil) throws {
         self.init()
         self.buyerId = buyerId
         if let value = self.buyerId {
@@ -175,24 +181,30 @@ public struct PaymentMethodDetailsBoleto: Codable {
         case taxId = "tax_id"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension PaymentMethodDetailsBoleto {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.taxId) else {
-            throw SdkValidationError(field: "tax_id", code: "required", message: "Validation failed for 'tax_id': value is required")
-        }
-        self.taxId = try container.sdkDecodeRequired(.taxId)
-            try validateLength("tax_id", self.taxId, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension PaymentMethodDetailsBoleto {
-    public init(taxId: String) throws {
+public extension PaymentMethodDetailsBoleto {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.taxId) else {
+            throw SdkValidationError(
+                field: "tax_id",
+                code: "required",
+                message: "Validation failed for 'tax_id': value is required"
+            )
+        }
+        taxId = try container.sdkDecodeRequired(.taxId)
+        try validateLength("tax_id", taxId, min: nil, max: 5000)
+    }
+}
+
+public extension PaymentMethodDetailsBoleto {
+    init(taxId: String) throws {
         self.taxId = taxId
-            try validateLength("tax_id", self.taxId, min: nil, max: 5000)
+        try validateLength("tax_id", self.taxId, min: nil, max: 5000)
     }
 }
 
@@ -287,48 +299,83 @@ public struct PaymentMethodDetailsCard: Codable {
         case wallet
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension PaymentMethodDetailsCard {
-    public init(from decoder: Decoder) throws {
+public extension PaymentMethodDetailsCard {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.expMonth) else {
-            throw SdkValidationError(field: "exp_month", code: "required", message: "Validation failed for 'exp_month': value is required")
+            throw SdkValidationError(
+                field: "exp_month",
+                code: "required",
+                message: "Validation failed for 'exp_month': value is required"
+            )
         }
         guard container.contains(.expYear) else {
-            throw SdkValidationError(field: "exp_year", code: "required", message: "Validation failed for 'exp_year': value is required")
+            throw SdkValidationError(
+                field: "exp_year",
+                code: "required",
+                message: "Validation failed for 'exp_year': value is required"
+            )
         }
-        self.expMonth = try container.sdkDecodeRequired(.expMonth)
-        self.expYear = try container.sdkDecodeRequired(.expYear)
-        self.amountAuthorized = try container.sdkDecodeIfPresent(.amountAuthorized)
-        self.authorizationCode = try container.sdkDecodeIfPresent(.authorizationCode)
-        self.brand = try container.sdkDecodeIfPresent(.brand)
-        self.captureBefore = try container.sdkDecodeIfPresent(.captureBefore)
-        self.checks = try container.sdkDecodeIfPresent(.checks)
-        self.country = try container.sdkDecodeIfPresent(.country)
-        self.extendedAuthorization = try container.sdkDecodeIfPresent(.extendedAuthorization)
-        self.fingerprint = try container.sdkDecodeIfPresent(.fingerprint)
-        self.funding = try container.sdkDecodeIfPresent(.funding)
-        self.incrementalAuthorization = try container.sdkDecodeIfPresent(.incrementalAuthorization)
-        self.installments = try container.sdkDecodeIfPresent(.installments)
-        self.last4 = try container.sdkDecodeIfPresent(.last4)
-        self.mandate = try container.sdkDecodeIfPresent(.mandate)
-        self.multicapture = try container.sdkDecodeIfPresent(.multicapture)
-        self.network = try container.sdkDecodeIfPresent(.network)
-        self.networkToken = try container.sdkDecodeIfPresent(.networkToken)
-        self.networkTransactionId = try container.sdkDecodeIfPresent(.networkTransactionId)
-        self.overcapture = try container.sdkDecodeIfPresent(.overcapture)
-        self.regulatedStatus = try container.sdkDecodeIfPresent(.regulatedStatus)
-        self.threeDSecure = try container.sdkDecodeIfPresent(.threeDSecure)
-        self.transactionLinkId = try container.sdkDecodeIfPresent(.transactionLinkId)
-        self.wallet = try container.sdkDecodeIfPresent(.wallet)
+        expMonth = try container.sdkDecodeRequired(.expMonth)
+        expYear = try container.sdkDecodeRequired(.expYear)
+        amountAuthorized = try container.sdkDecodeIfPresent(.amountAuthorized)
+        authorizationCode = try container.sdkDecodeIfPresent(.authorizationCode)
+        brand = try container.sdkDecodeIfPresent(.brand)
+        captureBefore = try container.sdkDecodeIfPresent(.captureBefore)
+        checks = try container.sdkDecodeIfPresent(.checks)
+        country = try container.sdkDecodeIfPresent(.country)
+        extendedAuthorization = try container.sdkDecodeIfPresent(.extendedAuthorization)
+        fingerprint = try container.sdkDecodeIfPresent(.fingerprint)
+        funding = try container.sdkDecodeIfPresent(.funding)
+        incrementalAuthorization = try container.sdkDecodeIfPresent(.incrementalAuthorization)
+        installments = try container.sdkDecodeIfPresent(.installments)
+        last4 = try container.sdkDecodeIfPresent(.last4)
+        mandate = try container.sdkDecodeIfPresent(.mandate)
+        multicapture = try container.sdkDecodeIfPresent(.multicapture)
+        network = try container.sdkDecodeIfPresent(.network)
+        networkToken = try container.sdkDecodeIfPresent(.networkToken)
+        networkTransactionId = try container.sdkDecodeIfPresent(.networkTransactionId)
+        overcapture = try container.sdkDecodeIfPresent(.overcapture)
+        regulatedStatus = try container.sdkDecodeIfPresent(.regulatedStatus)
+        threeDSecure = try container.sdkDecodeIfPresent(.threeDSecure)
+        transactionLinkId = try container.sdkDecodeIfPresent(.transactionLinkId)
+        wallet = try container.sdkDecodeIfPresent(.wallet)
         try sdkValidateConstraints()
     }
 }
 
-extension PaymentMethodDetailsCard {
-    public init(expMonth: Int, expYear: Int, amountAuthorized: Int? = nil, authorizationCode: String? = nil, brand: String? = nil, captureBefore: Int? = nil, checks: PaymentMethodDetailsCardChecksX785be225? = nil, country: String? = nil, extendedAuthorization: PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceEnterpX285899a76a? = nil, fingerprint: String? = nil, funding: String? = nil, incrementalAuthorization: PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceEnterpXa6add8e874? = nil, installments: PaymentMethodDetailsCardInstallmentsXbe4af07f? = nil, last4: String? = nil, mandate: String? = nil, multicapture: PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceMulticapture? = nil, network: String? = nil, networkToken: PaymentMethodDetailsCardNetworkTokenX496ef8b6? = nil, networkTransactionId: String? = nil, overcapture: PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceEnterpX67a260e761? = nil, regulatedStatus: PaymentMethodDetailsCardRegulatedStatus? = nil, threeDSecure: PaymentMethodDetailsCardThreeDSecure? = nil, transactionLinkId: String? = nil, wallet: PaymentMethodDetailsCardWalletXafdb2974? = nil) throws {
+public extension PaymentMethodDetailsCard {
+    init(
+        expMonth: Int,
+        expYear: Int,
+        amountAuthorized: Int? = nil,
+        authorizationCode: String? = nil,
+        brand: String? = nil,
+        captureBefore: Int? = nil,
+        checks: PaymentMethodDetailsCardChecksX785be225? = nil,
+        country: String? = nil,
+        extendedAuthorization: PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceEnterpX285899a76a? = nil,
+        fingerprint: String? = nil,
+        funding: String? = nil,
+        incrementalAuthorization: PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceEnterpXa6add8e874? = nil,
+        installments: PaymentMethodDetailsCardInstallmentsXbe4af07f? = nil,
+        last4: String? = nil,
+        mandate: String? = nil,
+        multicapture: PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceMulticapture? = nil,
+        network: String? = nil,
+        networkToken: PaymentMethodDetailsCardNetworkTokenX496ef8b6? = nil,
+        networkTransactionId: String? = nil,
+        overcapture: PaymentFlowsPrivatePaymentMethodsCardDetailsApiResourceEnterpX67a260e761? = nil,
+        regulatedStatus: PaymentMethodDetailsCardRegulatedStatus? = nil,
+        threeDSecure: PaymentMethodDetailsCardThreeDSecure? = nil,
+        transactionLinkId: String? = nil,
+        wallet: PaymentMethodDetailsCardWalletXafdb2974? = nil
+    ) throws {
         (self.expMonth, self.expYear) = (expMonth, expYear)
         (self.amountAuthorized, self.authorizationCode) = (amountAuthorized, authorizationCode)
         (self.brand, self.captureBefore) = (brand, captureBefore)
@@ -347,34 +394,34 @@ extension PaymentMethodDetailsCard {
 
 extension PaymentMethodDetailsCard {
     func sdkValidateConstraints() throws {
-        if let value = self.authorizationCode {
+        if let value = authorizationCode {
             try validateLength("authorization_code", value, min: nil, max: 5000)
         }
-        if let value = self.brand {
+        if let value = brand {
             try validateLength("brand", value, min: nil, max: 5000)
         }
-        if let value = self.country {
+        if let value = country {
             try validateLength("country", value, min: nil, max: 5000)
         }
-        if let value = self.fingerprint {
+        if let value = fingerprint {
             try validateLength("fingerprint", value, min: nil, max: 5000)
         }
-        if let value = self.funding {
+        if let value = funding {
             try validateLength("funding", value, min: nil, max: 5000)
         }
-        if let value = self.last4 {
+        if let value = last4 {
             try validateLength("last4", value, min: nil, max: 5000)
         }
-        if let value = self.mandate {
+        if let value = mandate {
             try validateLength("mandate", value, min: nil, max: 5000)
         }
-        if let value = self.network {
+        if let value = network {
             try validateLength("network", value, min: nil, max: 5000)
         }
-        if let value = self.networkTransactionId {
+        if let value = networkTransactionId {
             try validateLength("network_transaction_id", value, min: nil, max: 5000)
         }
-        if let value = self.transactionLinkId {
+        if let value = transactionLinkId {
             try validateLength("transaction_link_id", value, min: nil, max: 22)
         }
     }
@@ -385,20 +432,29 @@ public enum PaymentMethodDetailsCardChecksX785be225 {
 }
 
 extension PaymentMethodDetailsCardChecksX785be225: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentMethodDetailsCardChecksX785be225")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PaymentMethodDetailsCardChecksX785be225"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(PaymentMethodDetailsCardChecks.self) { return .paymentMethodDetailsCardChecks(value) }
+        if let value = try? container
+            .decode(PaymentMethodDetailsCardChecks.self) {
+            return .paymentMethodDetailsCardChecks(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -407,7 +463,6 @@ extension PaymentMethodDetailsCardChecksX785be225: Codable {
         case let .paymentMethodDetailsCardChecks(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum PaymentMethodDetailsCardInstallmentsXbe4af07f {
@@ -415,24 +470,30 @@ public enum PaymentMethodDetailsCardInstallmentsXbe4af07f {
 }
 
 extension PaymentMethodDetailsCardInstallmentsXbe4af07f: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentMethodDetailsCardInstallmentsXbe4af07f")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PaymentMethodDetailsCardInstallmentsXbe4af07f"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PaymentMethodDetailsCardInstallments.self
         ) {
-            return             .paymentMethodDetailsCardInstallments(value)
+            return .paymentMethodDetailsCardInstallments(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -441,7 +502,6 @@ extension PaymentMethodDetailsCardInstallmentsXbe4af07f: Codable {
         case let .paymentMethodDetailsCardInstallments(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum PaymentMethodDetailsCardNetworkTokenX496ef8b6 {
@@ -449,24 +509,30 @@ public enum PaymentMethodDetailsCardNetworkTokenX496ef8b6 {
 }
 
 extension PaymentMethodDetailsCardNetworkTokenX496ef8b6: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentMethodDetailsCardNetworkTokenX496ef8b6")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PaymentMethodDetailsCardNetworkTokenX496ef8b6"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PaymentMethodDetailsCardNetworkToken.self
         ) {
-            return             .paymentMethodDetailsCardNetworkToken(value)
+            return .paymentMethodDetailsCardNetworkToken(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -475,7 +541,6 @@ extension PaymentMethodDetailsCardNetworkTokenX496ef8b6: Codable {
         case let .paymentMethodDetailsCardNetworkToken(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum PaymentMethodDetailsCardThreeDSecure {
@@ -483,20 +548,29 @@ public enum PaymentMethodDetailsCardThreeDSecure {
 }
 
 extension PaymentMethodDetailsCardThreeDSecure: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentMethodDetailsCardThreeDSecure")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PaymentMethodDetailsCardThreeDSecure"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(ThreeDSecureDetailsCharge.self) { return .threeDSecureDetailsCharge(value) }
+        if let value = try? container
+            .decode(ThreeDSecureDetailsCharge.self) {
+            return .threeDSecureDetailsCharge(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -505,7 +579,6 @@ extension PaymentMethodDetailsCardThreeDSecure: Codable {
         case let .threeDSecureDetailsCharge(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum PaymentMethodDetailsCardWalletXafdb2974 {
@@ -513,20 +586,29 @@ public enum PaymentMethodDetailsCardWalletXafdb2974 {
 }
 
 extension PaymentMethodDetailsCardWalletXafdb2974: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentMethodDetailsCardWalletXafdb2974")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PaymentMethodDetailsCardWalletXafdb2974"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(PaymentMethodDetailsCardWallet.self) { return .paymentMethodDetailsCardWallet(value) }
+        if let value = try? container
+            .decode(PaymentMethodDetailsCardWallet.self) {
+            return .paymentMethodDetailsCardWallet(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -535,5 +617,4 @@ extension PaymentMethodDetailsCardWalletXafdb2974: Codable {
         case let .paymentMethodDetailsCardWallet(value): try container.encode(value); return true
         }
     }
-
 }

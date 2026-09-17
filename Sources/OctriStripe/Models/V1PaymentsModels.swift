@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1Payments domain models
+/// V1Payments domain models
 /// A representation of a physical address.
 public struct PaymentsPrimitivesPaymentRecordsResourceAddress: Codable {
     /// City, district, suburb, town, or village.
@@ -29,43 +29,50 @@ public struct PaymentsPrimitivesPaymentRecordsResourceAddress: Codable {
     }
 
     init() {
-        (self.city, self.country, self.line1, self.line2, self.postalCode) = (nil, nil, nil, nil, nil)
-        self.state = nil
+        (city, country, line1, line2, postalCode) = (nil, nil, nil, nil, nil)
+        state = nil
     }
 }
 
-extension PaymentsPrimitivesPaymentRecordsResourceAddress {
-    public init(from decoder: Decoder) throws {
+public extension PaymentsPrimitivesPaymentRecordsResourceAddress {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.city = try container.sdkDecodeIfPresent(.city)
-        self.country = try container.sdkDecodeIfPresent(.country)
-        self.line1 = try container.sdkDecodeIfPresent(.line1)
-        self.line2 = try container.sdkDecodeIfPresent(.line2)
-        self.postalCode = try container.sdkDecodeIfPresent(.postalCode)
-        self.state = try container.sdkDecodeIfPresent(.state)
-        if let value = self.city {
+        city = try container.sdkDecodeIfPresent(.city)
+        country = try container.sdkDecodeIfPresent(.country)
+        line1 = try container.sdkDecodeIfPresent(.line1)
+        line2 = try container.sdkDecodeIfPresent(.line2)
+        postalCode = try container.sdkDecodeIfPresent(.postalCode)
+        state = try container.sdkDecodeIfPresent(.state)
+        if let value = city {
             try validateLength("city", value, min: nil, max: 5000)
         }
-        if let value = self.country {
+        if let value = country {
             try validateLength("country", value, min: nil, max: 5000)
         }
-        if let value = self.line1 {
+        if let value = line1 {
             try validateLength("line1", value, min: nil, max: 5000)
         }
-        if let value = self.line2 {
+        if let value = line2 {
             try validateLength("line2", value, min: nil, max: 5000)
         }
-        if let value = self.postalCode {
+        if let value = postalCode {
             try validateLength("postal_code", value, min: nil, max: 5000)
         }
-        if let value = self.state {
+        if let value = state {
             try validateLength("state", value, min: nil, max: 5000)
         }
     }
 }
 
-extension PaymentsPrimitivesPaymentRecordsResourceAddress {
-    public init(city: String? = nil, country: String? = nil, line1: String? = nil, line2: String? = nil, postalCode: String? = nil, state: String? = nil) throws {
+public extension PaymentsPrimitivesPaymentRecordsResourceAddress {
+    init(
+        city: String? = nil,
+        country: String? = nil,
+        line1: String? = nil,
+        line2: String? = nil,
+        postalCode: String? = nil,
+        state: String? = nil
+    ) throws {
         self.init()
         (self.city, self.country) = (city, country)
         (self.line1, self.line2) = (line1, line2)
@@ -104,25 +111,35 @@ public struct PaymentsPrimitivesPaymentRecordsResourceAmount: Codable {
         case value
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension PaymentsPrimitivesPaymentRecordsResourceAmount {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.currency) else {
-            throw SdkValidationError(field: "currency", code: "required", message: "Validation failed for 'currency': value is required")
-        }
-        guard container.contains(.value) else {
-            throw SdkValidationError(field: "value", code: "required", message: "Validation failed for 'value': value is required")
-        }
-        self.currency = try container.sdkDecodeRequired(.currency)
-        self.value = try container.sdkDecodeRequired(.value)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension PaymentsPrimitivesPaymentRecordsResourceAmount {
-    public init(currency: String, value: Int) {
+public extension PaymentsPrimitivesPaymentRecordsResourceAmount {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.currency) else {
+            throw SdkValidationError(
+                field: "currency",
+                code: "required",
+                message: "Validation failed for 'currency': value is required"
+            )
+        }
+        guard container.contains(.value) else {
+            throw SdkValidationError(
+                field: "value",
+                code: "required",
+                message: "Validation failed for 'value': value is required"
+            )
+        }
+        currency = try container.sdkDecodeRequired(.currency)
+        value = try container.sdkDecodeRequired(.value)
+    }
+}
+
+public extension PaymentsPrimitivesPaymentRecordsResourceAmount {
+    init(currency: String, value: Int) {
         (self.currency, self.value) = (currency, value)
     }
 }
@@ -145,33 +162,44 @@ public struct PaymentsPrimitivesPaymentRecordsResourceBillingDetails: Codable {
         case phone
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension PaymentsPrimitivesPaymentRecordsResourceBillingDetails {
-    public init(from decoder: Decoder) throws {
+public extension PaymentsPrimitivesPaymentRecordsResourceBillingDetails {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.address) else {
-            throw SdkValidationError(field: "address", code: "required", message: "Validation failed for 'address': value is required")
+            throw SdkValidationError(
+                field: "address",
+                code: "required",
+                message: "Validation failed for 'address': value is required"
+            )
         }
-        self.address = try container.sdkDecodeRequired(.address)
-        self.email = try container.sdkDecodeIfPresent(.email)
-        self.name = try container.sdkDecodeIfPresent(.name)
-        self.phone = try container.sdkDecodeIfPresent(.phone)
-        if let value = self.email {
+        address = try container.sdkDecodeRequired(.address)
+        email = try container.sdkDecodeIfPresent(.email)
+        name = try container.sdkDecodeIfPresent(.name)
+        phone = try container.sdkDecodeIfPresent(.phone)
+        if let value = email {
             try validateLength("email", value, min: nil, max: 5000)
         }
-        if let value = self.name {
+        if let value = name {
             try validateLength("name", value, min: nil, max: 5000)
         }
-        if let value = self.phone {
+        if let value = phone {
             try validateLength("phone", value, min: nil, max: 5000)
         }
     }
 }
 
-extension PaymentsPrimitivesPaymentRecordsResourceBillingDetails {
-    public init(address: PaymentsPrimitivesPaymentRecordsResourceAddress, email: String? = nil, name: String? = nil, phone: String? = nil) throws {
+public extension PaymentsPrimitivesPaymentRecordsResourceBillingDetails {
+    init(
+        address: PaymentsPrimitivesPaymentRecordsResourceAddress,
+        email: String? = nil,
+        name: String? = nil,
+        phone: String? = nil
+    ) throws {
         (self.address, self.email) = (address, email)
         (self.name, self.phone) = (name, phone)
         if let value = self.email {
@@ -205,34 +233,34 @@ public struct PaymentsPrimitivesPaymentRecordsResourceCustomerDetails: Codable {
     }
 
     init() {
-        (self.customer, self.email, self.name, self.phone) = (nil, nil, nil, nil)
+        (customer, email, name, phone) = (nil, nil, nil, nil)
     }
 }
 
-extension PaymentsPrimitivesPaymentRecordsResourceCustomerDetails {
-    public init(from decoder: Decoder) throws {
+public extension PaymentsPrimitivesPaymentRecordsResourceCustomerDetails {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.customer = try container.sdkDecodeIfPresent(.customer)
-        self.email = try container.sdkDecodeIfPresent(.email)
-        self.name = try container.sdkDecodeIfPresent(.name)
-        self.phone = try container.sdkDecodeIfPresent(.phone)
-        if let value = self.customer {
+        customer = try container.sdkDecodeIfPresent(.customer)
+        email = try container.sdkDecodeIfPresent(.email)
+        name = try container.sdkDecodeIfPresent(.name)
+        phone = try container.sdkDecodeIfPresent(.phone)
+        if let value = customer {
             try validateLength("customer", value, min: nil, max: 5000)
         }
-        if let value = self.email {
+        if let value = email {
             try validateLength("email", value, min: nil, max: 5000)
         }
-        if let value = self.name {
+        if let value = name {
             try validateLength("name", value, min: nil, max: 5000)
         }
-        if let value = self.phone {
+        if let value = phone {
             try validateLength("phone", value, min: nil, max: 5000)
         }
     }
 }
 
-extension PaymentsPrimitivesPaymentRecordsResourceCustomerDetails {
-    public init(customer: String? = nil, email: String? = nil, name: String? = nil, phone: String? = nil) throws {
+public extension PaymentsPrimitivesPaymentRecordsResourceCustomerDetails {
+    init(customer: String? = nil, email: String? = nil, name: String? = nil, phone: String? = nil) throws {
         self.init()
         (self.customer, self.email) = (customer, email)
         (self.name, self.phone) = (name, phone)
@@ -261,21 +289,27 @@ public struct PaymentsPrimitivesPaymentRecordsResourcePaymentMethodAlmaDetaX1a7d
         case count
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension PaymentsPrimitivesPaymentRecordsResourcePaymentMethodAlmaDetaX1a7d018a02 {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.count) else {
-            throw SdkValidationError(field: "count", code: "required", message: "Validation failed for 'count': value is required")
-        }
-        self.count = try container.sdkDecodeRequired(.count)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension PaymentsPrimitivesPaymentRecordsResourcePaymentMethodAlmaDetaX1a7d018a02 {
-    public init(count: Int) {
+public extension PaymentsPrimitivesPaymentRecordsResourcePaymentMethodAlmaDetaX1a7d018a02 {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.count) else {
+            throw SdkValidationError(
+                field: "count",
+                code: "required",
+                message: "Validation failed for 'count': value is required"
+            )
+        }
+        count = try container.sdkDecodeRequired(.count)
+    }
+}
+
+public extension PaymentsPrimitivesPaymentRecordsResourcePaymentMethodAlmaDetaX1a7d018a02 {
+    init(count: Int) {
         self.count = count
     }
 }
@@ -294,20 +328,23 @@ public struct PaymentsPrimitivesPaymentRecordsResourcePaymentMethodAmazonPaX0d2a
     }
 
     init() {
-        (self.card, self.type) = (nil, nil)
+        (card, type) = (nil, nil)
     }
 }
 
-extension PaymentsPrimitivesPaymentRecordsResourcePaymentMethodAmazonPaX0d2af51811 {
-    public init(from decoder: Decoder) throws {
+public extension PaymentsPrimitivesPaymentRecordsResourcePaymentMethodAmazonPaX0d2af51811 {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.card = try container.sdkDecodeIfPresent(.card)
-        self.type = try container.sdkDecodeIfPresent(.type)
+        card = try container.sdkDecodeIfPresent(.card)
+        type = try container.sdkDecodeIfPresent(.type)
     }
 }
 
-extension PaymentsPrimitivesPaymentRecordsResourcePaymentMethodAmazonPaX0d2af51811 {
-    public init(card: PaymentsPrimitivesPaymentRecordsResourcePaymentMethodAmazonPaX2ed8df74a3? = nil, type: PaymentsPrimitivesPaymentRecordsResourcePaymentMethodAmazonPaXde915894b7? = nil) {
+public extension PaymentsPrimitivesPaymentRecordsResourcePaymentMethodAmazonPaX0d2af51811 {
+    init(
+        card: PaymentsPrimitivesPaymentRecordsResourcePaymentMethodAmazonPaX2ed8df74a3? = nil,
+        type: PaymentsPrimitivesPaymentRecordsResourcePaymentMethodAmazonPaXde915894b7? = nil
+    ) {
         self.init()
         (self.card, self.type) = (card, type)
     }
@@ -342,37 +379,44 @@ public struct PaymentsPrimitivesPaymentRecordsResourcePaymentMethodAmazonPaX2ed8
     }
 
     init() {
-        (self.brand, self.country, self.expMonth, self.expYear, self.funding) = (nil, nil, nil, nil, nil)
-        self.last4 = nil
+        (brand, country, expMonth, expYear, funding) = (nil, nil, nil, nil, nil)
+        last4 = nil
     }
 }
 
-extension PaymentsPrimitivesPaymentRecordsResourcePaymentMethodAmazonPaX2ed8df74a3 {
-    public init(from decoder: Decoder) throws {
+public extension PaymentsPrimitivesPaymentRecordsResourcePaymentMethodAmazonPaX2ed8df74a3 {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.brand = try container.sdkDecodeIfPresent(.brand)
-        self.country = try container.sdkDecodeIfPresent(.country)
-        self.expMonth = try container.sdkDecodeIfPresent(.expMonth)
-        self.expYear = try container.sdkDecodeIfPresent(.expYear)
-        self.funding = try container.sdkDecodeIfPresent(.funding)
-        self.last4 = try container.sdkDecodeIfPresent(.last4)
-        if let value = self.brand {
+        brand = try container.sdkDecodeIfPresent(.brand)
+        country = try container.sdkDecodeIfPresent(.country)
+        expMonth = try container.sdkDecodeIfPresent(.expMonth)
+        expYear = try container.sdkDecodeIfPresent(.expYear)
+        funding = try container.sdkDecodeIfPresent(.funding)
+        last4 = try container.sdkDecodeIfPresent(.last4)
+        if let value = brand {
             try validateLength("brand", value, min: nil, max: 5000)
         }
-        if let value = self.country {
+        if let value = country {
             try validateLength("country", value, min: nil, max: 5000)
         }
-        if let value = self.funding {
+        if let value = funding {
             try validateLength("funding", value, min: nil, max: 5000)
         }
-        if let value = self.last4 {
+        if let value = last4 {
             try validateLength("last4", value, min: nil, max: 5000)
         }
     }
 }
 
-extension PaymentsPrimitivesPaymentRecordsResourcePaymentMethodAmazonPaX2ed8df74a3 {
-    public init(brand: String? = nil, country: String? = nil, expMonth: Int? = nil, expYear: Int? = nil, funding: String? = nil, last4: String? = nil) throws {
+public extension PaymentsPrimitivesPaymentRecordsResourcePaymentMethodAmazonPaX2ed8df74a3 {
+    init(
+        brand: String? = nil,
+        country: String? = nil,
+        expMonth: Int? = nil,
+        expYear: Int? = nil,
+        funding: String? = nil,
+        last4: String? = nil
+    ) throws {
         self.init()
         (self.brand, self.country) = (brand, country)
         (self.expMonth, self.expYear) = (expMonth, expYear)
@@ -464,40 +508,59 @@ public struct PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetails: 
     }
 
     init() {
-        (self.authorizationCode, self.brand, self.captureBefore, self.checks, self.country) = (nil, nil, nil, nil, nil)
-        (self.expMonth, self.expYear, self.fingerprint, self.funding, self.installments) = (nil, nil, nil, nil, nil)
-        (self.last4, self.network, self.networkAdviceCode, self.networkDeclineCode, self.networkToken) = (nil, nil, nil, nil, nil)
-        (self.networkTransactionId, self.threeDSecure, self.wallet) = (nil, nil, nil)
+        (authorizationCode, brand, captureBefore, checks, country) = (nil, nil, nil, nil, nil)
+        (expMonth, expYear, fingerprint, funding, installments) = (nil, nil, nil, nil, nil)
+        (last4, network, networkAdviceCode, networkDeclineCode, networkToken) = (nil, nil, nil, nil, nil)
+        (networkTransactionId, threeDSecure, wallet) = (nil, nil, nil)
     }
 }
 
-extension PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetails {
-    public init(from decoder: Decoder) throws {
+public extension PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetails {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.authorizationCode = try container.sdkDecodeIfPresent(.authorizationCode)
-        self.brand = try container.sdkDecodeIfPresent(.brand)
-        self.captureBefore = try container.sdkDecodeIfPresent(.captureBefore)
-        self.checks = try container.sdkDecodeIfPresent(.checks)
-        self.country = try container.sdkDecodeIfPresent(.country)
-        self.expMonth = try container.sdkDecodeIfPresent(.expMonth)
-        self.expYear = try container.sdkDecodeIfPresent(.expYear)
-        self.fingerprint = try container.sdkDecodeIfPresent(.fingerprint)
-        self.funding = try container.sdkDecodeIfPresent(.funding)
-        self.installments = try container.sdkDecodeIfPresent(.installments)
-        self.last4 = try container.sdkDecodeIfPresent(.last4)
-        self.network = try container.sdkDecodeIfPresent(.network)
-        self.networkAdviceCode = try container.sdkDecodeIfPresent(.networkAdviceCode)
-        self.networkDeclineCode = try container.sdkDecodeIfPresent(.networkDeclineCode)
-        self.networkToken = try container.sdkDecodeIfPresent(.networkToken)
-        self.networkTransactionId = try container.sdkDecodeIfPresent(.networkTransactionId)
-        self.threeDSecure = try container.sdkDecodeIfPresent(.threeDSecure)
-        self.wallet = try container.sdkDecodeIfPresent(.wallet)
+        authorizationCode = try container.sdkDecodeIfPresent(.authorizationCode)
+        brand = try container.sdkDecodeIfPresent(.brand)
+        captureBefore = try container.sdkDecodeIfPresent(.captureBefore)
+        checks = try container.sdkDecodeIfPresent(.checks)
+        country = try container.sdkDecodeIfPresent(.country)
+        expMonth = try container.sdkDecodeIfPresent(.expMonth)
+        expYear = try container.sdkDecodeIfPresent(.expYear)
+        fingerprint = try container.sdkDecodeIfPresent(.fingerprint)
+        funding = try container.sdkDecodeIfPresent(.funding)
+        installments = try container.sdkDecodeIfPresent(.installments)
+        last4 = try container.sdkDecodeIfPresent(.last4)
+        network = try container.sdkDecodeIfPresent(.network)
+        networkAdviceCode = try container.sdkDecodeIfPresent(.networkAdviceCode)
+        networkDeclineCode = try container.sdkDecodeIfPresent(.networkDeclineCode)
+        networkToken = try container.sdkDecodeIfPresent(.networkToken)
+        networkTransactionId = try container.sdkDecodeIfPresent(.networkTransactionId)
+        threeDSecure = try container.sdkDecodeIfPresent(.threeDSecure)
+        wallet = try container.sdkDecodeIfPresent(.wallet)
         try sdkValidateConstraints()
     }
 }
 
-extension PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetails {
-    public init(authorizationCode: String? = nil, brand: PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetailsBrand? = nil, captureBefore: Int? = nil, checks: PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetailsChecks? = nil, country: String? = nil, expMonth: Int? = nil, expYear: Int? = nil, fingerprint: String? = nil, funding: PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetailsFunding? = nil, installments: PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetaX8171258a06? = nil, last4: String? = nil, network: PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetailsNetwork? = nil, networkAdviceCode: String? = nil, networkDeclineCode: String? = nil, networkToken: PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetaXb1137de69f? = nil, networkTransactionId: String? = nil, threeDSecure: PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetaX6e25d45847? = nil, wallet: PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetailsWallet? = nil) throws {
+public extension PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetails {
+    init(
+        authorizationCode: String? = nil,
+        brand: PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetailsBrand? = nil,
+        captureBefore: Int? = nil,
+        checks: PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetailsChecks? = nil,
+        country: String? = nil,
+        expMonth: Int? = nil,
+        expYear: Int? = nil,
+        fingerprint: String? = nil,
+        funding: PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetailsFunding? = nil,
+        installments: PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetaX8171258a06? = nil,
+        last4: String? = nil,
+        network: PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetailsNetwork? = nil,
+        networkAdviceCode: String? = nil,
+        networkDeclineCode: String? = nil,
+        networkToken: PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetaXb1137de69f? = nil,
+        networkTransactionId: String? = nil,
+        threeDSecure: PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetaX6e25d45847? = nil,
+        wallet: PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetailsWallet? = nil
+    ) throws {
         self.init()
         (self.authorizationCode, self.brand) = (authorizationCode, brand)
         (self.captureBefore, self.checks) = (captureBefore, checks)
@@ -514,25 +577,25 @@ extension PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetails {
 
 extension PaymentsPrimitivesPaymentRecordsResourcePaymentMethodCardDetails {
     func sdkValidateConstraints() throws {
-        if let value = self.authorizationCode {
+        if let value = authorizationCode {
             try validateLength("authorization_code", value, min: nil, max: 5000)
         }
-        if let value = self.country {
+        if let value = country {
             try validateLength("country", value, min: nil, max: 5000)
         }
-        if let value = self.fingerprint {
+        if let value = fingerprint {
             try validateLength("fingerprint", value, min: nil, max: 5000)
         }
-        if let value = self.last4 {
+        if let value = last4 {
             try validateLength("last4", value, min: nil, max: 5000)
         }
-        if let value = self.networkAdviceCode {
+        if let value = networkAdviceCode {
             try validateLength("network_advice_code", value, min: nil, max: 5000)
         }
-        if let value = self.networkDeclineCode {
+        if let value = networkDeclineCode {
             try validateLength("network_decline_code", value, min: nil, max: 5000)
         }
-        if let value = self.networkTransactionId {
+        if let value = networkTransactionId {
             try validateLength("network_transaction_id", value, min: nil, max: 5000)
         }
     }

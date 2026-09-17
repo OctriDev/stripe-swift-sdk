@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1Deleted domain models
+/// V1Deleted domain models
 /// Typed representation of the `DeletedTerminalLocation` API schema.
 public struct DeletedTerminalLocation: Codable {
     /// Always true for a deleted object
@@ -19,33 +19,47 @@ public struct DeletedTerminalLocation: Codable {
         case object
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension DeletedTerminalLocation {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.deleted) else {
-            throw SdkValidationError(field: "deleted", code: "required", message: "Validation failed for 'deleted': value is required")
-        }
-        guard container.contains(.id) else {
-            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
-        }
-        guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
-        }
-        self.deleted = try container.sdkDecodeRequired(.deleted)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.object = try container.sdkDecodeRequired(.object)
-            try validateLength("id", self.id, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension DeletedTerminalLocation {
-    public init(deleted: Bool, id: String, object: DeletedTerminalLocationObject) throws {
+public extension DeletedTerminalLocation {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.deleted) else {
+            throw SdkValidationError(
+                field: "deleted",
+                code: "required",
+                message: "Validation failed for 'deleted': value is required"
+            )
+        }
+        guard container.contains(.id) else {
+            throw SdkValidationError(
+                field: "id",
+                code: "required",
+                message: "Validation failed for 'id': value is required"
+            )
+        }
+        guard container.contains(.object) else {
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
+        }
+        deleted = try container.sdkDecodeRequired(.deleted)
+        id = try container.sdkDecodeRequired(.id)
+        object = try container.sdkDecodeRequired(.object)
+        try validateLength("id", id, min: nil, max: 5000)
+    }
+}
+
+public extension DeletedTerminalLocation {
+    init(deleted: Bool, id: String, object: DeletedTerminalLocationObject) throws {
         (self.deleted, self.id) = (deleted, id)
         self.object = object
-            try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
     }
 }
 
@@ -70,44 +84,72 @@ public struct DeletedTerminalReader: Codable {
         case serialNumber = "serial_number"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension DeletedTerminalReader {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.deleted) else {
-            throw SdkValidationError(field: "deleted", code: "required", message: "Validation failed for 'deleted': value is required")
-        }
-        guard container.contains(.deviceType) else {
-            throw SdkValidationError(field: "device_type", code: "required", message: "Validation failed for 'device_type': value is required")
-        }
-        guard container.contains(.id) else {
-            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
-        }
-        guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
-        }
-        guard container.contains(.serialNumber) else {
-            throw SdkValidationError(field: "serial_number", code: "required", message: "Validation failed for 'serial_number': value is required")
-        }
-        self.deleted = try container.sdkDecodeRequired(.deleted)
-        self.deviceType = try container.sdkDecodeRequired(.deviceType)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.serialNumber = try container.sdkDecodeRequired(.serialNumber)
-            try validateLength("id", self.id, min: nil, max: 5000)
-            try validateLength("serial_number", self.serialNumber, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension DeletedTerminalReader {
-    public init(deleted: Bool, deviceType: DeletedTerminalReaderDeviceType, id: String, object: DeletedTerminalReaderObject, serialNumber: String) throws {
+public extension DeletedTerminalReader {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.deleted) else {
+            throw SdkValidationError(
+                field: "deleted",
+                code: "required",
+                message: "Validation failed for 'deleted': value is required"
+            )
+        }
+        guard container.contains(.deviceType) else {
+            throw SdkValidationError(
+                field: "device_type",
+                code: "required",
+                message: "Validation failed for 'device_type': value is required"
+            )
+        }
+        guard container.contains(.id) else {
+            throw SdkValidationError(
+                field: "id",
+                code: "required",
+                message: "Validation failed for 'id': value is required"
+            )
+        }
+        guard container.contains(.object) else {
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
+        }
+        guard container.contains(.serialNumber) else {
+            throw SdkValidationError(
+                field: "serial_number",
+                code: "required",
+                message: "Validation failed for 'serial_number': value is required"
+            )
+        }
+        deleted = try container.sdkDecodeRequired(.deleted)
+        deviceType = try container.sdkDecodeRequired(.deviceType)
+        id = try container.sdkDecodeRequired(.id)
+        object = try container.sdkDecodeRequired(.object)
+        serialNumber = try container.sdkDecodeRequired(.serialNumber)
+        try validateLength("id", id, min: nil, max: 5000)
+        try validateLength("serial_number", serialNumber, min: nil, max: 5000)
+    }
+}
+
+public extension DeletedTerminalReader {
+    init(
+        deleted: Bool,
+        deviceType: DeletedTerminalReaderDeviceType,
+        id: String,
+        object: DeletedTerminalReaderObject,
+        serialNumber: String
+    ) throws {
         (self.deleted, self.deviceType) = (deleted, deviceType)
         (self.id, self.object) = (id, object)
         self.serialNumber = serialNumber
-            try validateLength("id", self.id, min: nil, max: 5000)
-            try validateLength("serial_number", self.serialNumber, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("serial_number", self.serialNumber, min: nil, max: 5000)
     }
 }
 
@@ -126,33 +168,47 @@ public struct DeletedTestHelpersTestClock: Codable {
         case object
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension DeletedTestHelpersTestClock {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.deleted) else {
-            throw SdkValidationError(field: "deleted", code: "required", message: "Validation failed for 'deleted': value is required")
-        }
-        guard container.contains(.id) else {
-            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
-        }
-        guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
-        }
-        self.deleted = try container.sdkDecodeRequired(.deleted)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.object = try container.sdkDecodeRequired(.object)
-            try validateLength("id", self.id, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension DeletedTestHelpersTestClock {
-    public init(deleted: Bool, id: String, object: DeletedTestHelpersTestClockObject) throws {
+public extension DeletedTestHelpersTestClock {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.deleted) else {
+            throw SdkValidationError(
+                field: "deleted",
+                code: "required",
+                message: "Validation failed for 'deleted': value is required"
+            )
+        }
+        guard container.contains(.id) else {
+            throw SdkValidationError(
+                field: "id",
+                code: "required",
+                message: "Validation failed for 'id': value is required"
+            )
+        }
+        guard container.contains(.object) else {
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
+        }
+        deleted = try container.sdkDecodeRequired(.deleted)
+        id = try container.sdkDecodeRequired(.id)
+        object = try container.sdkDecodeRequired(.object)
+        try validateLength("id", id, min: nil, max: 5000)
+    }
+}
+
+public extension DeletedTestHelpersTestClock {
+    init(deleted: Bool, id: String, object: DeletedTestHelpersTestClockObject) throws {
         (self.deleted, self.id) = (deleted, id)
         self.object = object
-            try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
     }
 }
 
@@ -171,33 +227,47 @@ public struct DeletedWebhookEndpoint: Codable {
         case object
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension DeletedWebhookEndpoint {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.deleted) else {
-            throw SdkValidationError(field: "deleted", code: "required", message: "Validation failed for 'deleted': value is required")
-        }
-        guard container.contains(.id) else {
-            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
-        }
-        guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
-        }
-        self.deleted = try container.sdkDecodeRequired(.deleted)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.object = try container.sdkDecodeRequired(.object)
-            try validateLength("id", self.id, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension DeletedWebhookEndpoint {
-    public init(deleted: Bool, id: String, object: DeletedWebhookEndpointObject) throws {
+public extension DeletedWebhookEndpoint {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.deleted) else {
+            throw SdkValidationError(
+                field: "deleted",
+                code: "required",
+                message: "Validation failed for 'deleted': value is required"
+            )
+        }
+        guard container.contains(.id) else {
+            throw SdkValidationError(
+                field: "id",
+                code: "required",
+                message: "Validation failed for 'id': value is required"
+            )
+        }
+        guard container.contains(.object) else {
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
+        }
+        deleted = try container.sdkDecodeRequired(.deleted)
+        id = try container.sdkDecodeRequired(.id)
+        object = try container.sdkDecodeRequired(.object)
+        try validateLength("id", id, min: nil, max: 5000)
+    }
+}
+
+public extension DeletedWebhookEndpoint {
+    init(deleted: Bool, id: String, object: DeletedWebhookEndpointObject) throws {
         (self.deleted, self.id) = (deleted, id)
         self.object = object
-            try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
     }
 }
 
@@ -205,12 +275,15 @@ extension DeletedWebhookEndpoint {
 public struct DeletedTestHelpersTestClockObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let testHelpersTestClock = DeletedTestHelpersTestClockObject(rawValue: "test_helpers.test_clock")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -223,12 +296,15 @@ public struct DeletedTestHelpersTestClockObject: RawRepresentable, Hashable, Cod
 public struct DeletedInvoiceitemObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let invoiceitem = DeletedInvoiceitemObject(rawValue: "invoiceitem")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -241,12 +317,15 @@ public struct DeletedInvoiceitemObject: RawRepresentable, Hashable, Codable, Sen
 public struct DeletedCouponObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let coupon = DeletedCouponObject(rawValue: "coupon")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -259,12 +338,15 @@ public struct DeletedCouponObject: RawRepresentable, Hashable, Codable, Sendable
 public struct DeletedPersonObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let person = DeletedPersonObject(rawValue: "person")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -277,12 +359,15 @@ public struct DeletedPersonObject: RawRepresentable, Hashable, Codable, Sendable
 public struct DeletedRadarValueListObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let radarValueList = DeletedRadarValueListObject(rawValue: "radar.value_list")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -295,12 +380,15 @@ public struct DeletedRadarValueListObject: RawRepresentable, Hashable, Codable, 
 public struct DeletedProductFeatureObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let productFeature = DeletedProductFeatureObject(rawValue: "product_feature")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -313,12 +401,15 @@ public struct DeletedProductFeatureObject: RawRepresentable, Hashable, Codable, 
 public struct DeletedInvoiceObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let invoice = DeletedInvoiceObject(rawValue: "invoice")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -331,12 +422,15 @@ public struct DeletedInvoiceObject: RawRepresentable, Hashable, Codable, Sendabl
 public struct DeletedApplePayDomainObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let applePayDomain = DeletedApplePayDomainObject(rawValue: "apple_pay_domain")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -349,12 +443,15 @@ public struct DeletedApplePayDomainObject: RawRepresentable, Hashable, Codable, 
 public struct DeletedTerminalLocationObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let terminalLocation = DeletedTerminalLocationObject(rawValue: "terminal.location")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -367,12 +464,15 @@ public struct DeletedTerminalLocationObject: RawRepresentable, Hashable, Codable
 public struct DeletedBankAccountObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let bankAccount = DeletedBankAccountObject(rawValue: "bank_account")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -385,12 +485,15 @@ public struct DeletedBankAccountObject: RawRepresentable, Hashable, Codable, Sen
 public struct DeletedPriceObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let price = DeletedPriceObject(rawValue: "price")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -403,12 +506,15 @@ public struct DeletedPriceObject: RawRepresentable, Hashable, Codable, Sendable,
 public struct DeletedCustomerObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let customer = DeletedCustomerObject(rawValue: "customer")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -421,7 +527,10 @@ public struct DeletedCustomerObject: RawRepresentable, Hashable, Codable, Sendab
 public struct DeletedTerminalReaderDeviceType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let bbposChipper2x = DeletedTerminalReaderDeviceType(rawValue: "bbpos_chipper2x")
     public static let bbposWisepad3 = DeletedTerminalReaderDeviceType(rawValue: "bbpos_wisepad3")
     public static let bbposWiseposE = DeletedTerminalReaderDeviceType(rawValue: "bbpos_wisepos_e")
@@ -444,7 +553,7 @@ public struct DeletedTerminalReaderDeviceType: RawRepresentable, Hashable, Codab
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -457,12 +566,15 @@ public struct DeletedTerminalReaderDeviceType: RawRepresentable, Hashable, Codab
 public struct DeletedTaxIdObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let taxId = DeletedTaxIdObject(rawValue: "tax_id")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -475,12 +587,15 @@ public struct DeletedTaxIdObject: RawRepresentable, Hashable, Codable, Sendable,
 public struct DeletedTerminalReaderObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let terminalReader = DeletedTerminalReaderObject(rawValue: "terminal.reader")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -493,12 +608,15 @@ public struct DeletedTerminalReaderObject: RawRepresentable, Hashable, Codable, 
 public struct DeletedWebhookEndpointObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let webhookEndpoint = DeletedWebhookEndpointObject(rawValue: "webhook_endpoint")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -511,12 +629,15 @@ public struct DeletedWebhookEndpointObject: RawRepresentable, Hashable, Codable,
 public struct DeletedSubscriptionItemObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let subscriptionItem = DeletedSubscriptionItemObject(rawValue: "subscription_item")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -529,12 +650,15 @@ public struct DeletedSubscriptionItemObject: RawRepresentable, Hashable, Codable
 public struct DeletedApplicationObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let application = DeletedApplicationObject(rawValue: "application")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -547,12 +671,15 @@ public struct DeletedApplicationObject: RawRepresentable, Hashable, Codable, Sen
 public struct DeletedAccountObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let account = DeletedAccountObject(rawValue: "account")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

@@ -6,8 +6,10 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1BillingFeedbackOptionsMethods {
-    /// Lists feedback options available for custom cancellation reasons. Use `status` to filter active or inactive options and use cursor parameters to navigate the results. The response includes pagination metadata and the feedback option records.
+public extension V1BillingFeedbackOptionsMethods {
+    /// Lists feedback options available for custom cancellation reasons. Use `status` to filter active or inactive
+    /// options and use cursor parameters to navigate the results. The response includes pagination metadata and the
+    /// feedback option records.
     ///
     /// An API method for listing the feedback options model
     ///
@@ -27,16 +29,23 @@ extension V1BillingFeedbackOptionsMethods {
     ///   the list.
     /// - status: Filter results to only include feedback options with the given
     ///   status.
-    public static func getBillingFeedbackOptions(config: ClientConfig, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?, status: GetBillingFeedbackOptionsParameter?) async throws -> GetBillingFeedbackOptionsResponse {
-        if let endingBefore = endingBefore {
+    static func getBillingFeedbackOptions(
+        config: ClientConfig,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        startingAfter: String?,
+        status: GetBillingFeedbackOptionsParameter?
+    ) async throws -> GetBillingFeedbackOptionsResponse {
+        if let endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let startingAfter = startingAfter {
+        if let startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try (await sdkRequest("GET", "/v1/billing/feedback_options", config: config, query: [
+        return try await (sdkRequest("GET", "/v1/billing/feedback_options", config: config, query: [
             SdkQueryParameter("ending_before", value: endingBefore),
             SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
             SdkQueryParameter("limit", value: limit),

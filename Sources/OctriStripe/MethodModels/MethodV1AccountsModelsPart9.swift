@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1Accounts operation model declarations
+/// Canonical v1Accounts operation model declarations
 /// Options for customizing how the account functions within Stripe.
 public struct PostAccountsRequestBodySettings: Codable {
     /// bacs_debit_payments_specs
@@ -39,27 +39,36 @@ public struct PostAccountsRequestBodySettings: Codable {
     }
 
     init() {
-        (self.bacsDebitPayments, self.branding, self.cardIssuing, self.cardPayments, self.invoices) = (nil, nil, nil, nil, nil)
-        (self.payments, self.payouts, self.treasury) = (nil, nil, nil)
+        (bacsDebitPayments, branding, cardIssuing, cardPayments, invoices) = (nil, nil, nil, nil, nil)
+        (payments, payouts, treasury) = (nil, nil, nil)
     }
 }
 
-extension PostAccountsRequestBodySettings {
-    public init(from decoder: Decoder) throws {
+public extension PostAccountsRequestBodySettings {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.bacsDebitPayments = try container.sdkDecodeIfPresent(.bacsDebitPayments)
-        self.branding = try container.sdkDecodeIfPresent(.branding)
-        self.cardIssuing = try container.sdkDecodeIfPresent(.cardIssuing)
-        self.cardPayments = try container.sdkDecodeIfPresent(.cardPayments)
-        self.invoices = try container.sdkDecodeIfPresent(.invoices)
-        self.payments = try container.sdkDecodeIfPresent(.payments)
-        self.payouts = try container.sdkDecodeIfPresent(.payouts)
-        self.treasury = try container.sdkDecodeIfPresent(.treasury)
+        bacsDebitPayments = try container.sdkDecodeIfPresent(.bacsDebitPayments)
+        branding = try container.sdkDecodeIfPresent(.branding)
+        cardIssuing = try container.sdkDecodeIfPresent(.cardIssuing)
+        cardPayments = try container.sdkDecodeIfPresent(.cardPayments)
+        invoices = try container.sdkDecodeIfPresent(.invoices)
+        payments = try container.sdkDecodeIfPresent(.payments)
+        payouts = try container.sdkDecodeIfPresent(.payouts)
+        treasury = try container.sdkDecodeIfPresent(.treasury)
     }
 }
 
-extension PostAccountsRequestBodySettings {
-    public init(bacsDebitPayments: PostAccountsRequestBodySettingsBacsDebitPayments? = nil, branding: PostAccountsRequestBodySettingsBranding? = nil, cardIssuing: PostAccountsRequestBodySettingsCardIssuing? = nil, cardPayments: PostAccountsRequestBodySettingsCardPayments? = nil, invoices: PostAccountsRequestBodySettingsInvoices? = nil, payments: PostAccountsRequestBodySettingsPayments? = nil, payouts: PostAccountsRequestBodySettingsPayouts? = nil, treasury: PostAccountsRequestBodySettingsTreasury? = nil) {
+public extension PostAccountsRequestBodySettings {
+    init(
+        bacsDebitPayments: PostAccountsRequestBodySettingsBacsDebitPayments? = nil,
+        branding: PostAccountsRequestBodySettingsBranding? = nil,
+        cardIssuing: PostAccountsRequestBodySettingsCardIssuing? = nil,
+        cardPayments: PostAccountsRequestBodySettingsCardPayments? = nil,
+        invoices: PostAccountsRequestBodySettingsInvoices? = nil,
+        payments: PostAccountsRequestBodySettingsPayments? = nil,
+        payouts: PostAccountsRequestBodySettingsPayouts? = nil,
+        treasury: PostAccountsRequestBodySettingsTreasury? = nil
+    ) {
         self.init()
         (self.bacsDebitPayments, self.branding) = (bacsDebitPayments, branding)
         (self.cardIssuing, self.cardPayments) = (cardIssuing, cardPayments)
@@ -77,19 +86,19 @@ public struct PostAccountsRequestBodySettingsCardIssuing: Codable {
     }
 
     init() {
-        self.tosAcceptance = nil
+        tosAcceptance = nil
     }
 }
 
-extension PostAccountsRequestBodySettingsCardIssuing {
-    public init(from decoder: Decoder) throws {
+public extension PostAccountsRequestBodySettingsCardIssuing {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.tosAcceptance = try container.sdkDecodeIfPresent(.tosAcceptance)
+        tosAcceptance = try container.sdkDecodeIfPresent(.tosAcceptance)
     }
 }
 
-extension PostAccountsRequestBodySettingsCardIssuing {
-    public init(tosAcceptance: PostAccountsRequestBodySettingsCardIssuingTosAcceptance? = nil) {
+public extension PostAccountsRequestBodySettingsCardIssuing {
+    init(tosAcceptance: PostAccountsRequestBodySettingsCardIssuingTosAcceptance? = nil) {
         self.init()
         self.tosAcceptance = tosAcceptance
     }
@@ -104,19 +113,19 @@ public struct PostAccountsAccountRequestBodyCompanyVerification: Codable {
     }
 
     init() {
-        self.document = nil
+        document = nil
     }
 }
 
-extension PostAccountsAccountRequestBodyCompanyVerification {
-    public init(from decoder: Decoder) throws {
+public extension PostAccountsAccountRequestBodyCompanyVerification {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.document = try container.sdkDecodeIfPresent(.document)
+        document = try container.sdkDecodeIfPresent(.document)
     }
 }
 
-extension PostAccountsAccountRequestBodyCompanyVerification {
-    public init(document: PostAccountsAccountRequestBodyCompanyVerificationDocument? = nil) {
+public extension PostAccountsAccountRequestBodyCompanyVerification {
+    init(document: PostAccountsAccountRequestBodyCompanyVerificationDocument? = nil) {
         self.init()
         self.document = document
     }
@@ -130,19 +139,19 @@ public struct PostAccountsRequestBodyCapabilitiesRevolutPayPayments: Codable {
     }
 
     init() {
-        self.requested = nil
+        requested = nil
     }
 }
 
-extension PostAccountsRequestBodyCapabilitiesRevolutPayPayments {
-    public init(from decoder: Decoder) throws {
+public extension PostAccountsRequestBodyCapabilitiesRevolutPayPayments {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.requested = try container.sdkDecodeIfPresent(.requested)
+        requested = try container.sdkDecodeIfPresent(.requested)
     }
 }
 
-extension PostAccountsRequestBodyCapabilitiesRevolutPayPayments {
-    public init(requested: Bool? = nil) {
+public extension PostAccountsRequestBodyCapabilitiesRevolutPayPayments {
+    init(requested: Bool? = nil) {
         self.init()
         self.requested = requested
     }
@@ -233,7 +242,8 @@ public struct PostAccountsRequestBodyCapabilities: Codable {
     /// capability_param
     public var naverPayPayments: PostAccountsRequestBodyCapabilitiesNaverPayPayments? = .none
     /// capability_param
-    public var nzBankAccountBecsDebitPayments: PostAccountsRequestBodyCapabilitiesNzBankAccountBecsDebitPayments? = .none
+    public var nzBankAccountBecsDebitPayments: PostAccountsRequestBodyCapabilitiesNzBankAccountBecsDebitPayments? =
+        .none
     /// capability_param
     public var oxxoPayments: PostAccountsRequestBodyCapabilitiesOxxoPayments? = .none
     /// capability_param
@@ -361,8 +371,8 @@ extension PostAccountsRequestBodyCapabilities {
     }
 }
 
-extension PostAccountsRequestBodyCapabilities {
-    public init(from decoder: Decoder) throws {
+public extension PostAccountsRequestBodyCapabilities {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.init(sdkDefaults: ())
         try sdkDecodeFieldsPart1(container)
@@ -374,8 +384,75 @@ extension PostAccountsRequestBodyCapabilities {
     }
 }
 
-extension PostAccountsRequestBodyCapabilities {
-    public init(acssDebitPayments: PostAccountsRequestBodyCapabilitiesAcssDebitPayments? = nil, affirmPayments: PostAccountsRequestBodyCapabilitiesAffirmPayments? = nil, afterpayClearpayPayments: PostAccountsRequestBodyCapabilitiesAfterpayClearpayPayments? = nil, almaPayments: PostAccountsRequestBodyCapabilitiesAlmaPayments? = nil, amazonPayPayments: PostAccountsRequestBodyCapabilitiesAmazonPayPayments? = nil, appDistribution: PostAccountsRequestBodyCapabilitiesAppDistribution? = nil, auBecsDebitPayments: PostAccountsRequestBodyCapabilitiesAuBecsDebitPayments? = nil, bacsDebitPayments: PostAccountsRequestBodyCapabilitiesBacsDebitPayments? = nil, bancontactPayments: PostAccountsRequestBodyCapabilitiesBancontactPayments? = nil, bankTransferPayments: PostAccountsRequestBodyCapabilitiesBankTransferPayments? = nil, billiePayments: PostAccountsRequestBodyCapabilitiesBilliePayments? = nil, bizumPayments: PostAccountsRequestBodyCapabilitiesBizumPayments? = nil, blikPayments: PostAccountsRequestBodyCapabilitiesBlikPayments? = nil, boletoPayments: PostAccountsRequestBodyCapabilitiesBoletoPayments? = nil, cardIssuing: PostAccountsRequestBodyCapabilitiesCardIssuing? = nil, cardPayments: PostAccountsRequestBodyCapabilitiesCardPayments? = nil, cartesBancairesPayments: PostAccountsRequestBodyCapabilitiesCartesBancairesPayments? = nil, cashappPayments: PostAccountsRequestBodyCapabilitiesCashappPayments? = nil, cryptoPayments: PostAccountsRequestBodyCapabilitiesCryptoPayments? = nil, epsPayments: PostAccountsRequestBodyCapabilitiesEpsPayments? = nil, fpxPayments: PostAccountsRequestBodyCapabilitiesFpxPayments? = nil, gbBankTransferPayments: PostAccountsRequestBodyCapabilitiesGbBankTransferPayments? = nil, giropayPayments: PostAccountsRequestBodyCapabilitiesGiropayPayments? = nil, grabpayPayments: PostAccountsRequestBodyCapabilitiesGrabpayPayments? = nil, idealPayments: PostAccountsRequestBodyCapabilitiesIdealPayments? = nil, indiaInternationalPayments: PostAccountsRequestBodyCapabilitiesIndiaInternationalPayments? = nil, jcbPayments: PostAccountsRequestBodyCapabilitiesJcbPayments? = nil, jpBankTransferPayments: PostAccountsRequestBodyCapabilitiesJpBankTransferPayments? = nil, kakaoPayPayments: PostAccountsRequestBodyCapabilitiesKakaoPayPayments? = nil, klarnaPayments: PostAccountsRequestBodyCapabilitiesKlarnaPayments? = nil, konbiniPayments: PostAccountsRequestBodyCapabilitiesKonbiniPayments? = nil, krCardPayments: PostAccountsRequestBodyCapabilitiesKrCardPayments? = nil, legacyPayments: PostAccountsRequestBodyCapabilitiesLegacyPayments? = nil, linkPayments: PostAccountsRequestBodyCapabilitiesLinkPayments? = nil, mbWayPayments: PostAccountsRequestBodyCapabilitiesMbWayPayments? = nil, mobilepayPayments: PostAccountsRequestBodyCapabilitiesMobilepayPayments? = nil, multibancoPayments: PostAccountsRequestBodyCapabilitiesMultibancoPayments? = nil, mxBankTransferPayments: PostAccountsRequestBodyCapabilitiesMxBankTransferPayments? = nil, naverPayPayments: PostAccountsRequestBodyCapabilitiesNaverPayPayments? = nil, nzBankAccountBecsDebitPayments: PostAccountsRequestBodyCapabilitiesNzBankAccountBecsDebitPayments? = nil, oxxoPayments: PostAccountsRequestBodyCapabilitiesOxxoPayments? = nil, p24Payments: PostAccountsRequestBodyCapabilitiesP24Payments? = nil, payByBankPayments: PostAccountsRequestBodyCapabilitiesPayByBankPayments? = nil, paycoPayments: PostAccountsRequestBodyCapabilitiesPaycoPayments? = nil, paynowPayments: PostAccountsRequestBodyCapabilitiesPaynowPayments? = nil, paytoPayments: PostAccountsRequestBodyCapabilitiesPaytoPayments? = nil, pixPayments: PostAccountsRequestBodyCapabilitiesPixPayments? = nil, promptpayPayments: PostAccountsRequestBodyCapabilitiesPromptpayPayments? = nil, revolutPayPayments: PostAccountsRequestBodyCapabilitiesRevolutPayPayments? = nil, samsungPayPayments: PostAccountsRequestBodyCapabilitiesSamsungPayPayments? = nil, satispayPayments: PostAccountsRequestBodyCapabilitiesSatispayPayments? = nil, scalapayPayments: PostAccountsRequestBodyCapabilitiesScalapayPayments? = nil, sepaBankTransferPayments: PostAccountsRequestBodyCapabilitiesSepaBankTransferPayments? = nil, sepaDebitPayments: PostAccountsRequestBodyCapabilitiesSepaDebitPayments? = nil, sofortPayments: PostAccountsRequestBodyCapabilitiesSofortPayments? = nil, sunbitPayments: PostAccountsRequestBodyCapabilitiesSunbitPayments? = nil, swishPayments: PostAccountsRequestBodyCapabilitiesSwishPayments? = nil, taxReportingUs1099K: PostAccountsRequestBodyCapabilitiesTaxReportingUs1099K? = nil, taxReportingUs1099Misc: PostAccountsRequestBodyCapabilitiesTaxReportingUs1099Misc? = nil, transfers: PostAccountsRequestBodyCapabilitiesTransfers? = nil, treasury: PostAccountsRequestBodyCapabilitiesTreasury? = nil, twintPayments: PostAccountsRequestBodyCapabilitiesTwintPayments? = nil, upiPayments: PostAccountsRequestBodyCapabilitiesUpiPayments? = nil, usBankAccountAchPayments: PostAccountsRequestBodyCapabilitiesUsBankAccountAchPayments? = nil, usBankTransferPayments: PostAccountsRequestBodyCapabilitiesUsBankTransferPayments? = nil, zipPayments: PostAccountsRequestBodyCapabilitiesZipPayments? = nil) {
+public extension PostAccountsRequestBodyCapabilities {
+    init(
+        acssDebitPayments: PostAccountsRequestBodyCapabilitiesAcssDebitPayments? = nil,
+        affirmPayments: PostAccountsRequestBodyCapabilitiesAffirmPayments? = nil,
+        afterpayClearpayPayments: PostAccountsRequestBodyCapabilitiesAfterpayClearpayPayments? = nil,
+        almaPayments: PostAccountsRequestBodyCapabilitiesAlmaPayments? = nil,
+        amazonPayPayments: PostAccountsRequestBodyCapabilitiesAmazonPayPayments? = nil,
+        appDistribution: PostAccountsRequestBodyCapabilitiesAppDistribution? = nil,
+        auBecsDebitPayments: PostAccountsRequestBodyCapabilitiesAuBecsDebitPayments? = nil,
+        bacsDebitPayments: PostAccountsRequestBodyCapabilitiesBacsDebitPayments? = nil,
+        bancontactPayments: PostAccountsRequestBodyCapabilitiesBancontactPayments? = nil,
+        bankTransferPayments: PostAccountsRequestBodyCapabilitiesBankTransferPayments? = nil,
+        billiePayments: PostAccountsRequestBodyCapabilitiesBilliePayments? = nil,
+        bizumPayments: PostAccountsRequestBodyCapabilitiesBizumPayments? = nil,
+        blikPayments: PostAccountsRequestBodyCapabilitiesBlikPayments? = nil,
+        boletoPayments: PostAccountsRequestBodyCapabilitiesBoletoPayments? = nil,
+        cardIssuing: PostAccountsRequestBodyCapabilitiesCardIssuing? = nil,
+        cardPayments: PostAccountsRequestBodyCapabilitiesCardPayments? = nil,
+        cartesBancairesPayments: PostAccountsRequestBodyCapabilitiesCartesBancairesPayments? = nil,
+        cashappPayments: PostAccountsRequestBodyCapabilitiesCashappPayments? = nil,
+        cryptoPayments: PostAccountsRequestBodyCapabilitiesCryptoPayments? = nil,
+        epsPayments: PostAccountsRequestBodyCapabilitiesEpsPayments? = nil,
+        fpxPayments: PostAccountsRequestBodyCapabilitiesFpxPayments? = nil,
+        gbBankTransferPayments: PostAccountsRequestBodyCapabilitiesGbBankTransferPayments? = nil,
+        giropayPayments: PostAccountsRequestBodyCapabilitiesGiropayPayments? = nil,
+        grabpayPayments: PostAccountsRequestBodyCapabilitiesGrabpayPayments? = nil,
+        idealPayments: PostAccountsRequestBodyCapabilitiesIdealPayments? = nil,
+        indiaInternationalPayments: PostAccountsRequestBodyCapabilitiesIndiaInternationalPayments? = nil,
+        jcbPayments: PostAccountsRequestBodyCapabilitiesJcbPayments? = nil,
+        jpBankTransferPayments: PostAccountsRequestBodyCapabilitiesJpBankTransferPayments? = nil,
+        kakaoPayPayments: PostAccountsRequestBodyCapabilitiesKakaoPayPayments? = nil,
+        klarnaPayments: PostAccountsRequestBodyCapabilitiesKlarnaPayments? = nil,
+        konbiniPayments: PostAccountsRequestBodyCapabilitiesKonbiniPayments? = nil,
+        krCardPayments: PostAccountsRequestBodyCapabilitiesKrCardPayments? = nil,
+        legacyPayments: PostAccountsRequestBodyCapabilitiesLegacyPayments? = nil,
+        linkPayments: PostAccountsRequestBodyCapabilitiesLinkPayments? = nil,
+        mbWayPayments: PostAccountsRequestBodyCapabilitiesMbWayPayments? = nil,
+        mobilepayPayments: PostAccountsRequestBodyCapabilitiesMobilepayPayments? = nil,
+        multibancoPayments: PostAccountsRequestBodyCapabilitiesMultibancoPayments? = nil,
+        mxBankTransferPayments: PostAccountsRequestBodyCapabilitiesMxBankTransferPayments? = nil,
+        naverPayPayments: PostAccountsRequestBodyCapabilitiesNaverPayPayments? = nil,
+        nzBankAccountBecsDebitPayments: PostAccountsRequestBodyCapabilitiesNzBankAccountBecsDebitPayments? = nil,
+        oxxoPayments: PostAccountsRequestBodyCapabilitiesOxxoPayments? = nil,
+        p24Payments: PostAccountsRequestBodyCapabilitiesP24Payments? = nil,
+        payByBankPayments: PostAccountsRequestBodyCapabilitiesPayByBankPayments? = nil,
+        paycoPayments: PostAccountsRequestBodyCapabilitiesPaycoPayments? = nil,
+        paynowPayments: PostAccountsRequestBodyCapabilitiesPaynowPayments? = nil,
+        paytoPayments: PostAccountsRequestBodyCapabilitiesPaytoPayments? = nil,
+        pixPayments: PostAccountsRequestBodyCapabilitiesPixPayments? = nil,
+        promptpayPayments: PostAccountsRequestBodyCapabilitiesPromptpayPayments? = nil,
+        revolutPayPayments: PostAccountsRequestBodyCapabilitiesRevolutPayPayments? = nil,
+        samsungPayPayments: PostAccountsRequestBodyCapabilitiesSamsungPayPayments? = nil,
+        satispayPayments: PostAccountsRequestBodyCapabilitiesSatispayPayments? = nil,
+        scalapayPayments: PostAccountsRequestBodyCapabilitiesScalapayPayments? = nil,
+        sepaBankTransferPayments: PostAccountsRequestBodyCapabilitiesSepaBankTransferPayments? = nil,
+        sepaDebitPayments: PostAccountsRequestBodyCapabilitiesSepaDebitPayments? = nil,
+        sofortPayments: PostAccountsRequestBodyCapabilitiesSofortPayments? = nil,
+        sunbitPayments: PostAccountsRequestBodyCapabilitiesSunbitPayments? = nil,
+        swishPayments: PostAccountsRequestBodyCapabilitiesSwishPayments? = nil,
+        taxReportingUs1099K: PostAccountsRequestBodyCapabilitiesTaxReportingUs1099K? = nil,
+        taxReportingUs1099Misc: PostAccountsRequestBodyCapabilitiesTaxReportingUs1099Misc? = nil,
+        transfers: PostAccountsRequestBodyCapabilitiesTransfers? = nil,
+        treasury: PostAccountsRequestBodyCapabilitiesTreasury? = nil,
+        twintPayments: PostAccountsRequestBodyCapabilitiesTwintPayments? = nil,
+        upiPayments: PostAccountsRequestBodyCapabilitiesUpiPayments? = nil,
+        usBankAccountAchPayments: PostAccountsRequestBodyCapabilitiesUsBankAccountAchPayments? = nil,
+        usBankTransferPayments: PostAccountsRequestBodyCapabilitiesUsBankTransferPayments? = nil,
+        zipPayments: PostAccountsRequestBodyCapabilitiesZipPayments? = nil
+    ) {
         self.init(sdkDefaults: ())
         sdkSet1(acssDebitPayments, affirmPayments, afterpayClearpayPayments, almaPayments, amazonPayPayments)
         sdkSet2(appDistribution, auBecsDebitPayments, bacsDebitPayments, bancontactPayments, bankTransferPayments)
@@ -395,7 +472,13 @@ extension PostAccountsRequestBodyCapabilities {
 }
 
 extension PostAccountsRequestBodyCapabilities {
-    mutating func sdkSet1(_ acssDebitPayments: PostAccountsRequestBodyCapabilitiesAcssDebitPayments?, _ affirmPayments: PostAccountsRequestBodyCapabilitiesAffirmPayments?, _ afterpayClearpayPayments: PostAccountsRequestBodyCapabilitiesAfterpayClearpayPayments?, _ almaPayments: PostAccountsRequestBodyCapabilitiesAlmaPayments?, _ amazonPayPayments: PostAccountsRequestBodyCapabilitiesAmazonPayPayments?) {
+    mutating func sdkSet1(
+        _ acssDebitPayments: PostAccountsRequestBodyCapabilitiesAcssDebitPayments?,
+        _ affirmPayments: PostAccountsRequestBodyCapabilitiesAffirmPayments?,
+        _ afterpayClearpayPayments: PostAccountsRequestBodyCapabilitiesAfterpayClearpayPayments?,
+        _ almaPayments: PostAccountsRequestBodyCapabilitiesAlmaPayments?,
+        _ amazonPayPayments: PostAccountsRequestBodyCapabilitiesAmazonPayPayments?
+    ) {
         self.acssDebitPayments = acssDebitPayments
         self.affirmPayments = affirmPayments
         self.afterpayClearpayPayments = afterpayClearpayPayments
@@ -405,7 +488,13 @@ extension PostAccountsRequestBodyCapabilities {
 }
 
 extension PostAccountsRequestBodyCapabilities {
-    mutating func sdkSet2(_ appDistribution: PostAccountsRequestBodyCapabilitiesAppDistribution?, _ auBecsDebitPayments: PostAccountsRequestBodyCapabilitiesAuBecsDebitPayments?, _ bacsDebitPayments: PostAccountsRequestBodyCapabilitiesBacsDebitPayments?, _ bancontactPayments: PostAccountsRequestBodyCapabilitiesBancontactPayments?, _ bankTransferPayments: PostAccountsRequestBodyCapabilitiesBankTransferPayments?) {
+    mutating func sdkSet2(
+        _ appDistribution: PostAccountsRequestBodyCapabilitiesAppDistribution?,
+        _ auBecsDebitPayments: PostAccountsRequestBodyCapabilitiesAuBecsDebitPayments?,
+        _ bacsDebitPayments: PostAccountsRequestBodyCapabilitiesBacsDebitPayments?,
+        _ bancontactPayments: PostAccountsRequestBodyCapabilitiesBancontactPayments?,
+        _ bankTransferPayments: PostAccountsRequestBodyCapabilitiesBankTransferPayments?
+    ) {
         self.appDistribution = appDistribution
         self.auBecsDebitPayments = auBecsDebitPayments
         self.bacsDebitPayments = bacsDebitPayments
@@ -415,7 +504,13 @@ extension PostAccountsRequestBodyCapabilities {
 }
 
 extension PostAccountsRequestBodyCapabilities {
-    mutating func sdkSet3(_ billiePayments: PostAccountsRequestBodyCapabilitiesBilliePayments?, _ bizumPayments: PostAccountsRequestBodyCapabilitiesBizumPayments?, _ blikPayments: PostAccountsRequestBodyCapabilitiesBlikPayments?, _ boletoPayments: PostAccountsRequestBodyCapabilitiesBoletoPayments?, _ cardIssuing: PostAccountsRequestBodyCapabilitiesCardIssuing?) {
+    mutating func sdkSet3(
+        _ billiePayments: PostAccountsRequestBodyCapabilitiesBilliePayments?,
+        _ bizumPayments: PostAccountsRequestBodyCapabilitiesBizumPayments?,
+        _ blikPayments: PostAccountsRequestBodyCapabilitiesBlikPayments?,
+        _ boletoPayments: PostAccountsRequestBodyCapabilitiesBoletoPayments?,
+        _ cardIssuing: PostAccountsRequestBodyCapabilitiesCardIssuing?
+    ) {
         self.billiePayments = billiePayments
         self.bizumPayments = bizumPayments
         self.blikPayments = blikPayments
@@ -425,7 +520,13 @@ extension PostAccountsRequestBodyCapabilities {
 }
 
 extension PostAccountsRequestBodyCapabilities {
-    mutating func sdkSet4(_ cardPayments: PostAccountsRequestBodyCapabilitiesCardPayments?, _ cartesBancairesPayments: PostAccountsRequestBodyCapabilitiesCartesBancairesPayments?, _ cashappPayments: PostAccountsRequestBodyCapabilitiesCashappPayments?, _ cryptoPayments: PostAccountsRequestBodyCapabilitiesCryptoPayments?, _ epsPayments: PostAccountsRequestBodyCapabilitiesEpsPayments?) {
+    mutating func sdkSet4(
+        _ cardPayments: PostAccountsRequestBodyCapabilitiesCardPayments?,
+        _ cartesBancairesPayments: PostAccountsRequestBodyCapabilitiesCartesBancairesPayments?,
+        _ cashappPayments: PostAccountsRequestBodyCapabilitiesCashappPayments?,
+        _ cryptoPayments: PostAccountsRequestBodyCapabilitiesCryptoPayments?,
+        _ epsPayments: PostAccountsRequestBodyCapabilitiesEpsPayments?
+    ) {
         self.cardPayments = cardPayments
         self.cartesBancairesPayments = cartesBancairesPayments
         self.cashappPayments = cashappPayments
@@ -435,7 +536,13 @@ extension PostAccountsRequestBodyCapabilities {
 }
 
 extension PostAccountsRequestBodyCapabilities {
-    mutating func sdkSet5(_ fpxPayments: PostAccountsRequestBodyCapabilitiesFpxPayments?, _ gbBankTransferPayments: PostAccountsRequestBodyCapabilitiesGbBankTransferPayments?, _ giropayPayments: PostAccountsRequestBodyCapabilitiesGiropayPayments?, _ grabpayPayments: PostAccountsRequestBodyCapabilitiesGrabpayPayments?, _ idealPayments: PostAccountsRequestBodyCapabilitiesIdealPayments?) {
+    mutating func sdkSet5(
+        _ fpxPayments: PostAccountsRequestBodyCapabilitiesFpxPayments?,
+        _ gbBankTransferPayments: PostAccountsRequestBodyCapabilitiesGbBankTransferPayments?,
+        _ giropayPayments: PostAccountsRequestBodyCapabilitiesGiropayPayments?,
+        _ grabpayPayments: PostAccountsRequestBodyCapabilitiesGrabpayPayments?,
+        _ idealPayments: PostAccountsRequestBodyCapabilitiesIdealPayments?
+    ) {
         self.fpxPayments = fpxPayments
         self.gbBankTransferPayments = gbBankTransferPayments
         self.giropayPayments = giropayPayments
@@ -445,7 +552,13 @@ extension PostAccountsRequestBodyCapabilities {
 }
 
 extension PostAccountsRequestBodyCapabilities {
-    mutating func sdkSet6(_ indiaInternationalPayments: PostAccountsRequestBodyCapabilitiesIndiaInternationalPayments?, _ jcbPayments: PostAccountsRequestBodyCapabilitiesJcbPayments?, _ jpBankTransferPayments: PostAccountsRequestBodyCapabilitiesJpBankTransferPayments?, _ kakaoPayPayments: PostAccountsRequestBodyCapabilitiesKakaoPayPayments?, _ klarnaPayments: PostAccountsRequestBodyCapabilitiesKlarnaPayments?) {
+    mutating func sdkSet6(
+        _ indiaInternationalPayments: PostAccountsRequestBodyCapabilitiesIndiaInternationalPayments?,
+        _ jcbPayments: PostAccountsRequestBodyCapabilitiesJcbPayments?,
+        _ jpBankTransferPayments: PostAccountsRequestBodyCapabilitiesJpBankTransferPayments?,
+        _ kakaoPayPayments: PostAccountsRequestBodyCapabilitiesKakaoPayPayments?,
+        _ klarnaPayments: PostAccountsRequestBodyCapabilitiesKlarnaPayments?
+    ) {
         self.indiaInternationalPayments = indiaInternationalPayments
         self.jcbPayments = jcbPayments
         self.jpBankTransferPayments = jpBankTransferPayments
@@ -455,7 +568,13 @@ extension PostAccountsRequestBodyCapabilities {
 }
 
 extension PostAccountsRequestBodyCapabilities {
-    mutating func sdkSet7(_ konbiniPayments: PostAccountsRequestBodyCapabilitiesKonbiniPayments?, _ krCardPayments: PostAccountsRequestBodyCapabilitiesKrCardPayments?, _ legacyPayments: PostAccountsRequestBodyCapabilitiesLegacyPayments?, _ linkPayments: PostAccountsRequestBodyCapabilitiesLinkPayments?, _ mbWayPayments: PostAccountsRequestBodyCapabilitiesMbWayPayments?) {
+    mutating func sdkSet7(
+        _ konbiniPayments: PostAccountsRequestBodyCapabilitiesKonbiniPayments?,
+        _ krCardPayments: PostAccountsRequestBodyCapabilitiesKrCardPayments?,
+        _ legacyPayments: PostAccountsRequestBodyCapabilitiesLegacyPayments?,
+        _ linkPayments: PostAccountsRequestBodyCapabilitiesLinkPayments?,
+        _ mbWayPayments: PostAccountsRequestBodyCapabilitiesMbWayPayments?
+    ) {
         self.konbiniPayments = konbiniPayments
         self.krCardPayments = krCardPayments
         self.legacyPayments = legacyPayments
@@ -465,7 +584,12 @@ extension PostAccountsRequestBodyCapabilities {
 }
 
 extension PostAccountsRequestBodyCapabilities {
-    mutating func sdkSet8(_ mobilepayPayments: PostAccountsRequestBodyCapabilitiesMobilepayPayments?, _ multibancoPayments: PostAccountsRequestBodyCapabilitiesMultibancoPayments?, _ mxBankTransferPayments: PostAccountsRequestBodyCapabilitiesMxBankTransferPayments?, _ naverPayPayments: PostAccountsRequestBodyCapabilitiesNaverPayPayments?) {
+    mutating func sdkSet8(
+        _ mobilepayPayments: PostAccountsRequestBodyCapabilitiesMobilepayPayments?,
+        _ multibancoPayments: PostAccountsRequestBodyCapabilitiesMultibancoPayments?,
+        _ mxBankTransferPayments: PostAccountsRequestBodyCapabilitiesMxBankTransferPayments?,
+        _ naverPayPayments: PostAccountsRequestBodyCapabilitiesNaverPayPayments?
+    ) {
         self.mobilepayPayments = mobilepayPayments
         self.multibancoPayments = multibancoPayments
         self.mxBankTransferPayments = mxBankTransferPayments
@@ -474,7 +598,13 @@ extension PostAccountsRequestBodyCapabilities {
 }
 
 extension PostAccountsRequestBodyCapabilities {
-    mutating func sdkSet9(_ nzBankAccountBecsDebitPayments: PostAccountsRequestBodyCapabilitiesNzBankAccountBecsDebitPayments?, _ oxxoPayments: PostAccountsRequestBodyCapabilitiesOxxoPayments?, _ p24Payments: PostAccountsRequestBodyCapabilitiesP24Payments?, _ payByBankPayments: PostAccountsRequestBodyCapabilitiesPayByBankPayments?, _ paycoPayments: PostAccountsRequestBodyCapabilitiesPaycoPayments?) {
+    mutating func sdkSet9(
+        _ nzBankAccountBecsDebitPayments: PostAccountsRequestBodyCapabilitiesNzBankAccountBecsDebitPayments?,
+        _ oxxoPayments: PostAccountsRequestBodyCapabilitiesOxxoPayments?,
+        _ p24Payments: PostAccountsRequestBodyCapabilitiesP24Payments?,
+        _ payByBankPayments: PostAccountsRequestBodyCapabilitiesPayByBankPayments?,
+        _ paycoPayments: PostAccountsRequestBodyCapabilitiesPaycoPayments?
+    ) {
         self.nzBankAccountBecsDebitPayments = nzBankAccountBecsDebitPayments
         self.oxxoPayments = oxxoPayments
         self.p24Payments = p24Payments

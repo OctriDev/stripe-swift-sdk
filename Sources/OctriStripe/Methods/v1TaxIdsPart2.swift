@@ -6,8 +6,10 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1TaxIdsMethods {
-    /// Lists tax IDs belonging to an account or customer. Use `owner` to scope the collection, `starting_after` or `ending_before` to paginate, and `limit` to control the page size. Use `expand` when you need expanded response fields.
+public extension V1TaxIdsMethods {
+    /// Lists tax IDs belonging to an account or customer. Use `owner` to scope the collection, `starting_after` or
+    /// `ending_before` to paginate, and `limit` to control the page size. Use `expand` when you need expanded response
+    /// fields.
     ///
     /// Returns a list of tax IDs.
     ///
@@ -27,16 +29,23 @@ extension V1TaxIdsMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    public static func getTaxIds(config: ClientConfig, endingBefore: String?, expand: [String]?, limit: Int?, owner: GetTaxIdsParameter?, startingAfter: String?) async throws -> GetTaxIdsResponse {
-        if let endingBefore = endingBefore {
+    static func getTaxIds(
+        config: ClientConfig,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        owner: GetTaxIdsParameter?,
+        startingAfter: String?
+    ) async throws -> GetTaxIdsResponse {
+        if let endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let startingAfter = startingAfter {
+        if let startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try (await sdkRequest("GET", "/v1/tax_ids", config: config, query: [
+        return try await (sdkRequest("GET", "/v1/tax_ids", config: config, query: [
             SdkQueryParameter("ending_before", value: endingBefore),
             SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
             SdkQueryParameter("limit", value: limit),

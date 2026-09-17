@@ -9,11 +9,21 @@ public class V1PaymentMethodsDetachNamespace {
         self.config = config
     }
 
-/// Detaches a PaymentMethod from a Customer. Use `payment_method` to identify the instrument to detach and `expand` to request additional response fields. Detachment is permanent and irreversible, so you cannot use or re-attach the PaymentMethod after this operation.
+    /// Detaches a PaymentMethod from a Customer. Use `payment_method` to identify the instrument to detach and `expand`
+    /// to request additional response fields. Detachment is permanent and irreversible, so you cannot use or re-attach
+    /// the PaymentMethod after this operation.
     ///
-    /// Detaches a PaymentMethod object from a Customer. Detachment is permanent and irreversible — once detached, a PaymentMethod can no longer be used for payments or re-attached to a Customer.
-    public func postPaymentMethodsPaymentMethod(paymentMethod: String, expand: [String]?) async throws -> PaymentMethod {
-        return try await V1PaymentMethodsDetachMethods.postPaymentMethodsPaymentMethodDetach(config: config, paymentMethod: paymentMethod, expand: expand)
+    /// Detaches a PaymentMethod object from a Customer. Detachment is permanent and irreversible — once detached, a
+    /// PaymentMethod can no longer be used for payments or re-attached to a Customer.
+    public func postPaymentMethodsPaymentMethod(
+        paymentMethod: String,
+        expand: [String]?
+    ) async throws -> PaymentMethod {
+        try await V1PaymentMethodsDetachMethods.postPaymentMethodsPaymentMethodDetach(
+            config: config,
+            paymentMethod: paymentMethod,
+            expand: expand
+        )
     }
 }
 
@@ -27,30 +37,45 @@ public class V1PaymentMethodsNamespace {
         detach = V1PaymentMethodsDetachNamespace(config: config)
     }
 
-/// Lists payment methods available for retrieval, optionally filtered by customer, account, redisplay setting, or payment-method type. Use `starting_after` or `ending_before` to paginate the results and `limit` to control page size. Unfiltered results include all payment method types except `custom`.
+    /// Lists payment methods available for retrieval, optionally filtered by customer, account, redisplay setting, or
+    /// payment-method type. Use `starting_after` or `ending_before` to paginate the results and `limit` to control page
+    /// size. Unfiltered results include all payment method types except `custom`.
     ///
     /// Returns a list of all PaymentMethods.
-    public func get(options: V1PaymentMethodsMethods.GetPaymentMethodsOptions) async throws -> GetPaymentMethodsResponse {
-        return try await V1PaymentMethodsMethods.getPaymentMethods(config: config, options: options)
+    public func get(options: V1PaymentMethodsMethods
+        .GetPaymentMethodsOptions) async throws -> GetPaymentMethodsResponse {
+        try await V1PaymentMethodsMethods.getPaymentMethods(config: config, options: options)
     }
 
-/// Creates a PaymentMethod object. Read the Stripe.js reference to learn how to create PaymentMethods via Stripe.js. Instead of creating a PaymentMethod directly, we recommend using the PaymentIntents API to accept a payment immediately or the SetupIntent API to collect payment method details ahead of a future payment.
+    /// Creates a PaymentMethod object. Read the Stripe.js reference to learn how to create PaymentMethods via
+    /// Stripe.js. Instead of creating a PaymentMethod directly, we recommend using the PaymentIntents API to accept a
+    /// payment immediately or the SetupIntent API to collect payment method details ahead of a future payment.
     public func post(options: V1PaymentMethodsMethods.PostPaymentMethodsOptions) async throws -> PaymentMethod {
-        return try await V1PaymentMethodsMethods.postPaymentMethods(config: config, options: options)
+        try await V1PaymentMethodsMethods.postPaymentMethods(config: config, options: options)
     }
 
-/// Retrieves a PaymentMethod attached to the Stripe account by its identifier. Use `expand` when you need additional response fields included in the returned payment method. To retrieve a payment method attached to a customer, use the customer payment methods operation instead.
+    /// Retrieves a PaymentMethod attached to the Stripe account by its identifier. Use `expand` when you need
+    /// additional response fields included in the returned payment method. To retrieve a payment method attached to a
+    /// customer, use the customer payment methods operation instead.
     ///
-    /// Retrieves a PaymentMethod object attached to the StripeAccount. To retrieve a payment method attached to a Customer, you should use Retrieve a Customer’s PaymentMethods
+    /// Retrieves a PaymentMethod object attached to the StripeAccount. To retrieve a payment method attached to a
+    /// Customer, you should use Retrieve a Customer’s PaymentMethods
     public func getPaymentMethod(paymentMethod: String, expand: [String]?) async throws -> PaymentMethod {
-        return try await V1PaymentMethodsMethods.getPaymentMethodsPaymentMethod(config: config, paymentMethod: paymentMethod, expand: expand)
+        try await V1PaymentMethodsMethods.getPaymentMethodsPaymentMethod(
+            config: config,
+            paymentMethod: paymentMethod,
+            expand: expand
+        )
     }
 
-/// Updates an existing PaymentMethod that is attached to a customer. Supply only the PaymentMethod properties you want to change, such as `billing_details`, `metadata`, or type-specific details. Use `allow_redisplay` to control whether the method can be shown again in a customer checkout flow.
+    /// Updates an existing PaymentMethod that is attached to a customer. Supply only the PaymentMethod properties you
+    /// want to change, such as `billing_details`, `metadata`, or type-specific details. Use `allow_redisplay` to
+    /// control whether the method can be shown again in a customer checkout flow.
     ///
     /// Updates a PaymentMethod object. A PaymentMethod must be attached to a customer to be updated.
-    public func postPaymentMethod(options: V1PaymentMethodsMethods.PostPaymentMethodsPaymentMethodOptions) async throws -> PaymentMethod {
-        return try await V1PaymentMethodsMethods.postPaymentMethodsPaymentMethod(config: config, options: options)
+    public func postPaymentMethod(options: V1PaymentMethodsMethods
+        .PostPaymentMethodsPaymentMethodOptions) async throws -> PaymentMethod {
+        try await V1PaymentMethodsMethods.postPaymentMethodsPaymentMethod(config: config, options: options)
     }
 }
 
@@ -60,9 +85,11 @@ public class V1PaymentRecordsReportPaymentNamespace {
         self.config = config
     }
 
-/// Report a new Payment Record. You may report a Payment Record as it is initialized and later report updates through the other report_* methods, or report Payment Records in a terminal state directly, through this method.
-    public func postPaymentRecords(options: V1PaymentRecordsReportPaymentMethods.PostPaymentRecordsReportPaymentOptions) async throws -> PaymentRecord {
-        return try await V1PaymentRecordsReportPaymentMethods.postPaymentRecordsReportPayment(config: config, options: options)
+    /// Report a new Payment Record. You may report a Payment Record as it is initialized and later report updates
+    /// through the other report_* methods, or report Payment Records in a terminal state directly, through this method.
+    public func postPaymentRecords(options: V1PaymentRecordsReportPaymentMethods
+        .PostPaymentRecordsReportPaymentOptions) async throws -> PaymentRecord {
+        try await V1PaymentRecordsReportPaymentMethods.postPaymentRecordsReportPayment(config: config, options: options)
     }
 }
 
@@ -72,9 +99,14 @@ public class V1PaymentRecordsReportPaymentAttemptNamespace {
         self.config = config
     }
 
-/// Report a new payment attempt on the specified Payment Record. A new payment attempt can only be specified if all other payment attempts are canceled or failed.
-    public func postPaymentRecordsId(options: V1PaymentRecordsReportPaymentAttemptMethods.PostPaymentRecordsIdReportPaymentAttemptOptions) async throws -> PaymentRecord {
-        return try await V1PaymentRecordsReportPaymentAttemptMethods.postPaymentRecordsIdReportPaymentAttempt(config: config, options: options)
+    /// Report a new payment attempt on the specified Payment Record. A new payment attempt can only be specified if all
+    /// other payment attempts are canceled or failed.
+    public func postPaymentRecordsId(options: V1PaymentRecordsReportPaymentAttemptMethods
+        .PostPaymentRecordsIdReportPaymentAttemptOptions) async throws -> PaymentRecord {
+        try await V1PaymentRecordsReportPaymentAttemptMethods.postPaymentRecordsIdReportPaymentAttempt(
+            config: config,
+            options: options
+        )
     }
 }
 
@@ -84,9 +116,20 @@ public class V1PaymentRecordsReportPaymentAttemptCanceledNamespace {
         self.config = config
     }
 
-/// Report that the most recent payment attempt on the specified Payment Record was canceled.
-    public func postPaymentRecordsId(id: String, canceledAt: Int, expand: [String]?, metadata: PostPaymentRecordsIdReportPaymentAttemptCanceledRequestBodyMetadata?) async throws -> PaymentRecord {
-        return try await V1PaymentRecordsReportPaymentAttemptCanceledMethods.postPaymentRecordsIdReportPaymentAttemptCanceled(config: config, id: id, canceledAt: canceledAt, expand: expand, metadata: metadata)
+    /// Report that the most recent payment attempt on the specified Payment Record was canceled.
+    public func postPaymentRecordsId(
+        id: String,
+        canceledAt: Int,
+        expand: [String]?,
+        metadata: PostPaymentRecordsIdReportPaymentAttemptCanceledRequestBodyMetadata?
+    ) async throws -> PaymentRecord {
+        try await V1PaymentRecordsReportPaymentAttemptCanceledMethods.postPaymentRecordsIdReportPaymentAttemptCanceled(
+            config: config,
+            id: id,
+            canceledAt: canceledAt,
+            expand: expand,
+            metadata: metadata
+        )
     }
 }
 
@@ -96,9 +139,20 @@ public class V1PaymentRecordsReportPaymentAttemptFailedNamespace {
         self.config = config
     }
 
-/// Report that the most recent payment attempt on the specified Payment Record failed or errored.
-    public func postPaymentRecordsId(id: String, failedAt: Int, expand: [String]?, metadata: PostPaymentRecordsIdReportPaymentAttemptFailedRequestBodyMetadata?) async throws -> PaymentRecord {
-        return try await V1PaymentRecordsReportPaymentAttemptFailedMethods.postPaymentRecordsIdReportPaymentAttemptFailed(config: config, id: id, failedAt: failedAt, expand: expand, metadata: metadata)
+    /// Report that the most recent payment attempt on the specified Payment Record failed or errored.
+    public func postPaymentRecordsId(
+        id: String,
+        failedAt: Int,
+        expand: [String]?,
+        metadata: PostPaymentRecordsIdReportPaymentAttemptFailedRequestBodyMetadata?
+    ) async throws -> PaymentRecord {
+        try await V1PaymentRecordsReportPaymentAttemptFailedMethods.postPaymentRecordsIdReportPaymentAttemptFailed(
+            config: config,
+            id: id,
+            failedAt: failedAt,
+            expand: expand,
+            metadata: metadata
+        )
     }
 }
 
@@ -108,9 +162,21 @@ public class V1PaymentRecordsReportPaymentAttemptGuaranteedNamespace {
         self.config = config
     }
 
-/// Report that the most recent payment attempt on the specified Payment Record was guaranteed.
-    public func postPaymentRecordsId(id: String, guaranteedAt: Int, expand: [String]?, metadata: PostPaymentRecordsIdReportPaymentAttemptGuaranteedRequestBodyMetadata?) async throws -> PaymentRecord {
-        return try await V1PaymentRecordsReportPaymentAttemptGuaranteedMethods.postPaymentRecordsIdReportPaymentAttemptGuaranteed(config: config, id: id, guaranteedAt: guaranteedAt, expand: expand, metadata: metadata)
+    /// Report that the most recent payment attempt on the specified Payment Record was guaranteed.
+    public func postPaymentRecordsId(
+        id: String,
+        guaranteedAt: Int,
+        expand: [String]?,
+        metadata: PostPaymentRecordsIdReportPaymentAttemptGuaranteedRequestBodyMetadata?
+    ) async throws -> PaymentRecord {
+        try await V1PaymentRecordsReportPaymentAttemptGuaranteedMethods
+            .postPaymentRecordsIdReportPaymentAttemptGuaranteed(
+                config: config,
+                id: id,
+                guaranteedAt: guaranteedAt,
+                expand: expand,
+                metadata: metadata
+            )
     }
 }
 
@@ -120,9 +186,25 @@ public class V1PaymentRecordsReportPaymentAttemptInformationalNamespace {
         self.config = config
     }
 
-/// Report informational updates on the specified Payment Record.
-    public func postPaymentRecordsId(id: String, customerDetails: PostPaymentRecordsIdReportPaymentAttemptInformationalRequestBX31778bbcec?, description: PostPaymentRecordsIdReportPaymentAttemptInformationalRequestBXa6376a5ecf?, expand: [String]?, metadata: PostPaymentRecordsIdReportPaymentAttemptInformationalRequestBodyMetadata?, shippingDetails: PostPaymentRecordsIdReportPaymentAttemptInformationalRequestBXcb3b5d6439?) async throws -> PaymentRecord {
-        return try await V1PaymentRecordsReportPaymentAttemptInformationalMethods.postPaymentRecordsIdReportPaymentAttemptInformational(config: config, id: id, customerDetails: customerDetails, description: description, expand: expand, metadata: metadata, shippingDetails: shippingDetails)
+    /// Report informational updates on the specified Payment Record.
+    public func postPaymentRecordsId(
+        id: String,
+        customerDetails: PostPaymentRecordsIdReportPaymentAttemptInformationalRequestBX31778bbcec?,
+        description: PostPaymentRecordsIdReportPaymentAttemptInformationalRequestBXa6376a5ecf?,
+        expand: [String]?,
+        metadata: PostPaymentRecordsIdReportPaymentAttemptInformationalRequestBodyMetadata?,
+        shippingDetails: PostPaymentRecordsIdReportPaymentAttemptInformationalRequestBXcb3b5d6439?
+    ) async throws -> PaymentRecord {
+        try await V1PaymentRecordsReportPaymentAttemptInformationalMethods
+            .postPaymentRecordsIdReportPaymentAttemptInformational(
+                config: config,
+                id: id,
+                customerDetails: customerDetails,
+                description: description,
+                expand: expand,
+                metadata: metadata,
+                shippingDetails: shippingDetails
+            )
     }
 }
 
@@ -132,9 +214,10 @@ public class V1PaymentRecordsReportRefundNamespace {
         self.config = config
     }
 
-/// Report that the most recent payment attempt on the specified Payment Record was refunded.
-    public func postPaymentRecordsId(options: V1PaymentRecordsReportRefundMethods.PostPaymentRecordsIdReportRefundOptions) async throws -> PaymentRecord {
-        return try await V1PaymentRecordsReportRefundMethods.postPaymentRecordsIdReportRefund(config: config, options: options)
+    /// Report that the most recent payment attempt on the specified Payment Record was refunded.
+    public func postPaymentRecordsId(options: V1PaymentRecordsReportRefundMethods
+        .PostPaymentRecordsIdReportRefundOptions) async throws -> PaymentRecord {
+        try await V1PaymentRecordsReportRefundMethods.postPaymentRecordsIdReportRefund(config: config, options: options)
     }
 }
 
@@ -158,18 +241,37 @@ public class V1PaymentRecordsNamespace {
         reportRefund = V1PaymentRecordsReportRefundNamespace(config: config)
     }
 
-/// Lists Payment Records for a given merchant. Use the creation-time filters and cursor parameters to restrict and paginate the results, and use `expand` when you need additional fields in each record. The response includes list metadata and indicates whether another page is available.
+    /// Lists Payment Records for a given merchant. Use the creation-time filters and cursor parameters to restrict and
+    /// paginate the results, and use `expand` when you need additional fields in each record. The response includes
+    /// list metadata and indicates whether another page is available.
     ///
     /// List all the Payment Records for a given merchant.
-    public func get(createdAfter: Int?, createdBefore: Int?, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetPaymentRecordsResponse {
-        return try await V1PaymentRecordsMethods.getPaymentRecords(config: config, createdAfter: createdAfter, createdBefore: createdBefore, endingBefore: endingBefore, expand: expand, limit: limit, startingAfter: startingAfter)
+    public func get(
+        createdAfter: Int?,
+        createdBefore: Int?,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        startingAfter: String?
+    ) async throws -> GetPaymentRecordsResponse {
+        try await V1PaymentRecordsMethods.getPaymentRecords(
+            config: config,
+            createdAfter: createdAfter,
+            createdBefore: createdBefore,
+            endingBefore: endingBefore,
+            expand: expand,
+            limit: limit,
+            startingAfter: startingAfter
+        )
     }
 
-/// Retrieves a Payment Record by its identifier. Use `id` to select the record and `expand` to request additional fields in the response. The response contains the record's payment amounts, processing details, reporting information, and lifecycle metadata.
+    /// Retrieves a Payment Record by its identifier. Use `id` to select the record and `expand` to request additional
+    /// fields in the response. The response contains the record's payment amounts, processing details, reporting
+    /// information, and lifecycle metadata.
     ///
     /// Retrieves a Payment Record with the given ID
     public func getId(id: String, expand: [String]?) async throws -> PaymentRecord {
-        return try await V1PaymentRecordsMethods.getPaymentRecordsId(config: config, id: id, expand: expand)
+        try await V1PaymentRecordsMethods.getPaymentRecordsId(config: config, id: id, expand: expand)
     }
 }
 
@@ -179,11 +281,13 @@ public class V1PayoutsCancelNamespace {
         self.config = config
     }
 
-/// Cancels a previously created payout while it is still pending. Use this action to return the payout funds to the available balance, but do not use it for automatic payouts.
+    /// Cancels a previously created payout while it is still pending. Use this action to return the payout funds to the
+    /// available balance, but do not use it for automatic payouts.
     ///
-    /// You can cancel a previously created payout if its status is pending . Stripe refunds the funds to your available balance. You can’t cancel automatic Stripe payouts.
+    /// You can cancel a previously created payout if its status is pending . Stripe refunds the funds to your available
+    /// balance. You can’t cancel automatic Stripe payouts.
     public func postPayoutsPayout(payout: String, expand: [String]?) async throws -> Payout {
-        return try await V1PayoutsCancelMethods.postPayoutsPayoutCancel(config: config, payout: payout, expand: expand)
+        try await V1PayoutsCancelMethods.postPayoutsPayoutCancel(config: config, payout: payout, expand: expand)
     }
 }
 
@@ -193,10 +297,24 @@ public class V1PayoutsReverseNamespace {
         self.config = config
     }
 
-/// Reverses a payout by debiting the destination bank account. Use this action only for payouts to connected accounts with US or Canadian bank accounts; use the cancel action instead for a manual pending payout.
+    /// Reverses a payout by debiting the destination bank account. Use this action only for payouts to connected
+    /// accounts with US or Canadian bank accounts; use the cancel action instead for a manual pending payout.
     ///
-    /// Reverses a payout by debiting the destination bank account. At this time, you can only reverse payouts for connected accounts to US and Canadian bank accounts. If the payout is manual and in the pending status, use /v1/payouts/:id/cancel instead. By requesting a reversal through /v1/payouts/:id/reverse , you confirm that the authorized signatory of the selected bank account authorizes the debit on the bank account and that no other authorization is required.
-    public func postPayoutsPayout(payout: String, expand: [String]?, metadata: [String: String]?) async throws -> Payout {
-        return try await V1PayoutsReverseMethods.postPayoutsPayoutReverse(config: config, payout: payout, expand: expand, metadata: metadata)
+    /// Reverses a payout by debiting the destination bank account. At this time, you can only reverse payouts for
+    /// connected accounts to US and Canadian bank accounts. If the payout is manual and in the pending status, use
+    /// /v1/payouts/:id/cancel instead. By requesting a reversal through /v1/payouts/:id/reverse , you confirm that the
+    /// authorized signatory of the selected bank account authorizes the debit on the bank account and that no other
+    /// authorization is required.
+    public func postPayoutsPayout(
+        payout: String,
+        expand: [String]?,
+        metadata: [String: String]?
+    ) async throws -> Payout {
+        try await V1PayoutsReverseMethods.postPayoutsPayoutReverse(
+            config: config,
+            payout: payout,
+            expand: expand,
+            metadata: metadata
+        )
     }
 }

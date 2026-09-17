@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1SetupIntentsMethods {
-    public struct PostSetupIntentsIntentOptions: Codable {
+public extension V1SetupIntentsMethods {
+    struct PostSetupIntentsIntentOptions: Codable {
         public var intent: String
         public var allowedPaymentMethodTypes: PostSetupIntentsIntentRequestBodyAllowedPaymentMethodTypes?
         public var attachToSelf: Bool?
@@ -29,7 +29,9 @@ extension V1SetupIntentsMethods {
         }
     }
 
-    /// Updates a SetupIntent's configuration, payment method, customer association, metadata, or descriptive fields. Supply only the fields you want to change, and use `expand` to include additional fields in the returned SetupIntent.
+    /// Updates a SetupIntent's configuration, payment method, customer association, metadata, or descriptive fields.
+    /// Supply only the fields you want to change, and use `expand` to include additional fields in the returned
+    /// SetupIntent.
     ///
     /// Updates a SetupIntent object.
     ///
@@ -89,7 +91,10 @@ extension V1SetupIntentsMethods {
     ///   valid payment method types can be found
     ///   [here](https://docs.stripe.com/api/payment_methods/object#payment_method_obj
     ///   ect-type).
-    public static func postSetupIntentsIntent(config: ClientConfig, options: PostSetupIntentsIntentOptions) async throws -> SetupIntent {
+    static func postSetupIntentsIntent(
+        config: ClientConfig,
+        options: PostSetupIntentsIntentOptions
+    ) async throws -> SetupIntent {
         try validateLength("intent", options.intent, max: 5000)
 
         if let customer = options.customer {
@@ -114,6 +119,14 @@ extension V1SetupIntentsMethods {
 
         let requestBody = PostSetupIntentsIntentRequestBody(options: options)
 
-        return try (await sdkRequest("POST", ["/v1/setup_intents/", sdkEncodePathSegment(sdkWireString(options.intent))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostSetupIntentsIntent")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/setup_intents/", sdkEncodePathSegment(sdkWireString(options.intent))].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostSetupIntentsIntent"
+        )).data
     }
 }

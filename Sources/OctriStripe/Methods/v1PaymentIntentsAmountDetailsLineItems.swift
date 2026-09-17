@@ -7,7 +7,8 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1PaymentIntentsAmountDetailsLineItemsMethods {
-    /// Lists all line items associated with a PaymentIntent. Use `starting_after` or `ending_before` with `limit` to navigate through the list, and use `expand` when you need additional response fields.
+    /// Lists all line items associated with a PaymentIntent. Use `starting_after` or `ending_before` with `limit` to
+    /// navigate through the list, and use `expand` when you need additional response fields.
     ///
     /// Lists all LineItems of a given PaymentIntent.
     ///
@@ -25,22 +26,37 @@ public enum V1PaymentIntentsAmountDetailsLineItemsMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    public static func getPaymentIntentsIntentAmountDetailsLineItems(config: ClientConfig, intent: String, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetPaymentIntentsIntentAmountDetailsLineItemsResponse {
+    public static func getPaymentIntentsIntentAmountDetailsLineItems(
+        config: ClientConfig,
+        intent: String,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        startingAfter: String?
+    ) async throws -> GetPaymentIntentsIntentAmountDetailsLineItemsResponse {
         try validateLength("intent", intent, max: 5000)
 
-        if let endingBefore = endingBefore {
+        if let endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let startingAfter = startingAfter {
+        if let startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try (await sdkRequest("GET", ["/v1/payment_intents/", sdkEncodePathSegment(sdkWireString(intent)), "/amount_details_line_items"].joined(), config: config, query: [
-            SdkQueryParameter("ending_before", value: endingBefore),
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            SdkQueryParameter("limit", value: limit),
-            SdkQueryParameter("starting_after", value: startingAfter),
-        ], decoder: .json, operationId: "GetPaymentIntentsIntentAmountDetailsLineItems")).data
+        return try await (sdkRequest(
+            "GET",
+            ["/v1/payment_intents/", sdkEncodePathSegment(sdkWireString(intent)), "/amount_details_line_items"]
+                .joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("ending_before", value: endingBefore),
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+                SdkQueryParameter("limit", value: limit),
+                SdkQueryParameter("starting_after", value: startingAfter),
+            ],
+            decoder: .json,
+            operationId: "GetPaymentIntentsIntentAmountDetailsLineItems"
+        )).data
     }
 }

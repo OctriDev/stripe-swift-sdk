@@ -6,27 +6,44 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1CouponsMethods {
-    /// Deletes a coupon so that new customers can no longer redeem it. Deleting the coupon does not affect customers who have already applied it, so use this operation only when you want to prevent future redemptions.
+public extension V1CouponsMethods {
+    /// Deletes a coupon so that new customers can no longer redeem it. Deleting the coupon does not affect customers
+    /// who have already applied it, so use this operation only when you want to prevent future redemptions.
     ///
-    /// You can delete coupons via the coupon management page of the Stripe dashboard. However, deleting a coupon does not affect any customers who have already applied the coupon; it means that new customers can’t redeem the coupon. You can also delete coupons via the API.
-    public static func deleteCouponsCoupon(config: ClientConfig, coupon: String) async throws -> DeletedCoupon {
+    /// You can delete coupons via the coupon management page of the Stripe dashboard. However, deleting a coupon does
+    /// not affect any customers who have already applied the coupon; it means that new customers can’t redeem the
+    /// coupon. You can also delete coupons via the API.
+    static func deleteCouponsCoupon(config: ClientConfig, coupon: String) async throws -> DeletedCoupon {
         try validateLength("coupon", coupon, max: 5000)
 
-        return try (await sdkRequest("DELETE", ["/v1/coupons/", sdkEncodePathSegment(sdkWireString(coupon))].joined(), config: config, decoder: .json, operationId: "DeleteCouponsCoupon")).data
+        return try await (sdkRequest(
+            "DELETE",
+            ["/v1/coupons/", sdkEncodePathSegment(sdkWireString(coupon))].joined(),
+            config: config,
+            decoder: .json,
+            operationId: "DeleteCouponsCoupon"
+        )).data
     }
 
-    /// Retrieves a coupon by its identifier. Use `expand` when you need selected response fields expanded, and provide the identifier of the coupon you want to inspect.
+    /// Retrieves a coupon by its identifier. Use `expand` when you need selected response fields expanded, and provide
+    /// the identifier of the coupon you want to inspect.
     ///
     /// Retrieves the coupon with the given ID.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func getCouponsCoupon(config: ClientConfig, coupon: String, expand: [String]?) async throws -> Coupon {
+    static func getCouponsCoupon(config: ClientConfig, coupon: String, expand: [String]?) async throws -> Coupon {
         try validateLength("coupon", coupon, max: 5000)
 
-        return try (await sdkRequest("GET", ["/v1/coupons/", sdkEncodePathSegment(sdkWireString(coupon))].joined(), config: config, query: [
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-        ], decoder: .json, operationId: "GetCouponsCoupon")).data
+        return try await (sdkRequest(
+            "GET",
+            ["/v1/coupons/", sdkEncodePathSegment(sdkWireString(coupon))].joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+            ],
+            decoder: .json,
+            operationId: "GetCouponsCoupon"
+        )).data
     }
 }

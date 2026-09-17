@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1TaxTransactionsCreateReversalMethods {
-    public struct PostTaxTransactionsCreateReversalOptions: Codable {
+public extension V1TaxTransactionsCreateReversalMethods {
+    struct PostTaxTransactionsCreateReversalOptions: Codable {
         public var mode: PostTaxTransactionsCreateReversalRequestBodyMode
         public var originalTransaction: String
         public var reference: String
@@ -17,7 +17,11 @@ extension V1TaxTransactionsCreateReversalMethods {
         public var metadata: [String: String]?
         public var shippingCost: PostTaxTransactionsCreateReversalRequestBodyShippingCost?
 
-        public init(mode: PostTaxTransactionsCreateReversalRequestBodyMode, originalTransaction: String, reference: String) {
+        public init(
+            mode: PostTaxTransactionsCreateReversalRequestBodyMode,
+            originalTransaction: String,
+            reference: String
+        ) {
             self.mode = mode
             self.originalTransaction = originalTransaction
             self.reference = reference
@@ -47,13 +51,24 @@ extension V1TaxTransactionsCreateReversalMethods {
     ///   unset by posting an empty value to them. All keys can be unset by posting an
     ///   empty value to `metadata`.
     /// - shippingCost: The shipping cost to reverse.
-    public static func postTaxTransactionsCreateReversal(config: ClientConfig, options: PostTaxTransactionsCreateReversalOptions) async throws -> TaxTransaction {
+    static func postTaxTransactionsCreateReversal(
+        config: ClientConfig,
+        options: PostTaxTransactionsCreateReversalOptions
+    ) async throws -> TaxTransaction {
         try validateLength("original_transaction", options.originalTransaction, max: 5000)
 
         try validateLength("reference", options.reference, max: 500)
 
         let requestBody = PostTaxTransactionsCreateReversalRequestBody(options: options)
 
-        return try (await sdkRequest("POST", "/v1/tax/transactions/create_reversal", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTaxTransactionsCreateReversal")).data
+        return try await (sdkRequest(
+            "POST",
+            "/v1/tax/transactions/create_reversal",
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostTaxTransactionsCreateReversal"
+        )).data
     }
 }

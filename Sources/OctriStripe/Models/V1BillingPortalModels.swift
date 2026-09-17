@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1BillingPortal domain models
+/// V1BillingPortal domain models
 /// A portal configuration describes the functionality and behavior you embed in a portal session. Related guide:
 /// Configure the customer portal.
 public struct BillingPortalConfiguration: Codable {
@@ -57,38 +57,55 @@ public struct BillingPortalConfiguration: Codable {
         case name
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension BillingPortalConfiguration {
-    public init(from decoder: Decoder) throws {
+public extension BillingPortalConfiguration {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.active = try container.sdkDecodeRequired(.active)
-        self.businessProfile = try container.sdkDecodeRequired(.businessProfile)
-        self.created = try container.sdkDecodeRequired(.created)
-        self.features = try container.sdkDecodeRequired(.features)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.isDefault = try container.sdkDecodeRequired(.isDefault)
-        self.livemode = try container.sdkDecodeRequired(.livemode)
-        self.loginPage = try container.sdkDecodeRequired(.loginPage)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.updated = try container.sdkDecodeRequired(.updated)
-        self.application = try container.sdkDecodeIfPresent(.application)
-        self.defaultReturnUrl = try container.sdkDecodeIfPresent(.defaultReturnUrl)
-        self.metadata = try container.sdkDecodeIfPresent(.metadata)
-        self.name = try container.sdkDecodeIfPresent(.name)
-            try validateLength("id", self.id, min: nil, max: 5000)
-        if let value = self.defaultReturnUrl {
+        active = try container.sdkDecodeRequired(.active)
+        businessProfile = try container.sdkDecodeRequired(.businessProfile)
+        created = try container.sdkDecodeRequired(.created)
+        features = try container.sdkDecodeRequired(.features)
+        id = try container.sdkDecodeRequired(.id)
+        isDefault = try container.sdkDecodeRequired(.isDefault)
+        livemode = try container.sdkDecodeRequired(.livemode)
+        loginPage = try container.sdkDecodeRequired(.loginPage)
+        object = try container.sdkDecodeRequired(.object)
+        updated = try container.sdkDecodeRequired(.updated)
+        application = try container.sdkDecodeIfPresent(.application)
+        defaultReturnUrl = try container.sdkDecodeIfPresent(.defaultReturnUrl)
+        metadata = try container.sdkDecodeIfPresent(.metadata)
+        name = try container.sdkDecodeIfPresent(.name)
+        try validateLength("id", id, min: nil, max: 5000)
+        if let value = defaultReturnUrl {
             try validateLength("default_return_url", value, min: nil, max: 5000)
         }
-        if let value = self.name {
+        if let value = name {
             try validateLength("name", value, min: nil, max: 5000)
         }
     }
 }
 
-extension BillingPortalConfiguration {
-    public init(active: Bool, businessProfile: PortalBusinessProfile, created: Int, features: PortalFeatures, id: String, isDefault: Bool, livemode: Bool, loginPage: PortalLoginPage, object: BillingPortalConfigurationObject, updated: Int, application: BillingPortalConfigurationApplication? = nil, defaultReturnUrl: String? = nil, metadata: [String: String]? = nil, name: String? = nil) throws {
+public extension BillingPortalConfiguration {
+    init(
+        active: Bool,
+        businessProfile: PortalBusinessProfile,
+        created: Int,
+        features: PortalFeatures,
+        id: String,
+        isDefault: Bool,
+        livemode: Bool,
+        loginPage: PortalLoginPage,
+        object: BillingPortalConfigurationObject,
+        updated: Int,
+        application: BillingPortalConfigurationApplication? = nil,
+        defaultReturnUrl: String? = nil,
+        metadata: [String: String]? = nil,
+        name: String? = nil
+    ) throws {
         (self.active, self.businessProfile) = (active, businessProfile)
         (self.created, self.features) = (created, features)
         (self.id, self.isDefault) = (id, isDefault)
@@ -96,7 +113,7 @@ extension BillingPortalConfiguration {
         (self.object, self.updated) = (object, updated)
         (self.application, self.defaultReturnUrl) = (application, defaultReturnUrl)
         (self.metadata, self.name) = (metadata, name)
-            try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
         if let value = self.defaultReturnUrl {
             try validateLength("default_return_url", value, min: nil, max: 5000)
         }
@@ -113,22 +130,34 @@ public enum BillingPortalConfigurationApplication {
 }
 
 extension BillingPortalConfigurationApplication: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for BillingPortalConfigurationApplication")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for BillingPortalConfigurationApplication"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(Application.self) { return .application(value) }
-        if let value = try? container.decode(DeletedApplication.self) { return .deletedApplication(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(Application.self) {
+            return .application(value)
+        }
+        if let value = try? container.decode(DeletedApplication.self) {
+            return .deletedApplication(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -139,12 +168,7 @@ extension BillingPortalConfigurationApplication: Codable {
         case let .deletedApplication(value): try container.encode(value); return true
         }
     }
-
 }
-
-
-
-
 
 /// The Billing customer portal is a Stripe-hosted UI for subscription and billing management. A portal
 /// configuration describes the functionality and features that you want to provide to your customers through the
@@ -197,71 +221,114 @@ public struct BillingPortalSession: Codable {
         case returnUrl = "return_url"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension BillingPortalSession {
-    public init(from decoder: Decoder) throws {
+public extension BillingPortalSession {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.configuration) else {
-            throw SdkValidationError(field: "configuration", code: "required", message: "Validation failed for 'configuration': value is required")
+            throw SdkValidationError(
+                field: "configuration",
+                code: "required",
+                message: "Validation failed for 'configuration': value is required"
+            )
         }
         guard container.contains(.created) else {
-            throw SdkValidationError(field: "created", code: "required", message: "Validation failed for 'created': value is required")
+            throw SdkValidationError(
+                field: "created",
+                code: "required",
+                message: "Validation failed for 'created': value is required"
+            )
         }
         guard container.contains(.customer) else {
-            throw SdkValidationError(field: "customer", code: "required", message: "Validation failed for 'customer': value is required")
+            throw SdkValidationError(
+                field: "customer",
+                code: "required",
+                message: "Validation failed for 'customer': value is required"
+            )
         }
         guard container.contains(.id) else {
-            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
+            throw SdkValidationError(
+                field: "id",
+                code: "required",
+                message: "Validation failed for 'id': value is required"
+            )
         }
         guard container.contains(.livemode) else {
-            throw SdkValidationError(field: "livemode", code: "required", message: "Validation failed for 'livemode': value is required")
+            throw SdkValidationError(
+                field: "livemode",
+                code: "required",
+                message: "Validation failed for 'livemode': value is required"
+            )
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
         }
         guard container.contains(.url) else {
-            throw SdkValidationError(field: "url", code: "required", message: "Validation failed for 'url': value is required")
+            throw SdkValidationError(
+                field: "url",
+                code: "required",
+                message: "Validation failed for 'url': value is required"
+            )
         }
-        self.configuration = try container.sdkDecodeRequired(.configuration)
-        self.created = try container.sdkDecodeRequired(.created)
-        self.customer = try container.sdkDecodeRequired(.customer)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.livemode = try container.sdkDecodeRequired(.livemode)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.url = try container.sdkDecodeRequired(.url)
-        self.customerAccount = try container.sdkDecodeIfPresent(.customerAccount)
-        self.flow = try container.sdkDecodeIfPresent(.flow)
-        self.locale = try container.sdkDecodeIfPresent(.locale)
-        self.onBehalfOf = try container.sdkDecodeIfPresent(.onBehalfOf)
-        self.returnUrl = try container.sdkDecodeIfPresent(.returnUrl)
-            try validateLength("customer", self.customer, min: nil, max: 5000)
-            try validateLength("id", self.id, min: nil, max: 5000)
-            try validateLength("url", self.url, min: nil, max: 5000)
-        if let value = self.customerAccount {
+        configuration = try container.sdkDecodeRequired(.configuration)
+        created = try container.sdkDecodeRequired(.created)
+        customer = try container.sdkDecodeRequired(.customer)
+        id = try container.sdkDecodeRequired(.id)
+        livemode = try container.sdkDecodeRequired(.livemode)
+        object = try container.sdkDecodeRequired(.object)
+        url = try container.sdkDecodeRequired(.url)
+        customerAccount = try container.sdkDecodeIfPresent(.customerAccount)
+        flow = try container.sdkDecodeIfPresent(.flow)
+        locale = try container.sdkDecodeIfPresent(.locale)
+        onBehalfOf = try container.sdkDecodeIfPresent(.onBehalfOf)
+        returnUrl = try container.sdkDecodeIfPresent(.returnUrl)
+        try validateLength("customer", customer, min: nil, max: 5000)
+        try validateLength("id", id, min: nil, max: 5000)
+        try validateLength("url", url, min: nil, max: 5000)
+        if let value = customerAccount {
             try validateLength("customer_account", value, min: nil, max: 5000)
         }
-        if let value = self.onBehalfOf {
+        if let value = onBehalfOf {
             try validateLength("on_behalf_of", value, min: nil, max: 5000)
         }
-        if let value = self.returnUrl {
+        if let value = returnUrl {
             try validateLength("return_url", value, min: nil, max: 5000)
         }
     }
 }
 
-extension BillingPortalSession {
-    public init(configuration: BillingPortalSessionConfiguration, created: Int, customer: String, id: String, livemode: Bool, object: BillingPortalSessionObject, url: String, customerAccount: String? = nil, flow: BillingPortalSessionFlow? = nil, locale: BillingPortalSessionLocale? = nil, onBehalfOf: String? = nil, returnUrl: String? = nil) throws {
+public extension BillingPortalSession {
+    init(
+        configuration: BillingPortalSessionConfiguration,
+        created: Int,
+        customer: String,
+        id: String,
+        livemode: Bool,
+        object: BillingPortalSessionObject,
+        url: String,
+        customerAccount: String? = nil,
+        flow: BillingPortalSessionFlow? = nil,
+        locale: BillingPortalSessionLocale? = nil,
+        onBehalfOf: String? = nil,
+        returnUrl: String? = nil
+    ) throws {
         (self.configuration, self.created) = (configuration, created)
         (self.customer, self.id) = (customer, id)
         (self.livemode, self.object) = (livemode, object)
         (self.url, self.customerAccount) = (url, customerAccount)
         (self.flow, self.locale) = (flow, locale)
         (self.onBehalfOf, self.returnUrl) = (onBehalfOf, returnUrl)
-            try validateLength("customer", self.customer, min: nil, max: 5000)
-            try validateLength("id", self.id, min: nil, max: 5000)
-            try validateLength("url", self.url, min: nil, max: 5000)
+        try validateLength("customer", self.customer, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("url", self.url, min: nil, max: 5000)
         if let value = self.customerAccount {
             try validateLength("customer_account", value, min: nil, max: 5000)
         }
@@ -280,21 +347,32 @@ public enum BillingPortalSessionConfiguration {
 }
 
 extension BillingPortalSessionConfiguration: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for BillingPortalSessionConfiguration")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for BillingPortalSessionConfiguration"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(BillingPortalConfiguration.self) { return .billingPortalConfiguration(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container
+            .decode(BillingPortalConfiguration.self) {
+            return .billingPortalConfiguration(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -304,7 +382,6 @@ extension BillingPortalSessionConfiguration: Codable {
         case let .billingPortalConfiguration(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum BillingPortalSessionFlow {
@@ -312,20 +389,28 @@ public enum BillingPortalSessionFlow {
 }
 
 extension BillingPortalSessionFlow: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for BillingPortalSessionFlow")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for BillingPortalSessionFlow"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(PortalFlowsFlow.self) { return .portalFlowsFlow(value) }
+        if let value = try? container.decode(PortalFlowsFlow.self) {
+            return .portalFlowsFlow(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -334,19 +419,22 @@ extension BillingPortalSessionFlow: Codable {
         case let .portalFlowsFlow(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// String representing the object's type. Objects of the same type share the same value.
 public struct BillingPortalConfigurationObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let billingPortalConfiguration = BillingPortalConfigurationObject(rawValue: "billing_portal.configuration")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let billingPortalConfiguration =
+        BillingPortalConfigurationObject(rawValue: "billing_portal.configuration")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -359,12 +447,15 @@ public struct BillingPortalConfigurationObject: RawRepresentable, Hashable, Coda
 public struct BillingPortalSessionObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let billingPortalSession = BillingPortalSessionObject(rawValue: "billing_portal.session")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -378,7 +469,10 @@ public struct BillingPortalSessionObject: RawRepresentable, Hashable, Codable, S
 public struct BillingPortalSessionLocale: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let auto = BillingPortalSessionLocale(rawValue: "auto")
     public static let bg = BillingPortalSessionLocale(rawValue: "bg")
     public static let cs = BillingPortalSessionLocale(rawValue: "cs")
@@ -429,7 +523,7 @@ public struct BillingPortalSessionLocale: RawRepresentable, Hashable, Codable, S
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

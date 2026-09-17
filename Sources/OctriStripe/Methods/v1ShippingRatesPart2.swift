@@ -6,8 +6,10 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1ShippingRatesMethods {
-    /// Lists shipping rates available to your account. Filter the collection by active state, creation time, or currency, and use cursor parameters to retrieve adjacent pages. Each result contains shipping price and presentation details for use with purchases.
+public extension V1ShippingRatesMethods {
+    /// Lists shipping rates available to your account. Filter the collection by active state, creation time, or
+    /// currency, and use cursor parameters to retrieve adjacent pages. Each result contains shipping price and
+    /// presentation details for use with purchases.
     ///
     /// Returns a list of your shipping rates.
     ///
@@ -30,16 +32,25 @@ extension V1ShippingRatesMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    public static func getShippingRates(config: ClientConfig, active: Bool?, created: GetShippingRatesParameter?, currency: String?, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetShippingRatesResponse {
-        if let endingBefore = endingBefore {
+    static func getShippingRates(
+        config: ClientConfig,
+        active: Bool?,
+        created: GetShippingRatesParameter?,
+        currency: String?,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        startingAfter: String?
+    ) async throws -> GetShippingRatesResponse {
+        if let endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let startingAfter = startingAfter {
+        if let startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try (await sdkRequest("GET", "/v1/shipping_rates", config: config, query: [
+        return try await (sdkRequest("GET", "/v1/shipping_rates", config: config, query: [
             SdkQueryParameter("active", value: active),
             SdkQueryParameter("created", value: created),
             SdkQueryParameter("currency", value: currency),

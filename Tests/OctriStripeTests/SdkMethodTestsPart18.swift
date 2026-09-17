@@ -6,7 +6,8 @@ import Foundation
 import XCTest
 
 extension SdkMethodTests {
-    func testPostInvoiceRenderingTemplatesTemplateUnarchivePostInvoiceRendX7024caa746ReachesMockAndDecodesResponse() async throws {
+    func testPostInvoiceRenderingTemplatesTemplateUnarchivePostInvoiceRendX7024caa746ReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -134,7 +135,8 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostInvoicesInvoiceAttachPaymentPostInvoicesInvoiceAttachPaymentReachesMockAndDecodesResponse() async throws {
+    func testPostInvoicesInvoiceAttachPaymentPostInvoicesInvoiceAttachPaymentReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -177,12 +179,16 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostInvoicesInvoiceLinesLineItemIdPostInvoicesInvoiceLinesLineItemIdReachesMockAndDecodesResponse() async throws {
+    func testPostInvoicesInvoiceLinesLineItemIdPostInvoicesInvoiceLinesLineItemIdReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        var options = try V1InvoicesLinesMethods.PostInvoicesInvoiceLinesLineItemIdOptions(invoice: decoded("\"invoice\""), lineItemId: decoded("\"line_item_-1\""))
+        var options = try V1InvoicesLinesMethods.PostInvoicesInvoiceLinesLineItemIdOptions(
+            invoice: decoded("\"invoice\""),
+            lineItemId: decoded("\"line_item_-1\"")
+        )
         options.amount = try decoded("100")
         options.description = try decoded("\"example text\"")
         options.discountable = try decoded("false")
@@ -210,7 +216,8 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostInvoicesInvoiceMarkUncollectiblePostInvoicesInvoiceMarkUncollectibleReachesMockAndDecodesResponse() async throws {
+    func testPostInvoicesInvoiceMarkUncollectiblePostInvoicesInvoiceMarkUncollectibleReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -341,7 +348,8 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostIssuingAuthorizationsAuthorizationPostIssuingAuthorizatioX030e233496ReachesMockAndDecodesResponse() async throws {
+    func testPostIssuingAuthorizationsAuthorizationPostIssuingAuthorizatioX030e233496ReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -363,7 +371,8 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostIssuingAuthorizationsAuthorizationApprovePostIssuingAuthoX31d4328b21ReachesMockAndDecodesResponse() async throws {
+    func testPostIssuingAuthorizationsAuthorizationApprovePostIssuingAuthoX31d4328b21ReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -385,7 +394,8 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostIssuingAuthorizationsAuthorizationDeclinePostIssuingAuthoXf29cf66d3dReachesMockAndDecodesResponse() async throws {
+    func testPostIssuingAuthorizationsAuthorizationDeclinePostIssuingAuthoXf29cf66d3dReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -411,7 +421,10 @@ extension SdkMethodTests {
             return
         }
         _ = client
-        var options = try V1IssuingCardholdersMethods.PostIssuingCardholdersOptions(billing: decoded(sdkMethodFixture417Value1), name: decoded("\"Example Name\""))
+        var options = try V1IssuingCardholdersMethods.PostIssuingCardholdersOptions(
+            billing: decoded(sdkMethodFixture417Value1),
+            name: decoded("\"Example Name\"")
+        )
         options.company = try decoded("{\"tax_id\":\"tax_-1\"}")
         options.email = try decoded("\"user@example.com\"")
         options.expand = try decoded("[\"expand\"]")
@@ -436,12 +449,14 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostIssuingCardholdersCardholderPostIssuingCardholdersCardholderReachesMockAndDecodesResponse() async throws {
+    func testPostIssuingCardholdersCardholderPostIssuingCardholdersCardholderReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        var options = try V1IssuingCardholdersMethods.PostIssuingCardholdersCardholderOptions(cardholder: decoded("\"cardholder\""))
+        var options = try V1IssuingCardholdersMethods
+            .PostIssuingCardholdersCardholderOptions(cardholder: decoded("\"cardholder\""))
         options.billing = try decoded(sdkMethodFixture418Value1)
         options.company = try decoded("{\"tax_id\":\"tax_-1\"}")
         options.email = try decoded("\"user@example.com\"")
@@ -471,7 +486,10 @@ extension SdkMethodTests {
             return
         }
         _ = client
-        var options = try V1IssuingCardsMethods.PostIssuingCardsOptions(currency: decoded("\"currency\""), type: decoded("\"physical\""))
+        var options = try V1IssuingCardsMethods.PostIssuingCardsOptions(
+            currency: decoded("\"currency\""),
+            type: decoded("\"physical\"")
+        )
         options.cardholder = try decoded("\"cardholder\"")
         options.expMonth = try decoded("1")
         options.expYear = try decoded("1")

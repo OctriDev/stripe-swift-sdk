@@ -3,29 +3,43 @@
 
 import Foundation
 
-// V1Source domain models
-extension SourceOrder {
-    public init(from decoder: Decoder) throws {
+/// V1Source domain models
+public extension SourceOrder {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.amount) else {
-            throw SdkValidationError(field: "amount", code: "required", message: "Validation failed for 'amount': value is required")
+            throw SdkValidationError(
+                field: "amount",
+                code: "required",
+                message: "Validation failed for 'amount': value is required"
+            )
         }
         guard container.contains(.currency) else {
-            throw SdkValidationError(field: "currency", code: "required", message: "Validation failed for 'currency': value is required")
+            throw SdkValidationError(
+                field: "currency",
+                code: "required",
+                message: "Validation failed for 'currency': value is required"
+            )
         }
-        self.amount = try container.sdkDecodeRequired(.amount)
-        self.currency = try container.sdkDecodeRequired(.currency)
-        self.email = try container.sdkDecodeIfPresent(.email)
-        self.items = try container.sdkDecodeIfPresent(.items)
-        self.shipping = try container.sdkDecodeIfPresent(.shipping)
-        if let value = self.email {
+        amount = try container.sdkDecodeRequired(.amount)
+        currency = try container.sdkDecodeRequired(.currency)
+        email = try container.sdkDecodeIfPresent(.email)
+        items = try container.sdkDecodeIfPresent(.items)
+        shipping = try container.sdkDecodeIfPresent(.shipping)
+        if let value = email {
             try validateLength("email", value, min: nil, max: 5000)
         }
     }
 }
 
-extension SourceOrder {
-    public init(amount: Int, currency: String, email: String? = nil, items: [SourceOrderItem]? = nil, shipping: Shipping? = nil) throws {
+public extension SourceOrder {
+    init(
+        amount: Int,
+        currency: String,
+        email: String? = nil,
+        items: [SourceOrderItem]? = nil,
+        shipping: Shipping? = nil
+    ) throws {
         (self.amount, self.currency) = (amount, currency)
         (self.email, self.items) = (email, items)
         self.shipping = shipping
@@ -61,37 +75,44 @@ public struct SourceOrderItem: Codable {
     }
 
     init() {
-        (self.amount, self.currency, self.description, self.parent, self.quantity) = (nil, nil, nil, nil, nil)
-        self.type = nil
+        (amount, currency, description, parent, quantity) = (nil, nil, nil, nil, nil)
+        type = nil
     }
 }
 
-extension SourceOrderItem {
-    public init(from decoder: Decoder) throws {
+public extension SourceOrderItem {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.amount = try container.sdkDecodeIfPresent(.amount)
-        self.currency = try container.sdkDecodeIfPresent(.currency)
-        self.description = try container.sdkDecodeIfPresent(.description)
-        self.parent = try container.sdkDecodeIfPresent(.parent)
-        self.quantity = try container.sdkDecodeIfPresent(.quantity)
-        self.type = try container.sdkDecodeIfPresent(.type)
-        if let value = self.currency {
+        amount = try container.sdkDecodeIfPresent(.amount)
+        currency = try container.sdkDecodeIfPresent(.currency)
+        description = try container.sdkDecodeIfPresent(.description)
+        parent = try container.sdkDecodeIfPresent(.parent)
+        quantity = try container.sdkDecodeIfPresent(.quantity)
+        type = try container.sdkDecodeIfPresent(.type)
+        if let value = currency {
             try validateLength("currency", value, min: nil, max: 5000)
         }
-        if let value = self.description {
+        if let value = description {
             try validateLength("description", value, min: nil, max: 5000)
         }
-        if let value = self.parent {
+        if let value = parent {
             try validateLength("parent", value, min: nil, max: 5000)
         }
-        if let value = self.type {
+        if let value = type {
             try validateLength("type", value, min: nil, max: 5000)
         }
     }
 }
 
-extension SourceOrderItem {
-    public init(amount: Int? = nil, currency: String? = nil, description: String? = nil, parent: String? = nil, quantity: Int? = nil, type: String? = nil) throws {
+public extension SourceOrderItem {
+    init(
+        amount: Int? = nil,
+        currency: String? = nil,
+        description: String? = nil,
+        parent: String? = nil,
+        quantity: Int? = nil,
+        type: String? = nil
+    ) throws {
         self.init()
         (self.amount, self.currency) = (amount, currency)
         (self.description, self.parent) = (description, parent)
@@ -147,45 +168,54 @@ public struct SourceOwner: Codable {
     }
 
     init() {
-        (self.address, self.email, self.name, self.phone, self.verifiedAddress) = (nil, nil, nil, nil, nil)
-        (self.verifiedEmail, self.verifiedName, self.verifiedPhone) = (nil, nil, nil)
+        (address, email, name, phone, verifiedAddress) = (nil, nil, nil, nil, nil)
+        (verifiedEmail, verifiedName, verifiedPhone) = (nil, nil, nil)
     }
 }
 
-extension SourceOwner {
-    public init(from decoder: Decoder) throws {
+public extension SourceOwner {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.address = try container.sdkDecodeIfPresent(.address)
-        self.email = try container.sdkDecodeIfPresent(.email)
-        self.name = try container.sdkDecodeIfPresent(.name)
-        self.phone = try container.sdkDecodeIfPresent(.phone)
-        self.verifiedAddress = try container.sdkDecodeIfPresent(.verifiedAddress)
-        self.verifiedEmail = try container.sdkDecodeIfPresent(.verifiedEmail)
-        self.verifiedName = try container.sdkDecodeIfPresent(.verifiedName)
-        self.verifiedPhone = try container.sdkDecodeIfPresent(.verifiedPhone)
-        if let value = self.email {
+        address = try container.sdkDecodeIfPresent(.address)
+        email = try container.sdkDecodeIfPresent(.email)
+        name = try container.sdkDecodeIfPresent(.name)
+        phone = try container.sdkDecodeIfPresent(.phone)
+        verifiedAddress = try container.sdkDecodeIfPresent(.verifiedAddress)
+        verifiedEmail = try container.sdkDecodeIfPresent(.verifiedEmail)
+        verifiedName = try container.sdkDecodeIfPresent(.verifiedName)
+        verifiedPhone = try container.sdkDecodeIfPresent(.verifiedPhone)
+        if let value = email {
             try validateLength("email", value, min: nil, max: 5000)
         }
-        if let value = self.name {
+        if let value = name {
             try validateLength("name", value, min: nil, max: 5000)
         }
-        if let value = self.phone {
+        if let value = phone {
             try validateLength("phone", value, min: nil, max: 5000)
         }
-        if let value = self.verifiedEmail {
+        if let value = verifiedEmail {
             try validateLength("verified_email", value, min: nil, max: 5000)
         }
-        if let value = self.verifiedName {
+        if let value = verifiedName {
             try validateLength("verified_name", value, min: nil, max: 5000)
         }
-        if let value = self.verifiedPhone {
+        if let value = verifiedPhone {
             try validateLength("verified_phone", value, min: nil, max: 5000)
         }
     }
 }
 
-extension SourceOwner {
-    public init(address: SourceOwnerAddress? = nil, email: String? = nil, name: String? = nil, phone: String? = nil, verifiedAddress: SourceOwnerVerifiedAddress? = nil, verifiedEmail: String? = nil, verifiedName: String? = nil, verifiedPhone: String? = nil) throws {
+public extension SourceOwner {
+    init(
+        address: SourceOwnerAddress? = nil,
+        email: String? = nil,
+        name: String? = nil,
+        phone: String? = nil,
+        verifiedAddress: SourceOwnerVerifiedAddress? = nil,
+        verifiedEmail: String? = nil,
+        verifiedName: String? = nil,
+        verifiedPhone: String? = nil
+    ) throws {
         self.init()
         (self.address, self.email) = (address, email)
         (self.name, self.phone) = (name, phone)
@@ -217,20 +247,28 @@ public enum SourceOwnerAddress {
 }
 
 extension SourceOwnerAddress: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for SourceOwnerAddress")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for SourceOwnerAddress"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(Address.self) { return .address(value) }
+        if let value = try? container.decode(Address.self) {
+            return .address(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -239,7 +277,6 @@ extension SourceOwnerAddress: Codable {
         case let .address(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum SourceOwnerVerifiedAddress {
@@ -247,20 +284,28 @@ public enum SourceOwnerVerifiedAddress {
 }
 
 extension SourceOwnerVerifiedAddress: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for SourceOwnerVerifiedAddress")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for SourceOwnerVerifiedAddress"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(Address.self) { return .address(value) }
+        if let value = try? container.decode(Address.self) {
+            return .address(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -269,7 +314,6 @@ extension SourceOwnerVerifiedAddress: Codable {
         case let .address(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Typed representation of the `SourceReceiverFlow` API schema.
@@ -302,48 +346,77 @@ public struct SourceReceiverFlow: Codable {
         case address
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension SourceReceiverFlow {
-    public init(from decoder: Decoder) throws {
+public extension SourceReceiverFlow {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.amountCharged) else {
-            throw SdkValidationError(field: "amount_charged", code: "required", message: "Validation failed for 'amount_charged': value is required")
+            throw SdkValidationError(
+                field: "amount_charged",
+                code: "required",
+                message: "Validation failed for 'amount_charged': value is required"
+            )
         }
         guard container.contains(.amountReceived) else {
-            throw SdkValidationError(field: "amount_received", code: "required", message: "Validation failed for 'amount_received': value is required")
+            throw SdkValidationError(
+                field: "amount_received",
+                code: "required",
+                message: "Validation failed for 'amount_received': value is required"
+            )
         }
         guard container.contains(.amountReturned) else {
-            throw SdkValidationError(field: "amount_returned", code: "required", message: "Validation failed for 'amount_returned': value is required")
+            throw SdkValidationError(
+                field: "amount_returned",
+                code: "required",
+                message: "Validation failed for 'amount_returned': value is required"
+            )
         }
         guard container.contains(.refundAttributesMethod) else {
-            throw SdkValidationError(field: "refund_attributes_method", code: "required", message: "Validation failed for 'refund_attributes_method': value is required")
+            throw SdkValidationError(
+                field: "refund_attributes_method",
+                code: "required",
+                message: "Validation failed for 'refund_attributes_method': value is required"
+            )
         }
         guard container.contains(.refundAttributesStatus) else {
-            throw SdkValidationError(field: "refund_attributes_status", code: "required", message: "Validation failed for 'refund_attributes_status': value is required")
+            throw SdkValidationError(
+                field: "refund_attributes_status",
+                code: "required",
+                message: "Validation failed for 'refund_attributes_status': value is required"
+            )
         }
-        self.amountCharged = try container.sdkDecodeRequired(.amountCharged)
-        self.amountReceived = try container.sdkDecodeRequired(.amountReceived)
-        self.amountReturned = try container.sdkDecodeRequired(.amountReturned)
-        self.refundAttributesMethod = try container.sdkDecodeRequired(.refundAttributesMethod)
-        self.refundAttributesStatus = try container.sdkDecodeRequired(.refundAttributesStatus)
-        self.address = try container.sdkDecodeIfPresent(.address)
-            try validateLength("refund_attributes_method", self.refundAttributesMethod, min: nil, max: 5000)
-            try validateLength("refund_attributes_status", self.refundAttributesStatus, min: nil, max: 5000)
-        if let value = self.address {
+        amountCharged = try container.sdkDecodeRequired(.amountCharged)
+        amountReceived = try container.sdkDecodeRequired(.amountReceived)
+        amountReturned = try container.sdkDecodeRequired(.amountReturned)
+        refundAttributesMethod = try container.sdkDecodeRequired(.refundAttributesMethod)
+        refundAttributesStatus = try container.sdkDecodeRequired(.refundAttributesStatus)
+        address = try container.sdkDecodeIfPresent(.address)
+        try validateLength("refund_attributes_method", refundAttributesMethod, min: nil, max: 5000)
+        try validateLength("refund_attributes_status", refundAttributesStatus, min: nil, max: 5000)
+        if let value = address {
             try validateLength("address", value, min: nil, max: 5000)
         }
     }
 }
 
-extension SourceReceiverFlow {
-    public init(amountCharged: Int, amountReceived: Int, amountReturned: Int, refundAttributesMethod: String, refundAttributesStatus: String, address: String? = nil) throws {
+public extension SourceReceiverFlow {
+    init(
+        amountCharged: Int,
+        amountReceived: Int,
+        amountReturned: Int,
+        refundAttributesMethod: String,
+        refundAttributesStatus: String,
+        address: String? = nil
+    ) throws {
         (self.amountCharged, self.amountReceived) = (amountCharged, amountReceived)
         (self.amountReturned, self.refundAttributesMethod) = (amountReturned, refundAttributesMethod)
         (self.refundAttributesStatus, self.address) = (refundAttributesStatus, address)
-            try validateLength("refund_attributes_method", self.refundAttributesMethod, min: nil, max: 5000)
-            try validateLength("refund_attributes_status", self.refundAttributesStatus, min: nil, max: 5000)
+        try validateLength("refund_attributes_method", self.refundAttributesMethod, min: nil, max: 5000)
+        try validateLength("refund_attributes_status", self.refundAttributesStatus, min: nil, max: 5000)
         if let value = self.address {
             try validateLength("address", value, min: nil, max: 5000)
         }
@@ -373,41 +446,55 @@ public struct SourceRedirectFlow: Codable {
         case failureReason = "failure_reason"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension SourceRedirectFlow {
-    public init(from decoder: Decoder) throws {
+public extension SourceRedirectFlow {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.returnUrl) else {
-            throw SdkValidationError(field: "return_url", code: "required", message: "Validation failed for 'return_url': value is required")
+            throw SdkValidationError(
+                field: "return_url",
+                code: "required",
+                message: "Validation failed for 'return_url': value is required"
+            )
         }
         guard container.contains(.status) else {
-            throw SdkValidationError(field: "status", code: "required", message: "Validation failed for 'status': value is required")
+            throw SdkValidationError(
+                field: "status",
+                code: "required",
+                message: "Validation failed for 'status': value is required"
+            )
         }
         guard container.contains(.url) else {
-            throw SdkValidationError(field: "url", code: "required", message: "Validation failed for 'url': value is required")
+            throw SdkValidationError(
+                field: "url",
+                code: "required",
+                message: "Validation failed for 'url': value is required"
+            )
         }
-        self.returnUrl = try container.sdkDecodeRequired(.returnUrl)
-        self.status = try container.sdkDecodeRequired(.status)
-        self.url = try container.sdkDecodeRequired(.url)
-        self.failureReason = try container.sdkDecodeIfPresent(.failureReason)
-            try validateLength("return_url", self.returnUrl, min: nil, max: 5000)
-            try validateLength("status", self.status, min: nil, max: 5000)
-            try validateLength("url", self.url, min: nil, max: 2048)
-        if let value = self.failureReason {
+        returnUrl = try container.sdkDecodeRequired(.returnUrl)
+        status = try container.sdkDecodeRequired(.status)
+        url = try container.sdkDecodeRequired(.url)
+        failureReason = try container.sdkDecodeIfPresent(.failureReason)
+        try validateLength("return_url", returnUrl, min: nil, max: 5000)
+        try validateLength("status", status, min: nil, max: 5000)
+        try validateLength("url", url, min: nil, max: 2048)
+        if let value = failureReason {
             try validateLength("failure_reason", value, min: nil, max: 5000)
         }
     }
 }
 
-extension SourceRedirectFlow {
-    public init(returnUrl: String, status: String, url: String, failureReason: String? = nil) throws {
+public extension SourceRedirectFlow {
+    init(returnUrl: String, status: String, url: String, failureReason: String? = nil) throws {
         (self.returnUrl, self.status) = (returnUrl, status)
         (self.url, self.failureReason) = (url, failureReason)
-            try validateLength("return_url", self.returnUrl, min: nil, max: 5000)
-            try validateLength("status", self.status, min: nil, max: 5000)
-            try validateLength("url", self.url, min: nil, max: 2048)
+        try validateLength("return_url", self.returnUrl, min: nil, max: 5000)
+        try validateLength("status", self.status, min: nil, max: 5000)
+        try validateLength("url", self.url, min: nil, max: 2048)
         if let value = self.failureReason {
             try validateLength("failure_reason", value, min: nil, max: 5000)
         }
@@ -466,34 +553,51 @@ public struct SourceTransaction: Codable {
         case sepaCreditTransfer = "sepa_credit_transfer"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension SourceTransaction {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.amount = try container.sdkDecodeRequired(.amount)
-        self.created = try container.sdkDecodeRequired(.created)
-        self.currency = try container.sdkDecodeRequired(.currency)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.livemode = try container.sdkDecodeRequired(.livemode)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.source = try container.sdkDecodeRequired(.source)
-        self.status = try container.sdkDecodeRequired(.status)
-        self.type = try container.sdkDecodeRequired(.type)
-        self.achCreditTransfer = try container.sdkDecodeIfPresent(.achCreditTransfer)
-        self.chfCreditTransfer = try container.sdkDecodeIfPresent(.chfCreditTransfer)
-        self.gbpCreditTransfer = try container.sdkDecodeIfPresent(.gbpCreditTransfer)
-        self.paperCheck = try container.sdkDecodeIfPresent(.paperCheck)
-        self.sepaCreditTransfer = try container.sdkDecodeIfPresent(.sepaCreditTransfer)
-            try validateLength("id", self.id, min: nil, max: 5000)
-            try validateLength("source", self.source, min: nil, max: 5000)
-            try validateLength("status", self.status, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension SourceTransaction {
-    public init(amount: Int, created: Int, currency: String, id: String, livemode: Bool, object: SourceTransactionObject, source: String, status: String, type: SourceTransactionType, achCreditTransfer: SourceTransactionAchCreditTransferData? = nil, chfCreditTransfer: SourceTransactionChfCreditTransferData? = nil, gbpCreditTransfer: SourceTransactionGbpCreditTransferData? = nil, paperCheck: SourceTransactionPaperCheckData? = nil, sepaCreditTransfer: SourceTransactionSepaCreditTransferData? = nil) throws {
+public extension SourceTransaction {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        amount = try container.sdkDecodeRequired(.amount)
+        created = try container.sdkDecodeRequired(.created)
+        currency = try container.sdkDecodeRequired(.currency)
+        id = try container.sdkDecodeRequired(.id)
+        livemode = try container.sdkDecodeRequired(.livemode)
+        object = try container.sdkDecodeRequired(.object)
+        source = try container.sdkDecodeRequired(.source)
+        status = try container.sdkDecodeRequired(.status)
+        type = try container.sdkDecodeRequired(.type)
+        achCreditTransfer = try container.sdkDecodeIfPresent(.achCreditTransfer)
+        chfCreditTransfer = try container.sdkDecodeIfPresent(.chfCreditTransfer)
+        gbpCreditTransfer = try container.sdkDecodeIfPresent(.gbpCreditTransfer)
+        paperCheck = try container.sdkDecodeIfPresent(.paperCheck)
+        sepaCreditTransfer = try container.sdkDecodeIfPresent(.sepaCreditTransfer)
+        try validateLength("id", id, min: nil, max: 5000)
+        try validateLength("source", source, min: nil, max: 5000)
+        try validateLength("status", status, min: nil, max: 5000)
+    }
+}
+
+public extension SourceTransaction {
+    init(
+        amount: Int,
+        created: Int,
+        currency: String,
+        id: String,
+        livemode: Bool,
+        object: SourceTransactionObject,
+        source: String,
+        status: String,
+        type: SourceTransactionType,
+        achCreditTransfer: SourceTransactionAchCreditTransferData? = nil,
+        chfCreditTransfer: SourceTransactionChfCreditTransferData? = nil,
+        gbpCreditTransfer: SourceTransactionGbpCreditTransferData? = nil,
+        paperCheck: SourceTransactionPaperCheckData? = nil,
+        sepaCreditTransfer: SourceTransactionSepaCreditTransferData? = nil
+    ) throws {
         (self.amount, self.created) = (amount, created)
         (self.currency, self.id) = (currency, id)
         (self.livemode, self.object) = (livemode, object)
@@ -501,9 +605,9 @@ extension SourceTransaction {
         (self.type, self.achCreditTransfer) = (type, achCreditTransfer)
         (self.chfCreditTransfer, self.gbpCreditTransfer) = (chfCreditTransfer, gbpCreditTransfer)
         (self.paperCheck, self.sepaCreditTransfer) = (paperCheck, sepaCreditTransfer)
-            try validateLength("id", self.id, min: nil, max: 5000)
-            try validateLength("source", self.source, min: nil, max: 5000)
-            try validateLength("status", self.status, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("source", self.source, min: nil, max: 5000)
+        try validateLength("status", self.status, min: nil, max: 5000)
     }
 }
 
@@ -526,6 +630,6 @@ public struct SourceTransactionAchCreditTransferData: Codable {
     }
 
     init() {
-        (self.customerData, self.fingerprint, self.last4, self.routingNumber) = (nil, nil, nil, nil)
+        (customerData, fingerprint, last4, routingNumber) = (nil, nil, nil, nil)
     }
 }

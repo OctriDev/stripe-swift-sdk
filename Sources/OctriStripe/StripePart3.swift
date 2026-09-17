@@ -9,9 +9,22 @@ public class V1ApplicationFeesRefundNamespace {
         self.config = config
     }
 
-/// Creates a refund for an application fee that your account previously collected. Use `amount` for a partial refund and omit it when the API should refund the applicable remaining amount; an application fee cannot be refunded beyond its unrefunded amount.
-    public func postApplicationFeesId(id: String, amount: Int?, directive: String?, expand: [String]?) async throws -> ApplicationFee {
-        return try await V1ApplicationFeesRefundMethods.postApplicationFeesIdRefund(config: config, id: id, amount: amount, directive: directive, expand: expand)
+    /// Creates a refund for an application fee that your account previously collected. Use `amount` for a partial
+    /// refund and omit it when the API should refund the applicable remaining amount; an application fee cannot be
+    /// refunded beyond its unrefunded amount.
+    public func postApplicationFeesId(
+        id: String,
+        amount: Int?,
+        directive: String?,
+        expand: [String]?
+    ) async throws -> ApplicationFee {
+        try await V1ApplicationFeesRefundMethods.postApplicationFeesIdRefund(
+            config: config,
+            id: id,
+            amount: amount,
+            directive: directive,
+            expand: expand
+        )
     }
 }
 
@@ -25,18 +38,37 @@ public class V1ApplicationFeesNamespace {
         refund = V1ApplicationFeesRefundNamespace(config: config)
     }
 
-/// Lists application fees previously collected by your platform. Use `charge` and `created` to filter the results, and use cursor parameters to paginate through fees sorted from newest to oldest.
+    /// Lists application fees previously collected by your platform. Use `charge` and `created` to filter the results,
+    /// and use cursor parameters to paginate through fees sorted from newest to oldest.
     ///
-    /// Returns a list of application fees you’ve previously collected. The application fees are returned in sorted order, with the most recent fees appearing first.
-    public func get(charge: String?, created: GetApplicationFeesParameter?, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetApplicationFeesResponse {
-        return try await V1ApplicationFeesMethods.getApplicationFees(config: config, charge: charge, created: created, endingBefore: endingBefore, expand: expand, limit: limit, startingAfter: startingAfter)
+    /// Returns a list of application fees you’ve previously collected. The application fees are returned in sorted
+    /// order, with the most recent fees appearing first.
+    public func get(
+        charge: String?,
+        created: GetApplicationFeesParameter?,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        startingAfter: String?
+    ) async throws -> GetApplicationFeesResponse {
+        try await V1ApplicationFeesMethods.getApplicationFees(
+            config: config,
+            charge: charge,
+            created: created,
+            endingBefore: endingBefore,
+            expand: expand,
+            limit: limit,
+            startingAfter: startingAfter
+        )
     }
 
-/// Retrieves the details of an application fee collected by your account. Use `id` to identify the fee and `expand` to include additional response fields when needed.
+    /// Retrieves the details of an application fee collected by your account. Use `id` to identify the fee and `expand`
+    /// to include additional response fields when needed.
     ///
-    /// Retrieves the details of an application fee that your account has collected. The same information is returned when refunding the application fee.
+    /// Retrieves the details of an application fee that your account has collected. The same information is returned
+    /// when refunding the application fee.
     public func getId(id: String, expand: [String]?) async throws -> ApplicationFee {
-        return try await V1ApplicationFeesMethods.getApplicationFeesId(config: config, id: id, expand: expand)
+        try await V1ApplicationFeesMethods.getApplicationFeesId(config: config, id: id, expand: expand)
     }
 }
 
@@ -46,9 +78,18 @@ public class V1AppsSecretsDeleteNamespace {
         self.config = config
     }
 
-/// Deletes a secret from the secret store by name and scope.
-    public func postAppsSecrets(name: String, scope: PostAppsSecretsDeleteRequestBodyScope, expand: [String]?) async throws -> AppsSecret {
-        return try await V1AppsSecretsDeleteMethods.postAppsSecretsDelete(config: config, name: name, scope: scope, expand: expand)
+    /// Deletes a secret from the secret store by name and scope.
+    public func postAppsSecrets(
+        name: String,
+        scope: PostAppsSecretsDeleteRequestBodyScope,
+        expand: [String]?
+    ) async throws -> AppsSecret {
+        try await V1AppsSecretsDeleteMethods.postAppsSecretsDelete(
+            config: config,
+            name: name,
+            scope: scope,
+            expand: expand
+        )
     }
 }
 
@@ -58,11 +99,16 @@ public class V1AppsSecretsFindNamespace {
         self.config = config
     }
 
-/// Retrieves a secret from Secret Store by its name and scope. Supply `name` together with `scope` to identify the secret, and use `expand` when additional response fields are needed.
+    /// Retrieves a secret from Secret Store by its name and scope. Supply `name` together with `scope` to identify the
+    /// secret, and use `expand` when additional response fields are needed.
     ///
     /// Finds a secret in the secret store by name and scope.
-    public func getAppsSecrets(name: String, scope: GetAppsSecretsFindParameter, expand: [String]?) async throws -> AppsSecret {
-        return try await V1AppsSecretsFindMethods.getAppsSecretsFind(config: config, name: name, scope: scope, expand: expand)
+    public func getAppsSecrets(
+        name: String,
+        scope: GetAppsSecretsFindParameter,
+        expand: [String]?
+    ) async throws -> AppsSecret {
+        try await V1AppsSecretsFindMethods.getAppsSecretsFind(config: config, name: name, scope: scope, expand: expand)
     }
 }
 
@@ -76,16 +122,43 @@ public class V1AppsSecretsNamespace {
         find = V1AppsSecretsFindNamespace(config: config)
     }
 
-/// Lists secrets stored in the specified Secret Store scope. Supply `scope` to select account-level or user-level secrets, and use cursor parameters to retrieve additional pages of results.
+    /// Lists secrets stored in the specified Secret Store scope. Supply `scope` to select account-level or user-level
+    /// secrets, and use cursor parameters to retrieve additional pages of results.
     ///
     /// List all secrets stored on the given scope.
-    public func getApps(scope: GetAppsSecretsParameter, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetAppsSecretsResponse {
-        return try await V1AppsSecretsMethods.getAppsSecrets(config: config, scope: scope, endingBefore: endingBefore, expand: expand, limit: limit, startingAfter: startingAfter)
+    public func getApps(
+        scope: GetAppsSecretsParameter,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        startingAfter: String?
+    ) async throws -> GetAppsSecretsResponse {
+        try await V1AppsSecretsMethods.getAppsSecrets(
+            config: config,
+            scope: scope,
+            endingBefore: endingBefore,
+            expand: expand,
+            limit: limit,
+            startingAfter: startingAfter
+        )
     }
 
-/// Create or replace a secret in the secret store.
-    public func postApps(name: String, payload: String, scope: PostAppsSecretsRequestBodyScope, expand: [String]?, expiresAt: Int?) async throws -> AppsSecret {
-        return try await V1AppsSecretsMethods.postAppsSecrets(config: config, name: name, payload: payload, scope: scope, expand: expand, expiresAt: expiresAt)
+    /// Create or replace a secret in the secret store.
+    public func postApps(
+        name: String,
+        payload: String,
+        scope: PostAppsSecretsRequestBodyScope,
+        expand: [String]?,
+        expiresAt: Int?
+    ) async throws -> AppsSecret {
+        try await V1AppsSecretsMethods.postAppsSecrets(
+            config: config,
+            name: name,
+            payload: payload,
+            scope: scope,
+            expand: expand,
+            expiresAt: expiresAt
+        )
     }
 }
 
@@ -102,18 +175,25 @@ public class V1BalanceHistoryNamespace {
         self.config = config
     }
 
-/// Lists transactions that contributed to the account balance, with the most recent transactions first. Use `created`, `currency`, `payout`, `source`, and `type` to filter results, and use cursor parameters to paginate through the list.
+    /// Lists transactions that contributed to the account balance, with the most recent transactions first. Use
+    /// `created`, `currency`, `payout`, `source`, and `type` to filter results, and use cursor parameters to paginate
+    /// through the list.
     ///
-    /// Returns a list of transactions that have contributed to the Stripe account balance (for example, charges, transfers, and so on). The transactions return in sorted order, with the most recent transactions appearing first. The previous name of this endpoint was “Balance history,” and it used the path /v1/balance/history .
-    public func getBalance(options: V1BalanceHistoryMethods.GetBalanceHistoryOptions) async throws -> GetBalanceHistoryResponse {
-        return try await V1BalanceHistoryMethods.getBalanceHistory(config: config, options: options)
+    /// Returns a list of transactions that have contributed to the Stripe account balance (for example, charges,
+    /// transfers, and so on). The transactions return in sorted order, with the most recent transactions appearing
+    /// first. The previous name of this endpoint was “Balance history,” and it used the path /v1/balance/history .
+    public func getBalance(options: V1BalanceHistoryMethods
+        .GetBalanceHistoryOptions) async throws -> GetBalanceHistoryResponse {
+        try await V1BalanceHistoryMethods.getBalanceHistory(config: config, options: options)
     }
 
-/// Retrieves a single balance transaction by its unique identifier. Use `id` to identify the transaction and `expand` to request additional fields in the response when needed.
+    /// Retrieves a single balance transaction by its unique identifier. Use `id` to identify the transaction and
+    /// `expand` to request additional fields in the response when needed.
     ///
-    /// Retrieves the balance transaction with the given ID. Note that this endpoint previously used the path /v1/balance/history/:id .
+    /// Retrieves the balance transaction with the given ID. Note that this endpoint previously used the path
+    /// /v1/balance/history/:id .
     public func getBalanceId(id: String, expand: [String]?) async throws -> BalanceTransaction {
-        return try await V1BalanceHistoryMethods.getBalanceHistoryId(config: config, id: id, expand: expand)
+        try await V1BalanceHistoryMethods.getBalanceHistoryId(config: config, id: id, expand: expand)
     }
 }
 
@@ -125,11 +205,13 @@ public class V1BalanceNamespace {
         history = V1BalanceHistoryNamespace(config: config)
     }
 
-/// Retrieves the current balance for the account associated with the request authentication. Use `expand` when you need selected response fields expanded.
+    /// Retrieves the current balance for the account associated with the request authentication. Use `expand` when you
+    /// need selected response fields expanded.
     ///
-    /// Retrieves the current account balance, based on the authentication that was used to make the request. For a sample request, see Accounting for negative balances.
+    /// Retrieves the current account balance, based on the authentication that was used to make the request. For a
+    /// sample request, see Accounting for negative balances.
     public func get(expand: [String]?) async throws -> Balance {
-        return try await V1BalanceMethods.getBalance(config: config, expand: expand)
+        try await V1BalanceMethods.getBalance(config: config, expand: expand)
     }
 }
 
@@ -139,16 +221,20 @@ public class V1BalanceSettingsNamespace {
         self.config = config
     }
 
-/// Retrieves balance settings for a connected account. Use `expand` when you need additional response fields included in the returned settings.
+    /// Retrieves balance settings for a connected account. Use `expand` when you need additional response fields
+    /// included in the returned settings.
     ///
     /// Retrieves balance settings for a given connected account. Related guide: Making API calls for connected accounts
     public func get(expand: [String]?) async throws -> BalanceSettings {
-        return try await V1BalanceSettingsMethods.getBalanceSettings(config: config, expand: expand)
+        try await V1BalanceSettingsMethods.getBalanceSettings(config: config, expand: expand)
     }
 
-/// Updates balance settings for a given connected account. Related guide: Making API calls for connected accounts
-    public func post(expand: [String]?, payments: PostBalanceSettingsRequestBodyPayments?) async throws -> BalanceSettings {
-        return try await V1BalanceSettingsMethods.postBalanceSettings(config: config, expand: expand, payments: payments)
+    /// Updates balance settings for a given connected account. Related guide: Making API calls for connected accounts
+    public func post(
+        expand: [String]?,
+        payments: PostBalanceSettingsRequestBodyPayments?
+    ) async throws -> BalanceSettings {
+        try await V1BalanceSettingsMethods.postBalanceSettings(config: config, expand: expand, payments: payments)
     }
 }
 
@@ -158,18 +244,25 @@ public class V1BalanceTransactionsNamespace {
         self.config = config
     }
 
-/// Lists balance transactions that contribute to the account balance, with the newest transactions returned first. Use `created`, `currency`, `payout`, `source`, and `type` to filter results, and use cursor parameters to paginate the list.
+    /// Lists balance transactions that contribute to the account balance, with the newest transactions returned first.
+    /// Use `created`, `currency`, `payout`, `source`, and `type` to filter results, and use cursor parameters to
+    /// paginate the list.
     ///
-    /// Returns a list of transactions that have contributed to the Stripe account balance (for example, charges, transfers, and so on). The transactions return in sorted order, with the most recent transactions appearing first. The previous name of this endpoint was “Balance history,” and it used the path /v1/balance/history .
-    public func get(options: V1BalanceTransactionsMethods.GetBalanceTransactionsOptions) async throws -> GetBalanceTransactionsResponse {
-        return try await V1BalanceTransactionsMethods.getBalanceTransactions(config: config, options: options)
+    /// Returns a list of transactions that have contributed to the Stripe account balance (for example, charges,
+    /// transfers, and so on). The transactions return in sorted order, with the most recent transactions appearing
+    /// first. The previous name of this endpoint was “Balance history,” and it used the path /v1/balance/history .
+    public func get(options: V1BalanceTransactionsMethods
+        .GetBalanceTransactionsOptions) async throws -> GetBalanceTransactionsResponse {
+        try await V1BalanceTransactionsMethods.getBalanceTransactions(config: config, options: options)
     }
 
-/// Retrieves a single balance transaction by its unique identifier. Use `id` to select the transaction and `expand` to include additional fields in the response.
+    /// Retrieves a single balance transaction by its unique identifier. Use `id` to select the transaction and `expand`
+    /// to include additional fields in the response.
     ///
-    /// Retrieves the balance transaction with the given ID. Note that this endpoint previously used the path /v1/balance/history/:id .
+    /// Retrieves the balance transaction with the given ID. Note that this endpoint previously used the path
+    /// /v1/balance/history/:id .
     public func getId(id: String, expand: [String]?) async throws -> BalanceTransaction {
-        return try await V1BalanceTransactionsMethods.getBalanceTransactionsId(config: config, id: id, expand: expand)
+        try await V1BalanceTransactionsMethods.getBalanceTransactionsId(config: config, id: id, expand: expand)
     }
 }
 
@@ -179,11 +272,12 @@ public class V1BillingAlertsActivateNamespace {
         self.config = config
     }
 
-/// Triggers reactivation of a billing alert so it can trigger again. Use `id` to identify the alert and `expand` to request additional fields in the response.
+    /// Triggers reactivation of a billing alert so it can trigger again. Use `id` to identify the alert and `expand` to
+    /// request additional fields in the response.
     ///
     /// Reactivates this alert, allowing it to trigger again.
     public func postBillingAlertsId(id: String, expand: [String]?) async throws -> BillingAlert {
-        return try await V1BillingAlertsActivateMethods.postBillingAlertsIdActivate(config: config, id: id, expand: expand)
+        try await V1BillingAlertsActivateMethods.postBillingAlertsIdActivate(config: config, id: id, expand: expand)
     }
 }
 
@@ -193,10 +287,11 @@ public class V1BillingAlertsArchiveNamespace {
         self.config = config
     }
 
-/// Triggers archival of a billing alert and removes it from list views and APIs. Archiving is non-reversible, so use `id` to select the alert and confirm that it should no longer be available before submitting the request.
+    /// Triggers archival of a billing alert and removes it from list views and APIs. Archiving is non-reversible, so
+    /// use `id` to select the alert and confirm that it should no longer be available before submitting the request.
     ///
     /// Archives this alert, removing it from the list view and APIs. This is non-reversible.
     public func postBillingAlertsId(id: String, expand: [String]?) async throws -> BillingAlert {
-        return try await V1BillingAlertsArchiveMethods.postBillingAlertsIdArchive(config: config, id: id, expand: expand)
+        try await V1BillingAlertsArchiveMethods.postBillingAlertsIdArchive(config: config, id: id, expand: expand)
     }
 }

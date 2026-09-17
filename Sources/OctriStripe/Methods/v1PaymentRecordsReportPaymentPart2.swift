@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1PaymentRecordsReportPaymentMethods {
-    public struct PostPaymentRecordsReportPaymentOptions: Codable {
+public extension V1PaymentRecordsReportPaymentMethods {
+    struct PostPaymentRecordsReportPaymentOptions: Codable {
         public var amountRequested: PostPaymentRecordsReportPaymentRequestBodyAmountRequested
         public var initiatedAt: Int
         public var paymentMethodDetails: PostPaymentRecordsReportPaymentRequestBodyPaymentMethodDetails
@@ -22,14 +22,19 @@ extension V1PaymentRecordsReportPaymentMethods {
         public var processorDetails: PostPaymentRecordsReportPaymentRequestBodyProcessorDetails?
         public var shippingDetails: PostPaymentRecordsReportPaymentRequestBodyShippingDetails?
 
-        public init(amountRequested: PostPaymentRecordsReportPaymentRequestBodyAmountRequested, initiatedAt: Int, paymentMethodDetails: PostPaymentRecordsReportPaymentRequestBodyPaymentMethodDetails) {
+        public init(
+            amountRequested: PostPaymentRecordsReportPaymentRequestBodyAmountRequested,
+            initiatedAt: Int,
+            paymentMethodDetails: PostPaymentRecordsReportPaymentRequestBodyPaymentMethodDetails
+        ) {
             self.amountRequested = amountRequested
             self.initiatedAt = initiatedAt
             self.paymentMethodDetails = paymentMethodDetails
         }
     }
 
-    /// Report a new Payment Record. You may report a Payment Record as it is initialized and later report updates through the other report_* methods, or report Payment Records in a terminal state directly, through this method.
+    /// Report a new Payment Record. You may report a Payment Record as it is initialized and later report updates
+    /// through the other report_* methods, or report Payment Records in a terminal state directly, through this method.
     ///
     /// - Parameters:
     /// - amountRequested: The amount you initially requested for this payment.
@@ -53,13 +58,24 @@ extension V1PaymentRecordsReportPaymentMethods {
     /// - outcome: The outcome of the reported payment.
     /// - processorDetails: Processor information for this payment.
     /// - shippingDetails: Shipping information for this payment.
-    public static func postPaymentRecordsReportPayment(config: ClientConfig, options: PostPaymentRecordsReportPaymentOptions) async throws -> PaymentRecord {
+    static func postPaymentRecordsReportPayment(
+        config: ClientConfig,
+        options: PostPaymentRecordsReportPaymentOptions
+    ) async throws -> PaymentRecord {
         if let description = options.description {
             try validateLength("description", description, max: 5000)
         }
 
         let requestBody = PostPaymentRecordsReportPaymentRequestBody(options: options)
 
-        return try (await sdkRequest("POST", "/v1/payment_records/report_payment", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostPaymentRecordsReportPayment")).data
+        return try await (sdkRequest(
+            "POST",
+            "/v1/payment_records/report_payment",
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostPaymentRecordsReportPayment"
+        )).data
     }
 }

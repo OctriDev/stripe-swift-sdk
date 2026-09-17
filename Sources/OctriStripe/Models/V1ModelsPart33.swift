@@ -3,28 +3,38 @@
 
 import Foundation
 
-// V1 domain models
+/// V1 domain models
 public indirect enum PayoutReversedBy {
     case stringValue(String)
     case payout(Payout)
 }
 
 extension PayoutReversedBy: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PayoutReversedBy")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PayoutReversedBy"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(Payout.self) { return .payout(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(Payout.self) {
+            return .payout(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -34,7 +44,6 @@ extension PayoutReversedBy: Codable {
         case let .payout(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum PayoutTraceId {
@@ -42,20 +51,25 @@ public enum PayoutTraceId {
 }
 
 extension PayoutTraceId: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
         throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PayoutTraceId")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(PayoutsTraceId.self) { return .payoutsTraceId(value) }
+        if let value = try? container.decode(PayoutsTraceId.self) {
+            return .payoutsTraceId(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -64,7 +78,6 @@ extension PayoutTraceId: Codable {
         case let .payoutsTraceId(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Typed representation of the `PayoutsTraceId` API schema.
@@ -82,28 +95,34 @@ public struct PayoutsTraceId: Codable {
         case value
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension PayoutsTraceId {
-    public init(from decoder: Decoder) throws {
+public extension PayoutsTraceId {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.status) else {
-            throw SdkValidationError(field: "status", code: "required", message: "Validation failed for 'status': value is required")
+            throw SdkValidationError(
+                field: "status",
+                code: "required",
+                message: "Validation failed for 'status': value is required"
+            )
         }
-        self.status = try container.sdkDecodeRequired(.status)
-        self.value = try container.sdkDecodeIfPresent(.value)
-            try validateLength("status", self.status, min: nil, max: 5000)
-        if let value = self.value {
+        status = try container.sdkDecodeRequired(.status)
+        value = try container.sdkDecodeIfPresent(.value)
+        try validateLength("status", status, min: nil, max: 5000)
+        if let value {
             try validateLength("value", value, min: nil, max: 5000)
         }
     }
 }
 
-extension PayoutsTraceId {
-    public init(status: String, value: String? = nil) throws {
+public extension PayoutsTraceId {
+    init(status: String, value: String? = nil) throws {
         (self.status, self.value) = (status, value)
-            try validateLength("status", self.status, min: nil, max: 5000)
+        try validateLength("status", self.status, min: nil, max: 5000)
         if let value = self.value {
             try validateLength("value", value, min: nil, max: 5000)
         }
@@ -122,22 +141,31 @@ public struct PaypalSellerProtection: Codable {
         case disputeCategories = "dispute_categories"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension PaypalSellerProtection {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.status) else {
-            throw SdkValidationError(field: "status", code: "required", message: "Validation failed for 'status': value is required")
-        }
-        self.status = try container.sdkDecodeRequired(.status)
-        self.disputeCategories = try container.sdkDecodeIfPresent(.disputeCategories)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension PaypalSellerProtection {
-    public init(status: PaypalSellerProtectionStatus, disputeCategories: [PaypalSellerProtectionDisputeCategoriesItem]? = nil) {
+public extension PaypalSellerProtection {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.status) else {
+            throw SdkValidationError(
+                field: "status",
+                code: "required",
+                message: "Validation failed for 'status': value is required"
+            )
+        }
+        status = try container.sdkDecodeRequired(.status)
+        disputeCategories = try container.sdkDecodeIfPresent(.disputeCategories)
+    }
+}
+
+public extension PaypalSellerProtection {
+    init(
+        status: PaypalSellerProtectionStatus,
+        disputeCategories: [PaypalSellerProtectionDisputeCategoriesItem]? = nil
+    ) {
         (self.status, self.disputeCategories) = (status, disputeCategories)
     }
 }
@@ -157,29 +185,35 @@ public struct PlatformEarningFeeSource: Codable {
         case payout
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension PlatformEarningFeeSource {
-    public init(from decoder: Decoder) throws {
+public extension PlatformEarningFeeSource {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
         }
-        self.type = try container.sdkDecodeRequired(.type)
-        self.charge = try container.sdkDecodeIfPresent(.charge)
-        self.payout = try container.sdkDecodeIfPresent(.payout)
-        if let value = self.charge {
+        type = try container.sdkDecodeRequired(.type)
+        charge = try container.sdkDecodeIfPresent(.charge)
+        payout = try container.sdkDecodeIfPresent(.payout)
+        if let value = charge {
             try validateLength("charge", value, min: nil, max: 5000)
         }
-        if let value = self.payout {
+        if let value = payout {
             try validateLength("payout", value, min: nil, max: 5000)
         }
     }
 }
 
-extension PlatformEarningFeeSource {
-    public init(type: PlatformEarningFeeSourceType, charge: String? = nil, payout: String? = nil) throws {
+public extension PlatformEarningFeeSource {
+    init(type: PlatformEarningFeeSourceType, charge: String? = nil, payout: String? = nil) throws {
         (self.type, self.charge) = (type, charge)
         self.payout = payout
         if let value = self.charge {
@@ -281,45 +315,69 @@ public struct Price: Codable {
         case unitAmountDecimal = "unit_amount_decimal"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension Price {
-    public init(from decoder: Decoder) throws {
+public extension Price {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.active = try container.sdkDecodeRequired(.active)
-        self.billingScheme = try container.sdkDecodeRequired(.billingScheme)
-        self.created = try container.sdkDecodeRequired(.created)
-        self.currency = try container.sdkDecodeRequired(.currency)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.livemode = try container.sdkDecodeRequired(.livemode)
-        self.metadata = try container.sdkDecodeRequired(.metadata)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.product = try container.sdkDecodeRequired(.product)
-        self.type = try container.sdkDecodeRequired(.type)
-        self.currencyOptions = try container.sdkDecodeIfPresent(.currencyOptions)
-        self.customUnitAmount = try container.sdkDecodeIfPresent(.customUnitAmount)
-        self.lookupKey = try container.sdkDecodeIfPresent(.lookupKey)
-        self.nickname = try container.sdkDecodeIfPresent(.nickname)
-        self.recurring = try container.sdkDecodeIfPresent(.recurring)
-        self.taxBehavior = try container.sdkDecodeIfPresent(.taxBehavior)
-        self.tiers = try container.sdkDecodeIfPresent(.tiers)
-        self.tiersMode = try container.sdkDecodeIfPresent(.tiersMode)
-        self.transformQuantity = try container.sdkDecodeIfPresent(.transformQuantity)
-        self.unitAmount = try container.sdkDecodeIfPresent(.unitAmount)
-        self.unitAmountDecimal = try container.sdkDecodeIfPresent(.unitAmountDecimal)
-            try validateLength("id", self.id, min: nil, max: 5000)
-        if let value = self.lookupKey {
+        active = try container.sdkDecodeRequired(.active)
+        billingScheme = try container.sdkDecodeRequired(.billingScheme)
+        created = try container.sdkDecodeRequired(.created)
+        currency = try container.sdkDecodeRequired(.currency)
+        id = try container.sdkDecodeRequired(.id)
+        livemode = try container.sdkDecodeRequired(.livemode)
+        metadata = try container.sdkDecodeRequired(.metadata)
+        object = try container.sdkDecodeRequired(.object)
+        product = try container.sdkDecodeRequired(.product)
+        type = try container.sdkDecodeRequired(.type)
+        currencyOptions = try container.sdkDecodeIfPresent(.currencyOptions)
+        customUnitAmount = try container.sdkDecodeIfPresent(.customUnitAmount)
+        lookupKey = try container.sdkDecodeIfPresent(.lookupKey)
+        nickname = try container.sdkDecodeIfPresent(.nickname)
+        recurring = try container.sdkDecodeIfPresent(.recurring)
+        taxBehavior = try container.sdkDecodeIfPresent(.taxBehavior)
+        tiers = try container.sdkDecodeIfPresent(.tiers)
+        tiersMode = try container.sdkDecodeIfPresent(.tiersMode)
+        transformQuantity = try container.sdkDecodeIfPresent(.transformQuantity)
+        unitAmount = try container.sdkDecodeIfPresent(.unitAmount)
+        unitAmountDecimal = try container.sdkDecodeIfPresent(.unitAmountDecimal)
+        try validateLength("id", id, min: nil, max: 5000)
+        if let value = lookupKey {
             try validateLength("lookup_key", value, min: nil, max: 5000)
         }
-        if let value = self.nickname {
+        if let value = nickname {
             try validateLength("nickname", value, min: nil, max: 5000)
         }
     }
 }
 
-extension Price {
-    public init(active: Bool, billingScheme: PriceBillingScheme, created: Int, currency: String, id: String, livemode: Bool, metadata: [String: String], object: PriceObject, product: PriceProduct, type: PriceType, currencyOptions: [String: CurrencyOption]? = nil, customUnitAmount: PriceCustomUnitAmount? = nil, lookupKey: String? = nil, nickname: String? = nil, recurring: PriceRecurring? = nil, taxBehavior: PriceTaxBehavior? = nil, tiers: [PriceTier]? = nil, tiersMode: PriceTiersMode? = nil, transformQuantity: PriceTransformQuantity? = nil, unitAmount: Int? = nil, unitAmountDecimal: String? = nil) throws {
+public extension Price {
+    init(
+        active: Bool,
+        billingScheme: PriceBillingScheme,
+        created: Int,
+        currency: String,
+        id: String,
+        livemode: Bool,
+        metadata: [String: String],
+        object: PriceObject,
+        product: PriceProduct,
+        type: PriceType,
+        currencyOptions: [String: CurrencyOption]? = nil,
+        customUnitAmount: PriceCustomUnitAmount? = nil,
+        lookupKey: String? = nil,
+        nickname: String? = nil,
+        recurring: PriceRecurring? = nil,
+        taxBehavior: PriceTaxBehavior? = nil,
+        tiers: [PriceTier]? = nil,
+        tiersMode: PriceTiersMode? = nil,
+        transformQuantity: PriceTransformQuantity? = nil,
+        unitAmount: Int? = nil,
+        unitAmountDecimal: String? = nil
+    ) throws {
         (self.active, self.billingScheme) = (active, billingScheme)
         (self.created, self.currency) = (created, currency)
         (self.id, self.livemode) = (id, livemode)
@@ -331,7 +389,7 @@ extension Price {
         (self.tiers, self.tiersMode) = (tiers, tiersMode)
         (self.transformQuantity, self.unitAmount) = (transformQuantity, unitAmount)
         self.unitAmountDecimal = unitAmountDecimal
-            try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
         if let value = self.lookupKey {
             try validateLength("lookup_key", value, min: nil, max: 5000)
         }
@@ -346,20 +404,28 @@ public enum PriceCustomUnitAmount {
 }
 
 extension PriceCustomUnitAmount: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PriceCustomUnitAmount")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PriceCustomUnitAmount"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(CustomUnitAmount.self) { return .customUnitAmount(value) }
+        if let value = try? container.decode(CustomUnitAmount.self) {
+            return .customUnitAmount(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -368,7 +434,6 @@ extension PriceCustomUnitAmount: Codable {
         case let .customUnitAmount(value): try container.encode(value); return true
         }
     }
-
 }
 
 public indirect enum PriceProduct {
@@ -378,22 +443,31 @@ public indirect enum PriceProduct {
 }
 
 extension PriceProduct: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
         throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PriceProduct")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(Product.self) { return .product(value) }
-        if let value = try? container.decode(DeletedProduct.self) { return .deletedProduct(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(Product.self) {
+            return .product(value)
+        }
+        if let value = try? container.decode(DeletedProduct.self) {
+            return .deletedProduct(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -404,7 +478,6 @@ extension PriceProduct: Codable {
         case let .deletedProduct(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum PriceRecurring {
@@ -412,20 +485,25 @@ public enum PriceRecurring {
 }
 
 extension PriceRecurring: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
         throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PriceRecurring")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(Recurring.self) { return .recurring(value) }
+        if let value = try? container.decode(Recurring.self) {
+            return .recurring(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -434,7 +512,6 @@ extension PriceRecurring: Codable {
         case let .recurring(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum PriceTransformQuantity {
@@ -442,20 +519,28 @@ public enum PriceTransformQuantity {
 }
 
 extension PriceTransformQuantity: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PriceTransformQuantity")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PriceTransformQuantity"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(TransformQuantity.self) { return .transformQuantity(value) }
+        if let value = try? container.decode(TransformQuantity.self) {
+            return .transformQuantity(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -464,7 +549,6 @@ extension PriceTransformQuantity: Codable {
         case let .transformQuantity(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Products describe the specific goods or services you offer to your customers. For example, you might offer a
@@ -537,42 +621,44 @@ public struct Product: Codable {
         case url
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension Product {
-    public init(from decoder: Decoder) throws {
+public extension Product {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.active = try container.sdkDecodeRequired(.active)
-        self.created = try container.sdkDecodeRequired(.created)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.images = try container.sdkDecodeRequired(.images)
-        self.livemode = try container.sdkDecodeRequired(.livemode)
-        self.marketingFeatures = try container.sdkDecodeRequired(.marketingFeatures)
-        self.metadata = try container.sdkDecodeRequired(.metadata)
-        self.name = try container.sdkDecodeRequired(.name)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.updated = try container.sdkDecodeRequired(.updated)
-        self.defaultPrice = try container.sdkDecodeIfPresent(.defaultPrice)
-        self.description = try container.sdkDecodeIfPresent(.description)
-        self.packageDimensions = try container.sdkDecodeIfPresent(.packageDimensions)
-        self.shippable = try container.sdkDecodeIfPresent(.shippable)
-        self.statementDescriptor = try container.sdkDecodeIfPresent(.statementDescriptor)
-        self.taxCode = try container.sdkDecodeIfPresent(.taxCode)
-        self.unitLabel = try container.sdkDecodeIfPresent(.unitLabel)
-        self.url = try container.sdkDecodeIfPresent(.url)
-            try validateLength("id", self.id, min: nil, max: 5000)
-            try validateLength("name", self.name, min: nil, max: 5000)
-        if let value = self.description {
+        active = try container.sdkDecodeRequired(.active)
+        created = try container.sdkDecodeRequired(.created)
+        id = try container.sdkDecodeRequired(.id)
+        images = try container.sdkDecodeRequired(.images)
+        livemode = try container.sdkDecodeRequired(.livemode)
+        marketingFeatures = try container.sdkDecodeRequired(.marketingFeatures)
+        metadata = try container.sdkDecodeRequired(.metadata)
+        name = try container.sdkDecodeRequired(.name)
+        object = try container.sdkDecodeRequired(.object)
+        updated = try container.sdkDecodeRequired(.updated)
+        defaultPrice = try container.sdkDecodeIfPresent(.defaultPrice)
+        description = try container.sdkDecodeIfPresent(.description)
+        packageDimensions = try container.sdkDecodeIfPresent(.packageDimensions)
+        shippable = try container.sdkDecodeIfPresent(.shippable)
+        statementDescriptor = try container.sdkDecodeIfPresent(.statementDescriptor)
+        taxCode = try container.sdkDecodeIfPresent(.taxCode)
+        unitLabel = try container.sdkDecodeIfPresent(.unitLabel)
+        url = try container.sdkDecodeIfPresent(.url)
+        try validateLength("id", id, min: nil, max: 5000)
+        try validateLength("name", name, min: nil, max: 5000)
+        if let value = description {
             try validateLength("description", value, min: nil, max: 5000)
         }
-        if let value = self.statementDescriptor {
+        if let value = statementDescriptor {
             try validateLength("statement_descriptor", value, min: nil, max: 5000)
         }
-        if let value = self.unitLabel {
+        if let value = unitLabel {
             try validateLength("unit_label", value, min: nil, max: 5000)
         }
-        if let value = self.url {
+        if let value = url {
             try validateLength("url", value, min: nil, max: 2048)
         }
     }

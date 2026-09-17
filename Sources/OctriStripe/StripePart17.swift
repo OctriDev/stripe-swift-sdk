@@ -9,11 +9,21 @@ public class V1LinkedAccountsDisconnectNamespace {
         self.config = config
     }
 
-/// Disconnects a Financial Connections Account from the authenticated user's access. Use `account` to identify the account and optionally request expanded fields in the response; disconnecting removes access to associated balances and transactions.
+    /// Disconnects a Financial Connections Account from the authenticated user's access. Use `account` to identify the
+    /// account and optionally request expanded fields in the response; disconnecting removes access to associated
+    /// balances and transactions.
     ///
-    /// Disables your access to a Financial Connections Account . You will no longer be able to access data associated with the account (e.g. balances, transactions).
-    public func postLinkedAccountsAccount(account: String, expand: [String]?) async throws -> FinancialConnectionsAccount {
-        return try await V1LinkedAccountsDisconnectMethods.postLinkedAccountsAccountDisconnect(config: config, account: account, expand: expand)
+    /// Disables your access to a Financial Connections Account . You will no longer be able to access data associated
+    /// with the account (e.g. balances, transactions).
+    public func postLinkedAccountsAccount(
+        account: String,
+        expand: [String]?
+    ) async throws -> FinancialConnectionsAccount {
+        try await V1LinkedAccountsDisconnectMethods.postLinkedAccountsAccountDisconnect(
+            config: config,
+            account: account,
+            expand: expand
+        )
     }
 }
 
@@ -23,11 +33,27 @@ public class V1LinkedAccountsOwnersNamespace {
         self.config = config
     }
 
-/// Lists the owners associated with a Financial Connections Account's ownership record. Supply `account` and the required `ownership` identifier, then use `limit` and cursor parameters to paginate the owner list.
+    /// Lists the owners associated with a Financial Connections Account's ownership record. Supply `account` and the
+    /// required `ownership` identifier, then use `limit` and cursor parameters to paginate the owner list.
     ///
     /// Lists all owners for a given Account
-    public func getLinkedAccountsAccount(account: String, ownership: String, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetLinkedAccountsAccountOwnersResponse {
-        return try await V1LinkedAccountsOwnersMethods.getLinkedAccountsAccountOwners(config: config, account: account, ownership: ownership, endingBefore: endingBefore, expand: expand, limit: limit, startingAfter: startingAfter)
+    public func getLinkedAccountsAccount(
+        account: String,
+        ownership: String,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        startingAfter: String?
+    ) async throws -> GetLinkedAccountsAccountOwnersResponse {
+        try await V1LinkedAccountsOwnersMethods.getLinkedAccountsAccountOwners(
+            config: config,
+            account: account,
+            ownership: ownership,
+            endingBefore: endingBefore,
+            expand: expand,
+            limit: limit,
+            startingAfter: startingAfter
+        )
     }
 }
 
@@ -37,11 +63,22 @@ public class V1LinkedAccountsRefreshNamespace {
         self.config = config
     }
 
-/// Refreshes selected data for a Financial Connections Account. Provide `features` to specify whether to refresh balances, ownership, or transactions, and use `expand` when the refreshed account response needs additional fields.
+    /// Refreshes selected data for a Financial Connections Account. Provide `features` to specify whether to refresh
+    /// balances, ownership, or transactions, and use `expand` when the refreshed account response needs additional
+    /// fields.
     ///
     /// Refreshes the data associated with a Financial Connections Account .
-    public func postLinkedAccountsAccount(account: String, features: [PostLinkedAccountsAccountRefreshRequestBodyFeaturesItem], expand: [String]?) async throws -> FinancialConnectionsAccount {
-        return try await V1LinkedAccountsRefreshMethods.postLinkedAccountsAccountRefresh(config: config, account: account, features: features, expand: expand)
+    public func postLinkedAccountsAccount(
+        account: String,
+        features: [PostLinkedAccountsAccountRefreshRequestBodyFeaturesItem],
+        expand: [String]?
+    ) async throws -> FinancialConnectionsAccount {
+        try await V1LinkedAccountsRefreshMethods.postLinkedAccountsAccountRefresh(
+            config: config,
+            account: account,
+            features: features,
+            expand: expand
+        )
     }
 }
 
@@ -57,18 +94,37 @@ public class V1LinkedAccountsNamespace {
         refresh = V1LinkedAccountsRefreshNamespace(config: config)
     }
 
-/// Lists Financial Connections Account objects available to the authenticated user. Filter by account holder or session, and use cursor parameters to navigate the results; `limit` controls the number of accounts returned per page.
+    /// Lists Financial Connections Account objects available to the authenticated user. Filter by account holder or
+    /// session, and use cursor parameters to navigate the results; `limit` controls the number of accounts returned per
+    /// page.
     ///
     /// Returns a list of Financial Connections Account objects.
-    public func get(accountHolder: GetLinkedAccountsParameter?, endingBefore: String?, expand: [String]?, limit: Int?, session: String?, startingAfter: String?) async throws -> GetLinkedAccountsResponse {
-        return try await V1LinkedAccountsMethods.getLinkedAccounts(config: config, accountHolder: accountHolder, endingBefore: endingBefore, expand: expand, limit: limit, session: session, startingAfter: startingAfter)
+    public func get(
+        accountHolder: GetLinkedAccountsParameter?,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        session: String?,
+        startingAfter: String?
+    ) async throws -> GetLinkedAccountsResponse {
+        try await V1LinkedAccountsMethods.getLinkedAccounts(
+            config: config,
+            accountHolder: accountHolder,
+            endingBefore: endingBefore,
+            expand: expand,
+            limit: limit,
+            session: session,
+            startingAfter: startingAfter
+        )
     }
 
-/// Retrieves a Financial Connections Account by its identifier. Use `account` to select the external account whose institution, category, balances, ownership, and granted permissions you need, and use `expand` for additional response fields.
+    /// Retrieves a Financial Connections Account by its identifier. Use `account` to select the external account whose
+    /// institution, category, balances, ownership, and granted permissions you need, and use `expand` for additional
+    /// response fields.
     ///
     /// Retrieves the details of an Financial Connections Account .
     public func getAccount(account: String, expand: [String]?) async throws -> FinancialConnectionsAccount {
-        return try await V1LinkedAccountsMethods.getLinkedAccountsAccount(config: config, account: account, expand: expand)
+        try await V1LinkedAccountsMethods.getLinkedAccountsAccount(config: config, account: account, expand: expand)
     }
 }
 
@@ -78,11 +134,12 @@ public class V1MandatesNamespace {
         self.config = config
     }
 
-/// Retrieves a Mandate by its identifier. Use `mandate` to select the payment permission record and `expand` to request expanded fields such as payment method details or customer acceptance information.
+    /// Retrieves a Mandate by its identifier. Use `mandate` to select the payment permission record and `expand` to
+    /// request expanded fields such as payment method details or customer acceptance information.
     ///
     /// Retrieves a Mandate object.
     public func getMandate(mandate: String, expand: [String]?) async throws -> Mandate {
-        return try await V1MandatesMethods.getMandatesMandate(config: config, mandate: mandate, expand: expand)
+        try await V1MandatesMethods.getMandatesMandate(config: config, mandate: mandate, expand: expand)
     }
 }
 
@@ -92,18 +149,31 @@ public class V1PaymentAttemptRecordsNamespace {
         self.config = config
     }
 
-/// Lists Payment Attempt Records attached to a specified Payment Record. Supply `payment_record` to scope the results, use `limit` to control page size, and use `starting_after` to retrieve subsequent pages.
+    /// Lists Payment Attempt Records attached to a specified Payment Record. Supply `payment_record` to scope the
+    /// results, use `limit` to control page size, and use `starting_after` to retrieve subsequent pages.
     ///
     /// List all the Payment Attempt Records attached to the specified Payment Record.
-    public func get(paymentRecord: String, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetPaymentAttemptRecordsResponse {
-        return try await V1PaymentAttemptRecordsMethods.getPaymentAttemptRecords(config: config, paymentRecord: paymentRecord, expand: expand, limit: limit, startingAfter: startingAfter)
+    public func get(
+        paymentRecord: String,
+        expand: [String]?,
+        limit: Int?,
+        startingAfter: String?
+    ) async throws -> GetPaymentAttemptRecordsResponse {
+        try await V1PaymentAttemptRecordsMethods.getPaymentAttemptRecords(
+            config: config,
+            paymentRecord: paymentRecord,
+            expand: expand,
+            limit: limit,
+            startingAfter: startingAfter
+        )
     }
 
-/// Retrieves a Payment Attempt Record by its identifier. Use `id` to select the individual payment attempt and `expand` to request additional fields in the returned record.
+    /// Retrieves a Payment Attempt Record by its identifier. Use `id` to select the individual payment attempt and
+    /// `expand` to request additional fields in the returned record.
     ///
     /// Retrieves a Payment Attempt Record with the given ID
     public func getId(id: String, expand: [String]?) async throws -> PaymentAttemptRecord {
-        return try await V1PaymentAttemptRecordsMethods.getPaymentAttemptRecordsId(config: config, id: id, expand: expand)
+        try await V1PaymentAttemptRecordsMethods.getPaymentAttemptRecordsId(config: config, id: id, expand: expand)
     }
 }
 
@@ -113,18 +183,50 @@ public class V1PaymentIntentsSearchNamespace {
         self.config = config
     }
 
-/// Searches previously created PaymentIntents using the PaymentIntent search query language. Supply `query` to define the search, and use `limit` and `page` to control pagination; search results may lag behind recent changes and are unavailable to merchants in India.
+    /// Searches previously created PaymentIntents using the PaymentIntent search query language. Supply `query` to
+    /// define the search, and use `limit` and `page` to control pagination; search results may lag behind recent
+    /// changes and are unavailable to merchants in India.
     ///
-    /// Search for PaymentIntents you’ve previously created using Stripe’s Search Query Language. Don’t use search in read-after-write flows where strict consistency is necessary. Under normal operating conditions, data is searchable in less than a minute. Occasionally, propagation of new or updated data can be up to an hour behind during outages. Search functionality is not available to merchants in India.
-    public func getPaymentIntents(query: String, expand: [String]?, limit: Int?, page: String?) async throws -> GetPaymentIntentsSearchResponse {
-        return try await V1PaymentIntentsSearchMethods.getPaymentIntentsSearch(config: config, query: query, expand: expand, limit: limit, page: page)
+    /// Search for PaymentIntents you’ve previously created using Stripe’s Search Query Language. Don’t use search in
+    /// read-after-write flows where strict consistency is necessary. Under normal operating conditions, data is
+    /// searchable in less than a minute. Occasionally, propagation of new or updated data can be up to an hour behind
+    /// during outages. Search functionality is not available to merchants in India.
+    public func getPaymentIntents(
+        query: String,
+        expand: [String]?,
+        limit: Int?,
+        page: String?
+    ) async throws -> GetPaymentIntentsSearchResponse {
+        try await V1PaymentIntentsSearchMethods.getPaymentIntentsSearch(
+            config: config,
+            query: query,
+            expand: expand,
+            limit: limit,
+            page: page
+        )
     }
 
-/// Searches previously created PaymentIntents using the PaymentIntent search query language. Supply `query` to define the search, and use `limit` and `page` to control pagination; search results may lag behind recent changes and are unavailable to merchants in India.
+    /// Searches previously created PaymentIntents using the PaymentIntent search query language. Supply `query` to
+    /// define the search, and use `limit` and `page` to control pagination; search results may lag behind recent
+    /// changes and are unavailable to merchants in India.
     ///
-    /// Search for PaymentIntents you’ve previously created using Stripe’s Search Query Language. Don’t use search in read-after-write flows where strict consistency is necessary. Under normal operating conditions, data is searchable in less than a minute. Occasionally, propagation of new or updated data can be up to an hour behind during outages. Search functionality is not available to merchants in India.
-    public func getPaymentIntentsPaginated(query: String, expand: [String]?, limit: Int?, page: String?) -> AsyncThrowingStream<PaymentIntent, Swift.Error> {
-        return V1PaymentIntentsSearchMethods.getPaymentIntentsSearchPaginated(config: config, query: query, expand: expand, limit: limit, page: page)
+    /// Search for PaymentIntents you’ve previously created using Stripe’s Search Query Language. Don’t use search in
+    /// read-after-write flows where strict consistency is necessary. Under normal operating conditions, data is
+    /// searchable in less than a minute. Occasionally, propagation of new or updated data can be up to an hour behind
+    /// during outages. Search functionality is not available to merchants in India.
+    public func getPaymentIntentsPaginated(
+        query: String,
+        expand: [String]?,
+        limit: Int?,
+        page: String?
+    ) -> AsyncThrowingStream<PaymentIntent, Swift.Error> {
+        V1PaymentIntentsSearchMethods.getPaymentIntentsSearchPaginated(
+            config: config,
+            query: query,
+            expand: expand,
+            limit: limit,
+            page: page
+        )
     }
 }
 
@@ -134,11 +236,25 @@ public class V1PaymentIntentsAmountDetailsLineItemsNamespace {
         self.config = config
     }
 
-/// Lists all line items associated with a PaymentIntent. Use `starting_after` or `ending_before` with `limit` to navigate through the list, and use `expand` when you need additional response fields.
+    /// Lists all line items associated with a PaymentIntent. Use `starting_after` or `ending_before` with `limit` to
+    /// navigate through the list, and use `expand` when you need additional response fields.
     ///
     /// Lists all LineItems of a given PaymentIntent.
-    public func getPaymentIntentsIntent(intent: String, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetPaymentIntentsIntentAmountDetailsLineItemsResponse {
-        return try await V1PaymentIntentsAmountDetailsLineItemsMethods.getPaymentIntentsIntentAmountDetailsLineItems(config: config, intent: intent, endingBefore: endingBefore, expand: expand, limit: limit, startingAfter: startingAfter)
+    public func getPaymentIntentsIntent(
+        intent: String,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        startingAfter: String?
+    ) async throws -> GetPaymentIntentsIntentAmountDetailsLineItemsResponse {
+        try await V1PaymentIntentsAmountDetailsLineItemsMethods.getPaymentIntentsIntentAmountDetailsLineItems(
+            config: config,
+            intent: intent,
+            endingBefore: endingBefore,
+            expand: expand,
+            limit: limit,
+            startingAfter: startingAfter
+        )
     }
 }
 
@@ -148,11 +264,24 @@ public class V1PaymentIntentsApplyCustomerBalanceNamespace {
         self.config = config
     }
 
-/// Applies customer cash balance funds to reconcile the remaining amount of a customer-balance PaymentIntent. Supply `amount` and `currency` when you need to control the amount applied; for an Invoice-created PaymentIntent, the full PaymentIntent amount is applied regardless of `amount`.
+    /// Applies customer cash balance funds to reconcile the remaining amount of a customer-balance PaymentIntent.
+    /// Supply `amount` and `currency` when you need to control the amount applied; for an Invoice-created
+    /// PaymentIntent, the full PaymentIntent amount is applied regardless of `amount`.
     ///
     /// Manually reconcile the remaining amount for a customer_balance PaymentIntent.
-    public func postPaymentIntentsIntent(intent: String, amount: Int?, currency: String?, expand: [String]?) async throws -> PaymentIntent {
-        return try await V1PaymentIntentsApplyCustomerBalanceMethods.postPaymentIntentsIntentApplyCustomerBalance(config: config, intent: intent, amount: amount, currency: currency, expand: expand)
+    public func postPaymentIntentsIntent(
+        intent: String,
+        amount: Int?,
+        currency: String?,
+        expand: [String]?
+    ) async throws -> PaymentIntent {
+        try await V1PaymentIntentsApplyCustomerBalanceMethods.postPaymentIntentsIntentApplyCustomerBalance(
+            config: config,
+            intent: intent,
+            amount: amount,
+            currency: currency,
+            expand: expand
+        )
     }
 }
 
@@ -162,11 +291,27 @@ public class V1PaymentIntentsCancelNamespace {
         self.config = config
     }
 
-/// Cancels a PaymentIntent that has not completed payment. You can cancel it when its status is `requires_payment_method`, `requires_capture`, `requires_confirmation`, `requires_action`, or, in rare cases, `processing`; canceling a requires-capture PaymentIntent automatically refunds its remaining capturable amount.
+    /// Cancels a PaymentIntent that has not completed payment. You can cancel it when its status is
+    /// `requires_payment_method`, `requires_capture`, `requires_confirmation`, `requires_action`, or, in rare cases,
+    /// `processing`; canceling a requires-capture PaymentIntent automatically refunds its remaining capturable amount.
     ///
-    /// You can cancel a PaymentIntent object when it’s in one of these statuses: requires_payment_method , requires_capture , requires_confirmation , requires_action or, in rare cases, processing . After it’s canceled, no additional charges are made by the PaymentIntent and any operations on the PaymentIntent fail with an error. For PaymentIntents with a status of requires_capture , the remaining amount_capturable is automatically refunded. You can directly cancel the PaymentIntent for a Checkout Session only when the PaymentIntent has a status of requires_capture . Otherwise, you must expire the Checkout Session.
-    public func postPaymentIntentsIntent(intent: String, cancellationReason: PostPaymentIntentsIntentCancelRequestBodyCancellationReason?, expand: [String]?) async throws -> PaymentIntent {
-        return try await V1PaymentIntentsCancelMethods.postPaymentIntentsIntentCancel(config: config, intent: intent, cancellationReason: cancellationReason, expand: expand)
+    /// You can cancel a PaymentIntent object when it’s in one of these statuses: requires_payment_method ,
+    /// requires_capture , requires_confirmation , requires_action or, in rare cases, processing . After it’s canceled,
+    /// no additional charges are made by the PaymentIntent and any operations on the PaymentIntent fail with an error.
+    /// For PaymentIntents with a status of requires_capture , the remaining amount_capturable is automatically
+    /// refunded. You can directly cancel the PaymentIntent for a Checkout Session only when the PaymentIntent has a
+    /// status of requires_capture . Otherwise, you must expire the Checkout Session.
+    public func postPaymentIntentsIntent(
+        intent: String,
+        cancellationReason: PostPaymentIntentsIntentCancelRequestBodyCancellationReason?,
+        expand: [String]?
+    ) async throws -> PaymentIntent {
+        try await V1PaymentIntentsCancelMethods.postPaymentIntentsIntentCancel(
+            config: config,
+            intent: intent,
+            cancellationReason: cancellationReason,
+            expand: expand
+        )
     }
 }
 
@@ -176,11 +321,16 @@ public class V1PaymentIntentsCaptureNamespace {
         self.config = config
     }
 
-/// Captures funds from an uncaptured PaymentIntent whose status is `requires_capture`. Use `amount_to_capture` to capture less than the available amount; uncaptured PaymentIntents are automatically canceled after a set period, seven days by default.
+    /// Captures funds from an uncaptured PaymentIntent whose status is `requires_capture`. Use `amount_to_capture` to
+    /// capture less than the available amount; uncaptured PaymentIntents are automatically canceled after a set period,
+    /// seven days by default.
     ///
-    /// Capture the funds of an existing uncaptured PaymentIntent when its status is requires_capture . Uncaptured PaymentIntents are cancelled a set number of days (7 by default) after their creation. Learn more about separate authorization and capture.
-    public func postPaymentIntentsIntent(options: V1PaymentIntentsCaptureMethods.PostPaymentIntentsIntentCaptureOptions) async throws -> PaymentIntent {
-        return try await V1PaymentIntentsCaptureMethods.postPaymentIntentsIntentCapture(config: config, options: options)
+    /// Capture the funds of an existing uncaptured PaymentIntent when its status is requires_capture . Uncaptured
+    /// PaymentIntents are cancelled a set number of days (7 by default) after their creation. Learn more about separate
+    /// authorization and capture.
+    public func postPaymentIntentsIntent(options: V1PaymentIntentsCaptureMethods
+        .PostPaymentIntentsIntentCaptureOptions) async throws -> PaymentIntent {
+        try await V1PaymentIntentsCaptureMethods.postPaymentIntentsIntentCapture(config: config, options: options)
     }
 }
 
@@ -190,11 +340,27 @@ public class V1PaymentIntentsConfirmNamespace {
         self.config = config
     }
 
-/// Confirms that the customer intends to pay with the current or a supplied payment method and initiates a payment attempt. The PaymentIntent may require customer action, return to requires-confirmation for another server-side attempt, succeed, require capture, or become canceled after the confirmation limit is reached.
+    /// Confirms that the customer intends to pay with the current or a supplied payment method and initiates a payment
+    /// attempt. The PaymentIntent may require customer action, return to requires-confirmation for another server-side
+    /// attempt, succeed, require capture, or become canceled after the confirmation limit is reached.
     ///
-    /// Confirm that your customer intends to pay with current or provided payment method. Upon confirmation, the PaymentIntent will attempt to initiate a payment. If the selected payment method requires additional authentication steps, the PaymentIntent will transition to the requires_action status and suggest additional actions via next_action . If payment fails, the PaymentIntent transitions to the requires_payment_method status or the canceled status if the confirmation limit is reached. If payment succeeds, the PaymentIntent will transition to the succeeded status (or requires_capture , if capture_method is set to manual ). If the confirmation_method is automatic , payment may be attempted using our client SDKs and the PaymentIntent’s client_secret. After next_action s are handled by the client, no additional confirmation is required to complete the payment. If the confirmation_method is manual , all payment attempts must be initiated using a secret key. If any actions are required for the payment, the PaymentIntent will return to the requires_confirmation state after those actions are completed. Your server needs to then explicitly re-confirm the PaymentIntent to initiate the next payment attempt. There is a variable upper limit on how many times a PaymentIntent can be confirmed. After this limit is reached, any further calls to this endpoint will transition the PaymentIntent to the canceled state.
-    public func postPaymentIntentsIntent(options: V1PaymentIntentsConfirmMethods.PostPaymentIntentsIntentConfirmOptions) async throws -> PaymentIntent {
-        return try await V1PaymentIntentsConfirmMethods.postPaymentIntentsIntentConfirm(config: config, options: options)
+    /// Confirm that your customer intends to pay with current or provided payment method. Upon confirmation, the
+    /// PaymentIntent will attempt to initiate a payment. If the selected payment method requires additional
+    /// authentication steps, the PaymentIntent will transition to the requires_action status and suggest additional
+    /// actions via next_action . If payment fails, the PaymentIntent transitions to the requires_payment_method status
+    /// or the canceled status if the confirmation limit is reached. If payment succeeds, the PaymentIntent will
+    /// transition to the succeeded status (or requires_capture , if capture_method is set to manual ). If the
+    /// confirmation_method is automatic , payment may be attempted using our client SDKs and the PaymentIntent’s
+    /// client_secret. After next_action s are handled by the client, no additional confirmation is required to complete
+    /// the payment. If the confirmation_method is manual , all payment attempts must be initiated using a secret key.
+    /// If any actions are required for the payment, the PaymentIntent will return to the requires_confirmation state
+    /// after those actions are completed. Your server needs to then explicitly re-confirm the PaymentIntent to initiate
+    /// the next payment attempt. There is a variable upper limit on how many times a PaymentIntent can be confirmed.
+    /// After this limit is reached, any further calls to this endpoint will transition the PaymentIntent to the
+    /// canceled state.
+    public func postPaymentIntentsIntent(options: V1PaymentIntentsConfirmMethods
+        .PostPaymentIntentsIntentConfirmOptions) async throws -> PaymentIntent {
+        try await V1PaymentIntentsConfirmMethods.postPaymentIntentsIntentConfirm(config: config, options: options)
     }
 }
 
@@ -204,10 +370,26 @@ public class V1PaymentIntentsIncrementAuthorizationNamespace {
         self.config = config
     }
 
-/// Increases the authorized amount on an eligible PaymentIntent through an incremental authorization. The PaymentIntent must have status `requires_capture` and support incremental authorization; provide a higher `amount` than the currently authorized amount, and do not exceed 10 authorization attempts for one PaymentIntent.
+    /// Increases the authorized amount on an eligible PaymentIntent through an incremental authorization. The
+    /// PaymentIntent must have status `requires_capture` and support incremental authorization; provide a higher
+    /// `amount` than the currently authorized amount, and do not exceed 10 authorization attempts for one
+    /// PaymentIntent.
     ///
-    /// Perform an incremental authorization on an eligible PaymentIntent. To be eligible, the PaymentIntent’s status must be requires_capture and incremental_authorization_supported must be true . Incremental authorizations attempt to increase the authorized amount on your customer’s card to the new, higher amount provided. Similar to the initial authorization, incremental authorizations can be declined. A single PaymentIntent can call this endpoint multiple times to further increase the authorized amount. If the incremental authorization succeeds, the PaymentIntent object returns with the updated amount. If the incremental authorization fails, a card_declined error returns, and no other fields on the PaymentIntent or Charge update. The PaymentIntent object remains capturable for the previously authorized amount. Each PaymentIntent can have a maximum of 10 incremental authorization attempts, including declines. After it’s captured, a PaymentIntent can no longer be incremented. Learn more about incremental authorizations with in-person payments and online payments.
-    public func postPaymentIntentsIntent(options: V1PaymentIntentsIncrementAuthorizationMethods.PostPaymentIntentsIntentIncrementAuthorizationOptions) async throws -> PaymentIntent {
-        return try await V1PaymentIntentsIncrementAuthorizationMethods.postPaymentIntentsIntentIncrementAuthorization(config: config, options: options)
+    /// Perform an incremental authorization on an eligible PaymentIntent. To be eligible, the PaymentIntent’s status
+    /// must be requires_capture and incremental_authorization_supported must be true . Incremental authorizations
+    /// attempt to increase the authorized amount on your customer’s card to the new, higher amount provided. Similar to
+    /// the initial authorization, incremental authorizations can be declined. A single PaymentIntent can call this
+    /// endpoint multiple times to further increase the authorized amount. If the incremental authorization succeeds,
+    /// the PaymentIntent object returns with the updated amount. If the incremental authorization fails, a
+    /// card_declined error returns, and no other fields on the PaymentIntent or Charge update. The PaymentIntent object
+    /// remains capturable for the previously authorized amount. Each PaymentIntent can have a maximum of 10 incremental
+    /// authorization attempts, including declines. After it’s captured, a PaymentIntent can no longer be incremented.
+    /// Learn more about incremental authorizations with in-person payments and online payments.
+    public func postPaymentIntentsIntent(options: V1PaymentIntentsIncrementAuthorizationMethods
+        .PostPaymentIntentsIntentIncrementAuthorizationOptions) async throws -> PaymentIntent {
+        try await V1PaymentIntentsIncrementAuthorizationMethods.postPaymentIntentsIntentIncrementAuthorization(
+            config: config,
+            options: options
+        )
     }
 }

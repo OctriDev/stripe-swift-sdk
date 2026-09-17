@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1SetupIntentsMethods {
-    public struct GetSetupIntentsOptions: Codable {
+public extension V1SetupIntentsMethods {
+    struct GetSetupIntentsOptions: Codable {
         public var attachToSelf: Bool?
         public var created: GetSetupIntentsParameter?
         public var customer: String?
@@ -21,7 +21,9 @@ extension V1SetupIntentsMethods {
         public init() {}
     }
 
-    /// Lists SetupIntents and supports filtering by customer, account, payment method, and creation time. Use `limit` with cursor parameters to paginate the results, and use `attach_to_self` only for supported in-context account money movement flows.
+    /// Lists SetupIntents and supports filtering by customer, account, payment method, and creation time. Use `limit`
+    /// with cursor parameters to paginate the results, and use `attach_to_self` only for supported in-context account
+    /// money movement flows.
     ///
     /// Returns a list of SetupIntents.
     ///
@@ -54,7 +56,10 @@ extension V1SetupIntentsMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    public static func getSetupIntents(config: ClientConfig, options: GetSetupIntentsOptions) async throws -> GetSetupIntentsResponse {
+    static func getSetupIntents(
+        config: ClientConfig,
+        options: GetSetupIntentsOptions
+    ) async throws -> GetSetupIntentsResponse {
         if let customer = options.customer {
             try validateLength("customer", customer, max: 5000)
         }
@@ -75,7 +80,7 @@ extension V1SetupIntentsMethods {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try (await sdkRequest("GET", "/v1/setup_intents", config: config, query: [
+        return try await (sdkRequest("GET", "/v1/setup_intents", config: config, query: [
             SdkQueryParameter("attach_to_self", value: options.attachToSelf),
             SdkQueryParameter("created", value: options.created),
             SdkQueryParameter("customer", value: options.customer),

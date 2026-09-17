@@ -6,8 +6,10 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1PaymentRecordsMethods {
-    /// Lists Payment Records for a given merchant. Use the creation-time filters and cursor parameters to restrict and paginate the results, and use `expand` when you need additional fields in each record. The response includes list metadata and indicates whether another page is available.
+public extension V1PaymentRecordsMethods {
+    /// Lists Payment Records for a given merchant. Use the creation-time filters and cursor parameters to restrict and
+    /// paginate the results, and use `expand` when you need additional fields in each record. The response includes
+    /// list metadata and indicates whether another page is available.
     ///
     /// List all the Payment Records for a given merchant.
     ///
@@ -29,16 +31,24 @@ extension V1PaymentRecordsMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    public static func getPaymentRecords(config: ClientConfig, createdAfter: Int?, createdBefore: Int?, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetPaymentRecordsResponse {
-        if let endingBefore = endingBefore {
+    static func getPaymentRecords(
+        config: ClientConfig,
+        createdAfter: Int?,
+        createdBefore: Int?,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        startingAfter: String?
+    ) async throws -> GetPaymentRecordsResponse {
+        if let endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let startingAfter = startingAfter {
+        if let startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try (await sdkRequest("GET", "/v1/payment_records", config: config, query: [
+        return try await (sdkRequest("GET", "/v1/payment_records", config: config, query: [
             SdkQueryParameter("created_after", value: createdAfter),
             SdkQueryParameter("created_before", value: createdBefore),
             SdkQueryParameter("ending_before", value: endingBefore),

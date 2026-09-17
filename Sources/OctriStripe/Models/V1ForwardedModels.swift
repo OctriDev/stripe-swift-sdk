@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1Forwarded domain models
+/// V1Forwarded domain models
 /// Metadata about the forwarded request.
 public struct ForwardedRequestContext: Codable {
     /// The time it took in milliseconds for the destination endpoint to respond.
@@ -16,28 +16,38 @@ public struct ForwardedRequestContext: Codable {
         case destinationIpAddress = "destination_ip_address"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension ForwardedRequestContext {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.destinationDuration) else {
-            throw SdkValidationError(field: "destination_duration", code: "required", message: "Validation failed for 'destination_duration': value is required")
-        }
-        guard container.contains(.destinationIpAddress) else {
-            throw SdkValidationError(field: "destination_ip_address", code: "required", message: "Validation failed for 'destination_ip_address': value is required")
-        }
-        self.destinationDuration = try container.sdkDecodeRequired(.destinationDuration)
-        self.destinationIpAddress = try container.sdkDecodeRequired(.destinationIpAddress)
-            try validateLength("destination_ip_address", self.destinationIpAddress, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension ForwardedRequestContext {
-    public init(destinationDuration: Int, destinationIpAddress: String) throws {
+public extension ForwardedRequestContext {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.destinationDuration) else {
+            throw SdkValidationError(
+                field: "destination_duration",
+                code: "required",
+                message: "Validation failed for 'destination_duration': value is required"
+            )
+        }
+        guard container.contains(.destinationIpAddress) else {
+            throw SdkValidationError(
+                field: "destination_ip_address",
+                code: "required",
+                message: "Validation failed for 'destination_ip_address': value is required"
+            )
+        }
+        destinationDuration = try container.sdkDecodeRequired(.destinationDuration)
+        destinationIpAddress = try container.sdkDecodeRequired(.destinationIpAddress)
+        try validateLength("destination_ip_address", destinationIpAddress, min: nil, max: 5000)
+    }
+}
+
+public extension ForwardedRequestContext {
+    init(destinationDuration: Int, destinationIpAddress: String) throws {
         (self.destinationDuration, self.destinationIpAddress) = (destinationDuration, destinationIpAddress)
-            try validateLength("destination_ip_address", self.destinationIpAddress, min: nil, max: 5000)
+        try validateLength("destination_ip_address", self.destinationIpAddress, min: nil, max: 5000)
     }
 }
 
@@ -57,33 +67,47 @@ public struct ForwardedRequestDetails: Codable {
         case httpMethod = "http_method"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension ForwardedRequestDetails {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.body) else {
-            throw SdkValidationError(field: "body", code: "required", message: "Validation failed for 'body': value is required")
-        }
-        guard container.contains(.headers) else {
-            throw SdkValidationError(field: "headers", code: "required", message: "Validation failed for 'headers': value is required")
-        }
-        guard container.contains(.httpMethod) else {
-            throw SdkValidationError(field: "http_method", code: "required", message: "Validation failed for 'http_method': value is required")
-        }
-        self.body = try container.sdkDecodeRequired(.body)
-        self.headers = try container.sdkDecodeRequired(.headers)
-        self.httpMethod = try container.sdkDecodeRequired(.httpMethod)
-            try validateLength("body", self.body, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension ForwardedRequestDetails {
-    public init(body: String, headers: [ForwardedRequestHeader], httpMethod: ForwardedRequestDetailsHttpMethod) throws {
+public extension ForwardedRequestDetails {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.body) else {
+            throw SdkValidationError(
+                field: "body",
+                code: "required",
+                message: "Validation failed for 'body': value is required"
+            )
+        }
+        guard container.contains(.headers) else {
+            throw SdkValidationError(
+                field: "headers",
+                code: "required",
+                message: "Validation failed for 'headers': value is required"
+            )
+        }
+        guard container.contains(.httpMethod) else {
+            throw SdkValidationError(
+                field: "http_method",
+                code: "required",
+                message: "Validation failed for 'http_method': value is required"
+            )
+        }
+        body = try container.sdkDecodeRequired(.body)
+        headers = try container.sdkDecodeRequired(.headers)
+        httpMethod = try container.sdkDecodeRequired(.httpMethod)
+        try validateLength("body", body, min: nil, max: 5000)
+    }
+}
+
+public extension ForwardedRequestDetails {
+    init(body: String, headers: [ForwardedRequestHeader], httpMethod: ForwardedRequestDetailsHttpMethod) throws {
         (self.body, self.headers) = (body, headers)
         self.httpMethod = httpMethod
-            try validateLength("body", self.body, min: nil, max: 5000)
+        try validateLength("body", self.body, min: nil, max: 5000)
     }
 }
 
@@ -99,30 +123,40 @@ public struct ForwardedRequestHeader: Codable {
         case value
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension ForwardedRequestHeader {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.name) else {
-            throw SdkValidationError(field: "name", code: "required", message: "Validation failed for 'name': value is required")
-        }
-        guard container.contains(.value) else {
-            throw SdkValidationError(field: "value", code: "required", message: "Validation failed for 'value': value is required")
-        }
-        self.name = try container.sdkDecodeRequired(.name)
-        self.value = try container.sdkDecodeRequired(.value)
-            try validateLength("name", self.name, min: nil, max: 5000)
-            try validateLength("value", self.value, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension ForwardedRequestHeader {
-    public init(name: String, value: String) throws {
+public extension ForwardedRequestHeader {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.name) else {
+            throw SdkValidationError(
+                field: "name",
+                code: "required",
+                message: "Validation failed for 'name': value is required"
+            )
+        }
+        guard container.contains(.value) else {
+            throw SdkValidationError(
+                field: "value",
+                code: "required",
+                message: "Validation failed for 'value': value is required"
+            )
+        }
+        name = try container.sdkDecodeRequired(.name)
+        value = try container.sdkDecodeRequired(.value)
+        try validateLength("name", name, min: nil, max: 5000)
+        try validateLength("value", value, min: nil, max: 5000)
+    }
+}
+
+public extension ForwardedRequestHeader {
+    init(name: String, value: String) throws {
         (self.name, self.value) = (name, value)
-            try validateLength("name", self.name, min: nil, max: 5000)
-            try validateLength("value", self.value, min: nil, max: 5000)
+        try validateLength("name", self.name, min: nil, max: 5000)
+        try validateLength("value", self.value, min: nil, max: 5000)
     }
 }
 
@@ -141,33 +175,47 @@ public struct ForwardedResponseDetails: Codable {
         case status
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension ForwardedResponseDetails {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.body) else {
-            throw SdkValidationError(field: "body", code: "required", message: "Validation failed for 'body': value is required")
-        }
-        guard container.contains(.headers) else {
-            throw SdkValidationError(field: "headers", code: "required", message: "Validation failed for 'headers': value is required")
-        }
-        guard container.contains(.status) else {
-            throw SdkValidationError(field: "status", code: "required", message: "Validation failed for 'status': value is required")
-        }
-        self.body = try container.sdkDecodeRequired(.body)
-        self.headers = try container.sdkDecodeRequired(.headers)
-        self.status = try container.sdkDecodeRequired(.status)
-            try validateLength("body", self.body, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension ForwardedResponseDetails {
-    public init(body: String, headers: [ForwardedRequestHeader], status: Int) throws {
+public extension ForwardedResponseDetails {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.body) else {
+            throw SdkValidationError(
+                field: "body",
+                code: "required",
+                message: "Validation failed for 'body': value is required"
+            )
+        }
+        guard container.contains(.headers) else {
+            throw SdkValidationError(
+                field: "headers",
+                code: "required",
+                message: "Validation failed for 'headers': value is required"
+            )
+        }
+        guard container.contains(.status) else {
+            throw SdkValidationError(
+                field: "status",
+                code: "required",
+                message: "Validation failed for 'status': value is required"
+            )
+        }
+        body = try container.sdkDecodeRequired(.body)
+        headers = try container.sdkDecodeRequired(.headers)
+        status = try container.sdkDecodeRequired(.status)
+        try validateLength("body", body, min: nil, max: 5000)
+    }
+}
+
+public extension ForwardedResponseDetails {
+    init(body: String, headers: [ForwardedRequestHeader], status: Int) throws {
         (self.body, self.headers) = (body, headers)
         self.status = status
-            try validateLength("body", self.body, min: nil, max: 5000)
+        try validateLength("body", self.body, min: nil, max: 5000)
     }
 }
 
@@ -175,12 +223,15 @@ extension ForwardedResponseDetails {
 public struct ForwardedRequestDetailsHttpMethod: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let post = ForwardedRequestDetailsHttpMethod(rawValue: "POST")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

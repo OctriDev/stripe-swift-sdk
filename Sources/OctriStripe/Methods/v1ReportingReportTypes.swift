@@ -7,26 +7,43 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1ReportingReportTypesMethods {
-    /// Lists all available report types. Use `expand` to include additional response fields when needed; each report type identifies a specific report and its available data range.
+    /// Lists all available report types. Use `expand` to include additional response fields when needed; each report
+    /// type identifies a specific report and its available data range.
     ///
     /// Returns a full list of Report Types.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func getReportingReportTypes(config: ClientConfig, expand: [String]?) async throws -> GetReportingReportTypesResponse {
-        return try (await sdkRequest("GET", "/v1/reporting/report_types", config: config, query: [
+    public static func getReportingReportTypes(
+        config: ClientConfig,
+        expand: [String]?
+    ) async throws -> GetReportingReportTypesResponse {
+        try await (sdkRequest("GET", "/v1/reporting/report_types", config: config, query: [
             SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
         ], decoder: .json, operationId: "GetReportingReportTypes")).data
     }
-    /// Retrieves the details of a specific report type. Provide `report_type` to identify the report type and use `expand` to include additional response fields; certain report types require a live-mode API key.
+
+    /// Retrieves the details of a specific report type. Provide `report_type` to identify the report type and use
+    /// `expand` to include additional response fields; certain report types require a live-mode API key.
     ///
     /// Retrieves the details of a Report Type. (Certain report types require a live-mode API key.)
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func getReportingReportTypesReportType(config: ClientConfig, reportType: String, expand: [String]?) async throws -> ReportingReportType {
-        return try (await sdkRequest("GET", ["/v1/reporting/report_types/", sdkEncodePathSegment(sdkWireString(reportType))].joined(), config: config, query: [
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-        ], decoder: .json, operationId: "GetReportingReportTypesReportType")).data
+    public static func getReportingReportTypesReportType(
+        config: ClientConfig,
+        reportType: String,
+        expand: [String]?
+    ) async throws -> ReportingReportType {
+        try await (sdkRequest(
+            "GET",
+            ["/v1/reporting/report_types/", sdkEncodePathSegment(sdkWireString(reportType))].joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+            ],
+            decoder: .json,
+            operationId: "GetReportingReportTypesReportType"
+        )).data
     }
 }

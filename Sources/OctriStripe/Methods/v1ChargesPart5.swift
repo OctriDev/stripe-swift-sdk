@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1ChargesMethods {
-    public struct PostChargesChargeOptions: Codable {
+public extension V1ChargesMethods {
+    struct PostChargesChargeOptions: Codable {
         public var charge: String
         public var customer: String?
         public var description: String?
@@ -23,9 +23,12 @@ extension V1ChargesMethods {
         }
     }
 
-    /// Updates selected properties of an existing charge without changing fields that you omit. Supply `charge` and include only the charge attributes you want to modify. Some attributes, including an associated customer or transfer group, can only be set when their existing value permits the change.
+    /// Updates selected properties of an existing charge without changing fields that you omit. Supply `charge` and
+    /// include only the charge attributes you want to modify. Some attributes, including an associated customer or
+    /// transfer group, can only be set when their existing value permits the change.
     ///
-    /// Updates the specified charge by setting the values of the parameters passed. Any parameters not provided will be left unchanged.
+    /// Updates the specified charge by setting the values of the parameters passed. Any parameters not provided will be
+    /// left unchanged.
     ///
     /// - Parameters:
     /// - customer: The ID of an existing customer that will be associated with this
@@ -57,7 +60,7 @@ extension V1ChargesMethods {
     ///   [Connect
     ///   documentation](https://docs.stripe.com/connect/separate-charges-and-transfer
     ///   s#transfer-options) for details.
-    public static func postChargesCharge(config: ClientConfig, options: PostChargesChargeOptions) async throws -> Charge {
+    static func postChargesCharge(config: ClientConfig, options: PostChargesChargeOptions) async throws -> Charge {
         try validateLength("charge", options.charge, max: 5000)
 
         if let customer = options.customer {
@@ -74,6 +77,14 @@ extension V1ChargesMethods {
 
         let requestBody = PostChargesChargeRequestBody(options: options)
 
-        return try (await sdkRequest("POST", ["/v1/charges/", sdkEncodePathSegment(sdkWireString(options.charge))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostChargesCharge")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/charges/", sdkEncodePathSegment(sdkWireString(options.charge))].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostChargesCharge"
+        )).data
     }
 }

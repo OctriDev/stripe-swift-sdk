@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1ChargesCaptureMethods {
-    public struct PostChargesChargeCaptureOptions: Codable {
+public extension V1ChargesCaptureMethods {
+    struct PostChargesChargeCaptureOptions: Codable {
         public var charge: String
         public var amount: Int?
         public var applicationFee: Int?
@@ -24,9 +24,14 @@ extension V1ChargesCaptureMethods {
         }
     }
 
-    /// Captures an existing charge that was created with capture disabled. Supply `charge` and optionally provide a partial capture amount and related transfer or receipt details. Do not use this operation for a PaymentIntent-initiated charge; capture the PaymentIntent instead.
+    /// Captures an existing charge that was created with capture disabled. Supply `charge` and optionally provide a
+    /// partial capture amount and related transfer or receipt details. Do not use this operation for a
+    /// PaymentIntent-initiated charge; capture the PaymentIntent instead.
     ///
-    /// Capture the payment of an existing, uncaptured charge that was created with the capture option set to false. Uncaptured payments expire a set number of days after they are created (7 by default), after which they are marked as refunded and capture attempts will fail. Don’t use this method to capture a PaymentIntent-initiated charge. Use Capture a PaymentIntent.
+    /// Capture the payment of an existing, uncaptured charge that was created with the capture option set to false.
+    /// Uncaptured payments expire a set number of days after they are created (7 by default), after which they are
+    /// marked as refunded and capture attempts will fail. Don’t use this method to capture a PaymentIntent-initiated
+    /// charge. Use Capture a PaymentIntent.
     ///
     /// - Parameters:
     /// - amount: The amount to capture, which must be less than or equal to the
@@ -61,7 +66,10 @@ extension V1ChargesCaptureMethods {
     ///   [Connect
     ///   documentation](https://docs.stripe.com/connect/separate-charges-and-transfer
     ///   s#transfer-options) for details.
-    public static func postChargesChargeCapture(config: ClientConfig, options: PostChargesChargeCaptureOptions) async throws -> Charge {
+    static func postChargesChargeCapture(
+        config: ClientConfig,
+        options: PostChargesChargeCaptureOptions
+    ) async throws -> Charge {
         try validateLength("charge", options.charge, max: 5000)
 
         if let statementDescriptor = options.statementDescriptor {
@@ -74,6 +82,14 @@ extension V1ChargesCaptureMethods {
 
         let requestBody = PostChargesChargeCaptureRequestBody(options: options)
 
-        return try (await sdkRequest("POST", ["/v1/charges/", sdkEncodePathSegment(sdkWireString(options.charge)), "/capture"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostChargesChargeCapture")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/charges/", sdkEncodePathSegment(sdkWireString(options.charge)), "/capture"].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostChargesChargeCapture"
+        )).data
     }
 }

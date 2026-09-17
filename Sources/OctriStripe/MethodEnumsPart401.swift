@@ -12,8 +12,8 @@ struct PostPaymentMethodDomainsPaymentMethodDomainRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(self.enabled, forKey: SdkCodingKey("enabled"))
-        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(enabled, forKey: SdkCodingKey("enabled"))
+        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
     }
 }
 
@@ -22,6 +22,6 @@ struct PostPaymentMethodDomainsPaymentMethodDomainValidateRequestBody: Encodable
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
     }
 }

@@ -6,10 +6,13 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1CustomersSubscriptionsMethods {
-    /// Lists the active subscriptions belonging to a customer. Use cursor parameters to page through subscriptions beyond the 10 most recent items available on the customer object, and use `limit` to control page size.
+public extension V1CustomersSubscriptionsMethods {
+    /// Lists the active subscriptions belonging to a customer. Use cursor parameters to page through subscriptions
+    /// beyond the 10 most recent items available on the customer object, and use `limit` to control page size.
     ///
-    /// You can see a list of the customer’s active subscriptions. Note that the 10 most recent active subscriptions are always available by default on the customer object. If you need more than those 10, you can use the limit and starting_after parameters to page through additional subscriptions.
+    /// You can see a list of the customer’s active subscriptions. Note that the 10 most recent active subscriptions are
+    /// always available by default on the customer object. If you need more than those 10, you can use the limit and
+    /// starting_after parameters to page through additional subscriptions.
     ///
     /// - Parameters:
     /// - endingBefore: A cursor for use in pagination. `ending_before` is an object
@@ -25,22 +28,36 @@ extension V1CustomersSubscriptionsMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    public static func getCustomersCustomerSubscriptions(config: ClientConfig, customer: String, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetCustomersCustomerSubscriptionsResponse {
+    static func getCustomersCustomerSubscriptions(
+        config: ClientConfig,
+        customer: String,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        startingAfter: String?
+    ) async throws -> GetCustomersCustomerSubscriptionsResponse {
         try validateLength("customer", customer, max: 5000)
 
-        if let endingBefore = endingBefore {
+        if let endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let startingAfter = startingAfter {
+        if let startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try (await sdkRequest("GET", ["/v1/customers/", sdkEncodePathSegment(sdkWireString(customer)), "/subscriptions"].joined(), config: config, query: [
-            SdkQueryParameter("ending_before", value: endingBefore),
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            SdkQueryParameter("limit", value: limit),
-            SdkQueryParameter("starting_after", value: startingAfter),
-        ], decoder: .json, operationId: "GetCustomersCustomerSubscriptions")).data
+        return try await (sdkRequest(
+            "GET",
+            ["/v1/customers/", sdkEncodePathSegment(sdkWireString(customer)), "/subscriptions"].joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("ending_before", value: endingBefore),
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+                SdkQueryParameter("limit", value: limit),
+                SdkQueryParameter("starting_after", value: startingAfter),
+            ],
+            decoder: .json,
+            operationId: "GetCustomersCustomerSubscriptions"
+        )).data
     }
 }

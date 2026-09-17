@@ -6,17 +6,24 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public struct PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX62efe8839f: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX62efe8839f: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let balances = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX62efe8839f(rawValue: "balances")
-    public static let ownership = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX62efe8839f(rawValue: "ownership")
-    public static let transactions = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX62efe8839f(rawValue: "transactions")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let balances =
+        PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX62efe8839f(rawValue: "balances")
+    public static let ownership =
+        PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX62efe8839f(rawValue: "ownership")
+    public static let transactions =
+        PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX62efe8839f(rawValue: "transactions")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -25,17 +32,24 @@ public struct PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX62ef
     }
 }
 
-public struct PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX2106c0b871: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX2106c0b871: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let automatic = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX2106c0b871(rawValue: "automatic")
-    public static let instant = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX2106c0b871(rawValue: "instant")
-    public static let microdeposits = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX2106c0b871(rawValue: "microdeposits")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let automatic =
+        PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX2106c0b871(rawValue: "automatic")
+    public static let instant =
+        PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX2106c0b871(rawValue: "instant")
+    public static let microdeposits =
+        PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX2106c0b871(rawValue: "microdeposits")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -44,15 +58,19 @@ public struct PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX2106
     }
 }
 
-public struct PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX8c36602c03: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX8c36602c03: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX8c36602c03(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -61,63 +79,109 @@ public struct PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX8c36
     }
 }
 
-public struct PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let achCreditTransfer = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "ach_credit_transfer")
-    public static let achDebit = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "ach_debit")
-    public static let acssDebit = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "acss_debit")
-    public static let affirm = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "affirm")
-    public static let alipay = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "alipay")
-    public static let amazonPay = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "amazon_pay")
-    public static let auBecsDebit = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "au_becs_debit")
-    public static let bacsDebit = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "bacs_debit")
-    public static let bancontact = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "bancontact")
-    public static let billie = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "billie")
-    public static let boleto = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "boleto")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let achCreditTransfer =
+        PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "ach_credit_transfer")
+    public static let achDebit =
+        PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "ach_debit")
+    public static let acssDebit =
+        PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "acss_debit")
+    public static let affirm =
+        PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "affirm")
+    public static let alipay =
+        PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "alipay")
+    public static let amazonPay =
+        PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "amazon_pay")
+    public static let auBecsDebit =
+        PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "au_becs_debit")
+    public static let bacsDebit =
+        PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "bacs_debit")
+    public static let bancontact =
+        PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "bancontact")
+    public static let billie =
+        PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "billie")
+    public static let boleto =
+        PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "boleto")
     public static let card = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "card")
-    public static let cashapp = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "cashapp")
-    public static let crypto = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "crypto")
-    public static let custom = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "custom")
-    public static let customerBalance = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "customer_balance")
+    public static let cashapp =
+        PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "cashapp")
+    public static let crypto =
+        PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "crypto")
+    public static let custom =
+        PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "custom")
+    public static let customerBalance =
+        PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "customer_balance")
     public static let eps = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "eps")
     public static let fpx = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "fpx")
-    public static let giropay = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "giropay")
-    public static let grabpay = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "grabpay")
-    public static let ideal = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "ideal")
-    public static let jpCreditTransfer = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "jp_credit_transfer")
-    public static let kakaoPay = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "kakao_pay")
-    public static let klarna = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "klarna")
-    public static let konbini = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "konbini")
-    public static let krCard = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "kr_card")
+    public static let giropay =
+        PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "giropay")
+    public static let grabpay =
+        PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "grabpay")
+    public static let ideal =
+        PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "ideal")
+    public static let jpCreditTransfer =
+        PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "jp_credit_transfer")
+    public static let kakaoPay =
+        PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "kakao_pay")
+    public static let klarna =
+        PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "klarna")
+    public static let konbini =
+        PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "konbini")
+    public static let krCard =
+        PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "kr_card")
     public static let link = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "link")
-    public static let mbWay = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "mb_way")
-    public static let multibanco = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "multibanco")
-    public static let naverPay = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "naver_pay")
-    public static let nzBankAccount = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "nz_bank_account")
+    public static let mbWay =
+        PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "mb_way")
+    public static let multibanco =
+        PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "multibanco")
+    public static let naverPay =
+        PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "naver_pay")
+    public static let nzBankAccount =
+        PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "nz_bank_account")
     public static let p24 = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "p24")
-    public static let payByBank = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "pay_by_bank")
-    public static let payco = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "payco")
-    public static let paynow = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "paynow")
-    public static let paypal = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "paypal")
-    public static let payto = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "payto")
+    public static let payByBank =
+        PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "pay_by_bank")
+    public static let payco =
+        PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "payco")
+    public static let paynow =
+        PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "paynow")
+    public static let paypal =
+        PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "paypal")
+    public static let payto =
+        PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "payto")
     public static let pix = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "pix")
-    public static let promptpay = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "promptpay")
-    public static let revolutPay = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "revolut_pay")
-    public static let satispay = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "satispay")
-    public static let sepaCreditTransfer = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "sepa_credit_transfer")
-    public static let sepaDebit = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "sepa_debit")
-    public static let sofort = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "sofort")
-    public static let swish = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "swish")
-    public static let twint = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "twint")
+    public static let promptpay =
+        PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "promptpay")
+    public static let revolutPay =
+        PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "revolut_pay")
+    public static let satispay =
+        PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "satispay")
+    public static let sepaCreditTransfer =
+        PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "sepa_credit_transfer")
+    public static let sepaDebit =
+        PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "sepa_debit")
+    public static let sofort =
+        PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "sofort")
+    public static let swish =
+        PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "swish")
+    public static let twint =
+        PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "twint")
     public static let upi = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "upi")
-    public static let usBankAccount = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "us_bank_account")
-    public static let wechatPay = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "wechat_pay")
+    public static let usBankAccount =
+        PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "us_bank_account")
+    public static let wechatPay =
+        PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX75610a09c0(rawValue: "wechat_pay")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -126,15 +190,19 @@ public struct PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX7561
     }
 }
 
-public struct PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX281dea4e32: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX281dea4e32: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX281dea4e32(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -143,16 +211,21 @@ public struct PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX281d
     }
 }
 
-public struct PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX4948609e9f: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX4948609e9f: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let off = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX4948609e9f(rawValue: "off")
-    public static let onSubscription = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX4948609e9f(rawValue: "on_subscription")
+    public static let onSubscription =
+        PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX4948609e9f(rawValue: "on_subscription")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -161,18 +234,23 @@ public struct PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesX4948
     }
 }
 
-public struct PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesXedacadfe98: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesXedacadfe98: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let day = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesXedacadfe98(rawValue: "day")
-    public static let month = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesXedacadfe98(rawValue: "month")
+    public static let month =
+        PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesXedacadfe98(rawValue: "month")
     public static let week = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesXedacadfe98(rawValue: "week")
     public static let year = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesXedacadfe98(rawValue: "year")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -181,15 +259,19 @@ public struct PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesXedac
     }
 }
 
-public struct PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesXb730c293f1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesXb730c293f1: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostCustomersCustomerSubscriptionsSubscriptionExposedIdRequesXb730c293f1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

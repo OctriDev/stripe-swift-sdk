@@ -51,12 +51,14 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostBillingPortalConfigurationsConfigurationPostBillingPortalXfc1e8ca977ReachesMockAndDecodesResponse() async throws {
+    func testPostBillingPortalConfigurationsConfigurationPostBillingPortalXfc1e8ca977ReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        var options = try V1BillingPortalConfigurationsMethods.PostBillingPortalConfigurationsConfigurationOptions(configuration: decoded("\"configuration\""))
+        var options = try V1BillingPortalConfigurationsMethods
+            .PostBillingPortalConfigurationsConfigurationOptions(configuration: decoded("\"configuration\""))
         options.active = try decoded("false")
         options.businessProfile = try decoded(sdkMethodFixture339Value1)
         options.defaultReturnUrl = try decoded("\"https://example.com\"")
@@ -405,7 +407,8 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostCheckoutSessionsSessionExpirePostCheckoutSessionsSessionExpireReachesMockAndDecodesResponse() async throws {
+    func testPostCheckoutSessionsSessionExpirePostCheckoutSessionsSessionExpireReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }

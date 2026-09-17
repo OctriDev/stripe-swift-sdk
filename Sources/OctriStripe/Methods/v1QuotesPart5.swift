@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1QuotesMethods {
-    public struct PostQuotesQuoteOptions: Codable {
+public extension V1QuotesMethods {
+    struct PostQuotesQuoteOptions: Codable {
         public var quote: String
         public var applicationFeeAmount: PostQuotesQuoteRequestBodyApplicationFeeAmount?
         public var applicationFeePercent: PostQuotesQuoteRequestBodyApplicationFeePercent?
@@ -34,7 +34,9 @@ extension V1QuotesMethods {
         }
     }
 
-    /// Updates an existing quote with customer, pricing, tax, invoice, and presentation settings. Supply only the fields you want to change, and use `collection_method` to select automatic charging or invoice-based collection. Use `expires_at` to set a future Unix timestamp for cancellation while the quote is open or in draft status.
+    /// Updates an existing quote with customer, pricing, tax, invoice, and presentation settings. Supply only the
+    /// fields you want to change, and use `collection_method` to select automatic charging or invoice-based collection.
+    /// Use `expires_at` to set a future Unix timestamp for cancellation while the quote is open or in draft status.
     ///
     /// A quote models prices and services for a customer.
     ///
@@ -88,7 +90,7 @@ extension V1QuotesMethods {
     ///   a subscription is created.
     /// - transferData: The data with which to automatically create a Transfer for
     ///   each of the invoices.
-    public static func postQuotesQuote(config: ClientConfig, options: PostQuotesQuoteOptions) async throws -> Quote {
+    static func postQuotesQuote(config: ClientConfig, options: PostQuotesQuoteOptions) async throws -> Quote {
         try validateLength("quote", options.quote, max: 5000)
 
         if let customer = options.customer {
@@ -101,6 +103,14 @@ extension V1QuotesMethods {
 
         let requestBody = PostQuotesQuoteRequestBody(options: options)
 
-        return try (await sdkRequest("POST", ["/v1/quotes/", sdkEncodePathSegment(sdkWireString(options.quote))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostQuotesQuote")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/quotes/", sdkEncodePathSegment(sdkWireString(options.quote))].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostQuotesQuote"
+        )).data
     }
 }

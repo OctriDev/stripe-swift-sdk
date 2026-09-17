@@ -13,9 +13,9 @@ struct PostTerminalReadersReaderCollectInputsRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encode(self.inputs, forKey: SdkCodingKey("inputs"))
-        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encode(inputs, forKey: SdkCodingKey("inputs"))
+        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
     }
 }
 
@@ -26,9 +26,9 @@ struct PostTerminalReadersReaderCollectPaymentMethodRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encode(self.paymentIntent, forKey: SdkCodingKey("payment_intent"))
-        try keyedContainer.encodeIfPresent(self.collectConfig, forKey: SdkCodingKey("collect_config"))
-        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encode(paymentIntent, forKey: SdkCodingKey("payment_intent"))
+        try keyedContainer.encodeIfPresent(collectConfig, forKey: SdkCodingKey("collect_config"))
+        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
     }
 }
 
@@ -39,9 +39,9 @@ struct PostTerminalReadersReaderConfirmPaymentIntentRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encode(self.paymentIntent, forKey: SdkCodingKey("payment_intent"))
-        try keyedContainer.encodeIfPresent(self.confirmConfig, forKey: SdkCodingKey("confirm_config"))
-        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encode(paymentIntent, forKey: SdkCodingKey("payment_intent"))
+        try keyedContainer.encodeIfPresent(confirmConfig, forKey: SdkCodingKey("confirm_config"))
+        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
     }
 }
 
@@ -52,9 +52,9 @@ struct PostTerminalReadersReaderProcessPaymentIntentRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encode(self.paymentIntent, forKey: SdkCodingKey("payment_intent"))
-        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(self.processConfig, forKey: SdkCodingKey("process_config"))
+        try keyedContainer.encode(paymentIntent, forKey: SdkCodingKey("payment_intent"))
+        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(processConfig, forKey: SdkCodingKey("process_config"))
     }
 }
 
@@ -66,10 +66,10 @@ struct PostTerminalReadersReaderProcessSetupIntentRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encode(self.allowRedisplay, forKey: SdkCodingKey("allow_redisplay"))
-        try keyedContainer.encode(self.setupIntent, forKey: SdkCodingKey("setup_intent"))
-        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(self.processConfig, forKey: SdkCodingKey("process_config"))
+        try keyedContainer.encode(allowRedisplay, forKey: SdkCodingKey("allow_redisplay"))
+        try keyedContainer.encode(setupIntent, forKey: SdkCodingKey("setup_intent"))
+        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(processConfig, forKey: SdkCodingKey("process_config"))
     }
 }
 
@@ -85,25 +85,25 @@ struct PostTerminalReadersReaderRefundPaymentRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(self.amount, forKey: SdkCodingKey("amount"))
-        try keyedContainer.encodeIfPresent(self.charge, forKey: SdkCodingKey("charge"))
-        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
-        try keyedContainer.encodeIfPresent(self.paymentIntent, forKey: SdkCodingKey("payment_intent"))
-        try keyedContainer.encodeIfPresent(self.refundApplicationFee, forKey: SdkCodingKey("refund_application_fee"))
-        try keyedContainer.encodeIfPresent(self.refundPaymentConfig, forKey: SdkCodingKey("refund_payment_config"))
-        try keyedContainer.encodeIfPresent(self.reverseTransfer, forKey: SdkCodingKey("reverse_transfer"))
+        try keyedContainer.encodeIfPresent(amount, forKey: SdkCodingKey("amount"))
+        try keyedContainer.encodeIfPresent(charge, forKey: SdkCodingKey("charge"))
+        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encodeIfPresent(paymentIntent, forKey: SdkCodingKey("payment_intent"))
+        try keyedContainer.encodeIfPresent(refundApplicationFee, forKey: SdkCodingKey("refund_application_fee"))
+        try keyedContainer.encodeIfPresent(refundPaymentConfig, forKey: SdkCodingKey("refund_payment_config"))
+        try keyedContainer.encodeIfPresent(reverseTransfer, forKey: SdkCodingKey("reverse_transfer"))
     }
 
     init(options: V1TerminalReadersRefundPaymentMethods.PostTerminalReadersReaderRefundPaymentOptions) {
-        self.amount = options.amount
-        self.charge = options.charge
-        self.expand = options.expand
-        self.metadata = options.metadata
-        self.paymentIntent = options.paymentIntent
-        self.refundApplicationFee = options.refundApplicationFee
-        self.refundPaymentConfig = options.refundPaymentConfig
-        self.reverseTransfer = options.reverseTransfer
+        amount = options.amount
+        charge = options.charge
+        expand = options.expand
+        metadata = options.metadata
+        paymentIntent = options.paymentIntent
+        refundApplicationFee = options.refundApplicationFee
+        refundPaymentConfig = options.refundPaymentConfig
+        reverseTransfer = options.reverseTransfer
     }
 }
 
@@ -114,9 +114,9 @@ struct PostTerminalReadersReaderSetReaderDisplayRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encode(self.type, forKey: SdkCodingKey("type"))
-        try keyedContainer.encodeIfPresent(self.cart, forKey: SdkCodingKey("cart"))
-        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encode(type, forKey: SdkCodingKey("type"))
+        try keyedContainer.encodeIfPresent(cart, forKey: SdkCodingKey("cart"))
+        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
     }
 }
 
@@ -125,7 +125,7 @@ struct PostTerminalRefundsRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
     }
 }
 
@@ -140,13 +140,13 @@ struct PostTestHelpersConfirmationTokensRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(self.paymentMethod, forKey: SdkCodingKey("payment_method"))
-        try keyedContainer.encodeIfPresent(self.paymentMethodData, forKey: SdkCodingKey("payment_method_data"))
-        try keyedContainer.encodeIfPresent(self.paymentMethodOptions, forKey: SdkCodingKey("payment_method_options"))
-        try keyedContainer.encodeIfPresent(self.returnUrl, forKey: SdkCodingKey("return_url"))
-        try keyedContainer.encodeIfPresent(self.setupFutureUsage, forKey: SdkCodingKey("setup_future_usage"))
-        try keyedContainer.encodeIfPresent(self.shipping, forKey: SdkCodingKey("shipping"))
+        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(paymentMethod, forKey: SdkCodingKey("payment_method"))
+        try keyedContainer.encodeIfPresent(paymentMethodData, forKey: SdkCodingKey("payment_method_data"))
+        try keyedContainer.encodeIfPresent(paymentMethodOptions, forKey: SdkCodingKey("payment_method_options"))
+        try keyedContainer.encodeIfPresent(returnUrl, forKey: SdkCodingKey("return_url"))
+        try keyedContainer.encodeIfPresent(setupFutureUsage, forKey: SdkCodingKey("setup_future_usage"))
+        try keyedContainer.encodeIfPresent(shipping, forKey: SdkCodingKey("shipping"))
     }
 }
 
@@ -158,9 +158,9 @@ struct PostTestHelpersCustomersCustomerFundCashBalanceRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encode(self.amount, forKey: SdkCodingKey("amount"))
-        try keyedContainer.encode(self.currency, forKey: SdkCodingKey("currency"))
-        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(self.reference, forKey: SdkCodingKey("reference"))
+        try keyedContainer.encode(amount, forKey: SdkCodingKey("amount"))
+        try keyedContainer.encode(currency, forKey: SdkCodingKey("currency"))
+        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(reference, forKey: SdkCodingKey("reference"))
     }
 }

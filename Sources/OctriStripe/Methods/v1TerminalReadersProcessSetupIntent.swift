@@ -7,7 +7,9 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1TerminalReadersProcessSetupIntentMethods {
-    /// Triggers processing of a SetupIntent on a Reader to save payment details without charging the customer. Supply `setup_intent` and `allow_redisplay`, then use `process_config` for customer cancellation settings. The Reader returns its current state after the SetupIntent flow is initiated.
+    /// Triggers processing of a SetupIntent on a Reader to save payment details without charging the customer. Supply
+    /// `setup_intent` and `allow_redisplay`, then use `process_config` for customer cancellation settings. The Reader
+    /// returns its current state after the SetupIntent flow is initiated.
     ///
     /// Initiates a SetupIntent flow on a Reader. See Save directly without charging for more details.
     ///
@@ -20,13 +22,33 @@ public enum V1TerminalReadersProcessSetupIntentMethods {
     /// - expand: Specifies which fields in the response should be expanded.
     /// - processConfig: Configuration overrides for this setup, such as MOTO and
     ///   customer cancellation settings.
-    public static func postTerminalReadersReaderProcessSetupIntent(config: ClientConfig, reader: String, allowRedisplay: PostTerminalReadersReaderProcessSetupIntentRequestBodyAllowRedisplay, setupIntent: String, expand: [String]?, processConfig: PostTerminalReadersReaderProcessSetupIntentRequestBodyProcessConfig?) async throws -> TerminalReader {
+    public static func postTerminalReadersReaderProcessSetupIntent(
+        config: ClientConfig,
+        reader: String,
+        allowRedisplay: PostTerminalReadersReaderProcessSetupIntentRequestBodyAllowRedisplay,
+        setupIntent: String,
+        expand: [String]?,
+        processConfig: PostTerminalReadersReaderProcessSetupIntentRequestBodyProcessConfig?
+    ) async throws -> TerminalReader {
         try validateLength("reader", reader, max: 5000)
 
         try validateLength("setup_intent", setupIntent, max: 5000)
 
-        let requestBody = PostTerminalReadersReaderProcessSetupIntentRequestBody(allowRedisplay: allowRedisplay, setupIntent: setupIntent, expand: expand, processConfig: processConfig)
+        let requestBody = PostTerminalReadersReaderProcessSetupIntentRequestBody(
+            allowRedisplay: allowRedisplay,
+            setupIntent: setupIntent,
+            expand: expand,
+            processConfig: processConfig
+        )
 
-        return try (await sdkRequest("POST", ["/v1/terminal/readers/", sdkEncodePathSegment(sdkWireString(reader)), "/process_setup_intent"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTerminalReadersReaderProcessSetupIntent")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/terminal/readers/", sdkEncodePathSegment(sdkWireString(reader)), "/process_setup_intent"].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostTerminalReadersReaderProcessSetupIntent"
+        )).data
     }
 }

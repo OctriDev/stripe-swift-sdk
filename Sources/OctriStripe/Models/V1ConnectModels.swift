@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1Connect domain models
+/// V1Connect domain models
 /// Typed representation of the `ConnectEmbeddedAccountConfigClaim` API schema.
 public struct ConnectEmbeddedAccountConfigClaim: Codable {
     /// Whether the embedded component is enabled.
@@ -16,25 +16,35 @@ public struct ConnectEmbeddedAccountConfigClaim: Codable {
         case features
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension ConnectEmbeddedAccountConfigClaim {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.enabled) else {
-            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
-        }
-        guard container.contains(.features) else {
-            throw SdkValidationError(field: "features", code: "required", message: "Validation failed for 'features': value is required")
-        }
-        self.enabled = try container.sdkDecodeRequired(.enabled)
-        self.features = try container.sdkDecodeRequired(.features)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension ConnectEmbeddedAccountConfigClaim {
-    public init(enabled: Bool, features: ConnectEmbeddedAccountFeaturesClaim) {
+public extension ConnectEmbeddedAccountConfigClaim {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.enabled) else {
+            throw SdkValidationError(
+                field: "enabled",
+                code: "required",
+                message: "Validation failed for 'enabled': value is required"
+            )
+        }
+        guard container.contains(.features) else {
+            throw SdkValidationError(
+                field: "features",
+                code: "required",
+                message: "Validation failed for 'features': value is required"
+            )
+        }
+        enabled = try container.sdkDecodeRequired(.enabled)
+        features = try container.sdkDecodeRequired(.features)
+    }
+}
+
+public extension ConnectEmbeddedAccountConfigClaim {
+    init(enabled: Bool, features: ConnectEmbeddedAccountFeaturesClaim) {
         (self.enabled, self.features) = (enabled, features)
     }
 }
@@ -56,25 +66,35 @@ public struct ConnectEmbeddedAccountFeaturesClaim: Codable {
         case externalAccountCollection = "external_account_collection"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension ConnectEmbeddedAccountFeaturesClaim {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.disableStripeUserAuthentication) else {
-            throw SdkValidationError(field: "disable_stripe_user_authentication", code: "required", message: "Validation failed for 'disable_stripe_user_authentication': value is required")
-        }
-        guard container.contains(.externalAccountCollection) else {
-            throw SdkValidationError(field: "external_account_collection", code: "required", message: "Validation failed for 'external_account_collection': value is required")
-        }
-        self.disableStripeUserAuthentication = try container.sdkDecodeRequired(.disableStripeUserAuthentication)
-        self.externalAccountCollection = try container.sdkDecodeRequired(.externalAccountCollection)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension ConnectEmbeddedAccountFeaturesClaim {
-    public init(disableStripeUserAuthentication: Bool, externalAccountCollection: Bool) {
+public extension ConnectEmbeddedAccountFeaturesClaim {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.disableStripeUserAuthentication) else {
+            throw SdkValidationError(
+                field: "disable_stripe_user_authentication",
+                code: "required",
+                message: "Validation failed for 'disable_stripe_user_authentication': value is required"
+            )
+        }
+        guard container.contains(.externalAccountCollection) else {
+            throw SdkValidationError(
+                field: "external_account_collection",
+                code: "required",
+                message: "Validation failed for 'external_account_collection': value is required"
+            )
+        }
+        disableStripeUserAuthentication = try container.sdkDecodeRequired(.disableStripeUserAuthentication)
+        externalAccountCollection = try container.sdkDecodeRequired(.externalAccountCollection)
+    }
+}
+
+public extension ConnectEmbeddedAccountFeaturesClaim {
+    init(disableStripeUserAuthentication: Bool, externalAccountCollection: Bool) {
         self.disableStripeUserAuthentication = disableStripeUserAuthentication
         self.externalAccountCollection = externalAccountCollection
     }
@@ -152,39 +172,64 @@ public struct ConnectEmbeddedAccountSessionCreateComponents: Codable {
         case taxSettings = "tax_settings"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension ConnectEmbeddedAccountSessionCreateComponents {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.accountManagement = try container.sdkDecodeRequired(.accountManagement)
-        self.accountOnboarding = try container.sdkDecodeRequired(.accountOnboarding)
-        self.balanceReport = try container.sdkDecodeRequired(.balanceReport)
-        self.balances = try container.sdkDecodeRequired(.balances)
-        self.disputesList = try container.sdkDecodeRequired(.disputesList)
-        self.documents = try container.sdkDecodeRequired(.documents)
-        self.financialAccount = try container.sdkDecodeRequired(.financialAccount)
-        self.financialAccountTransactions = try container.sdkDecodeRequired(.financialAccountTransactions)
-        self.instantPayoutsPromotion = try container.sdkDecodeRequired(.instantPayoutsPromotion)
-        self.issuingCard = try container.sdkDecodeRequired(.issuingCard)
-        self.issuingCardsList = try container.sdkDecodeRequired(.issuingCardsList)
-        self.notificationBanner = try container.sdkDecodeRequired(.notificationBanner)
-        self.paymentDetails = try container.sdkDecodeRequired(.paymentDetails)
-        self.paymentDisputes = try container.sdkDecodeRequired(.paymentDisputes)
-        self.paymentMethodSettings = try container.sdkDecodeRequired(.paymentMethodSettings)
-        self.payments = try container.sdkDecodeRequired(.payments)
-        self.payoutDetails = try container.sdkDecodeRequired(.payoutDetails)
-        self.payoutReconciliationReport = try container.sdkDecodeRequired(.payoutReconciliationReport)
-        self.payouts = try container.sdkDecodeRequired(.payouts)
-        self.payoutsList = try container.sdkDecodeRequired(.payoutsList)
-        self.taxRegistrations = try container.sdkDecodeRequired(.taxRegistrations)
-        self.taxSettings = try container.sdkDecodeRequired(.taxSettings)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension ConnectEmbeddedAccountSessionCreateComponents {
-    public init(accountManagement: ConnectEmbeddedAccountConfigClaim, accountOnboarding: ConnectEmbeddedAccountConfigClaim, balanceReport: ConnectEmbeddedBaseConfigClaim, balances: ConnectEmbeddedPayoutsConfig, disputesList: ConnectEmbeddedDisputesListConfig, documents: ConnectEmbeddedBaseConfigClaim, financialAccount: ConnectEmbeddedFinancialAccountConfigClaim, financialAccountTransactions: ConnectEmbeddedFinancialAccountTransactionsConfigClaim, instantPayoutsPromotion: ConnectEmbeddedInstantPayoutsPromotionConfig, issuingCard: ConnectEmbeddedIssuingCardConfigClaim, issuingCardsList: ConnectEmbeddedIssuingCardsListConfigClaim, notificationBanner: ConnectEmbeddedAccountConfigClaim, paymentDetails: ConnectEmbeddedPaymentsConfigClaim, paymentDisputes: ConnectEmbeddedPaymentDisputesConfig, paymentMethodSettings: ConnectEmbeddedPaymentMethodSettingsConfigClaim, payments: ConnectEmbeddedPaymentsConfigClaim, payoutDetails: ConnectEmbeddedBaseConfigClaim, payoutReconciliationReport: ConnectEmbeddedBaseConfigClaim, payouts: ConnectEmbeddedPayoutsConfig, payoutsList: ConnectEmbeddedBaseConfigClaim, taxRegistrations: ConnectEmbeddedBaseConfigClaim, taxSettings: ConnectEmbeddedBaseConfigClaim) {
+public extension ConnectEmbeddedAccountSessionCreateComponents {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        accountManagement = try container.sdkDecodeRequired(.accountManagement)
+        accountOnboarding = try container.sdkDecodeRequired(.accountOnboarding)
+        balanceReport = try container.sdkDecodeRequired(.balanceReport)
+        balances = try container.sdkDecodeRequired(.balances)
+        disputesList = try container.sdkDecodeRequired(.disputesList)
+        documents = try container.sdkDecodeRequired(.documents)
+        financialAccount = try container.sdkDecodeRequired(.financialAccount)
+        financialAccountTransactions = try container.sdkDecodeRequired(.financialAccountTransactions)
+        instantPayoutsPromotion = try container.sdkDecodeRequired(.instantPayoutsPromotion)
+        issuingCard = try container.sdkDecodeRequired(.issuingCard)
+        issuingCardsList = try container.sdkDecodeRequired(.issuingCardsList)
+        notificationBanner = try container.sdkDecodeRequired(.notificationBanner)
+        paymentDetails = try container.sdkDecodeRequired(.paymentDetails)
+        paymentDisputes = try container.sdkDecodeRequired(.paymentDisputes)
+        paymentMethodSettings = try container.sdkDecodeRequired(.paymentMethodSettings)
+        payments = try container.sdkDecodeRequired(.payments)
+        payoutDetails = try container.sdkDecodeRequired(.payoutDetails)
+        payoutReconciliationReport = try container.sdkDecodeRequired(.payoutReconciliationReport)
+        payouts = try container.sdkDecodeRequired(.payouts)
+        payoutsList = try container.sdkDecodeRequired(.payoutsList)
+        taxRegistrations = try container.sdkDecodeRequired(.taxRegistrations)
+        taxSettings = try container.sdkDecodeRequired(.taxSettings)
+    }
+}
+
+public extension ConnectEmbeddedAccountSessionCreateComponents {
+    init(
+        accountManagement: ConnectEmbeddedAccountConfigClaim,
+        accountOnboarding: ConnectEmbeddedAccountConfigClaim,
+        balanceReport: ConnectEmbeddedBaseConfigClaim,
+        balances: ConnectEmbeddedPayoutsConfig,
+        disputesList: ConnectEmbeddedDisputesListConfig,
+        documents: ConnectEmbeddedBaseConfigClaim,
+        financialAccount: ConnectEmbeddedFinancialAccountConfigClaim,
+        financialAccountTransactions: ConnectEmbeddedFinancialAccountTransactionsConfigClaim,
+        instantPayoutsPromotion: ConnectEmbeddedInstantPayoutsPromotionConfig,
+        issuingCard: ConnectEmbeddedIssuingCardConfigClaim,
+        issuingCardsList: ConnectEmbeddedIssuingCardsListConfigClaim,
+        notificationBanner: ConnectEmbeddedAccountConfigClaim,
+        paymentDetails: ConnectEmbeddedPaymentsConfigClaim,
+        paymentDisputes: ConnectEmbeddedPaymentDisputesConfig,
+        paymentMethodSettings: ConnectEmbeddedPaymentMethodSettingsConfigClaim,
+        payments: ConnectEmbeddedPaymentsConfigClaim,
+        payoutDetails: ConnectEmbeddedBaseConfigClaim,
+        payoutReconciliationReport: ConnectEmbeddedBaseConfigClaim,
+        payouts: ConnectEmbeddedPayoutsConfig,
+        payoutsList: ConnectEmbeddedBaseConfigClaim,
+        taxRegistrations: ConnectEmbeddedBaseConfigClaim,
+        taxSettings: ConnectEmbeddedBaseConfigClaim
+    ) {
         (self.accountManagement, self.accountOnboarding) = (accountManagement, accountOnboarding)
         (self.balanceReport, self.balances) = (balanceReport, balances)
         (self.disputesList, self.documents) = (disputesList, documents)
@@ -212,38 +257,48 @@ public struct ConnectEmbeddedBaseConfigClaim: Codable {
         case features
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension ConnectEmbeddedBaseConfigClaim {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.enabled) else {
-            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
-        }
-        guard container.contains(.features) else {
-            throw SdkValidationError(field: "features", code: "required", message: "Validation failed for 'features': value is required")
-        }
-        self.enabled = try container.sdkDecodeRequired(.enabled)
-        self.features = try container.sdkDecodeRequired(.features)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension ConnectEmbeddedBaseConfigClaim {
-    public init(enabled: Bool, features: ConnectEmbeddedBaseFeatures) {
+public extension ConnectEmbeddedBaseConfigClaim {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.enabled) else {
+            throw SdkValidationError(
+                field: "enabled",
+                code: "required",
+                message: "Validation failed for 'enabled': value is required"
+            )
+        }
+        guard container.contains(.features) else {
+            throw SdkValidationError(
+                field: "features",
+                code: "required",
+                message: "Validation failed for 'features': value is required"
+            )
+        }
+        enabled = try container.sdkDecodeRequired(.enabled)
+        features = try container.sdkDecodeRequired(.features)
+    }
+}
+
+public extension ConnectEmbeddedBaseConfigClaim {
+    init(enabled: Bool, features: ConnectEmbeddedBaseFeatures) {
         (self.enabled, self.features) = (enabled, features)
     }
 }
 
 /// Typed representation of the `ConnectEmbeddedBaseFeatures` API schema.
 public struct ConnectEmbeddedBaseFeatures: Codable {
-
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension ConnectEmbeddedBaseFeatures {
-    public init() {
-    }
+public extension ConnectEmbeddedBaseFeatures {
+    init() {}
 }
 
 /// Typed representation of the `ConnectEmbeddedDisputesListConfig` API schema.
@@ -258,25 +313,35 @@ public struct ConnectEmbeddedDisputesListConfig: Codable {
         case features
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension ConnectEmbeddedDisputesListConfig {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.enabled) else {
-            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
-        }
-        guard container.contains(.features) else {
-            throw SdkValidationError(field: "features", code: "required", message: "Validation failed for 'features': value is required")
-        }
-        self.enabled = try container.sdkDecodeRequired(.enabled)
-        self.features = try container.sdkDecodeRequired(.features)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension ConnectEmbeddedDisputesListConfig {
-    public init(enabled: Bool, features: ConnectEmbeddedDisputesListFeatures) {
+public extension ConnectEmbeddedDisputesListConfig {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.enabled) else {
+            throw SdkValidationError(
+                field: "enabled",
+                code: "required",
+                message: "Validation failed for 'enabled': value is required"
+            )
+        }
+        guard container.contains(.features) else {
+            throw SdkValidationError(
+                field: "features",
+                code: "required",
+                message: "Validation failed for 'features': value is required"
+            )
+        }
+        enabled = try container.sdkDecodeRequired(.enabled)
+        features = try container.sdkDecodeRequired(.features)
+    }
+}
+
+public extension ConnectEmbeddedDisputesListConfig {
+    init(enabled: Bool, features: ConnectEmbeddedDisputesListFeatures) {
         (self.enabled, self.features) = (enabled, features)
     }
 }
@@ -305,14 +370,20 @@ public struct ConnectEmbeddedDisputesListFeatures: Codable {
         case smartDisputesManagement = "smart_disputes_management"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension ConnectEmbeddedDisputesListFeatures {
-    public init(from decoder: Decoder) throws {
+public extension ConnectEmbeddedDisputesListFeatures {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.capturePayments) else {
-            throw SdkValidationError(field: "capture_payments", code: "required", message: "Validation failed for 'capture_payments': value is required")
+            throw SdkValidationError(
+                field: "capture_payments",
+                code: "required",
+                message: "Validation failed for 'capture_payments': value is required"
+            )
         }
         guard container.contains(.destinationOnBehalfOfChargeManagement) else {
             let field = "destination_on_behalf_of_charge_management"
@@ -323,24 +394,42 @@ extension ConnectEmbeddedDisputesListFeatures {
             )
         }
         guard container.contains(.disputeManagement) else {
-            throw SdkValidationError(field: "dispute_management", code: "required", message: "Validation failed for 'dispute_management': value is required")
+            throw SdkValidationError(
+                field: "dispute_management",
+                code: "required",
+                message: "Validation failed for 'dispute_management': value is required"
+            )
         }
         guard container.contains(.refundManagement) else {
-            throw SdkValidationError(field: "refund_management", code: "required", message: "Validation failed for 'refund_management': value is required")
+            throw SdkValidationError(
+                field: "refund_management",
+                code: "required",
+                message: "Validation failed for 'refund_management': value is required"
+            )
         }
         guard container.contains(.smartDisputesManagement) else {
-            throw SdkValidationError(field: "smart_disputes_management", code: "required", message: "Validation failed for 'smart_disputes_management': value is required")
+            throw SdkValidationError(
+                field: "smart_disputes_management",
+                code: "required",
+                message: "Validation failed for 'smart_disputes_management': value is required"
+            )
         }
-        self.capturePayments = try container.sdkDecodeRequired(.capturePayments)
-        self.destinationOnBehalfOfChargeManagement = try container.sdkDecodeRequired(.destinationOnBehalfOfChargeManagement)
-        self.disputeManagement = try container.sdkDecodeRequired(.disputeManagement)
-        self.refundManagement = try container.sdkDecodeRequired(.refundManagement)
-        self.smartDisputesManagement = try container.sdkDecodeRequired(.smartDisputesManagement)
+        capturePayments = try container.sdkDecodeRequired(.capturePayments)
+        destinationOnBehalfOfChargeManagement = try container.sdkDecodeRequired(.destinationOnBehalfOfChargeManagement)
+        disputeManagement = try container.sdkDecodeRequired(.disputeManagement)
+        refundManagement = try container.sdkDecodeRequired(.refundManagement)
+        smartDisputesManagement = try container.sdkDecodeRequired(.smartDisputesManagement)
     }
 }
 
-extension ConnectEmbeddedDisputesListFeatures {
-    public init(capturePayments: Bool, destinationOnBehalfOfChargeManagement: Bool, disputeManagement: Bool, refundManagement: Bool, smartDisputesManagement: Bool) {
+public extension ConnectEmbeddedDisputesListFeatures {
+    init(
+        capturePayments: Bool,
+        destinationOnBehalfOfChargeManagement: Bool,
+        disputeManagement: Bool,
+        refundManagement: Bool,
+        smartDisputesManagement: Bool
+    ) {
         self.capturePayments = capturePayments
         self.destinationOnBehalfOfChargeManagement = destinationOnBehalfOfChargeManagement
         (self.disputeManagement, self.refundManagement) = (disputeManagement, refundManagement)
@@ -360,25 +449,35 @@ public struct ConnectEmbeddedFinancialAccountConfigClaim: Codable {
         case features
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension ConnectEmbeddedFinancialAccountConfigClaim {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.enabled) else {
-            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
-        }
-        guard container.contains(.features) else {
-            throw SdkValidationError(field: "features", code: "required", message: "Validation failed for 'features': value is required")
-        }
-        self.enabled = try container.sdkDecodeRequired(.enabled)
-        self.features = try container.sdkDecodeRequired(.features)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension ConnectEmbeddedFinancialAccountConfigClaim {
-    public init(enabled: Bool, features: ConnectEmbeddedFinancialAccountFeatures) {
+public extension ConnectEmbeddedFinancialAccountConfigClaim {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.enabled) else {
+            throw SdkValidationError(
+                field: "enabled",
+                code: "required",
+                message: "Validation failed for 'enabled': value is required"
+            )
+        }
+        guard container.contains(.features) else {
+            throw SdkValidationError(
+                field: "features",
+                code: "required",
+                message: "Validation failed for 'features': value is required"
+            )
+        }
+        enabled = try container.sdkDecodeRequired(.enabled)
+        features = try container.sdkDecodeRequired(.features)
+    }
+}
+
+public extension ConnectEmbeddedFinancialAccountConfigClaim {
+    init(enabled: Bool, features: ConnectEmbeddedFinancialAccountFeatures) {
         (self.enabled, self.features) = (enabled, features)
     }
 }
@@ -406,33 +505,56 @@ public struct ConnectEmbeddedFinancialAccountFeatures: Codable {
         case transferBalance = "transfer_balance"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension ConnectEmbeddedFinancialAccountFeatures {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.disableStripeUserAuthentication) else {
-            throw SdkValidationError(field: "disable_stripe_user_authentication", code: "required", message: "Validation failed for 'disable_stripe_user_authentication': value is required")
-        }
-        guard container.contains(.externalAccountCollection) else {
-            throw SdkValidationError(field: "external_account_collection", code: "required", message: "Validation failed for 'external_account_collection': value is required")
-        }
-        guard container.contains(.sendMoney) else {
-            throw SdkValidationError(field: "send_money", code: "required", message: "Validation failed for 'send_money': value is required")
-        }
-        guard container.contains(.transferBalance) else {
-            throw SdkValidationError(field: "transfer_balance", code: "required", message: "Validation failed for 'transfer_balance': value is required")
-        }
-        self.disableStripeUserAuthentication = try container.sdkDecodeRequired(.disableStripeUserAuthentication)
-        self.externalAccountCollection = try container.sdkDecodeRequired(.externalAccountCollection)
-        self.sendMoney = try container.sdkDecodeRequired(.sendMoney)
-        self.transferBalance = try container.sdkDecodeRequired(.transferBalance)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension ConnectEmbeddedFinancialAccountFeatures {
-    public init(disableStripeUserAuthentication: Bool, externalAccountCollection: Bool, sendMoney: Bool, transferBalance: Bool) {
+public extension ConnectEmbeddedFinancialAccountFeatures {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.disableStripeUserAuthentication) else {
+            throw SdkValidationError(
+                field: "disable_stripe_user_authentication",
+                code: "required",
+                message: "Validation failed for 'disable_stripe_user_authentication': value is required"
+            )
+        }
+        guard container.contains(.externalAccountCollection) else {
+            throw SdkValidationError(
+                field: "external_account_collection",
+                code: "required",
+                message: "Validation failed for 'external_account_collection': value is required"
+            )
+        }
+        guard container.contains(.sendMoney) else {
+            throw SdkValidationError(
+                field: "send_money",
+                code: "required",
+                message: "Validation failed for 'send_money': value is required"
+            )
+        }
+        guard container.contains(.transferBalance) else {
+            throw SdkValidationError(
+                field: "transfer_balance",
+                code: "required",
+                message: "Validation failed for 'transfer_balance': value is required"
+            )
+        }
+        disableStripeUserAuthentication = try container.sdkDecodeRequired(.disableStripeUserAuthentication)
+        externalAccountCollection = try container.sdkDecodeRequired(.externalAccountCollection)
+        sendMoney = try container.sdkDecodeRequired(.sendMoney)
+        transferBalance = try container.sdkDecodeRequired(.transferBalance)
+    }
+}
+
+public extension ConnectEmbeddedFinancialAccountFeatures {
+    init(
+        disableStripeUserAuthentication: Bool,
+        externalAccountCollection: Bool,
+        sendMoney: Bool,
+        transferBalance: Bool
+    ) {
         self.disableStripeUserAuthentication = disableStripeUserAuthentication
         (self.externalAccountCollection, self.sendMoney) = (externalAccountCollection, sendMoney)
         self.transferBalance = transferBalance
@@ -451,25 +573,35 @@ public struct ConnectEmbeddedFinancialAccountTransactionsConfigClaim: Codable {
         case features
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension ConnectEmbeddedFinancialAccountTransactionsConfigClaim {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.enabled) else {
-            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
-        }
-        guard container.contains(.features) else {
-            throw SdkValidationError(field: "features", code: "required", message: "Validation failed for 'features': value is required")
-        }
-        self.enabled = try container.sdkDecodeRequired(.enabled)
-        self.features = try container.sdkDecodeRequired(.features)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension ConnectEmbeddedFinancialAccountTransactionsConfigClaim {
-    public init(enabled: Bool, features: ConnectEmbeddedFinancialAccountTransactionsFeatures) {
+public extension ConnectEmbeddedFinancialAccountTransactionsConfigClaim {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.enabled) else {
+            throw SdkValidationError(
+                field: "enabled",
+                code: "required",
+                message: "Validation failed for 'enabled': value is required"
+            )
+        }
+        guard container.contains(.features) else {
+            throw SdkValidationError(
+                field: "features",
+                code: "required",
+                message: "Validation failed for 'features': value is required"
+            )
+        }
+        enabled = try container.sdkDecodeRequired(.enabled)
+        features = try container.sdkDecodeRequired(.features)
+    }
+}
+
+public extension ConnectEmbeddedFinancialAccountTransactionsConfigClaim {
+    init(enabled: Bool, features: ConnectEmbeddedFinancialAccountTransactionsFeatures) {
         (self.enabled, self.features) = (enabled, features)
     }
 }
@@ -483,21 +615,27 @@ public struct ConnectEmbeddedFinancialAccountTransactionsFeatures: Codable {
         case cardSpendDisputeManagement = "card_spend_dispute_management"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension ConnectEmbeddedFinancialAccountTransactionsFeatures {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.cardSpendDisputeManagement) else {
-            throw SdkValidationError(field: "card_spend_dispute_management", code: "required", message: "Validation failed for 'card_spend_dispute_management': value is required")
-        }
-        self.cardSpendDisputeManagement = try container.sdkDecodeRequired(.cardSpendDisputeManagement)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension ConnectEmbeddedFinancialAccountTransactionsFeatures {
-    public init(cardSpendDisputeManagement: Bool) {
+public extension ConnectEmbeddedFinancialAccountTransactionsFeatures {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.cardSpendDisputeManagement) else {
+            throw SdkValidationError(
+                field: "card_spend_dispute_management",
+                code: "required",
+                message: "Validation failed for 'card_spend_dispute_management': value is required"
+            )
+        }
+        cardSpendDisputeManagement = try container.sdkDecodeRequired(.cardSpendDisputeManagement)
+    }
+}
+
+public extension ConnectEmbeddedFinancialAccountTransactionsFeatures {
+    init(cardSpendDisputeManagement: Bool) {
         self.cardSpendDisputeManagement = cardSpendDisputeManagement
     }
 }

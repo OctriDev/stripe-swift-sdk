@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1InvoicesPayMethods {
-    public struct PostInvoicesInvoicePayOptions: Codable {
+public extension V1InvoicesPayMethods {
+    struct PostInvoicesInvoicePayOptions: Codable {
         public var invoice: String
         public var expand: [String]?
         public var forgive: Bool?
@@ -22,9 +22,13 @@ extension V1InvoicesPayMethods {
         }
     }
 
-    /// Attempts to collect payment for a specific invoice outside its normal automatic collection schedule. Supply the `invoice` identifier and optionally choose the `payment_method`, `source`, or other payment behaviour. The operation can also record an invoice as paid outside Stripe with `paid_out_of_band`.
+    /// Attempts to collect payment for a specific invoice outside its normal automatic collection schedule. Supply the
+    /// `invoice` identifier and optionally choose the `payment_method`, `source`, or other payment behaviour. The
+    /// operation can also record an invoice as paid outside Stripe with `paid_out_of_band`.
     ///
-    /// Stripe automatically creates and then attempts to collect payment on invoices for customers on subscriptions according to your subscriptions settings. However, if you’d like to attempt payment on an invoice out of the normal collection schedule or for some other reason, you can do so.
+    /// Stripe automatically creates and then attempts to collect payment on invoices for customers on subscriptions
+    /// according to your subscriptions settings. However, if you’d like to attempt payment on an invoice out of the
+    /// normal collection schedule or for some other reason, you can do so.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
@@ -49,7 +53,10 @@ extension V1InvoicesPayMethods {
     ///   invoice being paid.
     /// - source: A payment source to be charged. The source must be the ID of a
     ///   source belonging to the customer associated with the invoice being paid.
-    public static func postInvoicesInvoicePay(config: ClientConfig, options: PostInvoicesInvoicePayOptions) async throws -> Invoice {
+    static func postInvoicesInvoicePay(
+        config: ClientConfig,
+        options: PostInvoicesInvoicePayOptions
+    ) async throws -> Invoice {
         try validateLength("invoice", options.invoice, max: 5000)
 
         if let paymentMethod = options.paymentMethod {
@@ -62,6 +69,14 @@ extension V1InvoicesPayMethods {
 
         let requestBody = PostInvoicesInvoicePayRequestBody(options: options)
 
-        return try (await sdkRequest("POST", ["/v1/invoices/", sdkEncodePathSegment(sdkWireString(options.invoice)), "/pay"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostInvoicesInvoicePay")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/invoices/", sdkEncodePathSegment(sdkWireString(options.invoice)), "/pay"].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostInvoicesInvoicePay"
+        )).data
     }
 }

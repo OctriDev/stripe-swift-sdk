@@ -7,27 +7,66 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1CustomersSubscriptionsDiscountMethods {
-    /// Deletes the discount currently applied to a customer's subscription. Provide the customer and subscription identifiers to select the subscription whose discount you want to remove. The response confirms deletion using the deleted discount representation.
+    /// Deletes the discount currently applied to a customer's subscription. Provide the customer and subscription
+    /// identifiers to select the subscription whose discount you want to remove. The response confirms deletion using
+    /// the deleted discount representation.
     ///
     /// Removes the currently applied discount on a customer.
-    public static func deleteCustomersCustomerSubscriptionsSubscriptionExposedIdDiscount(config: ClientConfig, customer: String, subscriptionExposedId: String) async throws -> DeletedDiscount {
+    public static func deleteCustomersCustomerSubscriptionsSubscriptionExposedIdDiscount(
+        config: ClientConfig,
+        customer: String,
+        subscriptionExposedId: String
+    ) async throws -> DeletedDiscount {
         try validateLength("customer", customer, max: 5000)
 
         try validateLength("subscription_exposed_id", subscriptionExposedId, max: 5000)
 
-        return try (await sdkRequest("DELETE", ["/v1/customers/", sdkEncodePathSegment(sdkWireString(customer)), "/subscriptions/", sdkEncodePathSegment(sdkWireString(subscriptionExposedId)), "/discount"].joined(), config: config, decoder: .json, operationId: "DeleteCustomersCustomerSubscriptionsSubscriptionExposedIdDiscount")).data
+        return try await (sdkRequest(
+            "DELETE",
+            [
+                "/v1/customers/",
+                sdkEncodePathSegment(sdkWireString(customer)),
+                "/subscriptions/",
+                sdkEncodePathSegment(sdkWireString(subscriptionExposedId)),
+                "/discount",
+            ].joined(),
+            config: config,
+            decoder: .json,
+            operationId: "DeleteCustomersCustomerSubscriptionsSubscriptionExposedIdDiscount"
+        )).data
     }
-    /// Retrieves the discount currently applied to a customer's subscription. Provide the customer and subscription identifiers to select the discount associated with that subscription. Use `expand` to request expanded fields in the response.
+
+    /// Retrieves the discount currently applied to a customer's subscription. Provide the customer and subscription
+    /// identifiers to select the discount associated with that subscription. Use `expand` to request expanded fields in
+    /// the response.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func getCustomersCustomerSubscriptionsSubscriptionExposedIdDiscount(config: ClientConfig, customer: String, subscriptionExposedId: String, expand: [String]?) async throws -> Discount {
+    public static func getCustomersCustomerSubscriptionsSubscriptionExposedIdDiscount(
+        config: ClientConfig,
+        customer: String,
+        subscriptionExposedId: String,
+        expand: [String]?
+    ) async throws -> Discount {
         try validateLength("customer", customer, max: 5000)
 
         try validateLength("subscription_exposed_id", subscriptionExposedId, max: 5000)
 
-        return try (await sdkRequest("GET", ["/v1/customers/", sdkEncodePathSegment(sdkWireString(customer)), "/subscriptions/", sdkEncodePathSegment(sdkWireString(subscriptionExposedId)), "/discount"].joined(), config: config, query: [
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-        ], decoder: .json, operationId: "GetCustomersCustomerSubscriptionsSubscriptionExposedIdDiscount")).data
+        return try await (sdkRequest(
+            "GET",
+            [
+                "/v1/customers/",
+                sdkEncodePathSegment(sdkWireString(customer)),
+                "/subscriptions/",
+                sdkEncodePathSegment(sdkWireString(subscriptionExposedId)),
+                "/discount",
+            ].joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+            ],
+            decoder: .json,
+            operationId: "GetCustomersCustomerSubscriptionsSubscriptionExposedIdDiscount"
+        )).data
     }
 }

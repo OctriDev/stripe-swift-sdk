@@ -3,11 +3,11 @@
 
 import Foundation
 
-// V1BillingBill domain models
-extension BillingBillResourceInvoicingParentsInvoiceQuoteParent {
-    public init(quote: String) throws {
+/// V1BillingBill domain models
+public extension BillingBillResourceInvoicingParentsInvoiceQuoteParent {
+    init(quote: String) throws {
         self.quote = quote
-            try validateLength("quote", self.quote, min: nil, max: 5000)
+        try validateLength("quote", self.quote, min: nil, max: 5000)
     }
 }
 
@@ -27,23 +27,33 @@ public struct BillingBillResourceInvoicingPricingPricing: Codable {
         case unitAmountDecimal = "unit_amount_decimal"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension BillingBillResourceInvoicingPricingPricing {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
-        }
-        self.type = try container.sdkDecodeRequired(.type)
-        self.priceDetails = try container.sdkDecodeIfPresent(.priceDetails)
-        self.unitAmountDecimal = try container.sdkDecodeIfPresent(.unitAmountDecimal)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension BillingBillResourceInvoicingPricingPricing {
-    public init(type: BillingBillResourceInvoicingPricingPricingType, priceDetails: BillingBillResourceInvoicingPricingPricingPriceDetails? = nil, unitAmountDecimal: String? = nil) {
+public extension BillingBillResourceInvoicingPricingPricing {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.type) else {
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
+        }
+        type = try container.sdkDecodeRequired(.type)
+        priceDetails = try container.sdkDecodeIfPresent(.priceDetails)
+        unitAmountDecimal = try container.sdkDecodeIfPresent(.unitAmountDecimal)
+    }
+}
+
+public extension BillingBillResourceInvoicingPricingPricing {
+    init(
+        type: BillingBillResourceInvoicingPricingPricingType,
+        priceDetails: BillingBillResourceInvoicingPricingPricingPriceDetails? = nil,
+        unitAmountDecimal: String? = nil
+    ) {
         (self.type, self.priceDetails) = (type, priceDetails)
         self.unitAmountDecimal = unitAmountDecimal
     }
@@ -61,28 +71,38 @@ public struct BillingBillResourceInvoicingPricingPricingPriceDetails: Codable {
         case product
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension BillingBillResourceInvoicingPricingPricingPriceDetails {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.price) else {
-            throw SdkValidationError(field: "price", code: "required", message: "Validation failed for 'price': value is required")
-        }
-        guard container.contains(.product) else {
-            throw SdkValidationError(field: "product", code: "required", message: "Validation failed for 'product': value is required")
-        }
-        self.price = try container.sdkDecodeRequired(.price)
-        self.product = try container.sdkDecodeRequired(.product)
-            try validateLength("product", self.product, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension BillingBillResourceInvoicingPricingPricingPriceDetails {
-    public init(price: BillingBillResourceInvoicingPricingPricingPriceDetailsPrice, product: String) throws {
+public extension BillingBillResourceInvoicingPricingPricingPriceDetails {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.price) else {
+            throw SdkValidationError(
+                field: "price",
+                code: "required",
+                message: "Validation failed for 'price': value is required"
+            )
+        }
+        guard container.contains(.product) else {
+            throw SdkValidationError(
+                field: "product",
+                code: "required",
+                message: "Validation failed for 'product': value is required"
+            )
+        }
+        price = try container.sdkDecodeRequired(.price)
+        product = try container.sdkDecodeRequired(.product)
+        try validateLength("product", product, min: nil, max: 5000)
+    }
+}
+
+public extension BillingBillResourceInvoicingPricingPricingPriceDetails {
+    init(price: BillingBillResourceInvoicingPricingPricingPriceDetailsPrice, product: String) throws {
         (self.price, self.product) = (price, product)
-            try validateLength("product", self.product, min: nil, max: 5000)
+        try validateLength("product", self.product, min: nil, max: 5000)
     }
 }
 
@@ -92,21 +112,31 @@ public enum BillingBillResourceInvoicingPricingPricingPriceDetailsPrice {
 }
 
 extension BillingBillResourceInvoicingPricingPricingPriceDetailsPrice: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for BillingBillResourceInvoicingPricingPricingPriceDetailsPrice")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for BillingBillResourceInvoicingPricingPricingPriceDetailsPrice"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(Price.self) { return .price(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(Price.self) {
+            return .price(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -116,7 +146,6 @@ extension BillingBillResourceInvoicingPricingPricingPriceDetailsPrice: Codable {
         case let .price(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Typed representation of the `BillingBillResourceInvoicingTaxesTax` API schema.
@@ -144,35 +173,60 @@ public struct BillingBillResourceInvoicingTaxesTax: Codable {
         case taxableAmount = "taxable_amount"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension BillingBillResourceInvoicingTaxesTax {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.amount) else {
-            throw SdkValidationError(field: "amount", code: "required", message: "Validation failed for 'amount': value is required")
-        }
-        guard container.contains(.taxBehavior) else {
-            throw SdkValidationError(field: "tax_behavior", code: "required", message: "Validation failed for 'tax_behavior': value is required")
-        }
-        guard container.contains(.taxabilityReason) else {
-            throw SdkValidationError(field: "taxability_reason", code: "required", message: "Validation failed for 'taxability_reason': value is required")
-        }
-        guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
-        }
-        self.amount = try container.sdkDecodeRequired(.amount)
-        self.taxBehavior = try container.sdkDecodeRequired(.taxBehavior)
-        self.taxabilityReason = try container.sdkDecodeRequired(.taxabilityReason)
-        self.type = try container.sdkDecodeRequired(.type)
-        self.taxRateDetails = try container.sdkDecodeIfPresent(.taxRateDetails)
-        self.taxableAmount = try container.sdkDecodeIfPresent(.taxableAmount)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension BillingBillResourceInvoicingTaxesTax {
-    public init(amount: Int, taxBehavior: BillingBillResourceInvoicingTaxesTaxTaxBehavior, taxabilityReason: BillingBillResourceInvoicingTaxesTaxTaxabilityReason, type: BillingBillResourceInvoicingTaxesTaxType, taxRateDetails: BillingBillResourceInvoicingTaxesTaxTaxRateDetails? = nil, taxableAmount: Int? = nil) {
+public extension BillingBillResourceInvoicingTaxesTax {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.amount) else {
+            throw SdkValidationError(
+                field: "amount",
+                code: "required",
+                message: "Validation failed for 'amount': value is required"
+            )
+        }
+        guard container.contains(.taxBehavior) else {
+            throw SdkValidationError(
+                field: "tax_behavior",
+                code: "required",
+                message: "Validation failed for 'tax_behavior': value is required"
+            )
+        }
+        guard container.contains(.taxabilityReason) else {
+            throw SdkValidationError(
+                field: "taxability_reason",
+                code: "required",
+                message: "Validation failed for 'taxability_reason': value is required"
+            )
+        }
+        guard container.contains(.type) else {
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
+        }
+        amount = try container.sdkDecodeRequired(.amount)
+        taxBehavior = try container.sdkDecodeRequired(.taxBehavior)
+        taxabilityReason = try container.sdkDecodeRequired(.taxabilityReason)
+        type = try container.sdkDecodeRequired(.type)
+        taxRateDetails = try container.sdkDecodeIfPresent(.taxRateDetails)
+        taxableAmount = try container.sdkDecodeIfPresent(.taxableAmount)
+    }
+}
+
+public extension BillingBillResourceInvoicingTaxesTax {
+    init(
+        amount: Int,
+        taxBehavior: BillingBillResourceInvoicingTaxesTaxTaxBehavior,
+        taxabilityReason: BillingBillResourceInvoicingTaxesTaxTaxabilityReason,
+        type: BillingBillResourceInvoicingTaxesTaxType,
+        taxRateDetails: BillingBillResourceInvoicingTaxesTaxTaxRateDetails? = nil,
+        taxableAmount: Int? = nil
+    ) {
         (self.amount, self.taxBehavior) = (amount, taxBehavior)
         (self.taxabilityReason, self.type) = (taxabilityReason, type)
         (self.taxRateDetails, self.taxableAmount) = (taxRateDetails, taxableAmount)
@@ -184,24 +238,30 @@ public enum BillingBillResourceInvoicingTaxesTaxTaxRateDetails {
 }
 
 extension BillingBillResourceInvoicingTaxesTaxTaxRateDetails: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for BillingBillResourceInvoicingTaxesTaxTaxRateDetails")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for BillingBillResourceInvoicingTaxesTaxTaxRateDetails"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             BillingBillResourceInvoicingTaxesTaxRateDetails.self
         ) {
-            return             .billingBillResourceInvoicingTaxesTaxRateDetails(value)
+            return .billingBillResourceInvoicingTaxesTaxRateDetails(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -210,7 +270,6 @@ extension BillingBillResourceInvoicingTaxesTaxTaxRateDetails: Codable {
         case let .billingBillResourceInvoicingTaxesTaxRateDetails(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Typed representation of the `BillingBillResourceInvoicingTaxesTaxRateDetails` API schema.
@@ -222,21 +281,27 @@ public struct BillingBillResourceInvoicingTaxesTaxRateDetails: Codable {
         case taxRate = "tax_rate"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension BillingBillResourceInvoicingTaxesTaxRateDetails {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.taxRate) else {
-            throw SdkValidationError(field: "tax_rate", code: "required", message: "Validation failed for 'tax_rate': value is required")
-        }
-        self.taxRate = try container.sdkDecodeRequired(.taxRate)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension BillingBillResourceInvoicingTaxesTaxRateDetails {
-    public init(taxRate: BillingBillResourceInvoicingTaxesTaxRateDetailsTaxRate) {
+public extension BillingBillResourceInvoicingTaxesTaxRateDetails {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.taxRate) else {
+            throw SdkValidationError(
+                field: "tax_rate",
+                code: "required",
+                message: "Validation failed for 'tax_rate': value is required"
+            )
+        }
+        taxRate = try container.sdkDecodeRequired(.taxRate)
+    }
+}
+
+public extension BillingBillResourceInvoicingTaxesTaxRateDetails {
+    init(taxRate: BillingBillResourceInvoicingTaxesTaxRateDetailsTaxRate) {
         self.taxRate = taxRate
     }
 }
@@ -247,21 +312,31 @@ public enum BillingBillResourceInvoicingTaxesTaxRateDetailsTaxRate {
 }
 
 extension BillingBillResourceInvoicingTaxesTaxRateDetailsTaxRate: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for BillingBillResourceInvoicingTaxesTaxRateDetailsTaxRate")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for BillingBillResourceInvoicingTaxesTaxRateDetailsTaxRate"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(TaxRate.self) { return .taxRate(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(TaxRate.self) {
+            return .taxRate(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -271,20 +346,23 @@ extension BillingBillResourceInvoicingTaxesTaxRateDetailsTaxRate: Codable {
         case let .taxRate(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Whether this tax is inclusive or exclusive.
-public struct BillingBillResourceInvoicingTaxesTaxTaxBehavior: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct BillingBillResourceInvoicingTaxesTaxTaxBehavior: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let exclusive = BillingBillResourceInvoicingTaxesTaxTaxBehavior(rawValue: "exclusive")
     public static let inclusive = BillingBillResourceInvoicingTaxesTaxTaxBehavior(rawValue: "inclusive")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -295,30 +373,41 @@ public struct BillingBillResourceInvoicingTaxesTaxTaxBehavior: RawRepresentable,
 
 /// The reasoning behind this tax, for example, if the product is tax exempt. The possible values for this field
 /// may be extended as new tax rules are supported.
-public struct BillingBillResourceInvoicingTaxesTaxTaxabilityReason: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct BillingBillResourceInvoicingTaxesTaxTaxabilityReason: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let customerExempt = BillingBillResourceInvoicingTaxesTaxTaxabilityReason(rawValue: "customer_exempt")
     public static let notAvailable = BillingBillResourceInvoicingTaxesTaxTaxabilityReason(rawValue: "not_available")
     public static let notCollecting = BillingBillResourceInvoicingTaxesTaxTaxabilityReason(rawValue: "not_collecting")
-    public static let notSubjectToTax = BillingBillResourceInvoicingTaxesTaxTaxabilityReason(rawValue: "not_subject_to_tax")
+    public static let notSubjectToTax =
+        BillingBillResourceInvoicingTaxesTaxTaxabilityReason(rawValue: "not_subject_to_tax")
     public static let notSupported = BillingBillResourceInvoicingTaxesTaxTaxabilityReason(rawValue: "not_supported")
-    public static let portionProductExempt = BillingBillResourceInvoicingTaxesTaxTaxabilityReason(rawValue: "portion_product_exempt")
-    public static let portionReducedRated = BillingBillResourceInvoicingTaxesTaxTaxabilityReason(rawValue: "portion_reduced_rated")
-    public static let portionStandardRated = BillingBillResourceInvoicingTaxesTaxTaxabilityReason(rawValue: "portion_standard_rated")
+    public static let portionProductExempt =
+        BillingBillResourceInvoicingTaxesTaxTaxabilityReason(rawValue: "portion_product_exempt")
+    public static let portionReducedRated =
+        BillingBillResourceInvoicingTaxesTaxTaxabilityReason(rawValue: "portion_reduced_rated")
+    public static let portionStandardRated =
+        BillingBillResourceInvoicingTaxesTaxTaxabilityReason(rawValue: "portion_standard_rated")
     public static let productExempt = BillingBillResourceInvoicingTaxesTaxTaxabilityReason(rawValue: "product_exempt")
-    public static let productExemptHoliday = BillingBillResourceInvoicingTaxesTaxTaxabilityReason(rawValue: "product_exempt_holiday")
-    public static let proportionallyRated = BillingBillResourceInvoicingTaxesTaxTaxabilityReason(rawValue: "proportionally_rated")
+    public static let productExemptHoliday =
+        BillingBillResourceInvoicingTaxesTaxTaxabilityReason(rawValue: "product_exempt_holiday")
+    public static let proportionallyRated =
+        BillingBillResourceInvoicingTaxesTaxTaxabilityReason(rawValue: "proportionally_rated")
     public static let reducedRated = BillingBillResourceInvoicingTaxesTaxTaxabilityReason(rawValue: "reduced_rated")
     public static let reverseCharge = BillingBillResourceInvoicingTaxesTaxTaxabilityReason(rawValue: "reverse_charge")
     public static let standardRated = BillingBillResourceInvoicingTaxesTaxTaxabilityReason(rawValue: "standard_rated")
-    public static let taxableBasisReduced = BillingBillResourceInvoicingTaxesTaxTaxabilityReason(rawValue: "taxable_basis_reduced")
+    public static let taxableBasisReduced =
+        BillingBillResourceInvoicingTaxesTaxTaxabilityReason(rawValue: "taxable_basis_reduced")
     public static let zeroRated = BillingBillResourceInvoicingTaxesTaxTaxabilityReason(rawValue: "zero_rated")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -328,15 +417,20 @@ public struct BillingBillResourceInvoicingTaxesTaxTaxabilityReason: RawRepresent
 }
 
 /// The type of parent that generated this invoice item
-public struct BillingBillResourceInvoiceItemParentsInvoiceItemParentType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct BillingBillResourceInvoiceItemParentsInvoiceItemParentType: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let subscriptionDetails = BillingBillResourceInvoiceItemParentsInvoiceItemParentType(rawValue: "subscription_details")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let subscriptionDetails =
+        BillingBillResourceInvoiceItemParentsInvoiceItemParentType(rawValue: "subscription_details")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -346,15 +440,19 @@ public struct BillingBillResourceInvoiceItemParentsInvoiceItemParentType: RawRep
 }
 
 /// The type of tax information.
-public struct BillingBillResourceInvoicingTaxesTaxType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct BillingBillResourceInvoicingTaxesTaxType: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let taxRateDetails = BillingBillResourceInvoicingTaxesTaxType(rawValue: "tax_rate_details")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -364,15 +462,19 @@ public struct BillingBillResourceInvoicingTaxesTaxType: RawRepresentable, Hashab
 }
 
 /// The type of the pricing details.
-public struct BillingBillResourceInvoicingPricingPricingType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct BillingBillResourceInvoicingPricingPricingType: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let priceDetails = BillingBillResourceInvoicingPricingPricingType(rawValue: "price_details")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -382,16 +484,22 @@ public struct BillingBillResourceInvoicingPricingPricingType: RawRepresentable, 
 }
 
 /// The type of parent that generated this line item
-public struct BillingBillResourceInvoicingLinesParentsInvoiceLineItemParentType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct BillingBillResourceInvoicingLinesParentsInvoiceLineItemParentType: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let invoiceItemDetails = BillingBillResourceInvoicingLinesParentsInvoiceLineItemParentType(rawValue: "invoice_item_details")
-    public static let subscriptionItemDetails = BillingBillResourceInvoicingLinesParentsInvoiceLineItemParentType(rawValue: "subscription_item_details")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let invoiceItemDetails =
+        BillingBillResourceInvoicingLinesParentsInvoiceLineItemParentType(rawValue: "invoice_item_details")
+    public static let subscriptionItemDetails =
+        BillingBillResourceInvoicingLinesParentsInvoiceLineItemParentType(rawValue: "subscription_item_details")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

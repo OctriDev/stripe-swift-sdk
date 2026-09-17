@@ -7,7 +7,9 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1TestHelpersIssuingAuthorizationsIncrementMethods {
-    /// Increments the amount of a test-mode Issuing authorization. Supply `increment_amount` in the authorization currency's smallest unit, and optionally set `is_amount_controllable` when the held amount should remain controllable.
+    /// Increments the amount of a test-mode Issuing authorization. Supply `increment_amount` in the authorization
+    /// currency's smallest unit, and optionally set `is_amount_controllable` when the held amount should remain
+    /// controllable.
     ///
     /// Increment a test-mode Authorization.
     ///
@@ -20,11 +22,33 @@ public enum V1TestHelpersIssuingAuthorizationsIncrementMethods {
     ///   [amount](https://docs.stripe.com/api/issuing/authorizations/approve#approve_
     ///   issuing_authorization-amount) to control how much to hold for the
     ///   authorization.
-    public static func postTestHelpersIssuingAuthorizationsAuthorizationIncrement(config: ClientConfig, authorization: String, incrementAmount: Int, expand: [String]?, isAmountControllable: Bool?) async throws -> IssuingAuthorization {
+    public static func postTestHelpersIssuingAuthorizationsAuthorizationIncrement(
+        config: ClientConfig,
+        authorization: String,
+        incrementAmount: Int,
+        expand: [String]?,
+        isAmountControllable: Bool?
+    ) async throws -> IssuingAuthorization {
         try validateLength("authorization", authorization, max: 5000)
 
-        let requestBody = PostTestHelpersIssuingAuthorizationsAuthorizationIncrementRequestBody(incrementAmount: incrementAmount, expand: expand, isAmountControllable: isAmountControllable)
+        let requestBody = PostTestHelpersIssuingAuthorizationsAuthorizationIncrementRequestBody(
+            incrementAmount: incrementAmount,
+            expand: expand,
+            isAmountControllable: isAmountControllable
+        )
 
-        return try (await sdkRequest("POST", ["/v1/test_helpers/issuing/authorizations/", sdkEncodePathSegment(sdkWireString(authorization)), "/increment"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTestHelpersIssuingAuthorizationsAuthorizationIncrement")).data
+        return try await (sdkRequest(
+            "POST",
+            [
+                "/v1/test_helpers/issuing/authorizations/",
+                sdkEncodePathSegment(sdkWireString(authorization)),
+                "/increment",
+            ].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostTestHelpersIssuingAuthorizationsAuthorizationIncrement"
+        )).data
     }
 }

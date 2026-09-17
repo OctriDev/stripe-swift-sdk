@@ -6,10 +6,22 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1CustomersSubscriptionsMethods {
-    /// Cancels a customer's subscription and prevents further subscription charges. By default, cancellation is immediate; use the supported cancellation controls when you need to invoice usage or create prorations before cancellation. A subscription configured to cancel at period end remains active until that period ends.
+public extension V1CustomersSubscriptionsMethods {
+    /// Cancels a customer's subscription and prevents further subscription charges. By default, cancellation is
+    /// immediate; use the supported cancellation controls when you need to invoice usage or create prorations before
+    /// cancellation. A subscription configured to cancel at period end remains active until that period ends.
     ///
-    /// Cancels a customer’s subscription. If you set the at_period_end parameter to true , the subscription will remain active until the end of the period, at which point it will be canceled and not renewed. Otherwise, with the default false value, the subscription is terminated immediately. In either case, the customer will not be charged again for the subscription. Note, however, that any pending invoice items that you’ve created will still be charged for at the end of the period, unless manually deleted. If you’ve set the subscription to cancel at the end of the period, any pending prorations will also be left in place and collected at the end of the period. But if the subscription is set to cancel immediately, pending prorations will be removed. By default, upon subscription cancellation, Stripe will stop automatic collection of all finalized invoices for the customer. This is intended to prevent unexpected payment attempts after the customer has canceled a subscription. However, you can resume automatic collection of the invoices manually after subscription cancellation to have us proceed. Or, you could check for unpaid invoices before allowing the customer to cancel the subscription at all.
+    /// Cancels a customer’s subscription. If you set the at_period_end parameter to true , the subscription will remain
+    /// active until the end of the period, at which point it will be canceled and not renewed. Otherwise, with the
+    /// default false value, the subscription is terminated immediately. In either case, the customer will not be
+    /// charged again for the subscription. Note, however, that any pending invoice items that you’ve created will still
+    /// be charged for at the end of the period, unless manually deleted. If you’ve set the subscription to cancel at
+    /// the end of the period, any pending prorations will also be left in place and collected at the end of the period.
+    /// But if the subscription is set to cancel immediately, pending prorations will be removed. By default, upon
+    /// subscription cancellation, Stripe will stop automatic collection of all finalized invoices for the customer.
+    /// This is intended to prevent unexpected payment attempts after the customer has canceled a subscription. However,
+    /// you can resume automatic collection of the invoices manually after subscription cancellation to have us proceed.
+    /// Or, you could check for unpaid invoices before allowing the customer to cancel the subscription at all.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
@@ -19,13 +31,37 @@ extension V1CustomersSubscriptionsMethods {
     /// - prorate: Can be set to `true` if `at_period_end` is not set to `true`.
     ///   Will generate a proration invoice item that credits remaining unused time
     ///   until the subscription period end.
-    public static func deleteCustomersCustomerSubscriptionsSubscriptionExposedId(config: ClientConfig, customer: String, subscriptionExposedId: String, expand: [String]?, invoiceNow: Bool?, prorate: Bool?) async throws -> Subscription {
+    static func deleteCustomersCustomerSubscriptionsSubscriptionExposedId(
+        config: ClientConfig,
+        customer: String,
+        subscriptionExposedId: String,
+        expand: [String]?,
+        invoiceNow: Bool?,
+        prorate: Bool?
+    ) async throws -> Subscription {
         try validateLength("customer", customer, max: 5000)
 
         try validateLength("subscription_exposed_id", subscriptionExposedId, max: 5000)
 
-        let requestBody = DeleteCustomersCustomerSubscriptionsSubscriptionExposedIdRequestBody(expand: expand, invoiceNow: invoiceNow, prorate: prorate)
+        let requestBody = DeleteCustomersCustomerSubscriptionsSubscriptionExposedIdRequestBody(
+            expand: expand,
+            invoiceNow: invoiceNow,
+            prorate: prorate
+        )
 
-        return try (await sdkRequest("DELETE", ["/v1/customers/", sdkEncodePathSegment(sdkWireString(customer)), "/subscriptions/", sdkEncodePathSegment(sdkWireString(subscriptionExposedId))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "DeleteCustomersCustomerSubscriptionsSubscriptionExposedId")).data
+        return try await (sdkRequest(
+            "DELETE",
+            [
+                "/v1/customers/",
+                sdkEncodePathSegment(sdkWireString(customer)),
+                "/subscriptions/",
+                sdkEncodePathSegment(sdkWireString(subscriptionExposedId)),
+            ].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "DeleteCustomersCustomerSubscriptionsSubscriptionExposedId"
+        )).data
     }
 }

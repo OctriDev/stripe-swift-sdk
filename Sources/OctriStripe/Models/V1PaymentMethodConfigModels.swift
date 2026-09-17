@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1PaymentMethodConfig domain models
+/// V1PaymentMethodConfig domain models
 /// Typed representation of the `PaymentMethodConfigBizPaymentMethodConfigurationDetails` API schema.
 public struct PaymentMethodConfigBizPaymentMethodConfigurationDetails: Codable {
     /// ID of the payment method configuration used.
@@ -16,37 +16,39 @@ public struct PaymentMethodConfigBizPaymentMethodConfigurationDetails: Codable {
         case parent
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension PaymentMethodConfigBizPaymentMethodConfigurationDetails {
-    public init(from decoder: Decoder) throws {
+public extension PaymentMethodConfigBizPaymentMethodConfigurationDetails {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.id) else {
-            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
+            throw SdkValidationError(
+                field: "id",
+                code: "required",
+                message: "Validation failed for 'id': value is required"
+            )
         }
-        self.id = try container.sdkDecodeRequired(.id)
-        self.parent = try container.sdkDecodeIfPresent(.parent)
-            try validateLength("id", self.id, min: nil, max: 5000)
-        if let value = self.parent {
+        id = try container.sdkDecodeRequired(.id)
+        parent = try container.sdkDecodeIfPresent(.parent)
+        try validateLength("id", id, min: nil, max: 5000)
+        if let value = parent {
             try validateLength("parent", value, min: nil, max: 5000)
         }
     }
 }
 
-extension PaymentMethodConfigBizPaymentMethodConfigurationDetails {
-    public init(id: String, parent: String? = nil) throws {
+public extension PaymentMethodConfigBizPaymentMethodConfigurationDetails {
+    init(id: String, parent: String? = nil) throws {
         (self.id, self.parent) = (id, parent)
-            try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
         if let value = self.parent {
             try validateLength("parent", value, min: nil, max: 5000)
         }
     }
 }
-
-
-
-
 
 /// Typed representation of the `PaymentMethodConfigResourceDisplayPreference` API schema.
 public struct PaymentMethodConfigResourceDisplayPreference: Codable {
@@ -64,26 +66,40 @@ public struct PaymentMethodConfigResourceDisplayPreference: Codable {
         case overridable
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension PaymentMethodConfigResourceDisplayPreference {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.preference) else {
-            throw SdkValidationError(field: "preference", code: "required", message: "Validation failed for 'preference': value is required")
-        }
-        guard container.contains(.value) else {
-            throw SdkValidationError(field: "value", code: "required", message: "Validation failed for 'value': value is required")
-        }
-        self.preference = try container.sdkDecodeRequired(.preference)
-        self.value = try container.sdkDecodeRequired(.value)
-        self.overridable = try container.sdkDecodeIfPresent(.overridable)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension PaymentMethodConfigResourceDisplayPreference {
-    public init(preference: PaymentMethodConfigResourceDisplayPreferencePreference, value: PaymentMethodConfigResourceDisplayPreferenceValue, overridable: Bool? = nil) {
+public extension PaymentMethodConfigResourceDisplayPreference {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.preference) else {
+            throw SdkValidationError(
+                field: "preference",
+                code: "required",
+                message: "Validation failed for 'preference': value is required"
+            )
+        }
+        guard container.contains(.value) else {
+            throw SdkValidationError(
+                field: "value",
+                code: "required",
+                message: "Validation failed for 'value': value is required"
+            )
+        }
+        preference = try container.sdkDecodeRequired(.preference)
+        value = try container.sdkDecodeRequired(.value)
+        overridable = try container.sdkDecodeIfPresent(.overridable)
+    }
+}
+
+public extension PaymentMethodConfigResourceDisplayPreference {
+    init(
+        preference: PaymentMethodConfigResourceDisplayPreferencePreference,
+        value: PaymentMethodConfigResourceDisplayPreferenceValue,
+        overridable: Bool? = nil
+    ) {
         (self.preference, self.value) = (preference, value)
         self.overridable = overridable
     }
@@ -102,40 +118,54 @@ public struct PaymentMethodConfigResourcePaymentMethodProperties: Codable {
         case displayPreference = "display_preference"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension PaymentMethodConfigResourcePaymentMethodProperties {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.available) else {
-            throw SdkValidationError(field: "available", code: "required", message: "Validation failed for 'available': value is required")
-        }
-        guard container.contains(.displayPreference) else {
-            throw SdkValidationError(field: "display_preference", code: "required", message: "Validation failed for 'display_preference': value is required")
-        }
-        self.available = try container.sdkDecodeRequired(.available)
-        self.displayPreference = try container.sdkDecodeRequired(.displayPreference)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension PaymentMethodConfigResourcePaymentMethodProperties {
-    public init(available: Bool, displayPreference: PaymentMethodConfigResourceDisplayPreference) {
+public extension PaymentMethodConfigResourcePaymentMethodProperties {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.available) else {
+            throw SdkValidationError(
+                field: "available",
+                code: "required",
+                message: "Validation failed for 'available': value is required"
+            )
+        }
+        guard container.contains(.displayPreference) else {
+            throw SdkValidationError(
+                field: "display_preference",
+                code: "required",
+                message: "Validation failed for 'display_preference': value is required"
+            )
+        }
+        available = try container.sdkDecodeRequired(.available)
+        displayPreference = try container.sdkDecodeRequired(.displayPreference)
+    }
+}
+
+public extension PaymentMethodConfigResourcePaymentMethodProperties {
+    init(available: Bool, displayPreference: PaymentMethodConfigResourceDisplayPreference) {
         (self.available, self.displayPreference) = (available, displayPreference)
     }
 }
 
 /// The effective display preference value.
-public struct PaymentMethodConfigResourceDisplayPreferenceValue: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentMethodConfigResourceDisplayPreferenceValue: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let off = PaymentMethodConfigResourceDisplayPreferenceValue(rawValue: "off")
     public static let on = PaymentMethodConfigResourceDisplayPreferenceValue(rawValue: "on")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -145,17 +175,21 @@ public struct PaymentMethodConfigResourceDisplayPreferenceValue: RawRepresentabl
 }
 
 /// The account's display preference.
-public struct PaymentMethodConfigResourceDisplayPreferencePreference: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentMethodConfigResourceDisplayPreferencePreference: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let none = PaymentMethodConfigResourceDisplayPreferencePreference(rawValue: "none")
     public static let off = PaymentMethodConfigResourceDisplayPreferencePreference(rawValue: "off")
     public static let on = PaymentMethodConfigResourceDisplayPreferencePreference(rawValue: "on")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

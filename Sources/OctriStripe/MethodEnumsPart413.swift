@@ -15,11 +15,11 @@ struct PostTaxTransactionsCreateFromCalculationRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encode(self.calculation, forKey: SdkCodingKey("calculation"))
-        try keyedContainer.encode(self.reference, forKey: SdkCodingKey("reference"))
-        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
-        try keyedContainer.encodeIfPresent(self.postedAt, forKey: SdkCodingKey("posted_at"))
+        try keyedContainer.encode(calculation, forKey: SdkCodingKey("calculation"))
+        try keyedContainer.encode(reference, forKey: SdkCodingKey("reference"))
+        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encodeIfPresent(postedAt, forKey: SdkCodingKey("posted_at"))
     }
 }
 
@@ -35,25 +35,25 @@ struct PostTaxTransactionsCreateReversalRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encode(self.mode, forKey: SdkCodingKey("mode"))
-        try keyedContainer.encode(self.originalTransaction, forKey: SdkCodingKey("original_transaction"))
-        try keyedContainer.encode(self.reference, forKey: SdkCodingKey("reference"))
-        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(self.flatAmount, forKey: SdkCodingKey("flat_amount"))
-        try keyedContainer.encodeIfPresent(self.lineItems, forKey: SdkCodingKey("line_items"))
-        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
-        try keyedContainer.encodeIfPresent(self.shippingCost, forKey: SdkCodingKey("shipping_cost"))
+        try keyedContainer.encode(mode, forKey: SdkCodingKey("mode"))
+        try keyedContainer.encode(originalTransaction, forKey: SdkCodingKey("original_transaction"))
+        try keyedContainer.encode(reference, forKey: SdkCodingKey("reference"))
+        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(flatAmount, forKey: SdkCodingKey("flat_amount"))
+        try keyedContainer.encodeIfPresent(lineItems, forKey: SdkCodingKey("line_items"))
+        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encodeIfPresent(shippingCost, forKey: SdkCodingKey("shipping_cost"))
     }
 
     init(options: V1TaxTransactionsCreateReversalMethods.PostTaxTransactionsCreateReversalOptions) {
-        self.mode = options.mode
-        self.originalTransaction = options.originalTransaction
-        self.reference = options.reference
-        self.expand = options.expand
-        self.flatAmount = options.flatAmount
-        self.lineItems = options.lineItems
-        self.metadata = options.metadata
-        self.shippingCost = options.shippingCost
+        mode = options.mode
+        originalTransaction = options.originalTransaction
+        reference = options.reference
+        expand = options.expand
+        flatAmount = options.flatAmount
+        lineItems = options.lineItems
+        metadata = options.metadata
+        shippingCost = options.shippingCost
     }
 }
 
@@ -65,10 +65,10 @@ struct PostTaxIdsRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encode(self.type, forKey: SdkCodingKey("type"))
-        try keyedContainer.encode(self.value, forKey: SdkCodingKey("value"))
-        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(self.owner, forKey: SdkCodingKey("owner"))
+        try keyedContainer.encode(type, forKey: SdkCodingKey("type"))
+        try keyedContainer.encode(value, forKey: SdkCodingKey("value"))
+        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(owner, forKey: SdkCodingKey("owner"))
     }
 }
 
@@ -87,31 +87,31 @@ struct PostTaxRatesRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encode(self.displayName, forKey: SdkCodingKey("display_name"))
-        try keyedContainer.encode(self.inclusive, forKey: SdkCodingKey("inclusive"))
-        try keyedContainer.encode(self.percentage, forKey: SdkCodingKey("percentage"))
-        try keyedContainer.encodeIfPresent(self.active, forKey: SdkCodingKey("active"))
-        try keyedContainer.encodeIfPresent(self.country, forKey: SdkCodingKey("country"))
-        try keyedContainer.encodeIfPresent(self.description, forKey: SdkCodingKey("description"))
-        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(self.jurisdiction, forKey: SdkCodingKey("jurisdiction"))
-        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
-        try keyedContainer.encodeIfPresent(self.state, forKey: SdkCodingKey("state"))
-        try keyedContainer.encodeIfPresent(self.taxType, forKey: SdkCodingKey("tax_type"))
+        try keyedContainer.encode(displayName, forKey: SdkCodingKey("display_name"))
+        try keyedContainer.encode(inclusive, forKey: SdkCodingKey("inclusive"))
+        try keyedContainer.encode(percentage, forKey: SdkCodingKey("percentage"))
+        try keyedContainer.encodeIfPresent(active, forKey: SdkCodingKey("active"))
+        try keyedContainer.encodeIfPresent(country, forKey: SdkCodingKey("country"))
+        try keyedContainer.encodeIfPresent(description, forKey: SdkCodingKey("description"))
+        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(jurisdiction, forKey: SdkCodingKey("jurisdiction"))
+        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encodeIfPresent(state, forKey: SdkCodingKey("state"))
+        try keyedContainer.encodeIfPresent(taxType, forKey: SdkCodingKey("tax_type"))
     }
 
     init(options: V1TaxRatesMethods.PostTaxRatesOptions) {
-        self.displayName = options.displayName
-        self.inclusive = options.inclusive
-        self.percentage = options.percentage
-        self.active = options.active
-        self.country = options.country
-        self.description = options.description
-        self.expand = options.expand
-        self.jurisdiction = options.jurisdiction
-        self.metadata = options.metadata
-        self.state = options.state
-        self.taxType = options.taxType
+        displayName = options.displayName
+        inclusive = options.inclusive
+        percentage = options.percentage
+        active = options.active
+        country = options.country
+        description = options.description
+        expand = options.expand
+        jurisdiction = options.jurisdiction
+        metadata = options.metadata
+        state = options.state
+        taxType = options.taxType
     }
 }
 
@@ -128,27 +128,27 @@ struct PostTaxRatesTaxRateRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(self.active, forKey: SdkCodingKey("active"))
-        try keyedContainer.encodeIfPresent(self.country, forKey: SdkCodingKey("country"))
-        try keyedContainer.encodeIfPresent(self.description, forKey: SdkCodingKey("description"))
-        try keyedContainer.encodeIfPresent(self.displayName, forKey: SdkCodingKey("display_name"))
-        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(self.jurisdiction, forKey: SdkCodingKey("jurisdiction"))
-        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
-        try keyedContainer.encodeIfPresent(self.state, forKey: SdkCodingKey("state"))
-        try keyedContainer.encodeIfPresent(self.taxType, forKey: SdkCodingKey("tax_type"))
+        try keyedContainer.encodeIfPresent(active, forKey: SdkCodingKey("active"))
+        try keyedContainer.encodeIfPresent(country, forKey: SdkCodingKey("country"))
+        try keyedContainer.encodeIfPresent(description, forKey: SdkCodingKey("description"))
+        try keyedContainer.encodeIfPresent(displayName, forKey: SdkCodingKey("display_name"))
+        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(jurisdiction, forKey: SdkCodingKey("jurisdiction"))
+        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encodeIfPresent(state, forKey: SdkCodingKey("state"))
+        try keyedContainer.encodeIfPresent(taxType, forKey: SdkCodingKey("tax_type"))
     }
 
     init(options: V1TaxRatesMethods.PostTaxRatesTaxRateOptions) {
-        self.active = options.active
-        self.country = options.country
-        self.description = options.description
-        self.displayName = options.displayName
-        self.expand = options.expand
-        self.jurisdiction = options.jurisdiction
-        self.metadata = options.metadata
-        self.state = options.state
-        self.taxType = options.taxType
+        active = options.active
+        country = options.country
+        description = options.description
+        displayName = options.displayName
+        expand = options.expand
+        jurisdiction = options.jurisdiction
+        metadata = options.metadata
+        state = options.state
+        taxType = options.taxType
     }
 }
 
@@ -172,40 +172,40 @@ struct PostTerminalConfigurationsRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(self.bbposWisepad3, forKey: SdkCodingKey("bbpos_wisepad3"))
-        try keyedContainer.encodeIfPresent(self.bbposWiseposE, forKey: SdkCodingKey("bbpos_wisepos_e"))
-        try keyedContainer.encodeIfPresent(self.cellular, forKey: SdkCodingKey("cellular"))
-        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(self.name, forKey: SdkCodingKey("name"))
-        try keyedContainer.encodeIfPresent(self.offline, forKey: SdkCodingKey("offline"))
-        try keyedContainer.encodeIfPresent(self.rebootWindow, forKey: SdkCodingKey("reboot_window"))
-        try keyedContainer.encodeIfPresent(self.stripeS700, forKey: SdkCodingKey("stripe_s700"))
-        try keyedContainer.encodeIfPresent(self.stripeS710, forKey: SdkCodingKey("stripe_s710"))
-        try keyedContainer.encodeIfPresent(self.tipping, forKey: SdkCodingKey("tipping"))
-        try keyedContainer.encodeIfPresent(self.verifoneM425, forKey: SdkCodingKey("verifone_m425"))
-        try keyedContainer.encodeIfPresent(self.verifoneP400, forKey: SdkCodingKey("verifone_p400"))
-        try keyedContainer.encodeIfPresent(self.verifoneP630, forKey: SdkCodingKey("verifone_p630"))
-        try keyedContainer.encodeIfPresent(self.verifoneUx700, forKey: SdkCodingKey("verifone_ux700"))
-        try keyedContainer.encodeIfPresent(self.verifoneV660p, forKey: SdkCodingKey("verifone_v660p"))
-        try keyedContainer.encodeIfPresent(self.wifi, forKey: SdkCodingKey("wifi"))
+        try keyedContainer.encodeIfPresent(bbposWisepad3, forKey: SdkCodingKey("bbpos_wisepad3"))
+        try keyedContainer.encodeIfPresent(bbposWiseposE, forKey: SdkCodingKey("bbpos_wisepos_e"))
+        try keyedContainer.encodeIfPresent(cellular, forKey: SdkCodingKey("cellular"))
+        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(name, forKey: SdkCodingKey("name"))
+        try keyedContainer.encodeIfPresent(offline, forKey: SdkCodingKey("offline"))
+        try keyedContainer.encodeIfPresent(rebootWindow, forKey: SdkCodingKey("reboot_window"))
+        try keyedContainer.encodeIfPresent(stripeS700, forKey: SdkCodingKey("stripe_s700"))
+        try keyedContainer.encodeIfPresent(stripeS710, forKey: SdkCodingKey("stripe_s710"))
+        try keyedContainer.encodeIfPresent(tipping, forKey: SdkCodingKey("tipping"))
+        try keyedContainer.encodeIfPresent(verifoneM425, forKey: SdkCodingKey("verifone_m425"))
+        try keyedContainer.encodeIfPresent(verifoneP400, forKey: SdkCodingKey("verifone_p400"))
+        try keyedContainer.encodeIfPresent(verifoneP630, forKey: SdkCodingKey("verifone_p630"))
+        try keyedContainer.encodeIfPresent(verifoneUx700, forKey: SdkCodingKey("verifone_ux700"))
+        try keyedContainer.encodeIfPresent(verifoneV660p, forKey: SdkCodingKey("verifone_v660p"))
+        try keyedContainer.encodeIfPresent(wifi, forKey: SdkCodingKey("wifi"))
     }
 
     init(options: V1TerminalConfigurationsMethods.PostTerminalConfigurationsOptions) {
-        self.bbposWisepad3 = options.bbposWisepad3
-        self.bbposWiseposE = options.bbposWiseposE
-        self.cellular = options.cellular
-        self.expand = options.expand
-        self.name = options.name
-        self.offline = options.offline
-        self.rebootWindow = options.rebootWindow
-        self.stripeS700 = options.stripeS700
-        self.stripeS710 = options.stripeS710
-        self.tipping = options.tipping
-        self.verifoneM425 = options.verifoneM425
-        self.verifoneP400 = options.verifoneP400
-        self.verifoneP630 = options.verifoneP630
-        self.verifoneUx700 = options.verifoneUx700
-        self.verifoneV660p = options.verifoneV660p
-        self.wifi = options.wifi
+        bbposWisepad3 = options.bbposWisepad3
+        bbposWiseposE = options.bbposWiseposE
+        cellular = options.cellular
+        expand = options.expand
+        name = options.name
+        offline = options.offline
+        rebootWindow = options.rebootWindow
+        stripeS700 = options.stripeS700
+        stripeS710 = options.stripeS710
+        tipping = options.tipping
+        verifoneM425 = options.verifoneM425
+        verifoneP400 = options.verifoneP400
+        verifoneP630 = options.verifoneP630
+        verifoneUx700 = options.verifoneUx700
+        verifoneV660p = options.verifoneV660p
+        wifi = options.wifi
     }
 }

@@ -16,19 +16,33 @@ public enum V1SigmaSavedQueriesMethods {
     /// - name: The name of the query to update.
     /// - sql: The sql statement to update the specified query statement with. This
     ///   should be a valid Trino SQL statement that can be run in Sigma.
-    public static func postSigmaSavedQueriesId(config: ClientConfig, id: String, expand: [String]?, name: String?, sql: String?) async throws -> SigmaSigmaApiQuery {
+    public static func postSigmaSavedQueriesId(
+        config: ClientConfig,
+        id: String,
+        expand: [String]?,
+        name: String?,
+        sql: String?
+    ) async throws -> SigmaSigmaApiQuery {
         try validateLength("id", id, max: 5000)
 
-        if let name = name {
+        if let name {
             try validateLength("name", name, max: 5000)
         }
 
-        if let sql = sql {
-            try validateLength("sql", sql, max: 100000)
+        if let sql {
+            try validateLength("sql", sql, max: 100_000)
         }
 
         let requestBody = PostSigmaSavedQueriesIdRequestBody(expand: expand, name: name, sql: sql)
 
-        return try (await sdkRequest("POST", ["/v1/sigma/saved_queries/", sdkEncodePathSegment(sdkWireString(id))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostSigmaSavedQueriesId")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/sigma/saved_queries/", sdkEncodePathSegment(sdkWireString(id))].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostSigmaSavedQueriesId"
+        )).data
     }
 }

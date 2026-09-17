@@ -6,8 +6,10 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1FileLinksMethods {
-    /// Creates a new file link for sharing the contents of a file without authentication. Supply `file` with the identifier of a file whose purpose supports file links, and optionally set `expires_at` or attach `metadata`. The response includes the downloadable URL and the link's expiration state.
+public extension V1FileLinksMethods {
+    /// Creates a new file link for sharing the contents of a file without authentication. Supply `file` with the
+    /// identifier of a file whose purpose supports file links, and optionally set `expires_at` or attach `metadata`.
+    /// The response includes the downloadable URL and the link's expiration state.
     ///
     /// Creates a new file link object.
     ///
@@ -26,11 +28,25 @@ extension V1FileLinksMethods {
     ///   information about the object in a structured format. Individual keys can be
     ///   unset by posting an empty value to them. All keys can be unset by posting an
     ///   empty value to `metadata`.
-    public static func postFileLinks(config: ClientConfig, file: String, expand: [String]?, expiresAt: Int?, metadata: PostFileLinksRequestBodyMetadata?) async throws -> FileLink {
+    static func postFileLinks(
+        config: ClientConfig,
+        file: String,
+        expand: [String]?,
+        expiresAt: Int?,
+        metadata: PostFileLinksRequestBodyMetadata?
+    ) async throws -> FileLink {
         try validateLength("file", file, max: 5000)
 
         let requestBody = PostFileLinksRequestBody(file: file, expand: expand, expiresAt: expiresAt, metadata: metadata)
 
-        return try (await sdkRequest("POST", "/v1/file_links", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostFileLinks")).data
+        return try await (sdkRequest(
+            "POST",
+            "/v1/file_links",
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostFileLinks"
+        )).data
     }
 }

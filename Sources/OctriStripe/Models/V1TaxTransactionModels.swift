@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1TaxTransaction domain models
+/// V1TaxTransaction domain models
 /// A Tax Transaction records the tax collected from or refunded to your customer. Related guide: Calculate tax in
 /// your custom payment flow
 public struct TaxTransaction: Codable {
@@ -64,39 +64,58 @@ public struct TaxTransaction: Codable {
         case shippingCost = "shipping_cost"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension TaxTransaction {
-    public init(from decoder: Decoder) throws {
+public extension TaxTransaction {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.created = try container.sdkDecodeRequired(.created)
-        self.currency = try container.sdkDecodeRequired(.currency)
-        self.customerDetails = try container.sdkDecodeRequired(.customerDetails)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.livemode = try container.sdkDecodeRequired(.livemode)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.postedAt = try container.sdkDecodeRequired(.postedAt)
-        self.reference = try container.sdkDecodeRequired(.reference)
-        self.taxDate = try container.sdkDecodeRequired(.taxDate)
-        self.type = try container.sdkDecodeRequired(.type)
-        self.customer = try container.sdkDecodeIfPresent(.customer)
-        self.lineItems = try container.sdkDecodeIfPresent(.lineItems)
-        self.metadata = try container.sdkDecodeIfPresent(.metadata)
-        self.reversal = try container.sdkDecodeIfPresent(.reversal)
-        self.shipFromDetails = try container.sdkDecodeIfPresent(.shipFromDetails)
-        self.shippingCost = try container.sdkDecodeIfPresent(.shippingCost)
-            try validateLength("currency", self.currency, min: nil, max: 5000)
-            try validateLength("id", self.id, min: nil, max: 5000)
-            try validateLength("reference", self.reference, min: nil, max: 5000)
-        if let value = self.customer {
+        created = try container.sdkDecodeRequired(.created)
+        currency = try container.sdkDecodeRequired(.currency)
+        customerDetails = try container.sdkDecodeRequired(.customerDetails)
+        id = try container.sdkDecodeRequired(.id)
+        livemode = try container.sdkDecodeRequired(.livemode)
+        object = try container.sdkDecodeRequired(.object)
+        postedAt = try container.sdkDecodeRequired(.postedAt)
+        reference = try container.sdkDecodeRequired(.reference)
+        taxDate = try container.sdkDecodeRequired(.taxDate)
+        type = try container.sdkDecodeRequired(.type)
+        customer = try container.sdkDecodeIfPresent(.customer)
+        lineItems = try container.sdkDecodeIfPresent(.lineItems)
+        metadata = try container.sdkDecodeIfPresent(.metadata)
+        reversal = try container.sdkDecodeIfPresent(.reversal)
+        shipFromDetails = try container.sdkDecodeIfPresent(.shipFromDetails)
+        shippingCost = try container.sdkDecodeIfPresent(.shippingCost)
+        try validateLength("currency", currency, min: nil, max: 5000)
+        try validateLength("id", id, min: nil, max: 5000)
+        try validateLength("reference", reference, min: nil, max: 5000)
+        if let value = customer {
             try validateLength("customer", value, min: nil, max: 5000)
         }
     }
 }
 
-extension TaxTransaction {
-    public init(created: Int, currency: String, customerDetails: TaxProductResourceCustomerDetails, id: String, livemode: Bool, object: TaxTransactionObject, postedAt: Int, reference: String, taxDate: Int, type: TaxTransactionType, customer: String? = nil, lineItems: TaxTransactionLineItems? = nil, metadata: [String: String]? = nil, reversal: TaxTransactionReversal? = nil, shipFromDetails: TaxTransactionShipFromDetails? = nil, shippingCost: TaxTransactionShippingCost? = nil) throws {
+public extension TaxTransaction {
+    init(
+        created: Int,
+        currency: String,
+        customerDetails: TaxProductResourceCustomerDetails,
+        id: String,
+        livemode: Bool,
+        object: TaxTransactionObject,
+        postedAt: Int,
+        reference: String,
+        taxDate: Int,
+        type: TaxTransactionType,
+        customer: String? = nil,
+        lineItems: TaxTransactionLineItems? = nil,
+        metadata: [String: String]? = nil,
+        reversal: TaxTransactionReversal? = nil,
+        shipFromDetails: TaxTransactionShipFromDetails? = nil,
+        shippingCost: TaxTransactionShippingCost? = nil
+    ) throws {
         (self.created, self.currency) = (created, currency)
         (self.customerDetails, self.id) = (customerDetails, id)
         (self.livemode, self.object) = (livemode, object)
@@ -105,9 +124,9 @@ extension TaxTransaction {
         (self.customer, self.lineItems) = (customer, lineItems)
         (self.metadata, self.reversal) = (metadata, reversal)
         (self.shipFromDetails, self.shippingCost) = (shipFromDetails, shippingCost)
-            try validateLength("currency", self.currency, min: nil, max: 5000)
-            try validateLength("id", self.id, min: nil, max: 5000)
-            try validateLength("reference", self.reference, min: nil, max: 5000)
+        try validateLength("currency", self.currency, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("reference", self.reference, min: nil, max: 5000)
         if let value = self.customer {
             try validateLength("customer", value, min: nil, max: 5000)
         }
@@ -133,39 +152,57 @@ public struct TaxTransactionLineItems: Codable {
         case url
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension TaxTransactionLineItems {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.data) else {
-            throw SdkValidationError(field: "data", code: "required", message: "Validation failed for 'data': value is required")
-        }
-        guard container.contains(.hasMore) else {
-            throw SdkValidationError(field: "has_more", code: "required", message: "Validation failed for 'has_more': value is required")
-        }
-        guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
-        }
-        guard container.contains(.url) else {
-            throw SdkValidationError(field: "url", code: "required", message: "Validation failed for 'url': value is required")
-        }
-        self.data = try container.sdkDecodeRequired(.data)
-        self.hasMore = try container.sdkDecodeRequired(.hasMore)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.url = try container.sdkDecodeRequired(.url)
-            try validateLength("url", self.url, min: nil, max: 5000)
-            try sdkValidatePattern("url", self.url, sdkPattern1e6c3e11a87f)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension TaxTransactionLineItems {
-    public init(data: [TaxTransactionLineItem], hasMore: Bool, object: TaxTransactionLineItemsObject, url: String) throws {
+public extension TaxTransactionLineItems {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.data) else {
+            throw SdkValidationError(
+                field: "data",
+                code: "required",
+                message: "Validation failed for 'data': value is required"
+            )
+        }
+        guard container.contains(.hasMore) else {
+            throw SdkValidationError(
+                field: "has_more",
+                code: "required",
+                message: "Validation failed for 'has_more': value is required"
+            )
+        }
+        guard container.contains(.object) else {
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
+        }
+        guard container.contains(.url) else {
+            throw SdkValidationError(
+                field: "url",
+                code: "required",
+                message: "Validation failed for 'url': value is required"
+            )
+        }
+        data = try container.sdkDecodeRequired(.data)
+        hasMore = try container.sdkDecodeRequired(.hasMore)
+        object = try container.sdkDecodeRequired(.object)
+        url = try container.sdkDecodeRequired(.url)
+        try validateLength("url", url, min: nil, max: 5000)
+        try sdkValidatePattern("url", url, sdkPattern1e6c3e11a87f)
+    }
+}
+
+public extension TaxTransactionLineItems {
+    init(data: [TaxTransactionLineItem], hasMore: Bool, object: TaxTransactionLineItemsObject, url: String) throws {
         (self.data, self.hasMore) = (data, hasMore)
         (self.object, self.url) = (object, url)
-            try validateLength("url", self.url, min: nil, max: 5000)
-            try sdkValidatePattern("url", self.url, sdkPattern1e6c3e11a87f)
+        try validateLength("url", self.url, min: nil, max: 5000)
+        try sdkValidatePattern("url", self.url, sdkPattern1e6c3e11a87f)
     }
 }
 
@@ -174,24 +211,30 @@ public enum TaxTransactionReversal {
 }
 
 extension TaxTransactionReversal: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for TaxTransactionReversal")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for TaxTransactionReversal"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             TaxProductResourceTaxTransactionResourceReversal.self
         ) {
-            return             .taxProductResourceTaxTransactionResourceReversal(value)
+            return .taxProductResourceTaxTransactionResourceReversal(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -200,7 +243,6 @@ extension TaxTransactionReversal: Codable {
         case let .taxProductResourceTaxTransactionResourceReversal(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum TaxTransactionShipFromDetails {
@@ -208,20 +250,29 @@ public enum TaxTransactionShipFromDetails {
 }
 
 extension TaxTransactionShipFromDetails: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for TaxTransactionShipFromDetails")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for TaxTransactionShipFromDetails"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(TaxProductResourceShipFromDetails.self) { return .taxProductResourceShipFromDetails(value) }
+        if let value = try? container
+            .decode(TaxProductResourceShipFromDetails.self) {
+            return .taxProductResourceShipFromDetails(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -230,7 +281,6 @@ extension TaxTransactionShipFromDetails: Codable {
         case let .taxProductResourceShipFromDetails(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum TaxTransactionShippingCost {
@@ -238,24 +288,30 @@ public enum TaxTransactionShippingCost {
 }
 
 extension TaxTransactionShippingCost: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for TaxTransactionShippingCost")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for TaxTransactionShippingCost"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             TaxProductResourceTaxTransactionShippingCost.self
         ) {
-            return             .taxProductResourceTaxTransactionShippingCost(value)
+            return .taxProductResourceTaxTransactionShippingCost(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -264,14 +320,7 @@ extension TaxTransactionShippingCost: Codable {
         case let .taxProductResourceTaxTransactionShippingCost(value): try container.encode(value); return true
         }
     }
-
 }
-
-
-
-
-
-
 
 /// Typed representation of the `TaxTransactionLineItem` API schema.
 public struct TaxTransactionLineItem: Codable {
@@ -321,36 +370,52 @@ public struct TaxTransactionLineItem: Codable {
         case reversal
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension TaxTransactionLineItem {
-    public init(from decoder: Decoder) throws {
+public extension TaxTransactionLineItem {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.amount = try container.sdkDecodeRequired(.amount)
-        self.amountTax = try container.sdkDecodeRequired(.amountTax)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.livemode = try container.sdkDecodeRequired(.livemode)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.quantity = try container.sdkDecodeRequired(.quantity)
-        self.reference = try container.sdkDecodeRequired(.reference)
-        self.taxBehavior = try container.sdkDecodeRequired(.taxBehavior)
-        self.taxCode = try container.sdkDecodeRequired(.taxCode)
-        self.type = try container.sdkDecodeRequired(.type)
-        self.metadata = try container.sdkDecodeIfPresent(.metadata)
-        self.product = try container.sdkDecodeIfPresent(.product)
-        self.reversal = try container.sdkDecodeIfPresent(.reversal)
-            try validateLength("id", self.id, min: nil, max: 5000)
-            try validateLength("reference", self.reference, min: nil, max: 5000)
-            try validateLength("tax_code", self.taxCode, min: nil, max: 5000)
-        if let value = self.product {
+        amount = try container.sdkDecodeRequired(.amount)
+        amountTax = try container.sdkDecodeRequired(.amountTax)
+        id = try container.sdkDecodeRequired(.id)
+        livemode = try container.sdkDecodeRequired(.livemode)
+        object = try container.sdkDecodeRequired(.object)
+        quantity = try container.sdkDecodeRequired(.quantity)
+        reference = try container.sdkDecodeRequired(.reference)
+        taxBehavior = try container.sdkDecodeRequired(.taxBehavior)
+        taxCode = try container.sdkDecodeRequired(.taxCode)
+        type = try container.sdkDecodeRequired(.type)
+        metadata = try container.sdkDecodeIfPresent(.metadata)
+        product = try container.sdkDecodeIfPresent(.product)
+        reversal = try container.sdkDecodeIfPresent(.reversal)
+        try validateLength("id", id, min: nil, max: 5000)
+        try validateLength("reference", reference, min: nil, max: 5000)
+        try validateLength("tax_code", taxCode, min: nil, max: 5000)
+        if let value = product {
             try validateLength("product", value, min: nil, max: 5000)
         }
     }
 }
 
-extension TaxTransactionLineItem {
-    public init(amount: Int, amountTax: Int, id: String, livemode: Bool, object: TaxTransactionLineItemObject, quantity: Int, reference: String, taxBehavior: TaxTransactionLineItemTaxBehavior, taxCode: String, type: TaxTransactionLineItemType, metadata: [String: String]? = nil, product: String? = nil, reversal: TaxTransactionLineItemReversal? = nil) throws {
+public extension TaxTransactionLineItem {
+    init(
+        amount: Int,
+        amountTax: Int,
+        id: String,
+        livemode: Bool,
+        object: TaxTransactionLineItemObject,
+        quantity: Int,
+        reference: String,
+        taxBehavior: TaxTransactionLineItemTaxBehavior,
+        taxCode: String,
+        type: TaxTransactionLineItemType,
+        metadata: [String: String]? = nil,
+        product: String? = nil,
+        reversal: TaxTransactionLineItemReversal? = nil
+    ) throws {
         (self.amount, self.amountTax) = (amount, amountTax)
         (self.id, self.livemode) = (id, livemode)
         (self.object, self.quantity) = (object, quantity)
@@ -358,9 +423,9 @@ extension TaxTransactionLineItem {
         (self.taxCode, self.type) = (taxCode, type)
         (self.metadata, self.product) = (metadata, product)
         self.reversal = reversal
-            try validateLength("id", self.id, min: nil, max: 5000)
-            try validateLength("reference", self.reference, min: nil, max: 5000)
-            try validateLength("tax_code", self.taxCode, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("reference", self.reference, min: nil, max: 5000)
+        try validateLength("tax_code", self.taxCode, min: nil, max: 5000)
         if let value = self.product {
             try validateLength("product", value, min: nil, max: 5000)
         }
@@ -368,49 +433,60 @@ extension TaxTransactionLineItem {
 }
 
 public enum TaxTransactionLineItemReversal {
-    case taxProductResourceTaxTransactionLineItemResourceReversal(TaxProductResourceTaxTransactionLineItemResourceReversal)
+    case taxProductResourceTaxTransactionLineItemResourceReversal(
+        TaxProductResourceTaxTransactionLineItemResourceReversal
+    )
 }
 
 extension TaxTransactionLineItemReversal: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for TaxTransactionLineItemReversal")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for TaxTransactionLineItemReversal"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             TaxProductResourceTaxTransactionLineItemResourceReversal.self
         ) {
-            return             .taxProductResourceTaxTransactionLineItemResourceReversal(value)
+            return .taxProductResourceTaxTransactionLineItemResourceReversal(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .taxProductResourceTaxTransactionLineItemResourceReversal(value): try container.encode(value); return true
+        case let .taxProductResourceTaxTransactionLineItemResourceReversal(value): try container
+            .encode(value); return true
         }
     }
-
 }
 
 /// String representing the object's type. Objects of the same type share the same value.
 public struct TaxTransactionLineItemObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let taxTransactionLineItem = TaxTransactionLineItemObject(rawValue: "tax.transaction_line_item")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -423,13 +499,16 @@ public struct TaxTransactionLineItemObject: RawRepresentable, Hashable, Codable,
 public struct TaxTransactionType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let reversal = TaxTransactionType(rawValue: "reversal")
     public static let transaction = TaxTransactionType(rawValue: "transaction")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -442,12 +521,15 @@ public struct TaxTransactionType: RawRepresentable, Hashable, Codable, Sendable,
 public struct TaxTransactionObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let taxTransaction = TaxTransactionObject(rawValue: "tax.transaction")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -460,13 +542,16 @@ public struct TaxTransactionObject: RawRepresentable, Hashable, Codable, Sendabl
 public struct TaxTransactionLineItemTaxBehavior: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let exclusive = TaxTransactionLineItemTaxBehavior(rawValue: "exclusive")
     public static let inclusive = TaxTransactionLineItemTaxBehavior(rawValue: "inclusive")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -480,12 +565,15 @@ public struct TaxTransactionLineItemTaxBehavior: RawRepresentable, Hashable, Cod
 public struct TaxTransactionLineItemsObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let list = TaxTransactionLineItemsObject(rawValue: "list")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -498,13 +586,16 @@ public struct TaxTransactionLineItemsObject: RawRepresentable, Hashable, Codable
 public struct TaxTransactionLineItemType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let reversal = TaxTransactionLineItemType(rawValue: "reversal")
     public static let transaction = TaxTransactionLineItemType(rawValue: "transaction")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

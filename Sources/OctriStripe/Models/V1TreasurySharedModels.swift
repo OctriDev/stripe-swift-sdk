@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1TreasuryShared domain models
+/// V1TreasuryShared domain models
 /// Typed representation of the `TreasurySharedResourceBillingDetails` API schema.
 public struct TreasurySharedResourceBillingDetails: Codable {
     /// Required object value serialized in the `address` wire field.
@@ -19,29 +19,35 @@ public struct TreasurySharedResourceBillingDetails: Codable {
         case name
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension TreasurySharedResourceBillingDetails {
-    public init(from decoder: Decoder) throws {
+public extension TreasurySharedResourceBillingDetails {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.address) else {
-            throw SdkValidationError(field: "address", code: "required", message: "Validation failed for 'address': value is required")
+            throw SdkValidationError(
+                field: "address",
+                code: "required",
+                message: "Validation failed for 'address': value is required"
+            )
         }
-        self.address = try container.sdkDecodeRequired(.address)
-        self.email = try container.sdkDecodeIfPresent(.email)
-        self.name = try container.sdkDecodeIfPresent(.name)
-        if let value = self.email {
+        address = try container.sdkDecodeRequired(.address)
+        email = try container.sdkDecodeIfPresent(.email)
+        name = try container.sdkDecodeIfPresent(.name)
+        if let value = email {
             try validateLength("email", value, min: nil, max: 5000)
         }
-        if let value = self.name {
+        if let value = name {
             try validateLength("name", value, min: nil, max: 5000)
         }
     }
 }
 
-extension TreasurySharedResourceBillingDetails {
-    public init(address: Address, email: String? = nil, name: String? = nil) throws {
+public extension TreasurySharedResourceBillingDetails {
+    init(address: Address, email: String? = nil, name: String? = nil) throws {
         (self.address, self.email) = (address, email)
         self.name = name
         if let value = self.email {
@@ -52,10 +58,6 @@ extension TreasurySharedResourceBillingDetails {
         }
     }
 }
-
-
-
-
 
 /// Typed representation of the `TreasurySharedResourceInitiatingPaymentMethodDetailsInitiatingPaymentMethodDetails`
 /// API schema.
@@ -83,32 +85,49 @@ public struct TreasurySharedResourceInitiatingPaymentMethodDetailsInitiatinX4545
         case usBankAccount = "us_bank_account"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension TreasurySharedResourceInitiatingPaymentMethodDetailsInitiatinX45451f2468 {
-    public init(from decoder: Decoder) throws {
+public extension TreasurySharedResourceInitiatingPaymentMethodDetailsInitiatinX45451f2468 {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.billingDetails) else {
-            throw SdkValidationError(field: "billing_details", code: "required", message: "Validation failed for 'billing_details': value is required")
+            throw SdkValidationError(
+                field: "billing_details",
+                code: "required",
+                message: "Validation failed for 'billing_details': value is required"
+            )
         }
         guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
         }
-        self.billingDetails = try container.sdkDecodeRequired(.billingDetails)
-        self.type = try container.sdkDecodeRequired(.type)
-        self.balance = try container.sdkDecodeIfPresent(.balance)
-        self.financialAccount = try container.sdkDecodeIfPresent(.financialAccount)
-        self.issuingCard = try container.sdkDecodeIfPresent(.issuingCard)
-        self.usBankAccount = try container.sdkDecodeIfPresent(.usBankAccount)
-        if let value = self.issuingCard {
+        billingDetails = try container.sdkDecodeRequired(.billingDetails)
+        type = try container.sdkDecodeRequired(.type)
+        balance = try container.sdkDecodeIfPresent(.balance)
+        financialAccount = try container.sdkDecodeIfPresent(.financialAccount)
+        issuingCard = try container.sdkDecodeIfPresent(.issuingCard)
+        usBankAccount = try container.sdkDecodeIfPresent(.usBankAccount)
+        if let value = issuingCard {
             try validateLength("issuing_card", value, min: nil, max: 5000)
         }
     }
 }
 
-extension TreasurySharedResourceInitiatingPaymentMethodDetailsInitiatinX45451f2468 {
-    public init(billingDetails: TreasurySharedResourceBillingDetails, type: TreasurySharedResourceInitiatingPaymentMethodDetailsInitiatinXb9fe03b1dc, balance: TreasurySharedResourceInitiatingPaymentMethodDetailsInitiatinX06334de9fb? = nil, financialAccount: ReceivedPaymentMethodDetailsFinancialAccount? = nil, issuingCard: String? = nil, usBankAccount: TreasurySharedResourceInitiatingPaymentMethodDetailsUsBankAccount? = nil) throws {
+public extension TreasurySharedResourceInitiatingPaymentMethodDetailsInitiatinX45451f2468 {
+    init(
+        billingDetails: TreasurySharedResourceBillingDetails,
+        type: TreasurySharedResourceInitiatingPaymentMethodDetailsInitiatinXb9fe03b1dc,
+        balance: TreasurySharedResourceInitiatingPaymentMethodDetailsInitiatinX06334de9fb? = nil,
+        financialAccount: ReceivedPaymentMethodDetailsFinancialAccount? = nil,
+        issuingCard: String? = nil,
+        usBankAccount: TreasurySharedResourceInitiatingPaymentMethodDetailsUsBankAccount? = nil
+    ) throws {
         (self.billingDetails, self.type) = (billingDetails, type)
         (self.balance, self.financialAccount) = (balance, financialAccount)
         (self.issuingCard, self.usBankAccount) = (issuingCard, usBankAccount)
@@ -134,30 +153,30 @@ public struct TreasurySharedResourceInitiatingPaymentMethodDetailsUsBankAccount:
     }
 
     init() {
-        (self.bankName, self.last4, self.routingNumber) = (nil, nil, nil)
+        (bankName, last4, routingNumber) = (nil, nil, nil)
     }
 }
 
-extension TreasurySharedResourceInitiatingPaymentMethodDetailsUsBankAccount {
-    public init(from decoder: Decoder) throws {
+public extension TreasurySharedResourceInitiatingPaymentMethodDetailsUsBankAccount {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.bankName = try container.sdkDecodeIfPresent(.bankName)
-        self.last4 = try container.sdkDecodeIfPresent(.last4)
-        self.routingNumber = try container.sdkDecodeIfPresent(.routingNumber)
-        if let value = self.bankName {
+        bankName = try container.sdkDecodeIfPresent(.bankName)
+        last4 = try container.sdkDecodeIfPresent(.last4)
+        routingNumber = try container.sdkDecodeIfPresent(.routingNumber)
+        if let value = bankName {
             try validateLength("bank_name", value, min: nil, max: 5000)
         }
-        if let value = self.last4 {
+        if let value = last4 {
             try validateLength("last4", value, min: nil, max: 5000)
         }
-        if let value = self.routingNumber {
+        if let value = routingNumber {
             try validateLength("routing_number", value, min: nil, max: 5000)
         }
     }
 }
 
-extension TreasurySharedResourceInitiatingPaymentMethodDetailsUsBankAccount {
-    public init(bankName: String? = nil, last4: String? = nil, routingNumber: String? = nil) throws {
+public extension TreasurySharedResourceInitiatingPaymentMethodDetailsUsBankAccount {
+    init(bankName: String? = nil, last4: String? = nil, routingNumber: String? = nil) throws {
         self.init()
         (self.bankName, self.last4) = (bankName, last4)
         self.routingNumber = routingNumber
@@ -175,19 +194,28 @@ extension TreasurySharedResourceInitiatingPaymentMethodDetailsUsBankAccount {
 
 /// Polymorphic type matching the originating money movement's source. This can be an external account, a Stripe
 /// balance, or a FinancialAccount.
-public struct TreasurySharedResourceInitiatingPaymentMethodDetailsInitiatinXb9fe03b1dc: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct TreasurySharedResourceInitiatingPaymentMethodDetailsInitiatinXb9fe03b1dc: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let balance = TreasurySharedResourceInitiatingPaymentMethodDetailsInitiatinXb9fe03b1dc(rawValue: "balance")
-    public static let financialAccount = TreasurySharedResourceInitiatingPaymentMethodDetailsInitiatinXb9fe03b1dc(rawValue: "financial_account")
-    public static let issuingCard = TreasurySharedResourceInitiatingPaymentMethodDetailsInitiatinXb9fe03b1dc(rawValue: "issuing_card")
-    public static let stripe = TreasurySharedResourceInitiatingPaymentMethodDetailsInitiatinXb9fe03b1dc(rawValue: "stripe")
-    public static let usBankAccount = TreasurySharedResourceInitiatingPaymentMethodDetailsInitiatinXb9fe03b1dc(rawValue: "us_bank_account")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let balance =
+        TreasurySharedResourceInitiatingPaymentMethodDetailsInitiatinXb9fe03b1dc(rawValue: "balance")
+    public static let financialAccount =
+        TreasurySharedResourceInitiatingPaymentMethodDetailsInitiatinXb9fe03b1dc(rawValue: "financial_account")
+    public static let issuingCard =
+        TreasurySharedResourceInitiatingPaymentMethodDetailsInitiatinXb9fe03b1dc(rawValue: "issuing_card")
+    public static let stripe =
+        TreasurySharedResourceInitiatingPaymentMethodDetailsInitiatinXb9fe03b1dc(rawValue: "stripe")
+    public static let usBankAccount =
+        TreasurySharedResourceInitiatingPaymentMethodDetailsInitiatinXb9fe03b1dc(rawValue: "us_bank_account")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -197,15 +225,20 @@ public struct TreasurySharedResourceInitiatingPaymentMethodDetailsInitiatinXb9fe
 }
 
 /// Set when `type` is `balance`.
-public struct TreasurySharedResourceInitiatingPaymentMethodDetailsInitiatinX06334de9fb: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct TreasurySharedResourceInitiatingPaymentMethodDetailsInitiatinX06334de9fb: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let payments = TreasurySharedResourceInitiatingPaymentMethodDetailsInitiatinX06334de9fb(rawValue: "payments")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let payments =
+        TreasurySharedResourceInitiatingPaymentMethodDetailsInitiatinX06334de9fb(rawValue: "payments")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

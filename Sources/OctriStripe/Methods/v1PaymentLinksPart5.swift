@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1PaymentLinksMethods {
-    public struct PostPaymentLinksPaymentLinkOptions: Codable {
+public extension V1PaymentLinksMethods {
+    struct PostPaymentLinksPaymentLinkOptions: Codable {
         public var paymentLink: String
         public var active: Bool?
         public var afterCompletion: PostPaymentLinksPaymentLinkRequestBodyAfterCompletion?
@@ -46,7 +46,9 @@ extension V1PaymentLinksMethods {
         }
     }
 
-    /// Updates the configuration of an existing payment link. Supply only the payment link properties you want to change, including activation, completion behaviour, line items, payment methods, metadata, or customer collection settings. The response contains the updated payment link.
+    /// Updates the configuration of an existing payment link. Supply only the payment link properties you want to
+    /// change, including activation, completion behaviour, line items, payment methods, metadata, or customer
+    /// collection settings. The response contains the updated payment link.
     ///
     /// Updates a payment link.
     ///
@@ -137,11 +139,22 @@ extension V1PaymentLinksMethods {
     /// - taxIdCollection: Controls tax ID collection during checkout.
     /// - transferData: The account (if any) the payments will be attributed to for
     ///   tax reporting, and where funds from each payment will be transferred to.
-    public static func postPaymentLinksPaymentLink(config: ClientConfig, options: PostPaymentLinksPaymentLinkOptions) async throws -> PaymentLink {
+    static func postPaymentLinksPaymentLink(
+        config: ClientConfig,
+        options: PostPaymentLinksPaymentLinkOptions
+    ) async throws -> PaymentLink {
         try validateLength("payment_link", options.paymentLink, max: 5000)
 
         let requestBody = PostPaymentLinksPaymentLinkRequestBody(options: options)
 
-        return try (await sdkRequest("POST", ["/v1/payment_links/", sdkEncodePathSegment(sdkWireString(options.paymentLink))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostPaymentLinksPaymentLink")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/payment_links/", sdkEncodePathSegment(sdkWireString(options.paymentLink))].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostPaymentLinksPaymentLink"
+        )).data
     }
 }

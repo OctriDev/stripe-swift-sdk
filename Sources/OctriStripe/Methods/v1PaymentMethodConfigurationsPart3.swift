@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1PaymentMethodConfigurationsMethods {
-    public struct PostPaymentMethodConfigurationsOptions: Codable {
+public extension V1PaymentMethodConfigurationsMethods {
+    struct PostPaymentMethodConfigurationsOptions: Codable {
         public var acssDebit: PostPaymentMethodConfigurationsRequestBodyAcssDebit?
         public var affirm: PostPaymentMethodConfigurationsRequestBodyAffirm?
         public var afterpayClearpay: PostPaymentMethodConfigurationsRequestBodyAfterpayClearpay?
@@ -75,7 +75,10 @@ extension V1PaymentMethodConfigurationsMethods {
         public init() {}
     }
 
-    /// Creates a payment method configuration that controls which payment methods are displayed when payment method types are not explicitly specified. Configure individual payment methods through their display preferences, including card, wallets, bank debits, and local payment methods. The response contains the created configuration and its available payment methods.
+    /// Creates a payment method configuration that controls which payment methods are displayed when payment method
+    /// types are not explicitly specified. Configure individual payment methods through their display preferences,
+    /// including card, wallets, bank debits, and local payment methods. The response contains the created configuration
+    /// and its available payment methods.
     ///
     /// Creates a payment method configuration
     ///
@@ -349,7 +352,10 @@ extension V1PaymentMethodConfigurationsMethods {
     /// - zip: Zip gives your customers a way to split purchases over a series of
     ///   payments. Check this [page](https://docs.stripe.com/payments/zip) for more
     ///   details like country availability.
-    public static func postPaymentMethodConfigurations(config: ClientConfig, options: PostPaymentMethodConfigurationsOptions) async throws -> PaymentMethodConfiguration {
+    static func postPaymentMethodConfigurations(
+        config: ClientConfig,
+        options: PostPaymentMethodConfigurationsOptions
+    ) async throws -> PaymentMethodConfiguration {
         if let name = options.name {
             try validateLength("name", name, max: 100)
         }
@@ -360,6 +366,14 @@ extension V1PaymentMethodConfigurationsMethods {
 
         let requestBody = PostPaymentMethodConfigurationsRequestBody(options: options)
 
-        return try (await sdkRequest("POST", "/v1/payment_method_configurations", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostPaymentMethodConfigurations")).data
+        return try await (sdkRequest(
+            "POST",
+            "/v1/payment_method_configurations",
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostPaymentMethodConfigurations"
+        )).data
     }
 }

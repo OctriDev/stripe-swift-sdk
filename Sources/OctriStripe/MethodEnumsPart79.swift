@@ -6,16 +6,20 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public struct PostInvoicesCreatePreviewRequestBodyAutomaticTaxLiabilityType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostInvoicesCreatePreviewRequestBodyAutomaticTaxLiabilityType: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let account = PostInvoicesCreatePreviewRequestBodyAutomaticTaxLiabilityType(rawValue: "account")
     public static let `self` = PostInvoicesCreatePreviewRequestBodyAutomaticTaxLiabilityType(rawValue: "self")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -24,15 +28,19 @@ public struct PostInvoicesCreatePreviewRequestBodyAutomaticTaxLiabilityType: Raw
     }
 }
 
-public struct PostInvoicesCreatePreviewRequestBodyCustomerDetailsAddressVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostInvoicesCreatePreviewRequestBodyCustomerDetailsAddressVariant1: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostInvoicesCreatePreviewRequestBodyCustomerDetailsAddressVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -41,15 +49,19 @@ public struct PostInvoicesCreatePreviewRequestBodyCustomerDetailsAddressVariant1
     }
 }
 
-public struct PostInvoicesCreatePreviewRequestBodyCustomerDetailsShippingVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostInvoicesCreatePreviewRequestBodyCustomerDetailsShippingVariant1: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostInvoicesCreatePreviewRequestBodyCustomerDetailsShippingVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -58,10 +70,14 @@ public struct PostInvoicesCreatePreviewRequestBodyCustomerDetailsShippingVariant
     }
 }
 
-public struct PostInvoicesCreatePreviewRequestBodyCustomerDetailsTaxExempt: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostInvoicesCreatePreviewRequestBodyCustomerDetailsTaxExempt: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostInvoicesCreatePreviewRequestBodyCustomerDetailsTaxExempt(rawValue: "")
     public static let exempt = PostInvoicesCreatePreviewRequestBodyCustomerDetailsTaxExempt(rawValue: "exempt")
     public static let none = PostInvoicesCreatePreviewRequestBodyCustomerDetailsTaxExempt(rawValue: "none")
@@ -69,7 +85,7 @@ public struct PostInvoicesCreatePreviewRequestBodyCustomerDetailsTaxExempt: RawR
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -78,10 +94,14 @@ public struct PostInvoicesCreatePreviewRequestBodyCustomerDetailsTaxExempt: RawR
     }
 }
 
-public struct PostInvoicesCreatePreviewRequestBodyCustomerDetailsTaxIdsItemType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostInvoicesCreatePreviewRequestBodyCustomerDetailsTaxIdsItemType: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let adNrt = PostInvoicesCreatePreviewRequestBodyCustomerDetailsTaxIdsItemType(rawValue: "ad_nrt")
     public static let aeTrn = PostInvoicesCreatePreviewRequestBodyCustomerDetailsTaxIdsItemType(rawValue: "ae_trn")
     public static let alTin = PostInvoicesCreatePreviewRequestBodyCustomerDetailsTaxIdsItemType(rawValue: "al_tin")
@@ -105,7 +125,8 @@ public struct PostInvoicesCreatePreviewRequestBodyCustomerDetailsTaxIdsItemType:
     public static let bsTin = PostInvoicesCreatePreviewRequestBodyCustomerDetailsTaxIdsItemType(rawValue: "bs_tin")
     public static let byTin = PostInvoicesCreatePreviewRequestBodyCustomerDetailsTaxIdsItemType(rawValue: "by_tin")
     public static let caBn = PostInvoicesCreatePreviewRequestBodyCustomerDetailsTaxIdsItemType(rawValue: "ca_bn")
-    public static let caGstHst = PostInvoicesCreatePreviewRequestBodyCustomerDetailsTaxIdsItemType(rawValue: "ca_gst_hst")
+    public static let caGstHst =
+        PostInvoicesCreatePreviewRequestBodyCustomerDetailsTaxIdsItemType(rawValue: "ca_gst_hst")
     public static let caPstBc = PostInvoicesCreatePreviewRequestBodyCustomerDetailsTaxIdsItemType(rawValue: "ca_pst_bc")
     public static let caPstMb = PostInvoicesCreatePreviewRequestBodyCustomerDetailsTaxIdsItemType(rawValue: "ca_pst_mb")
     public static let caPstSk = PostInvoicesCreatePreviewRequestBodyCustomerDetailsTaxIdsItemType(rawValue: "ca_pst_sk")
@@ -125,7 +146,8 @@ public struct PostInvoicesCreatePreviewRequestBodyCustomerDetailsTaxIdsItemType:
     public static let egTin = PostInvoicesCreatePreviewRequestBodyCustomerDetailsTaxIdsItemType(rawValue: "eg_tin")
     public static let esCif = PostInvoicesCreatePreviewRequestBodyCustomerDetailsTaxIdsItemType(rawValue: "es_cif")
     public static let etTin = PostInvoicesCreatePreviewRequestBodyCustomerDetailsTaxIdsItemType(rawValue: "et_tin")
-    public static let euOssVat = PostInvoicesCreatePreviewRequestBodyCustomerDetailsTaxIdsItemType(rawValue: "eu_oss_vat")
+    public static let euOssVat =
+        PostInvoicesCreatePreviewRequestBodyCustomerDetailsTaxIdsItemType(rawValue: "eu_oss_vat")
     public static let euVat = PostInvoicesCreatePreviewRequestBodyCustomerDetailsTaxIdsItemType(rawValue: "eu_vat")
     public static let foVat = PostInvoicesCreatePreviewRequestBodyCustomerDetailsTaxIdsItemType(rawValue: "fo_vat")
     public static let gbVat = PostInvoicesCreatePreviewRequestBodyCustomerDetailsTaxIdsItemType(rawValue: "gb_vat")
@@ -202,7 +224,7 @@ public struct PostInvoicesCreatePreviewRequestBodyCustomerDetailsTaxIdsItemType:
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

@@ -324,7 +324,8 @@ extension SdkMethodTests {
         )
     }
 
-    func testGetQuotesQuoteComputedUpfrontLineItemsGetQuotesQuoteComputedUXdd5089462cReachesMockAndDecodesResponse() async throws {
+    func testGetQuotesQuoteComputedUpfrontLineItemsGetQuotesQuoteComputedUXdd5089462cReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -407,7 +408,8 @@ extension SdkMethodTests {
         )
     }
 
-    func testGetRadarEarlyFraudWarningsEarlyFraudWarningGetRadarEarlyFraudX978639b7eaReachesMockAndDecodesResponse() async throws {
+    func testGetRadarEarlyFraudWarningsEarlyFraudWarningGetRadarEarlyFraudX978639b7eaReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }

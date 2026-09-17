@@ -6,10 +6,13 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1CustomersBankAccountsMethods {
-    /// Lists the bank accounts belonging to a customer. Use `limit` with `starting_after` or `ending_before` to page through accounts beyond the 10 most recent sources shown directly on the customer.
+public extension V1CustomersBankAccountsMethods {
+    /// Lists the bank accounts belonging to a customer. Use `limit` with `starting_after` or `ending_before` to page
+    /// through accounts beyond the 10 most recent sources shown directly on the customer.
     ///
-    /// You can see a list of the bank accounts belonging to a Customer. Note that the 10 most recent sources are always available by default on the Customer. If you need more than those 10, you can use this API method and the limit and starting_after parameters to page through additional bank accounts.
+    /// You can see a list of the bank accounts belonging to a Customer. Note that the 10 most recent sources are always
+    /// available by default on the Customer. If you need more than those 10, you can use this API method and the limit
+    /// and starting_after parameters to page through additional bank accounts.
     ///
     /// - Parameters:
     /// - endingBefore: A cursor for use in pagination. `ending_before` is an object
@@ -27,14 +30,28 @@ extension V1CustomersBankAccountsMethods {
     ///   the list.
     ///
     /// - Warning: This operation is deprecated and may be removed in a future release.
-    public static func getCustomersCustomerBankAccounts(config: ClientConfig, customer: String, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetCustomersCustomerBankAccountsResponse {
+    static func getCustomersCustomerBankAccounts(
+        config: ClientConfig,
+        customer: String,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        startingAfter: String?
+    ) async throws -> GetCustomersCustomerBankAccountsResponse {
         try validateLength("customer", customer, max: 5000)
 
-        return try (await sdkRequest("GET", ["/v1/customers/", sdkEncodePathSegment(sdkWireString(customer)), "/bank_accounts"].joined(), config: config, query: [
-            SdkQueryParameter("ending_before", value: endingBefore),
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            SdkQueryParameter("limit", value: limit),
-            SdkQueryParameter("starting_after", value: startingAfter),
-        ], decoder: .json, operationId: "GetCustomersCustomerBankAccounts")).data
+        return try await (sdkRequest(
+            "GET",
+            ["/v1/customers/", sdkEncodePathSegment(sdkWireString(customer)), "/bank_accounts"].joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("ending_before", value: endingBefore),
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+                SdkQueryParameter("limit", value: limit),
+                SdkQueryParameter("starting_after", value: startingAfter),
+            ],
+            decoder: .json,
+            operationId: "GetCustomersCustomerBankAccounts"
+        )).data
     }
 }

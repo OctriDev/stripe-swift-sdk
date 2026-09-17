@@ -7,7 +7,8 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1RadarPaymentEvaluationsMethods {
-    /// Request a Radar API fraud risk score from Stripe for a payment before sending it for external processor authorization.
+    /// Request a Radar API fraud risk score from Stripe for a payment before sending it for external processor
+    /// authorization.
     ///
     /// - Parameters:
     /// - customerDetails: Details about the customer associated with the payment
@@ -21,9 +22,30 @@ public enum V1RadarPaymentEvaluationsMethods {
     ///   information about the object in a structured format. Individual keys can be
     ///   unset by posting an empty value to them. All keys can be unset by posting an
     ///   empty value to `metadata`.
-    public static func postRadarPaymentEvaluations(config: ClientConfig, customerDetails: PostRadarPaymentEvaluationsRequestBodyCustomerDetails, paymentDetails: PostRadarPaymentEvaluationsRequestBodyPaymentDetails, clientDeviceMetadataDetails: PostRadarPaymentEvaluationsRequestBodyClientDeviceMetadataDetails?, expand: [String]?, metadata: [String: String]?) async throws -> RadarPaymentEvaluation {
-        let requestBody = PostRadarPaymentEvaluationsRequestBody(customerDetails: customerDetails, paymentDetails: paymentDetails, clientDeviceMetadataDetails: clientDeviceMetadataDetails, expand: expand, metadata: metadata)
+    public static func postRadarPaymentEvaluations(
+        config: ClientConfig,
+        customerDetails: PostRadarPaymentEvaluationsRequestBodyCustomerDetails,
+        paymentDetails: PostRadarPaymentEvaluationsRequestBodyPaymentDetails,
+        clientDeviceMetadataDetails: PostRadarPaymentEvaluationsRequestBodyClientDeviceMetadataDetails?,
+        expand: [String]?,
+        metadata: [String: String]?
+    ) async throws -> RadarPaymentEvaluation {
+        let requestBody = PostRadarPaymentEvaluationsRequestBody(
+            customerDetails: customerDetails,
+            paymentDetails: paymentDetails,
+            clientDeviceMetadataDetails: clientDeviceMetadataDetails,
+            expand: expand,
+            metadata: metadata
+        )
 
-        return try (await sdkRequest("POST", "/v1/radar/payment_evaluations", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostRadarPaymentEvaluations")).data
+        return try await (sdkRequest(
+            "POST",
+            "/v1/radar/payment_evaluations",
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostRadarPaymentEvaluations"
+        )).data
     }
 }

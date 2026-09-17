@@ -3,24 +3,36 @@
 
 import Foundation
 
-// V1Bank domain models
-extension BankConnectionsResourceOwnershipRefresh {
-    public init(from decoder: Decoder) throws {
+/// V1Bank domain models
+public extension BankConnectionsResourceOwnershipRefresh {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.lastAttemptedAt) else {
-            throw SdkValidationError(field: "last_attempted_at", code: "required", message: "Validation failed for 'last_attempted_at': value is required")
+            throw SdkValidationError(
+                field: "last_attempted_at",
+                code: "required",
+                message: "Validation failed for 'last_attempted_at': value is required"
+            )
         }
         guard container.contains(.status) else {
-            throw SdkValidationError(field: "status", code: "required", message: "Validation failed for 'status': value is required")
+            throw SdkValidationError(
+                field: "status",
+                code: "required",
+                message: "Validation failed for 'status': value is required"
+            )
         }
-        self.lastAttemptedAt = try container.sdkDecodeRequired(.lastAttemptedAt)
-        self.status = try container.sdkDecodeRequired(.status)
-        self.nextRefreshAvailableAt = try container.sdkDecodeIfPresent(.nextRefreshAvailableAt)
+        lastAttemptedAt = try container.sdkDecodeRequired(.lastAttemptedAt)
+        status = try container.sdkDecodeRequired(.status)
+        nextRefreshAvailableAt = try container.sdkDecodeIfPresent(.nextRefreshAvailableAt)
     }
 }
 
-extension BankConnectionsResourceOwnershipRefresh {
-    public init(lastAttemptedAt: Int, status: BankConnectionsResourceOwnershipRefreshStatus, nextRefreshAvailableAt: Int? = nil) {
+public extension BankConnectionsResourceOwnershipRefresh {
+    init(
+        lastAttemptedAt: Int,
+        status: BankConnectionsResourceOwnershipRefreshStatus,
+        nextRefreshAvailableAt: Int? = nil
+    ) {
         (self.lastAttemptedAt, self.status) = (lastAttemptedAt, status)
         self.nextRefreshAvailableAt = nextRefreshAvailableAt
     }
@@ -45,34 +57,53 @@ public struct BankConnectionsResourceTransactionRefresh: Codable {
         case nextRefreshAvailableAt = "next_refresh_available_at"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension BankConnectionsResourceTransactionRefresh {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.id) else {
-            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
-        }
-        guard container.contains(.lastAttemptedAt) else {
-            throw SdkValidationError(field: "last_attempted_at", code: "required", message: "Validation failed for 'last_attempted_at': value is required")
-        }
-        guard container.contains(.status) else {
-            throw SdkValidationError(field: "status", code: "required", message: "Validation failed for 'status': value is required")
-        }
-        self.id = try container.sdkDecodeRequired(.id)
-        self.lastAttemptedAt = try container.sdkDecodeRequired(.lastAttemptedAt)
-        self.status = try container.sdkDecodeRequired(.status)
-        self.nextRefreshAvailableAt = try container.sdkDecodeIfPresent(.nextRefreshAvailableAt)
-            try validateLength("id", self.id, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension BankConnectionsResourceTransactionRefresh {
-    public init(id: String, lastAttemptedAt: Int, status: BankConnectionsResourceTransactionRefreshStatus, nextRefreshAvailableAt: Int? = nil) throws {
+public extension BankConnectionsResourceTransactionRefresh {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.id) else {
+            throw SdkValidationError(
+                field: "id",
+                code: "required",
+                message: "Validation failed for 'id': value is required"
+            )
+        }
+        guard container.contains(.lastAttemptedAt) else {
+            throw SdkValidationError(
+                field: "last_attempted_at",
+                code: "required",
+                message: "Validation failed for 'last_attempted_at': value is required"
+            )
+        }
+        guard container.contains(.status) else {
+            throw SdkValidationError(
+                field: "status",
+                code: "required",
+                message: "Validation failed for 'status': value is required"
+            )
+        }
+        id = try container.sdkDecodeRequired(.id)
+        lastAttemptedAt = try container.sdkDecodeRequired(.lastAttemptedAt)
+        status = try container.sdkDecodeRequired(.status)
+        nextRefreshAvailableAt = try container.sdkDecodeIfPresent(.nextRefreshAvailableAt)
+        try validateLength("id", id, min: nil, max: 5000)
+    }
+}
+
+public extension BankConnectionsResourceTransactionRefresh {
+    init(
+        id: String,
+        lastAttemptedAt: Int,
+        status: BankConnectionsResourceTransactionRefreshStatus,
+        nextRefreshAvailableAt: Int? = nil
+    ) throws {
         (self.id, self.lastAttemptedAt) = (id, lastAttemptedAt)
         (self.status, self.nextRefreshAvailableAt) = (status, nextRefreshAvailableAt)
-            try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
     }
 }
 
@@ -89,20 +120,20 @@ public struct BankConnectionsResourceTransactionResourceStatusTransitions: Codab
     }
 
     init() {
-        (self.postedAt, self.voidAt) = (nil, nil)
+        (postedAt, voidAt) = (nil, nil)
     }
 }
 
-extension BankConnectionsResourceTransactionResourceStatusTransitions {
-    public init(from decoder: Decoder) throws {
+public extension BankConnectionsResourceTransactionResourceStatusTransitions {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.postedAt = try container.sdkDecodeIfPresent(.postedAt)
-        self.voidAt = try container.sdkDecodeIfPresent(.voidAt)
+        postedAt = try container.sdkDecodeIfPresent(.postedAt)
+        voidAt = try container.sdkDecodeIfPresent(.voidAt)
     }
 }
 
-extension BankConnectionsResourceTransactionResourceStatusTransitions {
-    public init(postedAt: Int? = nil, voidAt: Int? = nil) {
+public extension BankConnectionsResourceTransactionResourceStatusTransitions {
+    init(postedAt: Int? = nil, voidAt: Int? = nil) {
         self.init()
         (self.postedAt, self.voidAt) = (postedAt, voidAt)
     }
@@ -110,17 +141,22 @@ extension BankConnectionsResourceTransactionResourceStatusTransitions {
 
 /// Whether the Session should require that linked accounts support payments and retrieve account numbers before
 /// completion.
-public struct BankConnectionsResourceLinkAccountSessionFiltersRequirePaymenX2d2a53ae85: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct BankConnectionsResourceLinkAccountSessionFiltersRequirePaymenX2d2a53ae85: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let all = BankConnectionsResourceLinkAccountSessionFiltersRequirePaymenX2d2a53ae85(rawValue: "all")
-    public static let atLeastOne = BankConnectionsResourceLinkAccountSessionFiltersRequirePaymenX2d2a53ae85(rawValue: "at_least_one")
+    public static let atLeastOne =
+        BankConnectionsResourceLinkAccountSessionFiltersRequirePaymenX2d2a53ae85(rawValue: "at_least_one")
     public static let none = BankConnectionsResourceLinkAccountSessionFiltersRequirePaymenX2d2a53ae85(rawValue: "none")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -130,16 +166,21 @@ public struct BankConnectionsResourceLinkAccountSessionFiltersRequirePaymenX2d2a
 }
 
 /// The action (if any) to proactively relink the Account.
-public struct BankConnectionsResourceAccountStatusDetailsApiResourceActiveSX8ab18c2ad7: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct BankConnectionsResourceAccountStatusDetailsApiResourceActiveSX8ab18c2ad7: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let none = BankConnectionsResourceAccountStatusDetailsApiResourceActiveSX8ab18c2ad7(rawValue: "none")
-    public static let relinkRequired = BankConnectionsResourceAccountStatusDetailsApiResourceActiveSX8ab18c2ad7(rawValue: "relink_required")
+    public static let relinkRequired =
+        BankConnectionsResourceAccountStatusDetailsApiResourceActiveSX8ab18c2ad7(rawValue: "relink_required")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -149,15 +190,19 @@ public struct BankConnectionsResourceAccountStatusDetailsApiResourceActiveSX8ab1
 }
 
 /// Required enumerated value serialized in the `supported_networks[]` wire field.
-public struct BankConnectionsResourceAccountNumberDetailsSupportedNetworksItem: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct BankConnectionsResourceAccountNumberDetailsSupportedNetworksItem: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let ach = BankConnectionsResourceAccountNumberDetailsSupportedNetworksItem(rawValue: "ach")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -167,16 +212,20 @@ public struct BankConnectionsResourceAccountNumberDetailsSupportedNetworksItem: 
 }
 
 /// Controls how manual entry of bank account details is presented to the user.
-public struct BankConnectionsResourceLinkAccountSessionManualEntryMode: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct BankConnectionsResourceLinkAccountSessionManualEntryMode: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let automatic = BankConnectionsResourceLinkAccountSessionManualEntryMode(rawValue: "automatic")
     public static let disabled = BankConnectionsResourceLinkAccountSessionManualEntryMode(rawValue: "disabled")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -189,13 +238,16 @@ public struct BankConnectionsResourceLinkAccountSessionManualEntryMode: RawRepre
 public struct BankConnectionsResourceBalanceType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let cash = BankConnectionsResourceBalanceType(rawValue: "cash")
     public static let credit = BankConnectionsResourceBalanceType(rawValue: "credit")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -205,16 +257,20 @@ public struct BankConnectionsResourceBalanceType: RawRepresentable, Hashable, Co
 }
 
 /// Whether the account number is currently active and usable for transactions.
-public struct BankConnectionsResourceAccountNumberDetailsStatus: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct BankConnectionsResourceAccountNumberDetailsStatus: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let deactivated = BankConnectionsResourceAccountNumberDetailsStatus(rawValue: "deactivated")
     public static let transactable = BankConnectionsResourceAccountNumberDetailsStatus(rawValue: "transactable")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -224,16 +280,20 @@ public struct BankConnectionsResourceAccountNumberDetailsStatus: RawRepresentabl
 }
 
 /// Type of account holder that this account belongs to.
-public struct BankConnectionsResourceAccountholderType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct BankConnectionsResourceAccountholderType: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let account = BankConnectionsResourceAccountholderType(rawValue: "account")
     public static let customer = BankConnectionsResourceAccountholderType(rawValue: "customer")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -243,17 +303,24 @@ public struct BankConnectionsResourceAccountholderType: RawRepresentable, Hashab
 }
 
 /// The underlying cause of the Account becoming inactive.
-public struct BankConnectionsResourceAccountStatusDetailsApiResourceActiveSXedced8ce85: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct BankConnectionsResourceAccountStatusDetailsApiResourceActiveSXedced8ce85: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let accessExpired = BankConnectionsResourceAccountStatusDetailsApiResourceActiveSXedced8ce85(rawValue: "access_expired")
-    public static let institutionRequirement = BankConnectionsResourceAccountStatusDetailsApiResourceActiveSXedced8ce85(rawValue: "institution_requirement")
-    public static let unspecified = BankConnectionsResourceAccountStatusDetailsApiResourceActiveSXedced8ce85(rawValue: "unspecified")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let accessExpired =
+        BankConnectionsResourceAccountStatusDetailsApiResourceActiveSXedced8ce85(rawValue: "access_expired")
+    public static let institutionRequirement =
+        BankConnectionsResourceAccountStatusDetailsApiResourceActiveSXedced8ce85(rawValue: "institution_requirement")
+    public static let unspecified =
+        BankConnectionsResourceAccountStatusDetailsApiResourceActiveSXedced8ce85(rawValue: "unspecified")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -263,16 +330,22 @@ public struct BankConnectionsResourceAccountStatusDetailsApiResourceActiveSXedce
 }
 
 /// The type of account number associated with the account.
-public struct BankConnectionsResourceAccountNumberDetailsIdentifierType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct BankConnectionsResourceAccountNumberDetailsIdentifierType: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let accountNumber = BankConnectionsResourceAccountNumberDetailsIdentifierType(rawValue: "account_number")
-    public static let tokenizedAccountNumber = BankConnectionsResourceAccountNumberDetailsIdentifierType(rawValue: "tokenized_account_number")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let accountNumber =
+        BankConnectionsResourceAccountNumberDetailsIdentifierType(rawValue: "account_number")
+    public static let tokenizedAccountNumber =
+        BankConnectionsResourceAccountNumberDetailsIdentifierType(rawValue: "tokenized_account_number")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -282,19 +355,28 @@ public struct BankConnectionsResourceAccountNumberDetailsIdentifierType: RawRepr
 }
 
 /// Required enumerated value serialized in the `account_subcategories[]` wire field.
-public struct BankConnectionsResourceLinkAccountSessionFiltersAccountSubcategoriesItem: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct BankConnectionsResourceLinkAccountSessionFiltersAccountSubcategoriesItem: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let checking = BankConnectionsResourceLinkAccountSessionFiltersAccountSubcategoriesItem(rawValue: "checking")
-    public static let creditCard = BankConnectionsResourceLinkAccountSessionFiltersAccountSubcategoriesItem(rawValue: "credit_card")
-    public static let lineOfCredit = BankConnectionsResourceLinkAccountSessionFiltersAccountSubcategoriesItem(rawValue: "line_of_credit")
-    public static let mortgage = BankConnectionsResourceLinkAccountSessionFiltersAccountSubcategoriesItem(rawValue: "mortgage")
-    public static let savings = BankConnectionsResourceLinkAccountSessionFiltersAccountSubcategoriesItem(rawValue: "savings")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let checking =
+        BankConnectionsResourceLinkAccountSessionFiltersAccountSubcategoriesItem(rawValue: "checking")
+    public static let creditCard =
+        BankConnectionsResourceLinkAccountSessionFiltersAccountSubcategoriesItem(rawValue: "credit_card")
+    public static let lineOfCredit =
+        BankConnectionsResourceLinkAccountSessionFiltersAccountSubcategoriesItem(rawValue: "line_of_credit")
+    public static let mortgage =
+        BankConnectionsResourceLinkAccountSessionFiltersAccountSubcategoriesItem(rawValue: "mortgage")
+    public static let savings =
+        BankConnectionsResourceLinkAccountSessionFiltersAccountSubcategoriesItem(rawValue: "savings")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -304,17 +386,21 @@ public struct BankConnectionsResourceLinkAccountSessionFiltersAccountSubcategori
 }
 
 /// The status of the last refresh attempt.
-public struct BankConnectionsResourceTransactionRefreshStatus: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct BankConnectionsResourceTransactionRefreshStatus: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let failed = BankConnectionsResourceTransactionRefreshStatus(rawValue: "failed")
     public static let pending = BankConnectionsResourceTransactionRefreshStatus(rawValue: "pending")
     public static let succeeded = BankConnectionsResourceTransactionRefreshStatus(rawValue: "succeeded")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -324,17 +410,21 @@ public struct BankConnectionsResourceTransactionRefreshStatus: RawRepresentable,
 }
 
 /// The status of the last refresh attempt.
-public struct BankConnectionsResourceBalanceRefreshStatus: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct BankConnectionsResourceBalanceRefreshStatus: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let failed = BankConnectionsResourceBalanceRefreshStatus(rawValue: "failed")
     public static let pending = BankConnectionsResourceBalanceRefreshStatus(rawValue: "pending")
     public static let succeeded = BankConnectionsResourceBalanceRefreshStatus(rawValue: "succeeded")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -344,17 +434,21 @@ public struct BankConnectionsResourceBalanceRefreshStatus: RawRepresentable, Has
 }
 
 /// The status of the last refresh attempt.
-public struct BankConnectionsResourceOwnershipRefreshStatus: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct BankConnectionsResourceOwnershipRefreshStatus: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let failed = BankConnectionsResourceOwnershipRefreshStatus(rawValue: "failed")
     public static let pending = BankConnectionsResourceOwnershipRefreshStatus(rawValue: "pending")
     public static let succeeded = BankConnectionsResourceOwnershipRefreshStatus(rawValue: "succeeded")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

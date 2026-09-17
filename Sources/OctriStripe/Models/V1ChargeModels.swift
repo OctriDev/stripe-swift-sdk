@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1Charge domain models
+/// V1Charge domain models
 /// Typed representation of the `ChargeFraudDetails` API schema.
 public struct ChargeFraudDetails: Codable {
     /// Assessments from Stripe. If set, the value is `fraudulent`.
@@ -17,26 +17,26 @@ public struct ChargeFraudDetails: Codable {
     }
 
     init() {
-        (self.stripeReport, self.userReport) = (nil, nil)
+        (stripeReport, userReport) = (nil, nil)
     }
 }
 
-extension ChargeFraudDetails {
-    public init(from decoder: Decoder) throws {
+public extension ChargeFraudDetails {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.stripeReport = try container.sdkDecodeIfPresent(.stripeReport)
-        self.userReport = try container.sdkDecodeIfPresent(.userReport)
-        if let value = self.stripeReport {
+        stripeReport = try container.sdkDecodeIfPresent(.stripeReport)
+        userReport = try container.sdkDecodeIfPresent(.userReport)
+        if let value = stripeReport {
             try validateLength("stripe_report", value, min: nil, max: 5000)
         }
-        if let value = self.userReport {
+        if let value = userReport {
             try validateLength("user_report", value, min: nil, max: 5000)
         }
     }
 }
 
-extension ChargeFraudDetails {
-    public init(stripeReport: String? = nil, userReport: String? = nil) throws {
+public extension ChargeFraudDetails {
+    init(stripeReport: String? = nil, userReport: String? = nil) throws {
         self.init()
         (self.stripeReport, self.userReport) = (stripeReport, userReport)
         if let value = self.stripeReport {
@@ -99,31 +99,48 @@ public struct ChargeOutcome: Codable {
         case sellerMessage = "seller_message"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension ChargeOutcome {
-    public init(from decoder: Decoder) throws {
+public extension ChargeOutcome {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
         }
-        self.type = try container.sdkDecodeRequired(.type)
-        self.adviceCode = try container.sdkDecodeIfPresent(.adviceCode)
-        self.networkAdviceCode = try container.sdkDecodeIfPresent(.networkAdviceCode)
-        self.networkDeclineCode = try container.sdkDecodeIfPresent(.networkDeclineCode)
-        self.networkStatus = try container.sdkDecodeIfPresent(.networkStatus)
-        self.reason = try container.sdkDecodeIfPresent(.reason)
-        self.riskLevel = try container.sdkDecodeIfPresent(.riskLevel)
-        self.riskScore = try container.sdkDecodeIfPresent(.riskScore)
-        self.rule = try container.sdkDecodeIfPresent(.rule)
-        self.sellerMessage = try container.sdkDecodeIfPresent(.sellerMessage)
+        type = try container.sdkDecodeRequired(.type)
+        adviceCode = try container.sdkDecodeIfPresent(.adviceCode)
+        networkAdviceCode = try container.sdkDecodeIfPresent(.networkAdviceCode)
+        networkDeclineCode = try container.sdkDecodeIfPresent(.networkDeclineCode)
+        networkStatus = try container.sdkDecodeIfPresent(.networkStatus)
+        reason = try container.sdkDecodeIfPresent(.reason)
+        riskLevel = try container.sdkDecodeIfPresent(.riskLevel)
+        riskScore = try container.sdkDecodeIfPresent(.riskScore)
+        rule = try container.sdkDecodeIfPresent(.rule)
+        sellerMessage = try container.sdkDecodeIfPresent(.sellerMessage)
         try sdkValidateConstraints()
     }
 }
 
-extension ChargeOutcome {
-    public init(type: String, adviceCode: ChargeOutcomeAdviceCode? = nil, networkAdviceCode: String? = nil, networkDeclineCode: String? = nil, networkStatus: String? = nil, reason: String? = nil, riskLevel: String? = nil, riskScore: Int? = nil, rule: ChargeOutcomeRule? = nil, sellerMessage: String? = nil) throws {
+public extension ChargeOutcome {
+    init(
+        type: String,
+        adviceCode: ChargeOutcomeAdviceCode? = nil,
+        networkAdviceCode: String? = nil,
+        networkDeclineCode: String? = nil,
+        networkStatus: String? = nil,
+        reason: String? = nil,
+        riskLevel: String? = nil,
+        riskScore: Int? = nil,
+        rule: ChargeOutcomeRule? = nil,
+        sellerMessage: String? = nil
+    ) throws {
         (self.type, self.adviceCode) = (type, adviceCode)
         (self.networkAdviceCode, self.networkDeclineCode) = (networkAdviceCode, networkDeclineCode)
         (self.networkStatus, self.reason) = (networkStatus, reason)
@@ -135,23 +152,23 @@ extension ChargeOutcome {
 
 extension ChargeOutcome {
     func sdkValidateConstraints() throws {
-            try validateLength("type", self.type, min: nil, max: 5000)
-        if let value = self.networkAdviceCode {
+        try validateLength("type", type, min: nil, max: 5000)
+        if let value = networkAdviceCode {
             try validateLength("network_advice_code", value, min: nil, max: 5000)
         }
-        if let value = self.networkDeclineCode {
+        if let value = networkDeclineCode {
             try validateLength("network_decline_code", value, min: nil, max: 5000)
         }
-        if let value = self.networkStatus {
+        if let value = networkStatus {
             try validateLength("network_status", value, min: nil, max: 5000)
         }
-        if let value = self.reason {
+        if let value = reason {
             try validateLength("reason", value, min: nil, max: 5000)
         }
-        if let value = self.riskLevel {
+        if let value = riskLevel {
             try validateLength("risk_level", value, min: nil, max: 5000)
         }
-        if let value = self.sellerMessage {
+        if let value = sellerMessage {
             try validateLength("seller_message", value, min: nil, max: 5000)
         }
     }
@@ -163,21 +180,31 @@ public enum ChargeOutcomeRule {
 }
 
 extension ChargeOutcomeRule: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for ChargeOutcomeRule")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for ChargeOutcomeRule"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(Rule.self) { return .rule(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(Rule.self) {
+            return .rule(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -187,21 +214,23 @@ extension ChargeOutcomeRule: Codable {
         case let .rule(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// An enumerated value providing a more detailed explanation on how to proceed with an error.
 public struct ChargeOutcomeAdviceCode: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let confirmCardData = ChargeOutcomeAdviceCode(rawValue: "confirm_card_data")
     public static let doNotTryAgain = ChargeOutcomeAdviceCode(rawValue: "do_not_try_again")
     public static let tryAgainLater = ChargeOutcomeAdviceCode(rawValue: "try_again_later")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

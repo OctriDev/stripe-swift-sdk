@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1PaymentMethodDomain domain models
+/// V1PaymentMethodDomain domain models
 /// A payment method domain represents a web domain that you have registered with Stripe. Stripe Elements use
 /// registered payment method domains to control where certain payment methods are shown. Related guide: Payment
 /// method domains.
@@ -50,39 +50,54 @@ public struct PaymentMethodDomain: Codable {
         case paypal
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension PaymentMethodDomain {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.amazonPay = try container.sdkDecodeRequired(.amazonPay)
-        self.applePay = try container.sdkDecodeRequired(.applePay)
-        self.created = try container.sdkDecodeRequired(.created)
-        self.domainName = try container.sdkDecodeRequired(.domainName)
-        self.enabled = try container.sdkDecodeRequired(.enabled)
-        self.googlePay = try container.sdkDecodeRequired(.googlePay)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.klarna = try container.sdkDecodeRequired(.klarna)
-        self.link = try container.sdkDecodeRequired(.link)
-        self.livemode = try container.sdkDecodeRequired(.livemode)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.paypal = try container.sdkDecodeRequired(.paypal)
-            try validateLength("domain_name", self.domainName, min: nil, max: 5000)
-            try validateLength("id", self.id, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension PaymentMethodDomain {
-    public init(amazonPay: PaymentMethodDomainResourcePaymentMethodStatus, applePay: PaymentMethodDomainResourcePaymentMethodStatus, created: Int, domainName: String, enabled: Bool, googlePay: PaymentMethodDomainResourcePaymentMethodStatus, id: String, klarna: PaymentMethodDomainResourcePaymentMethodStatus, link: PaymentMethodDomainResourcePaymentMethodStatus, livemode: Bool, object: PaymentMethodDomainObject, paypal: PaymentMethodDomainResourcePaymentMethodStatus) throws {
+public extension PaymentMethodDomain {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        amazonPay = try container.sdkDecodeRequired(.amazonPay)
+        applePay = try container.sdkDecodeRequired(.applePay)
+        created = try container.sdkDecodeRequired(.created)
+        domainName = try container.sdkDecodeRequired(.domainName)
+        enabled = try container.sdkDecodeRequired(.enabled)
+        googlePay = try container.sdkDecodeRequired(.googlePay)
+        id = try container.sdkDecodeRequired(.id)
+        klarna = try container.sdkDecodeRequired(.klarna)
+        link = try container.sdkDecodeRequired(.link)
+        livemode = try container.sdkDecodeRequired(.livemode)
+        object = try container.sdkDecodeRequired(.object)
+        paypal = try container.sdkDecodeRequired(.paypal)
+        try validateLength("domain_name", domainName, min: nil, max: 5000)
+        try validateLength("id", id, min: nil, max: 5000)
+    }
+}
+
+public extension PaymentMethodDomain {
+    init(
+        amazonPay: PaymentMethodDomainResourcePaymentMethodStatus,
+        applePay: PaymentMethodDomainResourcePaymentMethodStatus,
+        created: Int,
+        domainName: String,
+        enabled: Bool,
+        googlePay: PaymentMethodDomainResourcePaymentMethodStatus,
+        id: String,
+        klarna: PaymentMethodDomainResourcePaymentMethodStatus,
+        link: PaymentMethodDomainResourcePaymentMethodStatus,
+        livemode: Bool,
+        object: PaymentMethodDomainObject,
+        paypal: PaymentMethodDomainResourcePaymentMethodStatus
+    ) throws {
         (self.amazonPay, self.applePay) = (amazonPay, applePay)
         (self.created, self.domainName) = (created, domainName)
         (self.enabled, self.googlePay) = (enabled, googlePay)
         (self.id, self.klarna) = (id, klarna)
         (self.link, self.livemode) = (link, livemode)
         (self.object, self.paypal) = (object, paypal)
-            try validateLength("domain_name", self.domainName, min: nil, max: 5000)
-            try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("domain_name", self.domainName, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
     }
 }
 
@@ -98,22 +113,31 @@ public struct PaymentMethodDomainResourcePaymentMethodStatus: Codable {
         case statusDetails = "status_details"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension PaymentMethodDomainResourcePaymentMethodStatus {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.status) else {
-            throw SdkValidationError(field: "status", code: "required", message: "Validation failed for 'status': value is required")
-        }
-        self.status = try container.sdkDecodeRequired(.status)
-        self.statusDetails = try container.sdkDecodeIfPresent(.statusDetails)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension PaymentMethodDomainResourcePaymentMethodStatus {
-    public init(status: PaymentMethodDomainResourcePaymentMethodStatusStatus, statusDetails: PaymentMethodDomainResourcePaymentMethodStatusDetails? = nil) {
+public extension PaymentMethodDomainResourcePaymentMethodStatus {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.status) else {
+            throw SdkValidationError(
+                field: "status",
+                code: "required",
+                message: "Validation failed for 'status': value is required"
+            )
+        }
+        status = try container.sdkDecodeRequired(.status)
+        statusDetails = try container.sdkDecodeIfPresent(.statusDetails)
+    }
+}
+
+public extension PaymentMethodDomainResourcePaymentMethodStatus {
+    init(
+        status: PaymentMethodDomainResourcePaymentMethodStatusStatus,
+        statusDetails: PaymentMethodDomainResourcePaymentMethodStatusDetails? = nil
+    ) {
         (self.status, self.statusDetails) = (status, statusDetails)
     }
 }
@@ -127,38 +151,48 @@ public struct PaymentMethodDomainResourcePaymentMethodStatusDetails: Codable {
         case errorMessage = "error_message"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension PaymentMethodDomainResourcePaymentMethodStatusDetails {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.errorMessage) else {
-            throw SdkValidationError(field: "error_message", code: "required", message: "Validation failed for 'error_message': value is required")
-        }
-        self.errorMessage = try container.sdkDecodeRequired(.errorMessage)
-            try validateLength("error_message", self.errorMessage, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension PaymentMethodDomainResourcePaymentMethodStatusDetails {
-    public init(errorMessage: String) throws {
+public extension PaymentMethodDomainResourcePaymentMethodStatusDetails {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.errorMessage) else {
+            throw SdkValidationError(
+                field: "error_message",
+                code: "required",
+                message: "Validation failed for 'error_message': value is required"
+            )
+        }
+        errorMessage = try container.sdkDecodeRequired(.errorMessage)
+        try validateLength("error_message", errorMessage, min: nil, max: 5000)
+    }
+}
+
+public extension PaymentMethodDomainResourcePaymentMethodStatusDetails {
+    init(errorMessage: String) throws {
         self.errorMessage = errorMessage
-            try validateLength("error_message", self.errorMessage, min: nil, max: 5000)
+        try validateLength("error_message", self.errorMessage, min: nil, max: 5000)
     }
 }
 
 /// The status of the payment method on the domain.
-public struct PaymentMethodDomainResourcePaymentMethodStatusStatus: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentMethodDomainResourcePaymentMethodStatusStatus: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let active = PaymentMethodDomainResourcePaymentMethodStatusStatus(rawValue: "active")
     public static let inactive = PaymentMethodDomainResourcePaymentMethodStatusStatus(rawValue: "inactive")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -171,12 +205,15 @@ public struct PaymentMethodDomainResourcePaymentMethodStatusStatus: RawRepresent
 public struct PaymentMethodDomainObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let paymentMethodDomain = PaymentMethodDomainObject(rawValue: "payment_method_domain")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

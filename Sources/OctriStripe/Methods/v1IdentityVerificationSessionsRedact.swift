@@ -7,17 +7,40 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1IdentityVerificationSessionsRedactMethods {
-    /// Redacts a verification session and the personal information collected for it, including related reports, events, and request logs. The redaction process can take up to four days, and the session becomes unusable after redaction completes.
+    /// Redacts a verification session and the personal information collected for it, including related reports, events,
+    /// and request logs. The redaction process can take up to four days, and the session becomes unusable after
+    /// redaction completes.
     ///
-    /// Redact a VerificationSession to remove all collected information from Stripe. This will redact the VerificationSession and all objects related to it, including VerificationReports, Events, request logs, etc. A VerificationSession object can be redacted when it is in requires_input or verified status. Redacting a VerificationSession in requires_action state will automatically cancel it. The redaction process may take up to four days. When the redaction process is in progress, the VerificationSession’s redaction.status field will be set to processing ; when the process is finished, it will change to redacted and an identity.verification_session.redacted event will be emitted. Redaction is irreversible. Redacted objects are still accessible in the Stripe API, but all the fields that contain personal data will be replaced by the string [redacted] or a similar placeholder. The metadata field will also be erased. Redacted objects cannot be updated or used for any purpose. Learn more.
+    /// Redact a VerificationSession to remove all collected information from Stripe. This will redact the
+    /// VerificationSession and all objects related to it, including VerificationReports, Events, request logs, etc. A
+    /// VerificationSession object can be redacted when it is in requires_input or verified status. Redacting a
+    /// VerificationSession in requires_action state will automatically cancel it. The redaction process may take up to
+    /// four days. When the redaction process is in progress, the VerificationSession’s redaction.status field will be
+    /// set to processing ; when the process is finished, it will change to redacted and an
+    /// identity.verification_session.redacted event will be emitted. Redaction is irreversible. Redacted objects are
+    /// still accessible in the Stripe API, but all the fields that contain personal data will be replaced by the string
+    /// [redacted] or a similar placeholder. The metadata field will also be erased. Redacted objects cannot be updated
+    /// or used for any purpose. Learn more.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postIdentityVerificationSessionsSessionRedact(config: ClientConfig, session: String, expand: [String]?) async throws -> IdentityVerificationSession {
+    public static func postIdentityVerificationSessionsSessionRedact(
+        config: ClientConfig,
+        session: String,
+        expand: [String]?
+    ) async throws -> IdentityVerificationSession {
         try validateLength("session", session, max: 5000)
 
         let requestBody = PostIdentityVerificationSessionsSessionRedactRequestBody(expand: expand)
 
-        return try (await sdkRequest("POST", ["/v1/identity/verification_sessions/", sdkEncodePathSegment(sdkWireString(session)), "/redact"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostIdentityVerificationSessionsSessionRedact")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/identity/verification_sessions/", sdkEncodePathSegment(sdkWireString(session)), "/redact"].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostIdentityVerificationSessionsSessionRedact"
+        )).data
     }
 }

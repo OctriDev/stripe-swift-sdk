@@ -6,8 +6,10 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1BillingCreditGrantsMethods {
-    /// Lists credit grants allocated to customers or customer accounts. Filter the collection with `customer` or `customer_account`, and use cursor parameters to paginate through the grants. The response includes grant allocation, applicability, expiration, priority, and metadata fields for each result.
+public extension V1BillingCreditGrantsMethods {
+    /// Lists credit grants allocated to customers or customer accounts. Filter the collection with `customer` or
+    /// `customer_account`, and use cursor parameters to paginate through the grants. The response includes grant
+    /// allocation, applicability, expiration, priority, and metadata fields for each result.
     ///
     /// Retrieve a list of credit grants.
     ///
@@ -28,24 +30,32 @@ extension V1BillingCreditGrantsMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    public static func getBillingCreditGrants(config: ClientConfig, customer: String?, customerAccount: String?, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetBillingCreditGrantsResponse {
-        if let customer = customer {
+    static func getBillingCreditGrants(
+        config: ClientConfig,
+        customer: String?,
+        customerAccount: String?,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        startingAfter: String?
+    ) async throws -> GetBillingCreditGrantsResponse {
+        if let customer {
             try validateLength("customer", customer, max: 5000)
         }
 
-        if let customerAccount = customerAccount {
+        if let customerAccount {
             try validateLength("customer_account", customerAccount, max: 5000)
         }
 
-        if let endingBefore = endingBefore {
+        if let endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let startingAfter = startingAfter {
+        if let startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try (await sdkRequest("GET", "/v1/billing/credit_grants", config: config, query: [
+        return try await (sdkRequest("GET", "/v1/billing/credit_grants", config: config, query: [
             SdkQueryParameter("customer", value: customer),
             SdkQueryParameter("customer_account", value: customerAccount),
             SdkQueryParameter("ending_before", value: endingBefore),

@@ -3,53 +3,89 @@
 
 import Foundation
 
-// V1Climate domain models
-extension ClimateSupplier {
-    public init(from decoder: Decoder) throws {
+/// V1Climate domain models
+public extension ClimateSupplier {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.id) else {
-            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
+            throw SdkValidationError(
+                field: "id",
+                code: "required",
+                message: "Validation failed for 'id': value is required"
+            )
         }
         guard container.contains(.infoUrl) else {
-            throw SdkValidationError(field: "info_url", code: "required", message: "Validation failed for 'info_url': value is required")
+            throw SdkValidationError(
+                field: "info_url",
+                code: "required",
+                message: "Validation failed for 'info_url': value is required"
+            )
         }
         guard container.contains(.livemode) else {
-            throw SdkValidationError(field: "livemode", code: "required", message: "Validation failed for 'livemode': value is required")
+            throw SdkValidationError(
+                field: "livemode",
+                code: "required",
+                message: "Validation failed for 'livemode': value is required"
+            )
         }
         guard container.contains(.locations) else {
-            throw SdkValidationError(field: "locations", code: "required", message: "Validation failed for 'locations': value is required")
+            throw SdkValidationError(
+                field: "locations",
+                code: "required",
+                message: "Validation failed for 'locations': value is required"
+            )
         }
         guard container.contains(.name) else {
-            throw SdkValidationError(field: "name", code: "required", message: "Validation failed for 'name': value is required")
+            throw SdkValidationError(
+                field: "name",
+                code: "required",
+                message: "Validation failed for 'name': value is required"
+            )
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
         }
         guard container.contains(.removalPathway) else {
-            throw SdkValidationError(field: "removal_pathway", code: "required", message: "Validation failed for 'removal_pathway': value is required")
+            throw SdkValidationError(
+                field: "removal_pathway",
+                code: "required",
+                message: "Validation failed for 'removal_pathway': value is required"
+            )
         }
-        self.id = try container.sdkDecodeRequired(.id)
-        self.infoUrl = try container.sdkDecodeRequired(.infoUrl)
-        self.livemode = try container.sdkDecodeRequired(.livemode)
-        self.locations = try container.sdkDecodeRequired(.locations)
-        self.name = try container.sdkDecodeRequired(.name)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.removalPathway = try container.sdkDecodeRequired(.removalPathway)
-            try validateLength("id", self.id, min: nil, max: 5000)
-            try validateLength("info_url", self.infoUrl, min: nil, max: 5000)
-            try validateLength("name", self.name, min: nil, max: 5000)
+        id = try container.sdkDecodeRequired(.id)
+        infoUrl = try container.sdkDecodeRequired(.infoUrl)
+        livemode = try container.sdkDecodeRequired(.livemode)
+        locations = try container.sdkDecodeRequired(.locations)
+        name = try container.sdkDecodeRequired(.name)
+        object = try container.sdkDecodeRequired(.object)
+        removalPathway = try container.sdkDecodeRequired(.removalPathway)
+        try validateLength("id", id, min: nil, max: 5000)
+        try validateLength("info_url", infoUrl, min: nil, max: 5000)
+        try validateLength("name", name, min: nil, max: 5000)
     }
 }
 
-extension ClimateSupplier {
-    public init(id: String, infoUrl: String, livemode: Bool, locations: [ClimateRemovalsLocation], name: String, object: ClimateSupplierObject, removalPathway: ClimateSupplierRemovalPathway) throws {
+public extension ClimateSupplier {
+    init(
+        id: String,
+        infoUrl: String,
+        livemode: Bool,
+        locations: [ClimateRemovalsLocation],
+        name: String,
+        object: ClimateSupplierObject,
+        removalPathway: ClimateSupplierRemovalPathway
+    ) throws {
         (self.id, self.infoUrl) = (id, infoUrl)
         (self.livemode, self.locations) = (livemode, locations)
         (self.name, self.object) = (name, object)
         self.removalPathway = removalPathway
-            try validateLength("id", self.id, min: nil, max: 5000)
-            try validateLength("info_url", self.infoUrl, min: nil, max: 5000)
-            try validateLength("name", self.name, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("info_url", self.infoUrl, min: nil, max: 5000)
+        try validateLength("name", self.name, min: nil, max: 5000)
     }
 }
 
@@ -57,7 +93,10 @@ extension ClimateSupplier {
 public struct ClimateOrderStatus: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let awaitingFunds = ClimateOrderStatus(rawValue: "awaiting_funds")
     public static let canceled = ClimateOrderStatus(rawValue: "canceled")
     public static let confirmed = ClimateOrderStatus(rawValue: "confirmed")
@@ -66,7 +105,7 @@ public struct ClimateOrderStatus: RawRepresentable, Hashable, Codable, Sendable,
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -79,12 +118,15 @@ public struct ClimateOrderStatus: RawRepresentable, Hashable, Codable, Sendable,
 public struct ClimateOrderObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let climateOrder = ClimateOrderObject(rawValue: "climate.order")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -97,14 +139,17 @@ public struct ClimateOrderObject: RawRepresentable, Hashable, Codable, Sendable,
 public struct ClimateOrderCancellationReason: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let expired = ClimateOrderCancellationReason(rawValue: "expired")
     public static let productUnavailable = ClimateOrderCancellationReason(rawValue: "product_unavailable")
     public static let requested = ClimateOrderCancellationReason(rawValue: "requested")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -117,12 +162,15 @@ public struct ClimateOrderCancellationReason: RawRepresentable, Hashable, Codabl
 public struct ClimateProductObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let climateProduct = ClimateProductObject(rawValue: "climate.product")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -135,12 +183,15 @@ public struct ClimateProductObject: RawRepresentable, Hashable, Codable, Sendabl
 public struct ClimateSupplierObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let climateSupplier = ClimateSupplierObject(rawValue: "climate.supplier")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -153,15 +204,19 @@ public struct ClimateSupplierObject: RawRepresentable, Hashable, Codable, Sendab
 public struct ClimateSupplierRemovalPathway: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let biomassCarbonRemovalAndStorage = ClimateSupplierRemovalPathway(rawValue: "biomass_carbon_removal_and_storage")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let biomassCarbonRemovalAndStorage =
+        ClimateSupplierRemovalPathway(rawValue: "biomass_carbon_removal_and_storage")
     public static let directAirCapture = ClimateSupplierRemovalPathway(rawValue: "direct_air_capture")
     public static let enhancedWeathering = ClimateSupplierRemovalPathway(rawValue: "enhanced_weathering")
     public static let marineCarbonRemoval = ClimateSupplierRemovalPathway(rawValue: "marine_carbon_removal")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

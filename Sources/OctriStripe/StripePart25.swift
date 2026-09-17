@@ -13,30 +13,62 @@ public class V1SubscriptionSchedulesNamespace {
         release = V1SubscriptionSchedulesReleaseNamespace(config: config)
     }
 
-/// Lists subscription schedules that match the supplied lifecycle, customer, account, and creation-time filters. Use `starting_after` and `ending_before` to navigate the cursor-paginated results, and use `limit` to control the page size. By default, the results include schedules regardless of lifecycle state unless filters narrow the selection.
+    /// Lists subscription schedules that match the supplied lifecycle, customer, account, and creation-time filters.
+    /// Use `starting_after` and `ending_before` to navigate the cursor-paginated results, and use `limit` to control
+    /// the page size. By default, the results include schedules regardless of lifecycle state unless filters narrow the
+    /// selection.
     ///
     /// Retrieves the list of your subscription schedules.
-    public func get(options: V1SubscriptionSchedulesMethods.GetSubscriptionSchedulesOptions) async throws -> GetSubscriptionSchedulesResponse {
-        return try await V1SubscriptionSchedulesMethods.getSubscriptionSchedules(config: config, options: options)
+    public func get(options: V1SubscriptionSchedulesMethods
+        .GetSubscriptionSchedulesOptions) async throws -> GetSubscriptionSchedulesResponse {
+        try await V1SubscriptionSchedulesMethods.getSubscriptionSchedules(config: config, options: options)
     }
 
-/// Creates a new subscription schedule object. Each customer can have up to 500 active or scheduled subscriptions.
-    public func post(options: V1SubscriptionSchedulesMethods.PostSubscriptionSchedulesOptions) async throws -> SubscriptionSchedule {
-        return try await V1SubscriptionSchedulesMethods.postSubscriptionSchedules(config: config, options: options)
+    /// Creates a new subscription schedule object. Each customer can have up to 500 active or scheduled subscriptions.
+    public func post(options: V1SubscriptionSchedulesMethods
+        .PostSubscriptionSchedulesOptions) async throws -> SubscriptionSchedule {
+        try await V1SubscriptionSchedulesMethods.postSubscriptionSchedules(config: config, options: options)
     }
 
-/// Retrieves the details of a specific subscription schedule. Supply the schedule identifier returned when the schedule was created and optionally expand fields in the response. Use this endpoint when you need the schedule's phases, status, customer, or lifecycle timestamps.
+    /// Retrieves the details of a specific subscription schedule. Supply the schedule identifier returned when the
+    /// schedule was created and optionally expand fields in the response. Use this endpoint when you need the
+    /// schedule's phases, status, customer, or lifecycle timestamps.
     ///
-    /// Retrieves the details of an existing subscription schedule. You only need to supply the unique subscription schedule identifier that was returned upon subscription schedule creation.
+    /// Retrieves the details of an existing subscription schedule. You only need to supply the unique subscription
+    /// schedule identifier that was returned upon subscription schedule creation.
     public func getSchedule(schedule: String, expand: [String]?) async throws -> SubscriptionSchedule {
-        return try await V1SubscriptionSchedulesMethods.getSubscriptionSchedulesSchedule(config: config, schedule: schedule, expand: expand)
+        try await V1SubscriptionSchedulesMethods.getSubscriptionSchedulesSchedule(
+            config: config,
+            schedule: schedule,
+            expand: expand
+        )
     }
 
-/// Updates the default settings, phases, end behavior, metadata, or proration behavior of an existing subscription schedule. Use `phases` to change the schedule's future billing configuration and `end_behavior` to control what happens when the schedule ends. The updated schedule response includes its current lifecycle state and complete phase configuration.
+    /// Updates the default settings, phases, end behavior, metadata, or proration behavior of an existing subscription
+    /// schedule. Use `phases` to change the schedule's future billing configuration and `end_behavior` to control what
+    /// happens when the schedule ends. The updated schedule response includes its current lifecycle state and complete
+    /// phase configuration.
     ///
     /// Updates an existing subscription schedule.
-    public func postSchedule(schedule: String, defaultSettings: PostSubscriptionSchedulesScheduleRequestBodyDefaultSettings?, endBehavior: PostSubscriptionSchedulesScheduleRequestBodyEndBehavior?, expand: [String]?, metadata: PostSubscriptionSchedulesScheduleRequestBodyMetadata?, phases: [PostSubscriptionSchedulesScheduleRequestBodyPhasesItem]?, prorationBehavior: PostSubscriptionSchedulesScheduleRequestBodyProrationBehavior?) async throws -> SubscriptionSchedule {
-        return try await V1SubscriptionSchedulesMethods.postSubscriptionSchedulesSchedule(config: config, schedule: schedule, defaultSettings: defaultSettings, endBehavior: endBehavior, expand: expand, metadata: metadata, phases: phases, prorationBehavior: prorationBehavior)
+    public func postSchedule(
+        schedule: String,
+        defaultSettings: PostSubscriptionSchedulesScheduleRequestBodyDefaultSettings?,
+        endBehavior: PostSubscriptionSchedulesScheduleRequestBodyEndBehavior?,
+        expand: [String]?,
+        metadata: PostSubscriptionSchedulesScheduleRequestBodyMetadata?,
+        phases: [PostSubscriptionSchedulesScheduleRequestBodyPhasesItem]?,
+        prorationBehavior: PostSubscriptionSchedulesScheduleRequestBodyProrationBehavior?
+    ) async throws -> SubscriptionSchedule {
+        try await V1SubscriptionSchedulesMethods.postSubscriptionSchedulesSchedule(
+            config: config,
+            schedule: schedule,
+            defaultSettings: defaultSettings,
+            endBehavior: endBehavior,
+            expand: expand,
+            metadata: metadata,
+            phases: phases,
+            prorationBehavior: prorationBehavior
+        )
     }
 }
 
@@ -46,18 +78,50 @@ public class V1SubscriptionsSearchNamespace {
         self.config = config
     }
 
-/// Lists subscriptions matching a search query. Supply `query` using the subscription search query language, and use `page` with the returned `next_page` value to retrieve subsequent pages. Search results can lag behind recent changes and are limited to 100 objects per request.
+    /// Lists subscriptions matching a search query. Supply `query` using the subscription search query language, and
+    /// use `page` with the returned `next_page` value to retrieve subsequent pages. Search results can lag behind
+    /// recent changes and are limited to 100 objects per request.
     ///
-    /// Search for subscriptions you’ve previously created using Stripe’s Search Query Language. Don’t use search in read-after-write flows where strict consistency is necessary. Under normal operating conditions, data is searchable in less than a minute. Occasionally, propagation of new or updated data can be up to an hour behind during outages. Search functionality is not available to merchants in India.
-    public func getSubscriptions(query: String, expand: [String]?, limit: Int?, page: String?) async throws -> GetSubscriptionsSearchResponse {
-        return try await V1SubscriptionsSearchMethods.getSubscriptionsSearch(config: config, query: query, expand: expand, limit: limit, page: page)
+    /// Search for subscriptions you’ve previously created using Stripe’s Search Query Language. Don’t use search in
+    /// read-after-write flows where strict consistency is necessary. Under normal operating conditions, data is
+    /// searchable in less than a minute. Occasionally, propagation of new or updated data can be up to an hour behind
+    /// during outages. Search functionality is not available to merchants in India.
+    public func getSubscriptions(
+        query: String,
+        expand: [String]?,
+        limit: Int?,
+        page: String?
+    ) async throws -> GetSubscriptionsSearchResponse {
+        try await V1SubscriptionsSearchMethods.getSubscriptionsSearch(
+            config: config,
+            query: query,
+            expand: expand,
+            limit: limit,
+            page: page
+        )
     }
 
-/// Lists subscriptions matching a search query. Supply `query` using the subscription search query language, and use `page` with the returned `next_page` value to retrieve subsequent pages. Search results can lag behind recent changes and are limited to 100 objects per request.
+    /// Lists subscriptions matching a search query. Supply `query` using the subscription search query language, and
+    /// use `page` with the returned `next_page` value to retrieve subsequent pages. Search results can lag behind
+    /// recent changes and are limited to 100 objects per request.
     ///
-    /// Search for subscriptions you’ve previously created using Stripe’s Search Query Language. Don’t use search in read-after-write flows where strict consistency is necessary. Under normal operating conditions, data is searchable in less than a minute. Occasionally, propagation of new or updated data can be up to an hour behind during outages. Search functionality is not available to merchants in India.
-    public func getSubscriptionsPaginated(query: String, expand: [String]?, limit: Int?, page: String?) -> AsyncThrowingStream<Subscription, Swift.Error> {
-        return V1SubscriptionsSearchMethods.getSubscriptionsSearchPaginated(config: config, query: query, expand: expand, limit: limit, page: page)
+    /// Search for subscriptions you’ve previously created using Stripe’s Search Query Language. Don’t use search in
+    /// read-after-write flows where strict consistency is necessary. Under normal operating conditions, data is
+    /// searchable in less than a minute. Occasionally, propagation of new or updated data can be up to an hour behind
+    /// during outages. Search functionality is not available to merchants in India.
+    public func getSubscriptionsPaginated(
+        query: String,
+        expand: [String]?,
+        limit: Int?,
+        page: String?
+    ) -> AsyncThrowingStream<Subscription, Swift.Error> {
+        V1SubscriptionsSearchMethods.getSubscriptionsSearchPaginated(
+            config: config,
+            query: query,
+            expand: expand,
+            limit: limit,
+            page: page
+        )
     }
 }
 
@@ -67,11 +131,17 @@ public class V1SubscriptionsDiscountNamespace {
         self.config = config
     }
 
-/// Deletes the discount currently applied to a subscription. Supply `subscription_exposed_id` to identify the subscription whose discount you want to remove. The response identifies the deleted discount and its original source and application time.
+    /// Deletes the discount currently applied to a subscription. Supply `subscription_exposed_id` to identify the
+    /// subscription whose discount you want to remove. The response identifies the deleted discount and its original
+    /// source and application time.
     ///
     /// Removes the currently applied discount on a subscription.
-    public func deleteSubscriptionsSubscriptionExposedId(subscriptionExposedId: String) async throws -> DeletedDiscount {
-        return try await V1SubscriptionsDiscountMethods.deleteSubscriptionsSubscriptionExposedIdDiscount(config: config, subscriptionExposedId: subscriptionExposedId)
+    public func deleteSubscriptionsSubscriptionExposedId(subscriptionExposedId: String) async throws
+        -> DeletedDiscount {
+        try await V1SubscriptionsDiscountMethods.deleteSubscriptionsSubscriptionExposedIdDiscount(
+            config: config,
+            subscriptionExposedId: subscriptionExposedId
+        )
     }
 }
 
@@ -81,11 +151,22 @@ public class V1SubscriptionsMigrateNamespace {
         self.config = config
     }
 
-/// Triggers migration of an existing subscription to flexible billing mode. Supply `billing_mode` with its required `type` value and optionally request expanded response fields. The migration updates how prorations and invoices for the subscription are calculated.
+    /// Triggers migration of an existing subscription to flexible billing mode. Supply `billing_mode` with its required
+    /// `type` value and optionally request expanded response fields. The migration updates how prorations and invoices
+    /// for the subscription are calculated.
     ///
     /// Upgrade the billing_mode of an existing subscription.
-    public func postSubscriptionsSubscription(subscription: String, billingMode: PostSubscriptionsSubscriptionMigrateRequestBodyBillingMode, expand: [String]?) async throws -> Subscription {
-        return try await V1SubscriptionsMigrateMethods.postSubscriptionsSubscriptionMigrate(config: config, subscription: subscription, billingMode: billingMode, expand: expand)
+    public func postSubscriptionsSubscription(
+        subscription: String,
+        billingMode: PostSubscriptionsSubscriptionMigrateRequestBodyBillingMode,
+        expand: [String]?
+    ) async throws -> Subscription {
+        try await V1SubscriptionsMigrateMethods.postSubscriptionsSubscriptionMigrate(
+            config: config,
+            subscription: subscription,
+            billingMode: billingMode,
+            expand: expand
+        )
     }
 }
 
@@ -95,11 +176,33 @@ public class V1SubscriptionsResumeNamespace {
         self.config = config
     }
 
-/// Triggers resumption of a paused subscription. Use `billing_cycle_anchor` to preserve or reset the billing cycle and `proration_behavior` to control adjustments when the anchor remains unchanged. Resumption can generate and finalize an invoice before the subscription becomes active; if payment does not complete within the documented window, the subscription remains paused.
+    /// Triggers resumption of a paused subscription. Use `billing_cycle_anchor` to preserve or reset the billing cycle
+    /// and `proration_behavior` to control adjustments when the anchor remains unchanged. Resumption can generate and
+    /// finalize an invoice before the subscription becomes active; if payment does not complete within the documented
+    /// window, the subscription remains paused.
     ///
-    /// Initiates resumption of a paused subscription, optionally resetting the billing cycle anchor and creating prorations. Resume is only available for subscriptions that use charge_automatically collection. If Stripe doesn’t generate a resumption invoice, the subscription becomes active immediately. When a resumption invoice is generated, Stripe finalizes it immediately. If the invoice is paid or marked uncollectible, the subscription becomes active . If the invoice is manually voided, the subscription stays paused . If there is no payment attempt within 23 hours, Stripe voids the invoice and the subscription stays paused . Learn more about resuming subscriptions.
-    public func postSubscriptionsSubscription(subscription: String, billingCycleAnchor: PostSubscriptionsSubscriptionResumeRequestBodyBillingCycleAnchor?, expand: [String]?, prorationBehavior: PostSubscriptionsSubscriptionResumeRequestBodyProrationBehavior?, prorationDate: Int?) async throws -> Subscription {
-        return try await V1SubscriptionsResumeMethods.postSubscriptionsSubscriptionResume(config: config, subscription: subscription, billingCycleAnchor: billingCycleAnchor, expand: expand, prorationBehavior: prorationBehavior, prorationDate: prorationDate)
+    /// Initiates resumption of a paused subscription, optionally resetting the billing cycle anchor and creating
+    /// prorations. Resume is only available for subscriptions that use charge_automatically collection. If Stripe
+    /// doesn’t generate a resumption invoice, the subscription becomes active immediately. When a resumption invoice is
+    /// generated, Stripe finalizes it immediately. If the invoice is paid or marked uncollectible, the subscription
+    /// becomes active . If the invoice is manually voided, the subscription stays paused . If there is no payment
+    /// attempt within 23 hours, Stripe voids the invoice and the subscription stays paused . Learn more about resuming
+    /// subscriptions.
+    public func postSubscriptionsSubscription(
+        subscription: String,
+        billingCycleAnchor: PostSubscriptionsSubscriptionResumeRequestBodyBillingCycleAnchor?,
+        expand: [String]?,
+        prorationBehavior: PostSubscriptionsSubscriptionResumeRequestBodyProrationBehavior?,
+        prorationDate: Int?
+    ) async throws -> Subscription {
+        try await V1SubscriptionsResumeMethods.postSubscriptionsSubscriptionResume(
+            config: config,
+            subscription: subscription,
+            billingCycleAnchor: billingCycleAnchor,
+            expand: expand,
+            prorationBehavior: prorationBehavior,
+            prorationDate: prorationDate
+        )
     }
 }
 
@@ -117,37 +220,100 @@ public class V1SubscriptionsNamespace {
         resume = V1SubscriptionsResumeNamespace(config: config)
     }
 
-/// Lists subscriptions using filters for customer, account, status, collection method, price, automatic tax, test clock, and lifecycle dates. By default, returns subscriptions that have not been canceled; pass `status=canceled` to include canceled subscriptions. Use cursor parameters and `limit` to paginate the results.
+    /// Lists subscriptions using filters for customer, account, status, collection method, price, automatic tax, test
+    /// clock, and lifecycle dates. By default, returns subscriptions that have not been canceled; pass
+    /// `status=canceled` to include canceled subscriptions. Use cursor parameters and `limit` to paginate the results.
     ///
-    /// By default, returns a list of subscriptions that have not been canceled. In order to list canceled subscriptions, specify status=canceled .
+    /// By default, returns a list of subscriptions that have not been canceled. In order to list canceled
+    /// subscriptions, specify status=canceled .
     public func get(options: V1SubscriptionsMethods.GetSubscriptionsOptions) async throws -> GetSubscriptionsResponse {
-        return try await V1SubscriptionsMethods.getSubscriptions(config: config, options: options)
+        try await V1SubscriptionsMethods.getSubscriptions(config: config, options: options)
     }
 
-/// Creates a new subscription on an existing customer. Each customer can have up to 500 active or scheduled subscriptions. When you create a subscription with collection_method=charge_automatically , the first invoice is finalized as part of the request. The payment_behavior parameter determines the exact behavior of the initial payment. To start subscriptions where the first invoice always begins in a draft status, use subscription schedules instead. Schedules provide the flexibility to model more complex billing configurations that change over time.
+    /// Creates a new subscription on an existing customer. Each customer can have up to 500 active or scheduled
+    /// subscriptions. When you create a subscription with collection_method=charge_automatically , the first invoice is
+    /// finalized as part of the request. The payment_behavior parameter determines the exact behavior of the initial
+    /// payment. To start subscriptions where the first invoice always begins in a draft status, use subscription
+    /// schedules instead. Schedules provide the flexibility to model more complex billing configurations that change
+    /// over time.
     public func post(options: V1SubscriptionsMethods.PostSubscriptionsOptions) async throws -> Subscription {
-        return try await V1SubscriptionsMethods.postSubscriptions(config: config, options: options)
+        try await V1SubscriptionsMethods.postSubscriptions(config: config, options: options)
     }
 
-/// Deletes the current discount from a subscription and cancels the subscription immediately. The subscription will not be charged again for the subscription, although pending invoice items and certain prorations can remain collectible. Use `invoice_now` and `prorate` to control final invoicing and credits, and provide `cancellation_details` when recording the reason.
+    /// Deletes the current discount from a subscription and cancels the subscription immediately. The subscription will
+    /// not be charged again for the subscription, although pending invoice items and certain prorations can remain
+    /// collectible. Use `invoice_now` and `prorate` to control final invoicing and credits, and provide
+    /// `cancellation_details` when recording the reason.
     ///
-    /// Cancels a customer’s subscription immediately. The customer won’t be charged again for the subscription. After it’s canceled, the subscription is largely immutable. You can still update its metadata and cancellation_details . Any pending invoice items that you’ve created are still charged at the end of the period, unless manually deleted. If you’ve set the subscription to cancel at the end of the period, any pending prorations are also left in place and collected at the end of the period. But if the subscription is set to cancel immediately, pending prorations are removed if invoice_now and prorate are both set to false. By default, upon subscription cancellation, Stripe stops automatic collection of all finalized invoices for the customer. This is intended to prevent unexpected payment attempts after the customer has canceled a subscription. However, you can resume automatic collection of the invoices manually after subscription cancellation to have us proceed. Or, you could check for unpaid invoices before allowing the customer to cancel the subscription at all.
-    public func deleteSubscriptionExposedId(subscriptionExposedId: String, cancellationDetails: DeleteSubscriptionsSubscriptionExposedIdRequestBodyCancellationDetails?, expand: [String]?, invoiceNow: Bool?, prorate: Bool?) async throws -> Subscription {
-        return try await V1SubscriptionsMethods.deleteSubscriptionsSubscriptionExposedId(config: config, subscriptionExposedId: subscriptionExposedId, cancellationDetails: cancellationDetails, expand: expand, invoiceNow: invoiceNow, prorate: prorate)
+    /// Cancels a customer’s subscription immediately. The customer won’t be charged again for the subscription. After
+    /// it’s canceled, the subscription is largely immutable. You can still update its metadata and cancellation_details
+    /// . Any pending invoice items that you’ve created are still charged at the end of the period, unless manually
+    /// deleted. If you’ve set the subscription to cancel at the end of the period, any pending prorations are also left
+    /// in place and collected at the end of the period. But if the subscription is set to cancel immediately, pending
+    /// prorations are removed if invoice_now and prorate are both set to false. By default, upon subscription
+    /// cancellation, Stripe stops automatic collection of all finalized invoices for the customer. This is intended to
+    /// prevent unexpected payment attempts after the customer has canceled a subscription. However, you can resume
+    /// automatic collection of the invoices manually after subscription cancellation to have us proceed. Or, you could
+    /// check for unpaid invoices before allowing the customer to cancel the subscription at all.
+    public func deleteSubscriptionExposedId(
+        subscriptionExposedId: String,
+        cancellationDetails: DeleteSubscriptionsSubscriptionExposedIdRequestBodyCancellationDetails?,
+        expand: [String]?,
+        invoiceNow: Bool?,
+        prorate: Bool?
+    ) async throws -> Subscription {
+        try await V1SubscriptionsMethods.deleteSubscriptionsSubscriptionExposedId(
+            config: config,
+            subscriptionExposedId: subscriptionExposedId,
+            cancellationDetails: cancellationDetails,
+            expand: expand,
+            invoiceNow: invoiceNow,
+            prorate: prorate
+        )
     }
 
-/// Retrieves a subscription by its exposed identifier. Use `subscription_exposed_id` to select the subscription and `expand` to include expanded related objects in the response. The request body has no defined fields.
+    /// Retrieves a subscription by its exposed identifier. Use `subscription_exposed_id` to select the subscription and
+    /// `expand` to include expanded related objects in the response. The request body has no defined fields.
     ///
     /// Retrieves the subscription with the given ID.
-    public func getSubscriptionExposedId(subscriptionExposedId: String, expand: [String]?) async throws -> Subscription {
-        return try await V1SubscriptionsMethods.getSubscriptionsSubscriptionExposedId(config: config, subscriptionExposedId: subscriptionExposedId, expand: expand)
+    public func getSubscriptionExposedId(
+        subscriptionExposedId: String,
+        expand: [String]?
+    ) async throws -> Subscription {
+        try await V1SubscriptionsMethods.getSubscriptionsSubscriptionExposedId(
+            config: config,
+            subscriptionExposedId: subscriptionExposedId,
+            expand: expand
+        )
     }
 
-/// Updates an existing subscription's billing and collection settings, prices, quantities, discounts, or other configurable properties. Supply only the fields you want to change, and use `proration_behavior` to control how subscription changes affect invoicing when applicable. Use the invoice preview flow to review proration calculations before applying changes.
+    /// Updates an existing subscription's billing and collection settings, prices, quantities, discounts, or other
+    /// configurable properties. Supply only the fields you want to change, and use `proration_behavior` to control how
+    /// subscription changes affect invoicing when applicable. Use the invoice preview flow to review proration
+    /// calculations before applying changes.
     ///
-    /// Updates an existing subscription to match the specified parameters. When changing prices or quantities, we optionally prorate the price we charge next month to make up for any price changes. To preview how the proration is calculated, use the create preview endpoint. By default, we prorate subscription changes. For example, if a customer signs up on May 1 for a <currency>100</currency> price, they’ll be billed <currency>100</currency> immediately. If on May 15 they switch to a <currency>200</currency> price, then on June 1 they’ll be billed <currency>250</currency> (<currency>200</currency> for a renewal of her subscription, plus a <currency>50</currency> prorating adjustment for half of the previous month’s <currency>100</currency> difference). Similarly, a downgrade generates a credit that is applied to the next invoice. We also prorate when you make quantity changes. You can also use scripts to prorate your billing. To learn more, see Prorations. Switching prices does not normally change the billing date or generate an immediate charge unless: The billing interval is changed (for example, from monthly to yearly). The subscription moves from free to paid. A trial starts or ends. In these cases, we apply a credit for the unused time on the previous price, immediately charge the customer using the new price, and reset the billing date. Learn about how Stripe immediately attempts payment for subscription changes. If you want to charge for an upgrade immediately, pass proration_behavior as always_invoice to create prorations, automatically invoice the customer for those proration adjustments, and attempt to collect payment. If you pass create_prorations , the prorations are created but not automatically invoiced. If you want to bill the customer for the prorations before the subscription’s renewal date, you need to manually invoice the customer. If you don’t want to prorate, set the proration_behavior option to none . With this option, the customer is billed…
-    public func postSubscriptionExposedId(options: V1SubscriptionsMethods.PostSubscriptionsSubscriptionExposedIdOptions) async throws -> Subscription {
-        return try await V1SubscriptionsMethods.postSubscriptionsSubscriptionExposedId(config: config, options: options)
+    /// Updates an existing subscription to match the specified parameters. When changing prices or quantities, we
+    /// optionally prorate the price we charge next month to make up for any price changes. To preview how the proration
+    /// is calculated, use the create preview endpoint. By default, we prorate subscription changes. For example, if a
+    /// customer signs up on May 1 for a <currency>100</currency> price, they’ll be billed <currency>100</currency>
+    /// immediately. If on May 15 they switch to a <currency>200</currency> price, then on June 1 they’ll be billed
+    /// <currency>250</currency> (<currency>200</currency> for a renewal of her subscription, plus a
+    /// <currency>50</currency> prorating adjustment for half of the previous month’s <currency>100</currency>
+    /// difference). Similarly, a downgrade generates a credit that is applied to the next invoice. We also prorate when
+    /// you make quantity changes. You can also use scripts to prorate your billing. To learn more, see Prorations.
+    /// Switching prices does not normally change the billing date or generate an immediate charge unless: The billing
+    /// interval is changed (for example, from monthly to yearly). The subscription moves from free to paid. A trial
+    /// starts or ends. In these cases, we apply a credit for the unused time on the previous price, immediately charge
+    /// the customer using the new price, and reset the billing date. Learn about how Stripe immediately attempts
+    /// payment for subscription changes. If you want to charge for an upgrade immediately, pass proration_behavior as
+    /// always_invoice to create prorations, automatically invoice the customer for those proration adjustments, and
+    /// attempt to collect payment. If you pass create_prorations , the prorations are created but not automatically
+    /// invoiced. If you want to bill the customer for the prorations before the subscription’s renewal date, you need
+    /// to manually invoice the customer. If you don’t want to prorate, set the proration_behavior option to none . With
+    /// this option, the customer is billed…
+    public func postSubscriptionExposedId(options: V1SubscriptionsMethods
+        .PostSubscriptionsSubscriptionExposedIdOptions) async throws -> Subscription {
+        try await V1SubscriptionsMethods.postSubscriptionsSubscriptionExposedId(config: config, options: options)
     }
 }
 
@@ -157,11 +323,17 @@ public class V1TaxAssociationsFindNamespace {
         self.config = config
     }
 
-/// Retrieves the tax association tracked for a PaymentIntent. Supply `payment_intent` to identify the PaymentIntent and optionally use `expand` for related response fields. The response includes the associated tax calculation and attempts to create tax transactions for the PaymentIntent.
+    /// Retrieves the tax association tracked for a PaymentIntent. Supply `payment_intent` to identify the PaymentIntent
+    /// and optionally use `expand` for related response fields. The response includes the associated tax calculation
+    /// and attempts to create tax transactions for the PaymentIntent.
     ///
     /// Finds a tax association object by PaymentIntent id.
     public func getTaxAssociations(paymentIntent: String, expand: [String]?) async throws -> TaxAssociation {
-        return try await V1TaxAssociationsFindMethods.getTaxAssociationsFind(config: config, paymentIntent: paymentIntent, expand: expand)
+        try await V1TaxAssociationsFindMethods.getTaxAssociationsFind(
+            config: config,
+            paymentIntent: paymentIntent,
+            expand: expand
+        )
     }
 }
 
@@ -178,11 +350,26 @@ public class V1TaxCalculationsLineItemsNamespace {
         self.config = config
     }
 
-/// Lists the line items associated with a tax calculation while the calculation remains active. Use `ending_before` or `starting_after` with `limit` to navigate the collection, and use `expand` to request expanded response fields.
+    /// Lists the line items associated with a tax calculation while the calculation remains active. Use `ending_before`
+    /// or `starting_after` with `limit` to navigate the collection, and use `expand` to request expanded response
+    /// fields.
     ///
     /// Retrieves the line items of a tax calculation as a collection, if the calculation hasn’t expired.
-    public func getTaxCalculationsCalculation(calculation: String, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetTaxCalculationsCalculationLineItemsResponse {
-        return try await V1TaxCalculationsLineItemsMethods.getTaxCalculationsCalculationLineItems(config: config, calculation: calculation, endingBefore: endingBefore, expand: expand, limit: limit, startingAfter: startingAfter)
+    public func getTaxCalculationsCalculation(
+        calculation: String,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        startingAfter: String?
+    ) async throws -> GetTaxCalculationsCalculationLineItemsResponse {
+        try await V1TaxCalculationsLineItemsMethods.getTaxCalculationsCalculationLineItems(
+            config: config,
+            calculation: calculation,
+            endingBefore: endingBefore,
+            expand: expand,
+            limit: limit,
+            startingAfter: startingAfter
+        )
     }
 }
 
@@ -194,15 +381,21 @@ public class V1TaxCalculationsNamespace {
         lineItems = V1TaxCalculationsLineItemsNamespace(config: config)
     }
 
-/// Calculates tax based on the input and returns a Tax Calculation object.
+    /// Calculates tax based on the input and returns a Tax Calculation object.
     public func postTax(options: V1TaxCalculationsMethods.PostTaxCalculationsOptions) async throws -> TaxCalculation {
-        return try await V1TaxCalculationsMethods.postTaxCalculations(config: config, options: options)
+        try await V1TaxCalculationsMethods.postTaxCalculations(config: config, options: options)
     }
 
-/// Retrieves a tax calculation by identifier while it remains available. Supply `calculation` to select the calculation and optionally use `expand` for related response fields. The response includes totals, currency, tax amounts, customer details, line items, tax breakdown, and expiration information.
+    /// Retrieves a tax calculation by identifier while it remains available. Supply `calculation` to select the
+    /// calculation and optionally use `expand` for related response fields. The response includes totals, currency, tax
+    /// amounts, customer details, line items, tax breakdown, and expiration information.
     ///
     /// Retrieves a Tax Calculation object, if the calculation hasn’t expired.
     public func getTaxCalculation(calculation: String, expand: [String]?) async throws -> TaxCalculation {
-        return try await V1TaxCalculationsMethods.getTaxCalculationsCalculation(config: config, calculation: calculation, expand: expand)
+        try await V1TaxCalculationsMethods.getTaxCalculationsCalculation(
+            config: config,
+            calculation: calculation,
+            expand: expand
+        )
     }
 }

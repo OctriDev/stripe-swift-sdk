@@ -6,17 +6,21 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public struct PostPaymentMethodConfigurationsConfigurationRequestBodyJcbDisX5df20a98e4: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostPaymentMethodConfigurationsConfigurationRequestBodyJcbDisX5df20a98e4: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let none = PostPaymentMethodConfigurationsConfigurationRequestBodyJcbDisX5df20a98e4(rawValue: "none")
     public static let off = PostPaymentMethodConfigurationsConfigurationRequestBodyJcbDisX5df20a98e4(rawValue: "off")
     public static let on = PostPaymentMethodConfigurationsConfigurationRequestBodyJcbDisX5df20a98e4(rawValue: "on")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -25,17 +29,21 @@ public struct PostPaymentMethodConfigurationsConfigurationRequestBodyJcbDisX5df2
     }
 }
 
-public struct PostPaymentMethodConfigurationsConfigurationRequestBodyKakaoPX944d6fe52e: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostPaymentMethodConfigurationsConfigurationRequestBodyKakaoPX944d6fe52e: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let none = PostPaymentMethodConfigurationsConfigurationRequestBodyKakaoPX944d6fe52e(rawValue: "none")
     public static let off = PostPaymentMethodConfigurationsConfigurationRequestBodyKakaoPX944d6fe52e(rawValue: "off")
     public static let on = PostPaymentMethodConfigurationsConfigurationRequestBodyKakaoPX944d6fe52e(rawValue: "on")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -44,17 +52,21 @@ public struct PostPaymentMethodConfigurationsConfigurationRequestBodyKakaoPX944d
     }
 }
 
-public struct PostPaymentMethodConfigurationsConfigurationRequestBodyKlarnaXc9e80aac98: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostPaymentMethodConfigurationsConfigurationRequestBodyKlarnaXc9e80aac98: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let none = PostPaymentMethodConfigurationsConfigurationRequestBodyKlarnaXc9e80aac98(rawValue: "none")
     public static let off = PostPaymentMethodConfigurationsConfigurationRequestBodyKlarnaXc9e80aac98(rawValue: "off")
     public static let on = PostPaymentMethodConfigurationsConfigurationRequestBodyKlarnaXc9e80aac98(rawValue: "on")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -63,17 +75,21 @@ public struct PostPaymentMethodConfigurationsConfigurationRequestBodyKlarnaXc9e8
     }
 }
 
-public struct PostPaymentMethodConfigurationsConfigurationRequestBodyKonbinXcb2cf7ff6c: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostPaymentMethodConfigurationsConfigurationRequestBodyKonbinXcb2cf7ff6c: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let none = PostPaymentMethodConfigurationsConfigurationRequestBodyKonbinXcb2cf7ff6c(rawValue: "none")
     public static let off = PostPaymentMethodConfigurationsConfigurationRequestBodyKonbinXcb2cf7ff6c(rawValue: "off")
     public static let on = PostPaymentMethodConfigurationsConfigurationRequestBodyKonbinXcb2cf7ff6c(rawValue: "on")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -82,17 +98,21 @@ public struct PostPaymentMethodConfigurationsConfigurationRequestBodyKonbinXcb2c
     }
 }
 
-public struct PostPaymentMethodConfigurationsConfigurationRequestBodyKrCardXbe019b2ef3: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostPaymentMethodConfigurationsConfigurationRequestBodyKrCardXbe019b2ef3: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let none = PostPaymentMethodConfigurationsConfigurationRequestBodyKrCardXbe019b2ef3(rawValue: "none")
     public static let off = PostPaymentMethodConfigurationsConfigurationRequestBodyKrCardXbe019b2ef3(rawValue: "off")
     public static let on = PostPaymentMethodConfigurationsConfigurationRequestBodyKrCardXbe019b2ef3(rawValue: "on")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -101,17 +121,21 @@ public struct PostPaymentMethodConfigurationsConfigurationRequestBodyKrCardXbe01
     }
 }
 
-public struct PostPaymentMethodConfigurationsConfigurationRequestBodyLinkDiX7801b9711d: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostPaymentMethodConfigurationsConfigurationRequestBodyLinkDiX7801b9711d: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let none = PostPaymentMethodConfigurationsConfigurationRequestBodyLinkDiX7801b9711d(rawValue: "none")
     public static let off = PostPaymentMethodConfigurationsConfigurationRequestBodyLinkDiX7801b9711d(rawValue: "off")
     public static let on = PostPaymentMethodConfigurationsConfigurationRequestBodyLinkDiX7801b9711d(rawValue: "on")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -120,17 +144,21 @@ public struct PostPaymentMethodConfigurationsConfigurationRequestBodyLinkDiX7801
     }
 }
 
-public struct PostPaymentMethodConfigurationsConfigurationRequestBodyMbWayDXfdd647a102: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostPaymentMethodConfigurationsConfigurationRequestBodyMbWayDXfdd647a102: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let none = PostPaymentMethodConfigurationsConfigurationRequestBodyMbWayDXfdd647a102(rawValue: "none")
     public static let off = PostPaymentMethodConfigurationsConfigurationRequestBodyMbWayDXfdd647a102(rawValue: "off")
     public static let on = PostPaymentMethodConfigurationsConfigurationRequestBodyMbWayDXfdd647a102(rawValue: "on")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -139,17 +167,21 @@ public struct PostPaymentMethodConfigurationsConfigurationRequestBodyMbWayDXfdd6
     }
 }
 
-public struct PostPaymentMethodConfigurationsConfigurationRequestBodyMobileX1d2ec8c1ad: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostPaymentMethodConfigurationsConfigurationRequestBodyMobileX1d2ec8c1ad: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let none = PostPaymentMethodConfigurationsConfigurationRequestBodyMobileX1d2ec8c1ad(rawValue: "none")
     public static let off = PostPaymentMethodConfigurationsConfigurationRequestBodyMobileX1d2ec8c1ad(rawValue: "off")
     public static let on = PostPaymentMethodConfigurationsConfigurationRequestBodyMobileX1d2ec8c1ad(rawValue: "on")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -158,17 +190,21 @@ public struct PostPaymentMethodConfigurationsConfigurationRequestBodyMobileX1d2e
     }
 }
 
-public struct PostPaymentMethodConfigurationsConfigurationRequestBodyMultibX0a4d1cabba: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostPaymentMethodConfigurationsConfigurationRequestBodyMultibX0a4d1cabba: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let none = PostPaymentMethodConfigurationsConfigurationRequestBodyMultibX0a4d1cabba(rawValue: "none")
     public static let off = PostPaymentMethodConfigurationsConfigurationRequestBodyMultibX0a4d1cabba(rawValue: "off")
     public static let on = PostPaymentMethodConfigurationsConfigurationRequestBodyMultibX0a4d1cabba(rawValue: "on")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -177,17 +213,21 @@ public struct PostPaymentMethodConfigurationsConfigurationRequestBodyMultibX0a4d
     }
 }
 
-public struct PostPaymentMethodConfigurationsConfigurationRequestBodyNaverPX81c2b3d44c: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostPaymentMethodConfigurationsConfigurationRequestBodyNaverPX81c2b3d44c: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let none = PostPaymentMethodConfigurationsConfigurationRequestBodyNaverPX81c2b3d44c(rawValue: "none")
     public static let off = PostPaymentMethodConfigurationsConfigurationRequestBodyNaverPX81c2b3d44c(rawValue: "off")
     public static let on = PostPaymentMethodConfigurationsConfigurationRequestBodyNaverPX81c2b3d44c(rawValue: "on")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -196,17 +236,21 @@ public struct PostPaymentMethodConfigurationsConfigurationRequestBodyNaverPX81c2
     }
 }
 
-public struct PostPaymentMethodConfigurationsConfigurationRequestBodyNzBankX73c3d45c07: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostPaymentMethodConfigurationsConfigurationRequestBodyNzBankX73c3d45c07: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let none = PostPaymentMethodConfigurationsConfigurationRequestBodyNzBankX73c3d45c07(rawValue: "none")
     public static let off = PostPaymentMethodConfigurationsConfigurationRequestBodyNzBankX73c3d45c07(rawValue: "off")
     public static let on = PostPaymentMethodConfigurationsConfigurationRequestBodyNzBankX73c3d45c07(rawValue: "on")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

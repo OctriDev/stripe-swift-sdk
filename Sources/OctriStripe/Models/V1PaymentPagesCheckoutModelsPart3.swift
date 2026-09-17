@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1PaymentPagesCheckout domain models
+/// V1PaymentPagesCheckout domain models
 /// Typed representation of the `PaymentPagesCheckoutSessionCustomFieldsText` API schema.
 public struct PaymentPagesCheckoutSessionCustomFieldsText: Codable {
     /// The value that pre-fills the field on the payment page.
@@ -23,28 +23,33 @@ public struct PaymentPagesCheckoutSessionCustomFieldsText: Codable {
     }
 
     init() {
-        (self.defaultValue, self.maximumLength, self.minimumLength, self.value) = (nil, nil, nil, nil)
+        (defaultValue, maximumLength, minimumLength, value) = (nil, nil, nil, nil)
     }
 }
 
-extension PaymentPagesCheckoutSessionCustomFieldsText {
-    public init(from decoder: Decoder) throws {
+public extension PaymentPagesCheckoutSessionCustomFieldsText {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.defaultValue = try container.sdkDecodeIfPresent(.defaultValue)
-        self.maximumLength = try container.sdkDecodeIfPresent(.maximumLength)
-        self.minimumLength = try container.sdkDecodeIfPresent(.minimumLength)
-        self.value = try container.sdkDecodeIfPresent(.value)
-        if let value = self.defaultValue {
+        defaultValue = try container.sdkDecodeIfPresent(.defaultValue)
+        maximumLength = try container.sdkDecodeIfPresent(.maximumLength)
+        minimumLength = try container.sdkDecodeIfPresent(.minimumLength)
+        value = try container.sdkDecodeIfPresent(.value)
+        if let value = defaultValue {
             try validateLength("default_value", value, min: nil, max: 5000)
         }
-        if let value = self.value {
+        if let value {
             try validateLength("value", value, min: nil, max: 5000)
         }
     }
 }
 
-extension PaymentPagesCheckoutSessionCustomFieldsText {
-    public init(defaultValue: String? = nil, maximumLength: Int? = nil, minimumLength: Int? = nil, value: String? = nil) throws {
+public extension PaymentPagesCheckoutSessionCustomFieldsText {
+    init(
+        defaultValue: String? = nil,
+        maximumLength: Int? = nil,
+        minimumLength: Int? = nil,
+        value: String? = nil
+    ) throws {
         self.init()
         (self.defaultValue, self.maximumLength) = (defaultValue, maximumLength)
         (self.minimumLength, self.value) = (minimumLength, value)
@@ -76,22 +81,27 @@ public struct PaymentPagesCheckoutSessionCustomText: Codable {
     }
 
     init() {
-        (self.afterSubmit, self.shippingAddress, self.submit, self.termsOfServiceAcceptance) = (nil, nil, nil, nil)
+        (afterSubmit, shippingAddress, submit, termsOfServiceAcceptance) = (nil, nil, nil, nil)
     }
 }
 
-extension PaymentPagesCheckoutSessionCustomText {
-    public init(from decoder: Decoder) throws {
+public extension PaymentPagesCheckoutSessionCustomText {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.afterSubmit = try container.sdkDecodeIfPresent(.afterSubmit)
-        self.shippingAddress = try container.sdkDecodeIfPresent(.shippingAddress)
-        self.submit = try container.sdkDecodeIfPresent(.submit)
-        self.termsOfServiceAcceptance = try container.sdkDecodeIfPresent(.termsOfServiceAcceptance)
+        afterSubmit = try container.sdkDecodeIfPresent(.afterSubmit)
+        shippingAddress = try container.sdkDecodeIfPresent(.shippingAddress)
+        submit = try container.sdkDecodeIfPresent(.submit)
+        termsOfServiceAcceptance = try container.sdkDecodeIfPresent(.termsOfServiceAcceptance)
     }
 }
 
-extension PaymentPagesCheckoutSessionCustomText {
-    public init(afterSubmit: PaymentPagesCheckoutSessionCustomTextAfterSubmit? = nil, shippingAddress: PaymentPagesCheckoutSessionCustomTextShippingAddress? = nil, submit: PaymentPagesCheckoutSessionCustomTextSubmit? = nil, termsOfServiceAcceptance: PaymentPagesCheckoutSessionCustomTextTermsOfServiceAcceptance? = nil) {
+public extension PaymentPagesCheckoutSessionCustomText {
+    init(
+        afterSubmit: PaymentPagesCheckoutSessionCustomTextAfterSubmit? = nil,
+        shippingAddress: PaymentPagesCheckoutSessionCustomTextShippingAddress? = nil,
+        submit: PaymentPagesCheckoutSessionCustomTextSubmit? = nil,
+        termsOfServiceAcceptance: PaymentPagesCheckoutSessionCustomTextTermsOfServiceAcceptance? = nil
+    ) {
         self.init()
         (self.afterSubmit, self.shippingAddress) = (afterSubmit, shippingAddress)
         (self.submit, self.termsOfServiceAcceptance) = (submit, termsOfServiceAcceptance)
@@ -103,24 +113,30 @@ public enum PaymentPagesCheckoutSessionCustomTextAfterSubmit {
 }
 
 extension PaymentPagesCheckoutSessionCustomTextAfterSubmit: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentPagesCheckoutSessionCustomTextAfterSubmit")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PaymentPagesCheckoutSessionCustomTextAfterSubmit"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PaymentPagesCheckoutSessionCustomTextPosition.self
         ) {
-            return             .paymentPagesCheckoutSessionCustomTextPosition(value)
+            return .paymentPagesCheckoutSessionCustomTextPosition(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -129,7 +145,6 @@ extension PaymentPagesCheckoutSessionCustomTextAfterSubmit: Codable {
         case let .paymentPagesCheckoutSessionCustomTextPosition(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum PaymentPagesCheckoutSessionCustomTextShippingAddress {
@@ -137,24 +152,30 @@ public enum PaymentPagesCheckoutSessionCustomTextShippingAddress {
 }
 
 extension PaymentPagesCheckoutSessionCustomTextShippingAddress: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentPagesCheckoutSessionCustomTextShippingAddress")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PaymentPagesCheckoutSessionCustomTextShippingAddress"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PaymentPagesCheckoutSessionCustomTextPosition.self
         ) {
-            return             .paymentPagesCheckoutSessionCustomTextPosition(value)
+            return .paymentPagesCheckoutSessionCustomTextPosition(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -163,7 +184,6 @@ extension PaymentPagesCheckoutSessionCustomTextShippingAddress: Codable {
         case let .paymentPagesCheckoutSessionCustomTextPosition(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum PaymentPagesCheckoutSessionCustomTextSubmit {
@@ -171,24 +191,30 @@ public enum PaymentPagesCheckoutSessionCustomTextSubmit {
 }
 
 extension PaymentPagesCheckoutSessionCustomTextSubmit: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentPagesCheckoutSessionCustomTextSubmit")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PaymentPagesCheckoutSessionCustomTextSubmit"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PaymentPagesCheckoutSessionCustomTextPosition.self
         ) {
-            return             .paymentPagesCheckoutSessionCustomTextPosition(value)
+            return .paymentPagesCheckoutSessionCustomTextPosition(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -197,7 +223,6 @@ extension PaymentPagesCheckoutSessionCustomTextSubmit: Codable {
         case let .paymentPagesCheckoutSessionCustomTextPosition(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum PaymentPagesCheckoutSessionCustomTextTermsOfServiceAcceptance {
@@ -205,24 +230,30 @@ public enum PaymentPagesCheckoutSessionCustomTextTermsOfServiceAcceptance {
 }
 
 extension PaymentPagesCheckoutSessionCustomTextTermsOfServiceAcceptance: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentPagesCheckoutSessionCustomTextTermsOfServiceAcceptance")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PaymentPagesCheckoutSessionCustomTextTermsOfServiceAcceptance"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PaymentPagesCheckoutSessionCustomTextPosition.self
         ) {
-            return             .paymentPagesCheckoutSessionCustomTextPosition(value)
+            return .paymentPagesCheckoutSessionCustomTextPosition(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -231,7 +262,6 @@ extension PaymentPagesCheckoutSessionCustomTextTermsOfServiceAcceptance: Codable
         case let .paymentPagesCheckoutSessionCustomTextPosition(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Typed representation of the `PaymentPagesCheckoutSessionCustomTextPosition` API schema.
@@ -243,24 +273,30 @@ public struct PaymentPagesCheckoutSessionCustomTextPosition: Codable {
         case message
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension PaymentPagesCheckoutSessionCustomTextPosition {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.message) else {
-            throw SdkValidationError(field: "message", code: "required", message: "Validation failed for 'message': value is required")
-        }
-        self.message = try container.sdkDecodeRequired(.message)
-            try validateLength("message", self.message, min: nil, max: 1200)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension PaymentPagesCheckoutSessionCustomTextPosition {
-    public init(message: String) throws {
+public extension PaymentPagesCheckoutSessionCustomTextPosition {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.message) else {
+            throw SdkValidationError(
+                field: "message",
+                code: "required",
+                message: "Validation failed for 'message': value is required"
+            )
+        }
+        message = try container.sdkDecodeRequired(.message)
+        try validateLength("message", message, min: nil, max: 1200)
+    }
+}
+
+public extension PaymentPagesCheckoutSessionCustomTextPosition {
+    init(message: String) throws {
         self.message = message
-            try validateLength("message", self.message, min: nil, max: 1200)
+        try validateLength("message", self.message, min: nil, max: 1200)
     }
 }
 
@@ -299,42 +335,51 @@ public struct PaymentPagesCheckoutSessionCustomerDetails: Codable {
     }
 
     init() {
-        (self.address, self.businessName, self.email, self.individualName, self.name) = (nil, nil, nil, nil, nil)
-        (self.phone, self.taxExempt, self.taxIds) = (nil, nil, nil)
+        (address, businessName, email, individualName, name) = (nil, nil, nil, nil, nil)
+        (phone, taxExempt, taxIds) = (nil, nil, nil)
     }
 }
 
-extension PaymentPagesCheckoutSessionCustomerDetails {
-    public init(from decoder: Decoder) throws {
+public extension PaymentPagesCheckoutSessionCustomerDetails {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.address = try container.sdkDecodeIfPresent(.address)
-        self.businessName = try container.sdkDecodeIfPresent(.businessName)
-        self.email = try container.sdkDecodeIfPresent(.email)
-        self.individualName = try container.sdkDecodeIfPresent(.individualName)
-        self.name = try container.sdkDecodeIfPresent(.name)
-        self.phone = try container.sdkDecodeIfPresent(.phone)
-        self.taxExempt = try container.sdkDecodeIfPresent(.taxExempt)
-        self.taxIds = try container.sdkDecodeIfPresent(.taxIds)
-        if let value = self.businessName {
+        address = try container.sdkDecodeIfPresent(.address)
+        businessName = try container.sdkDecodeIfPresent(.businessName)
+        email = try container.sdkDecodeIfPresent(.email)
+        individualName = try container.sdkDecodeIfPresent(.individualName)
+        name = try container.sdkDecodeIfPresent(.name)
+        phone = try container.sdkDecodeIfPresent(.phone)
+        taxExempt = try container.sdkDecodeIfPresent(.taxExempt)
+        taxIds = try container.sdkDecodeIfPresent(.taxIds)
+        if let value = businessName {
             try validateLength("business_name", value, min: nil, max: 150)
         }
-        if let value = self.email {
+        if let value = email {
             try validateLength("email", value, min: nil, max: 5000)
         }
-        if let value = self.individualName {
+        if let value = individualName {
             try validateLength("individual_name", value, min: nil, max: 150)
         }
-        if let value = self.name {
+        if let value = name {
             try validateLength("name", value, min: nil, max: 5000)
         }
-        if let value = self.phone {
+        if let value = phone {
             try validateLength("phone", value, min: nil, max: 5000)
         }
     }
 }
 
-extension PaymentPagesCheckoutSessionCustomerDetails {
-    public init(address: PaymentPagesCheckoutSessionCustomerDetailsAddress? = nil, businessName: String? = nil, email: String? = nil, individualName: String? = nil, name: String? = nil, phone: String? = nil, taxExempt: PaymentPagesCheckoutSessionCustomerDetailsTaxExempt? = nil, taxIds: [PaymentPagesCheckoutSessionTaxId]? = nil) throws {
+public extension PaymentPagesCheckoutSessionCustomerDetails {
+    init(
+        address: PaymentPagesCheckoutSessionCustomerDetailsAddress? = nil,
+        businessName: String? = nil,
+        email: String? = nil,
+        individualName: String? = nil,
+        name: String? = nil,
+        phone: String? = nil,
+        taxExempt: PaymentPagesCheckoutSessionCustomerDetailsTaxExempt? = nil,
+        taxIds: [PaymentPagesCheckoutSessionTaxId]? = nil
+    ) throws {
         self.init()
         (self.address, self.businessName) = (address, businessName)
         (self.email, self.individualName) = (email, individualName)
@@ -363,20 +408,28 @@ public enum PaymentPagesCheckoutSessionCustomerDetailsAddress {
 }
 
 extension PaymentPagesCheckoutSessionCustomerDetailsAddress: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentPagesCheckoutSessionCustomerDetailsAddress")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PaymentPagesCheckoutSessionCustomerDetailsAddress"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(Address.self) { return .address(value) }
+        if let value = try? container.decode(Address.self) {
+            return .address(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -385,7 +438,6 @@ extension PaymentPagesCheckoutSessionCustomerDetailsAddress: Codable {
         case let .address(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Typed representation of the `PaymentPagesCheckoutSessionDiscount` API schema.
@@ -401,20 +453,23 @@ public struct PaymentPagesCheckoutSessionDiscount: Codable {
     }
 
     init() {
-        (self.coupon, self.promotionCode) = (nil, nil)
+        (coupon, promotionCode) = (nil, nil)
     }
 }
 
-extension PaymentPagesCheckoutSessionDiscount {
-    public init(from decoder: Decoder) throws {
+public extension PaymentPagesCheckoutSessionDiscount {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.coupon = try container.sdkDecodeIfPresent(.coupon)
-        self.promotionCode = try container.sdkDecodeIfPresent(.promotionCode)
+        coupon = try container.sdkDecodeIfPresent(.coupon)
+        promotionCode = try container.sdkDecodeIfPresent(.promotionCode)
     }
 }
 
-extension PaymentPagesCheckoutSessionDiscount {
-    public init(coupon: PaymentPagesCheckoutSessionDiscountCoupon? = nil, promotionCode: PaymentPagesCheckoutSessionDiscountPromotionCode? = nil) {
+public extension PaymentPagesCheckoutSessionDiscount {
+    init(
+        coupon: PaymentPagesCheckoutSessionDiscountCoupon? = nil,
+        promotionCode: PaymentPagesCheckoutSessionDiscountPromotionCode? = nil
+    ) {
         self.init()
         (self.coupon, self.promotionCode) = (coupon, promotionCode)
     }
@@ -426,21 +481,31 @@ public enum PaymentPagesCheckoutSessionDiscountCoupon {
 }
 
 extension PaymentPagesCheckoutSessionDiscountCoupon: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentPagesCheckoutSessionDiscountCoupon")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PaymentPagesCheckoutSessionDiscountCoupon"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(Coupon.self) { return .coupon(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(Coupon.self) {
+            return .coupon(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -450,7 +515,6 @@ extension PaymentPagesCheckoutSessionDiscountCoupon: Codable {
         case let .coupon(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum PaymentPagesCheckoutSessionDiscountPromotionCode {
@@ -459,21 +523,31 @@ public enum PaymentPagesCheckoutSessionDiscountPromotionCode {
 }
 
 extension PaymentPagesCheckoutSessionDiscountPromotionCode: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentPagesCheckoutSessionDiscountPromotionCode")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PaymentPagesCheckoutSessionDiscountPromotionCode"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(PromotionCode.self) { return .promotionCode(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(PromotionCode.self) {
+            return .promotionCode(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -483,7 +557,6 @@ extension PaymentPagesCheckoutSessionDiscountPromotionCode: Codable {
         case let .promotionCode(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Typed representation of the `PaymentPagesCheckoutSessionIndividualName` API schema.
@@ -499,25 +572,35 @@ public struct PaymentPagesCheckoutSessionIndividualName: Codable {
         case optional
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension PaymentPagesCheckoutSessionIndividualName {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.enabled) else {
-            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
-        }
-        guard container.contains(.optional) else {
-            throw SdkValidationError(field: "optional", code: "required", message: "Validation failed for 'optional': value is required")
-        }
-        self.enabled = try container.sdkDecodeRequired(.enabled)
-        self.optional = try container.sdkDecodeRequired(.optional)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension PaymentPagesCheckoutSessionIndividualName {
-    public init(enabled: Bool, optional: Bool) {
+public extension PaymentPagesCheckoutSessionIndividualName {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.enabled) else {
+            throw SdkValidationError(
+                field: "enabled",
+                code: "required",
+                message: "Validation failed for 'enabled': value is required"
+            )
+        }
+        guard container.contains(.optional) else {
+            throw SdkValidationError(
+                field: "optional",
+                code: "required",
+                message: "Validation failed for 'optional': value is required"
+            )
+        }
+        enabled = try container.sdkDecodeRequired(.enabled)
+        optional = try container.sdkDecodeRequired(.optional)
+    }
+}
+
+public extension PaymentPagesCheckoutSessionIndividualName {
+    init(enabled: Bool, optional: Bool) {
         (self.enabled, self.optional) = (enabled, optional)
     }
 }
@@ -534,25 +617,35 @@ public struct PaymentPagesCheckoutSessionInvoiceCreation: Codable {
         case invoiceData = "invoice_data"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension PaymentPagesCheckoutSessionInvoiceCreation {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.enabled) else {
-            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
-        }
-        guard container.contains(.invoiceData) else {
-            throw SdkValidationError(field: "invoice_data", code: "required", message: "Validation failed for 'invoice_data': value is required")
-        }
-        self.enabled = try container.sdkDecodeRequired(.enabled)
-        self.invoiceData = try container.sdkDecodeRequired(.invoiceData)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension PaymentPagesCheckoutSessionInvoiceCreation {
-    public init(enabled: Bool, invoiceData: PaymentPagesCheckoutSessionInvoiceSettings) {
+public extension PaymentPagesCheckoutSessionInvoiceCreation {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.enabled) else {
+            throw SdkValidationError(
+                field: "enabled",
+                code: "required",
+                message: "Validation failed for 'enabled': value is required"
+            )
+        }
+        guard container.contains(.invoiceData) else {
+            throw SdkValidationError(
+                field: "invoice_data",
+                code: "required",
+                message: "Validation failed for 'invoice_data': value is required"
+            )
+        }
+        enabled = try container.sdkDecodeRequired(.enabled)
+        invoiceData = try container.sdkDecodeRequired(.invoiceData)
+    }
+}
+
+public extension PaymentPagesCheckoutSessionInvoiceCreation {
+    init(enabled: Bool, invoiceData: PaymentPagesCheckoutSessionInvoiceSettings) {
         (self.enabled, self.invoiceData) = (enabled, invoiceData)
     }
 }

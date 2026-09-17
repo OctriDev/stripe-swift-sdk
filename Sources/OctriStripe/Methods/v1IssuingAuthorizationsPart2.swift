@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1IssuingAuthorizationsMethods {
-    public struct GetIssuingAuthorizationsOptions: Codable {
+public extension V1IssuingAuthorizationsMethods {
+    struct GetIssuingAuthorizationsOptions: Codable {
         public var card: String?
         public var cardholder: String?
         public var created: GetIssuingAuthorizationsParameter?
@@ -20,9 +20,12 @@ extension V1IssuingAuthorizationsMethods {
         public init() {}
     }
 
-    /// Lists Issuing authorizations, ordered from newest to oldest by creation date. Use `card`, `cardholder`, `created`, and `status` to filter the results, and use cursor parameters to navigate between pages. Set `limit` between 1 and 100; it defaults to 10 when omitted.
+    /// Lists Issuing authorizations, ordered from newest to oldest by creation date. Use `card`, `cardholder`,
+    /// `created`, and `status` to filter the results, and use cursor parameters to navigate between pages. Set `limit`
+    /// between 1 and 100; it defaults to 10 when omitted.
     ///
-    /// Returns a list of Issuing Authorization objects. The objects are sorted in descending order by creation date, with the most recently created object appearing first.
+    /// Returns a list of Issuing Authorization objects. The objects are sorted in descending order by creation date,
+    /// with the most recently created object appearing first.
     ///
     /// - Parameters:
     /// - card: Only return authorizations that belong to the given card.
@@ -45,7 +48,10 @@ extension V1IssuingAuthorizationsMethods {
     ///   the list.
     /// - status: Only return authorizations with the given status. One of
     ///   `pending`, `closed`, or `reversed`.
-    public static func getIssuingAuthorizations(config: ClientConfig, options: GetIssuingAuthorizationsOptions) async throws -> GetIssuingAuthorizationsResponse {
+    static func getIssuingAuthorizations(
+        config: ClientConfig,
+        options: GetIssuingAuthorizationsOptions
+    ) async throws -> GetIssuingAuthorizationsResponse {
         if let card = options.card {
             try validateLength("card", card, max: 5000)
         }
@@ -62,7 +68,7 @@ extension V1IssuingAuthorizationsMethods {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try (await sdkRequest("GET", "/v1/issuing/authorizations", config: config, query: [
+        return try await (sdkRequest("GET", "/v1/issuing/authorizations", config: config, query: [
             SdkQueryParameter("card", value: options.card),
             SdkQueryParameter("cardholder", value: options.cardholder),
             SdkQueryParameter("created", value: options.created),

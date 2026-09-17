@@ -7,37 +7,45 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1PaymentIntents operation model declarations
+/// Canonical v1PaymentIntents operation model declarations
 extension PostPaymentIntentsRequestBodyPaymentMethodOptionsSepaDebit: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostPaymentIntentsRequestBodyPaymentMethodOptionsSepaDebit")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PostPaymentIntentsRequestBodyPaymentMethodOptionsSepaDebit"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PostPaymentIntentsRequestBodyPaymentMethodOptionsSepaDebitVariant0.self
         ) {
-            return             .postPaymentIntentsRequestBodyPaymentMethodOptionsSepaDebitVariant0(value)
+            return .postPaymentIntentsRequestBodyPaymentMethodOptionsSepaDebitVariant0(value)
         }
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .postPaymentIntentsRequestBodyPaymentMethodOptionsSepaDebitVariant0(value): try container.encode(value); return true
+        case let .postPaymentIntentsRequestBodyPaymentMethodOptionsSepaDebitVariant0(value): try container
+            .encode(value); return true
         case let .stringValue(value): try container.encode(value); return true
         }
     }
-
 }
 
 public struct PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsPaytoVX20f1a1e856: Codable {
@@ -58,25 +66,32 @@ public struct PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsPaytoVX20f1
     }
 
     init() {
-        (self.amount, self.amountType, self.endDate, self.paymentSchedule, self.paymentsPerPeriod) = (nil, nil, nil, nil, nil)
-        self.purpose = nil
+        (amount, amountType, endDate, paymentSchedule, paymentsPerPeriod) = (nil, nil, nil, nil, nil)
+        purpose = nil
     }
 }
 
-extension PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsPaytoVX20f1a1e856 {
-    public init(from decoder: Decoder) throws {
+public extension PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsPaytoVX20f1a1e856 {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.amount = try container.sdkDecodeIfPresent(.amount)
-        self.amountType = try container.sdkDecodeIfPresent(.amountType)
-        self.endDate = try container.sdkDecodeIfPresent(.endDate)
-        self.paymentSchedule = try container.sdkDecodeIfPresent(.paymentSchedule)
-        self.paymentsPerPeriod = try container.sdkDecodeIfPresent(.paymentsPerPeriod)
-        self.purpose = try container.sdkDecodeIfPresent(.purpose)
+        amount = try container.sdkDecodeIfPresent(.amount)
+        amountType = try container.sdkDecodeIfPresent(.amountType)
+        endDate = try container.sdkDecodeIfPresent(.endDate)
+        paymentSchedule = try container.sdkDecodeIfPresent(.paymentSchedule)
+        paymentsPerPeriod = try container.sdkDecodeIfPresent(.paymentsPerPeriod)
+        purpose = try container.sdkDecodeIfPresent(.purpose)
     }
 }
 
-extension PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsPaytoVX20f1a1e856 {
-    public init(amount: PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsPaytoVXde963f42e3? = nil, amountType: PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsPaytoVXc664b61216? = nil, endDate: PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsPaytoVX872e19209c? = nil, paymentSchedule: PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsPaytoVX2ccc863733? = nil, paymentsPerPeriod: PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsPaytoVXb8b63c8adc? = nil, purpose: PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsPaytoVXaa064ddc9d? = nil) {
+public extension PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsPaytoVX20f1a1e856 {
+    init(
+        amount: PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsPaytoVXde963f42e3? = nil,
+        amountType: PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsPaytoVXc664b61216? = nil,
+        endDate: PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsPaytoVX872e19209c? = nil,
+        paymentSchedule: PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsPaytoVX2ccc863733? = nil,
+        paymentsPerPeriod: PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsPaytoVXb8b63c8adc? = nil,
+        purpose: PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsPaytoVXaa064ddc9d? = nil
+    ) {
         self.init()
         (self.amount, self.amountType) = (amount, amountType)
         (self.endDate, self.paymentSchedule) = (endDate, paymentSchedule)
@@ -102,22 +117,27 @@ public struct PostPaymentIntentsIntentRequestBodyAmountDetailsVariant0LineIX2452
     }
 
     init() {
-        (self.card, self.cardPresent, self.klarna, self.paypal) = (nil, nil, nil, nil)
+        (card, cardPresent, klarna, paypal) = (nil, nil, nil, nil)
     }
 }
 
-extension PostPaymentIntentsIntentRequestBodyAmountDetailsVariant0LineIX245237aa68 {
-    public init(from decoder: Decoder) throws {
+public extension PostPaymentIntentsIntentRequestBodyAmountDetailsVariant0LineIX245237aa68 {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.card = try container.sdkDecodeIfPresent(.card)
-        self.cardPresent = try container.sdkDecodeIfPresent(.cardPresent)
-        self.klarna = try container.sdkDecodeIfPresent(.klarna)
-        self.paypal = try container.sdkDecodeIfPresent(.paypal)
+        card = try container.sdkDecodeIfPresent(.card)
+        cardPresent = try container.sdkDecodeIfPresent(.cardPresent)
+        klarna = try container.sdkDecodeIfPresent(.klarna)
+        paypal = try container.sdkDecodeIfPresent(.paypal)
     }
 }
 
-extension PostPaymentIntentsIntentRequestBodyAmountDetailsVariant0LineIX245237aa68 {
-    public init(card: PostPaymentIntentsIntentRequestBodyAmountDetailsVariant0LineIXfc5742d890? = nil, cardPresent: PostPaymentIntentsIntentRequestBodyAmountDetailsVariant0LineIX586c188a8a? = nil, klarna: PostPaymentIntentsIntentRequestBodyAmountDetailsVariant0LineIXd508098c95? = nil, paypal: PostPaymentIntentsIntentRequestBodyAmountDetailsVariant0LineIX468703abda? = nil) {
+public extension PostPaymentIntentsIntentRequestBodyAmountDetailsVariant0LineIX245237aa68 {
+    init(
+        card: PostPaymentIntentsIntentRequestBodyAmountDetailsVariant0LineIXfc5742d890? = nil,
+        cardPresent: PostPaymentIntentsIntentRequestBodyAmountDetailsVariant0LineIX586c188a8a? = nil,
+        klarna: PostPaymentIntentsIntentRequestBodyAmountDetailsVariant0LineIXd508098c95? = nil,
+        paypal: PostPaymentIntentsIntentRequestBodyAmountDetailsVariant0LineIX468703abda? = nil
+    ) {
         self.init()
         (self.card, self.cardPresent) = (card, cardPresent)
         (self.klarna, self.paypal) = (klarna, paypal)
@@ -130,21 +150,31 @@ public enum PostPaymentIntentsRequestBodyPaymentDetailsCustomerReference {
 }
 
 extension PostPaymentIntentsRequestBodyPaymentDetailsCustomerReference: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostPaymentIntentsRequestBodyPaymentDetailsCustomerReference")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PostPaymentIntentsRequestBodyPaymentDetailsCustomerReference"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(String.self) { return .stringValue1(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(String.self) {
+            return .stringValue1(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -154,7 +184,6 @@ extension PostPaymentIntentsRequestBodyPaymentDetailsCustomerReference: Codable 
         case let .stringValue1(value): try container.encode(value); return true
         }
     }
-
 }
 
 public struct PostPaymentIntentsRequestBodyPaymentMethodDataKlarna: Codable {
@@ -166,19 +195,19 @@ public struct PostPaymentIntentsRequestBodyPaymentMethodDataKlarna: Codable {
     }
 
     init() {
-        self.dob = nil
+        dob = nil
     }
 }
 
-extension PostPaymentIntentsRequestBodyPaymentMethodDataKlarna {
-    public init(from decoder: Decoder) throws {
+public extension PostPaymentIntentsRequestBodyPaymentMethodDataKlarna {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.dob = try container.sdkDecodeIfPresent(.dob)
+        dob = try container.sdkDecodeIfPresent(.dob)
     }
 }
 
-extension PostPaymentIntentsRequestBodyPaymentMethodDataKlarna {
-    public init(dob: PostPaymentIntentsRequestBodyPaymentMethodDataKlarnaDob? = nil) {
+public extension PostPaymentIntentsRequestBodyPaymentMethodDataKlarna {
+    init(dob: PostPaymentIntentsRequestBodyPaymentMethodDataKlarnaDob? = nil) {
         self.init()
         self.dob = dob
     }
@@ -190,21 +219,31 @@ public enum PostPaymentIntentsIntentRequestBodyPaymentDetailsVariant0CustXaca2c1
 }
 
 extension PostPaymentIntentsIntentRequestBodyPaymentDetailsVariant0CustXaca2c1686f: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostPaymentIntentsIntentRequestBodyPaymentDetailsVariant0CustXaca2c1686f")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PostPaymentIntentsIntentRequestBodyPaymentDetailsVariant0CustXaca2c1686f"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(String.self) { return .stringValue1(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(String.self) {
+            return .stringValue1(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -214,7 +253,6 @@ extension PostPaymentIntentsIntentRequestBodyPaymentDetailsVariant0CustXaca2c168
         case let .stringValue1(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum PostPaymentIntentsRequestBodyPaymentMethodOptionsBacsDebit {
@@ -225,35 +263,43 @@ public enum PostPaymentIntentsRequestBodyPaymentMethodOptionsBacsDebit {
 }
 
 extension PostPaymentIntentsRequestBodyPaymentMethodOptionsBacsDebit: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostPaymentIntentsRequestBodyPaymentMethodOptionsBacsDebit")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PostPaymentIntentsRequestBodyPaymentMethodOptionsBacsDebit"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PostPaymentIntentsRequestBodyPaymentMethodOptionsBacsDebitVariant0.self
         ) {
-            return             .postPaymentIntentsRequestBodyPaymentMethodOptionsBacsDebitVariant0(value)
+            return .postPaymentIntentsRequestBodyPaymentMethodOptionsBacsDebitVariant0(value)
         }
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .postPaymentIntentsRequestBodyPaymentMethodOptionsBacsDebitVariant0(value): try container.encode(value); return true
+        case let .postPaymentIntentsRequestBodyPaymentMethodOptionsBacsDebitVariant0(value): try container
+            .encode(value); return true
         case let .stringValue(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsBizum {
@@ -264,35 +310,43 @@ public enum PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsBizum {
 }
 
 extension PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsBizum: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsBizum")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsBizum"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsBizumVariant0.self
         ) {
-            return             .postPaymentIntentsIntentRequestBodyPaymentMethodOptionsBizumVariant0(value)
+            return .postPaymentIntentsIntentRequestBodyPaymentMethodOptionsBizumVariant0(value)
         }
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .postPaymentIntentsIntentRequestBodyPaymentMethodOptionsBizumVariant0(value): try container.encode(value); return true
+        case let .postPaymentIntentsIntentRequestBodyPaymentMethodOptionsBizumVariant0(value): try container
+            .encode(value); return true
         case let .stringValue(value): try container.encode(value); return true
         }
     }
-
 }
 
 public struct PostPaymentIntentsRequestBodyPaymentMethodOptionsAlmaVariant0: Codable {
@@ -303,32 +357,32 @@ public struct PostPaymentIntentsRequestBodyPaymentMethodOptionsAlmaVariant0: Cod
     }
 
     init() {
-        self.captureMethod = nil
+        captureMethod = nil
     }
 }
 
-extension PostPaymentIntentsRequestBodyPaymentMethodOptionsAlmaVariant0 {
-    public init(from decoder: Decoder) throws {
+public extension PostPaymentIntentsRequestBodyPaymentMethodOptionsAlmaVariant0 {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.captureMethod = try container.sdkDecodeIfPresent(.captureMethod)
+        captureMethod = try container.sdkDecodeIfPresent(.captureMethod)
     }
 }
 
-extension PostPaymentIntentsRequestBodyPaymentMethodOptionsAlmaVariant0 {
-    public init(captureMethod: PostPaymentIntentsRequestBodyPaymentMethodOptionsAlmaVariant0X993477b333? = nil) {
+public extension PostPaymentIntentsRequestBodyPaymentMethodOptionsAlmaVariant0 {
+    init(captureMethod: PostPaymentIntentsRequestBodyPaymentMethodOptionsAlmaVariant0X993477b333? = nil) {
         self.init()
         self.captureMethod = captureMethod
     }
 }
 
 public struct PostPaymentIntentsIntentRequestBodyPaymentMethodDataPayByBank: Codable {
-
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension PostPaymentIntentsIntentRequestBodyPaymentMethodDataPayByBank {
-    public init() {
-    }
+public extension PostPaymentIntentsIntentRequestBodyPaymentMethodDataPayByBank {
+    init() {}
 }
 
 public enum PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCustomerBalance {
@@ -339,35 +393,43 @@ public enum PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCustomerBalan
 }
 
 extension PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCustomerBalance: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCustomerBalance")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCustomerBalance"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCustomX594e38953a.self
         ) {
-            return             .postPaymentIntentsIntentRequestBodyPaymentMethodOptionsCustomX594e38953a(value)
+            return .postPaymentIntentsIntentRequestBodyPaymentMethodOptionsCustomX594e38953a(value)
         }
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .postPaymentIntentsIntentRequestBodyPaymentMethodOptionsCustomX594e38953a(value): try container.encode(value); return true
+        case let .postPaymentIntentsIntentRequestBodyPaymentMethodOptionsCustomX594e38953a(value): try container
+            .encode(value); return true
         case let .stringValue(value): try container.encode(value); return true
         }
     }
-
 }
 
 public struct PostPaymentIntentsRequestBodyPaymentMethodDataBillingDetailsAXdcfaca2357: Codable {
@@ -388,43 +450,50 @@ public struct PostPaymentIntentsRequestBodyPaymentMethodDataBillingDetailsAXdcfa
     }
 
     init() {
-        (self.city, self.country, self.line1, self.line2, self.postalCode) = (nil, nil, nil, nil, nil)
-        self.state = nil
+        (city, country, line1, line2, postalCode) = (nil, nil, nil, nil, nil)
+        state = nil
     }
 }
 
-extension PostPaymentIntentsRequestBodyPaymentMethodDataBillingDetailsAXdcfaca2357 {
-    public init(from decoder: Decoder) throws {
+public extension PostPaymentIntentsRequestBodyPaymentMethodDataBillingDetailsAXdcfaca2357 {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.city = try container.sdkDecodeIfPresent(.city)
-        self.country = try container.sdkDecodeIfPresent(.country)
-        self.line1 = try container.sdkDecodeIfPresent(.line1)
-        self.line2 = try container.sdkDecodeIfPresent(.line2)
-        self.postalCode = try container.sdkDecodeIfPresent(.postalCode)
-        self.state = try container.sdkDecodeIfPresent(.state)
-        if let value = self.city {
+        city = try container.sdkDecodeIfPresent(.city)
+        country = try container.sdkDecodeIfPresent(.country)
+        line1 = try container.sdkDecodeIfPresent(.line1)
+        line2 = try container.sdkDecodeIfPresent(.line2)
+        postalCode = try container.sdkDecodeIfPresent(.postalCode)
+        state = try container.sdkDecodeIfPresent(.state)
+        if let value = city {
             try validateLength("city", value, min: nil, max: 5000)
         }
-        if let value = self.country {
+        if let value = country {
             try validateLength("country", value, min: nil, max: 5000)
         }
-        if let value = self.line1 {
+        if let value = line1 {
             try validateLength("line1", value, min: nil, max: 5000)
         }
-        if let value = self.line2 {
+        if let value = line2 {
             try validateLength("line2", value, min: nil, max: 5000)
         }
-        if let value = self.postalCode {
+        if let value = postalCode {
             try validateLength("postal_code", value, min: nil, max: 5000)
         }
-        if let value = self.state {
+        if let value = state {
             try validateLength("state", value, min: nil, max: 5000)
         }
     }
 }
 
-extension PostPaymentIntentsRequestBodyPaymentMethodDataBillingDetailsAXdcfaca2357 {
-    public init(city: String? = nil, country: String? = nil, line1: String? = nil, line2: String? = nil, postalCode: String? = nil, state: String? = nil) throws {
+public extension PostPaymentIntentsRequestBodyPaymentMethodDataBillingDetailsAXdcfaca2357 {
+    init(
+        city: String? = nil,
+        country: String? = nil,
+        line1: String? = nil,
+        line2: String? = nil,
+        postalCode: String? = nil,
+        state: String? = nil
+    ) throws {
         self.init()
         (self.city, self.country) = (city, country)
         (self.line1, self.line2) = (line1, line2)
@@ -451,40 +520,50 @@ extension PostPaymentIntentsRequestBodyPaymentMethodDataBillingDetailsAXdcfaca23
 }
 
 public enum PostPaymentIntentsRequestBodyPaymentMethodOptionsBlik {
-    case postPaymentIntentsRequestBodyPaymentMethodOptionsBlikVariant0(PostPaymentIntentsRequestBodyPaymentMethodOptionsBlikVariant0)
+    case postPaymentIntentsRequestBodyPaymentMethodOptionsBlikVariant0(
+        PostPaymentIntentsRequestBodyPaymentMethodOptionsBlikVariant0
+    )
     case stringValue(String)
 }
 
 extension PostPaymentIntentsRequestBodyPaymentMethodOptionsBlik: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostPaymentIntentsRequestBodyPaymentMethodOptionsBlik")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PostPaymentIntentsRequestBodyPaymentMethodOptionsBlik"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PostPaymentIntentsRequestBodyPaymentMethodOptionsBlikVariant0.self
         ) {
-            return             .postPaymentIntentsRequestBodyPaymentMethodOptionsBlikVariant0(value)
+            return .postPaymentIntentsRequestBodyPaymentMethodOptionsBlikVariant0(value)
         }
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .postPaymentIntentsRequestBodyPaymentMethodOptionsBlikVariant0(value): try container.encode(value); return true
+        case let .postPaymentIntentsRequestBodyPaymentMethodOptionsBlikVariant0(value): try container
+            .encode(value); return true
         case let .stringValue(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsSatispay {
@@ -495,35 +574,43 @@ public enum PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsSatispay {
 }
 
 extension PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsSatispay: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsSatispay")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsSatispay"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsSatispayVariant0.self
         ) {
-            return             .postPaymentIntentsIntentRequestBodyPaymentMethodOptionsSatispayVariant0(value)
+            return .postPaymentIntentsIntentRequestBodyPaymentMethodOptionsSatispayVariant0(value)
         }
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .postPaymentIntentsIntentRequestBodyPaymentMethodOptionsSatispayVariant0(value): try container.encode(value); return true
+        case let .postPaymentIntentsIntentRequestBodyPaymentMethodOptionsSatispayVariant0(value): try container
+            .encode(value); return true
         case let .stringValue(value): try container.encode(value); return true
         }
     }
-
 }
 
 public struct PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsUsBankX3286e932d9: Codable {
@@ -534,19 +621,19 @@ public struct PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsUsBankX3286
     }
 
     init() {
-        self.collectionMethod = nil
+        collectionMethod = nil
     }
 }
 
-extension PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsUsBankX3286e932d9 {
-    public init(from decoder: Decoder) throws {
+public extension PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsUsBankX3286e932d9 {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.collectionMethod = try container.sdkDecodeIfPresent(.collectionMethod)
+        collectionMethod = try container.sdkDecodeIfPresent(.collectionMethod)
     }
 }
 
-extension PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsUsBankX3286e932d9 {
-    public init(collectionMethod: PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsUsBankX74bd6244c5? = nil) {
+public extension PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsUsBankX3286e932d9 {
+    init(collectionMethod: PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsUsBankX74bd6244c5? = nil) {
         self.init()
         self.collectionMethod = collectionMethod
     }

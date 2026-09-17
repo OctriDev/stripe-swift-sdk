@@ -6,18 +6,31 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1ShippingRatesMethods {
-    /// Retrieves a shipping rate by its identifier. Use `expand` when you need selected response fields included inline. The response describes the rate's availability, customer-facing name, fixed charge, delivery estimate, and tax treatment.
+public extension V1ShippingRatesMethods {
+    /// Retrieves a shipping rate by its identifier. Use `expand` when you need selected response fields included
+    /// inline. The response describes the rate's availability, customer-facing name, fixed charge, delivery estimate,
+    /// and tax treatment.
     ///
     /// Returns the shipping rate object with the given ID.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func getShippingRatesShippingRateToken(config: ClientConfig, shippingRateToken: String, expand: [String]?) async throws -> ShippingRate {
+    static func getShippingRatesShippingRateToken(
+        config: ClientConfig,
+        shippingRateToken: String,
+        expand: [String]?
+    ) async throws -> ShippingRate {
         try validateLength("shipping_rate_token", shippingRateToken, max: 5000)
 
-        return try (await sdkRequest("GET", ["/v1/shipping_rates/", sdkEncodePathSegment(sdkWireString(shippingRateToken))].joined(), config: config, query: [
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-        ], decoder: .json, operationId: "GetShippingRatesShippingRateToken")).data
+        return try await (sdkRequest(
+            "GET",
+            ["/v1/shipping_rates/", sdkEncodePathSegment(sdkWireString(shippingRateToken))].joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+            ],
+            decoder: .json,
+            operationId: "GetShippingRatesShippingRateToken"
+        )).data
     }
 }

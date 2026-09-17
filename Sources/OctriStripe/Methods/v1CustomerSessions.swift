@@ -7,7 +7,8 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1CustomerSessionsMethods {
-    /// Creates a Customer Session object that includes a single-use client secret that you can use on your front-end to grant client-side API access for certain customer resources.
+    /// Creates a Customer Session object that includes a single-use client secret that you can use on your front-end to
+    /// grant client-side API access for certain customer resources.
     ///
     /// - Parameters:
     /// - components: Configuration for each component. At least 1 component must be
@@ -17,17 +18,36 @@ public enum V1CustomerSessionsMethods {
     /// - customerAccount: The ID of an existing Account for which to create the
     ///   Customer Session.
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postCustomerSessions(config: ClientConfig, components: PostCustomerSessionsRequestBodyComponents, customer: String?, customerAccount: String?, expand: [String]?) async throws -> CustomerSession {
-        if let customer = customer {
+    public static func postCustomerSessions(
+        config: ClientConfig,
+        components: PostCustomerSessionsRequestBodyComponents,
+        customer: String?,
+        customerAccount: String?,
+        expand: [String]?
+    ) async throws -> CustomerSession {
+        if let customer {
             try validateLength("customer", customer, max: 5000)
         }
 
-        if let customerAccount = customerAccount {
+        if let customerAccount {
             try validateLength("customer_account", customerAccount, max: 5000)
         }
 
-        let requestBody = PostCustomerSessionsRequestBody(components: components, customer: customer, customerAccount: customerAccount, expand: expand)
+        let requestBody = PostCustomerSessionsRequestBody(
+            components: components,
+            customer: customer,
+            customerAccount: customerAccount,
+            expand: expand
+        )
 
-        return try (await sdkRequest("POST", "/v1/customer_sessions", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostCustomerSessions")).data
+        return try await (sdkRequest(
+            "POST",
+            "/v1/customer_sessions",
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostCustomerSessions"
+        )).data
     }
 }

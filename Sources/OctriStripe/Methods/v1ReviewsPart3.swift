@@ -6,18 +6,26 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1ReviewsMethods {
-    /// Retrieves a specific review object. Provide `review` to identify the review and use `expand` to include additional fields in the response.
+public extension V1ReviewsMethods {
+    /// Retrieves a specific review object. Provide `review` to identify the review and use `expand` to include
+    /// additional fields in the response.
     ///
     /// Retrieves a Review object.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func getReviewsReview(config: ClientConfig, review: String, expand: [String]?) async throws -> Review {
+    static func getReviewsReview(config: ClientConfig, review: String, expand: [String]?) async throws -> Review {
         try validateLength("review", review, max: 5000)
 
-        return try (await sdkRequest("GET", ["/v1/reviews/", sdkEncodePathSegment(sdkWireString(review))].joined(), config: config, query: [
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-        ], decoder: .json, operationId: "GetReviewsReview")).data
+        return try await (sdkRequest(
+            "GET",
+            ["/v1/reviews/", sdkEncodePathSegment(sdkWireString(review))].joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+            ],
+            decoder: .json,
+            operationId: "GetReviewsReview"
+        )).data
     }
 }

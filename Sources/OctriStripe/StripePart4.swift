@@ -9,11 +9,13 @@ public class V1BillingAlertsDeactivateNamespace {
         self.config = config
     }
 
-/// Deactivates a billing alert so it no longer triggers when its monitored usage threshold is crossed. Supply the alert `id` and optionally use `expand` to include additional response fields. The response contains the billing alert with its updated inactive status.
+    /// Deactivates a billing alert so it no longer triggers when its monitored usage threshold is crossed. Supply the
+    /// alert `id` and optionally use `expand` to include additional response fields. The response contains the billing
+    /// alert with its updated inactive status.
     ///
     /// Deactivates this alert, preventing it from triggering.
     public func postBillingAlertsId(id: String, expand: [String]?) async throws -> BillingAlert {
-        return try await V1BillingAlertsDeactivateMethods.postBillingAlertsIdDeactivate(config: config, id: id, expand: expand)
+        try await V1BillingAlertsDeactivateMethods.postBillingAlertsIdDeactivate(config: config, id: id, expand: expand)
     }
 }
 
@@ -29,25 +31,54 @@ public class V1BillingAlertsNamespace {
         deactivate = V1BillingAlertsDeactivateNamespace(config: config)
     }
 
-/// Lists active and inactive billing alerts. Use `alert_type` and `meter` to filter the alerts, and use cursor parameters to paginate through the results.
+    /// Lists active and inactive billing alerts. Use `alert_type` and `meter` to filter the alerts, and use cursor
+    /// parameters to paginate through the results.
     ///
     /// Lists billing active and inactive alerts
-    public func getBilling(alertType: GetBillingAlertsParameter?, endingBefore: String?, expand: [String]?, limit: Int?, meter: String?, startingAfter: String?) async throws -> GetBillingAlertsResponse {
-        return try await V1BillingAlertsMethods.getBillingAlerts(config: config, alertType: alertType, endingBefore: endingBefore, expand: expand, limit: limit, meter: meter, startingAfter: startingAfter)
+    public func getBilling(
+        alertType: GetBillingAlertsParameter?,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        meter: String?,
+        startingAfter: String?
+    ) async throws -> GetBillingAlertsResponse {
+        try await V1BillingAlertsMethods.getBillingAlerts(
+            config: config,
+            alertType: alertType,
+            endingBefore: endingBefore,
+            expand: expand,
+            limit: limit,
+            meter: meter,
+            startingAfter: startingAfter
+        )
     }
 
-/// Creates a billing alert that notifies you when a usage threshold on a meter is crossed. Supply `alert_type` and `title`, and provide `usage_threshold` to define the meter, threshold, recurrence, and optional filters.
+    /// Creates a billing alert that notifies you when a usage threshold on a meter is crossed. Supply `alert_type` and
+    /// `title`, and provide `usage_threshold` to define the meter, threshold, recurrence, and optional filters.
     ///
     /// Creates a billing alert
-    public func postBilling(alertType: PostBillingAlertsRequestBodyAlertType, title: String, expand: [String]?, usageThreshold: PostBillingAlertsRequestBodyUsageThreshold?) async throws -> BillingAlert {
-        return try await V1BillingAlertsMethods.postBillingAlerts(config: config, alertType: alertType, title: title, expand: expand, usageThreshold: usageThreshold)
+    public func postBilling(
+        alertType: PostBillingAlertsRequestBodyAlertType,
+        title: String,
+        expand: [String]?,
+        usageThreshold: PostBillingAlertsRequestBodyUsageThreshold?
+    ) async throws -> BillingAlert {
+        try await V1BillingAlertsMethods.postBillingAlerts(
+            config: config,
+            alertType: alertType,
+            title: title,
+            expand: expand,
+            usageThreshold: usageThreshold
+        )
     }
 
-/// Retrieves a billing alert by its unique identifier. Use `expand` to request additional fields in the returned alert object.
+    /// Retrieves a billing alert by its unique identifier. Use `expand` to request additional fields in the returned
+    /// alert object.
     ///
     /// Retrieves a billing alert given an ID
     public func getBillingId(id: String, expand: [String]?) async throws -> BillingAlert {
-        return try await V1BillingAlertsMethods.getBillingAlertsId(config: config, id: id, expand: expand)
+        try await V1BillingAlertsMethods.getBillingAlertsId(config: config, id: id, expand: expand)
     }
 }
 
@@ -57,11 +88,24 @@ public class V1BillingCreditBalanceSummaryNamespace {
         self.config = config
     }
 
-/// Retrieves the credit balance summary for a customer. Use `customer` or `customer_account` to identify the balance owner and provide `filter` to select an applicability scope or credit grant. The response includes balances grouped by credit grant currency.
+    /// Retrieves the credit balance summary for a customer. Use `customer` or `customer_account` to identify the
+    /// balance owner and provide `filter` to select an applicability scope or credit grant. The response includes
+    /// balances grouped by credit grant currency.
     ///
     /// Retrieves the credit balance summary for a customer.
-    public func getBilling(filter: GetBillingCreditBalanceSummaryParameter, customer: String?, customerAccount: String?, expand: [String]?) async throws -> BillingCreditBalanceSummary {
-        return try await V1BillingCreditBalanceSummaryMethods.getBillingCreditBalanceSummary(config: config, filter: filter, customer: customer, customerAccount: customerAccount, expand: expand)
+    public func getBilling(
+        filter: GetBillingCreditBalanceSummaryParameter,
+        customer: String?,
+        customerAccount: String?,
+        expand: [String]?
+    ) async throws -> BillingCreditBalanceSummary {
+        try await V1BillingCreditBalanceSummaryMethods.getBillingCreditBalanceSummary(
+            config: config,
+            filter: filter,
+            customer: customer,
+            customerAccount: customerAccount,
+            expand: expand
+        )
     }
 }
 
@@ -71,18 +115,43 @@ public class V1BillingCreditBalanceTransactionsNamespace {
         self.config = config
     }
 
-/// Lists credit balance transactions recorded against credit grants. Use `credit_grant`, `customer`, or `customer_account` to scope the transactions, and use cursor parameters to navigate through the results. The response is a paginated list with transaction data and a continuation indicator.
+    /// Lists credit balance transactions recorded against credit grants. Use `credit_grant`, `customer`, or
+    /// `customer_account` to scope the transactions, and use cursor parameters to navigate through the results. The
+    /// response is a paginated list with transaction data and a continuation indicator.
     ///
     /// Retrieve a list of credit balance transactions.
-    public func getBilling(creditGrant: String?, customer: String?, customerAccount: String?, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetBillingCreditBalanceTransactionsResponse {
-        return try await V1BillingCreditBalanceTransactionsMethods.getBillingCreditBalanceTransactions(config: config, creditGrant: creditGrant, customer: customer, customerAccount: customerAccount, endingBefore: endingBefore, expand: expand, limit: limit, startingAfter: startingAfter)
+    public func getBilling(
+        creditGrant: String?,
+        customer: String?,
+        customerAccount: String?,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        startingAfter: String?
+    ) async throws -> GetBillingCreditBalanceTransactionsResponse {
+        try await V1BillingCreditBalanceTransactionsMethods.getBillingCreditBalanceTransactions(
+            config: config,
+            creditGrant: creditGrant,
+            customer: customer,
+            customerAccount: customerAccount,
+            endingBefore: endingBefore,
+            expand: expand,
+            limit: limit,
+            startingAfter: startingAfter
+        )
     }
 
-/// Retrieves a specific credit balance transaction associated with a credit grant. Provide the transaction `id` and optionally request expanded response fields with `expand`. The returned transaction identifies whether the recorded activity is a credit or debit when that information is present.
+    /// Retrieves a specific credit balance transaction associated with a credit grant. Provide the transaction `id` and
+    /// optionally request expanded response fields with `expand`. The returned transaction identifies whether the
+    /// recorded activity is a credit or debit when that information is present.
     ///
     /// Retrieves a credit balance transaction.
     public func getBillingId(id: String, expand: [String]?) async throws -> BillingCreditBalanceTransaction {
-        return try await V1BillingCreditBalanceTransactionsMethods.getBillingCreditBalanceTransactionsId(config: config, id: id, expand: expand)
+        try await V1BillingCreditBalanceTransactionsMethods.getBillingCreditBalanceTransactionsId(
+            config: config,
+            id: id,
+            expand: expand
+        )
     }
 }
 
@@ -92,11 +161,17 @@ public class V1BillingCreditGrantsExpireNamespace {
         self.config = config
     }
 
-/// Expires an existing credit grant so its billing credits are no longer available for use after the expiration action. Supply the grant `id` and optionally use `expand` to include additional response fields. The response contains the expired credit grant and its current expiration details.
+    /// Expires an existing credit grant so its billing credits are no longer available for use after the expiration
+    /// action. Supply the grant `id` and optionally use `expand` to include additional response fields. The response
+    /// contains the expired credit grant and its current expiration details.
     ///
     /// Expires a credit grant.
     public func postBillingCreditGrantsId(id: String, expand: [String]?) async throws -> BillingCreditGrant {
-        return try await V1BillingCreditGrantsExpireMethods.postBillingCreditGrantsIdExpire(config: config, id: id, expand: expand)
+        try await V1BillingCreditGrantsExpireMethods.postBillingCreditGrantsIdExpire(
+            config: config,
+            id: id,
+            expand: expand
+        )
     }
 }
 
@@ -106,11 +181,13 @@ public class V1BillingCreditGrantsVoidNamespace {
         self.config = config
     }
 
-/// Voids an existing credit grant and removes its remaining billing credits from future use. Supply the grant `id` and optionally use `expand` to include additional response fields. The response contains the voided credit grant with its allocation and current state.
+    /// Voids an existing credit grant and removes its remaining billing credits from future use. Supply the grant `id`
+    /// and optionally use `expand` to include additional response fields. The response contains the voided credit grant
+    /// with its allocation and current state.
     ///
     /// Voids a credit grant.
     public func postBillingCreditGrantsId(id: String, expand: [String]?) async throws -> BillingCreditGrant {
-        return try await V1BillingCreditGrantsVoidMethods.postBillingCreditGrantsIdVoid(config: config, id: id, expand: expand)
+        try await V1BillingCreditGrantsVoidMethods.postBillingCreditGrantsIdVoid(config: config, id: id, expand: expand)
     }
 }
 
@@ -124,32 +201,67 @@ public class V1BillingCreditGrantsNamespace {
         void = V1BillingCreditGrantsVoidNamespace(config: config)
     }
 
-/// Lists credit grants allocated to customers or customer accounts. Filter the collection with `customer` or `customer_account`, and use cursor parameters to paginate through the grants. The response includes grant allocation, applicability, expiration, priority, and metadata fields for each result.
+    /// Lists credit grants allocated to customers or customer accounts. Filter the collection with `customer` or
+    /// `customer_account`, and use cursor parameters to paginate through the grants. The response includes grant
+    /// allocation, applicability, expiration, priority, and metadata fields for each result.
     ///
     /// Retrieve a list of credit grants.
-    public func getBilling(customer: String?, customerAccount: String?, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetBillingCreditGrantsResponse {
-        return try await V1BillingCreditGrantsMethods.getBillingCreditGrants(config: config, customer: customer, customerAccount: customerAccount, endingBefore: endingBefore, expand: expand, limit: limit, startingAfter: startingAfter)
+    public func getBilling(
+        customer: String?,
+        customerAccount: String?,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        startingAfter: String?
+    ) async throws -> GetBillingCreditGrantsResponse {
+        try await V1BillingCreditGrantsMethods.getBillingCreditGrants(
+            config: config,
+            customer: customer,
+            customerAccount: customerAccount,
+            endingBefore: endingBefore,
+            expand: expand,
+            limit: limit,
+            startingAfter: startingAfter
+        )
     }
 
-/// Creates a credit grant that allocates billing credits to a customer or customer account. Supply `amount` and `applicability_config`, and optionally set the category, effective and expiration times, metadata, name, or application priority. The created grant records how and when its credits can be applied.
+    /// Creates a credit grant that allocates billing credits to a customer or customer account. Supply `amount` and
+    /// `applicability_config`, and optionally set the category, effective and expiration times, metadata, name, or
+    /// application priority. The created grant records how and when its credits can be applied.
     ///
     /// Creates a credit grant.
-    public func postBilling(options: V1BillingCreditGrantsMethods.PostBillingCreditGrantsOptions) async throws -> BillingCreditGrant {
-        return try await V1BillingCreditGrantsMethods.postBillingCreditGrants(config: config, options: options)
+    public func postBilling(options: V1BillingCreditGrantsMethods
+        .PostBillingCreditGrantsOptions) async throws -> BillingCreditGrant {
+        try await V1BillingCreditGrantsMethods.postBillingCreditGrants(config: config, options: options)
     }
 
-/// Retrieves a specific credit grant allocated to a customer or customer account. Provide the grant `id` and optionally request expanded response fields with `expand`. The response includes the grant's allocation, applicability configuration, timing, priority, and metadata.
+    /// Retrieves a specific credit grant allocated to a customer or customer account. Provide the grant `id` and
+    /// optionally request expanded response fields with `expand`. The response includes the grant's allocation,
+    /// applicability configuration, timing, priority, and metadata.
     ///
     /// Retrieves a credit grant.
     public func getBillingId(id: String, expand: [String]?) async throws -> BillingCreditGrant {
-        return try await V1BillingCreditGrantsMethods.getBillingCreditGrantsId(config: config, id: id, expand: expand)
+        try await V1BillingCreditGrantsMethods.getBillingCreditGrantsId(config: config, id: id, expand: expand)
     }
 
-/// Updates the expiration time or metadata of an existing credit grant. Provide the grant `id` and send only the properties you want to change; set `expires_at` to an empty string to make the billing credits never expire. The response contains the updated credit grant.
+    /// Updates the expiration time or metadata of an existing credit grant. Provide the grant `id` and send only the
+    /// properties you want to change; set `expires_at` to an empty string to make the billing credits never expire. The
+    /// response contains the updated credit grant.
     ///
     /// Updates a credit grant.
-    public func postBillingId(id: String, expand: [String]?, expiresAt: PostBillingCreditGrantsIdRequestBodyExpiresAt?, metadata: [String: String]?) async throws -> BillingCreditGrant {
-        return try await V1BillingCreditGrantsMethods.postBillingCreditGrantsId(config: config, id: id, expand: expand, expiresAt: expiresAt, metadata: metadata)
+    public func postBillingId(
+        id: String,
+        expand: [String]?,
+        expiresAt: PostBillingCreditGrantsIdRequestBodyExpiresAt?,
+        metadata: [String: String]?
+    ) async throws -> BillingCreditGrant {
+        try await V1BillingCreditGrantsMethods.postBillingCreditGrantsId(
+            config: config,
+            id: id,
+            expand: expand,
+            expiresAt: expiresAt,
+            metadata: metadata
+        )
     }
 }
 
@@ -159,11 +271,17 @@ public class V1BillingFeedbackOptionsDeactivateNamespace {
         self.config = config
     }
 
-/// Deactivates a feedback option so it can no longer be used in portal configurations. Supply `id` to select the feedback option and use `expand` to include expanded response fields. The response records the option's inactive status and deactivation transition.
+    /// Deactivates a feedback option so it can no longer be used in portal configurations. Supply `id` to select the
+    /// feedback option and use `expand` to include expanded response fields. The response records the option's inactive
+    /// status and deactivation transition.
     ///
     /// Deactivates a feedback option. Deactivated feedback options cannot be used in portal configurations.
     public func postBillingFeedbackOptionsId(id: String, expand: [String]?) async throws -> BillingFeedbackOption {
-        return try await V1BillingFeedbackOptionsDeactivateMethods.postBillingFeedbackOptionsIdDeactivate(config: config, id: id, expand: expand)
+        try await V1BillingFeedbackOptionsDeactivateMethods.postBillingFeedbackOptionsIdDeactivate(
+            config: config,
+            id: id,
+            expand: expand
+        )
     }
 }
 
@@ -175,31 +293,64 @@ public class V1BillingFeedbackOptionsNamespace {
         deactivate = V1BillingFeedbackOptionsDeactivateNamespace(config: config)
     }
 
-/// Lists feedback options available for custom cancellation reasons. Use `status` to filter active or inactive options and use cursor parameters to navigate the results. The response includes pagination metadata and the feedback option records.
+    /// Lists feedback options available for custom cancellation reasons. Use `status` to filter active or inactive
+    /// options and use cursor parameters to navigate the results. The response includes pagination metadata and the
+    /// feedback option records.
     ///
     /// An API method for listing the feedback options model
-    public func getBilling(endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?, status: GetBillingFeedbackOptionsParameter?) async throws -> GetBillingFeedbackOptionsResponse {
-        return try await V1BillingFeedbackOptionsMethods.getBillingFeedbackOptions(config: config, endingBefore: endingBefore, expand: expand, limit: limit, startingAfter: startingAfter, status: status)
+    public func getBilling(
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        startingAfter: String?,
+        status: GetBillingFeedbackOptionsParameter?
+    ) async throws -> GetBillingFeedbackOptionsResponse {
+        try await V1BillingFeedbackOptionsMethods.getBillingFeedbackOptions(
+            config: config,
+            endingBefore: endingBefore,
+            expand: expand,
+            limit: limit,
+            startingAfter: startingAfter,
+            status: status
+        )
     }
 
-/// Creates a new feedback option for use as a custom cancellation reason. Supply a `description` for the option and use `expand` when the response should include expanded fields. The response contains the created feedback option and its initial status.
+    /// Creates a new feedback option for use as a custom cancellation reason. Supply a `description` for the option and
+    /// use `expand` when the response should include expanded fields. The response contains the created feedback option
+    /// and its initial status.
     ///
     /// Creates a new feedback option.
     public func postBilling(description: String, expand: [String]?) async throws -> BillingFeedbackOption {
-        return try await V1BillingFeedbackOptionsMethods.postBillingFeedbackOptions(config: config, description: description, expand: expand)
+        try await V1BillingFeedbackOptionsMethods.postBillingFeedbackOptions(
+            config: config,
+            description: description,
+            expand: expand
+        )
     }
 
-/// Retrieves a feedback option by its unique identifier. Supply `id` to select the feedback option and use `expand` to include expanded response fields. The response contains the option's description, status, and lifecycle information.
+    /// Retrieves a feedback option by its unique identifier. Supply `id` to select the feedback option and use `expand`
+    /// to include expanded response fields. The response contains the option's description, status, and lifecycle
+    /// information.
     ///
     /// Retrieves a feedback options object given an ID.
     public func getBillingId(id: String, expand: [String]?) async throws -> BillingFeedbackOption {
-        return try await V1BillingFeedbackOptionsMethods.getBillingFeedbackOptionsId(config: config, id: id, expand: expand)
+        try await V1BillingFeedbackOptionsMethods.getBillingFeedbackOptionsId(config: config, id: id, expand: expand)
     }
 
-/// Updates the description of an existing feedback option. Supply `id` to select the option and include `description` when changing its text. Use `expand` to include expanded fields in the response.
+    /// Updates the description of an existing feedback option. Supply `id` to select the option and include
+    /// `description` when changing its text. Use `expand` to include expanded fields in the response.
     ///
     /// Updates the description of an existing feedback option.
-    public func postBillingId(id: String, description: String?, expand: [String]?) async throws -> BillingFeedbackOption {
-        return try await V1BillingFeedbackOptionsMethods.postBillingFeedbackOptionsId(config: config, id: id, description: description, expand: expand)
+    public func postBillingId(
+        id: String,
+        description: String?,
+        expand: [String]?
+    ) async throws -> BillingFeedbackOption {
+        try await V1BillingFeedbackOptionsMethods.postBillingFeedbackOptionsId(
+            config: config,
+            id: id,
+            description: description,
+            expand: expand
+        )
     }
 }

@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1PaymentMethodOptions domain models
+/// V1PaymentMethodOptions domain models
 /// Typed representation of the `PaymentMethodOptionsAffirm` API schema.
 public struct PaymentMethodOptionsAffirm: Codable {
     /// Controls when the funds will be captured from the customer's account.
@@ -24,24 +24,28 @@ public struct PaymentMethodOptionsAffirm: Codable {
     }
 
     init() {
-        (self.captureMethod, self.preferredLocale, self.setupFutureUsage) = (nil, nil, nil)
+        (captureMethod, preferredLocale, setupFutureUsage) = (nil, nil, nil)
     }
 }
 
-extension PaymentMethodOptionsAffirm {
-    public init(from decoder: Decoder) throws {
+public extension PaymentMethodOptionsAffirm {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.captureMethod = try container.sdkDecodeIfPresent(.captureMethod)
-        self.preferredLocale = try container.sdkDecodeIfPresent(.preferredLocale)
-        self.setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
-        if let value = self.preferredLocale {
+        captureMethod = try container.sdkDecodeIfPresent(.captureMethod)
+        preferredLocale = try container.sdkDecodeIfPresent(.preferredLocale)
+        setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
+        if let value = preferredLocale {
             try validateLength("preferred_locale", value, min: nil, max: 30)
         }
     }
 }
 
-extension PaymentMethodOptionsAffirm {
-    public init(captureMethod: PaymentMethodOptionsAffirmCaptureMethod? = nil, preferredLocale: String? = nil, setupFutureUsage: PaymentMethodOptionsAffirmSetupFutureUsage? = nil) throws {
+public extension PaymentMethodOptionsAffirm {
+    init(
+        captureMethod: PaymentMethodOptionsAffirmCaptureMethod? = nil,
+        preferredLocale: String? = nil,
+        setupFutureUsage: PaymentMethodOptionsAffirmSetupFutureUsage? = nil
+    ) throws {
         self.init()
         (self.captureMethod, self.preferredLocale) = (captureMethod, preferredLocale)
         self.setupFutureUsage = setupFutureUsage
@@ -73,24 +77,28 @@ public struct PaymentMethodOptionsAfterpayClearpay: Codable {
     }
 
     init() {
-        (self.captureMethod, self.reference, self.setupFutureUsage) = (nil, nil, nil)
+        (captureMethod, reference, setupFutureUsage) = (nil, nil, nil)
     }
 }
 
-extension PaymentMethodOptionsAfterpayClearpay {
-    public init(from decoder: Decoder) throws {
+public extension PaymentMethodOptionsAfterpayClearpay {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.captureMethod = try container.sdkDecodeIfPresent(.captureMethod)
-        self.reference = try container.sdkDecodeIfPresent(.reference)
-        self.setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
-        if let value = self.reference {
+        captureMethod = try container.sdkDecodeIfPresent(.captureMethod)
+        reference = try container.sdkDecodeIfPresent(.reference)
+        setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
+        if let value = reference {
             try validateLength("reference", value, min: nil, max: 5000)
         }
     }
 }
 
-extension PaymentMethodOptionsAfterpayClearpay {
-    public init(captureMethod: PaymentMethodOptionsAfterpayClearpayCaptureMethod? = nil, reference: String? = nil, setupFutureUsage: PaymentMethodOptionsAfterpayClearpaySetupFutureUsage? = nil) throws {
+public extension PaymentMethodOptionsAfterpayClearpay {
+    init(
+        captureMethod: PaymentMethodOptionsAfterpayClearpayCaptureMethod? = nil,
+        reference: String? = nil,
+        setupFutureUsage: PaymentMethodOptionsAfterpayClearpaySetupFutureUsage? = nil
+    ) throws {
         self.init()
         (self.captureMethod, self.reference) = (captureMethod, reference)
         self.setupFutureUsage = setupFutureUsage
@@ -114,19 +122,19 @@ public struct PaymentMethodOptionsAlipay: Codable {
     }
 
     init() {
-        self.setupFutureUsage = nil
+        setupFutureUsage = nil
     }
 }
 
-extension PaymentMethodOptionsAlipay {
-    public init(from decoder: Decoder) throws {
+public extension PaymentMethodOptionsAlipay {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
+        setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
     }
 }
 
-extension PaymentMethodOptionsAlipay {
-    public init(setupFutureUsage: PaymentMethodOptionsAlipaySetupFutureUsage? = nil) {
+public extension PaymentMethodOptionsAlipay {
+    init(setupFutureUsage: PaymentMethodOptionsAlipaySetupFutureUsage? = nil) {
         self.init()
         self.setupFutureUsage = setupFutureUsage
     }
@@ -142,19 +150,19 @@ public struct PaymentMethodOptionsAlma: Codable {
     }
 
     init() {
-        self.captureMethod = nil
+        captureMethod = nil
     }
 }
 
-extension PaymentMethodOptionsAlma {
-    public init(from decoder: Decoder) throws {
+public extension PaymentMethodOptionsAlma {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.captureMethod = try container.sdkDecodeIfPresent(.captureMethod)
+        captureMethod = try container.sdkDecodeIfPresent(.captureMethod)
     }
 }
 
-extension PaymentMethodOptionsAlma {
-    public init(captureMethod: PaymentMethodOptionsAlmaCaptureMethod? = nil) {
+public extension PaymentMethodOptionsAlma {
+    init(captureMethod: PaymentMethodOptionsAlmaCaptureMethod? = nil) {
         self.init()
         self.captureMethod = captureMethod
     }
@@ -177,20 +185,23 @@ public struct PaymentMethodOptionsAmazonPay: Codable {
     }
 
     init() {
-        (self.captureMethod, self.setupFutureUsage) = (nil, nil)
+        (captureMethod, setupFutureUsage) = (nil, nil)
     }
 }
 
-extension PaymentMethodOptionsAmazonPay {
-    public init(from decoder: Decoder) throws {
+public extension PaymentMethodOptionsAmazonPay {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.captureMethod = try container.sdkDecodeIfPresent(.captureMethod)
-        self.setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
+        captureMethod = try container.sdkDecodeIfPresent(.captureMethod)
+        setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
     }
 }
 
-extension PaymentMethodOptionsAmazonPay {
-    public init(captureMethod: PaymentMethodOptionsAmazonPayCaptureMethod? = nil, setupFutureUsage: PaymentMethodOptionsAmazonPaySetupFutureUsage? = nil) {
+public extension PaymentMethodOptionsAmazonPay {
+    init(
+        captureMethod: PaymentMethodOptionsAmazonPayCaptureMethod? = nil,
+        setupFutureUsage: PaymentMethodOptionsAmazonPaySetupFutureUsage? = nil
+    ) {
         self.init()
         (self.captureMethod, self.setupFutureUsage) = (captureMethod, setupFutureUsage)
     }
@@ -212,22 +223,31 @@ public struct PaymentMethodOptionsBancontact: Codable {
         case setupFutureUsage = "setup_future_usage"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension PaymentMethodOptionsBancontact {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.preferredLanguage) else {
-            throw SdkValidationError(field: "preferred_language", code: "required", message: "Validation failed for 'preferred_language': value is required")
-        }
-        self.preferredLanguage = try container.sdkDecodeRequired(.preferredLanguage)
-        self.setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension PaymentMethodOptionsBancontact {
-    public init(preferredLanguage: PaymentMethodOptionsBancontactPreferredLanguage, setupFutureUsage: PaymentMethodOptionsBancontactSetupFutureUsage? = nil) {
+public extension PaymentMethodOptionsBancontact {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.preferredLanguage) else {
+            throw SdkValidationError(
+                field: "preferred_language",
+                code: "required",
+                message: "Validation failed for 'preferred_language': value is required"
+            )
+        }
+        preferredLanguage = try container.sdkDecodeRequired(.preferredLanguage)
+        setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
+    }
+}
+
+public extension PaymentMethodOptionsBancontact {
+    init(
+        preferredLanguage: PaymentMethodOptionsBancontactPreferredLanguage,
+        setupFutureUsage: PaymentMethodOptionsBancontactSetupFutureUsage? = nil
+    ) {
         (self.preferredLanguage, self.setupFutureUsage) = (preferredLanguage, setupFutureUsage)
     }
 }
@@ -242,19 +262,19 @@ public struct PaymentMethodOptionsBillie: Codable {
     }
 
     init() {
-        self.captureMethod = nil
+        captureMethod = nil
     }
 }
 
-extension PaymentMethodOptionsBillie {
-    public init(from decoder: Decoder) throws {
+public extension PaymentMethodOptionsBillie {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.captureMethod = try container.sdkDecodeIfPresent(.captureMethod)
+        captureMethod = try container.sdkDecodeIfPresent(.captureMethod)
     }
 }
 
-extension PaymentMethodOptionsBillie {
-    public init(captureMethod: PaymentMethodOptionsBillieCaptureMethod? = nil) {
+public extension PaymentMethodOptionsBillie {
+    init(captureMethod: PaymentMethodOptionsBillieCaptureMethod? = nil) {
         self.init()
         self.captureMethod = captureMethod
     }
@@ -262,13 +282,13 @@ extension PaymentMethodOptionsBillie {
 
 /// Typed representation of the `PaymentMethodOptionsBizum` API schema.
 public struct PaymentMethodOptionsBizum: Codable {
-
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension PaymentMethodOptionsBizum {
-    public init() {
-    }
+public extension PaymentMethodOptionsBizum {
+    init() {}
 }
 
 /// Typed representation of the `PaymentMethodOptionsBoleto` API schema.
@@ -289,22 +309,28 @@ public struct PaymentMethodOptionsBoleto: Codable {
         case setupFutureUsage = "setup_future_usage"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension PaymentMethodOptionsBoleto {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.expiresAfterDays) else {
-            throw SdkValidationError(field: "expires_after_days", code: "required", message: "Validation failed for 'expires_after_days': value is required")
-        }
-        self.expiresAfterDays = try container.sdkDecodeRequired(.expiresAfterDays)
-        self.setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension PaymentMethodOptionsBoleto {
-    public init(expiresAfterDays: Int, setupFutureUsage: PaymentMethodOptionsBoletoSetupFutureUsage? = nil) {
+public extension PaymentMethodOptionsBoleto {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.expiresAfterDays) else {
+            throw SdkValidationError(
+                field: "expires_after_days",
+                code: "required",
+                message: "Validation failed for 'expires_after_days': value is required"
+            )
+        }
+        expiresAfterDays = try container.sdkDecodeRequired(.expiresAfterDays)
+        setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
+    }
+}
+
+public extension PaymentMethodOptionsBoleto {
+    init(expiresAfterDays: Int, setupFutureUsage: PaymentMethodOptionsBoletoSetupFutureUsage? = nil) {
         (self.expiresAfterDays, self.setupFutureUsage) = (expiresAfterDays, setupFutureUsage)
     }
 }
@@ -324,23 +350,33 @@ public struct PaymentMethodOptionsCardInstallments: Codable {
         case plan
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension PaymentMethodOptionsCardInstallments {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.enabled) else {
-            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
-        }
-        self.enabled = try container.sdkDecodeRequired(.enabled)
-        self.availablePlans = try container.sdkDecodeIfPresent(.availablePlans)
-        self.plan = try container.sdkDecodeIfPresent(.plan)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension PaymentMethodOptionsCardInstallments {
-    public init(enabled: Bool, availablePlans: [PaymentMethodDetailsCardInstallmentsPlan]? = nil, plan: PaymentMethodOptionsCardInstallmentsPlan? = nil) {
+public extension PaymentMethodOptionsCardInstallments {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.enabled) else {
+            throw SdkValidationError(
+                field: "enabled",
+                code: "required",
+                message: "Validation failed for 'enabled': value is required"
+            )
+        }
+        enabled = try container.sdkDecodeRequired(.enabled)
+        availablePlans = try container.sdkDecodeIfPresent(.availablePlans)
+        plan = try container.sdkDecodeIfPresent(.plan)
+    }
+}
+
+public extension PaymentMethodOptionsCardInstallments {
+    init(
+        enabled: Bool,
+        availablePlans: [PaymentMethodDetailsCardInstallmentsPlan]? = nil,
+        plan: PaymentMethodOptionsCardInstallmentsPlan? = nil
+    ) {
         (self.enabled, self.availablePlans) = (enabled, availablePlans)
         self.plan = plan
     }
@@ -351,24 +387,30 @@ public enum PaymentMethodOptionsCardInstallmentsPlan {
 }
 
 extension PaymentMethodOptionsCardInstallmentsPlan: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentMethodOptionsCardInstallmentsPlan")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PaymentMethodOptionsCardInstallmentsPlan"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PaymentMethodDetailsCardInstallmentsPlan.self
         ) {
-            return             .paymentMethodDetailsCardInstallmentsPlan(value)
+            return .paymentMethodDetailsCardInstallmentsPlan(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -377,7 +419,6 @@ extension PaymentMethodOptionsCardInstallmentsPlan: Codable {
         case let .paymentMethodDetailsCardInstallmentsPlan(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Typed representation of the `PaymentMethodOptionsCardMandateOptions` API schema.
@@ -417,51 +458,83 @@ public struct PaymentMethodOptionsCardMandateOptions: Codable {
         case supportedTypes = "supported_types"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension PaymentMethodOptionsCardMandateOptions {
-    public init(from decoder: Decoder) throws {
+public extension PaymentMethodOptionsCardMandateOptions {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.amount) else {
-            throw SdkValidationError(field: "amount", code: "required", message: "Validation failed for 'amount': value is required")
+            throw SdkValidationError(
+                field: "amount",
+                code: "required",
+                message: "Validation failed for 'amount': value is required"
+            )
         }
         guard container.contains(.amountType) else {
-            throw SdkValidationError(field: "amount_type", code: "required", message: "Validation failed for 'amount_type': value is required")
+            throw SdkValidationError(
+                field: "amount_type",
+                code: "required",
+                message: "Validation failed for 'amount_type': value is required"
+            )
         }
         guard container.contains(.interval) else {
-            throw SdkValidationError(field: "interval", code: "required", message: "Validation failed for 'interval': value is required")
+            throw SdkValidationError(
+                field: "interval",
+                code: "required",
+                message: "Validation failed for 'interval': value is required"
+            )
         }
         guard container.contains(.reference) else {
-            throw SdkValidationError(field: "reference", code: "required", message: "Validation failed for 'reference': value is required")
+            throw SdkValidationError(
+                field: "reference",
+                code: "required",
+                message: "Validation failed for 'reference': value is required"
+            )
         }
         guard container.contains(.startDate) else {
-            throw SdkValidationError(field: "start_date", code: "required", message: "Validation failed for 'start_date': value is required")
+            throw SdkValidationError(
+                field: "start_date",
+                code: "required",
+                message: "Validation failed for 'start_date': value is required"
+            )
         }
-        self.amount = try container.sdkDecodeRequired(.amount)
-        self.amountType = try container.sdkDecodeRequired(.amountType)
-        self.interval = try container.sdkDecodeRequired(.interval)
-        self.reference = try container.sdkDecodeRequired(.reference)
-        self.startDate = try container.sdkDecodeRequired(.startDate)
-        self.description = try container.sdkDecodeIfPresent(.description)
-        self.endDate = try container.sdkDecodeIfPresent(.endDate)
-        self.intervalCount = try container.sdkDecodeIfPresent(.intervalCount)
-        self.supportedTypes = try container.sdkDecodeIfPresent(.supportedTypes)
-            try validateLength("reference", self.reference, min: nil, max: 80)
-        if let value = self.description {
+        amount = try container.sdkDecodeRequired(.amount)
+        amountType = try container.sdkDecodeRequired(.amountType)
+        interval = try container.sdkDecodeRequired(.interval)
+        reference = try container.sdkDecodeRequired(.reference)
+        startDate = try container.sdkDecodeRequired(.startDate)
+        description = try container.sdkDecodeIfPresent(.description)
+        endDate = try container.sdkDecodeIfPresent(.endDate)
+        intervalCount = try container.sdkDecodeIfPresent(.intervalCount)
+        supportedTypes = try container.sdkDecodeIfPresent(.supportedTypes)
+        try validateLength("reference", reference, min: nil, max: 80)
+        if let value = description {
             try validateLength("description", value, min: nil, max: 200)
         }
     }
 }
 
-extension PaymentMethodOptionsCardMandateOptions {
-    public init(amount: Int, amountType: PaymentMethodOptionsCardMandateOptionsAmountType, interval: PaymentMethodOptionsCardMandateOptionsInterval, reference: String, startDate: Int, description: String? = nil, endDate: Int? = nil, intervalCount: Int? = nil, supportedTypes: [PaymentMethodOptionsCardMandateOptionsSupportedTypesItem]? = nil) throws {
+public extension PaymentMethodOptionsCardMandateOptions {
+    init(
+        amount: Int,
+        amountType: PaymentMethodOptionsCardMandateOptionsAmountType,
+        interval: PaymentMethodOptionsCardMandateOptionsInterval,
+        reference: String,
+        startDate: Int,
+        description: String? = nil,
+        endDate: Int? = nil,
+        intervalCount: Int? = nil,
+        supportedTypes: [PaymentMethodOptionsCardMandateOptionsSupportedTypesItem]? = nil
+    ) throws {
         (self.amount, self.amountType) = (amount, amountType)
         (self.interval, self.reference) = (interval, reference)
         (self.startDate, self.description) = (startDate, description)
         (self.endDate, self.intervalCount) = (endDate, intervalCount)
         self.supportedTypes = supportedTypes
-            try validateLength("reference", self.reference, min: nil, max: 80)
+        try validateLength("reference", self.reference, min: nil, max: 80)
         if let value = self.description {
             try validateLength("description", value, min: nil, max: 200)
         }
@@ -488,22 +561,33 @@ public struct PaymentMethodOptionsCardPresent: Codable {
     }
 
     init() {
-        (self.captureMethod, self.requestExtendedAuthorization, self.requestIncrementalAuthorizationSupport, self.routing) = (nil, nil, nil, nil)
+        (captureMethod, requestExtendedAuthorization, requestIncrementalAuthorizationSupport, routing) = (
+            nil,
+            nil,
+            nil,
+            nil
+        )
     }
 }
 
-extension PaymentMethodOptionsCardPresent {
-    public init(from decoder: Decoder) throws {
+public extension PaymentMethodOptionsCardPresent {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.captureMethod = try container.sdkDecodeIfPresent(.captureMethod)
-        self.requestExtendedAuthorization = try container.sdkDecodeIfPresent(.requestExtendedAuthorization)
-        self.requestIncrementalAuthorizationSupport = try container.sdkDecodeIfPresent(.requestIncrementalAuthorizationSupport)
-        self.routing = try container.sdkDecodeIfPresent(.routing)
+        captureMethod = try container.sdkDecodeIfPresent(.captureMethod)
+        requestExtendedAuthorization = try container.sdkDecodeIfPresent(.requestExtendedAuthorization)
+        requestIncrementalAuthorizationSupport = try container
+            .sdkDecodeIfPresent(.requestIncrementalAuthorizationSupport)
+        routing = try container.sdkDecodeIfPresent(.routing)
     }
 }
 
-extension PaymentMethodOptionsCardPresent {
-    public init(captureMethod: PaymentMethodOptionsCardPresentCaptureMethod? = nil, requestExtendedAuthorization: Bool? = nil, requestIncrementalAuthorizationSupport: Bool? = nil, routing: PaymentMethodOptionsCardPresentRouting? = nil) {
+public extension PaymentMethodOptionsCardPresent {
+    init(
+        captureMethod: PaymentMethodOptionsCardPresentCaptureMethod? = nil,
+        requestExtendedAuthorization: Bool? = nil,
+        requestIncrementalAuthorizationSupport: Bool? = nil,
+        routing: PaymentMethodOptionsCardPresentRouting? = nil
+    ) {
         self.init()
         self.captureMethod = captureMethod
         self.requestExtendedAuthorization = requestExtendedAuthorization
@@ -522,19 +606,19 @@ public struct PaymentMethodOptionsCardPresentRouting: Codable {
     }
 
     init() {
-        self.requestedPriority = nil
+        requestedPriority = nil
     }
 }
 
-extension PaymentMethodOptionsCardPresentRouting {
-    public init(from decoder: Decoder) throws {
+public extension PaymentMethodOptionsCardPresentRouting {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.requestedPriority = try container.sdkDecodeIfPresent(.requestedPriority)
+        requestedPriority = try container.sdkDecodeIfPresent(.requestedPriority)
     }
 }
 
-extension PaymentMethodOptionsCardPresentRouting {
-    public init(requestedPriority: PaymentMethodOptionsCardPresentRoutingRequestedPriority? = nil) {
+public extension PaymentMethodOptionsCardPresentRouting {
+    init(requestedPriority: PaymentMethodOptionsCardPresentRoutingRequestedPriority? = nil) {
         self.init()
         self.requestedPriority = requestedPriority
     }

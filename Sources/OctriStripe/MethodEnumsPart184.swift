@@ -6,15 +6,19 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public struct PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaXc18da7a0c4: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaXc18da7a0c4: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaXc18da7a0c4(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -23,16 +27,22 @@ public struct PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaXc18d
     }
 }
 
-public struct PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaX400604d676: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaX400604d676: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let fixed = PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaX400604d676(rawValue: "fixed")
-    public static let maximum = PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaX400604d676(rawValue: "maximum")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let fixed =
+        PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaX400604d676(rawValue: "fixed")
+    public static let maximum =
+        PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaX400604d676(rawValue: "maximum")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -41,19 +51,25 @@ public struct PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaX4006
     }
 }
 
-public struct PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaXc127bd833e: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaXc127bd833e: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let day = PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaXc127bd833e(rawValue: "day")
-    public static let month = PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaXc127bd833e(rawValue: "month")
-    public static let sporadic = PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaXc127bd833e(rawValue: "sporadic")
+    public static let month =
+        PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaXc127bd833e(rawValue: "month")
+    public static let sporadic =
+        PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaXc127bd833e(rawValue: "sporadic")
     public static let week = PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaXc127bd833e(rawValue: "week")
     public static let year = PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaXc127bd833e(rawValue: "year")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -62,15 +78,20 @@ public struct PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaXc127
     }
 }
 
-public struct PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaX0354723ca4: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaX0354723ca4: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let india = PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaX0354723ca4(rawValue: "india")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let india =
+        PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaX0354723ca4(rawValue: "india")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -79,27 +100,40 @@ public struct PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaX0354
     }
 }
 
-public struct PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaXb619a9eb8f: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaXb619a9eb8f: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let amex = PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaXb619a9eb8f(rawValue: "amex")
-    public static let cartesBancaires = PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaXb619a9eb8f(rawValue: "cartes_bancaires")
-    public static let diners = PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaXb619a9eb8f(rawValue: "diners")
-    public static let discover = PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaXb619a9eb8f(rawValue: "discover")
-    public static let eftposAu = PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaXb619a9eb8f(rawValue: "eftpos_au")
-    public static let girocard = PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaXb619a9eb8f(rawValue: "girocard")
-    public static let interac = PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaXb619a9eb8f(rawValue: "interac")
+    public static let cartesBancaires =
+        PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaXb619a9eb8f(rawValue: "cartes_bancaires")
+    public static let diners =
+        PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaXb619a9eb8f(rawValue: "diners")
+    public static let discover =
+        PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaXb619a9eb8f(rawValue: "discover")
+    public static let eftposAu =
+        PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaXb619a9eb8f(rawValue: "eftpos_au")
+    public static let girocard =
+        PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaXb619a9eb8f(rawValue: "girocard")
+    public static let interac =
+        PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaXb619a9eb8f(rawValue: "interac")
     public static let jcb = PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaXb619a9eb8f(rawValue: "jcb")
     public static let link = PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaXb619a9eb8f(rawValue: "link")
-    public static let primarycard = PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaXb619a9eb8f(rawValue: "mastercard")
-    public static let unionpay = PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaXb619a9eb8f(rawValue: "unionpay")
-    public static let unknown = PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaXb619a9eb8f(rawValue: "unknown")
+    public static let primarycard =
+        PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaXb619a9eb8f(rawValue: "mastercard")
+    public static let unionpay =
+        PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaXb619a9eb8f(rawValue: "unionpay")
+    public static let unknown =
+        PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaXb619a9eb8f(rawValue: "unknown")
     public static let visa = PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaXb619a9eb8f(rawValue: "visa")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -108,16 +142,22 @@ public struct PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaXb619
     }
 }
 
-public struct PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaX4cb2dffb4d: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaX4cb2dffb4d: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let ifAvailable = PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaX4cb2dffb4d(rawValue: "if_available")
-    public static let never = PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaX4cb2dffb4d(rawValue: "never")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let ifAvailable =
+        PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaX4cb2dffb4d(rawValue: "if_available")
+    public static let never =
+        PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaX4cb2dffb4d(rawValue: "never")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -126,16 +166,22 @@ public struct PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaX4cb2
     }
 }
 
-public struct PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaX415189b93b: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaX415189b93b: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let ifAvailable = PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaX415189b93b(rawValue: "if_available")
-    public static let never = PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaX415189b93b(rawValue: "never")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let ifAvailable =
+        PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaX415189b93b(rawValue: "if_available")
+    public static let never =
+        PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaX415189b93b(rawValue: "never")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -144,16 +190,22 @@ public struct PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaX4151
     }
 }
 
-public struct PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaX792b628c01: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaX792b628c01: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let ifAvailable = PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaX792b628c01(rawValue: "if_available")
-    public static let never = PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaX792b628c01(rawValue: "never")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let ifAvailable =
+        PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaX792b628c01(rawValue: "if_available")
+    public static let never =
+        PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaX792b628c01(rawValue: "never")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -162,16 +214,22 @@ public struct PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaX792b
     }
 }
 
-public struct PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaX025ac6d21c: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaX025ac6d21c: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let ifAvailable = PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaX025ac6d21c(rawValue: "if_available")
-    public static let never = PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaX025ac6d21c(rawValue: "never")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let ifAvailable =
+        PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaX025ac6d21c(rawValue: "if_available")
+    public static let never =
+        PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaX025ac6d21c(rawValue: "never")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -180,17 +238,23 @@ public struct PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaX025a
     }
 }
 
-public struct PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaX5ee1483ba9: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaX5ee1483ba9: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let any = PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaX5ee1483ba9(rawValue: "any")
-    public static let automatic = PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaX5ee1483ba9(rawValue: "automatic")
-    public static let challenge = PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaX5ee1483ba9(rawValue: "challenge")
+    public static let automatic =
+        PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaX5ee1483ba9(rawValue: "automatic")
+    public static let challenge =
+        PostPaymentIntentsIntentRequestBodyPaymentMethodOptionsCardVaX5ee1483ba9(rawValue: "challenge")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

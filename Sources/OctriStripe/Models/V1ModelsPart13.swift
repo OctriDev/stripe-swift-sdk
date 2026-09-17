@@ -3,23 +3,33 @@
 
 import Foundation
 
-// V1 domain models
+/// V1 domain models
 extension CustomerBalanceTransactionCreditNote: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for CustomerBalanceTransactionCreditNote")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for CustomerBalanceTransactionCreditNote"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(CreditNote.self) { return .creditNote(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(CreditNote.self) {
+            return .creditNote(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -29,7 +39,6 @@ extension CustomerBalanceTransactionCreditNote: Codable {
         case let .creditNote(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum CustomerBalanceTransactionCustomer {
@@ -38,21 +47,31 @@ public enum CustomerBalanceTransactionCustomer {
 }
 
 extension CustomerBalanceTransactionCustomer: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for CustomerBalanceTransactionCustomer")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for CustomerBalanceTransactionCustomer"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(Customer.self) { return .customer(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(Customer.self) {
+            return .customer(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -62,7 +81,6 @@ extension CustomerBalanceTransactionCustomer: Codable {
         case let .customer(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum CustomerBalanceTransactionInvoice {
@@ -71,21 +89,31 @@ public enum CustomerBalanceTransactionInvoice {
 }
 
 extension CustomerBalanceTransactionInvoice: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for CustomerBalanceTransactionInvoice")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for CustomerBalanceTransactionInvoice"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(Invoice.self) { return .invoice(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(Invoice.self) {
+            return .invoice(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -95,7 +123,6 @@ extension CustomerBalanceTransactionInvoice: Codable {
         case let .invoice(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Customers with certain payments enabled have a cash balance, representing funds that were paid by the customer
@@ -161,38 +188,57 @@ public struct CustomerCashBalanceTransaction: Codable {
         case unappliedFromPayment = "unapplied_from_payment"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension CustomerCashBalanceTransaction {
-    public init(from decoder: Decoder) throws {
+public extension CustomerCashBalanceTransaction {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.created = try container.sdkDecodeRequired(.created)
-        self.currency = try container.sdkDecodeRequired(.currency)
-        self.customer = try container.sdkDecodeRequired(.customer)
-        self.endingBalance = try container.sdkDecodeRequired(.endingBalance)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.livemode = try container.sdkDecodeRequired(.livemode)
-        self.netAmount = try container.sdkDecodeRequired(.netAmount)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.type = try container.sdkDecodeRequired(.type)
-        self.adjustedForOverdraft = try container.sdkDecodeIfPresent(.adjustedForOverdraft)
-        self.appliedToPayment = try container.sdkDecodeIfPresent(.appliedToPayment)
-        self.customerAccount = try container.sdkDecodeIfPresent(.customerAccount)
-        self.funded = try container.sdkDecodeIfPresent(.funded)
-        self.refundedFromPayment = try container.sdkDecodeIfPresent(.refundedFromPayment)
-        self.transferredToBalance = try container.sdkDecodeIfPresent(.transferredToBalance)
-        self.unappliedFromPayment = try container.sdkDecodeIfPresent(.unappliedFromPayment)
-            try validateLength("currency", self.currency, min: nil, max: 5000)
-            try validateLength("id", self.id, min: nil, max: 5000)
-        if let value = self.customerAccount {
+        created = try container.sdkDecodeRequired(.created)
+        currency = try container.sdkDecodeRequired(.currency)
+        customer = try container.sdkDecodeRequired(.customer)
+        endingBalance = try container.sdkDecodeRequired(.endingBalance)
+        id = try container.sdkDecodeRequired(.id)
+        livemode = try container.sdkDecodeRequired(.livemode)
+        netAmount = try container.sdkDecodeRequired(.netAmount)
+        object = try container.sdkDecodeRequired(.object)
+        type = try container.sdkDecodeRequired(.type)
+        adjustedForOverdraft = try container.sdkDecodeIfPresent(.adjustedForOverdraft)
+        appliedToPayment = try container.sdkDecodeIfPresent(.appliedToPayment)
+        customerAccount = try container.sdkDecodeIfPresent(.customerAccount)
+        funded = try container.sdkDecodeIfPresent(.funded)
+        refundedFromPayment = try container.sdkDecodeIfPresent(.refundedFromPayment)
+        transferredToBalance = try container.sdkDecodeIfPresent(.transferredToBalance)
+        unappliedFromPayment = try container.sdkDecodeIfPresent(.unappliedFromPayment)
+        try validateLength("currency", currency, min: nil, max: 5000)
+        try validateLength("id", id, min: nil, max: 5000)
+        if let value = customerAccount {
             try validateLength("customer_account", value, min: nil, max: 5000)
         }
     }
 }
 
-extension CustomerCashBalanceTransaction {
-    public init(created: Int, currency: String, customer: CustomerCashBalanceTransactionCustomer, endingBalance: Int, id: String, livemode: Bool, netAmount: Int, object: CustomerCashBalanceTransactionObject, type: CustomerCashBalanceTransactionType, adjustedForOverdraft: CustomerBalanceResourceCashBalanceTransactionResourceAdjustedX7348ca8e91? = nil, appliedToPayment: CustomerBalanceResourceCashBalanceTransactionResourceAppliedTX9e8c3bf654? = nil, customerAccount: String? = nil, funded: CustomerBalanceResourceCashBalanceTransactionResourceFundedTransaction? = nil, refundedFromPayment: CustomerBalanceResourceCashBalanceTransactionResourceRefundedX25beb292e0? = nil, transferredToBalance: CustomerBalanceResourceCashBalanceTransactionResourceTransferX7c0135c822? = nil, unappliedFromPayment: CustomerBalanceResourceCashBalanceTransactionResourceUnapplieX4f2c66683b? = nil) throws {
+public extension CustomerCashBalanceTransaction {
+    init(
+        created: Int,
+        currency: String,
+        customer: CustomerCashBalanceTransactionCustomer,
+        endingBalance: Int,
+        id: String,
+        livemode: Bool,
+        netAmount: Int,
+        object: CustomerCashBalanceTransactionObject,
+        type: CustomerCashBalanceTransactionType,
+        adjustedForOverdraft: CustomerBalanceResourceCashBalanceTransactionResourceAdjustedX7348ca8e91? = nil,
+        appliedToPayment: CustomerBalanceResourceCashBalanceTransactionResourceAppliedTX9e8c3bf654? = nil,
+        customerAccount: String? = nil,
+        funded: CustomerBalanceResourceCashBalanceTransactionResourceFundedTransaction? = nil,
+        refundedFromPayment: CustomerBalanceResourceCashBalanceTransactionResourceRefundedX25beb292e0? = nil,
+        transferredToBalance: CustomerBalanceResourceCashBalanceTransactionResourceTransferX7c0135c822? = nil,
+        unappliedFromPayment: CustomerBalanceResourceCashBalanceTransactionResourceUnapplieX4f2c66683b? = nil
+    ) throws {
         (self.created, self.currency) = (created, currency)
         (self.customer, self.endingBalance) = (customer, endingBalance)
         (self.id, self.livemode) = (id, livemode)
@@ -202,8 +248,8 @@ extension CustomerCashBalanceTransaction {
         (self.funded, self.refundedFromPayment) = (funded, refundedFromPayment)
         self.transferredToBalance = transferredToBalance
         self.unappliedFromPayment = unappliedFromPayment
-            try validateLength("currency", self.currency, min: nil, max: 5000)
-            try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("currency", self.currency, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
         if let value = self.customerAccount {
             try validateLength("customer_account", value, min: nil, max: 5000)
         }
@@ -216,21 +262,31 @@ public indirect enum CustomerCashBalanceTransactionCustomer {
 }
 
 extension CustomerCashBalanceTransactionCustomer: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for CustomerCashBalanceTransactionCustomer")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for CustomerCashBalanceTransactionCustomer"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(Customer.self) { return .customer(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(Customer.self) {
+            return .customer(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -240,7 +296,6 @@ extension CustomerCashBalanceTransactionCustomer: Codable {
         case let .customer(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Typed representation of the `DeletedDiscount` API schema.
@@ -292,46 +347,82 @@ public struct DeletedDiscount: Codable {
         case subscriptionItem = "subscription_item"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension DeletedDiscount {
-    public init(from decoder: Decoder) throws {
+public extension DeletedDiscount {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.deleted) else {
-            throw SdkValidationError(field: "deleted", code: "required", message: "Validation failed for 'deleted': value is required")
+            throw SdkValidationError(
+                field: "deleted",
+                code: "required",
+                message: "Validation failed for 'deleted': value is required"
+            )
         }
         guard container.contains(.id) else {
-            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
+            throw SdkValidationError(
+                field: "id",
+                code: "required",
+                message: "Validation failed for 'id': value is required"
+            )
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
         }
         guard container.contains(.source) else {
-            throw SdkValidationError(field: "source", code: "required", message: "Validation failed for 'source': value is required")
+            throw SdkValidationError(
+                field: "source",
+                code: "required",
+                message: "Validation failed for 'source': value is required"
+            )
         }
         guard container.contains(.start) else {
-            throw SdkValidationError(field: "start", code: "required", message: "Validation failed for 'start': value is required")
+            throw SdkValidationError(
+                field: "start",
+                code: "required",
+                message: "Validation failed for 'start': value is required"
+            )
         }
-        self.deleted = try container.sdkDecodeRequired(.deleted)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.source = try container.sdkDecodeRequired(.source)
-        self.start = try container.sdkDecodeRequired(.start)
-        self.checkoutSession = try container.sdkDecodeIfPresent(.checkoutSession)
-        self.customer = try container.sdkDecodeIfPresent(.customer)
-        self.customerAccount = try container.sdkDecodeIfPresent(.customerAccount)
-        self.invoice = try container.sdkDecodeIfPresent(.invoice)
-        self.invoiceItem = try container.sdkDecodeIfPresent(.invoiceItem)
-        self.promotionCode = try container.sdkDecodeIfPresent(.promotionCode)
-        self.subscription = try container.sdkDecodeIfPresent(.subscription)
-        self.subscriptionItem = try container.sdkDecodeIfPresent(.subscriptionItem)
+        deleted = try container.sdkDecodeRequired(.deleted)
+        id = try container.sdkDecodeRequired(.id)
+        object = try container.sdkDecodeRequired(.object)
+        source = try container.sdkDecodeRequired(.source)
+        start = try container.sdkDecodeRequired(.start)
+        checkoutSession = try container.sdkDecodeIfPresent(.checkoutSession)
+        customer = try container.sdkDecodeIfPresent(.customer)
+        customerAccount = try container.sdkDecodeIfPresent(.customerAccount)
+        invoice = try container.sdkDecodeIfPresent(.invoice)
+        invoiceItem = try container.sdkDecodeIfPresent(.invoiceItem)
+        promotionCode = try container.sdkDecodeIfPresent(.promotionCode)
+        subscription = try container.sdkDecodeIfPresent(.subscription)
+        subscriptionItem = try container.sdkDecodeIfPresent(.subscriptionItem)
         try sdkValidateConstraints()
     }
 }
 
-extension DeletedDiscount {
-    public init(deleted: Bool, id: String, object: DeletedDiscountObject, source: DiscountSource, start: Int, checkoutSession: String? = nil, customer: DeletedDiscountCustomer? = nil, customerAccount: String? = nil, invoice: String? = nil, invoiceItem: String? = nil, promotionCode: DeletedDiscountPromotionCode? = nil, subscription: String? = nil, subscriptionItem: String? = nil) throws {
+public extension DeletedDiscount {
+    init(
+        deleted: Bool,
+        id: String,
+        object: DeletedDiscountObject,
+        source: DiscountSource,
+        start: Int,
+        checkoutSession: String? = nil,
+        customer: DeletedDiscountCustomer? = nil,
+        customerAccount: String? = nil,
+        invoice: String? = nil,
+        invoiceItem: String? = nil,
+        promotionCode: DeletedDiscountPromotionCode? = nil,
+        subscription: String? = nil,
+        subscriptionItem: String? = nil
+    ) throws {
         (self.deleted, self.id) = (deleted, id)
         (self.object, self.source) = (object, source)
         (self.start, self.checkoutSession) = (start, checkoutSession)
@@ -345,23 +436,23 @@ extension DeletedDiscount {
 
 extension DeletedDiscount {
     func sdkValidateConstraints() throws {
-            try validateLength("id", self.id, min: nil, max: 5000)
-        if let value = self.checkoutSession {
+        try validateLength("id", id, min: nil, max: 5000)
+        if let value = checkoutSession {
             try validateLength("checkout_session", value, min: nil, max: 5000)
         }
-        if let value = self.customerAccount {
+        if let value = customerAccount {
             try validateLength("customer_account", value, min: nil, max: 5000)
         }
-        if let value = self.invoice {
+        if let value = invoice {
             try validateLength("invoice", value, min: nil, max: 5000)
         }
-        if let value = self.invoiceItem {
+        if let value = invoiceItem {
             try validateLength("invoice_item", value, min: nil, max: 5000)
         }
-        if let value = self.subscription {
+        if let value = subscription {
             try validateLength("subscription", value, min: nil, max: 5000)
         }
-        if let value = self.subscriptionItem {
+        if let value = subscriptionItem {
             try validateLength("subscription_item", value, min: nil, max: 5000)
         }
     }
@@ -374,22 +465,34 @@ public enum DeletedDiscountCustomer {
 }
 
 extension DeletedDiscountCustomer: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for DeletedDiscountCustomer")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for DeletedDiscountCustomer"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(Customer.self) { return .customer(value) }
-        if let value = try? container.decode(DeletedCustomer.self) { return .deletedCustomer(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(Customer.self) {
+            return .customer(value)
+        }
+        if let value = try? container.decode(DeletedCustomer.self) {
+            return .deletedCustomer(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -400,7 +503,6 @@ extension DeletedDiscountCustomer: Codable {
         case let .deletedCustomer(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum DeletedDiscountPromotionCode {
@@ -409,21 +511,31 @@ public enum DeletedDiscountPromotionCode {
 }
 
 extension DeletedDiscountPromotionCode: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for DeletedDiscountPromotionCode")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for DeletedDiscountPromotionCode"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(PromotionCode.self) { return .promotionCode(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(PromotionCode.self) {
+            return .promotionCode(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -433,18 +545,17 @@ extension DeletedDiscountPromotionCode: Codable {
         case let .promotionCode(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Typed representation of the `DestinationDetailsUnimplemented` API schema.
 public struct DestinationDetailsUnimplemented: Codable {
-
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension DestinationDetailsUnimplemented {
-    public init() {
-    }
+public extension DestinationDetailsUnimplemented {
+    init() {}
 }
 
 /// A discount represents the actual application of a coupon or promotion code. It contains information about when
@@ -499,37 +610,55 @@ public struct Discount: Codable {
         case subscriptionItem = "subscription_item"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension Discount {
-    public init(from decoder: Decoder) throws {
+public extension Discount {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.id) else {
-            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
+            throw SdkValidationError(
+                field: "id",
+                code: "required",
+                message: "Validation failed for 'id': value is required"
+            )
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
         }
         guard container.contains(.source) else {
-            throw SdkValidationError(field: "source", code: "required", message: "Validation failed for 'source': value is required")
+            throw SdkValidationError(
+                field: "source",
+                code: "required",
+                message: "Validation failed for 'source': value is required"
+            )
         }
         guard container.contains(.start) else {
-            throw SdkValidationError(field: "start", code: "required", message: "Validation failed for 'start': value is required")
+            throw SdkValidationError(
+                field: "start",
+                code: "required",
+                message: "Validation failed for 'start': value is required"
+            )
         }
-        self.id = try container.sdkDecodeRequired(.id)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.source = try container.sdkDecodeRequired(.source)
-        self.start = try container.sdkDecodeRequired(.start)
-        self.checkoutSession = try container.sdkDecodeIfPresent(.checkoutSession)
-        self.customer = try container.sdkDecodeIfPresent(.customer)
-        self.customerAccount = try container.sdkDecodeIfPresent(.customerAccount)
-        self.end = try container.sdkDecodeIfPresent(.end)
-        self.invoice = try container.sdkDecodeIfPresent(.invoice)
-        self.invoiceItem = try container.sdkDecodeIfPresent(.invoiceItem)
-        self.promotionCode = try container.sdkDecodeIfPresent(.promotionCode)
-        self.subscription = try container.sdkDecodeIfPresent(.subscription)
-        self.subscriptionItem = try container.sdkDecodeIfPresent(.subscriptionItem)
+        id = try container.sdkDecodeRequired(.id)
+        object = try container.sdkDecodeRequired(.object)
+        source = try container.sdkDecodeRequired(.source)
+        start = try container.sdkDecodeRequired(.start)
+        checkoutSession = try container.sdkDecodeIfPresent(.checkoutSession)
+        customer = try container.sdkDecodeIfPresent(.customer)
+        customerAccount = try container.sdkDecodeIfPresent(.customerAccount)
+        end = try container.sdkDecodeIfPresent(.end)
+        invoice = try container.sdkDecodeIfPresent(.invoice)
+        invoiceItem = try container.sdkDecodeIfPresent(.invoiceItem)
+        promotionCode = try container.sdkDecodeIfPresent(.promotionCode)
+        subscription = try container.sdkDecodeIfPresent(.subscription)
+        subscriptionItem = try container.sdkDecodeIfPresent(.subscriptionItem)
         try sdkValidateConstraints()
     }
 }

@@ -6,20 +6,31 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1FileLinksMethods {
-    /// Retrieves a file link by its identifier. Use `expand` when you need selected response fields expanded rather than returned as identifiers. The response contains the link's associated file and publicly accessible download URL.
+public extension V1FileLinksMethods {
+    /// Retrieves a file link by its identifier. Use `expand` when you need selected response fields expanded rather
+    /// than returned as identifiers. The response contains the link's associated file and publicly accessible download
+    /// URL.
     ///
     /// Retrieves the file link with the given ID.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func getFileLinksLink(config: ClientConfig, link: String, expand: [String]?) async throws -> FileLink {
-        return try (await sdkRequest("GET", ["/v1/file_links/", sdkEncodePathSegment(sdkWireString(link))].joined(), config: config, query: [
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-        ], decoder: .json, operationId: "GetFileLinksLink")).data
+    static func getFileLinksLink(config: ClientConfig, link: String, expand: [String]?) async throws -> FileLink {
+        try await (sdkRequest(
+            "GET",
+            ["/v1/file_links/", sdkEncodePathSegment(sdkWireString(link))].joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+            ],
+            decoder: .json,
+            operationId: "GetFileLinksLink"
+        )).data
     }
 
-    /// Updates an existing file link's expiration or metadata. Use `expires_at` to set a future Unix expiration timestamp, expire the link immediately with `now`, or clear the expiration with an empty string. Expired links can no longer be updated.
+    /// Updates an existing file link's expiration or metadata. Use `expires_at` to set a future Unix expiration
+    /// timestamp, expire the link immediately with `now`, or clear the expiration with an empty string. Expired links
+    /// can no longer be updated.
     ///
     /// Updates an existing file link object. Expired links can no longer be updated.
     ///
@@ -32,9 +43,23 @@ extension V1FileLinksMethods {
     ///   information about the object in a structured format. Individual keys can be
     ///   unset by posting an empty value to them. All keys can be unset by posting an
     ///   empty value to `metadata`.
-    public static func postFileLinksLink(config: ClientConfig, link: String, expand: [String]?, expiresAt: PostFileLinksLinkRequestBodyExpiresAt?, metadata: PostFileLinksLinkRequestBodyMetadata?) async throws -> FileLink {
+    static func postFileLinksLink(
+        config: ClientConfig,
+        link: String,
+        expand: [String]?,
+        expiresAt: PostFileLinksLinkRequestBodyExpiresAt?,
+        metadata: PostFileLinksLinkRequestBodyMetadata?
+    ) async throws -> FileLink {
         let requestBody = PostFileLinksLinkRequestBody(expand: expand, expiresAt: expiresAt, metadata: metadata)
 
-        return try (await sdkRequest("POST", ["/v1/file_links/", sdkEncodePathSegment(sdkWireString(link))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostFileLinksLink")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/file_links/", sdkEncodePathSegment(sdkWireString(link))].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostFileLinksLink"
+        )).data
     }
 }

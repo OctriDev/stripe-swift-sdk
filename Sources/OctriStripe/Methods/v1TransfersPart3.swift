@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1TransfersMethods {
-    public struct PostTransfersOptions: Codable {
+public extension V1TransfersMethods {
+    struct PostTransfersOptions: Codable {
         public var currency: String
         public var destination: String
         public var amount: Int?
@@ -24,7 +24,8 @@ extension V1TransfersMethods {
         }
     }
 
-    /// To send funds from your Stripe account to a connected account, you create a new transfer object. Your Stripe balance must be able to cover the transfer amount, or you’ll receive an “Insufficient Funds” error.
+    /// To send funds from your Stripe account to a connected account, you create a new transfer object. Your Stripe
+    /// balance must be able to cover the transfer amount, or you’ll receive an “Insufficient Funds” error.
     ///
     /// - Parameters:
     /// - currency: Three-letter [ISO code for
@@ -55,7 +56,7 @@ extension V1TransfersMethods {
     ///   group. See the [Connect
     ///   documentation](https://docs.stripe.com/connect/separate-charges-and-transfer
     ///   s#transfer-options) for details.
-    public static func postTransfers(config: ClientConfig, options: PostTransfersOptions) async throws -> Transfer {
+    static func postTransfers(config: ClientConfig, options: PostTransfersOptions) async throws -> Transfer {
         if let description = options.description {
             try validateLength("description", description, max: 5000)
         }
@@ -66,6 +67,14 @@ extension V1TransfersMethods {
 
         let requestBody = PostTransfersRequestBody(options: options)
 
-        return try (await sdkRequest("POST", "/v1/transfers", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTransfers")).data
+        return try await (sdkRequest(
+            "POST",
+            "/v1/transfers",
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostTransfers"
+        )).data
     }
 }

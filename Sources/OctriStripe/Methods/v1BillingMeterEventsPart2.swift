@@ -6,8 +6,10 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1BillingMeterEventsMethods {
-    /// Creates a billing meter event for recording customer usage. Supply `event_name` and a `payload` containing the customer mapping and measured value fields expected by the meter. You can provide an `identifier` for retry-safe uniqueness and a Unix timestamp within the permitted event window.
+public extension V1BillingMeterEventsMethods {
+    /// Creates a billing meter event for recording customer usage. Supply `event_name` and a `payload` containing the
+    /// customer mapping and measured value fields expected by the meter. You can provide an `identifier` for retry-safe
+    /// uniqueness and a Unix timestamp within the permitted event window.
     ///
     /// Creates a billing meter event.
     ///
@@ -31,15 +33,36 @@ extension V1BillingMeterEventsMethods {
     /// - timestamp: The time of the event. Measured in seconds since the Unix
     ///   epoch. Must be within the past 35 calendar days or up to 5 minutes in the
     ///   future. Defaults to current timestamp if not specified.
-    public static func postBillingMeterEvents(config: ClientConfig, eventName: String, payload: [String: String], expand: [String]?, identifier: String?, timestamp: Int?) async throws -> BillingMeterEvent {
+    static func postBillingMeterEvents(
+        config: ClientConfig,
+        eventName: String,
+        payload: [String: String],
+        expand: [String]?,
+        identifier: String?,
+        timestamp: Int?
+    ) async throws -> BillingMeterEvent {
         try validateLength("event_name", eventName, max: 100)
 
-        if let identifier = identifier {
+        if let identifier {
             try validateLength("identifier", identifier, max: 100)
         }
 
-        let requestBody = PostBillingMeterEventsRequestBody(eventName: eventName, payload: payload, expand: expand, identifier: identifier, timestamp: timestamp)
+        let requestBody = PostBillingMeterEventsRequestBody(
+            eventName: eventName,
+            payload: payload,
+            expand: expand,
+            identifier: identifier,
+            timestamp: timestamp
+        )
 
-        return try (await sdkRequest("POST", "/v1/billing/meter_events", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostBillingMeterEvents")).data
+        return try await (sdkRequest(
+            "POST",
+            "/v1/billing/meter_events",
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostBillingMeterEvents"
+        )).data
     }
 }

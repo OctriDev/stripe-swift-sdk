@@ -6,31 +6,66 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1AccountsExternalAccountsMethods {
-    /// Deletes a specified external account for a connected account. Provide the parent account and external account identifiers to remove the selected bank account or card. The response identifies the deleted object and its deletion state.
+public extension V1AccountsExternalAccountsMethods {
+    /// Deletes a specified external account for a connected account. Provide the parent account and external account
+    /// identifiers to remove the selected bank account or card. The response identifies the deleted object and its
+    /// deletion state.
     ///
     /// Delete a specified external account for a given account.
     ///
     /// - Parameters:
     /// - id: Unique identifier for the external account to be deleted.
-    public static func deleteAccountsAccountExternalAccountsId(config: ClientConfig, account: String, id: String) async throws -> DeletedExternalAccount {
+    static func deleteAccountsAccountExternalAccountsId(
+        config: ClientConfig,
+        account: String,
+        id: String
+    ) async throws -> DeletedExternalAccount {
         try validateLength("account", account, max: 5000)
 
-        return try (await sdkRequest("DELETE", ["/v1/accounts/", sdkEncodePathSegment(sdkWireString(account)), "/external_accounts/", sdkEncodePathSegment(sdkWireString(id))].joined(), config: config, decoder: .json, operationId: "DeleteAccountsAccountExternalAccountsId")).data
+        return try await (sdkRequest(
+            "DELETE",
+            [
+                "/v1/accounts/",
+                sdkEncodePathSegment(sdkWireString(account)),
+                "/external_accounts/",
+                sdkEncodePathSegment(sdkWireString(id)),
+            ].joined(),
+            config: config,
+            decoder: .json,
+            operationId: "DeleteAccountsAccountExternalAccountsId"
+        )).data
     }
 
-    /// Retrieves a specified external account for a connected account. The external account can be a bank account or card identified by `id`. Use `expand` to include selected response fields in the returned object.
+    /// Retrieves a specified external account for a connected account. The external account can be a bank account or
+    /// card identified by `id`. Use `expand` to include selected response fields in the returned object.
     ///
     /// Retrieve a specified external account for a given account.
     ///
     /// - Parameters:
     /// - id: Unique identifier for the external account to be retrieved.
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func getAccountsAccountExternalAccountsId(config: ClientConfig, account: String, id: String, expand: [String]?) async throws -> ExternalAccount {
+    static func getAccountsAccountExternalAccountsId(
+        config: ClientConfig,
+        account: String,
+        id: String,
+        expand: [String]?
+    ) async throws -> ExternalAccount {
         try validateLength("account", account, max: 5000)
 
-        return try (await sdkRequest("GET", ["/v1/accounts/", sdkEncodePathSegment(sdkWireString(account)), "/external_accounts/", sdkEncodePathSegment(sdkWireString(id))].joined(), config: config, query: [
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-        ], decoder: .json, operationId: "GetAccountsAccountExternalAccountsId")).data
+        return try await (sdkRequest(
+            "GET",
+            [
+                "/v1/accounts/",
+                sdkEncodePathSegment(sdkWireString(account)),
+                "/external_accounts/",
+                sdkEncodePathSegment(sdkWireString(id)),
+            ].joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+            ],
+            decoder: .json,
+            operationId: "GetAccountsAccountExternalAccountsId"
+        )).data
     }
 }

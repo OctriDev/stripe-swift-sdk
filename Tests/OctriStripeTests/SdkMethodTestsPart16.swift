@@ -112,7 +112,8 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostCustomersCustomerBalanceTransactionsPostCustomersCustomerX0dcb7d2471ReachesMockAndDecodesResponse() async throws {
+    func testPostCustomersCustomerBalanceTransactionsPostCustomersCustomerX0dcb7d2471ReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -136,7 +137,8 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostCustomersCustomerBalanceTransactionsTransactionPostCustomX7f203fc070ReachesMockAndDecodesResponse() async throws {
+    func testPostCustomersCustomerBalanceTransactionsTransactionPostCustomX7f203fc070ReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -159,7 +161,8 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostCustomersCustomerBankAccountsPostCustomersCustomerBankAccountsReachesMockAndDecodesResponse() async throws {
+    func testPostCustomersCustomerBankAccountsPostCustomersCustomerBankAccountsReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -184,7 +187,8 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostCustomersCustomerBankAccountsIdPostCustomersCustomerBankAccountsIdReachesMockAndDecodesResponse() async throws {
+    func testPostCustomersCustomerBankAccountsIdPostCustomersCustomerBankAccountsIdReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -206,7 +210,8 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostCustomersCustomerBankAccountsIdVerifyPostCustomersCustomeX569f607122ReachesMockAndDecodesResponse() async throws {
+    func testPostCustomersCustomerBankAccountsIdVerifyPostCustomersCustomeX569f607122ReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -258,7 +263,10 @@ extension SdkMethodTests {
             return
         }
         _ = client
-        var options = try V1CustomersCardsMethods.PostCustomersCustomerCardsIdOptions(customer: decoded("\"customer\""), id: decoded("\"id-1\""))
+        var options = try V1CustomersCardsMethods.PostCustomersCustomerCardsIdOptions(
+            customer: decoded("\"customer\""),
+            id: decoded("\"id-1\"")
+        )
         options.accountHolderName = try decoded("\"Example Name\"")
         options.accountHolderType = try decoded("\"company\"")
         options.addressCity = try decoded("\"address_city\"")
@@ -287,7 +295,8 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostCustomersCustomerCashBalancePostCustomersCustomerCashBalanceReachesMockAndDecodesResponse() async throws {
+    func testPostCustomersCustomerCashBalancePostCustomersCustomerCashBalanceReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -308,7 +317,8 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostCustomersCustomerFundingInstructionsPostCustomersCustomerXa338aa7812ReachesMockAndDecodesResponse() async throws {
+    func testPostCustomersCustomerFundingInstructionsPostCustomersCustomerXa338aa7812ReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -378,7 +388,8 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostCustomersCustomerSourcesIdVerifyPostCustomersCustomerSourcesIdVerifyReachesMockAndDecodesResponse() async throws {
+    func testPostCustomersCustomerSourcesIdVerifyPostCustomersCustomerSourcesIdVerifyReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -400,12 +411,14 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostCustomersCustomerSubscriptionsPostCustomersCustomerSubscriptionsReachesMockAndDecodesResponse() async throws {
+    func testPostCustomersCustomerSubscriptionsPostCustomersCustomerSubscriptionsReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        var options = try V1CustomersSubscriptionsMethods.PostCustomersCustomerSubscriptionsOptions(customer: decoded("\"customer\""))
+        var options = try V1CustomersSubscriptionsMethods
+            .PostCustomersCustomerSubscriptionsOptions(customer: decoded("\"customer\""))
         options.addInvoiceItems = try decoded(sdkMethodFixture374Value1)
         options.applicationFeePercent = try decoded("1")
         options.automaticTax = try decoded(sdkMethodFixture374Value2)
@@ -449,12 +462,17 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostCustomersCustomerSubscriptionsSubscriptionExposedIdPostCuXe12fa2dc17ReachesMockAndDecodesResponse() async throws {
+    func testPostCustomersCustomerSubscriptionsSubscriptionExposedIdPostCuXe12fa2dc17ReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        var options = try V1CustomersSubscriptionsMethods.PostCustomersCustomerSubscriptionsSubscriptionExposedIdOptions(customer: decoded("\"customer\""), subscriptionExposedId: decoded("\"subscription_exposed_-1\""))
+        var options = try V1CustomersSubscriptionsMethods
+            .PostCustomersCustomerSubscriptionsSubscriptionExposedIdOptions(
+                customer: decoded("\"customer\""),
+                subscriptionExposedId: decoded("\"subscription_exposed_-1\"")
+            )
         options.addInvoiceItems = try decoded(sdkMethodFixture375Value1)
         options.applicationFeePercent = try decoded("1")
         options.automaticTax = try decoded(sdkMethodFixture375Value2)

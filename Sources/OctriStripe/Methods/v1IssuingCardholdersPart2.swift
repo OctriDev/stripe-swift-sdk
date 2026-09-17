@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1IssuingCardholdersMethods {
-    public struct GetIssuingCardholdersOptions: Codable {
+public extension V1IssuingCardholdersMethods {
+    struct GetIssuingCardholdersOptions: Codable {
         public var created: GetIssuingCardholdersParameter?
         public var email: String?
         public var endingBefore: String?
@@ -21,9 +21,12 @@ extension V1IssuingCardholdersMethods {
         public init() {}
     }
 
-    /// Lists Issuing cardholders in descending creation order, with the newest cardholders first. Use the available filters to narrow results by creation interval, email, phone number, status, or type, and use cursor parameters to retrieve additional pages.
+    /// Lists Issuing cardholders in descending creation order, with the newest cardholders first. Use the available
+    /// filters to narrow results by creation interval, email, phone number, status, or type, and use cursor parameters
+    /// to retrieve additional pages.
     ///
-    /// Returns a list of Issuing Cardholder objects. The objects are sorted in descending order by creation date, with the most recently created object appearing first.
+    /// Returns a list of Issuing Cardholder objects. The objects are sorted in descending order by creation date, with
+    /// the most recently created object appearing first.
     ///
     /// - Parameters:
     /// - created: Only return cardholders that were created during the given date
@@ -47,7 +50,10 @@ extension V1IssuingCardholdersMethods {
     ///   `active`, `inactive`, or `blocked`.
     /// - type: Only return cardholders that have the given type. One of
     ///   `individual` or `company`.
-    public static func getIssuingCardholders(config: ClientConfig, options: GetIssuingCardholdersOptions) async throws -> GetIssuingCardholdersResponse {
+    static func getIssuingCardholders(
+        config: ClientConfig,
+        options: GetIssuingCardholdersOptions
+    ) async throws -> GetIssuingCardholdersResponse {
         if let endingBefore = options.endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
@@ -56,7 +62,7 @@ extension V1IssuingCardholdersMethods {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try (await sdkRequest("GET", "/v1/issuing/cardholders", config: config, query: [
+        return try await (sdkRequest("GET", "/v1/issuing/cardholders", config: config, query: [
             SdkQueryParameter("created", value: options.created),
             SdkQueryParameter("email", value: options.email),
             SdkQueryParameter("ending_before", value: options.endingBefore),

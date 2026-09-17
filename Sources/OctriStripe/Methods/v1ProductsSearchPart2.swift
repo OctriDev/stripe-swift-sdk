@@ -6,10 +6,15 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1ProductsSearchMethods {
-    /// Searches products that you previously created using the Search Query Language. Use `query` to define the search expression and `page` to continue through result pages; search results can lag behind recently created or updated data.
+public extension V1ProductsSearchMethods {
+    /// Searches products that you previously created using the Search Query Language. Use `query` to define the search
+    /// expression and `page` to continue through result pages; search results can lag behind recently created or
+    /// updated data.
     ///
-    /// Search for products you’ve previously created using Stripe’s Search Query Language. Don’t use search in read-after-write flows where strict consistency is necessary. Under normal operating conditions, data is searchable in less than a minute. Occasionally, propagation of new or updated data can be up to an hour behind during outages. Search functionality is not available to merchants in India.
+    /// Search for products you’ve previously created using Stripe’s Search Query Language. Don’t use search in
+    /// read-after-write flows where strict consistency is necessary. Under normal operating conditions, data is
+    /// searchable in less than a minute. Occasionally, propagation of new or updated data can be up to an hour behind
+    /// during outages. Search functionality is not available to merchants in India.
     ///
     /// - Parameters:
     /// - query: The search query string. See [search query
@@ -22,14 +27,20 @@ extension V1ProductsSearchMethods {
     /// - page: A cursor for pagination across multiple pages of results. Don't
     ///   include this parameter on the first call. Use the next_page value returned
     ///   in a previous response to request subsequent results.
-    public static func getProductsSearch(config: ClientConfig, query: String, expand: [String]?, limit: Int?, page: String?) async throws -> GetProductsSearchResponse {
+    static func getProductsSearch(
+        config: ClientConfig,
+        query: String,
+        expand: [String]?,
+        limit: Int?,
+        page: String?
+    ) async throws -> GetProductsSearchResponse {
         try validateLength("query", query, max: 5000)
 
-        if let page = page {
+        if let page {
             try validateLength("page", page, max: 5000)
         }
 
-        return try (await sdkRequest("GET", "/v1/products/search", config: config, query: [
+        return try await (sdkRequest("GET", "/v1/products/search", config: config, query: [
             SdkQueryParameter("query", value: query),
             SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
             SdkQueryParameter("limit", value: limit),
@@ -37,9 +48,14 @@ extension V1ProductsSearchMethods {
         ], decoder: .json, operationId: "GetProductsSearch")).data
     }
 
-    /// Searches products that you previously created using the Search Query Language. Use `query` to define the search expression and `page` to continue through result pages; search results can lag behind recently created or updated data.
+    /// Searches products that you previously created using the Search Query Language. Use `query` to define the search
+    /// expression and `page` to continue through result pages; search results can lag behind recently created or
+    /// updated data.
     ///
-    /// Search for products you’ve previously created using Stripe’s Search Query Language. Don’t use search in read-after-write flows where strict consistency is necessary. Under normal operating conditions, data is searchable in less than a minute. Occasionally, propagation of new or updated data can be up to an hour behind during outages. Search functionality is not available to merchants in India.
+    /// Search for products you’ve previously created using Stripe’s Search Query Language. Don’t use search in
+    /// read-after-write flows where strict consistency is necessary. Under normal operating conditions, data is
+    /// searchable in less than a minute. Occasionally, propagation of new or updated data can be up to an hour behind
+    /// during outages. Search functionality is not available to merchants in India.
     ///
     /// - Parameters:
     /// - query: The search query string. See [search query
@@ -52,15 +68,34 @@ extension V1ProductsSearchMethods {
     /// - page: A cursor for pagination across multiple pages of results. Don't
     ///   include this parameter on the first call. Use the next_page value returned
     ///   in a previous response to request subsequent results.
-    public static func getProductsSearchPaginated(config: ClientConfig, query: String, expand: [String]?, limit: Int?, page: String?) -> AsyncThrowingStream<Product, Swift.Error> {
-        return AsyncThrowingStream<Product, Swift.Error> { (continuation: AsyncThrowingStream<Product, Swift.Error>.Continuation) in
+    static func getProductsSearchPaginated(
+        config: ClientConfig,
+        query: String,
+        expand: [String]?,
+        limit: Int?,
+        page: String?
+    ) -> AsyncThrowingStream<Product, Swift.Error> {
+        AsyncThrowingStream<Product, Swift.Error> { (continuation: AsyncThrowingStream<
+            Product,
+            Swift.Error
+        >.Continuation) in
             let task = _Concurrency.Task {
                 do {
                     var pageCursor = page
                     while true {
-                        let pageResponse = try await getProductsSearch(config: config, query: query, expand: expand, limit: limit, page: pageCursor)
-                        for item in pageResponse.data { continuation.yield(item) }
-                        if !pageResponse.hasMore { break }
+                        let pageResponse = try await getProductsSearch(
+                            config: config,
+                            query: query,
+                            expand: expand,
+                            limit: limit,
+                            page: pageCursor
+                        )
+                        for item in pageResponse.data {
+                            continuation.yield(item)
+                        }
+                        if !pageResponse.hasMore {
+                            break
+                        }
                         guard let nextCursor = pageResponse.nextPage else { break }
                         pageCursor = nextCursor
                     }
@@ -74,24 +109,47 @@ extension V1ProductsSearchMethods {
         }
     }
 
-    public struct GetProductsSearchPage {
+    struct GetProductsSearchPage {
         public let data: GetProductsSearchResponse
         public let items: [Product]
         public let hasMore: Bool
     }
 
-    public static func getProductsSearchPages(config: ClientConfig, query: String, expand: [String]?, limit: Int?, page: String?) -> AsyncThrowingStream<GetProductsSearchPage, Swift.Error> {
-        return AsyncThrowingStream<GetProductsSearchPage, Swift.Error> { (pageContinuation: AsyncThrowingStream<GetProductsSearchPage, Swift.Error>.Continuation) in
+    static func getProductsSearchPages(
+        config: ClientConfig,
+        query: String,
+        expand: [String]?,
+        limit: Int?,
+        page: String?
+    ) -> AsyncThrowingStream<GetProductsSearchPage, Swift.Error> {
+        AsyncThrowingStream<GetProductsSearchPage, Swift.Error> { (pageContinuation: AsyncThrowingStream<
+            GetProductsSearchPage,
+            Swift.Error
+        >.Continuation) in
             let task = _Concurrency.Task {
                 do {
                     var pageCursor = page
                     while true {
-                        let pageResponse = try await getProductsSearch(config: config, query: query, expand: expand, limit: limit, page: pageCursor)
+                        let pageResponse = try await getProductsSearch(
+                            config: config,
+                            query: query,
+                            expand: expand,
+                            limit: limit,
+                            page: pageCursor
+                        )
                         let pageItems = pageResponse.data
-                        if pageItems.isEmpty { break }
+                        if pageItems.isEmpty {
+                            break
+                        }
                         let hasMore = pageResponse.hasMore && pageResponse.nextPage != nil
-                        pageContinuation.yield(GetProductsSearchPage(data: pageResponse, items: pageItems, hasMore: hasMore))
-                        if !hasMore { break }
+                        pageContinuation.yield(GetProductsSearchPage(
+                            data: pageResponse,
+                            items: pageItems,
+                            hasMore: hasMore
+                        ))
+                        if !hasMore {
+                            break
+                        }
                         guard let nextCursor = pageResponse.nextPage else { break }
                         pageCursor = nextCursor
                     }

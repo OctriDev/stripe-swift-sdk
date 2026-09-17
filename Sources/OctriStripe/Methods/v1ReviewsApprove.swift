@@ -7,17 +7,30 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1ReviewsApproveMethods {
-    /// Approves an open review, closes it, and removes it from the list of reviews. Provide `review` to identify the review and use the optional `expand` field to include additional response fields.
+    /// Approves an open review, closes it, and removes it from the list of reviews. Provide `review` to identify the
+    /// review and use the optional `expand` field to include additional response fields.
     ///
     /// Approves a Review object, closing it and removing it from the list of reviews.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postReviewsReviewApprove(config: ClientConfig, review: String, expand: [String]?) async throws -> Review {
+    public static func postReviewsReviewApprove(
+        config: ClientConfig,
+        review: String,
+        expand: [String]?
+    ) async throws -> Review {
         try validateLength("review", review, max: 5000)
 
         let requestBody = PostReviewsReviewApproveRequestBody(expand: expand)
 
-        return try (await sdkRequest("POST", ["/v1/reviews/", sdkEncodePathSegment(sdkWireString(review)), "/approve"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostReviewsReviewApprove")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/reviews/", sdkEncodePathSegment(sdkWireString(review)), "/approve"].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostReviewsReviewApprove"
+        )).data
     }
 }

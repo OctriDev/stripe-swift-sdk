@@ -3,16 +3,16 @@
 
 import Foundation
 
-// V1Portal domain models
+/// V1Portal domain models
 /// Typed representation of the `PortalFlowsFlowCustomerUpdate` API schema.
 public struct PortalFlowsFlowCustomerUpdate: Codable {
-
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension PortalFlowsFlowCustomerUpdate {
-    public init() {
-    }
+public extension PortalFlowsFlowCustomerUpdate {
+    init() {}
 }
 
 /// Typed representation of the `PortalFlowsFlowSubscriptionCancel` API schema.
@@ -27,25 +27,31 @@ public struct PortalFlowsFlowSubscriptionCancel: Codable {
         case retention
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension PortalFlowsFlowSubscriptionCancel {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.subscription) else {
-            throw SdkValidationError(field: "subscription", code: "required", message: "Validation failed for 'subscription': value is required")
-        }
-        self.subscription = try container.sdkDecodeRequired(.subscription)
-        self.retention = try container.sdkDecodeIfPresent(.retention)
-            try validateLength("subscription", self.subscription, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension PortalFlowsFlowSubscriptionCancel {
-    public init(subscription: String, retention: PortalFlowsFlowSubscriptionCancelRetention? = nil) throws {
+public extension PortalFlowsFlowSubscriptionCancel {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.subscription) else {
+            throw SdkValidationError(
+                field: "subscription",
+                code: "required",
+                message: "Validation failed for 'subscription': value is required"
+            )
+        }
+        subscription = try container.sdkDecodeRequired(.subscription)
+        retention = try container.sdkDecodeIfPresent(.retention)
+        try validateLength("subscription", subscription, min: nil, max: 5000)
+    }
+}
+
+public extension PortalFlowsFlowSubscriptionCancel {
+    init(subscription: String, retention: PortalFlowsFlowSubscriptionCancelRetention? = nil) throws {
         (self.subscription, self.retention) = (subscription, retention)
-            try validateLength("subscription", self.subscription, min: nil, max: 5000)
+        try validateLength("subscription", self.subscription, min: nil, max: 5000)
     }
 }
 
@@ -54,20 +60,28 @@ public enum PortalFlowsFlowSubscriptionCancelRetention {
 }
 
 extension PortalFlowsFlowSubscriptionCancelRetention: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PortalFlowsFlowSubscriptionCancelRetention")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PortalFlowsFlowSubscriptionCancelRetention"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(PortalFlowsRetention.self) { return .portalFlowsRetention(value) }
+        if let value = try? container.decode(PortalFlowsRetention.self) {
+            return .portalFlowsRetention(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -76,7 +90,6 @@ extension PortalFlowsFlowSubscriptionCancelRetention: Codable {
         case let .portalFlowsRetention(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Typed representation of the `PortalFlowsFlowSubscriptionUpdate` API schema.
@@ -88,24 +101,30 @@ public struct PortalFlowsFlowSubscriptionUpdate: Codable {
         case subscription
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension PortalFlowsFlowSubscriptionUpdate {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.subscription) else {
-            throw SdkValidationError(field: "subscription", code: "required", message: "Validation failed for 'subscription': value is required")
-        }
-        self.subscription = try container.sdkDecodeRequired(.subscription)
-            try validateLength("subscription", self.subscription, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension PortalFlowsFlowSubscriptionUpdate {
-    public init(subscription: String) throws {
+public extension PortalFlowsFlowSubscriptionUpdate {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.subscription) else {
+            throw SdkValidationError(
+                field: "subscription",
+                code: "required",
+                message: "Validation failed for 'subscription': value is required"
+            )
+        }
+        subscription = try container.sdkDecodeRequired(.subscription)
+        try validateLength("subscription", subscription, min: nil, max: 5000)
+    }
+}
+
+public extension PortalFlowsFlowSubscriptionUpdate {
+    init(subscription: String) throws {
         self.subscription = subscription
-            try validateLength("subscription", self.subscription, min: nil, max: 5000)
+        try validateLength("subscription", self.subscription, min: nil, max: 5000)
     }
 }
 
@@ -125,30 +144,44 @@ public struct PortalFlowsFlowSubscriptionUpdateConfirm: Codable {
         case discounts
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension PortalFlowsFlowSubscriptionUpdateConfirm {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.items) else {
-            throw SdkValidationError(field: "items", code: "required", message: "Validation failed for 'items': value is required")
-        }
-        guard container.contains(.subscription) else {
-            throw SdkValidationError(field: "subscription", code: "required", message: "Validation failed for 'subscription': value is required")
-        }
-        self.items = try container.sdkDecodeRequired(.items)
-        self.subscription = try container.sdkDecodeRequired(.subscription)
-        self.discounts = try container.sdkDecodeIfPresent(.discounts)
-            try validateLength("subscription", self.subscription, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension PortalFlowsFlowSubscriptionUpdateConfirm {
-    public init(items: [PortalFlowsSubscriptionUpdateConfirmItem], subscription: String, discounts: [PortalFlowsSubscriptionUpdateConfirmDiscount]? = nil) throws {
+public extension PortalFlowsFlowSubscriptionUpdateConfirm {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.items) else {
+            throw SdkValidationError(
+                field: "items",
+                code: "required",
+                message: "Validation failed for 'items': value is required"
+            )
+        }
+        guard container.contains(.subscription) else {
+            throw SdkValidationError(
+                field: "subscription",
+                code: "required",
+                message: "Validation failed for 'subscription': value is required"
+            )
+        }
+        items = try container.sdkDecodeRequired(.items)
+        subscription = try container.sdkDecodeRequired(.subscription)
+        discounts = try container.sdkDecodeIfPresent(.discounts)
+        try validateLength("subscription", subscription, min: nil, max: 5000)
+    }
+}
+
+public extension PortalFlowsFlowSubscriptionUpdateConfirm {
+    init(
+        items: [PortalFlowsSubscriptionUpdateConfirmItem],
+        subscription: String,
+        discounts: [PortalFlowsSubscriptionUpdateConfirmDiscount]? = nil
+    ) throws {
         (self.items, self.subscription) = (items, subscription)
         self.discounts = discounts
-            try validateLength("subscription", self.subscription, min: nil, max: 5000)
+        try validateLength("subscription", self.subscription, min: nil, max: 5000)
     }
 }
 
@@ -164,22 +197,28 @@ public struct PortalFlowsRetention: Codable {
         case couponOffer = "coupon_offer"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension PortalFlowsRetention {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
-        }
-        self.type = try container.sdkDecodeRequired(.type)
-        self.couponOffer = try container.sdkDecodeIfPresent(.couponOffer)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension PortalFlowsRetention {
-    public init(type: PortalFlowsRetentionType, couponOffer: PortalFlowsRetentionCouponOffer? = nil) {
+public extension PortalFlowsRetention {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.type) else {
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
+        }
+        type = try container.sdkDecodeRequired(.type)
+        couponOffer = try container.sdkDecodeIfPresent(.couponOffer)
+    }
+}
+
+public extension PortalFlowsRetention {
+    init(type: PortalFlowsRetentionType, couponOffer: PortalFlowsRetentionCouponOffer? = nil) {
         (self.type, self.couponOffer) = (type, couponOffer)
     }
 }
@@ -189,20 +228,28 @@ public enum PortalFlowsRetentionCouponOffer {
 }
 
 extension PortalFlowsRetentionCouponOffer: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PortalFlowsRetentionCouponOffer")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PortalFlowsRetentionCouponOffer"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(PortalFlowsCouponOffer.self) { return .portalFlowsCouponOffer(value) }
+        if let value = try? container.decode(PortalFlowsCouponOffer.self) {
+            return .portalFlowsCouponOffer(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -211,7 +258,6 @@ extension PortalFlowsRetentionCouponOffer: Codable {
         case let .portalFlowsCouponOffer(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Typed representation of the `PortalFlowsSubscriptionUpdateConfirmDiscount` API schema.
@@ -227,26 +273,26 @@ public struct PortalFlowsSubscriptionUpdateConfirmDiscount: Codable {
     }
 
     init() {
-        (self.coupon, self.promotionCode) = (nil, nil)
+        (coupon, promotionCode) = (nil, nil)
     }
 }
 
-extension PortalFlowsSubscriptionUpdateConfirmDiscount {
-    public init(from decoder: Decoder) throws {
+public extension PortalFlowsSubscriptionUpdateConfirmDiscount {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.coupon = try container.sdkDecodeIfPresent(.coupon)
-        self.promotionCode = try container.sdkDecodeIfPresent(.promotionCode)
-        if let value = self.coupon {
+        coupon = try container.sdkDecodeIfPresent(.coupon)
+        promotionCode = try container.sdkDecodeIfPresent(.promotionCode)
+        if let value = coupon {
             try validateLength("coupon", value, min: nil, max: 5000)
         }
-        if let value = self.promotionCode {
+        if let value = promotionCode {
             try validateLength("promotion_code", value, min: nil, max: 5000)
         }
     }
 }
 
-extension PortalFlowsSubscriptionUpdateConfirmDiscount {
-    public init(coupon: String? = nil, promotionCode: String? = nil) throws {
+public extension PortalFlowsSubscriptionUpdateConfirmDiscount {
+    init(coupon: String? = nil, promotionCode: String? = nil) throws {
         self.init()
         (self.coupon, self.promotionCode) = (coupon, promotionCode)
         if let value = self.coupon {
@@ -275,27 +321,27 @@ public struct PortalFlowsSubscriptionUpdateConfirmItem: Codable {
     }
 
     init() {
-        (self.id, self.price, self.quantity) = (nil, nil, nil)
+        (id, price, quantity) = (nil, nil, nil)
     }
 }
 
-extension PortalFlowsSubscriptionUpdateConfirmItem {
-    public init(from decoder: Decoder) throws {
+public extension PortalFlowsSubscriptionUpdateConfirmItem {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.id = try container.sdkDecodeIfPresent(.id)
-        self.price = try container.sdkDecodeIfPresent(.price)
-        self.quantity = try container.sdkDecodeIfPresent(.quantity)
-        if let value = self.id {
+        id = try container.sdkDecodeIfPresent(.id)
+        price = try container.sdkDecodeIfPresent(.price)
+        quantity = try container.sdkDecodeIfPresent(.quantity)
+        if let value = id {
             try validateLength("id", value, min: nil, max: 5000)
         }
-        if let value = self.price {
+        if let value = price {
             try validateLength("price", value, min: nil, max: 5000)
         }
     }
 }
 
-extension PortalFlowsSubscriptionUpdateConfirmItem {
-    public init(id: String? = nil, price: String? = nil, quantity: Int? = nil) throws {
+public extension PortalFlowsSubscriptionUpdateConfirmItem {
+    init(id: String? = nil, price: String? = nil, quantity: Int? = nil) throws {
         self.init()
         (self.id, self.price) = (id, price)
         self.quantity = quantity
@@ -317,21 +363,27 @@ public struct PortalInvoiceList: Codable {
         case enabled
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension PortalInvoiceList {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.enabled) else {
-            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
-        }
-        self.enabled = try container.sdkDecodeRequired(.enabled)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension PortalInvoiceList {
-    public init(enabled: Bool) {
+public extension PortalInvoiceList {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.enabled) else {
+            throw SdkValidationError(
+                field: "enabled",
+                code: "required",
+                message: "Validation failed for 'enabled': value is required"
+            )
+        }
+        enabled = try container.sdkDecodeRequired(.enabled)
+    }
+}
+
+public extension PortalInvoiceList {
+    init(enabled: Bool) {
         self.enabled = enabled
     }
 }
@@ -350,25 +402,31 @@ public struct PortalLoginPage: Codable {
         case url
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension PortalLoginPage {
-    public init(from decoder: Decoder) throws {
+public extension PortalLoginPage {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.enabled) else {
-            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
+            throw SdkValidationError(
+                field: "enabled",
+                code: "required",
+                message: "Validation failed for 'enabled': value is required"
+            )
         }
-        self.enabled = try container.sdkDecodeRequired(.enabled)
-        self.url = try container.sdkDecodeIfPresent(.url)
-        if let value = self.url {
+        enabled = try container.sdkDecodeRequired(.enabled)
+        url = try container.sdkDecodeIfPresent(.url)
+        if let value = url {
             try validateLength("url", value, min: nil, max: 5000)
         }
     }
 }
 
-extension PortalLoginPage {
-    public init(enabled: Bool, url: String? = nil) throws {
+public extension PortalLoginPage {
+    init(enabled: Bool, url: String? = nil) throws {
         (self.enabled, self.url) = (enabled, url)
         if let value = self.url {
             try validateLength("url", value, min: nil, max: 5000)
@@ -390,25 +448,31 @@ public struct PortalPaymentMethodUpdate: Codable {
         case paymentMethodConfiguration = "payment_method_configuration"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension PortalPaymentMethodUpdate {
-    public init(from decoder: Decoder) throws {
+public extension PortalPaymentMethodUpdate {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.enabled) else {
-            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
+            throw SdkValidationError(
+                field: "enabled",
+                code: "required",
+                message: "Validation failed for 'enabled': value is required"
+            )
         }
-        self.enabled = try container.sdkDecodeRequired(.enabled)
-        self.paymentMethodConfiguration = try container.sdkDecodeIfPresent(.paymentMethodConfiguration)
-        if let value = self.paymentMethodConfiguration {
+        enabled = try container.sdkDecodeRequired(.enabled)
+        paymentMethodConfiguration = try container.sdkDecodeIfPresent(.paymentMethodConfiguration)
+        if let value = paymentMethodConfiguration {
             try validateLength("payment_method_configuration", value, min: nil, max: 5000)
         }
     }
 }
 
-extension PortalPaymentMethodUpdate {
-    public init(enabled: Bool, paymentMethodConfiguration: String? = nil) throws {
+public extension PortalPaymentMethodUpdate {
+    init(enabled: Bool, paymentMethodConfiguration: String? = nil) throws {
         (self.enabled, self.paymentMethodConfiguration) = (enabled, paymentMethodConfiguration)
         if let value = self.paymentMethodConfiguration {
             try validateLength("payment_method_configuration", value, min: nil, max: 5000)
@@ -426,21 +490,27 @@ public struct PortalResourceScheduleUpdateAtPeriodEnd: Codable {
         case conditions
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension PortalResourceScheduleUpdateAtPeriodEnd {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.conditions) else {
-            throw SdkValidationError(field: "conditions", code: "required", message: "Validation failed for 'conditions': value is required")
-        }
-        self.conditions = try container.sdkDecodeRequired(.conditions)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension PortalResourceScheduleUpdateAtPeriodEnd {
-    public init(conditions: [PortalResourceScheduleUpdateAtPeriodEndCondition]) {
+public extension PortalResourceScheduleUpdateAtPeriodEnd {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.conditions) else {
+            throw SdkValidationError(
+                field: "conditions",
+                code: "required",
+                message: "Validation failed for 'conditions': value is required"
+            )
+        }
+        conditions = try container.sdkDecodeRequired(.conditions)
+    }
+}
+
+public extension PortalResourceScheduleUpdateAtPeriodEnd {
+    init(conditions: [PortalResourceScheduleUpdateAtPeriodEndCondition]) {
         self.conditions = conditions
     }
 }
@@ -454,21 +524,27 @@ public struct PortalResourceScheduleUpdateAtPeriodEndCondition: Codable {
         case type
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension PortalResourceScheduleUpdateAtPeriodEndCondition {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
-        }
-        self.type = try container.sdkDecodeRequired(.type)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension PortalResourceScheduleUpdateAtPeriodEndCondition {
-    public init(type: PortalResourceScheduleUpdateAtPeriodEndConditionType) {
+public extension PortalResourceScheduleUpdateAtPeriodEndCondition {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.type) else {
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
+        }
+        type = try container.sdkDecodeRequired(.type)
+    }
+}
+
+public extension PortalResourceScheduleUpdateAtPeriodEndCondition {
+    init(type: PortalResourceScheduleUpdateAtPeriodEndConditionType) {
         self.type = type
     }
 }
@@ -492,33 +568,56 @@ public struct PortalSubscriptionCancel: Codable {
         case prorationBehavior = "proration_behavior"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension PortalSubscriptionCancel {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.cancellationReason) else {
-            throw SdkValidationError(field: "cancellation_reason", code: "required", message: "Validation failed for 'cancellation_reason': value is required")
-        }
-        guard container.contains(.enabled) else {
-            throw SdkValidationError(field: "enabled", code: "required", message: "Validation failed for 'enabled': value is required")
-        }
-        guard container.contains(.mode) else {
-            throw SdkValidationError(field: "mode", code: "required", message: "Validation failed for 'mode': value is required")
-        }
-        guard container.contains(.prorationBehavior) else {
-            throw SdkValidationError(field: "proration_behavior", code: "required", message: "Validation failed for 'proration_behavior': value is required")
-        }
-        self.cancellationReason = try container.sdkDecodeRequired(.cancellationReason)
-        self.enabled = try container.sdkDecodeRequired(.enabled)
-        self.mode = try container.sdkDecodeRequired(.mode)
-        self.prorationBehavior = try container.sdkDecodeRequired(.prorationBehavior)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension PortalSubscriptionCancel {
-    public init(cancellationReason: PortalSubscriptionCancellationReason, enabled: Bool, mode: PortalSubscriptionCancelMode, prorationBehavior: PortalSubscriptionCancelProrationBehavior) {
+public extension PortalSubscriptionCancel {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.cancellationReason) else {
+            throw SdkValidationError(
+                field: "cancellation_reason",
+                code: "required",
+                message: "Validation failed for 'cancellation_reason': value is required"
+            )
+        }
+        guard container.contains(.enabled) else {
+            throw SdkValidationError(
+                field: "enabled",
+                code: "required",
+                message: "Validation failed for 'enabled': value is required"
+            )
+        }
+        guard container.contains(.mode) else {
+            throw SdkValidationError(
+                field: "mode",
+                code: "required",
+                message: "Validation failed for 'mode': value is required"
+            )
+        }
+        guard container.contains(.prorationBehavior) else {
+            throw SdkValidationError(
+                field: "proration_behavior",
+                code: "required",
+                message: "Validation failed for 'proration_behavior': value is required"
+            )
+        }
+        cancellationReason = try container.sdkDecodeRequired(.cancellationReason)
+        enabled = try container.sdkDecodeRequired(.enabled)
+        mode = try container.sdkDecodeRequired(.mode)
+        prorationBehavior = try container.sdkDecodeRequired(.prorationBehavior)
+    }
+}
+
+public extension PortalSubscriptionCancel {
+    init(
+        cancellationReason: PortalSubscriptionCancellationReason,
+        enabled: Bool,
+        mode: PortalSubscriptionCancelMode,
+        prorationBehavior: PortalSubscriptionCancelProrationBehavior
+    ) {
         (self.cancellationReason, self.enabled) = (cancellationReason, enabled)
         (self.mode, self.prorationBehavior) = (mode, prorationBehavior)
     }
@@ -539,5 +638,7 @@ public struct PortalSubscriptionCancellationReason: Codable {
         case feedbackOptions = "feedback_options"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }

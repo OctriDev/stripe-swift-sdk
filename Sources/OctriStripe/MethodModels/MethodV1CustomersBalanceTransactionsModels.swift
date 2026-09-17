@@ -7,28 +7,38 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1CustomersBalanceTransactions operation model declarations
+/// Canonical v1CustomersBalanceTransactions operation model declarations
 public enum PostCustomersCustomerBalanceTransactionsTransactionRequestBodyMetadata {
     case dictionary([String: String])
     case stringValue(String)
 }
 
 extension PostCustomersCustomerBalanceTransactionsTransactionRequestBodyMetadata: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostCustomersCustomerBalanceTransactionsTransactionRequestBodyMetadata")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PostCustomersCustomerBalanceTransactionsTransactionRequestBodyMetadata"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode([String: String].self) { return .dictionary(value) }
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode([String: String].self) {
+            return .dictionary(value)
+        }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -38,7 +48,6 @@ extension PostCustomersCustomerBalanceTransactionsTransactionRequestBodyMetadata
         case let .stringValue(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum PostCustomersCustomerBalanceTransactionsRequestBodyMetadata {
@@ -47,21 +56,31 @@ public enum PostCustomersCustomerBalanceTransactionsRequestBodyMetadata {
 }
 
 extension PostCustomersCustomerBalanceTransactionsRequestBodyMetadata: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostCustomersCustomerBalanceTransactionsRequestBodyMetadata")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PostCustomersCustomerBalanceTransactionsRequestBodyMetadata"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode([String: String].self) { return .dictionary(value) }
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode([String: String].self) {
+            return .dictionary(value)
+        }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -71,7 +90,6 @@ extension PostCustomersCustomerBalanceTransactionsRequestBodyMetadata: Codable {
         case let .stringValue(value): try container.encode(value); return true
         }
     }
-
 }
 
 public struct GetCustomersCustomerBalanceTransactionsResponse: Codable {
@@ -92,75 +110,108 @@ public struct GetCustomersCustomerBalanceTransactionsResponse: Codable {
         case url
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension GetCustomersCustomerBalanceTransactionsResponse {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.data) else {
-            throw SdkValidationError(field: "data", code: "required", message: "Validation failed for 'data': value is required")
-        }
-        guard container.contains(.hasMore) else {
-            throw SdkValidationError(field: "has_more", code: "required", message: "Validation failed for 'has_more': value is required")
-        }
-        guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
-        }
-        guard container.contains(.url) else {
-            throw SdkValidationError(field: "url", code: "required", message: "Validation failed for 'url': value is required")
-        }
-        self.data = try container.sdkDecodeRequired(.data)
-        self.hasMore = try container.sdkDecodeRequired(.hasMore)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.url = try container.sdkDecodeRequired(.url)
-            try validateLength("url", self.url, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension GetCustomersCustomerBalanceTransactionsResponse {
-    public init(data: [CustomerBalanceTransaction], hasMore: Bool, object: GetCustomersCustomerBalanceTransactionsResponseObject, url: String) throws {
+public extension GetCustomersCustomerBalanceTransactionsResponse {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.data) else {
+            throw SdkValidationError(
+                field: "data",
+                code: "required",
+                message: "Validation failed for 'data': value is required"
+            )
+        }
+        guard container.contains(.hasMore) else {
+            throw SdkValidationError(
+                field: "has_more",
+                code: "required",
+                message: "Validation failed for 'has_more': value is required"
+            )
+        }
+        guard container.contains(.object) else {
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
+        }
+        guard container.contains(.url) else {
+            throw SdkValidationError(
+                field: "url",
+                code: "required",
+                message: "Validation failed for 'url': value is required"
+            )
+        }
+        data = try container.sdkDecodeRequired(.data)
+        hasMore = try container.sdkDecodeRequired(.hasMore)
+        object = try container.sdkDecodeRequired(.object)
+        url = try container.sdkDecodeRequired(.url)
+        try validateLength("url", url, min: nil, max: 5000)
+    }
+}
+
+public extension GetCustomersCustomerBalanceTransactionsResponse {
+    init(
+        data: [CustomerBalanceTransaction],
+        hasMore: Bool,
+        object: GetCustomersCustomerBalanceTransactionsResponseObject,
+        url: String
+    ) throws {
         (self.data, self.hasMore) = (data, hasMore)
         (self.object, self.url) = (object, url)
-            try validateLength("url", self.url, min: nil, max: 5000)
+        try validateLength("url", self.url, min: nil, max: 5000)
     }
 }
 
 public enum GetCustomersCustomerBalanceTransactionsParameter {
-    case getCustomersCustomerBalanceTransactionsParameterVariant0(GetCustomersCustomerBalanceTransactionsParameterVariant0)
+    case getCustomersCustomerBalanceTransactionsParameterVariant0(
+        GetCustomersCustomerBalanceTransactionsParameterVariant0
+    )
     case intValue(Int)
 }
 
 extension GetCustomersCustomerBalanceTransactionsParameter: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for GetCustomersCustomerBalanceTransactionsParameter")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for GetCustomersCustomerBalanceTransactionsParameter"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             GetCustomersCustomerBalanceTransactionsParameterVariant0.self
         ) {
-            return             .getCustomersCustomerBalanceTransactionsParameterVariant0(value)
+            return .getCustomersCustomerBalanceTransactionsParameterVariant0(value)
         }
-        if let value = try? container.decode(Int.self) { return .intValue(value) }
+        if let value = try? container.decode(Int.self) {
+            return .intValue(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .getCustomersCustomerBalanceTransactionsParameterVariant0(value): try container.encode(value); return true
+        case let .getCustomersCustomerBalanceTransactionsParameterVariant0(value): try container
+            .encode(value); return true
         case let .intValue(value): try container.encode(value); return true
         }
     }
-
 }
 
 public struct GetCustomersCustomerBalanceTransactionsParameterVariant0: Codable {
@@ -177,22 +228,22 @@ public struct GetCustomersCustomerBalanceTransactionsParameterVariant0: Codable 
     }
 
     init() {
-        (self.gt, self.gte, self.lt, self.lte) = (nil, nil, nil, nil)
+        (gt, gte, lt, lte) = (nil, nil, nil, nil)
     }
 }
 
-extension GetCustomersCustomerBalanceTransactionsParameterVariant0 {
-    public init(from decoder: Decoder) throws {
+public extension GetCustomersCustomerBalanceTransactionsParameterVariant0 {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.gt = try container.sdkDecodeIfPresent(.gt)
-        self.gte = try container.sdkDecodeIfPresent(.gte)
-        self.lt = try container.sdkDecodeIfPresent(.lt)
-        self.lte = try container.sdkDecodeIfPresent(.lte)
+        gt = try container.sdkDecodeIfPresent(.gt)
+        gte = try container.sdkDecodeIfPresent(.gte)
+        lt = try container.sdkDecodeIfPresent(.lt)
+        lte = try container.sdkDecodeIfPresent(.lte)
     }
 }
 
-extension GetCustomersCustomerBalanceTransactionsParameterVariant0 {
-    public init(gt: Int? = nil, gte: Int? = nil, lt: Int? = nil, lte: Int? = nil) {
+public extension GetCustomersCustomerBalanceTransactionsParameterVariant0 {
+    init(gt: Int? = nil, gte: Int? = nil, lt: Int? = nil, lte: Int? = nil) {
         self.init()
         (self.gt, self.gte) = (gt, gte)
         (self.lt, self.lte) = (lt, lte)

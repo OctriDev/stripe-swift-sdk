@@ -7,17 +7,31 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1BillingAlertsDeactivateMethods {
-    /// Deactivates a billing alert so it no longer triggers when its monitored usage threshold is crossed. Supply the alert `id` and optionally use `expand` to include additional response fields. The response contains the billing alert with its updated inactive status.
+    /// Deactivates a billing alert so it no longer triggers when its monitored usage threshold is crossed. Supply the
+    /// alert `id` and optionally use `expand` to include additional response fields. The response contains the billing
+    /// alert with its updated inactive status.
     ///
     /// Deactivates this alert, preventing it from triggering.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postBillingAlertsIdDeactivate(config: ClientConfig, id: String, expand: [String]?) async throws -> BillingAlert {
+    public static func postBillingAlertsIdDeactivate(
+        config: ClientConfig,
+        id: String,
+        expand: [String]?
+    ) async throws -> BillingAlert {
         try validateLength("id", id, max: 5000)
 
         let requestBody = PostBillingAlertsIdDeactivateRequestBody(expand: expand)
 
-        return try (await sdkRequest("POST", ["/v1/billing/alerts/", sdkEncodePathSegment(sdkWireString(id)), "/deactivate"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostBillingAlertsIdDeactivate")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/billing/alerts/", sdkEncodePathSegment(sdkWireString(id)), "/deactivate"].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostBillingAlertsIdDeactivate"
+        )).data
     }
 }

@@ -6,10 +6,13 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1RadarValueListItemsMethods {
-    /// Lists value list items belonging to a specified Radar value list. Use `value` to perform an “is like” match, `created` to filter by creation time, and cursor parameters to paginate results sorted with the newest items first.
+public extension V1RadarValueListItemsMethods {
+    /// Lists value list items belonging to a specified Radar value list. Use `value` to perform an “is like” match,
+    /// `created` to filter by creation time, and cursor parameters to paginate results sorted with the newest items
+    /// first.
     ///
-    /// Returns a list of ValueListItem objects. The objects are sorted in descending order by creation date, with the most recently created object appearing first.
+    /// Returns a list of ValueListItem objects. The objects are sorted in descending order by creation date, with the
+    /// most recently created object appearing first.
     ///
     /// - Parameters:
     /// - valueList: Identifier for the parent value list this item belongs to.
@@ -30,22 +33,31 @@ extension V1RadarValueListItemsMethods {
     ///   the list.
     /// - value: Return items belonging to the parent list whose value matches the
     ///   specified value (using an "is like" match).
-    public static func getRadarValueListItems(config: ClientConfig, valueList: String, created: GetRadarValueListItemsParameter?, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?, value: String?) async throws -> GetRadarValueListItemsResponse {
+    static func getRadarValueListItems(
+        config: ClientConfig,
+        valueList: String,
+        created: GetRadarValueListItemsParameter?,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        startingAfter: String?,
+        value: String?
+    ) async throws -> GetRadarValueListItemsResponse {
         try validateLength("value_list", valueList, max: 5000)
 
-        if let endingBefore = endingBefore {
+        if let endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let startingAfter = startingAfter {
+        if let startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        if let value = value {
+        if let value {
             try validateLength("value", value, max: 800)
         }
 
-        return try (await sdkRequest("GET", "/v1/radar/value_list_items", config: config, query: [
+        return try await (sdkRequest("GET", "/v1/radar/value_list_items", config: config, query: [
             SdkQueryParameter("value_list", value: valueList),
             SdkQueryParameter("created", value: created),
             SdkQueryParameter("ending_before", value: endingBefore),

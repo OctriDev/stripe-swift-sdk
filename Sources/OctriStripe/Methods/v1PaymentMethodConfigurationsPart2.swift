@@ -6,8 +6,10 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1PaymentMethodConfigurationsMethods {
-    /// Lists payment method configurations available to the authenticated user. Use `active` to filter configurations by whether they can be used for new payments and `application` to select configurations associated with a Connect application. Use cursor parameters and `limit` to paginate the results.
+public extension V1PaymentMethodConfigurationsMethods {
+    /// Lists payment method configurations available to the authenticated user. Use `active` to filter configurations
+    /// by whether they can be used for new payments and `application` to select configurations associated with a
+    /// Connect application. Use cursor parameters and `limit` to paginate the results.
     ///
     /// List payment method configurations
     ///
@@ -27,16 +29,24 @@ extension V1PaymentMethodConfigurationsMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    public static func getPaymentMethodConfigurations(config: ClientConfig, active: Bool?, application: GetPaymentMethodConfigurationsParameterVariant1?, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetPaymentMethodConfigurationsResponse {
-        if let endingBefore = endingBefore {
+    static func getPaymentMethodConfigurations(
+        config: ClientConfig,
+        active: Bool?,
+        application: GetPaymentMethodConfigurationsParameterVariant1?,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        startingAfter: String?
+    ) async throws -> GetPaymentMethodConfigurationsResponse {
+        if let endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let startingAfter = startingAfter {
+        if let startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try (await sdkRequest("GET", "/v1/payment_method_configurations", config: config, query: [
+        return try await (sdkRequest("GET", "/v1/payment_method_configurations", config: config, query: [
             SdkQueryParameter("active", value: active),
             SdkQueryParameter("application", value: application),
             SdkQueryParameter("ending_before", value: endingBefore),

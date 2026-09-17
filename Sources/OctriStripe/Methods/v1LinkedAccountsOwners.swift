@@ -7,7 +7,8 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1LinkedAccountsOwnersMethods {
-    /// Lists the owners associated with a Financial Connections Account's ownership record. Supply `account` and the required `ownership` identifier, then use `limit` and cursor parameters to paginate the owner list.
+    /// Lists the owners associated with a Financial Connections Account's ownership record. Supply `account` and the
+    /// required `ownership` identifier, then use `limit` and cursor parameters to paginate the owner list.
     ///
     /// Lists all owners for a given Account
     ///
@@ -26,25 +27,40 @@ public enum V1LinkedAccountsOwnersMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    public static func getLinkedAccountsAccountOwners(config: ClientConfig, account: String, ownership: String, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetLinkedAccountsAccountOwnersResponse {
+    public static func getLinkedAccountsAccountOwners(
+        config: ClientConfig,
+        account: String,
+        ownership: String,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        startingAfter: String?
+    ) async throws -> GetLinkedAccountsAccountOwnersResponse {
         try validateLength("account", account, max: 5000)
 
         try validateLength("ownership", ownership, max: 5000)
 
-        if let endingBefore = endingBefore {
+        if let endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let startingAfter = startingAfter {
+        if let startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try (await sdkRequest("GET", ["/v1/linked_accounts/", sdkEncodePathSegment(sdkWireString(account)), "/owners"].joined(), config: config, query: [
-            SdkQueryParameter("ownership", value: ownership),
-            SdkQueryParameter("ending_before", value: endingBefore),
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            SdkQueryParameter("limit", value: limit),
-            SdkQueryParameter("starting_after", value: startingAfter),
-        ], decoder: .json, operationId: "GetLinkedAccountsAccountOwners")).data
+        return try await (sdkRequest(
+            "GET",
+            ["/v1/linked_accounts/", sdkEncodePathSegment(sdkWireString(account)), "/owners"].joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("ownership", value: ownership),
+                SdkQueryParameter("ending_before", value: endingBefore),
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+                SdkQueryParameter("limit", value: limit),
+                SdkQueryParameter("starting_after", value: startingAfter),
+            ],
+            decoder: .json,
+            operationId: "GetLinkedAccountsAccountOwners"
+        )).data
     }
 }

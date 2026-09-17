@@ -6,27 +6,43 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1TaxIdsMethods {
-    /// Deletes an existing account or customer tax ID. Use `id` to identify the tax ID to remove. The operation returns a deletion confirmation object for the specified tax ID.
+public extension V1TaxIdsMethods {
+    /// Deletes an existing account or customer tax ID. Use `id` to identify the tax ID to remove. The operation returns
+    /// a deletion confirmation object for the specified tax ID.
     ///
     /// Deletes an existing account or customer tax_id object.
-    public static func deleteTaxIdsId(config: ClientConfig, id: String) async throws -> DeletedTaxId {
+    static func deleteTaxIdsId(config: ClientConfig, id: String) async throws -> DeletedTaxId {
         try validateLength("id", id, max: 5000)
 
-        return try (await sdkRequest("DELETE", ["/v1/tax_ids/", sdkEncodePathSegment(sdkWireString(id))].joined(), config: config, decoder: .json, operationId: "DeleteTaxIdsId")).data
+        return try await (sdkRequest(
+            "DELETE",
+            ["/v1/tax_ids/", sdkEncodePathSegment(sdkWireString(id))].joined(),
+            config: config,
+            decoder: .json,
+            operationId: "DeleteTaxIdsId"
+        )).data
     }
 
-    /// Retrieves an account or customer tax ID by its unique identifier. Use `id` to select the tax ID and `expand` when you need expanded response fields. The response includes the tax ID value, type, owner information, and verification details when available.
+    /// Retrieves an account or customer tax ID by its unique identifier. Use `id` to select the tax ID and `expand`
+    /// when you need expanded response fields. The response includes the tax ID value, type, owner information, and
+    /// verification details when available.
     ///
     /// Retrieves an account or customer tax_id object.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func getTaxIdsId(config: ClientConfig, id: String, expand: [String]?) async throws -> TaxId {
+    static func getTaxIdsId(config: ClientConfig, id: String, expand: [String]?) async throws -> TaxId {
         try validateLength("id", id, max: 5000)
 
-        return try (await sdkRequest("GET", ["/v1/tax_ids/", sdkEncodePathSegment(sdkWireString(id))].joined(), config: config, query: [
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-        ], decoder: .json, operationId: "GetTaxIdsId")).data
+        return try await (sdkRequest(
+            "GET",
+            ["/v1/tax_ids/", sdkEncodePathSegment(sdkWireString(id))].joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+            ],
+            decoder: .json,
+            operationId: "GetTaxIdsId"
+        )).data
     }
 }

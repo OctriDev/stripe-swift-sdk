@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1TerminalReadersRefundPayment operation model declarations
+/// Canonical v1TerminalReadersRefundPayment operation model declarations
 /// Configuration overrides for this refund, such as customer cancellation settings.
 public struct PostTerminalReadersReaderRefundPaymentRequestBodyRefundPaymentConfig: Codable {
     public var enableCustomerCancellation: Bool?
@@ -17,19 +17,19 @@ public struct PostTerminalReadersReaderRefundPaymentRequestBodyRefundPaymentConf
     }
 
     init() {
-        self.enableCustomerCancellation = nil
+        enableCustomerCancellation = nil
     }
 }
 
-extension PostTerminalReadersReaderRefundPaymentRequestBodyRefundPaymentConfig {
-    public init(from decoder: Decoder) throws {
+public extension PostTerminalReadersReaderRefundPaymentRequestBodyRefundPaymentConfig {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.enableCustomerCancellation = try container.sdkDecodeIfPresent(.enableCustomerCancellation)
+        enableCustomerCancellation = try container.sdkDecodeIfPresent(.enableCustomerCancellation)
     }
 }
 
-extension PostTerminalReadersReaderRefundPaymentRequestBodyRefundPaymentConfig {
-    public init(enableCustomerCancellation: Bool? = nil) {
+public extension PostTerminalReadersReaderRefundPaymentRequestBodyRefundPaymentConfig {
+    init(enableCustomerCancellation: Bool? = nil) {
         self.init()
         self.enableCustomerCancellation = enableCustomerCancellation
     }

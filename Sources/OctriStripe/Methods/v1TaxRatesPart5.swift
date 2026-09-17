@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1TaxRatesMethods {
-    public struct PostTaxRatesTaxRateOptions: Codable {
+public extension V1TaxRatesMethods {
+    struct PostTaxRatesTaxRateOptions: Codable {
         public var taxRate: String
         public var active: Bool?
         public var country: String?
@@ -24,7 +24,9 @@ extension V1TaxRatesMethods {
         }
     }
 
-    /// Updates an existing tax rate identified by its tax rate ID. Use the form fields to change its active state, displayed name, jurisdiction, country, metadata, or tax classification. A successful response returns the updated tax rate object.
+    /// Updates an existing tax rate identified by its tax rate ID. Use the form fields to change its active state,
+    /// displayed name, jurisdiction, country, metadata, or tax classification. A successful response returns the
+    /// updated tax rate object.
     ///
     /// Updates an existing tax rate.
     ///
@@ -52,7 +54,7 @@ extension V1TaxRatesMethods {
     ///   code](https://en.wikipedia.org/wiki/ISO_3166-2), without country prefix. For
     ///   example, "NY" for New York, United States.
     /// - taxType: The high-level tax type, such as `vat` or `sales_tax`.
-    public static func postTaxRatesTaxRate(config: ClientConfig, options: PostTaxRatesTaxRateOptions) async throws -> TaxRate {
+    static func postTaxRatesTaxRate(config: ClientConfig, options: PostTaxRatesTaxRateOptions) async throws -> TaxRate {
         try validateLength("tax_rate", options.taxRate, max: 5000)
 
         if let country = options.country {
@@ -77,6 +79,14 @@ extension V1TaxRatesMethods {
 
         let requestBody = PostTaxRatesTaxRateRequestBody(options: options)
 
-        return try (await sdkRequest("POST", ["/v1/tax_rates/", sdkEncodePathSegment(sdkWireString(options.taxRate))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTaxRatesTaxRate")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/tax_rates/", sdkEncodePathSegment(sdkWireString(options.taxRate))].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostTaxRatesTaxRate"
+        )).data
     }
 }

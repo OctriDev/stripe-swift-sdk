@@ -6,8 +6,10 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1TerminalConfigurationsMethods {
-    /// Lists Terminal configurations available for readers. Use cursor parameters to page through configurations and `is_account_default` to filter for account-default or non-default configurations. Results include pagination metadata and configuration objects.
+public extension V1TerminalConfigurationsMethods {
+    /// Lists Terminal configurations available for readers. Use cursor parameters to page through configurations and
+    /// `is_account_default` to filter for account-default or non-default configurations. Results include pagination
+    /// metadata and configuration objects.
     ///
     /// Returns a list of Configuration objects.
     ///
@@ -27,16 +29,23 @@ extension V1TerminalConfigurationsMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    public static func getTerminalConfigurations(config: ClientConfig, endingBefore: String?, expand: [String]?, isAccountDefault: Bool?, limit: Int?, startingAfter: String?) async throws -> GetTerminalConfigurationsResponse {
-        if let endingBefore = endingBefore {
+    static func getTerminalConfigurations(
+        config: ClientConfig,
+        endingBefore: String?,
+        expand: [String]?,
+        isAccountDefault: Bool?,
+        limit: Int?,
+        startingAfter: String?
+    ) async throws -> GetTerminalConfigurationsResponse {
+        if let endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let startingAfter = startingAfter {
+        if let startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try (await sdkRequest("GET", "/v1/terminal/configurations", config: config, query: [
+        return try await (sdkRequest("GET", "/v1/terminal/configurations", config: config, query: [
             SdkQueryParameter("ending_before", value: endingBefore),
             SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
             SdkQueryParameter("is_account_default", value: isAccountDefault),

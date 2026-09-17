@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1CustomersSources operation model declarations
+/// Canonical v1CustomersSources operation model declarations
 public struct PostCustomersCustomerSourcesRequestBodyBankAccountVariant0: Codable {
     public var accountNumber: String
     public var country: String
@@ -27,50 +27,68 @@ public struct PostCustomersCustomerSourcesRequestBodyBankAccountVariant0: Codabl
         case routingNumber = "routing_number"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension PostCustomersCustomerSourcesRequestBodyBankAccountVariant0 {
-    public init(from decoder: Decoder) throws {
+public extension PostCustomersCustomerSourcesRequestBodyBankAccountVariant0 {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.accountNumber) else {
-            throw SdkValidationError(field: "account_number", code: "required", message: "Validation failed for 'account_number': value is required")
+            throw SdkValidationError(
+                field: "account_number",
+                code: "required",
+                message: "Validation failed for 'account_number': value is required"
+            )
         }
         guard container.contains(.country) else {
-            throw SdkValidationError(field: "country", code: "required", message: "Validation failed for 'country': value is required")
+            throw SdkValidationError(
+                field: "country",
+                code: "required",
+                message: "Validation failed for 'country': value is required"
+            )
         }
-        self.accountNumber = try container.sdkDecodeRequired(.accountNumber)
-        self.country = try container.sdkDecodeRequired(.country)
-        self.accountHolderName = try container.sdkDecodeIfPresent(.accountHolderName)
-        self.accountHolderType = try container.sdkDecodeIfPresent(.accountHolderType)
-        self.currency = try container.sdkDecodeIfPresent(.currency)
-        self.object = try container.sdkDecodeIfPresent(.object)
-        self.routingNumber = try container.sdkDecodeIfPresent(.routingNumber)
-            try validateLength("account_number", self.accountNumber, min: nil, max: 5000)
-            try validateLength("country", self.country, min: nil, max: 5000)
-        if let value = self.accountHolderName {
+        accountNumber = try container.sdkDecodeRequired(.accountNumber)
+        country = try container.sdkDecodeRequired(.country)
+        accountHolderName = try container.sdkDecodeIfPresent(.accountHolderName)
+        accountHolderType = try container.sdkDecodeIfPresent(.accountHolderType)
+        currency = try container.sdkDecodeIfPresent(.currency)
+        object = try container.sdkDecodeIfPresent(.object)
+        routingNumber = try container.sdkDecodeIfPresent(.routingNumber)
+        try validateLength("account_number", accountNumber, min: nil, max: 5000)
+        try validateLength("country", country, min: nil, max: 5000)
+        if let value = accountHolderName {
             try validateLength("account_holder_name", value, min: nil, max: 5000)
         }
-        if let value = self.accountHolderType {
+        if let value = accountHolderType {
             try validateLength("account_holder_type", sdkWireString(value), min: nil, max: 5000)
         }
-        if let value = self.object {
+        if let value = object {
             try validateLength("object", sdkWireString(value), min: nil, max: 5000)
         }
-        if let value = self.routingNumber {
+        if let value = routingNumber {
             try validateLength("routing_number", value, min: nil, max: 5000)
         }
     }
 }
 
-extension PostCustomersCustomerSourcesRequestBodyBankAccountVariant0 {
-    public init(accountNumber: String, country: String, accountHolderName: String? = nil, accountHolderType: PostCustomersCustomerSourcesRequestBodyBankAccountVariant0AccX020c304179? = nil, currency: String? = nil, object: PostCustomersCustomerSourcesRequestBodyBankAccountVariant0Object? = nil, routingNumber: String? = nil) throws {
+public extension PostCustomersCustomerSourcesRequestBodyBankAccountVariant0 {
+    init(
+        accountNumber: String,
+        country: String,
+        accountHolderName: String? = nil,
+        accountHolderType: PostCustomersCustomerSourcesRequestBodyBankAccountVariant0AccX020c304179? = nil,
+        currency: String? = nil,
+        object: PostCustomersCustomerSourcesRequestBodyBankAccountVariant0Object? = nil,
+        routingNumber: String? = nil
+    ) throws {
         (self.accountNumber, self.country) = (accountNumber, country)
         (self.accountHolderName, self.accountHolderType) = (accountHolderName, accountHolderType)
         (self.currency, self.object) = (currency, object)
         self.routingNumber = routingNumber
-            try validateLength("account_number", self.accountNumber, min: nil, max: 5000)
-            try validateLength("country", self.country, min: nil, max: 5000)
+        try validateLength("account_number", self.accountNumber, min: nil, max: 5000)
+        try validateLength("country", self.country, min: nil, max: 5000)
         if let value = self.accountHolderName {
             try validateLength("account_holder_name", value, min: nil, max: 5000)
         }

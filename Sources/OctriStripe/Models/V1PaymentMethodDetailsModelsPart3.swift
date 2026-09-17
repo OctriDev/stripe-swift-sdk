@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1PaymentMethodDetails domain models
+/// V1PaymentMethodDetails domain models
 /// Typed representation of the `PaymentMethodDetailsCardChecks` API schema.
 public struct PaymentMethodDetailsCardChecks: Codable {
     /// If a address line1 was provided, results of the check, one of `pass`, `fail`, `unavailable`, or `unchecked`.
@@ -21,30 +21,30 @@ public struct PaymentMethodDetailsCardChecks: Codable {
     }
 
     init() {
-        (self.addressLine1Check, self.addressPostalCodeCheck, self.cvcCheck) = (nil, nil, nil)
+        (addressLine1Check, addressPostalCodeCheck, cvcCheck) = (nil, nil, nil)
     }
 }
 
-extension PaymentMethodDetailsCardChecks {
-    public init(from decoder: Decoder) throws {
+public extension PaymentMethodDetailsCardChecks {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.addressLine1Check = try container.sdkDecodeIfPresent(.addressLine1Check)
-        self.addressPostalCodeCheck = try container.sdkDecodeIfPresent(.addressPostalCodeCheck)
-        self.cvcCheck = try container.sdkDecodeIfPresent(.cvcCheck)
-        if let value = self.addressLine1Check {
+        addressLine1Check = try container.sdkDecodeIfPresent(.addressLine1Check)
+        addressPostalCodeCheck = try container.sdkDecodeIfPresent(.addressPostalCodeCheck)
+        cvcCheck = try container.sdkDecodeIfPresent(.cvcCheck)
+        if let value = addressLine1Check {
             try validateLength("address_line1_check", value, min: nil, max: 5000)
         }
-        if let value = self.addressPostalCodeCheck {
+        if let value = addressPostalCodeCheck {
             try validateLength("address_postal_code_check", value, min: nil, max: 5000)
         }
-        if let value = self.cvcCheck {
+        if let value = cvcCheck {
             try validateLength("cvc_check", value, min: nil, max: 5000)
         }
     }
 }
 
-extension PaymentMethodDetailsCardChecks {
-    public init(addressLine1Check: String? = nil, addressPostalCodeCheck: String? = nil, cvcCheck: String? = nil) throws {
+public extension PaymentMethodDetailsCardChecks {
+    init(addressLine1Check: String? = nil, addressPostalCodeCheck: String? = nil, cvcCheck: String? = nil) throws {
         self.init()
         (self.addressLine1Check, self.addressPostalCodeCheck) = (addressLine1Check, addressPostalCodeCheck)
         self.cvcCheck = cvcCheck
@@ -70,19 +70,19 @@ public struct PaymentMethodDetailsCardInstallments: Codable {
     }
 
     init() {
-        self.plan = nil
+        plan = nil
     }
 }
 
-extension PaymentMethodDetailsCardInstallments {
-    public init(from decoder: Decoder) throws {
+public extension PaymentMethodDetailsCardInstallments {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.plan = try container.sdkDecodeIfPresent(.plan)
+        plan = try container.sdkDecodeIfPresent(.plan)
     }
 }
 
-extension PaymentMethodDetailsCardInstallments {
-    public init(plan: PaymentMethodDetailsCardInstallmentsPlanXbfbf7858? = nil) {
+public extension PaymentMethodDetailsCardInstallments {
+    init(plan: PaymentMethodDetailsCardInstallmentsPlanXbfbf7858? = nil) {
         self.init()
         self.plan = plan
     }
@@ -93,24 +93,30 @@ public enum PaymentMethodDetailsCardInstallmentsPlanXbfbf7858 {
 }
 
 extension PaymentMethodDetailsCardInstallmentsPlanXbfbf7858: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentMethodDetailsCardInstallmentsPlanXbfbf7858")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PaymentMethodDetailsCardInstallmentsPlanXbfbf7858"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PaymentMethodDetailsCardInstallmentsPlan.self
         ) {
-            return             .paymentMethodDetailsCardInstallmentsPlan(value)
+            return .paymentMethodDetailsCardInstallmentsPlan(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -119,7 +125,6 @@ extension PaymentMethodDetailsCardInstallmentsPlanXbfbf7858: Codable {
         case let .paymentMethodDetailsCardInstallmentsPlan(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Typed representation of the `PaymentMethodDetailsCardInstallmentsPlan` API schema.
@@ -139,23 +144,33 @@ public struct PaymentMethodDetailsCardInstallmentsPlan: Codable {
         case interval
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension PaymentMethodDetailsCardInstallmentsPlan {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
-        }
-        self.type = try container.sdkDecodeRequired(.type)
-        self.count = try container.sdkDecodeIfPresent(.count)
-        self.interval = try container.sdkDecodeIfPresent(.interval)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension PaymentMethodDetailsCardInstallmentsPlan {
-    public init(type: PaymentMethodDetailsCardInstallmentsPlanType, count: Int? = nil, interval: PaymentMethodDetailsCardInstallmentsPlanInterval? = nil) {
+public extension PaymentMethodDetailsCardInstallmentsPlan {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.type) else {
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
+        }
+        type = try container.sdkDecodeRequired(.type)
+        count = try container.sdkDecodeIfPresent(.count)
+        interval = try container.sdkDecodeIfPresent(.interval)
+    }
+}
+
+public extension PaymentMethodDetailsCardInstallmentsPlan {
+    init(
+        type: PaymentMethodDetailsCardInstallmentsPlanType,
+        count: Int? = nil,
+        interval: PaymentMethodDetailsCardInstallmentsPlanInterval? = nil
+    ) {
         (self.type, self.count) = (type, count)
         self.interval = interval
     }
@@ -171,21 +186,27 @@ public struct PaymentMethodDetailsCardNetworkToken: Codable {
         case used
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension PaymentMethodDetailsCardNetworkToken {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.used) else {
-            throw SdkValidationError(field: "used", code: "required", message: "Validation failed for 'used': value is required")
-        }
-        self.used = try container.sdkDecodeRequired(.used)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension PaymentMethodDetailsCardNetworkToken {
-    public init(used: Bool) {
+public extension PaymentMethodDetailsCardNetworkToken {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.used) else {
+            throw SdkValidationError(
+                field: "used",
+                code: "required",
+                message: "Validation failed for 'used': value is required"
+            )
+        }
+        used = try container.sdkDecodeRequired(.used)
+    }
+}
+
+public extension PaymentMethodDetailsCardNetworkToken {
+    init(used: Bool) {
         self.used = used
     }
 }
@@ -291,57 +312,102 @@ public struct PaymentMethodDetailsCardPresent: Codable {
         case wallet
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension PaymentMethodDetailsCardPresent {
-    public init(from decoder: Decoder) throws {
+public extension PaymentMethodDetailsCardPresent {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.expMonth) else {
-            throw SdkValidationError(field: "exp_month", code: "required", message: "Validation failed for 'exp_month': value is required")
+            throw SdkValidationError(
+                field: "exp_month",
+                code: "required",
+                message: "Validation failed for 'exp_month': value is required"
+            )
         }
         guard container.contains(.expYear) else {
-            throw SdkValidationError(field: "exp_year", code: "required", message: "Validation failed for 'exp_year': value is required")
+            throw SdkValidationError(
+                field: "exp_year",
+                code: "required",
+                message: "Validation failed for 'exp_year': value is required"
+            )
         }
         guard container.contains(.incrementalAuthorizationSupported) else {
-            throw SdkValidationError(field: "incremental_authorization_supported", code: "required", message: "Validation failed for 'incremental_authorization_supported': value is required")
+            throw SdkValidationError(
+                field: "incremental_authorization_supported",
+                code: "required",
+                message: "Validation failed for 'incremental_authorization_supported': value is required"
+            )
         }
         guard container.contains(.overcaptureSupported) else {
-            throw SdkValidationError(field: "overcapture_supported", code: "required", message: "Validation failed for 'overcapture_supported': value is required")
+            throw SdkValidationError(
+                field: "overcapture_supported",
+                code: "required",
+                message: "Validation failed for 'overcapture_supported': value is required"
+            )
         }
-        self.expMonth = try container.sdkDecodeRequired(.expMonth)
-        self.expYear = try container.sdkDecodeRequired(.expYear)
-        self.incrementalAuthorizationSupported = try container.sdkDecodeRequired(.incrementalAuthorizationSupported)
-        self.overcaptureSupported = try container.sdkDecodeRequired(.overcaptureSupported)
-        self.amountAuthorized = try container.sdkDecodeIfPresent(.amountAuthorized)
-        self.brand = try container.sdkDecodeIfPresent(.brand)
-        self.brandProduct = try container.sdkDecodeIfPresent(.brandProduct)
-        self.captureBefore = try container.sdkDecodeIfPresent(.captureBefore)
-        self.cardholderName = try container.sdkDecodeIfPresent(.cardholderName)
-        self.country = try container.sdkDecodeIfPresent(.country)
-        self.description = try container.sdkDecodeIfPresent(.description)
-        self.emvAuthData = try container.sdkDecodeIfPresent(.emvAuthData)
-        self.fingerprint = try container.sdkDecodeIfPresent(.fingerprint)
-        self.funding = try container.sdkDecodeIfPresent(.funding)
-        self.generatedCard = try container.sdkDecodeIfPresent(.generatedCard)
-        self.issuer = try container.sdkDecodeIfPresent(.issuer)
-        self.last4 = try container.sdkDecodeIfPresent(.last4)
-        self.location = try container.sdkDecodeIfPresent(.location)
-        self.network = try container.sdkDecodeIfPresent(.network)
-        self.networkTransactionId = try container.sdkDecodeIfPresent(.networkTransactionId)
-        self.offline = try container.sdkDecodeIfPresent(.offline)
-        self.preferredLocales = try container.sdkDecodeIfPresent(.preferredLocales)
-        self.readMethod = try container.sdkDecodeIfPresent(.readMethod)
-        self.reader = try container.sdkDecodeIfPresent(.reader)
-        self.receipt = try container.sdkDecodeIfPresent(.receipt)
-        self.wallet = try container.sdkDecodeIfPresent(.wallet)
+        expMonth = try container.sdkDecodeRequired(.expMonth)
+        expYear = try container.sdkDecodeRequired(.expYear)
+        incrementalAuthorizationSupported = try container.sdkDecodeRequired(.incrementalAuthorizationSupported)
+        overcaptureSupported = try container.sdkDecodeRequired(.overcaptureSupported)
+        amountAuthorized = try container.sdkDecodeIfPresent(.amountAuthorized)
+        brand = try container.sdkDecodeIfPresent(.brand)
+        brandProduct = try container.sdkDecodeIfPresent(.brandProduct)
+        captureBefore = try container.sdkDecodeIfPresent(.captureBefore)
+        cardholderName = try container.sdkDecodeIfPresent(.cardholderName)
+        country = try container.sdkDecodeIfPresent(.country)
+        description = try container.sdkDecodeIfPresent(.description)
+        emvAuthData = try container.sdkDecodeIfPresent(.emvAuthData)
+        fingerprint = try container.sdkDecodeIfPresent(.fingerprint)
+        funding = try container.sdkDecodeIfPresent(.funding)
+        generatedCard = try container.sdkDecodeIfPresent(.generatedCard)
+        issuer = try container.sdkDecodeIfPresent(.issuer)
+        last4 = try container.sdkDecodeIfPresent(.last4)
+        location = try container.sdkDecodeIfPresent(.location)
+        network = try container.sdkDecodeIfPresent(.network)
+        networkTransactionId = try container.sdkDecodeIfPresent(.networkTransactionId)
+        offline = try container.sdkDecodeIfPresent(.offline)
+        preferredLocales = try container.sdkDecodeIfPresent(.preferredLocales)
+        readMethod = try container.sdkDecodeIfPresent(.readMethod)
+        reader = try container.sdkDecodeIfPresent(.reader)
+        receipt = try container.sdkDecodeIfPresent(.receipt)
+        wallet = try container.sdkDecodeIfPresent(.wallet)
         try sdkValidateConstraintsPart1()
         try sdkValidateConstraintsPart2()
     }
 }
 
-extension PaymentMethodDetailsCardPresent {
-    public init(expMonth: Int, expYear: Int, incrementalAuthorizationSupported: Bool, overcaptureSupported: Bool, amountAuthorized: Int? = nil, brand: String? = nil, brandProduct: String? = nil, captureBefore: Int? = nil, cardholderName: String? = nil, country: String? = nil, description: String? = nil, emvAuthData: String? = nil, fingerprint: String? = nil, funding: String? = nil, generatedCard: String? = nil, issuer: String? = nil, last4: String? = nil, location: String? = nil, network: String? = nil, networkTransactionId: String? = nil, offline: PaymentMethodDetailsCardPresentOfflineXf4f842dc? = nil, preferredLocales: [String]? = nil, readMethod: PaymentMethodDetailsCardPresentReadMethod? = nil, reader: String? = nil, receipt: PaymentMethodDetailsCardPresentReceiptX7751e0d2? = nil, wallet: PaymentFlowsPrivatePaymentMethodsCardPresentCommonWallet? = nil) throws {
+public extension PaymentMethodDetailsCardPresent {
+    init(
+        expMonth: Int,
+        expYear: Int,
+        incrementalAuthorizationSupported: Bool,
+        overcaptureSupported: Bool,
+        amountAuthorized: Int? = nil,
+        brand: String? = nil,
+        brandProduct: String? = nil,
+        captureBefore: Int? = nil,
+        cardholderName: String? = nil,
+        country: String? = nil,
+        description: String? = nil,
+        emvAuthData: String? = nil,
+        fingerprint: String? = nil,
+        funding: String? = nil,
+        generatedCard: String? = nil,
+        issuer: String? = nil,
+        last4: String? = nil,
+        location: String? = nil,
+        network: String? = nil,
+        networkTransactionId: String? = nil,
+        offline: PaymentMethodDetailsCardPresentOfflineXf4f842dc? = nil,
+        preferredLocales: [String]? = nil,
+        readMethod: PaymentMethodDetailsCardPresentReadMethod? = nil,
+        reader: String? = nil,
+        receipt: PaymentMethodDetailsCardPresentReceiptX7751e0d2? = nil,
+        wallet: PaymentFlowsPrivatePaymentMethodsCardPresentCommonWallet? = nil
+    ) throws {
         (self.expMonth, self.expYear) = (expMonth, expYear)
         self.incrementalAuthorizationSupported = incrementalAuthorizationSupported
         (self.overcaptureSupported, self.amountAuthorized) = (overcaptureSupported, amountAuthorized)
@@ -363,40 +429,40 @@ extension PaymentMethodDetailsCardPresent {
 
 extension PaymentMethodDetailsCardPresent {
     func sdkValidateConstraintsPart1() throws {
-        if let value = self.brand {
+        if let value = brand {
             try validateLength("brand", value, min: nil, max: 5000)
         }
-        if let value = self.brandProduct {
+        if let value = brandProduct {
             try validateLength("brand_product", value, min: nil, max: 5000)
         }
-        if let value = self.cardholderName {
+        if let value = cardholderName {
             try validateLength("cardholder_name", value, min: nil, max: 5000)
         }
-        if let value = self.country {
+        if let value = country {
             try validateLength("country", value, min: nil, max: 5000)
         }
-        if let value = self.description {
+        if let value = description {
             try validateLength("description", value, min: nil, max: 5000)
         }
-        if let value = self.emvAuthData {
+        if let value = emvAuthData {
             try validateLength("emv_auth_data", value, min: nil, max: 5000)
         }
-        if let value = self.fingerprint {
+        if let value = fingerprint {
             try validateLength("fingerprint", value, min: nil, max: 5000)
         }
-        if let value = self.funding {
+        if let value = funding {
             try validateLength("funding", value, min: nil, max: 5000)
         }
-        if let value = self.generatedCard {
+        if let value = generatedCard {
             try validateLength("generated_card", value, min: nil, max: 5000)
         }
-        if let value = self.issuer {
+        if let value = issuer {
             try validateLength("issuer", value, min: nil, max: 5000)
         }
-        if let value = self.last4 {
+        if let value = last4 {
             try validateLength("last4", value, min: nil, max: 5000)
         }
-        if let value = self.location {
+        if let value = location {
             try validateLength("location", value, min: nil, max: 5000)
         }
     }
@@ -404,13 +470,13 @@ extension PaymentMethodDetailsCardPresent {
 
 extension PaymentMethodDetailsCardPresent {
     func sdkValidateConstraintsPart2() throws {
-        if let value = self.network {
+        if let value = network {
             try validateLength("network", value, min: nil, max: 5000)
         }
-        if let value = self.networkTransactionId {
+        if let value = networkTransactionId {
             try validateLength("network_transaction_id", value, min: nil, max: 5000)
         }
-        if let value = self.reader {
+        if let value = reader {
             try validateLength("reader", value, min: nil, max: 5000)
         }
     }
@@ -421,24 +487,30 @@ public enum PaymentMethodDetailsCardPresentOfflineXf4f842dc {
 }
 
 extension PaymentMethodDetailsCardPresentOfflineXf4f842dc: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentMethodDetailsCardPresentOfflineXf4f842dc")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PaymentMethodDetailsCardPresentOfflineXf4f842dc"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PaymentMethodDetailsCardPresentOffline.self
         ) {
-            return             .paymentMethodDetailsCardPresentOffline(value)
+            return .paymentMethodDetailsCardPresentOffline(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -447,7 +519,6 @@ extension PaymentMethodDetailsCardPresentOfflineXf4f842dc: Codable {
         case let .paymentMethodDetailsCardPresentOffline(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum PaymentMethodDetailsCardPresentReceiptX7751e0d2 {
@@ -455,24 +526,30 @@ public enum PaymentMethodDetailsCardPresentReceiptX7751e0d2 {
 }
 
 extension PaymentMethodDetailsCardPresentReceiptX7751e0d2: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentMethodDetailsCardPresentReceiptX7751e0d2")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PaymentMethodDetailsCardPresentReceiptX7751e0d2"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PaymentMethodDetailsCardPresentReceipt.self
         ) {
-            return             .paymentMethodDetailsCardPresentReceipt(value)
+            return .paymentMethodDetailsCardPresentReceipt(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -481,7 +558,6 @@ extension PaymentMethodDetailsCardPresentReceiptX7751e0d2: Codable {
         case let .paymentMethodDetailsCardPresentReceipt(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Typed representation of the `PaymentMethodDetailsCardPresentOffline` API schema.
@@ -497,20 +573,20 @@ public struct PaymentMethodDetailsCardPresentOffline: Codable {
     }
 
     init() {
-        (self.storedAt, self.type) = (nil, nil)
+        (storedAt, type) = (nil, nil)
     }
 }
 
-extension PaymentMethodDetailsCardPresentOffline {
-    public init(from decoder: Decoder) throws {
+public extension PaymentMethodDetailsCardPresentOffline {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.storedAt = try container.sdkDecodeIfPresent(.storedAt)
-        self.type = try container.sdkDecodeIfPresent(.type)
+        storedAt = try container.sdkDecodeIfPresent(.storedAt)
+        type = try container.sdkDecodeIfPresent(.type)
     }
 }
 
-extension PaymentMethodDetailsCardPresentOffline {
-    public init(storedAt: Int? = nil, type: PaymentMethodDetailsCardPresentOfflineType? = nil) {
+public extension PaymentMethodDetailsCardPresentOffline {
+    init(storedAt: Int? = nil, type: PaymentMethodDetailsCardPresentOfflineType? = nil) {
         self.init()
         (self.storedAt, self.type) = (storedAt, type)
     }

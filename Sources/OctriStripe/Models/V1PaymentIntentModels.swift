@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1PaymentIntent domain models
+/// V1PaymentIntent domain models
 /// Typed representation of the `PaymentIntentAmountDetailsLineItem` API schema.
 public struct PaymentIntentAmountDetailsLineItem: Codable {
     /// Unique identifier for the object.
@@ -45,57 +45,90 @@ public struct PaymentIntentAmountDetailsLineItem: Codable {
         case unitOfMeasure = "unit_of_measure"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension PaymentIntentAmountDetailsLineItem {
-    public init(from decoder: Decoder) throws {
+public extension PaymentIntentAmountDetailsLineItem {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.id) else {
-            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
+            throw SdkValidationError(
+                field: "id",
+                code: "required",
+                message: "Validation failed for 'id': value is required"
+            )
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
         }
         guard container.contains(.productName) else {
-            throw SdkValidationError(field: "product_name", code: "required", message: "Validation failed for 'product_name': value is required")
+            throw SdkValidationError(
+                field: "product_name",
+                code: "required",
+                message: "Validation failed for 'product_name': value is required"
+            )
         }
         guard container.contains(.quantity) else {
-            throw SdkValidationError(field: "quantity", code: "required", message: "Validation failed for 'quantity': value is required")
+            throw SdkValidationError(
+                field: "quantity",
+                code: "required",
+                message: "Validation failed for 'quantity': value is required"
+            )
         }
         guard container.contains(.unitCost) else {
-            throw SdkValidationError(field: "unit_cost", code: "required", message: "Validation failed for 'unit_cost': value is required")
+            throw SdkValidationError(
+                field: "unit_cost",
+                code: "required",
+                message: "Validation failed for 'unit_cost': value is required"
+            )
         }
-        self.id = try container.sdkDecodeRequired(.id)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.productName = try container.sdkDecodeRequired(.productName)
-        self.quantity = try container.sdkDecodeRequired(.quantity)
-        self.unitCost = try container.sdkDecodeRequired(.unitCost)
-        self.discountAmount = try container.sdkDecodeIfPresent(.discountAmount)
-        self.paymentMethodOptions = try container.sdkDecodeIfPresent(.paymentMethodOptions)
-        self.productCode = try container.sdkDecodeIfPresent(.productCode)
-        self.tax = try container.sdkDecodeIfPresent(.tax)
-        self.unitOfMeasure = try container.sdkDecodeIfPresent(.unitOfMeasure)
-            try validateLength("id", self.id, min: nil, max: 5000)
-            try validateLength("product_name", self.productName, min: nil, max: 5000)
-        if let value = self.productCode {
+        id = try container.sdkDecodeRequired(.id)
+        object = try container.sdkDecodeRequired(.object)
+        productName = try container.sdkDecodeRequired(.productName)
+        quantity = try container.sdkDecodeRequired(.quantity)
+        unitCost = try container.sdkDecodeRequired(.unitCost)
+        discountAmount = try container.sdkDecodeIfPresent(.discountAmount)
+        paymentMethodOptions = try container.sdkDecodeIfPresent(.paymentMethodOptions)
+        productCode = try container.sdkDecodeIfPresent(.productCode)
+        tax = try container.sdkDecodeIfPresent(.tax)
+        unitOfMeasure = try container.sdkDecodeIfPresent(.unitOfMeasure)
+        try validateLength("id", id, min: nil, max: 5000)
+        try validateLength("product_name", productName, min: nil, max: 5000)
+        if let value = productCode {
             try validateLength("product_code", value, min: nil, max: 5000)
         }
-        if let value = self.unitOfMeasure {
+        if let value = unitOfMeasure {
             try validateLength("unit_of_measure", value, min: nil, max: 5000)
         }
     }
 }
 
-extension PaymentIntentAmountDetailsLineItem {
-    public init(id: String, object: PaymentIntentAmountDetailsLineItemObject, productName: String, quantity: Int, unitCost: Int, discountAmount: Int? = nil, paymentMethodOptions: PaymentIntentAmountDetailsLineItemPaymentMethodOptions? = nil, productCode: String? = nil, tax: PaymentIntentAmountDetailsLineItemTax? = nil, unitOfMeasure: String? = nil) throws {
+public extension PaymentIntentAmountDetailsLineItem {
+    init(
+        id: String,
+        object: PaymentIntentAmountDetailsLineItemObject,
+        productName: String,
+        quantity: Int,
+        unitCost: Int,
+        discountAmount: Int? = nil,
+        paymentMethodOptions: PaymentIntentAmountDetailsLineItemPaymentMethodOptions? = nil,
+        productCode: String? = nil,
+        tax: PaymentIntentAmountDetailsLineItemTax? = nil,
+        unitOfMeasure: String? = nil
+    ) throws {
         (self.id, self.object) = (id, object)
         (self.productName, self.quantity) = (productName, quantity)
         (self.unitCost, self.discountAmount) = (unitCost, discountAmount)
         (self.paymentMethodOptions, self.productCode) = (paymentMethodOptions, productCode)
         (self.tax, self.unitOfMeasure) = (tax, unitOfMeasure)
-            try validateLength("id", self.id, min: nil, max: 5000)
-            try validateLength("product_name", self.productName, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("product_name", self.productName, min: nil, max: 5000)
         if let value = self.productCode {
             try validateLength("product_code", value, min: nil, max: 5000)
         }
@@ -112,33 +145,39 @@ public enum PaymentIntentAmountDetailsLineItemPaymentMethodOptions {
 }
 
 extension PaymentIntentAmountDetailsLineItemPaymentMethodOptions: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentIntentAmountDetailsLineItemPaymentMethodOptions")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PaymentIntentAmountDetailsLineItemPaymentMethodOptions"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PaymentFlowsAmountDetailsResourceLineItemsListResourceLineIteX05de09564a.self
         ) {
-            return             .paymentFlowsAmountDetailsResourceLineItemsListResourceLineIteX05de09564a(value)
+            return .paymentFlowsAmountDetailsResourceLineItemsListResourceLineIteX05de09564a(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .paymentFlowsAmountDetailsResourceLineItemsListResourceLineIteX05de09564a(value): try container.encode(value); return true
+        case let .paymentFlowsAmountDetailsResourceLineItemsListResourceLineIteX05de09564a(value): try container
+            .encode(value); return true
         }
     }
-
 }
 
 public enum PaymentIntentAmountDetailsLineItemTax {
@@ -148,33 +187,39 @@ public enum PaymentIntentAmountDetailsLineItemTax {
 }
 
 extension PaymentIntentAmountDetailsLineItemTax: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentIntentAmountDetailsLineItemTax")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PaymentIntentAmountDetailsLineItemTax"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PaymentFlowsAmountDetailsResourceLineItemsListResourceLineIteXf95fd11ec2.self
         ) {
-            return             .paymentFlowsAmountDetailsResourceLineItemsListResourceLineIteXf95fd11ec2(value)
+            return .paymentFlowsAmountDetailsResourceLineItemsListResourceLineIteXf95fd11ec2(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .paymentFlowsAmountDetailsResourceLineItemsListResourceLineIteXf95fd11ec2(value): try container.encode(value); return true
+        case let .paymentFlowsAmountDetailsResourceLineItemsListResourceLineIteXf95fd11ec2(value): try container
+            .encode(value); return true
         }
     }
-
 }
 
 /// Typed representation of the `PaymentIntentCardProcessing` API schema.
@@ -187,29 +232,23 @@ public struct PaymentIntentCardProcessing: Codable {
     }
 
     init() {
-        self.customerNotification = nil
+        customerNotification = nil
     }
 }
 
-extension PaymentIntentCardProcessing {
-    public init(from decoder: Decoder) throws {
+public extension PaymentIntentCardProcessing {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.customerNotification = try container.sdkDecodeIfPresent(.customerNotification)
+        customerNotification = try container.sdkDecodeIfPresent(.customerNotification)
     }
 }
 
-extension PaymentIntentCardProcessing {
-    public init(customerNotification: PaymentIntentProcessingCustomerNotification? = nil) {
+public extension PaymentIntentCardProcessing {
+    init(customerNotification: PaymentIntentProcessingCustomerNotification? = nil) {
         self.init()
         self.customerNotification = customerNotification
     }
 }
-
-
-
-
-
-
 
 /// Typed representation of the `PaymentIntentTypeSpecificPaymentMethodOptionsClient` API schema.
 public struct PaymentIntentTypeSpecificPaymentMethodOptionsClient: Codable {
@@ -248,27 +287,49 @@ public struct PaymentIntentTypeSpecificPaymentMethodOptionsClient: Codable {
     }
 
     init() {
-        (self.captureMethod, self.installments, self.mandateOptions, self.requestIncrementalAuthorizationSupport, self.requireCvcRecollection) = (nil, nil, nil, nil, nil)
-        (self.routing, self.setupFutureUsage, self.verificationMethod) = (nil, nil, nil)
+        (
+            captureMethod,
+            installments,
+            mandateOptions,
+            requestIncrementalAuthorizationSupport,
+            requireCvcRecollection
+        ) = (
+            nil,
+            nil,
+            nil,
+            nil,
+            nil
+        )
+        (routing, setupFutureUsage, verificationMethod) = (nil, nil, nil)
     }
 }
 
-extension PaymentIntentTypeSpecificPaymentMethodOptionsClient {
-    public init(from decoder: Decoder) throws {
+public extension PaymentIntentTypeSpecificPaymentMethodOptionsClient {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.captureMethod = try container.sdkDecodeIfPresent(.captureMethod)
-        self.installments = try container.sdkDecodeIfPresent(.installments)
-        self.mandateOptions = try container.sdkDecodeIfPresent(.mandateOptions)
-        self.requestIncrementalAuthorizationSupport = try container.sdkDecodeIfPresent(.requestIncrementalAuthorizationSupport)
-        self.requireCvcRecollection = try container.sdkDecodeIfPresent(.requireCvcRecollection)
-        self.routing = try container.sdkDecodeIfPresent(.routing)
-        self.setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
-        self.verificationMethod = try container.sdkDecodeIfPresent(.verificationMethod)
+        captureMethod = try container.sdkDecodeIfPresent(.captureMethod)
+        installments = try container.sdkDecodeIfPresent(.installments)
+        mandateOptions = try container.sdkDecodeIfPresent(.mandateOptions)
+        requestIncrementalAuthorizationSupport = try container
+            .sdkDecodeIfPresent(.requestIncrementalAuthorizationSupport)
+        requireCvcRecollection = try container.sdkDecodeIfPresent(.requireCvcRecollection)
+        routing = try container.sdkDecodeIfPresent(.routing)
+        setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
+        verificationMethod = try container.sdkDecodeIfPresent(.verificationMethod)
     }
 }
 
-extension PaymentIntentTypeSpecificPaymentMethodOptionsClient {
-    public init(captureMethod: PaymentIntentTypeSpecificPaymentMethodOptionsClientCaptureMethod? = nil, installments: PaymentFlowsInstallmentOptions? = nil, mandateOptions: PaymentIntentPaymentMethodOptionsMandateOptionsPayto? = nil, requestIncrementalAuthorizationSupport: Bool? = nil, requireCvcRecollection: Bool? = nil, routing: PaymentMethodOptionsCardPresentRouting? = nil, setupFutureUsage: PaymentIntentTypeSpecificPaymentMethodOptionsClientSetupFutureUsage? = nil, verificationMethod: PaymentIntentTypeSpecificPaymentMethodOptionsClientVerificationMethod? = nil) {
+public extension PaymentIntentTypeSpecificPaymentMethodOptionsClient {
+    init(
+        captureMethod: PaymentIntentTypeSpecificPaymentMethodOptionsClientCaptureMethod? = nil,
+        installments: PaymentFlowsInstallmentOptions? = nil,
+        mandateOptions: PaymentIntentPaymentMethodOptionsMandateOptionsPayto? = nil,
+        requestIncrementalAuthorizationSupport: Bool? = nil,
+        requireCvcRecollection: Bool? = nil,
+        routing: PaymentMethodOptionsCardPresentRouting? = nil,
+        setupFutureUsage: PaymentIntentTypeSpecificPaymentMethodOptionsClientSetupFutureUsage? = nil,
+        verificationMethod: PaymentIntentTypeSpecificPaymentMethodOptionsClientVerificationMethod? = nil
+    ) {
         self.init()
         (self.captureMethod, self.installments) = (captureMethod, installments)
         self.mandateOptions = mandateOptions
@@ -283,17 +344,23 @@ extension PaymentIntentTypeSpecificPaymentMethodOptionsClient {
 /// after the PaymentIntent is confirmed and the customer completes any required actions. If you don't provide a
 /// Customer, you can still attach the payment method to a Customer after the transaction completes. If the
 /// payment method is `card_present` and isn't a digital…
-public struct PaymentIntentTypeSpecificPaymentMethodOptionsClientSetupFutureUsage: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentIntentTypeSpecificPaymentMethodOptionsClientSetupFutureUsage: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let none = PaymentIntentTypeSpecificPaymentMethodOptionsClientSetupFutureUsage(rawValue: "none")
-    public static let offSession = PaymentIntentTypeSpecificPaymentMethodOptionsClientSetupFutureUsage(rawValue: "off_session")
-    public static let onSession = PaymentIntentTypeSpecificPaymentMethodOptionsClientSetupFutureUsage(rawValue: "on_session")
+    public static let offSession =
+        PaymentIntentTypeSpecificPaymentMethodOptionsClientSetupFutureUsage(rawValue: "off_session")
+    public static let onSession =
+        PaymentIntentTypeSpecificPaymentMethodOptionsClientSetupFutureUsage(rawValue: "on_session")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -303,15 +370,20 @@ public struct PaymentIntentTypeSpecificPaymentMethodOptionsClientSetupFutureUsag
 }
 
 /// String representing the object's type. Objects of the same type share the same value.
-public struct PaymentIntentAmountDetailsLineItemObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentIntentAmountDetailsLineItemObject: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let paymentIntentAmountDetailsLineItem = PaymentIntentAmountDetailsLineItemObject(rawValue: "payment_intent_amount_details_line_item")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let paymentIntentAmountDetailsLineItem =
+        PaymentIntentAmountDetailsLineItemObject(rawValue: "payment_intent_amount_details_line_item")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -321,17 +393,25 @@ public struct PaymentIntentAmountDetailsLineItemObject: RawRepresentable, Hashab
 }
 
 /// Bank account verification method. The default value is `automatic`.
-public struct PaymentIntentTypeSpecificPaymentMethodOptionsClientVerificationMethod: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentIntentTypeSpecificPaymentMethodOptionsClientVerificationMethod: RawRepresentable, Hashable,
+    Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let automatic = PaymentIntentTypeSpecificPaymentMethodOptionsClientVerificationMethod(rawValue: "automatic")
-    public static let instant = PaymentIntentTypeSpecificPaymentMethodOptionsClientVerificationMethod(rawValue: "instant")
-    public static let microdeposits = PaymentIntentTypeSpecificPaymentMethodOptionsClientVerificationMethod(rawValue: "microdeposits")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let automatic =
+        PaymentIntentTypeSpecificPaymentMethodOptionsClientVerificationMethod(rawValue: "automatic")
+    public static let instant =
+        PaymentIntentTypeSpecificPaymentMethodOptionsClientVerificationMethod(rawValue: "instant")
+    public static let microdeposits =
+        PaymentIntentTypeSpecificPaymentMethodOptionsClientVerificationMethod(rawValue: "microdeposits")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -341,17 +421,23 @@ public struct PaymentIntentTypeSpecificPaymentMethodOptionsClientVerificationMet
 }
 
 /// Controls when the funds will be captured from the customer's account.
-public struct PaymentIntentTypeSpecificPaymentMethodOptionsClientCaptureMethod: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentIntentTypeSpecificPaymentMethodOptionsClientCaptureMethod: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let automaticDelayed = PaymentIntentTypeSpecificPaymentMethodOptionsClientCaptureMethod(rawValue: "automatic_delayed")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let automaticDelayed =
+        PaymentIntentTypeSpecificPaymentMethodOptionsClientCaptureMethod(rawValue: "automatic_delayed")
     public static let manual = PaymentIntentTypeSpecificPaymentMethodOptionsClientCaptureMethod(rawValue: "manual")
-    public static let manualPreferred = PaymentIntentTypeSpecificPaymentMethodOptionsClientCaptureMethod(rawValue: "manual_preferred")
+    public static let manualPreferred =
+        PaymentIntentTypeSpecificPaymentMethodOptionsClientCaptureMethod(rawValue: "manual_preferred")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

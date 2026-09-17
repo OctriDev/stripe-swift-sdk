@@ -7,36 +7,48 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1TerminalConfigurations operation model declarations
-extension PostTerminalConfigurationsRequestBodyWifiVariant0EnterpriseEapPeap {
-    public init(from decoder: Decoder) throws {
+/// Canonical v1TerminalConfigurations operation model declarations
+public extension PostTerminalConfigurationsRequestBodyWifiVariant0EnterpriseEapPeap {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.password) else {
-            throw SdkValidationError(field: "password", code: "required", message: "Validation failed for 'password': value is required")
+            throw SdkValidationError(
+                field: "password",
+                code: "required",
+                message: "Validation failed for 'password': value is required"
+            )
         }
         guard container.contains(.ssid) else {
-            throw SdkValidationError(field: "ssid", code: "required", message: "Validation failed for 'ssid': value is required")
+            throw SdkValidationError(
+                field: "ssid",
+                code: "required",
+                message: "Validation failed for 'ssid': value is required"
+            )
         }
         guard container.contains(.username) else {
-            throw SdkValidationError(field: "username", code: "required", message: "Validation failed for 'username': value is required")
+            throw SdkValidationError(
+                field: "username",
+                code: "required",
+                message: "Validation failed for 'username': value is required"
+            )
         }
-        self.password = try container.sdkDecodeRequired(.password)
-        self.ssid = try container.sdkDecodeRequired(.ssid)
-        self.username = try container.sdkDecodeRequired(.username)
-        self.caCertificateFile = try container.sdkDecodeIfPresent(.caCertificateFile)
-            try validateLength("password", self.password, min: nil, max: 5000)
-            try validateLength("ssid", self.ssid, min: nil, max: 5000)
-            try validateLength("username", self.username, min: nil, max: 5000)
+        password = try container.sdkDecodeRequired(.password)
+        ssid = try container.sdkDecodeRequired(.ssid)
+        username = try container.sdkDecodeRequired(.username)
+        caCertificateFile = try container.sdkDecodeIfPresent(.caCertificateFile)
+        try validateLength("password", password, min: nil, max: 5000)
+        try validateLength("ssid", ssid, min: nil, max: 5000)
+        try validateLength("username", username, min: nil, max: 5000)
     }
 }
 
-extension PostTerminalConfigurationsRequestBodyWifiVariant0EnterpriseEapPeap {
-    public init(password: String, ssid: String, username: String, caCertificateFile: String? = nil) throws {
+public extension PostTerminalConfigurationsRequestBodyWifiVariant0EnterpriseEapPeap {
+    init(password: String, ssid: String, username: String, caCertificateFile: String? = nil) throws {
         (self.password, self.ssid) = (password, ssid)
         (self.username, self.caCertificateFile) = (username, caCertificateFile)
-            try validateLength("password", self.password, min: nil, max: 5000)
-            try validateLength("ssid", self.ssid, min: nil, max: 5000)
-            try validateLength("username", self.username, min: nil, max: 5000)
+        try validateLength("password", self.password, min: nil, max: 5000)
+        try validateLength("ssid", self.ssid, min: nil, max: 5000)
+        try validateLength("username", self.username, min: nil, max: 5000)
     }
 }
 
@@ -52,21 +64,21 @@ public struct PostTerminalConfigurationsRequestBodyTippingVariant0Hkd: Codable {
     }
 
     init() {
-        (self.fixedAmounts, self.percentages, self.smartTipThreshold) = (nil, nil, nil)
+        (fixedAmounts, percentages, smartTipThreshold) = (nil, nil, nil)
     }
 }
 
-extension PostTerminalConfigurationsRequestBodyTippingVariant0Hkd {
-    public init(from decoder: Decoder) throws {
+public extension PostTerminalConfigurationsRequestBodyTippingVariant0Hkd {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.fixedAmounts = try container.sdkDecodeIfPresent(.fixedAmounts)
-        self.percentages = try container.sdkDecodeIfPresent(.percentages)
-        self.smartTipThreshold = try container.sdkDecodeIfPresent(.smartTipThreshold)
+        fixedAmounts = try container.sdkDecodeIfPresent(.fixedAmounts)
+        percentages = try container.sdkDecodeIfPresent(.percentages)
+        smartTipThreshold = try container.sdkDecodeIfPresent(.smartTipThreshold)
     }
 }
 
-extension PostTerminalConfigurationsRequestBodyTippingVariant0Hkd {
-    public init(fixedAmounts: [Int]? = nil, percentages: [Int]? = nil, smartTipThreshold: Int? = nil) {
+public extension PostTerminalConfigurationsRequestBodyTippingVariant0Hkd {
+    init(fixedAmounts: [Int]? = nil, percentages: [Int]? = nil, smartTipThreshold: Int? = nil) {
         self.init()
         (self.fixedAmounts, self.percentages) = (fixedAmounts, percentages)
         self.smartTipThreshold = smartTipThreshold
@@ -85,21 +97,21 @@ public struct PostTerminalConfigurationsRequestBodyTippingVariant0Myr: Codable {
     }
 
     init() {
-        (self.fixedAmounts, self.percentages, self.smartTipThreshold) = (nil, nil, nil)
+        (fixedAmounts, percentages, smartTipThreshold) = (nil, nil, nil)
     }
 }
 
-extension PostTerminalConfigurationsRequestBodyTippingVariant0Myr {
-    public init(from decoder: Decoder) throws {
+public extension PostTerminalConfigurationsRequestBodyTippingVariant0Myr {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.fixedAmounts = try container.sdkDecodeIfPresent(.fixedAmounts)
-        self.percentages = try container.sdkDecodeIfPresent(.percentages)
-        self.smartTipThreshold = try container.sdkDecodeIfPresent(.smartTipThreshold)
+        fixedAmounts = try container.sdkDecodeIfPresent(.fixedAmounts)
+        percentages = try container.sdkDecodeIfPresent(.percentages)
+        smartTipThreshold = try container.sdkDecodeIfPresent(.smartTipThreshold)
     }
 }
 
-extension PostTerminalConfigurationsRequestBodyTippingVariant0Myr {
-    public init(fixedAmounts: [Int]? = nil, percentages: [Int]? = nil, smartTipThreshold: Int? = nil) {
+public extension PostTerminalConfigurationsRequestBodyTippingVariant0Myr {
+    init(fixedAmounts: [Int]? = nil, percentages: [Int]? = nil, smartTipThreshold: Int? = nil) {
         self.init()
         (self.fixedAmounts, self.percentages) = (fixedAmounts, percentages)
         self.smartTipThreshold = smartTipThreshold
@@ -114,19 +126,19 @@ public struct PostTerminalConfigurationsConfigurationRequestBodyVerifoneUx700Var
     }
 
     init() {
-        self.splashscreen = nil
+        splashscreen = nil
     }
 }
 
-extension PostTerminalConfigurationsConfigurationRequestBodyVerifoneUx700Variant0 {
-    public init(from decoder: Decoder) throws {
+public extension PostTerminalConfigurationsConfigurationRequestBodyVerifoneUx700Variant0 {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.splashscreen = try container.sdkDecodeIfPresent(.splashscreen)
+        splashscreen = try container.sdkDecodeIfPresent(.splashscreen)
     }
 }
 
-extension PostTerminalConfigurationsConfigurationRequestBodyVerifoneUx700Variant0 {
-    public init(splashscreen: String? = nil) {
+public extension PostTerminalConfigurationsConfigurationRequestBodyVerifoneUx700Variant0 {
+    init(splashscreen: String? = nil) {
         self.init()
         self.splashscreen = splashscreen
     }
@@ -148,24 +160,35 @@ public struct PostTerminalConfigurationsConfigurationRequestBodyWifiVariant0: Co
         case personalPsk = "personal_psk"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension PostTerminalConfigurationsConfigurationRequestBodyWifiVariant0 {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
-        }
-        self.type = try container.sdkDecodeRequired(.type)
-        self.enterpriseEapPeap = try container.sdkDecodeIfPresent(.enterpriseEapPeap)
-        self.enterpriseEapTls = try container.sdkDecodeIfPresent(.enterpriseEapTls)
-        self.personalPsk = try container.sdkDecodeIfPresent(.personalPsk)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension PostTerminalConfigurationsConfigurationRequestBodyWifiVariant0 {
-    public init(type: PostTerminalConfigurationsConfigurationRequestBodyWifiVariant0Type, enterpriseEapPeap: PostTerminalConfigurationsConfigurationRequestBodyWifiVariantX09fc578d6b? = nil, enterpriseEapTls: PostTerminalConfigurationsConfigurationRequestBodyWifiVariantX5497559493? = nil, personalPsk: PostTerminalConfigurationsConfigurationRequestBodyWifiVariantXc892466cd5? = nil) {
+public extension PostTerminalConfigurationsConfigurationRequestBodyWifiVariant0 {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.type) else {
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
+        }
+        type = try container.sdkDecodeRequired(.type)
+        enterpriseEapPeap = try container.sdkDecodeIfPresent(.enterpriseEapPeap)
+        enterpriseEapTls = try container.sdkDecodeIfPresent(.enterpriseEapTls)
+        personalPsk = try container.sdkDecodeIfPresent(.personalPsk)
+    }
+}
+
+public extension PostTerminalConfigurationsConfigurationRequestBodyWifiVariant0 {
+    init(
+        type: PostTerminalConfigurationsConfigurationRequestBodyWifiVariant0Type,
+        enterpriseEapPeap: PostTerminalConfigurationsConfigurationRequestBodyWifiVariantX09fc578d6b? = nil,
+        enterpriseEapTls: PostTerminalConfigurationsConfigurationRequestBodyWifiVariantX5497559493? = nil,
+        personalPsk: PostTerminalConfigurationsConfigurationRequestBodyWifiVariantXc892466cd5? = nil
+    ) {
         (self.type, self.enterpriseEapPeap) = (type, enterpriseEapPeap)
         (self.enterpriseEapTls, self.personalPsk) = (enterpriseEapTls, personalPsk)
     }
@@ -180,19 +203,19 @@ public struct PostTerminalConfigurationsRequestBodyVerifoneV660p: Codable {
     }
 
     init() {
-        self.splashscreen = nil
+        splashscreen = nil
     }
 }
 
-extension PostTerminalConfigurationsRequestBodyVerifoneV660p {
-    public init(from decoder: Decoder) throws {
+public extension PostTerminalConfigurationsRequestBodyVerifoneV660p {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.splashscreen = try container.sdkDecodeIfPresent(.splashscreen)
+        splashscreen = try container.sdkDecodeIfPresent(.splashscreen)
     }
 }
 
-extension PostTerminalConfigurationsRequestBodyVerifoneV660p {
-    public init(splashscreen: String? = nil) {
+public extension PostTerminalConfigurationsRequestBodyVerifoneV660p {
+    init(splashscreen: String? = nil) {
         self.init()
         self.splashscreen = splashscreen
     }
@@ -215,39 +238,62 @@ public struct GetTerminalConfigurationsResponse: Codable {
         case url
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension GetTerminalConfigurationsResponse {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.data) else {
-            throw SdkValidationError(field: "data", code: "required", message: "Validation failed for 'data': value is required")
-        }
-        guard container.contains(.hasMore) else {
-            throw SdkValidationError(field: "has_more", code: "required", message: "Validation failed for 'has_more': value is required")
-        }
-        guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
-        }
-        guard container.contains(.url) else {
-            throw SdkValidationError(field: "url", code: "required", message: "Validation failed for 'url': value is required")
-        }
-        self.data = try container.sdkDecodeRequired(.data)
-        self.hasMore = try container.sdkDecodeRequired(.hasMore)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.url = try container.sdkDecodeRequired(.url)
-            try validateLength("url", self.url, min: nil, max: 5000)
-            try sdkValidatePattern("url", self.url, sdkPattern2c2e9ca9bad5)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension GetTerminalConfigurationsResponse {
-    public init(data: [TerminalConfiguration], hasMore: Bool, object: GetTerminalConfigurationsResponseObject, url: String) throws {
+public extension GetTerminalConfigurationsResponse {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.data) else {
+            throw SdkValidationError(
+                field: "data",
+                code: "required",
+                message: "Validation failed for 'data': value is required"
+            )
+        }
+        guard container.contains(.hasMore) else {
+            throw SdkValidationError(
+                field: "has_more",
+                code: "required",
+                message: "Validation failed for 'has_more': value is required"
+            )
+        }
+        guard container.contains(.object) else {
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
+        }
+        guard container.contains(.url) else {
+            throw SdkValidationError(
+                field: "url",
+                code: "required",
+                message: "Validation failed for 'url': value is required"
+            )
+        }
+        data = try container.sdkDecodeRequired(.data)
+        hasMore = try container.sdkDecodeRequired(.hasMore)
+        object = try container.sdkDecodeRequired(.object)
+        url = try container.sdkDecodeRequired(.url)
+        try validateLength("url", url, min: nil, max: 5000)
+        try sdkValidatePattern("url", url, sdkPattern2c2e9ca9bad5)
+    }
+}
+
+public extension GetTerminalConfigurationsResponse {
+    init(
+        data: [TerminalConfiguration],
+        hasMore: Bool,
+        object: GetTerminalConfigurationsResponseObject,
+        url: String
+    ) throws {
         (self.data, self.hasMore) = (data, hasMore)
         (self.object, self.url) = (object, url)
-            try validateLength("url", self.url, min: nil, max: 5000)
-            try sdkValidatePattern("url", self.url, sdkPattern2c2e9ca9bad5)
+        try validateLength("url", self.url, min: nil, max: 5000)
+        try sdkValidatePattern("url", self.url, sdkPattern2c2e9ca9bad5)
     }
 }
 
@@ -259,19 +305,19 @@ public struct PostTerminalConfigurationsConfigurationRequestBodyStripeS710Varian
     }
 
     init() {
-        self.splashscreen = nil
+        splashscreen = nil
     }
 }
 
-extension PostTerminalConfigurationsConfigurationRequestBodyStripeS710Variant0 {
-    public init(from decoder: Decoder) throws {
+public extension PostTerminalConfigurationsConfigurationRequestBodyStripeS710Variant0 {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.splashscreen = try container.sdkDecodeIfPresent(.splashscreen)
+        splashscreen = try container.sdkDecodeIfPresent(.splashscreen)
     }
 }
 
-extension PostTerminalConfigurationsConfigurationRequestBodyStripeS710Variant0 {
-    public init(splashscreen: String? = nil) {
+public extension PostTerminalConfigurationsConfigurationRequestBodyStripeS710Variant0 {
+    init(splashscreen: String? = nil) {
         self.init()
         self.splashscreen = splashscreen
     }
@@ -289,21 +335,21 @@ public struct PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0A
     }
 
     init() {
-        (self.fixedAmounts, self.percentages, self.smartTipThreshold) = (nil, nil, nil)
+        (fixedAmounts, percentages, smartTipThreshold) = (nil, nil, nil)
     }
 }
 
-extension PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Aed {
-    public init(from decoder: Decoder) throws {
+public extension PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Aed {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.fixedAmounts = try container.sdkDecodeIfPresent(.fixedAmounts)
-        self.percentages = try container.sdkDecodeIfPresent(.percentages)
-        self.smartTipThreshold = try container.sdkDecodeIfPresent(.smartTipThreshold)
+        fixedAmounts = try container.sdkDecodeIfPresent(.fixedAmounts)
+        percentages = try container.sdkDecodeIfPresent(.percentages)
+        smartTipThreshold = try container.sdkDecodeIfPresent(.smartTipThreshold)
     }
 }
 
-extension PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Aed {
-    public init(fixedAmounts: [Int]? = nil, percentages: [Int]? = nil, smartTipThreshold: Int? = nil) {
+public extension PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Aed {
+    init(fixedAmounts: [Int]? = nil, percentages: [Int]? = nil, smartTipThreshold: Int? = nil) {
         self.init()
         (self.fixedAmounts, self.percentages) = (fixedAmounts, percentages)
         self.smartTipThreshold = smartTipThreshold
@@ -322,21 +368,21 @@ public struct PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0G
     }
 
     init() {
-        (self.fixedAmounts, self.percentages, self.smartTipThreshold) = (nil, nil, nil)
+        (fixedAmounts, percentages, smartTipThreshold) = (nil, nil, nil)
     }
 }
 
-extension PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Gbp {
-    public init(from decoder: Decoder) throws {
+public extension PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Gbp {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.fixedAmounts = try container.sdkDecodeIfPresent(.fixedAmounts)
-        self.percentages = try container.sdkDecodeIfPresent(.percentages)
-        self.smartTipThreshold = try container.sdkDecodeIfPresent(.smartTipThreshold)
+        fixedAmounts = try container.sdkDecodeIfPresent(.fixedAmounts)
+        percentages = try container.sdkDecodeIfPresent(.percentages)
+        smartTipThreshold = try container.sdkDecodeIfPresent(.smartTipThreshold)
     }
 }
 
-extension PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Gbp {
-    public init(fixedAmounts: [Int]? = nil, percentages: [Int]? = nil, smartTipThreshold: Int? = nil) {
+public extension PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Gbp {
+    init(fixedAmounts: [Int]? = nil, percentages: [Int]? = nil, smartTipThreshold: Int? = nil) {
         self.init()
         (self.fixedAmounts, self.percentages) = (fixedAmounts, percentages)
         self.smartTipThreshold = smartTipThreshold
@@ -351,35 +397,43 @@ public enum PostTerminalConfigurationsConfigurationRequestBodyVerifoneP400 {
 }
 
 extension PostTerminalConfigurationsConfigurationRequestBodyVerifoneP400: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostTerminalConfigurationsConfigurationRequestBodyVerifoneP400")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PostTerminalConfigurationsConfigurationRequestBodyVerifoneP400"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PostTerminalConfigurationsConfigurationRequestBodyVerifoneP400Variant0.self
         ) {
-            return             .postTerminalConfigurationsConfigurationRequestBodyVerifoneP400Variant0(value)
+            return .postTerminalConfigurationsConfigurationRequestBodyVerifoneP400Variant0(value)
         }
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .postTerminalConfigurationsConfigurationRequestBodyVerifoneP400Variant0(value): try container.encode(value); return true
+        case let .postTerminalConfigurationsConfigurationRequestBodyVerifoneP400Variant0(value): try container
+            .encode(value); return true
         case let .stringValue(value): try container.encode(value); return true
         }
     }
-
 }
 
 public struct PostTerminalConfigurationsRequestBodyWifiVariant0PersonalPsk: Codable {
@@ -391,30 +445,40 @@ public struct PostTerminalConfigurationsRequestBodyWifiVariant0PersonalPsk: Coda
         case ssid
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension PostTerminalConfigurationsRequestBodyWifiVariant0PersonalPsk {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.password) else {
-            throw SdkValidationError(field: "password", code: "required", message: "Validation failed for 'password': value is required")
-        }
-        guard container.contains(.ssid) else {
-            throw SdkValidationError(field: "ssid", code: "required", message: "Validation failed for 'ssid': value is required")
-        }
-        self.password = try container.sdkDecodeRequired(.password)
-        self.ssid = try container.sdkDecodeRequired(.ssid)
-            try validateLength("password", self.password, min: nil, max: 63)
-            try validateLength("ssid", self.ssid, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension PostTerminalConfigurationsRequestBodyWifiVariant0PersonalPsk {
-    public init(password: String, ssid: String) throws {
+public extension PostTerminalConfigurationsRequestBodyWifiVariant0PersonalPsk {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.password) else {
+            throw SdkValidationError(
+                field: "password",
+                code: "required",
+                message: "Validation failed for 'password': value is required"
+            )
+        }
+        guard container.contains(.ssid) else {
+            throw SdkValidationError(
+                field: "ssid",
+                code: "required",
+                message: "Validation failed for 'ssid': value is required"
+            )
+        }
+        password = try container.sdkDecodeRequired(.password)
+        ssid = try container.sdkDecodeRequired(.ssid)
+        try validateLength("password", password, min: nil, max: 63)
+        try validateLength("ssid", ssid, min: nil, max: 5000)
+    }
+}
+
+public extension PostTerminalConfigurationsRequestBodyWifiVariant0PersonalPsk {
+    init(password: String, ssid: String) throws {
         (self.password, self.ssid) = (password, ssid)
-            try validateLength("password", self.password, min: nil, max: 63)
-            try validateLength("ssid", self.ssid, min: nil, max: 5000)
+        try validateLength("password", self.password, min: nil, max: 63)
+        try validateLength("ssid", self.ssid, min: nil, max: 5000)
     }
 }
 
@@ -430,21 +494,21 @@ public struct PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0G
     }
 
     init() {
-        (self.fixedAmounts, self.percentages, self.smartTipThreshold) = (nil, nil, nil)
+        (fixedAmounts, percentages, smartTipThreshold) = (nil, nil, nil)
     }
 }
 
-extension PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Gip {
-    public init(from decoder: Decoder) throws {
+public extension PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Gip {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.fixedAmounts = try container.sdkDecodeIfPresent(.fixedAmounts)
-        self.percentages = try container.sdkDecodeIfPresent(.percentages)
-        self.smartTipThreshold = try container.sdkDecodeIfPresent(.smartTipThreshold)
+        fixedAmounts = try container.sdkDecodeIfPresent(.fixedAmounts)
+        percentages = try container.sdkDecodeIfPresent(.percentages)
+        smartTipThreshold = try container.sdkDecodeIfPresent(.smartTipThreshold)
     }
 }
 
-extension PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Gip {
-    public init(fixedAmounts: [Int]? = nil, percentages: [Int]? = nil, smartTipThreshold: Int? = nil) {
+public extension PostTerminalConfigurationsConfigurationRequestBodyTippingVariant0Gip {
+    init(fixedAmounts: [Int]? = nil, percentages: [Int]? = nil, smartTipThreshold: Int? = nil) {
         self.init()
         (self.fixedAmounts, self.percentages) = (fixedAmounts, percentages)
         self.smartTipThreshold = smartTipThreshold
@@ -464,38 +528,52 @@ public struct PostTerminalConfigurationsConfigurationRequestBodyWifiVariantX09fc
         case caCertificateFile = "ca_certificate_file"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension PostTerminalConfigurationsConfigurationRequestBodyWifiVariantX09fc578d6b {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.password) else {
-            throw SdkValidationError(field: "password", code: "required", message: "Validation failed for 'password': value is required")
-        }
-        guard container.contains(.ssid) else {
-            throw SdkValidationError(field: "ssid", code: "required", message: "Validation failed for 'ssid': value is required")
-        }
-        guard container.contains(.username) else {
-            throw SdkValidationError(field: "username", code: "required", message: "Validation failed for 'username': value is required")
-        }
-        self.password = try container.sdkDecodeRequired(.password)
-        self.ssid = try container.sdkDecodeRequired(.ssid)
-        self.username = try container.sdkDecodeRequired(.username)
-        self.caCertificateFile = try container.sdkDecodeIfPresent(.caCertificateFile)
-            try validateLength("password", self.password, min: nil, max: 5000)
-            try validateLength("ssid", self.ssid, min: nil, max: 5000)
-            try validateLength("username", self.username, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension PostTerminalConfigurationsConfigurationRequestBodyWifiVariantX09fc578d6b {
-    public init(password: String, ssid: String, username: String, caCertificateFile: String? = nil) throws {
+public extension PostTerminalConfigurationsConfigurationRequestBodyWifiVariantX09fc578d6b {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.password) else {
+            throw SdkValidationError(
+                field: "password",
+                code: "required",
+                message: "Validation failed for 'password': value is required"
+            )
+        }
+        guard container.contains(.ssid) else {
+            throw SdkValidationError(
+                field: "ssid",
+                code: "required",
+                message: "Validation failed for 'ssid': value is required"
+            )
+        }
+        guard container.contains(.username) else {
+            throw SdkValidationError(
+                field: "username",
+                code: "required",
+                message: "Validation failed for 'username': value is required"
+            )
+        }
+        password = try container.sdkDecodeRequired(.password)
+        ssid = try container.sdkDecodeRequired(.ssid)
+        username = try container.sdkDecodeRequired(.username)
+        caCertificateFile = try container.sdkDecodeIfPresent(.caCertificateFile)
+        try validateLength("password", password, min: nil, max: 5000)
+        try validateLength("ssid", ssid, min: nil, max: 5000)
+        try validateLength("username", username, min: nil, max: 5000)
+    }
+}
+
+public extension PostTerminalConfigurationsConfigurationRequestBodyWifiVariantX09fc578d6b {
+    init(password: String, ssid: String, username: String, caCertificateFile: String? = nil) throws {
         (self.password, self.ssid) = (password, ssid)
         (self.username, self.caCertificateFile) = (username, caCertificateFile)
-            try validateLength("password", self.password, min: nil, max: 5000)
-            try validateLength("ssid", self.ssid, min: nil, max: 5000)
-            try validateLength("username", self.username, min: nil, max: 5000)
+        try validateLength("password", self.password, min: nil, max: 5000)
+        try validateLength("ssid", self.ssid, min: nil, max: 5000)
+        try validateLength("username", self.username, min: nil, max: 5000)
     }
 }
 
@@ -511,21 +589,21 @@ public struct PostTerminalConfigurationsRequestBodyTippingVariant0Mxn: Codable {
     }
 
     init() {
-        (self.fixedAmounts, self.percentages, self.smartTipThreshold) = (nil, nil, nil)
+        (fixedAmounts, percentages, smartTipThreshold) = (nil, nil, nil)
     }
 }
 
-extension PostTerminalConfigurationsRequestBodyTippingVariant0Mxn {
-    public init(from decoder: Decoder) throws {
+public extension PostTerminalConfigurationsRequestBodyTippingVariant0Mxn {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.fixedAmounts = try container.sdkDecodeIfPresent(.fixedAmounts)
-        self.percentages = try container.sdkDecodeIfPresent(.percentages)
-        self.smartTipThreshold = try container.sdkDecodeIfPresent(.smartTipThreshold)
+        fixedAmounts = try container.sdkDecodeIfPresent(.fixedAmounts)
+        percentages = try container.sdkDecodeIfPresent(.percentages)
+        smartTipThreshold = try container.sdkDecodeIfPresent(.smartTipThreshold)
     }
 }
 
-extension PostTerminalConfigurationsRequestBodyTippingVariant0Mxn {
-    public init(fixedAmounts: [Int]? = nil, percentages: [Int]? = nil, smartTipThreshold: Int? = nil) {
+public extension PostTerminalConfigurationsRequestBodyTippingVariant0Mxn {
+    init(fixedAmounts: [Int]? = nil, percentages: [Int]? = nil, smartTipThreshold: Int? = nil) {
         self.init()
         (self.fixedAmounts, self.percentages) = (fixedAmounts, percentages)
         self.smartTipThreshold = smartTipThreshold
@@ -541,19 +619,19 @@ public struct PostTerminalConfigurationsRequestBodyVerifoneP400: Codable {
     }
 
     init() {
-        self.splashscreen = nil
+        splashscreen = nil
     }
 }
 
-extension PostTerminalConfigurationsRequestBodyVerifoneP400 {
-    public init(from decoder: Decoder) throws {
+public extension PostTerminalConfigurationsRequestBodyVerifoneP400 {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.splashscreen = try container.sdkDecodeIfPresent(.splashscreen)
+        splashscreen = try container.sdkDecodeIfPresent(.splashscreen)
     }
 }
 
-extension PostTerminalConfigurationsRequestBodyVerifoneP400 {
-    public init(splashscreen: String? = nil) {
+public extension PostTerminalConfigurationsRequestBodyVerifoneP400 {
+    init(splashscreen: String? = nil) {
         self.init()
         self.splashscreen = splashscreen
     }

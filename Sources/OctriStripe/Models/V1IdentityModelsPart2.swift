@@ -3,12 +3,15 @@
 
 import Foundation
 
-// V1Identity domain models
+/// V1Identity domain models
 /// Status of this VerificationSession. Learn more about the lifecycle of sessions.
 public struct IdentityVerificationSessionStatus: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let canceled = IdentityVerificationSessionStatus(rawValue: "canceled")
     public static let processing = IdentityVerificationSessionStatus(rawValue: "processing")
     public static let requiresInput = IdentityVerificationSessionStatus(rawValue: "requires_input")
@@ -16,7 +19,7 @@ public struct IdentityVerificationSessionStatus: RawRepresentable, Hashable, Cod
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -29,12 +32,16 @@ public struct IdentityVerificationSessionStatus: RawRepresentable, Hashable, Cod
 public struct IdentityVerificationSessionObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let identityVerificationSession = IdentityVerificationSessionObject(rawValue: "identity.verification_session")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let identityVerificationSession =
+        IdentityVerificationSessionObject(rawValue: "identity.verification_session")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -47,14 +54,17 @@ public struct IdentityVerificationSessionObject: RawRepresentable, Hashable, Cod
 public struct IdentityVerificationReportType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let document = IdentityVerificationReportType(rawValue: "document")
     public static let idNumber = IdentityVerificationReportType(rawValue: "id_number")
     public static let verificationFlow = IdentityVerificationReportType(rawValue: "verification_flow")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -67,14 +77,17 @@ public struct IdentityVerificationReportType: RawRepresentable, Hashable, Codabl
 public struct IdentityVerificationSessionType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let document = IdentityVerificationSessionType(rawValue: "document")
     public static let idNumber = IdentityVerificationSessionType(rawValue: "id_number")
     public static let verificationFlow = IdentityVerificationSessionType(rawValue: "verification_flow")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

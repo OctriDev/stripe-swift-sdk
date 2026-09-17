@@ -6,8 +6,9 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1CouponsMethods {
-    /// Lists coupons available to your account. Filter results by creation time and use `starting_after` or `ending_before` to navigate the paginated collection; set `limit` to control the page size.
+public extension V1CouponsMethods {
+    /// Lists coupons available to your account. Filter results by creation time and use `starting_after` or
+    /// `ending_before` to navigate the paginated collection; set `limit` to control the page size.
     ///
     /// Returns a list of your coupons.
     ///
@@ -28,16 +29,23 @@ extension V1CouponsMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    public static func getCoupons(config: ClientConfig, created: GetCouponsParameter?, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetCouponsResponse {
-        if let endingBefore = endingBefore {
+    static func getCoupons(
+        config: ClientConfig,
+        created: GetCouponsParameter?,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        startingAfter: String?
+    ) async throws -> GetCouponsResponse {
+        if let endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let startingAfter = startingAfter {
+        if let startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try (await sdkRequest("GET", "/v1/coupons", config: config, query: [
+        return try await (sdkRequest("GET", "/v1/coupons", config: config, query: [
             SdkQueryParameter("created", value: created),
             SdkQueryParameter("ending_before", value: endingBefore),
             SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),

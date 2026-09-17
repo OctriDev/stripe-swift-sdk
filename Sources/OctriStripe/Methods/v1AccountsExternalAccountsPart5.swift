@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1AccountsExternalAccountsMethods {
-    public struct PostAccountsAccountExternalAccountsIdOptions: Codable {
+public extension V1AccountsExternalAccountsMethods {
+    struct PostAccountsAccountExternalAccountsIdOptions: Codable {
         public var account: String
         public var id: String
         public var accountHolderName: String?
@@ -33,9 +33,15 @@ extension V1AccountsExternalAccountsMethods {
         }
     }
 
-    /// Updates a bank account belonging to a connected account. Use the body to change editable account metadata, holder details, address information, or the default currency account; submit no changes to re-enable a disabled bank account. Updates are available when the account's requirement collection is set to application.
+    /// Updates a bank account belonging to a connected account. Use the body to change editable account metadata,
+    /// holder details, address information, or the default currency account; submit no changes to re-enable a disabled
+    /// bank account. Updates are available when the account's requirement collection is set to application.
     ///
-    /// Updates the metadata, account holder name, account holder type of a bank account belonging to a connected account and optionally sets it as the default for its currency. Other bank account details are not editable by design. You can only update bank accounts when account.controller.requirement_collection is application , which includes Custom accounts. You can re-enable a disabled bank account by performing an update call without providing any arguments or changes.
+    /// Updates the metadata, account holder name, account holder type of a bank account belonging to a connected
+    /// account and optionally sets it as the default for its currency. Other bank account details are not editable by
+    /// design. You can only update bank accounts when account.controller.requirement_collection is application , which
+    /// includes Custom accounts. You can re-enable a disabled bank account by performing an update call without
+    /// providing any arguments or changes.
     ///
     /// - Parameters:
     /// - accountHolderName: The name of the person or business that owns the bank
@@ -63,7 +69,10 @@ extension V1AccountsExternalAccountsMethods {
     ///   unset by posting an empty value to them. All keys can be unset by posting an
     ///   empty value to `metadata`.
     /// - name: Cardholder name.
-    public static func postAccountsAccountExternalAccountsId(config: ClientConfig, options: PostAccountsAccountExternalAccountsIdOptions) async throws -> ExternalAccount {
+    static func postAccountsAccountExternalAccountsId(
+        config: ClientConfig,
+        options: PostAccountsAccountExternalAccountsIdOptions
+    ) async throws -> ExternalAccount {
         try validateLength("account", options.account, max: 5000)
 
         if let accountHolderName = options.accountHolderName {
@@ -116,6 +125,19 @@ extension V1AccountsExternalAccountsMethods {
 
         let requestBody = PostAccountsAccountExternalAccountsIdRequestBody(options: options)
 
-        return try (await sdkRequest("POST", ["/v1/accounts/", sdkEncodePathSegment(sdkWireString(options.account)), "/external_accounts/", sdkEncodePathSegment(sdkWireString(options.id))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostAccountsAccountExternalAccountsId")).data
+        return try await (sdkRequest(
+            "POST",
+            [
+                "/v1/accounts/",
+                sdkEncodePathSegment(sdkWireString(options.account)),
+                "/external_accounts/",
+                sdkEncodePathSegment(sdkWireString(options.id)),
+            ].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostAccountsAccountExternalAccountsId"
+        )).data
     }
 }

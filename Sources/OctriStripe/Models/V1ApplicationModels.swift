@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1Application domain models
+/// V1Application domain models
 /// Typed representation of the `Application` API schema.
 public struct Application: Codable {
     /// Unique identifier for the object.
@@ -19,33 +19,43 @@ public struct Application: Codable {
         case name
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension Application {
-    public init(from decoder: Decoder) throws {
+public extension Application {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.id) else {
-            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
+            throw SdkValidationError(
+                field: "id",
+                code: "required",
+                message: "Validation failed for 'id': value is required"
+            )
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
         }
-        self.id = try container.sdkDecodeRequired(.id)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.name = try container.sdkDecodeIfPresent(.name)
-            try validateLength("id", self.id, min: nil, max: 5000)
-        if let value = self.name {
+        id = try container.sdkDecodeRequired(.id)
+        object = try container.sdkDecodeRequired(.object)
+        name = try container.sdkDecodeIfPresent(.name)
+        try validateLength("id", id, min: nil, max: 5000)
+        if let value = name {
             try validateLength("name", value, min: nil, max: 5000)
         }
     }
 }
 
-extension Application {
-    public init(id: String, object: ApplicationObject, name: String? = nil) throws {
+public extension Application {
+    init(id: String, object: ApplicationObject, name: String? = nil) throws {
         (self.id, self.object) = (id, object)
         self.name = name
-            try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
         if let value = self.name {
             try validateLength("name", value, min: nil, max: 5000)
         }
@@ -56,12 +66,15 @@ extension Application {
 public struct ApplicationObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let application = ApplicationObject(rawValue: "application")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

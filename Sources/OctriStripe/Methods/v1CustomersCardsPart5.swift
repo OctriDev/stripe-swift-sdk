@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1CustomersCardsMethods {
-    public struct PostCustomersCustomerCardsIdOptions: Codable {
+public extension V1CustomersCardsMethods {
+    struct PostCustomersCustomerCardsIdOptions: Codable {
         public var customer: String
         public var id: String
         public var accountHolderName: String?
@@ -31,7 +31,9 @@ extension V1CustomersCardsMethods {
         }
     }
 
-    /// Updates a card or other payment source stored on a customer. Send only the payment-source fields you want to change, such as billing address, expiration details, cardholder information, or metadata. The response contains the updated payment source, which may be a card, bank account, or other source type.
+    /// Updates a card or other payment source stored on a customer. Send only the payment-source fields you want to
+    /// change, such as billing address, expiration details, cardholder information, or metadata. The response contains
+    /// the updated payment source, which may be a card, bank account, or other source type.
     ///
     /// Update a specified source for a given customer.
     ///
@@ -55,7 +57,10 @@ extension V1CustomersCardsMethods {
     ///   unset by posting an empty value to them. All keys can be unset by posting an
     ///   empty value to `metadata`.
     /// - name: Cardholder name.
-    public static func postCustomersCustomerCardsId(config: ClientConfig, options: PostCustomersCustomerCardsIdOptions) async throws -> PostCustomersCustomerCardsIdResponse {
+    static func postCustomersCustomerCardsId(
+        config: ClientConfig,
+        options: PostCustomersCustomerCardsIdOptions
+    ) async throws -> PostCustomersCustomerCardsIdResponse {
         try validateLength("customer", options.customer, max: 5000)
 
         try validateLength("id", options.id, max: 5000)
@@ -106,6 +111,19 @@ extension V1CustomersCardsMethods {
 
         let requestBody = PostCustomersCustomerCardsIdRequestBody(options: options)
 
-        return try (await sdkRequest("POST", ["/v1/customers/", sdkEncodePathSegment(sdkWireString(options.customer)), "/cards/", sdkEncodePathSegment(sdkWireString(options.id))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostCustomersCustomerCardsId")).data
+        return try await (sdkRequest(
+            "POST",
+            [
+                "/v1/customers/",
+                sdkEncodePathSegment(sdkWireString(options.customer)),
+                "/cards/",
+                sdkEncodePathSegment(sdkWireString(options.id)),
+            ].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostCustomersCustomerCardsId"
+        )).data
     }
 }

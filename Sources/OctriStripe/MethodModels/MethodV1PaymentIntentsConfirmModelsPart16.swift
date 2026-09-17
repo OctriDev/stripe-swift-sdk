@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1PaymentIntentsConfirm operation model declarations
+/// Canonical v1PaymentIntentsConfirm operation model declarations
 /// If provided, this hash will be used to create a PaymentMethod. The new PaymentMethod will appear in the
 /// payment_method property on the PaymentIntent.
 public struct PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodData: Codable {
@@ -189,76 +189,138 @@ public struct PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodData: Codab
         case zip
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodData {
-    public init(from decoder: Decoder) throws {
+public extension PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodData {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.type = try container.sdkDecodeRequired(.type)
-        self.acssDebit = try container.sdkDecodeIfPresent(.acssDebit)
-        self.affirm = try container.sdkDecodeIfPresent(.affirm)
-        self.afterpayClearpay = try container.sdkDecodeIfPresent(.afterpayClearpay)
-        self.alipay = try container.sdkDecodeIfPresent(.alipay)
-        self.allowRedisplay = try container.sdkDecodeIfPresent(.allowRedisplay)
-        self.alma = try container.sdkDecodeIfPresent(.alma)
-        self.amazonPay = try container.sdkDecodeIfPresent(.amazonPay)
-        self.auBecsDebit = try container.sdkDecodeIfPresent(.auBecsDebit)
-        self.bacsDebit = try container.sdkDecodeIfPresent(.bacsDebit)
-        self.bancontact = try container.sdkDecodeIfPresent(.bancontact)
-        self.billie = try container.sdkDecodeIfPresent(.billie)
-        self.billingDetails = try container.sdkDecodeIfPresent(.billingDetails)
-        self.bizum = try container.sdkDecodeIfPresent(.bizum)
-        self.blik = try container.sdkDecodeIfPresent(.blik)
-        self.boleto = try container.sdkDecodeIfPresent(.boleto)
-        self.cashapp = try container.sdkDecodeIfPresent(.cashapp)
-        self.crypto = try container.sdkDecodeIfPresent(.crypto)
-        self.customerBalance = try container.sdkDecodeIfPresent(.customerBalance)
-        self.eps = try container.sdkDecodeIfPresent(.eps)
-        self.fpx = try container.sdkDecodeIfPresent(.fpx)
-        self.giropay = try container.sdkDecodeIfPresent(.giropay)
-        self.grabpay = try container.sdkDecodeIfPresent(.grabpay)
-        self.ideal = try container.sdkDecodeIfPresent(.ideal)
-        self.interacPresent = try container.sdkDecodeIfPresent(.interacPresent)
-        self.kakaoPay = try container.sdkDecodeIfPresent(.kakaoPay)
-        self.klarna = try container.sdkDecodeIfPresent(.klarna)
-        self.konbini = try container.sdkDecodeIfPresent(.konbini)
-        self.krCard = try container.sdkDecodeIfPresent(.krCard)
-        self.link = try container.sdkDecodeIfPresent(.link)
-        self.mbWay = try container.sdkDecodeIfPresent(.mbWay)
-        self.metadata = try container.sdkDecodeIfPresent(.metadata)
-        self.mobilepay = try container.sdkDecodeIfPresent(.mobilepay)
-        self.multibanco = try container.sdkDecodeIfPresent(.multibanco)
-        self.naverPay = try container.sdkDecodeIfPresent(.naverPay)
-        self.nzBankAccount = try container.sdkDecodeIfPresent(.nzBankAccount)
-        self.oxxo = try container.sdkDecodeIfPresent(.oxxo)
-        self.p24 = try container.sdkDecodeIfPresent(.p24)
-        self.payByBank = try container.sdkDecodeIfPresent(.payByBank)
-        self.payco = try container.sdkDecodeIfPresent(.payco)
-        self.paynow = try container.sdkDecodeIfPresent(.paynow)
-        self.paypal = try container.sdkDecodeIfPresent(.paypal)
-        self.payto = try container.sdkDecodeIfPresent(.payto)
-        self.pix = try container.sdkDecodeIfPresent(.pix)
-        self.promptpay = try container.sdkDecodeIfPresent(.promptpay)
-        self.radarOptions = try container.sdkDecodeIfPresent(.radarOptions)
-        self.revolutPay = try container.sdkDecodeIfPresent(.revolutPay)
-        self.samsungPay = try container.sdkDecodeIfPresent(.samsungPay)
-        self.satispay = try container.sdkDecodeIfPresent(.satispay)
-        self.scalapay = try container.sdkDecodeIfPresent(.scalapay)
-        self.sepaDebit = try container.sdkDecodeIfPresent(.sepaDebit)
-        self.sofort = try container.sdkDecodeIfPresent(.sofort)
-        self.sunbit = try container.sdkDecodeIfPresent(.sunbit)
-        self.swish = try container.sdkDecodeIfPresent(.swish)
-        self.twint = try container.sdkDecodeIfPresent(.twint)
-        self.upi = try container.sdkDecodeIfPresent(.upi)
-        self.usBankAccount = try container.sdkDecodeIfPresent(.usBankAccount)
-        self.wechatPay = try container.sdkDecodeIfPresent(.wechatPay)
+        type = try container.sdkDecodeRequired(.type)
+        acssDebit = try container.sdkDecodeIfPresent(.acssDebit)
+        affirm = try container.sdkDecodeIfPresent(.affirm)
+        afterpayClearpay = try container.sdkDecodeIfPresent(.afterpayClearpay)
+        alipay = try container.sdkDecodeIfPresent(.alipay)
+        allowRedisplay = try container.sdkDecodeIfPresent(.allowRedisplay)
+        alma = try container.sdkDecodeIfPresent(.alma)
+        amazonPay = try container.sdkDecodeIfPresent(.amazonPay)
+        auBecsDebit = try container.sdkDecodeIfPresent(.auBecsDebit)
+        bacsDebit = try container.sdkDecodeIfPresent(.bacsDebit)
+        bancontact = try container.sdkDecodeIfPresent(.bancontact)
+        billie = try container.sdkDecodeIfPresent(.billie)
+        billingDetails = try container.sdkDecodeIfPresent(.billingDetails)
+        bizum = try container.sdkDecodeIfPresent(.bizum)
+        blik = try container.sdkDecodeIfPresent(.blik)
+        boleto = try container.sdkDecodeIfPresent(.boleto)
+        cashapp = try container.sdkDecodeIfPresent(.cashapp)
+        crypto = try container.sdkDecodeIfPresent(.crypto)
+        customerBalance = try container.sdkDecodeIfPresent(.customerBalance)
+        eps = try container.sdkDecodeIfPresent(.eps)
+        fpx = try container.sdkDecodeIfPresent(.fpx)
+        giropay = try container.sdkDecodeIfPresent(.giropay)
+        grabpay = try container.sdkDecodeIfPresent(.grabpay)
+        ideal = try container.sdkDecodeIfPresent(.ideal)
+        interacPresent = try container.sdkDecodeIfPresent(.interacPresent)
+        kakaoPay = try container.sdkDecodeIfPresent(.kakaoPay)
+        klarna = try container.sdkDecodeIfPresent(.klarna)
+        konbini = try container.sdkDecodeIfPresent(.konbini)
+        krCard = try container.sdkDecodeIfPresent(.krCard)
+        link = try container.sdkDecodeIfPresent(.link)
+        mbWay = try container.sdkDecodeIfPresent(.mbWay)
+        metadata = try container.sdkDecodeIfPresent(.metadata)
+        mobilepay = try container.sdkDecodeIfPresent(.mobilepay)
+        multibanco = try container.sdkDecodeIfPresent(.multibanco)
+        naverPay = try container.sdkDecodeIfPresent(.naverPay)
+        nzBankAccount = try container.sdkDecodeIfPresent(.nzBankAccount)
+        oxxo = try container.sdkDecodeIfPresent(.oxxo)
+        p24 = try container.sdkDecodeIfPresent(.p24)
+        payByBank = try container.sdkDecodeIfPresent(.payByBank)
+        payco = try container.sdkDecodeIfPresent(.payco)
+        paynow = try container.sdkDecodeIfPresent(.paynow)
+        paypal = try container.sdkDecodeIfPresent(.paypal)
+        payto = try container.sdkDecodeIfPresent(.payto)
+        pix = try container.sdkDecodeIfPresent(.pix)
+        promptpay = try container.sdkDecodeIfPresent(.promptpay)
+        radarOptions = try container.sdkDecodeIfPresent(.radarOptions)
+        revolutPay = try container.sdkDecodeIfPresent(.revolutPay)
+        samsungPay = try container.sdkDecodeIfPresent(.samsungPay)
+        satispay = try container.sdkDecodeIfPresent(.satispay)
+        scalapay = try container.sdkDecodeIfPresent(.scalapay)
+        sepaDebit = try container.sdkDecodeIfPresent(.sepaDebit)
+        sofort = try container.sdkDecodeIfPresent(.sofort)
+        sunbit = try container.sdkDecodeIfPresent(.sunbit)
+        swish = try container.sdkDecodeIfPresent(.swish)
+        twint = try container.sdkDecodeIfPresent(.twint)
+        upi = try container.sdkDecodeIfPresent(.upi)
+        usBankAccount = try container.sdkDecodeIfPresent(.usBankAccount)
+        wechatPay = try container.sdkDecodeIfPresent(.wechatPay)
         self.zip = try container.sdkDecodeIfPresent(.zip)
     }
 }
 
-extension PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodData {
-    public init(type: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataType, acssDebit: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataAcssDebit? = nil, affirm: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataAffirm? = nil, afterpayClearpay: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataAfX2a9343d33e? = nil, alipay: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataAlipay? = nil, allowRedisplay: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataAlXe622f7ccee? = nil, alma: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataAlma? = nil, amazonPay: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataAmazonPay? = nil, auBecsDebit: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataAuBecsDebit? = nil, bacsDebit: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataBacsDebit? = nil, bancontact: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataBancontact? = nil, billie: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataBillie? = nil, billingDetails: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataBiXbcd34df347? = nil, bizum: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataBizum? = nil, blik: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataBlik? = nil, boleto: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataBoleto? = nil, cashapp: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataCashapp? = nil, crypto: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataCrypto? = nil, customerBalance: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataCuXc0e705a334? = nil, eps: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataEps? = nil, fpx: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataFpx? = nil, giropay: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataGiropay? = nil, grabpay: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataGrabpay? = nil, ideal: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataIdeal? = nil, interacPresent: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataInX63a1d19d8a? = nil, kakaoPay: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataKakaoPay? = nil, klarna: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataKlarna? = nil, konbini: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataKonbini? = nil, krCard: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataKrCard? = nil, link: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataLink? = nil, mbWay: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataMbWay? = nil, metadata: [String: String]? = nil, mobilepay: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataMobilepay? = nil, multibanco: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataMultibanco? = nil, naverPay: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataNaverPay? = nil, nzBankAccount: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataNzBankAccount? = nil, oxxo: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataOxxo? = nil, p24: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataP24? = nil, payByBank: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataPayByBank? = nil, payco: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataPayco? = nil, paynow: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataPaynow? = nil, paypal: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataPaypal? = nil, payto: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataPayto? = nil, pix: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataPix? = nil, promptpay: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataPromptpay? = nil, radarOptions: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataRadarOptions? = nil, revolutPay: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataRevolutPay? = nil, samsungPay: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataSamsungPay? = nil, satispay: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataSatispay? = nil, scalapay: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataScalapay? = nil, sepaDebit: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataSepaDebit? = nil, sofort: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataSofort? = nil, sunbit: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataSunbit? = nil, swish: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataSwish? = nil, twint: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataTwint? = nil, upi: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataUpi? = nil, usBankAccount: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataUsBankAccount? = nil, wechatPay: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataWechatPay? = nil, zip: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataZip? = nil) {
+public extension PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodData {
+    init(
+        type: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataType,
+        acssDebit: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataAcssDebit? = nil,
+        affirm: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataAffirm? = nil,
+        afterpayClearpay: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataAfX2a9343d33e? = nil,
+        alipay: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataAlipay? = nil,
+        allowRedisplay: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataAlXe622f7ccee? = nil,
+        alma: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataAlma? = nil,
+        amazonPay: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataAmazonPay? = nil,
+        auBecsDebit: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataAuBecsDebit? = nil,
+        bacsDebit: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataBacsDebit? = nil,
+        bancontact: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataBancontact? = nil,
+        billie: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataBillie? = nil,
+        billingDetails: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataBiXbcd34df347? = nil,
+        bizum: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataBizum? = nil,
+        blik: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataBlik? = nil,
+        boleto: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataBoleto? = nil,
+        cashapp: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataCashapp? = nil,
+        crypto: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataCrypto? = nil,
+        customerBalance: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataCuXc0e705a334? = nil,
+        eps: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataEps? = nil,
+        fpx: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataFpx? = nil,
+        giropay: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataGiropay? = nil,
+        grabpay: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataGrabpay? = nil,
+        ideal: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataIdeal? = nil,
+        interacPresent: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataInX63a1d19d8a? = nil,
+        kakaoPay: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataKakaoPay? = nil,
+        klarna: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataKlarna? = nil,
+        konbini: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataKonbini? = nil,
+        krCard: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataKrCard? = nil,
+        link: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataLink? = nil,
+        mbWay: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataMbWay? = nil,
+        metadata: [String: String]? = nil,
+        mobilepay: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataMobilepay? = nil,
+        multibanco: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataMultibanco? = nil,
+        naverPay: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataNaverPay? = nil,
+        nzBankAccount: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataNzBankAccount? = nil,
+        oxxo: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataOxxo? = nil,
+        p24: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataP24? = nil,
+        payByBank: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataPayByBank? = nil,
+        payco: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataPayco? = nil,
+        paynow: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataPaynow? = nil,
+        paypal: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataPaypal? = nil,
+        payto: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataPayto? = nil,
+        pix: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataPix? = nil,
+        promptpay: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataPromptpay? = nil,
+        radarOptions: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataRadarOptions? = nil,
+        revolutPay: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataRevolutPay? = nil,
+        samsungPay: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataSamsungPay? = nil,
+        satispay: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataSatispay? = nil,
+        scalapay: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataScalapay? = nil,
+        sepaDebit: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataSepaDebit? = nil,
+        sofort: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataSofort? = nil,
+        sunbit: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataSunbit? = nil,
+        swish: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataSwish? = nil,
+        twint: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataTwint? = nil,
+        upi: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataUpi? = nil,
+        usBankAccount: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataUsBankAccount? = nil,
+        wechatPay: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataWechatPay? = nil,
+        zip: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataZip? = nil
+    ) {
         (self.type, self.acssDebit) = (type, acssDebit)
         (self.affirm, self.afterpayClearpay) = (affirm, afterpayClearpay)
         (self.alipay, self.allowRedisplay) = (alipay, allowRedisplay)
@@ -293,13 +355,13 @@ extension PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodData {
 }
 
 public struct PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataOxxo: Codable {
-
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataOxxo {
-    public init() {
-    }
+public extension PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataOxxo {
+    init() {}
 }
 
 public struct PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodOptionXba5bbcc3ec: Codable {
@@ -310,19 +372,19 @@ public struct PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodOptionXba5b
     }
 
     init() {
-        self.setupFutureUsage = nil
+        setupFutureUsage = nil
     }
 }
 
-extension PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodOptionXba5bbcc3ec {
-    public init(from decoder: Decoder) throws {
+public extension PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodOptionXba5bbcc3ec {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
+        setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
     }
 }
 
-extension PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodOptionXba5bbcc3ec {
-    public init(setupFutureUsage: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodOptionX401b3de55b? = nil) {
+public extension PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodOptionXba5bbcc3ec {
+    init(setupFutureUsage: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodOptionX401b3de55b? = nil) {
         self.init()
         self.setupFutureUsage = setupFutureUsage
     }
@@ -338,20 +400,23 @@ public struct PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodOptionX587f
     }
 
     init() {
-        (self.captureMethod, self.setupFutureUsage) = (nil, nil)
+        (captureMethod, setupFutureUsage) = (nil, nil)
     }
 }
 
-extension PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodOptionX587f52be7a {
-    public init(from decoder: Decoder) throws {
+public extension PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodOptionX587f52be7a {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.captureMethod = try container.sdkDecodeIfPresent(.captureMethod)
-        self.setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
+        captureMethod = try container.sdkDecodeIfPresent(.captureMethod)
+        setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
     }
 }
 
-extension PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodOptionX587f52be7a {
-    public init(captureMethod: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodOptionX923ce91141? = nil, setupFutureUsage: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodOptionXbaa114deab? = nil) {
+public extension PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodOptionX587f52be7a {
+    init(
+        captureMethod: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodOptionX923ce91141? = nil,
+        setupFutureUsage: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodOptionXbaa114deab? = nil
+    ) {
         self.init()
         (self.captureMethod, self.setupFutureUsage) = (captureMethod, setupFutureUsage)
     }
@@ -366,28 +431,38 @@ public struct PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodOptionXdeea
         case date
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodOptionXdeeaa49b24 {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.amount) else {
-            throw SdkValidationError(field: "amount", code: "required", message: "Validation failed for 'amount': value is required")
-        }
-        guard container.contains(.date) else {
-            throw SdkValidationError(field: "date", code: "required", message: "Validation failed for 'date': value is required")
-        }
-        self.amount = try container.sdkDecodeRequired(.amount)
-        self.date = try container.sdkDecodeRequired(.date)
-            try validateLength("date", self.date, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodOptionXdeeaa49b24 {
-    public init(amount: Int, date: String) throws {
+public extension PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodOptionXdeeaa49b24 {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.amount) else {
+            throw SdkValidationError(
+                field: "amount",
+                code: "required",
+                message: "Validation failed for 'amount': value is required"
+            )
+        }
+        guard container.contains(.date) else {
+            throw SdkValidationError(
+                field: "date",
+                code: "required",
+                message: "Validation failed for 'date': value is required"
+            )
+        }
+        amount = try container.sdkDecodeRequired(.amount)
+        date = try container.sdkDecodeRequired(.date)
+        try validateLength("date", date, min: nil, max: 5000)
+    }
+}
+
+public extension PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodOptionXdeeaa49b24 {
+    init(amount: Int, date: String) throws {
         (self.amount, self.date) = (amount, date)
-            try validateLength("date", self.date, min: nil, max: 5000)
+        try validateLength("date", self.date, min: nil, max: 5000)
     }
 }
 
@@ -400,19 +475,19 @@ public struct PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataKlarna:
     }
 
     init() {
-        self.dob = nil
+        dob = nil
     }
 }
 
-extension PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataKlarna {
-    public init(from decoder: Decoder) throws {
+public extension PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataKlarna {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.dob = try container.sdkDecodeIfPresent(.dob)
+        dob = try container.sdkDecodeIfPresent(.dob)
     }
 }
 
-extension PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataKlarna {
-    public init(dob: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataKlarnaDob? = nil) {
+public extension PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataKlarna {
+    init(dob: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataKlarnaDob? = nil) {
         self.init()
         self.dob = dob
     }
@@ -426,35 +501,43 @@ public enum PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodOptionsPayto 
 }
 
 extension PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodOptionsPayto: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodOptionsPayto")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodOptionsPayto"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodOptionX9529f0f4b0.self
         ) {
-            return             .postPaymentIntentsIntentConfirmRequestBodyPaymentMethodOptionX9529f0f4b0(value)
+            return .postPaymentIntentsIntentConfirmRequestBodyPaymentMethodOptionX9529f0f4b0(value)
         }
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .postPaymentIntentsIntentConfirmRequestBodyPaymentMethodOptionX9529f0f4b0(value): try container.encode(value); return true
+        case let .postPaymentIntentsIntentConfirmRequestBodyPaymentMethodOptionX9529f0f4b0(value): try container
+            .encode(value); return true
         case let .stringValue(value): try container.encode(value); return true
         }
     }
-
 }
 
 public struct PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodOptionX36e7bb332a: Codable {
@@ -467,33 +550,36 @@ public struct PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodOptionX36e7
     }
 
     init() {
-        (self.captureMethod, self.setupFutureUsage) = (nil, nil)
+        (captureMethod, setupFutureUsage) = (nil, nil)
     }
 }
 
-extension PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodOptionX36e7bb332a {
-    public init(from decoder: Decoder) throws {
+public extension PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodOptionX36e7bb332a {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.captureMethod = try container.sdkDecodeIfPresent(.captureMethod)
-        self.setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
+        captureMethod = try container.sdkDecodeIfPresent(.captureMethod)
+        setupFutureUsage = try container.sdkDecodeIfPresent(.setupFutureUsage)
     }
 }
 
-extension PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodOptionX36e7bb332a {
-    public init(captureMethod: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodOptionXf414da98fb? = nil, setupFutureUsage: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodOptionX9b71ac390d? = nil) {
+public extension PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodOptionX36e7bb332a {
+    init(
+        captureMethod: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodOptionXf414da98fb? = nil,
+        setupFutureUsage: PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodOptionX9b71ac390d? = nil
+    ) {
         self.init()
         (self.captureMethod, self.setupFutureUsage) = (captureMethod, setupFutureUsage)
     }
 }
 
 public struct PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataAlipay: Codable {
-
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataAlipay {
-    public init() {
-    }
+public extension PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataAlipay {
+    init() {}
 }
 
 public enum PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodOptionsOxxo {
@@ -504,38 +590,47 @@ public enum PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodOptionsOxxo {
 }
 
 extension PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodOptionsOxxo: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodOptionsOxxo")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodOptionsOxxo"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodOptionXbf43b087ef.self
         ) {
-            return             .postPaymentIntentsIntentConfirmRequestBodyPaymentMethodOptionXbf43b087ef(value)
+            return .postPaymentIntentsIntentConfirmRequestBodyPaymentMethodOptionXbf43b087ef(value)
         }
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .postPaymentIntentsIntentConfirmRequestBodyPaymentMethodOptionXbf43b087ef(value): try container.encode(value); return true
+        case let .postPaymentIntentsIntentConfirmRequestBodyPaymentMethodOptionXbf43b087ef(value): try container
+            .encode(value); return true
         case let .stringValue(value): try container.encode(value); return true
         }
     }
-
 }
 
 public struct PostPaymentIntentsIntentConfirmRequestBodyPaymentMethodDataKakaoPay: Codable {
-
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }

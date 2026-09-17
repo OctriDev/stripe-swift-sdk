@@ -7,17 +7,30 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1BillingAlertsActivateMethods {
-    /// Triggers reactivation of a billing alert so it can trigger again. Use `id` to identify the alert and `expand` to request additional fields in the response.
+    /// Triggers reactivation of a billing alert so it can trigger again. Use `id` to identify the alert and `expand` to
+    /// request additional fields in the response.
     ///
     /// Reactivates this alert, allowing it to trigger again.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postBillingAlertsIdActivate(config: ClientConfig, id: String, expand: [String]?) async throws -> BillingAlert {
+    public static func postBillingAlertsIdActivate(
+        config: ClientConfig,
+        id: String,
+        expand: [String]?
+    ) async throws -> BillingAlert {
         try validateLength("id", id, max: 5000)
 
         let requestBody = PostBillingAlertsIdActivateRequestBody(expand: expand)
 
-        return try (await sdkRequest("POST", ["/v1/billing/alerts/", sdkEncodePathSegment(sdkWireString(id)), "/activate"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostBillingAlertsIdActivate")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/billing/alerts/", sdkEncodePathSegment(sdkWireString(id)), "/activate"].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostBillingAlertsIdActivate"
+        )).data
     }
 }

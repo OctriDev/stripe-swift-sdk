@@ -6,10 +6,13 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1PromotionCodesMethods {
-    /// Updates a promotion code by changing the editable fields you provide. Use `active` to change its availability, `metadata` to manage attached key-value data, and `restrictions` to update currency-specific redemption settings.
+public extension V1PromotionCodesMethods {
+    /// Updates a promotion code by changing the editable fields you provide. Use `active` to change its availability,
+    /// `metadata` to manage attached key-value data, and `restrictions` to update currency-specific redemption
+    /// settings.
     ///
-    /// Updates the specified promotion code by setting the values of the parameters passed. Most fields are, by design, not editable.
+    /// Updates the specified promotion code by setting the values of the parameters passed. Most fields are, by design,
+    /// not editable.
     ///
     /// - Parameters:
     /// - active: Whether the promotion code is currently active. A promotion code
@@ -22,11 +25,31 @@ extension V1PromotionCodesMethods {
     ///   unset by posting an empty value to them. All keys can be unset by posting an
     ///   empty value to `metadata`.
     /// - restrictions: Settings that restrict the redemption of the promotion code.
-    public static func postPromotionCodesPromotionCode(config: ClientConfig, promotionCode: String, active: Bool?, expand: [String]?, metadata: PostPromotionCodesPromotionCodeRequestBodyMetadata?, restrictions: PostPromotionCodesPromotionCodeRequestBodyRestrictions?) async throws -> PromotionCode {
+    static func postPromotionCodesPromotionCode(
+        config: ClientConfig,
+        promotionCode: String,
+        active: Bool?,
+        expand: [String]?,
+        metadata: PostPromotionCodesPromotionCodeRequestBodyMetadata?,
+        restrictions: PostPromotionCodesPromotionCodeRequestBodyRestrictions?
+    ) async throws -> PromotionCode {
         try validateLength("promotion_code", promotionCode, max: 5000)
 
-        let requestBody = PostPromotionCodesPromotionCodeRequestBody(active: active, expand: expand, metadata: metadata, restrictions: restrictions)
+        let requestBody = PostPromotionCodesPromotionCodeRequestBody(
+            active: active,
+            expand: expand,
+            metadata: metadata,
+            restrictions: restrictions
+        )
 
-        return try (await sdkRequest("POST", ["/v1/promotion_codes/", sdkEncodePathSegment(sdkWireString(promotionCode))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostPromotionCodesPromotionCode")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/promotion_codes/", sdkEncodePathSegment(sdkWireString(promotionCode))].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostPromotionCodesPromotionCode"
+        )).data
     }
 }

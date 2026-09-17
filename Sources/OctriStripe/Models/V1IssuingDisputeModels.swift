@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1IssuingDispute domain models
+/// V1IssuingDispute domain models
 /// Typed representation of the `IssuingDisputeCanceledEvidence` API schema.
 public struct IssuingDisputeCanceledEvidence: Codable {
     /// (ID of a file upload) Additional documentation supporting the dispute.
@@ -41,38 +41,55 @@ public struct IssuingDisputeCanceledEvidence: Codable {
     }
 
     init() {
-        (self.additionalDocumentation, self.canceledAt, self.cancellationPolicyProvided, self.cancellationReason, self.expectedAt) = (nil, nil, nil, nil, nil)
-        (self.explanation, self.productDescription, self.productType, self.returnStatus, self.returnedAt) = (nil, nil, nil, nil, nil)
+        (additionalDocumentation, canceledAt, cancellationPolicyProvided, cancellationReason, expectedAt) = (
+            nil,
+            nil,
+            nil,
+            nil,
+            nil
+        )
+        (explanation, productDescription, productType, returnStatus, returnedAt) = (nil, nil, nil, nil, nil)
     }
 }
 
-extension IssuingDisputeCanceledEvidence {
-    public init(from decoder: Decoder) throws {
+public extension IssuingDisputeCanceledEvidence {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.additionalDocumentation = try container.sdkDecodeIfPresent(.additionalDocumentation)
-        self.canceledAt = try container.sdkDecodeIfPresent(.canceledAt)
-        self.cancellationPolicyProvided = try container.sdkDecodeIfPresent(.cancellationPolicyProvided)
-        self.cancellationReason = try container.sdkDecodeIfPresent(.cancellationReason)
-        self.expectedAt = try container.sdkDecodeIfPresent(.expectedAt)
-        self.explanation = try container.sdkDecodeIfPresent(.explanation)
-        self.productDescription = try container.sdkDecodeIfPresent(.productDescription)
-        self.productType = try container.sdkDecodeIfPresent(.productType)
-        self.returnStatus = try container.sdkDecodeIfPresent(.returnStatus)
-        self.returnedAt = try container.sdkDecodeIfPresent(.returnedAt)
-        if let value = self.cancellationReason {
+        additionalDocumentation = try container.sdkDecodeIfPresent(.additionalDocumentation)
+        canceledAt = try container.sdkDecodeIfPresent(.canceledAt)
+        cancellationPolicyProvided = try container.sdkDecodeIfPresent(.cancellationPolicyProvided)
+        cancellationReason = try container.sdkDecodeIfPresent(.cancellationReason)
+        expectedAt = try container.sdkDecodeIfPresent(.expectedAt)
+        explanation = try container.sdkDecodeIfPresent(.explanation)
+        productDescription = try container.sdkDecodeIfPresent(.productDescription)
+        productType = try container.sdkDecodeIfPresent(.productType)
+        returnStatus = try container.sdkDecodeIfPresent(.returnStatus)
+        returnedAt = try container.sdkDecodeIfPresent(.returnedAt)
+        if let value = cancellationReason {
             try validateLength("cancellation_reason", value, min: nil, max: 5000)
         }
-        if let value = self.explanation {
+        if let value = explanation {
             try validateLength("explanation", value, min: nil, max: 5000)
         }
-        if let value = self.productDescription {
+        if let value = productDescription {
             try validateLength("product_description", value, min: nil, max: 5000)
         }
     }
 }
 
-extension IssuingDisputeCanceledEvidence {
-    public init(additionalDocumentation: IssuingDisputeCanceledEvidenceAdditionalDocumentation? = nil, canceledAt: Int? = nil, cancellationPolicyProvided: Bool? = nil, cancellationReason: String? = nil, expectedAt: Int? = nil, explanation: String? = nil, productDescription: String? = nil, productType: IssuingDisputeCanceledEvidenceProductType? = nil, returnStatus: IssuingDisputeCanceledEvidenceReturnStatus? = nil, returnedAt: Int? = nil) throws {
+public extension IssuingDisputeCanceledEvidence {
+    init(
+        additionalDocumentation: IssuingDisputeCanceledEvidenceAdditionalDocumentation? = nil,
+        canceledAt: Int? = nil,
+        cancellationPolicyProvided: Bool? = nil,
+        cancellationReason: String? = nil,
+        expectedAt: Int? = nil,
+        explanation: String? = nil,
+        productDescription: String? = nil,
+        productType: IssuingDisputeCanceledEvidenceProductType? = nil,
+        returnStatus: IssuingDisputeCanceledEvidenceReturnStatus? = nil,
+        returnedAt: Int? = nil
+    ) throws {
         self.init()
         (self.additionalDocumentation, self.canceledAt) = (additionalDocumentation, canceledAt)
         self.cancellationPolicyProvided = cancellationPolicyProvided
@@ -98,21 +115,31 @@ public enum IssuingDisputeCanceledEvidenceAdditionalDocumentation {
 }
 
 extension IssuingDisputeCanceledEvidenceAdditionalDocumentation: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for IssuingDisputeCanceledEvidenceAdditionalDocumentation")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for IssuingDisputeCanceledEvidenceAdditionalDocumentation"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(File2.self) { return .file2(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(File2.self) {
+            return .file2(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -122,7 +149,6 @@ extension IssuingDisputeCanceledEvidenceAdditionalDocumentation: Codable {
         case let .file2(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Typed representation of the `IssuingDisputeDuplicateEvidence` API schema.
@@ -151,31 +177,38 @@ public struct IssuingDisputeDuplicateEvidence: Codable {
     }
 
     init() {
-        (self.additionalDocumentation, self.cardStatement, self.cashReceipt, self.checkImage, self.explanation) = (nil, nil, nil, nil, nil)
-        self.originalTransaction = nil
+        (additionalDocumentation, cardStatement, cashReceipt, checkImage, explanation) = (nil, nil, nil, nil, nil)
+        originalTransaction = nil
     }
 }
 
-extension IssuingDisputeDuplicateEvidence {
-    public init(from decoder: Decoder) throws {
+public extension IssuingDisputeDuplicateEvidence {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.additionalDocumentation = try container.sdkDecodeIfPresent(.additionalDocumentation)
-        self.cardStatement = try container.sdkDecodeIfPresent(.cardStatement)
-        self.cashReceipt = try container.sdkDecodeIfPresent(.cashReceipt)
-        self.checkImage = try container.sdkDecodeIfPresent(.checkImage)
-        self.explanation = try container.sdkDecodeIfPresent(.explanation)
-        self.originalTransaction = try container.sdkDecodeIfPresent(.originalTransaction)
-        if let value = self.explanation {
+        additionalDocumentation = try container.sdkDecodeIfPresent(.additionalDocumentation)
+        cardStatement = try container.sdkDecodeIfPresent(.cardStatement)
+        cashReceipt = try container.sdkDecodeIfPresent(.cashReceipt)
+        checkImage = try container.sdkDecodeIfPresent(.checkImage)
+        explanation = try container.sdkDecodeIfPresent(.explanation)
+        originalTransaction = try container.sdkDecodeIfPresent(.originalTransaction)
+        if let value = explanation {
             try validateLength("explanation", value, min: nil, max: 5000)
         }
-        if let value = self.originalTransaction {
+        if let value = originalTransaction {
             try validateLength("original_transaction", value, min: nil, max: 5000)
         }
     }
 }
 
-extension IssuingDisputeDuplicateEvidence {
-    public init(additionalDocumentation: IssuingDisputeDuplicateEvidenceAdditionalDocumentation? = nil, cardStatement: IssuingDisputeDuplicateEvidenceCardStatement? = nil, cashReceipt: IssuingDisputeDuplicateEvidenceCashReceipt? = nil, checkImage: IssuingDisputeDuplicateEvidenceCheckImage? = nil, explanation: String? = nil, originalTransaction: String? = nil) throws {
+public extension IssuingDisputeDuplicateEvidence {
+    init(
+        additionalDocumentation: IssuingDisputeDuplicateEvidenceAdditionalDocumentation? = nil,
+        cardStatement: IssuingDisputeDuplicateEvidenceCardStatement? = nil,
+        cashReceipt: IssuingDisputeDuplicateEvidenceCashReceipt? = nil,
+        checkImage: IssuingDisputeDuplicateEvidenceCheckImage? = nil,
+        explanation: String? = nil,
+        originalTransaction: String? = nil
+    ) throws {
         self.init()
         (self.additionalDocumentation, self.cardStatement) = (additionalDocumentation, cardStatement)
         (self.cashReceipt, self.checkImage) = (cashReceipt, checkImage)
@@ -195,21 +228,31 @@ public enum IssuingDisputeDuplicateEvidenceAdditionalDocumentation {
 }
 
 extension IssuingDisputeDuplicateEvidenceAdditionalDocumentation: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for IssuingDisputeDuplicateEvidenceAdditionalDocumentation")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for IssuingDisputeDuplicateEvidenceAdditionalDocumentation"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(File2.self) { return .file2(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(File2.self) {
+            return .file2(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -219,7 +262,6 @@ extension IssuingDisputeDuplicateEvidenceAdditionalDocumentation: Codable {
         case let .file2(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum IssuingDisputeDuplicateEvidenceCardStatement {
@@ -228,21 +270,31 @@ public enum IssuingDisputeDuplicateEvidenceCardStatement {
 }
 
 extension IssuingDisputeDuplicateEvidenceCardStatement: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for IssuingDisputeDuplicateEvidenceCardStatement")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for IssuingDisputeDuplicateEvidenceCardStatement"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(File2.self) { return .file2(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(File2.self) {
+            return .file2(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -252,7 +304,6 @@ extension IssuingDisputeDuplicateEvidenceCardStatement: Codable {
         case let .file2(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum IssuingDisputeDuplicateEvidenceCashReceipt {
@@ -261,21 +312,31 @@ public enum IssuingDisputeDuplicateEvidenceCashReceipt {
 }
 
 extension IssuingDisputeDuplicateEvidenceCashReceipt: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for IssuingDisputeDuplicateEvidenceCashReceipt")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for IssuingDisputeDuplicateEvidenceCashReceipt"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(File2.self) { return .file2(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(File2.self) {
+            return .file2(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -285,7 +346,6 @@ extension IssuingDisputeDuplicateEvidenceCashReceipt: Codable {
         case let .file2(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum IssuingDisputeDuplicateEvidenceCheckImage {
@@ -294,21 +354,31 @@ public enum IssuingDisputeDuplicateEvidenceCheckImage {
 }
 
 extension IssuingDisputeDuplicateEvidenceCheckImage: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for IssuingDisputeDuplicateEvidenceCheckImage")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for IssuingDisputeDuplicateEvidenceCheckImage"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(File2.self) { return .file2(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(File2.self) {
+            return .file2(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -318,7 +388,6 @@ extension IssuingDisputeDuplicateEvidenceCheckImage: Codable {
         case let .file2(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Typed representation of the `IssuingDisputeEvidence` API schema.
@@ -354,29 +423,45 @@ public struct IssuingDisputeEvidence: Codable {
         case serviceNotAsDescribed = "service_not_as_described"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension IssuingDisputeEvidence {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.reason) else {
-            throw SdkValidationError(field: "reason", code: "required", message: "Validation failed for 'reason': value is required")
-        }
-        self.reason = try container.sdkDecodeRequired(.reason)
-        self.canceled = try container.sdkDecodeIfPresent(.canceled)
-        self.duplicate = try container.sdkDecodeIfPresent(.duplicate)
-        self.fraudulent = try container.sdkDecodeIfPresent(.fraudulent)
-        self.merchandiseNotAsDescribed = try container.sdkDecodeIfPresent(.merchandiseNotAsDescribed)
-        self.noValidAuthorization = try container.sdkDecodeIfPresent(.noValidAuthorization)
-        self.notReceived = try container.sdkDecodeIfPresent(.notReceived)
-        self.other = try container.sdkDecodeIfPresent(.other)
-        self.serviceNotAsDescribed = try container.sdkDecodeIfPresent(.serviceNotAsDescribed)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension IssuingDisputeEvidence {
-    public init(reason: IssuingDisputeEvidenceReason, canceled: IssuingDisputeCanceledEvidence? = nil, duplicate: IssuingDisputeDuplicateEvidence? = nil, fraudulent: IssuingDisputeFraudulentEvidence? = nil, merchandiseNotAsDescribed: IssuingDisputeMerchandiseNotAsDescribedEvidence? = nil, noValidAuthorization: IssuingDisputeNoValidAuthorizationEvidence? = nil, notReceived: IssuingDisputeNotReceivedEvidence? = nil, other: IssuingDisputeOtherEvidence? = nil, serviceNotAsDescribed: IssuingDisputeServiceNotAsDescribedEvidence? = nil) {
+public extension IssuingDisputeEvidence {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.reason) else {
+            throw SdkValidationError(
+                field: "reason",
+                code: "required",
+                message: "Validation failed for 'reason': value is required"
+            )
+        }
+        reason = try container.sdkDecodeRequired(.reason)
+        canceled = try container.sdkDecodeIfPresent(.canceled)
+        duplicate = try container.sdkDecodeIfPresent(.duplicate)
+        fraudulent = try container.sdkDecodeIfPresent(.fraudulent)
+        merchandiseNotAsDescribed = try container.sdkDecodeIfPresent(.merchandiseNotAsDescribed)
+        noValidAuthorization = try container.sdkDecodeIfPresent(.noValidAuthorization)
+        notReceived = try container.sdkDecodeIfPresent(.notReceived)
+        other = try container.sdkDecodeIfPresent(.other)
+        serviceNotAsDescribed = try container.sdkDecodeIfPresent(.serviceNotAsDescribed)
+    }
+}
+
+public extension IssuingDisputeEvidence {
+    init(
+        reason: IssuingDisputeEvidenceReason,
+        canceled: IssuingDisputeCanceledEvidence? = nil,
+        duplicate: IssuingDisputeDuplicateEvidence? = nil,
+        fraudulent: IssuingDisputeFraudulentEvidence? = nil,
+        merchandiseNotAsDescribed: IssuingDisputeMerchandiseNotAsDescribedEvidence? = nil,
+        noValidAuthorization: IssuingDisputeNoValidAuthorizationEvidence? = nil,
+        notReceived: IssuingDisputeNotReceivedEvidence? = nil,
+        other: IssuingDisputeOtherEvidence? = nil,
+        serviceNotAsDescribed: IssuingDisputeServiceNotAsDescribedEvidence? = nil
+    ) {
         (self.reason, self.canceled) = (reason, canceled)
         (self.duplicate, self.fraudulent) = (duplicate, fraudulent)
         self.merchandiseNotAsDescribed = merchandiseNotAsDescribed
@@ -398,23 +483,26 @@ public struct IssuingDisputeFraudulentEvidence: Codable {
     }
 
     init() {
-        (self.additionalDocumentation, self.explanation) = (nil, nil)
+        (additionalDocumentation, explanation) = (nil, nil)
     }
 }
 
-extension IssuingDisputeFraudulentEvidence {
-    public init(from decoder: Decoder) throws {
+public extension IssuingDisputeFraudulentEvidence {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.additionalDocumentation = try container.sdkDecodeIfPresent(.additionalDocumentation)
-        self.explanation = try container.sdkDecodeIfPresent(.explanation)
-        if let value = self.explanation {
+        additionalDocumentation = try container.sdkDecodeIfPresent(.additionalDocumentation)
+        explanation = try container.sdkDecodeIfPresent(.explanation)
+        if let value = explanation {
             try validateLength("explanation", value, min: nil, max: 5000)
         }
     }
 }
 
-extension IssuingDisputeFraudulentEvidence {
-    public init(additionalDocumentation: IssuingDisputeFraudulentEvidenceAdditionalDocumentation? = nil, explanation: String? = nil) throws {
+public extension IssuingDisputeFraudulentEvidence {
+    init(
+        additionalDocumentation: IssuingDisputeFraudulentEvidenceAdditionalDocumentation? = nil,
+        explanation: String? = nil
+    ) throws {
         self.init()
         (self.additionalDocumentation, self.explanation) = (additionalDocumentation, explanation)
         if let value = self.explanation {
@@ -429,21 +517,31 @@ public enum IssuingDisputeFraudulentEvidenceAdditionalDocumentation {
 }
 
 extension IssuingDisputeFraudulentEvidenceAdditionalDocumentation: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for IssuingDisputeFraudulentEvidenceAdditionalDocumentation")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for IssuingDisputeFraudulentEvidenceAdditionalDocumentation"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(File2.self) { return .file2(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(File2.self) {
+            return .file2(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -453,7 +551,6 @@ extension IssuingDisputeFraudulentEvidenceAdditionalDocumentation: Codable {
         case let .file2(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Typed representation of the `IssuingDisputeMerchandiseNotAsDescribedEvidence` API schema.
@@ -481,31 +578,38 @@ public struct IssuingDisputeMerchandiseNotAsDescribedEvidence: Codable {
     }
 
     init() {
-        (self.additionalDocumentation, self.explanation, self.receivedAt, self.returnDescription, self.returnStatus) = (nil, nil, nil, nil, nil)
-        self.returnedAt = nil
+        (additionalDocumentation, explanation, receivedAt, returnDescription, returnStatus) = (nil, nil, nil, nil, nil)
+        returnedAt = nil
     }
 }
 
-extension IssuingDisputeMerchandiseNotAsDescribedEvidence {
-    public init(from decoder: Decoder) throws {
+public extension IssuingDisputeMerchandiseNotAsDescribedEvidence {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.additionalDocumentation = try container.sdkDecodeIfPresent(.additionalDocumentation)
-        self.explanation = try container.sdkDecodeIfPresent(.explanation)
-        self.receivedAt = try container.sdkDecodeIfPresent(.receivedAt)
-        self.returnDescription = try container.sdkDecodeIfPresent(.returnDescription)
-        self.returnStatus = try container.sdkDecodeIfPresent(.returnStatus)
-        self.returnedAt = try container.sdkDecodeIfPresent(.returnedAt)
-        if let value = self.explanation {
+        additionalDocumentation = try container.sdkDecodeIfPresent(.additionalDocumentation)
+        explanation = try container.sdkDecodeIfPresent(.explanation)
+        receivedAt = try container.sdkDecodeIfPresent(.receivedAt)
+        returnDescription = try container.sdkDecodeIfPresent(.returnDescription)
+        returnStatus = try container.sdkDecodeIfPresent(.returnStatus)
+        returnedAt = try container.sdkDecodeIfPresent(.returnedAt)
+        if let value = explanation {
             try validateLength("explanation", value, min: nil, max: 5000)
         }
-        if let value = self.returnDescription {
+        if let value = returnDescription {
             try validateLength("return_description", value, min: nil, max: 5000)
         }
     }
 }
 
-extension IssuingDisputeMerchandiseNotAsDescribedEvidence {
-    public init(additionalDocumentation: IssuingDisputeMerchandiseNotAsDescribedEvidenceAdditionalDocumentation? = nil, explanation: String? = nil, receivedAt: Int? = nil, returnDescription: String? = nil, returnStatus: IssuingDisputeMerchandiseNotAsDescribedEvidenceReturnStatus? = nil, returnedAt: Int? = nil) throws {
+public extension IssuingDisputeMerchandiseNotAsDescribedEvidence {
+    init(
+        additionalDocumentation: IssuingDisputeMerchandiseNotAsDescribedEvidenceAdditionalDocumentation? = nil,
+        explanation: String? = nil,
+        receivedAt: Int? = nil,
+        returnDescription: String? = nil,
+        returnStatus: IssuingDisputeMerchandiseNotAsDescribedEvidenceReturnStatus? = nil,
+        returnedAt: Int? = nil
+    ) throws {
         self.init()
         (self.additionalDocumentation, self.explanation) = (additionalDocumentation, explanation)
         (self.receivedAt, self.returnDescription) = (receivedAt, returnDescription)

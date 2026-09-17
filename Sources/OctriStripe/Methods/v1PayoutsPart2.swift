@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1PayoutsMethods {
-    public struct GetPayoutsOptions: Codable {
+public extension V1PayoutsMethods {
+    struct GetPayoutsOptions: Codable {
         public var arrivalDate: GetPayoutsParameter?
         public var created: GetPayoutsParameterXd6046075?
         public var destination: String?
@@ -20,9 +20,12 @@ extension V1PayoutsMethods {
         public init() {}
     }
 
-    /// Lists existing payouts sent to third-party bank accounts or paid to connected accounts. Use `arrival_date`, `created`, `destination`, and `status` to filter results, and use cursor parameters to navigate the list in reverse chronological order.
+    /// Lists existing payouts sent to third-party bank accounts or paid to connected accounts. Use `arrival_date`,
+    /// `created`, `destination`, and `status` to filter results, and use cursor parameters to navigate the list in
+    /// reverse chronological order.
     ///
-    /// Returns a list of existing payouts sent to third-party bank accounts or payouts that Stripe sent to you. The payouts return in sorted order, with the most recently created payouts appearing first.
+    /// Returns a list of existing payouts sent to third-party bank accounts or payouts that Stripe sent to you. The
+    /// payouts return in sorted order, with the most recently created payouts appearing first.
     ///
     /// - Parameters:
     /// - arrivalDate: Only return payouts that are expected to arrive during the
@@ -46,7 +49,7 @@ extension V1PayoutsMethods {
     ///   the list.
     /// - status: Only return payouts that have the given status: `pending`, `paid`,
     ///   `failed`, or `canceled`.
-    public static func getPayouts(config: ClientConfig, options: GetPayoutsOptions) async throws -> GetPayoutsResponse {
+    static func getPayouts(config: ClientConfig, options: GetPayoutsOptions) async throws -> GetPayoutsResponse {
         if let endingBefore = options.endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
@@ -59,7 +62,7 @@ extension V1PayoutsMethods {
             try validateLength("status", status, max: 5000)
         }
 
-        return try (await sdkRequest("GET", "/v1/payouts", config: config, query: [
+        return try await (sdkRequest("GET", "/v1/payouts", config: config, query: [
             SdkQueryParameter("arrival_date", value: options.arrivalDate),
             SdkQueryParameter("created", value: options.created),
             SdkQueryParameter("destination", value: options.destination),

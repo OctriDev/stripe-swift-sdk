@@ -6,8 +6,9 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1BillingAlertsMethods {
-    /// Creates a billing alert that notifies you when a usage threshold on a meter is crossed. Supply `alert_type` and `title`, and provide `usage_threshold` to define the meter, threshold, recurrence, and optional filters.
+public extension V1BillingAlertsMethods {
+    /// Creates a billing alert that notifies you when a usage threshold on a meter is crossed. Supply `alert_type` and
+    /// `title`, and provide `usage_threshold` to define the meter, threshold, recurrence, and optional filters.
     ///
     /// Creates a billing alert
     ///
@@ -16,25 +17,52 @@ extension V1BillingAlertsMethods {
     /// - title: The title of the alert.
     /// - expand: Specifies which fields in the response should be expanded.
     /// - usageThreshold: The configuration of the usage threshold.
-    public static func postBillingAlerts(config: ClientConfig, alertType: PostBillingAlertsRequestBodyAlertType, title: String, expand: [String]?, usageThreshold: PostBillingAlertsRequestBodyUsageThreshold?) async throws -> BillingAlert {
+    static func postBillingAlerts(
+        config: ClientConfig,
+        alertType: PostBillingAlertsRequestBodyAlertType,
+        title: String,
+        expand: [String]?,
+        usageThreshold: PostBillingAlertsRequestBodyUsageThreshold?
+    ) async throws -> BillingAlert {
         try validateLength("title", title, max: 256)
 
-        let requestBody = PostBillingAlertsRequestBody(alertType: alertType, title: title, expand: expand, usageThreshold: usageThreshold)
+        let requestBody = PostBillingAlertsRequestBody(
+            alertType: alertType,
+            title: title,
+            expand: expand,
+            usageThreshold: usageThreshold
+        )
 
-        return try (await sdkRequest("POST", "/v1/billing/alerts", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostBillingAlerts")).data
+        return try await (sdkRequest(
+            "POST",
+            "/v1/billing/alerts",
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostBillingAlerts"
+        )).data
     }
 
-    /// Retrieves a billing alert by its unique identifier. Use `expand` to request additional fields in the returned alert object.
+    /// Retrieves a billing alert by its unique identifier. Use `expand` to request additional fields in the returned
+    /// alert object.
     ///
     /// Retrieves a billing alert given an ID
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func getBillingAlertsId(config: ClientConfig, id: String, expand: [String]?) async throws -> BillingAlert {
+    static func getBillingAlertsId(config: ClientConfig, id: String, expand: [String]?) async throws -> BillingAlert {
         try validateLength("id", id, max: 5000)
 
-        return try (await sdkRequest("GET", ["/v1/billing/alerts/", sdkEncodePathSegment(sdkWireString(id))].joined(), config: config, query: [
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-        ], decoder: .json, operationId: "GetBillingAlertsId")).data
+        return try await (sdkRequest(
+            "GET",
+            ["/v1/billing/alerts/", sdkEncodePathSegment(sdkWireString(id))].joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+            ],
+            decoder: .json,
+            operationId: "GetBillingAlertsId"
+        )).data
     }
 }

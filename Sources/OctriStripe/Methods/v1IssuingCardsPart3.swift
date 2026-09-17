@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1IssuingCardsMethods {
-    public struct PostIssuingCardsOptions: Codable {
+public extension V1IssuingCardsMethods {
+    struct PostIssuingCardsOptions: Codable {
         public var currency: String
         public var type: PostIssuingCardsRequestBodyType
         public var cardholder: String?
@@ -71,7 +71,7 @@ extension V1IssuingCardsMethods {
     /// - status: Whether authorizations can be approved on this card. May be
     ///   blocked from activating cards depending on past-due Cardholder requirements.
     ///   Defaults to `inactive`.
-    public static func postIssuingCards(config: ClientConfig, options: PostIssuingCardsOptions) async throws -> IssuingCard {
+    static func postIssuingCards(config: ClientConfig, options: PostIssuingCardsOptions) async throws -> IssuingCard {
         if let cardholder = options.cardholder {
             try validateLength("cardholder", cardholder, max: 5000)
         }
@@ -86,6 +86,14 @@ extension V1IssuingCardsMethods {
 
         let requestBody = PostIssuingCardsRequestBody(options: options)
 
-        return try (await sdkRequest("POST", "/v1/issuing/cards", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostIssuingCards")).data
+        return try await (sdkRequest(
+            "POST",
+            "/v1/issuing/cards",
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostIssuingCards"
+        )).data
     }
 }

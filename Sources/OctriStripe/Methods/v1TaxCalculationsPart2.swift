@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1TaxCalculationsMethods {
-    public struct PostTaxCalculationsOptions: Codable {
+public extension V1TaxCalculationsMethods {
+    struct PostTaxCalculationsOptions: Codable {
         public var currency: String
         public var lineItems: [PostTaxCalculationsRequestBodyLineItemsItem]
         public var customer: String?
@@ -46,13 +46,24 @@ extension V1TaxCalculationsMethods {
     ///   the expected tax rules and rate being used match the actual rules and rate
     ///   that will be in effect on that date. We deploy tax changes before their
     ///   effective date, but not within a fixed window.
-    public static func postTaxCalculations(config: ClientConfig, options: PostTaxCalculationsOptions) async throws -> TaxCalculation {
+    static func postTaxCalculations(
+        config: ClientConfig,
+        options: PostTaxCalculationsOptions
+    ) async throws -> TaxCalculation {
         if let customer = options.customer {
             try validateLength("customer", customer, max: 5000)
         }
 
         let requestBody = PostTaxCalculationsRequestBody(options: options)
 
-        return try (await sdkRequest("POST", "/v1/tax/calculations", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTaxCalculations")).data
+        return try await (sdkRequest(
+            "POST",
+            "/v1/tax/calculations",
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostTaxCalculations"
+        )).data
     }
 }

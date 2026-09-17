@@ -7,7 +7,9 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1BillingCreditBalanceSummaryMethods {
-    /// Retrieves the credit balance summary for a customer. Use `customer` or `customer_account` to identify the balance owner and provide `filter` to select an applicability scope or credit grant. The response includes balances grouped by credit grant currency.
+    /// Retrieves the credit balance summary for a customer. Use `customer` or `customer_account` to identify the
+    /// balance owner and provide `filter` to select an applicability scope or credit grant. The response includes
+    /// balances grouped by credit grant currency.
     ///
     /// Retrieves the credit balance summary for a customer.
     ///
@@ -17,16 +19,22 @@ public enum V1BillingCreditBalanceSummaryMethods {
     /// - customerAccount: The account representing the customer whose credit
     ///   balance summary you're retrieving.
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func getBillingCreditBalanceSummary(config: ClientConfig, filter: GetBillingCreditBalanceSummaryParameter, customer: String?, customerAccount: String?, expand: [String]?) async throws -> BillingCreditBalanceSummary {
-        if let customer = customer {
+    public static func getBillingCreditBalanceSummary(
+        config: ClientConfig,
+        filter: GetBillingCreditBalanceSummaryParameter,
+        customer: String?,
+        customerAccount: String?,
+        expand: [String]?
+    ) async throws -> BillingCreditBalanceSummary {
+        if let customer {
             try validateLength("customer", customer, max: 5000)
         }
 
-        if let customerAccount = customerAccount {
+        if let customerAccount {
             try validateLength("customer_account", customerAccount, max: 5000)
         }
 
-        return try (await sdkRequest("GET", "/v1/billing/credit_balance_summary", config: config, query: [
+        return try await (sdkRequest("GET", "/v1/billing/credit_balance_summary", config: config, query: [
             SdkQueryParameter("filter", value: filter),
             SdkQueryParameter("customer", value: customer),
             SdkQueryParameter("customer_account", value: customerAccount),

@@ -7,7 +7,9 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1TestHelpersIssuingTransactionsRefundMethods {
-    /// Refunds a test-mode Issuing transaction by creating a refund for the specified transaction. Provide the `transaction` identifier and optionally set `refund_amount` when you want to refund a specific amount. You can use `expand` to include additional response fields.
+    /// Refunds a test-mode Issuing transaction by creating a refund for the specified transaction. Provide the
+    /// `transaction` identifier and optionally set `refund_amount` when you want to refund a specific amount. You can
+    /// use `expand` to include additional response fields.
     ///
     /// Refund a test-mode Transaction.
     ///
@@ -16,11 +18,28 @@ public enum V1TestHelpersIssuingTransactionsRefundMethods {
     /// - refundAmount: The total amount to attempt to refund. This amount is in the
     ///   provided currency, or defaults to the cards currency, and in the [smallest
     ///   currency unit](https://docs.stripe.com/currencies#zero-decimal).
-    public static func postTestHelpersIssuingTransactionsTransactionRefund(config: ClientConfig, transaction: String, expand: [String]?, refundAmount: Int?) async throws -> IssuingTransaction {
+    public static func postTestHelpersIssuingTransactionsTransactionRefund(
+        config: ClientConfig,
+        transaction: String,
+        expand: [String]?,
+        refundAmount: Int?
+    ) async throws -> IssuingTransaction {
         try validateLength("transaction", transaction, max: 5000)
 
-        let requestBody = PostTestHelpersIssuingTransactionsTransactionRefundRequestBody(expand: expand, refundAmount: refundAmount)
+        let requestBody = PostTestHelpersIssuingTransactionsTransactionRefundRequestBody(
+            expand: expand,
+            refundAmount: refundAmount
+        )
 
-        return try (await sdkRequest("POST", ["/v1/test_helpers/issuing/transactions/", sdkEncodePathSegment(sdkWireString(transaction)), "/refund"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTestHelpersIssuingTransactionsTransactionRefund")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/test_helpers/issuing/transactions/", sdkEncodePathSegment(sdkWireString(transaction)), "/refund"]
+                .joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostTestHelpersIssuingTransactionsTransactionRefund"
+        )).data
     }
 }

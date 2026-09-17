@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1IssuingCardholdersMethods {
-    public struct PostIssuingCardholdersCardholderOptions: Codable {
+public extension V1IssuingCardholdersMethods {
+    struct PostIssuingCardholdersCardholderOptions: Codable {
         public var cardholder: String
         public var billing: PostIssuingCardholdersCardholderRequestBodyBilling?
         public var company: PostIssuingCardholdersCardholderRequestBodyCompany?
@@ -25,9 +25,13 @@ extension V1IssuingCardholdersMethods {
         }
     }
 
-    /// Updates an Issuing cardholder by changing only the fields included in the request. Use nested fields such as `billing`, `company`, `individual`, or `spending_controls` to modify corresponding cardholder information, while omitted fields remain unchanged. Set `status` to control whether authorizations are permitted on the cardholder's cards.
+    /// Updates an Issuing cardholder by changing only the fields included in the request. Use nested fields such as
+    /// `billing`, `company`, `individual`, or `spending_controls` to modify corresponding cardholder information, while
+    /// omitted fields remain unchanged. Set `status` to control whether authorizations are permitted on the
+    /// cardholder's cards.
     ///
-    /// Updates the specified Issuing Cardholder object by setting the values of the parameters passed. Any parameters not provided will be left unchanged.
+    /// Updates the specified Issuing Cardholder object by setting the values of the parameters passed. Any parameters
+    /// not provided will be left unchanged.
     ///
     /// - Parameters:
     /// - billing: The cardholder's billing address.
@@ -54,11 +58,22 @@ extension V1IssuingCardholdersMethods {
     ///   for more details.
     /// - status: Specifies whether to permit authorizations on this cardholder's
     ///   cards.
-    public static func postIssuingCardholdersCardholder(config: ClientConfig, options: PostIssuingCardholdersCardholderOptions) async throws -> IssuingCardholder {
+    static func postIssuingCardholdersCardholder(
+        config: ClientConfig,
+        options: PostIssuingCardholdersCardholderOptions
+    ) async throws -> IssuingCardholder {
         try validateLength("cardholder", options.cardholder, max: 5000)
 
         let requestBody = PostIssuingCardholdersCardholderRequestBody(options: options)
 
-        return try (await sdkRequest("POST", ["/v1/issuing/cardholders/", sdkEncodePathSegment(sdkWireString(options.cardholder))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostIssuingCardholdersCardholder")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/issuing/cardholders/", sdkEncodePathSegment(sdkWireString(options.cardholder))].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostIssuingCardholdersCardholder"
+        )).data
     }
 }

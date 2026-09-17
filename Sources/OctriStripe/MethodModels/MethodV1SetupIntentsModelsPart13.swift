@@ -7,16 +7,23 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1SetupIntents operation model declarations
-extension PostSetupIntentsRequestBodyPaymentMethodDataNzBankAccount {
-    public init(accountNumber: String, bankCode: String, branchCode: String, suffix: String, accountHolderName: String? = nil, reference: String? = nil) throws {
+/// Canonical v1SetupIntents operation model declarations
+public extension PostSetupIntentsRequestBodyPaymentMethodDataNzBankAccount {
+    init(
+        accountNumber: String,
+        bankCode: String,
+        branchCode: String,
+        suffix: String,
+        accountHolderName: String? = nil,
+        reference: String? = nil
+    ) throws {
         (self.accountNumber, self.bankCode) = (accountNumber, bankCode)
         (self.branchCode, self.suffix) = (branchCode, suffix)
         (self.accountHolderName, self.reference) = (accountHolderName, reference)
-            try validateLength("account_number", self.accountNumber, min: nil, max: 5000)
-            try validateLength("bank_code", self.bankCode, min: nil, max: 5000)
-            try validateLength("branch_code", self.branchCode, min: nil, max: 5000)
-            try validateLength("suffix", self.suffix, min: nil, max: 5000)
+        try validateLength("account_number", self.accountNumber, min: nil, max: 5000)
+        try validateLength("bank_code", self.bankCode, min: nil, max: 5000)
+        try validateLength("branch_code", self.branchCode, min: nil, max: 5000)
+        try validateLength("suffix", self.suffix, min: nil, max: 5000)
         if let value = self.accountHolderName {
             try validateLength("account_holder_name", value, min: nil, max: 5000)
         }
@@ -27,11 +34,11 @@ extension PostSetupIntentsRequestBodyPaymentMethodDataNzBankAccount {
 }
 
 public struct PostSetupIntentsIntentRequestBodyPaymentMethodDataAmazonPay: Codable {
-
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension PostSetupIntentsIntentRequestBodyPaymentMethodDataAmazonPay {
-    public init() {
-    }
+public extension PostSetupIntentsIntentRequestBodyPaymentMethodDataAmazonPay {
+    init() {}
 }

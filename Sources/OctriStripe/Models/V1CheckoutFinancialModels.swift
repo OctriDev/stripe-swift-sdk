@@ -3,10 +3,9 @@
 
 import Foundation
 
-// V1CheckoutFinancial domain models
-public typealias CheckoutFinancialConnectionsPaymentMethodOptionsPermissionsList = [CheckoutFinancialConnectionsPaymentMethodOptionsPermissionsItem]
-
-
+/// V1CheckoutFinancial domain models
+public typealias CheckoutFinancialConnectionsPaymentMethodOptionsPermissionsList =
+    [CheckoutFinancialConnectionsPaymentMethodOptionsPermissionsItem]
 
 /// Typed representation of the `CheckoutFinancialConnectionsPaymentMethodOptions` API schema.
 public struct CheckoutFinancialConnectionsPaymentMethodOptions: Codable {
@@ -28,25 +27,30 @@ public struct CheckoutFinancialConnectionsPaymentMethodOptions: Codable {
     }
 
     init() {
-        (self.filters, self.permissions, self.prefetch, self.returnUrl) = (nil, nil, nil, nil)
+        (filters, permissions, prefetch, returnUrl) = (nil, nil, nil, nil)
     }
 }
 
-extension CheckoutFinancialConnectionsPaymentMethodOptions {
-    public init(from decoder: Decoder) throws {
+public extension CheckoutFinancialConnectionsPaymentMethodOptions {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.filters = try container.sdkDecodeIfPresent(.filters)
-        self.permissions = try container.sdkDecodeIfPresent(.permissions)
-        self.prefetch = try container.sdkDecodeIfPresent(.prefetch)
-        self.returnUrl = try container.sdkDecodeIfPresent(.returnUrl)
-        if let value = self.returnUrl {
+        filters = try container.sdkDecodeIfPresent(.filters)
+        permissions = try container.sdkDecodeIfPresent(.permissions)
+        prefetch = try container.sdkDecodeIfPresent(.prefetch)
+        returnUrl = try container.sdkDecodeIfPresent(.returnUrl)
+        if let value = returnUrl {
             try validateLength("return_url", value, min: nil, max: 5000)
         }
     }
 }
 
-extension CheckoutFinancialConnectionsPaymentMethodOptions {
-    public init(filters: CheckoutFinancialConnectionsPaymentMethodOptionsFilters? = nil, permissions: CheckoutFinancialConnectionsPaymentMethodOptionsPermissionsList? = nil, prefetch: [CheckoutFinancialConnectionsPaymentMethodOptionsPrefetchItem]? = nil, returnUrl: String? = nil) throws {
+public extension CheckoutFinancialConnectionsPaymentMethodOptions {
+    init(
+        filters: CheckoutFinancialConnectionsPaymentMethodOptionsFilters? = nil,
+        permissions: CheckoutFinancialConnectionsPaymentMethodOptionsPermissionsList? = nil,
+        prefetch: [CheckoutFinancialConnectionsPaymentMethodOptionsPrefetchItem]? = nil,
+        returnUrl: String? = nil
+    ) throws {
         self.init()
         (self.filters, self.permissions) = (filters, permissions)
         (self.prefetch, self.returnUrl) = (prefetch, returnUrl)
@@ -56,9 +60,8 @@ extension CheckoutFinancialConnectionsPaymentMethodOptions {
     }
 }
 
-
-
-public typealias CheckoutFinancialConnectionsPaymentMethodOptionsFiltersAccounX022144bec4 = [CheckoutFinancialConnectionsPaymentMethodOptionsFiltersAccounXd6a5bbd8dd]
+public typealias CheckoutFinancialConnectionsPaymentMethodOptionsFiltersAccounX022144bec4 =
+    [CheckoutFinancialConnectionsPaymentMethodOptionsFiltersAccounXd6a5bbd8dd]
 
 /// Typed representation of the `CheckoutFinancialConnectionsPaymentMethodOptionsFilters` API schema.
 public struct CheckoutFinancialConnectionsPaymentMethodOptionsFilters: Codable {
@@ -71,37 +74,43 @@ public struct CheckoutFinancialConnectionsPaymentMethodOptionsFilters: Codable {
     }
 
     init() {
-        self.accountSubcategories = nil
+        accountSubcategories = nil
     }
 }
 
-extension CheckoutFinancialConnectionsPaymentMethodOptionsFilters {
-    public init(from decoder: Decoder) throws {
+public extension CheckoutFinancialConnectionsPaymentMethodOptionsFilters {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.accountSubcategories = try container.sdkDecodeIfPresent(.accountSubcategories)
+        accountSubcategories = try container.sdkDecodeIfPresent(.accountSubcategories)
     }
 }
 
-extension CheckoutFinancialConnectionsPaymentMethodOptionsFilters {
-    public init(accountSubcategories: CheckoutFinancialConnectionsPaymentMethodOptionsFiltersAccounX022144bec4? = nil) {
+public extension CheckoutFinancialConnectionsPaymentMethodOptionsFilters {
+    init(accountSubcategories: CheckoutFinancialConnectionsPaymentMethodOptionsFiltersAccounX022144bec4? = nil) {
         self.init()
         self.accountSubcategories = accountSubcategories
     }
 }
 
 /// Required enumerated value serialized in the `permissions[]` wire field.
-public struct CheckoutFinancialConnectionsPaymentMethodOptionsPermissionsItem: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct CheckoutFinancialConnectionsPaymentMethodOptionsPermissionsItem: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let balances = CheckoutFinancialConnectionsPaymentMethodOptionsPermissionsItem(rawValue: "balances")
     public static let ownership = CheckoutFinancialConnectionsPaymentMethodOptionsPermissionsItem(rawValue: "ownership")
-    public static let paymentMethod = CheckoutFinancialConnectionsPaymentMethodOptionsPermissionsItem(rawValue: "payment_method")
-    public static let transactions = CheckoutFinancialConnectionsPaymentMethodOptionsPermissionsItem(rawValue: "transactions")
+    public static let paymentMethod =
+        CheckoutFinancialConnectionsPaymentMethodOptionsPermissionsItem(rawValue: "payment_method")
+    public static let transactions =
+        CheckoutFinancialConnectionsPaymentMethodOptionsPermissionsItem(rawValue: "transactions")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -111,16 +120,22 @@ public struct CheckoutFinancialConnectionsPaymentMethodOptionsPermissionsItem: R
 }
 
 /// Required enumerated value serialized in the `account_subcategories[]` wire field.
-public struct CheckoutFinancialConnectionsPaymentMethodOptionsFiltersAccounXd6a5bbd8dd: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct CheckoutFinancialConnectionsPaymentMethodOptionsFiltersAccounXd6a5bbd8dd: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let checking = CheckoutFinancialConnectionsPaymentMethodOptionsFiltersAccounXd6a5bbd8dd(rawValue: "checking")
-    public static let savings = CheckoutFinancialConnectionsPaymentMethodOptionsFiltersAccounXd6a5bbd8dd(rawValue: "savings")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let checking =
+        CheckoutFinancialConnectionsPaymentMethodOptionsFiltersAccounXd6a5bbd8dd(rawValue: "checking")
+    public static let savings =
+        CheckoutFinancialConnectionsPaymentMethodOptionsFiltersAccounXd6a5bbd8dd(rawValue: "savings")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -130,17 +145,22 @@ public struct CheckoutFinancialConnectionsPaymentMethodOptionsFiltersAccounXd6a5
 }
 
 /// Required enumerated value serialized in the `prefetch[]` wire field.
-public struct CheckoutFinancialConnectionsPaymentMethodOptionsPrefetchItem: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct CheckoutFinancialConnectionsPaymentMethodOptionsPrefetchItem: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let balances = CheckoutFinancialConnectionsPaymentMethodOptionsPrefetchItem(rawValue: "balances")
     public static let ownership = CheckoutFinancialConnectionsPaymentMethodOptionsPrefetchItem(rawValue: "ownership")
-    public static let transactions = CheckoutFinancialConnectionsPaymentMethodOptionsPrefetchItem(rawValue: "transactions")
+    public static let transactions =
+        CheckoutFinancialConnectionsPaymentMethodOptionsPrefetchItem(rawValue: "transactions")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

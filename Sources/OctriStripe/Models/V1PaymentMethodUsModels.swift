@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1PaymentMethodUs domain models
+/// V1PaymentMethodUs domain models
 /// Typed representation of the `PaymentMethodUsBankAccount` API schema.
 public struct PaymentMethodUsBankAccount: Codable {
     /// Account holder type: individual or company.
@@ -39,43 +39,53 @@ public struct PaymentMethodUsBankAccount: Codable {
     }
 
     init() {
-        (self.accountHolderType, self.accountType, self.bankName, self.financialConnectionsAccount, self.fingerprint) = (nil, nil, nil, nil, nil)
-        (self.last4, self.networks, self.routingNumber, self.statusDetails) = (nil, nil, nil, nil)
+        (accountHolderType, accountType, bankName, financialConnectionsAccount, fingerprint) = (nil, nil, nil, nil, nil)
+        (last4, networks, routingNumber, statusDetails) = (nil, nil, nil, nil)
     }
 }
 
-extension PaymentMethodUsBankAccount {
-    public init(from decoder: Decoder) throws {
+public extension PaymentMethodUsBankAccount {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.accountHolderType = try container.sdkDecodeIfPresent(.accountHolderType)
-        self.accountType = try container.sdkDecodeIfPresent(.accountType)
-        self.bankName = try container.sdkDecodeIfPresent(.bankName)
-        self.financialConnectionsAccount = try container.sdkDecodeIfPresent(.financialConnectionsAccount)
-        self.fingerprint = try container.sdkDecodeIfPresent(.fingerprint)
-        self.last4 = try container.sdkDecodeIfPresent(.last4)
-        self.networks = try container.sdkDecodeIfPresent(.networks)
-        self.routingNumber = try container.sdkDecodeIfPresent(.routingNumber)
-        self.statusDetails = try container.sdkDecodeIfPresent(.statusDetails)
-        if let value = self.bankName {
+        accountHolderType = try container.sdkDecodeIfPresent(.accountHolderType)
+        accountType = try container.sdkDecodeIfPresent(.accountType)
+        bankName = try container.sdkDecodeIfPresent(.bankName)
+        financialConnectionsAccount = try container.sdkDecodeIfPresent(.financialConnectionsAccount)
+        fingerprint = try container.sdkDecodeIfPresent(.fingerprint)
+        last4 = try container.sdkDecodeIfPresent(.last4)
+        networks = try container.sdkDecodeIfPresent(.networks)
+        routingNumber = try container.sdkDecodeIfPresent(.routingNumber)
+        statusDetails = try container.sdkDecodeIfPresent(.statusDetails)
+        if let value = bankName {
             try validateLength("bank_name", value, min: nil, max: 5000)
         }
-        if let value = self.financialConnectionsAccount {
+        if let value = financialConnectionsAccount {
             try validateLength("financial_connections_account", value, min: nil, max: 5000)
         }
-        if let value = self.fingerprint {
+        if let value = fingerprint {
             try validateLength("fingerprint", value, min: nil, max: 5000)
         }
-        if let value = self.last4 {
+        if let value = last4 {
             try validateLength("last4", value, min: nil, max: 5000)
         }
-        if let value = self.routingNumber {
+        if let value = routingNumber {
             try validateLength("routing_number", value, min: nil, max: 5000)
         }
     }
 }
 
-extension PaymentMethodUsBankAccount {
-    public init(accountHolderType: PaymentMethodUsBankAccountAccountHolderType? = nil, accountType: PaymentMethodUsBankAccountAccountType? = nil, bankName: String? = nil, financialConnectionsAccount: String? = nil, fingerprint: String? = nil, last4: String? = nil, networks: PaymentMethodUsBankAccountNetworks? = nil, routingNumber: String? = nil, statusDetails: PaymentMethodUsBankAccountStatusDetailsXfd312bcf? = nil) throws {
+public extension PaymentMethodUsBankAccount {
+    init(
+        accountHolderType: PaymentMethodUsBankAccountAccountHolderType? = nil,
+        accountType: PaymentMethodUsBankAccountAccountType? = nil,
+        bankName: String? = nil,
+        financialConnectionsAccount: String? = nil,
+        fingerprint: String? = nil,
+        last4: String? = nil,
+        networks: PaymentMethodUsBankAccountNetworks? = nil,
+        routingNumber: String? = nil,
+        statusDetails: PaymentMethodUsBankAccountStatusDetailsXfd312bcf? = nil
+    ) throws {
         self.init()
         (self.accountHolderType, self.accountType) = (accountHolderType, accountType)
         (self.bankName, self.financialConnectionsAccount) = (bankName, financialConnectionsAccount)
@@ -105,20 +115,28 @@ public enum PaymentMethodUsBankAccountNetworks {
 }
 
 extension PaymentMethodUsBankAccountNetworks: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentMethodUsBankAccountNetworks")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PaymentMethodUsBankAccountNetworks"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(UsBankAccountNetworks.self) { return .usBankAccountNetworks(value) }
+        if let value = try? container.decode(UsBankAccountNetworks.self) {
+            return .usBankAccountNetworks(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -127,7 +145,6 @@ extension PaymentMethodUsBankAccountNetworks: Codable {
         case let .usBankAccountNetworks(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum PaymentMethodUsBankAccountStatusDetailsXfd312bcf {
@@ -135,24 +152,30 @@ public enum PaymentMethodUsBankAccountStatusDetailsXfd312bcf {
 }
 
 extension PaymentMethodUsBankAccountStatusDetailsXfd312bcf: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PaymentMethodUsBankAccountStatusDetailsXfd312bcf")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PaymentMethodUsBankAccountStatusDetailsXfd312bcf"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             PaymentMethodUsBankAccountStatusDetails.self
         ) {
-            return             .paymentMethodUsBankAccountStatusDetails(value)
+            return .paymentMethodUsBankAccountStatusDetails(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -161,12 +184,7 @@ extension PaymentMethodUsBankAccountStatusDetailsXfd312bcf: Codable {
         case let .paymentMethodUsBankAccountStatusDetails(value): try container.encode(value); return true
         }
     }
-
 }
-
-
-
-
 
 /// Typed representation of the `PaymentMethodUsBankAccountBlocked` API schema.
 public struct PaymentMethodUsBankAccountBlocked: Codable {
@@ -181,20 +199,23 @@ public struct PaymentMethodUsBankAccountBlocked: Codable {
     }
 
     init() {
-        (self.networkCode, self.reason) = (nil, nil)
+        (networkCode, reason) = (nil, nil)
     }
 }
 
-extension PaymentMethodUsBankAccountBlocked {
-    public init(from decoder: Decoder) throws {
+public extension PaymentMethodUsBankAccountBlocked {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.networkCode = try container.sdkDecodeIfPresent(.networkCode)
-        self.reason = try container.sdkDecodeIfPresent(.reason)
+        networkCode = try container.sdkDecodeIfPresent(.networkCode)
+        reason = try container.sdkDecodeIfPresent(.reason)
     }
 }
 
-extension PaymentMethodUsBankAccountBlocked {
-    public init(networkCode: PaymentMethodUsBankAccountBlockedNetworkCode? = nil, reason: PaymentMethodUsBankAccountBlockedReason? = nil) {
+public extension PaymentMethodUsBankAccountBlocked {
+    init(
+        networkCode: PaymentMethodUsBankAccountBlockedNetworkCode? = nil,
+        reason: PaymentMethodUsBankAccountBlockedReason? = nil
+    ) {
         self.init()
         (self.networkCode, self.reason) = (networkCode, reason)
     }
@@ -210,40 +231,47 @@ public struct PaymentMethodUsBankAccountStatusDetails: Codable {
     }
 
     init() {
-        self.blocked = nil
+        blocked = nil
     }
 }
 
-extension PaymentMethodUsBankAccountStatusDetails {
-    public init(from decoder: Decoder) throws {
+public extension PaymentMethodUsBankAccountStatusDetails {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.blocked = try container.sdkDecodeIfPresent(.blocked)
+        blocked = try container.sdkDecodeIfPresent(.blocked)
     }
 }
 
-extension PaymentMethodUsBankAccountStatusDetails {
-    public init(blocked: PaymentMethodUsBankAccountBlocked? = nil) {
+public extension PaymentMethodUsBankAccountStatusDetails {
+    init(blocked: PaymentMethodUsBankAccountBlocked? = nil) {
         self.init()
         self.blocked = blocked
     }
 }
 
 /// The reason why this PaymentMethod's fingerprint has been blocked
-public struct PaymentMethodUsBankAccountBlockedReason: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentMethodUsBankAccountBlockedReason: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let bankAccountClosed = PaymentMethodUsBankAccountBlockedReason(rawValue: "bank_account_closed")
     public static let bankAccountFrozen = PaymentMethodUsBankAccountBlockedReason(rawValue: "bank_account_frozen")
-    public static let bankAccountInvalidDetails = PaymentMethodUsBankAccountBlockedReason(rawValue: "bank_account_invalid_details")
-    public static let bankAccountRestricted = PaymentMethodUsBankAccountBlockedReason(rawValue: "bank_account_restricted")
+    public static let bankAccountInvalidDetails =
+        PaymentMethodUsBankAccountBlockedReason(rawValue: "bank_account_invalid_details")
+    public static let bankAccountRestricted =
+        PaymentMethodUsBankAccountBlockedReason(rawValue: "bank_account_restricted")
     public static let bankAccountUnusable = PaymentMethodUsBankAccountBlockedReason(rawValue: "bank_account_unusable")
     public static let debitNotAuthorized = PaymentMethodUsBankAccountBlockedReason(rawValue: "debit_not_authorized")
-    public static let tokenizedAccountNumberDeactivated = PaymentMethodUsBankAccountBlockedReason(rawValue: "tokenized_account_number_deactivated")
+    public static let tokenizedAccountNumberDeactivated =
+        PaymentMethodUsBankAccountBlockedReason(rawValue: "tokenized_account_number_deactivated")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -253,10 +281,14 @@ public struct PaymentMethodUsBankAccountBlockedReason: RawRepresentable, Hashabl
 }
 
 /// The ACH network code that resulted in this block.
-public struct PaymentMethodUsBankAccountBlockedNetworkCode: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentMethodUsBankAccountBlockedNetworkCode: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let r02 = PaymentMethodUsBankAccountBlockedNetworkCode(rawValue: "R02")
     public static let r03 = PaymentMethodUsBankAccountBlockedNetworkCode(rawValue: "R03")
     public static let r04 = PaymentMethodUsBankAccountBlockedNetworkCode(rawValue: "R04")
@@ -272,7 +304,7 @@ public struct PaymentMethodUsBankAccountBlockedNetworkCode: RawRepresentable, Ha
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -282,16 +314,20 @@ public struct PaymentMethodUsBankAccountBlockedNetworkCode: RawRepresentable, Ha
 }
 
 /// Account holder type: individual or company.
-public struct PaymentMethodUsBankAccountAccountHolderType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PaymentMethodUsBankAccountAccountHolderType: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let company = PaymentMethodUsBankAccountAccountHolderType(rawValue: "company")
     public static let individual = PaymentMethodUsBankAccountAccountHolderType(rawValue: "individual")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -304,13 +340,16 @@ public struct PaymentMethodUsBankAccountAccountHolderType: RawRepresentable, Has
 public struct PaymentMethodUsBankAccountAccountType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let checking = PaymentMethodUsBankAccountAccountType(rawValue: "checking")
     public static let savings = PaymentMethodUsBankAccountAccountType(rawValue: "savings")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

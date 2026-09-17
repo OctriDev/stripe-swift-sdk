@@ -6,8 +6,9 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1TopupsMethods {
-    /// Lists top-ups recorded for the account balance. Use `status`, `created`, and `amount` to filter results, and use cursor parameters with `limit` to paginate the list.
+public extension V1TopupsMethods {
+    /// Lists top-ups recorded for the account balance. Use `status`, `created`, and `amount` to filter results, and use
+    /// cursor parameters with `limit` to paginate the list.
     ///
     /// Returns a list of top-ups.
     ///
@@ -31,20 +32,29 @@ extension V1TopupsMethods {
     ///   the list.
     /// - status: Only return top-ups that have the given status. One of `canceled`,
     ///   `failed`, `pending` or `succeeded`.
-    public static func getTopups(config: ClientConfig, amount: GetTopupsParameter?, created: GetTopupsParameterX32c7f8fc?, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?, status: GetTopupsParameterXc0111896?) async throws -> GetTopupsResponse {
-        if let endingBefore = endingBefore {
+    static func getTopups(
+        config: ClientConfig,
+        amount: GetTopupsParameter?,
+        created: GetTopupsParameterX32c7f8fc?,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        startingAfter: String?,
+        status: GetTopupsParameterXc0111896?
+    ) async throws -> GetTopupsResponse {
+        if let endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let startingAfter = startingAfter {
+        if let startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        if let status = status {
+        if let status {
             try validateLength("status", status.rawValue, max: 5000)
         }
 
-        return try (await sdkRequest("GET", "/v1/topups", config: config, query: [
+        return try await (sdkRequest("GET", "/v1/topups", config: config, query: [
             SdkQueryParameter("amount", value: amount),
             SdkQueryParameter("created", value: created),
             SdkQueryParameter("ending_before", value: endingBefore),

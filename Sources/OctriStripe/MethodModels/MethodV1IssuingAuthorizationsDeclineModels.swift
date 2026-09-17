@@ -7,28 +7,38 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1IssuingAuthorizationsDecline operation model declarations
+/// Canonical v1IssuingAuthorizationsDecline operation model declarations
 public enum PostIssuingAuthorizationsAuthorizationDeclineRequestBodyMetadata {
     case dictionary([String: String])
     case stringValue(String)
 }
 
 extension PostIssuingAuthorizationsAuthorizationDeclineRequestBodyMetadata: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostIssuingAuthorizationsAuthorizationDeclineRequestBodyMetadata")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PostIssuingAuthorizationsAuthorizationDeclineRequestBodyMetadata"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode([String: String].self) { return .dictionary(value) }
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode([String: String].self) {
+            return .dictionary(value)
+        }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -38,5 +48,4 @@ extension PostIssuingAuthorizationsAuthorizationDeclineRequestBodyMetadata: Coda
         case let .stringValue(value): try container.encode(value); return true
         }
     }
-
 }

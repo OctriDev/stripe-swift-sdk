@@ -6,10 +6,14 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1ChargesRefundsMethods {
-    /// Lists refunds belonging to a specific charge. Supply `charge` and use `limit`, `starting_after`, or `ending_before` to page through refunds beyond the most recent refunds included on the charge object. The response indicates whether more refunds are available.
+public extension V1ChargesRefundsMethods {
+    /// Lists refunds belonging to a specific charge. Supply `charge` and use `limit`, `starting_after`, or
+    /// `ending_before` to page through refunds beyond the most recent refunds included on the charge object. The
+    /// response indicates whether more refunds are available.
     ///
-    /// You can see a list of the refunds belonging to a specific charge. Note that the 10 most recent refunds are always available by default on the charge object. If you need more than those 10, you can use this API method and the limit and starting_after parameters to page through additional refunds.
+    /// You can see a list of the refunds belonging to a specific charge. Note that the 10 most recent refunds are
+    /// always available by default on the charge object. If you need more than those 10, you can use this API method
+    /// and the limit and starting_after parameters to page through additional refunds.
     ///
     /// - Parameters:
     /// - endingBefore: A cursor for use in pagination. `ending_before` is an object
@@ -25,12 +29,26 @@ extension V1ChargesRefundsMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    public static func getChargesChargeRefunds(config: ClientConfig, charge: String, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetChargesChargeRefundsResponse {
-        return try (await sdkRequest("GET", ["/v1/charges/", sdkEncodePathSegment(sdkWireString(charge)), "/refunds"].joined(), config: config, query: [
-            SdkQueryParameter("ending_before", value: endingBefore),
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            SdkQueryParameter("limit", value: limit),
-            SdkQueryParameter("starting_after", value: startingAfter),
-        ], decoder: .json, operationId: "GetChargesChargeRefunds")).data
+    static func getChargesChargeRefunds(
+        config: ClientConfig,
+        charge: String,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        startingAfter: String?
+    ) async throws -> GetChargesChargeRefundsResponse {
+        try await (sdkRequest(
+            "GET",
+            ["/v1/charges/", sdkEncodePathSegment(sdkWireString(charge)), "/refunds"].joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("ending_before", value: endingBefore),
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+                SdkQueryParameter("limit", value: limit),
+                SdkQueryParameter("starting_after", value: startingAfter),
+            ],
+            decoder: .json,
+            operationId: "GetChargesChargeRefunds"
+        )).data
     }
 }

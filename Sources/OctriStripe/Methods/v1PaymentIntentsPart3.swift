@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1PaymentIntentsMethods {
-    public struct PostPaymentIntentsOptions: Codable {
+public extension V1PaymentIntentsMethods {
+    struct PostPaymentIntentsOptions: Codable {
         public var amount: Int
         public var currency: String
         public var allowedPaymentMethodTypes: [PostPaymentIntentsRequestBodyAllowedPaymentMethodTypesItem]?
@@ -53,7 +53,10 @@ extension V1PaymentIntentsMethods {
         }
     }
 
-    /// Creates a PaymentIntent object. After the PaymentIntent is created, attach a payment method and confirm to continue the payment. Learn more about the available payment flows with the Payment Intents API. When you use confirm=true during creation, it’s equivalent to creating and confirming the PaymentIntent in the same call. You can use any parameters available in the confirm API when you supply confirm=true .
+    /// Creates a PaymentIntent object. After the PaymentIntent is created, attach a payment method and confirm to
+    /// continue the payment. Learn more about the available payment flows with the Payment Intents API. When you use
+    /// confirm=true during creation, it’s equivalent to creating and confirming the PaymentIntent in the same call. You
+    /// can use any parameters available in the confirm API when you supply confirm=true .
     ///
     /// - Parameters:
     /// - amount: Amount intended to be collected by this PaymentIntent. A positive
@@ -230,7 +233,10 @@ extension V1PaymentIntentsMethods {
     ///   accounts](https://docs.stripe.com/connect/separate-charges-and-transfers).
     /// - useStripeSdk: Set to `true` when confirming server-side and using
     ///   Stripe.js, iOS, or Android client-side SDKs to handle the next actions.
-    public static func postPaymentIntents(config: ClientConfig, options: PostPaymentIntentsOptions) async throws -> PaymentIntent {
+    static func postPaymentIntents(
+        config: ClientConfig,
+        options: PostPaymentIntentsOptions
+    ) async throws -> PaymentIntent {
         if let confirmationToken = options.confirmationToken {
             try validateLength("confirmation_token", confirmationToken, max: 5000)
         }
@@ -269,6 +275,14 @@ extension V1PaymentIntentsMethods {
 
         let requestBody = PostPaymentIntentsRequestBody(options: options)
 
-        return try (await sdkRequest("POST", "/v1/payment_intents", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostPaymentIntents")).data
+        return try await (sdkRequest(
+            "POST",
+            "/v1/payment_intents",
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostPaymentIntents"
+        )).data
     }
 }

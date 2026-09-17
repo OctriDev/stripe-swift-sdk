@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1IssuingCardsMethods {
-    public struct GetIssuingCardsOptions: Codable {
+public extension V1IssuingCardsMethods {
+    struct GetIssuingCardsOptions: Codable {
         public var cardholder: String?
         public var created: GetIssuingCardsParameter?
         public var endingBefore: String?
@@ -24,9 +24,12 @@ extension V1IssuingCardsMethods {
         public init() {}
     }
 
-    /// Lists Issuing cards in descending creation order, with the newest cards first. Filter results by cardholder, creation time, expiration, last four digits, personalization design, status, or type, and use cursor parameters to paginate the collection.
+    /// Lists Issuing cards in descending creation order, with the newest cards first. Filter results by cardholder,
+    /// creation time, expiration, last four digits, personalization design, status, or type, and use cursor parameters
+    /// to paginate the collection.
     ///
-    /// Returns a list of Issuing Card objects. The objects are sorted in descending order by creation date, with the most recently created object appearing first.
+    /// Returns a list of Issuing Card objects. The objects are sorted in descending order by creation date, with the
+    /// most recently created object appearing first.
     ///
     /// - Parameters:
     /// - cardholder: Only return cards belonging to the Cardholder with the
@@ -53,7 +56,10 @@ extension V1IssuingCardsMethods {
     ///   `inactive`, or `canceled`.
     /// - type: Only return cards that have the given type. One of `virtual` or
     ///   `physical`.
-    public static func getIssuingCards(config: ClientConfig, options: GetIssuingCardsOptions) async throws -> GetIssuingCardsResponse {
+    static func getIssuingCards(
+        config: ClientConfig,
+        options: GetIssuingCardsOptions
+    ) async throws -> GetIssuingCardsResponse {
         if let cardholder = options.cardholder {
             try validateLength("cardholder", cardholder, max: 5000)
         }
@@ -74,7 +80,7 @@ extension V1IssuingCardsMethods {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try (await sdkRequest("GET", "/v1/issuing/cards", config: config, query: [
+        return try await (sdkRequest("GET", "/v1/issuing/cards", config: config, query: [
             SdkQueryParameter("cardholder", value: options.cardholder),
             SdkQueryParameter("created", value: options.created),
             SdkQueryParameter("ending_before", value: options.endingBefore),

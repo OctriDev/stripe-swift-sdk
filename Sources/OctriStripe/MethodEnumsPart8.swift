@@ -6,15 +6,19 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public struct PostAccountsAccountPeopleRequestBodyDocumentsCompanyAuthorizaX7d1fffbe2f: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostAccountsAccountPeopleRequestBodyDocumentsCompanyAuthorizaX7d1fffbe2f: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostAccountsAccountPeopleRequestBodyDocumentsCompanyAuthorizaX7d1fffbe2f(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -23,15 +27,19 @@ public struct PostAccountsAccountPeopleRequestBodyDocumentsCompanyAuthorizaX7d1f
     }
 }
 
-public struct PostAccountsAccountPeopleRequestBodyDocumentsPassportFilesItemVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostAccountsAccountPeopleRequestBodyDocumentsPassportFilesItemVariant1: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostAccountsAccountPeopleRequestBodyDocumentsPassportFilesItemVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -40,15 +48,19 @@ public struct PostAccountsAccountPeopleRequestBodyDocumentsPassportFilesItemVari
     }
 }
 
-public struct PostAccountsAccountPeopleRequestBodyDocumentsVisaFilesItemVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostAccountsAccountPeopleRequestBodyDocumentsVisaFilesItemVariant1: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostAccountsAccountPeopleRequestBodyDocumentsVisaFilesItemVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -57,15 +69,20 @@ public struct PostAccountsAccountPeopleRequestBodyDocumentsVisaFilesItemVariant1
     }
 }
 
-public struct PostAccountsAccountPeopleRequestBodyFullNameAliasesVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostAccountsAccountPeopleRequestBodyFullNameAliasesVariant1: RawRepresentable, Hashable, Codable,
+    Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostAccountsAccountPeopleRequestBodyFullNameAliasesVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -74,15 +91,19 @@ public struct PostAccountsAccountPeopleRequestBodyFullNameAliasesVariant1: RawRe
     }
 }
 
-public struct PostAccountsAccountPeopleRequestBodyMetadataVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostAccountsAccountPeopleRequestBodyMetadataVariant1: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostAccountsAccountPeopleRequestBodyMetadataVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -93,16 +114,20 @@ public struct PostAccountsAccountPeopleRequestBodyMetadataVariant1: RawRepresent
 
 /// Indicates if the person or any of their representatives, family members, or other closely related persons,
 /// declares that they hold or have held an important public job or function, in any jurisdiction.
-public struct PostAccountsAccountPeopleRequestBodyPoliticalExposure: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostAccountsAccountPeopleRequestBodyPoliticalExposure: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let existing = PostAccountsAccountPeopleRequestBodyPoliticalExposure(rawValue: "existing")
     public static let none = PostAccountsAccountPeopleRequestBodyPoliticalExposure(rawValue: "none")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -111,15 +136,19 @@ public struct PostAccountsAccountPeopleRequestBodyPoliticalExposure: RawRepresen
     }
 }
 
-public struct PostAccountsAccountPeopleRequestBodyRelationshipPercentOwnershipVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostAccountsAccountPeopleRequestBodyRelationshipPercentOwnershipVariant1: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostAccountsAccountPeopleRequestBodyRelationshipPercentOwnershipVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -128,21 +157,32 @@ public struct PostAccountsAccountPeopleRequestBodyRelationshipPercentOwnershipVa
     }
 }
 
-public struct PostAccountsAccountPeopleRequestBodyUsCfpbDataEthnicityDetailX624fdec7c1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostAccountsAccountPeopleRequestBodyUsCfpbDataEthnicityDetailX624fdec7c1: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let cuban = PostAccountsAccountPeopleRequestBodyUsCfpbDataEthnicityDetailX624fdec7c1(rawValue: "cuban")
-    public static let hispanicOrLatino = PostAccountsAccountPeopleRequestBodyUsCfpbDataEthnicityDetailX624fdec7c1(rawValue: "hispanic_or_latino")
-    public static let mexican = PostAccountsAccountPeopleRequestBodyUsCfpbDataEthnicityDetailX624fdec7c1(rawValue: "mexican")
-    public static let notHispanicOrLatino = PostAccountsAccountPeopleRequestBodyUsCfpbDataEthnicityDetailX624fdec7c1(rawValue: "not_hispanic_or_latino")
-    public static let otherHispanicOrLatino = PostAccountsAccountPeopleRequestBodyUsCfpbDataEthnicityDetailX624fdec7c1(rawValue: "other_hispanic_or_latino")
-    public static let preferNotToAnswer = PostAccountsAccountPeopleRequestBodyUsCfpbDataEthnicityDetailX624fdec7c1(rawValue: "prefer_not_to_answer")
-    public static let puertoRican = PostAccountsAccountPeopleRequestBodyUsCfpbDataEthnicityDetailX624fdec7c1(rawValue: "puerto_rican")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let cuban =
+        PostAccountsAccountPeopleRequestBodyUsCfpbDataEthnicityDetailX624fdec7c1(rawValue: "cuban")
+    public static let hispanicOrLatino =
+        PostAccountsAccountPeopleRequestBodyUsCfpbDataEthnicityDetailX624fdec7c1(rawValue: "hispanic_or_latino")
+    public static let mexican =
+        PostAccountsAccountPeopleRequestBodyUsCfpbDataEthnicityDetailX624fdec7c1(rawValue: "mexican")
+    public static let notHispanicOrLatino =
+        PostAccountsAccountPeopleRequestBodyUsCfpbDataEthnicityDetailX624fdec7c1(rawValue: "not_hispanic_or_latino")
+    public static let otherHispanicOrLatino =
+        PostAccountsAccountPeopleRequestBodyUsCfpbDataEthnicityDetailX624fdec7c1(rawValue: "other_hispanic_or_latino")
+    public static let preferNotToAnswer =
+        PostAccountsAccountPeopleRequestBodyUsCfpbDataEthnicityDetailX624fdec7c1(rawValue: "prefer_not_to_answer")
+    public static let puertoRican =
+        PostAccountsAccountPeopleRequestBodyUsCfpbDataEthnicityDetailX624fdec7c1(rawValue: "puerto_rican")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -151,38 +191,57 @@ public struct PostAccountsAccountPeopleRequestBodyUsCfpbDataEthnicityDetailX624f
     }
 }
 
-public struct PostAccountsAccountPeopleRequestBodyUsCfpbDataRaceDetailsRaceItem: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostAccountsAccountPeopleRequestBodyUsCfpbDataRaceDetailsRaceItem: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let africanAmerican = PostAccountsAccountPeopleRequestBodyUsCfpbDataRaceDetailsRaceItem(rawValue: "african_american")
-    public static let americanIndianOrAlaskaNative = PostAccountsAccountPeopleRequestBodyUsCfpbDataRaceDetailsRaceItem(rawValue: "american_indian_or_alaska_native")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let africanAmerican =
+        PostAccountsAccountPeopleRequestBodyUsCfpbDataRaceDetailsRaceItem(rawValue: "african_american")
+    public static let americanIndianOrAlaskaNative =
+        PostAccountsAccountPeopleRequestBodyUsCfpbDataRaceDetailsRaceItem(rawValue: "american_indian_or_alaska_native")
     public static let asian = PostAccountsAccountPeopleRequestBodyUsCfpbDataRaceDetailsRaceItem(rawValue: "asian")
-    public static let asianIndian = PostAccountsAccountPeopleRequestBodyUsCfpbDataRaceDetailsRaceItem(rawValue: "asian_indian")
-    public static let blackOrAfricanAmerican = PostAccountsAccountPeopleRequestBodyUsCfpbDataRaceDetailsRaceItem(rawValue: "black_or_african_american")
+    public static let asianIndian =
+        PostAccountsAccountPeopleRequestBodyUsCfpbDataRaceDetailsRaceItem(rawValue: "asian_indian")
+    public static let blackOrAfricanAmerican =
+        PostAccountsAccountPeopleRequestBodyUsCfpbDataRaceDetailsRaceItem(rawValue: "black_or_african_american")
     public static let chinese = PostAccountsAccountPeopleRequestBodyUsCfpbDataRaceDetailsRaceItem(rawValue: "chinese")
-    public static let ethiopian = PostAccountsAccountPeopleRequestBodyUsCfpbDataRaceDetailsRaceItem(rawValue: "ethiopian")
+    public static let ethiopian =
+        PostAccountsAccountPeopleRequestBodyUsCfpbDataRaceDetailsRaceItem(rawValue: "ethiopian")
     public static let filipino = PostAccountsAccountPeopleRequestBodyUsCfpbDataRaceDetailsRaceItem(rawValue: "filipino")
-    public static let guamanianOrChamorro = PostAccountsAccountPeopleRequestBodyUsCfpbDataRaceDetailsRaceItem(rawValue: "guamanian_or_chamorro")
+    public static let guamanianOrChamorro =
+        PostAccountsAccountPeopleRequestBodyUsCfpbDataRaceDetailsRaceItem(rawValue: "guamanian_or_chamorro")
     public static let haitian = PostAccountsAccountPeopleRequestBodyUsCfpbDataRaceDetailsRaceItem(rawValue: "haitian")
     public static let jamaican = PostAccountsAccountPeopleRequestBodyUsCfpbDataRaceDetailsRaceItem(rawValue: "jamaican")
     public static let japanese = PostAccountsAccountPeopleRequestBodyUsCfpbDataRaceDetailsRaceItem(rawValue: "japanese")
     public static let korean = PostAccountsAccountPeopleRequestBodyUsCfpbDataRaceDetailsRaceItem(rawValue: "korean")
-    public static let nativeHawaiian = PostAccountsAccountPeopleRequestBodyUsCfpbDataRaceDetailsRaceItem(rawValue: "native_hawaiian")
-    public static let nativeHawaiianOrOtherPacificIslander = PostAccountsAccountPeopleRequestBodyUsCfpbDataRaceDetailsRaceItem(rawValue: "native_hawaiian_or_other_pacific_islander")
+    public static let nativeHawaiian =
+        PostAccountsAccountPeopleRequestBodyUsCfpbDataRaceDetailsRaceItem(rawValue: "native_hawaiian")
+    public static let nativeHawaiianOrOtherPacificIslander =
+        PostAccountsAccountPeopleRequestBodyUsCfpbDataRaceDetailsRaceItem(
+            rawValue: "native_hawaiian_or_other_pacific_islander"
+        )
     public static let nigerian = PostAccountsAccountPeopleRequestBodyUsCfpbDataRaceDetailsRaceItem(rawValue: "nigerian")
-    public static let otherAsian = PostAccountsAccountPeopleRequestBodyUsCfpbDataRaceDetailsRaceItem(rawValue: "other_asian")
-    public static let otherBlackOrAfricanAmerican = PostAccountsAccountPeopleRequestBodyUsCfpbDataRaceDetailsRaceItem(rawValue: "other_black_or_african_american")
-    public static let otherPacificIslander = PostAccountsAccountPeopleRequestBodyUsCfpbDataRaceDetailsRaceItem(rawValue: "other_pacific_islander")
-    public static let preferNotToAnswer = PostAccountsAccountPeopleRequestBodyUsCfpbDataRaceDetailsRaceItem(rawValue: "prefer_not_to_answer")
+    public static let otherAsian =
+        PostAccountsAccountPeopleRequestBodyUsCfpbDataRaceDetailsRaceItem(rawValue: "other_asian")
+    public static let otherBlackOrAfricanAmerican =
+        PostAccountsAccountPeopleRequestBodyUsCfpbDataRaceDetailsRaceItem(rawValue: "other_black_or_african_american")
+    public static let otherPacificIslander =
+        PostAccountsAccountPeopleRequestBodyUsCfpbDataRaceDetailsRaceItem(rawValue: "other_pacific_islander")
+    public static let preferNotToAnswer =
+        PostAccountsAccountPeopleRequestBodyUsCfpbDataRaceDetailsRaceItem(rawValue: "prefer_not_to_answer")
     public static let samoan = PostAccountsAccountPeopleRequestBodyUsCfpbDataRaceDetailsRaceItem(rawValue: "samoan")
     public static let somali = PostAccountsAccountPeopleRequestBodyUsCfpbDataRaceDetailsRaceItem(rawValue: "somali")
-    public static let vietnamese = PostAccountsAccountPeopleRequestBodyUsCfpbDataRaceDetailsRaceItem(rawValue: "vietnamese")
+    public static let vietnamese =
+        PostAccountsAccountPeopleRequestBodyUsCfpbDataRaceDetailsRaceItem(rawValue: "vietnamese")
     public static let white = PostAccountsAccountPeopleRequestBodyUsCfpbDataRaceDetailsRaceItem(rawValue: "white")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -191,15 +250,19 @@ public struct PostAccountsAccountPeopleRequestBodyUsCfpbDataRaceDetailsRaceItem:
     }
 }
 
-public struct PostAccountsAccountPeoplePersonRequestBodyAdditionalTosAcceptX7782889652: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostAccountsAccountPeoplePersonRequestBodyAdditionalTosAcceptX7782889652: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostAccountsAccountPeoplePersonRequestBodyAdditionalTosAcceptX7782889652(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

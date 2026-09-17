@@ -12,8 +12,8 @@ struct PostBillingFeedbackOptionsRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encode(self.description, forKey: SdkCodingKey("description"))
-        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encode(description, forKey: SdkCodingKey("description"))
+        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
     }
 }
 
@@ -23,8 +23,8 @@ struct PostBillingFeedbackOptionsIdRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(self.description, forKey: SdkCodingKey("description"))
-        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(description, forKey: SdkCodingKey("description"))
+        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
     }
 }
 
@@ -33,7 +33,7 @@ struct PostBillingFeedbackOptionsIdDeactivateRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
     }
 }
 
@@ -45,10 +45,10 @@ struct PostBillingMeterEventAdjustmentsRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encode(self.eventName, forKey: SdkCodingKey("event_name"))
-        try keyedContainer.encode(self.type, forKey: SdkCodingKey("type"))
-        try keyedContainer.encodeIfPresent(self.cancel, forKey: SdkCodingKey("cancel"))
-        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encode(eventName, forKey: SdkCodingKey("event_name"))
+        try keyedContainer.encode(type, forKey: SdkCodingKey("type"))
+        try keyedContainer.encodeIfPresent(cancel, forKey: SdkCodingKey("cancel"))
+        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
     }
 }
 
@@ -61,11 +61,11 @@ struct PostBillingMeterEventsRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encode(self.eventName, forKey: SdkCodingKey("event_name"))
-        try keyedContainer.encode(self.payload, forKey: SdkCodingKey("payload"))
-        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(self.identifier, forKey: SdkCodingKey("identifier"))
-        try keyedContainer.encodeIfPresent(self.timestamp, forKey: SdkCodingKey("timestamp"))
+        try keyedContainer.encode(eventName, forKey: SdkCodingKey("event_name"))
+        try keyedContainer.encode(payload, forKey: SdkCodingKey("payload"))
+        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(identifier, forKey: SdkCodingKey("identifier"))
+        try keyedContainer.encodeIfPresent(timestamp, forKey: SdkCodingKey("timestamp"))
     }
 }
 
@@ -80,13 +80,13 @@ struct PostBillingMetersRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encode(self.defaultAggregation, forKey: SdkCodingKey("default_aggregation"))
-        try keyedContainer.encode(self.displayName, forKey: SdkCodingKey("display_name"))
-        try keyedContainer.encode(self.eventName, forKey: SdkCodingKey("event_name"))
-        try keyedContainer.encodeIfPresent(self.customerMapping, forKey: SdkCodingKey("customer_mapping"))
-        try keyedContainer.encodeIfPresent(self.eventTimeWindow, forKey: SdkCodingKey("event_time_window"))
-        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(self.valueSettings, forKey: SdkCodingKey("value_settings"))
+        try keyedContainer.encode(defaultAggregation, forKey: SdkCodingKey("default_aggregation"))
+        try keyedContainer.encode(displayName, forKey: SdkCodingKey("display_name"))
+        try keyedContainer.encode(eventName, forKey: SdkCodingKey("event_name"))
+        try keyedContainer.encodeIfPresent(customerMapping, forKey: SdkCodingKey("customer_mapping"))
+        try keyedContainer.encodeIfPresent(eventTimeWindow, forKey: SdkCodingKey("event_time_window"))
+        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(valueSettings, forKey: SdkCodingKey("value_settings"))
     }
 }
 
@@ -96,8 +96,8 @@ struct PostBillingMetersIdRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(self.displayName, forKey: SdkCodingKey("display_name"))
-        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(displayName, forKey: SdkCodingKey("display_name"))
+        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
     }
 }
 
@@ -106,7 +106,7 @@ struct PostBillingMetersIdDeactivateRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
     }
 }
 
@@ -115,7 +115,7 @@ struct PostBillingMetersIdReactivateRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
     }
 }
 
@@ -130,13 +130,13 @@ struct PostBillingPortalConfigurationsRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encode(self.features, forKey: SdkCodingKey("features"))
-        try keyedContainer.encodeIfPresent(self.businessProfile, forKey: SdkCodingKey("business_profile"))
-        try keyedContainer.encodeIfPresent(self.defaultReturnUrl, forKey: SdkCodingKey("default_return_url"))
-        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(self.loginPage, forKey: SdkCodingKey("login_page"))
-        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
-        try keyedContainer.encodeIfPresent(self.name, forKey: SdkCodingKey("name"))
+        try keyedContainer.encode(features, forKey: SdkCodingKey("features"))
+        try keyedContainer.encodeIfPresent(businessProfile, forKey: SdkCodingKey("business_profile"))
+        try keyedContainer.encodeIfPresent(defaultReturnUrl, forKey: SdkCodingKey("default_return_url"))
+        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(loginPage, forKey: SdkCodingKey("login_page"))
+        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encodeIfPresent(name, forKey: SdkCodingKey("name"))
     }
 }
 
@@ -152,25 +152,25 @@ struct PostBillingPortalConfigurationsConfigurationRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(self.active, forKey: SdkCodingKey("active"))
-        try keyedContainer.encodeIfPresent(self.businessProfile, forKey: SdkCodingKey("business_profile"))
-        try keyedContainer.encodeIfPresent(self.defaultReturnUrl, forKey: SdkCodingKey("default_return_url"))
-        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(self.features, forKey: SdkCodingKey("features"))
-        try keyedContainer.encodeIfPresent(self.loginPage, forKey: SdkCodingKey("login_page"))
-        try keyedContainer.encodeIfPresent(self.metadata, forKey: SdkCodingKey("metadata"))
-        try keyedContainer.encodeIfPresent(self.name, forKey: SdkCodingKey("name"))
+        try keyedContainer.encodeIfPresent(active, forKey: SdkCodingKey("active"))
+        try keyedContainer.encodeIfPresent(businessProfile, forKey: SdkCodingKey("business_profile"))
+        try keyedContainer.encodeIfPresent(defaultReturnUrl, forKey: SdkCodingKey("default_return_url"))
+        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(features, forKey: SdkCodingKey("features"))
+        try keyedContainer.encodeIfPresent(loginPage, forKey: SdkCodingKey("login_page"))
+        try keyedContainer.encodeIfPresent(metadata, forKey: SdkCodingKey("metadata"))
+        try keyedContainer.encodeIfPresent(name, forKey: SdkCodingKey("name"))
     }
 
     init(options: V1BillingPortalConfigurationsMethods.PostBillingPortalConfigurationsConfigurationOptions) {
-        self.active = options.active
-        self.businessProfile = options.businessProfile
-        self.defaultReturnUrl = options.defaultReturnUrl
-        self.expand = options.expand
-        self.features = options.features
-        self.loginPage = options.loginPage
-        self.metadata = options.metadata
-        self.name = options.name
+        active = options.active
+        businessProfile = options.businessProfile
+        defaultReturnUrl = options.defaultReturnUrl
+        expand = options.expand
+        features = options.features
+        loginPage = options.loginPage
+        metadata = options.metadata
+        name = options.name
     }
 }
 
@@ -186,24 +186,24 @@ struct PostBillingPortalSessionsRequestBody: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var keyedContainer = encoder.container(keyedBy: SdkCodingKey.self)
-        try keyedContainer.encodeIfPresent(self.configuration, forKey: SdkCodingKey("configuration"))
-        try keyedContainer.encodeIfPresent(self.customer, forKey: SdkCodingKey("customer"))
-        try keyedContainer.encodeIfPresent(self.customerAccount, forKey: SdkCodingKey("customer_account"))
-        try keyedContainer.encodeIfPresent(self.expand, forKey: SdkCodingKey("expand"))
-        try keyedContainer.encodeIfPresent(self.flowData, forKey: SdkCodingKey("flow_data"))
-        try keyedContainer.encodeIfPresent(self.locale, forKey: SdkCodingKey("locale"))
-        try keyedContainer.encodeIfPresent(self.onBehalfOf, forKey: SdkCodingKey("on_behalf_of"))
-        try keyedContainer.encodeIfPresent(self.returnUrl, forKey: SdkCodingKey("return_url"))
+        try keyedContainer.encodeIfPresent(configuration, forKey: SdkCodingKey("configuration"))
+        try keyedContainer.encodeIfPresent(customer, forKey: SdkCodingKey("customer"))
+        try keyedContainer.encodeIfPresent(customerAccount, forKey: SdkCodingKey("customer_account"))
+        try keyedContainer.encodeIfPresent(expand, forKey: SdkCodingKey("expand"))
+        try keyedContainer.encodeIfPresent(flowData, forKey: SdkCodingKey("flow_data"))
+        try keyedContainer.encodeIfPresent(locale, forKey: SdkCodingKey("locale"))
+        try keyedContainer.encodeIfPresent(onBehalfOf, forKey: SdkCodingKey("on_behalf_of"))
+        try keyedContainer.encodeIfPresent(returnUrl, forKey: SdkCodingKey("return_url"))
     }
 
     init(options: V1BillingPortalSessionsMethods.PostBillingPortalSessionsOptions) {
-        self.configuration = options.configuration
-        self.customer = options.customer
-        self.customerAccount = options.customerAccount
-        self.expand = options.expand
-        self.flowData = options.flowData
-        self.locale = options.locale
-        self.onBehalfOf = options.onBehalfOf
-        self.returnUrl = options.returnUrl
+        configuration = options.configuration
+        customer = options.customer
+        customerAccount = options.customerAccount
+        expand = options.expand
+        flowData = options.flowData
+        locale = options.locale
+        onBehalfOf = options.onBehalfOf
+        returnUrl = options.returnUrl
     }
 }

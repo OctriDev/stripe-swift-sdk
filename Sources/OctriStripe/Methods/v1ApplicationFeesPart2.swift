@@ -6,10 +6,12 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1ApplicationFeesMethods {
-    /// Lists application fees previously collected by your platform. Use `charge` and `created` to filter the results, and use cursor parameters to paginate through fees sorted from newest to oldest.
+public extension V1ApplicationFeesMethods {
+    /// Lists application fees previously collected by your platform. Use `charge` and `created` to filter the results,
+    /// and use cursor parameters to paginate through fees sorted from newest to oldest.
     ///
-    /// Returns a list of application fees you’ve previously collected. The application fees are returned in sorted order, with the most recent fees appearing first.
+    /// Returns a list of application fees you’ve previously collected. The application fees are returned in sorted
+    /// order, with the most recent fees appearing first.
     ///
     /// - Parameters:
     /// - charge: Only return application fees for the charge specified by this
@@ -29,20 +31,28 @@ extension V1ApplicationFeesMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    public static func getApplicationFees(config: ClientConfig, charge: String?, created: GetApplicationFeesParameter?, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetApplicationFeesResponse {
-        if let charge = charge {
+    static func getApplicationFees(
+        config: ClientConfig,
+        charge: String?,
+        created: GetApplicationFeesParameter?,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        startingAfter: String?
+    ) async throws -> GetApplicationFeesResponse {
+        if let charge {
             try validateLength("charge", charge, max: 5000)
         }
 
-        if let endingBefore = endingBefore {
+        if let endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let startingAfter = startingAfter {
+        if let startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try (await sdkRequest("GET", "/v1/application_fees", config: config, query: [
+        return try await (sdkRequest("GET", "/v1/application_fees", config: config, query: [
             SdkQueryParameter("charge", value: charge),
             SdkQueryParameter("created", value: created),
             SdkQueryParameter("ending_before", value: endingBefore),

@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1TreasuryOutboundPaymentsMethods {
-    public struct PostTreasuryOutboundPaymentsOptions: Codable {
+public extension V1TreasuryOutboundPaymentsMethods {
+    struct PostTreasuryOutboundPaymentsOptions: Codable {
         public var amount: Int
         public var currency: String
         public var financialAccount: String
@@ -28,7 +28,9 @@ extension V1TreasuryOutboundPaymentsMethods {
         }
     }
 
-    /// Creates a new OutboundPayment from a FinancialAccount to another party's external bank account or FinancialAccount. Supply `amount`, `currency`, and `financial_account`, then provide either an existing `destination_payment_method` or `destination_payment_method_data` to specify the payment instrument.
+    /// Creates a new OutboundPayment from a FinancialAccount to another party's external bank account or
+    /// FinancialAccount. Supply `amount`, `currency`, and `financial_account`, then provide either an existing
+    /// `destination_payment_method` or `destination_payment_method_data` to specify the payment instrument.
     ///
     /// Creates an OutboundPayment.
     ///
@@ -63,7 +65,10 @@ extension V1TreasuryOutboundPaymentsMethods {
     ///   `us_domestic_wire` payments, or 500 characters for `stripe` network
     ///   transfers. Can only include -#.$&*, spaces, and alphanumeric characters. The
     ///   default value is "payment".
-    public static func postTreasuryOutboundPayments(config: ClientConfig, options: PostTreasuryOutboundPaymentsOptions) async throws -> TreasuryOutboundPayment {
+    static func postTreasuryOutboundPayments(
+        config: ClientConfig,
+        options: PostTreasuryOutboundPaymentsOptions
+    ) async throws -> TreasuryOutboundPayment {
         if let customer = options.customer {
             try validateLength("customer", customer, max: 5000)
         }
@@ -82,6 +87,14 @@ extension V1TreasuryOutboundPaymentsMethods {
 
         let requestBody = PostTreasuryOutboundPaymentsRequestBody(options: options)
 
-        return try (await sdkRequest("POST", "/v1/treasury/outbound_payments", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTreasuryOutboundPayments")).data
+        return try await (sdkRequest(
+            "POST",
+            "/v1/treasury/outbound_payments",
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostTreasuryOutboundPayments"
+        )).data
     }
 }

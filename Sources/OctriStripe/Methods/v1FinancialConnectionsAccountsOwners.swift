@@ -7,7 +7,9 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1FinancialConnectionsAccountsOwnersMethods {
-    /// Lists the owners associated with a Financial Connections account's ownership object. Supply `ownership` to select the ownership record, and use cursor parameters with `limit` to paginate the owners. Each result can include the owner's name, contact details, ownership reference, and refresh timestamp.
+    /// Lists the owners associated with a Financial Connections account's ownership object. Supply `ownership` to
+    /// select the ownership record, and use cursor parameters with `limit` to paginate the owners. Each result can
+    /// include the owner's name, contact details, ownership reference, and refresh timestamp.
     ///
     /// Lists all owners for a given Account
     ///
@@ -26,25 +28,40 @@ public enum V1FinancialConnectionsAccountsOwnersMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    public static func getFinancialConnectionsAccountsAccountOwners(config: ClientConfig, account: String, ownership: String, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetFinancialConnectionsAccountsAccountOwnersResponse {
+    public static func getFinancialConnectionsAccountsAccountOwners(
+        config: ClientConfig,
+        account: String,
+        ownership: String,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        startingAfter: String?
+    ) async throws -> GetFinancialConnectionsAccountsAccountOwnersResponse {
         try validateLength("account", account, max: 5000)
 
         try validateLength("ownership", ownership, max: 5000)
 
-        if let endingBefore = endingBefore {
+        if let endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let startingAfter = startingAfter {
+        if let startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try (await sdkRequest("GET", ["/v1/financial_connections/accounts/", sdkEncodePathSegment(sdkWireString(account)), "/owners"].joined(), config: config, query: [
-            SdkQueryParameter("ownership", value: ownership),
-            SdkQueryParameter("ending_before", value: endingBefore),
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            SdkQueryParameter("limit", value: limit),
-            SdkQueryParameter("starting_after", value: startingAfter),
-        ], decoder: .json, operationId: "GetFinancialConnectionsAccountsAccountOwners")).data
+        return try await (sdkRequest(
+            "GET",
+            ["/v1/financial_connections/accounts/", sdkEncodePathSegment(sdkWireString(account)), "/owners"].joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("ownership", value: ownership),
+                SdkQueryParameter("ending_before", value: endingBefore),
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+                SdkQueryParameter("limit", value: limit),
+                SdkQueryParameter("starting_after", value: startingAfter),
+            ],
+            decoder: .json,
+            operationId: "GetFinancialConnectionsAccountsAccountOwners"
+        )).data
     }
 }

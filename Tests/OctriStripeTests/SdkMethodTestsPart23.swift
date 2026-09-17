@@ -17,7 +17,9 @@ extension SdkMethodTests {
         options.automaticTax = try decoded(sdkMethodFixture498Value2)
         options.backdateStartDate = try decoded("1")
         options.billingCycleAnchor = try decoded("1")
-        options.billingCycleAnchorConfig = try decoded("{\"day_of_month\":1,\"hour\":1,\"minute\":1,\"month\":1,\"second\":1}")
+        options
+            .billingCycleAnchorConfig =
+            try decoded("{\"day_of_month\":1,\"hour\":1,\"minute\":1,\"month\":1,\"second\":1}")
         options.billingMode = try decoded(sdkMethodFixture498Value3)
         options.billingSchedules = try decoded(sdkMethodFixture498Value4)
         options.billingThresholds = try decoded("{\"amount_gte\":100,\"reset_billing_cycle_anchor\":false}")
@@ -92,7 +94,8 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostSubscriptionSchedulesSchedulePostSubscriptionSchedulesScheduleReachesMockAndDecodesResponse() async throws {
+    func testPostSubscriptionSchedulesSchedulePostSubscriptionSchedulesScheduleReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -114,7 +117,8 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostSubscriptionSchedulesScheduleCancelPostSubscriptionScheduX57478f3fb9ReachesMockAndDecodesResponse() async throws {
+    func testPostSubscriptionSchedulesScheduleCancelPostSubscriptionScheduX57478f3fb9ReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -136,7 +140,8 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostSubscriptionSchedulesScheduleReleasePostSubscriptionSchedX23b65a8cefReachesMockAndDecodesResponse() async throws {
+    func testPostSubscriptionSchedulesScheduleReleasePostSubscriptionSchedX23b65a8cefReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -157,12 +162,16 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostSubscriptionsSubscriptionExposedIdPostSubscriptionsSubscrX87d466788dReachesMockAndDecodesResponse() async throws {
+    func testPostSubscriptionsSubscriptionExposedIdPostSubscriptionsSubscrX87d466788dReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        var options = try V1SubscriptionsMethods.PostSubscriptionsSubscriptionExposedIdOptions(subscriptionExposedId: decoded("\"subscription_exposed_-1\""))
+        var options = try V1SubscriptionsMethods
+            .PostSubscriptionsSubscriptionExposedIdOptions(
+                subscriptionExposedId: decoded("\"subscription_exposed_-1\"")
+            )
         options.addInvoiceItems = try decoded(sdkMethodFixture503Value1)
         options.applicationFeePercent = try decoded("1")
         options.automaticTax = try decoded(sdkMethodFixture503Value2)
@@ -209,7 +218,8 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostSubscriptionsSubscriptionMigratePostSubscriptionsSubscriptionMigrateReachesMockAndDecodesResponse() async throws {
+    func testPostSubscriptionsSubscriptionMigratePostSubscriptionsSubscriptionMigrateReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -230,7 +240,8 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostSubscriptionsSubscriptionResumePostSubscriptionsSubscriptionResumeReachesMockAndDecodesResponse() async throws {
+    func testPostSubscriptionsSubscriptionResumePostSubscriptionsSubscriptionResumeReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -258,7 +269,10 @@ extension SdkMethodTests {
             return
         }
         _ = client
-        var options = try V1TaxCalculationsMethods.PostTaxCalculationsOptions(currency: decoded("\"currency\""), lineItems: decoded(sdkMethodFixture506Value1))
+        var options = try V1TaxCalculationsMethods.PostTaxCalculationsOptions(
+            currency: decoded("\"currency\""),
+            lineItems: decoded(sdkMethodFixture506Value1)
+        )
         options.customer = try decoded("\"customer\"")
         options.customerDetails = try decoded(sdkMethodFixture506Value2)
         options.expand = try decoded("[\"expand\"]")
@@ -306,7 +320,11 @@ extension SdkMethodTests {
             return
         }
         _ = client
-        var options = try V1TaxRatesMethods.PostTaxRatesOptions(displayName: decoded("\"Example Name\""), inclusive: decoded("false"), percentage: decoded("30"))
+        var options = try V1TaxRatesMethods.PostTaxRatesOptions(
+            displayName: decoded("\"Example Name\""),
+            inclusive: decoded("false"),
+            percentage: decoded("30")
+        )
         options.active = try decoded("false")
         options.country = try decoded("\"country\"")
         options.description = try decoded("\"example text\"")
@@ -424,7 +442,8 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostTaxTransactionsCreateFromCalculationPostTaxTransactionsCrX02bc1e46beReachesMockAndDecodesResponse() async throws {
+    func testPostTaxTransactionsCreateFromCalculationPostTaxTransactionsCrX02bc1e46beReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -447,12 +466,17 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostTaxTransactionsCreateReversalPostTaxTransactionsCreateReversalReachesMockAndDecodesResponse() async throws {
+    func testPostTaxTransactionsCreateReversalPostTaxTransactionsCreateReversalReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        var options = try V1TaxTransactionsCreateReversalMethods.PostTaxTransactionsCreateReversalOptions(mode: decoded("\"full\""), originalTransaction: decoded("\"original_transaction\""), reference: decoded("\"reference\""))
+        var options = try V1TaxTransactionsCreateReversalMethods.PostTaxTransactionsCreateReversalOptions(
+            mode: decoded("\"full\""),
+            originalTransaction: decoded("\"original_transaction\""),
+            reference: decoded("\"reference\"")
+        )
         options.expand = try decoded("[\"expand\"]")
         options.flatAmount = try decoded("100")
         options.lineItems = try decoded(sdkMethodFixture514Value1)
@@ -508,12 +532,14 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostTerminalConfigurationsConfigurationPostTerminalConfiguratXfd0468699aReachesMockAndDecodesResponse() async throws {
+    func testPostTerminalConfigurationsConfigurationPostTerminalConfiguratXfd0468699aReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        var options = try V1TerminalConfigurationsMethods.PostTerminalConfigurationsConfigurationOptions(configuration: decoded("\"configuration\""))
+        var options = try V1TerminalConfigurationsMethods
+            .PostTerminalConfigurationsConfigurationOptions(configuration: decoded("\"configuration\""))
         options.bbposWisepad3 = try decoded("{\"splashscreen\":\"splashscreen\"}")
         options.bbposWiseposE = try decoded("{\"splashscreen\":\"splashscreen\"}")
         options.cellular = try decoded("{\"enabled\":false}")

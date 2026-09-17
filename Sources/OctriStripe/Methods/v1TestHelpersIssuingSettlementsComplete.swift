@@ -12,11 +12,24 @@ public enum V1TestHelpersIssuingSettlementsCompleteMethods {
     /// - Parameters:
     /// - settlement: The settlement token to mark as complete.
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postTestHelpersIssuingSettlementsSettlementComplete(config: ClientConfig, settlement: String, expand: [String]?) async throws -> IssuingSettlement {
+    public static func postTestHelpersIssuingSettlementsSettlementComplete(
+        config: ClientConfig,
+        settlement: String,
+        expand: [String]?
+    ) async throws -> IssuingSettlement {
         try validateLength("settlement", settlement, max: 5000)
 
         let requestBody = PostTestHelpersIssuingSettlementsSettlementCompleteRequestBody(expand: expand)
 
-        return try (await sdkRequest("POST", ["/v1/test_helpers/issuing/settlements/", sdkEncodePathSegment(sdkWireString(settlement)), "/complete"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTestHelpersIssuingSettlementsSettlementComplete")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/test_helpers/issuing/settlements/", sdkEncodePathSegment(sdkWireString(settlement)), "/complete"]
+                .joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostTestHelpersIssuingSettlementsSettlementComplete"
+        )).data
     }
 }

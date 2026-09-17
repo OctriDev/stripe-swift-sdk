@@ -10,7 +10,10 @@ import Foundation
 public struct PostTaxRatesTaxRateRequestBodyTaxType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let amusementTax = PostTaxRatesTaxRateRequestBodyTaxType(rawValue: "amusement_tax")
     public static let communicationsTax = PostTaxRatesTaxRateRequestBodyTaxType(rawValue: "communications_tax")
     public static let gst = PostTaxRatesTaxRateRequestBodyTaxType(rawValue: "gst")
@@ -18,7 +21,8 @@ public struct PostTaxRatesTaxRateRequestBodyTaxType: RawRepresentable, Hashable,
     public static let igst = PostTaxRatesTaxRateRequestBodyTaxType(rawValue: "igst")
     public static let jct = PostTaxRatesTaxRateRequestBodyTaxType(rawValue: "jct")
     public static let leaseTax = PostTaxRatesTaxRateRequestBodyTaxType(rawValue: "lease_tax")
-    public static let massTransitParkingTax = PostTaxRatesTaxRateRequestBodyTaxType(rawValue: "mass_transit_parking_tax")
+    public static let massTransitParkingTax =
+        PostTaxRatesTaxRateRequestBodyTaxType(rawValue: "mass_transit_parking_tax")
     public static let parkingTax = PostTaxRatesTaxRateRequestBodyTaxType(rawValue: "parking_tax")
     public static let pst = PostTaxRatesTaxRateRequestBodyTaxType(rawValue: "pst")
     public static let qst = PostTaxRatesTaxRateRequestBodyTaxType(rawValue: "qst")
@@ -30,7 +34,7 @@ public struct PostTaxRatesTaxRateRequestBodyTaxType: RawRepresentable, Hashable,
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -39,15 +43,19 @@ public struct PostTaxRatesTaxRateRequestBodyTaxType: RawRepresentable, Hashable,
     }
 }
 
-public struct PostTaxCalculationsRequestBodyCustomerDetailsAddressCityVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostTaxCalculationsRequestBodyCustomerDetailsAddressCityVariant1: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostTaxCalculationsRequestBodyCustomerDetailsAddressCityVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -56,15 +64,19 @@ public struct PostTaxCalculationsRequestBodyCustomerDetailsAddressCityVariant1: 
     }
 }
 
-public struct PostTaxCalculationsRequestBodyCustomerDetailsAddressLine1Variant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostTaxCalculationsRequestBodyCustomerDetailsAddressLine1Variant1: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostTaxCalculationsRequestBodyCustomerDetailsAddressLine1Variant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -73,15 +85,19 @@ public struct PostTaxCalculationsRequestBodyCustomerDetailsAddressLine1Variant1:
     }
 }
 
-public struct PostTaxCalculationsRequestBodyCustomerDetailsAddressLine2Variant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostTaxCalculationsRequestBodyCustomerDetailsAddressLine2Variant1: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostTaxCalculationsRequestBodyCustomerDetailsAddressLine2Variant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -90,15 +106,19 @@ public struct PostTaxCalculationsRequestBodyCustomerDetailsAddressLine2Variant1:
     }
 }
 
-public struct PostTaxCalculationsRequestBodyCustomerDetailsAddressPostalCodeVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostTaxCalculationsRequestBodyCustomerDetailsAddressPostalCodeVariant1: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostTaxCalculationsRequestBodyCustomerDetailsAddressPostalCodeVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -107,15 +127,19 @@ public struct PostTaxCalculationsRequestBodyCustomerDetailsAddressPostalCodeVari
     }
 }
 
-public struct PostTaxCalculationsRequestBodyCustomerDetailsAddressStateVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostTaxCalculationsRequestBodyCustomerDetailsAddressStateVariant1: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostTaxCalculationsRequestBodyCustomerDetailsAddressStateVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -124,16 +148,20 @@ public struct PostTaxCalculationsRequestBodyCustomerDetailsAddressStateVariant1:
     }
 }
 
-public struct PostTaxCalculationsRequestBodyCustomerDetailsAddressSource: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostTaxCalculationsRequestBodyCustomerDetailsAddressSource: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let billing = PostTaxCalculationsRequestBodyCustomerDetailsAddressSource(rawValue: "billing")
     public static let shipping = PostTaxCalculationsRequestBodyCustomerDetailsAddressSource(rawValue: "shipping")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

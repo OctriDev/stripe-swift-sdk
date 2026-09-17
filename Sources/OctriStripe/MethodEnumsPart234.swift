@@ -27,10 +27,10 @@ extension PostPaymentLinksPaymentLinkRequestBodyShippingAddressCollectiX128a888f
         .ie,
         .il,
         .im,
-        .`in`,
+        .in,
         .io,
         .iq,
-        .`is`,
+        .is,
         .it,
         .je,
         .jm,
@@ -177,20 +177,24 @@ extension PostPaymentLinksPaymentLinkRequestBodyShippingAddressCollectiX128a888f
 extension PostPaymentLinksPaymentLinkRequestBodyShippingAddressCollectiX128a888fb9: CaseIterable {
     public static var allCases: [PostPaymentLinksPaymentLinkRequestBodyShippingAddressCollectiX128a888fb9] {
         allCasesPart1
-        +         allCasesPart2
-        +         allCasesPart3
+            + allCasesPart2
+            + allCasesPart3
     }
 }
 
-public struct PostPaymentLinksPaymentLinkRequestBodyShippingAddressCollectionVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostPaymentLinksPaymentLinkRequestBodyShippingAddressCollectionVariant1: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostPaymentLinksPaymentLinkRequestBodyShippingAddressCollectionVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -199,15 +203,19 @@ public struct PostPaymentLinksPaymentLinkRequestBodyShippingAddressCollectionVar
     }
 }
 
-public struct PostPaymentLinksPaymentLinkRequestBodyShippingOptionsVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostPaymentLinksPaymentLinkRequestBodyShippingOptionsVariant1: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostPaymentLinksPaymentLinkRequestBodyShippingOptionsVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

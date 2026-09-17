@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1 domain models
+/// V1 domain models
 /// Typed representation of the `InvoiceSettingSubscriptionScheduleSetting` API schema.
 public struct InvoiceSettingSubscriptionScheduleSetting: Codable {
     /// Required object value serialized in the `issuer` wire field.
@@ -30,32 +30,45 @@ public struct InvoiceSettingSubscriptionScheduleSetting: Codable {
         case footer
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension InvoiceSettingSubscriptionScheduleSetting {
-    public init(from decoder: Decoder) throws {
+public extension InvoiceSettingSubscriptionScheduleSetting {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.issuer) else {
-            throw SdkValidationError(field: "issuer", code: "required", message: "Validation failed for 'issuer': value is required")
+            throw SdkValidationError(
+                field: "issuer",
+                code: "required",
+                message: "Validation failed for 'issuer': value is required"
+            )
         }
-        self.issuer = try container.sdkDecodeRequired(.issuer)
-        self.accountTaxIds = try container.sdkDecodeIfPresent(.accountTaxIds)
-        self.customFields = try container.sdkDecodeIfPresent(.customFields)
-        self.daysUntilDue = try container.sdkDecodeIfPresent(.daysUntilDue)
-        self.description = try container.sdkDecodeIfPresent(.description)
-        self.footer = try container.sdkDecodeIfPresent(.footer)
-        if let value = self.description {
+        issuer = try container.sdkDecodeRequired(.issuer)
+        accountTaxIds = try container.sdkDecodeIfPresent(.accountTaxIds)
+        customFields = try container.sdkDecodeIfPresent(.customFields)
+        daysUntilDue = try container.sdkDecodeIfPresent(.daysUntilDue)
+        description = try container.sdkDecodeIfPresent(.description)
+        footer = try container.sdkDecodeIfPresent(.footer)
+        if let value = description {
             try validateLength("description", value, min: nil, max: 5000)
         }
-        if let value = self.footer {
+        if let value = footer {
             try validateLength("footer", value, min: nil, max: 5000)
         }
     }
 }
 
-extension InvoiceSettingSubscriptionScheduleSetting {
-    public init(issuer: ConnectAccountReference, accountTaxIds: [InvoiceSettingSubscriptionScheduleSettingAccountTaxIdsItem]? = nil, customFields: [InvoiceSettingCustomField]? = nil, daysUntilDue: Int? = nil, description: String? = nil, footer: String? = nil) throws {
+public extension InvoiceSettingSubscriptionScheduleSetting {
+    init(
+        issuer: ConnectAccountReference,
+        accountTaxIds: [InvoiceSettingSubscriptionScheduleSettingAccountTaxIdsItem]? = nil,
+        customFields: [InvoiceSettingCustomField]? = nil,
+        daysUntilDue: Int? = nil,
+        description: String? = nil,
+        footer: String? = nil
+    ) throws {
         (self.issuer, self.accountTaxIds) = (issuer, accountTaxIds)
         (self.customFields, self.daysUntilDue) = (customFields, daysUntilDue)
         (self.description, self.footer) = (description, footer)
@@ -75,22 +88,34 @@ public enum InvoiceSettingSubscriptionScheduleSettingAccountTaxIdsItem {
 }
 
 extension InvoiceSettingSubscriptionScheduleSettingAccountTaxIdsItem: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for InvoiceSettingSubscriptionScheduleSettingAccountTaxIdsItem")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for InvoiceSettingSubscriptionScheduleSettingAccountTaxIdsItem"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(TaxId.self) { return .taxId(value) }
-        if let value = try? container.decode(DeletedTaxId.self) { return .deletedTaxId(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(TaxId.self) {
+            return .taxId(value)
+        }
+        if let value = try? container.decode(DeletedTaxId.self) {
+            return .deletedTaxId(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -101,7 +126,6 @@ extension InvoiceSettingSubscriptionScheduleSettingAccountTaxIdsItem: Codable {
         case let .deletedTaxId(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Invoice Items represent the component lines of an invoice. When you create an invoice item with an `invoice`
@@ -196,48 +220,75 @@ public struct Invoiceitem: Codable {
         case testClock = "test_clock"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension Invoiceitem {
-    public init(from decoder: Decoder) throws {
+public extension Invoiceitem {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.amount = try container.sdkDecodeRequired(.amount)
-        self.currency = try container.sdkDecodeRequired(.currency)
-        self.customer = try container.sdkDecodeRequired(.customer)
-        self.date = try container.sdkDecodeRequired(.date)
-        self.discountable = try container.sdkDecodeRequired(.discountable)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.livemode = try container.sdkDecodeRequired(.livemode)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.period = try container.sdkDecodeRequired(.period)
-        self.proration = try container.sdkDecodeRequired(.proration)
-        self.quantity = try container.sdkDecodeRequired(.quantity)
-        self.quantityDecimal = try container.sdkDecodeRequired(.quantityDecimal)
-        self.customerAccount = try container.sdkDecodeIfPresent(.customerAccount)
-        self.description = try container.sdkDecodeIfPresent(.description)
-        self.discounts = try container.sdkDecodeIfPresent(.discounts)
-        self.frozenFields = try container.sdkDecodeIfPresent(.frozenFields)
-        self.invoice = try container.sdkDecodeIfPresent(.invoice)
-        self.metadata = try container.sdkDecodeIfPresent(.metadata)
-        self.netAmount = try container.sdkDecodeIfPresent(.netAmount)
-        self.parent = try container.sdkDecodeIfPresent(.parent)
-        self.pricing = try container.sdkDecodeIfPresent(.pricing)
-        self.prorationDetails = try container.sdkDecodeIfPresent(.prorationDetails)
-        self.taxRates = try container.sdkDecodeIfPresent(.taxRates)
-        self.testClock = try container.sdkDecodeIfPresent(.testClock)
-            try validateLength("id", self.id, min: nil, max: 5000)
-        if let value = self.customerAccount {
+        amount = try container.sdkDecodeRequired(.amount)
+        currency = try container.sdkDecodeRequired(.currency)
+        customer = try container.sdkDecodeRequired(.customer)
+        date = try container.sdkDecodeRequired(.date)
+        discountable = try container.sdkDecodeRequired(.discountable)
+        id = try container.sdkDecodeRequired(.id)
+        livemode = try container.sdkDecodeRequired(.livemode)
+        object = try container.sdkDecodeRequired(.object)
+        period = try container.sdkDecodeRequired(.period)
+        proration = try container.sdkDecodeRequired(.proration)
+        quantity = try container.sdkDecodeRequired(.quantity)
+        quantityDecimal = try container.sdkDecodeRequired(.quantityDecimal)
+        customerAccount = try container.sdkDecodeIfPresent(.customerAccount)
+        description = try container.sdkDecodeIfPresent(.description)
+        discounts = try container.sdkDecodeIfPresent(.discounts)
+        frozenFields = try container.sdkDecodeIfPresent(.frozenFields)
+        invoice = try container.sdkDecodeIfPresent(.invoice)
+        metadata = try container.sdkDecodeIfPresent(.metadata)
+        netAmount = try container.sdkDecodeIfPresent(.netAmount)
+        parent = try container.sdkDecodeIfPresent(.parent)
+        pricing = try container.sdkDecodeIfPresent(.pricing)
+        prorationDetails = try container.sdkDecodeIfPresent(.prorationDetails)
+        taxRates = try container.sdkDecodeIfPresent(.taxRates)
+        testClock = try container.sdkDecodeIfPresent(.testClock)
+        try validateLength("id", id, min: nil, max: 5000)
+        if let value = customerAccount {
             try validateLength("customer_account", value, min: nil, max: 5000)
         }
-        if let value = self.description {
+        if let value = description {
             try validateLength("description", value, min: nil, max: 5000)
         }
     }
 }
 
-extension Invoiceitem {
-    public init(amount: Int, currency: String, customer: InvoiceitemCustomer, date: Int, discountable: Bool, id: String, livemode: Bool, object: InvoiceitemObject, period: InvoiceLineItemPeriod, proration: Bool, quantity: Int, quantityDecimal: String, customerAccount: String? = nil, description: String? = nil, discounts: [InvoiceitemDiscountsItem]? = nil, frozenFields: [InvoiceitemFrozenFieldsItem]? = nil, invoice: InvoiceitemInvoice? = nil, metadata: [String: String]? = nil, netAmount: Int? = nil, parent: InvoiceitemParent? = nil, pricing: InvoiceitemPricing? = nil, prorationDetails: ProrationDetails? = nil, taxRates: [TaxRate]? = nil, testClock: InvoiceitemTestClock? = nil) throws {
+public extension Invoiceitem {
+    init(
+        amount: Int,
+        currency: String,
+        customer: InvoiceitemCustomer,
+        date: Int,
+        discountable: Bool,
+        id: String,
+        livemode: Bool,
+        object: InvoiceitemObject,
+        period: InvoiceLineItemPeriod,
+        proration: Bool,
+        quantity: Int,
+        quantityDecimal: String,
+        customerAccount: String? = nil,
+        description: String? = nil,
+        discounts: [InvoiceitemDiscountsItem]? = nil,
+        frozenFields: [InvoiceitemFrozenFieldsItem]? = nil,
+        invoice: InvoiceitemInvoice? = nil,
+        metadata: [String: String]? = nil,
+        netAmount: Int? = nil,
+        parent: InvoiceitemParent? = nil,
+        pricing: InvoiceitemPricing? = nil,
+        prorationDetails: ProrationDetails? = nil,
+        taxRates: [TaxRate]? = nil,
+        testClock: InvoiceitemTestClock? = nil
+    ) throws {
         (self.amount, self.currency) = (amount, currency)
         (self.customer, self.date) = (customer, date)
         (self.discountable, self.id) = (discountable, id)
@@ -250,7 +301,7 @@ extension Invoiceitem {
         (self.netAmount, self.parent) = (netAmount, parent)
         (self.pricing, self.prorationDetails) = (pricing, prorationDetails)
         (self.taxRates, self.testClock) = (taxRates, testClock)
-            try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
         if let value = self.customerAccount {
             try validateLength("customer_account", value, min: nil, max: 5000)
         }
@@ -267,22 +318,34 @@ public enum InvoiceitemCustomer {
 }
 
 extension InvoiceitemCustomer: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for InvoiceitemCustomer")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for InvoiceitemCustomer"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(Customer.self) { return .customer(value) }
-        if let value = try? container.decode(DeletedCustomer.self) { return .deletedCustomer(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(Customer.self) {
+            return .customer(value)
+        }
+        if let value = try? container.decode(DeletedCustomer.self) {
+            return .deletedCustomer(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -293,7 +356,6 @@ extension InvoiceitemCustomer: Codable {
         case let .deletedCustomer(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum InvoiceitemDiscountsItem {
@@ -302,21 +364,31 @@ public enum InvoiceitemDiscountsItem {
 }
 
 extension InvoiceitemDiscountsItem: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for InvoiceitemDiscountsItem")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for InvoiceitemDiscountsItem"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(Discount.self) { return .discount(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(Discount.self) {
+            return .discount(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -326,7 +398,6 @@ extension InvoiceitemDiscountsItem: Codable {
         case let .discount(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum InvoiceitemInvoice {
@@ -335,21 +406,31 @@ public enum InvoiceitemInvoice {
 }
 
 extension InvoiceitemInvoice: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for InvoiceitemInvoice")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for InvoiceitemInvoice"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(Invoice.self) { return .invoice(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(Invoice.self) {
+            return .invoice(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -359,7 +440,6 @@ extension InvoiceitemInvoice: Codable {
         case let .invoice(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum InvoiceitemParent {
@@ -367,33 +447,39 @@ public enum InvoiceitemParent {
 }
 
 extension InvoiceitemParent: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for InvoiceitemParent")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for InvoiceitemParent"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             BillingBillResourceInvoiceItemParentsInvoiceItemParent.self
         ) {
-            return             .billingBillResourceInvoiceItemParentsInvoiceItemParent(value)
+            return .billingBillResourceInvoiceItemParentsInvoiceItemParent(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
         var container = encoder.singleValueContainer()
         switch self {
-        case let .billingBillResourceInvoiceItemParentsInvoiceItemParent(value): try container.encode(value); return true
+        case let .billingBillResourceInvoiceItemParentsInvoiceItemParent(value): try container
+            .encode(value); return true
         }
     }
-
 }
 
 public enum InvoiceitemPricing {
@@ -401,24 +487,30 @@ public enum InvoiceitemPricing {
 }
 
 extension InvoiceitemPricing: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for InvoiceitemPricing")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for InvoiceitemPricing"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             BillingBillResourceInvoicingPricingPricing.self
         ) {
-            return             .billingBillResourceInvoicingPricingPricing(value)
+            return .billingBillResourceInvoicingPricingPricing(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -427,7 +519,6 @@ extension InvoiceitemPricing: Codable {
         case let .billingBillResourceInvoicingPricingPricing(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum InvoiceitemTestClock {
@@ -436,21 +527,31 @@ public enum InvoiceitemTestClock {
 }
 
 extension InvoiceitemTestClock: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for InvoiceitemTestClock")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for InvoiceitemTestClock"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(TestHelpersTestClock.self) { return .testHelpersTestClock(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(TestHelpersTestClock.self) {
+            return .testHelpersTestClock(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -460,7 +561,6 @@ extension InvoiceitemTestClock: Codable {
         case let .testHelpersTestClock(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Typed representation of the `InvoicesPaymentsInvoicePaymentAssociatedPayment` API schema.
@@ -484,24 +584,35 @@ public struct InvoicesPaymentsInvoicePaymentAssociatedPayment: Codable {
         case paymentRecord = "payment_record"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension InvoicesPaymentsInvoicePaymentAssociatedPayment {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
-        }
-        self.type = try container.sdkDecodeRequired(.type)
-        self.charge = try container.sdkDecodeIfPresent(.charge)
-        self.paymentIntent = try container.sdkDecodeIfPresent(.paymentIntent)
-        self.paymentRecord = try container.sdkDecodeIfPresent(.paymentRecord)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension InvoicesPaymentsInvoicePaymentAssociatedPayment {
-    public init(type: InvoicesPaymentsInvoicePaymentAssociatedPaymentType, charge: InvoicesPaymentsInvoicePaymentAssociatedPaymentCharge? = nil, paymentIntent: InvoicesPaymentsInvoicePaymentAssociatedPaymentPaymentIntent? = nil, paymentRecord: InvoicesPaymentsInvoicePaymentAssociatedPaymentPaymentRecord? = nil) {
+public extension InvoicesPaymentsInvoicePaymentAssociatedPayment {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.type) else {
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
+        }
+        type = try container.sdkDecodeRequired(.type)
+        charge = try container.sdkDecodeIfPresent(.charge)
+        paymentIntent = try container.sdkDecodeIfPresent(.paymentIntent)
+        paymentRecord = try container.sdkDecodeIfPresent(.paymentRecord)
+    }
+}
+
+public extension InvoicesPaymentsInvoicePaymentAssociatedPayment {
+    init(
+        type: InvoicesPaymentsInvoicePaymentAssociatedPaymentType,
+        charge: InvoicesPaymentsInvoicePaymentAssociatedPaymentCharge? = nil,
+        paymentIntent: InvoicesPaymentsInvoicePaymentAssociatedPaymentPaymentIntent? = nil,
+        paymentRecord: InvoicesPaymentsInvoicePaymentAssociatedPaymentPaymentRecord? = nil
+    ) {
         (self.type, self.charge) = (type, charge)
         (self.paymentIntent, self.paymentRecord) = (paymentIntent, paymentRecord)
     }
@@ -513,21 +624,31 @@ public enum InvoicesPaymentsInvoicePaymentAssociatedPaymentCharge {
 }
 
 extension InvoicesPaymentsInvoicePaymentAssociatedPaymentCharge: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for InvoicesPaymentsInvoicePaymentAssociatedPaymentCharge")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for InvoicesPaymentsInvoicePaymentAssociatedPaymentCharge"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(Charge.self) { return .charge(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(Charge.self) {
+            return .charge(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -537,7 +658,6 @@ extension InvoicesPaymentsInvoicePaymentAssociatedPaymentCharge: Codable {
         case let .charge(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum InvoicesPaymentsInvoicePaymentAssociatedPaymentPaymentIntent {

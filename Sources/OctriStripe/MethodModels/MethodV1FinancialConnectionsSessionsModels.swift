@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1FinancialConnectionsSessions operation model declarations
+/// Canonical v1FinancialConnectionsSessions operation model declarations
 /// Customize manual entry behavior
 public struct PostFinancialConnectionsSessionsRequestBodyManualEntry: Codable {
     public var mode: PostFinancialConnectionsSessionsRequestBodyManualEntryMode?
@@ -17,29 +17,26 @@ public struct PostFinancialConnectionsSessionsRequestBodyManualEntry: Codable {
     }
 
     init() {
-        self.mode = nil
+        mode = nil
     }
 }
 
-extension PostFinancialConnectionsSessionsRequestBodyManualEntry {
-    public init(from decoder: Decoder) throws {
+public extension PostFinancialConnectionsSessionsRequestBodyManualEntry {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.mode = try container.sdkDecodeIfPresent(.mode)
+        mode = try container.sdkDecodeIfPresent(.mode)
     }
 }
 
-extension PostFinancialConnectionsSessionsRequestBodyManualEntry {
-    public init(mode: PostFinancialConnectionsSessionsRequestBodyManualEntryMode? = nil) {
+public extension PostFinancialConnectionsSessionsRequestBodyManualEntry {
+    init(mode: PostFinancialConnectionsSessionsRequestBodyManualEntryMode? = nil) {
         self.init()
         self.mode = mode
     }
 }
 
-
-
-public typealias PostFinancialConnectionsSessionsRequestBodyFiltersAccountSubcXa668b569f6 = [PostFinancialConnectionsSessionsRequestBodyFiltersAccountSubcXbe5b9d3d36]
-
-
+public typealias PostFinancialConnectionsSessionsRequestBodyFiltersAccountSubcXa668b569f6 =
+    [PostFinancialConnectionsSessionsRequestBodyFiltersAccountSubcXbe5b9d3d36]
 
 /// Filters to restrict the kinds of accounts to collect.
 public struct PostFinancialConnectionsSessionsRequestBodyFilters: Codable {
@@ -54,21 +51,25 @@ public struct PostFinancialConnectionsSessionsRequestBodyFilters: Codable {
     }
 
     init() {
-        (self.accountSubcategories, self.countries, self.requirePaymentMethodSupport) = (nil, nil, nil)
+        (accountSubcategories, countries, requirePaymentMethodSupport) = (nil, nil, nil)
     }
 }
 
-extension PostFinancialConnectionsSessionsRequestBodyFilters {
-    public init(from decoder: Decoder) throws {
+public extension PostFinancialConnectionsSessionsRequestBodyFilters {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.accountSubcategories = try container.sdkDecodeIfPresent(.accountSubcategories)
-        self.countries = try container.sdkDecodeIfPresent(.countries)
-        self.requirePaymentMethodSupport = try container.sdkDecodeIfPresent(.requirePaymentMethodSupport)
+        accountSubcategories = try container.sdkDecodeIfPresent(.accountSubcategories)
+        countries = try container.sdkDecodeIfPresent(.countries)
+        requirePaymentMethodSupport = try container.sdkDecodeIfPresent(.requirePaymentMethodSupport)
     }
 }
 
-extension PostFinancialConnectionsSessionsRequestBodyFilters {
-    public init(accountSubcategories: PostFinancialConnectionsSessionsRequestBodyFiltersAccountSubcXa668b569f6? = nil, countries: [String]? = nil, requirePaymentMethodSupport: PostFinancialConnectionsSessionsRequestBodyFiltersRequirePaymX84fc863720? = nil) {
+public extension PostFinancialConnectionsSessionsRequestBodyFilters {
+    init(
+        accountSubcategories: PostFinancialConnectionsSessionsRequestBodyFiltersAccountSubcXa668b569f6? = nil,
+        countries: [String]? = nil,
+        requirePaymentMethodSupport: PostFinancialConnectionsSessionsRequestBodyFiltersRequirePaymX84fc863720? = nil
+    ) {
         self.init()
         (self.accountSubcategories, self.countries) = (accountSubcategories, countries)
         self.requirePaymentMethodSupport = requirePaymentMethodSupport
@@ -89,33 +90,44 @@ public struct PostFinancialConnectionsSessionsRequestBodyAccountHolder: Codable 
         case customerAccount = "customer_account"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension PostFinancialConnectionsSessionsRequestBodyAccountHolder {
-    public init(from decoder: Decoder) throws {
+public extension PostFinancialConnectionsSessionsRequestBodyAccountHolder {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
         }
-        self.type = try container.sdkDecodeRequired(.type)
-        self.account = try container.sdkDecodeIfPresent(.account)
-        self.customer = try container.sdkDecodeIfPresent(.customer)
-        self.customerAccount = try container.sdkDecodeIfPresent(.customerAccount)
-        if let value = self.account {
+        type = try container.sdkDecodeRequired(.type)
+        account = try container.sdkDecodeIfPresent(.account)
+        customer = try container.sdkDecodeIfPresent(.customer)
+        customerAccount = try container.sdkDecodeIfPresent(.customerAccount)
+        if let value = account {
             try validateLength("account", value, min: nil, max: 5000)
         }
-        if let value = self.customer {
+        if let value = customer {
             try validateLength("customer", value, min: nil, max: 5000)
         }
-        if let value = self.customerAccount {
+        if let value = customerAccount {
             try validateLength("customer_account", value, min: nil, max: 5000)
         }
     }
 }
 
-extension PostFinancialConnectionsSessionsRequestBodyAccountHolder {
-    public init(type: PostFinancialConnectionsSessionsRequestBodyAccountHolderType, account: String? = nil, customer: String? = nil, customerAccount: String? = nil) throws {
+public extension PostFinancialConnectionsSessionsRequestBodyAccountHolder {
+    init(
+        type: PostFinancialConnectionsSessionsRequestBodyAccountHolderType,
+        account: String? = nil,
+        customer: String? = nil,
+        customerAccount: String? = nil
+    ) throws {
         (self.type, self.account) = (type, account)
         (self.customer, self.customerAccount) = (customer, customerAccount)
         if let value = self.account {
@@ -138,21 +150,27 @@ public struct PostFinancialConnectionsSessionsRequestBodyLimits: Codable {
         case accounts
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension PostFinancialConnectionsSessionsRequestBodyLimits {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.accounts) else {
-            throw SdkValidationError(field: "accounts", code: "required", message: "Validation failed for 'accounts': value is required")
-        }
-        self.accounts = try container.sdkDecodeRequired(.accounts)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension PostFinancialConnectionsSessionsRequestBodyLimits {
-    public init(accounts: PostFinancialConnectionsSessionsRequestBodyLimitsAccounts) {
+public extension PostFinancialConnectionsSessionsRequestBodyLimits {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.accounts) else {
+            throw SdkValidationError(
+                field: "accounts",
+                code: "required",
+                message: "Validation failed for 'accounts': value is required"
+            )
+        }
+        accounts = try container.sdkDecodeRequired(.accounts)
+    }
+}
+
+public extension PostFinancialConnectionsSessionsRequestBodyLimits {
+    init(accounts: PostFinancialConnectionsSessionsRequestBodyLimitsAccounts) {
         self.accounts = accounts
     }
 }
@@ -163,21 +181,31 @@ public enum PostFinancialConnectionsSessionsRequestBodyLimitsAccounts {
 }
 
 extension PostFinancialConnectionsSessionsRequestBodyLimitsAccounts: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostFinancialConnectionsSessionsRequestBodyLimitsAccounts")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PostFinancialConnectionsSessionsRequestBodyLimitsAccounts"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(Int.self) { return .intValue(value) }
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(Int.self) {
+            return .intValue(value)
+        }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -187,5 +215,4 @@ extension PostFinancialConnectionsSessionsRequestBodyLimitsAccounts: Codable {
         case let .stringValue(value): try container.encode(value); return true
         }
     }
-
 }

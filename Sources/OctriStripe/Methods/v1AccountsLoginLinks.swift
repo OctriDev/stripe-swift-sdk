@@ -7,17 +7,32 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1AccountsLoginLinksMethods {
-    /// Creates a single-use login link for a connected account to access the Express Dashboard. Use `account` for an account connected to your platform and using the Express Dashboard; optionally use `expand` to expand response fields. The response contains the login URL and its creation time.
+    /// Creates a single-use login link for a connected account to access the Express Dashboard. Use `account` for an
+    /// account connected to your platform and using the Express Dashboard; optionally use `expand` to expand response
+    /// fields. The response contains the login URL and its creation time.
     ///
-    /// Creates a login link for a connected account to access the Express Dashboard. You can only create login links for accounts that use the Express Dashboard and are connected to your platform .
+    /// Creates a login link for a connected account to access the Express Dashboard. You can only create login links
+    /// for accounts that use the Express Dashboard and are connected to your platform .
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postAccountsAccountLoginLinks(config: ClientConfig, account: String, expand: [String]?) async throws -> LoginLink {
+    public static func postAccountsAccountLoginLinks(
+        config: ClientConfig,
+        account: String,
+        expand: [String]?
+    ) async throws -> LoginLink {
         try validateLength("account", account, max: 5000)
 
         let requestBody = PostAccountsAccountLoginLinksRequestBody(expand: expand)
 
-        return try (await sdkRequest("POST", ["/v1/accounts/", sdkEncodePathSegment(sdkWireString(account)), "/login_links"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostAccountsAccountLoginLinks")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/accounts/", sdkEncodePathSegment(sdkWireString(account)), "/login_links"].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostAccountsAccountLoginLinks"
+        )).data
     }
 }

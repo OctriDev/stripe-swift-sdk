@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1Refund domain models
+/// V1Refund domain models
 /// Typed representation of the `RefundDestinationDetailsMultibanco` API schema.
 public struct RefundDestinationDetailsMultibanco: Codable {
     /// The reference assigned to the refund.
@@ -17,26 +17,26 @@ public struct RefundDestinationDetailsMultibanco: Codable {
     }
 
     init() {
-        (self.reference, self.referenceStatus) = (nil, nil)
+        (reference, referenceStatus) = (nil, nil)
     }
 }
 
-extension RefundDestinationDetailsMultibanco {
-    public init(from decoder: Decoder) throws {
+public extension RefundDestinationDetailsMultibanco {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.reference = try container.sdkDecodeIfPresent(.reference)
-        self.referenceStatus = try container.sdkDecodeIfPresent(.referenceStatus)
-        if let value = self.reference {
+        reference = try container.sdkDecodeIfPresent(.reference)
+        referenceStatus = try container.sdkDecodeIfPresent(.referenceStatus)
+        if let value = reference {
             try validateLength("reference", value, min: nil, max: 5000)
         }
-        if let value = self.referenceStatus {
+        if let value = referenceStatus {
             try validateLength("reference_status", value, min: nil, max: 5000)
         }
     }
 }
 
-extension RefundDestinationDetailsMultibanco {
-    public init(reference: String? = nil, referenceStatus: String? = nil) throws {
+public extension RefundDestinationDetailsMultibanco {
+    init(reference: String? = nil, referenceStatus: String? = nil) throws {
         self.init()
         (self.reference, self.referenceStatus) = (reference, referenceStatus)
         if let value = self.reference {
@@ -61,26 +61,26 @@ public struct RefundDestinationDetailsMxBankTransfer: Codable {
     }
 
     init() {
-        (self.reference, self.referenceStatus) = (nil, nil)
+        (reference, referenceStatus) = (nil, nil)
     }
 }
 
-extension RefundDestinationDetailsMxBankTransfer {
-    public init(from decoder: Decoder) throws {
+public extension RefundDestinationDetailsMxBankTransfer {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.reference = try container.sdkDecodeIfPresent(.reference)
-        self.referenceStatus = try container.sdkDecodeIfPresent(.referenceStatus)
-        if let value = self.reference {
+        reference = try container.sdkDecodeIfPresent(.reference)
+        referenceStatus = try container.sdkDecodeIfPresent(.referenceStatus)
+        if let value = reference {
             try validateLength("reference", value, min: nil, max: 5000)
         }
-        if let value = self.referenceStatus {
+        if let value = referenceStatus {
             try validateLength("reference_status", value, min: nil, max: 5000)
         }
     }
 }
 
-extension RefundDestinationDetailsMxBankTransfer {
-    public init(reference: String? = nil, referenceStatus: String? = nil) throws {
+public extension RefundDestinationDetailsMxBankTransfer {
+    init(reference: String? = nil, referenceStatus: String? = nil) throws {
         self.init()
         (self.reference, self.referenceStatus) = (reference, referenceStatus)
         if let value = self.reference {
@@ -105,26 +105,26 @@ public struct RefundDestinationDetailsP24: Codable {
     }
 
     init() {
-        (self.reference, self.referenceStatus) = (nil, nil)
+        (reference, referenceStatus) = (nil, nil)
     }
 }
 
-extension RefundDestinationDetailsP24 {
-    public init(from decoder: Decoder) throws {
+public extension RefundDestinationDetailsP24 {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.reference = try container.sdkDecodeIfPresent(.reference)
-        self.referenceStatus = try container.sdkDecodeIfPresent(.referenceStatus)
-        if let value = self.reference {
+        reference = try container.sdkDecodeIfPresent(.reference)
+        referenceStatus = try container.sdkDecodeIfPresent(.referenceStatus)
+        if let value = reference {
             try validateLength("reference", value, min: nil, max: 5000)
         }
-        if let value = self.referenceStatus {
+        if let value = referenceStatus {
             try validateLength("reference_status", value, min: nil, max: 5000)
         }
     }
 }
 
-extension RefundDestinationDetailsP24 {
-    public init(reference: String? = nil, referenceStatus: String? = nil) throws {
+public extension RefundDestinationDetailsP24 {
+    init(reference: String? = nil, referenceStatus: String? = nil) throws {
         self.init()
         (self.reference, self.referenceStatus) = (reference, referenceStatus)
         if let value = self.reference {
@@ -147,22 +147,22 @@ public struct RefundDestinationDetailsPaypal: Codable {
     }
 
     init() {
-        self.networkDeclineCode = nil
+        networkDeclineCode = nil
     }
 }
 
-extension RefundDestinationDetailsPaypal {
-    public init(from decoder: Decoder) throws {
+public extension RefundDestinationDetailsPaypal {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.networkDeclineCode = try container.sdkDecodeIfPresent(.networkDeclineCode)
-        if let value = self.networkDeclineCode {
+        networkDeclineCode = try container.sdkDecodeIfPresent(.networkDeclineCode)
+        if let value = networkDeclineCode {
             try validateLength("network_decline_code", value, min: nil, max: 5000)
         }
     }
 }
 
-extension RefundDestinationDetailsPaypal {
-    public init(networkDeclineCode: String? = nil) throws {
+public extension RefundDestinationDetailsPaypal {
+    init(networkDeclineCode: String? = nil) throws {
         self.init()
         self.networkDeclineCode = networkDeclineCode
         if let value = self.networkDeclineCode {
@@ -188,30 +188,30 @@ public struct RefundDestinationDetailsSwish: Codable {
     }
 
     init() {
-        (self.networkDeclineCode, self.reference, self.referenceStatus) = (nil, nil, nil)
+        (networkDeclineCode, reference, referenceStatus) = (nil, nil, nil)
     }
 }
 
-extension RefundDestinationDetailsSwish {
-    public init(from decoder: Decoder) throws {
+public extension RefundDestinationDetailsSwish {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.networkDeclineCode = try container.sdkDecodeIfPresent(.networkDeclineCode)
-        self.reference = try container.sdkDecodeIfPresent(.reference)
-        self.referenceStatus = try container.sdkDecodeIfPresent(.referenceStatus)
-        if let value = self.networkDeclineCode {
+        networkDeclineCode = try container.sdkDecodeIfPresent(.networkDeclineCode)
+        reference = try container.sdkDecodeIfPresent(.reference)
+        referenceStatus = try container.sdkDecodeIfPresent(.referenceStatus)
+        if let value = networkDeclineCode {
             try validateLength("network_decline_code", value, min: nil, max: 5000)
         }
-        if let value = self.reference {
+        if let value = reference {
             try validateLength("reference", value, min: nil, max: 5000)
         }
-        if let value = self.referenceStatus {
+        if let value = referenceStatus {
             try validateLength("reference_status", value, min: nil, max: 5000)
         }
     }
 }
 
-extension RefundDestinationDetailsSwish {
-    public init(networkDeclineCode: String? = nil, reference: String? = nil, referenceStatus: String? = nil) throws {
+public extension RefundDestinationDetailsSwish {
+    init(networkDeclineCode: String? = nil, reference: String? = nil, referenceStatus: String? = nil) throws {
         self.init()
         (self.networkDeclineCode, self.reference) = (networkDeclineCode, reference)
         self.referenceStatus = referenceStatus
@@ -240,26 +240,26 @@ public struct RefundDestinationDetailsThBankTransfer: Codable {
     }
 
     init() {
-        (self.reference, self.referenceStatus) = (nil, nil)
+        (reference, referenceStatus) = (nil, nil)
     }
 }
 
-extension RefundDestinationDetailsThBankTransfer {
-    public init(from decoder: Decoder) throws {
+public extension RefundDestinationDetailsThBankTransfer {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.reference = try container.sdkDecodeIfPresent(.reference)
-        self.referenceStatus = try container.sdkDecodeIfPresent(.referenceStatus)
-        if let value = self.reference {
+        reference = try container.sdkDecodeIfPresent(.reference)
+        referenceStatus = try container.sdkDecodeIfPresent(.referenceStatus)
+        if let value = reference {
             try validateLength("reference", value, min: nil, max: 5000)
         }
-        if let value = self.referenceStatus {
+        if let value = referenceStatus {
             try validateLength("reference_status", value, min: nil, max: 5000)
         }
     }
 }
 
-extension RefundDestinationDetailsThBankTransfer {
-    public init(reference: String? = nil, referenceStatus: String? = nil) throws {
+public extension RefundDestinationDetailsThBankTransfer {
+    init(reference: String? = nil, referenceStatus: String? = nil) throws {
         self.init()
         (self.reference, self.referenceStatus) = (reference, referenceStatus)
         if let value = self.reference {
@@ -284,26 +284,26 @@ public struct RefundDestinationDetailsUsBankTransfer: Codable {
     }
 
     init() {
-        (self.reference, self.referenceStatus) = (nil, nil)
+        (reference, referenceStatus) = (nil, nil)
     }
 }
 
-extension RefundDestinationDetailsUsBankTransfer {
-    public init(from decoder: Decoder) throws {
+public extension RefundDestinationDetailsUsBankTransfer {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.reference = try container.sdkDecodeIfPresent(.reference)
-        self.referenceStatus = try container.sdkDecodeIfPresent(.referenceStatus)
-        if let value = self.reference {
+        reference = try container.sdkDecodeIfPresent(.reference)
+        referenceStatus = try container.sdkDecodeIfPresent(.referenceStatus)
+        if let value = reference {
             try validateLength("reference", value, min: nil, max: 5000)
         }
-        if let value = self.referenceStatus {
+        if let value = referenceStatus {
             try validateLength("reference_status", value, min: nil, max: 5000)
         }
     }
 }
 
-extension RefundDestinationDetailsUsBankTransfer {
-    public init(reference: String? = nil, referenceStatus: String? = nil) throws {
+public extension RefundDestinationDetailsUsBankTransfer {
+    init(reference: String? = nil, referenceStatus: String? = nil) throws {
         self.init()
         (self.reference, self.referenceStatus) = (reference, referenceStatus)
         if let value = self.reference {
@@ -327,25 +327,31 @@ public struct RefundNextAction: Codable {
         case displayDetails = "display_details"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension RefundNextAction {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
-        }
-        self.type = try container.sdkDecodeRequired(.type)
-        self.displayDetails = try container.sdkDecodeIfPresent(.displayDetails)
-            try validateLength("type", self.type, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension RefundNextAction {
-    public init(type: String, displayDetails: RefundNextActionDisplayDetails? = nil) throws {
+public extension RefundNextAction {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.type) else {
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
+        }
+        type = try container.sdkDecodeRequired(.type)
+        displayDetails = try container.sdkDecodeIfPresent(.displayDetails)
+        try validateLength("type", type, min: nil, max: 5000)
+    }
+}
+
+public extension RefundNextAction {
+    init(type: String, displayDetails: RefundNextActionDisplayDetails? = nil) throws {
         (self.type, self.displayDetails) = (type, displayDetails)
-            try validateLength("type", self.type, min: nil, max: 5000)
+        try validateLength("type", self.type, min: nil, max: 5000)
     }
 }
 
@@ -361,25 +367,35 @@ public struct RefundNextActionDisplayDetails: Codable {
         case expiresAt = "expires_at"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension RefundNextActionDisplayDetails {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.emailSent) else {
-            throw SdkValidationError(field: "email_sent", code: "required", message: "Validation failed for 'email_sent': value is required")
-        }
-        guard container.contains(.expiresAt) else {
-            throw SdkValidationError(field: "expires_at", code: "required", message: "Validation failed for 'expires_at': value is required")
-        }
-        self.emailSent = try container.sdkDecodeRequired(.emailSent)
-        self.expiresAt = try container.sdkDecodeRequired(.expiresAt)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension RefundNextActionDisplayDetails {
-    public init(emailSent: EmailSent, expiresAt: Int) {
+public extension RefundNextActionDisplayDetails {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.emailSent) else {
+            throw SdkValidationError(
+                field: "email_sent",
+                code: "required",
+                message: "Validation failed for 'email_sent': value is required"
+            )
+        }
+        guard container.contains(.expiresAt) else {
+            throw SdkValidationError(
+                field: "expires_at",
+                code: "required",
+                message: "Validation failed for 'expires_at': value is required"
+            )
+        }
+        emailSent = try container.sdkDecodeRequired(.emailSent)
+        expiresAt = try container.sdkDecodeRequired(.expiresAt)
+    }
+}
+
+public extension RefundNextActionDisplayDetails {
+    init(emailSent: EmailSent, expiresAt: Int) {
         (self.emailSent, self.expiresAt) = (emailSent, expiresAt)
     }
 }
@@ -388,14 +404,17 @@ extension RefundNextActionDisplayDetails {
 public struct RefundDestinationDetailsCardType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let pending = RefundDestinationDetailsCardType(rawValue: "pending")
     public static let refund = RefundDestinationDetailsCardType(rawValue: "refund")
     public static let reversal = RefundDestinationDetailsCardType(rawValue: "reversal")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

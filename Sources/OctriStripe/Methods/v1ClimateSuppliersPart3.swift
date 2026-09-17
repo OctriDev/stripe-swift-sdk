@@ -6,18 +6,30 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1ClimateSuppliersMethods {
-    /// Retrieves a Climate supplier by its unique identifier. Use `expand` to request expanded response fields when you need additional supplier details.
+public extension V1ClimateSuppliersMethods {
+    /// Retrieves a Climate supplier by its unique identifier. Use `expand` to request expanded response fields when you
+    /// need additional supplier details.
     ///
     /// Retrieves a Climate supplier object.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func getClimateSuppliersSupplier(config: ClientConfig, supplier: String, expand: [String]?) async throws -> ClimateSupplier {
+    static func getClimateSuppliersSupplier(
+        config: ClientConfig,
+        supplier: String,
+        expand: [String]?
+    ) async throws -> ClimateSupplier {
         try validateLength("supplier", supplier, max: 5000)
 
-        return try (await sdkRequest("GET", ["/v1/climate/suppliers/", sdkEncodePathSegment(sdkWireString(supplier))].joined(), config: config, query: [
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-        ], decoder: .json, operationId: "GetClimateSuppliersSupplier")).data
+        return try await (sdkRequest(
+            "GET",
+            ["/v1/climate/suppliers/", sdkEncodePathSegment(sdkWireString(supplier))].joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+            ],
+            decoder: .json,
+            operationId: "GetClimateSuppliersSupplier"
+        )).data
     }
 }

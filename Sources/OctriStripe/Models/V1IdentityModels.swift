@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1Identity domain models
+/// V1Identity domain models
 /// A VerificationReport is the result of an attempt to collect and verify data from a user. The collection of
 /// verification checks performed is determined from the `type` and `options` parameters used. You can find the
 /// result of each verification check performed in the appropriate sub-resource: `document`, `id_number`, `selfie`.
@@ -58,56 +58,93 @@ public struct IdentityVerificationReport: Codable {
         case verificationSession = "verification_session"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension IdentityVerificationReport {
-    public init(from decoder: Decoder) throws {
+public extension IdentityVerificationReport {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.created) else {
-            throw SdkValidationError(field: "created", code: "required", message: "Validation failed for 'created': value is required")
+            throw SdkValidationError(
+                field: "created",
+                code: "required",
+                message: "Validation failed for 'created': value is required"
+            )
         }
         guard container.contains(.id) else {
-            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
+            throw SdkValidationError(
+                field: "id",
+                code: "required",
+                message: "Validation failed for 'id': value is required"
+            )
         }
         guard container.contains(.livemode) else {
-            throw SdkValidationError(field: "livemode", code: "required", message: "Validation failed for 'livemode': value is required")
+            throw SdkValidationError(
+                field: "livemode",
+                code: "required",
+                message: "Validation failed for 'livemode': value is required"
+            )
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
         }
         guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
         }
-        self.created = try container.sdkDecodeRequired(.created)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.livemode = try container.sdkDecodeRequired(.livemode)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.type = try container.sdkDecodeRequired(.type)
-        self.clientReferenceId = try container.sdkDecodeIfPresent(.clientReferenceId)
-        self.document = try container.sdkDecodeIfPresent(.document)
-        self.email = try container.sdkDecodeIfPresent(.email)
-        self.idNumber = try container.sdkDecodeIfPresent(.idNumber)
-        self.options = try container.sdkDecodeIfPresent(.options)
-        self.phone = try container.sdkDecodeIfPresent(.phone)
-        self.selfie = try container.sdkDecodeIfPresent(.selfie)
-        self.verificationFlow = try container.sdkDecodeIfPresent(.verificationFlow)
-        self.verificationSession = try container.sdkDecodeIfPresent(.verificationSession)
-            try validateLength("id", self.id, min: nil, max: 5000)
-        if let value = self.clientReferenceId {
+        created = try container.sdkDecodeRequired(.created)
+        id = try container.sdkDecodeRequired(.id)
+        livemode = try container.sdkDecodeRequired(.livemode)
+        object = try container.sdkDecodeRequired(.object)
+        type = try container.sdkDecodeRequired(.type)
+        clientReferenceId = try container.sdkDecodeIfPresent(.clientReferenceId)
+        document = try container.sdkDecodeIfPresent(.document)
+        email = try container.sdkDecodeIfPresent(.email)
+        idNumber = try container.sdkDecodeIfPresent(.idNumber)
+        options = try container.sdkDecodeIfPresent(.options)
+        phone = try container.sdkDecodeIfPresent(.phone)
+        selfie = try container.sdkDecodeIfPresent(.selfie)
+        verificationFlow = try container.sdkDecodeIfPresent(.verificationFlow)
+        verificationSession = try container.sdkDecodeIfPresent(.verificationSession)
+        try validateLength("id", id, min: nil, max: 5000)
+        if let value = clientReferenceId {
             try validateLength("client_reference_id", value, min: nil, max: 5000)
         }
-        if let value = self.verificationFlow {
+        if let value = verificationFlow {
             try validateLength("verification_flow", value, min: nil, max: 5000)
         }
-        if let value = self.verificationSession {
+        if let value = verificationSession {
             try validateLength("verification_session", value, min: nil, max: 5000)
         }
     }
 }
 
-extension IdentityVerificationReport {
-    public init(created: Int, id: String, livemode: Bool, object: IdentityVerificationReportObject, type: IdentityVerificationReportType, clientReferenceId: String? = nil, document: GelatoDocumentReport? = nil, email: GelatoEmailReport? = nil, idNumber: GelatoIdNumberReport? = nil, options: GelatoVerificationReportOptions? = nil, phone: GelatoPhoneReport? = nil, selfie: GelatoSelfieReport? = nil, verificationFlow: String? = nil, verificationSession: String? = nil) throws {
+public extension IdentityVerificationReport {
+    init(
+        created: Int,
+        id: String,
+        livemode: Bool,
+        object: IdentityVerificationReportObject,
+        type: IdentityVerificationReportType,
+        clientReferenceId: String? = nil,
+        document: GelatoDocumentReport? = nil,
+        email: GelatoEmailReport? = nil,
+        idNumber: GelatoIdNumberReport? = nil,
+        options: GelatoVerificationReportOptions? = nil,
+        phone: GelatoPhoneReport? = nil,
+        selfie: GelatoSelfieReport? = nil,
+        verificationFlow: String? = nil,
+        verificationSession: String? = nil
+    ) throws {
         (self.created, self.id) = (created, id)
         (self.livemode, self.object) = (livemode, object)
         (self.type, self.clientReferenceId) = (type, clientReferenceId)
@@ -115,7 +152,7 @@ extension IdentityVerificationReport {
         (self.idNumber, self.options) = (idNumber, options)
         (self.phone, self.selfie) = (phone, selfie)
         (self.verificationFlow, self.verificationSession) = (verificationFlow, verificationSession)
-            try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
         if let value = self.clientReferenceId {
             try validateLength("client_reference_id", value, min: nil, max: 5000)
         }
@@ -208,59 +245,110 @@ public struct IdentityVerificationSession: Codable {
         case verifiedOutputs = "verified_outputs"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension IdentityVerificationSession {
-    public init(from decoder: Decoder) throws {
+public extension IdentityVerificationSession {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.created) else {
-            throw SdkValidationError(field: "created", code: "required", message: "Validation failed for 'created': value is required")
+            throw SdkValidationError(
+                field: "created",
+                code: "required",
+                message: "Validation failed for 'created': value is required"
+            )
         }
         guard container.contains(.id) else {
-            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
+            throw SdkValidationError(
+                field: "id",
+                code: "required",
+                message: "Validation failed for 'id': value is required"
+            )
         }
         guard container.contains(.livemode) else {
-            throw SdkValidationError(field: "livemode", code: "required", message: "Validation failed for 'livemode': value is required")
+            throw SdkValidationError(
+                field: "livemode",
+                code: "required",
+                message: "Validation failed for 'livemode': value is required"
+            )
         }
         guard container.contains(.metadata) else {
-            throw SdkValidationError(field: "metadata", code: "required", message: "Validation failed for 'metadata': value is required")
+            throw SdkValidationError(
+                field: "metadata",
+                code: "required",
+                message: "Validation failed for 'metadata': value is required"
+            )
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
         }
         guard container.contains(.status) else {
-            throw SdkValidationError(field: "status", code: "required", message: "Validation failed for 'status': value is required")
+            throw SdkValidationError(
+                field: "status",
+                code: "required",
+                message: "Validation failed for 'status': value is required"
+            )
         }
         guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
         }
-        self.created = try container.sdkDecodeRequired(.created)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.livemode = try container.sdkDecodeRequired(.livemode)
-        self.metadata = try container.sdkDecodeRequired(.metadata)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.status = try container.sdkDecodeRequired(.status)
-        self.type = try container.sdkDecodeRequired(.type)
-        self.clientReferenceId = try container.sdkDecodeIfPresent(.clientReferenceId)
-        self.clientSecret = try container.sdkDecodeIfPresent(.clientSecret)
-        self.lastError = try container.sdkDecodeIfPresent(.lastError)
-        self.lastVerificationReport = try container.sdkDecodeIfPresent(.lastVerificationReport)
-        self.options = try container.sdkDecodeIfPresent(.options)
-        self.providedDetails = try container.sdkDecodeIfPresent(.providedDetails)
-        self.redaction = try container.sdkDecodeIfPresent(.redaction)
-        self.relatedCustomer = try container.sdkDecodeIfPresent(.relatedCustomer)
-        self.relatedCustomerAccount = try container.sdkDecodeIfPresent(.relatedCustomerAccount)
-        self.relatedPerson = try container.sdkDecodeIfPresent(.relatedPerson)
-        self.url = try container.sdkDecodeIfPresent(.url)
-        self.verificationFlow = try container.sdkDecodeIfPresent(.verificationFlow)
-        self.verifiedOutputs = try container.sdkDecodeIfPresent(.verifiedOutputs)
+        created = try container.sdkDecodeRequired(.created)
+        id = try container.sdkDecodeRequired(.id)
+        livemode = try container.sdkDecodeRequired(.livemode)
+        metadata = try container.sdkDecodeRequired(.metadata)
+        object = try container.sdkDecodeRequired(.object)
+        status = try container.sdkDecodeRequired(.status)
+        type = try container.sdkDecodeRequired(.type)
+        clientReferenceId = try container.sdkDecodeIfPresent(.clientReferenceId)
+        clientSecret = try container.sdkDecodeIfPresent(.clientSecret)
+        lastError = try container.sdkDecodeIfPresent(.lastError)
+        lastVerificationReport = try container.sdkDecodeIfPresent(.lastVerificationReport)
+        options = try container.sdkDecodeIfPresent(.options)
+        providedDetails = try container.sdkDecodeIfPresent(.providedDetails)
+        redaction = try container.sdkDecodeIfPresent(.redaction)
+        relatedCustomer = try container.sdkDecodeIfPresent(.relatedCustomer)
+        relatedCustomerAccount = try container.sdkDecodeIfPresent(.relatedCustomerAccount)
+        relatedPerson = try container.sdkDecodeIfPresent(.relatedPerson)
+        url = try container.sdkDecodeIfPresent(.url)
+        verificationFlow = try container.sdkDecodeIfPresent(.verificationFlow)
+        verifiedOutputs = try container.sdkDecodeIfPresent(.verifiedOutputs)
         try sdkValidateConstraints()
     }
 }
 
-extension IdentityVerificationSession {
-    public init(created: Int, id: String, livemode: Bool, metadata: [String: String], object: IdentityVerificationSessionObject, status: IdentityVerificationSessionStatus, type: IdentityVerificationSessionType, clientReferenceId: String? = nil, clientSecret: String? = nil, lastError: IdentityVerificationSessionLastError? = nil, lastVerificationReport: IdentityVerificationSessionLastVerificationReport? = nil, options: IdentityVerificationSessionOptions? = nil, providedDetails: IdentityVerificationSessionProvidedDetails? = nil, redaction: IdentityVerificationSessionRedaction? = nil, relatedCustomer: String? = nil, relatedCustomerAccount: String? = nil, relatedPerson: GelatoRelatedPerson? = nil, url: String? = nil, verificationFlow: String? = nil, verifiedOutputs: IdentityVerificationSessionVerifiedOutputs? = nil) throws {
+public extension IdentityVerificationSession {
+    init(
+        created: Int,
+        id: String,
+        livemode: Bool,
+        metadata: [String: String],
+        object: IdentityVerificationSessionObject,
+        status: IdentityVerificationSessionStatus,
+        type: IdentityVerificationSessionType,
+        clientReferenceId: String? = nil,
+        clientSecret: String? = nil,
+        lastError: IdentityVerificationSessionLastError? = nil,
+        lastVerificationReport: IdentityVerificationSessionLastVerificationReport? = nil,
+        options: IdentityVerificationSessionOptions? = nil,
+        providedDetails: IdentityVerificationSessionProvidedDetails? = nil,
+        redaction: IdentityVerificationSessionRedaction? = nil,
+        relatedCustomer: String? = nil,
+        relatedCustomerAccount: String? = nil,
+        relatedPerson: GelatoRelatedPerson? = nil,
+        url: String? = nil,
+        verificationFlow: String? = nil,
+        verifiedOutputs: IdentityVerificationSessionVerifiedOutputs? = nil
+    ) throws {
         (self.created, self.id) = (created, id)
         (self.livemode, self.metadata) = (livemode, metadata)
         (self.object, self.status) = (object, status)
@@ -277,23 +365,23 @@ extension IdentityVerificationSession {
 
 extension IdentityVerificationSession {
     func sdkValidateConstraints() throws {
-            try validateLength("id", self.id, min: nil, max: 5000)
-        if let value = self.clientReferenceId {
+        try validateLength("id", id, min: nil, max: 5000)
+        if let value = clientReferenceId {
             try validateLength("client_reference_id", value, min: nil, max: 5000)
         }
-        if let value = self.clientSecret {
+        if let value = clientSecret {
             try validateLength("client_secret", value, min: nil, max: 5000)
         }
-        if let value = self.relatedCustomer {
+        if let value = relatedCustomer {
             try validateLength("related_customer", value, min: nil, max: 5000)
         }
-        if let value = self.relatedCustomerAccount {
+        if let value = relatedCustomerAccount {
             try validateLength("related_customer_account", value, min: nil, max: 5000)
         }
-        if let value = self.url {
+        if let value = url {
             try validateLength("url", value, min: nil, max: 5000)
         }
-        if let value = self.verificationFlow {
+        if let value = verificationFlow {
             try validateLength("verification_flow", value, min: nil, max: 5000)
         }
     }
@@ -304,20 +392,28 @@ public enum IdentityVerificationSessionLastError {
 }
 
 extension IdentityVerificationSessionLastError: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for IdentityVerificationSessionLastError")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for IdentityVerificationSessionLastError"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(GelatoSessionLastError.self) { return .gelatoSessionLastError(value) }
+        if let value = try? container.decode(GelatoSessionLastError.self) {
+            return .gelatoSessionLastError(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -326,7 +422,6 @@ extension IdentityVerificationSessionLastError: Codable {
         case let .gelatoSessionLastError(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum IdentityVerificationSessionLastVerificationReport {
@@ -335,21 +430,32 @@ public enum IdentityVerificationSessionLastVerificationReport {
 }
 
 extension IdentityVerificationSessionLastVerificationReport: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for IdentityVerificationSessionLastVerificationReport")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for IdentityVerificationSessionLastVerificationReport"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(IdentityVerificationReport.self) { return .identityVerificationReport(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container
+            .decode(IdentityVerificationReport.self) {
+            return .identityVerificationReport(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -359,7 +465,6 @@ extension IdentityVerificationSessionLastVerificationReport: Codable {
         case let .identityVerificationReport(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum IdentityVerificationSessionOptions {
@@ -367,20 +472,29 @@ public enum IdentityVerificationSessionOptions {
 }
 
 extension IdentityVerificationSessionOptions: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for IdentityVerificationSessionOptions")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for IdentityVerificationSessionOptions"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(GelatoVerificationSessionOptions.self) { return .gelatoVerificationSessionOptions(value) }
+        if let value = try? container
+            .decode(GelatoVerificationSessionOptions.self) {
+            return .gelatoVerificationSessionOptions(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -389,7 +503,6 @@ extension IdentityVerificationSessionOptions: Codable {
         case let .gelatoVerificationSessionOptions(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum IdentityVerificationSessionProvidedDetails {
@@ -397,20 +510,28 @@ public enum IdentityVerificationSessionProvidedDetails {
 }
 
 extension IdentityVerificationSessionProvidedDetails: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for IdentityVerificationSessionProvidedDetails")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for IdentityVerificationSessionProvidedDetails"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(GelatoProvidedDetails.self) { return .gelatoProvidedDetails(value) }
+        if let value = try? container.decode(GelatoProvidedDetails.self) {
+            return .gelatoProvidedDetails(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -419,7 +540,6 @@ extension IdentityVerificationSessionProvidedDetails: Codable {
         case let .gelatoProvidedDetails(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum IdentityVerificationSessionRedaction {
@@ -427,20 +547,29 @@ public enum IdentityVerificationSessionRedaction {
 }
 
 extension IdentityVerificationSessionRedaction: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for IdentityVerificationSessionRedaction")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for IdentityVerificationSessionRedaction"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(VerificationSessionRedaction.self) { return .verificationSessionRedaction(value) }
+        if let value = try? container
+            .decode(VerificationSessionRedaction.self) {
+            return .verificationSessionRedaction(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -449,7 +578,6 @@ extension IdentityVerificationSessionRedaction: Codable {
         case let .verificationSessionRedaction(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum IdentityVerificationSessionVerifiedOutputs {
@@ -457,20 +585,28 @@ public enum IdentityVerificationSessionVerifiedOutputs {
 }
 
 extension IdentityVerificationSessionVerifiedOutputs: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for IdentityVerificationSessionVerifiedOutputs")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for IdentityVerificationSessionVerifiedOutputs"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(GelatoVerifiedOutputs.self) { return .gelatoVerifiedOutputs(value) }
+        if let value = try? container.decode(GelatoVerifiedOutputs.self) {
+            return .gelatoVerifiedOutputs(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -479,19 +615,22 @@ extension IdentityVerificationSessionVerifiedOutputs: Codable {
         case let .gelatoVerifiedOutputs(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// String representing the object's type. Objects of the same type share the same value.
 public struct IdentityVerificationReportObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let identityVerificationReport = IdentityVerificationReportObject(rawValue: "identity.verification_report")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let identityVerificationReport =
+        IdentityVerificationReportObject(rawValue: "identity.verification_report")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

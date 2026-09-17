@@ -7,7 +7,9 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1TerminalReadersConfirmPaymentIntentMethods {
-    /// Triggers confirmation of a PaymentIntent on a Reader. Supply `payment_intent` and optionally use `confirm_config` to provide confirmation settings such as a return URL. The Reader returns its current state after the confirmation flow is initiated.
+    /// Triggers confirmation of a PaymentIntent on a Reader. Supply `payment_intent` and optionally use
+    /// `confirm_config` to provide confirmation settings such as a return URL. The Reader returns its current state
+    /// after the confirmation flow is initiated.
     ///
     /// Finalizes a payment on a Reader. See Confirming a Payment for more details.
     ///
@@ -16,13 +18,31 @@ public enum V1TerminalReadersConfirmPaymentIntentMethods {
     /// - confirmConfig: Configuration overrides for this confirmation, such as
     ///   surcharge settings and return URL.
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postTerminalReadersReaderConfirmPaymentIntent(config: ClientConfig, reader: String, paymentIntent: String, confirmConfig: PostTerminalReadersReaderConfirmPaymentIntentRequestBodyConfirmConfig?, expand: [String]?) async throws -> TerminalReader {
+    public static func postTerminalReadersReaderConfirmPaymentIntent(
+        config: ClientConfig,
+        reader: String,
+        paymentIntent: String,
+        confirmConfig: PostTerminalReadersReaderConfirmPaymentIntentRequestBodyConfirmConfig?,
+        expand: [String]?
+    ) async throws -> TerminalReader {
         try validateLength("reader", reader, max: 5000)
 
         try validateLength("payment_intent", paymentIntent, max: 5000)
 
-        let requestBody = PostTerminalReadersReaderConfirmPaymentIntentRequestBody(paymentIntent: paymentIntent, confirmConfig: confirmConfig, expand: expand)
+        let requestBody = PostTerminalReadersReaderConfirmPaymentIntentRequestBody(
+            paymentIntent: paymentIntent,
+            confirmConfig: confirmConfig,
+            expand: expand
+        )
 
-        return try (await sdkRequest("POST", ["/v1/terminal/readers/", sdkEncodePathSegment(sdkWireString(reader)), "/confirm_payment_intent"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTerminalReadersReaderConfirmPaymentIntent")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/terminal/readers/", sdkEncodePathSegment(sdkWireString(reader)), "/confirm_payment_intent"].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostTerminalReadersReaderConfirmPaymentIntent"
+        )).data
     }
 }

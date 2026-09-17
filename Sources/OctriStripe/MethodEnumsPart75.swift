@@ -6,15 +6,19 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public struct PostInvoicesRequestBodyDiscountsVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostInvoicesRequestBodyDiscountsVariant1: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostInvoicesRequestBodyDiscountsVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -23,15 +27,19 @@ public struct PostInvoicesRequestBodyDiscountsVariant1: RawRepresentable, Hashab
     }
 }
 
-public struct PostInvoicesRequestBodyFromInvoiceAction: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostInvoicesRequestBodyFromInvoiceAction: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let revision = PostInvoicesRequestBodyFromInvoiceAction(rawValue: "revision")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -43,13 +51,16 @@ public struct PostInvoicesRequestBodyFromInvoiceAction: RawRepresentable, Hashab
 public struct PostInvoicesRequestBodyIssuerType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let account = PostInvoicesRequestBodyIssuerType(rawValue: "account")
     public static let `self` = PostInvoicesRequestBodyIssuerType(rawValue: "self")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -58,15 +69,19 @@ public struct PostInvoicesRequestBodyIssuerType: RawRepresentable, Hashable, Cod
     }
 }
 
-public struct PostInvoicesRequestBodyMetadataVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostInvoicesRequestBodyMetadataVariant1: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostInvoicesRequestBodyMetadataVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -75,15 +90,19 @@ public struct PostInvoicesRequestBodyMetadataVariant1: RawRepresentable, Hashabl
     }
 }
 
-public struct PostInvoicesRequestBodyPaymentSettingsDefaultMandateVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostInvoicesRequestBodyPaymentSettingsDefaultMandateVariant1: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostInvoicesRequestBodyPaymentSettingsDefaultMandateVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -92,16 +111,22 @@ public struct PostInvoicesRequestBodyPaymentSettingsDefaultMandateVariant1: RawR
     }
 }
 
-public struct PostInvoicesRequestBodyPaymentSettingsPaymentMethodOptionsAcsX315d31dd06: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostInvoicesRequestBodyPaymentSettingsPaymentMethodOptionsAcsX315d31dd06: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let business = PostInvoicesRequestBodyPaymentSettingsPaymentMethodOptionsAcsX315d31dd06(rawValue: "business")
-    public static let personal = PostInvoicesRequestBodyPaymentSettingsPaymentMethodOptionsAcsX315d31dd06(rawValue: "personal")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let business =
+        PostInvoicesRequestBodyPaymentSettingsPaymentMethodOptionsAcsX315d31dd06(rawValue: "business")
+    public static let personal =
+        PostInvoicesRequestBodyPaymentSettingsPaymentMethodOptionsAcsX315d31dd06(rawValue: "personal")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -110,17 +135,24 @@ public struct PostInvoicesRequestBodyPaymentSettingsPaymentMethodOptionsAcsX315d
     }
 }
 
-public struct PostInvoicesRequestBodyPaymentSettingsPaymentMethodOptionsAcsX8750a589a2: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostInvoicesRequestBodyPaymentSettingsPaymentMethodOptionsAcsX8750a589a2: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let automatic = PostInvoicesRequestBodyPaymentSettingsPaymentMethodOptionsAcsX8750a589a2(rawValue: "automatic")
-    public static let instant = PostInvoicesRequestBodyPaymentSettingsPaymentMethodOptionsAcsX8750a589a2(rawValue: "instant")
-    public static let microdeposits = PostInvoicesRequestBodyPaymentSettingsPaymentMethodOptionsAcsX8750a589a2(rawValue: "microdeposits")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let automatic =
+        PostInvoicesRequestBodyPaymentSettingsPaymentMethodOptionsAcsX8750a589a2(rawValue: "automatic")
+    public static let instant =
+        PostInvoicesRequestBodyPaymentSettingsPaymentMethodOptionsAcsX8750a589a2(rawValue: "instant")
+    public static let microdeposits =
+        PostInvoicesRequestBodyPaymentSettingsPaymentMethodOptionsAcsX8750a589a2(rawValue: "microdeposits")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -129,15 +161,19 @@ public struct PostInvoicesRequestBodyPaymentSettingsPaymentMethodOptionsAcsX8750
     }
 }
 
-public struct PostInvoicesRequestBodyPaymentSettingsPaymentMethodOptionsAcsX1596301b0e: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostInvoicesRequestBodyPaymentSettingsPaymentMethodOptionsAcsX1596301b0e: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostInvoicesRequestBodyPaymentSettingsPaymentMethodOptionsAcsX1596301b0e(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -146,10 +182,14 @@ public struct PostInvoicesRequestBodyPaymentSettingsPaymentMethodOptionsAcsX1596
     }
 }
 
-public struct PostInvoicesRequestBodyPaymentSettingsPaymentMethodOptionsBanX4642c649c5: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostInvoicesRequestBodyPaymentSettingsPaymentMethodOptionsBanX4642c649c5: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let de = PostInvoicesRequestBodyPaymentSettingsPaymentMethodOptionsBanX4642c649c5(rawValue: "de")
     public static let en = PostInvoicesRequestBodyPaymentSettingsPaymentMethodOptionsBanX4642c649c5(rawValue: "en")
     public static let fr = PostInvoicesRequestBodyPaymentSettingsPaymentMethodOptionsBanX4642c649c5(rawValue: "fr")
@@ -157,7 +197,7 @@ public struct PostInvoicesRequestBodyPaymentSettingsPaymentMethodOptionsBanX4642
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -166,15 +206,19 @@ public struct PostInvoicesRequestBodyPaymentSettingsPaymentMethodOptionsBanX4642
     }
 }
 
-public struct PostInvoicesRequestBodyPaymentSettingsPaymentMethodOptionsBanX108ca98dfb: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostInvoicesRequestBodyPaymentSettingsPaymentMethodOptionsBanX108ca98dfb: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostInvoicesRequestBodyPaymentSettingsPaymentMethodOptionsBanX108ca98dfb(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -183,15 +227,19 @@ public struct PostInvoicesRequestBodyPaymentSettingsPaymentMethodOptionsBanX108c
     }
 }
 
-public struct PostInvoicesRequestBodyPaymentSettingsPaymentMethodOptionsBillieVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostInvoicesRequestBodyPaymentSettingsPaymentMethodOptionsBillieVariant1: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostInvoicesRequestBodyPaymentSettingsPaymentMethodOptionsBillieVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

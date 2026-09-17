@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1Plan domain models
+/// V1Plan domain models
 /// You can now model subscriptions more flexibly using the Prices API. It replaces the Plans API and is backwards
 /// compatible to simplify your migration. Plans define the base price, currency, and billing cycle for recurring
 /// purchases of products. Products help you track inventory or provisioning, and plans help you track pricing.
@@ -89,44 +89,67 @@ public struct Plan: Codable {
         case trialPeriodDays = "trial_period_days"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension Plan {
-    public init(from decoder: Decoder) throws {
+public extension Plan {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.active = try container.sdkDecodeRequired(.active)
-        self.billingScheme = try container.sdkDecodeRequired(.billingScheme)
-        self.created = try container.sdkDecodeRequired(.created)
-        self.currency = try container.sdkDecodeRequired(.currency)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.interval = try container.sdkDecodeRequired(.interval)
-        self.intervalCount = try container.sdkDecodeRequired(.intervalCount)
-        self.livemode = try container.sdkDecodeRequired(.livemode)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.usageType = try container.sdkDecodeRequired(.usageType)
-        self.amount = try container.sdkDecodeIfPresent(.amount)
-        self.amountDecimal = try container.sdkDecodeIfPresent(.amountDecimal)
-        self.metadata = try container.sdkDecodeIfPresent(.metadata)
-        self.meter = try container.sdkDecodeIfPresent(.meter)
-        self.nickname = try container.sdkDecodeIfPresent(.nickname)
-        self.product = try container.sdkDecodeIfPresent(.product)
-        self.tiers = try container.sdkDecodeIfPresent(.tiers)
-        self.tiersMode = try container.sdkDecodeIfPresent(.tiersMode)
-        self.transformUsage = try container.sdkDecodeIfPresent(.transformUsage)
-        self.trialPeriodDays = try container.sdkDecodeIfPresent(.trialPeriodDays)
-            try validateLength("id", self.id, min: nil, max: 5000)
-        if let value = self.meter {
+        active = try container.sdkDecodeRequired(.active)
+        billingScheme = try container.sdkDecodeRequired(.billingScheme)
+        created = try container.sdkDecodeRequired(.created)
+        currency = try container.sdkDecodeRequired(.currency)
+        id = try container.sdkDecodeRequired(.id)
+        interval = try container.sdkDecodeRequired(.interval)
+        intervalCount = try container.sdkDecodeRequired(.intervalCount)
+        livemode = try container.sdkDecodeRequired(.livemode)
+        object = try container.sdkDecodeRequired(.object)
+        usageType = try container.sdkDecodeRequired(.usageType)
+        amount = try container.sdkDecodeIfPresent(.amount)
+        amountDecimal = try container.sdkDecodeIfPresent(.amountDecimal)
+        metadata = try container.sdkDecodeIfPresent(.metadata)
+        meter = try container.sdkDecodeIfPresent(.meter)
+        nickname = try container.sdkDecodeIfPresent(.nickname)
+        product = try container.sdkDecodeIfPresent(.product)
+        tiers = try container.sdkDecodeIfPresent(.tiers)
+        tiersMode = try container.sdkDecodeIfPresent(.tiersMode)
+        transformUsage = try container.sdkDecodeIfPresent(.transformUsage)
+        trialPeriodDays = try container.sdkDecodeIfPresent(.trialPeriodDays)
+        try validateLength("id", id, min: nil, max: 5000)
+        if let value = meter {
             try validateLength("meter", value, min: nil, max: 5000)
         }
-        if let value = self.nickname {
+        if let value = nickname {
             try validateLength("nickname", value, min: nil, max: 5000)
         }
     }
 }
 
-extension Plan {
-    public init(active: Bool, billingScheme: PlanBillingScheme, created: Int, currency: String, id: String, interval: PlanInterval, intervalCount: Int, livemode: Bool, object: PlanObject, usageType: PlanUsageType, amount: Int? = nil, amountDecimal: String? = nil, metadata: [String: String]? = nil, meter: String? = nil, nickname: String? = nil, product: PlanProduct? = nil, tiers: [PlanTier]? = nil, tiersMode: PlanTiersMode? = nil, transformUsage: PlanTransformUsage? = nil, trialPeriodDays: Int? = nil) throws {
+public extension Plan {
+    init(
+        active: Bool,
+        billingScheme: PlanBillingScheme,
+        created: Int,
+        currency: String,
+        id: String,
+        interval: PlanInterval,
+        intervalCount: Int,
+        livemode: Bool,
+        object: PlanObject,
+        usageType: PlanUsageType,
+        amount: Int? = nil,
+        amountDecimal: String? = nil,
+        metadata: [String: String]? = nil,
+        meter: String? = nil,
+        nickname: String? = nil,
+        product: PlanProduct? = nil,
+        tiers: [PlanTier]? = nil,
+        tiersMode: PlanTiersMode? = nil,
+        transformUsage: PlanTransformUsage? = nil,
+        trialPeriodDays: Int? = nil
+    ) throws {
         (self.active, self.billingScheme) = (active, billingScheme)
         (self.created, self.currency) = (created, currency)
         (self.id, self.interval) = (id, interval)
@@ -137,7 +160,7 @@ extension Plan {
         (self.nickname, self.product) = (nickname, product)
         (self.tiers, self.tiersMode) = (tiers, tiersMode)
         (self.transformUsage, self.trialPeriodDays) = (transformUsage, trialPeriodDays)
-            try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
         if let value = self.meter {
             try validateLength("meter", value, min: nil, max: 5000)
         }
@@ -154,22 +177,31 @@ public enum PlanProduct {
 }
 
 extension PlanProduct: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
         throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PlanProduct")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(Product.self) { return .product(value) }
-        if let value = try? container.decode(DeletedProduct.self) { return .deletedProduct(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(Product.self) {
+            return .product(value)
+        }
+        if let value = try? container.decode(DeletedProduct.self) {
+            return .deletedProduct(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -180,7 +212,6 @@ extension PlanProduct: Codable {
         case let .deletedProduct(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum PlanTransformUsage {
@@ -188,20 +219,28 @@ public enum PlanTransformUsage {
 }
 
 extension PlanTransformUsage: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PlanTransformUsage")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PlanTransformUsage"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(TransformUsage.self) { return .transformUsage(value) }
+        if let value = try? container.decode(TransformUsage.self) {
+            return .transformUsage(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -210,7 +249,6 @@ extension PlanTransformUsage: Codable {
         case let .transformUsage(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Typed representation of the `PlanTier` API schema.
@@ -235,23 +273,29 @@ public struct PlanTier: Codable {
     }
 
     init() {
-        (self.flatAmount, self.flatAmountDecimal, self.unitAmount, self.unitAmountDecimal, self.upTo) = (nil, nil, nil, nil, nil)
+        (flatAmount, flatAmountDecimal, unitAmount, unitAmountDecimal, upTo) = (nil, nil, nil, nil, nil)
     }
 }
 
-extension PlanTier {
-    public init(from decoder: Decoder) throws {
+public extension PlanTier {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.flatAmount = try container.sdkDecodeIfPresent(.flatAmount)
-        self.flatAmountDecimal = try container.sdkDecodeIfPresent(.flatAmountDecimal)
-        self.unitAmount = try container.sdkDecodeIfPresent(.unitAmount)
-        self.unitAmountDecimal = try container.sdkDecodeIfPresent(.unitAmountDecimal)
-        self.upTo = try container.sdkDecodeIfPresent(.upTo)
+        flatAmount = try container.sdkDecodeIfPresent(.flatAmount)
+        flatAmountDecimal = try container.sdkDecodeIfPresent(.flatAmountDecimal)
+        unitAmount = try container.sdkDecodeIfPresent(.unitAmount)
+        unitAmountDecimal = try container.sdkDecodeIfPresent(.unitAmountDecimal)
+        upTo = try container.sdkDecodeIfPresent(.upTo)
     }
 }
 
-extension PlanTier {
-    public init(flatAmount: Int? = nil, flatAmountDecimal: String? = nil, unitAmount: Int? = nil, unitAmountDecimal: String? = nil, upTo: Int? = nil) {
+public extension PlanTier {
+    init(
+        flatAmount: Int? = nil,
+        flatAmountDecimal: String? = nil,
+        unitAmount: Int? = nil,
+        unitAmountDecimal: String? = nil,
+        upTo: Int? = nil
+    ) {
         self.init()
         (self.flatAmount, self.flatAmountDecimal) = (flatAmount, flatAmountDecimal)
         (self.unitAmount, self.unitAmountDecimal) = (unitAmount, unitAmountDecimal)
@@ -263,12 +307,15 @@ extension PlanTier {
 public struct PlanObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let plan = PlanObject(rawValue: "plan")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -283,13 +330,16 @@ public struct PlanObject: RawRepresentable, Hashable, Codable, Sendable, SdkWire
 public struct PlanTiersMode: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let graduated = PlanTiersMode(rawValue: "graduated")
     public static let volume = PlanTiersMode(rawValue: "volume")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -302,7 +352,10 @@ public struct PlanTiersMode: RawRepresentable, Hashable, Codable, Sendable, SdkW
 public struct PlanInterval: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let day = PlanInterval(rawValue: "day")
     public static let month = PlanInterval(rawValue: "month")
     public static let week = PlanInterval(rawValue: "week")
@@ -310,7 +363,7 @@ public struct PlanInterval: RawRepresentable, Hashable, Codable, Sendable, SdkWi
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -325,13 +378,16 @@ public struct PlanInterval: RawRepresentable, Hashable, Codable, Sendable, SdkWi
 public struct PlanUsageType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let licensed = PlanUsageType(rawValue: "licensed")
     public static let metered = PlanUsageType(rawValue: "metered")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -348,13 +404,16 @@ public struct PlanUsageType: RawRepresentable, Hashable, Codable, Sendable, SdkW
 public struct PlanBillingScheme: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let perUnit = PlanBillingScheme(rawValue: "per_unit")
     public static let tiered = PlanBillingScheme(rawValue: "tiered")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

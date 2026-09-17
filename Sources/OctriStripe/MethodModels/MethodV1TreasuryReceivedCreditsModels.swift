@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1TreasuryReceivedCredits operation model declarations
+/// Canonical v1TreasuryReceivedCredits operation model declarations
 public struct GetTreasuryReceivedCreditsParameter: Codable {
     public var sourceFlowType: GetTreasuryReceivedCreditsParameterSourceFlowType
 
@@ -15,21 +15,27 @@ public struct GetTreasuryReceivedCreditsParameter: Codable {
         case sourceFlowType = "source_flow_type"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension GetTreasuryReceivedCreditsParameter {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.sourceFlowType) else {
-            throw SdkValidationError(field: "source_flow_type", code: "required", message: "Validation failed for 'source_flow_type': value is required")
-        }
-        self.sourceFlowType = try container.sdkDecodeRequired(.sourceFlowType)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension GetTreasuryReceivedCreditsParameter {
-    public init(sourceFlowType: GetTreasuryReceivedCreditsParameterSourceFlowType) {
+public extension GetTreasuryReceivedCreditsParameter {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.sourceFlowType) else {
+            throw SdkValidationError(
+                field: "source_flow_type",
+                code: "required",
+                message: "Validation failed for 'source_flow_type': value is required"
+            )
+        }
+        sourceFlowType = try container.sdkDecodeRequired(.sourceFlowType)
+    }
+}
+
+public extension GetTreasuryReceivedCreditsParameter {
+    init(sourceFlowType: GetTreasuryReceivedCreditsParameterSourceFlowType) {
         self.sourceFlowType = sourceFlowType
     }
 }
@@ -52,36 +58,59 @@ public struct GetTreasuryReceivedCreditsResponse: Codable {
         case url
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension GetTreasuryReceivedCreditsResponse {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.data) else {
-            throw SdkValidationError(field: "data", code: "required", message: "Validation failed for 'data': value is required")
-        }
-        guard container.contains(.hasMore) else {
-            throw SdkValidationError(field: "has_more", code: "required", message: "Validation failed for 'has_more': value is required")
-        }
-        guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
-        }
-        guard container.contains(.url) else {
-            throw SdkValidationError(field: "url", code: "required", message: "Validation failed for 'url': value is required")
-        }
-        self.data = try container.sdkDecodeRequired(.data)
-        self.hasMore = try container.sdkDecodeRequired(.hasMore)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.url = try container.sdkDecodeRequired(.url)
-            try validateLength("url", self.url, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension GetTreasuryReceivedCreditsResponse {
-    public init(data: [TreasuryReceivedCredit], hasMore: Bool, object: GetTreasuryReceivedCreditsResponseObject, url: String) throws {
+public extension GetTreasuryReceivedCreditsResponse {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.data) else {
+            throw SdkValidationError(
+                field: "data",
+                code: "required",
+                message: "Validation failed for 'data': value is required"
+            )
+        }
+        guard container.contains(.hasMore) else {
+            throw SdkValidationError(
+                field: "has_more",
+                code: "required",
+                message: "Validation failed for 'has_more': value is required"
+            )
+        }
+        guard container.contains(.object) else {
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
+        }
+        guard container.contains(.url) else {
+            throw SdkValidationError(
+                field: "url",
+                code: "required",
+                message: "Validation failed for 'url': value is required"
+            )
+        }
+        data = try container.sdkDecodeRequired(.data)
+        hasMore = try container.sdkDecodeRequired(.hasMore)
+        object = try container.sdkDecodeRequired(.object)
+        url = try container.sdkDecodeRequired(.url)
+        try validateLength("url", url, min: nil, max: 5000)
+    }
+}
+
+public extension GetTreasuryReceivedCreditsResponse {
+    init(
+        data: [TreasuryReceivedCredit],
+        hasMore: Bool,
+        object: GetTreasuryReceivedCreditsResponseObject,
+        url: String
+    ) throws {
         (self.data, self.hasMore) = (data, hasMore)
         (self.object, self.url) = (object, url)
-            try validateLength("url", self.url, min: nil, max: 5000)
+        try validateLength("url", self.url, min: nil, max: 5000)
     }
 }

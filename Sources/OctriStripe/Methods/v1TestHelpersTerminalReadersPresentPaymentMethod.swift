@@ -7,9 +7,12 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1TestHelpersTerminalReadersPresentPaymentMethodMethods {
-    /// Triggers presentation of a simulated payment method on a Terminal reader. Use the request body to simulate accepting a payment, saving a card, or refunding a transaction, and provide the payment data required by the selected method.
+    /// Triggers presentation of a simulated payment method on a Terminal reader. Use the request body to simulate
+    /// accepting a payment, saving a card, or refunding a transaction, and provide the payment data required by the
+    /// selected method.
     ///
-    /// Presents a payment method on a simulated reader. Can be used to simulate accepting a payment, saving a card or refunding a transaction.
+    /// Presents a payment method on a simulated reader. Can be used to simulate accepting a payment, saving a card or
+    /// refunding a transaction.
     ///
     /// - Parameters:
     /// - amountTip: Simulated on-reader tip amount.
@@ -18,11 +21,39 @@ public enum V1TestHelpersTerminalReadersPresentPaymentMethodMethods {
     /// - expand: Specifies which fields in the response should be expanded.
     /// - interacPresent: Simulated data for the interac_present payment method.
     /// - type: Simulated payment type.
-    public static func postTestHelpersTerminalReadersReaderPresentPaymentMethod(config: ClientConfig, reader: String, amountTip: Int?, card: PostTestHelpersTerminalReadersReaderPresentPaymentMethodRequestBodyCard?, cardPresent: PostTestHelpersTerminalReadersReaderPresentPaymentMethodRequeX78e0a8e86f?, expand: [String]?, interacPresent: PostTestHelpersTerminalReadersReaderPresentPaymentMethodRequeX3805a0d5ab?, type: PostTestHelpersTerminalReadersReaderPresentPaymentMethodRequestBodyType?) async throws -> TerminalReader {
+    public static func postTestHelpersTerminalReadersReaderPresentPaymentMethod(
+        config: ClientConfig,
+        reader: String,
+        amountTip: Int?,
+        card: PostTestHelpersTerminalReadersReaderPresentPaymentMethodRequestBodyCard?,
+        cardPresent: PostTestHelpersTerminalReadersReaderPresentPaymentMethodRequeX78e0a8e86f?,
+        expand: [String]?,
+        interacPresent: PostTestHelpersTerminalReadersReaderPresentPaymentMethodRequeX3805a0d5ab?,
+        type: PostTestHelpersTerminalReadersReaderPresentPaymentMethodRequestBodyType?
+    ) async throws -> TerminalReader {
         try validateLength("reader", reader, max: 5000)
 
-        let requestBody = PostTestHelpersTerminalReadersReaderPresentPaymentMethodRequestBody(amountTip: amountTip, card: card, cardPresent: cardPresent, expand: expand, interacPresent: interacPresent, type: type)
+        let requestBody = PostTestHelpersTerminalReadersReaderPresentPaymentMethodRequestBody(
+            amountTip: amountTip,
+            card: card,
+            cardPresent: cardPresent,
+            expand: expand,
+            interacPresent: interacPresent,
+            type: type
+        )
 
-        return try (await sdkRequest("POST", ["/v1/test_helpers/terminal/readers/", sdkEncodePathSegment(sdkWireString(reader)), "/present_payment_method"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTestHelpersTerminalReadersReaderPresentPaymentMethod")).data
+        return try await (sdkRequest(
+            "POST",
+            [
+                "/v1/test_helpers/terminal/readers/",
+                sdkEncodePathSegment(sdkWireString(reader)),
+                "/present_payment_method",
+            ].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostTestHelpersTerminalReadersReaderPresentPaymentMethod"
+        )).data
     }
 }

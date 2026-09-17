@@ -7,9 +7,16 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1TestHelpersConfirmationTokens operation model declarations
-extension PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataX1d07032c38 {
-    public init(city: String? = nil, country: String? = nil, line1: String? = nil, line2: String? = nil, postalCode: String? = nil, state: String? = nil) throws {
+/// Canonical v1TestHelpersConfirmationTokens operation model declarations
+public extension PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataX1d07032c38 {
+    init(
+        city: String? = nil,
+        country: String? = nil,
+        line1: String? = nil,
+        line2: String? = nil,
+        postalCode: String? = nil,
+        state: String? = nil
+    ) throws {
         self.init()
         (self.city, self.country) = (city, country)
         (self.line1, self.line2) = (line1, line2)
@@ -46,23 +53,33 @@ public struct PostTestHelpersConfirmationTokensRequestBodyPaymentMethodOptiX6250
         case interval
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension PostTestHelpersConfirmationTokensRequestBodyPaymentMethodOptiX6250f740bf {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
-        }
-        self.type = try container.sdkDecodeRequired(.type)
-        self.count = try container.sdkDecodeIfPresent(.count)
-        self.interval = try container.sdkDecodeIfPresent(.interval)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension PostTestHelpersConfirmationTokensRequestBodyPaymentMethodOptiX6250f740bf {
-    public init(type: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodOptiX49c7d7b668, count: Int? = nil, interval: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodOptiX236e6c8186? = nil) {
+public extension PostTestHelpersConfirmationTokensRequestBodyPaymentMethodOptiX6250f740bf {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.type) else {
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
+        }
+        type = try container.sdkDecodeRequired(.type)
+        count = try container.sdkDecodeIfPresent(.count)
+        interval = try container.sdkDecodeIfPresent(.interval)
+    }
+}
+
+public extension PostTestHelpersConfirmationTokensRequestBodyPaymentMethodOptiX6250f740bf {
+    init(
+        type: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodOptiX49c7d7b668,
+        count: Int? = nil,
+        interval: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodOptiX236e6c8186? = nil
+    ) {
         (self.type, self.count) = (type, count)
         self.interval = interval
     }
@@ -76,22 +93,22 @@ public struct PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataIdeal
     }
 
     init() {
-        self.bank = nil
+        bank = nil
     }
 }
 
-extension PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataIdeal {
-    public init(from decoder: Decoder) throws {
+public extension PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataIdeal {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.bank = try container.sdkDecodeIfPresent(.bank)
-        if let value = self.bank {
+        bank = try container.sdkDecodeIfPresent(.bank)
+        if let value = bank {
             try validateLength("bank", sdkWireString(value), min: nil, max: 5000)
         }
     }
 }
 
-extension PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataIdeal {
-    public init(bank: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataIdealBank? = nil) throws {
+public extension PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataIdeal {
+    init(bank: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataIdealBank? = nil) throws {
         self.init()
         self.bank = bank
         if let value = self.bank {
@@ -117,52 +134,77 @@ public struct PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataXe4c9
         case reference
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataXe4c9d9b76b {
-    public init(from decoder: Decoder) throws {
+public extension PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataXe4c9d9b76b {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.accountNumber) else {
-            throw SdkValidationError(field: "account_number", code: "required", message: "Validation failed for 'account_number': value is required")
+            throw SdkValidationError(
+                field: "account_number",
+                code: "required",
+                message: "Validation failed for 'account_number': value is required"
+            )
         }
         guard container.contains(.bankCode) else {
-            throw SdkValidationError(field: "bank_code", code: "required", message: "Validation failed for 'bank_code': value is required")
+            throw SdkValidationError(
+                field: "bank_code",
+                code: "required",
+                message: "Validation failed for 'bank_code': value is required"
+            )
         }
         guard container.contains(.branchCode) else {
-            throw SdkValidationError(field: "branch_code", code: "required", message: "Validation failed for 'branch_code': value is required")
+            throw SdkValidationError(
+                field: "branch_code",
+                code: "required",
+                message: "Validation failed for 'branch_code': value is required"
+            )
         }
         guard container.contains(.suffix) else {
-            throw SdkValidationError(field: "suffix", code: "required", message: "Validation failed for 'suffix': value is required")
+            throw SdkValidationError(
+                field: "suffix",
+                code: "required",
+                message: "Validation failed for 'suffix': value is required"
+            )
         }
-        self.accountNumber = try container.sdkDecodeRequired(.accountNumber)
-        self.bankCode = try container.sdkDecodeRequired(.bankCode)
-        self.branchCode = try container.sdkDecodeRequired(.branchCode)
-        self.suffix = try container.sdkDecodeRequired(.suffix)
-        self.accountHolderName = try container.sdkDecodeIfPresent(.accountHolderName)
-        self.reference = try container.sdkDecodeIfPresent(.reference)
-            try validateLength("account_number", self.accountNumber, min: nil, max: 5000)
-            try validateLength("bank_code", self.bankCode, min: nil, max: 5000)
-            try validateLength("branch_code", self.branchCode, min: nil, max: 5000)
-            try validateLength("suffix", self.suffix, min: nil, max: 5000)
-        if let value = self.accountHolderName {
+        accountNumber = try container.sdkDecodeRequired(.accountNumber)
+        bankCode = try container.sdkDecodeRequired(.bankCode)
+        branchCode = try container.sdkDecodeRequired(.branchCode)
+        suffix = try container.sdkDecodeRequired(.suffix)
+        accountHolderName = try container.sdkDecodeIfPresent(.accountHolderName)
+        reference = try container.sdkDecodeIfPresent(.reference)
+        try validateLength("account_number", accountNumber, min: nil, max: 5000)
+        try validateLength("bank_code", bankCode, min: nil, max: 5000)
+        try validateLength("branch_code", branchCode, min: nil, max: 5000)
+        try validateLength("suffix", suffix, min: nil, max: 5000)
+        if let value = accountHolderName {
             try validateLength("account_holder_name", value, min: nil, max: 5000)
         }
-        if let value = self.reference {
+        if let value = reference {
             try validateLength("reference", value, min: nil, max: 128)
         }
     }
 }
 
-extension PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataXe4c9d9b76b {
-    public init(accountNumber: String, bankCode: String, branchCode: String, suffix: String, accountHolderName: String? = nil, reference: String? = nil) throws {
+public extension PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataXe4c9d9b76b {
+    init(
+        accountNumber: String,
+        bankCode: String,
+        branchCode: String,
+        suffix: String,
+        accountHolderName: String? = nil,
+        reference: String? = nil
+    ) throws {
         (self.accountNumber, self.bankCode) = (accountNumber, bankCode)
         (self.branchCode, self.suffix) = (branchCode, suffix)
         (self.accountHolderName, self.reference) = (accountHolderName, reference)
-            try validateLength("account_number", self.accountNumber, min: nil, max: 5000)
-            try validateLength("bank_code", self.bankCode, min: nil, max: 5000)
-            try validateLength("branch_code", self.branchCode, min: nil, max: 5000)
-            try validateLength("suffix", self.suffix, min: nil, max: 5000)
+        try validateLength("account_number", self.accountNumber, min: nil, max: 5000)
+        try validateLength("bank_code", self.bankCode, min: nil, max: 5000)
+        try validateLength("branch_code", self.branchCode, min: nil, max: 5000)
+        try validateLength("suffix", self.suffix, min: nil, max: 5000)
         if let value = self.accountHolderName {
             try validateLength("account_holder_name", value, min: nil, max: 5000)
         }
@@ -183,29 +225,43 @@ public struct PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataKlarn
         case year
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataKlarnaDob {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.day) else {
-            throw SdkValidationError(field: "day", code: "required", message: "Validation failed for 'day': value is required")
-        }
-        guard container.contains(.month) else {
-            throw SdkValidationError(field: "month", code: "required", message: "Validation failed for 'month': value is required")
-        }
-        guard container.contains(.year) else {
-            throw SdkValidationError(field: "year", code: "required", message: "Validation failed for 'year': value is required")
-        }
-        self.day = try container.sdkDecodeRequired(.day)
-        self.month = try container.sdkDecodeRequired(.month)
-        self.year = try container.sdkDecodeRequired(.year)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataKlarnaDob {
-    public init(day: Int, month: Int, year: Int) {
+public extension PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataKlarnaDob {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.day) else {
+            throw SdkValidationError(
+                field: "day",
+                code: "required",
+                message: "Validation failed for 'day': value is required"
+            )
+        }
+        guard container.contains(.month) else {
+            throw SdkValidationError(
+                field: "month",
+                code: "required",
+                message: "Validation failed for 'month': value is required"
+            )
+        }
+        guard container.contains(.year) else {
+            throw SdkValidationError(
+                field: "year",
+                code: "required",
+                message: "Validation failed for 'year': value is required"
+            )
+        }
+        day = try container.sdkDecodeRequired(.day)
+        month = try container.sdkDecodeRequired(.month)
+        year = try container.sdkDecodeRequired(.year)
+    }
+}
+
+public extension PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataKlarnaDob {
+    init(day: Int, month: Int, year: Int) {
         (self.day, self.month) = (day, month)
         self.year = year
     }
@@ -391,76 +447,138 @@ public struct PostTestHelpersConfirmationTokensRequestBodyPaymentMethodData: Cod
         case zip
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension PostTestHelpersConfirmationTokensRequestBodyPaymentMethodData {
-    public init(from decoder: Decoder) throws {
+public extension PostTestHelpersConfirmationTokensRequestBodyPaymentMethodData {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.type = try container.sdkDecodeRequired(.type)
-        self.acssDebit = try container.sdkDecodeIfPresent(.acssDebit)
-        self.affirm = try container.sdkDecodeIfPresent(.affirm)
-        self.afterpayClearpay = try container.sdkDecodeIfPresent(.afterpayClearpay)
-        self.alipay = try container.sdkDecodeIfPresent(.alipay)
-        self.allowRedisplay = try container.sdkDecodeIfPresent(.allowRedisplay)
-        self.alma = try container.sdkDecodeIfPresent(.alma)
-        self.amazonPay = try container.sdkDecodeIfPresent(.amazonPay)
-        self.auBecsDebit = try container.sdkDecodeIfPresent(.auBecsDebit)
-        self.bacsDebit = try container.sdkDecodeIfPresent(.bacsDebit)
-        self.bancontact = try container.sdkDecodeIfPresent(.bancontact)
-        self.billie = try container.sdkDecodeIfPresent(.billie)
-        self.billingDetails = try container.sdkDecodeIfPresent(.billingDetails)
-        self.bizum = try container.sdkDecodeIfPresent(.bizum)
-        self.blik = try container.sdkDecodeIfPresent(.blik)
-        self.boleto = try container.sdkDecodeIfPresent(.boleto)
-        self.cashapp = try container.sdkDecodeIfPresent(.cashapp)
-        self.crypto = try container.sdkDecodeIfPresent(.crypto)
-        self.customerBalance = try container.sdkDecodeIfPresent(.customerBalance)
-        self.eps = try container.sdkDecodeIfPresent(.eps)
-        self.fpx = try container.sdkDecodeIfPresent(.fpx)
-        self.giropay = try container.sdkDecodeIfPresent(.giropay)
-        self.grabpay = try container.sdkDecodeIfPresent(.grabpay)
-        self.ideal = try container.sdkDecodeIfPresent(.ideal)
-        self.interacPresent = try container.sdkDecodeIfPresent(.interacPresent)
-        self.kakaoPay = try container.sdkDecodeIfPresent(.kakaoPay)
-        self.klarna = try container.sdkDecodeIfPresent(.klarna)
-        self.konbini = try container.sdkDecodeIfPresent(.konbini)
-        self.krCard = try container.sdkDecodeIfPresent(.krCard)
-        self.link = try container.sdkDecodeIfPresent(.link)
-        self.mbWay = try container.sdkDecodeIfPresent(.mbWay)
-        self.metadata = try container.sdkDecodeIfPresent(.metadata)
-        self.mobilepay = try container.sdkDecodeIfPresent(.mobilepay)
-        self.multibanco = try container.sdkDecodeIfPresent(.multibanco)
-        self.naverPay = try container.sdkDecodeIfPresent(.naverPay)
-        self.nzBankAccount = try container.sdkDecodeIfPresent(.nzBankAccount)
-        self.oxxo = try container.sdkDecodeIfPresent(.oxxo)
-        self.p24 = try container.sdkDecodeIfPresent(.p24)
-        self.payByBank = try container.sdkDecodeIfPresent(.payByBank)
-        self.payco = try container.sdkDecodeIfPresent(.payco)
-        self.paynow = try container.sdkDecodeIfPresent(.paynow)
-        self.paypal = try container.sdkDecodeIfPresent(.paypal)
-        self.payto = try container.sdkDecodeIfPresent(.payto)
-        self.pix = try container.sdkDecodeIfPresent(.pix)
-        self.promptpay = try container.sdkDecodeIfPresent(.promptpay)
-        self.radarOptions = try container.sdkDecodeIfPresent(.radarOptions)
-        self.revolutPay = try container.sdkDecodeIfPresent(.revolutPay)
-        self.samsungPay = try container.sdkDecodeIfPresent(.samsungPay)
-        self.satispay = try container.sdkDecodeIfPresent(.satispay)
-        self.scalapay = try container.sdkDecodeIfPresent(.scalapay)
-        self.sepaDebit = try container.sdkDecodeIfPresent(.sepaDebit)
-        self.sofort = try container.sdkDecodeIfPresent(.sofort)
-        self.sunbit = try container.sdkDecodeIfPresent(.sunbit)
-        self.swish = try container.sdkDecodeIfPresent(.swish)
-        self.twint = try container.sdkDecodeIfPresent(.twint)
-        self.upi = try container.sdkDecodeIfPresent(.upi)
-        self.usBankAccount = try container.sdkDecodeIfPresent(.usBankAccount)
-        self.wechatPay = try container.sdkDecodeIfPresent(.wechatPay)
+        type = try container.sdkDecodeRequired(.type)
+        acssDebit = try container.sdkDecodeIfPresent(.acssDebit)
+        affirm = try container.sdkDecodeIfPresent(.affirm)
+        afterpayClearpay = try container.sdkDecodeIfPresent(.afterpayClearpay)
+        alipay = try container.sdkDecodeIfPresent(.alipay)
+        allowRedisplay = try container.sdkDecodeIfPresent(.allowRedisplay)
+        alma = try container.sdkDecodeIfPresent(.alma)
+        amazonPay = try container.sdkDecodeIfPresent(.amazonPay)
+        auBecsDebit = try container.sdkDecodeIfPresent(.auBecsDebit)
+        bacsDebit = try container.sdkDecodeIfPresent(.bacsDebit)
+        bancontact = try container.sdkDecodeIfPresent(.bancontact)
+        billie = try container.sdkDecodeIfPresent(.billie)
+        billingDetails = try container.sdkDecodeIfPresent(.billingDetails)
+        bizum = try container.sdkDecodeIfPresent(.bizum)
+        blik = try container.sdkDecodeIfPresent(.blik)
+        boleto = try container.sdkDecodeIfPresent(.boleto)
+        cashapp = try container.sdkDecodeIfPresent(.cashapp)
+        crypto = try container.sdkDecodeIfPresent(.crypto)
+        customerBalance = try container.sdkDecodeIfPresent(.customerBalance)
+        eps = try container.sdkDecodeIfPresent(.eps)
+        fpx = try container.sdkDecodeIfPresent(.fpx)
+        giropay = try container.sdkDecodeIfPresent(.giropay)
+        grabpay = try container.sdkDecodeIfPresent(.grabpay)
+        ideal = try container.sdkDecodeIfPresent(.ideal)
+        interacPresent = try container.sdkDecodeIfPresent(.interacPresent)
+        kakaoPay = try container.sdkDecodeIfPresent(.kakaoPay)
+        klarna = try container.sdkDecodeIfPresent(.klarna)
+        konbini = try container.sdkDecodeIfPresent(.konbini)
+        krCard = try container.sdkDecodeIfPresent(.krCard)
+        link = try container.sdkDecodeIfPresent(.link)
+        mbWay = try container.sdkDecodeIfPresent(.mbWay)
+        metadata = try container.sdkDecodeIfPresent(.metadata)
+        mobilepay = try container.sdkDecodeIfPresent(.mobilepay)
+        multibanco = try container.sdkDecodeIfPresent(.multibanco)
+        naverPay = try container.sdkDecodeIfPresent(.naverPay)
+        nzBankAccount = try container.sdkDecodeIfPresent(.nzBankAccount)
+        oxxo = try container.sdkDecodeIfPresent(.oxxo)
+        p24 = try container.sdkDecodeIfPresent(.p24)
+        payByBank = try container.sdkDecodeIfPresent(.payByBank)
+        payco = try container.sdkDecodeIfPresent(.payco)
+        paynow = try container.sdkDecodeIfPresent(.paynow)
+        paypal = try container.sdkDecodeIfPresent(.paypal)
+        payto = try container.sdkDecodeIfPresent(.payto)
+        pix = try container.sdkDecodeIfPresent(.pix)
+        promptpay = try container.sdkDecodeIfPresent(.promptpay)
+        radarOptions = try container.sdkDecodeIfPresent(.radarOptions)
+        revolutPay = try container.sdkDecodeIfPresent(.revolutPay)
+        samsungPay = try container.sdkDecodeIfPresent(.samsungPay)
+        satispay = try container.sdkDecodeIfPresent(.satispay)
+        scalapay = try container.sdkDecodeIfPresent(.scalapay)
+        sepaDebit = try container.sdkDecodeIfPresent(.sepaDebit)
+        sofort = try container.sdkDecodeIfPresent(.sofort)
+        sunbit = try container.sdkDecodeIfPresent(.sunbit)
+        swish = try container.sdkDecodeIfPresent(.swish)
+        twint = try container.sdkDecodeIfPresent(.twint)
+        upi = try container.sdkDecodeIfPresent(.upi)
+        usBankAccount = try container.sdkDecodeIfPresent(.usBankAccount)
+        wechatPay = try container.sdkDecodeIfPresent(.wechatPay)
         self.zip = try container.sdkDecodeIfPresent(.zip)
     }
 }
 
-extension PostTestHelpersConfirmationTokensRequestBodyPaymentMethodData {
-    public init(type: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataType, acssDebit: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataAcssDebit? = nil, affirm: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataAffirm? = nil, afterpayClearpay: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataX95ec861e8a? = nil, alipay: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataAlipay? = nil, allowRedisplay: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataX01a56f2c8e? = nil, alma: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataAlma? = nil, amazonPay: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataAmazonPay? = nil, auBecsDebit: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataAuBecsDebit? = nil, bacsDebit: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataBacsDebit? = nil, bancontact: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataBancontact? = nil, billie: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataBillie? = nil, billingDetails: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataXb672edd7d4? = nil, bizum: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataBizum? = nil, blik: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataBlik? = nil, boleto: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataBoleto? = nil, cashapp: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataCashapp? = nil, crypto: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataCrypto? = nil, customerBalance: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataX83a3c052aa? = nil, eps: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEps? = nil, fpx: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataFpx? = nil, giropay: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataGiropay? = nil, grabpay: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataGrabpay? = nil, ideal: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataIdeal? = nil, interacPresent: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataX4ace85cf18? = nil, kakaoPay: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataKakaoPay? = nil, klarna: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataKlarna? = nil, konbini: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataKonbini? = nil, krCard: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataKrCard? = nil, link: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataLink? = nil, mbWay: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataMbWay? = nil, metadata: [String: String]? = nil, mobilepay: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataMobilepay? = nil, multibanco: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataMultibanco? = nil, naverPay: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataNaverPay? = nil, nzBankAccount: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataXe4c9d9b76b? = nil, oxxo: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataOxxo? = nil, p24: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataP24? = nil, payByBank: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataPayByBank? = nil, payco: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataPayco? = nil, paynow: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataPaynow? = nil, paypal: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataPaypal? = nil, payto: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataPayto? = nil, pix: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataPix? = nil, promptpay: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataPromptpay? = nil, radarOptions: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataX28031c3dcf? = nil, revolutPay: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataRevolutPay? = nil, samsungPay: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataSamsungPay? = nil, satispay: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataSatispay? = nil, scalapay: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataScalapay? = nil, sepaDebit: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataSepaDebit? = nil, sofort: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataSofort? = nil, sunbit: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataSunbit? = nil, swish: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataSwish? = nil, twint: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataTwint? = nil, upi: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataUpi? = nil, usBankAccount: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataX274c5bdb9f? = nil, wechatPay: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataWechatPay? = nil, zip: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataZip? = nil) {
+public extension PostTestHelpersConfirmationTokensRequestBodyPaymentMethodData {
+    init(
+        type: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataType,
+        acssDebit: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataAcssDebit? = nil,
+        affirm: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataAffirm? = nil,
+        afterpayClearpay: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataX95ec861e8a? = nil,
+        alipay: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataAlipay? = nil,
+        allowRedisplay: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataX01a56f2c8e? = nil,
+        alma: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataAlma? = nil,
+        amazonPay: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataAmazonPay? = nil,
+        auBecsDebit: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataAuBecsDebit? = nil,
+        bacsDebit: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataBacsDebit? = nil,
+        bancontact: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataBancontact? = nil,
+        billie: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataBillie? = nil,
+        billingDetails: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataXb672edd7d4? = nil,
+        bizum: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataBizum? = nil,
+        blik: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataBlik? = nil,
+        boleto: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataBoleto? = nil,
+        cashapp: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataCashapp? = nil,
+        crypto: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataCrypto? = nil,
+        customerBalance: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataX83a3c052aa? = nil,
+        eps: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataEps? = nil,
+        fpx: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataFpx? = nil,
+        giropay: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataGiropay? = nil,
+        grabpay: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataGrabpay? = nil,
+        ideal: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataIdeal? = nil,
+        interacPresent: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataX4ace85cf18? = nil,
+        kakaoPay: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataKakaoPay? = nil,
+        klarna: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataKlarna? = nil,
+        konbini: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataKonbini? = nil,
+        krCard: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataKrCard? = nil,
+        link: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataLink? = nil,
+        mbWay: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataMbWay? = nil,
+        metadata: [String: String]? = nil,
+        mobilepay: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataMobilepay? = nil,
+        multibanco: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataMultibanco? = nil,
+        naverPay: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataNaverPay? = nil,
+        nzBankAccount: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataXe4c9d9b76b? = nil,
+        oxxo: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataOxxo? = nil,
+        p24: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataP24? = nil,
+        payByBank: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataPayByBank? = nil,
+        payco: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataPayco? = nil,
+        paynow: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataPaynow? = nil,
+        paypal: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataPaypal? = nil,
+        payto: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataPayto? = nil,
+        pix: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataPix? = nil,
+        promptpay: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataPromptpay? = nil,
+        radarOptions: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataX28031c3dcf? = nil,
+        revolutPay: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataRevolutPay? = nil,
+        samsungPay: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataSamsungPay? = nil,
+        satispay: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataSatispay? = nil,
+        scalapay: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataScalapay? = nil,
+        sepaDebit: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataSepaDebit? = nil,
+        sofort: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataSofort? = nil,
+        sunbit: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataSunbit? = nil,
+        swish: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataSwish? = nil,
+        twint: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataTwint? = nil,
+        upi: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataUpi? = nil,
+        usBankAccount: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataX274c5bdb9f? = nil,
+        wechatPay: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataWechatPay? = nil,
+        zip: PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataZip? = nil
+    ) {
         (self.type, self.acssDebit) = (type, acssDebit)
         (self.affirm, self.afterpayClearpay) = (affirm, afterpayClearpay)
         (self.alipay, self.allowRedisplay) = (alipay, allowRedisplay)
@@ -495,26 +613,27 @@ extension PostTestHelpersConfirmationTokensRequestBodyPaymentMethodData {
 }
 
 public struct PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataTwint: Codable {
-
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataTwint {
-    public init() {
-    }
+public extension PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataTwint {
+    init() {}
 }
 
 public struct PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataMobilepay: Codable {
-
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataMobilepay {
-    public init() {
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-public struct PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataPaynow: Codable {
+public extension PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataMobilepay {
+    init() {}
+}
 
-    private init(sdkCopy value: Self) { self = value }
+public struct PostTestHelpersConfirmationTokensRequestBodyPaymentMethodDataPaynow: Codable {
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }

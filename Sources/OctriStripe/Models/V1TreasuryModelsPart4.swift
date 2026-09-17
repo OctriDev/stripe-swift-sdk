@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1Treasury domain models
+/// V1Treasury domain models
 /// ReceivedDebits represent funds pulled from a FinancialAccount. These are not initiated from the
 /// FinancialAccount.
 public struct TreasuryReceivedDebit: Codable {
@@ -63,41 +63,60 @@ public struct TreasuryReceivedDebit: Codable {
         case transaction
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension TreasuryReceivedDebit {
-    public init(from decoder: Decoder) throws {
+public extension TreasuryReceivedDebit {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.amount = try container.sdkDecodeRequired(.amount)
-        self.created = try container.sdkDecodeRequired(.created)
-        self.currency = try container.sdkDecodeRequired(.currency)
-        self.description = try container.sdkDecodeRequired(.description)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.linkedFlows = try container.sdkDecodeRequired(.linkedFlows)
-        self.livemode = try container.sdkDecodeRequired(.livemode)
-        self.network = try container.sdkDecodeRequired(.network)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.status = try container.sdkDecodeRequired(.status)
-        self.failureCode = try container.sdkDecodeIfPresent(.failureCode)
-        self.financialAccount = try container.sdkDecodeIfPresent(.financialAccount)
-        self.hostedRegulatoryReceiptUrl = try container.sdkDecodeIfPresent(.hostedRegulatoryReceiptUrl)
-        self.initiatingPaymentMethodDetails = try container.sdkDecodeIfPresent(.initiatingPaymentMethodDetails)
-        self.reversalDetails = try container.sdkDecodeIfPresent(.reversalDetails)
-        self.transaction = try container.sdkDecodeIfPresent(.transaction)
-            try validateLength("description", self.description, min: nil, max: 5000)
-            try validateLength("id", self.id, min: nil, max: 5000)
-        if let value = self.financialAccount {
+        amount = try container.sdkDecodeRequired(.amount)
+        created = try container.sdkDecodeRequired(.created)
+        currency = try container.sdkDecodeRequired(.currency)
+        description = try container.sdkDecodeRequired(.description)
+        id = try container.sdkDecodeRequired(.id)
+        linkedFlows = try container.sdkDecodeRequired(.linkedFlows)
+        livemode = try container.sdkDecodeRequired(.livemode)
+        network = try container.sdkDecodeRequired(.network)
+        object = try container.sdkDecodeRequired(.object)
+        status = try container.sdkDecodeRequired(.status)
+        failureCode = try container.sdkDecodeIfPresent(.failureCode)
+        financialAccount = try container.sdkDecodeIfPresent(.financialAccount)
+        hostedRegulatoryReceiptUrl = try container.sdkDecodeIfPresent(.hostedRegulatoryReceiptUrl)
+        initiatingPaymentMethodDetails = try container.sdkDecodeIfPresent(.initiatingPaymentMethodDetails)
+        reversalDetails = try container.sdkDecodeIfPresent(.reversalDetails)
+        transaction = try container.sdkDecodeIfPresent(.transaction)
+        try validateLength("description", description, min: nil, max: 5000)
+        try validateLength("id", id, min: nil, max: 5000)
+        if let value = financialAccount {
             try validateLength("financial_account", value, min: nil, max: 5000)
         }
-        if let value = self.hostedRegulatoryReceiptUrl {
+        if let value = hostedRegulatoryReceiptUrl {
             try validateLength("hosted_regulatory_receipt_url", value, min: nil, max: 5000)
         }
     }
 }
 
-extension TreasuryReceivedDebit {
-    public init(amount: Int, created: Int, currency: String, description: String, id: String, linkedFlows: TreasuryReceivedDebitsResourceLinkedFlows, livemode: Bool, network: TreasuryReceivedDebitNetwork, object: TreasuryReceivedDebitObject, status: TreasuryReceivedDebitStatus, failureCode: TreasuryReceivedDebitFailureCode? = nil, financialAccount: String? = nil, hostedRegulatoryReceiptUrl: String? = nil, initiatingPaymentMethodDetails: TreasurySharedResourceInitiatingPaymentMethodDetailsInitiatinX45451f2468? = nil, reversalDetails: TreasuryReceivedDebitReversalDetails? = nil, transaction: TreasuryReceivedDebitTransaction? = nil) throws {
+public extension TreasuryReceivedDebit {
+    init(
+        amount: Int,
+        created: Int,
+        currency: String,
+        description: String,
+        id: String,
+        linkedFlows: TreasuryReceivedDebitsResourceLinkedFlows,
+        livemode: Bool,
+        network: TreasuryReceivedDebitNetwork,
+        object: TreasuryReceivedDebitObject,
+        status: TreasuryReceivedDebitStatus,
+        failureCode: TreasuryReceivedDebitFailureCode? = nil,
+        financialAccount: String? = nil,
+        hostedRegulatoryReceiptUrl: String? = nil,
+        initiatingPaymentMethodDetails: TreasurySharedResourceInitiatingPaymentMethodDetailsInitiatinX45451f2468? = nil,
+        reversalDetails: TreasuryReceivedDebitReversalDetails? = nil,
+        transaction: TreasuryReceivedDebitTransaction? = nil
+    ) throws {
         (self.amount, self.created) = (amount, created)
         (self.currency, self.description) = (currency, description)
         (self.id, self.linkedFlows) = (id, linkedFlows)
@@ -107,8 +126,8 @@ extension TreasuryReceivedDebit {
         self.hostedRegulatoryReceiptUrl = hostedRegulatoryReceiptUrl
         self.initiatingPaymentMethodDetails = initiatingPaymentMethodDetails
         (self.reversalDetails, self.transaction) = (reversalDetails, transaction)
-            try validateLength("description", self.description, min: nil, max: 5000)
-            try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("description", self.description, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
         if let value = self.financialAccount {
             try validateLength("financial_account", value, min: nil, max: 5000)
         }
@@ -123,24 +142,30 @@ public enum TreasuryReceivedDebitReversalDetails {
 }
 
 extension TreasuryReceivedDebitReversalDetails: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for TreasuryReceivedDebitReversalDetails")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for TreasuryReceivedDebitReversalDetails"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             TreasuryReceivedDebitsResourceReversalDetails.self
         ) {
-            return             .treasuryReceivedDebitsResourceReversalDetails(value)
+            return .treasuryReceivedDebitsResourceReversalDetails(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -149,7 +174,6 @@ extension TreasuryReceivedDebitReversalDetails: Codable {
         case let .treasuryReceivedDebitsResourceReversalDetails(value): try container.encode(value); return true
         }
     }
-
 }
 
 public indirect enum TreasuryReceivedDebitTransaction {
@@ -158,21 +182,31 @@ public indirect enum TreasuryReceivedDebitTransaction {
 }
 
 extension TreasuryReceivedDebitTransaction: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for TreasuryReceivedDebitTransaction")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for TreasuryReceivedDebitTransaction"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(TreasuryTransaction.self) { return .treasuryTransaction(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(TreasuryTransaction.self) {
+            return .treasuryTransaction(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -182,7 +216,6 @@ extension TreasuryReceivedDebitTransaction: Codable {
         case let .treasuryTransaction(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Transactions represent changes to a FinancialAccount's balance.
@@ -238,38 +271,56 @@ public struct TreasuryTransaction: Codable {
         case flowDetails = "flow_details"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension TreasuryTransaction {
-    public init(from decoder: Decoder) throws {
+public extension TreasuryTransaction {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.amount = try container.sdkDecodeRequired(.amount)
-        self.balanceImpact = try container.sdkDecodeRequired(.balanceImpact)
-        self.created = try container.sdkDecodeRequired(.created)
-        self.currency = try container.sdkDecodeRequired(.currency)
-        self.description = try container.sdkDecodeRequired(.description)
-        self.financialAccount = try container.sdkDecodeRequired(.financialAccount)
-        self.flowType = try container.sdkDecodeRequired(.flowType)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.livemode = try container.sdkDecodeRequired(.livemode)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.status = try container.sdkDecodeRequired(.status)
-        self.statusTransitions = try container.sdkDecodeRequired(.statusTransitions)
-        self.entries = try container.sdkDecodeIfPresent(.entries)
-        self.flow = try container.sdkDecodeIfPresent(.flow)
-        self.flowDetails = try container.sdkDecodeIfPresent(.flowDetails)
-            try validateLength("description", self.description, min: nil, max: 5000)
-            try validateLength("financial_account", self.financialAccount, min: nil, max: 5000)
-            try validateLength("id", self.id, min: nil, max: 5000)
-        if let value = self.flow {
+        amount = try container.sdkDecodeRequired(.amount)
+        balanceImpact = try container.sdkDecodeRequired(.balanceImpact)
+        created = try container.sdkDecodeRequired(.created)
+        currency = try container.sdkDecodeRequired(.currency)
+        description = try container.sdkDecodeRequired(.description)
+        financialAccount = try container.sdkDecodeRequired(.financialAccount)
+        flowType = try container.sdkDecodeRequired(.flowType)
+        id = try container.sdkDecodeRequired(.id)
+        livemode = try container.sdkDecodeRequired(.livemode)
+        object = try container.sdkDecodeRequired(.object)
+        status = try container.sdkDecodeRequired(.status)
+        statusTransitions = try container.sdkDecodeRequired(.statusTransitions)
+        entries = try container.sdkDecodeIfPresent(.entries)
+        flow = try container.sdkDecodeIfPresent(.flow)
+        flowDetails = try container.sdkDecodeIfPresent(.flowDetails)
+        try validateLength("description", description, min: nil, max: 5000)
+        try validateLength("financial_account", financialAccount, min: nil, max: 5000)
+        try validateLength("id", id, min: nil, max: 5000)
+        if let value = flow {
             try validateLength("flow", value, min: nil, max: 5000)
         }
     }
 }
 
-extension TreasuryTransaction {
-    public init(amount: Int, balanceImpact: TreasuryTransactionsResourceBalanceImpact, created: Int, currency: String, description: String, financialAccount: String, flowType: TreasuryTransactionFlowType, id: String, livemode: Bool, object: TreasuryTransactionObject, status: TreasuryTransactionStatus, statusTransitions: TreasuryTransactionsResourceAbstractTransactionResourceStatusTransitions, entries: TreasuryTransactionEntries? = nil, flow: String? = nil, flowDetails: TreasuryTransactionFlowDetails? = nil) throws {
+public extension TreasuryTransaction {
+    init(
+        amount: Int,
+        balanceImpact: TreasuryTransactionsResourceBalanceImpact,
+        created: Int,
+        currency: String,
+        description: String,
+        financialAccount: String,
+        flowType: TreasuryTransactionFlowType,
+        id: String,
+        livemode: Bool,
+        object: TreasuryTransactionObject,
+        status: TreasuryTransactionStatus,
+        statusTransitions: TreasuryTransactionsResourceAbstractTransactionResourceStatusTransitions,
+        entries: TreasuryTransactionEntries? = nil,
+        flow: String? = nil,
+        flowDetails: TreasuryTransactionFlowDetails? = nil
+    ) throws {
         (self.amount, self.balanceImpact) = (amount, balanceImpact)
         (self.created, self.currency) = (created, currency)
         (self.description, self.financialAccount) = (description, financialAccount)
@@ -278,9 +329,9 @@ extension TreasuryTransaction {
         (self.status, self.statusTransitions) = (status, statusTransitions)
         (self.entries, self.flow) = (entries, flow)
         self.flowDetails = flowDetails
-            try validateLength("description", self.description, min: nil, max: 5000)
-            try validateLength("financial_account", self.financialAccount, min: nil, max: 5000)
-            try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("description", self.description, min: nil, max: 5000)
+        try validateLength("financial_account", self.financialAccount, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
         if let value = self.flow {
             try validateLength("flow", value, min: nil, max: 5000)
         }
@@ -306,39 +357,62 @@ public struct TreasuryTransactionEntries: Codable {
         case url
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension TreasuryTransactionEntries {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.data) else {
-            throw SdkValidationError(field: "data", code: "required", message: "Validation failed for 'data': value is required")
-        }
-        guard container.contains(.hasMore) else {
-            throw SdkValidationError(field: "has_more", code: "required", message: "Validation failed for 'has_more': value is required")
-        }
-        guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
-        }
-        guard container.contains(.url) else {
-            throw SdkValidationError(field: "url", code: "required", message: "Validation failed for 'url': value is required")
-        }
-        self.data = try container.sdkDecodeRequired(.data)
-        self.hasMore = try container.sdkDecodeRequired(.hasMore)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.url = try container.sdkDecodeRequired(.url)
-            try validateLength("url", self.url, min: nil, max: 5000)
-            try sdkValidatePattern("url", self.url, sdkPattern8dd585c1f256)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension TreasuryTransactionEntries {
-    public init(data: [TreasuryTransactionEntry], hasMore: Bool, object: TreasuryTransactionEntriesObject, url: String) throws {
+public extension TreasuryTransactionEntries {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.data) else {
+            throw SdkValidationError(
+                field: "data",
+                code: "required",
+                message: "Validation failed for 'data': value is required"
+            )
+        }
+        guard container.contains(.hasMore) else {
+            throw SdkValidationError(
+                field: "has_more",
+                code: "required",
+                message: "Validation failed for 'has_more': value is required"
+            )
+        }
+        guard container.contains(.object) else {
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
+        }
+        guard container.contains(.url) else {
+            throw SdkValidationError(
+                field: "url",
+                code: "required",
+                message: "Validation failed for 'url': value is required"
+            )
+        }
+        data = try container.sdkDecodeRequired(.data)
+        hasMore = try container.sdkDecodeRequired(.hasMore)
+        object = try container.sdkDecodeRequired(.object)
+        url = try container.sdkDecodeRequired(.url)
+        try validateLength("url", url, min: nil, max: 5000)
+        try sdkValidatePattern("url", url, sdkPattern8dd585c1f256)
+    }
+}
+
+public extension TreasuryTransactionEntries {
+    init(
+        data: [TreasuryTransactionEntry],
+        hasMore: Bool,
+        object: TreasuryTransactionEntriesObject,
+        url: String
+    ) throws {
         (self.data, self.hasMore) = (data, hasMore)
         (self.object, self.url) = (object, url)
-            try validateLength("url", self.url, min: nil, max: 5000)
-            try sdkValidatePattern("url", self.url, sdkPattern8dd585c1f256)
+        try validateLength("url", self.url, min: nil, max: 5000)
+        try sdkValidatePattern("url", self.url, sdkPattern8dd585c1f256)
     }
 }
 
@@ -347,24 +421,30 @@ public enum TreasuryTransactionFlowDetails {
 }
 
 extension TreasuryTransactionFlowDetails: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for TreasuryTransactionFlowDetails")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for TreasuryTransactionFlowDetails"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             TreasuryTransactionsResourceFlowDetails.self
         ) {
-            return             .treasuryTransactionsResourceFlowDetails(value)
+            return .treasuryTransactionsResourceFlowDetails(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -373,7 +453,6 @@ extension TreasuryTransactionFlowDetails: Codable {
         case let .treasuryTransactionsResourceFlowDetails(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// TransactionEntries represent individual units of money movements within a single Transaction.
@@ -422,35 +501,51 @@ public struct TreasuryTransactionEntry: Codable {
         case flowDetails = "flow_details"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension TreasuryTransactionEntry {
-    public init(from decoder: Decoder) throws {
+public extension TreasuryTransactionEntry {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.balanceImpact = try container.sdkDecodeRequired(.balanceImpact)
-        self.created = try container.sdkDecodeRequired(.created)
-        self.currency = try container.sdkDecodeRequired(.currency)
-        self.effectiveAt = try container.sdkDecodeRequired(.effectiveAt)
-        self.financialAccount = try container.sdkDecodeRequired(.financialAccount)
-        self.flowType = try container.sdkDecodeRequired(.flowType)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.livemode = try container.sdkDecodeRequired(.livemode)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.transaction = try container.sdkDecodeRequired(.transaction)
-        self.type = try container.sdkDecodeRequired(.type)
-        self.flow = try container.sdkDecodeIfPresent(.flow)
-        self.flowDetails = try container.sdkDecodeIfPresent(.flowDetails)
-            try validateLength("financial_account", self.financialAccount, min: nil, max: 5000)
-            try validateLength("id", self.id, min: nil, max: 5000)
-        if let value = self.flow {
+        balanceImpact = try container.sdkDecodeRequired(.balanceImpact)
+        created = try container.sdkDecodeRequired(.created)
+        currency = try container.sdkDecodeRequired(.currency)
+        effectiveAt = try container.sdkDecodeRequired(.effectiveAt)
+        financialAccount = try container.sdkDecodeRequired(.financialAccount)
+        flowType = try container.sdkDecodeRequired(.flowType)
+        id = try container.sdkDecodeRequired(.id)
+        livemode = try container.sdkDecodeRequired(.livemode)
+        object = try container.sdkDecodeRequired(.object)
+        transaction = try container.sdkDecodeRequired(.transaction)
+        type = try container.sdkDecodeRequired(.type)
+        flow = try container.sdkDecodeIfPresent(.flow)
+        flowDetails = try container.sdkDecodeIfPresent(.flowDetails)
+        try validateLength("financial_account", financialAccount, min: nil, max: 5000)
+        try validateLength("id", id, min: nil, max: 5000)
+        if let value = flow {
             try validateLength("flow", value, min: nil, max: 5000)
         }
     }
 }
 
-extension TreasuryTransactionEntry {
-    public init(balanceImpact: TreasuryTransactionsResourceBalanceImpact, created: Int, currency: String, effectiveAt: Int, financialAccount: String, flowType: TreasuryTransactionEntryFlowType, id: String, livemode: Bool, object: TreasuryTransactionEntryObject, transaction: TreasuryTransactionEntryTransaction, type: TreasuryTransactionEntryType, flow: String? = nil, flowDetails: TreasuryTransactionEntryFlowDetails? = nil) throws {
+public extension TreasuryTransactionEntry {
+    init(
+        balanceImpact: TreasuryTransactionsResourceBalanceImpact,
+        created: Int,
+        currency: String,
+        effectiveAt: Int,
+        financialAccount: String,
+        flowType: TreasuryTransactionEntryFlowType,
+        id: String,
+        livemode: Bool,
+        object: TreasuryTransactionEntryObject,
+        transaction: TreasuryTransactionEntryTransaction,
+        type: TreasuryTransactionEntryType,
+        flow: String? = nil,
+        flowDetails: TreasuryTransactionEntryFlowDetails? = nil
+    ) throws {
         (self.balanceImpact, self.created) = (balanceImpact, created)
         (self.currency, self.effectiveAt) = (currency, effectiveAt)
         (self.financialAccount, self.flowType) = (financialAccount, flowType)
@@ -458,8 +553,8 @@ extension TreasuryTransactionEntry {
         (self.object, self.transaction) = (object, transaction)
         (self.type, self.flow) = (type, flow)
         self.flowDetails = flowDetails
-            try validateLength("financial_account", self.financialAccount, min: nil, max: 5000)
-            try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("financial_account", self.financialAccount, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
         if let value = self.flow {
             try validateLength("flow", value, min: nil, max: 5000)
         }
@@ -471,24 +566,30 @@ public enum TreasuryTransactionEntryFlowDetails {
 }
 
 extension TreasuryTransactionEntryFlowDetails: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for TreasuryTransactionEntryFlowDetails")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for TreasuryTransactionEntryFlowDetails"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             TreasuryTransactionsResourceFlowDetails.self
         ) {
-            return             .treasuryTransactionsResourceFlowDetails(value)
+            return .treasuryTransactionsResourceFlowDetails(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -497,7 +598,6 @@ extension TreasuryTransactionEntryFlowDetails: Codable {
         case let .treasuryTransactionsResourceFlowDetails(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum TreasuryTransactionEntryTransaction {
@@ -506,21 +606,31 @@ public enum TreasuryTransactionEntryTransaction {
 }
 
 extension TreasuryTransactionEntryTransaction: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for TreasuryTransactionEntryTransaction")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for TreasuryTransactionEntryTransaction"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(TreasuryTransaction.self) { return .treasuryTransaction(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(TreasuryTransaction.self) {
+            return .treasuryTransaction(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -530,5 +640,4 @@ extension TreasuryTransactionEntryTransaction: Codable {
         case let .treasuryTransaction(value): try container.encode(value); return true
         }
     }
-
 }

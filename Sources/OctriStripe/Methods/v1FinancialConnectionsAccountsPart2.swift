@@ -6,8 +6,10 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1FinancialConnectionsAccountsMethods {
-    /// Lists Financial Connections accounts. Filter the results by account holder or session, and use cursor parameters with `limit` to paginate the returned accounts. Each result describes an account held outside the payment platform.
+public extension V1FinancialConnectionsAccountsMethods {
+    /// Lists Financial Connections accounts. Filter the results by account holder or session, and use cursor parameters
+    /// with `limit` to paginate the returned accounts. Each result describes an account held outside the payment
+    /// platform.
     ///
     /// Returns a list of Financial Connections Account objects.
     ///
@@ -30,20 +32,28 @@ extension V1FinancialConnectionsAccountsMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    public static func getFinancialConnectionsAccounts(config: ClientConfig, accountHolder: GetFinancialConnectionsAccountsParameter?, endingBefore: String?, expand: [String]?, limit: Int?, session: String?, startingAfter: String?) async throws -> GetFinancialConnectionsAccountsResponse {
-        if let endingBefore = endingBefore {
+    static func getFinancialConnectionsAccounts(
+        config: ClientConfig,
+        accountHolder: GetFinancialConnectionsAccountsParameter?,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        session: String?,
+        startingAfter: String?
+    ) async throws -> GetFinancialConnectionsAccountsResponse {
+        if let endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let session = session {
+        if let session {
             try validateLength("session", session, max: 5000)
         }
 
-        if let startingAfter = startingAfter {
+        if let startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try (await sdkRequest("GET", "/v1/financial_connections/accounts", config: config, query: [
+        return try await (sdkRequest("GET", "/v1/financial_connections/accounts", config: config, query: [
             SdkQueryParameter("account_holder", value: accountHolder),
             SdkQueryParameter("ending_before", value: endingBefore),
             SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),

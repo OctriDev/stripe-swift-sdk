@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1AccountsMethods {
-    public struct PostAccountsAccountOptions: Codable {
+public extension V1AccountsMethods {
+    struct PostAccountsAccountOptions: Codable {
         public var account: String
         public var accountToken: String?
         public var businessProfile: PostAccountsAccountRequestBodyBusinessProfile?
@@ -30,9 +30,16 @@ extension V1AccountsMethods {
         }
     }
 
-    /// Updates a connected account by changing only the fields included in the request. Use the account-specific fields to update business information, capabilities, payout details, metadata, or terms-of-service acceptance. Some account properties can no longer be updated after Connect onboarding begins.
+    /// Updates a connected account by changing only the fields included in the request. Use the account-specific fields
+    /// to update business information, capabilities, payout details, metadata, or terms-of-service acceptance. Some
+    /// account properties can no longer be updated after Connect onboarding begins.
     ///
-    /// Updates a connected account by setting the values of the parameters passed. Any parameters not provided are left unchanged. For accounts where controller.requirement_collection is application , which includes Custom accounts, you can update any information on the account. For accounts where controller.requirement_collection is stripe , which includes Standard and Express accounts, you can update all information until you create an Account Link or Account Session to start Connect onboarding, after which some properties can no longer be updated. To update your own account, use the Dashboard. Refer to our Connect documentation to learn more about updating accounts.
+    /// Updates a connected account by setting the values of the parameters passed. Any parameters not provided are left
+    /// unchanged. For accounts where controller.requirement_collection is application , which includes Custom accounts,
+    /// you can update any information on the account. For accounts where controller.requirement_collection is stripe ,
+    /// which includes Standard and Express accounts, you can update all information until you create an Account Link or
+    /// Account Session to start Connect onboarding, after which some properties can no longer be updated. To update
+    /// your own account, use the Dashboard. Refer to our Connect documentation to learn more about updating accounts.
     ///
     /// - Parameters:
     /// - accountToken: An [account
@@ -93,7 +100,7 @@ extension V1AccountsMethods {
     ///   Agreement. This property can only be updated for accounts where
     ///   controller.requirement_collection is `application`, which includes Custom
     ///   accounts. This property defaults to a `full` service agreement when empty.
-    public static func postAccountsAccount(config: ClientConfig, options: PostAccountsAccountOptions) async throws -> Account {
+    static func postAccountsAccount(config: ClientConfig, options: PostAccountsAccountOptions) async throws -> Account {
         try validateLength("account", options.account, max: 5000)
 
         if let accountToken = options.accountToken {
@@ -106,6 +113,14 @@ extension V1AccountsMethods {
 
         let requestBody = PostAccountsAccountRequestBody(options: options)
 
-        return try (await sdkRequest("POST", ["/v1/accounts/", sdkEncodePathSegment(sdkWireString(options.account))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostAccountsAccount")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/accounts/", sdkEncodePathSegment(sdkWireString(options.account))].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostAccountsAccount"
+        )).data
     }
 }

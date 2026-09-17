@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1TreasuryOutbound domain models
+/// V1TreasuryOutbound domain models
 /// Typed representation of the `TreasuryOutboundPaymentsResourceAchTrackingDetails` API schema.
 public struct TreasuryOutboundPaymentsResourceAchTrackingDetails: Codable {
     /// ACH trace ID of the OutboundPayment for payments sent over the `ach` network.
@@ -13,24 +13,30 @@ public struct TreasuryOutboundPaymentsResourceAchTrackingDetails: Codable {
         case traceId = "trace_id"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension TreasuryOutboundPaymentsResourceAchTrackingDetails {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.traceId) else {
-            throw SdkValidationError(field: "trace_id", code: "required", message: "Validation failed for 'trace_id': value is required")
-        }
-        self.traceId = try container.sdkDecodeRequired(.traceId)
-            try validateLength("trace_id", self.traceId, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension TreasuryOutboundPaymentsResourceAchTrackingDetails {
-    public init(traceId: String) throws {
+public extension TreasuryOutboundPaymentsResourceAchTrackingDetails {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.traceId) else {
+            throw SdkValidationError(
+                field: "trace_id",
+                code: "required",
+                message: "Validation failed for 'trace_id': value is required"
+            )
+        }
+        traceId = try container.sdkDecodeRequired(.traceId)
+        try validateLength("trace_id", traceId, min: nil, max: 5000)
+    }
+}
+
+public extension TreasuryOutboundPaymentsResourceAchTrackingDetails {
+    init(traceId: String) throws {
         self.traceId = traceId
-            try validateLength("trace_id", self.traceId, min: nil, max: 5000)
+        try validateLength("trace_id", self.traceId, min: nil, max: 5000)
     }
 }
 
@@ -49,25 +55,31 @@ public struct TreasuryOutboundPaymentsResourceOutboundPaymentResourceEndUserDeta
         case ipAddress = "ip_address"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension TreasuryOutboundPaymentsResourceOutboundPaymentResourceEndUserDetails {
-    public init(from decoder: Decoder) throws {
+public extension TreasuryOutboundPaymentsResourceOutboundPaymentResourceEndUserDetails {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.present) else {
-            throw SdkValidationError(field: "present", code: "required", message: "Validation failed for 'present': value is required")
+            throw SdkValidationError(
+                field: "present",
+                code: "required",
+                message: "Validation failed for 'present': value is required"
+            )
         }
-        self.present = try container.sdkDecodeRequired(.present)
-        self.ipAddress = try container.sdkDecodeIfPresent(.ipAddress)
-        if let value = self.ipAddress {
+        present = try container.sdkDecodeRequired(.present)
+        ipAddress = try container.sdkDecodeIfPresent(.ipAddress)
+        if let value = ipAddress {
             try validateLength("ip_address", value, min: nil, max: 5000)
         }
     }
 }
 
-extension TreasuryOutboundPaymentsResourceOutboundPaymentResourceEndUserDetails {
-    public init(present: Bool, ipAddress: String? = nil) throws {
+public extension TreasuryOutboundPaymentsResourceOutboundPaymentResourceEndUserDetails {
+    init(present: Bool, ipAddress: String? = nil) throws {
         (self.present, self.ipAddress) = (present, ipAddress)
         if let value = self.ipAddress {
             try validateLength("ip_address", value, min: nil, max: 5000)
@@ -95,22 +107,22 @@ public struct TreasuryOutboundPaymentsResourceOutboundPaymentResourceStatusTrans
     }
 
     init() {
-        (self.canceledAt, self.failedAt, self.postedAt, self.returnedAt) = (nil, nil, nil, nil)
+        (canceledAt, failedAt, postedAt, returnedAt) = (nil, nil, nil, nil)
     }
 }
 
-extension TreasuryOutboundPaymentsResourceOutboundPaymentResourceStatusTransitions {
-    public init(from decoder: Decoder) throws {
+public extension TreasuryOutboundPaymentsResourceOutboundPaymentResourceStatusTransitions {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.canceledAt = try container.sdkDecodeIfPresent(.canceledAt)
-        self.failedAt = try container.sdkDecodeIfPresent(.failedAt)
-        self.postedAt = try container.sdkDecodeIfPresent(.postedAt)
-        self.returnedAt = try container.sdkDecodeIfPresent(.returnedAt)
+        canceledAt = try container.sdkDecodeIfPresent(.canceledAt)
+        failedAt = try container.sdkDecodeIfPresent(.failedAt)
+        postedAt = try container.sdkDecodeIfPresent(.postedAt)
+        returnedAt = try container.sdkDecodeIfPresent(.returnedAt)
     }
 }
 
-extension TreasuryOutboundPaymentsResourceOutboundPaymentResourceStatusTransitions {
-    public init(canceledAt: Int? = nil, failedAt: Int? = nil, postedAt: Int? = nil, returnedAt: Int? = nil) {
+public extension TreasuryOutboundPaymentsResourceOutboundPaymentResourceStatusTransitions {
+    init(canceledAt: Int? = nil, failedAt: Int? = nil, postedAt: Int? = nil, returnedAt: Int? = nil) {
         self.init()
         (self.canceledAt, self.failedAt) = (canceledAt, failedAt)
         (self.postedAt, self.returnedAt) = (postedAt, returnedAt)
@@ -132,23 +144,33 @@ public struct TreasuryOutboundPaymentsResourceOutboundPaymentResourceTrackingDet
         case usDomesticWire = "us_domestic_wire"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension TreasuryOutboundPaymentsResourceOutboundPaymentResourceTrackingDetails {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
-        }
-        self.type = try container.sdkDecodeRequired(.type)
-        self.ach = try container.sdkDecodeIfPresent(.ach)
-        self.usDomesticWire = try container.sdkDecodeIfPresent(.usDomesticWire)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension TreasuryOutboundPaymentsResourceOutboundPaymentResourceTrackingDetails {
-    public init(type: TreasuryOutboundPaymentsResourceOutboundPaymentResourceTrackiXa617ab2553, ach: TreasuryOutboundPaymentsResourceAchTrackingDetails? = nil, usDomesticWire: TreasuryOutboundPaymentsResourceUsDomesticWireTrackingDetails? = nil) {
+public extension TreasuryOutboundPaymentsResourceOutboundPaymentResourceTrackingDetails {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.type) else {
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
+        }
+        type = try container.sdkDecodeRequired(.type)
+        ach = try container.sdkDecodeIfPresent(.ach)
+        usDomesticWire = try container.sdkDecodeIfPresent(.usDomesticWire)
+    }
+}
+
+public extension TreasuryOutboundPaymentsResourceOutboundPaymentResourceTrackingDetails {
+    init(
+        type: TreasuryOutboundPaymentsResourceOutboundPaymentResourceTrackiXa617ab2553,
+        ach: TreasuryOutboundPaymentsResourceAchTrackingDetails? = nil,
+        usDomesticWire: TreasuryOutboundPaymentsResourceUsDomesticWireTrackingDetails? = nil
+    ) {
         (self.type, self.ach) = (type, ach)
         self.usDomesticWire = usDomesticWire
     }
@@ -171,30 +193,30 @@ public struct TreasuryOutboundPaymentsResourceUsDomesticWireTrackingDetails: Cod
     }
 
     init() {
-        (self.chips, self.imad, self.omad) = (nil, nil, nil)
+        (chips, imad, omad) = (nil, nil, nil)
     }
 }
 
-extension TreasuryOutboundPaymentsResourceUsDomesticWireTrackingDetails {
-    public init(from decoder: Decoder) throws {
+public extension TreasuryOutboundPaymentsResourceUsDomesticWireTrackingDetails {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.chips = try container.sdkDecodeIfPresent(.chips)
-        self.imad = try container.sdkDecodeIfPresent(.imad)
-        self.omad = try container.sdkDecodeIfPresent(.omad)
-        if let value = self.chips {
+        chips = try container.sdkDecodeIfPresent(.chips)
+        imad = try container.sdkDecodeIfPresent(.imad)
+        omad = try container.sdkDecodeIfPresent(.omad)
+        if let value = chips {
             try validateLength("chips", value, min: nil, max: 5000)
         }
-        if let value = self.imad {
+        if let value = imad {
             try validateLength("imad", value, min: nil, max: 5000)
         }
-        if let value = self.omad {
+        if let value = omad {
             try validateLength("omad", value, min: nil, max: 5000)
         }
     }
 }
 
-extension TreasuryOutboundPaymentsResourceUsDomesticWireTrackingDetails {
-    public init(chips: String? = nil, imad: String? = nil, omad: String? = nil) throws {
+public extension TreasuryOutboundPaymentsResourceUsDomesticWireTrackingDetails {
+    init(chips: String? = nil, imad: String? = nil, omad: String? = nil) throws {
         self.init()
         (self.chips, self.imad) = (chips, imad)
         self.omad = omad
@@ -219,24 +241,30 @@ public struct TreasuryOutboundTransfersResourceAchTrackingDetails: Codable {
         case traceId = "trace_id"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension TreasuryOutboundTransfersResourceAchTrackingDetails {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.traceId) else {
-            throw SdkValidationError(field: "trace_id", code: "required", message: "Validation failed for 'trace_id': value is required")
-        }
-        self.traceId = try container.sdkDecodeRequired(.traceId)
-            try validateLength("trace_id", self.traceId, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension TreasuryOutboundTransfersResourceAchTrackingDetails {
-    public init(traceId: String) throws {
+public extension TreasuryOutboundTransfersResourceAchTrackingDetails {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.traceId) else {
+            throw SdkValidationError(
+                field: "trace_id",
+                code: "required",
+                message: "Validation failed for 'trace_id': value is required"
+            )
+        }
+        traceId = try container.sdkDecodeRequired(.traceId)
+        try validateLength("trace_id", traceId, min: nil, max: 5000)
+    }
+}
+
+public extension TreasuryOutboundTransfersResourceAchTrackingDetails {
+    init(traceId: String) throws {
         self.traceId = traceId
-            try validateLength("trace_id", self.traceId, min: nil, max: 5000)
+        try validateLength("trace_id", self.traceId, min: nil, max: 5000)
     }
 }
 
@@ -256,23 +284,33 @@ public struct TreasuryOutboundTransfersResourceOutboundTransferResourceTrackingD
         case usDomesticWire = "us_domestic_wire"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension TreasuryOutboundTransfersResourceOutboundTransferResourceTrackingDetails {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
-        }
-        self.type = try container.sdkDecodeRequired(.type)
-        self.ach = try container.sdkDecodeIfPresent(.ach)
-        self.usDomesticWire = try container.sdkDecodeIfPresent(.usDomesticWire)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension TreasuryOutboundTransfersResourceOutboundTransferResourceTrackingDetails {
-    public init(type: TreasuryOutboundTransfersResourceOutboundTransferResourceTracX1f7a882001, ach: TreasuryOutboundTransfersResourceAchTrackingDetails? = nil, usDomesticWire: TreasuryOutboundTransfersResourceUsDomesticWireTrackingDetails? = nil) {
+public extension TreasuryOutboundTransfersResourceOutboundTransferResourceTrackingDetails {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.type) else {
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
+        }
+        type = try container.sdkDecodeRequired(.type)
+        ach = try container.sdkDecodeIfPresent(.ach)
+        usDomesticWire = try container.sdkDecodeIfPresent(.usDomesticWire)
+    }
+}
+
+public extension TreasuryOutboundTransfersResourceOutboundTransferResourceTrackingDetails {
+    init(
+        type: TreasuryOutboundTransfersResourceOutboundTransferResourceTracX1f7a882001,
+        ach: TreasuryOutboundTransfersResourceAchTrackingDetails? = nil,
+        usDomesticWire: TreasuryOutboundTransfersResourceUsDomesticWireTrackingDetails? = nil
+    ) {
         (self.type, self.ach) = (type, ach)
         self.usDomesticWire = usDomesticWire
     }
@@ -297,22 +335,22 @@ public struct TreasuryOutboundTransfersResourceStatusTransitions: Codable {
     }
 
     init() {
-        (self.canceledAt, self.failedAt, self.postedAt, self.returnedAt) = (nil, nil, nil, nil)
+        (canceledAt, failedAt, postedAt, returnedAt) = (nil, nil, nil, nil)
     }
 }
 
-extension TreasuryOutboundTransfersResourceStatusTransitions {
-    public init(from decoder: Decoder) throws {
+public extension TreasuryOutboundTransfersResourceStatusTransitions {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.canceledAt = try container.sdkDecodeIfPresent(.canceledAt)
-        self.failedAt = try container.sdkDecodeIfPresent(.failedAt)
-        self.postedAt = try container.sdkDecodeIfPresent(.postedAt)
-        self.returnedAt = try container.sdkDecodeIfPresent(.returnedAt)
+        canceledAt = try container.sdkDecodeIfPresent(.canceledAt)
+        failedAt = try container.sdkDecodeIfPresent(.failedAt)
+        postedAt = try container.sdkDecodeIfPresent(.postedAt)
+        returnedAt = try container.sdkDecodeIfPresent(.returnedAt)
     }
 }
 
-extension TreasuryOutboundTransfersResourceStatusTransitions {
-    public init(canceledAt: Int? = nil, failedAt: Int? = nil, postedAt: Int? = nil, returnedAt: Int? = nil) {
+public extension TreasuryOutboundTransfersResourceStatusTransitions {
+    init(canceledAt: Int? = nil, failedAt: Int? = nil, postedAt: Int? = nil, returnedAt: Int? = nil) {
         self.init()
         (self.canceledAt, self.failedAt) = (canceledAt, failedAt)
         (self.postedAt, self.returnedAt) = (postedAt, returnedAt)
@@ -336,30 +374,30 @@ public struct TreasuryOutboundTransfersResourceUsDomesticWireTrackingDetails: Co
     }
 
     init() {
-        (self.chips, self.imad, self.omad) = (nil, nil, nil)
+        (chips, imad, omad) = (nil, nil, nil)
     }
 }
 
-extension TreasuryOutboundTransfersResourceUsDomesticWireTrackingDetails {
-    public init(from decoder: Decoder) throws {
+public extension TreasuryOutboundTransfersResourceUsDomesticWireTrackingDetails {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.chips = try container.sdkDecodeIfPresent(.chips)
-        self.imad = try container.sdkDecodeIfPresent(.imad)
-        self.omad = try container.sdkDecodeIfPresent(.omad)
-        if let value = self.chips {
+        chips = try container.sdkDecodeIfPresent(.chips)
+        imad = try container.sdkDecodeIfPresent(.imad)
+        omad = try container.sdkDecodeIfPresent(.omad)
+        if let value = chips {
             try validateLength("chips", value, min: nil, max: 5000)
         }
-        if let value = self.imad {
+        if let value = imad {
             try validateLength("imad", value, min: nil, max: 5000)
         }
-        if let value = self.omad {
+        if let value = omad {
             try validateLength("omad", value, min: nil, max: 5000)
         }
     }
 }
 
-extension TreasuryOutboundTransfersResourceUsDomesticWireTrackingDetails {
-    public init(chips: String? = nil, imad: String? = nil, omad: String? = nil) throws {
+public extension TreasuryOutboundTransfersResourceUsDomesticWireTrackingDetails {
+    init(chips: String? = nil, imad: String? = nil, omad: String? = nil) throws {
         self.init()
         (self.chips, self.imad) = (chips, imad)
         self.omad = omad
@@ -376,16 +414,21 @@ extension TreasuryOutboundTransfersResourceUsDomesticWireTrackingDetails {
 }
 
 /// The US bank account network used to send funds.
-public struct TreasuryOutboundPaymentsResourceOutboundPaymentResourceTrackiXa617ab2553: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct TreasuryOutboundPaymentsResourceOutboundPaymentResourceTrackiXa617ab2553: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let ach = TreasuryOutboundPaymentsResourceOutboundPaymentResourceTrackiXa617ab2553(rawValue: "ach")
-    public static let usDomesticWire = TreasuryOutboundPaymentsResourceOutboundPaymentResourceTrackiXa617ab2553(rawValue: "us_domestic_wire")
+    public static let usDomesticWire =
+        TreasuryOutboundPaymentsResourceOutboundPaymentResourceTrackiXa617ab2553(rawValue: "us_domestic_wire")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -395,16 +438,21 @@ public struct TreasuryOutboundPaymentsResourceOutboundPaymentResourceTrackiXa617
 }
 
 /// The US bank account network used to send funds.
-public struct TreasuryOutboundTransfersResourceOutboundTransferResourceTracX1f7a882001: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct TreasuryOutboundTransfersResourceOutboundTransferResourceTracX1f7a882001: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let ach = TreasuryOutboundTransfersResourceOutboundTransferResourceTracX1f7a882001(rawValue: "ach")
-    public static let usDomesticWire = TreasuryOutboundTransfersResourceOutboundTransferResourceTracX1f7a882001(rawValue: "us_domestic_wire")
+    public static let usDomesticWire =
+        TreasuryOutboundTransfersResourceOutboundTransferResourceTracX1f7a882001(rawValue: "us_domestic_wire")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

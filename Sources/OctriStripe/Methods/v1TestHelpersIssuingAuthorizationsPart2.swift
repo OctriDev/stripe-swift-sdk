@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1TestHelpersIssuingAuthorizationsMethods {
-    public struct PostTestHelpersIssuingAuthorizationsOptions: Codable {
+public extension V1TestHelpersIssuingAuthorizationsMethods {
+    struct PostTestHelpersIssuingAuthorizationsOptions: Codable {
         public var card: String
         public var amount: Int?
         public var amountDetails: PostTestHelpersIssuingAuthorizationsRequestBodyAmountDetails?
@@ -31,7 +31,9 @@ extension V1TestHelpersIssuingAuthorizationsMethods {
         }
     }
 
-    /// Creates a test-mode Issuing authorization for an issued card purchase. Supply `card` and optionally provide amount, currency, authorization method, merchant, fleet, fuel, network, and risk details to model the authorization scenario. The response contains the resulting authorization and its approval state.
+    /// Creates a test-mode Issuing authorization for an issued card purchase. Supply `card` and optionally provide
+    /// amount, currency, authorization method, merchant, fleet, fuel, network, and risk details to model the
+    /// authorization scenario. The response contains the resulting authorization and its approval state.
     ///
     /// Create a test-mode authorization.
     ///
@@ -77,11 +79,22 @@ extension V1TestHelpersIssuingAuthorizationsMethods {
     /// - wallet: The digital wallet used for this transaction. One of `apple_pay`,
     ///   `google_pay`, or `samsung_pay`. Will populate as `null` when no digital
     ///   wallet was utilized.
-    public static func postTestHelpersIssuingAuthorizations(config: ClientConfig, options: PostTestHelpersIssuingAuthorizationsOptions) async throws -> IssuingAuthorization {
+    static func postTestHelpersIssuingAuthorizations(
+        config: ClientConfig,
+        options: PostTestHelpersIssuingAuthorizationsOptions
+    ) async throws -> IssuingAuthorization {
         try validateLength("card", options.card, max: 5000)
 
         let requestBody = PostTestHelpersIssuingAuthorizationsRequestBody(options: options)
 
-        return try (await sdkRequest("POST", "/v1/test_helpers/issuing/authorizations", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTestHelpersIssuingAuthorizations")).data
+        return try await (sdkRequest(
+            "POST",
+            "/v1/test_helpers/issuing/authorizations",
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostTestHelpersIssuingAuthorizations"
+        )).data
     }
 }

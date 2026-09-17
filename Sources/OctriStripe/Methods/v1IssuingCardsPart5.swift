@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1IssuingCardsMethods {
-    public struct PostIssuingCardsCardOptions: Codable {
+public extension V1IssuingCardsMethods {
+    struct PostIssuingCardsCardOptions: Codable {
         public var card: String
         public var cancellationReason: PostIssuingCardsCardRequestBodyCancellationReason?
         public var expand: [String]?
@@ -23,9 +23,13 @@ extension V1IssuingCardsMethods {
         }
     }
 
-    /// Updates an Issuing card by changing only the fields included in the request. Use `status` to activate, deactivate, or cancel the card, and provide `cancellation_reason` when canceling it because it was lost or stolen. You can also update the PIN, shipping information, personalization design, metadata, and spending controls.
+    /// Updates an Issuing card by changing only the fields included in the request. Use `status` to activate,
+    /// deactivate, or cancel the card, and provide `cancellation_reason` when canceling it because it was lost or
+    /// stolen. You can also update the PIN, shipping information, personalization design, metadata, and spending
+    /// controls.
     ///
-    /// Updates the specified Issuing Card object by setting the values of the parameters passed. Any parameters not provided will be left unchanged.
+    /// Updates the specified Issuing Card object by setting the values of the parameters passed. Any parameters not
+    /// provided will be left unchanged.
     ///
     /// - Parameters:
     /// - cancellationReason: Reason why the `status` of this card is `canceled`.
@@ -45,7 +49,10 @@ extension V1IssuingCardsMethods {
     ///   requirements. Defaults to `inactive`. If this card is being canceled because
     ///   it was lost or stolen, this information should be provided as
     ///   `cancellation_reason`.
-    public static func postIssuingCardsCard(config: ClientConfig, options: PostIssuingCardsCardOptions) async throws -> IssuingCard {
+    static func postIssuingCardsCard(
+        config: ClientConfig,
+        options: PostIssuingCardsCardOptions
+    ) async throws -> IssuingCard {
         try validateLength("card", options.card, max: 5000)
 
         if let personalizationDesign = options.personalizationDesign {
@@ -54,6 +61,14 @@ extension V1IssuingCardsMethods {
 
         let requestBody = PostIssuingCardsCardRequestBody(options: options)
 
-        return try (await sdkRequest("POST", ["/v1/issuing/cards/", sdkEncodePathSegment(sdkWireString(options.card))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostIssuingCardsCard")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/issuing/cards/", sdkEncodePathSegment(sdkWireString(options.card))].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostIssuingCardsCard"
+        )).data
     }
 }

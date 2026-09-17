@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1Price domain models
+/// V1Price domain models
 /// Typed representation of the `PriceTier` API schema.
 public struct PriceTier: Codable {
     /// Price for the entire tier.
@@ -26,23 +26,29 @@ public struct PriceTier: Codable {
     }
 
     init() {
-        (self.flatAmount, self.flatAmountDecimal, self.unitAmount, self.unitAmountDecimal, self.upTo) = (nil, nil, nil, nil, nil)
+        (flatAmount, flatAmountDecimal, unitAmount, unitAmountDecimal, upTo) = (nil, nil, nil, nil, nil)
     }
 }
 
-extension PriceTier {
-    public init(from decoder: Decoder) throws {
+public extension PriceTier {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.flatAmount = try container.sdkDecodeIfPresent(.flatAmount)
-        self.flatAmountDecimal = try container.sdkDecodeIfPresent(.flatAmountDecimal)
-        self.unitAmount = try container.sdkDecodeIfPresent(.unitAmount)
-        self.unitAmountDecimal = try container.sdkDecodeIfPresent(.unitAmountDecimal)
-        self.upTo = try container.sdkDecodeIfPresent(.upTo)
+        flatAmount = try container.sdkDecodeIfPresent(.flatAmount)
+        flatAmountDecimal = try container.sdkDecodeIfPresent(.flatAmountDecimal)
+        unitAmount = try container.sdkDecodeIfPresent(.unitAmount)
+        unitAmountDecimal = try container.sdkDecodeIfPresent(.unitAmountDecimal)
+        upTo = try container.sdkDecodeIfPresent(.upTo)
     }
 }
 
-extension PriceTier {
-    public init(flatAmount: Int? = nil, flatAmountDecimal: String? = nil, unitAmount: Int? = nil, unitAmountDecimal: String? = nil, upTo: Int? = nil) {
+public extension PriceTier {
+    init(
+        flatAmount: Int? = nil,
+        flatAmountDecimal: String? = nil,
+        unitAmount: Int? = nil,
+        unitAmountDecimal: String? = nil,
+        upTo: Int? = nil
+    ) {
         self.init()
         (self.flatAmount, self.flatAmountDecimal) = (flatAmount, flatAmountDecimal)
         (self.unitAmount, self.unitAmountDecimal) = (unitAmount, unitAmountDecimal)

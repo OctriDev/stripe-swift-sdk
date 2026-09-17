@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1SourcesMethods {
-    public struct PostSourcesOptions: Codable {
+public extension V1SourcesMethods {
+    struct PostSourcesOptions: Codable {
         public var amount: Int?
         public var currency: String?
         public var customer: String?
@@ -28,7 +28,10 @@ extension V1SourcesMethods {
         public init() {}
     }
 
-    /// Creates a new source payment instrument. Supply the source `type` and any type-specific details required by the selected payment flow, such as `amount` for single-use sources or `redirect.return_url` for redirect authentication. You can attach the source to a `customer` or provide an `original_source` when cloning an existing source.
+    /// Creates a new source payment instrument. Supply the source `type` and any type-specific details required by the
+    /// selected payment flow, such as `amount` for single-use sources or `redirect.return_url` for redirect
+    /// authentication. You can attach the source to a `customer` or provide an `original_source` when cloning an
+    /// existing source.
     ///
     /// Creates a new source object.
     ///
@@ -69,7 +72,7 @@ extension V1SourcesMethods {
     ///   `original_source` are specified (see the [Cloning card
     ///   Sources](https://docs.stripe.com/sources/connect#cloning-card-sources)
     ///   guide)
-    public static func postSources(config: ClientConfig, options: PostSourcesOptions) async throws -> Source {
+    static func postSources(config: ClientConfig, options: PostSourcesOptions) async throws -> Source {
         if let customer = options.customer {
             try validateLength("customer", customer, max: 500)
         }
@@ -100,6 +103,14 @@ extension V1SourcesMethods {
 
         let requestBody = PostSourcesRequestBody(options: options)
 
-        return try (await sdkRequest("POST", "/v1/sources", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostSources")).data
+        return try await (sdkRequest(
+            "POST",
+            "/v1/sources",
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostSources"
+        )).data
     }
 }

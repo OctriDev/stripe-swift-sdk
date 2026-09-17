@@ -6,8 +6,8 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1SubscriptionsMethods {
-    public struct PostSubscriptionsSubscriptionExposedIdOptions: Codable {
+public extension V1SubscriptionsMethods {
+    struct PostSubscriptionsSubscriptionExposedIdOptions: Codable {
         public var subscriptionExposedId: String
         public var addInvoiceItems: PostSubscriptionsSubscriptionExposedIdAddInvoiceItemsList?
         public var applicationFeePercent: PostSubscriptionsSubscriptionExposedIdRequestBodyApplicationFeePercent?
@@ -47,9 +47,30 @@ extension V1SubscriptionsMethods {
         }
     }
 
-    /// Updates an existing subscription's billing and collection settings, prices, quantities, discounts, or other configurable properties. Supply only the fields you want to change, and use `proration_behavior` to control how subscription changes affect invoicing when applicable. Use the invoice preview flow to review proration calculations before applying changes.
+    /// Updates an existing subscription's billing and collection settings, prices, quantities, discounts, or other
+    /// configurable properties. Supply only the fields you want to change, and use `proration_behavior` to control how
+    /// subscription changes affect invoicing when applicable. Use the invoice preview flow to review proration
+    /// calculations before applying changes.
     ///
-    /// Updates an existing subscription to match the specified parameters. When changing prices or quantities, we optionally prorate the price we charge next month to make up for any price changes. To preview how the proration is calculated, use the create preview endpoint. By default, we prorate subscription changes. For example, if a customer signs up on May 1 for a <currency>100</currency> price, they’ll be billed <currency>100</currency> immediately. If on May 15 they switch to a <currency>200</currency> price, then on June 1 they’ll be billed <currency>250</currency> (<currency>200</currency> for a renewal of her subscription, plus a <currency>50</currency> prorating adjustment for half of the previous month’s <currency>100</currency> difference). Similarly, a downgrade generates a credit that is applied to the next invoice. We also prorate when you make quantity changes. You can also use scripts to prorate your billing. To learn more, see Prorations. Switching prices does not normally change the billing date or generate an immediate charge unless: The billing interval is changed (for example, from monthly to yearly). The subscription moves from free to paid. A trial starts or ends. In these cases, we apply a credit for the unused time on the previous price, immediately charge the customer using the new price, and reset the billing date. Learn about how Stripe immediately attempts payment for subscription changes. If you want to charge for an upgrade immediately, pass proration_behavior as always_invoice to create prorations, automatically invoice the customer for those proration adjustments, and attempt to collect payment. If you pass create_prorations , the prorations are created but not automatically invoiced. If you want to bill the customer for the prorations before the subscription’s renewal date, you need to manually invoice the customer. If you don’t want to prorate, set the proration_behavior option to none . With this option, the customer is billed…
+    /// Updates an existing subscription to match the specified parameters. When changing prices or quantities, we
+    /// optionally prorate the price we charge next month to make up for any price changes. To preview how the proration
+    /// is calculated, use the create preview endpoint. By default, we prorate subscription changes. For example, if a
+    /// customer signs up on May 1 for a <currency>100</currency> price, they’ll be billed <currency>100</currency>
+    /// immediately. If on May 15 they switch to a <currency>200</currency> price, then on June 1 they’ll be billed
+    /// <currency>250</currency> (<currency>200</currency> for a renewal of her subscription, plus a
+    /// <currency>50</currency> prorating adjustment for half of the previous month’s <currency>100</currency>
+    /// difference). Similarly, a downgrade generates a credit that is applied to the next invoice. We also prorate when
+    /// you make quantity changes. You can also use scripts to prorate your billing. To learn more, see Prorations.
+    /// Switching prices does not normally change the billing date or generate an immediate charge unless: The billing
+    /// interval is changed (for example, from monthly to yearly). The subscription moves from free to paid. A trial
+    /// starts or ends. In these cases, we apply a credit for the unused time on the previous price, immediately charge
+    /// the customer using the new price, and reset the billing date. Learn about how Stripe immediately attempts
+    /// payment for subscription changes. If you want to charge for an upgrade immediately, pass proration_behavior as
+    /// always_invoice to create prorations, automatically invoice the customer for those proration adjustments, and
+    /// attempt to collect payment. If you pass create_prorations , the prorations are created but not automatically
+    /// invoiced. If you want to bill the customer for the prorations before the subscription’s renewal date, you need
+    /// to manually invoice the customer. If you don’t want to prorate, set the proration_behavior option to none . With
+    /// this option, the customer is billed…
     ///
     /// - Parameters:
     /// - addInvoiceItems: A list of prices and quantities that will generate
@@ -176,7 +197,10 @@ extension V1SubscriptionsMethods {
     ///   subscriptions](https://docs.stripe.com/billing/subscriptions/trials) to
     ///   learn more.
     /// - trialSettings: Settings related to subscription trials.
-    public static func postSubscriptionsSubscriptionExposedId(config: ClientConfig, options: PostSubscriptionsSubscriptionExposedIdOptions) async throws -> Subscription {
+    static func postSubscriptionsSubscriptionExposedId(
+        config: ClientConfig,
+        options: PostSubscriptionsSubscriptionExposedIdOptions
+    ) async throws -> Subscription {
         try validateLength("subscription_exposed_id", options.subscriptionExposedId, max: 5000)
 
         if let billingCycleAnchor = options.billingCycleAnchor {
@@ -189,6 +213,14 @@ extension V1SubscriptionsMethods {
 
         let requestBody = PostSubscriptionsSubscriptionExposedIdRequestBody(options: options)
 
-        return try (await sdkRequest("POST", ["/v1/subscriptions/", sdkEncodePathSegment(sdkWireString(options.subscriptionExposedId))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostSubscriptionsSubscriptionExposedId")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/subscriptions/", sdkEncodePathSegment(sdkWireString(options.subscriptionExposedId))].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostSubscriptionsSubscriptionExposedId"
+        )).data
     }
 }

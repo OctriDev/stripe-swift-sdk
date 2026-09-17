@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1 domain models
+/// V1 domain models
 /// Ephemeral keys give the SDKs (like Stripe's mobile SDKs and Issuing Elements) temporary, scoped access to a
 /// specific resource, such as a Customer, Issuing Card, or Identity VerificationSession, without exposing your
 /// secret API key. Related guides: Using Issuing Elements.
@@ -31,46 +31,75 @@ public struct EphemeralKey: Codable {
         case secret
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension EphemeralKey {
-    public init(from decoder: Decoder) throws {
+public extension EphemeralKey {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.created) else {
-            throw SdkValidationError(field: "created", code: "required", message: "Validation failed for 'created': value is required")
+            throw SdkValidationError(
+                field: "created",
+                code: "required",
+                message: "Validation failed for 'created': value is required"
+            )
         }
         guard container.contains(.expires) else {
-            throw SdkValidationError(field: "expires", code: "required", message: "Validation failed for 'expires': value is required")
+            throw SdkValidationError(
+                field: "expires",
+                code: "required",
+                message: "Validation failed for 'expires': value is required"
+            )
         }
         guard container.contains(.id) else {
-            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
+            throw SdkValidationError(
+                field: "id",
+                code: "required",
+                message: "Validation failed for 'id': value is required"
+            )
         }
         guard container.contains(.livemode) else {
-            throw SdkValidationError(field: "livemode", code: "required", message: "Validation failed for 'livemode': value is required")
+            throw SdkValidationError(
+                field: "livemode",
+                code: "required",
+                message: "Validation failed for 'livemode': value is required"
+            )
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
         }
-        self.created = try container.sdkDecodeRequired(.created)
-        self.expires = try container.sdkDecodeRequired(.expires)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.livemode = try container.sdkDecodeRequired(.livemode)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.secret = try container.sdkDecodeIfPresent(.secret)
-            try validateLength("id", self.id, min: nil, max: 5000)
-        if let value = self.secret {
+        created = try container.sdkDecodeRequired(.created)
+        expires = try container.sdkDecodeRequired(.expires)
+        id = try container.sdkDecodeRequired(.id)
+        livemode = try container.sdkDecodeRequired(.livemode)
+        object = try container.sdkDecodeRequired(.object)
+        secret = try container.sdkDecodeIfPresent(.secret)
+        try validateLength("id", id, min: nil, max: 5000)
+        if let value = secret {
             try validateLength("secret", value, min: nil, max: 5000)
         }
     }
 }
 
-extension EphemeralKey {
-    public init(created: Int, expires: Int, id: String, livemode: Bool, object: EphemeralKeyObject, secret: String? = nil) throws {
+public extension EphemeralKey {
+    init(
+        created: Int,
+        expires: Int,
+        id: String,
+        livemode: Bool,
+        object: EphemeralKeyObject,
+        secret: String? = nil
+    ) throws {
         (self.created, self.expires) = (created, expires)
         (self.id, self.livemode) = (id, livemode)
         (self.object, self.secret) = (object, secret)
-            try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
         if let value = self.secret {
             try validateLength("secret", value, min: nil, max: 5000)
         }
@@ -86,21 +115,27 @@ public struct Error2: Codable {
         case error
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension Error2 {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.error) else {
-            throw SdkValidationError(field: "error", code: "required", message: "Validation failed for 'error': value is required")
-        }
-        self.error = try container.sdkDecodeRequired(.error)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension Error2 {
-    public init(error: SdkBox<ApiErrors>) {
+public extension Error2 {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.error) else {
+            throw SdkValidationError(
+                field: "error",
+                code: "required",
+                message: "Validation failed for 'error': value is required"
+            )
+        }
+        error = try container.sdkDecodeRequired(.error)
+    }
+}
+
+public extension Error2 {
+    init(error: SdkBox<ApiErrors>) {
         self.error = error
     }
 }
@@ -152,68 +187,110 @@ public struct Event: Codable {
         case request
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension Event {
-    public init(from decoder: Decoder) throws {
+public extension Event {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.created) else {
-            throw SdkValidationError(field: "created", code: "required", message: "Validation failed for 'created': value is required")
+            throw SdkValidationError(
+                field: "created",
+                code: "required",
+                message: "Validation failed for 'created': value is required"
+            )
         }
         guard container.contains(.data) else {
-            throw SdkValidationError(field: "data", code: "required", message: "Validation failed for 'data': value is required")
+            throw SdkValidationError(
+                field: "data",
+                code: "required",
+                message: "Validation failed for 'data': value is required"
+            )
         }
         guard container.contains(.id) else {
-            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
+            throw SdkValidationError(
+                field: "id",
+                code: "required",
+                message: "Validation failed for 'id': value is required"
+            )
         }
         guard container.contains(.livemode) else {
-            throw SdkValidationError(field: "livemode", code: "required", message: "Validation failed for 'livemode': value is required")
+            throw SdkValidationError(
+                field: "livemode",
+                code: "required",
+                message: "Validation failed for 'livemode': value is required"
+            )
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
         }
         guard container.contains(.pendingWebhooks) else {
-            throw SdkValidationError(field: "pending_webhooks", code: "required", message: "Validation failed for 'pending_webhooks': value is required")
+            throw SdkValidationError(
+                field: "pending_webhooks",
+                code: "required",
+                message: "Validation failed for 'pending_webhooks': value is required"
+            )
         }
         guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
         }
-        self.created = try container.sdkDecodeRequired(.created)
-        self.data = try container.sdkDecodeRequired(.data)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.livemode = try container.sdkDecodeRequired(.livemode)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.pendingWebhooks = try container.sdkDecodeRequired(.pendingWebhooks)
-        self.type = try container.sdkDecodeRequired(.type)
-        self.account = try container.sdkDecodeIfPresent(.account)
-        self.apiVersion = try container.sdkDecodeIfPresent(.apiVersion)
-        self.context = try container.sdkDecodeIfPresent(.context)
-        self.request = try container.sdkDecodeIfPresent(.request)
-            try validateLength("id", self.id, min: nil, max: 5000)
-            try validateLength("type", self.type, min: nil, max: 5000)
-        if let value = self.account {
+        created = try container.sdkDecodeRequired(.created)
+        data = try container.sdkDecodeRequired(.data)
+        id = try container.sdkDecodeRequired(.id)
+        livemode = try container.sdkDecodeRequired(.livemode)
+        object = try container.sdkDecodeRequired(.object)
+        pendingWebhooks = try container.sdkDecodeRequired(.pendingWebhooks)
+        type = try container.sdkDecodeRequired(.type)
+        account = try container.sdkDecodeIfPresent(.account)
+        apiVersion = try container.sdkDecodeIfPresent(.apiVersion)
+        context = try container.sdkDecodeIfPresent(.context)
+        request = try container.sdkDecodeIfPresent(.request)
+        try validateLength("id", id, min: nil, max: 5000)
+        try validateLength("type", type, min: nil, max: 5000)
+        if let value = account {
             try validateLength("account", value, min: nil, max: 5000)
         }
-        if let value = self.apiVersion {
+        if let value = apiVersion {
             try validateLength("api_version", value, min: nil, max: 5000)
         }
-        if let value = self.context {
+        if let value = context {
             try validateLength("context", value, min: nil, max: 5000)
         }
     }
 }
 
-extension Event {
-    public init(created: Int, data: NotificationEventData, id: String, livemode: Bool, object: EventObject, pendingWebhooks: Int, type: String, account: String? = nil, apiVersion: String? = nil, context: String? = nil, request: EventRequest? = nil) throws {
+public extension Event {
+    init(
+        created: Int,
+        data: NotificationEventData,
+        id: String,
+        livemode: Bool,
+        object: EventObject,
+        pendingWebhooks: Int,
+        type: String,
+        account: String? = nil,
+        apiVersion: String? = nil,
+        context: String? = nil,
+        request: EventRequest? = nil
+    ) throws {
         (self.created, self.data) = (created, data)
         (self.id, self.livemode) = (id, livemode)
         (self.object, self.pendingWebhooks) = (object, pendingWebhooks)
         (self.type, self.account) = (type, account)
         (self.apiVersion, self.context) = (apiVersion, context)
         self.request = request
-            try validateLength("id", self.id, min: nil, max: 5000)
-            try validateLength("type", self.type, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("type", self.type, min: nil, max: 5000)
         if let value = self.account {
             try validateLength("account", value, min: nil, max: 5000)
         }
@@ -231,20 +308,25 @@ public enum EventRequest {
 }
 
 extension EventRequest: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
         throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for EventRequest")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(NotificationEventRequest.self) { return .notificationEventRequest(value) }
+        if let value = try? container.decode(NotificationEventRequest.self) {
+            return .notificationEventRequest(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -253,7 +335,6 @@ extension EventRequest: Codable {
         case let .notificationEventRequest(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Deprecated] The `ExchangeRate` APIs are deprecated. Please use the [FX Quotes API instead. `ExchangeRate`
@@ -276,33 +357,47 @@ public struct ExchangeRate: Codable {
         case rates
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension ExchangeRate {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.id) else {
-            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
-        }
-        guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
-        }
-        guard container.contains(.rates) else {
-            throw SdkValidationError(field: "rates", code: "required", message: "Validation failed for 'rates': value is required")
-        }
-        self.id = try container.sdkDecodeRequired(.id)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.rates = try container.sdkDecodeRequired(.rates)
-            try validateLength("id", self.id, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension ExchangeRate {
-    public init(id: String, object: ExchangeRateObject, rates: [String: Double]) throws {
+public extension ExchangeRate {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.id) else {
+            throw SdkValidationError(
+                field: "id",
+                code: "required",
+                message: "Validation failed for 'id': value is required"
+            )
+        }
+        guard container.contains(.object) else {
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
+        }
+        guard container.contains(.rates) else {
+            throw SdkValidationError(
+                field: "rates",
+                code: "required",
+                message: "Validation failed for 'rates': value is required"
+            )
+        }
+        id = try container.sdkDecodeRequired(.id)
+        object = try container.sdkDecodeRequired(.object)
+        rates = try container.sdkDecodeRequired(.rates)
+        try validateLength("id", id, min: nil, max: 5000)
+    }
+}
+
+public extension ExchangeRate {
+    init(id: String, object: ExchangeRateObject, rates: [String: Double]) throws {
         (self.id, self.object) = (id, object)
         self.rates = rates
-            try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
     }
 }
 
@@ -339,49 +434,84 @@ public struct FeeRefund: Codable {
         case metadata
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension FeeRefund {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.amount) else {
-            throw SdkValidationError(field: "amount", code: "required", message: "Validation failed for 'amount': value is required")
-        }
-        guard container.contains(.created) else {
-            throw SdkValidationError(field: "created", code: "required", message: "Validation failed for 'created': value is required")
-        }
-        guard container.contains(.currency) else {
-            throw SdkValidationError(field: "currency", code: "required", message: "Validation failed for 'currency': value is required")
-        }
-        guard container.contains(.fee) else {
-            throw SdkValidationError(field: "fee", code: "required", message: "Validation failed for 'fee': value is required")
-        }
-        guard container.contains(.id) else {
-            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
-        }
-        guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
-        }
-        self.amount = try container.sdkDecodeRequired(.amount)
-        self.created = try container.sdkDecodeRequired(.created)
-        self.currency = try container.sdkDecodeRequired(.currency)
-        self.fee = try container.sdkDecodeRequired(.fee)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.balanceTransaction = try container.sdkDecodeIfPresent(.balanceTransaction)
-        self.metadata = try container.sdkDecodeIfPresent(.metadata)
-            try validateLength("id", self.id, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension FeeRefund {
-    public init(amount: Int, created: Int, currency: String, fee: FeeRefundFee, id: String, object: FeeRefundObject, balanceTransaction: FeeRefundBalanceTransaction? = nil, metadata: [String: String]? = nil) throws {
+public extension FeeRefund {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.amount) else {
+            throw SdkValidationError(
+                field: "amount",
+                code: "required",
+                message: "Validation failed for 'amount': value is required"
+            )
+        }
+        guard container.contains(.created) else {
+            throw SdkValidationError(
+                field: "created",
+                code: "required",
+                message: "Validation failed for 'created': value is required"
+            )
+        }
+        guard container.contains(.currency) else {
+            throw SdkValidationError(
+                field: "currency",
+                code: "required",
+                message: "Validation failed for 'currency': value is required"
+            )
+        }
+        guard container.contains(.fee) else {
+            throw SdkValidationError(
+                field: "fee",
+                code: "required",
+                message: "Validation failed for 'fee': value is required"
+            )
+        }
+        guard container.contains(.id) else {
+            throw SdkValidationError(
+                field: "id",
+                code: "required",
+                message: "Validation failed for 'id': value is required"
+            )
+        }
+        guard container.contains(.object) else {
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
+        }
+        amount = try container.sdkDecodeRequired(.amount)
+        created = try container.sdkDecodeRequired(.created)
+        currency = try container.sdkDecodeRequired(.currency)
+        fee = try container.sdkDecodeRequired(.fee)
+        id = try container.sdkDecodeRequired(.id)
+        object = try container.sdkDecodeRequired(.object)
+        balanceTransaction = try container.sdkDecodeIfPresent(.balanceTransaction)
+        metadata = try container.sdkDecodeIfPresent(.metadata)
+        try validateLength("id", id, min: nil, max: 5000)
+    }
+}
+
+public extension FeeRefund {
+    init(
+        amount: Int,
+        created: Int,
+        currency: String,
+        fee: FeeRefundFee,
+        id: String,
+        object: FeeRefundObject,
+        balanceTransaction: FeeRefundBalanceTransaction? = nil,
+        metadata: [String: String]? = nil
+    ) throws {
         (self.amount, self.created) = (amount, created)
         (self.currency, self.fee) = (currency, fee)
         (self.id, self.object) = (id, object)
         (self.balanceTransaction, self.metadata) = (balanceTransaction, metadata)
-            try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
     }
 }
 
@@ -391,21 +521,31 @@ public indirect enum FeeRefundBalanceTransaction {
 }
 
 extension FeeRefundBalanceTransaction: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for FeeRefundBalanceTransaction")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for FeeRefundBalanceTransaction"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(BalanceTransaction.self) { return .balanceTransaction(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(BalanceTransaction.self) {
+            return .balanceTransaction(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -415,7 +555,6 @@ extension FeeRefundBalanceTransaction: Codable {
         case let .balanceTransaction(value): try container.encode(value); return true
         }
     }
-
 }
 
 public indirect enum FeeRefundFee {
@@ -424,21 +563,28 @@ public indirect enum FeeRefundFee {
 }
 
 extension FeeRefundFee: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
         throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for FeeRefundFee")
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
-        if let value = try? container.decode(ApplicationFee.self) { return .applicationFee(value) }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
+        if let value = try? container.decode(ApplicationFee.self) {
+            return .applicationFee(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -448,7 +594,6 @@ extension FeeRefundFee: Codable {
         case let .applicationFee(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Typed representation of the `FeedbackOptionsStatusTransitions` API schema.
@@ -461,19 +606,19 @@ public struct FeedbackOptionsStatusTransitions: Codable {
     }
 
     init() {
-        self.deactivatedAt = nil
+        deactivatedAt = nil
     }
 }
 
-extension FeedbackOptionsStatusTransitions {
-    public init(from decoder: Decoder) throws {
+public extension FeedbackOptionsStatusTransitions {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.deactivatedAt = try container.sdkDecodeIfPresent(.deactivatedAt)
+        deactivatedAt = try container.sdkDecodeIfPresent(.deactivatedAt)
     }
 }
 
-extension FeedbackOptionsStatusTransitions {
-    public init(deactivatedAt: Int? = nil) {
+public extension FeedbackOptionsStatusTransitions {
+    init(deactivatedAt: Int? = nil) {
         self.init()
         self.deactivatedAt = deactivatedAt
     }

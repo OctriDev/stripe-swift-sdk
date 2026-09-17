@@ -3,14 +3,13 @@
 
 import Foundation
 
-// V1Deleted domain models
+/// V1Deleted domain models
 public enum DeletedExternalAccount {
     case deletedBankAccount(DeletedBankAccount)
     case deletedCard(DeletedCard)
 }
 
 extension DeletedExternalAccount: Codable {
-
     private enum CodingKeys: String, CodingKey {
         case discriminator = "object"
     }
@@ -18,20 +17,28 @@ extension DeletedExternalAccount: Codable {
     public init(from decoder: Decoder) throws {
         let tagged = try decoder.container(keyedBy: CodingKeys.self)
         let discriminator = try tagged.decode(String.self, forKey: .discriminator)
-        if let value = try Self.decodeGroup1(discriminator, from: decoder) { self = value; return }
-        throw DecodingError.dataCorruptedError(forKey: .discriminator, in: tagged, debugDescription: "Unknown discriminator for DeletedExternalAccount")
+        if let value = try Self.decodeGroup1(discriminator, from: decoder) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            forKey: .discriminator,
+            in: tagged,
+            debugDescription: "Unknown discriminator for DeletedExternalAccount"
+        )
     }
 
     private static func decodeGroup1(_ discriminator: String, from decoder: Decoder) throws -> Self? {
         switch discriminator {
-        case "bank_account": return .deletedBankAccount(try DeletedBankAccount(from: decoder))
-        case "card": return .deletedCard(try DeletedCard(from: decoder))
-        default: return nil
+        case "bank_account": try .deletedBankAccount(DeletedBankAccount(from: decoder))
+        case "card": try .deletedCard(DeletedCard(from: decoder))
+        default: nil
         }
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -41,7 +48,6 @@ extension DeletedExternalAccount: Codable {
         case let .deletedCard(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum DeletedPaymentSource {
@@ -50,7 +56,6 @@ public enum DeletedPaymentSource {
 }
 
 extension DeletedPaymentSource: Codable {
-
     private enum CodingKeys: String, CodingKey {
         case discriminator = "object"
     }
@@ -58,20 +63,28 @@ extension DeletedPaymentSource: Codable {
     public init(from decoder: Decoder) throws {
         let tagged = try decoder.container(keyedBy: CodingKeys.self)
         let discriminator = try tagged.decode(String.self, forKey: .discriminator)
-        if let value = try Self.decodeGroup1(discriminator, from: decoder) { self = value; return }
-        throw DecodingError.dataCorruptedError(forKey: .discriminator, in: tagged, debugDescription: "Unknown discriminator for DeletedPaymentSource")
+        if let value = try Self.decodeGroup1(discriminator, from: decoder) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            forKey: .discriminator,
+            in: tagged,
+            debugDescription: "Unknown discriminator for DeletedPaymentSource"
+        )
     }
 
     private static func decodeGroup1(_ discriminator: String, from decoder: Decoder) throws -> Self? {
         switch discriminator {
-        case "bank_account": return .deletedBankAccount(try DeletedBankAccount(from: decoder))
-        case "card": return .deletedCard(try DeletedCard(from: decoder))
-        default: return nil
+        case "bank_account": try .deletedBankAccount(DeletedBankAccount(from: decoder))
+        case "card": try .deletedCard(DeletedCard(from: decoder))
+        default: nil
         }
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -81,7 +94,6 @@ extension DeletedPaymentSource: Codable {
         case let .deletedCard(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// Typed representation of the `DeletedAccount` API schema.
@@ -99,33 +111,47 @@ public struct DeletedAccount: Codable {
         case object
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension DeletedAccount {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.deleted) else {
-            throw SdkValidationError(field: "deleted", code: "required", message: "Validation failed for 'deleted': value is required")
-        }
-        guard container.contains(.id) else {
-            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
-        }
-        guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
-        }
-        self.deleted = try container.sdkDecodeRequired(.deleted)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.object = try container.sdkDecodeRequired(.object)
-            try validateLength("id", self.id, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension DeletedAccount {
-    public init(deleted: Bool, id: String, object: DeletedAccountObject) throws {
+public extension DeletedAccount {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.deleted) else {
+            throw SdkValidationError(
+                field: "deleted",
+                code: "required",
+                message: "Validation failed for 'deleted': value is required"
+            )
+        }
+        guard container.contains(.id) else {
+            throw SdkValidationError(
+                field: "id",
+                code: "required",
+                message: "Validation failed for 'id': value is required"
+            )
+        }
+        guard container.contains(.object) else {
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
+        }
+        deleted = try container.sdkDecodeRequired(.deleted)
+        id = try container.sdkDecodeRequired(.id)
+        object = try container.sdkDecodeRequired(.object)
+        try validateLength("id", id, min: nil, max: 5000)
+    }
+}
+
+public extension DeletedAccount {
+    init(deleted: Bool, id: String, object: DeletedAccountObject) throws {
         (self.deleted, self.id) = (deleted, id)
         self.object = object
-            try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
     }
 }
 
@@ -144,33 +170,47 @@ public struct DeletedApplePayDomain: Codable {
         case object
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension DeletedApplePayDomain {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.deleted) else {
-            throw SdkValidationError(field: "deleted", code: "required", message: "Validation failed for 'deleted': value is required")
-        }
-        guard container.contains(.id) else {
-            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
-        }
-        guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
-        }
-        self.deleted = try container.sdkDecodeRequired(.deleted)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.object = try container.sdkDecodeRequired(.object)
-            try validateLength("id", self.id, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension DeletedApplePayDomain {
-    public init(deleted: Bool, id: String, object: DeletedApplePayDomainObject) throws {
+public extension DeletedApplePayDomain {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.deleted) else {
+            throw SdkValidationError(
+                field: "deleted",
+                code: "required",
+                message: "Validation failed for 'deleted': value is required"
+            )
+        }
+        guard container.contains(.id) else {
+            throw SdkValidationError(
+                field: "id",
+                code: "required",
+                message: "Validation failed for 'id': value is required"
+            )
+        }
+        guard container.contains(.object) else {
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
+        }
+        deleted = try container.sdkDecodeRequired(.deleted)
+        id = try container.sdkDecodeRequired(.id)
+        object = try container.sdkDecodeRequired(.object)
+        try validateLength("id", id, min: nil, max: 5000)
+    }
+}
+
+public extension DeletedApplePayDomain {
+    init(deleted: Bool, id: String, object: DeletedApplePayDomainObject) throws {
         (self.deleted, self.id) = (deleted, id)
         self.object = object
-            try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
     }
 }
 
@@ -192,37 +232,51 @@ public struct DeletedApplication: Codable {
         case name
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension DeletedApplication {
-    public init(from decoder: Decoder) throws {
+public extension DeletedApplication {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.deleted) else {
-            throw SdkValidationError(field: "deleted", code: "required", message: "Validation failed for 'deleted': value is required")
+            throw SdkValidationError(
+                field: "deleted",
+                code: "required",
+                message: "Validation failed for 'deleted': value is required"
+            )
         }
         guard container.contains(.id) else {
-            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
+            throw SdkValidationError(
+                field: "id",
+                code: "required",
+                message: "Validation failed for 'id': value is required"
+            )
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
         }
-        self.deleted = try container.sdkDecodeRequired(.deleted)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.name = try container.sdkDecodeIfPresent(.name)
-            try validateLength("id", self.id, min: nil, max: 5000)
-        if let value = self.name {
+        deleted = try container.sdkDecodeRequired(.deleted)
+        id = try container.sdkDecodeRequired(.id)
+        object = try container.sdkDecodeRequired(.object)
+        name = try container.sdkDecodeIfPresent(.name)
+        try validateLength("id", id, min: nil, max: 5000)
+        if let value = name {
             try validateLength("name", value, min: nil, max: 5000)
         }
     }
 }
 
-extension DeletedApplication {
-    public init(deleted: Bool, id: String, object: DeletedApplicationObject, name: String? = nil) throws {
+public extension DeletedApplication {
+    init(deleted: Bool, id: String, object: DeletedApplicationObject, name: String? = nil) throws {
         (self.deleted, self.id) = (deleted, id)
         (self.object, self.name) = (object, name)
-            try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
         if let value = self.name {
             try validateLength("name", value, min: nil, max: 5000)
         }
@@ -247,37 +301,51 @@ public struct DeletedBankAccount: Codable {
         case currency
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension DeletedBankAccount {
-    public init(from decoder: Decoder) throws {
+public extension DeletedBankAccount {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.deleted) else {
-            throw SdkValidationError(field: "deleted", code: "required", message: "Validation failed for 'deleted': value is required")
+            throw SdkValidationError(
+                field: "deleted",
+                code: "required",
+                message: "Validation failed for 'deleted': value is required"
+            )
         }
         guard container.contains(.id) else {
-            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
+            throw SdkValidationError(
+                field: "id",
+                code: "required",
+                message: "Validation failed for 'id': value is required"
+            )
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
         }
-        self.deleted = try container.sdkDecodeRequired(.deleted)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.currency = try container.sdkDecodeIfPresent(.currency)
-            try validateLength("id", self.id, min: nil, max: 5000)
-        if let value = self.currency {
+        deleted = try container.sdkDecodeRequired(.deleted)
+        id = try container.sdkDecodeRequired(.id)
+        object = try container.sdkDecodeRequired(.object)
+        currency = try container.sdkDecodeIfPresent(.currency)
+        try validateLength("id", id, min: nil, max: 5000)
+        if let value = currency {
             try validateLength("currency", value, min: nil, max: 5000)
         }
     }
 }
 
-extension DeletedBankAccount {
-    public init(deleted: Bool, id: String, object: DeletedBankAccountObject, currency: String? = nil) throws {
+public extension DeletedBankAccount {
+    init(deleted: Bool, id: String, object: DeletedBankAccountObject, currency: String? = nil) throws {
         (self.deleted, self.id) = (deleted, id)
         (self.object, self.currency) = (object, currency)
-            try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
         if let value = self.currency {
             try validateLength("currency", value, min: nil, max: 5000)
         }
@@ -302,37 +370,51 @@ public struct DeletedCard: Codable {
         case currency
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension DeletedCard {
-    public init(from decoder: Decoder) throws {
+public extension DeletedCard {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.deleted) else {
-            throw SdkValidationError(field: "deleted", code: "required", message: "Validation failed for 'deleted': value is required")
+            throw SdkValidationError(
+                field: "deleted",
+                code: "required",
+                message: "Validation failed for 'deleted': value is required"
+            )
         }
         guard container.contains(.id) else {
-            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
+            throw SdkValidationError(
+                field: "id",
+                code: "required",
+                message: "Validation failed for 'id': value is required"
+            )
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
         }
-        self.deleted = try container.sdkDecodeRequired(.deleted)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.currency = try container.sdkDecodeIfPresent(.currency)
-            try validateLength("id", self.id, min: nil, max: 5000)
-        if let value = self.currency {
+        deleted = try container.sdkDecodeRequired(.deleted)
+        id = try container.sdkDecodeRequired(.id)
+        object = try container.sdkDecodeRequired(.object)
+        currency = try container.sdkDecodeIfPresent(.currency)
+        try validateLength("id", id, min: nil, max: 5000)
+        if let value = currency {
             try validateLength("currency", value, min: nil, max: 5000)
         }
     }
 }
 
-extension DeletedCard {
-    public init(deleted: Bool, id: String, object: DeletedCardObject, currency: String? = nil) throws {
+public extension DeletedCard {
+    init(deleted: Bool, id: String, object: DeletedCardObject, currency: String? = nil) throws {
         (self.deleted, self.id) = (deleted, id)
         (self.object, self.currency) = (object, currency)
-            try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
         if let value = self.currency {
             try validateLength("currency", value, min: nil, max: 5000)
         }
@@ -354,33 +436,47 @@ public struct DeletedCoupon: Codable {
         case object
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension DeletedCoupon {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.deleted) else {
-            throw SdkValidationError(field: "deleted", code: "required", message: "Validation failed for 'deleted': value is required")
-        }
-        guard container.contains(.id) else {
-            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
-        }
-        guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
-        }
-        self.deleted = try container.sdkDecodeRequired(.deleted)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.object = try container.sdkDecodeRequired(.object)
-            try validateLength("id", self.id, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension DeletedCoupon {
-    public init(deleted: Bool, id: String, object: DeletedCouponObject) throws {
+public extension DeletedCoupon {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.deleted) else {
+            throw SdkValidationError(
+                field: "deleted",
+                code: "required",
+                message: "Validation failed for 'deleted': value is required"
+            )
+        }
+        guard container.contains(.id) else {
+            throw SdkValidationError(
+                field: "id",
+                code: "required",
+                message: "Validation failed for 'id': value is required"
+            )
+        }
+        guard container.contains(.object) else {
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
+        }
+        deleted = try container.sdkDecodeRequired(.deleted)
+        id = try container.sdkDecodeRequired(.id)
+        object = try container.sdkDecodeRequired(.object)
+        try validateLength("id", id, min: nil, max: 5000)
+    }
+}
+
+public extension DeletedCoupon {
+    init(deleted: Bool, id: String, object: DeletedCouponObject) throws {
         (self.deleted, self.id) = (deleted, id)
         self.object = object
-            try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
     }
 }
 
@@ -399,33 +495,47 @@ public struct DeletedCustomer: Codable {
         case object
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension DeletedCustomer {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.deleted) else {
-            throw SdkValidationError(field: "deleted", code: "required", message: "Validation failed for 'deleted': value is required")
-        }
-        guard container.contains(.id) else {
-            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
-        }
-        guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
-        }
-        self.deleted = try container.sdkDecodeRequired(.deleted)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.object = try container.sdkDecodeRequired(.object)
-            try validateLength("id", self.id, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension DeletedCustomer {
-    public init(deleted: Bool, id: String, object: DeletedCustomerObject) throws {
+public extension DeletedCustomer {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.deleted) else {
+            throw SdkValidationError(
+                field: "deleted",
+                code: "required",
+                message: "Validation failed for 'deleted': value is required"
+            )
+        }
+        guard container.contains(.id) else {
+            throw SdkValidationError(
+                field: "id",
+                code: "required",
+                message: "Validation failed for 'id': value is required"
+            )
+        }
+        guard container.contains(.object) else {
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
+        }
+        deleted = try container.sdkDecodeRequired(.deleted)
+        id = try container.sdkDecodeRequired(.id)
+        object = try container.sdkDecodeRequired(.object)
+        try validateLength("id", id, min: nil, max: 5000)
+    }
+}
+
+public extension DeletedCustomer {
+    init(deleted: Bool, id: String, object: DeletedCustomerObject) throws {
         (self.deleted, self.id) = (deleted, id)
         self.object = object
-            try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
     }
 }
 
@@ -444,33 +554,47 @@ public struct DeletedInvoice: Codable {
         case object
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension DeletedInvoice {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.deleted) else {
-            throw SdkValidationError(field: "deleted", code: "required", message: "Validation failed for 'deleted': value is required")
-        }
-        guard container.contains(.id) else {
-            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
-        }
-        guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
-        }
-        self.deleted = try container.sdkDecodeRequired(.deleted)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.object = try container.sdkDecodeRequired(.object)
-            try validateLength("id", self.id, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension DeletedInvoice {
-    public init(deleted: Bool, id: String, object: DeletedInvoiceObject) throws {
+public extension DeletedInvoice {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.deleted) else {
+            throw SdkValidationError(
+                field: "deleted",
+                code: "required",
+                message: "Validation failed for 'deleted': value is required"
+            )
+        }
+        guard container.contains(.id) else {
+            throw SdkValidationError(
+                field: "id",
+                code: "required",
+                message: "Validation failed for 'id': value is required"
+            )
+        }
+        guard container.contains(.object) else {
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
+        }
+        deleted = try container.sdkDecodeRequired(.deleted)
+        id = try container.sdkDecodeRequired(.id)
+        object = try container.sdkDecodeRequired(.object)
+        try validateLength("id", id, min: nil, max: 5000)
+    }
+}
+
+public extension DeletedInvoice {
+    init(deleted: Bool, id: String, object: DeletedInvoiceObject) throws {
         (self.deleted, self.id) = (deleted, id)
         self.object = object
-            try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
     }
 }
 
@@ -489,5 +613,7 @@ public struct DeletedInvoiceitem: Codable {
         case object
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }

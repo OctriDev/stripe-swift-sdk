@@ -6,17 +6,19 @@ import Foundation
 import XCTest
 
 extension SdkMethodTests {
-    func testPostTestHelpersIssuingAuthorizationsAuthorizationIncrementPosX1992572aebReachesMockAndDecodesResponse() async throws {
+    func testPostTestHelpersIssuingAuthorizationsAuthorizationIncrementPosX1992572aebReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        let actual = try await client.v1.testHelpers.issuing.authorizations.increment.postTestHelpersIssuingAuthorizationsAuthorization(
-            authorization: decoded("\"authorization\""),
-            incrementAmount: decoded("100"),
-            expand: decoded("[\"expand\"]"),
-            isAmountControllable: decoded("false")
-        )
+        let actual = try await client.v1.testHelpers.issuing.authorizations.increment
+            .postTestHelpersIssuingAuthorizationsAuthorization(
+                authorization: decoded("\"authorization\""),
+                incrementAmount: decoded("100"),
+                expand: decoded("[\"expand\"]"),
+                isAmountControllable: decoded("false")
+            )
         let expected = try JSONSerialization.jsonObject(
             with: Data(sdkMethodFixture539Expected.utf8),
             options: [.fragmentsAllowed]
@@ -28,16 +30,18 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostTestHelpersIssuingAuthorizationsAuthorizationReversePostTX29c9cb2cb1ReachesMockAndDecodesResponse() async throws {
+    func testPostTestHelpersIssuingAuthorizationsAuthorizationReversePostTX29c9cb2cb1ReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        let actual = try await client.v1.testHelpers.issuing.authorizations.reverse.postTestHelpersIssuingAuthorizationsAuthorization(
-            authorization: decoded("\"authorization\""),
-            expand: decoded("[\"expand\"]"),
-            reverseAmount: decoded("100")
-        )
+        let actual = try await client.v1.testHelpers.issuing.authorizations.reverse
+            .postTestHelpersIssuingAuthorizationsAuthorization(
+                authorization: decoded("\"authorization\""),
+                expand: decoded("[\"expand\"]"),
+                reverseAmount: decoded("100")
+            )
         let expected = try JSONSerialization.jsonObject(
             with: Data(sdkMethodFixture540Expected.utf8),
             options: [.fragmentsAllowed]
@@ -49,15 +53,17 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostTestHelpersIssuingCardsCardShippingDeliverPostTestHelpersXb566024ab1ReachesMockAndDecodesResponse() async throws {
+    func testPostTestHelpersIssuingCardsCardShippingDeliverPostTestHelpersXb566024ab1ReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        let actual = try await client.v1.testHelpers.issuing.cards.shipping.deliver.postTestHelpersIssuingCardsCardShipping(
-            card: decoded("\"card\""),
-            expand: decoded("[\"expand\"]")
-        )
+        let actual = try await client.v1.testHelpers.issuing.cards.shipping.deliver
+            .postTestHelpersIssuingCardsCardShipping(
+                card: decoded("\"card\""),
+                expand: decoded("[\"expand\"]")
+            )
         let expected = try JSONSerialization.jsonObject(
             with: Data(sdkMethodFixture541Expected.utf8),
             options: [.fragmentsAllowed]
@@ -69,15 +75,17 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostTestHelpersIssuingCardsCardShippingFailPostTestHelpersIssXe62bcf7cdaReachesMockAndDecodesResponse() async throws {
+    func testPostTestHelpersIssuingCardsCardShippingFailPostTestHelpersIssXe62bcf7cdaReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        let actual = try await client.v1.testHelpers.issuing.cards.shipping.fail.postTestHelpersIssuingCardsCardShipping(
-            card: decoded("\"card\""),
-            expand: decoded("[\"expand\"]")
-        )
+        let actual = try await client.v1.testHelpers.issuing.cards.shipping.fail
+            .postTestHelpersIssuingCardsCardShipping(
+                card: decoded("\"card\""),
+                expand: decoded("[\"expand\"]")
+            )
         let expected = try JSONSerialization.jsonObject(
             with: Data(sdkMethodFixture542Expected.utf8),
             options: [.fragmentsAllowed]
@@ -89,15 +97,17 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostTestHelpersIssuingCardsCardShippingReturnPostTestHelpersIX54cafed4b8ReachesMockAndDecodesResponse() async throws {
+    func testPostTestHelpersIssuingCardsCardShippingReturnPostTestHelpersIX54cafed4b8ReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        let actual = try await client.v1.testHelpers.issuing.cards.shipping.`return`.postTestHelpersIssuingCardsCardShipping(
-            card: decoded("\"card\""),
-            expand: decoded("[\"expand\"]")
-        )
+        let actual = try await client.v1.testHelpers.issuing.cards.shipping.return
+            .postTestHelpersIssuingCardsCardShipping(
+                card: decoded("\"card\""),
+                expand: decoded("[\"expand\"]")
+            )
         let expected = try JSONSerialization.jsonObject(
             with: Data(sdkMethodFixture543Expected.utf8),
             options: [.fragmentsAllowed]
@@ -109,15 +119,17 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostTestHelpersIssuingCardsCardShippingShipPostTestHelpersIssX693b1f8fa8ReachesMockAndDecodesResponse() async throws {
+    func testPostTestHelpersIssuingCardsCardShippingShipPostTestHelpersIssX693b1f8fa8ReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        let actual = try await client.v1.testHelpers.issuing.cards.shipping.ship.postTestHelpersIssuingCardsCardShipping(
-            card: decoded("\"card\""),
-            expand: decoded("[\"expand\"]")
-        )
+        let actual = try await client.v1.testHelpers.issuing.cards.shipping.ship
+            .postTestHelpersIssuingCardsCardShipping(
+                card: decoded("\"card\""),
+                expand: decoded("[\"expand\"]")
+            )
         let expected = try JSONSerialization.jsonObject(
             with: Data(sdkMethodFixture544Expected.utf8),
             options: [.fragmentsAllowed]
@@ -129,15 +141,17 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostTestHelpersIssuingCardsCardShippingSubmitPostTestHelpersIXc31c29374fReachesMockAndDecodesResponse() async throws {
+    func testPostTestHelpersIssuingCardsCardShippingSubmitPostTestHelpersIXc31c29374fReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        let actual = try await client.v1.testHelpers.issuing.cards.shipping.submit.postTestHelpersIssuingCardsCardShipping(
-            card: decoded("\"card\""),
-            expand: decoded("[\"expand\"]")
-        )
+        let actual = try await client.v1.testHelpers.issuing.cards.shipping.submit
+            .postTestHelpersIssuingCardsCardShipping(
+                card: decoded("\"card\""),
+                expand: decoded("[\"expand\"]")
+            )
         let expected = try JSONSerialization.jsonObject(
             with: Data(sdkMethodFixture545Expected.utf8),
             options: [.fragmentsAllowed]
@@ -149,15 +163,17 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostTestHelpersIssuingPersonalizationDesignsPersonalizationDeX52757dfb10ReachesMockAndDecodesResponse() async throws {
+    func testPostTestHelpersIssuingPersonalizationDesignsPersonalizationDeX52757dfb10ReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        let actual = try await client.v1.testHelpers.issuing.personalizationDesigns.activate.postTestHelpersIssuingPersonalizationDesignsPersonalizationDesign(
-            personalizationDesign: decoded("\"personalization_design\""),
-            expand: decoded("[\"expand\"]")
-        )
+        let actual = try await client.v1.testHelpers.issuing.personalizationDesigns.activate
+            .postTestHelpersIssuingPersonalizationDesignsPersonalizationDesign(
+                personalizationDesign: decoded("\"personalization_design\""),
+                expand: decoded("[\"expand\"]")
+            )
         let expected = try JSONSerialization.jsonObject(
             with: Data(sdkMethodFixture546Expected.utf8),
             options: [.fragmentsAllowed]
@@ -169,15 +185,17 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostTestHelpersIssuingPersonalizationDesignsPersonalizationDeX1319ea9e39ReachesMockAndDecodesResponse() async throws {
+    func testPostTestHelpersIssuingPersonalizationDesignsPersonalizationDeX1319ea9e39ReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        let actual = try await client.v1.testHelpers.issuing.personalizationDesigns.deactivate.postTestHelpersIssuingPersonalizationDesignsPersonalizationDesign(
-            personalizationDesign: decoded("\"personalization_design\""),
-            expand: decoded("[\"expand\"]")
-        )
+        let actual = try await client.v1.testHelpers.issuing.personalizationDesigns.deactivate
+            .postTestHelpersIssuingPersonalizationDesignsPersonalizationDesign(
+                personalizationDesign: decoded("\"personalization_design\""),
+                expand: decoded("[\"expand\"]")
+            )
         let expected = try JSONSerialization.jsonObject(
             with: Data(sdkMethodFixture547Expected.utf8),
             options: [.fragmentsAllowed]
@@ -189,16 +207,18 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostTestHelpersIssuingPersonalizationDesignsPersonalizationDeXe6cbf5e4feReachesMockAndDecodesResponse() async throws {
+    func testPostTestHelpersIssuingPersonalizationDesignsPersonalizationDeXe6cbf5e4feReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        let actual = try await client.v1.testHelpers.issuing.personalizationDesigns.reject.postTestHelpersIssuingPersonalizationDesignsPersonalizationDesign(
-            personalizationDesign: decoded("\"personalization_design\""),
-            rejectionReasons: decoded(sdkMethodFixture548Value1),
-            expand: decoded("[\"expand\"]")
-        )
+        let actual = try await client.v1.testHelpers.issuing.personalizationDesigns.reject
+            .postTestHelpersIssuingPersonalizationDesignsPersonalizationDesign(
+                personalizationDesign: decoded("\"personalization_design\""),
+                rejectionReasons: decoded(sdkMethodFixture548Value1),
+                expand: decoded("[\"expand\"]")
+            )
         let expected = try JSONSerialization.jsonObject(
             with: Data(sdkMethodFixture548Expected.utf8),
             options: [.fragmentsAllowed]
@@ -210,12 +230,18 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostTestHelpersIssuingSettlementsPostTestHelpersIssuingSettlementsReachesMockAndDecodesResponse() async throws {
+    func testPostTestHelpersIssuingSettlementsPostTestHelpersIssuingSettlementsReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        var options = try V1TestHelpersIssuingSettlementsMethods.PostTestHelpersIssuingSettlementsOptions(bin: decoded("\"bin\""), clearingDate: decoded("1"), currency: decoded("\"currency\""), netTotalAmount: decoded("100"))
+        var options = try V1TestHelpersIssuingSettlementsMethods.PostTestHelpersIssuingSettlementsOptions(
+            bin: decoded("\"bin\""),
+            clearingDate: decoded("1"),
+            currency: decoded("\"currency\""),
+            netTotalAmount: decoded("100")
+        )
         options.expand = try decoded("[\"expand\"]")
         options.interchangeFeesAmount = try decoded("100")
         options.network = try decoded("\"maestro\"")
@@ -236,15 +262,17 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostTestHelpersIssuingSettlementsSettlementCompletePostTestHeX1f4a9284b7ReachesMockAndDecodesResponse() async throws {
+    func testPostTestHelpersIssuingSettlementsSettlementCompletePostTestHeX1f4a9284b7ReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        let actual = try await client.v1.testHelpers.issuing.settlements.complete.postTestHelpersIssuingSettlementsSettlement(
-            settlement: decoded("\"settlement\""),
-            expand: decoded("[\"expand\"]")
-        )
+        let actual = try await client.v1.testHelpers.issuing.settlements.complete
+            .postTestHelpersIssuingSettlementsSettlement(
+                settlement: decoded("\"settlement\""),
+                expand: decoded("[\"expand\"]")
+            )
         let expected = try JSONSerialization.jsonObject(
             with: Data(sdkMethodFixture550Expected.utf8),
             options: [.fragmentsAllowed]
@@ -256,19 +284,21 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostTestHelpersIssuingTransactionsCreateForceCapturePostTestHXb971c2ff19ReachesMockAndDecodesResponse() async throws {
+    func testPostTestHelpersIssuingTransactionsCreateForceCapturePostTestHXb971c2ff19ReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        let actual = try await client.v1.testHelpers.issuing.transactions.createForceCapture.postTestHelpersIssuingTransactions(
-            amount: decoded("100"),
-            card: decoded("\"card\""),
-            currency: decoded("\"currency\""),
-            expand: decoded("[\"expand\"]"),
-            merchantData: decoded(sdkMethodFixture551Value1),
-            purchaseDetails: decoded(sdkMethodFixture551Value2)
-        )
+        let actual = try await client.v1.testHelpers.issuing.transactions.createForceCapture
+            .postTestHelpersIssuingTransactions(
+                amount: decoded("100"),
+                card: decoded("\"card\""),
+                currency: decoded("\"currency\""),
+                expand: decoded("[\"expand\"]"),
+                merchantData: decoded(sdkMethodFixture551Value1),
+                purchaseDetails: decoded(sdkMethodFixture551Value2)
+            )
         let expected = try JSONSerialization.jsonObject(
             with: Data(sdkMethodFixture551Expected.utf8),
             options: [.fragmentsAllowed]
@@ -280,19 +310,21 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostTestHelpersIssuingTransactionsCreateUnlinkedRefundPostTesX8555835060ReachesMockAndDecodesResponse() async throws {
+    func testPostTestHelpersIssuingTransactionsCreateUnlinkedRefundPostTesX8555835060ReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        let actual = try await client.v1.testHelpers.issuing.transactions.createUnlinkedRefund.postTestHelpersIssuingTransactions(
-            amount: decoded("100"),
-            card: decoded("\"card\""),
-            currency: decoded("\"currency\""),
-            expand: decoded("[\"expand\"]"),
-            merchantData: decoded(sdkMethodFixture552Value1),
-            purchaseDetails: decoded(sdkMethodFixture552Value2)
-        )
+        let actual = try await client.v1.testHelpers.issuing.transactions.createUnlinkedRefund
+            .postTestHelpersIssuingTransactions(
+                amount: decoded("100"),
+                card: decoded("\"card\""),
+                currency: decoded("\"currency\""),
+                expand: decoded("[\"expand\"]"),
+                merchantData: decoded(sdkMethodFixture552Value1),
+                purchaseDetails: decoded(sdkMethodFixture552Value2)
+            )
         let expected = try JSONSerialization.jsonObject(
             with: Data(sdkMethodFixture552Expected.utf8),
             options: [.fragmentsAllowed]
@@ -304,16 +336,18 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostTestHelpersIssuingTransactionsTransactionRefundPostTestHeX93898a801dReachesMockAndDecodesResponse() async throws {
+    func testPostTestHelpersIssuingTransactionsTransactionRefundPostTestHeX93898a801dReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        let actual = try await client.v1.testHelpers.issuing.transactions.refund.postTestHelpersIssuingTransactionsTransaction(
-            transaction: decoded("\"transaction\""),
-            expand: decoded("[\"expand\"]"),
-            refundAmount: decoded("100")
-        )
+        let actual = try await client.v1.testHelpers.issuing.transactions.refund
+            .postTestHelpersIssuingTransactionsTransaction(
+                transaction: decoded("\"transaction\""),
+                expand: decoded("[\"expand\"]"),
+                refundAmount: decoded("100")
+            )
         let expected = try JSONSerialization.jsonObject(
             with: Data(sdkMethodFixture553Expected.utf8),
             options: [.fragmentsAllowed]
@@ -325,7 +359,8 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostTestHelpersRefundsRefundExpirePostTestHelpersRefundsRefundExpireReachesMockAndDecodesResponse() async throws {
+    func testPostTestHelpersRefundsRefundExpirePostTestHelpersRefundsRefundExpireReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
@@ -345,20 +380,22 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostTestHelpersTerminalReadersReaderPresentPaymentMethodPostTX1592b839d4ReachesMockAndDecodesResponse() async throws {
+    func testPostTestHelpersTerminalReadersReaderPresentPaymentMethodPostTX1592b839d4ReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        let actual = try await client.v1.testHelpers.terminal.readers.presentPaymentMethod.postTestHelpersTerminalReadersReader(
-            reader: decoded("\"reader\""),
-            amountTip: decoded("100"),
-            card: decoded("{\"cvc\":\"cvc\",\"exp_month\":1,\"exp_year\":1,\"number\":\"number\"}"),
-            cardPresent: decoded("{\"number\":\"number\"}"),
-            expand: decoded("[\"expand\"]"),
-            interacPresent: decoded("{\"number\":\"number\"}"),
-            type: decoded("\"card\"")
-        )
+        let actual = try await client.v1.testHelpers.terminal.readers.presentPaymentMethod
+            .postTestHelpersTerminalReadersReader(
+                reader: decoded("\"reader\""),
+                amountTip: decoded("100"),
+                card: decoded("{\"cvc\":\"cvc\",\"exp_month\":1,\"exp_year\":1,\"number\":\"number\"}"),
+                cardPresent: decoded("{\"number\":\"number\"}"),
+                expand: decoded("[\"expand\"]"),
+                interacPresent: decoded("{\"number\":\"number\"}"),
+                type: decoded("\"card\"")
+            )
         let expected = try JSONSerialization.jsonObject(
             with: Data(sdkMethodFixture555Expected.utf8),
             options: [.fragmentsAllowed]
@@ -370,16 +407,18 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostTestHelpersTerminalReadersReaderSucceedInputCollectionPosX94eefef06bReachesMockAndDecodesResponse() async throws {
+    func testPostTestHelpersTerminalReadersReaderSucceedInputCollectionPosX94eefef06bReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        let actual = try await client.v1.testHelpers.terminal.readers.succeedInputCollection.postTestHelpersTerminalReadersReader(
-            reader: decoded("\"reader\""),
-            expand: decoded("[\"expand\"]"),
-            skipNonRequiredInputs: decoded("\"all\"")
-        )
+        let actual = try await client.v1.testHelpers.terminal.readers.succeedInputCollection
+            .postTestHelpersTerminalReadersReader(
+                reader: decoded("\"reader\""),
+                expand: decoded("[\"expand\"]"),
+                skipNonRequiredInputs: decoded("\"all\"")
+            )
         let expected = try JSONSerialization.jsonObject(
             with: Data(sdkMethodFixture556Expected.utf8),
             options: [.fragmentsAllowed]
@@ -391,15 +430,17 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostTestHelpersTerminalReadersReaderTimeoutInputCollectionPosXa15c308956ReachesMockAndDecodesResponse() async throws {
+    func testPostTestHelpersTerminalReadersReaderTimeoutInputCollectionPosXa15c308956ReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }
         _ = client
-        let actual = try await client.v1.testHelpers.terminal.readers.timeoutInputCollection.postTestHelpersTerminalReadersReader(
-            reader: decoded("\"reader\""),
-            expand: decoded("[\"expand\"]")
-        )
+        let actual = try await client.v1.testHelpers.terminal.readers.timeoutInputCollection
+            .postTestHelpersTerminalReadersReader(
+                reader: decoded("\"reader\""),
+                expand: decoded("[\"expand\"]")
+            )
         let expected = try JSONSerialization.jsonObject(
             with: Data(sdkMethodFixture557Expected.utf8),
             options: [.fragmentsAllowed]
@@ -433,7 +474,8 @@ extension SdkMethodTests {
         )
     }
 
-    func testPostTestHelpersTestClocksTestClockAdvancePostTestHelpersTestCX0e226a0bfcReachesMockAndDecodesResponse() async throws {
+    func testPostTestHelpersTestClocksTestClockAdvancePostTestHelpersTestCX0e226a0bfcReachesMockAndDecodesResponse(
+    ) async throws {
         guard let client = configuredClient() else {
             return
         }

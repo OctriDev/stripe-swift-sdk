@@ -6,28 +6,68 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1ChargesRefundsMethods {
-    /// Retrieves a specific refund associated with a charge. Use `charge` and `refund` together to identify the refund, and use `expand` when you need selected response fields expanded. The response contains the refund's amount, currency, charge, status, and related balance details.
+public extension V1ChargesRefundsMethods {
+    /// Retrieves a specific refund associated with a charge. Use `charge` and `refund` together to identify the refund,
+    /// and use `expand` when you need selected response fields expanded. The response contains the refund's amount,
+    /// currency, charge, status, and related balance details.
     ///
     /// Retrieves the details of an existing refund.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func getChargesChargeRefundsRefund(config: ClientConfig, charge: String, refund: String, expand: [String]?) async throws -> Refund {
-        return try (await sdkRequest("GET", ["/v1/charges/", sdkEncodePathSegment(sdkWireString(charge)), "/refunds/", sdkEncodePathSegment(sdkWireString(refund))].joined(), config: config, query: [
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-        ], decoder: .json, operationId: "GetChargesChargeRefundsRefund")).data
+    static func getChargesChargeRefundsRefund(
+        config: ClientConfig,
+        charge: String,
+        refund: String,
+        expand: [String]?
+    ) async throws -> Refund {
+        try await (sdkRequest(
+            "GET",
+            [
+                "/v1/charges/",
+                sdkEncodePathSegment(sdkWireString(charge)),
+                "/refunds/",
+                sdkEncodePathSegment(sdkWireString(refund)),
+            ].joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+            ],
+            decoder: .json,
+            operationId: "GetChargesChargeRefundsRefund"
+        )).data
     }
 
-    /// Updates an existing refund associated with a charge. Use `charge` and `refund` to identify the refund, then submit `metadata` or `expand` values to change the refund representation. The request updates only the fields supplied in the body.
+    /// Updates an existing refund associated with a charge. Use `charge` and `refund` to identify the refund, then
+    /// submit `metadata` or `expand` values to change the refund representation. The request updates only the fields
+    /// supplied in the body.
     ///
     /// Update a specified refund.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postChargesChargeRefundsRefund(config: ClientConfig, charge: String, refund: String, expand: [String]?, metadata: PostChargesChargeRefundsRefundRequestBodyMetadata?) async throws -> Refund {
+    static func postChargesChargeRefundsRefund(
+        config: ClientConfig,
+        charge: String,
+        refund: String,
+        expand: [String]?,
+        metadata: PostChargesChargeRefundsRefundRequestBodyMetadata?
+    ) async throws -> Refund {
         let requestBody = PostChargesChargeRefundsRefundRequestBody(expand: expand, metadata: metadata)
 
-        return try (await sdkRequest("POST", ["/v1/charges/", sdkEncodePathSegment(sdkWireString(charge)), "/refunds/", sdkEncodePathSegment(sdkWireString(refund))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostChargesChargeRefundsRefund")).data
+        return try await (sdkRequest(
+            "POST",
+            [
+                "/v1/charges/",
+                sdkEncodePathSegment(sdkWireString(charge)),
+                "/refunds/",
+                sdkEncodePathSegment(sdkWireString(refund)),
+            ].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostChargesChargeRefundsRefund"
+        )).data
     }
 }

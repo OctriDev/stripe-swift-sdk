@@ -7,26 +7,42 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1TaxSettingsMethods {
-    /// Retrieves the Tax Settings for a merchant. Use `expand` when you need selected fields expanded in the returned configuration, including the defaults and current status details.
+    /// Retrieves the Tax Settings for a merchant. Use `expand` when you need selected fields expanded in the returned
+    /// configuration, including the defaults and current status details.
     ///
     /// Retrieves Tax Settings for a merchant.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
     public static func getTaxSettings(config: ClientConfig, expand: [String]?) async throws -> TaxSettings {
-        return try (await sdkRequest("GET", "/v1/tax/settings", config: config, query: [
+        try await (sdkRequest("GET", "/v1/tax/settings", config: config, query: [
             SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
         ], decoder: .json, operationId: "GetTaxSettings")).data
     }
-    /// Updates Tax Settings parameters used in tax calculations. All parameters are editable but none can be removed once set.
+
+    /// Updates Tax Settings parameters used in tax calculations. All parameters are editable but none can be removed
+    /// once set.
     ///
     /// - Parameters:
     /// - defaults: Default configuration to be used on Stripe Tax calculations.
     /// - expand: Specifies which fields in the response should be expanded.
     /// - headOffice: The place where your business is located.
-    public static func postTaxSettings(config: ClientConfig, defaults: PostTaxSettingsRequestBodyDefaults?, expand: [String]?, headOffice: PostTaxSettingsRequestBodyHeadOffice?) async throws -> TaxSettings {
+    public static func postTaxSettings(
+        config: ClientConfig,
+        defaults: PostTaxSettingsRequestBodyDefaults?,
+        expand: [String]?,
+        headOffice: PostTaxSettingsRequestBodyHeadOffice?
+    ) async throws -> TaxSettings {
         let requestBody = PostTaxSettingsRequestBody(defaults: defaults, expand: expand, headOffice: headOffice)
 
-        return try (await sdkRequest("POST", "/v1/tax/settings", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTaxSettings")).data
+        return try await (sdkRequest(
+            "POST",
+            "/v1/tax/settings",
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostTaxSettings"
+        )).data
     }
 }

@@ -7,12 +7,23 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1SubscriptionsDiscountMethods {
-    /// Deletes the discount currently applied to a subscription. Supply `subscription_exposed_id` to identify the subscription whose discount you want to remove. The response identifies the deleted discount and its original source and application time.
+    /// Deletes the discount currently applied to a subscription. Supply `subscription_exposed_id` to identify the
+    /// subscription whose discount you want to remove. The response identifies the deleted discount and its original
+    /// source and application time.
     ///
     /// Removes the currently applied discount on a subscription.
-    public static func deleteSubscriptionsSubscriptionExposedIdDiscount(config: ClientConfig, subscriptionExposedId: String) async throws -> DeletedDiscount {
+    public static func deleteSubscriptionsSubscriptionExposedIdDiscount(
+        config: ClientConfig,
+        subscriptionExposedId: String
+    ) async throws -> DeletedDiscount {
         try validateLength("subscription_exposed_id", subscriptionExposedId, max: 5000)
 
-        return try (await sdkRequest("DELETE", ["/v1/subscriptions/", sdkEncodePathSegment(sdkWireString(subscriptionExposedId)), "/discount"].joined(), config: config, decoder: .json, operationId: "DeleteSubscriptionsSubscriptionExposedIdDiscount")).data
+        return try await (sdkRequest(
+            "DELETE",
+            ["/v1/subscriptions/", sdkEncodePathSegment(sdkWireString(subscriptionExposedId)), "/discount"].joined(),
+            config: config,
+            decoder: .json,
+            operationId: "DeleteSubscriptionsSubscriptionExposedIdDiscount"
+        )).data
     }
 }

@@ -6,10 +6,13 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1SubscriptionItemsMethods {
-    /// Deletes an item from a subscription without canceling the subscription itself. Use `clear_usage` when removing a metered item and configure `proration_behavior` or `payment_behavior` for any billing changes caused by removal. The response confirms deletion with the removed item's identifier.
+public extension V1SubscriptionItemsMethods {
+    /// Deletes an item from a subscription without canceling the subscription itself. Use `clear_usage` when removing a
+    /// metered item and configure `proration_behavior` or `payment_behavior` for any billing changes caused by removal.
+    /// The response confirms deletion with the removed item's identifier.
     ///
-    /// Deletes an item from the subscription. Removing a subscription item from a subscription will not cancel the subscription.
+    /// Deletes an item from the subscription. Removing a subscription item from a subscription will not cancel the
+    /// subscription.
     ///
     /// - Parameters:
     /// - clearUsage: Delete all usage for the given subscription item. Allowed only
@@ -24,11 +27,31 @@ extension V1SubscriptionItemsMethods {
     /// - prorationDate: If set, the proration will be calculated as though the
     ///   subscription was updated at the given time. This can be used to apply the
     ///   same proration that was previewed with the upcoming invoice endpoint.
-    public static func deleteSubscriptionItemsItem(config: ClientConfig, item: String, clearUsage: Bool?, paymentBehavior: DeleteSubscriptionItemsItemRequestBodyPaymentBehavior?, prorationBehavior: DeleteSubscriptionItemsItemRequestBodyProrationBehavior?, prorationDate: Int?) async throws -> DeletedSubscriptionItem {
+    static func deleteSubscriptionItemsItem(
+        config: ClientConfig,
+        item: String,
+        clearUsage: Bool?,
+        paymentBehavior: DeleteSubscriptionItemsItemRequestBodyPaymentBehavior?,
+        prorationBehavior: DeleteSubscriptionItemsItemRequestBodyProrationBehavior?,
+        prorationDate: Int?
+    ) async throws -> DeletedSubscriptionItem {
         try validateLength("item", item, max: 5000)
 
-        let requestBody = DeleteSubscriptionItemsItemRequestBody(clearUsage: clearUsage, paymentBehavior: paymentBehavior, prorationBehavior: prorationBehavior, prorationDate: prorationDate)
+        let requestBody = DeleteSubscriptionItemsItemRequestBody(
+            clearUsage: clearUsage,
+            paymentBehavior: paymentBehavior,
+            prorationBehavior: prorationBehavior,
+            prorationDate: prorationDate
+        )
 
-        return try (await sdkRequest("DELETE", ["/v1/subscription_items/", sdkEncodePathSegment(sdkWireString(item))].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "DeleteSubscriptionItemsItem")).data
+        return try await (sdkRequest(
+            "DELETE",
+            ["/v1/subscription_items/", sdkEncodePathSegment(sdkWireString(item))].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "DeleteSubscriptionItemsItem"
+        )).data
     }
 }

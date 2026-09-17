@@ -6,8 +6,9 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1ProductsFeaturesMethods {
-    /// Lists the features attached to a product. Use the cursor parameters to navigate through the results and `expand` to request expanded response fields. The response indicates whether another page is available.
+public extension V1ProductsFeaturesMethods {
+    /// Lists the features attached to a product. Use the cursor parameters to navigate through the results and `expand`
+    /// to request expanded response fields. The response indicates whether another page is available.
     ///
     /// Retrieve a list of features for a product
     ///
@@ -25,22 +26,36 @@ extension V1ProductsFeaturesMethods {
     ///   list request and receive 100 objects, ending with `obj_foo`, your subsequent
     ///   call can include `starting_after=obj_foo` in order to fetch the next page of
     ///   the list.
-    public static func getProductsProductFeatures(config: ClientConfig, product: String, endingBefore: String?, expand: [String]?, limit: Int?, startingAfter: String?) async throws -> GetProductsProductFeaturesResponse {
+    static func getProductsProductFeatures(
+        config: ClientConfig,
+        product: String,
+        endingBefore: String?,
+        expand: [String]?,
+        limit: Int?,
+        startingAfter: String?
+    ) async throws -> GetProductsProductFeaturesResponse {
         try validateLength("product", product, max: 5000)
 
-        if let endingBefore = endingBefore {
+        if let endingBefore {
             try validateLength("ending_before", endingBefore, max: 5000)
         }
 
-        if let startingAfter = startingAfter {
+        if let startingAfter {
             try validateLength("starting_after", startingAfter, max: 5000)
         }
 
-        return try (await sdkRequest("GET", ["/v1/products/", sdkEncodePathSegment(sdkWireString(product)), "/features"].joined(), config: config, query: [
-            SdkQueryParameter("ending_before", value: endingBefore),
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-            SdkQueryParameter("limit", value: limit),
-            SdkQueryParameter("starting_after", value: startingAfter),
-        ], decoder: .json, operationId: "GetProductsProductFeatures")).data
+        return try await (sdkRequest(
+            "GET",
+            ["/v1/products/", sdkEncodePathSegment(sdkWireString(product)), "/features"].joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("ending_before", value: endingBefore),
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+                SdkQueryParameter("limit", value: limit),
+                SdkQueryParameter("starting_after", value: startingAfter),
+            ],
+            decoder: .json,
+            operationId: "GetProductsProductFeatures"
+        )).data
     }
 }

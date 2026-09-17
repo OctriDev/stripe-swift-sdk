@@ -6,27 +6,40 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public struct PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXaeadcb3b8a: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXaeadcb3b8a: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let amex = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXaeadcb3b8a(rawValue: "amex")
-    public static let cartesBancaires = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXaeadcb3b8a(rawValue: "cartes_bancaires")
-    public static let diners = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXaeadcb3b8a(rawValue: "diners")
-    public static let discover = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXaeadcb3b8a(rawValue: "discover")
-    public static let eftposAu = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXaeadcb3b8a(rawValue: "eftpos_au")
-    public static let girocard = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXaeadcb3b8a(rawValue: "girocard")
-    public static let interac = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXaeadcb3b8a(rawValue: "interac")
+    public static let cartesBancaires =
+        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXaeadcb3b8a(rawValue: "cartes_bancaires")
+    public static let diners =
+        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXaeadcb3b8a(rawValue: "diners")
+    public static let discover =
+        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXaeadcb3b8a(rawValue: "discover")
+    public static let eftposAu =
+        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXaeadcb3b8a(rawValue: "eftpos_au")
+    public static let girocard =
+        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXaeadcb3b8a(rawValue: "girocard")
+    public static let interac =
+        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXaeadcb3b8a(rawValue: "interac")
     public static let jcb = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXaeadcb3b8a(rawValue: "jcb")
     public static let link = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXaeadcb3b8a(rawValue: "link")
-    public static let primarycard = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXaeadcb3b8a(rawValue: "mastercard")
-    public static let unionpay = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXaeadcb3b8a(rawValue: "unionpay")
-    public static let unknown = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXaeadcb3b8a(rawValue: "unknown")
+    public static let primarycard =
+        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXaeadcb3b8a(rawValue: "mastercard")
+    public static let unionpay =
+        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXaeadcb3b8a(rawValue: "unionpay")
+    public static let unknown =
+        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXaeadcb3b8a(rawValue: "unknown")
     public static let visa = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXaeadcb3b8a(rawValue: "visa")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -35,17 +48,23 @@ public struct PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXaead
     }
 }
 
-public struct PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXf51e648d14: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXf51e648d14: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let any = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXf51e648d14(rawValue: "any")
-    public static let automatic = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXf51e648d14(rawValue: "automatic")
-    public static let challenge = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXf51e648d14(rawValue: "challenge")
+    public static let automatic =
+        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXf51e648d14(rawValue: "automatic")
+    public static let challenge =
+        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXf51e648d14(rawValue: "challenge")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -54,15 +73,19 @@ public struct PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXf51e
     }
 }
 
-public struct PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiX344725d415: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiX344725d415: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiX344725d415(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -71,15 +94,19 @@ public struct PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiX3447
     }
 }
 
-public struct PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXfb211a4f8e: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXfb211a4f8e: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXfb211a4f8e(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -88,15 +115,19 @@ public struct PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXfb21
     }
 }
 
-public struct PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXa43c267c90: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXa43c267c90: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXa43c267c90(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -105,25 +136,38 @@ public struct PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXa43c
     }
 }
 
-public struct PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXbeff97ada2: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXbeff97ada2: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let dependantSupport = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXbeff97ada2(rawValue: "dependant_support")
-    public static let government = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXbeff97ada2(rawValue: "government")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let dependantSupport =
+        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXbeff97ada2(rawValue: "dependant_support")
+    public static let government =
+        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXbeff97ada2(rawValue: "government")
     public static let loan = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXbeff97ada2(rawValue: "loan")
-    public static let mortgage = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXbeff97ada2(rawValue: "mortgage")
-    public static let other = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXbeff97ada2(rawValue: "other")
-    public static let pension = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXbeff97ada2(rawValue: "pension")
-    public static let personal = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXbeff97ada2(rawValue: "personal")
-    public static let retail = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXbeff97ada2(rawValue: "retail")
-    public static let salary = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXbeff97ada2(rawValue: "salary")
+    public static let mortgage =
+        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXbeff97ada2(rawValue: "mortgage")
+    public static let other =
+        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXbeff97ada2(rawValue: "other")
+    public static let pension =
+        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXbeff97ada2(rawValue: "pension")
+    public static let personal =
+        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXbeff97ada2(rawValue: "personal")
+    public static let retail =
+        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXbeff97ada2(rawValue: "retail")
+    public static let salary =
+        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXbeff97ada2(rawValue: "salary")
     public static let tax = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXbeff97ada2(rawValue: "tax")
-    public static let utility = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXbeff97ada2(rawValue: "utility")
+    public static let utility =
+        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXbeff97ada2(rawValue: "utility")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -132,15 +176,19 @@ public struct PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXbeff
     }
 }
 
-public struct PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXce12a096f5: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXce12a096f5: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXce12a096f5(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -149,16 +197,22 @@ public struct PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXce12
     }
 }
 
-public struct PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXf889af2907: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXf889af2907: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let always = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXf889af2907(rawValue: "always")
-    public static let never = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXf889af2907(rawValue: "never")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let always =
+        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXf889af2907(rawValue: "always")
+    public static let never =
+        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXf889af2907(rawValue: "never")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -167,19 +221,28 @@ public struct PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXf889
     }
 }
 
-public struct PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXf72a14c8a1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXf72a14c8a1: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let halfyearly = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXf72a14c8a1(rawValue: "halfyearly")
-    public static let monthly = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXf72a14c8a1(rawValue: "monthly")
-    public static let quarterly = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXf72a14c8a1(rawValue: "quarterly")
-    public static let weekly = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXf72a14c8a1(rawValue: "weekly")
-    public static let yearly = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXf72a14c8a1(rawValue: "yearly")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let halfyearly =
+        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXf72a14c8a1(rawValue: "halfyearly")
+    public static let monthly =
+        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXf72a14c8a1(rawValue: "monthly")
+    public static let quarterly =
+        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXf72a14c8a1(rawValue: "quarterly")
+    public static let weekly =
+        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXf72a14c8a1(rawValue: "weekly")
+    public static let yearly =
+        PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXf72a14c8a1(rawValue: "yearly")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -188,15 +251,19 @@ public struct PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiXf72a
     }
 }
 
-public struct PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiX3fd3ef75dd: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiX3fd3ef75dd: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostSubscriptionsSubscriptionExposedIdRequestBodyPaymentSettiX3fd3ef75dd(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

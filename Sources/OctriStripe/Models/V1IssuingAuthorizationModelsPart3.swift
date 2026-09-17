@@ -3,27 +3,35 @@
 
 import Foundation
 
-// V1IssuingAuthorization domain models
-extension IssuingAuthorizationTreasury {
-    public init(from decoder: Decoder) throws {
+/// V1IssuingAuthorization domain models
+public extension IssuingAuthorizationTreasury {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.receivedCredits) else {
-            throw SdkValidationError(field: "received_credits", code: "required", message: "Validation failed for 'received_credits': value is required")
+            throw SdkValidationError(
+                field: "received_credits",
+                code: "required",
+                message: "Validation failed for 'received_credits': value is required"
+            )
         }
         guard container.contains(.receivedDebits) else {
-            throw SdkValidationError(field: "received_debits", code: "required", message: "Validation failed for 'received_debits': value is required")
+            throw SdkValidationError(
+                field: "received_debits",
+                code: "required",
+                message: "Validation failed for 'received_debits': value is required"
+            )
         }
-        self.receivedCredits = try container.sdkDecodeRequired(.receivedCredits)
-        self.receivedDebits = try container.sdkDecodeRequired(.receivedDebits)
-        self.transaction = try container.sdkDecodeIfPresent(.transaction)
-        if let value = self.transaction {
+        receivedCredits = try container.sdkDecodeRequired(.receivedCredits)
+        receivedDebits = try container.sdkDecodeRequired(.receivedDebits)
+        transaction = try container.sdkDecodeIfPresent(.transaction)
+        if let value = transaction {
             try validateLength("transaction", value, min: nil, max: 5000)
         }
     }
 }
 
-extension IssuingAuthorizationTreasury {
-    public init(receivedCredits: [String], receivedDebits: [String], transaction: String? = nil) throws {
+public extension IssuingAuthorizationTreasury {
+    init(receivedCredits: [String], receivedDebits: [String], transaction: String? = nil) throws {
         (self.receivedCredits, self.receivedDebits) = (receivedCredits, receivedDebits)
         self.transaction = transaction
         if let value = self.transaction {
@@ -61,39 +69,65 @@ public struct IssuingAuthorizationVerificationData: Codable {
         case threeDSecure = "three_d_secure"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension IssuingAuthorizationVerificationData {
-    public init(from decoder: Decoder) throws {
+public extension IssuingAuthorizationVerificationData {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.addressLine1Check) else {
-            throw SdkValidationError(field: "address_line1_check", code: "required", message: "Validation failed for 'address_line1_check': value is required")
+            throw SdkValidationError(
+                field: "address_line1_check",
+                code: "required",
+                message: "Validation failed for 'address_line1_check': value is required"
+            )
         }
         guard container.contains(.addressPostalCodeCheck) else {
-            throw SdkValidationError(field: "address_postal_code_check", code: "required", message: "Validation failed for 'address_postal_code_check': value is required")
+            throw SdkValidationError(
+                field: "address_postal_code_check",
+                code: "required",
+                message: "Validation failed for 'address_postal_code_check': value is required"
+            )
         }
         guard container.contains(.cvcCheck) else {
-            throw SdkValidationError(field: "cvc_check", code: "required", message: "Validation failed for 'cvc_check': value is required")
+            throw SdkValidationError(
+                field: "cvc_check",
+                code: "required",
+                message: "Validation failed for 'cvc_check': value is required"
+            )
         }
         guard container.contains(.expiryCheck) else {
-            throw SdkValidationError(field: "expiry_check", code: "required", message: "Validation failed for 'expiry_check': value is required")
+            throw SdkValidationError(
+                field: "expiry_check",
+                code: "required",
+                message: "Validation failed for 'expiry_check': value is required"
+            )
         }
-        self.addressLine1Check = try container.sdkDecodeRequired(.addressLine1Check)
-        self.addressPostalCodeCheck = try container.sdkDecodeRequired(.addressPostalCodeCheck)
-        self.cvcCheck = try container.sdkDecodeRequired(.cvcCheck)
-        self.expiryCheck = try container.sdkDecodeRequired(.expiryCheck)
-        self.authenticationExemption = try container.sdkDecodeIfPresent(.authenticationExemption)
-        self.postalCode = try container.sdkDecodeIfPresent(.postalCode)
-        self.threeDSecure = try container.sdkDecodeIfPresent(.threeDSecure)
-        if let value = self.postalCode {
+        addressLine1Check = try container.sdkDecodeRequired(.addressLine1Check)
+        addressPostalCodeCheck = try container.sdkDecodeRequired(.addressPostalCodeCheck)
+        cvcCheck = try container.sdkDecodeRequired(.cvcCheck)
+        expiryCheck = try container.sdkDecodeRequired(.expiryCheck)
+        authenticationExemption = try container.sdkDecodeIfPresent(.authenticationExemption)
+        postalCode = try container.sdkDecodeIfPresent(.postalCode)
+        threeDSecure = try container.sdkDecodeIfPresent(.threeDSecure)
+        if let value = postalCode {
             try validateLength("postal_code", value, min: nil, max: 5000)
         }
     }
 }
 
-extension IssuingAuthorizationVerificationData {
-    public init(addressLine1Check: IssuingAuthorizationVerificationDataAddressLine1Check, addressPostalCodeCheck: IssuingAuthorizationVerificationDataAddressPostalCodeCheck, cvcCheck: IssuingAuthorizationVerificationDataCvcCheck, expiryCheck: IssuingAuthorizationVerificationDataExpiryCheck, authenticationExemption: IssuingAuthorizationVerificationDataAuthenticationExemption? = nil, postalCode: String? = nil, threeDSecure: IssuingAuthorizationVerificationDataThreeDSecure? = nil) throws {
+public extension IssuingAuthorizationVerificationData {
+    init(
+        addressLine1Check: IssuingAuthorizationVerificationDataAddressLine1Check,
+        addressPostalCodeCheck: IssuingAuthorizationVerificationDataAddressPostalCodeCheck,
+        cvcCheck: IssuingAuthorizationVerificationDataCvcCheck,
+        expiryCheck: IssuingAuthorizationVerificationDataExpiryCheck,
+        authenticationExemption: IssuingAuthorizationVerificationDataAuthenticationExemption? = nil,
+        postalCode: String? = nil,
+        threeDSecure: IssuingAuthorizationVerificationDataThreeDSecure? = nil
+    ) throws {
         (self.addressLine1Check, self.addressPostalCodeCheck) = (addressLine1Check, addressPostalCodeCheck)
         (self.cvcCheck, self.expiryCheck) = (cvcCheck, expiryCheck)
         (self.authenticationExemption, self.postalCode) = (authenticationExemption, postalCode)
@@ -109,24 +143,30 @@ public enum IssuingAuthorizationVerificationDataAuthenticationExemption {
 }
 
 extension IssuingAuthorizationVerificationDataAuthenticationExemption: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for IssuingAuthorizationVerificationDataAuthenticationExemption")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for IssuingAuthorizationVerificationDataAuthenticationExemption"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
         if let value = try? container.decode(
             IssuingAuthorizationAuthenticationExemption.self
         ) {
-            return             .issuingAuthorizationAuthenticationExemption(value)
+            return .issuingAuthorizationAuthenticationExemption(value)
         }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -135,7 +175,6 @@ extension IssuingAuthorizationVerificationDataAuthenticationExemption: Codable {
         case let .issuingAuthorizationAuthenticationExemption(value): try container.encode(value); return true
         }
     }
-
 }
 
 public enum IssuingAuthorizationVerificationDataThreeDSecure {
@@ -143,20 +182,29 @@ public enum IssuingAuthorizationVerificationDataThreeDSecure {
 }
 
 extension IssuingAuthorizationVerificationDataThreeDSecure: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for IssuingAuthorizationVerificationDataThreeDSecure")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for IssuingAuthorizationVerificationDataThreeDSecure"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(IssuingAuthorizationThreeDSecure.self) { return .issuingAuthorizationThreeDSecure(value) }
+        if let value = try? container
+            .decode(IssuingAuthorizationThreeDSecure.self) {
+            return .issuingAuthorizationThreeDSecure(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -165,7 +213,6 @@ extension IssuingAuthorizationVerificationDataThreeDSecure: Codable {
         case let .issuingAuthorizationThreeDSecure(value): try container.encode(value); return true
         }
     }
-
 }
 
 /// When an authorization is approved or declined by you or by Stripe, this field provides additional detail on
@@ -173,7 +220,10 @@ extension IssuingAuthorizationVerificationDataThreeDSecure: Codable {
 public struct IssuingAuthorizationRequestReason: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let accountDisabled = IssuingAuthorizationRequestReason(rawValue: "account_disabled")
     public static let cardActive = IssuingAuthorizationRequestReason(rawValue: "card_active")
     public static let cardCanceled = IssuingAuthorizationRequestReason(rawValue: "card_canceled")
@@ -181,8 +231,10 @@ public struct IssuingAuthorizationRequestReason: RawRepresentable, Hashable, Cod
     public static let cardInactive = IssuingAuthorizationRequestReason(rawValue: "card_inactive")
     public static let cardholderBlocked = IssuingAuthorizationRequestReason(rawValue: "cardholder_blocked")
     public static let cardholderInactive = IssuingAuthorizationRequestReason(rawValue: "cardholder_inactive")
-    public static let cardholderVerificationRequired = IssuingAuthorizationRequestReason(rawValue: "cardholder_verification_required")
-    public static let insecureAuthorizationMethod = IssuingAuthorizationRequestReason(rawValue: "insecure_authorization_method")
+    public static let cardholderVerificationRequired =
+        IssuingAuthorizationRequestReason(rawValue: "cardholder_verification_required")
+    public static let insecureAuthorizationMethod =
+        IssuingAuthorizationRequestReason(rawValue: "insecure_authorization_method")
     public static let insufficientFunds = IssuingAuthorizationRequestReason(rawValue: "insufficient_funds")
     public static let networkFallback = IssuingAuthorizationRequestReason(rawValue: "network_fallback")
     public static let notAllowed = IssuingAuthorizationRequestReason(rawValue: "not_allowed")
@@ -198,7 +250,7 @@ public struct IssuingAuthorizationRequestReason: RawRepresentable, Hashable, Cod
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -208,10 +260,14 @@ public struct IssuingAuthorizationRequestReason: RawRepresentable, Hashable, Cod
 }
 
 /// The outcome of the 3D Secure authentication request.
-public struct IssuingAuthorizationThreeDSecureResult: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct IssuingAuthorizationThreeDSecureResult: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let attemptAcknowledged = IssuingAuthorizationThreeDSecureResult(rawValue: "attempt_acknowledged")
     public static let authenticated = IssuingAuthorizationThreeDSecureResult(rawValue: "authenticated")
     public static let failed = IssuingAuthorizationThreeDSecureResult(rawValue: "failed")
@@ -219,7 +275,7 @@ public struct IssuingAuthorizationThreeDSecureResult: RawRepresentable, Hashable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -232,7 +288,10 @@ public struct IssuingAuthorizationThreeDSecureResult: RawRepresentable, Hashable
 public struct IssuingAuthorizationFuelDataType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let diesel = IssuingAuthorizationFuelDataType(rawValue: "diesel")
     public static let other = IssuingAuthorizationFuelDataType(rawValue: "other")
     public static let unleadedPlus = IssuingAuthorizationFuelDataType(rawValue: "unleaded_plus")
@@ -241,7 +300,7 @@ public struct IssuingAuthorizationFuelDataType: RawRepresentable, Hashable, Coda
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -251,17 +310,23 @@ public struct IssuingAuthorizationFuelDataType: RawRepresentable, Hashable, Coda
 }
 
 /// The specific exemption claimed for this authorization.
-public struct IssuingAuthorizationAuthenticationExemptionType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct IssuingAuthorizationAuthenticationExemptionType: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let lowValueTransaction = IssuingAuthorizationAuthenticationExemptionType(rawValue: "low_value_transaction")
-    public static let transactionRiskAnalysis = IssuingAuthorizationAuthenticationExemptionType(rawValue: "transaction_risk_analysis")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let lowValueTransaction =
+        IssuingAuthorizationAuthenticationExemptionType(rawValue: "low_value_transaction")
+    public static let transactionRiskAnalysis =
+        IssuingAuthorizationAuthenticationExemptionType(rawValue: "transaction_risk_analysis")
     public static let unknown = IssuingAuthorizationAuthenticationExemptionType(rawValue: "unknown")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -271,17 +336,21 @@ public struct IssuingAuthorizationAuthenticationExemptionType: RawRepresentable,
 }
 
 /// Whether the cardholder provided an expiry date and if it matched Stripe’s record.
-public struct IssuingAuthorizationVerificationDataExpiryCheck: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct IssuingAuthorizationVerificationDataExpiryCheck: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let match = IssuingAuthorizationVerificationDataExpiryCheck(rawValue: "match")
     public static let mismatch = IssuingAuthorizationVerificationDataExpiryCheck(rawValue: "mismatch")
     public static let notProvided = IssuingAuthorizationVerificationDataExpiryCheck(rawValue: "not_provided")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -294,7 +363,10 @@ public struct IssuingAuthorizationVerificationDataExpiryCheck: RawRepresentable,
 public struct IssuingAuthorizationFuelDataUnit: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let chargingMinute = IssuingAuthorizationFuelDataUnit(rawValue: "charging_minute")
     public static let imperialGallon = IssuingAuthorizationFuelDataUnit(rawValue: "imperial_gallon")
     public static let kilogram = IssuingAuthorizationFuelDataUnit(rawValue: "kilogram")
@@ -306,7 +378,7 @@ public struct IssuingAuthorizationFuelDataUnit: RawRepresentable, Hashable, Coda
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -316,17 +388,21 @@ public struct IssuingAuthorizationFuelDataUnit: RawRepresentable, Hashable, Coda
 }
 
 /// The type of fuel service.
-public struct IssuingAuthorizationFleetDataServiceType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct IssuingAuthorizationFleetDataServiceType: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let fullService = IssuingAuthorizationFleetDataServiceType(rawValue: "full_service")
     public static let nonFuelTransaction = IssuingAuthorizationFleetDataServiceType(rawValue: "non_fuel_transaction")
     public static let selfService = IssuingAuthorizationFleetDataServiceType(rawValue: "self_service")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -336,16 +412,21 @@ public struct IssuingAuthorizationFleetDataServiceType: RawRepresentable, Hashab
 }
 
 /// If the challenge is not deliverable, the reason why.
-public struct IssuingAuthorizationFraudChallengeUndeliverableReason: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct IssuingAuthorizationFraudChallengeUndeliverableReason: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let noPhoneNumber = IssuingAuthorizationFraudChallengeUndeliverableReason(rawValue: "no_phone_number")
-    public static let unsupportedPhoneNumber = IssuingAuthorizationFraudChallengeUndeliverableReason(rawValue: "unsupported_phone_number")
+    public static let unsupportedPhoneNumber =
+        IssuingAuthorizationFraudChallengeUndeliverableReason(rawValue: "unsupported_phone_number")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -356,17 +437,21 @@ public struct IssuingAuthorizationFraudChallengeUndeliverableReason: RawRepresen
 
 /// Whether the cardholder provided a postal code and if it matched the cardholder’s
 /// `billing.address.postal_code`.
-public struct IssuingAuthorizationVerificationDataAddressPostalCodeCheck: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct IssuingAuthorizationVerificationDataAddressPostalCodeCheck: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let match = IssuingAuthorizationVerificationDataAddressPostalCodeCheck(rawValue: "match")
     public static let mismatch = IssuingAuthorizationVerificationDataAddressPostalCodeCheck(rawValue: "mismatch")
     public static let notProvided = IssuingAuthorizationVerificationDataAddressPostalCodeCheck(rawValue: "not_provided")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -377,17 +462,21 @@ public struct IssuingAuthorizationVerificationDataAddressPostalCodeCheck: RawRep
 
 /// Whether the cardholder provided an address first line and if it matched the cardholder’s
 /// `billing.address.line1`.
-public struct IssuingAuthorizationVerificationDataAddressLine1Check: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct IssuingAuthorizationVerificationDataAddressLine1Check: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let match = IssuingAuthorizationVerificationDataAddressLine1Check(rawValue: "match")
     public static let mismatch = IssuingAuthorizationVerificationDataAddressLine1Check(rawValue: "mismatch")
     public static let notProvided = IssuingAuthorizationVerificationDataAddressLine1Check(rawValue: "not_provided")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -397,16 +486,20 @@ public struct IssuingAuthorizationVerificationDataAddressLine1Check: RawRepresen
 }
 
 /// The entity that requested the exemption, either the acquiring merchant or the Issuing user.
-public struct IssuingAuthorizationAuthenticationExemptionClaimedBy: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct IssuingAuthorizationAuthenticationExemptionClaimedBy: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let acquirer = IssuingAuthorizationAuthenticationExemptionClaimedBy(rawValue: "acquirer")
     public static let issuer = IssuingAuthorizationAuthenticationExemptionClaimedBy(rawValue: "issuer")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -416,17 +509,22 @@ public struct IssuingAuthorizationAuthenticationExemptionClaimedBy: RawRepresent
 }
 
 /// The type of purchase.
-public struct IssuingAuthorizationFleetDataPurchaseType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct IssuingAuthorizationFleetDataPurchaseType: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let fuelAndNonFuelPurchase = IssuingAuthorizationFleetDataPurchaseType(rawValue: "fuel_and_non_fuel_purchase")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let fuelAndNonFuelPurchase =
+        IssuingAuthorizationFleetDataPurchaseType(rawValue: "fuel_and_non_fuel_purchase")
     public static let fuelPurchase = IssuingAuthorizationFleetDataPurchaseType(rawValue: "fuel_purchase")
     public static let nonFuelPurchase = IssuingAuthorizationFleetDataPurchaseType(rawValue: "non_fuel_purchase")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -436,10 +534,14 @@ public struct IssuingAuthorizationFleetDataPurchaseType: RawRepresentable, Hasha
 }
 
 /// The status of the fraud challenge.
-public struct IssuingAuthorizationFraudChallengeStatus: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct IssuingAuthorizationFraudChallengeStatus: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let expired = IssuingAuthorizationFraudChallengeStatus(rawValue: "expired")
     public static let pending = IssuingAuthorizationFraudChallengeStatus(rawValue: "pending")
     public static let rejected = IssuingAuthorizationFraudChallengeStatus(rawValue: "rejected")
@@ -448,7 +550,7 @@ public struct IssuingAuthorizationFraudChallengeStatus: RawRepresentable, Hashab
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -458,15 +560,19 @@ public struct IssuingAuthorizationFraudChallengeStatus: RawRepresentable, Hashab
 }
 
 /// The method by which the fraud challenge was delivered to the cardholder.
-public struct IssuingAuthorizationFraudChallengeChannel: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct IssuingAuthorizationFraudChallengeChannel: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let sms = IssuingAuthorizationFraudChallengeChannel(rawValue: "sms")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

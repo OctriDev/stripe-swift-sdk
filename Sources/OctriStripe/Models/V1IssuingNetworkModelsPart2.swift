@@ -3,44 +3,68 @@
 
 import Foundation
 
-// V1IssuingNetwork domain models
+/// V1IssuingNetwork domain models
 /// Required enumerated value serialized in the `reason_codes[]` wire field.
-public struct IssuingNetworkTokenWalletProviderReasonCodesItem: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct IssuingNetworkTokenWalletProviderReasonCodesItem: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let accountCardTooNew = IssuingNetworkTokenWalletProviderReasonCodesItem(rawValue: "account_card_too_new")
-    public static let accountRecentlyChanged = IssuingNetworkTokenWalletProviderReasonCodesItem(rawValue: "account_recently_changed")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let accountCardTooNew =
+        IssuingNetworkTokenWalletProviderReasonCodesItem(rawValue: "account_card_too_new")
+    public static let accountRecentlyChanged =
+        IssuingNetworkTokenWalletProviderReasonCodesItem(rawValue: "account_recently_changed")
     public static let accountTooNew = IssuingNetworkTokenWalletProviderReasonCodesItem(rawValue: "account_too_new")
-    public static let accountTooNewSinceLaunch = IssuingNetworkTokenWalletProviderReasonCodesItem(rawValue: "account_too_new_since_launch")
+    public static let accountTooNewSinceLaunch =
+        IssuingNetworkTokenWalletProviderReasonCodesItem(rawValue: "account_too_new_since_launch")
     public static let additionalDevice = IssuingNetworkTokenWalletProviderReasonCodesItem(rawValue: "additional_device")
     public static let dataExpired = IssuingNetworkTokenWalletProviderReasonCodesItem(rawValue: "data_expired")
-    public static let deferIdVDecision = IssuingNetworkTokenWalletProviderReasonCodesItem(rawValue: "defer_id_v_decision")
-    public static let deviceRecentlyLost = IssuingNetworkTokenWalletProviderReasonCodesItem(rawValue: "device_recently_lost")
-    public static let goodActivityHistory = IssuingNetworkTokenWalletProviderReasonCodesItem(rawValue: "good_activity_history")
-    public static let hasSuspendedTokens = IssuingNetworkTokenWalletProviderReasonCodesItem(rawValue: "has_suspended_tokens")
+    public static let deferIdVDecision =
+        IssuingNetworkTokenWalletProviderReasonCodesItem(rawValue: "defer_id_v_decision")
+    public static let deviceRecentlyLost =
+        IssuingNetworkTokenWalletProviderReasonCodesItem(rawValue: "device_recently_lost")
+    public static let goodActivityHistory =
+        IssuingNetworkTokenWalletProviderReasonCodesItem(rawValue: "good_activity_history")
+    public static let hasSuspendedTokens =
+        IssuingNetworkTokenWalletProviderReasonCodesItem(rawValue: "has_suspended_tokens")
     public static let highRisk = IssuingNetworkTokenWalletProviderReasonCodesItem(rawValue: "high_risk")
     public static let inactiveAccount = IssuingNetworkTokenWalletProviderReasonCodesItem(rawValue: "inactive_account")
-    public static let longAccountTenure = IssuingNetworkTokenWalletProviderReasonCodesItem(rawValue: "long_account_tenure")
+    public static let longAccountTenure =
+        IssuingNetworkTokenWalletProviderReasonCodesItem(rawValue: "long_account_tenure")
     public static let lowAccountScore = IssuingNetworkTokenWalletProviderReasonCodesItem(rawValue: "low_account_score")
     public static let lowDeviceScore = IssuingNetworkTokenWalletProviderReasonCodesItem(rawValue: "low_device_score")
-    public static let lowPhoneNumberScore = IssuingNetworkTokenWalletProviderReasonCodesItem(rawValue: "low_phone_number_score")
-    public static let networkServiceError = IssuingNetworkTokenWalletProviderReasonCodesItem(rawValue: "network_service_error")
-    public static let outsideHomeTerritory = IssuingNetworkTokenWalletProviderReasonCodesItem(rawValue: "outside_home_territory")
-    public static let provisioningCardholderMismatch = IssuingNetworkTokenWalletProviderReasonCodesItem(rawValue: "provisioning_cardholder_mismatch")
-    public static let provisioningDeviceAndCardholderMismatch = IssuingNetworkTokenWalletProviderReasonCodesItem(rawValue: "provisioning_device_and_cardholder_mismatch")
-    public static let provisioningDeviceMismatch = IssuingNetworkTokenWalletProviderReasonCodesItem(rawValue: "provisioning_device_mismatch")
-    public static let sameDeviceNoPriorAuthentication = IssuingNetworkTokenWalletProviderReasonCodesItem(rawValue: "same_device_no_prior_authentication")
-    public static let sameDeviceSuccessfulPriorAuthentication = IssuingNetworkTokenWalletProviderReasonCodesItem(rawValue: "same_device_successful_prior_authentication")
+    public static let lowPhoneNumberScore =
+        IssuingNetworkTokenWalletProviderReasonCodesItem(rawValue: "low_phone_number_score")
+    public static let networkServiceError =
+        IssuingNetworkTokenWalletProviderReasonCodesItem(rawValue: "network_service_error")
+    public static let outsideHomeTerritory =
+        IssuingNetworkTokenWalletProviderReasonCodesItem(rawValue: "outside_home_territory")
+    public static let provisioningCardholderMismatch =
+        IssuingNetworkTokenWalletProviderReasonCodesItem(rawValue: "provisioning_cardholder_mismatch")
+    public static let provisioningDeviceAndCardholderMismatch =
+        IssuingNetworkTokenWalletProviderReasonCodesItem(rawValue: "provisioning_device_and_cardholder_mismatch")
+    public static let provisioningDeviceMismatch =
+        IssuingNetworkTokenWalletProviderReasonCodesItem(rawValue: "provisioning_device_mismatch")
+    public static let sameDeviceNoPriorAuthentication =
+        IssuingNetworkTokenWalletProviderReasonCodesItem(rawValue: "same_device_no_prior_authentication")
+    public static let sameDeviceSuccessfulPriorAuthentication =
+        IssuingNetworkTokenWalletProviderReasonCodesItem(rawValue: "same_device_successful_prior_authentication")
     public static let softwareUpdate = IssuingNetworkTokenWalletProviderReasonCodesItem(rawValue: "software_update")
-    public static let suspiciousActivity = IssuingNetworkTokenWalletProviderReasonCodesItem(rawValue: "suspicious_activity")
-    public static let tooManyDifferentCardholders = IssuingNetworkTokenWalletProviderReasonCodesItem(rawValue: "too_many_different_cardholders")
-    public static let tooManyRecentAttempts = IssuingNetworkTokenWalletProviderReasonCodesItem(rawValue: "too_many_recent_attempts")
-    public static let tooManyRecentTokens = IssuingNetworkTokenWalletProviderReasonCodesItem(rawValue: "too_many_recent_tokens")
+    public static let suspiciousActivity =
+        IssuingNetworkTokenWalletProviderReasonCodesItem(rawValue: "suspicious_activity")
+    public static let tooManyDifferentCardholders =
+        IssuingNetworkTokenWalletProviderReasonCodesItem(rawValue: "too_many_different_cardholders")
+    public static let tooManyRecentAttempts =
+        IssuingNetworkTokenWalletProviderReasonCodesItem(rawValue: "too_many_recent_attempts")
+    public static let tooManyRecentTokens =
+        IssuingNetworkTokenWalletProviderReasonCodesItem(rawValue: "too_many_recent_tokens")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

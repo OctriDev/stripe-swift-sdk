@@ -7,142 +7,368 @@ import Foundation
     import FoundationNetworking
 #endif
 public extension PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem {
-    static let jewelryStoresWatchesClocksAndSilverwareStores = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "jewelry_stores_watches_clocks_and_silverware_stores")
-    static let landscapingServices = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "landscaping_services")
+    static let jewelryStoresWatchesClocksAndSilverwareStores =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(
+            rawValue: "jewelry_stores_watches_clocks_and_silverware_stores"
+        )
+    static let landscapingServices =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "landscaping_services")
     static let laundries = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "laundries")
-    static let laundryCleaningServices = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "laundry_cleaning_services")
-    static let legalServicesAttorneys = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "legal_services_attorneys")
-    static let luggageAndLeatherGoodsStores = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "luggage_and_leather_goods_stores")
-    static let lumberBuildingMaterialsStores = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "lumber_building_materials_stores")
-    static let manualCashDisburse = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "manual_cash_disburse")
-    static let marinasServiceAndSupplies = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "marinas_service_and_supplies")
-    static let marketplaces = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "marketplaces")
-    static let masonryStoneworkAndPlaster = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "masonry_stonework_and_plaster")
-    static let massageParlors = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "massage_parlors")
-    static let medicalAndDentalLabs = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "medical_and_dental_labs")
-    static let medicalDentalOphthalmicAndHospitalEquipmentAndSupplies = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "medical_dental_ophthalmic_and_hospital_equipment_and_supplies")
-    static let medicalServices = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "medical_services")
-    static let membershipOrganizations = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "membership_organizations")
-    static let mensAndBoysClothingAndAccessoriesStores = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "mens_and_boys_clothing_and_accessories_stores")
-    static let mensWomensClothingStores = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "mens_womens_clothing_stores")
-    static let metalServiceCenters = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "metal_service_centers")
-    static let miscellaneous = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "miscellaneous")
-    static let miscellaneousApparelAndAccessoryShops = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "miscellaneous_apparel_and_accessory_shops")
-    static let miscellaneousAutoDealers = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "miscellaneous_auto_dealers")
-    static let miscellaneousBusinessServices = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "miscellaneous_business_services")
-    static let miscellaneousFoodStores = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "miscellaneous_food_stores")
-    static let miscellaneousGeneralMerchandise = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "miscellaneous_general_merchandise")
-    static let miscellaneousGeneralServices = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "miscellaneous_general_services")
-    static let miscellaneousHomeFurnishingSpecialtyStores = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "miscellaneous_home_furnishing_specialty_stores")
-    static let miscellaneousPublishingAndPrinting = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "miscellaneous_publishing_and_printing")
-    static let miscellaneousRecreationServices = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "miscellaneous_recreation_services")
-    static let miscellaneousRepairShops = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "miscellaneous_repair_shops")
-    static let miscellaneousSpecialtyRetail = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "miscellaneous_specialty_retail")
-    static let mobileHomeDealers = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "mobile_home_dealers")
-    static let motionPictureTheaters = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "motion_picture_theaters")
-    static let motorFreightCarriersAndTrucking = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "motor_freight_carriers_and_trucking")
-    static let motorHomesDealers = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "motor_homes_dealers")
-    static let motorVehicleSuppliesAndNewParts = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "motor_vehicle_supplies_and_new_parts")
-    static let motorcycleShopsAndDealers = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "motorcycle_shops_and_dealers")
-    static let motorcycleShopsDealers = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "motorcycle_shops_dealers")
-    static let musicStoresMusicalInstrumentsPianosAndSheetMusic = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "music_stores_musical_instruments_pianos_and_sheet_music")
-    static let newsDealersAndNewsstands = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "news_dealers_and_newsstands")
-    static let nonFiMoneyOrders = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "non_fi_money_orders")
-    static let nonFiStoredValueCardPurchaseLoad = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "non_fi_stored_value_card_purchase_load")
-    static let nondurableGoods = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "nondurable_goods")
-    static let nurseriesLawnAndGardenSupplyStores = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "nurseries_lawn_and_garden_supply_stores")
-    static let nursingPersonalCare = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "nursing_personal_care")
-    static let officeAndCommercialFurniture = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "office_and_commercial_furniture")
-    static let opticiansEyeglasses = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "opticians_eyeglasses")
-    static let optometristsOphthalmologist = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "optometrists_ophthalmologist")
-    static let orthopedicGoodsProstheticDevices = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "orthopedic_goods_prosthetic_devices")
-    static let osteopaths = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "osteopaths")
-    static let packageStoresBeerWineAndLiquor = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "package_stores_beer_wine_and_liquor")
-    static let paintsVarnishesAndSupplies = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "paints_varnishes_and_supplies")
-    static let parkingLotsGarages = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "parking_lots_garages")
-    static let passengerRailways = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "passenger_railways")
-    static let pawnShops = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "pawn_shops")
-    static let petShopsPetFoodAndSupplies = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "pet_shops_pet_food_and_supplies")
-    static let petroleumAndPetroleumProducts = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "petroleum_and_petroleum_products")
-    static let photoDeveloping = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "photo_developing")
-    static let photographicPhotocopyMicrofilmEquipmentAndSupplies = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "photographic_photocopy_microfilm_equipment_and_supplies")
-    static let photographicStudios = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "photographic_studios")
-    static let pictureVideoProduction = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "picture_video_production")
-    static let pieceGoodsNotionsAndOtherDryGoods = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "piece_goods_notions_and_other_dry_goods")
-    static let plumbingHeatingEquipmentAndSupplies = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "plumbing_heating_equipment_and_supplies")
-    static let politicalOrganizations = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "political_organizations")
-    static let postalServicesGovernmentOnly = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "postal_services_government_only")
-    static let preciousStonesAndMetalsWatchesAndJewelry = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "precious_stones_and_metals_watches_and_jewelry")
-    static let professionalServices = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "professional_services")
-    static let publicWarehousingAndStorage = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "public_warehousing_and_storage")
-    static let quickCopyReproAndBlueprint = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "quick_copy_repro_and_blueprint")
+    static let laundryCleaningServices =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "laundry_cleaning_services")
+    static let legalServicesAttorneys =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "legal_services_attorneys")
+    static let luggageAndLeatherGoodsStores =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(
+            rawValue: "luggage_and_leather_goods_stores"
+        )
+    static let lumberBuildingMaterialsStores =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(
+            rawValue: "lumber_building_materials_stores"
+        )
+    static let manualCashDisburse =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "manual_cash_disburse")
+    static let marinasServiceAndSupplies =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "marinas_service_and_supplies")
+    static let marketplaces =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "marketplaces")
+    static let masonryStoneworkAndPlaster =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(
+            rawValue: "masonry_stonework_and_plaster"
+        )
+    static let massageParlors =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "massage_parlors")
+    static let medicalAndDentalLabs =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "medical_and_dental_labs")
+    static let medicalDentalOphthalmicAndHospitalEquipmentAndSupplies =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(
+            rawValue: "medical_dental_ophthalmic_and_hospital_equipment_and_supplies"
+        )
+    static let medicalServices =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "medical_services")
+    static let membershipOrganizations =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "membership_organizations")
+    static let mensAndBoysClothingAndAccessoriesStores =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(
+            rawValue: "mens_and_boys_clothing_and_accessories_stores"
+        )
+    static let mensWomensClothingStores =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "mens_womens_clothing_stores")
+    static let metalServiceCenters =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "metal_service_centers")
+    static let miscellaneous =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "miscellaneous")
+    static let miscellaneousApparelAndAccessoryShops =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(
+            rawValue: "miscellaneous_apparel_and_accessory_shops"
+        )
+    static let miscellaneousAutoDealers =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "miscellaneous_auto_dealers")
+    static let miscellaneousBusinessServices =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(
+            rawValue: "miscellaneous_business_services"
+        )
+    static let miscellaneousFoodStores =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "miscellaneous_food_stores")
+    static let miscellaneousGeneralMerchandise =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(
+            rawValue: "miscellaneous_general_merchandise"
+        )
+    static let miscellaneousGeneralServices =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(
+            rawValue: "miscellaneous_general_services"
+        )
+    static let miscellaneousHomeFurnishingSpecialtyStores =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(
+            rawValue: "miscellaneous_home_furnishing_specialty_stores"
+        )
+    static let miscellaneousPublishingAndPrinting =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(
+            rawValue: "miscellaneous_publishing_and_printing"
+        )
+    static let miscellaneousRecreationServices =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(
+            rawValue: "miscellaneous_recreation_services"
+        )
+    static let miscellaneousRepairShops =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "miscellaneous_repair_shops")
+    static let miscellaneousSpecialtyRetail =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(
+            rawValue: "miscellaneous_specialty_retail"
+        )
+    static let mobileHomeDealers =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "mobile_home_dealers")
+    static let motionPictureTheaters =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "motion_picture_theaters")
+    static let motorFreightCarriersAndTrucking =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(
+            rawValue: "motor_freight_carriers_and_trucking"
+        )
+    static let motorHomesDealers =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "motor_homes_dealers")
+    static let motorVehicleSuppliesAndNewParts =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(
+            rawValue: "motor_vehicle_supplies_and_new_parts"
+        )
+    static let motorcycleShopsAndDealers =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "motorcycle_shops_and_dealers")
+    static let motorcycleShopsDealers =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "motorcycle_shops_dealers")
+    static let musicStoresMusicalInstrumentsPianosAndSheetMusic =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(
+            rawValue: "music_stores_musical_instruments_pianos_and_sheet_music"
+        )
+    static let newsDealersAndNewsstands =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "news_dealers_and_newsstands")
+    static let nonFiMoneyOrders =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "non_fi_money_orders")
+    static let nonFiStoredValueCardPurchaseLoad =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(
+            rawValue: "non_fi_stored_value_card_purchase_load"
+        )
+    static let nondurableGoods =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "nondurable_goods")
+    static let nurseriesLawnAndGardenSupplyStores =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(
+            rawValue: "nurseries_lawn_and_garden_supply_stores"
+        )
+    static let nursingPersonalCare =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "nursing_personal_care")
+    static let officeAndCommercialFurniture =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(
+            rawValue: "office_and_commercial_furniture"
+        )
+    static let opticiansEyeglasses =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "opticians_eyeglasses")
+    static let optometristsOphthalmologist =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "optometrists_ophthalmologist")
+    static let orthopedicGoodsProstheticDevices =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(
+            rawValue: "orthopedic_goods_prosthetic_devices"
+        )
+    static let osteopaths =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "osteopaths")
+    static let packageStoresBeerWineAndLiquor =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(
+            rawValue: "package_stores_beer_wine_and_liquor"
+        )
+    static let paintsVarnishesAndSupplies =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(
+            rawValue: "paints_varnishes_and_supplies"
+        )
+    static let parkingLotsGarages =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "parking_lots_garages")
+    static let passengerRailways =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "passenger_railways")
+    static let pawnShops =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "pawn_shops")
+    static let petShopsPetFoodAndSupplies =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(
+            rawValue: "pet_shops_pet_food_and_supplies"
+        )
+    static let petroleumAndPetroleumProducts =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(
+            rawValue: "petroleum_and_petroleum_products"
+        )
+    static let photoDeveloping =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "photo_developing")
+    static let photographicPhotocopyMicrofilmEquipmentAndSupplies =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(
+            rawValue: "photographic_photocopy_microfilm_equipment_and_supplies"
+        )
+    static let photographicStudios =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "photographic_studios")
+    static let pictureVideoProduction =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "picture_video_production")
+    static let pieceGoodsNotionsAndOtherDryGoods =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(
+            rawValue: "piece_goods_notions_and_other_dry_goods"
+        )
+    static let plumbingHeatingEquipmentAndSupplies =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(
+            rawValue: "plumbing_heating_equipment_and_supplies"
+        )
+    static let politicalOrganizations =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "political_organizations")
+    static let postalServicesGovernmentOnly =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(
+            rawValue: "postal_services_government_only"
+        )
+    static let preciousStonesAndMetalsWatchesAndJewelry =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(
+            rawValue: "precious_stones_and_metals_watches_and_jewelry"
+        )
+    static let professionalServices =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "professional_services")
+    static let publicWarehousingAndStorage =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(
+            rawValue: "public_warehousing_and_storage"
+        )
+    static let quickCopyReproAndBlueprint =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(
+            rawValue: "quick_copy_repro_and_blueprint"
+        )
     static let railroads = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "railroads")
-    static let realEstateAgentsAndManagersRentals = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "real_estate_agents_and_managers_rentals")
-    static let recordStores = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "record_stores")
-    static let recreationalVehicleRentals = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "recreational_vehicle_rentals")
-    static let religiousGoodsStores = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "religious_goods_stores")
-    static let religiousOrganizations = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "religious_organizations")
-    static let roofingSidingSheetMetal = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "roofing_siding_sheet_metal")
-    static let secretarialSupportServices = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "secretarial_support_services")
-    static let securityBrokersDealers = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "security_brokers_dealers")
-    static let serviceStations = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "service_stations")
-    static let sewingNeedleworkFabricAndPieceGoodsStores = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "sewing_needlework_fabric_and_piece_goods_stores")
+    static let realEstateAgentsAndManagersRentals =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(
+            rawValue: "real_estate_agents_and_managers_rentals"
+        )
+    static let recordStores =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "record_stores")
+    static let recreationalVehicleRentals =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "recreational_vehicle_rentals")
+    static let religiousGoodsStores =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "religious_goods_stores")
+    static let religiousOrganizations =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "religious_organizations")
+    static let roofingSidingSheetMetal =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "roofing_siding_sheet_metal")
+    static let secretarialSupportServices =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "secretarial_support_services")
+    static let securityBrokersDealers =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "security_brokers_dealers")
+    static let serviceStations =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "service_stations")
+    static let sewingNeedleworkFabricAndPieceGoodsStores =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(
+            rawValue: "sewing_needlework_fabric_and_piece_goods_stores"
+        )
 }
 
 public extension PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem {
-    static let shoeRepairHatCleaning = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "shoe_repair_hat_cleaning")
-    static let shoeStores = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "shoe_stores")
-    static let smallApplianceRepair = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "small_appliance_repair")
-    static let snowmobileDealers = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "snowmobile_dealers")
-    static let specialTradeServices = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "special_trade_services")
-    static let specialtyCleaning = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "specialty_cleaning")
-    static let sportingGoodsStores = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "sporting_goods_stores")
-    static let sportingRecreationCamps = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "sporting_recreation_camps")
-    static let sportsAndRidingApparelStores = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "sports_and_riding_apparel_stores")
-    static let sportsClubsFields = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "sports_clubs_fields")
-    static let stampAndCoinStores = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "stamp_and_coin_stores")
-    static let stationaryOfficeSuppliesPrintingAndWritingPaper = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "stationary_office_supplies_printing_and_writing_paper")
-    static let stationeryStoresOfficeAndSchoolSupplyStores = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "stationery_stores_office_and_school_supply_stores")
-    static let swimmingPoolsSales = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "swimming_pools_sales")
-    static let tUiTravelGermany = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "t_ui_travel_germany")
-    static let tailorsAlterations = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "tailors_alterations")
-    static let taxPaymentsGovernmentAgencies = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "tax_payments_government_agencies")
-    static let taxPreparationServices = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "tax_preparation_services")
-    static let taxicabsLimousines = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "taxicabs_limousines")
-    static let telecommunicationEquipmentAndTelephoneSales = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "telecommunication_equipment_and_telephone_sales")
-    static let telecommunicationServices = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "telecommunication_services")
-    static let telegraphServices = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "telegraph_services")
-    static let tentAndAwningShops = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "tent_and_awning_shops")
-    static let testingLaboratories = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "testing_laboratories")
-    static let theatricalTicketAgencies = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "theatrical_ticket_agencies")
-    static let timeshares = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "timeshares")
-    static let tireRetreadingAndRepair = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "tire_retreading_and_repair")
-    static let tollsBridgeFees = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "tolls_bridge_fees")
-    static let touristAttractionsAndExhibits = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "tourist_attractions_and_exhibits")
-    static let towingServices = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "towing_services")
-    static let trailerParksCampgrounds = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "trailer_parks_campgrounds")
-    static let transportationServices = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "transportation_services")
-    static let travelAgenciesTourOperators = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "travel_agencies_tour_operators")
-    static let truckStopIteration = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "truck_stop_iteration")
-    static let truckUtilityTrailerRentals = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "truck_utility_trailer_rentals")
-    static let typesettingPlateMakingAndRelatedServices = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "typesetting_plate_making_and_related_services")
-    static let typewriterStores = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "typewriter_stores")
-    static let uSFederalGovernmentAgenciesOrDepartments = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "u_s_federal_government_agencies_or_departments")
-    static let uniformsCommercialClothing = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "uniforms_commercial_clothing")
-    static let usedMerchandiseAndSecondhandStores = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "used_merchandise_and_secondhand_stores")
+    static let shoeRepairHatCleaning =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "shoe_repair_hat_cleaning")
+    static let shoeStores =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "shoe_stores")
+    static let smallApplianceRepair =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "small_appliance_repair")
+    static let snowmobileDealers =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "snowmobile_dealers")
+    static let specialTradeServices =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "special_trade_services")
+    static let specialtyCleaning =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "specialty_cleaning")
+    static let sportingGoodsStores =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "sporting_goods_stores")
+    static let sportingRecreationCamps =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "sporting_recreation_camps")
+    static let sportsAndRidingApparelStores =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(
+            rawValue: "sports_and_riding_apparel_stores"
+        )
+    static let sportsClubsFields =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "sports_clubs_fields")
+    static let stampAndCoinStores =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "stamp_and_coin_stores")
+    static let stationaryOfficeSuppliesPrintingAndWritingPaper =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(
+            rawValue: "stationary_office_supplies_printing_and_writing_paper"
+        )
+    static let stationeryStoresOfficeAndSchoolSupplyStores =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(
+            rawValue: "stationery_stores_office_and_school_supply_stores"
+        )
+    static let swimmingPoolsSales =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "swimming_pools_sales")
+    static let tUiTravelGermany =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "t_ui_travel_germany")
+    static let tailorsAlterations =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "tailors_alterations")
+    static let taxPaymentsGovernmentAgencies =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(
+            rawValue: "tax_payments_government_agencies"
+        )
+    static let taxPreparationServices =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "tax_preparation_services")
+    static let taxicabsLimousines =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "taxicabs_limousines")
+    static let telecommunicationEquipmentAndTelephoneSales =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(
+            rawValue: "telecommunication_equipment_and_telephone_sales"
+        )
+    static let telecommunicationServices =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "telecommunication_services")
+    static let telegraphServices =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "telegraph_services")
+    static let tentAndAwningShops =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "tent_and_awning_shops")
+    static let testingLaboratories =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "testing_laboratories")
+    static let theatricalTicketAgencies =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "theatrical_ticket_agencies")
+    static let timeshares =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "timeshares")
+    static let tireRetreadingAndRepair =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "tire_retreading_and_repair")
+    static let tollsBridgeFees =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "tolls_bridge_fees")
+    static let touristAttractionsAndExhibits =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(
+            rawValue: "tourist_attractions_and_exhibits"
+        )
+    static let towingServices =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "towing_services")
+    static let trailerParksCampgrounds =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "trailer_parks_campgrounds")
+    static let transportationServices =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "transportation_services")
+    static let travelAgenciesTourOperators =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(
+            rawValue: "travel_agencies_tour_operators"
+        )
+    static let truckStopIteration =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "truck_stop_iteration")
+    static let truckUtilityTrailerRentals =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(
+            rawValue: "truck_utility_trailer_rentals"
+        )
+    static let typesettingPlateMakingAndRelatedServices =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(
+            rawValue: "typesetting_plate_making_and_related_services"
+        )
+    static let typewriterStores =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "typewriter_stores")
+    static let uSFederalGovernmentAgenciesOrDepartments =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(
+            rawValue: "u_s_federal_government_agencies_or_departments"
+        )
+    static let uniformsCommercialClothing =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "uniforms_commercial_clothing")
+    static let usedMerchandiseAndSecondhandStores =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(
+            rawValue: "used_merchandise_and_secondhand_stores"
+        )
     static let utilities = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "utilities")
-    static let varietyStores = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "variety_stores")
-    static let veterinaryServices = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "veterinary_services")
-    static let videoAmusementGameSupplies = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "video_amusement_game_supplies")
-    static let videoGameArcades = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "video_game_arcades")
-    static let videoTapeRentalStores = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "video_tape_rental_stores")
-    static let vocationalTradeSchools = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "vocational_trade_schools")
-    static let watchJewelryRepair = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "watch_jewelry_repair")
-    static let weldingRepair = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "welding_repair")
-    static let wholesaleClubs = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "wholesale_clubs")
-    static let wigAndToupeeStores = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "wig_and_toupee_stores")
-    static let wiresMoneyOrders = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "wires_money_orders")
-    static let womensAccessoryAndSpecialtyShops = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "womens_accessory_and_specialty_shops")
-    static let womensReadyToWearStores = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "womens_ready_to_wear_stores")
-    static let wreckingAndSalvageYards = PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "wrecking_and_salvage_yards")
+    static let varietyStores =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "variety_stores")
+    static let veterinaryServices =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "veterinary_services")
+    static let videoAmusementGameSupplies =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(
+            rawValue: "video_amusement_game_supplies"
+        )
+    static let videoGameArcades =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "video_game_arcades")
+    static let videoTapeRentalStores =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "video_tape_rental_stores")
+    static let vocationalTradeSchools =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "vocational_trade_schools")
+    static let watchJewelryRepair =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "watch_jewelry_repair")
+    static let weldingRepair =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "welding_repair")
+    static let wholesaleClubs =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "wholesale_clubs")
+    static let wigAndToupeeStores =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "wig_and_toupee_stores")
+    static let wiresMoneyOrders =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "wires_money_orders")
+    static let womensAccessoryAndSpecialtyShops =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(
+            rawValue: "womens_accessory_and_specialty_shops"
+        )
+    static let womensReadyToWearStores =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "womens_ready_to_wear_stores")
+    static let wreckingAndSalvageYards =
+        PostIssuingCardholdersRequestBodySpendingControlsBlockedCategoriesItem(rawValue: "wrecking_and_salvage_yards")
 }

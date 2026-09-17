@@ -3,7 +3,7 @@
 
 import Foundation
 
-// V1Token domain models
+/// V1Token domain models
 /// Tokenization is the process Stripe uses to collect sensitive card or bank account details, or personally
 /// identifiable information (PII), directly from your customers in a secure manner. A token representing this
 /// information is returned to your server to use. Use our recommended payments integrations to perform this process
@@ -46,56 +46,92 @@ public struct Token: Codable {
         case clientIp = "client_ip"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension Token {
-    public init(from decoder: Decoder) throws {
+public extension Token {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.created) else {
-            throw SdkValidationError(field: "created", code: "required", message: "Validation failed for 'created': value is required")
+            throw SdkValidationError(
+                field: "created",
+                code: "required",
+                message: "Validation failed for 'created': value is required"
+            )
         }
         guard container.contains(.id) else {
-            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
+            throw SdkValidationError(
+                field: "id",
+                code: "required",
+                message: "Validation failed for 'id': value is required"
+            )
         }
         guard container.contains(.livemode) else {
-            throw SdkValidationError(field: "livemode", code: "required", message: "Validation failed for 'livemode': value is required")
+            throw SdkValidationError(
+                field: "livemode",
+                code: "required",
+                message: "Validation failed for 'livemode': value is required"
+            )
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
         }
         guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
         }
         guard container.contains(.used) else {
-            throw SdkValidationError(field: "used", code: "required", message: "Validation failed for 'used': value is required")
+            throw SdkValidationError(
+                field: "used",
+                code: "required",
+                message: "Validation failed for 'used': value is required"
+            )
         }
-        self.created = try container.sdkDecodeRequired(.created)
-        self.id = try container.sdkDecodeRequired(.id)
-        self.livemode = try container.sdkDecodeRequired(.livemode)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.type = try container.sdkDecodeRequired(.type)
-        self.used = try container.sdkDecodeRequired(.used)
-        self.bankAccount = try container.sdkDecodeIfPresent(.bankAccount)
-        self.card = try container.sdkDecodeIfPresent(.card)
-        self.clientIp = try container.sdkDecodeIfPresent(.clientIp)
-            try validateLength("id", self.id, min: nil, max: 5000)
-            try validateLength("type", self.type, min: nil, max: 5000)
-        if let value = self.clientIp {
+        created = try container.sdkDecodeRequired(.created)
+        id = try container.sdkDecodeRequired(.id)
+        livemode = try container.sdkDecodeRequired(.livemode)
+        object = try container.sdkDecodeRequired(.object)
+        type = try container.sdkDecodeRequired(.type)
+        used = try container.sdkDecodeRequired(.used)
+        bankAccount = try container.sdkDecodeIfPresent(.bankAccount)
+        card = try container.sdkDecodeIfPresent(.card)
+        clientIp = try container.sdkDecodeIfPresent(.clientIp)
+        try validateLength("id", id, min: nil, max: 5000)
+        try validateLength("type", type, min: nil, max: 5000)
+        if let value = clientIp {
             try validateLength("client_ip", value, min: nil, max: 5000)
         }
     }
 }
 
-extension Token {
-    public init(created: Int, id: String, livemode: Bool, object: TokenObject, type: String, used: Bool, bankAccount: BankAccount? = nil, card: Card? = nil, clientIp: String? = nil) throws {
+public extension Token {
+    init(
+        created: Int,
+        id: String,
+        livemode: Bool,
+        object: TokenObject,
+        type: String,
+        used: Bool,
+        bankAccount: BankAccount? = nil,
+        card: Card? = nil,
+        clientIp: String? = nil
+    ) throws {
         (self.created, self.id) = (created, id)
         (self.livemode, self.object) = (livemode, object)
         (self.type, self.used) = (type, used)
         (self.bankAccount, self.card) = (bankAccount, card)
         self.clientIp = clientIp
-            try validateLength("id", self.id, min: nil, max: 5000)
-            try validateLength("type", self.type, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("type", self.type, min: nil, max: 5000)
         if let value = self.clientIp {
             try validateLength("client_ip", value, min: nil, max: 5000)
         }
@@ -113,22 +149,22 @@ public struct TokenCardNetworks: Codable {
     }
 
     init() {
-        self.preferred = nil
+        preferred = nil
     }
 }
 
-extension TokenCardNetworks {
-    public init(from decoder: Decoder) throws {
+public extension TokenCardNetworks {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.preferred = try container.sdkDecodeIfPresent(.preferred)
-        if let value = self.preferred {
+        preferred = try container.sdkDecodeIfPresent(.preferred)
+        if let value = preferred {
             try validateLength("preferred", value, min: nil, max: 5000)
         }
     }
 }
 
-extension TokenCardNetworks {
-    public init(preferred: String? = nil) throws {
+public extension TokenCardNetworks {
+    init(preferred: String? = nil) throws {
         self.init()
         self.preferred = preferred
         if let value = self.preferred {
@@ -141,12 +177,15 @@ extension TokenCardNetworks {
 public struct TokenObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let token = TokenObject(rawValue: "token")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

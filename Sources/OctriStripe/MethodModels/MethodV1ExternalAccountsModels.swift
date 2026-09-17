@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1ExternalAccounts operation model declarations
+/// Canonical v1ExternalAccounts operation model declarations
 public struct PostExternalAccountsIdRequestBodyDocumentsBankAccountOwnershiXb85377879f: Codable {
     public var files: [String]?
 
@@ -16,19 +16,19 @@ public struct PostExternalAccountsIdRequestBodyDocumentsBankAccountOwnershiXb853
     }
 
     init() {
-        self.files = nil
+        files = nil
     }
 }
 
-extension PostExternalAccountsIdRequestBodyDocumentsBankAccountOwnershiXb85377879f {
-    public init(from decoder: Decoder) throws {
+public extension PostExternalAccountsIdRequestBodyDocumentsBankAccountOwnershiXb85377879f {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.files = try container.sdkDecodeIfPresent(.files)
+        files = try container.sdkDecodeIfPresent(.files)
     }
 }
 
-extension PostExternalAccountsIdRequestBodyDocumentsBankAccountOwnershiXb85377879f {
-    public init(files: [String]? = nil) {
+public extension PostExternalAccountsIdRequestBodyDocumentsBankAccountOwnershiXb85377879f {
+    init(files: [String]? = nil) {
         self.init()
         self.files = files
     }
@@ -45,19 +45,20 @@ public struct PostExternalAccountsIdRequestBodyDocuments: Codable {
     }
 
     init() {
-        self.bankAccountOwnershipVerification = nil
+        bankAccountOwnershipVerification = nil
     }
 }
 
-extension PostExternalAccountsIdRequestBodyDocuments {
-    public init(from decoder: Decoder) throws {
+public extension PostExternalAccountsIdRequestBodyDocuments {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.bankAccountOwnershipVerification = try container.sdkDecodeIfPresent(.bankAccountOwnershipVerification)
+        bankAccountOwnershipVerification = try container.sdkDecodeIfPresent(.bankAccountOwnershipVerification)
     }
 }
 
-extension PostExternalAccountsIdRequestBodyDocuments {
-    public init(bankAccountOwnershipVerification: PostExternalAccountsIdRequestBodyDocumentsBankAccountOwnershiXb85377879f? = nil) {
+public extension PostExternalAccountsIdRequestBodyDocuments {
+    init(bankAccountOwnershipVerification: PostExternalAccountsIdRequestBodyDocumentsBankAccountOwnershiXb85377879f? =
+        nil) {
         self.init()
         self.bankAccountOwnershipVerification = bankAccountOwnershipVerification
     }
@@ -69,21 +70,31 @@ public enum PostExternalAccountsIdRequestBodyMetadata {
 }
 
 extension PostExternalAccountsIdRequestBodyMetadata: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostExternalAccountsIdRequestBodyMetadata")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PostExternalAccountsIdRequestBodyMetadata"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode([String: String].self) { return .dictionary(value) }
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode([String: String].self) {
+            return .dictionary(value)
+        }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -93,5 +104,4 @@ extension PostExternalAccountsIdRequestBodyMetadata: Codable {
         case let .stringValue(value): try container.encode(value); return true
         }
     }
-
 }

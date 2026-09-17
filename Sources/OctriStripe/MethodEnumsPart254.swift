@@ -6,16 +6,20 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-public struct PostPricesRequestBodyRecurringUsageType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostPricesRequestBodyRecurringUsageType: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let licensed = PostPricesRequestBodyRecurringUsageType(rawValue: "licensed")
     public static let metered = PostPricesRequestBodyRecurringUsageType(rawValue: "metered")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -30,14 +34,17 @@ public struct PostPricesRequestBodyRecurringUsageType: RawRepresentable, Hashabl
 public struct PostPricesRequestBodyTaxBehavior: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let exclusive = PostPricesRequestBodyTaxBehavior(rawValue: "exclusive")
     public static let inclusive = PostPricesRequestBodyTaxBehavior(rawValue: "inclusive")
     public static let unspecified = PostPricesRequestBodyTaxBehavior(rawValue: "unspecified")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -46,15 +53,19 @@ public struct PostPricesRequestBodyTaxBehavior: RawRepresentable, Hashable, Coda
     }
 }
 
-public struct PostPricesRequestBodyTiersItemUpToVariant0: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostPricesRequestBodyTiersItemUpToVariant0: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let inf = PostPricesRequestBodyTiersItemUpToVariant0(rawValue: "inf")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -69,13 +80,16 @@ public struct PostPricesRequestBodyTiersItemUpToVariant0: RawRepresentable, Hash
 public struct PostPricesRequestBodyTiersMode: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let graduated = PostPricesRequestBodyTiersMode(rawValue: "graduated")
     public static let volume = PostPricesRequestBodyTiersMode(rawValue: "volume")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -84,16 +98,20 @@ public struct PostPricesRequestBodyTiersMode: RawRepresentable, Hashable, Codabl
     }
 }
 
-public struct PostPricesRequestBodyTransformQuantityRound: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostPricesRequestBodyTransformQuantityRound: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let down = PostPricesRequestBodyTransformQuantityRound(rawValue: "down")
     public static let up = PostPricesRequestBodyTransformQuantityRound(rawValue: "up")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -106,12 +124,15 @@ public struct PostPricesRequestBodyTransformQuantityRound: RawRepresentable, Has
 public struct GetPricesSearchResponseObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let searchResult = GetPricesSearchResponseObject(rawValue: "search_result")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -120,17 +141,24 @@ public struct GetPricesSearchResponseObject: RawRepresentable, Hashable, Codable
     }
 }
 
-public struct PostPricesPriceRequestBodyCurrencyOptionsVariant0ValueTaxBehavior: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostPricesPriceRequestBodyCurrencyOptionsVariant0ValueTaxBehavior: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
-    public static let exclusive = PostPricesPriceRequestBodyCurrencyOptionsVariant0ValueTaxBehavior(rawValue: "exclusive")
-    public static let inclusive = PostPricesPriceRequestBodyCurrencyOptionsVariant0ValueTaxBehavior(rawValue: "inclusive")
-    public static let unspecified = PostPricesPriceRequestBodyCurrencyOptionsVariant0ValueTaxBehavior(rawValue: "unspecified")
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
+    public static let exclusive =
+        PostPricesPriceRequestBodyCurrencyOptionsVariant0ValueTaxBehavior(rawValue: "exclusive")
+    public static let inclusive =
+        PostPricesPriceRequestBodyCurrencyOptionsVariant0ValueTaxBehavior(rawValue: "inclusive")
+    public static let unspecified =
+        PostPricesPriceRequestBodyCurrencyOptionsVariant0ValueTaxBehavior(rawValue: "unspecified")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -139,15 +167,19 @@ public struct PostPricesPriceRequestBodyCurrencyOptionsVariant0ValueTaxBehavior:
     }
 }
 
-public struct PostPricesPriceRequestBodyCurrencyOptionsVariant0ValueTiersItX2b025534d9: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostPricesPriceRequestBodyCurrencyOptionsVariant0ValueTiersItX2b025534d9: RawRepresentable, Hashable,
+    Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let inf = PostPricesPriceRequestBodyCurrencyOptionsVariant0ValueTiersItX2b025534d9(rawValue: "inf")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -156,15 +188,19 @@ public struct PostPricesPriceRequestBodyCurrencyOptionsVariant0ValueTiersItX2b02
     }
 }
 
-public struct PostPricesPriceRequestBodyCurrencyOptionsVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostPricesPriceRequestBodyCurrencyOptionsVariant1: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostPricesPriceRequestBodyCurrencyOptionsVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -173,15 +209,19 @@ public struct PostPricesPriceRequestBodyCurrencyOptionsVariant1: RawRepresentabl
     }
 }
 
-public struct PostPricesPriceRequestBodyMetadataVariant1: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct PostPricesPriceRequestBodyMetadataVariant1: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let unknown = PostPricesPriceRequestBodyMetadataVariant1(rawValue: "")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -196,14 +236,17 @@ public struct PostPricesPriceRequestBodyMetadataVariant1: RawRepresentable, Hash
 public struct PostPricesPriceRequestBodyTaxBehavior: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let exclusive = PostPricesPriceRequestBodyTaxBehavior(rawValue: "exclusive")
     public static let inclusive = PostPricesPriceRequestBodyTaxBehavior(rawValue: "inclusive")
     public static let unspecified = PostPricesPriceRequestBodyTaxBehavior(rawValue: "unspecified")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

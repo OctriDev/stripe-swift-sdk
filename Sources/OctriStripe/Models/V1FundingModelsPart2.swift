@@ -3,50 +3,81 @@
 
 import Foundation
 
-// V1Funding domain models
-extension FundingInstructionsBankTransferSpeiRecord {
-    public init(from decoder: Decoder) throws {
+/// V1Funding domain models
+public extension FundingInstructionsBankTransferSpeiRecord {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.accountHolderAddress) else {
-            throw SdkValidationError(field: "account_holder_address", code: "required", message: "Validation failed for 'account_holder_address': value is required")
+            throw SdkValidationError(
+                field: "account_holder_address",
+                code: "required",
+                message: "Validation failed for 'account_holder_address': value is required"
+            )
         }
         guard container.contains(.accountHolderName) else {
-            throw SdkValidationError(field: "account_holder_name", code: "required", message: "Validation failed for 'account_holder_name': value is required")
+            throw SdkValidationError(
+                field: "account_holder_name",
+                code: "required",
+                message: "Validation failed for 'account_holder_name': value is required"
+            )
         }
         guard container.contains(.bankAddress) else {
-            throw SdkValidationError(field: "bank_address", code: "required", message: "Validation failed for 'bank_address': value is required")
+            throw SdkValidationError(
+                field: "bank_address",
+                code: "required",
+                message: "Validation failed for 'bank_address': value is required"
+            )
         }
         guard container.contains(.bankCode) else {
-            throw SdkValidationError(field: "bank_code", code: "required", message: "Validation failed for 'bank_code': value is required")
+            throw SdkValidationError(
+                field: "bank_code",
+                code: "required",
+                message: "Validation failed for 'bank_code': value is required"
+            )
         }
         guard container.contains(.bankName) else {
-            throw SdkValidationError(field: "bank_name", code: "required", message: "Validation failed for 'bank_name': value is required")
+            throw SdkValidationError(
+                field: "bank_name",
+                code: "required",
+                message: "Validation failed for 'bank_name': value is required"
+            )
         }
         guard container.contains(.clabe) else {
-            throw SdkValidationError(field: "clabe", code: "required", message: "Validation failed for 'clabe': value is required")
+            throw SdkValidationError(
+                field: "clabe",
+                code: "required",
+                message: "Validation failed for 'clabe': value is required"
+            )
         }
-        self.accountHolderAddress = try container.sdkDecodeRequired(.accountHolderAddress)
-        self.accountHolderName = try container.sdkDecodeRequired(.accountHolderName)
-        self.bankAddress = try container.sdkDecodeRequired(.bankAddress)
-        self.bankCode = try container.sdkDecodeRequired(.bankCode)
-        self.bankName = try container.sdkDecodeRequired(.bankName)
-        self.clabe = try container.sdkDecodeRequired(.clabe)
-            try validateLength("account_holder_name", self.accountHolderName, min: nil, max: 5000)
-            try validateLength("bank_code", self.bankCode, min: nil, max: 5000)
-            try validateLength("bank_name", self.bankName, min: nil, max: 5000)
-            try validateLength("clabe", self.clabe, min: nil, max: 5000)
+        accountHolderAddress = try container.sdkDecodeRequired(.accountHolderAddress)
+        accountHolderName = try container.sdkDecodeRequired(.accountHolderName)
+        bankAddress = try container.sdkDecodeRequired(.bankAddress)
+        bankCode = try container.sdkDecodeRequired(.bankCode)
+        bankName = try container.sdkDecodeRequired(.bankName)
+        clabe = try container.sdkDecodeRequired(.clabe)
+        try validateLength("account_holder_name", accountHolderName, min: nil, max: 5000)
+        try validateLength("bank_code", bankCode, min: nil, max: 5000)
+        try validateLength("bank_name", bankName, min: nil, max: 5000)
+        try validateLength("clabe", clabe, min: nil, max: 5000)
     }
 }
 
-extension FundingInstructionsBankTransferSpeiRecord {
-    public init(accountHolderAddress: Address, accountHolderName: String, bankAddress: Address, bankCode: String, bankName: String, clabe: String) throws {
+public extension FundingInstructionsBankTransferSpeiRecord {
+    init(
+        accountHolderAddress: Address,
+        accountHolderName: String,
+        bankAddress: Address,
+        bankCode: String,
+        bankName: String,
+        clabe: String
+    ) throws {
         (self.accountHolderAddress, self.accountHolderName) = (accountHolderAddress, accountHolderName)
         (self.bankAddress, self.bankCode) = (bankAddress, bankCode)
         (self.bankName, self.clabe) = (bankName, clabe)
-            try validateLength("account_holder_name", self.accountHolderName, min: nil, max: 5000)
-            try validateLength("bank_code", self.bankCode, min: nil, max: 5000)
-            try validateLength("bank_name", self.bankName, min: nil, max: 5000)
-            try validateLength("clabe", self.clabe, min: nil, max: 5000)
+        try validateLength("account_holder_name", self.accountHolderName, min: nil, max: 5000)
+        try validateLength("bank_code", self.bankCode, min: nil, max: 5000)
+        try validateLength("bank_name", self.bankName, min: nil, max: 5000)
+        try validateLength("clabe", self.clabe, min: nil, max: 5000)
     }
 }
 
@@ -77,59 +108,97 @@ public struct FundingInstructionsBankTransferSwiftRecord: Codable {
         case swiftCode = "swift_code"
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension FundingInstructionsBankTransferSwiftRecord {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.accountHolderAddress) else {
-            throw SdkValidationError(field: "account_holder_address", code: "required", message: "Validation failed for 'account_holder_address': value is required")
-        }
-        guard container.contains(.accountHolderName) else {
-            throw SdkValidationError(field: "account_holder_name", code: "required", message: "Validation failed for 'account_holder_name': value is required")
-        }
-        guard container.contains(.accountNumber) else {
-            throw SdkValidationError(field: "account_number", code: "required", message: "Validation failed for 'account_number': value is required")
-        }
-        guard container.contains(.accountType) else {
-            throw SdkValidationError(field: "account_type", code: "required", message: "Validation failed for 'account_type': value is required")
-        }
-        guard container.contains(.bankAddress) else {
-            throw SdkValidationError(field: "bank_address", code: "required", message: "Validation failed for 'bank_address': value is required")
-        }
-        guard container.contains(.bankName) else {
-            throw SdkValidationError(field: "bank_name", code: "required", message: "Validation failed for 'bank_name': value is required")
-        }
-        guard container.contains(.swiftCode) else {
-            throw SdkValidationError(field: "swift_code", code: "required", message: "Validation failed for 'swift_code': value is required")
-        }
-        self.accountHolderAddress = try container.sdkDecodeRequired(.accountHolderAddress)
-        self.accountHolderName = try container.sdkDecodeRequired(.accountHolderName)
-        self.accountNumber = try container.sdkDecodeRequired(.accountNumber)
-        self.accountType = try container.sdkDecodeRequired(.accountType)
-        self.bankAddress = try container.sdkDecodeRequired(.bankAddress)
-        self.bankName = try container.sdkDecodeRequired(.bankName)
-        self.swiftCode = try container.sdkDecodeRequired(.swiftCode)
-            try validateLength("account_holder_name", self.accountHolderName, min: nil, max: 5000)
-            try validateLength("account_number", self.accountNumber, min: nil, max: 5000)
-            try validateLength("account_type", self.accountType, min: nil, max: 5000)
-            try validateLength("bank_name", self.bankName, min: nil, max: 5000)
-            try validateLength("swift_code", self.swiftCode, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension FundingInstructionsBankTransferSwiftRecord {
-    public init(accountHolderAddress: Address, accountHolderName: String, accountNumber: String, accountType: String, bankAddress: Address, bankName: String, swiftCode: String) throws {
+public extension FundingInstructionsBankTransferSwiftRecord {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.accountHolderAddress) else {
+            throw SdkValidationError(
+                field: "account_holder_address",
+                code: "required",
+                message: "Validation failed for 'account_holder_address': value is required"
+            )
+        }
+        guard container.contains(.accountHolderName) else {
+            throw SdkValidationError(
+                field: "account_holder_name",
+                code: "required",
+                message: "Validation failed for 'account_holder_name': value is required"
+            )
+        }
+        guard container.contains(.accountNumber) else {
+            throw SdkValidationError(
+                field: "account_number",
+                code: "required",
+                message: "Validation failed for 'account_number': value is required"
+            )
+        }
+        guard container.contains(.accountType) else {
+            throw SdkValidationError(
+                field: "account_type",
+                code: "required",
+                message: "Validation failed for 'account_type': value is required"
+            )
+        }
+        guard container.contains(.bankAddress) else {
+            throw SdkValidationError(
+                field: "bank_address",
+                code: "required",
+                message: "Validation failed for 'bank_address': value is required"
+            )
+        }
+        guard container.contains(.bankName) else {
+            throw SdkValidationError(
+                field: "bank_name",
+                code: "required",
+                message: "Validation failed for 'bank_name': value is required"
+            )
+        }
+        guard container.contains(.swiftCode) else {
+            throw SdkValidationError(
+                field: "swift_code",
+                code: "required",
+                message: "Validation failed for 'swift_code': value is required"
+            )
+        }
+        accountHolderAddress = try container.sdkDecodeRequired(.accountHolderAddress)
+        accountHolderName = try container.sdkDecodeRequired(.accountHolderName)
+        accountNumber = try container.sdkDecodeRequired(.accountNumber)
+        accountType = try container.sdkDecodeRequired(.accountType)
+        bankAddress = try container.sdkDecodeRequired(.bankAddress)
+        bankName = try container.sdkDecodeRequired(.bankName)
+        swiftCode = try container.sdkDecodeRequired(.swiftCode)
+        try validateLength("account_holder_name", accountHolderName, min: nil, max: 5000)
+        try validateLength("account_number", accountNumber, min: nil, max: 5000)
+        try validateLength("account_type", accountType, min: nil, max: 5000)
+        try validateLength("bank_name", bankName, min: nil, max: 5000)
+        try validateLength("swift_code", swiftCode, min: nil, max: 5000)
+    }
+}
+
+public extension FundingInstructionsBankTransferSwiftRecord {
+    init(
+        accountHolderAddress: Address,
+        accountHolderName: String,
+        accountNumber: String,
+        accountType: String,
+        bankAddress: Address,
+        bankName: String,
+        swiftCode: String
+    ) throws {
         (self.accountHolderAddress, self.accountHolderName) = (accountHolderAddress, accountHolderName)
         (self.accountNumber, self.accountType) = (accountNumber, accountType)
         (self.bankAddress, self.bankName) = (bankAddress, bankName)
         self.swiftCode = swiftCode
-            try validateLength("account_holder_name", self.accountHolderName, min: nil, max: 5000)
-            try validateLength("account_number", self.accountNumber, min: nil, max: 5000)
-            try validateLength("account_type", self.accountType, min: nil, max: 5000)
-            try validateLength("bank_name", self.bankName, min: nil, max: 5000)
-            try validateLength("swift_code", self.swiftCode, min: nil, max: 5000)
+        try validateLength("account_holder_name", self.accountHolderName, min: nil, max: 5000)
+        try validateLength("account_number", self.accountNumber, min: nil, max: 5000)
+        try validateLength("account_type", self.accountType, min: nil, max: 5000)
+        try validateLength("bank_name", self.bankName, min: nil, max: 5000)
+        try validateLength("swift_code", self.swiftCode, min: nil, max: 5000)
     }
 }
 
@@ -166,33 +235,53 @@ public struct FundingInstructionsBankTransferZenginRecord: Codable {
         case branchName = "branch_name"
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension FundingInstructionsBankTransferZenginRecord {
-    public init(from decoder: Decoder) throws {
+public extension FundingInstructionsBankTransferZenginRecord {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.accountHolderAddress) else {
-            throw SdkValidationError(field: "account_holder_address", code: "required", message: "Validation failed for 'account_holder_address': value is required")
+            throw SdkValidationError(
+                field: "account_holder_address",
+                code: "required",
+                message: "Validation failed for 'account_holder_address': value is required"
+            )
         }
         guard container.contains(.bankAddress) else {
-            throw SdkValidationError(field: "bank_address", code: "required", message: "Validation failed for 'bank_address': value is required")
+            throw SdkValidationError(
+                field: "bank_address",
+                code: "required",
+                message: "Validation failed for 'bank_address': value is required"
+            )
         }
-        self.accountHolderAddress = try container.sdkDecodeRequired(.accountHolderAddress)
-        self.bankAddress = try container.sdkDecodeRequired(.bankAddress)
-        self.accountHolderName = try container.sdkDecodeIfPresent(.accountHolderName)
-        self.accountNumber = try container.sdkDecodeIfPresent(.accountNumber)
-        self.accountType = try container.sdkDecodeIfPresent(.accountType)
-        self.bankCode = try container.sdkDecodeIfPresent(.bankCode)
-        self.bankName = try container.sdkDecodeIfPresent(.bankName)
-        self.branchCode = try container.sdkDecodeIfPresent(.branchCode)
-        self.branchName = try container.sdkDecodeIfPresent(.branchName)
+        accountHolderAddress = try container.sdkDecodeRequired(.accountHolderAddress)
+        bankAddress = try container.sdkDecodeRequired(.bankAddress)
+        accountHolderName = try container.sdkDecodeIfPresent(.accountHolderName)
+        accountNumber = try container.sdkDecodeIfPresent(.accountNumber)
+        accountType = try container.sdkDecodeIfPresent(.accountType)
+        bankCode = try container.sdkDecodeIfPresent(.bankCode)
+        bankName = try container.sdkDecodeIfPresent(.bankName)
+        branchCode = try container.sdkDecodeIfPresent(.branchCode)
+        branchName = try container.sdkDecodeIfPresent(.branchName)
         try sdkValidateConstraints()
     }
 }
 
-extension FundingInstructionsBankTransferZenginRecord {
-    public init(accountHolderAddress: Address, bankAddress: Address, accountHolderName: String? = nil, accountNumber: String? = nil, accountType: String? = nil, bankCode: String? = nil, bankName: String? = nil, branchCode: String? = nil, branchName: String? = nil) throws {
+public extension FundingInstructionsBankTransferZenginRecord {
+    init(
+        accountHolderAddress: Address,
+        bankAddress: Address,
+        accountHolderName: String? = nil,
+        accountNumber: String? = nil,
+        accountType: String? = nil,
+        bankCode: String? = nil,
+        bankName: String? = nil,
+        branchCode: String? = nil,
+        branchName: String? = nil
+    ) throws {
         (self.accountHolderAddress, self.bankAddress) = (accountHolderAddress, bankAddress)
         (self.accountHolderName, self.accountNumber) = (accountHolderName, accountNumber)
         (self.accountType, self.bankCode) = (accountType, bankCode)
@@ -204,25 +293,25 @@ extension FundingInstructionsBankTransferZenginRecord {
 
 extension FundingInstructionsBankTransferZenginRecord {
     func sdkValidateConstraints() throws {
-        if let value = self.accountHolderName {
+        if let value = accountHolderName {
             try validateLength("account_holder_name", value, min: nil, max: 5000)
         }
-        if let value = self.accountNumber {
+        if let value = accountNumber {
             try validateLength("account_number", value, min: nil, max: 5000)
         }
-        if let value = self.accountType {
+        if let value = accountType {
             try validateLength("account_type", value, min: nil, max: 5000)
         }
-        if let value = self.bankCode {
+        if let value = bankCode {
             try validateLength("bank_code", value, min: nil, max: 5000)
         }
-        if let value = self.bankName {
+        if let value = bankName {
             try validateLength("bank_name", value, min: nil, max: 5000)
         }
-        if let value = self.branchCode {
+        if let value = branchCode {
             try validateLength("branch_code", value, min: nil, max: 5000)
         }
-        if let value = self.branchName {
+        if let value = branchName {
             try validateLength("branch_name", value, min: nil, max: 5000)
         }
     }
@@ -232,12 +321,15 @@ extension FundingInstructionsBankTransferZenginRecord {
 public struct FundingInstructionsFundingType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let bankTransfer = FundingInstructionsFundingType(rawValue: "bank_transfer")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -247,14 +339,19 @@ public struct FundingInstructionsFundingType: RawRepresentable, Hashable, Codabl
 }
 
 /// Required enumerated value serialized in the `supported_networks[]` wire field.
-public struct FundingInstructionsBankTransferFinancialAddressSupportedNetworksItem: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct FundingInstructionsBankTransferFinancialAddressSupportedNetworksItem: RawRepresentable, Hashable, Codable,
+    Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let ach = FundingInstructionsBankTransferFinancialAddressSupportedNetworksItem(rawValue: "ach")
     public static let bacs = FundingInstructionsBankTransferFinancialAddressSupportedNetworksItem(rawValue: "bacs")
     public static let chaps = FundingInstructionsBankTransferFinancialAddressSupportedNetworksItem(rawValue: "chaps")
-    public static let domesticWireUs = FundingInstructionsBankTransferFinancialAddressSupportedNetworksItem(rawValue: "domestic_wire_us")
+    public static let domesticWireUs =
+        FundingInstructionsBankTransferFinancialAddressSupportedNetworksItem(rawValue: "domestic_wire_us")
     public static let fps = FundingInstructionsBankTransferFinancialAddressSupportedNetworksItem(rawValue: "fps")
     public static let sepa = FundingInstructionsBankTransferFinancialAddressSupportedNetworksItem(rawValue: "sepa")
     public static let spei = FundingInstructionsBankTransferFinancialAddressSupportedNetworksItem(rawValue: "spei")
@@ -263,7 +360,7 @@ public struct FundingInstructionsBankTransferFinancialAddressSupportedNetworksIt
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -276,12 +373,15 @@ public struct FundingInstructionsBankTransferFinancialAddressSupportedNetworksIt
 public struct FundingInstructionsObject: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let fundingInstructions = FundingInstructionsObject(rawValue: "funding_instructions")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -294,13 +394,16 @@ public struct FundingInstructionsObject: RawRepresentable, Hashable, Codable, Se
 public struct FundingInstructionsBankTransferType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let euBankTransfer = FundingInstructionsBankTransferType(rawValue: "eu_bank_transfer")
     public static let jpBankTransfer = FundingInstructionsBankTransferType(rawValue: "jp_bank_transfer")
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -310,10 +413,14 @@ public struct FundingInstructionsBankTransferType: RawRepresentable, Hashable, C
 }
 
 /// The type of financial address
-public struct FundingInstructionsBankTransferFinancialAddressType: RawRepresentable, Hashable, Codable, Sendable, SdkWireConvertible {
+public struct FundingInstructionsBankTransferFinancialAddressType: RawRepresentable, Hashable, Codable, Sendable,
+    SdkWireConvertible {
     public let rawValue: String
 
-    public init(rawValue: String) { self.rawValue = rawValue }
+    public init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     public static let aba = FundingInstructionsBankTransferFinancialAddressType(rawValue: "aba")
     public static let iban = FundingInstructionsBankTransferFinancialAddressType(rawValue: "iban")
     public static let sortCode = FundingInstructionsBankTransferFinancialAddressType(rawValue: "sort_code")
@@ -323,7 +430,7 @@ public struct FundingInstructionsBankTransferFinancialAddressType: RawRepresenta
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(rawValue: try container.decode(String.self))
+        try self.init(rawValue: container.decode(String.self))
     }
 
     public func encode(to encoder: Encoder) throws {

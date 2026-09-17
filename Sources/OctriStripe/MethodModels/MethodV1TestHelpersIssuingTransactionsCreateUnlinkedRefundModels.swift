@@ -7,8 +7,9 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1TestHelpersIssuingTransactionsCreateUnlinkedRefund operation model declarations
-public typealias PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX6a5d492df3 = [PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX4a2505f994]
+/// Canonical v1TestHelpersIssuingTransactionsCreateUnlinkedRefund operation model declarations
+public typealias PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX6a5d492df3 =
+    [PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX4a2505f994]
 
 public struct PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX71fe756837: Codable {
     public var departureAt: Int?
@@ -26,29 +27,35 @@ public struct PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX71fe
     }
 
     init() {
-        (self.departureAt, self.passengerName, self.refundable, self.segments, self.travelAgency) = (nil, nil, nil, nil, nil)
+        (departureAt, passengerName, refundable, segments, travelAgency) = (nil, nil, nil, nil, nil)
     }
 }
 
-extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX71fe756837 {
-    public init(from decoder: Decoder) throws {
+public extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX71fe756837 {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.departureAt = try container.sdkDecodeIfPresent(.departureAt)
-        self.passengerName = try container.sdkDecodeIfPresent(.passengerName)
-        self.refundable = try container.sdkDecodeIfPresent(.refundable)
-        self.segments = try container.sdkDecodeIfPresent(.segments)
-        self.travelAgency = try container.sdkDecodeIfPresent(.travelAgency)
-        if let value = self.passengerName {
+        departureAt = try container.sdkDecodeIfPresent(.departureAt)
+        passengerName = try container.sdkDecodeIfPresent(.passengerName)
+        refundable = try container.sdkDecodeIfPresent(.refundable)
+        segments = try container.sdkDecodeIfPresent(.segments)
+        travelAgency = try container.sdkDecodeIfPresent(.travelAgency)
+        if let value = passengerName {
             try validateLength("passenger_name", value, min: nil, max: 5000)
         }
-        if let value = self.travelAgency {
+        if let value = travelAgency {
             try validateLength("travel_agency", value, min: nil, max: 5000)
         }
     }
 }
 
-extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX71fe756837 {
-    public init(departureAt: Int? = nil, passengerName: String? = nil, refundable: Bool? = nil, segments: PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX6a5d492df3? = nil, travelAgency: String? = nil) throws {
+public extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX71fe756837 {
+    init(
+        departureAt: Int? = nil,
+        passengerName: String? = nil,
+        refundable: Bool? = nil,
+        segments: PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX6a5d492df3? = nil,
+        travelAgency: String? = nil
+    ) throws {
         self.init()
         (self.departureAt, self.passengerName) = (departureAt, passengerName)
         (self.refundable, self.segments) = (refundable, segments)
@@ -62,7 +69,8 @@ extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX71fe7568
     }
 }
 
-public typealias PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX4847cc88ef = [PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX362ae62efd]
+public typealias PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX4847cc88ef =
+    [PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX362ae62efd]
 
 /// Additional purchase information that is optionally provided by the merchant.
 public struct PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestXe8df3d9918: Codable {
@@ -87,28 +95,35 @@ public struct PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestXe8df
     }
 
     init() {
-        (self.fleet, self.flight, self.fuel, self.lodging, self.receipt) = (nil, nil, nil, nil, nil)
-        self.reference = nil
+        (fleet, flight, fuel, lodging, receipt) = (nil, nil, nil, nil, nil)
+        reference = nil
     }
 }
 
-extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestXe8df3d9918 {
-    public init(from decoder: Decoder) throws {
+public extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestXe8df3d9918 {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.fleet = try container.sdkDecodeIfPresent(.fleet)
-        self.flight = try container.sdkDecodeIfPresent(.flight)
-        self.fuel = try container.sdkDecodeIfPresent(.fuel)
-        self.lodging = try container.sdkDecodeIfPresent(.lodging)
-        self.receipt = try container.sdkDecodeIfPresent(.receipt)
-        self.reference = try container.sdkDecodeIfPresent(.reference)
-        if let value = self.reference {
+        fleet = try container.sdkDecodeIfPresent(.fleet)
+        flight = try container.sdkDecodeIfPresent(.flight)
+        fuel = try container.sdkDecodeIfPresent(.fuel)
+        lodging = try container.sdkDecodeIfPresent(.lodging)
+        receipt = try container.sdkDecodeIfPresent(.receipt)
+        reference = try container.sdkDecodeIfPresent(.reference)
+        if let value = reference {
             try validateLength("reference", value, min: nil, max: 5000)
         }
     }
 }
 
-extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestXe8df3d9918 {
-    public init(fleet: PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX435dcbb545? = nil, flight: PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX71fe756837? = nil, fuel: PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX07a446478c? = nil, lodging: PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX037abb0631? = nil, receipt: PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX4847cc88ef? = nil, reference: String? = nil) throws {
+public extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestXe8df3d9918 {
+    init(
+        fleet: PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX435dcbb545? = nil,
+        flight: PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX71fe756837? = nil,
+        fuel: PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX07a446478c? = nil,
+        lodging: PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX037abb0631? = nil,
+        receipt: PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX4847cc88ef? = nil,
+        reference: String? = nil
+    ) throws {
         self.init()
         (self.fleet, self.flight) = (fleet, flight)
         (self.fuel, self.lodging) = (fuel, lodging)
@@ -127,19 +142,19 @@ public struct PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestXb707
     }
 
     init() {
-        self.grossAmountDecimal = nil
+        grossAmountDecimal = nil
     }
 }
 
-extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestXb70714300b {
-    public init(from decoder: Decoder) throws {
+public extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestXb70714300b {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.grossAmountDecimal = try container.sdkDecodeIfPresent(.grossAmountDecimal)
+        grossAmountDecimal = try container.sdkDecodeIfPresent(.grossAmountDecimal)
     }
 }
 
-extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestXb70714300b {
-    public init(grossAmountDecimal: String? = nil) {
+public extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestXb70714300b {
+    init(grossAmountDecimal: String? = nil) {
         self.init()
         self.grossAmountDecimal = grossAmountDecimal
     }
@@ -161,32 +176,38 @@ public struct PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX07a4
     }
 
     init() {
-        (self.industryProductCode, self.quantityDecimal, self.type, self.unit, self.unitCostDecimal) = (nil, nil, nil, nil, nil)
+        (industryProductCode, quantityDecimal, type, unit, unitCostDecimal) = (nil, nil, nil, nil, nil)
     }
 }
 
-extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX07a446478c {
-    public init(from decoder: Decoder) throws {
+public extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX07a446478c {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.industryProductCode = try container.sdkDecodeIfPresent(.industryProductCode)
-        self.quantityDecimal = try container.sdkDecodeIfPresent(.quantityDecimal)
-        self.type = try container.sdkDecodeIfPresent(.type)
-        self.unit = try container.sdkDecodeIfPresent(.unit)
-        self.unitCostDecimal = try container.sdkDecodeIfPresent(.unitCostDecimal)
-        if let value = self.industryProductCode {
+        industryProductCode = try container.sdkDecodeIfPresent(.industryProductCode)
+        quantityDecimal = try container.sdkDecodeIfPresent(.quantityDecimal)
+        type = try container.sdkDecodeIfPresent(.type)
+        unit = try container.sdkDecodeIfPresent(.unit)
+        unitCostDecimal = try container.sdkDecodeIfPresent(.unitCostDecimal)
+        if let value = industryProductCode {
             try validateLength("industry_product_code", value, min: nil, max: 5000)
         }
-        if let value = self.type {
+        if let value = type {
             try validateLength("type", sdkWireString(value), min: nil, max: 5000)
         }
-        if let value = self.unit {
+        if let value = unit {
             try validateLength("unit", sdkWireString(value), min: nil, max: 5000)
         }
     }
 }
 
-extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX07a446478c {
-    public init(industryProductCode: String? = nil, quantityDecimal: String? = nil, type: PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestXb3dfbd5c84? = nil, unit: PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX9748c61296? = nil, unitCostDecimal: String? = nil) throws {
+public extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX07a446478c {
+    init(
+        industryProductCode: String? = nil,
+        quantityDecimal: String? = nil,
+        type: PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestXb3dfbd5c84? = nil,
+        unit: PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX9748c61296? = nil,
+        unitCostDecimal: String? = nil
+    ) throws {
         self.init()
         (self.industryProductCode, self.quantityDecimal) = (industryProductCode, quantityDecimal)
         (self.type, self.unit) = (type, unit)
@@ -213,20 +234,20 @@ public struct PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX037a
     }
 
     init() {
-        (self.checkInAt, self.nights) = (nil, nil)
+        (checkInAt, nights) = (nil, nil)
     }
 }
 
-extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX037abb0631 {
-    public init(from decoder: Decoder) throws {
+public extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX037abb0631 {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.checkInAt = try container.sdkDecodeIfPresent(.checkInAt)
-        self.nights = try container.sdkDecodeIfPresent(.nights)
+        checkInAt = try container.sdkDecodeIfPresent(.checkInAt)
+        nights = try container.sdkDecodeIfPresent(.nights)
     }
 }
 
-extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX037abb0631 {
-    public init(checkInAt: Int? = nil, nights: Int? = nil) {
+public extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX037abb0631 {
+    init(checkInAt: Int? = nil, nights: Int? = nil) {
         self.init()
         (self.checkInAt, self.nights) = (checkInAt, nights)
     }
@@ -247,21 +268,25 @@ public struct PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX8636
     }
 
     init() {
-        (self.fuel, self.nonFuel, self.tax) = (nil, nil, nil)
+        (fuel, nonFuel, tax) = (nil, nil, nil)
     }
 }
 
-extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX86369463c8 {
-    public init(from decoder: Decoder) throws {
+public extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX86369463c8 {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.fuel = try container.sdkDecodeIfPresent(.fuel)
-        self.nonFuel = try container.sdkDecodeIfPresent(.nonFuel)
-        self.tax = try container.sdkDecodeIfPresent(.tax)
+        fuel = try container.sdkDecodeIfPresent(.fuel)
+        nonFuel = try container.sdkDecodeIfPresent(.nonFuel)
+        tax = try container.sdkDecodeIfPresent(.tax)
     }
 }
 
-extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX86369463c8 {
-    public init(fuel: PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestXb70714300b? = nil, nonFuel: PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX273d1aa48e? = nil, tax: PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestXc186078b00? = nil) {
+public extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX86369463c8 {
+    init(
+        fuel: PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestXb70714300b? = nil,
+        nonFuel: PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX273d1aa48e? = nil,
+        tax: PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestXc186078b00? = nil
+    ) {
         self.init()
         (self.fuel, self.nonFuel) = (fuel, nonFuel)
         self.tax = tax
@@ -276,19 +301,19 @@ public struct PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX273d
     }
 
     init() {
-        self.grossAmountDecimal = nil
+        grossAmountDecimal = nil
     }
 }
 
-extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX273d1aa48e {
-    public init(from decoder: Decoder) throws {
+public extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX273d1aa48e {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.grossAmountDecimal = try container.sdkDecodeIfPresent(.grossAmountDecimal)
+        grossAmountDecimal = try container.sdkDecodeIfPresent(.grossAmountDecimal)
     }
 }
 
-extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX273d1aa48e {
-    public init(grossAmountDecimal: String? = nil) {
+public extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX273d1aa48e {
+    init(grossAmountDecimal: String? = nil) {
         self.init()
         self.grossAmountDecimal = grossAmountDecimal
     }
@@ -310,35 +335,41 @@ public struct PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX0739
     }
 
     init() {
-        (self.driverId, self.odometer, self.unspecifiedId, self.userId, self.vehicleNumber) = (nil, nil, nil, nil, nil)
+        (driverId, odometer, unspecifiedId, userId, vehicleNumber) = (nil, nil, nil, nil, nil)
     }
 }
 
-extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX073948ab52 {
-    public init(from decoder: Decoder) throws {
+public extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX073948ab52 {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.driverId = try container.sdkDecodeIfPresent(.driverId)
-        self.odometer = try container.sdkDecodeIfPresent(.odometer)
-        self.unspecifiedId = try container.sdkDecodeIfPresent(.unspecifiedId)
-        self.userId = try container.sdkDecodeIfPresent(.userId)
-        self.vehicleNumber = try container.sdkDecodeIfPresent(.vehicleNumber)
-        if let value = self.driverId {
+        driverId = try container.sdkDecodeIfPresent(.driverId)
+        odometer = try container.sdkDecodeIfPresent(.odometer)
+        unspecifiedId = try container.sdkDecodeIfPresent(.unspecifiedId)
+        userId = try container.sdkDecodeIfPresent(.userId)
+        vehicleNumber = try container.sdkDecodeIfPresent(.vehicleNumber)
+        if let value = driverId {
             try validateLength("driver_id", value, min: nil, max: 5000)
         }
-        if let value = self.unspecifiedId {
+        if let value = unspecifiedId {
             try validateLength("unspecified_id", value, min: nil, max: 5000)
         }
-        if let value = self.userId {
+        if let value = userId {
             try validateLength("user_id", value, min: nil, max: 5000)
         }
-        if let value = self.vehicleNumber {
+        if let value = vehicleNumber {
             try validateLength("vehicle_number", value, min: nil, max: 5000)
         }
     }
 }
 
-extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX073948ab52 {
-    public init(driverId: String? = nil, odometer: Int? = nil, unspecifiedId: String? = nil, userId: String? = nil, vehicleNumber: String? = nil) throws {
+public extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX073948ab52 {
+    init(
+        driverId: String? = nil,
+        odometer: Int? = nil,
+        unspecifiedId: String? = nil,
+        userId: String? = nil,
+        vehicleNumber: String? = nil
+    ) throws {
         self.init()
         (self.driverId, self.odometer) = (driverId, odometer)
         (self.unspecifiedId, self.userId) = (unspecifiedId, userId)
@@ -372,25 +403,25 @@ public struct PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX362a
     }
 
     init() {
-        (self.description, self.quantity, self.total, self.unitCost) = (nil, nil, nil, nil)
+        (description, quantity, total, unitCost) = (nil, nil, nil, nil)
     }
 }
 
-extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX362ae62efd {
-    public init(from decoder: Decoder) throws {
+public extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX362ae62efd {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.description = try container.sdkDecodeIfPresent(.description)
-        self.quantity = try container.sdkDecodeIfPresent(.quantity)
-        self.total = try container.sdkDecodeIfPresent(.total)
-        self.unitCost = try container.sdkDecodeIfPresent(.unitCost)
-        if let value = self.description {
+        description = try container.sdkDecodeIfPresent(.description)
+        quantity = try container.sdkDecodeIfPresent(.quantity)
+        total = try container.sdkDecodeIfPresent(.total)
+        unitCost = try container.sdkDecodeIfPresent(.unitCost)
+        if let value = description {
             try validateLength("description", value, min: nil, max: 26)
         }
     }
 }
 
-extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX362ae62efd {
-    public init(description: String? = nil, quantity: String? = nil, total: Int? = nil, unitCost: Int? = nil) throws {
+public extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX362ae62efd {
+    init(description: String? = nil, quantity: String? = nil, total: Int? = nil, unitCost: Int? = nil) throws {
         self.init()
         (self.description, self.quantity) = (description, quantity)
         (self.total, self.unitCost) = (total, unitCost)
@@ -418,40 +449,47 @@ public struct PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX4a25
     }
 
     init() {
-        (self.arrivalAirportCode, self.carrier, self.departureAirportCode, self.flightNumber, self.serviceClass) = (nil, nil, nil, nil, nil)
-        self.stopoverAllowed = nil
+        (arrivalAirportCode, carrier, departureAirportCode, flightNumber, serviceClass) = (nil, nil, nil, nil, nil)
+        stopoverAllowed = nil
     }
 }
 
-extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX4a2505f994 {
-    public init(from decoder: Decoder) throws {
+public extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX4a2505f994 {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.arrivalAirportCode = try container.sdkDecodeIfPresent(.arrivalAirportCode)
-        self.carrier = try container.sdkDecodeIfPresent(.carrier)
-        self.departureAirportCode = try container.sdkDecodeIfPresent(.departureAirportCode)
-        self.flightNumber = try container.sdkDecodeIfPresent(.flightNumber)
-        self.serviceClass = try container.sdkDecodeIfPresent(.serviceClass)
-        self.stopoverAllowed = try container.sdkDecodeIfPresent(.stopoverAllowed)
-        if let value = self.arrivalAirportCode {
+        arrivalAirportCode = try container.sdkDecodeIfPresent(.arrivalAirportCode)
+        carrier = try container.sdkDecodeIfPresent(.carrier)
+        departureAirportCode = try container.sdkDecodeIfPresent(.departureAirportCode)
+        flightNumber = try container.sdkDecodeIfPresent(.flightNumber)
+        serviceClass = try container.sdkDecodeIfPresent(.serviceClass)
+        stopoverAllowed = try container.sdkDecodeIfPresent(.stopoverAllowed)
+        if let value = arrivalAirportCode {
             try validateLength("arrival_airport_code", value, min: nil, max: 3)
         }
-        if let value = self.carrier {
+        if let value = carrier {
             try validateLength("carrier", value, min: nil, max: 5000)
         }
-        if let value = self.departureAirportCode {
+        if let value = departureAirportCode {
             try validateLength("departure_airport_code", value, min: nil, max: 3)
         }
-        if let value = self.flightNumber {
+        if let value = flightNumber {
             try validateLength("flight_number", value, min: nil, max: 5000)
         }
-        if let value = self.serviceClass {
+        if let value = serviceClass {
             try validateLength("service_class", value, min: nil, max: 5000)
         }
     }
 }
 
-extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX4a2505f994 {
-    public init(arrivalAirportCode: String? = nil, carrier: String? = nil, departureAirportCode: String? = nil, flightNumber: String? = nil, serviceClass: String? = nil, stopoverAllowed: Bool? = nil) throws {
+public extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX4a2505f994 {
+    init(
+        arrivalAirportCode: String? = nil,
+        carrier: String? = nil,
+        departureAirportCode: String? = nil,
+        flightNumber: String? = nil,
+        serviceClass: String? = nil,
+        stopoverAllowed: Bool? = nil
+    ) throws {
         self.init()
         (self.arrivalAirportCode, self.carrier) = (arrivalAirportCode, carrier)
         (self.departureAirportCode, self.flightNumber) = (departureAirportCode, flightNumber)
@@ -484,20 +522,20 @@ public struct PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestXc186
     }
 
     init() {
-        (self.localAmountDecimal, self.nationalAmountDecimal) = (nil, nil)
+        (localAmountDecimal, nationalAmountDecimal) = (nil, nil)
     }
 }
 
-extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestXc186078b00 {
-    public init(from decoder: Decoder) throws {
+public extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestXc186078b00 {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.localAmountDecimal = try container.sdkDecodeIfPresent(.localAmountDecimal)
-        self.nationalAmountDecimal = try container.sdkDecodeIfPresent(.nationalAmountDecimal)
+        localAmountDecimal = try container.sdkDecodeIfPresent(.localAmountDecimal)
+        nationalAmountDecimal = try container.sdkDecodeIfPresent(.nationalAmountDecimal)
     }
 }
 
-extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestXc186078b00 {
-    public init(localAmountDecimal: String? = nil, nationalAmountDecimal: String? = nil) {
+public extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestXc186078b00 {
+    init(localAmountDecimal: String? = nil, nationalAmountDecimal: String? = nil) {
         self.init()
         (self.localAmountDecimal, self.nationalAmountDecimal) = (localAmountDecimal, nationalAmountDecimal)
     }
@@ -519,21 +557,21 @@ public struct PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX435d
     }
 
     init() {
-        (self.cardholderPromptData, self.purchaseType, self.reportedBreakdown, self.serviceType) = (nil, nil, nil, nil)
+        (cardholderPromptData, purchaseType, reportedBreakdown, serviceType) = (nil, nil, nil, nil)
     }
 }
 
-extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX435dcbb545 {
-    public init(from decoder: Decoder) throws {
+public extension PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequestX435dcbb545 {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.cardholderPromptData = try container.sdkDecodeIfPresent(.cardholderPromptData)
-        self.purchaseType = try container.sdkDecodeIfPresent(.purchaseType)
-        self.reportedBreakdown = try container.sdkDecodeIfPresent(.reportedBreakdown)
-        self.serviceType = try container.sdkDecodeIfPresent(.serviceType)
-        if let value = self.purchaseType {
+        cardholderPromptData = try container.sdkDecodeIfPresent(.cardholderPromptData)
+        purchaseType = try container.sdkDecodeIfPresent(.purchaseType)
+        reportedBreakdown = try container.sdkDecodeIfPresent(.reportedBreakdown)
+        serviceType = try container.sdkDecodeIfPresent(.serviceType)
+        if let value = purchaseType {
             try validateLength("purchase_type", sdkWireString(value), min: nil, max: 5000)
         }
-        if let value = self.serviceType {
+        if let value = serviceType {
             try validateLength("service_type", sdkWireString(value), min: nil, max: 5000)
         }
     }

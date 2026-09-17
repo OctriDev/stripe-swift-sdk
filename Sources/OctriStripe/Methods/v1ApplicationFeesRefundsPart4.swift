@@ -6,10 +6,16 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1ApplicationFeesRefundsMethods {
-    /// Creates a refund for an application fee that was previously collected. Supply `amount` to issue a partial refund, and use `metadata` to attach structured key-value information to the refund. You can issue multiple partial refunds until the full fee has been refunded.
+public extension V1ApplicationFeesRefundsMethods {
+    /// Creates a refund for an application fee that was previously collected. Supply `amount` to issue a partial
+    /// refund, and use `metadata` to attach structured key-value information to the refund. You can issue multiple
+    /// partial refunds until the full fee has been refunded.
     ///
-    /// Refunds an application fee that has previously been collected but not yet refunded. Funds will be refunded to the Stripe account from which the fee was originally collected. You can optionally refund only part of an application fee. You can do so multiple times, until the entire fee has been refunded. Once entirely refunded, an application fee can’t be refunded again. This method will raise an error when called on an already-refunded application fee, or when trying to refund more money than is left on an application fee.
+    /// Refunds an application fee that has previously been collected but not yet refunded. Funds will be refunded to
+    /// the Stripe account from which the fee was originally collected. You can optionally refund only part of an
+    /// application fee. You can do so multiple times, until the entire fee has been refunded. Once entirely refunded,
+    /// an application fee can’t be refunded again. This method will raise an error when called on an already-refunded
+    /// application fee, or when trying to refund more money than is left on an application fee.
     ///
     /// - Parameters:
     /// - amount: A positive integer, in _cents (or local equivalent)_, representing
@@ -21,11 +27,25 @@ extension V1ApplicationFeesRefundsMethods {
     ///   information about the object in a structured format. Individual keys can be
     ///   unset by posting an empty value to them. All keys can be unset by posting an
     ///   empty value to `metadata`.
-    public static func postApplicationFeesIdRefunds(config: ClientConfig, id: String, amount: Int?, expand: [String]?, metadata: [String: String]?) async throws -> FeeRefund {
+    static func postApplicationFeesIdRefunds(
+        config: ClientConfig,
+        id: String,
+        amount: Int?,
+        expand: [String]?,
+        metadata: [String: String]?
+    ) async throws -> FeeRefund {
         try validateLength("id", id, max: 5000)
 
         let requestBody = PostApplicationFeesIdRefundsRequestBody(amount: amount, expand: expand, metadata: metadata)
 
-        return try (await sdkRequest("POST", ["/v1/application_fees/", sdkEncodePathSegment(sdkWireString(id)), "/refunds"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostApplicationFeesIdRefunds")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/application_fees/", sdkEncodePathSegment(sdkWireString(id)), "/refunds"].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostApplicationFeesIdRefunds"
+        )).data
     }
 }

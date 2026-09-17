@@ -7,7 +7,9 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1PaymentIntentsApplyCustomerBalanceMethods {
-    /// Applies customer cash balance funds to reconcile the remaining amount of a customer-balance PaymentIntent. Supply `amount` and `currency` when you need to control the amount applied; for an Invoice-created PaymentIntent, the full PaymentIntent amount is applied regardless of `amount`.
+    /// Applies customer cash balance funds to reconcile the remaining amount of a customer-balance PaymentIntent.
+    /// Supply `amount` and `currency` when you need to control the amount applied; for an Invoice-created
+    /// PaymentIntent, the full PaymentIntent amount is applied regardless of `amount`.
     ///
     /// Manually reconcile the remaining amount for a customer_balance PaymentIntent.
     ///
@@ -24,11 +26,29 @@ public enum V1PaymentIntentsApplyCustomerBalanceMethods {
     ///   code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must
     ///   be a [supported currency](https://stripe.com/docs/currencies).
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func postPaymentIntentsIntentApplyCustomerBalance(config: ClientConfig, intent: String, amount: Int?, currency: String?, expand: [String]?) async throws -> PaymentIntent {
+    public static func postPaymentIntentsIntentApplyCustomerBalance(
+        config: ClientConfig,
+        intent: String,
+        amount: Int?,
+        currency: String?,
+        expand: [String]?
+    ) async throws -> PaymentIntent {
         try validateLength("intent", intent, max: 5000)
 
-        let requestBody = PostPaymentIntentsIntentApplyCustomerBalanceRequestBody(amount: amount, currency: currency, expand: expand)
+        let requestBody = PostPaymentIntentsIntentApplyCustomerBalanceRequestBody(
+            amount: amount,
+            currency: currency,
+            expand: expand
+        )
 
-        return try (await sdkRequest("POST", ["/v1/payment_intents/", sdkEncodePathSegment(sdkWireString(intent)), "/apply_customer_balance"].joined(), config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostPaymentIntentsIntentApplyCustomerBalance")).data
+        return try await (sdkRequest(
+            "POST",
+            ["/v1/payment_intents/", sdkEncodePathSegment(sdkWireString(intent)), "/apply_customer_balance"].joined(),
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostPaymentIntentsIntentApplyCustomerBalance"
+        )).data
     }
 }

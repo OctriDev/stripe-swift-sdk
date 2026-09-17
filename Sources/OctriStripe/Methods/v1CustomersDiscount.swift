@@ -7,23 +7,46 @@ import Foundation
     import FoundationNetworking
 #endif
 public enum V1CustomersDiscountMethods {
-    /// Deletes the discount currently applied to a customer. Use `customer` to identify the customer whose discount you want to remove, and the response confirms deletion with a `deleted` value of true.
+    /// Deletes the discount currently applied to a customer. Use `customer` to identify the customer whose discount you
+    /// want to remove, and the response confirms deletion with a `deleted` value of true.
     ///
     /// Removes the currently applied discount on a customer.
-    public static func deleteCustomersCustomerDiscount(config: ClientConfig, customer: String) async throws -> DeletedDiscount {
+    public static func deleteCustomersCustomerDiscount(
+        config: ClientConfig,
+        customer: String
+    ) async throws -> DeletedDiscount {
         try validateLength("customer", customer, max: 5000)
 
-        return try (await sdkRequest("DELETE", ["/v1/customers/", sdkEncodePathSegment(sdkWireString(customer)), "/discount"].joined(), config: config, decoder: .json, operationId: "DeleteCustomersCustomerDiscount")).data
+        return try await (sdkRequest(
+            "DELETE",
+            ["/v1/customers/", sdkEncodePathSegment(sdkWireString(customer)), "/discount"].joined(),
+            config: config,
+            decoder: .json,
+            operationId: "DeleteCustomersCustomerDiscount"
+        )).data
     }
-    /// Retrieves the discount currently applied to a customer. Use `customer` to identify the customer and `expand` to include additional response fields when needed.
+
+    /// Retrieves the discount currently applied to a customer. Use `customer` to identify the customer and `expand` to
+    /// include additional response fields when needed.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func getCustomersCustomerDiscount(config: ClientConfig, customer: String, expand: [String]?) async throws -> Discount {
+    public static func getCustomersCustomerDiscount(
+        config: ClientConfig,
+        customer: String,
+        expand: [String]?
+    ) async throws -> Discount {
         try validateLength("customer", customer, max: 5000)
 
-        return try (await sdkRequest("GET", ["/v1/customers/", sdkEncodePathSegment(sdkWireString(customer)), "/discount"].joined(), config: config, query: [
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-        ], decoder: .json, operationId: "GetCustomersCustomerDiscount")).data
+        return try await (sdkRequest(
+            "GET",
+            ["/v1/customers/", sdkEncodePathSegment(sdkWireString(customer)), "/discount"].joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+            ],
+            decoder: .json,
+            operationId: "GetCustomersCustomerDiscount"
+        )).data
     }
 }

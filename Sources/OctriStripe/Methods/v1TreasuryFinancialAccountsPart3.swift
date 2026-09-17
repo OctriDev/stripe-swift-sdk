@@ -6,7 +6,7 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1TreasuryFinancialAccountsMethods {
+public extension V1TreasuryFinancialAccountsMethods {
     /// Creates a new FinancialAccount. Each connected account can have up to three FinancialAccounts by default.
     ///
     /// - Parameters:
@@ -24,9 +24,32 @@ extension V1TreasuryFinancialAccountsMethods {
     /// - nickname: The nickname for the FinancialAccount.
     /// - platformRestrictions: The set of functionalities that the platform can
     ///   restrict on the FinancialAccount.
-    public static func postTreasuryFinancialAccounts(config: ClientConfig, supportedCurrencies: [String], expand: [String]?, features: PostTreasuryFinancialAccountsRequestBodyFeatures?, metadata: [String: String]?, nickname: PostTreasuryFinancialAccountsRequestBodyNicknameVariant1?, platformRestrictions: PostTreasuryFinancialAccountsRequestBodyPlatformRestrictions?) async throws -> TreasuryFinancialAccount {
-        let requestBody = PostTreasuryFinancialAccountsRequestBody(supportedCurrencies: supportedCurrencies, expand: expand, features: features, metadata: metadata, nickname: nickname, platformRestrictions: platformRestrictions)
+    static func postTreasuryFinancialAccounts(
+        config: ClientConfig,
+        supportedCurrencies: [String],
+        expand: [String]?,
+        features: PostTreasuryFinancialAccountsRequestBodyFeatures?,
+        metadata: [String: String]?,
+        nickname: PostTreasuryFinancialAccountsRequestBodyNicknameVariant1?,
+        platformRestrictions: PostTreasuryFinancialAccountsRequestBodyPlatformRestrictions?
+    ) async throws -> TreasuryFinancialAccount {
+        let requestBody = PostTreasuryFinancialAccountsRequestBody(
+            supportedCurrencies: supportedCurrencies,
+            expand: expand,
+            features: features,
+            metadata: metadata,
+            nickname: nickname,
+            platformRestrictions: platformRestrictions
+        )
 
-        return try (await sdkRequest("POST", "/v1/treasury/financial_accounts", config: config, body: requestBody, contentType: "application/x-www-form-urlencoded", decoder: .json, operationId: "PostTreasuryFinancialAccounts")).data
+        return try await (sdkRequest(
+            "POST",
+            "/v1/treasury/financial_accounts",
+            config: config,
+            body: requestBody,
+            contentType: "application/x-www-form-urlencoded",
+            decoder: .json,
+            operationId: "PostTreasuryFinancialAccounts"
+        )).data
     }
 }

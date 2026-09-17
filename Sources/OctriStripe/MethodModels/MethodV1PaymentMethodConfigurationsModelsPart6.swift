@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1PaymentMethodConfigurations operation model declarations
+/// Canonical v1PaymentMethodConfigurations operation model declarations
 public struct PostPaymentMethodConfigurationsConfigurationRequestBodyKrCardX216c49f091: Codable {
     public var preference: PostPaymentMethodConfigurationsConfigurationRequestBodyKrCardXbe019b2ef3?
 
@@ -16,19 +16,19 @@ public struct PostPaymentMethodConfigurationsConfigurationRequestBodyKrCardX216c
     }
 
     init() {
-        self.preference = nil
+        preference = nil
     }
 }
 
-extension PostPaymentMethodConfigurationsConfigurationRequestBodyKrCardX216c49f091 {
-    public init(from decoder: Decoder) throws {
+public extension PostPaymentMethodConfigurationsConfigurationRequestBodyKrCardX216c49f091 {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.preference = try container.sdkDecodeIfPresent(.preference)
+        preference = try container.sdkDecodeIfPresent(.preference)
     }
 }
 
-extension PostPaymentMethodConfigurationsConfigurationRequestBodyKrCardX216c49f091 {
-    public init(preference: PostPaymentMethodConfigurationsConfigurationRequestBodyKrCardXbe019b2ef3? = nil) {
+public extension PostPaymentMethodConfigurationsConfigurationRequestBodyKrCardX216c49f091 {
+    init(preference: PostPaymentMethodConfigurationsConfigurationRequestBodyKrCardXbe019b2ef3? = nil) {
         self.init()
         self.preference = preference
     }
@@ -42,19 +42,19 @@ public struct PostPaymentMethodConfigurationsConfigurationRequestBodyCryptoXf481
     }
 
     init() {
-        self.preference = nil
+        preference = nil
     }
 }
 
-extension PostPaymentMethodConfigurationsConfigurationRequestBodyCryptoXf481892a3e {
-    public init(from decoder: Decoder) throws {
+public extension PostPaymentMethodConfigurationsConfigurationRequestBodyCryptoXf481892a3e {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.preference = try container.sdkDecodeIfPresent(.preference)
+        preference = try container.sdkDecodeIfPresent(.preference)
     }
 }
 
-extension PostPaymentMethodConfigurationsConfigurationRequestBodyCryptoXf481892a3e {
-    public init(preference: PostPaymentMethodConfigurationsConfigurationRequestBodyCryptoXe865fea7ac? = nil) {
+public extension PostPaymentMethodConfigurationsConfigurationRequestBodyCryptoXf481892a3e {
+    init(preference: PostPaymentMethodConfigurationsConfigurationRequestBodyCryptoXe865fea7ac? = nil) {
         self.init()
         self.preference = preference
     }
@@ -68,19 +68,19 @@ public struct PostPaymentMethodConfigurationsConfigurationRequestBodyAmazonXcf8e
     }
 
     init() {
-        self.preference = nil
+        preference = nil
     }
 }
 
-extension PostPaymentMethodConfigurationsConfigurationRequestBodyAmazonXcf8ed92d83 {
-    public init(from decoder: Decoder) throws {
+public extension PostPaymentMethodConfigurationsConfigurationRequestBodyAmazonXcf8ed92d83 {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.preference = try container.sdkDecodeIfPresent(.preference)
+        preference = try container.sdkDecodeIfPresent(.preference)
     }
 }
 
-extension PostPaymentMethodConfigurationsConfigurationRequestBodyAmazonXcf8ed92d83 {
-    public init(preference: PostPaymentMethodConfigurationsConfigurationRequestBodyAmazonX96f27597f6? = nil) {
+public extension PostPaymentMethodConfigurationsConfigurationRequestBodyAmazonXcf8ed92d83 {
+    init(preference: PostPaymentMethodConfigurationsConfigurationRequestBodyAmazonX96f27597f6? = nil) {
         self.init()
         self.preference = preference
     }
@@ -94,19 +94,19 @@ public struct PostPaymentMethodConfigurationsConfigurationRequestBodyGiropaX3eba
     }
 
     init() {
-        self.preference = nil
+        preference = nil
     }
 }
 
-extension PostPaymentMethodConfigurationsConfigurationRequestBodyGiropaX3ebad654b1 {
-    public init(from decoder: Decoder) throws {
+public extension PostPaymentMethodConfigurationsConfigurationRequestBodyGiropaX3ebad654b1 {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.preference = try container.sdkDecodeIfPresent(.preference)
+        preference = try container.sdkDecodeIfPresent(.preference)
     }
 }
 
-extension PostPaymentMethodConfigurationsConfigurationRequestBodyGiropaX3ebad654b1 {
-    public init(preference: PostPaymentMethodConfigurationsConfigurationRequestBodyGiropaXb75a039e23? = nil) {
+public extension PostPaymentMethodConfigurationsConfigurationRequestBodyGiropaX3ebad654b1 {
+    init(preference: PostPaymentMethodConfigurationsConfigurationRequestBodyGiropaXb75a039e23? = nil) {
         self.init()
         self.preference = preference
     }
@@ -122,19 +122,19 @@ public struct PostPaymentMethodConfigurationsConfigurationRequestBodyNaverPay: C
     }
 
     init() {
-        self.displayPreference = nil
+        displayPreference = nil
     }
 }
 
-extension PostPaymentMethodConfigurationsConfigurationRequestBodyNaverPay {
-    public init(from decoder: Decoder) throws {
+public extension PostPaymentMethodConfigurationsConfigurationRequestBodyNaverPay {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.displayPreference = try container.sdkDecodeIfPresent(.displayPreference)
+        displayPreference = try container.sdkDecodeIfPresent(.displayPreference)
     }
 }
 
-extension PostPaymentMethodConfigurationsConfigurationRequestBodyNaverPay {
-    public init(displayPreference: PostPaymentMethodConfigurationsConfigurationRequestBodyNaverPX7ff848729e? = nil) {
+public extension PostPaymentMethodConfigurationsConfigurationRequestBodyNaverPay {
+    init(displayPreference: PostPaymentMethodConfigurationsConfigurationRequestBodyNaverPX7ff848729e? = nil) {
         self.init()
         self.displayPreference = displayPreference
     }
@@ -148,19 +148,19 @@ public struct PostPaymentMethodConfigurationsRequestBodyNaverPayDisplayPreferenc
     }
 
     init() {
-        self.preference = nil
+        preference = nil
     }
 }
 
-extension PostPaymentMethodConfigurationsRequestBodyNaverPayDisplayPreference {
-    public init(from decoder: Decoder) throws {
+public extension PostPaymentMethodConfigurationsRequestBodyNaverPayDisplayPreference {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.preference = try container.sdkDecodeIfPresent(.preference)
+        preference = try container.sdkDecodeIfPresent(.preference)
     }
 }
 
-extension PostPaymentMethodConfigurationsRequestBodyNaverPayDisplayPreference {
-    public init(preference: PostPaymentMethodConfigurationsRequestBodyNaverPayDisplayPrefXe29603413e? = nil) {
+public extension PostPaymentMethodConfigurationsRequestBodyNaverPayDisplayPreference {
+    init(preference: PostPaymentMethodConfigurationsRequestBodyNaverPayDisplayPrefXe29603413e? = nil) {
         self.init()
         self.preference = preference
     }
@@ -179,19 +179,19 @@ public struct PostPaymentMethodConfigurationsConfigurationRequestBodyJcb: Codabl
     }
 
     init() {
-        self.displayPreference = nil
+        displayPreference = nil
     }
 }
 
-extension PostPaymentMethodConfigurationsConfigurationRequestBodyJcb {
-    public init(from decoder: Decoder) throws {
+public extension PostPaymentMethodConfigurationsConfigurationRequestBodyJcb {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.displayPreference = try container.sdkDecodeIfPresent(.displayPreference)
+        displayPreference = try container.sdkDecodeIfPresent(.displayPreference)
     }
 }
 
-extension PostPaymentMethodConfigurationsConfigurationRequestBodyJcb {
-    public init(displayPreference: PostPaymentMethodConfigurationsConfigurationRequestBodyJcbDisX3d0d9f4729? = nil) {
+public extension PostPaymentMethodConfigurationsConfigurationRequestBodyJcb {
+    init(displayPreference: PostPaymentMethodConfigurationsConfigurationRequestBodyJcbDisX3d0d9f4729? = nil) {
         self.init()
         self.displayPreference = displayPreference
     }
@@ -208,19 +208,19 @@ public struct PostPaymentMethodConfigurationsConfigurationRequestBodyUsBankAccou
     }
 
     init() {
-        self.displayPreference = nil
+        displayPreference = nil
     }
 }
 
-extension PostPaymentMethodConfigurationsConfigurationRequestBodyUsBankAccount {
-    public init(from decoder: Decoder) throws {
+public extension PostPaymentMethodConfigurationsConfigurationRequestBodyUsBankAccount {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.displayPreference = try container.sdkDecodeIfPresent(.displayPreference)
+        displayPreference = try container.sdkDecodeIfPresent(.displayPreference)
     }
 }
 
-extension PostPaymentMethodConfigurationsConfigurationRequestBodyUsBankAccount {
-    public init(displayPreference: PostPaymentMethodConfigurationsConfigurationRequestBodyUsBankX4c16652def? = nil) {
+public extension PostPaymentMethodConfigurationsConfigurationRequestBodyUsBankAccount {
+    init(displayPreference: PostPaymentMethodConfigurationsConfigurationRequestBodyUsBankX4c16652def? = nil) {
         self.init()
         self.displayPreference = displayPreference
     }
@@ -238,19 +238,19 @@ public struct PostPaymentMethodConfigurationsConfigurationRequestBodyScalapay: C
     }
 
     init() {
-        self.displayPreference = nil
+        displayPreference = nil
     }
 }
 
-extension PostPaymentMethodConfigurationsConfigurationRequestBodyScalapay {
-    public init(from decoder: Decoder) throws {
+public extension PostPaymentMethodConfigurationsConfigurationRequestBodyScalapay {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.displayPreference = try container.sdkDecodeIfPresent(.displayPreference)
+        displayPreference = try container.sdkDecodeIfPresent(.displayPreference)
     }
 }
 
-extension PostPaymentMethodConfigurationsConfigurationRequestBodyScalapay {
-    public init(displayPreference: PostPaymentMethodConfigurationsConfigurationRequestBodyScalapXa40d5564b9? = nil) {
+public extension PostPaymentMethodConfigurationsConfigurationRequestBodyScalapay {
+    init(displayPreference: PostPaymentMethodConfigurationsConfigurationRequestBodyScalapXa40d5564b9? = nil) {
         self.init()
         self.displayPreference = displayPreference
     }
@@ -267,19 +267,19 @@ public struct PostPaymentMethodConfigurationsRequestBodyCustomerBalance: Codable
     }
 
     init() {
-        self.displayPreference = nil
+        displayPreference = nil
     }
 }
 
-extension PostPaymentMethodConfigurationsRequestBodyCustomerBalance {
-    public init(from decoder: Decoder) throws {
+public extension PostPaymentMethodConfigurationsRequestBodyCustomerBalance {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.displayPreference = try container.sdkDecodeIfPresent(.displayPreference)
+        displayPreference = try container.sdkDecodeIfPresent(.displayPreference)
     }
 }
 
-extension PostPaymentMethodConfigurationsRequestBodyCustomerBalance {
-    public init(displayPreference: PostPaymentMethodConfigurationsRequestBodyCustomerBalanceDispX5a3c570892? = nil) {
+public extension PostPaymentMethodConfigurationsRequestBodyCustomerBalance {
+    init(displayPreference: PostPaymentMethodConfigurationsRequestBodyCustomerBalanceDispX5a3c570892? = nil) {
         self.init()
         self.displayPreference = displayPreference
     }
@@ -293,19 +293,19 @@ public struct PostPaymentMethodConfigurationsRequestBodyCashappDisplayPreference
     }
 
     init() {
-        self.preference = nil
+        preference = nil
     }
 }
 
-extension PostPaymentMethodConfigurationsRequestBodyCashappDisplayPreference {
-    public init(from decoder: Decoder) throws {
+public extension PostPaymentMethodConfigurationsRequestBodyCashappDisplayPreference {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.preference = try container.sdkDecodeIfPresent(.preference)
+        preference = try container.sdkDecodeIfPresent(.preference)
     }
 }
 
-extension PostPaymentMethodConfigurationsRequestBodyCashappDisplayPreference {
-    public init(preference: PostPaymentMethodConfigurationsRequestBodyCashappDisplayPrefeX1216e48d3d? = nil) {
+public extension PostPaymentMethodConfigurationsRequestBodyCashappDisplayPreference {
+    init(preference: PostPaymentMethodConfigurationsRequestBodyCashappDisplayPrefeX1216e48d3d? = nil) {
         self.init()
         self.preference = preference
     }
@@ -319,19 +319,19 @@ public struct PostPaymentMethodConfigurationsConfigurationRequestBodyPayByBX54e8
     }
 
     init() {
-        self.preference = nil
+        preference = nil
     }
 }
 
-extension PostPaymentMethodConfigurationsConfigurationRequestBodyPayByBX54e8b96e74 {
-    public init(from decoder: Decoder) throws {
+public extension PostPaymentMethodConfigurationsConfigurationRequestBodyPayByBX54e8b96e74 {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.preference = try container.sdkDecodeIfPresent(.preference)
+        preference = try container.sdkDecodeIfPresent(.preference)
     }
 }
 
-extension PostPaymentMethodConfigurationsConfigurationRequestBodyPayByBX54e8b96e74 {
-    public init(preference: PostPaymentMethodConfigurationsConfigurationRequestBodyPayByBXa2f5ccf1cd? = nil) {
+public extension PostPaymentMethodConfigurationsConfigurationRequestBodyPayByBX54e8b96e74 {
+    init(preference: PostPaymentMethodConfigurationsConfigurationRequestBodyPayByBXa2f5ccf1cd? = nil) {
         self.init()
         self.preference = preference
     }
@@ -348,19 +348,19 @@ public struct PostPaymentMethodConfigurationsConfigurationRequestBodySwish: Coda
     }
 
     init() {
-        self.displayPreference = nil
+        displayPreference = nil
     }
 }
 
-extension PostPaymentMethodConfigurationsConfigurationRequestBodySwish {
-    public init(from decoder: Decoder) throws {
+public extension PostPaymentMethodConfigurationsConfigurationRequestBodySwish {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.displayPreference = try container.sdkDecodeIfPresent(.displayPreference)
+        displayPreference = try container.sdkDecodeIfPresent(.displayPreference)
     }
 }
 
-extension PostPaymentMethodConfigurationsConfigurationRequestBodySwish {
-    public init(displayPreference: PostPaymentMethodConfigurationsConfigurationRequestBodySwishDX6a2bfd1f3a? = nil) {
+public extension PostPaymentMethodConfigurationsConfigurationRequestBodySwish {
+    init(displayPreference: PostPaymentMethodConfigurationsConfigurationRequestBodySwishDX6a2bfd1f3a? = nil) {
         self.init()
         self.displayPreference = displayPreference
     }
@@ -378,19 +378,19 @@ public struct PostPaymentMethodConfigurationsConfigurationRequestBodyBillie: Cod
     }
 
     init() {
-        self.displayPreference = nil
+        displayPreference = nil
     }
 }
 
-extension PostPaymentMethodConfigurationsConfigurationRequestBodyBillie {
-    public init(from decoder: Decoder) throws {
+public extension PostPaymentMethodConfigurationsConfigurationRequestBodyBillie {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.displayPreference = try container.sdkDecodeIfPresent(.displayPreference)
+        displayPreference = try container.sdkDecodeIfPresent(.displayPreference)
     }
 }
 
-extension PostPaymentMethodConfigurationsConfigurationRequestBodyBillie {
-    public init(displayPreference: PostPaymentMethodConfigurationsConfigurationRequestBodyBillieXba187f0457? = nil) {
+public extension PostPaymentMethodConfigurationsConfigurationRequestBodyBillie {
+    init(displayPreference: PostPaymentMethodConfigurationsConfigurationRequestBodyBillieXba187f0457? = nil) {
         self.init()
         self.displayPreference = displayPreference
     }
@@ -408,19 +408,19 @@ public struct PostPaymentMethodConfigurationsRequestBodyBlik: Codable {
     }
 
     init() {
-        self.displayPreference = nil
+        displayPreference = nil
     }
 }
 
-extension PostPaymentMethodConfigurationsRequestBodyBlik {
-    public init(from decoder: Decoder) throws {
+public extension PostPaymentMethodConfigurationsRequestBodyBlik {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.displayPreference = try container.sdkDecodeIfPresent(.displayPreference)
+        displayPreference = try container.sdkDecodeIfPresent(.displayPreference)
     }
 }
 
-extension PostPaymentMethodConfigurationsRequestBodyBlik {
-    public init(displayPreference: PostPaymentMethodConfigurationsRequestBodyBlikDisplayPreference? = nil) {
+public extension PostPaymentMethodConfigurationsRequestBodyBlik {
+    init(displayPreference: PostPaymentMethodConfigurationsRequestBodyBlikDisplayPreference? = nil) {
         self.init()
         self.displayPreference = displayPreference
     }
@@ -434,19 +434,19 @@ public struct PostPaymentMethodConfigurationsRequestBodyBancontactDisplayPrefere
     }
 
     init() {
-        self.preference = nil
+        preference = nil
     }
 }
 
-extension PostPaymentMethodConfigurationsRequestBodyBancontactDisplayPreference {
-    public init(from decoder: Decoder) throws {
+public extension PostPaymentMethodConfigurationsRequestBodyBancontactDisplayPreference {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.preference = try container.sdkDecodeIfPresent(.preference)
+        preference = try container.sdkDecodeIfPresent(.preference)
     }
 }
 
-extension PostPaymentMethodConfigurationsRequestBodyBancontactDisplayPreference {
-    public init(preference: PostPaymentMethodConfigurationsRequestBodyBancontactDisplayPrX2ce8cfbc9d? = nil) {
+public extension PostPaymentMethodConfigurationsRequestBodyBancontactDisplayPreference {
+    init(preference: PostPaymentMethodConfigurationsRequestBodyBancontactDisplayPrX2ce8cfbc9d? = nil) {
         self.init()
         self.preference = preference
     }
@@ -464,19 +464,19 @@ public struct PostPaymentMethodConfigurationsRequestBodyScalapay: Codable {
     }
 
     init() {
-        self.displayPreference = nil
+        displayPreference = nil
     }
 }
 
-extension PostPaymentMethodConfigurationsRequestBodyScalapay {
-    public init(from decoder: Decoder) throws {
+public extension PostPaymentMethodConfigurationsRequestBodyScalapay {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.displayPreference = try container.sdkDecodeIfPresent(.displayPreference)
+        displayPreference = try container.sdkDecodeIfPresent(.displayPreference)
     }
 }
 
-extension PostPaymentMethodConfigurationsRequestBodyScalapay {
-    public init(displayPreference: PostPaymentMethodConfigurationsRequestBodyScalapayDisplayPreference? = nil) {
+public extension PostPaymentMethodConfigurationsRequestBodyScalapay {
+    init(displayPreference: PostPaymentMethodConfigurationsRequestBodyScalapayDisplayPreference? = nil) {
         self.init()
         self.displayPreference = displayPreference
     }
@@ -490,19 +490,19 @@ public struct PostPaymentMethodConfigurationsRequestBodyGrabpayDisplayPreference
     }
 
     init() {
-        self.preference = nil
+        preference = nil
     }
 }
 
-extension PostPaymentMethodConfigurationsRequestBodyGrabpayDisplayPreference {
-    public init(from decoder: Decoder) throws {
+public extension PostPaymentMethodConfigurationsRequestBodyGrabpayDisplayPreference {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.preference = try container.sdkDecodeIfPresent(.preference)
+        preference = try container.sdkDecodeIfPresent(.preference)
     }
 }
 
-extension PostPaymentMethodConfigurationsRequestBodyGrabpayDisplayPreference {
-    public init(preference: PostPaymentMethodConfigurationsRequestBodyGrabpayDisplayPrefeX9908b75e16? = nil) {
+public extension PostPaymentMethodConfigurationsRequestBodyGrabpayDisplayPreference {
+    init(preference: PostPaymentMethodConfigurationsRequestBodyGrabpayDisplayPrefeX9908b75e16? = nil) {
         self.init()
         self.preference = preference
     }
@@ -520,19 +520,19 @@ public struct PostPaymentMethodConfigurationsRequestBodyOxxo: Codable {
     }
 
     init() {
-        self.displayPreference = nil
+        displayPreference = nil
     }
 }
 
-extension PostPaymentMethodConfigurationsRequestBodyOxxo {
-    public init(from decoder: Decoder) throws {
+public extension PostPaymentMethodConfigurationsRequestBodyOxxo {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.displayPreference = try container.sdkDecodeIfPresent(.displayPreference)
+        displayPreference = try container.sdkDecodeIfPresent(.displayPreference)
     }
 }
 
-extension PostPaymentMethodConfigurationsRequestBodyOxxo {
-    public init(displayPreference: PostPaymentMethodConfigurationsRequestBodyOxxoDisplayPreference? = nil) {
+public extension PostPaymentMethodConfigurationsRequestBodyOxxo {
+    init(displayPreference: PostPaymentMethodConfigurationsRequestBodyOxxoDisplayPreference? = nil) {
         self.init()
         self.displayPreference = displayPreference
     }
@@ -546,19 +546,19 @@ public struct PostPaymentMethodConfigurationsConfigurationRequestBodyAlmaDiX78e4
     }
 
     init() {
-        self.preference = nil
+        preference = nil
     }
 }
 
-extension PostPaymentMethodConfigurationsConfigurationRequestBodyAlmaDiX78e44c258d {
-    public init(from decoder: Decoder) throws {
+public extension PostPaymentMethodConfigurationsConfigurationRequestBodyAlmaDiX78e44c258d {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.preference = try container.sdkDecodeIfPresent(.preference)
+        preference = try container.sdkDecodeIfPresent(.preference)
     }
 }
 
-extension PostPaymentMethodConfigurationsConfigurationRequestBodyAlmaDiX78e44c258d {
-    public init(preference: PostPaymentMethodConfigurationsConfigurationRequestBodyAlmaDiX26d59eae4f? = nil) {
+public extension PostPaymentMethodConfigurationsConfigurationRequestBodyAlmaDiX78e44c258d {
+    init(preference: PostPaymentMethodConfigurationsConfigurationRequestBodyAlmaDiX26d59eae4f? = nil) {
         self.init()
         self.preference = preference
     }
@@ -574,19 +574,19 @@ public struct PostPaymentMethodConfigurationsRequestBodyNaverPay: Codable {
     }
 
     init() {
-        self.displayPreference = nil
+        displayPreference = nil
     }
 }
 
-extension PostPaymentMethodConfigurationsRequestBodyNaverPay {
-    public init(from decoder: Decoder) throws {
+public extension PostPaymentMethodConfigurationsRequestBodyNaverPay {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.displayPreference = try container.sdkDecodeIfPresent(.displayPreference)
+        displayPreference = try container.sdkDecodeIfPresent(.displayPreference)
     }
 }
 
-extension PostPaymentMethodConfigurationsRequestBodyNaverPay {
-    public init(displayPreference: PostPaymentMethodConfigurationsRequestBodyNaverPayDisplayPreference? = nil) {
+public extension PostPaymentMethodConfigurationsRequestBodyNaverPay {
+    init(displayPreference: PostPaymentMethodConfigurationsRequestBodyNaverPayDisplayPreference? = nil) {
         self.init()
         self.displayPreference = displayPreference
     }
@@ -602,19 +602,19 @@ public struct PostPaymentMethodConfigurationsConfigurationRequestBodySamsungPay:
     }
 
     init() {
-        self.displayPreference = nil
+        displayPreference = nil
     }
 }
 
-extension PostPaymentMethodConfigurationsConfigurationRequestBodySamsungPay {
-    public init(from decoder: Decoder) throws {
+public extension PostPaymentMethodConfigurationsConfigurationRequestBodySamsungPay {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.displayPreference = try container.sdkDecodeIfPresent(.displayPreference)
+        displayPreference = try container.sdkDecodeIfPresent(.displayPreference)
     }
 }
 
-extension PostPaymentMethodConfigurationsConfigurationRequestBodySamsungPay {
-    public init(displayPreference: PostPaymentMethodConfigurationsConfigurationRequestBodySamsunX93f4001ed3? = nil) {
+public extension PostPaymentMethodConfigurationsConfigurationRequestBodySamsungPay {
+    init(displayPreference: PostPaymentMethodConfigurationsConfigurationRequestBodySamsunX93f4001ed3? = nil) {
         self.init()
         self.displayPreference = displayPreference
     }

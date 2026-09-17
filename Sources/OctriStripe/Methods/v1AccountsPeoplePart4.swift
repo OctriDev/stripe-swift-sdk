@@ -6,31 +6,69 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1AccountsPeopleMethods {
-    /// Deletes a person's relationship to an account's legal entity. Use `account` and `person` to identify the relationship to remove. You cannot delete the account's representative, and integrations using the `executive` parameter cannot delete the only verified executive on file.
+public extension V1AccountsPeopleMethods {
+    /// Deletes a person's relationship to an account's legal entity. Use `account` and `person` to identify the
+    /// relationship to remove. You cannot delete the account's representative, and integrations using the `executive`
+    /// parameter cannot delete the only verified executive on file.
     ///
-    /// Deletes an existing person’s relationship to the account’s legal entity. Any person with a relationship for an account can be deleted through the API, except if the person is the representative . If your integration is using the executive parameter, you cannot delete the only verified executive on file.
-    public static func deleteAccountsAccountPeoplePerson(config: ClientConfig, account: String, person: String) async throws -> DeletedPerson {
+    /// Deletes an existing person’s relationship to the account’s legal entity. Any person with a relationship for an
+    /// account can be deleted through the API, except if the person is the representative . If your integration is
+    /// using the executive parameter, you cannot delete the only verified executive on file.
+    static func deleteAccountsAccountPeoplePerson(
+        config: ClientConfig,
+        account: String,
+        person: String
+    ) async throws -> DeletedPerson {
         try validateLength("account", account, max: 5000)
 
         try validateLength("person", person, max: 5000)
 
-        return try (await sdkRequest("DELETE", ["/v1/accounts/", sdkEncodePathSegment(sdkWireString(account)), "/people/", sdkEncodePathSegment(sdkWireString(person))].joined(), config: config, decoder: .json, operationId: "DeleteAccountsAccountPeoplePerson")).data
+        return try await (sdkRequest(
+            "DELETE",
+            [
+                "/v1/accounts/",
+                sdkEncodePathSegment(sdkWireString(account)),
+                "/people/",
+                sdkEncodePathSegment(sdkWireString(person)),
+            ].joined(),
+            config: config,
+            decoder: .json,
+            operationId: "DeleteAccountsAccountPeoplePerson"
+        )).data
     }
 
-    /// Retrieves a person associated with an account's legal entity. Provide both `account` and `person` to identify the account-person relationship, and optionally use `expand` for additional response fields. The response contains the person's account, identifier, creation time, and available legal-entity information.
+    /// Retrieves a person associated with an account's legal entity. Provide both `account` and `person` to identify
+    /// the account-person relationship, and optionally use `expand` for additional response fields. The response
+    /// contains the person's account, identifier, creation time, and available legal-entity information.
     ///
     /// Retrieves an existing person.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func getAccountsAccountPeoplePerson(config: ClientConfig, account: String, person: String, expand: [String]?) async throws -> Person {
+    static func getAccountsAccountPeoplePerson(
+        config: ClientConfig,
+        account: String,
+        person: String,
+        expand: [String]?
+    ) async throws -> Person {
         try validateLength("account", account, max: 5000)
 
         try validateLength("person", person, max: 5000)
 
-        return try (await sdkRequest("GET", ["/v1/accounts/", sdkEncodePathSegment(sdkWireString(account)), "/people/", sdkEncodePathSegment(sdkWireString(person))].joined(), config: config, query: [
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-        ], decoder: .json, operationId: "GetAccountsAccountPeoplePerson")).data
+        return try await (sdkRequest(
+            "GET",
+            [
+                "/v1/accounts/",
+                sdkEncodePathSegment(sdkWireString(account)),
+                "/people/",
+                sdkEncodePathSegment(sdkWireString(person)),
+            ].joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+            ],
+            decoder: .json,
+            operationId: "GetAccountsAccountPeoplePerson"
+        )).data
     }
 }

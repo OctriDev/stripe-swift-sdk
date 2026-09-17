@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1AppsSecretsDelete operation model declarations
+/// Canonical v1AppsSecretsDelete operation model declarations
 /// Specifies the scoping of the secret. Requests originating from UI extensions can only access account-scoped
 /// secrets or secrets scoped to their own user.
 public struct PostAppsSecretsDeleteRequestBodyScope: Codable {
@@ -19,25 +19,31 @@ public struct PostAppsSecretsDeleteRequestBodyScope: Codable {
         case user
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension PostAppsSecretsDeleteRequestBodyScope {
-    public init(from decoder: Decoder) throws {
+public extension PostAppsSecretsDeleteRequestBodyScope {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
         }
-        self.type = try container.sdkDecodeRequired(.type)
-        self.user = try container.sdkDecodeIfPresent(.user)
-        if let value = self.user {
+        type = try container.sdkDecodeRequired(.type)
+        user = try container.sdkDecodeIfPresent(.user)
+        if let value = user {
             try validateLength("user", value, min: nil, max: 5000)
         }
     }
 }
 
-extension PostAppsSecretsDeleteRequestBodyScope {
-    public init(type: PostAppsSecretsDeleteRequestBodyScopeType, user: String? = nil) throws {
+public extension PostAppsSecretsDeleteRequestBodyScope {
+    init(type: PostAppsSecretsDeleteRequestBodyScopeType, user: String? = nil) throws {
         (self.type, self.user) = (type, user)
         if let value = self.user {
             try validateLength("user", value, min: nil, max: 5000)

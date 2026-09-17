@@ -6,18 +6,31 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1ChargesDisputeMethods {
-    /// Retrieves the dispute associated with a specified charge. Supply `charge` to inspect the disputed amount, evidence state, status, and related balance transactions. Use the returned dispute details to determine whether evidence or closure actions are available.
+public extension V1ChargesDisputeMethods {
+    /// Retrieves the dispute associated with a specified charge. Supply `charge` to inspect the disputed amount,
+    /// evidence state, status, and related balance transactions. Use the returned dispute details to determine whether
+    /// evidence or closure actions are available.
     ///
     /// Retrieve a dispute for a specified charge.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func getChargesChargeDispute(config: ClientConfig, charge: String, expand: [String]?) async throws -> Dispute {
+    static func getChargesChargeDispute(
+        config: ClientConfig,
+        charge: String,
+        expand: [String]?
+    ) async throws -> Dispute {
         try validateLength("charge", charge, max: 5000)
 
-        return try (await sdkRequest("GET", ["/v1/charges/", sdkEncodePathSegment(sdkWireString(charge)), "/dispute"].joined(), config: config, query: [
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-        ], decoder: .json, operationId: "GetChargesChargeDispute")).data
+        return try await (sdkRequest(
+            "GET",
+            ["/v1/charges/", sdkEncodePathSegment(sdkWireString(charge)), "/dispute"].joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+            ],
+            decoder: .json,
+            operationId: "GetChargesChargeDispute"
+        )).data
     }
 }

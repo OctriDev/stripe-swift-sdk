@@ -6,18 +6,31 @@ import Foundation
 #if canImport(FoundationNetworking)
     import FoundationNetworking
 #endif
-extension V1TaxCalculationsMethods {
-    /// Retrieves a tax calculation by identifier while it remains available. Supply `calculation` to select the calculation and optionally use `expand` for related response fields. The response includes totals, currency, tax amounts, customer details, line items, tax breakdown, and expiration information.
+public extension V1TaxCalculationsMethods {
+    /// Retrieves a tax calculation by identifier while it remains available. Supply `calculation` to select the
+    /// calculation and optionally use `expand` for related response fields. The response includes totals, currency, tax
+    /// amounts, customer details, line items, tax breakdown, and expiration information.
     ///
     /// Retrieves a Tax Calculation object, if the calculation hasn’t expired.
     ///
     /// - Parameters:
     /// - expand: Specifies which fields in the response should be expanded.
-    public static func getTaxCalculationsCalculation(config: ClientConfig, calculation: String, expand: [String]?) async throws -> TaxCalculation {
+    static func getTaxCalculationsCalculation(
+        config: ClientConfig,
+        calculation: String,
+        expand: [String]?
+    ) async throws -> TaxCalculation {
         try validateLength("calculation", calculation, max: 5000)
 
-        return try (await sdkRequest("GET", ["/v1/tax/calculations/", sdkEncodePathSegment(sdkWireString(calculation))].joined(), config: config, query: [
-            SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
-        ], decoder: .json, operationId: "GetTaxCalculationsCalculation")).data
+        return try await (sdkRequest(
+            "GET",
+            ["/v1/tax/calculations/", sdkEncodePathSegment(sdkWireString(calculation))].joined(),
+            config: config,
+            query: [
+                SdkQueryParameter("expand", values: expand, style: "deepObject", explode: true),
+            ],
+            decoder: .json,
+            operationId: "GetTaxCalculationsCalculation"
+        )).data
     }
 }

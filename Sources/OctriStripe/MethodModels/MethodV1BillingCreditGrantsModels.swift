@@ -7,7 +7,7 @@ import Foundation
     import FoundationNetworking
 #endif
 
-// Canonical v1BillingCreditGrants operation model declarations
+/// Canonical v1BillingCreditGrants operation model declarations
 /// Amount of this credit grant.
 public struct PostBillingCreditGrantsRequestBodyAmount: Codable {
     public var type: PostBillingCreditGrantsRequestBodyAmountType
@@ -19,22 +19,31 @@ public struct PostBillingCreditGrantsRequestBodyAmount: Codable {
         case monetary
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension PostBillingCreditGrantsRequestBodyAmount {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.type) else {
-            throw SdkValidationError(field: "type", code: "required", message: "Validation failed for 'type': value is required")
-        }
-        self.type = try container.sdkDecodeRequired(.type)
-        self.monetary = try container.sdkDecodeIfPresent(.monetary)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension PostBillingCreditGrantsRequestBodyAmount {
-    public init(type: PostBillingCreditGrantsRequestBodyAmountType, monetary: PostBillingCreditGrantsRequestBodyAmountMonetary? = nil) {
+public extension PostBillingCreditGrantsRequestBodyAmount {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.type) else {
+            throw SdkValidationError(
+                field: "type",
+                code: "required",
+                message: "Validation failed for 'type': value is required"
+            )
+        }
+        type = try container.sdkDecodeRequired(.type)
+        monetary = try container.sdkDecodeIfPresent(.monetary)
+    }
+}
+
+public extension PostBillingCreditGrantsRequestBodyAmount {
+    init(
+        type: PostBillingCreditGrantsRequestBodyAmountType,
+        monetary: PostBillingCreditGrantsRequestBodyAmountMonetary? = nil
+    ) {
         (self.type, self.monetary) = (type, monetary)
     }
 }
@@ -56,45 +65,62 @@ public struct GetBillingCreditGrantsResponse: Codable {
         case url
     }
 
-    private init(sdkCopy value: Self) { self = value }
+    private init(sdkCopy value: Self) {
+        self = value
+    }
 }
 
-extension GetBillingCreditGrantsResponse {
-    public init(from decoder: Decoder) throws {
+public extension GetBillingCreditGrantsResponse {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard container.contains(.data) else {
-            throw SdkValidationError(field: "data", code: "required", message: "Validation failed for 'data': value is required")
+            throw SdkValidationError(
+                field: "data",
+                code: "required",
+                message: "Validation failed for 'data': value is required"
+            )
         }
         guard container.contains(.hasMore) else {
-            throw SdkValidationError(field: "has_more", code: "required", message: "Validation failed for 'has_more': value is required")
+            throw SdkValidationError(
+                field: "has_more",
+                code: "required",
+                message: "Validation failed for 'has_more': value is required"
+            )
         }
         guard container.contains(.object) else {
-            throw SdkValidationError(field: "object", code: "required", message: "Validation failed for 'object': value is required")
+            throw SdkValidationError(
+                field: "object",
+                code: "required",
+                message: "Validation failed for 'object': value is required"
+            )
         }
         guard container.contains(.url) else {
-            throw SdkValidationError(field: "url", code: "required", message: "Validation failed for 'url': value is required")
+            throw SdkValidationError(
+                field: "url",
+                code: "required",
+                message: "Validation failed for 'url': value is required"
+            )
         }
-        self.data = try container.sdkDecodeRequired(.data)
-        self.hasMore = try container.sdkDecodeRequired(.hasMore)
-        self.object = try container.sdkDecodeRequired(.object)
-        self.url = try container.sdkDecodeRequired(.url)
-            try validateLength("url", self.url, min: nil, max: 5000)
-            try sdkValidatePattern("url", self.url, sdkPattern9d8b2859b750)
+        data = try container.sdkDecodeRequired(.data)
+        hasMore = try container.sdkDecodeRequired(.hasMore)
+        object = try container.sdkDecodeRequired(.object)
+        url = try container.sdkDecodeRequired(.url)
+        try validateLength("url", url, min: nil, max: 5000)
+        try sdkValidatePattern("url", url, sdkPattern9d8b2859b750)
     }
 }
 
-extension GetBillingCreditGrantsResponse {
-    public init(data: [BillingCreditGrant], hasMore: Bool, object: GetBillingCreditGrantsResponseObject, url: String) throws {
+public extension GetBillingCreditGrantsResponse {
+    init(data: [BillingCreditGrant], hasMore: Bool, object: GetBillingCreditGrantsResponseObject, url: String) throws {
         (self.data, self.hasMore) = (data, hasMore)
         (self.object, self.url) = (object, url)
-            try validateLength("url", self.url, min: nil, max: 5000)
-            try sdkValidatePattern("url", self.url, sdkPattern9d8b2859b750)
+        try validateLength("url", self.url, min: nil, max: 5000)
+        try sdkValidatePattern("url", self.url, sdkPattern9d8b2859b750)
     }
 }
 
-
-
-public typealias PostBillingCreditGrantsRequestBodyApplicabilityConfigScopePricesList = [PostBillingCreditGrantsRequestBodyApplicabilityConfigScopePricesItem]
+public typealias PostBillingCreditGrantsRequestBodyApplicabilityConfigScopePricesList =
+    [PostBillingCreditGrantsRequestBodyApplicabilityConfigScopePricesItem]
 
 public struct PostBillingCreditGrantsRequestBodyApplicabilityConfigScope: Codable {
     public var priceType: PostBillingCreditGrantsRequestBodyApplicabilityConfigScopePriceType?
@@ -106,20 +132,23 @@ public struct PostBillingCreditGrantsRequestBodyApplicabilityConfigScope: Codabl
     }
 
     init() {
-        (self.priceType, self.prices) = (nil, nil)
+        (priceType, prices) = (nil, nil)
     }
 }
 
-extension PostBillingCreditGrantsRequestBodyApplicabilityConfigScope {
-    public init(from decoder: Decoder) throws {
+public extension PostBillingCreditGrantsRequestBodyApplicabilityConfigScope {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.priceType = try container.sdkDecodeIfPresent(.priceType)
-        self.prices = try container.sdkDecodeIfPresent(.prices)
+        priceType = try container.sdkDecodeIfPresent(.priceType)
+        prices = try container.sdkDecodeIfPresent(.prices)
     }
 }
 
-extension PostBillingCreditGrantsRequestBodyApplicabilityConfigScope {
-    public init(priceType: PostBillingCreditGrantsRequestBodyApplicabilityConfigScopePriceType? = nil, prices: PostBillingCreditGrantsRequestBodyApplicabilityConfigScopePricesList? = nil) {
+public extension PostBillingCreditGrantsRequestBodyApplicabilityConfigScope {
+    init(
+        priceType: PostBillingCreditGrantsRequestBodyApplicabilityConfigScopePriceType? = nil,
+        prices: PostBillingCreditGrantsRequestBodyApplicabilityConfigScopePricesList? = nil
+    ) {
         self.init()
         (self.priceType, self.prices) = (priceType, prices)
     }
@@ -131,21 +160,31 @@ public enum PostBillingCreditGrantsIdRequestBodyExpiresAt {
 }
 
 extension PostBillingCreditGrantsIdRequestBodyExpiresAt: Codable {
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = Self.decodeGroup1(from: container) { self = value; return }
-        throw DecodingError.dataCorruptedError(in: container, debugDescription: "No variant matched for PostBillingCreditGrantsIdRequestBodyExpiresAt")
+        if let value = Self.decodeGroup1(from: container) {
+            self = value; return
+        }
+        throw DecodingError.dataCorruptedError(
+            in: container,
+            debugDescription: "No variant matched for PostBillingCreditGrantsIdRequestBodyExpiresAt"
+        )
     }
 
     private static func decodeGroup1(from container: SingleValueDecodingContainer) -> Self? {
-        if let value = try? container.decode(Int.self) { return .intValue(value) }
-        if let value = try? container.decode(String.self) { return .stringValue(value) }
+        if let value = try? container.decode(Int.self) {
+            return .intValue(value)
+        }
+        if let value = try? container.decode(String.self) {
+            return .stringValue(value)
+        }
         return nil
     }
 
     public func encode(to encoder: Encoder) throws {
-        if try encodeGroup1(to: encoder) { return }
+        if try encodeGroup1(to: encoder) {
+            return
+        }
     }
 
     private func encodeGroup1(to encoder: Encoder) throws -> Bool {
@@ -155,7 +194,6 @@ extension PostBillingCreditGrantsIdRequestBodyExpiresAt: Codable {
         case let .stringValue(value): try container.encode(value); return true
         }
     }
-
 }
 
 public struct PostBillingCreditGrantsRequestBodyAmountMonetary: Codable {
@@ -167,25 +205,35 @@ public struct PostBillingCreditGrantsRequestBodyAmountMonetary: Codable {
         case value
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension PostBillingCreditGrantsRequestBodyAmountMonetary {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.currency) else {
-            throw SdkValidationError(field: "currency", code: "required", message: "Validation failed for 'currency': value is required")
-        }
-        guard container.contains(.value) else {
-            throw SdkValidationError(field: "value", code: "required", message: "Validation failed for 'value': value is required")
-        }
-        self.currency = try container.sdkDecodeRequired(.currency)
-        self.value = try container.sdkDecodeRequired(.value)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension PostBillingCreditGrantsRequestBodyAmountMonetary {
-    public init(currency: String, value: Int) {
+public extension PostBillingCreditGrantsRequestBodyAmountMonetary {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.currency) else {
+            throw SdkValidationError(
+                field: "currency",
+                code: "required",
+                message: "Validation failed for 'currency': value is required"
+            )
+        }
+        guard container.contains(.value) else {
+            throw SdkValidationError(
+                field: "value",
+                code: "required",
+                message: "Validation failed for 'value': value is required"
+            )
+        }
+        currency = try container.sdkDecodeRequired(.currency)
+        value = try container.sdkDecodeRequired(.value)
+    }
+}
+
+public extension PostBillingCreditGrantsRequestBodyAmountMonetary {
+    init(currency: String, value: Int) {
         (self.currency, self.value) = (currency, value)
     }
 }
@@ -197,24 +245,30 @@ public struct PostBillingCreditGrantsRequestBodyApplicabilityConfigScopePricesIt
         case id
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension PostBillingCreditGrantsRequestBodyApplicabilityConfigScopePricesItem {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.id) else {
-            throw SdkValidationError(field: "id", code: "required", message: "Validation failed for 'id': value is required")
-        }
-        self.id = try container.sdkDecodeRequired(.id)
-            try validateLength("id", self.id, min: nil, max: 5000)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension PostBillingCreditGrantsRequestBodyApplicabilityConfigScopePricesItem {
-    public init(id: String) throws {
+public extension PostBillingCreditGrantsRequestBodyApplicabilityConfigScopePricesItem {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.id) else {
+            throw SdkValidationError(
+                field: "id",
+                code: "required",
+                message: "Validation failed for 'id': value is required"
+            )
+        }
+        id = try container.sdkDecodeRequired(.id)
+        try validateLength("id", id, min: nil, max: 5000)
+    }
+}
+
+public extension PostBillingCreditGrantsRequestBodyApplicabilityConfigScopePricesItem {
+    init(id: String) throws {
         self.id = id
-            try validateLength("id", self.id, min: nil, max: 5000)
+        try validateLength("id", self.id, min: nil, max: 5000)
     }
 }
 
@@ -228,21 +282,27 @@ public struct PostBillingCreditGrantsRequestBodyApplicabilityConfig: Codable {
         case scope
     }
 
-    private init(sdkCopy value: Self) { self = value }
-}
-
-extension PostBillingCreditGrantsRequestBodyApplicabilityConfig {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard container.contains(.scope) else {
-            throw SdkValidationError(field: "scope", code: "required", message: "Validation failed for 'scope': value is required")
-        }
-        self.scope = try container.sdkDecodeRequired(.scope)
+    private init(sdkCopy value: Self) {
+        self = value
     }
 }
 
-extension PostBillingCreditGrantsRequestBodyApplicabilityConfig {
-    public init(scope: PostBillingCreditGrantsRequestBodyApplicabilityConfigScope) {
+public extension PostBillingCreditGrantsRequestBodyApplicabilityConfig {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        guard container.contains(.scope) else {
+            throw SdkValidationError(
+                field: "scope",
+                code: "required",
+                message: "Validation failed for 'scope': value is required"
+            )
+        }
+        scope = try container.sdkDecodeRequired(.scope)
+    }
+}
+
+public extension PostBillingCreditGrantsRequestBodyApplicabilityConfig {
+    init(scope: PostBillingCreditGrantsRequestBodyApplicabilityConfigScope) {
         self.scope = scope
     }
 }
